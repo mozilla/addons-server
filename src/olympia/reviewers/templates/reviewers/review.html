@@ -8,7 +8,7 @@
   {{ reviewer_page_title(title=addon.name) }}
 {% endblock %}
 
-{% block bodyclass %}{{ super() }} inverse{% endblock %}
+{% block bodyclass %}{{ super() }} inverse{{ " content-review" if content_review_only else ""}}{% endblock %}
 
 {% block content %}
 
@@ -233,14 +233,23 @@
         </label>
         {{ form.notify.errors }}
       </div>
-      {% if addon.admin_review and is_admin %}
-      <div class="review-actions-section">
-        {{ form.adminflag }}
-        <label for="{{ form.adminflag.auto_id }}">
-          {{ form.adminflag.label }}
-        </label>
-        {{ form.adminflag.errors }}
-      </div>
+      {% if is_admin %}
+        <div class="review-actions-section">
+          {% if addon.needs_admin_code_review %}
+            {{ form.clear_admin_code_review }}
+            <label for="{{ form.clear_admin_code_review.auto_id }}">
+              {{ form.clear_admin_code_review.label }}
+            </label>
+            {{ form.clear_admin_code_review.errors }}
+          {% endif %}
+          {% if addon.needs_admin_content_review %}
+            {{ form.clear_admin_content_review }}
+            <label for="{{ form.clear_admin_content_review.auto_id }}">
+              {{ form.clear_admin_content_review.label }}
+            </label>
+            {{ form.clear_admin_content_review.errors }}
+          {% endif %}
+        </div>
       {% endif %}
       <div class="review-actions-section data-toggle review-info-request"
            data-value="{{ actions_info_request|join("|") }}|">
@@ -331,7 +340,7 @@
   <strong>{{ _('Flags') }}</strong>
   <ul>
     {% for cls, title in flags %}
-      <li>{{ title }}</li>
+      <li class="{{ cls }}">{{ title }}</li>
     {% endfor %}
   </ul>
   {% endif %}

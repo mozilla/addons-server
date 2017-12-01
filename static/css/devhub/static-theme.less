@@ -1,0 +1,95 @@
+#theme-wizard {
+    label {
+        display: block;
+        font-size: 1.1em;
+    }
+    .note {
+        display: block;
+        padding-top: 2px;
+        li {
+            display: inline-block;
+            font-size: 0.9em;
+        }
+        li::before {
+            content: "\b7";
+            padding-right: 3px;
+        }
+    }
+    h3 {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    h3.colors {
+        margin-top: 26px;
+    }
+    .colors {
+        li.row {
+            display: inline-block;
+            margin-right: 2em;
+
+            label {
+                font-weight: normal;
+            }
+            input {
+                width: 384px;
+                padding-left: 30px;
+                padding-right: 7px;
+                padding-bottom: 4px;
+                padding-top: 4px;
+            }
+            .minicolors-swatch,
+            .minicolors-swatch-color {
+                border-radius: 3px;
+            }
+        }
+    }
+    .preview,
+    .reset {
+        display: none;
+    }
+    .reset {
+        font-weight: bold;
+    }
+    .preview, #browser-preview {
+        background-color: #ccc;
+        width: 100%;
+    }
+    #browser-preview {
+        height: 200px;
+        width: 900px;
+    }
+    #theme-header .preview.loading {
+        height: 50px;
+    }
+    .loading,
+    .loaded {
+        display: block;
+    }
+    .loading:before {
+        background: #444;
+        background-size: auto 70%;
+        content: "\00a0";
+        display: block;
+        height: 100%;
+        opacity: .4;
+        transition: opacity .5s;
+        width: 100%;
+    }
+    .loaded:before {
+        opacity: 0;
+    }
+    #manifest {
+        display: none;
+    }
+    .button.upload.uploading {
+        background-image: url(../../img/zamboni/discovery_pane/loading.gif);
+        background-size: 1.5em;
+        background-repeat: no-repeat;
+        background-position: 95% center;
+        padding-left: 3em;
+        padding-right: 3em;
+}
+    .html-rtl .button.upload.uploading {
+        background-position: 5% center;
+    }
+}

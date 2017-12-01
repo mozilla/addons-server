@@ -12,7 +12,6 @@ from olympia.constants.activity import (  # noqa
 from olympia.constants.applications import *  # noqa
 from olympia.constants.base import *  # noqa
 from olympia.constants.licenses import *  # noqa
-from olympia.constants.payments import *  # noqa
 from olympia.constants.platforms import *  # noqa
 from olympia.constants.reviewers import *  # noqa
 from olympia.constants.search import *  # noqa

@@ -211,14 +211,14 @@ class TestRatingModel(TestCase):
 
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
-        reply_url = jinja_helpers.absolutify(
+        rating_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.ratings.reply', addon.slug, rating.pk,
+                'addons.ratings.detail', addon.slug, rating.pk,
                 add_prefix=False))
-        assert email.subject == 'Mozilla Add-on User Review: my addon name'
-        assert 'A user has left a review for your add-on,' in email.body
+        assert email.subject == 'Mozilla Add-on User Rating: my addon name'
+        assert 'A user has rated your add-on,' in email.body
         assert 'my addon name' in email.body
-        assert reply_url in email.body
+        assert rating_url in email.body
         assert email.to == [addon_author.email]
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
 

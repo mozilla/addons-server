@@ -22,7 +22,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
-    Category, Charity, CompatOverride, CompatOverrideRange, FrozenAddon,
+    Category, CompatOverride, CompatOverrideRange, FrozenAddon,
     IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
@@ -43,19 +43,19 @@ class TestCleanSlug(TestCase):
     def test_clean_slug_new_object(self):
         # Make sure there's at least an addon with the "addon" slug, subsequent
         # ones should be "addon-1", "addon-2" ...
-        a = Addon.objects.create()
-        assert a.slug == "addon"
+        a = Addon.objects.create(name='Addon')
+        assert a.slug == 'addon'
 
-        # Start with a first clash. This should give us "addon-1".
+        # Start with a first clash. This should give us 'addon-1".
         # We're not saving yet, we're testing the slug creation without an id.
-        b = Addon()
+        b = Addon(name='Addon')
         b.clean_slug()
         assert b.slug == 'addon1'
         # Now save the instance to the database for future clashes.
         b.save()
 
         # Test on another object without an id.
-        c = Addon()
+        c = Addon(name='Addon')
         c.clean_slug()
         assert c.slug == 'addon2'
 
@@ -66,50 +66,40 @@ class TestCleanSlug(TestCase):
 
         # And yet another object without an id. Make sure we're not trying to
         # assign the 'addon-2' slug from the deleted addon.
-        d = Addon()
+        d = Addon(name='Addon')
         d.clean_slug()
         assert d.slug == 'addon3'
 
-    def test_clean_slug_with_id(self):
+    def test_clean_slug_no_name(self):
         # Create an addon and save it to have an id.
         a = Addon.objects.create()
         # Start over: don't use the name nor the id to generate the slug.
-        a.slug = a.name = ""
+        a.slug = a.name = ''
         a.clean_slug()
-        # Slugs created from an id are of the form "id~", eg "123~" to avoid
-        # clashing with URLs.
-        assert a.slug == "%s~" % a.id
 
-        # And again, this time make it clash.
-        b = Addon.objects.create()
-        # Set a's slug to be what should be created for b from its id.
-        a.slug = "%s~" % b.id
-        a.save()
-
-        # Now start over for b.
-        b.slug = b.name = ""
-        b.clean_slug()
-        assert b.slug == "%s~1" % b.id
+        # Slugs that are generated from add-ons without an name use
+        # uuid without the node bit so have the length 20.
+        assert len(a.slug) == 20
 
     def test_clean_slug_with_name(self):
-        # Make sure there's at least an addon with the "fooname" slug,
-        # subsequent ones should be "fooname-1", "fooname-2" ...
-        a = Addon.objects.create(name="fooname")
-        assert a.slug == "fooname"
+        # Make sure there's at least an addon with the 'fooname' slug,
+        # subsequent ones should be 'fooname-1', 'fooname-2' ...
+        a = Addon.objects.create(name='fooname')
+        assert a.slug == 'fooname'
 
-        b = Addon(name="fooname")
+        b = Addon(name='fooname')
         b.clean_slug()
-        assert b.slug == "fooname1"
+        assert b.slug == 'fooname1'
 
     def test_clean_slug_with_slug(self):
-        # Make sure there's at least an addon with the "fooslug" slug,
-        # subsequent ones should be "fooslug-1", "fooslug-2" ...
-        a = Addon.objects.create(name="fooslug")
-        assert a.slug == "fooslug"
+        # Make sure there's at least an addon with the 'fooslug' slug,
+        # subsequent ones should be 'fooslug-1', 'fooslug-2' ...
+        a = Addon.objects.create(name='fooslug')
+        assert a.slug == 'fooslug'
 
-        b = Addon(name="fooslug")
+        b = Addon(name='fooslug')
         b.clean_slug()
-        assert b.slug == "fooslug1"
+        assert b.slug == 'fooslug1'
 
     def test_clean_slug_denied_slug(self):
         denied_slug = 'foodenied'
@@ -117,30 +107,30 @@ class TestCleanSlug(TestCase):
 
         a = Addon(slug=denied_slug)
         a.clean_slug()
-        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
+        # Blacklisted slugs (like 'activate" or IDs) have a "~" appended to
         # avoid clashing with URLs.
-        assert a.slug == "%s~" % denied_slug
+        assert a.slug == '%s~' % denied_slug
         # Now save the instance to the database for future clashes.
         a.save()
 
         b = Addon(slug=denied_slug)
         b.clean_slug()
-        assert b.slug == "%s~1" % denied_slug
+        assert b.slug == '%s~1' % denied_slug
 
     def test_clean_slug_denied_slug_long_slug(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
         DeniedSlug.objects.create(name=long_slug[:30])
 
-        # If there's no clashing slug, just append a "~".
+        # If there's no clashing slug, just append a '~'.
         a = Addon.objects.create(slug=long_slug[:30])
-        assert a.slug == "%s~" % long_slug[:29]
+        assert a.slug == '%s~' % long_slug[:29]
 
         # If there's a clash, use the standard clash resolution.
         a = Addon.objects.create(slug=long_slug[:30])
-        assert a.slug == "%s1" % long_slug[:28]
+        assert a.slug == '%s1' % long_slug[:28]
 
     def test_clean_slug_long_slug(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
         # If there's no clashing slug, don't over-shorten it.
         a = Addon.objects.create(slug=long_slug)
@@ -149,30 +139,31 @@ class TestCleanSlug(TestCase):
         # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        assert b.slug == "%s1" % long_slug[:28]
+        assert b.slug == '%s1' % long_slug[:28]
 
     def test_clean_slug_always_slugify(self):
-        illegal_chars = "some spaces and !?@"
+        illegal_chars = 'some spaces and !?@'
 
         # Slugify if there's a slug provided.
         a = Addon(slug=illegal_chars)
         a.clean_slug()
-        assert a.slug.startswith("some-spaces-and"), a.slug
+        assert a.slug.startswith('some-spaces-and'), a.slug
 
         # Also slugify if there's no slug provided.
         b = Addon(name=illegal_chars)
         b.clean_slug()
-        assert b.slug.startswith("some-spaces-and"), b.slug
+        assert b.slug.startswith('some-spaces-and'), b.slug
 
     def test_clean_slug_worst_case_scenario(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
         # Generate 100 addons with this very long slug. We should encounter the
         # worst case scenario where all the available clashes have been
-        # avoided. Check the comment in addons.models.clean_slug, in the "else"
-        # part of the "for" loop checking for available slugs not yet assigned.
+        # avoided. Check the comment in addons.models.clean_slug, in the 'else'
+        # part of the 'for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Addon.objects.create(slug=long_slug)
+
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
 
@@ -185,6 +176,10 @@ class TestCleanSlug(TestCase):
         b = Addon.objects.create(name='ends with dash -')
         assert b.slug == 'ends-with-dash-1'
         assert b.slug == amo.utils.slugify(b.slug)
+
+    def test_clean_slug_unicode(self):
+        addon = Addon.objects.create(name=u'Addön 1')
+        assert addon.slug == u'addön-1'
 
 
 class TestAddonManager(TestCase):
@@ -585,8 +580,8 @@ class TestAddonModels(TestCase):
         log = AddonLog.objects.order_by('-id').first().activity_log
         assert log.action == amo.LOG.DELETE_ADDON.id
         assert log.to_string() == (
-            "Addon id {0} with GUID {1} has been deleted".format(addon_id,
-                                                                 guid))
+            'Addon id {0} with GUID {1} has been deleted'.format(
+                addon_id, guid))
 
     def test_delete(self):
         addon = Addon.unfiltered.get(pk=3615)
@@ -2280,7 +2275,7 @@ class TestAddonFromUpload(UploadTest):
         upload = self.get_upload('extension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(upload, [self.platform])
-        assert not addon.admin_review
+        assert not addon.needs_admin_code_review
 
     def test_validation_timeout(self):
         upload = self.get_upload('extension.xpi')
@@ -2292,7 +2287,7 @@ class TestAddonFromUpload(UploadTest):
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
         addon = Addon.from_upload(upload, [self.platform])
-        assert addon.admin_review
+        assert addon.needs_admin_code_review
 
     def test_webextension_generate_guid(self):
         addon = Addon.from_upload(
@@ -2436,21 +2431,6 @@ class TestAddonFromUpload(UploadTest):
 
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
-
-
-class TestCharity(TestCase):
-    fixtures = ['base/charity.json']
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url(self):
-        charity = Charity(name="a", paypal="b", url="http://foo.com")
-        charity.save()
-        assert charity.outgoing_url.startswith(REDIRECT_URL)
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url_foundation(self):
-        foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
-        assert not foundation.outgoing_url.startswith(REDIRECT_URL)
 
 
 class TestFrozenAddons(TestCase):

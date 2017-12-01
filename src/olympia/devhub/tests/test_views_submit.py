@@ -199,7 +199,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, supported_platforms=None, expect_errors=False,
-             source=None, listed=True, status_code=200):
+             source=None, listed=True, status_code=200, url=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_ALL]
         data = {
@@ -207,8 +207,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'source': source,
             'supported_platforms': [p.id for p in supported_platforms]
         }
-        url = reverse('devhub.submit.upload',
-                      args=['listed' if listed else 'unlisted'])
+        url = url or reverse('devhub.submit.upload',
+                             args=['listed' if listed else 'unlisted'])
         response = self.client.post(url, data, follow=True)
         assert response.status_code == status_code
         if not expect_errors:
@@ -338,7 +338,39 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.source
-        assert Addon.objects.get(pk=addon.pk).admin_review
+        assert Addon.objects.get(pk=addon.pk).needs_admin_code_review
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard_button_shown(self):
+        response = self.client.get(reverse(
+            'devhub.submit.upload', args=['listed']), follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#wizardlink')
+        assert doc('#wizardlink').attr('href') == (
+            reverse('devhub.submit.wizard', args=['listed']))
+
+        response = self.client.get(reverse(
+            'devhub.submit.upload', args=['unlisted']), follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#wizardlink')
+        assert doc('#wizardlink').attr('href') == (
+            reverse('devhub.submit.wizard', args=['unlisted']))
+
+    @override_switch('allow-static-theme-uploads', active=False)
+    def test_static_theme_wizard_button_not_shown(self):
+        response = self.client.get(reverse(
+            'devhub.submit.upload', args=['listed']), follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+
+        response = self.client.get(reverse(
+            'devhub.submit.upload', args=['unlisted']), follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_listed(self):
@@ -369,6 +401,63 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.assert3xx(
+            response, reverse('devhub.submit.finish', args=[addon.slug]))
+        all_ = sorted([f.filename for f in latest_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard_listed(self):
+        # Check we get the correct template.
+        url = reverse('devhub.submit.wizard', args=['listed'])
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+
+        # And then check the upload works.  In reality the zip is generated
+        # client side in JS but the zip file is the same.
+        assert Addon.objects.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(
+            url=url,
+            # Throw in platforms for the lols - they will be ignored
+            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
+        addon = Addon.objects.get()
+        # Next step is same as non-wizard flow too.
+        self.assert3xx(
+            response, reverse('devhub.submit.details', args=[addon.slug]))
+        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard_unlisted(self):
+        # Check we get the correct template.
+        url = reverse('devhub.submit.wizard', args=['unlisted'])
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+
+        # And then check the upload works.  In reality the zip is generated
+        # client side in JS but the zip file is the same.
+        assert Addon.unfiltered.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(
+            url=url,
+            # Throw in platforms for the lols - they will be ignored
+            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX],
+            listed=False)
+        addon = Addon.unfiltered.get()
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # Next step is same as non-wizard flow too.
         self.assert3xx(
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
@@ -1080,7 +1169,7 @@ class VersionSubmitUploadMixin(object):
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.source
         self.assert3xx(response, self.get_next_url(version))
-        assert self.addon.reload().admin_review
+        assert self.addon.reload().needs_admin_code_review
 
     def test_with_bad_source_format(self):
         tdir = temp.gettempdir()
@@ -1174,6 +1263,64 @@ class VersionSubmitUploadMixin(object):
         AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(self.url)
         assert response.status_code == 200
+
+    @override_switch('allow-static-theme-uploads', active=False)
+    def test_static_theme_wizard_button_not_shown(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard_button_not_shown_for_extensions(self):
+        assert self.addon.type != amo.ADDON_STATICTHEME
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard_button_shown(self):
+        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
+                   'unlisted')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#wizardlink')
+        assert doc('#wizardlink').attr('href') == (
+            reverse('devhub.submit.version.wizard',
+                    args=[self.addon.slug, channel]))
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_wizard(self):
+        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
+                   'unlisted')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        # Check we get the correct template.
+        self.url = reverse('devhub.submit.version.wizard',
+                           args=[self.addon.slug, channel])
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+
+        # And then check the upload works.
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post()
+
+        version = self.addon.find_latest_version(channel=self.channel)
+        assert version.channel == self.channel
+        assert version.all_files[0].status == (
+            amo.STATUS_AWAITING_REVIEW
+            if self.channel == amo.RELEASE_CHANNEL_LISTED else
+            amo.STATUS_PUBLIC)
+        self.assert3xx(response, self.get_next_url(version))
+        log_items = ActivityLog.objects.for_addons(self.addon)
+        assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
@@ -1595,4 +1742,4 @@ class TestFileSubmitUpload(UploadTest):
         next_url = reverse('devhub.submit.file.finish',
                            args=[self.addon.slug, self.version.pk])
         self.assert3xx(response, next_url)
-        assert not self.addon.reload().admin_review
+        assert not self.addon.reload().needs_admin_code_review

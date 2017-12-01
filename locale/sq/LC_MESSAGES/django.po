@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1843,7 +1843,8 @@ msgstr "{addon} u shtua te {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} u hoq prej {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "U shkrua {review} për {addon}."
 
 #. L10n: {0} is a category name.
@@ -1878,16 +1879,20 @@ msgstr "Rregullat për {addon} u ndryshuan."
 msgid "{addon} icon changed."
 msgstr "U ndryshua ikona për {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "U miratua {review} për {addon}."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} miratoi {review} për {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Shqyrtimi {review} për {addon} u fshi."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} fshiu {review} për {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1932,7 +1937,8 @@ msgstr "Përdoruesi {user} u kufizua."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Përgjegjësi {0} pa regjistrimin e veprimtarisë për {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} për {addon} u përditësua."
 
 msgid "{addon} reviewed."
@@ -2111,15 +2117,6 @@ msgstr "Shtojca"
 #, fuzzy
 msgid "Themes (Static)"
 msgstr "Artist Temash"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Kërko vetëm në faqen e kësaj shtese dhe në profilin e zhvilluesit"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Pyet pasi përdoruesit të fillojnë ta shkarkojnë këtë shtesë"
-
-msgid "Ask before users can download this add-on"
-msgstr "Pyet përpara se përdoruesit të mund ta shkarkojnë këtë shtesë"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3015,10 +3012,11 @@ msgstr "Autorë"
 msgid "About author roles"
 msgstr "Rreth rolit autor"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 3 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtimin dhe "
 "heqjen e autorëve të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtimin dhe heqjen e autorëve të tjerë dhe administrimin e pagesave</"
@@ -3641,6 +3639,10 @@ msgstr ""
 "Për ngarkimin e paketës së shtesës suaj dhe përzgjedhjen e çfarëdo kufizimi platforme, përdorni fushat më poshtë. Pas ngarkimit, mbi kartelën tuaj do të xhirohen një varg provash të automatizuara "
 "vleftësimi."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Krijoni një Temë të Re"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
 
@@ -3655,6 +3657,91 @@ msgstr "Parashtroni një Kartelë"
 
 msgid "Sign Add-on"
 msgstr "Nënshkruajeni Shtesën"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema u fshi."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Licencë Teme"
+
+msgid "Select a header image for your Theme."
+msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
+
+msgid "required"
+msgstr "e domosdoshme"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Vendosur sipër djathtas"
+
+msgid "Select a different header image"
+msgstr "Përzgjidhni një tjetër figurë kryeje"
+
+msgid "Select colors for your Theme."
+msgstr "Përzgjidhni ngjyra për Temën tuaj."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Kjo është ngjyra e tekstit të skedave."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(opsional)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Kaloji Kursorin Përsipër Për Paraparje"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Tema Premtuese"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Përditësoni Kartelën"
 
 msgid "API Credentials"
 msgstr "Kredenciale API"
@@ -4092,9 +4179,6 @@ msgstr "Krye"
 msgid "Footer"
 msgstr "Fundfaqe"
 
-msgid "Select colors for your Theme."
-msgstr "Përzgjidhni ngjyra për Temën tuaj."
-
 msgid "Foreground Text"
 msgstr "Tekst i Përparmë"
 
@@ -4159,9 +4243,6 @@ msgstr "Shihni dhe pajtohuni te <a href=\"%(feed_url)s\">prurja mbi veprimtarin�
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Merrni pjesë në bashkëbisedim te <a href=\"%(forum_url)s\">forumet</a> tanë."
 
-msgid "Select a header image for your Theme."
-msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
 
@@ -4170,12 +4251,6 @@ msgstr "Maksimumi 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG ose JPG"
-
-msgid "Aligned to top-right"
-msgstr "Vendosur sipër djathtas"
-
-msgid "Select a different header image"
-msgstr "Përzgjidhni një tjetër figurë kryeje"
 
 msgid "Select a footer image for your Theme."
 msgstr "Përzgjidhni një figurë fundfaqeje për Temën tuaj."
@@ -4391,17 +4466,17 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
+#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-#, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #, fuzzy
@@ -4459,9 +4534,6 @@ msgstr "S’përtypi dot kartelën manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "S’u gjet dot një ID Shtese."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID-ja e shtesës duhet të jetë nga 64 shenja e poshtë."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4747,498 +4819,6 @@ msgstr "Lejoni përdorim të hershëm për veçori eksperimentale shfletuesi."
 
 msgid "Get Started"
 msgstr "Nisjani"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dërhem i Emirateve të Bashkuara Arabe"
-
-msgid "Afghanistan Afghani"
-msgstr "Afgani Afgan"
-
-msgid "Albania Lek"
-msgstr "Lek Shqipëtar"
-
-msgid "Armenia Dram"
-msgstr "Dram Armene"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Gilder Antilesh Holandeze"
-
-msgid "Angola Kwanza"
-msgstr "Kuanxa Angoleze"
-
-msgid "Argentina Peso"
-msgstr "Peso Argjentinase"
-
-msgid "Australia Dollar"
-msgstr "Dollar Australian"
-
-msgid "Aruba Guilder"
-msgstr "Gilder Arubase"
-
-msgid "Azerbaijan New Manat"
-msgstr "Manat i Ri Azerbajxhanas"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Markë e Komvertueshme Bosnje dhe Hercegovine"
-
-msgid "Barbados Dollar"
-msgstr "Dollar Barbadosi"
-
-msgid "Bangladesh Taka"
-msgstr "Taka Bangladeshase"
-
-msgid "Bulgaria Lev"
-msgstr "Lev Bullgar"
-
-msgid "Bahrain Dinar"
-msgstr "Dinar Bahreini"
-
-msgid "Burundi Franc"
-msgstr "Frang Burundi"
-
-msgid "Bermuda Dollar"
-msgstr "Dollar Bermudas"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Dollar Brunei"
-
-msgid "Bolivia Boliviano"
-msgstr "Boliviano Bolivie"
-
-msgid "Brazil Real"
-msgstr "Real Brazilian"
-
-msgid "Bahamas Dollar"
-msgstr "Dollar Bahamez"
-
-msgid "Bhutan Ngultrum"
-msgstr "Ngultrum Butani"
-
-msgid "Botswana Pula"
-msgstr "Pula Botsvane"
-
-msgid "Belarus Ruble"
-msgstr "Rubël Bjelloruse"
-
-msgid "Belize Dollar"
-msgstr "Dollar Belizeje"
-
-msgid "Canada Dollar"
-msgstr "Dollar Kanadez"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Frang Kongolez/Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Frang Zviceran"
-
-msgid "Chile Peso"
-msgstr "Peso Kilian"
-
-msgid "China Yuan Renminbi"
-msgstr "Yan Kinez"
-
-msgid "Colombia Peso"
-msgstr "Peso Kolumbian"
-
-msgid "Costa Rica Colon"
-msgstr "Kolon Kosta Rike"
-
-msgid "Cuba Convertible Peso"
-msgstr "Peso Kubane e Konvertueshme"
-
-msgid "Cuba Peso"
-msgstr "Peso Kubane"
-
-msgid "Cape Verde Escudo"
-msgstr "Eskudo Kepi të Gjelbër"
-
-msgid "Czech Republic Koruna"
-msgstr "Koronë e Republikës Çeke"
-
-msgid "Djibouti Franc"
-msgstr "Frang Xhibuti"
-
-msgid "Denmark Krone"
-msgstr "Koronë Daneze"
-
-msgid "Dominican Republic Peso"
-msgstr "Peso e Republikës Dominikane"
-
-msgid "Algeria Dinar"
-msgstr "Dinar Algjerian"
-
-msgid "Egypt Pound"
-msgstr "Lirë Egjiptiane"
-
-msgid "Eritrea Nakfa"
-msgstr "Nafkë Eritrase"
-
-msgid "Ethiopia Birr"
-msgstr "Birr Etiopase"
-
-msgid "Euro Member Countries"
-msgstr "Vende Anëtare të Euros"
-
-msgid "Fiji Dollar"
-msgstr "Dollar Fixhi"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Lirë e Ishujve Folkland (Malvinas)"
-
-msgid "United Kingdom Pound"
-msgstr "Lirë e Mbretërisë së Bashkuar"
-
-msgid "Georgia Lari"
-msgstr "Lari Gjeorgjie"
-
-msgid "Guernsey Pound"
-msgstr "Lirë Guernsi"
-
-msgid "Ghana Cedi"
-msgstr "Cedi Ganez"
-
-msgid "Gibraltar Pound"
-msgstr "Lirë Gjibraltari"
-
-msgid "Gambia Dalasi"
-msgstr "Dalasi i Gambias"
-
-msgid "Guinea Franc"
-msgstr "Frang Guineje"
-
-msgid "Guatemala Quetzal"
-msgstr "Ketzal Guatemalas"
-
-msgid "Guyana Dollar"
-msgstr "Dollar Guajane"
-
-msgid "Hong Kong Dollar"
-msgstr "Dollar Hong-Kongu"
-
-msgid "Honduras Lempira"
-msgstr "Lempira Honduri"
-
-msgid "Croatia Kuna"
-msgstr "Kuna Kroate"
-
-msgid "Haiti Gourde"
-msgstr "Gurdë Haiti"
-
-msgid "Hungary Forint"
-msgstr "Fiorinë Hungareze"
-
-msgid "Indonesia Rupiah"
-msgstr "Rupia Indonezian"
-
-msgid "Israel Shekel"
-msgstr "Shekel Izraelit"
-
-msgid "Isle of Man Pound"
-msgstr "Lirë e Ishullit të Robit"
-
-msgid "India Rupee"
-msgstr "Rupi Indian"
-
-msgid "Iraq Dinar"
-msgstr "Dinar Irakian"
-
-msgid "Iran Rial"
-msgstr "Rial Iranian"
-
-msgid "Iceland Krona"
-msgstr "Koronë Islandeze"
-
-msgid "Jersey Pound"
-msgstr "Lirë Xhersi"
-
-msgid "Jamaica Dollar"
-msgstr "Dollar Xhamaikan"
-
-msgid "Jordan Dinar"
-msgstr "Dinar Jordanez"
-
-msgid "Japan Yen"
-msgstr "Jen Japonez"
-
-msgid "Kenya Shilling"
-msgstr "Shilingë e Kenias"
-
-msgid "Kyrgyzstan Som"
-msgstr "Som Kirgiz"
-
-msgid "Cambodia Riel"
-msgstr "Riel Kamboxhian"
-
-msgid "Comoros Franc"
-msgstr "Frang Komoro"
-
-msgid "Korea (North) Won"
-msgstr "Won Koreje (e Veriut)"
-
-msgid "Korea (South) Won"
-msgstr "Won Koreje (e Jugut)"
-
-msgid "Kuwait Dinar"
-msgstr "Dinar Kuvajti"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dollar i Ishujve Kajman"
-
-msgid "Kazakhstan Tenge"
-msgstr "Tenge Kazakistani"
-
-msgid "Laos Kip"
-msgstr "Kip Laosi"
-
-msgid "Lebanon Pound"
-msgstr "Lirë Libaneze"
-
-msgid "Sri Lanka Rupee"
-msgstr "Rupi Sri Lanke"
-
-msgid "Liberia Dollar"
-msgstr "Dollar Liberie"
-
-msgid "Lesotho Loti"
-msgstr "Loti Lesotoje"
-
-msgid "Lithuania Litas"
-msgstr "Litas Lituanez"
-
-msgid "Latvia Lat"
-msgstr "Lat Letonez"
-
-msgid "Libya Dinar"
-msgstr "Dinar Libie"
-
-msgid "Morocco Dirham"
-msgstr "Dërhem Maroken"
-
-msgid "Moldova Leu"
-msgstr "Leu Moldavie"
-
-msgid "Madagascar Ariary"
-msgstr "Ariari Madagaskari"
-
-msgid "Macedonia Denar"
-msgstr "Dinar Maqedon"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Kjat Mianmari (Birmani)"
-
-msgid "Mongolia Tughrik"
-msgstr "Tugrik Mongolie"
-
-msgid "Macau Pataca"
-msgstr "Pataka e Makaos"
-
-msgid "Mauritania Ouguiya"
-msgstr "Uguija Mauritanie"
-
-msgid "Mauritius Rupee"
-msgstr "Rupi Mauriciusi"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Rufije e Maldiveve (Ishujt Maldive)"
-
-msgid "Malawi Kwacha"
-msgstr "Kuasha Malaui"
-
-msgid "Mexico Peso"
-msgstr "Peso Meksikan"
-
-msgid "Malaysia Ringgit"
-msgstr "Ringit Malajzie"
-
-msgid "Mozambique Metical"
-msgstr "Metikal Mozambiku"
-
-msgid "Namibia Dollar"
-msgstr "Dollar Namibian"
-
-msgid "Nigeria Naira"
-msgstr "Naira Nigerie"
-
-msgid "Nicaragua Cordoba"
-msgstr "Kordobë Nikaraguajan"
-
-msgid "Norway Krone"
-msgstr "Koronë Norvegjeze"
-
-msgid "Nepal Rupee"
-msgstr "Rupi Nepali"
-
-msgid "New Zealand Dollar"
-msgstr "Dollar Zelande të Re"
-
-msgid "Oman Rial"
-msgstr "Rial Omani"
-
-msgid "Panama Balboa"
-msgstr "Balboa Panamaje"
-
-msgid "Peru Nuevo Sol"
-msgstr "Sol i Ri Peruje"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina Papua Guinea e Re"
-
-msgid "Philippines Peso"
-msgstr "Peso Filipinas"
-
-msgid "Pakistan Rupee"
-msgstr "Rupi Pakistanez"
-
-msgid "Poland Zloty"
-msgstr "Zlot Polak"
-
-msgid "Paraguay Guarani"
-msgstr "Guarani Paraguaji"
-
-msgid "Qatar Riyal"
-msgstr "Rial Katari"
-
-msgid "Romania New Leu"
-msgstr "Leu i Ri Rumun"
-
-msgid "Serbia Dinar"
-msgstr "Dinar Serb"
-
-msgid "Russia Ruble"
-msgstr "Rubël Ruse"
-
-msgid "Rwanda Franc"
-msgstr "Frang Ruande"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Rial i Arabisë Saudite"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dollar i Ishujve Solomon"
-
-msgid "Seychelles Rupee"
-msgstr "Rupi Sejshellesh"
-
-msgid "Sudan Pound"
-msgstr "Lirë Sudaneze"
-
-msgid "Sweden Krona"
-msgstr "Koronë Suedeze"
-
-msgid "Singapore Dollar"
-msgstr "Dollar Singapori"
-
-msgid "Saint Helena Pound"
-msgstr "Lirë e Shën Helenës"
-
-msgid "Sierra Leone Leone"
-msgstr "Leon i Sierra Leones"
-
-msgid "Somalia Shilling"
-msgstr "Shilingë Somaleze"
-
-msgid "Seborga Luigino"
-msgstr "Luigjkë Seborge"
-
-msgid "Suriname Dollar"
-msgstr "Dollar Surinami"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Dobra Sao Tome dhe Principe"
-
-msgid "El Salvador Colon"
-msgstr "Kolon Salvadori"
-
-msgid "Syria Pound"
-msgstr "Lirë Sirie"
-
-msgid "Swaziland Lilangeni"
-msgstr "Lilangeni Svazilandi"
-
-msgid "Thailand Baht"
-msgstr "Bat Tajlandez"
-
-msgid "Tajikistan Somoni"
-msgstr "Somoni Taxhikistani"
-
-msgid "Turkmenistan Manat"
-msgstr "Mant Turkmenistani"
-
-msgid "Tunisia Dinar"
-msgstr "Dinar Tunizie"
-
-msgid "Tonga Pa'anga"
-msgstr "Paanga e Tongës"
-
-msgid "Turkey Lira"
-msgstr "Lirë Turke"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dollar i Trinidad dhe Tobagos"
-
-msgid "Tuvalu Dollar"
-msgstr "Dollar Tuvalez"
-
-msgid "Taiwan New Dollar"
-msgstr "Dollar i Ri Tajvani"
-
-msgid "Tanzania Shilling"
-msgstr "Shillingë Tanzanie"
-
-msgid "Ukraine Hryvna"
-msgstr "Hrivnja Ukrainase"
-
-msgid "Uganda Shilling"
-msgstr "Shilingë Ugande"
-
-msgid "United States Dollar"
-msgstr "Dollar i Shteteve të Bashkuara"
-
-msgid "Uruguay Peso"
-msgstr "Peso Uruguajan"
-
-msgid "Uzbekistan Som"
-msgstr "Som Uzbek"
-
-msgid "Venezuela Bolivar"
-msgstr "Bolivar Venezuelas"
-
-msgid "Viet Nam Dong"
-msgstr "Dong Vietnamez"
-
-msgid "Vanuatu Vatu"
-msgstr "Vatu Vanuatas"
-
-msgid "Samoa Tala"
-msgstr "Tala Samoase"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Frang CFA BEAC i Bashkësisë Financiare Afrikane (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Dollar i Karaibeve Lindore"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Të Drejta Speciale Tërheqjesh Fondi Monetar Ndërkombëtar (IMF)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Frang i Bashkësisë Financiare Afrikane (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Frang i Bankave Frënge të Paqësorit (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Rial i Jemenit"
-
-msgid "South Africa Rand"
-msgstr "Rand Afrikanojugor"
-
-msgid "Zambia Kwacha"
-msgstr "Kuasha e Zambias"
-
-msgid "Zimbabwe Dollar"
-msgstr "Dollar i Zimbabves"
 
 msgid "About Mozilla Add-ons"
 msgstr "Rreth Shtesave Mozilla"
@@ -6328,6 +5908,173 @@ msgstr "Këshillojmë të kaloni te <a href=\"%(tb_url)s\">Thunderbird</a>-i dhe
 msgid "Read more about Sunbird"
 msgstr "Lexoni më tepër rreth Sunbird-it"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Shqyrtime për %s"
+
+msgid "Review History for this Addon"
+msgstr "Shihni Historikun për këtë Shtesë"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Kur përzgjidhet \"Tjetër\" si arsye, duhet dhënë një shpjegim i shkurtër."
+
+msgid "Other (please specify)"
+msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
+
+msgid "This field is required."
+msgstr "Kjo fushë është e domosdoshme."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "S’mund të ndryshoni shtesën të cilën trajton një shqyrtim, pasi të jetë krijuar shqyrtimi."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "S’mund të përgjigjeni në një shqyrtim që është vetë një përgjigje."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "S’mund të ndryshoni versionin e shtesës së shqyrtuar një herë, pasi të jetë krijuar shqyrtimi."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Ky version i shtesës s’ekziston ose s’është publik."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim redaktorial."
+
+# %s is the name of the add-on
+msgid "Add a review for {0}"
+msgstr "Shtoni një shqyrtim për {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Mbani parasysh këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të dobishme, të tilla si, ç’veçori ju pëlqyen dhe/ose "
+"nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot "
+"arsye se përse besoni se është kështu. </li> <li> Ju lutemi, te shqyrtimet mos postoni njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, ndaj ata s’mund të lidhen me "
+"për zgjidhjen e problemit tuaj. Shihni këtë <a href=\"%(support)s\">ndarje asistence</a> të shtesës për të parë nëse jepet asistencë për të. Mund të provoni edhe të pyesni për ndihmë te <a href="
+"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">bashkësia e shtesave</a>. </li> <li>Ju lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të "
+"dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\">Udhëzimet mbi Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Përgjigje shqyrtimit nga {0}"
+
+msgid "Write a Reply"
+msgstr "Shkruani një Përgjigje"
+
+msgid "Submit"
+msgstr "Parashtroje"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ose <a href=\"%(url)s\">Anulojeni</a>"
+
+msgid "Please select a reason:"
+msgstr "Ju lutemi, përzgjidhni një arsye:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "nga %(user)s <b>(Zhvillues)</b> më %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
+msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Ky përdorues ka edhe <a href=\"%(user_review_url)s\">shqyrtime të tjera</a> të kësaj shtese."
+
+msgid "Flagged for review"
+msgstr "Me shenjë për shqyrtim"
+
+msgid "Report this review"
+msgstr "Njoftoni mbi këtë shqyrtim"
+
+msgid "Reply to review"
+msgstr "Përgjigjjuni shqyrtimit"
+
+msgid "Edit reply"
+msgstr "Përpunoni përgjigjen"
+
+msgid "Edit review"
+msgstr "Përpunoni shqyrtimin"
+
+msgid "Delete reply"
+msgstr "Fshije përgjigjen"
+
+msgid "Delete review"
+msgstr "Fshije shqyrtimin"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Shqyrtime"
+
+msgid "Reviews for {0}"
+msgstr "Shqyrtime për {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> shqyrtim për këtë shtesë"
+msgstr[1] "<b>{0}</b> shqyrtime për këtë shtesë"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Përgjigje zhvilluesi nga {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Shqyrtim për %(addon)s nga %(user)s"
+msgstr[1] "Shqyrtime për %(addon)s nga %(user)s"
+
+msgid "No reviews found."
+msgstr "S’u gjetën shqyrtime."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Mesatare</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Shkruani një Shqyrtim të Ri"
+
+msgid "Be the first to write a review."
+msgstr "Bëhuni i pari që shkruan një shqyrtim."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} shqyrtim"
+msgstr[1] "{num} shqyrtime"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
+
 msgid "Approved reviews"
 msgstr "Shqyrtime të miratuara"
 
@@ -6369,14 +6116,15 @@ msgstr "shtesë, redaktor ose koment"
 msgid "Search by add-on name / author email"
 msgstr "Kërkoni sipas emrash / email-esh autorësh të shtesës"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Shqyrtim nga Përgjegjësi"
+
 msgid "yes"
 msgstr "po"
 
 msgid "no"
 msgstr "jo"
-
-msgid "Admin Flag"
-msgstr "Shenjë nga Përgjegjësi"
 
 msgid "Add-on Types"
 msgstr "Lloje Shtesash"
@@ -6399,7 +6147,12 @@ msgstr "Aplikacione:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet e njëpasnjëshme s’do të shoqërohen me email.)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
 
 #, fuzzy
@@ -6426,11 +6179,9 @@ msgstr "Mbaje shqyrtimin; hiq flamurkat"
 msgid "Skip for now"
 msgstr "Hëpërhë anashkaloje"
 
-msgid "Delete review"
-msgstr "Fshije shqyrtimin"
-
-msgid "Admin Review"
-msgstr "Shqyrtim nga Përgjegjësi"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Shqyrtim Parashtrimi"
 
 msgid "Jetpack Add-on"
 msgstr "Shtesë Jetpack"
@@ -6555,14 +6306,91 @@ msgstr "Miratojeni / Hidheni Poshtë"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Shtesa të Reja (Nën 5 ditë)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Shtesat e Mia"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Ende në lojë (5 deri në 10 ditë)"
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Shtesë e Re ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Të kaluara (10 ditë e më tepër)"
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Përditësime Shtese"
+
+msgid "Add-on Review Log"
+msgstr "Regjistër Shqyrtimesh Shtese"
+
+msgid "Signed Beta Files Log"
+msgstr "Regjistër Nënshkrimesh Kartelash Beta"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Udhërrëfyes Shqyrtuesish"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Shtesa Android"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Shtesa Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Shqyrtim Parashtrimi"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Shqyrtim i Moderuar ({0})"
+msgstr[1] "Shqyrtime të Moderuara ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Shtesë e Re ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Përditësim ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Tema Me Shenjë"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Shqyrtim Teme"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Fshije Temën"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "U moderua Regjistri i Shqyrtimeve"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Veprime moderimi:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Krejt Shtesat Jo Në Listë"
+
+msgid "All Unlisted Add-ons"
+msgstr "Krejt Shtesat Jo Në Listë"
+
+msgid "Announcement"
+msgstr "Njoftim"
+
+msgid "Update message of the day"
+msgstr "Mesazhi i sotëm i përditësimit"
 
 msgid "An unknown error occurred"
 msgstr "Ndodhi një gabim i panjohur"
@@ -6620,15 +6448,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Gjendje Miratimi"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "Raporte Abuzimesh për {addon} ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Shqyrtim i Moderuar ({num})"
 
 msgid "More about this add-on"
@@ -6640,50 +6465,9 @@ msgstr "Galeri Figurash"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Këtu nuk ka gjë për t’u parë.  Programuesi nuk ka dhënë ndonjë hollësi."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Kthehuni te faqja hyrëse e Mjeteve të Shqyrtuesit"
-
-msgid "Queues"
-msgstr "Radhët"
-
-msgid "New Add-ons"
-msgstr "Shtesa të Reja"
-
-msgid "Updates"
-msgstr "Përditësime"
-
-# %1 is the review count
-msgid "Moderated Reviews"
-msgstr "Shqyrtime të Moderuara"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "Shtesa Android"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Shqyrtim Parashtrimi"
-
-msgid "Unlisted Queues"
-msgstr "Radhë të Paklasifikuarash"
-
-msgid "All Unlisted Add-ons"
-msgstr "Krejt Shtesat Jo Në Listë"
-
-msgid "Logs"
-msgstr "Regjistrime"
-
-msgid "Add-on Review Log"
-msgstr "Regjistër Shqyrtimesh Shtese"
-
-msgid "Moderated Review Log"
-msgstr "U moderua Regjistri i Shqyrtimeve"
-
-msgid "Signed Beta Files Log"
-msgstr "Regjistër Nënshkrimesh Kartelash Beta"
-
-msgid "Announcement"
-msgstr "Njoftim"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6727,46 +6511,6 @@ msgstr "Shqyrtimit i ishte vënë shenjë para fshirjes."
 msgid "Undelete"
 msgstr "Çfshije"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Shtesë e Re ({num})"
-msgstr[1] "Shtesa të Reja ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Përditësim ({num})"
-msgstr[1] "Përditësime ({num})"
-
-msgid "Current waiting times:"
-msgstr "Kohë pritjeje hëpërhë:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} shtesë"
-msgstr[1] "{0} shtesa"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Shqyrtime Gjithsej"
-
-msgid "Reviews This Month"
-msgstr "Shqyrtime Këtë Muaj"
-
-msgid "New Reviewers"
-msgstr "Shqyrtues të Rinj"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Jeni #{0} me {1} shqyrtues"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Shqyrtim i Moderuar ({num})"
-msgstr[1] "Shqyrtime të Moderuara ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Klasifikim Shqyrtuesish"
 
@@ -6778,9 +6522,6 @@ msgstr "Renditje"
 
 msgid "Score"
 msgstr "Pikë"
-
-msgid "Update message of the day"
-msgstr "Mesazhi i sotëm i përditësimit"
 
 msgid "Save"
 msgstr "Ruaje"
@@ -6799,6 +6540,9 @@ msgstr "Shqyrtimet Tuaja"
 
 msgid "By {user_name}"
 msgstr "Nga {user_name}"
+
+msgid "Total Reviews"
+msgstr "Shqyrtime Gjithsej"
 
 msgid "Active Contributors"
 msgstr "Pjesëmarrës Aktivë"
@@ -7035,26 +6779,14 @@ msgstr "Arsye"
 msgid "There are currently no reviews."
 msgstr "Hëpërhë s’ka shqyrtime."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Shqyrtim Teme Në Pritje"
-msgstr[1] "{num} Shqyrtime Teme Në Pritje"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Shqyrtim Me Shenjë"
-msgstr[1] "{num} Shqyrtime Me Shenjë"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Përditësim"
-msgstr[1] "{num} Përditësime"
-
 msgid "Flagged Themes"
 msgstr "Tema Me Shenjë"
 
 msgid "Theme Review Queue"
 msgstr "Radhë Temash për Shqyrtim"
+
+msgid "Queues"
+msgstr "Radhët"
 
 msgid "Review Options"
 msgstr "Mundësi Shqyrtimi"
@@ -7165,178 +6897,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] "Shtesa të Miratuara Vetvetiu ({0})"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Shqyrtim i Moderuar ({0})"
-msgstr[1] "Shqyrtime të Moderuara ({0})"
-
 msgid "Flagged"
 msgstr "Me Shenjë"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Shqyrtime për %s"
-
-msgid "Review History for this Addon"
-msgstr "Shihni Historikun për këtë Shtesë"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Kur përzgjidhet \"Tjetër\" si arsye, duhet dhënë një shpjegim i shkurtër."
-
-msgid "Other (please specify)"
-msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
-
-msgid "This field is required."
-msgstr "Kjo fushë është e domosdoshme."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "S’mund të ndryshoni shtesën të cilën trajton një shqyrtim, pasi të jetë krijuar shqyrtimi."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "S’mund të përgjigjeni në një shqyrtim që është vetë një përgjigje."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "S’mund të ndryshoni versionin e shtesës së shqyrtuar një herë, pasi të jetë krijuar shqyrtimi."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Ky version i shtesës s’ekziston ose s’është publik."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim redaktorial."
-
-# %s is the name of the add-on
-msgid "Add a review for {0}"
-msgstr "Shtoni një shqyrtim për {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Mbani parasysh këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të dobishme, të tilla si, ç’veçori ju pëlqyen dhe/ose "
-"nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot "
-"arsye se përse besoni se është kështu. </li> <li> Ju lutemi, te shqyrtimet mos postoni njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, ndaj ata s’mund të lidhen me "
-"për zgjidhjen e problemit tuaj. Shihni këtë <a href=\"%(support)s\">ndarje asistence</a> të shtesës për të parë nëse jepet asistencë për të. Mund të provoni edhe të pyesni për ndihmë te <a href="
-"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">bashkësia e shtesave</a>. </li> <li>Ju lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të "
-"dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\">Udhëzimet mbi Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Përgjigje shqyrtimit nga {0}"
-
-msgid "Write a Reply"
-msgstr "Shkruani një Përgjigje"
-
-msgid "Submit"
-msgstr "Parashtroje"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ose <a href=\"%(url)s\">Anulojeni</a>"
-
-msgid "Please select a reason:"
-msgstr "Ju lutemi, përzgjidhni një arsye:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "nga %(user)s <b>(Zhvillues)</b> më %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
-msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Ky përdorues ka edhe <a href=\"%(user_review_url)s\">shqyrtime të tjera</a> të kësaj shtese."
-
-msgid "Flagged for review"
-msgstr "Me shenjë për shqyrtim"
-
-msgid "Report this review"
-msgstr "Njoftoni mbi këtë shqyrtim"
-
-msgid "Reply to review"
-msgstr "Përgjigjjuni shqyrtimit"
-
-msgid "Edit reply"
-msgstr "Përpunoni përgjigjen"
-
-msgid "Edit review"
-msgstr "Përpunoni shqyrtimin"
-
-msgid "Delete reply"
-msgstr "Fshije përgjigjen"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Shqyrtime"
-
-msgid "Reviews for {0}"
-msgstr "Shqyrtime për {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> shqyrtim për këtë shtesë"
-msgstr[1] "<b>{0}</b> shqyrtime për këtë shtesë"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Përgjigje zhvilluesi nga {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Shqyrtim për %(addon)s nga %(user)s"
-msgstr[1] "Shqyrtime për %(addon)s nga %(user)s"
-
-msgid "No reviews found."
-msgstr "S’u gjetën shqyrtime."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Mesatare</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Shkruani një Shqyrtim të Ri"
-
-msgid "Be the first to write a review."
-msgstr "Bëhuni i pari që shkruan një shqyrtim."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} shqyrtim"
-msgstr[1] "{num} shqyrtime"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
+msgid "Updates"
+msgstr "Përditësime"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7475,6 +7040,9 @@ msgstr "Versioni ekziston."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr "GUID i pavlefshëm në URL"
 
@@ -7504,9 +7072,6 @@ msgstr "sipas Platformash"
 
 msgid "by Add-on Status"
 msgstr "sipas Gjendjes së Shtesës"
-
-msgid "Contributions"
-msgstr "Kontribute"
 
 msgid "Subscribers"
 msgstr "Pajtimtarë"
@@ -7621,9 +7186,6 @@ msgstr "Pa të dhëna të passhme."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Ky pult, për çastin, është <b>publik</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Hëpërhë, statistikat për kontribute janë <b>private</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Ky pult, hëpërhë, është <b>privat</b>."
 
@@ -7647,9 +7209,6 @@ msgstr "Përdorim aplikacioni sipas Datash"
 
 msgid "Collections Created by Date"
 msgstr "Koleksione sipas Datash Krijimi"
-
-msgid "Contributions by Date"
-msgstr "Kontribute sipas Datash"
 
 msgid "Downloaded by Date"
 msgstr "Shtesa sipas Datash Shkarkimi"
@@ -7873,9 +7432,6 @@ msgstr "Hidhini një sy <a class=\"mobile-link\" href=\"#\">sajtit tonë për Sh
 msgid "Android Add-ons"
 msgstr "Shtesa Android"
 
-msgid "required"
-msgstr "e domosdoshme"
-
 msgid "Required fields"
 msgstr "Fusha të domosdoshme"
 
@@ -7945,9 +7501,6 @@ msgstr "Përdorues i paemër {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Shtesat e Mia për Celular"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "një zhvillues shtese më falënderon për një kontribut"
 
 msgid "an add-on developer replies to my review"
 msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"

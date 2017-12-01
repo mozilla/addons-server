@@ -11,6 +11,7 @@ from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.test.utils import override_settings
+from django.template import defaultfilters
 
 from lxml.html import fromstring, HTMLParser
 import mock
@@ -25,7 +26,8 @@ from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
+    Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
+    AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -36,6 +38,20 @@ from olympia.reviewers.models import (
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
+
+
+class TestRedirectsOldPaths(TestCase):
+    def setUp(self):
+        user = user_factory()
+        self.client.login(email=user.email)
+
+    def test_redirect_old_queue(self):
+        response = self.client.get('/en-US/editors/queue/new')
+        self.assert3xx(response, '/reviewers/queue/new', status_code=301)
+
+    def test_redirect_old_review_page(self):
+        response = self.client.get('/en-US/editors/review/foobar')
+        self.assert3xx(response, '/reviewers/review/foobar', status_code=301)
 
 
 class ReviewerTest(TestCase):
@@ -396,7 +412,7 @@ class TestReviewLog(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.attrib['href'] == '/en-US/reviewers/review-content/a3615'
         assert link.text_content().strip() == 'Content approved'
 
     def test_content_rejection(self):
@@ -404,7 +420,7 @@ class TestReviewLog(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.attrib['href'] == '/en-US/reviewers/review-content/a3615'
         assert link.text_content().strip() == 'Content rejected'
 
     @freeze_time('2017-08-03')
@@ -449,11 +465,67 @@ class TestDashboard(TestCase):
         self.user = user_factory()
         self.client.login(email=self.user.email)
 
+    def test_old_temporary_url_redirect(self):
+        response = self.client.get('/en-US/reviewers/dashboard')
+        self.assert3xx(
+            response, reverse('reviewers.dashboard'), status_code=301)
+
     def test_not_a_reviewer(self):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_all_permissions(self):
+    def test_admin_all_permissions(self):
+        # Create a lot of add-ons to test the queue counts.
+        # Nominated and pending.
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        under_admin_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review, needs_admin_code_review=True)
+        under_admin_review_and_pending = addon_factory()
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+        version_factory(
+            addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # Auto-approved and Content Review.
+        addon1 = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon1)
+        AutoApprovalSummary.objects.create(
+            version=addon1.current_version, verdict=amo.AUTO_APPROVED)
+        under_content_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
+        AutoApprovalSummary.objects.create(
+            version=under_content_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_content_review, needs_admin_content_review=True)
+        addon2 = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon2)
+        AutoApprovalSummary.objects.create(
+            version=addon2.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=addon2, needs_admin_content_review=True)
+        under_code_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
+        AutoApprovalSummary.objects.create(
+            version=under_code_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_code_review, needs_admin_code_review=True)
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
         response = self.client.get(self.url)
@@ -466,9 +538,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
             reverse('reviewers.themes.list'),
@@ -476,13 +550,20 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Add-ons (2)'
+        assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[10].text == 'Content Review (4)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -496,9 +577,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
             reverse('reviewers.themes.list'),
@@ -506,9 +589,12 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -525,6 +611,18 @@ class TestDashboard(TestCase):
         version_factory(
             addon=addon_factory(),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # These two are under admin review and will be ignored.
+        under_admin_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review, needs_admin_code_review=True)
+        under_admin_review_and_pending = addon_factory()
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+        version_factory(
+            addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
 
         # Grant user the permission to see only the legacy add-ons section.
         self.grant_permission(self.user, 'Addons:Review')
@@ -540,6 +638,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -547,13 +646,24 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
 
     def test_post_reviewer(self):
-        # Create an add-on to test the queue count.
+        # Create an add-on to test the queue count. It's under admin content
+        # review but that does not have an impact.
         addon = addon_factory(
             version_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
-
+        AddonReviewerFlags.objects.create(
+            addon=addon, needs_admin_content_review=True)
+        # This one however is under admin code review, it's ignored.
+        under_code_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
+        AutoApprovalSummary.objects.create(
+            version=under_code_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_code_review, needs_admin_code_review=True)
         # Grant user the permission to see only the Auto Approved section.
         self.grant_permission(self.user, 'Addons:PostReview')
 
@@ -566,18 +676,31 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
-        # Create an add-on to test the queue count.
+        # Create an add-on to test the queue count. It's under admin code
+        # review but that does not have an impact.
         addon = addon_factory(
             version_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=addon, needs_admin_code_review=True)
+        # This one is under admin *content* review so it's ignored.
+        under_content_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
+        AutoApprovalSummary.objects.create(
+            version=under_content_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_content_review, needs_admin_content_review=True)
 
         # Grant user the permission to see only the Content Review section.
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -619,6 +742,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -646,6 +770,7 @@ class TestDashboard(TestCase):
         expected_links = [
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -662,6 +787,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -696,13 +822,18 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (2)'
-        assert doc('.dashboard a')[3].text == 'Content Review (1)'
+        assert 'target' not in doc('.dashboard a')[0].attrib
+        assert doc('.dashboard a')[3].text == 'Review Guide'
+        assert doc('.dashboard a')[3].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[3].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[4].text == 'Content Review (1)'
 
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
@@ -721,328 +852,21 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'New Add-ons (0)'
+        assert 'target' not in doc('.dashboard a')[0].attrib
         assert doc('.dashboard a')[1].text == 'Add-on Updates (0)'
-        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
-
-
-class TestHome(ReviewerTest):
-    fixtures = ReviewerTest.fixtures + ['base/addon_3615']
-
-    def setUp(self):
-        super(TestHome, self).setUp()
-        self.login_as_reviewer()
-        self.url = reverse('reviewers.home')
-        self.user = UserProfile.objects.get(id=5497308)
-        self.user.display_name = 'reviewer'
-        self.user.save()
-        self.grant_permission(self.user, 'Ratings:Moderate')
-        core.set_user(self.user)
-
-    def approve_reviews(self):
-        core.set_user(self.user)
-        for addon in Addon.objects.all():
-            ActivityLog.create(amo.LOG.APPROVE_VERSION, addon,
-                               addon.current_version)
-
-    def delete_review(self, user):
-        review = self.make_review()
-        review.delete(user_responsible=user)
-        return review
-
-    def test_content_reviewer_can_access(self):
-        GroupUser.objects.filter(user=self.user).all().delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 403  # No rights
-
-        self.grant_permission(self.user, 'Addons:ContentReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-    def test_approved_review(self):
-        review = self.make_review()
-        ActivityLog.create(
-            amo.LOG.APPROVE_RATING, review, review.addon, details={
-                'addon_name': 'test',
-                'addon_id': review.addon.pk,
-                'is_flagged': True,
-            })
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        row = pq(response.content)('.row')
-        assert 'approved' in row.text(), (
-            'Expected review to be approved by reviewer')
-        assert row('a[href*=yermom]'), 'Expected links to approved addon'
-
-    def test_deleted_review(self):
-        self.delete_review(self.user)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        assert doc('.row').eq(0).text().strip().split('.')[0] == (
-            'reviewer deleted Review for yermom')
-
-        al_id = ActivityLog.objects.all()[0].id
-        url = reverse('reviewers.eventlog.detail', args=[al_id])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        elems = zip(doc('dt'), doc('dd'))
-        expected = [
-            ('Review Author', 'a'),
-            ('Add-on Title', 'yermom'),
-            ('Review Title', 'foo'),
-            ('Review Text', 'bar'),
-        ]
-        for (dt, dd), texts in zip(elems, expected):
-            assert dt.text_content() == texts[0], texts
-            assert dd.text_content() == texts[1], texts
-
-    def undelete_review(self, review, allowed):
-        al = ActivityLog.objects.order_by('-id')[0]
-        assert al.arguments[1] == review
-
-        url = reverse('reviewers.eventlog.detail', args=[al.id])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        assert allowed == (
-            doc('#submit-undelete-review').attr('value') == 'Undelete')
-
-        response = self.client.post(url, {'action': 'undelete'})
-        assert response.status_code in (302, 403)
-        post = response.status_code == 302
-
-        assert post == allowed
-
-    def test_undelete_review_own(self):
-        review = self.delete_review(self.user)
-        # Undeleting a review you deleted is always allowed.
-        self.undelete_review(review, allowed=True)
-
-    def test_undelete_review_other(self):
-        user = UserProfile.objects.get(email='admin@mozilla.com')
-        review = self.delete_review(user)
-
-        # Normal reviewers undeleting reviews deleted by other reviewers is
-        # not allowed.
-        core.set_user(self.user)
-        self.undelete_review(review, allowed=False)
-
-    def test_undelete_review_admin(self):
-        review = self.delete_review(self.user)
-
-        # Admins can always undelete reviews.
-        self.login_as_admin()
-        self.undelete_review(review, allowed=True)
-
-    def test_stats_total(self):
-        self.approve_reviews()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        cols = doc('#reviewers-stats .reviewer-stats-table').eq(1).find('td')
-        assert cols.eq(0).text() == self.user.display_name
-        assert int(cols.eq(1).text()) == 2  # Approval count should be 2.
-
-    def test_stats_total_admin(self):
-        self.login_as_admin()
-        self.user = UserProfile.objects.get(email='admin@mozilla.com')
-        core.set_user(self.user)
-
-        addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        addon_factory(
-            status=amo.STATUS_NOMINATED, admin_review=True,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        tooltip = doc('.reviewer-stats-table').eq(0).find('.waiting_new')
-        assert '2 add-ons' in tooltip.attr('title')
-
-    def test_stats_monthly(self):
-        self.approve_reviews()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        cols = doc('#reviewers-stats .reviewer-stats-table').eq(1).find('td')
-        assert cols.eq(0).text() == self.user.display_name
-        assert int(cols.eq(1).text()) == 2  # Approval count should be 2.
-
-    @override_settings(REVIEWER_REVIEWS_MAX_DISPLAY=0)
-    def test_stats_user_position_ranked(self):
-        self.approve_reviews()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        el = doc(
-            '#reviewers-stats .reviewer-stats-table').eq(0)('div:last-child')
-        assert el.text() == "You're #1 with 2 reviews"  # Total, all time.
-        el = doc(
-            '#reviewers-stats .reviewer-stats-table').eq(1)('div:last-child')
-        assert el.text() == "You're #1 with 2 reviews"  # Monthly.
-
-    def test_stats_user_position_unranked(self):
-        self.approve_reviews()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        p = doc('#reviewers-stats .reviewer-stats-table p').eq(0)
-        assert not p.text()
-        p = doc('#reviewers-stats .reviewer-stats-table p').eq(1)
-        # Monthly reviews should not be displayed.
-        assert not p.text()
-
-    def test_new_reviewers(self):
-        assert self.user.groups.filter(name__startswith='Reviewers: ').exists()
-        ActivityLog.create(
-            amo.LOG.GROUP_USER_ADDED,
-            Group.objects.get(name='Reviewers: Legacy'), self.user)
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        anchors = doc(
-            '#reviewers-stats .reviewer-stats-table').eq(2).find('td a')
-        assert anchors.eq(0).text() == self.user.display_name
-
-    def test_new_reviewers_not_in_group(self):
-        former_reviewer = UserProfile.objects.get(id=20)
-        former_reviewer.display_name = 'Former reviewer'
-        former_reviewer.save()
-        ActivityLog.create(
-            amo.LOG.GROUP_USER_ADDED,
-            Group.objects.get(name='Reviewers: Legacy'), former_reviewer)
-        # This user is not currently part of a 'Reviewers: ...' group.
-        assert not former_reviewer.groups.filter(
-            name__startswith='Reviewers: ').exists()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        anchors = doc(
-            '#reviewers-stats .reviewer-stats-table').eq(2).find('td a')
-        assert anchors.eq(0).text() != former_reviewer.display_name
-
-    def test_only_listed_queues_for_basic_reviewers(self):
-        expected_listed_queues_links = [
-            reverse('reviewers.queue_nominated'),
-            reverse('reviewers.queue_pending'),
-            reverse('reviewers.queue_moderated')]
-
-        # Only listed queues for reviewers.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        queues = doc('#listed-queues ul li a')
-        queues_links = [link.attrib['href'] for link in queues]
-        assert queues_links == expected_listed_queues_links
-        assert not doc('#unlisted-queues')  # Unlisted queues are not visible.
-
-    def test_unlisted_and_listed_queues_if_reviewer_has_both_perms(self):
-        expected_listed_queues_links = [
-            reverse('reviewers.queue_nominated'),
-            reverse('reviewers.queue_pending'),
-            reverse('reviewers.queue_moderated')]
-        expected_unlisted_queues_links = [
-            reverse('reviewers.unlisted_queue_all')]
-
-        # Both queues are displayed if the user also has Addons:ReviewUnlisted.
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        self.client.login(email=self.user.email)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        queues = doc('#listed-queues ul li a')  # Listed queues links.
-        queues_links = [link.attrib['href'] for link in queues]
-        assert queues_links == expected_listed_queues_links
-        queues = doc('#unlisted-queues ul li a')  # Unlisted queues links.
-        queues_links = [link.attrib['href'] for link in queues]
-        assert queues_links == expected_unlisted_queues_links
-
-    def test_even_more_queues_displayed_if_reviewer_has_a_ton_of_perms(self):
-        expected_listed_queues_links = [
-            reverse('reviewers.queue_nominated'),
-            reverse('reviewers.queue_pending'),
-            reverse('reviewers.queue_moderated'),
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.queue_content_review')]
-        expected_unlisted_queues_links = [
-            reverse('reviewers.unlisted_queue_all')]
-
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        self.grant_permission(self.user, 'Addons:PostReview')
-        self.grant_permission(self.user, 'Addons:ContentReview')
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        queues = doc('#listed-queues ul li a')  # Listed queues links.
-        queues_links = [link.attrib['href'] for link in queues]
-        assert queues_links == expected_listed_queues_links
-        queues = doc('#unlisted-queues ul li a')  # Unlisted queues links.
-        queues_links = [link.attrib['href'] for link in queues]
-        assert queues_links == expected_unlisted_queues_links
-
-    def test_stats_listed_unlisted(self):
-        # Make sure the listed addons are displayed in the listed stats, and
-        # that the unlisted addons are listed in the unlisted stats.
-        # Create one listed, and two unlisted.
-        addon_factory(status=amo.STATUS_NOMINATED,
-                      file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        addon_factory(status=amo.STATUS_NULL,
-                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                      file_kw={'status': amo.STATUS_PUBLIC})
-        addon_factory(status=amo.STATUS_NULL,
-                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                      file_kw={'status': amo.STATUS_PUBLIC})
-
-        selector = '.reviewer-stats-title'  # The new addons stats header.
-
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        listed_stats = doc(
-            '#reviewers-stats-charts {0}'.format(selector)).eq(0)
-        assert 'New Add-on (1)' in listed_stats.text()
-
-    def test_stat_display_name(self):
-        self.user.display_name = ''
-        core.set_user(self.user)
-        self.approve_reviews()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        cols = doc('#reviewers-stats .reviewer-stats-table').eq(1).find('td')
-        assert cols.eq(0).text() != self.user.display_name
-        assert cols.eq(0).text() == self.user.name
-
-    def test_addons_is_selected_in_nav(self):
-        # Also grant access to themes, so that the nav is shown.
-        self.grant_permission(self.user, 'Personas:Review')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert (doc('.amo-header nav a.selected').attr('href') ==
-                '/en-US/editors/')
+        assert doc('.dashboard a')[6].text == 'Ratings Awaiting Moderation (0)'
+        assert 'target' not in doc('.dashboard a')[6].attrib
+        assert doc('.dashboard a')[8].text == 'Moderation Guide'
+        assert doc('.dashboard a')[8].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[8].attrib['rel'] == 'noopener noreferrer'
 
 
 class QueueTest(ReviewerTest):
@@ -1285,15 +1109,6 @@ class TestQueueBasics(QueueTest):
         assert doc('.data-grid-bottom .num-results').text() == (
             u'Results 1 \u2013 1 of 2')
 
-    def test_navbar_queue_counts(self):
-        self.generate_files()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#navbar li.top ul').eq(0).text() == (
-            'New Add-ons (2) Updates (2) Moderated Reviews (0)')
-
     def test_legacy_queue_sort(self):
         sorts = (
             ['age', 'Waiting Time'],
@@ -1304,46 +1119,6 @@ class TestQueueBasics(QueueTest):
             response = self.client.get(self.url, {'sort': key})
             assert response.status_code == 200
             assert pq(response.content)('th.ordered a').text() == text
-
-    def test_full_reviews_bar(self):
-        self.generate_files()
-
-        addon = self.addons['Nominated Two']
-        for data in self.get_review_data():
-            self.check_bar(addon, eq=0, data=data, reset_status=False)
-
-    def test_pending_bar(self):
-        self.generate_files()
-
-        addon = self.addons['Pending One']
-        for data in self.get_review_data():
-            self.check_bar(addon, eq=1, data=data, reset_status=True)
-
-    def check_bar(self, addon, eq, data, reset_status=False):
-        # `eq` is the table number (0, 1 or 2).
-        def style(w):
-            return 'width:%s%%' % (float(w) if w > 0 else 0)
-
-        days, widths = data
-
-        f = addon.versions.all()[0].all_files[0]
-        d = datetime.now() - timedelta(days=days)
-        f.update(created=d)
-        addon.versions.latest().update(nomination=d)
-
-        # For pending, we must reset the add-on status after saving version.
-        if reset_status:
-            addon.update(status=amo.STATUS_PUBLIC)
-
-        r = self.client.get(reverse('reviewers.home'))
-        doc = pq(r.content)
-
-        sel = '#reviewers-stats-charts{0}'.format(
-            '' if self.listed else '-unlisted')
-        div = doc('{0} .reviewer-stats-table'.format(sel)).eq(eq)
-        assert div('.waiting_old').attr('style') == style(widths[0])
-        assert div('.waiting_med').attr('style') == style(widths[1])
-        assert div('.waiting_new').attr('style') == style(widths[2])
 
     def test_flags_jetpack(self):
         addon = addon_factory(
@@ -1391,25 +1166,6 @@ class TestQueueBasics(QueueTest):
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
         assert rows.find('.ed-sprite-is_restart_required').length == 0
-
-    def test_theme_redirect(self):
-        users = []
-        for x in range(2):
-            user = amo.tests.user_factory()
-            user.save()
-            users.append(user)
-
-        self.grant_permission(users[0], 'Personas:Review')
-        self.client.logout()
-        self.login(users[0])
-        res = self.client.get(reverse('reviewers.home'))
-        self.assert3xx(res, reverse('reviewers.themes.home'))
-
-        self.grant_permission(users[1], 'Addons:Review')
-        self.client.logout()
-        self.login(users[1])
-        res = self.client.get(reverse('reviewers.home'))
-        assert res.status_code == 200
 
 
 class TestPendingQueue(QueueTest):
@@ -1882,17 +1638,6 @@ class TestAutoApprovedQueue(QueueTest):
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 4')
 
-    def test_navbar_queue_counts(self):
-        self.login_with_permission()
-        self.generate_files()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#navbar #listed-queues li').eq(3).text() == (
-            'Auto Approved Add-ons (4)'
-        )
-
 
 class TestContentReviewQueue(QueueTest):
 
@@ -1905,6 +1650,7 @@ class TestContentReviewQueue(QueueTest):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ContentReview')
         self.client.login(email=user.email)
+        return user
 
     def get_addon_latest_version(self, addon):
         """Method used by _test_results() to fetch the version that the queue
@@ -1936,6 +1682,18 @@ class TestContentReviewQueue(QueueTest):
         AddonApprovalsCounter.objects.create(
             addon=extra_addon3, last_content_review=self.days_ago(1))
 
+        # This one has never been content-reviewed, but it has the
+        # needs_admin_content_review flag, and we're not an admin.
+        extra_addon4 = addon_factory(name=u'Extra Addön 4')
+        extra_addon4.update(created=self.days_ago(2))
+        AutoApprovalSummary.objects.create(
+            version=extra_addon4.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon4, last_content_review=None)
+        AddonReviewerFlags.objects.create(
+            addon=extra_addon4, needs_admin_content_review=True)
+
         # This first add-on has been content reviewed so long ago that we
         # should do it again.
         addon1 = addon_factory(name=u'Addön 1')
@@ -1954,7 +1712,8 @@ class TestContentReviewQueue(QueueTest):
         AddonApprovalsCounter.objects.create(
             addon=addon2, last_content_review=self.days_ago(842))
 
-        # This one has never been content-reviewed.
+        # This one has never been content-reviewed. It has an
+        # needs_admin_code_review flag, but that should not have any impact.
         addon3 = addon_factory(name=u'Addön 2')
         addon3.update(created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
@@ -1962,6 +1721,8 @@ class TestContentReviewQueue(QueueTest):
             verdict=amo.AUTO_APPROVED, confirmed=True)
         AddonApprovalsCounter.objects.create(
             addon=addon3, last_content_review=None)
+        AddonReviewerFlags.objects.create(
+            addon=addon3, needs_admin_code_review=True)
 
         # This one has never been content reviewed either, and it does not even
         # have an AddonApprovalsCounter.
@@ -2006,22 +1767,22 @@ class TestContentReviewQueue(QueueTest):
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 4')
 
-    def test_navbar_queue_counts(self):
-        self.login_with_permission()
+    def test_results_admin(self):
+        # Admins should see the extra add-on that needs admin content review.
+        user = self.login_with_permission()
+        self.grant_permission(user, 'ReviewerAdminTools:View')
         self.generate_files()
-
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#navbar #listed-queues li').eq(3).text() == (
-            'Content Review (4)'
-        )
+        link = doc('.tabnav li a').eq(3)
+        assert link.text() == 'Content Review (5)'
 
 
 class TestPerformance(QueueTest):
     fixtures = ['base/users', 'base/addon_3615']
 
-    """Test the page at /editors/performance."""
+    """Test the page at /reviewers/performance."""
 
     def setUpReviewer(self):
         self.login_as_reviewer()
@@ -2139,21 +1900,21 @@ class BaseTestQueueSearch(SearchTest):
         if subset is None:
             subset = []
         files = OrderedDict([
-            ('Not Admin Reviewed', {
+            ('Not Needing Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
-            ('Another Not Admin Reviewed', {
+            ('Another Not Needing Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
-            ('Admin Reviewed', {
+            ('Needs Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
-                'admin_review': True,
+                'needs_admin_code_review': True,
             }),
             ('Justin Bieber Theme', {
                 'version_str': '0.1',
@@ -2202,39 +1963,49 @@ class BaseTestQueueSearch(SearchTest):
                 file_kw.update({'status': attrs.pop('file_status')})
                 attrs['file_kw'] = file_kw
                 attrs.update({'version_kw': version_kw, 'file_kw': file_kw})
+                needs_admin_code_review = attrs.pop(
+                    'needs_admin_code_review', None)
                 results[name] = addon_factory(
                     status=attrs.pop('addon_status'), name=name, **attrs)
+                if needs_admin_code_review:
+                    AddonReviewerFlags.objects.create(
+                        addon=results[name], needs_admin_code_review=True)
         return results
 
     def generate_file(self, name):
         return self.generate_files([name])[name]
 
-    def test_search_by_admin_reviewed_admin(self):
+    def test_search_by_needs_admin_code_review_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(admin_review=1)
-        assert self.named_addons(r) == ['Admin Reviewed']
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(needs_admin_code_review=1)
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Needs Admin Review']
 
     def test_queue_counts_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(text_query='admin', per_page=1)
-        doc = pq(r.content)
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(text_query='admin', per_page=1)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 2')
 
     def test_search_by_addon_name_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
                              'Justin Bieber Theme'])
-        r = self.search(text_query='admin')
-        assert sorted(self.named_addons(r)) == [
-            'Admin Reviewed', 'Not Admin Reviewed']
+        response = self.search(text_query='admin')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == [
+            'Needs Admin Review', 'Not Needing Admin Review']
 
     def test_not_searching(self, **kwargs):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
         response = self.search(**kwargs)
-        assert sorted(self.named_addons(response)) == ['Not Admin Reviewed']
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == [
+            'Not Needing Admin Review']
         # We were just displaying the queue, not searching, but the searching
         # hidden input in the form should always be set to True regardless, it
         # will be used once the user submits the form.
@@ -2245,33 +2016,39 @@ class BaseTestQueueSearch(SearchTest):
         self.test_not_searching(some_param=1)
 
     def test_search_by_nothing(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(searching='True')
-        assert sorted(self.named_addons(r)) == (
-            ['Admin Reviewed', 'Not Admin Reviewed'])
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(searching='True')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
+            ['Needs Admin Review', 'Not Needing Admin Review'])
 
-    def test_search_by_admin_reviewed(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(admin_review=1, searching='True')
-        assert self.named_addons(r) == ['Admin Reviewed']
+    def test_search_by_needs_admin_code_review(self):
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(needs_admin_code_review=1, searching='True')
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Needs Admin Review']
 
     def test_queue_counts(self):
-        self.generate_files(['Not Admin Reviewed',
-                             'Another Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(text_query='admin', per_page=1, searching='True')
-        doc = pq(r.content)
+        self.generate_files(['Not Needing Admin Review',
+                             'Another Not Needing Admin Review',
+                             'Needs Admin Review'])
+        response = self.search(
+            text_query='admin', per_page=1, searching='True')
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 3')
 
     def test_search_by_addon_name(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
                              'Justin Bieber Theme'])
-        r = self.search(text_query='admin', searching='True')
-        assert sorted(self.named_addons(r)) == (
-            ['Admin Reviewed', 'Not Admin Reviewed'])
+        response = self.search(text_query='admin', searching='True')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
+            ['Needs Admin Review', 'Not Needing Admin Review'])
 
     def test_search_by_addon_in_locale(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         uni = 'フォクすけといっしょ'.decode('utf8')
         addon = Addon.objects.get(pk=generated.id)
@@ -2283,7 +2060,7 @@ class BaseTestQueueSearch(SearchTest):
         assert self.named_addons(response) == [name]
 
     def test_search_by_addon_author(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         user = UserProfile.objects.all()[0]
         email = user.email.swapcase()
@@ -2291,15 +2068,17 @@ class BaseTestQueueSearch(SearchTest):
         for role in [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV]:
             author.role = role
             author.save()
-            r = self.search(text_query=email)
-            assert self.named_addons(r) == [name]
+            response = self.search(text_query=email)
+            assert response.status_code == 200
+            assert self.named_addons(response) == [name]
         author.role = amo.AUTHOR_ROLE_VIEWER
         author.save()
-        r = self.search(text_query=email)
-        assert self.named_addons(r) == []
+        response = self.search(text_query=email)
+        assert response.status_code == 200
+        assert self.named_addons(response) == []
 
     def test_search_by_supported_email_in_locale(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
         addon = Addon.objects.get(pk=generated.id)
@@ -2311,14 +2090,15 @@ class BaseTestQueueSearch(SearchTest):
         assert self.named_addons(response) == [name]
 
     def test_clear_search_visible(self):
-        r = self.search(text_query='admin', searching=True)
-        assert r.status_code == 200
-        assert pq(r.content)('.clear-queue-search').text() == 'clear search'
+        response = self.search(text_query='admin', searching=True)
+        assert response.status_code == 200
+        assert pq(response.content)(
+            '.clear-queue-search').text() == 'clear search'
 
     def test_clear_search_hidden(self):
-        r = self.search(text_query='admin')
-        assert r.status_code == 200
-        assert not pq(r.content)('.clear-queue-search').text()
+        response = self.search(text_query='admin')
+        assert response.status_code == 200
+        assert not pq(response.content)('.clear-queue-search').text()
 
 
 class TestQueueSearch(BaseTestQueueSearch):
@@ -2329,29 +2109,32 @@ class TestQueueSearch(BaseTestQueueSearch):
         self.url = reverse('reviewers.queue_nominated')
 
     def test_search_by_addon_type(self):
-        self.generate_files(['Not Admin Reviewed', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
                              'Justin Bieber Search Bar'])
-        r = self.search(addon_type_ids=[amo.ADDON_THEME])
-        assert self.named_addons(r) == ['Justin Bieber Theme']
+        response = self.search(addon_type_ids=[amo.ADDON_THEME])
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Justin Bieber Theme']
 
     def test_search_by_addon_type_any(self):
-        self.generate_file('Not Admin Reviewed')
-        r = self.search(addon_type_ids=[amo.ADDON_ANY])
-        assert self.named_addons(r), 'Expected some add-ons'
+        self.generate_file('Not Needing Admin Review')
+        response = self.search(addon_type_ids=[amo.ADDON_ANY])
+        assert response.status_code == 200
+        assert self.named_addons(response), 'Expected some add-ons'
 
     def test_search_by_many_addon_types(self):
-        self.generate_files(['Not Admin Reviewed', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
                              'Justin Bieber Search Bar'])
-        r = self.search(addon_type_ids=[amo.ADDON_THEME,
-                                        amo.ADDON_SEARCH])
-        assert sorted(self.named_addons(r)) == (
+        response = self.search(addon_type_ids=[amo.ADDON_THEME,
+                                               amo.ADDON_SEARCH])
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
             ['Justin Bieber Search Bar', 'Justin Bieber Theme'])
 
     def test_search_by_app(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
-        r = self.search(application_id=[amo.ANDROID.id])
-        assert r.status_code == 200
-        assert self.named_addons(r) == ['Bieber For Mobile']
+        response = self.search(application_id=[amo.ANDROID.id])
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Bieber For Mobile']
 
     def test_preserve_multi_apps(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
@@ -2394,33 +2177,24 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         super(TestQueueSearchUnlistedAllList, self).setUp()
         self.url = reverse('reviewers.unlisted_queue_all')
 
-    def test_not_searching(self, **kwargs):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        response = self.search(**kwargs)
-        assert sorted(self.named_addons(response)) == [
-            'Not Admin Reviewed']
-        # We were just displaying the queue, not searching, but the searching
-        # hidden input in the form should always be set to True regardless, it
-        # will be used once the user submits the form.
-        doc = pq(response.content)
-        assert doc('#id_searching').attr('value') == 'True'
-
     def test_search_deleted(self):
-        self.generate_files(['Not Admin Reviewed', 'Deleted'])
+        self.generate_files(['Not Needing Admin Review', 'Deleted'])
         r = self.search(deleted=1)
         assert self.named_addons(r) == ['Deleted']
 
     def test_search_not_deleted(self):
-        self.generate_files(['Not Admin Reviewed', 'Deleted'])
-        r = self.search(deleted=0)
-        assert self.named_addons(r) == ['Not Admin Reviewed']
+        self.generate_files(['Not Needing Admin Review', 'Deleted'])
+        response = self.search(deleted=0)
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Not Needing Admin Review']
 
     def test_search_by_guid(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         addon = self.generate_file(name)
-        addon.update(guid='guidymcguid.com')
-        r = self.search(text_query='mcguid')
-        assert self.named_addons(r) == ['Not Admin Reviewed']
+        addon.update(guid='@guidymcguid')
+        response = self.search(text_query='mcguid')
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Not Needing Admin Review']
 
 
 class ReviewBase(QueueTest):
@@ -2498,9 +2272,10 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
-    def test_flag_admin_review(self):
+    def test_flag_needs_admin_code_review(self):
         self.addon.current_version.files.update(is_restart_required=False)
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 1
@@ -2517,7 +2292,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action') ==
-            '/en-US/editors/whiteboard/listed/public')
+            '/en-US/reviewers/whiteboard/listed/public')
 
         # Content review.
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -2530,7 +2305,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action') ==
-            '/en-US/editors/whiteboard/content/public')
+            '/en-US/reviewers/whiteboard/content/public')
 
         # Unlisted review.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -2542,7 +2317,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action') ==
-            '/en-US/editors/whiteboard/unlisted/public')
+            '/en-US/reviewers/whiteboard/unlisted/public')
 
         # Listed review, but deleted.
         self.addon.delete()
@@ -2553,7 +2328,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action') ==
-            '/en-US/editors/whiteboard/listed/%d' % self.addon.pk)
+            '/en-US/reviewers/whiteboard/listed/%d' % self.addon.pk)
 
     def test_comment(self):
         response = self.client.post(self.url, {'action': 'comment',
@@ -2961,48 +2736,67 @@ class TestReview(ReviewBase):
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 1
+        assert doc('#id_clear_admin_code_review').length == 1
+        assert doc('#id_clear_admin_content_review').length == 0
 
     def test_unflag_option_forflagged_as_reviewer(self):
         self.login_as_reviewer()
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 0
+        assert doc('#id_clear_admin_code_review').length == 0
+        assert doc('#id_clear_admin_content_review').length == 0
 
-    def test_unflag_option_notflagged_as_admin(self):
+    def test_unflag_content_option_forflagged_as_admin(self):
         self.login_as_admin()
-        self.addon.update(admin_review=False)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=False,
+            needs_admin_content_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 0
+        assert doc('#id_clear_admin_code_review').length == 0
+        assert doc('#id_clear_admin_content_review').length == 1
 
     def test_unadmin_flag_as_admin(self):
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=True,
+            needs_admin_content_review=True)
         self.login_as_admin()
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor',
-                                               'adminflag': True})
+        response = self.client.post(
+            self.url, {'action': 'reply',
+                       'comments': 'hello sailor',
+                       'clear_admin_code_review': True,
+                       'clear_admin_content_review': True})
         self.assert3xx(response, reverse('reviewers.queue_pending'),
                        status_code=302)
-        assert not Addon.objects.get(pk=self.addon.pk).admin_review
+        self.addon.addonreviewerflags.reload()
+        assert not self.addon.needs_admin_code_review
+        assert not self.addon.needs_admin_content_review
 
     def test_unadmin_flag_as_reviewer(self):
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_reviewer()
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor',
-                                               'adminflag': True})
-        # Should silently fail to set adminflag but work otherwise.
+        response = self.client.post(
+            self.url, {'action': 'reply',
+                       'comments': 'hello sailor',
+                       'clear_admin_code_review': True})
+        # Should silently fail to clear admin code review flag but work
+        # otherwise.
         self.assert3xx(response, reverse('reviewers.queue_pending'),
                        status_code=302)
-        assert Addon.objects.get(pk=self.addon.pk).admin_review
+        assert self.addon.needs_admin_code_review
+        assert not self.addon.needs_admin_content_review
 
     def test_info_request_checkbox(self):
         self.login_as_reviewer()
@@ -3124,8 +2918,12 @@ class TestReview(ReviewBase):
         else:
             action = 'reply'
 
-        data = dict(action=action, operating_systems='win',
-                    applications='something', comments='something')
+        data = {
+            'action': action,
+            'operating_systems': 'win',
+            'applications': 'something',
+            'comments': 'something',
+        }
         self.client.post(url, data)
 
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
@@ -3183,16 +2981,16 @@ class TestReview(ReviewBase):
 
     def test_viewing(self):
         url = reverse('reviewers.review_viewing')
-        r = self.client.post(url, {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(url, {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
 
         # Now, login as someone else and test.
         self.login_as_admin()
-        r = self.client.post(url, {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(url, {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 0
@@ -3202,30 +3000,30 @@ class TestReview(ReviewBase):
     def test_viewing_lock_limit(self):
         url = reverse('reviewers.review_viewing')
 
-        res = self.client.post(url, {'addon_id': 1234})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
 
         # Second review page is over the limit.
-        res = self.client.post(url, {'addon_id': 5678})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(response.content)
         assert data['current'] == settings.TASK_USER_ID  # Mozilla's task ID.
         assert data['current_name'] == 'Review lock limit reached'
         assert data['is_user'] == 2
 
         # Now, login as someone else and test.  First page is blocked.
         self.login_as_admin()
-        res = self.client.post(url, {'addon_id': 1234})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 0
 
         # Second page is available.
-        res = self.client.post(url, {'addon_id': 5678})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(response.content)
         admin = UserProfile.objects.get(username='admin')
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
@@ -3238,15 +3036,15 @@ class TestReview(ReviewBase):
         url = reverse('reviewers.review_viewing')
         admin = UserProfile.objects.get(username='admin')
 
-        res = self.client.post(url, {'addon_id': 101})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 101})
+        data = json.loads(response.content)
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
         assert data['is_user'] == 1
 
         # Admin don't have time for no limits.
-        res = self.client.post(url, {'addon_id': 202})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 202})
+        data = json.loads(response.content)
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
         assert data['is_user'] == 1
@@ -3263,9 +3061,9 @@ class TestReview(ReviewBase):
         assert cache.get(key) is None
 
     def test_viewing_queue(self):
-        r = self.client.post(reverse('reviewers.review_viewing'),
-                             {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(reverse('reviewers.review_viewing'),
+                                    {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
@@ -3419,7 +3217,9 @@ class TestReview(ReviewBase):
     @patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
@@ -3433,7 +3233,9 @@ class TestReview(ReviewBase):
 
     def test_admin_flagged_addon_actions_as_reviewer(self):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_reviewer()
         response = self.client.post(self.url, self.get_dict(action='public'))
         assert response.status_code == 200  # Form error.
@@ -3481,6 +3283,51 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        assert response.status_code == 302
+        summary.reload()
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+
+    def test_cant_contentreview_if_admin_content_review_flag_is_set(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_content_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        # The request will succeed but nothing will happen.
+        assert response.status_code == 200
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 0
+
+    def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_content_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, 'ReviewerAdminTools:View')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
@@ -3635,7 +3482,7 @@ class TestReview(ReviewBase):
         report = AbuseReport.objects.create(
             addon=self.addon, message=u'Et mël mazim ludus.',
             ip_address='10.1.2.3')
-        created_at = report.created.strftime('%b. %d, %Y')
+        created_at = defaultfilters.date(report.created)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3662,7 +3509,7 @@ class TestReview(ReviewBase):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
             ip_address='10.4.5.6')
-        created_at = report.created.strftime('%b. %d, %Y')
+        created_at = defaultfilters.date(report.created)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
@@ -3680,7 +3527,7 @@ class TestReview(ReviewBase):
         rating = Rating.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = rating.created.strftime('%b. %d, %Y')
+        created_at = defaultfilters.date(rating.created)
         Rating.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
         Rating.objects.create(  # Reply to a review, ignored.
@@ -3781,6 +3628,22 @@ class TestReview(ReviewBase):
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
             'public|reject|')
+
+    def test_post_review_ignore_disabled_or_beta(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected_actions = [
+            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'super', 'comment']
+        assert (
+            [action[0] for action in response.context['actions']] ==
+            expected_actions)
 
 
 class TestReviewPending(ReviewBase):
@@ -3920,13 +3783,6 @@ class TestReviewerMOTD(ReviewerTest):
         doc = pq(r.content)
         assert doc('#reviewer-motd .errorlist').text() == (
             'This field is required.')
-
-    def test_motd_tab(self):
-        self.login_as_admin()
-        r = self.client.get(self.get_url())
-        announcement_tab = pq(r.content)(
-            'li.top:nth-child(5) > a:nth-child(1)').text()
-        assert announcement_tab == 'Announcement'
 
 
 class TestStatusFile(ReviewBase):

@@ -28,7 +28,8 @@ A developer is defined as a user who is listed as a developer or owner of one or
     :>json string|null biography: More details about the user.
     :>json string created: The date when this user first logged in and created this account.
     :>json boolean has_anonymous_display_name: The user has chosen neither a name nor a username.
-    :>json boolean has_anonymous_username: The user hasn't chosen a username.:>json string|null homepage: The user's website.
+    :>json boolean has_anonymous_username: The user hasn't chosen a username.
+    :>json string|null homepage: The user's website.
     :>json int id: The numeric user id.
     :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
     :>json boolean is_artist: The user has developed and listed themes on this website.

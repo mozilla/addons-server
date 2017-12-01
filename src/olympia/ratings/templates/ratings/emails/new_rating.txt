@@ -1,0 +1,9 @@
+{% block content %}
+A user has rated your add-on, {{ name }}.
+
+Rating:
+{{ rating.rating }} out of 5 stars.
+
+You can view the rating here:
+{{ rating_url }}
+{% endblock %}

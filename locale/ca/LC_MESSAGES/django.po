@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-09-09 12:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1871,7 +1871,8 @@ msgstr "S'ha afegit el complement {addon} a la col·lecció {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "S'ha suprimit el complement {addon} de la col·lecció {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "S'ha escrit el comentari {review} pel complement {addon}."
 
 #. L10n: {0} is a category name.
@@ -1906,17 +1907,21 @@ msgstr "S'han canviat els permisos del complement {addon}."
 msgid "{addon} icon changed."
 msgstr "S'ha canviat la icona del complement {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "S'ha aprovat el comentari {review} del complement {addon}."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "L'usuari {user} ha aprovat el comentari {review} del complement {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr ""
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
+msgstr "S'ha escrit el comentari {review} pel complement {addon}."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr ""
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
+msgstr "L'usuari {user} ha aprovat el comentari {review} del complement {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versió màxima d'aplicació de la {version} actualitzada."
@@ -1960,8 +1965,9 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-msgid "{review} for {addon} updated."
-msgstr ""
+#, fuzzy
+msgid "{rating} for {addon} updated."
+msgstr "S'ha aprovat el comentari {review} del complement {addon}."
 
 msgid "{addon} reviewed."
 msgstr ""
@@ -2148,15 +2154,6 @@ msgstr "Connectors"
 
 msgid "Themes (Static)"
 msgstr ""
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Només demana-ho a la pàgina del complement i al perfil del desenvolupador"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Demana-ho després d'iniciar la baixada d'aquest complement"
-
-msgid "Ask before users can download this add-on"
-msgstr "Demana-ho abans que els usuaris puguin baixar aquest complement"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3052,8 +3049,8 @@ msgstr "Quant als rols dels autors"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3679,6 +3676,10 @@ msgstr ""
 "Utilitzeu els camps següents per pujar el paquet amb el vostre comlement i seleccioneu les restriccions de plataforma. Després de pujar-lo, es realitzaran una sèria de validacions i proves "
 "automàtiques."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Temes destacats"
+
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3695,6 +3696,89 @@ msgstr "Envia un complement nou"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Envia el complement"
+
+msgid "Theme generate"
+msgstr ""
+
+msgid "Theme generator"
+msgstr ""
+
+msgid "Select a header image for your Theme."
+msgstr ""
+
+msgid "required"
+msgstr "obligatori"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Alineat a dalt a la dreta"
+
+msgid "Select a different header image"
+msgstr "Seleccioneu una imatge de capçalera diferent"
+
+msgid "Select colors for your Theme."
+msgstr ""
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Aquest és el color del text de la pestanya."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(opcional)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Passeu per sobre per veure una previsualització"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Temes disponibles properament"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Puja un altre fitxer"
 
 msgid "API Credentials"
 msgstr ""
@@ -4153,9 +4237,6 @@ msgstr ""
 msgid "Footer"
 msgstr ""
 
-msgid "Select colors for your Theme."
-msgstr ""
-
 msgid "Foreground Text"
 msgstr "Text de primer pla"
 
@@ -4218,9 +4299,6 @@ msgstr ""
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr ""
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 píxels"
 
@@ -4229,12 +4307,6 @@ msgstr "300 KB màx."
 
 msgid "PNG or JPG"
 msgstr "PNG o JPG"
-
-msgid "Aligned to top-right"
-msgstr "Alineat a dalt a la dreta"
-
-msgid "Select a different header image"
-msgstr "Seleccioneu una imatge de capçalera diferent"
 
 msgid "Select a footer image for your Theme."
 msgstr ""
@@ -4450,16 +4522,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4514,9 +4586,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -4809,498 +4878,6 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "Com començar"
-
-msgid "United Arab Emirates Dirham"
-msgstr ""
-
-msgid "Afghanistan Afghani"
-msgstr ""
-
-msgid "Albania Lek"
-msgstr ""
-
-msgid "Armenia Dram"
-msgstr ""
-
-msgid "Netherlands Antilles Guilder"
-msgstr ""
-
-msgid "Angola Kwanza"
-msgstr ""
-
-msgid "Argentina Peso"
-msgstr ""
-
-msgid "Australia Dollar"
-msgstr ""
-
-msgid "Aruba Guilder"
-msgstr ""
-
-msgid "Azerbaijan New Manat"
-msgstr ""
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr ""
-
-msgid "Bangladesh Taka"
-msgstr ""
-
-msgid "Bulgaria Lev"
-msgstr ""
-
-msgid "Bahrain Dinar"
-msgstr ""
-
-msgid "Burundi Franc"
-msgstr ""
-
-msgid "Bermuda Dollar"
-msgstr ""
-
-msgid "Brunei Darussalam Dollar"
-msgstr ""
-
-msgid "Bolivia Boliviano"
-msgstr ""
-
-msgid "Brazil Real"
-msgstr ""
-
-msgid "Bahamas Dollar"
-msgstr ""
-
-msgid "Bhutan Ngultrum"
-msgstr ""
-
-msgid "Botswana Pula"
-msgstr ""
-
-msgid "Belarus Ruble"
-msgstr ""
-
-msgid "Belize Dollar"
-msgstr ""
-
-msgid "Canada Dollar"
-msgstr ""
-
-msgid "Congo/Kinshasa Franc"
-msgstr ""
-
-msgid "Switzerland Franc"
-msgstr ""
-
-msgid "Chile Peso"
-msgstr ""
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr ""
-
-msgid "Costa Rica Colon"
-msgstr ""
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr ""
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr ""
-
-msgid "Djibouti Franc"
-msgstr ""
-
-msgid "Denmark Krone"
-msgstr ""
-
-msgid "Dominican Republic Peso"
-msgstr ""
-
-msgid "Algeria Dinar"
-msgstr ""
-
-msgid "Egypt Pound"
-msgstr ""
-
-msgid "Eritrea Nakfa"
-msgstr ""
-
-msgid "Ethiopia Birr"
-msgstr ""
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr ""
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr ""
-
-msgid "Georgia Lari"
-msgstr ""
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr ""
-
-msgid "Gibraltar Pound"
-msgstr ""
-
-msgid "Gambia Dalasi"
-msgstr ""
-
-msgid "Guinea Franc"
-msgstr ""
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr ""
-
-msgid "Hong Kong Dollar"
-msgstr ""
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr ""
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr ""
-
-msgid "Iraq Dinar"
-msgstr ""
-
-msgid "Iran Rial"
-msgstr ""
-
-msgid "Iceland Krona"
-msgstr ""
-
-msgid "Jersey Pound"
-msgstr ""
-
-msgid "Jamaica Dollar"
-msgstr ""
-
-msgid "Jordan Dinar"
-msgstr ""
-
-msgid "Japan Yen"
-msgstr ""
-
-msgid "Kenya Shilling"
-msgstr ""
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr ""
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr ""
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr ""
-
-msgid "Liberia Dollar"
-msgstr ""
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr ""
-
-msgid "Latvia Lat"
-msgstr ""
-
-msgid "Libya Dinar"
-msgstr ""
-
-msgid "Morocco Dirham"
-msgstr ""
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr ""
-
-msgid "Malaysia Ringgit"
-msgstr ""
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr ""
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr ""
-
-msgid "Nepal Rupee"
-msgstr ""
-
-msgid "New Zealand Dollar"
-msgstr ""
-
-msgid "Oman Rial"
-msgstr ""
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr ""
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr ""
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr ""
-
-msgid "Russia Ruble"
-msgstr ""
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr ""
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr ""
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr ""
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr ""
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr ""
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr ""
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr ""
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr ""
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr ""
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr ""
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -6283,6 +5860,173 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr ""
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Comentaris del %s"
+
+msgid "Review History for this Addon"
+msgstr "Històric de revisions del complement"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Valorat amb %d de 5 estrelles"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "Un altre motiu (especifica)"
+
+msgid "This field is required."
+msgstr ""
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+msgid "You can't leave a review on your own add-on."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "No podeu pujar més fitxers per a aquesta versió."
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Gràcies, aquest comentari s'ha marcat amb un indicador per a què l'aprovi un editor."
+
+msgid "Add a review for {0}"
+msgstr "Afegeix un comentari al {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "Resposta del comentari de {0}"
+
+msgid "Write a Reply"
+msgstr "Escriviu una resposta"
+
+msgid "Submit"
+msgstr "Envia"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "o <a href=\"%(url)s\">Canceŀla</a>"
+
+msgid "Please select a reason:"
+msgstr "Seleccioneu un motiu:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "per %(user)s <b>(desenvolupador)</b> a %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "This review is for a previous version of the add-on ({0})."
+
+# %1 is the review count, %2 is the nickname or full name of the user.
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Aquest usuari ha fet <a href=\"%(user_review_url)s\">un comentari abans</a> a aquest complement."
+msgstr[1] "Aquest usuari ha fet <a href=\"%(user_review_url)s\">%(cnt)s comentari abans</a> a aquest complement."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Aquest usuari ha fet <a href=\"%(user_review_url)s\">altres comentaris</a> a aquest complement."
+
+msgid "Flagged for review"
+msgstr "Marcat per revisar"
+
+msgid "Report this review"
+msgstr "Avisa d'aquest comentari"
+
+msgid "Reply to review"
+msgstr "Respon el comentari"
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "Edita el comentari"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "Suprimeix el comentari"
+
+# {0} is a number
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Comentari"
+
+msgid "Reviews for {0}"
+msgstr "Comentaris per a {0}"
+
+# %1 is a number.
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> comentari per a aquest complement"
+msgstr[1] "<b>{0}</b> comentaris per a aquest complement"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Respost pel desenvolupador {0}"
+
+# {0} is either an author's name or a comma separated list of authors. Using
+# the list doesn't make sense in the English plural form so we ignore the
+# variable.
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Comentari del %(addon)s per %(user)s"
+msgstr[1] "Comentaris del %(addon)s per %(user)s"
+
+msgid "No reviews found."
+msgstr "No hi ha comentaris."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr ""
+
+msgid "Write a New Review"
+msgstr "Escriu un altre comentari"
+
+msgid "Be the first to write a review."
+msgstr "Sigueu el primer a escriure un comentari."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} valoració"
+msgstr[1] "{num} valoracions"
+
+msgid "Rated {0} out of 5 stars"
+msgstr ""
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
 msgid "Approved reviews"
 msgstr "Comentaris aprovats"
 
@@ -6324,14 +6068,15 @@ msgstr "Punts de revisors manuals"
 msgid "Search by add-on name / author email"
 msgstr "Cerca per nom de complement o adreça electrònica de l'autor"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Revisió d'admin"
+
 msgid "yes"
 msgstr "sí"
 
 msgid "no"
 msgstr "no"
-
-msgid "Admin Flag"
-msgstr "Marca de l'admin"
 
 msgid "Add-on Types"
 msgstr "Tipus de complements"
@@ -6354,8 +6099,13 @@ msgstr "Aplicacions:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Quan es torni a actualitzar aquest complement, notifica-m'ho. (A partir d'ara les actualitzacions no generaran un correu electrònic)"
 
-msgid "Clear Admin Review Flag"
-msgstr ""
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Revisió d'admin"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "No s'ha revisat"
 
 #, fuzzy
 msgid "Is more info requested?"
@@ -6381,11 +6131,9 @@ msgstr "Conserva el comentari; suprimeix les marques"
 msgid "Skip for now"
 msgstr "Passa'l per ara"
 
-msgid "Delete review"
-msgstr "Suprimeix el comentari"
-
-msgid "Admin Review"
-msgstr "Revisió d'admin"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "No s'ha revisat"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6516,14 +6264,102 @@ msgstr "Aprovat"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Complements nous (menys de 5 dies)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Els meus complements"
 
-msgid "Passable (5 to 10 days)"
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Complements del {0} "
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Actualitzacions del complement"
+
+msgid "Add-on Review Log"
 msgstr ""
 
-msgid "Overdue (Over 10 days)"
+msgid "Signed Beta Files Log"
 msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Guia per a la revisió"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Més complements"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Complements del {0} "
+
+#, fuzzy
+msgid "Content Review"
+msgstr "No s'ha revisat"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisió moderada ({0})"
+msgstr[1] "Revisions moderades ({0})"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Complements del {0} "
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Actualitzat {0}"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Temes destacats"
+
+# 80%
+# 100%
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Revisions moderades"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Comentaris suprimits"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+# 80%
+# 100%
+#, fuzzy
+msgid "Moderated Review Log"
+msgstr "Revisions moderades"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Accions de moderació:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Valida el complement"
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Announcement"
+msgstr "Anunci"
+
+msgid "Update message of the day"
+msgstr "Actualitza el missatge del dia"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6578,9 +6414,6 @@ msgstr "ALUF (EULA)"
 msgid "Last Approval Date"
 msgstr "Estat de l'aprovació"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "Informes d'abús"
@@ -6588,7 +6421,7 @@ msgstr "Informes d'abús"
 # 87%
 # 100%
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Revisió moderada ({0})"
 
 msgid "More about this add-on"
@@ -6601,53 +6434,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Torna a les Eines de l'editor'"
-
-msgid "Queues"
-msgstr "Cues"
-
-#, fuzzy
-msgid "New Add-ons"
-msgstr "Més complements"
-
-msgid "Updates"
-msgstr ""
-
-msgid "Moderated Reviews"
-msgstr "Revisions moderades"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "Més complements"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "No s'ha revisat"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Logs"
-msgstr "Registre"
-
-msgid "Add-on Review Log"
-msgstr ""
-
-# 80%
-# 100%
-#, fuzzy
-msgid "Moderated Review Log"
-msgstr "Revisions moderades"
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Anunci"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6691,56 +6479,6 @@ msgstr ""
 msgid "Undelete"
 msgstr ""
 
-#, fuzzy
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Complements nous (menys de 5 dies)"
-msgstr[1] "Complements nous (menys de 5 dies)"
-
-# 86%
-# 100%
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Actualització pendent ({0})"
-msgstr[1] "Actualitzacions pendents ({0})"
-
-msgid "Current waiting times:"
-msgstr ""
-
-# 81%
-# 100%
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} complement"
-msgstr[1] "{0} complements"
-
-#, python-format
-msgid "{0}%%"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Total de revisions"
-
-msgid "Reviews This Month"
-msgstr "Revisions d'aquest mes"
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "Notes dels revisors"
-
-msgid "You're #{0} with {1} reviews"
-msgstr ""
-
-# 87%
-# 100%
-#. num = number of reviews in the queue
-#, fuzzy
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisions moderades ({0})"
-
 msgid "Reviewer Leaderboard"
 msgstr ""
 
@@ -6752,9 +6490,6 @@ msgstr "Per rang"
 
 msgid "Score"
 msgstr ""
-
-msgid "Update message of the day"
-msgstr "Actualitza el missatge del dia"
 
 msgid "Save"
 msgstr "Desa"
@@ -6773,6 +6508,9 @@ msgstr ""
 
 msgid "By {user_name}"
 msgstr ""
+
+msgid "Total Reviews"
+msgstr "Total de revisions"
 
 # 81%
 # 100%
@@ -7011,26 +6749,14 @@ msgstr ""
 msgid "There are currently no reviews."
 msgstr ""
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Flagged Themes"
 msgstr ""
 
 msgid "Theme Review Queue"
 msgstr ""
+
+msgid "Queues"
+msgstr "Cues"
 
 msgid "Review Options"
 msgstr ""
@@ -7148,177 +6874,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Complements del {0} "
 msgstr[1] "Complements del {0} "
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisions moderades ({0})"
-
 msgid "Flagged"
 msgstr ""
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Comentaris del %s"
-
-msgid "Review History for this Addon"
-msgstr "Històric de revisions del complement"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Valorat amb %d de 5 estrelles"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "Un altre motiu (especifica)"
-
-msgid "This field is required."
-msgstr ""
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-msgid "You can't leave a review on your own add-on."
-msgstr ""
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "No podeu pujar més fitxers per a aquesta versió."
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Gràcies, aquest comentari s'ha marcat amb un indicador per a què l'aprovi un editor."
-
-msgid "Add a review for {0}"
-msgstr "Afegeix un comentari al {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "Resposta del comentari de {0}"
-
-msgid "Write a Reply"
-msgstr "Escriviu una resposta"
-
-msgid "Submit"
-msgstr "Envia"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "o <a href=\"%(url)s\">Canceŀla</a>"
-
-msgid "Please select a reason:"
-msgstr "Seleccioneu un motiu:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "per %(user)s <b>(desenvolupador)</b> a %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "This review is for a previous version of the add-on ({0})."
-
-# %1 is the review count, %2 is the nickname or full name of the user.
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Aquest usuari ha fet <a href=\"%(user_review_url)s\">un comentari abans</a> a aquest complement."
-msgstr[1] "Aquest usuari ha fet <a href=\"%(user_review_url)s\">%(cnt)s comentari abans</a> a aquest complement."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Aquest usuari ha fet <a href=\"%(user_review_url)s\">altres comentaris</a> a aquest complement."
-
-msgid "Flagged for review"
-msgstr "Marcat per revisar"
-
-msgid "Report this review"
-msgstr "Avisa d'aquest comentari"
-
-msgid "Reply to review"
-msgstr "Respon el comentari"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Edita el comentari"
-
-msgid "Delete reply"
-msgstr ""
-
-# {0} is a number
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Comentari"
-
-msgid "Reviews for {0}"
-msgstr "Comentaris per a {0}"
-
-# %1 is a number.
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> comentari per a aquest complement"
-msgstr[1] "<b>{0}</b> comentaris per a aquest complement"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Respost pel desenvolupador {0}"
-
-# {0} is either an author's name or a comma separated list of authors. Using
-# the list doesn't make sense in the English plural form so we ignore the
-# variable.
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Comentari del %(addon)s per %(user)s"
-msgstr[1] "Comentaris del %(addon)s per %(user)s"
-
-msgid "No reviews found."
-msgstr "No hi ha comentaris."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
-
-msgid "Write a New Review"
-msgstr "Escriu un altre comentari"
-
-msgid "Be the first to write a review."
-msgstr "Sigueu el primer a escriure un comentari."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} valoració"
-msgstr[1] "{num} valoracions"
-
-msgid "Rated {0} out of 5 stars"
-msgstr ""
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
+msgid "Updates"
 msgstr ""
 
 msgid "Maximum query length exceeded."
@@ -7458,6 +7017,9 @@ msgstr ""
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr ""
 
@@ -7487,9 +7049,6 @@ msgstr "per plataforma"
 
 msgid "by Add-on Status"
 msgstr "per l'estat del complement"
-
-msgid "Contributions"
-msgstr "Donacions"
 
 msgid "Subscribers"
 msgstr ""
@@ -7604,9 +7163,6 @@ msgstr ""
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
@@ -7629,9 +7185,6 @@ msgid "Application usage by Date"
 msgstr "Ús de l'aplicació per data"
 
 msgid "Collections Created by Date"
-msgstr ""
-
-msgid "Contributions by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
@@ -7847,9 +7400,6 @@ msgstr "Consulteu el nostre web de <a class=\"mobile-link\" href=\"#\">complemen
 msgid "Android Add-ons"
 msgstr ""
 
-msgid "required"
-msgstr "obligatori"
-
 msgid "Required fields"
 msgstr "Camps obligatoris"
 
@@ -7920,9 +7470,6 @@ msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "Els meus complements per a mòbils"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr ""

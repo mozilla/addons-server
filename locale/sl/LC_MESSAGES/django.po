@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-11 21:31+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-24 17:36+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1881,8 +1881,8 @@ msgstr "{addon} dodan v {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} odstranjen iz {collection}."
 
-msgid "{review} for {addon} written."
-msgstr "{review} za {addon} spisan."
+msgid "{rating} for {addon} written."
+msgstr "{rating} za {addon} spisan."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1915,17 +1915,17 @@ msgstr "Pravilnik za {addon} spremenjen."
 msgid "{addon} icon changed."
 msgstr "Sličica za {addon} spremenjena."
 
-msgid "{review} for {addon} approved."
-msgstr "{review} za{addon} odobren."
+msgid "{rating} for {addon} approved."
+msgstr "{rating} za {addon} odobren."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} odobril {review} za {addon}."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} je odobril {rating} za {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Ocena {review} za {addon} izbrisana."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Ocena {rating} za {addon} izbrisana."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} je izbrisal {review} za {addon}."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} je izbrisal {rating} za {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Najv. različica aplikacije za {version} posodobljena."
@@ -1970,8 +1970,8 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Admin {0} ogledal dnevnik aktivnosti za {user}."
 
 # 83%
-msgid "{review} for {addon} updated."
-msgstr "{review} za {addon} posodobljen."
+msgid "{rating} for {addon} updated."
+msgstr "{rating} za {addon} posodobljen."
 
 msgid "{addon} reviewed."
 msgstr "{addon} pregledan."
@@ -2144,15 +2144,6 @@ msgstr "Vtičniki"
 
 msgid "Themes (Static)"
 msgstr "Teme (statične)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Samo vprašaj na tej strani dodatka in na profilu razvijalca"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Vprašaj potem, ko so uporabniki začeli s prenosom tega dodatka"
-
-msgid "Ask before users can download this add-on"
-msgstr "Vprašaj, preden uporabniki začnejo s prenosom tega dodatka"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3037,10 +3028,11 @@ msgstr "Avtorji"
 msgid "About author roles"
 msgstr "O vlogah avtorjev"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Dodatki imajo lahko poljubno številko avtorjev z eno od naslednjih 3 možnih vlog:</p> <ul> <li><b>Lastnik:</b> Lahko skrbi za vse zadeve okoli dodatka, med drugim lahko dodaja ali odstranjuje "
 "druge avtorje</li> <li><b>Razvijalec:</b>Lahko skrbi za vse zadeve okoli dodatka, ne more pa dodajati ali odstranjevati drugih avtorjev in delati s plačili</li> <li><b>Opazovalec:</b> Ima dostop do "
@@ -3655,6 +3647,10 @@ msgstr "Naloži različico"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Uporabite spodnja polja, da naložite paket dodatka. Po zaključenem prenosu bo veljavnost vaše datoteke preverjena z nizom samodejnih preskusov."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Ustvarite novo temo"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "S katerimi okolji je združljiva ta datoteka?"
 
@@ -3669,6 +3665,92 @@ msgstr "Pošlji datoteko"
 
 msgid "Sign Add-on"
 msgstr "Podpiši dodatek"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema zbrisana."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Licenca za temo"
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "Izberite sliko za glavo svoje teme."
+
+msgid "required"
+msgstr "potrebno"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Poravnano zgoraj desno"
+
+msgid "Select a different header image"
+msgstr "Izberite drugo sliko za glavo"
+
+msgid "Select colors for your Theme."
+msgstr "Izberite barve za svojo temo."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "To je barva besedila v zavihkih."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(neobvezno)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Tu pridržite kazalec za predogled"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Teme na obzorju"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Naloži datoteko"
 
 msgid "API Credentials"
 msgstr "Poverila API"
@@ -4115,9 +4197,6 @@ msgstr "Glava"
 msgid "Footer"
 msgstr "Noga"
 
-msgid "Select colors for your Theme."
-msgstr "Izberite barve za svojo temo."
-
 msgid "Foreground Text"
 msgstr "Besedilo v ospredju"
 
@@ -4183,10 +4262,6 @@ msgstr "Oglejte si in naročite se na <a href=\"%(feed_url)s\">spletna poročila
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Sodelujte v naših <a href=\"%(forum_url)s\">forumih</a> ."
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "Izberite sliko za glavo svoje teme."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pik"
 
@@ -4195,12 +4270,6 @@ msgstr "največ 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG ali JPG"
-
-msgid "Aligned to top-right"
-msgstr "Poravnano zgoraj desno"
-
-msgid "Select a different header image"
-msgstr "Izberite drugo sliko za glavo"
 
 # 82%
 msgid "Select a footer image for your Theme."
@@ -4414,17 +4483,18 @@ msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Lahko in učinkovito zavračanje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, nadzor samodejnega predvajanja in več."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preprosto najdite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Označite besedilo, kliknite ga z desno miškino tipko ter hitro izvedite slikovno iskanje."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4479,9 +4549,6 @@ msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
 
 msgid "Could not find an add-on ID."
 msgstr "ID-ja dodatka ni bilo mogoče najti."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID dodatka mora vsebovati 64 znakov ali manj."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4769,498 +4836,6 @@ msgstr "Odklenite zgodnji dostop do preskusnih lastnosti brskalnika."
 
 msgid "Get Started"
 msgstr "Začnite"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dirham Združenih arabskih emiratov"
-
-msgid "Afghanistan Afghani"
-msgstr "Afganistanski afgani"
-
-msgid "Albania Lek"
-msgstr "Albanski lek"
-
-msgid "Armenia Dram"
-msgstr "Armenski dram"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Gulden nizozemskih Antilov"
-
-msgid "Angola Kwanza"
-msgstr "Angolski kvanza"
-
-msgid "Argentina Peso"
-msgstr "Argentinski peso"
-
-msgid "Australia Dollar"
-msgstr "Avstralski dolar"
-
-msgid "Aruba Guilder"
-msgstr "Arubski gulden"
-
-msgid "Azerbaijan New Manat"
-msgstr "Azerbajdžanski novi manat"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Konvertibilna marka Bosne in Hercegovine"
-
-msgid "Barbados Dollar"
-msgstr "Barbadoški dolar"
-
-msgid "Bangladesh Taka"
-msgstr "Bangladeški taka"
-
-msgid "Bulgaria Lev"
-msgstr "Bolgarski lev"
-
-msgid "Bahrain Dinar"
-msgstr "Bahrajnski dinar"
-
-msgid "Burundi Franc"
-msgstr "Burundijski frank"
-
-msgid "Bermuda Dollar"
-msgstr "Bermudski dolar"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Brunejski dolar"
-
-msgid "Bolivia Boliviano"
-msgstr "Bolivijski boliviano"
-
-msgid "Brazil Real"
-msgstr "Brazilski real"
-
-msgid "Bahamas Dollar"
-msgstr "Bahamski dolar"
-
-msgid "Bhutan Ngultrum"
-msgstr "Butanski ngultrum"
-
-msgid "Botswana Pula"
-msgstr "Bocvanska pula"
-
-msgid "Belarus Ruble"
-msgstr "Beloruski rubelj"
-
-msgid "Belize Dollar"
-msgstr "Belizejski dolar"
-
-msgid "Canada Dollar"
-msgstr "Kanadski dolar"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Kongovski frank"
-
-msgid "Switzerland Franc"
-msgstr "Švicarski frank"
-
-msgid "Chile Peso"
-msgstr "Čilski peso"
-
-msgid "China Yuan Renminbi"
-msgstr "Kitajski juan"
-
-msgid "Colombia Peso"
-msgstr "Kolumbijski peso"
-
-msgid "Costa Rica Colon"
-msgstr "Kostariški kolon"
-
-msgid "Cuba Convertible Peso"
-msgstr "Kubanski konvertibilni peso"
-
-msgid "Cuba Peso"
-msgstr "Kubanski peso"
-
-msgid "Cape Verde Escudo"
-msgstr "Zelenortski eskudo"
-
-msgid "Czech Republic Koruna"
-msgstr "Češka krona"
-
-msgid "Djibouti Franc"
-msgstr "Džibutski frank"
-
-msgid "Denmark Krone"
-msgstr "Danska krona"
-
-msgid "Dominican Republic Peso"
-msgstr "Dominikanski peso"
-
-msgid "Algeria Dinar"
-msgstr "Alžirski dinar"
-
-msgid "Egypt Pound"
-msgstr "Egiptovski funt"
-
-msgid "Eritrea Nakfa"
-msgstr "Eritrejska nakfa"
-
-msgid "Ethiopia Birr"
-msgstr "Etiopski bir"
-
-msgid "Euro Member Countries"
-msgstr "Evro držav članic evra"
-
-msgid "Fiji Dollar"
-msgstr "Fidžijski dolar"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Falklandski funt"
-
-msgid "United Kingdom Pound"
-msgstr "Funt Združenega kraljestva"
-
-msgid "Georgia Lari"
-msgstr "Gruzijski lari"
-
-msgid "Guernsey Pound"
-msgstr "Guernseyjski funt"
-
-msgid "Ghana Cedi"
-msgstr "Ganski cedi"
-
-msgid "Gibraltar Pound"
-msgstr "Gibraltarski funt"
-
-msgid "Gambia Dalasi"
-msgstr "Gambiški dalasi"
-
-msgid "Guinea Franc"
-msgstr "Gvinejski frank"
-
-msgid "Guatemala Quetzal"
-msgstr "Gvatemalski quetzal"
-
-msgid "Guyana Dollar"
-msgstr "Gvajanski dolar"
-
-msgid "Hong Kong Dollar"
-msgstr "Hongkonški dolar"
-
-msgid "Honduras Lempira"
-msgstr "Honduraška lempira"
-
-msgid "Croatia Kuna"
-msgstr "Hrvaška kuna"
-
-msgid "Haiti Gourde"
-msgstr "Haitijski gurd"
-
-msgid "Hungary Forint"
-msgstr "Madžarski forint"
-
-msgid "Indonesia Rupiah"
-msgstr "Indonezijska rupija"
-
-msgid "Israel Shekel"
-msgstr "Izraelski šekel"
-
-msgid "Isle of Man Pound"
-msgstr "Funt otoka Man"
-
-msgid "India Rupee"
-msgstr "Indijska rupija"
-
-msgid "Iraq Dinar"
-msgstr "Iraški dinar"
-
-msgid "Iran Rial"
-msgstr "Iranski rial"
-
-msgid "Iceland Krona"
-msgstr "Islandska krona"
-
-msgid "Jersey Pound"
-msgstr "Jerseyjski funt"
-
-msgid "Jamaica Dollar"
-msgstr "Jamajški dolar"
-
-msgid "Jordan Dinar"
-msgstr "Jordanski dinar"
-
-msgid "Japan Yen"
-msgstr "Japonski jen"
-
-msgid "Kenya Shilling"
-msgstr "Kenijski šiling"
-
-msgid "Kyrgyzstan Som"
-msgstr "Kirgizistanski som"
-
-msgid "Cambodia Riel"
-msgstr "Kamboški riel"
-
-msgid "Comoros Franc"
-msgstr "Komorski frank"
-
-msgid "Korea (North) Won"
-msgstr "Severnokorejski von"
-
-msgid "Korea (South) Won"
-msgstr "Južnokorejski von"
-
-msgid "Kuwait Dinar"
-msgstr "Kuvajtski dinar"
-
-msgid "Cayman Islands Dollar"
-msgstr "Kajmanski dolar"
-
-msgid "Kazakhstan Tenge"
-msgstr "Kazahstanski tenge"
-
-msgid "Laos Kip"
-msgstr "Laoški kip"
-
-msgid "Lebanon Pound"
-msgstr "Libanonski funt"
-
-msgid "Sri Lanka Rupee"
-msgstr "Šrilanška rupija"
-
-msgid "Liberia Dollar"
-msgstr "Liberijski dolar"
-
-msgid "Lesotho Loti"
-msgstr "Lesotski loti"
-
-msgid "Lithuania Litas"
-msgstr "Litvanski litus"
-
-msgid "Latvia Lat"
-msgstr "Latvijski lats"
-
-msgid "Libya Dinar"
-msgstr "Libijski dinar"
-
-msgid "Morocco Dirham"
-msgstr "Maroški dirham"
-
-msgid "Moldova Leu"
-msgstr "Moldavski leu"
-
-msgid "Madagascar Ariary"
-msgstr "Madagaskarski ariary"
-
-msgid "Macedonia Denar"
-msgstr "Makedonski dinar"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Mjanmarski (burmanski) kjat"
-
-msgid "Mongolia Tughrik"
-msgstr "Mongolski tugriks"
-
-msgid "Macau Pataca"
-msgstr "Macauska pataka"
-
-msgid "Mauritania Ouguiya"
-msgstr "Mavretanska ovgvija"
-
-msgid "Mauritius Rupee"
-msgstr "Mavricijska rupija"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Maldivska rufija"
-
-msgid "Malawi Kwacha"
-msgstr "Malavijska kvača"
-
-msgid "Mexico Peso"
-msgstr "Mehiški peso"
-
-msgid "Malaysia Ringgit"
-msgstr "Malezijski ringit"
-
-msgid "Mozambique Metical"
-msgstr "Mozambiški metikal"
-
-msgid "Namibia Dollar"
-msgstr "Namibijski dolar"
-
-msgid "Nigeria Naira"
-msgstr "Nigerijska naira"
-
-msgid "Nicaragua Cordoba"
-msgstr "Nikaragevska kordoba"
-
-msgid "Norway Krone"
-msgstr "Norveška krona"
-
-msgid "Nepal Rupee"
-msgstr "Nepalska rupija"
-
-msgid "New Zealand Dollar"
-msgstr "Novozelandski dolar"
-
-msgid "Oman Rial"
-msgstr "Omanski rial"
-
-msgid "Panama Balboa"
-msgstr "Panamska balboa"
-
-msgid "Peru Nuevo Sol"
-msgstr "Perujski novi sol"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina Papue Nove Gvineje"
-
-msgid "Philippines Peso"
-msgstr "Filipinski peso"
-
-msgid "Pakistan Rupee"
-msgstr "Pakistanska rupija"
-
-msgid "Poland Zloty"
-msgstr "Poljski zlot"
-
-msgid "Paraguay Guarani"
-msgstr "Paragvajski gvarani"
-
-msgid "Qatar Riyal"
-msgstr "Katarski rial"
-
-msgid "Romania New Leu"
-msgstr "Romunski novi leu"
-
-msgid "Serbia Dinar"
-msgstr "Srbski dinar"
-
-msgid "Russia Ruble"
-msgstr "Ruski rubelj"
-
-msgid "Rwanda Franc"
-msgstr "Ruandski frank"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Savdski rial"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dolar Salomonovih otokov"
-
-msgid "Seychelles Rupee"
-msgstr "Sejšelska rupija"
-
-msgid "Sudan Pound"
-msgstr "Sudanski funt"
-
-msgid "Sweden Krona"
-msgstr "Švedska krona"
-
-msgid "Singapore Dollar"
-msgstr "Singapurski dolar"
-
-msgid "Saint Helena Pound"
-msgstr "Funt Svete Helene"
-
-msgid "Sierra Leone Leone"
-msgstr "Leone Sierre Leone"
-
-msgid "Somalia Shilling"
-msgstr "Somalski šiling"
-
-msgid "Seborga Luigino"
-msgstr "Seborški luigino"
-
-msgid "Suriname Dollar"
-msgstr "Surinamski dolar"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Dobra Svetega Tomaža in Princa"
-
-msgid "El Salvador Colon"
-msgstr "Salvadorski kolon"
-
-msgid "Syria Pound"
-msgstr "Sirski funt"
-
-msgid "Swaziland Lilangeni"
-msgstr "Svazijski lilangeni"
-
-msgid "Thailand Baht"
-msgstr "Tajski baht"
-
-msgid "Tajikistan Somoni"
-msgstr "Tadžikistanski somoni"
-
-msgid "Turkmenistan Manat"
-msgstr "Turkmenski manat"
-
-msgid "Tunisia Dinar"
-msgstr "Tunizijski dinar"
-
-msgid "Tonga Pa'anga"
-msgstr "Tongovska paanga"
-
-msgid "Turkey Lira"
-msgstr "Turška lira"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dolar Trinidada in Tobaga"
-
-msgid "Tuvalu Dollar"
-msgstr "Tuvalujski dolar"
-
-msgid "Taiwan New Dollar"
-msgstr "Tajvanski novi dolar"
-
-msgid "Tanzania Shilling"
-msgstr "Tanzanijski šiling"
-
-msgid "Ukraine Hryvna"
-msgstr "Ukrajinska hrivnija"
-
-msgid "Uganda Shilling"
-msgstr "Ugandski šiling"
-
-msgid "United States Dollar"
-msgstr "Ameriški dolar"
-
-msgid "Uruguay Peso"
-msgstr "Urugvajski peso"
-
-msgid "Uzbekistan Som"
-msgstr "Uzbekistanski sum"
-
-msgid "Venezuela Bolivar"
-msgstr "Venezuelski bolivar"
-
-msgid "Viet Nam Dong"
-msgstr "Vietnamski dong"
-
-msgid "Vanuatu Vatu"
-msgstr "Vanuatujski vatu"
-
-msgid "Samoa Tala"
-msgstr "Samojska tala"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Frank CFA (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Vzhodnokaribski dolar"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Posebne pravice črpanja Mednarodnega denarnega sklada"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Frank CFA (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Frank CFP"
-
-msgid "Yemen Rial"
-msgstr "Jemenski rial"
-
-msgid "South Africa Rand"
-msgstr "Južnoafriški rand"
-
-msgid "Zambia Kwacha"
-msgstr "Zambijska kvača"
-
-msgid "Zimbabwe Dollar"
-msgstr "Zimbabvejski dolar"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"
@@ -6332,6 +5907,178 @@ msgstr "Priporočamo vam, da nadgradite na <a href=\"%(tb_url)s\">Thunderbird</a
 msgid "Read more about Sunbird"
 msgstr "Preberite več o Sunbirdu"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Ocene za %s"
+
+msgid "Review History for this Addon"
+msgstr "Pregled zgodovine za ta dodatek"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Ocenjeno na %d od 5 zvezdic"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Če kot razlog za prijavo izberete \"Drugo\", morate dodati kratko obrazložitev."
+
+msgid "Other (please specify)"
+msgstr "Drugo (navedite)"
+
+msgid "This field is required."
+msgstr "To polje je obvezno."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Potem ko ga ustvarite, ne morete spremeniti dodatka pregleda."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Ne morete se odzvati na oceno, ki je že sama po sebi odgovor."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Različice pregledanega dodatka ne morete spreminjati po tem, ko je bil pregled že končan."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Ta različica dodatka ne obstaja ali ni javno dostopna."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Svojega dodatka ne morete oceniti."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Iste različice dodatka ne morete oceniti večkrat."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Hvala; ta ocena je bila označena za uredniški pregled."
+
+msgid "Add a review for {0}"
+msgstr "Dodaj pregled za {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>V mislih imejte naslednje:</h2> <ul> <li> Pišite, kot da prijatelju pripovedujete o svoji izkušnji z dodatkom. Navedite določene podrobnosti, na primer katere lastnosti so vam všeč, katere vam "
+"niso, kako enostavno ga je uporabljati in ali ima kakšne slabosti. Ne objavljajte splošnih ocen, kot sta \"Super\" ali \"Zanič\", razen če navedete razloge, zakaj je tako. </li> <li> Ne objavljate "
+"poročil o napakah. Vašega e-poštnega naslova ne razkrijemo razvijalcem, pri odpravljanju napake pa bodo morda morali navezati stik z vami. Glejte <a href=\"%(support)s\">odsek za podporo</a> tega "
+"dodatka, da vidite, ali je pomoč na voljo. Za pomoč lahko prosite tudi <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">skupnost za dodatke</a>. </li> <li>Ocene naj bodo "
+"jasne, izogibajte se neprimernim izrazom in ne objavljate osebnih podatkov. </li> </ul><p> Za več podatkov o ocenah dodatkov si preberite <a href=\"%(guide)s\">Smernice za ocenjevanje</a>.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Odgovor na pregled za {0}"
+
+msgid "Write a Reply"
+msgstr "Napišite odgovor"
+
+msgid "Submit"
+msgstr "Pošlji"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ali <a href=\"%(url)s\">Prekliči</a>"
+
+msgid "Please select a reason:"
+msgstr "Prosimo, izberite razlog:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "%(user)s <b>(Razvijalec)</b> dne %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ta ocena je za prejšnjo različico dodatka ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo oceno</a> za ta dodatek."
+msgstr[1] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnji oceni</a> za ta dodatek."
+msgstr[2] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnje ocene</a> za ta dodatek."
+msgstr[3] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnjih ocen</a> za ta dodatek."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Ta uporabnik ima <a href=\"%(user_review_url)s\">druge ocene</a> za ta dodatek."
+
+msgid "Flagged for review"
+msgstr "Označeno za pregled"
+
+msgid "Report this review"
+msgstr "Prijavi to oceno"
+
+msgid "Reply to review"
+msgstr "Odgovori na oceno"
+
+msgid "Edit reply"
+msgstr "Uredi odgovor"
+
+msgid "Edit review"
+msgstr "Uredi oceno"
+
+msgid "Delete reply"
+msgstr "Izbriši odgovor"
+
+msgid "Delete review"
+msgstr "Izbriši pregled"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: pregledi"
+
+msgid "Reviews for {0}"
+msgstr "Ocene za {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> ocena za ta dodatek"
+msgstr[1] "<b>{0}</b> oceni za ta dodatek"
+msgstr[2] "<b>{0}</b> ocene za ta dodatek"
+msgstr[3] "<b>{0}</b> ocen za ta dodatek"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Odgovor razvijalca {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Ocena dodatka %(addon)s uporabnika %(user)s"
+msgstr[1] "Oceni dodatka %(addon)s uporabnika %(user)s"
+msgstr[2] "Ocene dodatka %(addon)s uporabnika %(user)s"
+msgstr[3] "Ocene dodatka %(addon)s uporabnika %(user)s"
+
+msgid "No reviews found."
+msgstr "Pregledov ni najti."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Povprečje</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Napišite novo oceno"
+
+msgid "Be the first to write a review."
+msgstr "Bodite prvi, ki bo napisal oceno."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} ocena"
+msgstr[1] "{num} oceni"
+msgstr[2] "{num} ocene"
+msgstr[3] "{num} ocen"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Ocena {0} od 5 zvezdic"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Ocenjeno z %(rating)s od 5 zvezdic"
+
 msgid "Approved reviews"
 msgstr "Odobrene ocene"
 
@@ -6372,14 +6119,14 @@ msgstr "dodatek, pregledovalec ali komentar"
 msgid "Search by add-on name / author email"
 msgstr "Iskanje po imenu dodatka/e-pošti avtorja"
 
+msgid "Needs Admin Code Review"
+msgstr "Potrebuje skrbnikov pregled kode"
+
 msgid "yes"
 msgstr "da"
 
 msgid "no"
 msgstr "ne"
-
-msgid "Admin Flag"
-msgstr "Zastavica skrbnika"
 
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
@@ -6402,8 +6149,11 @@ msgstr "Programi:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Obvesti me, ko bo ta dodatek naslednjič posodobljen. (Nadaljnje posodobitve ne bodo pošiljale e-pošte)"
 
-msgid "Clear Admin Review Flag"
-msgstr "Zbriši zastavico za skrbnikov pregled"
+msgid "Clear Admin Code Review Flag"
+msgstr "Izbriši zastavico za skrbnikov pregled kode"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
 
 msgid "Is more info requested?"
 msgstr "Je zahtevanih več podatkov?"
@@ -6428,11 +6178,8 @@ msgstr "Ne izbriši ocene; odstrani zastavice"
 msgid "Skip for now"
 msgstr "Preskoči za zdaj"
 
-msgid "Delete review"
-msgstr "Izbriši pregled"
-
-msgid "Admin Review"
-msgstr "Skrbnikov pregled"
+msgid "Needs Admin Content Review"
+msgstr "Potrebuje skrbnikov pregled vsebine"
 
 msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
@@ -6557,14 +6304,83 @@ msgstr "Odobri vsebino"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja razvijalca."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Novi dodatki (pod 5 dni)"
+msgid "Legacy Add-ons"
+msgstr "Zastareli dodatki"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Še gre (5 do 10 dni)"
+msgid "New Add-ons ({0})"
+msgstr "Novi dodatki ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Zapadlo (Več kot 10 dni)"
+msgid "Add-on Updates ({0})"
+msgstr "Posodobitve dodatkov ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Dnevnik s pregledi dodatkov"
+
+msgid "Signed Beta Files Log"
+msgstr "Dnevnik podpisanih datotek beta"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Vodnik za pregledovalce"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Samodejno odobreni dodatki"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Samodejno odobreni dodatki ({0})"
+
+msgid "Content Review"
+msgstr "Pregled vsebine"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Pregled vsebine ({0})"
+msgstr[1] "Pregleda vsebine ({0})"
+msgstr[2] "Pregledi vsebine ({0})"
+msgstr[3] "Pregledi vsebine ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Nove teme ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Posodobitve tem ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Označene teme ({0})"
+
+msgid "Themes Review Log"
+msgstr "Dnevnik pregledov tem"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Dnevnik izbrisanih tem"
+
+msgid "User Ratings Moderation"
+msgstr "Moderacija ocen uporabnikov"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Ocene, ki čakajo na moderacijo ({0})"
+
+# 80%
+# 100%
+msgid "Moderated Review Log"
+msgstr "Moderiran dnevnik pregledov"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Posredovalni ukrepi:"
+
+msgid "Unlisted Add-ons"
+msgstr "Nenavedeni dodatki"
+
+msgid "All Unlisted Add-ons"
+msgstr "Vsi nenavedeni dodatki"
+
+msgid "Announcement"
+msgstr "Objava"
+
+msgid "Update message of the day"
+msgstr "Posodobi sporočilo dneva"
 
 msgid "An unknown error occurred"
 msgstr "Prišlo je do neznane napake"
@@ -6619,15 +6435,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Datum zadnje odobritve"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Odobritve od zadnjega samodejnega pregleda"
-
 msgid "Abuse Reports ({num})"
 msgstr "Poročila o zlorabi ({num})"
 
 # 87%
 # 100%
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Slabe ocene uporabnikov ({num})"
 
 msgid "More about this add-on"
@@ -6639,50 +6452,9 @@ msgstr "Galerija slik"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tu ni ničesar zanimivega!  Razvijalec ni dodal nobenih podrobnosti."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Nazaj na domačo stran Orodij za pregledovalce"
-
-msgid "Queues"
-msgstr "Čakalne vrste"
-
-msgid "New Add-ons"
-msgstr "Novi dodatki"
-
-# 85%
-msgid "Updates"
-msgstr "Posodobitve"
-
-msgid "Moderated Reviews"
-msgstr "Moderirani pregledi"
-
-msgid "Auto Approved Add-ons"
-msgstr "Samodejno odobreni dodatki"
-
-msgid "Content Review"
-msgstr "Pregled vsebine"
-
-msgid "Unlisted Queues"
-msgstr "Čakalne vrste za nenavedene"
-
-msgid "All Unlisted Add-ons"
-msgstr "Vsi nenavedeni dodatki"
-
-msgid "Logs"
-msgstr "Dnevniki"
-
-msgid "Add-on Review Log"
-msgstr "Dnevnik s pregledi dodatkov"
-
-# 80%
-# 100%
-msgid "Moderated Review Log"
-msgstr "Moderiran dnevnik pregledov"
-
-msgid "Signed Beta Files Log"
-msgstr "Dnevnik podpisanih datotek beta"
-
-msgid "Announcement"
-msgstr "Objava"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6725,60 +6497,6 @@ msgstr "Pregled je bil označen pred izbrisom."
 msgid "Undelete"
 msgstr "Razveljavi izbris"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nov dodatek ({num})"
-msgstr[1] "Nova dodatka ({num})"
-msgstr[2] "Novi dodatki ({num})"
-msgstr[3] "Novi dodatki ({num})"
-
-# 86%
-# 100%
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Posodobitev ({num})"
-msgstr[1] "Posodobitvi ({num})"
-msgstr[2] "Posodobitve ({num})"
-msgstr[3] "Posodobitve ({num})"
-
-msgid "Current waiting times:"
-msgstr "Trenutne čakalne dobe:"
-
-# 81%
-# 100%
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} dodatek"
-msgstr[1] "{0} dodatka"
-msgstr[2] "{0} dodatki"
-msgstr[3] "{0} dodatkov"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0} %%"
-
-msgid "Total Reviews"
-msgstr "Skupaj pregledov"
-
-msgid "Reviews This Month"
-msgstr "Pregledi ta mesec"
-
-msgid "New Reviewers"
-msgstr "Novi pregledovalci"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Vi ste {0}. z {1} pregledi"
-
-# 87%
-# 100%
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "{num} moderiran pregled"
-msgstr[1] "{num} moderirana pregleda"
-msgstr[2] "{num} moderirani pregledi"
-msgstr[3] "{num} moderiranih pregledov"
-
 msgid "Reviewer Leaderboard"
 msgstr "Oglasna deska vodilnih pregledovalcev"
 
@@ -6790,9 +6508,6 @@ msgstr "Vrstni red"
 
 msgid "Score"
 msgstr "rezultat"
-
-msgid "Update message of the day"
-msgstr "Posodobi sporočilo dneva"
 
 msgid "Save"
 msgstr "Shrani"
@@ -6811,6 +6526,9 @@ msgstr "Vaši pregledi"
 
 msgid "By {user_name}"
 msgstr "Od {user_name}"
+
+msgid "Total Reviews"
+msgstr "Skupaj pregledov"
 
 msgid "Active Contributors"
 msgstr "Aktivni sodelavci"
@@ -7045,32 +6763,14 @@ msgstr "Razlog"
 msgid "There are currently no reviews."
 msgstr "Trenutno ni pregledov."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} pregled teme v čakanju"
-msgstr[1] "{num} pregleda teme v čakanju"
-msgstr[2] "{num} pregledi teme v čakanju"
-msgstr[3] "{num} pregledov teme v čakanju"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} označen pregled"
-msgstr[1] "{num} označena pregleda"
-msgstr[2] "{num} označeni pregledi"
-msgstr[3] "{num} označenih pregledov"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} posodobitev"
-msgstr[1] "{num} posodobitvi"
-msgstr[2] "{num} posodobitve"
-msgstr[3] "{num} posodobitev"
-
 msgid "Flagged Themes"
 msgstr "Označene teme"
 
 msgid "Theme Review Queue"
 msgstr "Čakalna vrsta za pregled tem"
+
+msgid "Queues"
+msgstr "Čakalne vrste"
 
 msgid "Review Options"
 msgstr "Možnosti pri pregledu:"
@@ -7189,184 +6889,12 @@ msgstr[1] "Samodejno odobrena dodatka ({0})"
 msgstr[2] "Samodejno odobreni dodatki ({0})"
 msgstr[3] "Samodejno odobreni dodatki ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Pregled vsebine ({0})"
-msgstr[1] "Pregleda vsebine ({0})"
-msgstr[2] "Pregledi vsebine ({0})"
-msgstr[3] "Pregledi vsebine ({0})"
-
 msgid "Flagged"
 msgstr "Označeno"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Ocene za %s"
-
-msgid "Review History for this Addon"
-msgstr "Pregled zgodovine za ta dodatek"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Ocenjeno na %d od 5 zvezdic"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Če kot razlog za prijavo izberete \"Drugo\", morate dodati kratko obrazložitev."
-
-msgid "Other (please specify)"
-msgstr "Drugo (navedite)"
-
-msgid "This field is required."
-msgstr "To polje je obvezno."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Potem ko ga ustvarite, ne morete spremeniti dodatka pregleda."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Ne morete se odzvati na oceno, ki je že sama po sebi odgovor."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Različice pregledanega dodatka ne morete spreminjati po tem, ko je bil pregled že končan."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Ta različica dodatka ne obstaja ali ni javno dostopna."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Svojega dodatka ne morete oceniti."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Iste različice dodatka ne morete oceniti večkrat."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Hvala; ta ocena je bila označena za uredniški pregled."
-
-msgid "Add a review for {0}"
-msgstr "Dodaj pregled za {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>V mislih imejte naslednje:</h2> <ul> <li> Pišite, kot da prijatelju pripovedujete o svoji izkušnji z dodatkom. Navedite določene podrobnosti, na primer katere lastnosti so vam všeč, katere vam "
-"niso, kako enostavno ga je uporabljati in ali ima kakšne slabosti. Ne objavljajte splošnih ocen, kot sta \"Super\" ali \"Zanič\", razen če navedete razloge, zakaj je tako. </li> <li> Ne objavljate "
-"poročil o napakah. Vašega e-poštnega naslova ne razkrijemo razvijalcem, pri odpravljanju napake pa bodo morda morali navezati stik z vami. Glejte <a href=\"%(support)s\">odsek za podporo</a> tega "
-"dodatka, da vidite, ali je pomoč na voljo. Za pomoč lahko prosite tudi <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">skupnost za dodatke</a>. </li> <li>Ocene naj bodo "
-"jasne, izogibajte se neprimernim izrazom in ne objavljate osebnih podatkov. </li> </ul><p> Za več podatkov o ocenah dodatkov si preberite <a href=\"%(guide)s\">Smernice za ocenjevanje</a>.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Odgovor na pregled za {0}"
-
-msgid "Write a Reply"
-msgstr "Napišite odgovor"
-
-msgid "Submit"
-msgstr "Pošlji"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ali <a href=\"%(url)s\">Prekliči</a>"
-
-msgid "Please select a reason:"
-msgstr "Prosimo, izberite razlog:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(user)s <b>(Razvijalec)</b> dne %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ta ocena je za prejšnjo različico dodatka ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo oceno</a> za ta dodatek."
-msgstr[1] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnji oceni</a> za ta dodatek."
-msgstr[2] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnje ocene</a> za ta dodatek."
-msgstr[3] "Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnjih ocen</a> za ta dodatek."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Ta uporabnik ima <a href=\"%(user_review_url)s\">druge ocene</a> za ta dodatek."
-
-msgid "Flagged for review"
-msgstr "Označeno za pregled"
-
-msgid "Report this review"
-msgstr "Prijavi to oceno"
-
-msgid "Reply to review"
-msgstr "Odgovori na oceno"
-
-msgid "Edit reply"
-msgstr "Uredi odgovor"
-
-msgid "Edit review"
-msgstr "Uredi oceno"
-
-msgid "Delete reply"
-msgstr "Izbriši odgovor"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: pregledi"
-
-msgid "Reviews for {0}"
-msgstr "Ocene za {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> ocena za ta dodatek"
-msgstr[1] "<b>{0}</b> oceni za ta dodatek"
-msgstr[2] "<b>{0}</b> ocene za ta dodatek"
-msgstr[3] "<b>{0}</b> ocen za ta dodatek"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Odgovor razvijalca {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Ocena dodatka %(addon)s uporabnika %(user)s"
-msgstr[1] "Oceni dodatka %(addon)s uporabnika %(user)s"
-msgstr[2] "Ocene dodatka %(addon)s uporabnika %(user)s"
-msgstr[3] "Ocene dodatka %(addon)s uporabnika %(user)s"
-
-msgid "No reviews found."
-msgstr "Pregledov ni najti."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Povprečje</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Napišite novo oceno"
-
-msgid "Be the first to write a review."
-msgstr "Bodite prvi, ki bo napisal oceno."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} ocena"
-msgstr[1] "{num} oceni"
-msgstr[2] "{num} ocene"
-msgstr[3] "{num} ocen"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Ocena {0} od 5 zvezdic"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Ocenjeno z %(rating)s od 5 zvezdic"
+# 85%
+msgid "Updates"
+msgstr "Posodobitve"
 
 msgid "Maximum query length exceeded."
 msgstr "Največja dolžina poizvedbe prekoračena."
@@ -7507,6 +7035,9 @@ msgstr "Različica že obstaja."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID-ju se lahko izognejo samo WebExtensions"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "V manifestu navedite GUID svojega dodatka, če je daljši od 64 znakov."
+
 msgid "Invalid GUID in URL"
 msgstr "Neveljaven GUID v spletnem naslovu"
 
@@ -7536,9 +7067,6 @@ msgstr "po platformi"
 
 msgid "by Add-on Status"
 msgstr "po stanju dodatka"
-
-msgid "Contributions"
-msgstr "Prispevki"
 
 msgid "Subscribers"
 msgstr "Naročniki"
@@ -7665,9 +7193,6 @@ msgstr "Podatkov ni na voljo."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Kontrolna tabla je trenutno <b>javna</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Statistike o prispevkih so trenutno <b>zasebne</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Nadzorna plošča je trenutno <b>zasebna</b>."
 
@@ -7691,9 +7216,6 @@ msgstr "Uporaba aplikacije po datumu"
 
 msgid "Collections Created by Date"
 msgstr "Zbirke ustvarjene po datumu"
-
-msgid "Contributions by Date"
-msgstr "Prispevki po datumu"
 
 msgid "Downloaded by Date"
 msgstr "Prenosi po datumu"
@@ -7913,9 +7435,6 @@ msgstr "Oglejte si našo<a class=\"mobile-link\" href=\"#\">spletno stran za dod
 msgid "Android Add-ons"
 msgstr "Dodatki za Android"
 
-msgid "required"
-msgstr "potrebno"
-
 msgid "Required fields"
 msgstr "Zahtevana polja"
 
@@ -7985,9 +7504,6 @@ msgstr "Anonimni uporabnik {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Moji mobilni dodatki"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "razvijalec dodatka se mi zahvaljuje za prispevek"
 
 msgid "an add-on developer replies to my review"
 msgstr "razvijalec dodatka odgovori na mojo oceno"

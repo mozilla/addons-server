@@ -90,7 +90,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "admin_review": false,
             "slug": "invalid-id-20101206",
             "external_software": false,
             "name": 1385334,

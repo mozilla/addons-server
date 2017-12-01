@@ -24,35 +24,9 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'All Fall' theme.
-    DiscoItem(addon_id=44686, type=amo.ADDON_PERSONA, addon_name='All Fall'),
-
-    # Search Image
+    # 'Owl First Snow' theme.
     DiscoItem(
-        addon_id=455926,
-        addon_name='Search Image',
-        heading=_(u'Easily find images {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Highlight any text and right-click to quickly perform an '
-              u'image search.'),
-            '</blockquote>')),
-
-    # Enhancer for YouTube
-    DiscoItem(
-        addon_id=700308,
-        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
-              u'ad blocking, auto-play control, and more.'),
-            '</blockquote>')),
-
-    # 'Snub Nosed Dog' theme.
-    DiscoItem(
-        addon_id=376685, type=amo.ADDON_PERSONA, addon_name='Snub Nosed Dog'),
+        addon_id=676070, type=amo.ADDON_PERSONA, addon_name='Owl First Snow'),
 
     # uBlock Origin
     DiscoItem(
@@ -66,6 +40,34 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
+    # LastPass
+    DiscoItem(
+        addon_id=8542,
+        addon_name='LastPass',
+        heading=_(u'Manage passwords {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Simplify and sync all your various website logins across '
+              u'devices with one password to rule them all.'),
+            '</blockquote>')),
+
+    # 'Tiffy01' theme (slug = color-to-color).
+    DiscoItem(
+        addon_id=290486,
+        type=amo.ADDON_PERSONA),
+
+    # Enhancer for YouTube
+    DiscoItem(
+        addon_id=700308,
+        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
+              u'ad blocking, auto-play control, and more.'),
+            '</blockquote>')),
+
     # Emoji Cheatsheet.
     DiscoItem(
         addon_id=511962,
@@ -76,9 +78,7 @@ discopane_items = [
             _(u'Dozens of amazing emojis—always a click away.'),
             '</blockquote>')),
 
-    # 'Butterfly Fantasies' theme.
+    # 'Evil Robots' theme.
     DiscoItem(
-        addon_id=208568,
-        type=amo.ADDON_PERSONA,
-        addon_name='Butterfly Fantasies'),
+        addon_id=21085, type=amo.ADDON_PERSONA, addon_name='Evil Robots'),
 ]

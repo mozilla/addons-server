@@ -27,7 +27,8 @@
 .ed-sprite-jetpack { background-position: 0 -80px; }
 .ed-sprite-is_restart_required { background-position: 0 -96px; }
 .ed-sprite-notes { background-position: 0 -112px; }
-.ed-sprite-admin-review { background-position: 0 -128px; }
+.ed-sprite-needs-admin-content-review { background-position: 0 -128px; }
+.ed-sprite-needs-admin-code-review { background-position: 0 -128px; }
 .ed-sprite-reviewer { background-position: 0 -144px; }
 .ed-sprite-info { background-position: 0 -160px; }
 .ed-sprite-sources-provided { background-position: 0 -192px; }
@@ -44,6 +45,19 @@
 .plat-sprite-windows { background-position: 0 -64px; }
 .plat-sprite-solaris { background-position: 0 -80px; }
 .plat-sprite-android { background-position: 0 -96px; }
+
+body.content-review .ed-sprite-needs-admin-content-review {
+    display: block /* show needs admin content review flag on content review pages */
+}
+body:not(.content-review) .ed-sprite-needs-admin-code-review {
+    display: block /* show needs admin code review on non-content review pages */
+}
+body:not(.content-review) .ed-sprite-needs-admin-content-review {
+    display: none /* hide needs admin content review on non-content review pages */
+}
+body.content-review .ed-sprite-needs-admin-code-review {
+    display: none /* hide needs admin code review on content review pages */
+}
 
 .sort-icon {
     background: url(../../img/developers/reviewer-sprite.png?9) no-repeat top left;
@@ -1068,35 +1082,11 @@ h2.addon {
         float: right;
     }
 }
-#navbar {
-    clear: left;
-}
 gradient-two-color($color1, $color2) {
     background-color: $color2;
     background-image: -webkit-gradient(linear, left bottom, left top, from($color1), to($color2));
     background-image: linear-gradient($color1, $color2);
     background-image: -webkit-linear-gradient($color1, $color2);
-}
-.pill-nav-amo {
-    gradient-two-color(darken(#563C4B, 50%), darken(#563C4B, 30%));
-    border-radius: 16px;
-    display: inline-block;
-    padding: 8px 1px;
-    position: relative;
-    top: 9px;
-
-    a {
-        border-radius: 15px;
-        color: #ccc;
-        font-size: 15px;
-        padding: 9px 15px;
-
-        &.selected {
-            gradient-two-color(lighten(#2B4389, 10%), darken(#2B4389, 10%));
-            color: #fff;
-            pointer-events: none;
-        }
-    }
 }
 
 .whiteboard {

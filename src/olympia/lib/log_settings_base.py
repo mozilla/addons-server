@@ -92,6 +92,10 @@ loggers = {
     'newrelic': {
         'level': 'WARNING',
     },
+    'post_request_task': {
+        # Ignore INFO or DEBUG from post-request-task, it logs too much.
+        'level': 'WARNING',
+    },
     'z': {},
     'z.celery': {
         'handlers': ['statsd'],

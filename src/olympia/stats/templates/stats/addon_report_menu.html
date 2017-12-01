@@ -34,11 +34,6 @@
           <a href="{{ url('stats.statuses', addon.slug) }}">{{ _('by Add-on Status') }}</a>
         </li>
       </ul>
-      {% if has_privs %}
-        <li data-report="contributions">
-          <a href="{{ url('stats.contributions', addon.slug) }}">{{ _('Contributions') }}</a>
-        </li>
-      {% endif %}
     {% endif %}
   </ul>
 </nav>

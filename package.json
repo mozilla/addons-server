@@ -10,7 +10,7 @@
     "potools": "potools"
   },
   "dependencies": {
-    "addons-linter": "0.28.3",
+    "addons-linter": "0.29.1",
     "clean-css": "4.1.9",
     "clean-css-cli": "4.1.10",
     "jqmodal": "1.4.2",
@@ -20,12 +20,13 @@
     "@claviska/jquery-minicolors": "2.2.6",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
+    "jszip": "3.1.4",
     "less": "2.7.2",
     "source-map": "0.6.1",
     "stylus": "0.54.5",
     "raven-js": "3.20.1",
     "timeago": "1.6.1",
-    "uglify-js": "3.1.10",
+    "uglify-js": "3.2.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {

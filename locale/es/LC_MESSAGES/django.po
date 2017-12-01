@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-09 19:54+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-25 18:24+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -1843,8 +1843,8 @@ msgstr "{addon} agregado a {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} eliminado de {collection}."
 
-msgid "{review} for {addon} written."
-msgstr "Escrita {review} para {addon}."
+msgid "{rating} for {addon} written."
+msgstr "Se otorgó un {rating} a {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1877,17 +1877,17 @@ msgstr "Política de {addon} cambiada."
 msgid "{addon} icon changed."
 msgstr "Icono de {addon} cambiado."
 
-msgid "{review} for {addon} approved."
-msgstr "{review} de {addon} aprobada."
+msgid "{rating} for {addon} approved."
+msgstr "Se aprobó el {rating} de {addon}."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} ha aprobado {review} de {addon}."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} aprobó el {rating} para {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Revisión {review} para {addon} borrada."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Se eliminó el {rating} para {addon}."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} borró {review} para {addon}."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} eliminó el {rating} para {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Máxima versión para {version} actualizada."
@@ -1931,8 +1931,8 @@ msgstr "Usuario {user} restringido."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "El administrador {0} visualizó el registro de la actividad de {user}."
 
-msgid "{review} for {addon} updated."
-msgstr "{review} para {addon} actualizada."
+msgid "{rating} for {addon} updated."
+msgstr "Se actualizó el {rating} para {addon}."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revisado."
@@ -2102,15 +2102,6 @@ msgstr "Plugins"
 
 msgid "Themes (Static)"
 msgstr "Temas (estáticos)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Preguntar sólo en la página del complemento y en el perfil del desarrollador"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Preguntar cuando los usuarios hayan comenzado a descargar este complemento"
-
-msgid "Ask before users can download this add-on"
-msgstr "Preguntar antes de que los usuarios puedan descargar este complemento"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2995,10 +2986,11 @@ msgstr "Autores"
 msgid "About author roles"
 msgstr "Acerca de las funciones de un autor"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Los complementos pueden tener cualquier número de autores con 3 funciones posibles:</p> <ul><li><b>Propietario:</b> puede gestionar todos los aspectos del listado del complemento, incluyendo "
 "añadir y eliminar otros autores.</li> <li><b>Desarrollador:</b> puede gestionar todos los aspectos del listado del complemento, excepto añadir y eliminar otros autores y gestionar los pagos</li> "
@@ -3637,6 +3629,10 @@ msgstr "Subir versión"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se ejecutará una serie de pruebas de validación automática en tu fichero."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Crear un tema nuevo"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "¿Con qué plataformas es compatible este archivo?"
 
@@ -3651,6 +3647,93 @@ msgstr "Enviar archivo"
 
 msgid "Sign Add-on"
 msgstr "Firmar complemento"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema borrado."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Licencia del tema"
+
+# 82%
+# 100%
+msgid "Select a header image for your Theme."
+msgstr "Selecciona una imagen de encabezado para tu tema."
+
+msgid "required"
+msgstr "obligatorio"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Ajustado a la esquina superior derecha"
+
+msgid "Select a different header image"
+msgstr "Selecciona una imagen de cabecera diferente"
+
+msgid "Select colors for your Theme."
+msgstr "Selecciona colores para tu tema."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Este es el color del texto de la pestaña."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(opcional)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Pasa el puntero por encima para ver una vista preliminar"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Temas disponibles próximamente"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Subir archivo"
 
 msgid "API Credentials"
 msgstr "Credenciales de API"
@@ -4109,9 +4192,6 @@ msgstr "Encabezado"
 msgid "Footer"
 msgstr "Pie de página"
 
-msgid "Select colors for your Theme."
-msgstr "Selecciona colores para tu tema."
-
 msgid "Foreground Text"
 msgstr "Texto de primer plano"
 
@@ -4178,11 +4258,6 @@ msgstr "Visualiza y suscríbete a las <a href=\"%(feed_url)s\">actualizaciones</
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Únete a la conversación en nuestros <a href=\"%(forum_url)s\">foros</a>."
 
-# 82%
-# 100%
-msgid "Select a header image for your Theme."
-msgstr "Selecciona una imagen de encabezado para tu tema."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 píxeles"
 
@@ -4191,12 +4266,6 @@ msgstr "300 Kb máx."
 
 msgid "PNG or JPG"
 msgstr "PNG o JPG"
-
-msgid "Aligned to top-right"
-msgstr "Ajustado a la esquina superior derecha"
-
-msgid "Select a different header image"
-msgstr "Selecciona una imagen de cabecera diferente"
 
 # 82%
 # 100%
@@ -4409,17 +4478,18 @@ msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_headin
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Un bloqueador de publicidad ligero y efectivo. uBlock Origin ejecuta miles de filtros de contenido sin consumir casi una pizca de memoria."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mejora los vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Disfruta de las últimas novedades de las funciones de Youtube, como el modo cine, bloqueo de publicidad, control de la autoreproducción y mucho más."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Busca imágenes rápidamente {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Resalta cualquier texto y haz clic con el botón derecho para realizar una búsqueda rápida de imágenes."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sube tu juego de emojis {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4474,9 +4544,6 @@ msgstr "No se pudo analizar el archivo de manifiesto."
 
 msgid "Could not find an add-on ID."
 msgstr "No se pudo encontrar una identificación para el complemento."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "La identificación del complemento debe ser de 64 caracteres o menos."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4764,498 +4831,6 @@ msgstr "Desbloquea el acceso temprano a las características experimentales del 
 
 msgid "Get Started"
 msgstr "Comenzar"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dírham de los Emiratos Árabes Unidos"
-
-msgid "Afghanistan Afghani"
-msgstr "Afgani afgano"
-
-msgid "Albania Lek"
-msgstr "Lek albanés"
-
-msgid "Armenia Dram"
-msgstr "Dram armenio"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Florín de las Antillas holandesas"
-
-msgid "Angola Kwanza"
-msgstr "Kwanza angoleño"
-
-msgid "Argentina Peso"
-msgstr "Peso argentino"
-
-msgid "Australia Dollar"
-msgstr "Dólar australiano"
-
-msgid "Aruba Guilder"
-msgstr "Florín de Aruba"
-
-msgid "Azerbaijan New Manat"
-msgstr "Nuevo manat azerbaiyano"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Marco convertible de Bosnia y Herzegovina"
-
-msgid "Barbados Dollar"
-msgstr "Dólar de Barbados"
-
-msgid "Bangladesh Taka"
-msgstr "Taka bangladesí"
-
-msgid "Bulgaria Lev"
-msgstr "Lev búlgaro"
-
-msgid "Bahrain Dinar"
-msgstr "Dinar bareiní"
-
-msgid "Burundi Franc"
-msgstr "Franco burundés"
-
-msgid "Bermuda Dollar"
-msgstr "Dólar bermudeño"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Dólar de Brunei Darussalam"
-
-msgid "Bolivia Boliviano"
-msgstr "Boliviano de Bolivia"
-
-msgid "Brazil Real"
-msgstr "Real brasileño"
-
-msgid "Bahamas Dollar"
-msgstr "Dólar bahameño"
-
-msgid "Bhutan Ngultrum"
-msgstr "Ngultrum butanés"
-
-msgid "Botswana Pula"
-msgstr "Pula de Botsuana"
-
-msgid "Belarus Ruble"
-msgstr "Rublo bielorruso"
-
-msgid "Belize Dollar"
-msgstr "Dólar beliceño"
-
-msgid "Canada Dollar"
-msgstr "Dólar canadiense"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Franco congoleño/Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Franco suizo"
-
-msgid "Chile Peso"
-msgstr "Peso chileno"
-
-msgid "China Yuan Renminbi"
-msgstr "Yuan chino"
-
-msgid "Colombia Peso"
-msgstr "Peso colombiano"
-
-msgid "Costa Rica Colon"
-msgstr "Colón costarricense"
-
-msgid "Cuba Convertible Peso"
-msgstr "Peso cubano convertible"
-
-msgid "Cuba Peso"
-msgstr "Peso cubano"
-
-msgid "Cape Verde Escudo"
-msgstr "Escudo caboverdiano"
-
-msgid "Czech Republic Koruna"
-msgstr "Corona checa"
-
-msgid "Djibouti Franc"
-msgstr "Franco yibutiano"
-
-msgid "Denmark Krone"
-msgstr "Corona danesa"
-
-msgid "Dominican Republic Peso"
-msgstr "Peso de la República Dominicana"
-
-msgid "Algeria Dinar"
-msgstr "Dinar argelino"
-
-msgid "Egypt Pound"
-msgstr "Libra egipcia"
-
-msgid "Eritrea Nakfa"
-msgstr "Nafka de Eritrea"
-
-msgid "Ethiopia Birr"
-msgstr "Birr etíope"
-
-msgid "Euro Member Countries"
-msgstr "Euro de los Estados Miembros"
-
-msgid "Fiji Dollar"
-msgstr "Dólar fiyiano"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Libra malvinense"
-
-msgid "United Kingdom Pound"
-msgstr "Libra esterlina"
-
-msgid "Georgia Lari"
-msgstr "Lari georgiano"
-
-msgid "Guernsey Pound"
-msgstr "Libra de Guernsey"
-
-msgid "Ghana Cedi"
-msgstr "Cedi de Ghana"
-
-msgid "Gibraltar Pound"
-msgstr "Libra gibraltareña"
-
-msgid "Gambia Dalasi"
-msgstr "Dalasi de Gambia"
-
-msgid "Guinea Franc"
-msgstr "Franco guineano"
-
-msgid "Guatemala Quetzal"
-msgstr "Quetzal de Guatemala"
-
-msgid "Guyana Dollar"
-msgstr "Dólar guyanés"
-
-msgid "Hong Kong Dollar"
-msgstr "Dólar de Hong Kong"
-
-msgid "Honduras Lempira"
-msgstr "Lempira de Honduras"
-
-msgid "Croatia Kuna"
-msgstr "Kuna de Croacia"
-
-msgid "Haiti Gourde"
-msgstr "Gourde de Haití"
-
-msgid "Hungary Forint"
-msgstr "Forinto húngaro"
-
-msgid "Indonesia Rupiah"
-msgstr "Rupia indonesia"
-
-msgid "Israel Shekel"
-msgstr "Séquel israelí"
-
-msgid "Isle of Man Pound"
-msgstr "Libra manesa"
-
-msgid "India Rupee"
-msgstr "Rupia india"
-
-msgid "Iraq Dinar"
-msgstr "Dinar iraquí"
-
-msgid "Iran Rial"
-msgstr "Rial iraní"
-
-msgid "Iceland Krona"
-msgstr "Corona islandesa"
-
-msgid "Jersey Pound"
-msgstr "Libra de Jersey"
-
-msgid "Jamaica Dollar"
-msgstr "Dólar jamaiquino"
-
-msgid "Jordan Dinar"
-msgstr "Dinar jordano"
-
-msgid "Japan Yen"
-msgstr "Yen japonés"
-
-msgid "Kenya Shilling"
-msgstr "Chelín keniano"
-
-msgid "Kyrgyzstan Som"
-msgstr "Som kirguís"
-
-msgid "Cambodia Riel"
-msgstr "Riel camboyano"
-
-msgid "Comoros Franc"
-msgstr "Franco comorense"
-
-msgid "Korea (North) Won"
-msgstr "Won norcoreano"
-
-msgid "Korea (South) Won"
-msgstr "Won surcoreano"
-
-msgid "Kuwait Dinar"
-msgstr "Dinar kuwaití"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dólar de las Islas Caimán"
-
-msgid "Kazakhstan Tenge"
-msgstr "Tenge kazajo"
-
-msgid "Laos Kip"
-msgstr "Kip laosiano"
-
-msgid "Lebanon Pound"
-msgstr "Libra libanesa"
-
-msgid "Sri Lanka Rupee"
-msgstr "Rupia de Sri Lanka"
-
-msgid "Liberia Dollar"
-msgstr "Dólar liberiano"
-
-msgid "Lesotho Loti"
-msgstr "Loti del Reino de Lesoto"
-
-msgid "Lithuania Litas"
-msgstr "Litas lituana"
-
-msgid "Latvia Lat"
-msgstr "Lats letón"
-
-msgid "Libya Dinar"
-msgstr "Dinar libio"
-
-msgid "Morocco Dirham"
-msgstr "Dírham marroquí"
-
-msgid "Moldova Leu"
-msgstr "Leu moldavo"
-
-msgid "Madagascar Ariary"
-msgstr "Ariary malgache"
-
-msgid "Macedonia Denar"
-msgstr "Denar macedonio"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Kyat birmano"
-
-msgid "Mongolia Tughrik"
-msgstr "Tugrik mongol"
-
-msgid "Macau Pataca"
-msgstr "Pataca macaense"
-
-msgid "Mauritania Ouguiya"
-msgstr "Uquiya de Mauritania"
-
-msgid "Mauritius Rupee"
-msgstr "Rupia de Mauricio"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Rupia de Maldivas"
-
-msgid "Malawi Kwacha"
-msgstr "Kwacha malauí"
-
-msgid "Mexico Peso"
-msgstr "Peso mexicano"
-
-msgid "Malaysia Ringgit"
-msgstr "Ringgit de Malasia"
-
-msgid "Mozambique Metical"
-msgstr "Metical mozambiqueño"
-
-msgid "Namibia Dollar"
-msgstr "Dólar namibio"
-
-msgid "Nigeria Naira"
-msgstr "Naira de Nigeria"
-
-msgid "Nicaragua Cordoba"
-msgstr "Córdoba nicaragüense"
-
-msgid "Norway Krone"
-msgstr "Corona noruega"
-
-msgid "Nepal Rupee"
-msgstr "Rupia nepalí"
-
-msgid "New Zealand Dollar"
-msgstr "Dólar neozelandés"
-
-msgid "Oman Rial"
-msgstr "Rial omaní"
-
-msgid "Panama Balboa"
-msgstr "Balboa de Panamá"
-
-msgid "Peru Nuevo Sol"
-msgstr "Sol de Perú"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina de Papúa Nueva Guinea"
-
-msgid "Philippines Peso"
-msgstr "Peso filipino"
-
-msgid "Pakistan Rupee"
-msgstr "Rupia paquistaní"
-
-msgid "Poland Zloty"
-msgstr "Złoty polaco"
-
-msgid "Paraguay Guarani"
-msgstr "Guaraní paraguayo"
-
-msgid "Qatar Riyal"
-msgstr "Riyal catarí"
-
-msgid "Romania New Leu"
-msgstr "Leu rumano"
-
-msgid "Serbia Dinar"
-msgstr "Dinar serbio"
-
-msgid "Russia Ruble"
-msgstr "Rublo ruso"
-
-msgid "Rwanda Franc"
-msgstr "Franco ruandés"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Riyal saudí"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dólar de las Islas Salomón"
-
-msgid "Seychelles Rupee"
-msgstr "Rupia seychelense"
-
-msgid "Sudan Pound"
-msgstr "Libra sudanesa"
-
-msgid "Sweden Krona"
-msgstr "Corona sueca"
-
-msgid "Singapore Dollar"
-msgstr "Dólar de Singapur"
-
-msgid "Saint Helena Pound"
-msgstr "Libra de Santa Elena"
-
-msgid "Sierra Leone Leone"
-msgstr "Leone de Sierra Leona"
-
-msgid "Somalia Shilling"
-msgstr "Chelín somalí"
-
-msgid "Seborga Luigino"
-msgstr "Luigino de Seborga"
-
-msgid "Suriname Dollar"
-msgstr "Dólar surinamés"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Dobra santotomense"
-
-msgid "El Salvador Colon"
-msgstr "Colón de El Salvador"
-
-msgid "Syria Pound"
-msgstr "Libra siria"
-
-msgid "Swaziland Lilangeni"
-msgstr "Lilangeni de Suazilandia"
-
-msgid "Thailand Baht"
-msgstr "Baht tailandés"
-
-msgid "Tajikistan Somoni"
-msgstr "Somoni tayiko"
-
-msgid "Turkmenistan Manat"
-msgstr "Manat turcomano"
-
-msgid "Tunisia Dinar"
-msgstr "Dinar tunecino"
-
-msgid "Tonga Pa'anga"
-msgstr "Dólar tongano"
-
-msgid "Turkey Lira"
-msgstr "Lira turca"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dólar trinitense"
-
-msgid "Tuvalu Dollar"
-msgstr "Dólar tuvaluano"
-
-msgid "Taiwan New Dollar"
-msgstr "Nuevo dólar taiwanés"
-
-msgid "Tanzania Shilling"
-msgstr "Chelín tanzano"
-
-msgid "Ukraine Hryvna"
-msgstr "Grivna de Ucrania"
-
-msgid "Uganda Shilling"
-msgstr "Chelín ugandés"
-
-msgid "United States Dollar"
-msgstr "Dólar estadounidense"
-
-msgid "Uruguay Peso"
-msgstr "Peso uruguayo"
-
-msgid "Uzbekistan Som"
-msgstr "Som uzbeko"
-
-msgid "Venezuela Bolivar"
-msgstr "Bolívar de Venezuela"
-
-msgid "Viet Nam Dong"
-msgstr "Đồng vietnamita"
-
-msgid "Vanuatu Vatu"
-msgstr "Vatu de Vanuatu"
-
-msgid "Samoa Tala"
-msgstr "Tālā de Samoa"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Franco de la comunidad financiera africana CFA"
-
-msgid "East Caribbean Dollar"
-msgstr "Dólar del Caribe Oriental"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Derechos especiales de giro del Fondo Monetario Internacional (IFM)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Franco de la comunidad financiera africana (FCFA)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Franco de la comunidad financiera africana (FCFA)"
-
-msgid "Yemen Rial"
-msgstr "Rial yemení"
-
-msgid "South Africa Rand"
-msgstr "Rand sudafricano"
-
-msgid "Zambia Kwacha"
-msgstr "Kwacha zambiano"
-
-msgid "Zimbabwe Dollar"
-msgstr "Dólar zimbabuense"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -6364,6 +5939,170 @@ msgstr "Recomendamos actualizar a<a href=\"%(tb_url)s\">Thunderbird</a> y <a hre
 msgid "Read more about Sunbird"
 msgstr "Leer más sobre Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Valoraciones de %s"
+
+msgid "Review History for this Addon"
+msgstr "Historial de revisiones de este complemento"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Puntuado con %d de 5 estrellas"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Si seleccionas \"Otro\", tienes que dar una pequeña explicación."
+
+msgid "Other (please specify)"
+msgstr "Otro (por favor, especifícalo)"
+
+msgid "This field is required."
+msgstr "Este campo es obligatorio."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Una vez creada, no puedes modificar el complemento de una revisión."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "No puedes responder a una revisión que ya es una respuesta."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "No puedes cambiar la versión del complemento revisado cuando la revisión ya ha sido creada."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Esta versión del complemento no existe o no es pública."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "No puedes escribir una revisión de tu propio complemento."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Gracias. Se marcó tu comentario para que lo apruebe un editor."
+
+msgid "Add a review for {0}"
+msgstr "Agregar una valoración para {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Ten esto en cuenta:</h2><ul><li> Escribe como si le estuvieras contando a un amigo tu experiencia con el complemento. Da detalles específicos y útiles, como lo que te gustó y lo que no, si es "
+"fácil de usar y los contras que tenga. Evita lenguaje genérico como \"Bueno\" o \"Malo\", a menos que des razones de peso.</li><li> No informes de bugs en las valoraciones. Tu correo no es público "
+"y puede que los desarrolladores de complementos necesiten ponerse en contacto contigo. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver dónde obtener ayuda con el complemento.</"
+"li><li>Intenta que las valoraciones sean limpias, evita el lenguaje inadecuado y no publiques información personal.</li></ul><p>Para más detalles sobre las valoraciones de usuario, lee las <a href="
+"\"%(guide)s\">Pautas sobre valoraciones</a>.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Responder a la valoración de {0}"
+
+msgid "Write a Reply"
+msgstr "Escribir una respuesta"
+
+msgid "Submit"
+msgstr "Enviar"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "o <a href=\"%(url)s\">Cancelar</a>"
+
+msgid "Please select a reason:"
+msgstr "Por favor, selecciona un motivo:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "de %(user)s <b>(desarrollador)</b> el %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Esta valoración es de una versión anterior del complemento ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Este usuario tiene <a href=\"%(user_review_url)s\">una valoración anterior</a> de este complemento."
+msgstr[1] "Este usuario tiene <a href=\"%(user_review_url)s\">%(cnt)s valoraciones anteriores</a> de este complemento."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Este usuario tiene <a href=\"%(user_review_url)s\">otras valoraciones</a> de este complemento."
+
+msgid "Flagged for review"
+msgstr "Marcado para revisión"
+
+msgid "Report this review"
+msgstr "Informar de esta valoración"
+
+msgid "Reply to review"
+msgstr "Respuesta a valoración"
+
+msgid "Edit reply"
+msgstr "Editar respuesta"
+
+msgid "Edit review"
+msgstr "Editar valoración"
+
+msgid "Delete reply"
+msgstr "Borrar respuesta"
+
+msgid "Delete review"
+msgstr "Borrar valoración"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Valoraciones"
+
+msgid "Reviews for {0}"
+msgstr "Valoraciones de {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> valoración para este complemento"
+msgstr[1] "<b>{0}</b> valoraciones para este complemento"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Respuesta del desarrollador por {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Valoración de %(addon)s por %(user)s"
+msgstr[1] "Valoraciones de %(addon)s por %(user)s"
+
+msgid "No reviews found."
+msgstr "No se ha encontrado ninguna valoración."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Promedio</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Escribir una nueva valoración"
+
+msgid "Be the first to write a review."
+msgstr "Sé el primero en escribir una valoración."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} valoración"
+msgstr[1] "{num} valoraciones"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Puntuado con {0} de 5 estrellas"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Puntuado con %(rating)s de 5 estrellas"
+
 msgid "Approved reviews"
 msgstr "Valoraciones aprobadas"
 
@@ -6404,14 +6143,14 @@ msgstr "complemento, editor o comentario"
 msgid "Search by add-on name / author email"
 msgstr "Buscar por nombre del complemento / correo electrónico del autor"
 
+msgid "Needs Admin Code Review"
+msgstr "Se necesita revisión de código de administrador"
+
 msgid "yes"
 msgstr "sí"
 
 msgid "no"
 msgstr "no"
-
-msgid "Admin Flag"
-msgstr "Indicador de administrador"
 
 msgid "Add-on Types"
 msgstr "Tipos de complemento"
@@ -6434,8 +6173,11 @@ msgstr "Aplicaciones:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Notificarme la próxima vez que se actualice este complemento (las siguientes actualizaciones no generarán un correo electrónico)."
 
-msgid "Clear Admin Review Flag"
-msgstr "Eliminar la marca de valoración del administrador"
+msgid "Clear Admin Code Review Flag"
+msgstr "Limpiar la etiqueta de revisión de código de administrador"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Limpiar la etiqueta de revisión de contenido de administrador"
 
 msgid "Is more info requested?"
 msgstr "¿Se necesita más información?"
@@ -6460,11 +6202,8 @@ msgstr "Mantener revisión; eliminar marcadores"
 msgid "Skip for now"
 msgstr "Saltar de momento"
 
-msgid "Delete review"
-msgstr "Borrar valoración"
-
-msgid "Admin Review"
-msgstr "Revisión del administrador"
+msgid "Needs Admin Content Review"
+msgstr "Se necesita revisión de contenido de administrador"
 
 msgid "Jetpack Add-on"
 msgstr "Complemento Jetpack"
@@ -6583,14 +6322,81 @@ msgstr "Aprobar contenido"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Se guardará tu aprobación del contenido de esta versión sin notificárselo al desarrollador."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nuevos complementos (de los últimos 5 días)"
+msgid "Legacy Add-ons"
+msgstr "Complementos reemplazados"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Recientes (5 a 10 días)"
+msgid "New Add-ons ({0})"
+msgstr "Nuevos complementos ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Atrasado (Más de 10 días)"
+msgid "Add-on Updates ({0})"
+msgstr "Actualizaciones de complemento ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Registro de revisiones del complemento"
+
+msgid "Signed Beta Files Log"
+msgstr "Registro de archivos beta firmados"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Guía de revisores"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Complementos autoaprobados"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Complementos autoaprobados ({0})"
+
+msgid "Content Review"
+msgstr "Revisión de contenido"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisión moderada ({0})"
+msgstr[1] "Revisión de contenido ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Nuevos temas ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Actualizaciones de temas ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Temas marcados ({0})"
+
+msgid "Themes Review Log"
+msgstr "Registro de revisión de temas"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Se eliminó el registro de temas"
+
+msgid "User Ratings Moderation"
+msgstr "Moderación de las calificaciones de los usuarios"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Moderaciones de calificaciones pendientes ({0})"
+
+# 80%
+# 100%
+msgid "Moderated Review Log"
+msgstr "Registro de revisiones moderadas"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Acciones de moderación:"
+
+msgid "Unlisted Add-ons"
+msgstr "Complementos no listados"
+
+msgid "All Unlisted Add-ons"
+msgstr "Todos los complementos no listados"
+
+msgid "Announcement"
+msgstr "Anuncio"
+
+msgid "Update message of the day"
+msgstr "Actualizar mensaje del día"
 
 msgid "An unknown error occurred"
 msgstr "Ha sucedido un error desconocido"
@@ -6645,14 +6451,11 @@ msgstr "CLUF"
 msgid "Last Approval Date"
 msgstr "Última fecha de aprobación"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Aprobaciones desde la última revisión automática"
-
 msgid "Abuse Reports ({num})"
 msgstr "Informes de uso indebido ({num})"
 
-msgid "Bad User Reviews ({num})"
-msgstr "Revisión de usuario con mala conducta ({num})"
+msgid "Bad User Ratings ({num})"
+msgstr "Calificaciones de usuario con mala conducta ({num})"
 
 msgid "More about this add-on"
 msgstr "Más sobre este complemento"
@@ -6663,51 +6466,9 @@ msgstr "Galería de imágenes"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "¡Nada que mostrar aquí!  El desarrollador no incluyó ningún detalle."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Volver a la página de herramientas del revisor"
-
-msgid "Queues"
-msgstr "Colas"
-
-msgid "New Add-ons"
-msgstr "Nuevos complementos"
-
-# 85%
-# 100%
-msgid "Updates"
-msgstr "Actualizaciones"
-
-msgid "Moderated Reviews"
-msgstr "Revisiones moderadas"
-
-msgid "Auto Approved Add-ons"
-msgstr "Complementos autoaprobados"
-
-msgid "Content Review"
-msgstr "Revisión de contenido"
-
-msgid "Unlisted Queues"
-msgstr "Colas no listadas"
-
-msgid "All Unlisted Add-ons"
-msgstr "Todos los complementos no listados"
-
-msgid "Logs"
-msgstr "Registros"
-
-msgid "Add-on Review Log"
-msgstr "Registro de revisiones del complemento"
-
-# 80%
-# 100%
-msgid "Moderated Review Log"
-msgstr "Registro de revisiones moderadas"
-
-msgid "Signed Beta Files Log"
-msgstr "Registro de archivos beta firmados"
-
-msgid "Announcement"
-msgstr "Anuncio"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6750,46 +6511,6 @@ msgstr "La revisión ha sido marcada previamente para su eliminación."
 msgid "Undelete"
 msgstr "Deshacer borrar"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nuevo complemento ({num})"
-msgstr[1] "Nuevos complementos ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Actualización ({num})"
-msgstr[1] "Actualizaciones ({num})"
-
-msgid "Current waiting times:"
-msgstr "Tiempos de espera actuales:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} complemento"
-msgstr[1] "{0} complementos"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Valoraciones totales"
-
-msgid "Reviews This Month"
-msgstr "Revisiones este mes"
-
-msgid "New Reviewers"
-msgstr "Nuevos revisores"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Eres el nº {0} con {1} valoraciones"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Revisión moderada ({num})"
-msgstr[1] "Revisiones moderadas ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Panel de calificación del revisor"
 
@@ -6801,9 +6522,6 @@ msgstr "Posición"
 
 msgid "Score"
 msgstr "Puntuación"
-
-msgid "Update message of the day"
-msgstr "Actualizar mensaje del día"
 
 msgid "Save"
 msgstr "Guardar"
@@ -6822,6 +6540,9 @@ msgstr "Tus revisiones"
 
 msgid "By {user_name}"
 msgstr "Por {user_name}"
+
+msgid "Total Reviews"
+msgstr "Valoraciones totales"
 
 # 81%
 # 100%
@@ -7056,26 +6777,14 @@ msgstr "Motivo"
 msgid "There are currently no reviews."
 msgstr "Actualmente no hay ninguna revisión."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Revisión de temas pendiente"
-msgstr[1] "{num} Revisiones de temas pendientes"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Revisión marcada"
-msgstr[1] "{num} Revisiones marcadas"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Actualización"
-msgstr[1] "{num} Actualizaciones"
-
 msgid "Flagged Themes"
 msgstr "Temas marcados"
 
 msgid "Theme Review Queue"
 msgstr "Cola de revisiones del tema"
+
+msgid "Queues"
+msgstr "Colas"
 
 msgid "Review Options"
 msgstr "Opciones de revisión"
@@ -7186,174 +6895,13 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Complemento autoaprobado ({0})"
 msgstr[1] "Complementos autoaprobados ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisión moderada ({0})"
-msgstr[1] "Revisión de contenido ({0})"
-
 msgid "Flagged"
 msgstr "Marcado"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Valoraciones de %s"
-
-msgid "Review History for this Addon"
-msgstr "Historial de revisiones de este complemento"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Puntuado con %d de 5 estrellas"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Si seleccionas \"Otro\", tienes que dar una pequeña explicación."
-
-msgid "Other (please specify)"
-msgstr "Otro (por favor, especifícalo)"
-
-msgid "This field is required."
-msgstr "Este campo es obligatorio."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Una vez creada, no puedes modificar el complemento de una revisión."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "No puedes responder a una revisión que ya es una respuesta."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "No puedes cambiar la versión del complemento revisado cuando la revisión ya ha sido creada."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Esta versión del complemento no existe o no es pública."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "No puedes escribir una revisión de tu propio complemento."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Gracias. Se marcó tu comentario para que lo apruebe un editor."
-
-msgid "Add a review for {0}"
-msgstr "Agregar una valoración para {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Ten esto en cuenta:</h2><ul><li> Escribe como si le estuvieras contando a un amigo tu experiencia con el complemento. Da detalles específicos y útiles, como lo que te gustó y lo que no, si es "
-"fácil de usar y los contras que tenga. Evita lenguaje genérico como \"Bueno\" o \"Malo\", a menos que des razones de peso.</li><li> No informes de bugs en las valoraciones. Tu correo no es público "
-"y puede que los desarrolladores de complementos necesiten ponerse en contacto contigo. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver dónde obtener ayuda con el complemento.</"
-"li><li>Intenta que las valoraciones sean limpias, evita el lenguaje inadecuado y no publiques información personal.</li></ul><p>Para más detalles sobre las valoraciones de usuario, lee las <a href="
-"\"%(guide)s\">Pautas sobre valoraciones</a>.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Responder a la valoración de {0}"
-
-msgid "Write a Reply"
-msgstr "Escribir una respuesta"
-
-msgid "Submit"
-msgstr "Enviar"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "o <a href=\"%(url)s\">Cancelar</a>"
-
-msgid "Please select a reason:"
-msgstr "Por favor, selecciona un motivo:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "de %(user)s <b>(desarrollador)</b> el %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Esta valoración es de una versión anterior del complemento ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Este usuario tiene <a href=\"%(user_review_url)s\">una valoración anterior</a> de este complemento."
-msgstr[1] "Este usuario tiene <a href=\"%(user_review_url)s\">%(cnt)s valoraciones anteriores</a> de este complemento."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Este usuario tiene <a href=\"%(user_review_url)s\">otras valoraciones</a> de este complemento."
-
-msgid "Flagged for review"
-msgstr "Marcado para revisión"
-
-msgid "Report this review"
-msgstr "Informar de esta valoración"
-
-msgid "Reply to review"
-msgstr "Respuesta a valoración"
-
-msgid "Edit reply"
-msgstr "Editar respuesta"
-
-msgid "Edit review"
-msgstr "Editar valoración"
-
-msgid "Delete reply"
-msgstr "Borrar respuesta"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Valoraciones"
-
-msgid "Reviews for {0}"
-msgstr "Valoraciones de {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> valoración para este complemento"
-msgstr[1] "<b>{0}</b> valoraciones para este complemento"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Respuesta del desarrollador por {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Valoración de %(addon)s por %(user)s"
-msgstr[1] "Valoraciones de %(addon)s por %(user)s"
-
-msgid "No reviews found."
-msgstr "No se ha encontrado ninguna valoración."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Promedio</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Escribir una nueva valoración"
-
-msgid "Be the first to write a review."
-msgstr "Sé el primero en escribir una valoración."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} valoración"
-msgstr[1] "{num} valoraciones"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Puntuado con {0} de 5 estrellas"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Puntuado con %(rating)s de 5 estrellas"
+# 85%
+# 100%
+msgid "Updates"
+msgstr "Actualizaciones"
 
 msgid "Maximum query length exceeded."
 msgstr "Se alcanzó la longitud máxima de la consulta."
@@ -7492,6 +7040,9 @@ msgstr "Esta versión ya existe."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Solo WebExtensions puede omitir el GUID"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Si tiene más de 64 caracteres, especifica el GUID de tu complemento en el manifesto."
+
 msgid "Invalid GUID in URL"
 msgstr "GUID inválido en la URL"
 
@@ -7521,9 +7072,6 @@ msgstr "por plataforma"
 
 msgid "by Add-on Status"
 msgstr "por estado del complemento"
-
-msgid "Contributions"
-msgstr "Colaboraciones"
 
 msgid "Subscribers"
 msgstr "Suscriptores"
@@ -7640,9 +7188,6 @@ msgstr "No hay datos disponibles."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Este panel de control es actualmente <b>público</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Las estadísticas de contribuciones son actualmente <b>privadas</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Este panel de control es actualmente <b>privado</b>."
 
@@ -7666,9 +7211,6 @@ msgstr "Uso de la aplicación por fecha"
 
 msgid "Collections Created by Date"
 msgstr "Colecciones creadas por fecha"
-
-msgid "Contributions by Date"
-msgstr "Colaboraciones por fecha"
 
 msgid "Downloaded by Date"
 msgstr "Descargado por fecha"
@@ -7889,9 +7431,6 @@ msgstr "Revisa nuestro <a class=\"mobile-link\" href=\"#\">sitio sobre complemen
 msgid "Android Add-ons"
 msgstr "Complementos para Android"
 
-msgid "required"
-msgstr "obligatorio"
-
 msgid "Required fields"
 msgstr "Campos obligatorios"
 
@@ -7961,9 +7500,6 @@ msgstr "Usuario anónimo {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mis complementos para móviles"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "un desarrollador de complementos me da las gracias por una contribución"
 
 msgid "an add-on developer replies to my review"
 msgstr "un desarrollador de complementos responde a mi valoración"

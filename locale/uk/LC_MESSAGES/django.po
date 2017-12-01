@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-09 11:18+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-30 13:22+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1854,7 +1854,8 @@ msgstr "{addon} додано до {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} вилучено з {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "Для {addon} написано {review}."
 
 #. L10n: {0} is a category name.
@@ -1888,16 +1889,20 @@ msgstr "Політика {addon} змінена."
 msgid "{addon} icon changed."
 msgstr "Іконка {addon} змінена."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{review} для {addon} схвалено."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} схвалив {review} для {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Відгук {review} для {addon} видалено."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} видалив {review} для {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1942,7 +1947,8 @@ msgstr "Користувача {user} обмежено."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Адміністратор {0} переглянув журнал активності для {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} для {addon} оновлено."
 
 msgid "{addon} reviewed."
@@ -2110,15 +2116,6 @@ msgstr "Плагіни"
 
 msgid "Themes (Static)"
 msgstr "Теми (Статичні)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Запитувати лише на сторінці цього додатку та профілю розробника"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Запитати після того, як користувачі почнуть завантаження цього додатку"
-
-msgid "Ask before users can download this add-on"
-msgstr "Запитати перед тим, як користувачі зможуть завантажити цей додаток"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3003,10 +3000,11 @@ msgstr "Автори"
 msgid "About author roles"
 msgstr "Про ролі автора"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Додатки можуть мати будь-яку кількість авторів з трьома можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатків, включаючи додавання і вилучення авторів</"
 "li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатків, за виключенням додавання і вилучення інших авторів і керування платежами</li> <li><b>Глядач:</b> Може переглядати "
@@ -3620,6 +3618,10 @@ msgstr "Вивантажити версію"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для вивантаження пакунку свого додатку скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Створити нову тему"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
@@ -3634,6 +3636,91 @@ msgstr "Надіслати файл"
 
 msgid "Sign Add-on"
 msgstr "Підписати додаток"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Тема видалена."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Ліцензія теми"
+
+msgid "Select a header image for your Theme."
+msgstr "Виберіть верхнє зображення для вашої теми."
+
+msgid "required"
+msgstr "потрібно"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Вирівняна по верхньому правому краю"
+
+msgid "Select a different header image"
+msgstr "Виберіть інше верхнє зображення"
+
+msgid "Select colors for your Theme."
+msgstr "Оберіть кольори для вашої теми."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Це колір тексту вкладки."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(необов’язково)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Наведіть для попереднього перегляду"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Теми, які набирають популярність"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Вивантажити файл"
 
 msgid "API Credentials"
 msgstr "Облікові дані API"
@@ -4067,9 +4154,6 @@ msgstr "Верхнє зображення"
 msgid "Footer"
 msgstr "Нижнє зображення"
 
-msgid "Select colors for your Theme."
-msgstr "Оберіть кольори для вашої теми."
-
 msgid "Foreground Text"
 msgstr "Текст переднього тла"
 
@@ -4134,9 +4218,6 @@ msgstr "Перегляньте і підпишіться на <a href=\"%(feed_u
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Приєднуйтесь до розмови на наших <a href=\"%(forum_url)s\">форумах</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Виберіть верхнє зображення для вашої теми."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 пікселів"
 
@@ -4145,12 +4226,6 @@ msgstr "Максимум 300 КБ"
 
 msgid "PNG or JPG"
 msgstr "PNG або JPG"
-
-msgid "Aligned to top-right"
-msgstr "Вирівняна по верхньому правому краю"
-
-msgid "Select a different header image"
-msgstr "Виберіть інше верхнє зображення"
 
 msgid "Select a footer image for your Theme."
 msgstr "Виберіть нижнє зображення для вашої теми."
@@ -4354,17 +4429,18 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Легкий і ефективний блокувальник реклами. uBlock Origin застосовує тисячі фільтрів вмісту без значного споживання ресурсів."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, контроль авто-відтворення та інших."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Легко знаходьте зображення {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Виділіть будь-який текст і клацніть правою кнопкою миші для швидкого пошуку зображень."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вдоскональте свої емоджі {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -4419,9 +4495,6 @@ msgstr "Не вдалося обробити файл маніфесту."
 
 msgid "Could not find an add-on ID."
 msgstr "Не вдалося знайти ID додатку."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID додатку повинен містити не більше 64 символів."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4707,498 +4780,6 @@ msgstr "Розблокуйте доступ до експериментальн�
 
 msgid "Get Started"
 msgstr "Початок роботи"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Дихрам Об'єднаних Арабських Еміратів"
-
-msgid "Afghanistan Afghani"
-msgstr "Афгані"
-
-msgid "Albania Lek"
-msgstr "Албанський лек"
-
-msgid "Armenia Dram"
-msgstr "Вірменський драм"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Нідерландський антильський гульден"
-
-msgid "Angola Kwanza"
-msgstr "Ангольська кванза"
-
-msgid "Argentina Peso"
-msgstr "Аргентинський песо"
-
-msgid "Australia Dollar"
-msgstr "Австралійський долар"
-
-msgid "Aruba Guilder"
-msgstr "Арубський флорин"
-
-msgid "Azerbaijan New Manat"
-msgstr "Азербайджанський манат"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Конвертовна марка"
-
-msgid "Barbados Dollar"
-msgstr "Барбадоський долар"
-
-msgid "Bangladesh Taka"
-msgstr "Бангладеська така"
-
-msgid "Bulgaria Lev"
-msgstr "Болгарський лев"
-
-msgid "Bahrain Dinar"
-msgstr "Бахрейнський динар"
-
-msgid "Burundi Franc"
-msgstr "Бурундійський франк"
-
-msgid "Bermuda Dollar"
-msgstr "Бермудський долар"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Брунейський долар"
-
-msgid "Bolivia Boliviano"
-msgstr "Болівіано"
-
-msgid "Brazil Real"
-msgstr "Бразильський реал"
-
-msgid "Bahamas Dollar"
-msgstr "Багамський долар"
-
-msgid "Bhutan Ngultrum"
-msgstr "Нгултрум"
-
-msgid "Botswana Pula"
-msgstr "Ботсванська пула"
-
-msgid "Belarus Ruble"
-msgstr "Білоруський рубль"
-
-msgid "Belize Dollar"
-msgstr "Белізький долар"
-
-msgid "Canada Dollar"
-msgstr "Канадський долар"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Конголезький франк"
-
-msgid "Switzerland Franc"
-msgstr "Швейцарський франк"
-
-msgid "Chile Peso"
-msgstr "Чилійський песо"
-
-msgid "China Yuan Renminbi"
-msgstr "Юань Женьміньбі"
-
-msgid "Colombia Peso"
-msgstr "Колумбійський песо"
-
-msgid "Costa Rica Colon"
-msgstr "Костариканський колон"
-
-msgid "Cuba Convertible Peso"
-msgstr "Кубинський конвертований песо"
-
-msgid "Cuba Peso"
-msgstr "Кубинський песо"
-
-msgid "Cape Verde Escudo"
-msgstr "Ескудо Кабо-Верде"
-
-msgid "Czech Republic Koruna"
-msgstr "Чеська крона"
-
-msgid "Djibouti Franc"
-msgstr "Франк Джибуті"
-
-msgid "Denmark Krone"
-msgstr "Данська крона"
-
-msgid "Dominican Republic Peso"
-msgstr "Домініканський песо"
-
-msgid "Algeria Dinar"
-msgstr "Алжирський динар"
-
-msgid "Egypt Pound"
-msgstr "Єгипетський фунт"
-
-msgid "Eritrea Nakfa"
-msgstr "Еритрейська накфа"
-
-msgid "Ethiopia Birr"
-msgstr "Ефіопський бир"
-
-msgid "Euro Member Countries"
-msgstr "Євро"
-
-msgid "Fiji Dollar"
-msgstr "Долар Фіджі"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Фолклендський фунт"
-
-msgid "United Kingdom Pound"
-msgstr "Фунт стерлінгів"
-
-msgid "Georgia Lari"
-msgstr "Грузинський ларі"
-
-msgid "Guernsey Pound"
-msgstr "Гернсійський фунт"
-
-msgid "Ghana Cedi"
-msgstr "Ганський седі"
-
-msgid "Gibraltar Pound"
-msgstr "Гібралтарський фунт"
-
-msgid "Gambia Dalasi"
-msgstr "Даласі"
-
-msgid "Guinea Franc"
-msgstr "Гвінейський франк"
-
-msgid "Guatemala Quetzal"
-msgstr "Гватемальський кецаль"
-
-msgid "Guyana Dollar"
-msgstr "Гайанський долар"
-
-msgid "Hong Kong Dollar"
-msgstr "Гонконгівський долар"
-
-msgid "Honduras Lempira"
-msgstr "Гондураська лемпіра"
-
-msgid "Croatia Kuna"
-msgstr "Хорватська куна"
-
-msgid "Haiti Gourde"
-msgstr "Гаїтянський гурд"
-
-msgid "Hungary Forint"
-msgstr "Угорський форинт"
-
-msgid "Indonesia Rupiah"
-msgstr "Індонезійська рупія"
-
-msgid "Israel Shekel"
-msgstr "Шекель"
-
-msgid "Isle of Man Pound"
-msgstr "Фунт острова Мен"
-
-msgid "India Rupee"
-msgstr "Індійська рупія"
-
-msgid "Iraq Dinar"
-msgstr "Іракський динар"
-
-msgid "Iran Rial"
-msgstr "Іранський ріал"
-
-msgid "Iceland Krona"
-msgstr "Ісландська крона"
-
-msgid "Jersey Pound"
-msgstr "Джерсійський фунт"
-
-msgid "Jamaica Dollar"
-msgstr "Ямайський долар"
-
-msgid "Jordan Dinar"
-msgstr "Йорданський динар"
-
-msgid "Japan Yen"
-msgstr "Єна"
-
-msgid "Kenya Shilling"
-msgstr "Кенійський шилінг"
-
-msgid "Kyrgyzstan Som"
-msgstr "Киргизький сом"
-
-msgid "Cambodia Riel"
-msgstr "Камбоджійський рієль"
-
-msgid "Comoros Franc"
-msgstr "Коморський франк"
-
-msgid "Korea (North) Won"
-msgstr "Північнокорейська вона"
-
-msgid "Korea (South) Won"
-msgstr "Південнокорейська вона"
-
-msgid "Kuwait Dinar"
-msgstr "Кувейтський динар"
-
-msgid "Cayman Islands Dollar"
-msgstr "Долар Кайманових Островів"
-
-msgid "Kazakhstan Tenge"
-msgstr "Казахстанський теньге"
-
-msgid "Laos Kip"
-msgstr "Кіп"
-
-msgid "Lebanon Pound"
-msgstr "Ліванський фунт"
-
-msgid "Sri Lanka Rupee"
-msgstr "Рупія Шрі-Ланки"
-
-msgid "Liberia Dollar"
-msgstr "Ліберійський долар"
-
-msgid "Lesotho Loti"
-msgstr "Лоті"
-
-msgid "Lithuania Litas"
-msgstr "Литовський лит"
-
-msgid "Latvia Lat"
-msgstr "Латвійський лат"
-
-msgid "Libya Dinar"
-msgstr "Лівійський динар"
-
-msgid "Morocco Dirham"
-msgstr "Марокканський дирхам"
-
-msgid "Moldova Leu"
-msgstr "Молдовський лей"
-
-msgid "Madagascar Ariary"
-msgstr "Малагасійський аріарі"
-
-msgid "Macedonia Denar"
-msgstr "Македонський денар"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "М'янмський к'ят"
-
-msgid "Mongolia Tughrik"
-msgstr "Монгольський тугрик"
-
-msgid "Macau Pataca"
-msgstr "Аоминська патака"
-
-msgid "Mauritania Ouguiya"
-msgstr "Мавританська угія"
-
-msgid "Mauritius Rupee"
-msgstr "Маврикійська рупія"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Мальдівська руфія"
-
-msgid "Malawi Kwacha"
-msgstr "Малавійська квача"
-
-msgid "Mexico Peso"
-msgstr "Мексиканський песо"
-
-msgid "Malaysia Ringgit"
-msgstr "Малайзійський рингіт"
-
-msgid "Mozambique Metical"
-msgstr "Мозамбіцький метікал"
-
-msgid "Namibia Dollar"
-msgstr "Намібійський долар"
-
-msgid "Nigeria Naira"
-msgstr "Нігерійська найра"
-
-msgid "Nicaragua Cordoba"
-msgstr "Нікарагуанська кордоба"
-
-msgid "Norway Krone"
-msgstr "Норвезька крона"
-
-msgid "Nepal Rupee"
-msgstr "Непальська рупія"
-
-msgid "New Zealand Dollar"
-msgstr "Новозеландський долар"
-
-msgid "Oman Rial"
-msgstr "Оманський ріал"
-
-msgid "Panama Balboa"
-msgstr "Панамське бальбоа"
-
-msgid "Peru Nuevo Sol"
-msgstr "Новий соль"
-
-msgid "Papua New Guinea Kina"
-msgstr "Кіна"
-
-msgid "Philippines Peso"
-msgstr "Філіппінський песо"
-
-msgid "Pakistan Rupee"
-msgstr "Пакистанська рупія"
-
-msgid "Poland Zloty"
-msgstr "Злотий"
-
-msgid "Paraguay Guarani"
-msgstr "Парагвайський гуарані"
-
-msgid "Qatar Riyal"
-msgstr "Катарський ріал"
-
-msgid "Romania New Leu"
-msgstr "Румунський лей"
-
-msgid "Serbia Dinar"
-msgstr "Сербський динар"
-
-msgid "Russia Ruble"
-msgstr "Російський рубль"
-
-msgid "Rwanda Franc"
-msgstr "Руандійський франк"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Саудівський ріал"
-
-msgid "Solomon Islands Dollar"
-msgstr "Долар Соломонових Островів"
-
-msgid "Seychelles Rupee"
-msgstr "Сейшельська рупія"
-
-msgid "Sudan Pound"
-msgstr "Суданський фунт"
-
-msgid "Sweden Krona"
-msgstr "Шведська крона"
-
-msgid "Singapore Dollar"
-msgstr "Сінгапурський долар"
-
-msgid "Saint Helena Pound"
-msgstr "Фунт Святої Єлени"
-
-msgid "Sierra Leone Leone"
-msgstr "Леоне Сьєрра-Леоне"
-
-msgid "Somalia Shilling"
-msgstr "Сомалійський шилінг"
-
-msgid "Seborga Luigino"
-msgstr "Луїджино"
-
-msgid "Suriname Dollar"
-msgstr "Суринамський долар"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Добра Сан-Томе і Прінсіпі"
-
-msgid "El Salvador Colon"
-msgstr "Сальвадорський колон"
-
-msgid "Syria Pound"
-msgstr "Сирійський фунт"
-
-msgid "Swaziland Lilangeni"
-msgstr "Ліланджені"
-
-msgid "Thailand Baht"
-msgstr "Тайський бат"
-
-msgid "Tajikistan Somoni"
-msgstr "Таджицький сомоні"
-
-msgid "Turkmenistan Manat"
-msgstr "Туркменський манат"
-
-msgid "Tunisia Dinar"
-msgstr "Туніський динар"
-
-msgid "Tonga Pa'anga"
-msgstr "Тонганська паанга"
-
-msgid "Turkey Lira"
-msgstr "Турецька ліра"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Долар Тринідаду і Тобаго"
-
-msgid "Tuvalu Dollar"
-msgstr "Долар Тувалу"
-
-msgid "Taiwan New Dollar"
-msgstr "Новий тайванський долар"
-
-msgid "Tanzania Shilling"
-msgstr "Танзанійський шилінг"
-
-msgid "Ukraine Hryvna"
-msgstr "Гривня"
-
-msgid "Uganda Shilling"
-msgstr "Угандійський шилінг"
-
-msgid "United States Dollar"
-msgstr "Долар США"
-
-msgid "Uruguay Peso"
-msgstr "Уругвайський песо"
-
-msgid "Uzbekistan Som"
-msgstr "Узбецький сом"
-
-msgid "Venezuela Bolivar"
-msgstr "Венесуельський болівар"
-
-msgid "Viet Nam Dong"
-msgstr "В'єтнамський донг"
-
-msgid "Vanuatu Vatu"
-msgstr "Вануатський вату"
-
-msgid "Samoa Tala"
-msgstr "Самоанська тала"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Франк КФА BEAC"
-
-msgid "East Caribbean Dollar"
-msgstr "Східнокарибський долар"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Спеціальні права запозичення Міжнародного Валютного Фонду (МВФ)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Франк КФА BCEAO"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Французький тихоокеанський франк (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Єменський ріал"
-
-msgid "South Africa Rand"
-msgstr "Південноафриканський ранд"
-
-msgid "Zambia Kwacha"
-msgstr "Замбійська квача"
-
-msgid "Zimbabwe Dollar"
-msgstr "Зімбабвійський долар"
 
 msgid "About Mozilla Add-ons"
 msgstr "Про додатки Mozilla"
@@ -6281,6 +5862,175 @@ msgstr "Ми рекомендуємо оновитися на <a href=\"%(tb_url
 msgid "Read more about Sunbird"
 msgstr "Дізнайтеся більше про Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Відгуки про %s"
+
+msgid "Review History for this Addon"
+msgstr "Історія відгуків для цього додатка"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Оцінка %d з 5 зірок"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "При виборі причини \"Інше\", потрібно надати коротке пояснення."
+
+msgid "Other (please specify)"
+msgstr "Інше (будь ласка, уточніть)"
+
+msgid "This field is required."
+msgstr "Це обов'язкове поле."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Ви можете змінити додаток після подання на перевірку."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Ви не можете відповідати на відповідь."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Ви не можете змінювати версію додатка після подання на перевірку."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Ця версія додатку не існує, або вона не загальнодоступна."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Ви не можете залишати відгук для власного додатка."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Ви не можете залишати більше одного відгуку для однієї версії додатку."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Дякуємо; цей відгук був позначений для схвалення редактором."
+
+msgid "Add a review for {0}"
+msgstr "Додати відгук для {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Зверніть увагу на ці поради:</h2> <ul> <li> Пишіть так, наче ви розповідаєте друзям про ваші враження при роботі з додатком. Додавайте конкретні та корисні подробиці, наприклад, які функції вам "
+"сподобались чи не сподобались, наскільки він є простим в користуванні, а також будь-які його недоліки. Уникайте загальних виразів, наприклад, \"Чудово\", або \"Погано\", якщо ви не можете вказати "
+"причини того, чому ви так вважаєте. </li> <li> Не повідомляйте про помилки тут. Ми не робимо вашу адресу електронної пошти доступною розробникам додатків, отже вони не зможуть зв'язатися з вами для "
+"вирішення проблеми. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб перевірити наявність допомоги. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c/"
+"add-ons/add-on-support\">спільноті додатків</a> для отримання допомоги. </li> <li>Будь ласка, пишіть відгуки чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої "
+"інформації. </li> </ul> <p>Ознайомтеся з <a href=\"%(guide)s\">Настановами про відгуки</a> для отримання докладнішої інформації про відгуки користувачів про додатки.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Відповісти на відгук від {0}"
+
+msgid "Write a Reply"
+msgstr "Написати відповідь"
+
+msgid "Submit"
+msgstr "Затвердити"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "або <a href=\"%(url)s\">Скасувати</a>"
+
+msgid "Please select a reason:"
+msgstr "Виберіть причину:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "від %(user)s <b>(Розробник)</b> %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Цей відгук для попередньої версії додатку ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Цей користувач має <a href=\"%(user_review_url)s\">попередній відгук</a> про цей додаток."
+msgstr[1] "Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередні відгуки</a> про цей додаток."
+msgstr[2] "Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередніх відгуків</a> про цей додаток."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Цей користувач має <a href=\"%(user_review_url)s\">інші відгуки</a> про цей додаток."
+
+msgid "Flagged for review"
+msgstr "Відмічено для відгуку"
+
+msgid "Report this review"
+msgstr "Звітувати про цей відгук"
+
+msgid "Reply to review"
+msgstr "Відповісти на відгук"
+
+msgid "Edit reply"
+msgstr "Змінити відповідь"
+
+msgid "Edit review"
+msgstr "Змінити відгук"
+
+msgid "Delete reply"
+msgstr "Видалити відповідь"
+
+msgid "Delete review"
+msgstr "Видалити відгук"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Відгуки"
+
+msgid "Reviews for {0}"
+msgstr "Відгуки для {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> відгук для цього додатку"
+msgstr[1] "<b>{0}</b> відгуки для цього додатку"
+msgstr[2] "<b>{0}</b> відгуків для цього додатку"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Відповідь розробника від {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Відгук для %(addon)s від %(user)s"
+msgstr[1] "Відгуки для %(addon)s від %(user)s"
+msgstr[2] "Відгуків для %(addon)s від %(user)s"
+
+msgid "No reviews found."
+msgstr "Не знайдено відгуків."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>В середньому</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Написати новий відгук"
+
+msgid "Be the first to write a review."
+msgstr "Напишіть перший відгук."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} відгук"
+msgstr[1] "{num} відгуки"
+msgstr[2] "{num} відгуків"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Оцінка {0} з 5 зірок"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Оцінено на %(rating)s з 5 зірок"
+
 msgid "Approved reviews"
 msgstr "Схвалені розгляди"
 
@@ -6321,14 +6071,15 @@ msgstr "додаток, редактор чи коментар"
 msgid "Search by add-on name / author email"
 msgstr "Пошук за назвою додатку / електронною адресою автора"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Рецензія адміна"
+
 msgid "yes"
 msgstr "так"
 
 msgid "no"
 msgstr "ні"
-
-msgid "Admin Flag"
-msgstr "Прапор адміністратора"
 
 msgid "Add-on Types"
 msgstr "Типи додатків"
@@ -6351,7 +6102,12 @@ msgstr "Програми:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Повідомити мене при наступному оновленні цього додатку. (Подальші оновлення не призведуть до відправлення електронного листа)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Зняти прапор перевірки адміністратором"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Зняти прапор перевірки адміністратором"
 
 msgid "Is more info requested?"
@@ -6377,11 +6133,9 @@ msgstr "Утримати рецензію; видалити мітки"
 msgid "Skip for now"
 msgstr "Пропустити зараз"
 
-msgid "Delete review"
-msgstr "Видалити відгук"
-
-msgid "Admin Review"
-msgstr "Рецензія адміна"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Перевірка вмісту додатку"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-додаток"
@@ -6503,14 +6257,90 @@ msgstr "Схвалити вміст"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Ця дія записує ваше схвалення вмісту цієї версії без сповіщення розробника."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Нові додатки (Менше 5 днів)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Мої додатки"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Непогано (5-10 днів)"
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Новий додаток ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Прострочено (протягом 10 днів)"
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Оновлення додатку"
+
+msgid "Add-on Review Log"
+msgstr "Журнал перевірок додатків"
+
+msgid "Signed Beta Files Log"
+msgstr "Журнал підписаних файлів бети"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Настанови редактора"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Автоматично схвалені додатки"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Автоматично схвалений додаток ({0})"
+
+msgid "Content Review"
+msgstr "Перевірка вмісту"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Перевірка вмісту ({0})"
+msgstr[1] "Перевірка вмісту ({0})"
+msgstr[2] "Перевірка вмісту ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Новий додаток ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "({0}) оновлення"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Відмічені теми"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Перевірка теми"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Вилучити тему"
+
+msgid "User Ratings Moderation"
+msgstr "Модерування рейтингів користувачів"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Рейтинги, що очікують модерування ({0})"
+
+msgid "Moderated Review Log"
+msgstr "Журнал модерованих перевірок"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Дії для модерації:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Всі неопубліковані додатки"
+
+msgid "All Unlisted Add-ons"
+msgstr "Всі неопубліковані додатки"
+
+msgid "Announcement"
+msgstr "Оголошення"
+
+msgid "Update message of the day"
+msgstr "Оновити повідомлення дня"
 
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
@@ -6564,13 +6394,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Дата останнього схвалення"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Схвалень після останнього автоматичного розгляду"
-
 msgid "Abuse Reports ({num})"
 msgstr "Звіти про зловживання ({num})"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Погані відгуки користувачів ({num})"
 
 msgid "More about this add-on"
@@ -6582,47 +6410,9 @@ msgstr "Галерея зображень"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Тут нічого дивитись!  Розробник не включив жодних деталей."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Повернутися до початкової сторінки інструментів редактора"
-
-msgid "Queues"
-msgstr "Черги"
-
-msgid "New Add-ons"
-msgstr "Нові додатки"
-
-msgid "Updates"
-msgstr "Оновлення"
-
-msgid "Moderated Reviews"
-msgstr "Модеровані розгляди"
-
-msgid "Auto Approved Add-ons"
-msgstr "Автоматично схвалені додатки"
-
-msgid "Content Review"
-msgstr "Перевірка вмісту"
-
-msgid "Unlisted Queues"
-msgstr "Черги неопублікованих"
-
-msgid "All Unlisted Add-ons"
-msgstr "Всі неопубліковані додатки"
-
-msgid "Logs"
-msgstr "Логи"
-
-msgid "Add-on Review Log"
-msgstr "Журнал перевірок додатків"
-
-msgid "Moderated Review Log"
-msgstr "Журнал модерованих перевірок"
-
-msgid "Signed Beta Files Log"
-msgstr "Журнал підписаних файлів бети"
-
-msgid "Announcement"
-msgstr "Оголошення"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6665,50 +6455,6 @@ msgstr "Відгук було позначено для видалення."
 msgid "Undelete"
 msgstr "Відновити"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Новий додаток ({num})"
-msgstr[1] "({num}) нові додатки"
-msgstr[2] "({num}) нових додатків"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "({num}) оновлення"
-msgstr[1] "({num}) оновлення"
-msgstr[2] "({num}) оновлень"
-
-msgid "Current waiting times:"
-msgstr "Поточний час очікування:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} додаток"
-msgstr[1] "{0} додатки"
-msgstr[2] "{0} додатків"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Всього розглядів"
-
-msgid "Reviews This Month"
-msgstr "Розгляди цього місяця"
-
-msgid "New Reviewers"
-msgstr "Нові редактори"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Ви #{0} з {1} перевірками"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Модерована перевірка ({num})"
-msgstr[1] "Модеровані перевірки ({num})"
-msgstr[2] "Модеровані перевірки ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Панель редакторів-лідерів"
 
@@ -6720,9 +6466,6 @@ msgstr "Рейтинг"
 
 msgid "Score"
 msgstr "Оцінка"
-
-msgid "Update message of the day"
-msgstr "Оновити повідомлення дня"
 
 msgid "Save"
 msgstr "Зберегти"
@@ -6741,6 +6484,9 @@ msgstr "Ваші відгуки"
 
 msgid "By {user_name}"
 msgstr "Від {user_name}"
+
+msgid "Total Reviews"
+msgstr "Всього розглядів"
 
 msgid "Active Contributors"
 msgstr "Активні учасники"
@@ -6973,29 +6719,14 @@ msgstr "Причина"
 msgid "There are currently no reviews."
 msgstr "В даний момент перевірок немає."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} тема очікує на перевірку"
-msgstr[1] "{num} теми очікують на перевірку"
-msgstr[2] "{num} тем очікують на перевірку"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} перевірка з позначкою"
-msgstr[1] "{num} перевірки з позначкою"
-msgstr[2] "{num} перевірок з позначкою"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Оновлення"
-msgstr[1] "{num} Оновлення"
-msgstr[2] "{num} Оновлень"
-
 msgid "Flagged Themes"
 msgstr "Відмічені теми"
 
 msgid "Theme Review Queue"
 msgstr "Черга розгляду теми"
+
+msgid "Queues"
+msgstr "Черги"
 
 msgid "Review Options"
 msgstr "Опції розгляду"
@@ -7110,180 +6841,11 @@ msgstr[0] "Автоматично схвалений додаток ({0})"
 msgstr[1] "Автоматично схвалені додатки ({0})"
 msgstr[2] "Автоматично схвалених додатків ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Перевірка вмісту ({0})"
-msgstr[1] "Перевірка вмісту ({0})"
-msgstr[2] "Перевірка вмісту ({0})"
-
 msgid "Flagged"
 msgstr "Відмічено"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Відгуки про %s"
-
-msgid "Review History for this Addon"
-msgstr "Історія відгуків для цього додатка"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Оцінка %d з 5 зірок"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "При виборі причини \"Інше\", потрібно надати коротке пояснення."
-
-msgid "Other (please specify)"
-msgstr "Інше (будь ласка, уточніть)"
-
-msgid "This field is required."
-msgstr "Це обов'язкове поле."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Ви можете змінити додаток після подання на перевірку."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Ви не можете відповідати на відповідь."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Ви не можете змінювати версію додатка після подання на перевірку."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Ця версія додатку не існує, або вона не загальнодоступна."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Ви не можете залишати відгук для власного додатка."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ви не можете залишати більше одного відгуку для однієї версії додатку."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Дякуємо; цей відгук був позначений для схвалення редактором."
-
-msgid "Add a review for {0}"
-msgstr "Додати відгук для {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Зверніть увагу на ці поради:</h2> <ul> <li> Пишіть так, наче ви розповідаєте друзям про ваші враження при роботі з додатком. Додавайте конкретні та корисні подробиці, наприклад, які функції вам "
-"сподобались чи не сподобались, наскільки він є простим в користуванні, а також будь-які його недоліки. Уникайте загальних виразів, наприклад, \"Чудово\", або \"Погано\", якщо ви не можете вказати "
-"причини того, чому ви так вважаєте. </li> <li> Не повідомляйте про помилки тут. Ми не робимо вашу адресу електронної пошти доступною розробникам додатків, отже вони не зможуть зв'язатися з вами для "
-"вирішення проблеми. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб перевірити наявність допомоги. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c/"
-"add-ons/add-on-support\">спільноті додатків</a> для отримання допомоги. </li> <li>Будь ласка, пишіть відгуки чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої "
-"інформації. </li> </ul> <p>Ознайомтеся з <a href=\"%(guide)s\">Настановами про відгуки</a> для отримання докладнішої інформації про відгуки користувачів про додатки.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Відповісти на відгук від {0}"
-
-msgid "Write a Reply"
-msgstr "Написати відповідь"
-
-msgid "Submit"
-msgstr "Затвердити"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "або <a href=\"%(url)s\">Скасувати</a>"
-
-msgid "Please select a reason:"
-msgstr "Виберіть причину:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "від %(user)s <b>(Розробник)</b> %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Цей відгук для попередньої версії додатку ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Цей користувач має <a href=\"%(user_review_url)s\">попередній відгук</a> про цей додаток."
-msgstr[1] "Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередні відгуки</a> про цей додаток."
-msgstr[2] "Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередніх відгуків</a> про цей додаток."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Цей користувач має <a href=\"%(user_review_url)s\">інші відгуки</a> про цей додаток."
-
-msgid "Flagged for review"
-msgstr "Відмічено для відгуку"
-
-msgid "Report this review"
-msgstr "Звітувати про цей відгук"
-
-msgid "Reply to review"
-msgstr "Відповісти на відгук"
-
-msgid "Edit reply"
-msgstr "Змінити відповідь"
-
-msgid "Edit review"
-msgstr "Змінити відгук"
-
-msgid "Delete reply"
-msgstr "Видалити відповідь"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Відгуки"
-
-msgid "Reviews for {0}"
-msgstr "Відгуки для {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> відгук для цього додатку"
-msgstr[1] "<b>{0}</b> відгуки для цього додатку"
-msgstr[2] "<b>{0}</b> відгуків для цього додатку"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Відповідь розробника від {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Відгук для %(addon)s від %(user)s"
-msgstr[1] "Відгуки для %(addon)s від %(user)s"
-msgstr[2] "Відгуків для %(addon)s від %(user)s"
-
-msgid "No reviews found."
-msgstr "Не знайдено відгуків."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>В середньому</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Написати новий відгук"
-
-msgid "Be the first to write a review."
-msgstr "Напишіть перший відгук."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} відгук"
-msgstr[1] "{num} відгуки"
-msgstr[2] "{num} відгуків"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Оцінка {0} з 5 зірок"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оцінено на %(rating)s з 5 зірок"
+msgid "Updates"
+msgstr "Оновлення"
 
 msgid "Maximum query length exceeded."
 msgstr "Перевищена максимальна довжина запиту."
@@ -7416,6 +6978,9 @@ msgstr "Версія вже існує."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Тільки веб-додатки можуть пройти перевірку"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Будь ласка, вкажіть GUID вашого Додатку в маніфесті, якщо він довший 64 символів."
+
 msgid "Invalid GUID in URL"
 msgstr "Хибний GUID у URL"
 
@@ -7445,9 +7010,6 @@ msgstr "за платформою"
 
 msgid "by Add-on Status"
 msgstr "за статусом додатка"
-
-msgid "Contributions"
-msgstr "Внески"
 
 msgid "Subscribers"
 msgstr "Підписники"
@@ -7562,9 +7124,6 @@ msgstr "Дані відсутні."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Зараз ця панель є <b>публічною</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Зараз статистика внесків є <b>приватною</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Зараз ця панель є <b>приватною</b>."
 
@@ -7588,9 +7147,6 @@ msgstr "Використання програм за датою"
 
 msgid "Collections Created by Date"
 msgstr "Створено збірок за датою"
-
-msgid "Contributions by Date"
-msgstr "Внески за датою"
 
 msgid "Downloaded by Date"
 msgstr "Завантажено за датою"
@@ -7810,9 +7366,6 @@ msgstr "Перегляньте наш <a class=\"mobile-link\" href=\"#\">сай
 msgid "Android Add-ons"
 msgstr "Додатки для Android"
 
-msgid "required"
-msgstr "потрібно"
-
 msgid "Required fields"
 msgstr "Необхідні поля"
 
@@ -7882,9 +7435,6 @@ msgstr "Анонімний користувач {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Мої мобільні додатки"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "розробник додатку дякує мені за внесок"
 
 msgid "an add-on developer replies to my review"
 msgstr "розробник додатку відповідає на мій відгук"

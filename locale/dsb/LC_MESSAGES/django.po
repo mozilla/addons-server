@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-07 20:00+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-23 20:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1875,8 +1875,8 @@ msgstr "Dodank {addon} jo se zběrce {collection} pśidał."
 msgid "{addon} removed from {collection}."
 msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
 
-msgid "{review} for {addon} written."
-msgstr "{review} za {addon} napisane."
+msgid "{rating} for {addon} written."
+msgstr "{rating} za {addon} napisane."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1909,17 +1909,17 @@ msgstr "Pšawidła dodanka {addon} změnjone."
 msgid "{addon} icon changed."
 msgstr "Symbol dodanka {addon} změnjony."
 
-msgid "{review} for {addon} approved."
-msgstr "Pśeglědowanje {review} za dodank {addon} pśizwólone."
+msgid "{rating} for {addon} approved."
+msgstr "{rating} za dodank {addon} pśizwólone."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "Wužywaŕ {user} jo pógódnośenje {review} za dodank {addon} pśizwólił."
+msgid "{user} approved {rating} for {addon}."
+msgstr "Wužywaŕ {user} jo pógódnośenje {rating} za dodank {addon} pśizwólił."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Pógódnośenje {review} za {addon} wulašowane."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Pógódnośenje {rating} za {addon} wulašowane."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} jo {review} za {addon} wulašował."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} jo {rating} za {addon} wulašował."
 
 msgid "Application max version for {version} updated."
 msgstr "Maks. wersija nałoženja jo se za wersiju {version} zaktualizěrowała."
@@ -1963,8 +1963,8 @@ msgstr "Wužywaŕ {user} jo se wobgranicował."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrator {0} jo se protokol aktiwitow za wužywarja {user} woglědał."
 
-msgid "{review} for {addon} updated."
-msgstr "{review} jo se za dodank {addon} zaktualizěrował."
+msgid "{rating} for {addon} updated."
+msgstr "{rating} jo se za dodank {addon} zaktualizěrował."
 
 msgid "{addon} reviewed."
 msgstr "Dodank {addon} jo se pśeglědał."
@@ -2131,15 +2131,6 @@ msgstr "Tykace"
 
 msgid "Themes (Static)"
 msgstr "Drastwy (statiske)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Jano na boku toś togo dodanka a w profilu wuwijarja se pšašaś"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Pšašaś se, za tym až wužywarje su zachopili, toś ten dodank ześěgowaś"
-
-msgid "Ask before users can download this add-on"
-msgstr "Pšašaś se, nježli až wužywarje mógu toś ten dodank ześěgnuś"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3023,10 +3014,11 @@ msgstr "Awtory"
 msgid "About author roles"
 msgstr "Wó awtorowych rolach"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Dodanki mógu wjele awtorow z 3 móžnymi rolami měś:</p> <ul> <li><b>Wobsejźaŕ:</b> Móžo wšykne aspekty nalicenja dodankow zastojaś, inkluziwnje pśidawanje a wótwónoźowanje drugich awtorow</li> "
 "<li><b>Wuwijaŕ:</b> Móžo wšykne aspekty nalicenja dodankow zastojaś, mimo pśidawanja a wótwónoźowanja drugich awtorow a zastojanja płaśenjow</li> <li><b>Wobglědowaŕ:</b> Móžo se nastajenja a "
@@ -3635,6 +3627,10 @@ msgstr "Wersiju nagraś"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Wužywajśo slědujuce póla, aby swój dodankowy pakśik nagrał. Pó nagraśu se rěd awtomatiskich pśeglědanjow na wašej dataji pśewjeźo."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Napórajśo nowu drastwu"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Z kótarymiž platformami jo toś ta dataja kompatibelna?"
 
@@ -3649,6 +3645,91 @@ msgstr "Dataju zapódaś"
 
 msgid "Sign Add-on"
 msgstr "Dodank signěrowaś"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Drastwa jo se wulašowała."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Licenca drastwy"
+
+msgid "Select a header image for your Theme."
+msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu."
+
+msgid "required"
+msgstr "trěbny"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Napšawo górjejce wusměrjony"
+
+msgid "Select a different header image"
+msgstr "Wubjeŕśo drugi głowowy wobraz"
+
+msgid "Select colors for your Theme."
+msgstr "Wubjeŕśo barwy za swóju drastwu."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "To jo barwa rejtarkowego teksta."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(opcionalny)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Za pśeglěd špěru myški nad tym źaržaś"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Rozmógujuce drastwy"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Dataju nagraś"
 
 msgid "API Credentials"
 msgstr "Pśizjawjeńske API-daty"
@@ -4077,9 +4158,6 @@ msgstr "Głowa"
 msgid "Footer"
 msgstr "Noga"
 
-msgid "Select colors for your Theme."
-msgstr "Wubjeŕśo barwy za swóju drastwu."
-
 msgid "Foreground Text"
 msgstr "Tekst prědka"
 
@@ -4144,9 +4222,6 @@ msgstr "Woglědajśo se a aboněrujśo <a href=\"%(feed_url)s\">aktiwnostny kana
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Pśizamkniśo se rozgronam w našych <a href=\"%(forum_url)s\">forumach</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikselow"
 
@@ -4155,12 +4230,6 @@ msgstr "300 KB maksimalnje"
 
 msgid "PNG or JPG"
 msgstr "PNG abo JPG"
-
-msgid "Aligned to top-right"
-msgstr "Napšawo górjejce wusměrjony"
-
-msgid "Select a different header image"
-msgstr "Wubjeŕśo drugi głowowy wobraz"
 
 msgid "Select a footer image for your Theme."
 msgstr "Wubjeŕśo nogowy wobraz za swóju drastwu."
@@ -4371,17 +4440,18 @@ msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_headin
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Lažki a efektiwny blokěrowak wabjenja. uBlock Origin wunuźijo towzynty wopśimjeśowych filtrow, mimo až by se wjele składa pśetrjebało."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo wideo {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Wužywajśo rěd nowych funkcijow YouTube ako kinomodus, blokěrowanje wabjenja, wóźenje awtomatiskego wótgrawanja a wěcej."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lažko wobraze namakaś {start_sub_heading} z {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Wuzwigniśo tekst a klikniśo z pšaweju tastu, aby malsne pytanje za wobrazami pśewjadł."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swóju emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4436,9 +4506,6 @@ msgstr "Manifestowa dataja njedajo se analyzěrowaś."
 
 msgid "Could not find an add-on ID."
 msgstr "Žeden dodankowy ID namakany."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Dodankowy ID smějo maksimalnje 64 znamuškow měś."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4724,498 +4791,6 @@ msgstr "Dowólśo rany pśistup k eksperimentelnym funkcijam wobglědowaka."
 
 msgid "Get Started"
 msgstr "Prědne kšace"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dirham Zjadnośonych arabskich emiratow"
-
-msgid "Afghanistan Afghani"
-msgstr "Afghaniski afghani"
-
-msgid "Albania Lek"
-msgstr "Albański lek"
-
-msgid "Armenia Dram"
-msgstr "Armeński dram"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Gulden Nižozemskich antilow"
-
-msgid "Angola Kwanza"
-msgstr "Angolańska kwanza"
-
-msgid "Argentina Peso"
-msgstr "Argentinski peso"
-
-msgid "Australia Dollar"
-msgstr "Awstralski dolar"
-
-msgid "Aruba Guilder"
-msgstr "Gulden Aruby"
-
-msgid "Azerbaijan New Manat"
-msgstr "Azerbajdžaniski nowy manat"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Konwertibelna marka Bosniskeje a Hercegowiny"
-
-msgid "Barbados Dollar"
-msgstr "Barbadosowy dolar"
-
-msgid "Bangladesh Taka"
-msgstr "Bangladešska taka"
-
-msgid "Bulgaria Lev"
-msgstr "Bulgarski lew"
-
-msgid "Bahrain Dinar"
-msgstr "Bahrainski dinar"
-
-msgid "Burundi Franc"
-msgstr "Burundiski franc"
-
-msgid "Bermuda Dollar"
-msgstr "Bermudowy dolar"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Bruneiski dolar"
-
-msgid "Bolivia Boliviano"
-msgstr "Boliwiski boliviano"
-
-msgid "Brazil Real"
-msgstr "Brazilski real"
-
-msgid "Bahamas Dollar"
-msgstr "Bahamaski dolar"
-
-msgid "Bhutan Ngultrum"
-msgstr "Bhutański ngultrum"
-
-msgid "Botswana Pula"
-msgstr "Botsuaniska pula"
-
-msgid "Belarus Ruble"
-msgstr "Běłoruski rubel"
-
-msgid "Belize Dollar"
-msgstr "Beliziski dolar"
-
-msgid "Canada Dollar"
-msgstr "Kanadiski dolar"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Franc Kongo/Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Šwicarski franc"
-
-msgid "Chile Peso"
-msgstr "Chileński peso"
-
-msgid "China Yuan Renminbi"
-msgstr "Chinski yuan renminbi"
-
-msgid "Colombia Peso"
-msgstr "Kolumbiski peso"
-
-msgid "Costa Rica Colon"
-msgstr "Kostarikański colón"
-
-msgid "Cuba Convertible Peso"
-msgstr "Konwertibelny kubański peso"
-
-msgid "Cuba Peso"
-msgstr "Kubański peso"
-
-msgid "Cape Verde Escudo"
-msgstr "Kapverdiski escudo"
-
-msgid "Czech Republic Koruna"
-msgstr "Česka krona"
-
-msgid "Djibouti Franc"
-msgstr "Džibutiski franc"
-
-msgid "Denmark Krone"
-msgstr "Dańska krona"
-
-msgid "Dominican Republic Peso"
-msgstr "Dominikański peso"
-
-msgid "Algeria Dinar"
-msgstr "Algeriski dinar"
-
-msgid "Egypt Pound"
-msgstr "Egyptojski punt"
-
-msgid "Eritrea Nakfa"
-msgstr "Eritrejski nakfa"
-
-msgid "Ethiopia Birr"
-msgstr "Etiopiski birr"
-
-msgid "Euro Member Countries"
-msgstr "Cłonkojske kraje eura"
-
-msgid "Fiji Dollar"
-msgstr "Fidžiski dolar"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Punt falklandskich kupow (Malwiny)"
-
-msgid "United Kingdom Pound"
-msgstr "Punt Zjadnośonego kralojstwa"
-
-msgid "Georgia Lari"
-msgstr "Georgiski lari"
-
-msgid "Guernsey Pound"
-msgstr "Punt Guernsey"
-
-msgid "Ghana Cedi"
-msgstr "Ghanaski cedi"
-
-msgid "Gibraltar Pound"
-msgstr "Gibraltarski punt"
-
-msgid "Gambia Dalasi"
-msgstr "Gambiski dalasi"
-
-msgid "Guinea Franc"
-msgstr "Guinejski franc"
-
-msgid "Guatemala Quetzal"
-msgstr "Guatemalski quetzal"
-
-msgid "Guyana Dollar"
-msgstr "Guyaniski dolar"
-
-msgid "Hong Kong Dollar"
-msgstr "Hongkongski dolar"
-
-msgid "Honduras Lempira"
-msgstr "Honduraniski lempira"
-
-msgid "Croatia Kuna"
-msgstr "Chorwatska kuna"
-
-msgid "Haiti Gourde"
-msgstr "Haitiski gourde"
-
-msgid "Hungary Forint"
-msgstr "Hungorski forint"
-
-msgid "Indonesia Rupiah"
-msgstr "Indoneziska rupija"
-
-msgid "Israel Shekel"
-msgstr "Israelski šekel"
-
-msgid "Isle of Man Pound"
-msgstr "Punt kupy Man"
-
-msgid "India Rupee"
-msgstr "Indiska rupija"
-
-msgid "Iraq Dinar"
-msgstr "Irakski dinar"
-
-msgid "Iran Rial"
-msgstr "Irański rial"
-
-msgid "Iceland Krona"
-msgstr "Islandska krona"
-
-msgid "Jersey Pound"
-msgstr "Punt Jersey"
-
-msgid "Jamaica Dollar"
-msgstr "Jamaikański dolar"
-
-msgid "Jordan Dinar"
-msgstr "Jordaniski dinar"
-
-msgid "Japan Yen"
-msgstr "Japański yen"
-
-msgid "Kenya Shilling"
-msgstr "Kenijański šiling"
-
-msgid "Kyrgyzstan Som"
-msgstr "Kirgiziski som"
-
-msgid "Cambodia Riel"
-msgstr "Kambodžaniski riel"
-
-msgid "Comoros Franc"
-msgstr "Komoriski franc"
-
-msgid "Korea (North) Won"
-msgstr "Pódpołnocnokorejski won"
-
-msgid "Korea (South) Won"
-msgstr "Pódpołdnjowokorejski won"
-
-msgid "Kuwait Dinar"
-msgstr "Kuwaitski dinar"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dolar kaimańskich kupow"
-
-msgid "Kazakhstan Tenge"
-msgstr "Kazachiski tenge"
-
-msgid "Laos Kip"
-msgstr "Laoski kip"
-
-msgid "Lebanon Pound"
-msgstr "Libaneziski punt"
-
-msgid "Sri Lanka Rupee"
-msgstr "Sri-lankiska rupija"
-
-msgid "Liberia Dollar"
-msgstr "Liberianiski dolar"
-
-msgid "Lesotho Loti"
-msgstr "Loti Lesotha"
-
-msgid "Lithuania Litas"
-msgstr "Litawski litas"
-
-msgid "Latvia Lat"
-msgstr "Letiski lat"
-
-msgid "Libya Dinar"
-msgstr "Libyski dinar"
-
-msgid "Morocco Dirham"
-msgstr "Marokkański dirham"
-
-msgid "Moldova Leu"
-msgstr "Moldawiski leu"
-
-msgid "Madagascar Ariary"
-msgstr "Madagaskarski Ariary"
-
-msgid "Macedonia Denar"
-msgstr "Makedoński denar"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Myanmarski kyat"
-
-msgid "Mongolia Tughrik"
-msgstr "Mongolski tugrik"
-
-msgid "Macau Pataca"
-msgstr "Makauska pataca"
-
-msgid "Mauritania Ouguiya"
-msgstr "Mawretańska ouguiya"
-
-msgid "Mauritius Rupee"
-msgstr "Rupija Mauritiusa"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Malediwiska rufija"
-
-msgid "Malawi Kwacha"
-msgstr "Malawiski kwacha"
-
-msgid "Mexico Peso"
-msgstr "Mexikański peso"
-
-msgid "Malaysia Ringgit"
-msgstr "Malayizski ringgit"
-
-msgid "Mozambique Metical"
-msgstr "Mosambikaniski metical"
-
-msgid "Namibia Dollar"
-msgstr "Namibiski dolar"
-
-msgid "Nigeria Naira"
-msgstr "Nigeriska naira"
-
-msgid "Nicaragua Cordoba"
-msgstr "Nikaraguaski córdoba"
-
-msgid "Norway Krone"
-msgstr "Norwegska krona"
-
-msgid "Nepal Rupee"
-msgstr "Nepalska rupija"
-
-msgid "New Zealand Dollar"
-msgstr "Nowoseelandski dolar"
-
-msgid "Oman Rial"
-msgstr "Omański rial"
-
-msgid "Panama Balboa"
-msgstr "Panamaska balboa"
-
-msgid "Peru Nuevo Sol"
-msgstr "Peruski nuevo sol"
-
-msgid "Papua New Guinea Kina"
-msgstr "Papua-neuguinejska kina"
-
-msgid "Philippines Peso"
-msgstr "Filipinski peso"
-
-msgid "Pakistan Rupee"
-msgstr "Pakistańska rupija"
-
-msgid "Poland Zloty"
-msgstr "Pólski złoty"
-
-msgid "Paraguay Guarani"
-msgstr "Paraguayski guarani"
-
-msgid "Qatar Riyal"
-msgstr "Katarski rijal"
-
-msgid "Romania New Leu"
-msgstr "Nowy rumunski leu"
-
-msgid "Serbia Dinar"
-msgstr "Serbiski dinar"
-
-msgid "Russia Ruble"
-msgstr "Ruski rubel"
-
-msgid "Rwanda Franc"
-msgstr "Ruandaski franc"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Saudi-arabiski rijal"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dolar Salomonow"
-
-msgid "Seychelles Rupee"
-msgstr "Rupija Seychellow"
-
-msgid "Sudan Pound"
-msgstr "Sudański punt"
-
-msgid "Sweden Krona"
-msgstr "Šwedska krona"
-
-msgid "Singapore Dollar"
-msgstr "Singapuriski dolar"
-
-msgid "Saint Helena Pound"
-msgstr "Punt Swěteje Heleny"
-
-msgid "Sierra Leone Leone"
-msgstr "Sierra-leoński leone"
-
-msgid "Somalia Shilling"
-msgstr "Somaliski šiling"
-
-msgid "Seborga Luigino"
-msgstr "Seborgaski luidžino"
-
-msgid "Suriname Dollar"
-msgstr "Surinamiski dolar"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Santomejska dobra"
-
-msgid "El Salvador Colon"
-msgstr "Salvadorianiski colón"
-
-msgid "Syria Pound"
-msgstr "Syriski punt"
-
-msgid "Swaziland Lilangeni"
-msgstr "Swasilandski lilangeni"
-
-msgid "Thailand Baht"
-msgstr "Thailandski baht"
-
-msgid "Tajikistan Somoni"
-msgstr "Tadžikiski somoni"
-
-msgid "Turkmenistan Manat"
-msgstr "Turkmeński manat"
-
-msgid "Tunisia Dinar"
-msgstr "Tuneziski dinar"
-
-msgid "Tonga Pa'anga"
-msgstr "Tongaska pa'anga"
-
-msgid "Turkey Lira"
-msgstr "Turkojska lira"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dolar Trinidada a Tobaga"
-
-msgid "Tuvalu Dollar"
-msgstr "Tuvaluski dolar"
-
-msgid "Taiwan New Dollar"
-msgstr "Nowy taiwański dolar"
-
-msgid "Tanzania Shilling"
-msgstr "Tansaniski šiling"
-
-msgid "Ukraine Hryvna"
-msgstr "Ukrainska griwna"
-
-msgid "Uganda Shilling"
-msgstr "Ugandiski šiling"
-
-msgid "United States Dollar"
-msgstr "US-dolar"
-
-msgid "Uruguay Peso"
-msgstr "Uruguayaski peso"
-
-msgid "Uzbekistan Som"
-msgstr "Usbekiski som"
-
-msgid "Venezuela Bolivar"
-msgstr "Venezolaniski bolívar"
-
-msgid "Viet Nam Dong"
-msgstr "Vietnameziski dong"
-
-msgid "Vanuatu Vatu"
-msgstr "Vanuatuski vatu"
-
-msgid "Samoa Tala"
-msgstr "Samoaska tala"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Franc afrikańskego financnego zgromaźeństwa, CFA-franc (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Pódzajtšnokaribiski dolar"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Wósebne śěgnjeńske pšawa Mjazynarodnego pjenjeznego fondsa (MPF)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Franc afrikańskego financnego zgromaźeństwa, CFA-Franc (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Franc francojskich teritorijow Pacifiskego oceana (CFP-Franc)"
-
-msgid "Yemen Rial"
-msgstr "Jemenitiski rial"
-
-msgid "South Africa Rand"
-msgstr "Pódpołdnjoafrikański rand"
-
-msgid "Zambia Kwacha"
-msgstr "Sambiski kwacha"
-
-msgid "Zimbabwe Dollar"
-msgstr "Simbabweski dolar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Wó dodankach Mozilla"
@@ -6298,6 +5873,179 @@ msgstr "Pśirazujomy, až aktualizěrujośo <a href=\"%(tb_url)s\">Thunderbird</
 msgid "Read more about Sunbird"
 msgstr "Dalšne informacije wó Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Pógódnośenja za %s"
+
+msgid "Review History for this Addon"
+msgstr "Historija pógódnośenjow za toś ten dodank"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Z %d z 5 gwězdkow pógódnośony"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Musy se krotke wujasnjenje pódaś, gaž se „Druge“ ako pśicyna powěźeńki wuběra."
+
+msgid "Other (please specify)"
+msgstr "Druge (pšosym pódaś)"
+
+msgid "This field is required."
+msgstr "Toś to pólo jo trěbne."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Njamóžośo dodank pógódnośenja změniś, gaž jo napórany."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Njamóžośo na pógódnośenje wótegroniś, kótarež jo južo wótegrono."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Njamóžośo wersiju pógódnośonego dodanka změniś, gaž pógódnośenje jo se napórało."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Toś ta wersija dodanka njeeksistěrujo abo njejo zjawna."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Njamóžośo pógódnośenje za swójski dodank zawóstajiś."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Njamóžośo wěcek ako jadno pógódnośenje za tu samsku wersiju dodanka zawóstajiś."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Wjeliki źěk; toś to pógódnośenje jo se za pśizwólenje redaktora markěrowało."
+
+msgid "Add a review for {0}"
+msgstr "Pógódnośenje za {0} pśidaś"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Spomnjejśo toś te pokaze:</h2> <ul> <li> Pišćo tak, ako by wy pśijaśeloju swóje nazgónjenja z dodankom wulicował. Pódajśo specifiske a wužytne drobnostki, ako na pśikład kótare funkcije se wam "
+"spódobaju a/abo njespódobaju, kak lažko dajo se wužywaś a kótare njelěpšyny ma. Njewužywajśo powšyknu rěc, ako na pśikład „Wjelicne“ abo „Špatne“, snaźkuli móžośo pśicyny pódaś, cogoždla tomu tak "
+"jo. </li> <li> Pšosym njesćelćo how rozpšawy wó programowych zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowy adresu k dispoziciji, tak až njemógu se z wami do zwiska stajiś, aby waš problem "
+"rozwězali. Glejśo <a href=\"%(support)s\">wótrězk pomocy</a>, zoś togo dodanka, aby pódpěru za toś ten dodank dostał. Móžośo teke <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a href="
+"\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Na pógódnośenje wót {0} wótegroniś"
+
+msgid "Write a Reply"
+msgstr "Wótegrono pisaś"
+
+msgid "Submit"
+msgstr "Wótpósłaś"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "abo <a href=\"%(url)s\">Pśetergnuś</a>"
+
+msgid "Please select a reason:"
+msgstr "Wubjeŕśo pšosym pśicynu:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "wót %(user)s <b>(wuwijaŕ)</b> %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Toś to pógódnośenje jo za pjerwjejšnu wersiju dodanka ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">starše pógódnośenje</a> toś togo dodanka."
+msgstr[1] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršej pógódnośeni</a> toś togo dodanka."
+msgstr[2] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s starše pógódnośenja</a> toś togo dodanka."
+msgstr[3] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršich pógódnośenjow</a> toś togo dodanka."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Tós ten wužywaŕ ma <a href=\"%(user_review_url)s\">druge pógódnośenja</a> toś togo dodanka."
+
+msgid "Flagged for review"
+msgstr "Za pśeglědanje markěrowany"
+
+msgid "Report this review"
+msgstr "Toś to pśeglědanje k wěsći daś"
+
+msgid "Reply to review"
+msgstr "Na pógódnośenje wótegroniś"
+
+msgid "Edit reply"
+msgstr "Wótegrono wobźěłaś"
+
+msgid "Edit review"
+msgstr "Póódnośenje wobźěłaś"
+
+msgid "Delete reply"
+msgstr "Wótegrono lašowaś"
+
+msgid "Delete review"
+msgstr "Pógódnośenje wulašowaś"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Pógódnośenja"
+
+msgid "Reviews for {0}"
+msgstr "Pógódnośenja za {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> pógódnośenje za toś ten dodank"
+msgstr[1] "<b>{0}</b> pógódnośeni za toś ten dodank"
+msgstr[2] "<b>{0}</b> pógódnośenja za toś ten dodank"
+msgstr[3] "<b>{0}</b> pógódnośenjow za toś ten dodank"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Wótegrono wót wuwijarja {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Pógódnośenje za %(addon)s wót %(user)s"
+msgstr[1] "Pógódnośeni za %(addon)s wót %(user)s"
+msgstr[2] "Pógódnośenja za %(addon)s wót %(user)s"
+msgstr[3] "Pógódnośenja za %(addon)s wót %(user)s"
+
+msgid "No reviews found."
+msgstr "Žedne pógódnośenja namakane."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Pśerězk</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Napišćo nowe pógódnośenje"
+
+msgid "Be the first to write a review."
+msgstr "Buźćo prědny, kótaryž pišo pógódnośenje."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} pógódnośenje"
+msgstr[1] "{num} pógódnośeni"
+msgstr[2] "{num} pógódnośenja"
+msgstr[3] "{num} pógódnośenjow"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Z {0} z 5 gwězdkow pógódnośony"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
+
 msgid "Approved reviews"
 msgstr "Pśizwólone pśeglědanja"
 
@@ -6338,14 +6086,14 @@ msgstr "dodank, pśepytowaŕ abo komentar"
 msgid "Search by add-on name / author email"
 msgstr "Za mjenim dodanka / e-mailoweju adresu awtora pytaś"
 
+msgid "Needs Admin Code Review"
+msgstr "Žrědłowy kod musy se wót administratora pśeglědowaś"
+
 msgid "yes"
 msgstr "jo"
 
 msgid "no"
 msgstr "ně"
-
-msgid "Admin Flag"
-msgstr "Adminstratorowe markěrowanje"
 
 msgid "Add-on Types"
 msgstr "Typy dodankow"
@@ -6368,8 +6116,11 @@ msgstr "Nałoženja:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Informěrujśo mě pśiducy raz, gaž se toś ten dodank aktualizěrujo. (Slědujuce aktualizacije njegenerěruju mejlku)"
 
-msgid "Clear Admin Review Flag"
-msgstr "Markěrowanje za pśeglědanje pśez administratora wótpóraś"
+msgid "Clear Admin Code Review Flag"
+msgstr "Marku za pśeglědowanje žrědłowego teksta wót administratora wótpóraś"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Marku za pśeglědowanje wopśimjeśa wót administratora wótpóraś"
 
 msgid "Is more info requested?"
 msgstr "Su se dalšne informacije pominali?"
@@ -6394,11 +6145,8 @@ msgstr "Pógódnośenje wobchowaś; markěrowanja wótpóraś"
 msgid "Skip for now"
 msgstr "Tuchylu pśeskócyś"
 
-msgid "Delete review"
-msgstr "Pógódnośenje wulašowaś"
-
-msgid "Admin Review"
-msgstr "Administratorowe pśeglědanje"
+msgid "Needs Admin Content Review"
+msgstr "¨Wopśimjeśe musy se wót administratora pśeglědowaś"
 
 msgid "Jetpack Add-on"
 msgstr "Dodank typa Jetpack"
@@ -6523,14 +6271,81 @@ msgstr "Wopśimjeśe pśizwóliś"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "To wašo pśizwólenje wopśimjeśe toś teje wersije registrěrujo, mimo až wuwijaŕ powěsć dostanjo."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nowe dodanki (pód 5 dnjami)"
+msgid "Legacy Add-ons"
+msgstr "Zesttarjone dodanki"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Akceptabelne (5 až 10 dnjow)"
+msgid "New Add-ons ({0})"
+msgstr "Nowe dodanki ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Zapózdźone (wušej 10 dnjow)"
+msgid "Add-on Updates ({0})"
+msgstr "Aktualizacije dodankow ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Protokol dodankowych pśeglědanjow"
+
+msgid "Signed Beta Files Log"
+msgstr "Protokol signěrowanych betadatajow"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Pśirucka za pśepytowarje"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Awtomatiski pśizwólone dodanki"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Awtomatiski pśizwólone dodanki ({0})"
+
+msgid "Content Review"
+msgstr "Pśeglědanje wopśimjeśa"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Pśeglědanje wopśimjeśa ({0})"
+msgstr[1] "Pśeglědani wopśimjeśa ({0})"
+msgstr[2] "Pśeglědanja wopśimjeśa ({0})"
+msgstr[3] "Pśeglědanjow wopśimjeśa ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Nowe drastwy ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Aktualizacije drastwow ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Markěrowane drastwy ({0})"
+
+msgid "Themes Review Log"
+msgstr "Protokol pśeglědanych drastwow"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Protokol wulašowanych drastwow"
+
+msgid "User Ratings Moderation"
+msgstr "Moderacija wužywarskich pógódnośenjow"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Pógódnośenja, kótarež na moderaciju cakaju ({0})"
+
+msgid "Moderated Review Log"
+msgstr "Protokol moderěrowanych pśeglědanjow"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Akcije moderatora:"
+
+msgid "Unlisted Add-ons"
+msgstr "Njenalicone dodanki"
+
+msgid "All Unlisted Add-ons"
+msgstr "Wšykne njenalicone dodanki"
+
+msgid "Announcement"
+msgstr "Pśipowěźeńka"
+
+msgid "Update message of the day"
+msgstr "Powěsć dnja aktualizěrowaś"
 
 msgid "An unknown error occurred"
 msgstr "Njeznata zmólka jo nastała"
@@ -6585,13 +6400,10 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Datum slědnego pśizwólenja"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Pśizwólenja wót slědnego awtomatiskego pśeglědanja"
-
 msgid "Abuse Reports ({num})"
 msgstr "Znjewužywańske rozpšawy ({num})"
 
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužywarske pógódnośenja ({num})"
 
 msgid "More about this add-on"
@@ -6603,47 +6415,9 @@ msgstr "Wobrazowa galerija"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "How njejo nic wiźeś! Wuwijaŕ njejo žedne drobnostki integrěrował."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Slědk k startowemu bokoju pśeglědowarskich rědow"
-
-msgid "Queues"
-msgstr "Cakańske rědy"
-
-msgid "New Add-ons"
-msgstr "Nowe dodanki"
-
-msgid "Updates"
-msgstr "Aktualizacije"
-
-msgid "Moderated Reviews"
-msgstr "Moderěrowane pśeglědanja"
-
-msgid "Auto Approved Add-ons"
-msgstr "Awtomatiski pśizwólone dodanki"
-
-msgid "Content Review"
-msgstr "Pśeglědanje wopśimjeśa"
-
-msgid "Unlisted Queues"
-msgstr "Čakańske rědy za njenalicone dodanki"
-
-msgid "All Unlisted Add-ons"
-msgstr "Wšykne njenalicone dodanki"
-
-msgid "Logs"
-msgstr "Protokole"
-
-msgid "Add-on Review Log"
-msgstr "Protokol dodankowych pśeglědanjow"
-
-msgid "Moderated Review Log"
-msgstr "Protokol moderěrowanych pśeglědanjow"
-
-msgid "Signed Beta Files Log"
-msgstr "Protokol signěrowanych betadatajow"
-
-msgid "Announcement"
-msgstr "Pśipowěźeńka"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6686,54 +6460,6 @@ msgstr "Pógódnośenje jo se pśed lašowanim markěrowało."
 msgid "Undelete"
 msgstr "Wótpóranje anulěrowaś"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nowy dodank ({num})"
-msgstr[1] "Nowej dodanka ({num})"
-msgstr[2] "Nowe dodanki ({num})"
-msgstr[3] "Nowe dodanki ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Aktualizacija ({num})"
-msgstr[1] "Aktualizaciji ({num})"
-msgstr[2] "Aktualizacije ({num})"
-msgstr[3] "Aktualizacije ({num})"
-
-msgid "Current waiting times:"
-msgstr "Aktualne cakańske case:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} dodank"
-msgstr[1] "{0} dodanka"
-msgstr[2] "{0} dodanki"
-msgstr[3] "{0} dodankow"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Pógódnośenja dogromady"
-
-msgid "Reviews This Month"
-msgstr "Pśeglědanja w toś tom mjasecu"
-
-msgid "New Reviewers"
-msgstr "Nowe pśeglědowarje"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Sćo {0}. z {1} pógódnośenjami"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Moderěrowane pśeglědanje ({num})"
-msgstr[1] "Moderěrowanej pśeglědani ({num})"
-msgstr[2] "Moderěrowane pśeglědanja ({num})"
-msgstr[3] "Moderěrowane pśeglědanja ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Lisćina pórěda pśepytowarjow"
 
@@ -6745,9 +6471,6 @@ msgstr "Pozicija"
 
 msgid "Score"
 msgstr "Staw pó dypkach"
-
-msgid "Update message of the day"
-msgstr "Powěsć dnja aktualizěrowaś"
 
 msgid "Save"
 msgstr "Składowaś"
@@ -6766,6 +6489,9 @@ msgstr "Waše pógódnośenja"
 
 msgid "By {user_name}"
 msgstr "Wót {user_name}"
+
+msgid "Total Reviews"
+msgstr "Pógódnośenja dogromady"
 
 msgid "Active Contributors"
 msgstr "Aktiwne sobustatkujuce"
@@ -6999,32 +6725,14 @@ msgstr "Pśicyna"
 msgid "There are currently no reviews."
 msgstr "Tuchylu pśeglědanja njejsu."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} felujuce drastwowe pśeglědanje"
-msgstr[1] "{num} felujucej drastwowej pśeglědani"
-msgstr[2] "{num} felujuce drastwowe pśeglědanja"
-msgstr[3] "{num} felujucych drastwowych pśeglědanjow"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} markěrowane pśeglědanje"
-msgstr[1] "{num} markěrowanej pśeglědani"
-msgstr[2] "{num} markěrowane pśeglědanja"
-msgstr[3] "{num} markěrowanych pśeglědanjow"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} aktualizacija"
-msgstr[1] "{num} aktualizaciji"
-msgstr[2] "{num} aktualizacije"
-msgstr[3] "{num} aktualizacijow"
-
 msgid "Flagged Themes"
 msgstr "Markěrowane drastwy"
 
 msgid "Theme Review Queue"
 msgstr "Cakański rěd drastwowych pśeglědanjow"
+
+msgid "Queues"
+msgstr "Cakańske rědy"
 
 msgid "Review Options"
 msgstr "Pśeglědowańske nastajenja"
@@ -7143,185 +6851,11 @@ msgstr[1] "Awtomatiski pśizwólonej dodanka ({0})"
 msgstr[2] "Awtomatiski pśizwólone dodanki ({0})"
 msgstr[3] "Awtomatiski pśizwólone dodanki ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Pśeglědanje wopśimjeśa ({0})"
-msgstr[1] "Pśeglědani wopśimjeśa ({0})"
-msgstr[2] "Pśeglědanja wopśimjeśa ({0})"
-msgstr[3] "Pśeglědanjow wopśimjeśa ({0})"
-
 msgid "Flagged"
 msgstr "Markěrowany"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Pógódnośenja za %s"
-
-msgid "Review History for this Addon"
-msgstr "Historija pógódnośenjow za toś ten dodank"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Z %d z 5 gwězdkow pógódnośony"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Musy se krotke wujasnjenje pódaś, gaž se „Druge“ ako pśicyna powěźeńki wuběra."
-
-msgid "Other (please specify)"
-msgstr "Druge (pšosym pódaś)"
-
-msgid "This field is required."
-msgstr "Toś to pólo jo trěbne."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Njamóžośo dodank pógódnośenja změniś, gaž jo napórany."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Njamóžośo na pógódnośenje wótegroniś, kótarež jo južo wótegrono."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Njamóžośo wersiju pógódnośonego dodanka změniś, gaž pógódnośenje jo se napórało."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Toś ta wersija dodanka njeeksistěrujo abo njejo zjawna."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Njamóžośo pógódnośenje za swójski dodank zawóstajiś."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Njamóžośo wěcek ako jadno pógódnośenje za tu samsku wersiju dodanka zawóstajiś."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Wjeliki źěk; toś to pógódnośenje jo se za pśizwólenje redaktora markěrowało."
-
-msgid "Add a review for {0}"
-msgstr "Pógódnośenje za {0} pśidaś"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Spomnjejśo toś te pokaze:</h2> <ul> <li> Pišćo tak, ako by wy pśijaśeloju swóje nazgónjenja z dodankom wulicował. Pódajśo specifiske a wužytne drobnostki, ako na pśikład kótare funkcije se wam "
-"spódobaju a/abo njespódobaju, kak lažko dajo se wužywaś a kótare njelěpšyny ma. Njewužywajśo powšyknu rěc, ako na pśikład „Wjelicne“ abo „Špatne“, snaźkuli móžośo pśicyny pódaś, cogoždla tomu tak "
-"jo. </li> <li> Pšosym njesćelćo how rozpšawy wó programowych zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowy adresu k dispoziciji, tak až njemógu se z wami do zwiska stajiś, aby waš problem "
-"rozwězali. Glejśo <a href=\"%(support)s\">wótrězk pomocy</a>, zoś togo dodanka, aby pódpěru za toś ten dodank dostał. Móžośo teke <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a href="
-"\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Na pógódnośenje wót {0} wótegroniś"
-
-msgid "Write a Reply"
-msgstr "Wótegrono pisaś"
-
-msgid "Submit"
-msgstr "Wótpósłaś"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "abo <a href=\"%(url)s\">Pśetergnuś</a>"
-
-msgid "Please select a reason:"
-msgstr "Wubjeŕśo pšosym pśicynu:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "wót %(user)s <b>(wuwijaŕ)</b> %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Toś to pógódnośenje jo za pjerwjejšnu wersiju dodanka ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">starše pógódnośenje</a> toś togo dodanka."
-msgstr[1] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršej pógódnośeni</a> toś togo dodanka."
-msgstr[2] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s starše pógódnośenja</a> toś togo dodanka."
-msgstr[3] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršich pógódnośenjow</a> toś togo dodanka."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Tós ten wužywaŕ ma <a href=\"%(user_review_url)s\">druge pógódnośenja</a> toś togo dodanka."
-
-msgid "Flagged for review"
-msgstr "Za pśeglědanje markěrowany"
-
-msgid "Report this review"
-msgstr "Toś to pśeglědanje k wěsći daś"
-
-msgid "Reply to review"
-msgstr "Na pógódnośenje wótegroniś"
-
-msgid "Edit reply"
-msgstr "Wótegrono wobźěłaś"
-
-msgid "Edit review"
-msgstr "Póódnośenje wobźěłaś"
-
-msgid "Delete reply"
-msgstr "Wótegrono lašowaś"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Pógódnośenja"
-
-msgid "Reviews for {0}"
-msgstr "Pógódnośenja za {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> pógódnośenje za toś ten dodank"
-msgstr[1] "<b>{0}</b> pógódnośeni za toś ten dodank"
-msgstr[2] "<b>{0}</b> pógódnośenja za toś ten dodank"
-msgstr[3] "<b>{0}</b> pógódnośenjow za toś ten dodank"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Wótegrono wót wuwijarja {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Pógódnośenje za %(addon)s wót %(user)s"
-msgstr[1] "Pógódnośeni za %(addon)s wót %(user)s"
-msgstr[2] "Pógódnośenja za %(addon)s wót %(user)s"
-msgstr[3] "Pógódnośenja za %(addon)s wót %(user)s"
-
-msgid "No reviews found."
-msgstr "Žedne pógódnośenja namakane."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Pśerězk</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Napišćo nowe pógódnośenje"
-
-msgid "Be the first to write a review."
-msgstr "Buźćo prědny, kótaryž pišo pógódnośenje."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} pógódnośenje"
-msgstr[1] "{num} pógódnośeni"
-msgstr[2] "{num} pógódnośenja"
-msgstr[3] "{num} pógódnośenjow"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Z {0} z 5 gwězdkow pógódnośony"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
+msgid "Updates"
+msgstr "Aktualizacije"
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dłujkosć napšašowanjow jo pśekšocona."
@@ -7455,6 +6989,9 @@ msgstr "Wersija južo eksistěrujo."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Jano WebExtensions směju GUID wuwóstajiś"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Pšosym pódajśo GUID swójogo dodanka w manifesće, jolic jo dlešy ako 64 znamuškow."
+
 msgid "Invalid GUID in URL"
 msgstr "Njepłaśiwy GUID w URL"
 
@@ -7484,9 +7021,6 @@ msgstr "pó platformje"
 
 msgid "by Add-on Status"
 msgstr "pó statusu dodanka"
-
-msgid "Contributions"
-msgstr "Pósćiwanki"
 
 msgid "Subscribers"
 msgstr "Abonenty"
@@ -7601,9 +7135,6 @@ msgstr "Žedne daty k dispoziciji."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Kontrolna deska jo tuchylu <b>zjawna</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Statistika pósćiwankow jo tuchylu <b>priwatna</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Toś ta kontrolna deska jo tuchylu <b>priwatna</b>."
 
@@ -7627,9 +7158,6 @@ msgstr "Wužywanje nałoženja pó datumje"
 
 msgid "Collections Created by Date"
 msgstr "Napórane zběrki pó datumje"
-
-msgid "Contributions by Date"
-msgstr "Pósćiwanki pó datumje"
 
 msgid "Downloaded by Date"
 msgstr "Ześěgnjenja pó datumje"
@@ -7848,9 +7376,6 @@ msgstr "Woglědajśo se našo <a class=\"mobile-link\" href=\"#\">sedło dodanko
 msgid "Android Add-ons"
 msgstr "Dodanki za Android"
 
-msgid "required"
-msgstr "trěbny"
-
 msgid "Required fields"
 msgstr "Trěbne póla"
 
@@ -7920,9 +7445,6 @@ msgstr "Anonymny wužywaŕ {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Móje mobilne dodanki"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "wuwijaŕ dodanka źěkujo se mě za pósćiwanku"
 
 msgid "an add-on developer replies to my review"
 msgstr "wuwijaŕ dodanka wótegranja na mójo pógódnośenje"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-11-10 11:46+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1847,7 +1847,8 @@ msgstr "{addon}, {collection} koleksiyonuna eklendi."
 msgid "{addon} removed from {collection}."
 msgstr "{addon}, {collection} koleksiyonundan çıkarıldı."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{addon} için {review} yazıldı."
 
 #. L10n: {0} is a category name.
@@ -1881,17 +1882,21 @@ msgstr "{addon} politikası değiştirildi."
 msgid "{addon} icon changed."
 msgstr "{addon} simgesi değiştirildi."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{addon} için {review} onaylandı."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user}, {addon} için {review} incelemesini onayladı."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} için inceleme {review} silindi."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr ""
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user}, {addon} için {review} incelemesini onayladı."
 
 msgid "Application max version for {version} updated."
 msgstr "{version} için maksimum uygulama sürümü güncellendi."
@@ -1935,7 +1940,8 @@ msgstr "{user} adlı kullanıcı kısıtlandı."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{addon} için {review} güncellendi."
 
 msgid "{addon} reviewed."
@@ -2108,15 +2114,6 @@ msgstr "Eklentiler"
 
 msgid "Themes (Static)"
 msgstr "Tema (Sabit)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Sadece bu eklentinin sayfasında ve geliştirici kimliğinde sor"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Kullanıcılar bu eklentiyi indirmeye başladıktan sonra sor"
-
-msgid "Ask before users can download this add-on"
-msgstr "Kullanıcılar bu eklentiyi indirmeden önce sor"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3014,8 +3011,8 @@ msgstr "Yazar rolleri hakkında"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3617,6 +3614,10 @@ msgstr "Sürüm yükle"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Yeni bir tema oluştur"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Bu dosya hangi platformlarla uyumlu?"
 
@@ -3631,6 +3632,91 @@ msgstr "Dosyayı gönder"
 
 msgid "Sign Add-on"
 msgstr "Eklentiyi imzala"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema silindi."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Tema Lisansı"
+
+msgid "Select a header image for your Theme."
+msgstr "Temanız için üstbilgi resmi seçin."
+
+msgid "required"
+msgstr "gerekli"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Sağ üste hizalı"
+
+msgid "Select a different header image"
+msgstr "Farklı bir üst kısım resmi seçin"
+
+msgid "Select colors for your Theme."
+msgstr "Temanızın renklerini seçin."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Bu renk, sekme metninin rengidir."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(tercihe bağlı)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Ön izleme için üstüne gelin"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Temayı düzenle"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Dosya yükle"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
@@ -4062,9 +4148,6 @@ msgstr "Üstbilgi"
 msgid "Footer"
 msgstr "Altbilgi"
 
-msgid "Select colors for your Theme."
-msgstr "Temanızın renklerini seçin."
-
 msgid "Foreground Text"
 msgstr "Ön plan metni"
 
@@ -4127,9 +4210,6 @@ msgstr ""
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr "Temanız için üstbilgi resmi seçin."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
 
@@ -4138,12 +4218,6 @@ msgstr "En fazla 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG veya JPG"
-
-msgid "Aligned to top-right"
-msgstr "Sağ üste hizalı"
-
-msgid "Select a different header image"
-msgstr "Farklı bir üst kısım resmi seçin"
 
 msgid "Select a footer image for your Theme."
 msgstr "Temanız için altbilgi resmi seçin."
@@ -4347,16 +4421,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4412,9 +4486,6 @@ msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr "Eklenti kimliği bulunamadı."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Eklenti kimliği 64 veya daha az karakterli olmalı."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4710,498 +4781,6 @@ msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
 
 msgid "Get Started"
 msgstr "Başlarken"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Birleşik Arap Emirlikleri Dirhemi"
-
-msgid "Afghanistan Afghani"
-msgstr "Afganistan Afganisi"
-
-msgid "Albania Lek"
-msgstr "Arnavutluk Leki"
-
-msgid "Armenia Dram"
-msgstr "Ermeni Dramı"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Hollanda Antilleri Guldeni"
-
-msgid "Angola Kwanza"
-msgstr "Angola Kwanzası"
-
-msgid "Argentina Peso"
-msgstr "Arjantin Pezosu"
-
-msgid "Australia Dollar"
-msgstr "Avustralya Doları"
-
-msgid "Aruba Guilder"
-msgstr "Aruba Florini"
-
-msgid "Azerbaijan New Manat"
-msgstr "Azerbaycan Manatı"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr "Barbados Doları"
-
-msgid "Bangladesh Taka"
-msgstr "Bangladeş Takası"
-
-msgid "Bulgaria Lev"
-msgstr "Bulgar Levası"
-
-msgid "Bahrain Dinar"
-msgstr "Bahreyn Dinarı"
-
-msgid "Burundi Franc"
-msgstr "Burundi Frangı"
-
-msgid "Bermuda Dollar"
-msgstr "Bermuda Doları"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Brunei Doları"
-
-msgid "Bolivia Boliviano"
-msgstr "Bolivya Bolivianosu"
-
-msgid "Brazil Real"
-msgstr "Brezilya Reali"
-
-msgid "Bahamas Dollar"
-msgstr "Bahama Doları"
-
-msgid "Bhutan Ngultrum"
-msgstr "Bhutan Ngultrumu"
-
-msgid "Botswana Pula"
-msgstr "Botsvana Pulası"
-
-msgid "Belarus Ruble"
-msgstr "Belarus Rublesi"
-
-msgid "Belize Dollar"
-msgstr "Belize Doları"
-
-msgid "Canada Dollar"
-msgstr "Kanada Doları"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Kongo/Kinşasa Frangı"
-
-msgid "Switzerland Franc"
-msgstr "İsviçre Frangı"
-
-msgid "Chile Peso"
-msgstr "Şili Pezosu"
-
-msgid "China Yuan Renminbi"
-msgstr "Çin Yuanı Renminbi"
-
-msgid "Colombia Peso"
-msgstr "Kolombiya Pezosu"
-
-msgid "Costa Rica Colon"
-msgstr "Kosta Rika Kolonu"
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr "Küba Pezosu"
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr "Çek Cumhuriyeti Korunası"
-
-msgid "Djibouti Franc"
-msgstr "Cibuti Frangı"
-
-msgid "Denmark Krone"
-msgstr "Danimarka Kronu"
-
-msgid "Dominican Republic Peso"
-msgstr "Dominik Cumhuriyeti Pezosu"
-
-msgid "Algeria Dinar"
-msgstr "Cezayir Dinarı"
-
-msgid "Egypt Pound"
-msgstr "Mısır Poundu"
-
-msgid "Eritrea Nakfa"
-msgstr "Eritre Nakfası"
-
-msgid "Ethiopia Birr"
-msgstr "Etiyopya Birri"
-
-msgid "Euro Member Countries"
-msgstr "Euro Üyesi Ülkeler"
-
-msgid "Fiji Dollar"
-msgstr "Fiji Doları"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Falkland Adaları (Malvinas) Poundu"
-
-msgid "United Kingdom Pound"
-msgstr "İngiliz Sterlini"
-
-msgid "Georgia Lari"
-msgstr "Gürcistan Larisi"
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr "Gana Cedisi"
-
-msgid "Gibraltar Pound"
-msgstr "Cebelitarık Poundu"
-
-msgid "Gambia Dalasi"
-msgstr "Gambiya Dalasi"
-
-msgid "Guinea Franc"
-msgstr "Gine Frangı"
-
-msgid "Guatemala Quetzal"
-msgstr "Guatemala Quetzalı"
-
-msgid "Guyana Dollar"
-msgstr "Guyana Doları"
-
-msgid "Hong Kong Dollar"
-msgstr "Hong Kong Doları"
-
-msgid "Honduras Lempira"
-msgstr "Honduras Lempirası"
-
-msgid "Croatia Kuna"
-msgstr "Hırvat Kunası"
-
-msgid "Haiti Gourde"
-msgstr "Haiti Gourdesi"
-
-msgid "Hungary Forint"
-msgstr "Macaristan Forinti"
-
-msgid "Indonesia Rupiah"
-msgstr "Endonezya Rupisi"
-
-msgid "Israel Shekel"
-msgstr "İsrail Şekeli"
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr "Hindistan Rupisi"
-
-msgid "Iraq Dinar"
-msgstr "Irak Dinarı"
-
-msgid "Iran Rial"
-msgstr "İran Riyali"
-
-msgid "Iceland Krona"
-msgstr "İzlanda Kronu"
-
-msgid "Jersey Pound"
-msgstr "Jersey Poundu"
-
-msgid "Jamaica Dollar"
-msgstr "Jamaika Doları"
-
-msgid "Jordan Dinar"
-msgstr "Ürdün Dinarı"
-
-msgid "Japan Yen"
-msgstr "Japon Yeni"
-
-msgid "Kenya Shilling"
-msgstr "Kenya Şilini"
-
-msgid "Kyrgyzstan Som"
-msgstr "Kırgızistan Somu"
-
-msgid "Cambodia Riel"
-msgstr "Kamboçya Rieli"
-
-msgid "Comoros Franc"
-msgstr "Komor Frangı"
-
-msgid "Korea (North) Won"
-msgstr "Kore (Kuzey) Wonu"
-
-msgid "Korea (South) Won"
-msgstr "Kore (Güney) Wonu"
-
-msgid "Kuwait Dinar"
-msgstr "Kuveyt Dinarı"
-
-msgid "Cayman Islands Dollar"
-msgstr "Cayman Adaları Doları"
-
-msgid "Kazakhstan Tenge"
-msgstr "Kazakistan Tengesi"
-
-msgid "Laos Kip"
-msgstr "Laos Kipi"
-
-msgid "Lebanon Pound"
-msgstr "Lübnan Poundu"
-
-msgid "Sri Lanka Rupee"
-msgstr "Sri Lanka Rupisi"
-
-msgid "Liberia Dollar"
-msgstr "Liberya Doları"
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr "Litvanya Litası"
-
-msgid "Latvia Lat"
-msgstr "Letonya Latı"
-
-msgid "Libya Dinar"
-msgstr "Libya Dinarı"
-
-msgid "Morocco Dirham"
-msgstr "Fas Dirhemi"
-
-msgid "Moldova Leu"
-msgstr "Moldova Leyi"
-
-msgid "Madagascar Ariary"
-msgstr "Madagaskar Ariarysi"
-
-msgid "Macedonia Denar"
-msgstr "Makedonya Dinarı"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Myanmar (Burma) Kyatı"
-
-msgid "Mongolia Tughrik"
-msgstr "Moğolistan Tugriki"
-
-msgid "Macau Pataca"
-msgstr "Makao Patacası"
-
-msgid "Mauritania Ouguiya"
-msgstr "Moritanya Ouguiya"
-
-msgid "Mauritius Rupee"
-msgstr "Mauritius Rupisi"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Maldiv (Maldiv Adaları) Rufiyası"
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr "Meksika Pesosu"
-
-msgid "Malaysia Ringgit"
-msgstr "Malezya Ringgiti"
-
-msgid "Mozambique Metical"
-msgstr "Mozambik Metikali"
-
-msgid "Namibia Dollar"
-msgstr "Namibya Doları"
-
-msgid "Nigeria Naira"
-msgstr "Nijerya Nairası"
-
-msgid "Nicaragua Cordoba"
-msgstr "Nikaragua Kordobası"
-
-msgid "Norway Krone"
-msgstr "Norveç Kronu"
-
-msgid "Nepal Rupee"
-msgstr "Nepal Rupisi"
-
-msgid "New Zealand Dollar"
-msgstr "Yeni Zelanda Doları"
-
-msgid "Oman Rial"
-msgstr "Umman Riyali"
-
-msgid "Panama Balboa"
-msgstr "Panama Balboası"
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr "Papua Yeni Gine Kinası"
-
-msgid "Philippines Peso"
-msgstr "Filipinler Pezosu"
-
-msgid "Pakistan Rupee"
-msgstr "Pakistan Rupisi"
-
-msgid "Poland Zloty"
-msgstr "Polonya Zlotisi"
-
-msgid "Paraguay Guarani"
-msgstr "Paraguay Guaranisi"
-
-msgid "Qatar Riyal"
-msgstr "Katar Riyali"
-
-msgid "Romania New Leu"
-msgstr "Romanya Rumen Leyi"
-
-msgid "Serbia Dinar"
-msgstr "Sırbistan Dinarı"
-
-msgid "Russia Ruble"
-msgstr "Rus Rublesi"
-
-msgid "Rwanda Franc"
-msgstr "Ruanda Frangı"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Suudi Arabistan Riyali"
-
-msgid "Solomon Islands Dollar"
-msgstr "Solomon Adaları Doları"
-
-msgid "Seychelles Rupee"
-msgstr "Seyşeller Rupisi"
-
-msgid "Sudan Pound"
-msgstr "Sudan Sterlini"
-
-msgid "Sweden Krona"
-msgstr "İsveç Kronu"
-
-msgid "Singapore Dollar"
-msgstr "Singapur Doları"
-
-msgid "Saint Helena Pound"
-msgstr "Saint Helena Sterlini"
-
-msgid "Sierra Leone Leone"
-msgstr "Sierra Leone Leonu"
-
-msgid "Somalia Shilling"
-msgstr "Somali Şilini"
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr "Surinam Doları"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr "El Salvador Kolonu"
-
-msgid "Syria Pound"
-msgstr "Suriye Poundu"
-
-msgid "Swaziland Lilangeni"
-msgstr "Svaziland Lilangeni"
-
-msgid "Thailand Baht"
-msgstr "Tayland Bahtı"
-
-msgid "Tajikistan Somoni"
-msgstr "Tacikistan Somoni"
-
-msgid "Turkmenistan Manat"
-msgstr "Türkmenistan Manatı"
-
-msgid "Tunisia Dinar"
-msgstr "Tunus Dinarı"
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr "Türk Lirası"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Trinidad ve Tobago Doları"
-
-msgid "Tuvalu Dollar"
-msgstr "Tuvalu Doları"
-
-msgid "Taiwan New Dollar"
-msgstr "Yeni Tayvan Doları"
-
-msgid "Tanzania Shilling"
-msgstr "Tanzanya Şilini"
-
-msgid "Ukraine Hryvna"
-msgstr "Ukrayna Grivnası"
-
-msgid "Uganda Shilling"
-msgstr "Uganda Şilini"
-
-msgid "United States Dollar"
-msgstr "Amerikan Doları"
-
-msgid "Uruguay Peso"
-msgstr "Uruguay Pezosu"
-
-msgid "Uzbekistan Som"
-msgstr "Özbekistan Somu"
-
-msgid "Venezuela Bolivar"
-msgstr "Venezuela Bolivarı"
-
-msgid "Viet Nam Dong"
-msgstr "Vietnam Dongu"
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr "Samoa Talası"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr "Doğu Karayip Doları"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr "Yemen Riyali"
-
-msgid "South Africa Rand"
-msgstr "Güney Afrika Randı"
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr "Zimbabve Doları"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"
@@ -6168,6 +5747,175 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Sunbird hakkında daha fazla bilgi alın"
 
+#, fuzzy, python-format
+msgid "Reviews for %s"
+msgstr "İncelemeler"
+
+#, fuzzy
+msgid "Review History for this Addon"
+msgstr "İnceleme Geçmişi"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr ""
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "Diğer (lütfen belirtin)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "İnceleme talep edildi"
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Add a review for {0}"
+msgstr "{0} Eklentileri"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr ""
+
+msgid "Write a Reply"
+msgstr "Yanıt yazın"
+
+msgid "Submit"
+msgstr "Gönder"
+
+#. this string is following a <button>.
+#, fuzzy, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
+
+msgid "Please select a reason:"
+msgstr "Lütfen bir neden seçin:"
+
+#, fuzzy, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "yazan: %(user)s tarih: %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr ""
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] ""
+
+#, fuzzy, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "veya <a href=\"%(href)s\">bu eklentinin eski sürümlerini</a> görün."
+
+#, fuzzy
+msgid "Flagged for review"
+msgstr "İleri inceleme için işaretlenmiş"
+
+msgid "Report this review"
+msgstr "Bu incelemeyi rapor et"
+
+#, fuzzy
+msgid "Reply to review"
+msgstr "Ön izleme için üstüne gelin"
+
+#, fuzzy
+msgid "Edit reply"
+msgstr "Temayı düzenle"
+
+#, fuzzy
+msgid "Edit review"
+msgstr "İncelemeyi Tamamla"
+
+msgid "Delete reply"
+msgstr "Yanıtı sil"
+
+msgid "Delete review"
+msgstr "İncelemeyi sil"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: İncelemeler"
+
+msgid "Reviews for {0}"
+msgstr "{0} incelemeleri"
+
+#. {0} is a number.
+#, fuzzy
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> eklenti"
+
+#. {0} is a developer's name.
+#, fuzzy
+msgid "Developer reply by {0}"
+msgstr "Geliştiricinin yanıtı"
+
+#, fuzzy, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
+
+msgid "No reviews found."
+msgstr "İnceleme bulunamadı."
+
+#, fuzzy, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>{0}</strong> kullanıcı"
+
+msgid "Write a New Review"
+msgstr "Yeni bir inceleme yazın"
+
+msgid "Be the first to write a review."
+msgstr ""
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} inceleme"
+
+msgid "Rated {0} out of 5 stars"
+msgstr ""
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
 #, fuzzy
 msgid "Approved reviews"
 msgstr "Onaylandı"
@@ -6218,15 +5966,15 @@ msgstr "eklenti, editör veya yorum"
 msgid "Search by add-on name / author email"
 msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "İnceleme Bekliyor"
+
 msgid "yes"
 msgstr "evet"
 
 msgid "no"
 msgstr "hayır"
-
-#, fuzzy
-msgid "Admin Flag"
-msgstr "Yönetici Sayfası"
 
 msgid "Add-on Types"
 msgstr "Eklenti türleri"
@@ -6252,7 +6000,11 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr ""
 
 #, fuzzy
-msgid "Clear Admin Review Flag"
+msgid "Clear Admin Code Review Flag"
+msgstr "Eklenti İnceleme Süreci"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Eklenti İnceleme Süreci"
 
 #, fuzzy
@@ -6279,12 +6031,9 @@ msgstr ""
 msgid "Skip for now"
 msgstr "Şimdilik geç"
 
-msgid "Delete review"
-msgstr "İncelemeyi sil"
-
 #, fuzzy
-msgid "Admin Review"
-msgstr "İnceleme Bekliyor"
+msgid "Needs Admin Content Review"
+msgstr "Eklenti İçeriği İncelemesi"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack eklentisi"
@@ -6409,14 +6158,92 @@ msgstr "İçeriği onayla"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Yeni Eklentiler (5 günden az)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Eklentilerim"
 
-msgid "Passable (5 to 10 days)"
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Eklenti güncellemeleri"
+
+#, fuzzy
+msgid "Add-on Review Log"
+msgstr "Eklenti İnceleme Süreci"
+
+msgid "Signed Beta Files Log"
 msgstr ""
 
-msgid "Overdue (Over 10 days)"
+#, fuzzy
+msgid "Review Guide"
+msgstr "İnceleme Yönergesi"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Engellenen Eklentiler"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "İncelemeyi Tamamla"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "İnceleme:"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "{0} tarihinde güncellendi"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Öne Çıkan Temalar"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Tema İnceleme"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Temayı sil"
+
+msgid "User Ratings Moderation"
 msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Diğer Seçenekler:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Engellenen Eklentiler"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "Engellenen Eklentiler"
+
+msgid "Announcement"
+msgstr "Duyuru"
+
+msgid "Update message of the day"
+msgstr "Günün iletisini güncelle"
 
 msgid "An unknown error occurred"
 msgstr "Bilinmeyen bir hata oluştu"
@@ -6470,14 +6297,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Son onay tarihi"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 msgid "Abuse Reports ({num})"
 msgstr "Suistimal raporları ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Kullanıcı incelemeleri"
 
 msgid "More about this add-on"
@@ -6491,55 +6315,8 @@ msgstr "Burda bir şey yok!  Geliştirici herhangi bir ayrıntı vermemiş."
 
 # {0} is the application name.  Example:  Firefox
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "{0} Eklentileri ana sayfasına dön"
-
-msgid "Queues"
-msgstr "Kuyruklar"
-
-# 75%
-# 100%
-msgid "New Add-ons"
-msgstr "Yeni eklentiler"
-
-msgid "Updates"
-msgstr "Güncellemeler"
-
-#, fuzzy
-msgid "Moderated Reviews"
-msgstr "İncelenmemiş"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "Engellenen Eklentiler"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "İncelemeyi Tamamla"
-
-#, fuzzy
-msgid "Unlisted Queues"
-msgstr "Listelenmemiş"
-
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "Engellenen Eklentiler"
-
-msgid "Logs"
-msgstr "Günlükler"
-
-#, fuzzy
-msgid "Add-on Review Log"
-msgstr "Eklenti İnceleme Süreci"
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Duyuru"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6586,46 +6363,6 @@ msgstr ""
 msgid "Undelete"
 msgstr "Silmeyi geri al"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Yeni eklentiler ({num})"
-
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "{0} tarihinde güncellendi"
-
-msgid "Current waiting times:"
-msgstr ""
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} eklenti"
-
-#, python-format
-msgid "{0}%%"
-msgstr "%%{0}"
-
-#, fuzzy
-msgid "Total Reviews"
-msgstr "İncelenmemiş"
-
-#, fuzzy
-msgid "Reviews This Month"
-msgstr "İnceleme Geçmişi"
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "İncelemeler"
-
-msgid "You're #{0} with {1} reviews"
-msgstr ""
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-
 msgid "Reviewer Leaderboard"
 msgstr ""
 
@@ -6637,9 +6374,6 @@ msgstr "Sıra"
 
 msgid "Score"
 msgstr "Puan"
-
-msgid "Update message of the day"
-msgstr "Günün iletisini güncelle"
 
 msgid "Save"
 msgstr "Kaydet"
@@ -6661,6 +6395,10 @@ msgstr "İncelemeler"
 
 msgid "By {user_name}"
 msgstr ""
+
+#, fuzzy
+msgid "Total Reviews"
+msgstr "İncelenmemiş"
 
 #, fuzzy
 msgid "Active Contributors"
@@ -6912,24 +6650,15 @@ msgstr "Neden"
 msgid "There are currently no reviews."
 msgstr "Şu an için hiçbir inceleme yok."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "Bekleyen {num} Tema İncelemesi"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "İşaretlenmiş {num} İnceleme"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Güncelleme"
-
 #, fuzzy
 msgid "Flagged Themes"
 msgstr "Öne Çıkan Temalar"
 
 msgid "Theme Review Queue"
 msgstr "Tema İnceleme Sırası"
+
+msgid "Queues"
+msgstr "Kuyruklar"
 
 msgid "Review Options"
 msgstr "İnceleme Seçenekleri"
@@ -7040,179 +6769,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Yeni Eklentiler ({0})"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "İnceleme:"
-
 msgid "Flagged"
 msgstr "İşaretli"
 
-#, fuzzy, python-format
-msgid "Reviews for %s"
-msgstr "İncelemeler"
-
-#, fuzzy
-msgid "Review History for this Addon"
-msgstr "İnceleme Geçmişi"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr ""
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "Diğer (lütfen belirtin)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "İnceleme talep edildi"
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-#, fuzzy
-msgid "Add a review for {0}"
-msgstr "{0} Eklentileri"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr ""
-
-msgid "Write a Reply"
-msgstr "Yanıt yazın"
-
-msgid "Submit"
-msgstr "Gönder"
-
-#. this string is following a <button>.
-#, fuzzy, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
-
-msgid "Please select a reason:"
-msgstr "Lütfen bir neden seçin:"
-
-#, fuzzy, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "yazan: %(user)s tarih: %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-
-#, fuzzy, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "veya <a href=\"%(href)s\">bu eklentinin eski sürümlerini</a> görün."
-
-#, fuzzy
-msgid "Flagged for review"
-msgstr "İleri inceleme için işaretlenmiş"
-
-msgid "Report this review"
-msgstr "Bu incelemeyi rapor et"
-
-#, fuzzy
-msgid "Reply to review"
-msgstr "Ön izleme için üstüne gelin"
-
-#, fuzzy
-msgid "Edit reply"
-msgstr "Temayı düzenle"
-
-#, fuzzy
-msgid "Edit review"
-msgstr "İncelemeyi Tamamla"
-
-msgid "Delete reply"
-msgstr "Yanıtı sil"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: İncelemeler"
-
-msgid "Reviews for {0}"
-msgstr "{0} incelemeleri"
-
-#. {0} is a number.
-#, fuzzy
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> eklenti"
-
-#. {0} is a developer's name.
-#, fuzzy
-msgid "Developer reply by {0}"
-msgstr "Geliştiricinin yanıtı"
-
-#, fuzzy, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
-
-msgid "No reviews found."
-msgstr "İnceleme bulunamadı."
-
-#, fuzzy, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>{0}</strong> kullanıcı"
-
-msgid "Write a New Review"
-msgstr "Yeni bir inceleme yazın"
-
-msgid "Be the first to write a review."
-msgstr ""
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} inceleme"
-
-msgid "Rated {0} out of 5 stars"
-msgstr ""
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgid "Updates"
+msgstr "Güncellemeler"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7349,6 +6910,9 @@ msgstr "Sürüm hâlihazırda mevcut."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr "URL'de geçersiz GUID"
 
@@ -7382,12 +6946,6 @@ msgstr "Platform"
 
 msgid "by Add-on Status"
 msgstr "Eklenti durumuna göre"
-
-# 81%
-# 100%
-#, fuzzy
-msgid "Contributions"
-msgstr "Katkıda Bulunan"
 
 # 100%
 msgid "Subscribers"
@@ -7516,9 +7074,6 @@ msgstr "Veri yok."
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
@@ -7546,9 +7101,6 @@ msgstr "Uygulama Yapısı"
 #, fuzzy
 msgid "Collections Created by Date"
 msgstr "Koleksiyon oluşturuldu!"
-
-msgid "Contributions by Date"
-msgstr "Tarihe göre katkılar"
 
 msgid "Downloaded by Date"
 msgstr "Tarihe göre indirmeler"
@@ -7770,9 +7322,6 @@ msgstr "<a class=\"mobile-link\" href=\"#\">Mobil Eklentiler sitemize</a> göz a
 msgid "Android Add-ons"
 msgstr "Android Eklentileri"
 
-msgid "required"
-msgstr "gerekli"
-
 msgid "Required fields"
 msgstr "Gerekli alanlar"
 
@@ -7844,9 +7393,6 @@ msgstr "Adsız kullanıcı {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mobil eklentilerim"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "bir eklenti geliştiricisi katkılarımdan ötürü bana teşekkür etti"
 
 #, fuzzy
 msgid "an add-on developer replies to my review"

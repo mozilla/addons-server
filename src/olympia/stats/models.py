@@ -1,16 +1,9 @@
-import datetime
 
 from django.db import models
-from django.utils.translation import (
-    activate, to_locale, get_language)
 
 import caching.base
-from babel import Locale, numbers
-from jinja2.filters import do_dictsort
 
-from olympia import amo
 from olympia.amo.models import SearchMixin
-from olympia.amo.utils import get_locale_from_lang
 
 from .db import LargeStatsDictField, StatsDictField
 
@@ -143,82 +136,6 @@ class ThemeUpdateCountBulk(models.Model):
 
     class Meta:
         db_table = 'theme_update_counts_bulk'
-
-
-class Contribution(amo.models.ModelBase):
-    # TODO(addon): figure out what to do when we delete the add-on.
-    addon = models.ForeignKey('addons.Addon')
-    amount = models.DecimalField(max_digits=9, decimal_places=2, null=True)
-    currency = models.CharField(max_length=3,
-                                choices=do_dictsort(amo.PAYPAL_CURRENCIES),
-                                default=amo.CURRENCY_DEFAULT)
-    source = models.CharField(max_length=255, null=True)
-    source_locale = models.CharField(max_length=10, null=True)
-    # This is the external id that you can communicate to the world.
-    uuid = models.CharField(max_length=255, null=True, db_index=True)
-    comment = models.CharField(max_length=255)
-    # This is the internal transaction id between us and a provider,
-    # for example paypal or solitude.
-    transaction_id = models.CharField(max_length=255, null=True, db_index=True)
-    paykey = models.CharField(max_length=255, null=True)
-    post_data = StatsDictField(null=True)
-
-    # Voluntary Contribution specific.
-    charity = models.ForeignKey('addons.Charity', null=True)
-    annoying = models.PositiveIntegerField(default=0,
-                                           choices=amo.CONTRIB_CHOICES,)
-    is_suggested = models.BooleanField(default=False)
-    suggested_amount = models.DecimalField(max_digits=9, decimal_places=2,
-                                           null=True)
-
-    class Meta:
-        db_table = 'stats_contributions'
-
-    def __unicode__(self):
-        return u'%s: %s' % (self.addon.name, self.amount)
-
-    @property
-    def date(self):
-        try:
-            return datetime.date(self.created.year,
-                                 self.created.month, self.created.day)
-        except AttributeError:
-            # created may be None
-            return None
-
-    @property
-    def contributor(self):
-        try:
-            return u'%s %s' % (self.post_data['first_name'],
-                               self.post_data['last_name'])
-        except (TypeError, KeyError):
-            # post_data may be None or missing a key
-            return None
-
-    @property
-    def email(self):
-        try:
-            return self.post_data['payer_email']
-        except (TypeError, KeyError):
-            # post_data may be None or missing a key
-            return None
-
-    def _switch_locale(self):
-        if self.source_locale:
-            lang = self.source_locale
-        else:
-            lang = self.addon.default_locale
-        activate(lang)
-        return Locale(to_locale(lang))
-
-    def get_amount_locale(self, locale=None):
-        """Localise the amount paid into the current locale."""
-        if not locale:
-            lang = get_language()
-            locale = get_locale_from_lang(lang)
-        return numbers.format_currency(self.amount or 0,
-                                       self.currency or 'USD',
-                                       locale=locale)
 
 
 class GlobalStat(caching.base.CachingMixin, models.Model):

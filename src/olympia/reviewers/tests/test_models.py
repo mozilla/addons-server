@@ -14,7 +14,8 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import (
     addon_factory, file_factory, user_factory, version_factory)
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.versions.models import (
@@ -121,11 +122,13 @@ class TestPendingQueue(TestQueue):
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
 
-    def test_flags_admin_review(self):
-        self.new_addon().update(admin_review=True)
+    def test_flags_needs_admin_code_review(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.new_addon(), needs_admin_code_review=True)
 
         q = self.Queue.objects.get()
-        assert q.flags == [('admin-review', 'Admin Review')]
+        assert q.flags == [
+            ('needs-admin-code-review', 'Needs Admin Code Review')]
 
     def test_flags_info_request(self):
         self.new_addon().find_latest_version(self.channel).update(
@@ -824,7 +827,7 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         expected_result = {
             'abuse_reports': 0,
-            'admin_review': 0,
+            'admin_code_review': 0,
             'average_daily_users': 0,
             'negative_ratings': 0,
             'reputation': 0,
@@ -841,12 +844,13 @@ class TestAutoApprovalSummary(TestCase):
         }
         assert weight_info == expected_result
 
-    def test_calculate_weight_admin_review(self):
-        self.addon.update(admin_review=True)
+    def test_calculate_weight_admin_code_review(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
-        assert weight_info['admin_review'] == 100
+        assert weight_info['admin_code_review'] == 100
 
     def test_calculate_weight_abuse_reports(self):
         # Extra abuse report for a different add-on, does not count.
@@ -1308,7 +1312,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 75
         expected_result = {
             'abuse_reports': 0,
-            'admin_review': 0,
+            'admin_code_review': 0,
             'average_daily_users': 0,
             'negative_ratings': 0,
             'reputation': 0,

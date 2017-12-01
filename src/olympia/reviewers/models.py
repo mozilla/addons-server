@@ -34,7 +34,10 @@ log = olympia.core.logger.getLogger('z.reviewers')
 
 
 VIEW_QUEUE_FLAGS = (
-    ('admin_review', 'admin-review', _('Admin Review')),
+    ('needs_admin_code_review', 'needs-admin-code-review',
+        _('Needs Admin Code Review')),
+    ('needs_admin_content_review', 'needs-admin-content-review',
+        _('Needs Admin Content Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('has_info_request', 'info', _('More Information Requested')),
@@ -142,7 +145,8 @@ class ViewQueue(RawSQLModel):
     addon_slug = models.CharField(max_length=30)
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
-    admin_review = models.BooleanField()
+    needs_admin_code_review = models.NullBooleanField()
+    needs_admin_content_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
@@ -162,7 +166,10 @@ class ViewQueue(RawSQLModel):
                 ('addon_status', 'addons.status'),
                 ('addon_type_id', 'addons.addontype_id'),
                 ('addon_slug', 'addons.slug'),
-                ('admin_review', 'addons.adminreview'),
+                ('needs_admin_code_review',
+                    'addons_addonreviewerflags.needs_admin_code_review'),
+                ('needs_admin_content_review',
+                    'addons_addonreviewerflags.needs_admin_content_review'),
                 ('latest_version', 'versions.version'),
                 ('has_reviewer_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
@@ -180,6 +187,8 @@ class ViewQueue(RawSQLModel):
             'from': [
                 'addons',
                 """
+                LEFT JOIN addons_addonreviewerflags ON (
+                    addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions ON (addons.id = versions.addon_id)
                 LEFT JOIN files ON (files.version_id = versions.id)
 
@@ -233,7 +242,8 @@ class ViewUnlistedAllList(RawSQLModel):
     review_log_id = models.IntegerField()
     addon_status = models.IntegerField()
     latest_version = models.CharField(max_length=255)
-    admin_review = models.BooleanField()
+    needs_admin_code_review = models.NullBooleanField()
+    needs_admin_content_review = models.NullBooleanField()
     is_deleted = models.BooleanField()
 
     def base_query(self):
@@ -248,7 +258,10 @@ class ViewUnlistedAllList(RawSQLModel):
                 ('guid', 'addons.guid'),
                 ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
                 ('_author_usernames', 'GROUP_CONCAT(users.username)'),
-                ('admin_review', 'addons.adminreview'),
+                ('needs_admin_code_review',
+                    'addons_addonreviewerflags.needs_admin_code_review'),
+                ('needs_admin_content_review',
+                    'addons_addonreviewerflags.needs_admin_content_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
@@ -264,6 +277,8 @@ class ViewUnlistedAllList(RawSQLModel):
                     GROUP BY addon_id
                     ) AS latest_version
                     ON latest_version.addon_id = addons.id
+                LEFT JOIN addons_addonreviewerflags ON (
+                    addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions
                     ON (latest_version.latest_version = versions.id)
                 JOIN translations AS tr ON (
@@ -792,8 +807,8 @@ class AutoApprovalSummary(ModelBase):
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         factors = {
-            # Add-ons under admin review: 100 added to weight.
-            'admin_review': 100 if addon.admin_review else 0,
+            # Add-ons under admin code review: 100 added to weight.
+            'admin_code_review': 100 if addon.needs_admin_code_review else 0,
             # Each "recent" abuse reports for the add-on or one of the listed
             # developers adds 10 to the weight, up to a maximum of 100.
             'abuse_reports': min(
@@ -1043,11 +1058,11 @@ class AutoApprovalSummary(ModelBase):
         return instance, verdict_info
 
     @classmethod
-    def get_auto_approved_queue(cls):
+    def get_auto_approved_queue(cls, admin_reviewer=False):
         """Return a queryset of Addon objects that have been auto-approved but
         not confirmed by a human yet."""
         success_verdict = amo.AUTO_APPROVED
-        return (
+        qs = (
             Addon.objects.public()
             .filter(
                 _current_version__autoapprovalsummary__verdict=success_verdict,
@@ -1064,14 +1079,17 @@ class AutoApprovalSummary(ModelBase):
                     ))
             )
         )
+        if not admin_reviewer:
+            qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
+        return qs
 
     @classmethod
-    def get_content_review_queue(cls):
+    def get_content_review_queue(cls, admin_reviewer=False):
         """Return a queryset of Addon objects that have been auto-approved and
         need content review."""
         success_verdict = amo.AUTO_APPROVED
         a_year_ago = datetime.now() - timedelta(days=365)
-        return (
+        qs = (
             Addon.objects.public()
             .filter(
                 _current_version__autoapprovalsummary__verdict=success_verdict)
@@ -1079,6 +1097,10 @@ class AutoApprovalSummary(ModelBase):
                 Q(addonapprovalscounter__last_content_review=None) |
                 Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
         )
+        if not admin_reviewer:
+            qs = qs.exclude(
+                addonreviewerflags__needs_admin_content_review=True)
+        return qs
 
 
 class RereviewQueueThemeManager(ManagerBase):

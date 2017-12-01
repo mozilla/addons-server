@@ -102,7 +102,6 @@
             "description": 120,
             "default_locale": "en-US",
             "target_locale": null,
-            "admin_review": false,
             "slug": "addon-compat-results",
             "external_software": false,
             "name": 118,

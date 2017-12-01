@@ -31,6 +31,7 @@ class TestCustomPageNumberPagination(TestCase):
         assert response.status_code == status.HTTP_200_OK
         assert response.data == {
             'page_size': 10,
+            'page_count': 10,
             'results': range(11, 21),
             'previous': 'http://testserver/?page_size=10',
             'next': 'http://testserver/?page=3&page_size=10',
@@ -43,6 +44,7 @@ class TestCustomPageNumberPagination(TestCase):
         assert response.status_code == status.HTTP_200_OK
         assert response.data == {
             'page_size': 25,
+            'page_count': 4,
             'results': range(1, 26),
             'previous': None,
             'next': 'http://testserver/?page=2',
@@ -66,6 +68,7 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
         response = view(request)
         assert response.data == {
             'page_size': 5,
+            'page_count': 5000,
             'results': mock.ANY,
             'previous': 'http://testserver/?page=4998&page_size=5',
             'next': 'http://testserver/?page=5000&page_size=5',
@@ -76,6 +79,7 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
         response = view(request)
         assert response.data == {
             'page_size': 5,
+            'page_count': 5000,
             'results': mock.ANY,
             'previous': 'http://testserver/?page=4999&page_size=5',
             'next': None,
@@ -99,6 +103,7 @@ class TestOneOrZeroPageNumberPagination(TestCase):
         response = self.view(request)
         assert response.data == {
             'page_size': 1,
+            'page_count': 1,
             'results': range(1, 2),
             'previous': None,
             'next': None,
@@ -115,6 +120,7 @@ class TestOneOrZeroPageNumberPagination(TestCase):
         response = self.view(request)
         assert response.data == {
             'page_size': 1,
+            'page_count': 1,
             'results': [],
             'previous': None,
             'next': None,

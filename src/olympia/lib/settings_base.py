@@ -311,9 +311,8 @@ SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
-    'google231a41e803e464e9.html', 'robots.txt', 'statistics', 'services',
-    'sunbird', 'static', 'user-media',
-    '__version__',
+    'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
+    'services', 'sunbird', 'static', 'user-media', '__version__',
 )
 DEFAULT_APP = 'firefox'
 
@@ -667,6 +666,8 @@ MINIFY_BUNDLES = {
             'css/devhub/refunds.less',
             'css/devhub/buttons.less',
             'css/devhub/in-app-config.less',
+            'css/devhub/static-theme.less',
+            'css/node_lib/jquery.minicolors.css',
         ),
         'zamboni/devhub_impala': (
             'css/impala/developers.less',
@@ -935,6 +936,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/node_lib/jquery.timeago.js',
+            'js/zamboni/static_theme.js',
+            'js/node_lib/jquery.minicolors.js',
+            'js/node_lib/jszip.js',
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
@@ -1461,8 +1465,6 @@ XSENDFILE = True
 XSENDFILE_HEADER = 'X-SENDFILE'
 
 MOBILE_COOKIE = 'mamo'
-
-DEFAULT_SUGGESTED_CONTRIBUTION = 5
 
 # Path to `ps`.
 PS_BIN = '/bin/ps'

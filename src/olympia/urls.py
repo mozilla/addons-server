@@ -52,7 +52,11 @@ urlpatterns = [
     url('^developers/', include('olympia.devhub.urls')),
 
     # Reviewers Hub.
-    url('editors/', include('olympia.reviewers.urls')),
+    url('reviewers/', include('olympia.reviewers.urls')),
+
+    # Redirect everything under editors/ (old reviewer urls) to reviewers/.
+    url('editors/(.*)',
+        lambda r, path: redirect('/reviewers/%s' % path, permanent=True)),
 
     # AMO admin (not django admin).
     url('^admin/', include('olympia.zadmin.urls')),

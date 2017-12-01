@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1848,7 +1848,8 @@ msgstr "{addon} додат у {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} уклоњено из {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{review} за {addon} је написана."
 
 #. L10n: {0} is a category name.
@@ -1883,16 +1884,20 @@ msgstr "Полиса измењена за {addon}."
 msgid "{addon} icon changed."
 msgstr "Иконица је промењена за {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{review} за {addon} је одобрен."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} је одобрио {review} за {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Рецензија {review} за {addon} је избрисана."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} је избрисао {review} за {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1937,7 +1942,8 @@ msgstr "Корисник {user} је ограничен."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Администратор {0} је прегледао дневник активности за {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} за {addon} је ажуриран."
 
 msgid "{addon} reviewed."
@@ -2126,15 +2132,6 @@ msgstr "Прикључци"
 #, fuzzy
 msgid "Themes (Static)"
 msgstr "Уметник за теме"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Питајте само на страници овог додатка или на профилу програмера"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Питајте након што корисници преузму овај додатак"
-
-msgid "Ask before users can download this add-on"
-msgstr "Питајте пре него што корисници преузму овај додатак"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3057,10 +3054,11 @@ msgstr "Аутори"
 msgid "About author roles"
 msgstr "О улогама аутора"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Додаци могу имати било који број аутора са 3 могуће улоге:</p> <ul> <li><b>Власник:</b> Може управљати свим аспектима листинга додатка, укључујући и додавање и уклањање других аутора</li> "
 "<li><b>Програмер:</b> Може управљати свим аспектима листинга додатка, осим за додавање и уклањање других аутора и управљање плаћања</li> <li><b>Посматрач:</b> Може видети подешавања додатка и "
@@ -3688,6 +3686,10 @@ msgstr ""
 "Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите било која ограничења платформе. Након постављања, низ аутоматизованих тестова за проверу ваљаности ће бити покренути на "
 "Вашој датотеци."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Направи нову тему"
+
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3704,6 +3706,91 @@ msgstr "Поднеси нову тему"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Пошаљи додатак"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Тема обрисана."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Лиценца теме"
+
+msgid "Select a header image for your Theme."
+msgstr "Изаберите слику заглавља за Вашу тему."
+
+msgid "required"
+msgstr "потребан"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Поравнато на горе-десно"
+
+msgid "Select a different header image"
+msgstr "Изаберите другу слику за заглавље"
+
+msgid "Select colors for your Theme."
+msgstr "Одаберите боје за Вашу тему."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Ово је боја текста на језичку."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(изборно)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Превуци за преглед"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Надолазеће теме"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Постави још једну датотеку"
 
 msgid "API Credentials"
 msgstr ""
@@ -4165,9 +4252,6 @@ msgstr "Заглавље"
 msgid "Footer"
 msgstr "Подножје"
 
-msgid "Select colors for your Theme."
-msgstr "Одаберите боје за Вашу тему."
-
 msgid "Foreground Text"
 msgstr "Предњи текст"
 
@@ -4230,9 +4314,6 @@ msgstr "Погледајте и претплатите се на <a href=\"%(fee
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Прикључи се разговору у нашим <a href=\"%(forum_url)s\">форумима</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Изаберите слику заглавља за Вашу тему."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 пиксела"
 
@@ -4241,12 +4322,6 @@ msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr "PNG или JPG"
-
-msgid "Aligned to top-right"
-msgstr "Поравнато на горе-десно"
-
-msgid "Select a different header image"
-msgstr "Изаберите другу слику за заглавље"
 
 msgid "Select a footer image for your Theme."
 msgstr "Изаберите слику подножја за тему."
@@ -4465,16 +4540,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4529,9 +4604,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -4822,498 +4894,6 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "Како почети"
-
-msgid "United Arab Emirates Dirham"
-msgstr ""
-
-msgid "Afghanistan Afghani"
-msgstr ""
-
-msgid "Albania Lek"
-msgstr ""
-
-msgid "Armenia Dram"
-msgstr ""
-
-msgid "Netherlands Antilles Guilder"
-msgstr ""
-
-msgid "Angola Kwanza"
-msgstr ""
-
-msgid "Argentina Peso"
-msgstr ""
-
-msgid "Australia Dollar"
-msgstr ""
-
-msgid "Aruba Guilder"
-msgstr ""
-
-msgid "Azerbaijan New Manat"
-msgstr ""
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr ""
-
-msgid "Bangladesh Taka"
-msgstr ""
-
-msgid "Bulgaria Lev"
-msgstr ""
-
-msgid "Bahrain Dinar"
-msgstr ""
-
-msgid "Burundi Franc"
-msgstr ""
-
-msgid "Bermuda Dollar"
-msgstr ""
-
-msgid "Brunei Darussalam Dollar"
-msgstr ""
-
-msgid "Bolivia Boliviano"
-msgstr ""
-
-msgid "Brazil Real"
-msgstr ""
-
-msgid "Bahamas Dollar"
-msgstr ""
-
-msgid "Bhutan Ngultrum"
-msgstr ""
-
-msgid "Botswana Pula"
-msgstr ""
-
-msgid "Belarus Ruble"
-msgstr ""
-
-msgid "Belize Dollar"
-msgstr ""
-
-msgid "Canada Dollar"
-msgstr ""
-
-msgid "Congo/Kinshasa Franc"
-msgstr ""
-
-msgid "Switzerland Franc"
-msgstr ""
-
-msgid "Chile Peso"
-msgstr ""
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr ""
-
-msgid "Costa Rica Colon"
-msgstr ""
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr ""
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr ""
-
-msgid "Djibouti Franc"
-msgstr ""
-
-msgid "Denmark Krone"
-msgstr ""
-
-msgid "Dominican Republic Peso"
-msgstr ""
-
-msgid "Algeria Dinar"
-msgstr ""
-
-msgid "Egypt Pound"
-msgstr ""
-
-msgid "Eritrea Nakfa"
-msgstr ""
-
-msgid "Ethiopia Birr"
-msgstr ""
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr ""
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr ""
-
-msgid "Georgia Lari"
-msgstr ""
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr ""
-
-msgid "Gibraltar Pound"
-msgstr ""
-
-msgid "Gambia Dalasi"
-msgstr ""
-
-msgid "Guinea Franc"
-msgstr ""
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr ""
-
-msgid "Hong Kong Dollar"
-msgstr ""
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr ""
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr ""
-
-msgid "Iraq Dinar"
-msgstr ""
-
-msgid "Iran Rial"
-msgstr ""
-
-msgid "Iceland Krona"
-msgstr ""
-
-msgid "Jersey Pound"
-msgstr ""
-
-msgid "Jamaica Dollar"
-msgstr ""
-
-msgid "Jordan Dinar"
-msgstr ""
-
-msgid "Japan Yen"
-msgstr ""
-
-msgid "Kenya Shilling"
-msgstr ""
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr ""
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr ""
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr ""
-
-msgid "Liberia Dollar"
-msgstr ""
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr ""
-
-msgid "Latvia Lat"
-msgstr ""
-
-msgid "Libya Dinar"
-msgstr ""
-
-msgid "Morocco Dirham"
-msgstr ""
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr ""
-
-msgid "Malaysia Ringgit"
-msgstr ""
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr ""
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr ""
-
-msgid "Nepal Rupee"
-msgstr ""
-
-msgid "New Zealand Dollar"
-msgstr ""
-
-msgid "Oman Rial"
-msgstr ""
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr ""
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr ""
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr ""
-
-msgid "Russia Ruble"
-msgstr ""
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr ""
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr ""
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr ""
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr ""
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr ""
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr ""
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr ""
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr ""
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr ""
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr ""
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "О Mozilla додацима"
@@ -6305,6 +5885,170 @@ msgstr "Ми препоручујемо да се надоградите на <a
 msgid "Read more about Sunbird"
 msgstr "Читајте више о Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Рецензије за %s"
+
+msgid "Review History for this Addon"
+msgstr "Историја прегледа за овај додатак"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Оцењено са %d од 5 звездица"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "Друго (молимо наведите)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "Обавезно поље"
+
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "неко пише рецензију на мој додатак"
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Не можете више датотека отпремити за ову верзију."
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Хвала; ова рецензија је означена за одобрење уредника."
+
+msgid "Add a review for {0}"
+msgstr "Додај рецензију за {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "Одговор на рецензију од {0}"
+
+msgid "Write a Reply"
+msgstr "Напиши одговор"
+
+msgid "Submit"
+msgstr "Пошаљи"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "или <a href=\"%(url)s\">откажи</a>"
+
+msgid "Please select a reason:"
+msgstr "Изаберите разлог:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "од %(user)s <b>(Програмер)</b> датума %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Овај преглед је за претходну верзију додатка ({0})."
+
+#, fuzzy, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Овај корисник има <a href=\"%(user_review_url)s\">претходни преглед</a> овог додатка."
+msgstr[1] "Овај корисник има <a href=\"%(user_review_url)s\">%(cnt)s претходна прегледа</a> овог додатка."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Овај корисник има <a href=\"%(user_review_url)s\">друге прегледе</a> овог додатка."
+
+msgid "Flagged for review"
+msgstr "Означено за рецензију"
+
+msgid "Report this review"
+msgstr "Пријави ову рецензију"
+
+msgid "Reply to review"
+msgstr "Одговори на рецензију"
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "Уреди рецензију"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "Обрисана критика"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: рецензија"
+
+msgid "Reviews for {0}"
+msgstr "Рецензије за {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> преглед за овај додатак"
+msgstr[1] "<b>{0}</b> прегледа за овај додатак"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Програмер {0} је одговорио"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Рецензија за %(addon)s од %(user)s"
+msgstr[1] "Рецензије за %(addon)s од %(user)s"
+
+msgid "No reviews found."
+msgstr "Нема пронађених резултата."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Просек</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Напиши нову рецензију"
+
+msgid "Be the first to write a review."
+msgstr "Будите први да напишете рецензију."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} критика"
+msgstr[1] "{num} критике"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Оцењено са {0} од 5 звездица"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Оцењено са %(rating)s од 5 звездица"
+
 msgid "Approved reviews"
 msgstr "Одобрене критике"
 
@@ -6346,14 +6090,15 @@ msgstr "додатак, уредник или коментар"
 msgid "Search by add-on name / author email"
 msgstr "Претражи по називу додатка / е-пошти аутора"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Рецензија администратора"
+
 msgid "yes"
 msgstr "да"
 
 msgid "no"
 msgstr "не"
-
-msgid "Admin Flag"
-msgstr "Админ застава"
 
 msgid "Add-on Types"
 msgstr "Врсте додатка"
@@ -6376,7 +6121,12 @@ msgstr "Апликације:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Обавести ме следећи пут када се овај додатак ажурира. (Накнадна ажурирања неће генерисати е-пошту)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Уклони ознаку за рецензију администратора"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Уклони ознаку за рецензију администратора"
 
 #, fuzzy
@@ -6404,11 +6154,9 @@ msgstr "Задржи рецензију; уклони заставице"
 msgid "Skip for now"
 msgstr "Прескочи за сада"
 
-msgid "Delete review"
-msgstr "Обрисана критика"
-
-msgid "Admin Review"
-msgstr "Рецензија администратора"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Извршити рецензију"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack додатак"
@@ -6541,14 +6289,92 @@ msgstr "Дозволи / одбиј"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Нови додатак (испод 5 дана)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Моји додаци"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Пролазно (5 до 10 дана)"
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Сви моји додаци"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Истекао рок (више од 10 дана)"
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Ажурирања додатка"
+
+msgid "Add-on Review Log"
+msgstr "Дневник рецензија додатка"
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Водич за рецензенте"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Додаци за Android"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Сви моји додаци"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Извршити рецензију"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Конторлисан преглед ({0})"
+msgstr[1] "Конторлисана прегледа ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Сви моји додаци"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Ажурирано {0}"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Означене теме"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Рецензија теме"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Избриши тему"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Контролисан дневник прегледа"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Акције модерације:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Сви додаци"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "Сви додаци"
+
+msgid "Announcement"
+msgstr "Саопштење"
+
+msgid "Update message of the day"
+msgstr "Ажурирај поруку дана"
 
 msgid "An unknown error occurred"
 msgstr "Појавила се непозната грешка"
@@ -6604,15 +6430,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Статус дозволе"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "Извештаји о злостављању за {addon} ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "({num}) уређена рецензија"
 
 msgid "More about this add-on"
@@ -6626,51 +6449,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ту нема ништа за видети! Програмер није обухватио никакве детаље."
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Врати се на почетну страницу Алатке уредника"
-
-msgid "Queues"
-msgstr "Редови за чекање"
-
-#, fuzzy
-msgid "New Add-ons"
-msgstr "Још додатака"
-
-msgid "Updates"
-msgstr "Ажурирања"
-
-msgid "Moderated Reviews"
-msgstr "Уређене рецензије"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "Додаци за Android"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Извршити рецензију"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "Сви додаци"
-
-msgid "Logs"
-msgstr "Дневници"
-
-msgid "Add-on Review Log"
-msgstr "Дневник рецензија додатка"
-
-msgid "Moderated Review Log"
-msgstr "Контролисан дневник прегледа"
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Саопштење"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6714,49 +6494,6 @@ msgstr "Рецензија је означена пре брисања."
 msgid "Undelete"
 msgstr "Поништи брисање"
 
-#, fuzzy
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Нови додатак (испод 5 дана)"
-msgstr[1] "Нови додатак (испод 5 дана)"
-
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "({num}) надоградња на чекању"
-msgstr[1] "({num}) надоградње на чекању"
-
-msgid "Current waiting times:"
-msgstr "Тренутно време чекања:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} додатак"
-msgstr[1] "{0} додатка"
-
-#, python-format
-msgid "{0}%%"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Укупно рецензија"
-
-msgid "Reviews This Month"
-msgstr "Прегледа овог месеца"
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "Рецензенти"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Ви сте #{0} са {1} прегледа"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "({num}) уређена рецензија"
-msgstr[1] "({num}) уређене рецензије"
-
 msgid "Reviewer Leaderboard"
 msgstr "Табела лидере рецезената"
 
@@ -6768,9 +6505,6 @@ msgstr "Позиција"
 
 msgid "Score"
 msgstr "Резултат"
-
-msgid "Update message of the day"
-msgstr "Ажурирај поруку дана"
 
 msgid "Save"
 msgstr "Сачувај"
@@ -6790,6 +6524,9 @@ msgstr "Ваше рецензије"
 
 msgid "By {user_name}"
 msgstr "Од корисника {user_name}"
+
+msgid "Total Reviews"
+msgstr "Укупно рецензија"
 
 msgid "Active Contributors"
 msgstr "Активни сарадници"
@@ -7028,26 +6765,14 @@ msgstr "Разлог"
 msgid "There are currently no reviews."
 msgstr "Тренутно нема рецензија."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Тема чека на преглед"
-msgstr[1] "{num} Теме чекају на преглед"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Означена рецензија"
-msgstr[1] "{num} Означене рецензије"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Ажурирање"
-msgstr[1] "{num} Ажурирања"
-
 msgid "Flagged Themes"
 msgstr "Означене теме"
 
 msgid "Theme Review Queue"
 msgstr "Ред прегледања тема"
+
+msgid "Queues"
+msgstr "Редови за чекање"
 
 msgid "Review Options"
 msgstr "Опције прегледа"
@@ -7161,175 +6886,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Сви моји додаци"
 msgstr[1] "Сви моји додаци"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Конторлисан преглед ({0})"
-msgstr[1] "Конторлисана прегледа ({0})"
-
 msgid "Flagged"
 msgstr "Означено"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Рецензије за %s"
-
-msgid "Review History for this Addon"
-msgstr "Историја прегледа за овај додатак"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Оцењено са %d од 5 звездица"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "Друго (молимо наведите)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "Обавезно поље"
-
-#, fuzzy
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "неко пише рецензију на мој додатак"
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Не можете више датотека отпремити за ову верзију."
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Хвала; ова рецензија је означена за одобрење уредника."
-
-msgid "Add a review for {0}"
-msgstr "Додај рецензију за {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "Одговор на рецензију од {0}"
-
-msgid "Write a Reply"
-msgstr "Напиши одговор"
-
-msgid "Submit"
-msgstr "Пошаљи"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "или <a href=\"%(url)s\">откажи</a>"
-
-msgid "Please select a reason:"
-msgstr "Изаберите разлог:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "од %(user)s <b>(Програмер)</b> датума %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Овај преглед је за претходну верзију додатка ({0})."
-
-#, fuzzy, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Овај корисник има <a href=\"%(user_review_url)s\">претходни преглед</a> овог додатка."
-msgstr[1] "Овај корисник има <a href=\"%(user_review_url)s\">%(cnt)s претходна прегледа</a> овог додатка."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Овај корисник има <a href=\"%(user_review_url)s\">друге прегледе</a> овог додатка."
-
-msgid "Flagged for review"
-msgstr "Означено за рецензију"
-
-msgid "Report this review"
-msgstr "Пријави ову рецензију"
-
-msgid "Reply to review"
-msgstr "Одговори на рецензију"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Уреди рецензију"
-
-msgid "Delete reply"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: рецензија"
-
-msgid "Reviews for {0}"
-msgstr "Рецензије за {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> преглед за овај додатак"
-msgstr[1] "<b>{0}</b> прегледа за овај додатак"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Програмер {0} је одговорио"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Рецензија за %(addon)s од %(user)s"
-msgstr[1] "Рецензије за %(addon)s од %(user)s"
-
-msgid "No reviews found."
-msgstr "Нема пронађених резултата."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Просек</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Напиши нову рецензију"
-
-msgid "Be the first to write a review."
-msgstr "Будите први да напишете рецензију."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} критика"
-msgstr[1] "{num} критике"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Оцењено са {0} од 5 звездица"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оцењено са %(rating)s од 5 звездица"
+msgid "Updates"
+msgstr "Ажурирања"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7468,6 +7029,9 @@ msgstr ""
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr ""
 
@@ -7497,9 +7061,6 @@ msgstr "по платформи"
 
 msgid "by Add-on Status"
 msgstr "по статусу додатка"
-
-msgid "Contributions"
-msgstr "Прилози"
 
 msgid "Subscribers"
 msgstr "Претплатници"
@@ -7614,9 +7175,6 @@ msgstr "Нема доступних података."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Ова контролна табла је тренутно <b>јавна</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Статистике доприноса су тренутно <b>приватне </b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Ова контролна табла је тренутно <b>приватна</b>."
 
@@ -7640,9 +7198,6 @@ msgstr "Коришћење апликације по датуму"
 
 msgid "Collections Created by Date"
 msgstr "Колекција направљено по датуму"
-
-msgid "Contributions by Date"
-msgstr "Доприноси по датуму"
 
 msgid "Downloaded by Date"
 msgstr "Преузимања по датуму"
@@ -7862,9 +7417,6 @@ msgstr "Проверите наш <a class=\"mobile-link\" href=\"#\">сајт �
 msgid "Android Add-ons"
 msgstr "Додаци за Android"
 
-msgid "required"
-msgstr "потребан"
-
 msgid "Required fields"
 msgstr "Потребна поља"
 
@@ -7935,9 +7487,6 @@ msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "Моји додаци за мобилне"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "програмер додатка ми се захвалио на доприносу"
 
 msgid "an add-on developer replies to my review"
 msgstr "програмер додатка ми одговорио на критику"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-08 02:24+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-24 01:35+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1790,8 +1790,8 @@ msgstr "{addon} ditambah ke {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} dibuang daripada {collection}."
 
-msgid "{review} for {addon} written."
-msgstr "{review} untuk {addon} ditulis."
+msgid "{rating} for {addon} written."
+msgstr "{rating} untuk {addon} ditulis."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1824,17 +1824,17 @@ msgstr "polisi {addon} ditukar."
 msgid "{addon} icon changed."
 msgstr "ikon {addon} ditukar."
 
-msgid "{review} for {addon} approved."
-msgstr "{review} untuk {addon} diluluskan."
+msgid "{rating} for {addon} approved."
+msgstr "{rating} untuk {addon} diluluskan."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} meluluskan {review} untuk {addon}."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} meluluskan {rating} untuk {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Ulasan {review} untuk {addon} dibuang."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Ulasan {rating} untuk {addon} dibuang."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} menghapuskan {review} untuk {addon}."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} membuang {rating} untuk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versi maksimum aplikasi {version} dikemaskini."
@@ -1878,8 +1878,8 @@ msgstr "Pengguna {user} dihadkan."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Pentadbir {0} meninjau log aktiviti {user}."
 
-msgid "{review} for {addon} updated."
-msgstr "{review} untuk {addon} dikemaskini."
+msgid "{rating} for {addon} updated."
+msgstr "{rating} untuk {addon} dikemaskini."
 
 msgid "{addon} reviewed."
 msgstr "{addon} disemak."
@@ -2046,15 +2046,6 @@ msgstr "Plugins"
 
 msgid "Themes (Static)"
 msgstr "Tema (Statik)"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Minta hanya halaman add-on ini dan profil pembangun"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Minta selepas pengguna muat turun add-on ini"
-
-msgid "Ask before users can download this add-on"
-msgstr "Minta sebelum pengguna boleh muat turun add-on ini"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2936,10 +2927,11 @@ msgstr "Pengarang"
 msgid "About author roles"
 msgstr "Perihal peranan pengarang"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Add-ons boleh diurus oleh beberapa pengarang dengan 3 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
 "pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain dan menguruskan bayaran</li> <li><b>Penyemak:</b> "
@@ -3532,6 +3524,10 @@ msgstr "Muat naik Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda. Selepas dimuat naik, satu siri ujian pengesahan automatik akan dijalankan kepada fail anda."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Cipta Tema Baru"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform mana yang serasi dengan fail ini?"
 
@@ -3546,6 +3542,91 @@ msgstr "Hantar Fail"
 
 msgid "Sign Add-on"
 msgstr "Tandatangan Add-on"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema telah dibuang."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Lesen Tema"
+
+msgid "Select a header image for your Theme."
+msgstr "Pilih imej pengepala untuk Tema anda."
+
+msgid "required"
+msgstr "diperlukan"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Sejajar bahagian atas-kanan"
+
+msgid "Select a different header image"
+msgstr "Pilih imej pengepala yang lain"
+
+msgid "Select colors for your Theme."
+msgstr "Pilih warna untuk Tema anda."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Ini warna untuk teks tab."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(pilihan)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Legar untuk Previu"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Tema Penampilan"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Muat naik Fail"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
@@ -3974,9 +4055,6 @@ msgstr "Pengepala"
 msgid "Footer"
 msgstr "Pembawah"
 
-msgid "Select colors for your Theme."
-msgstr "Pilih warna untuk Tema anda."
-
 msgid "Foreground Text"
 msgstr "Teks Latardepan"
 
@@ -4041,9 +4119,6 @@ msgstr "Tinjau dan langgan <a href=\"%(feed_url)s\">suapan aktiviti</a> tema and
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Sertai perbualan dalam <a href=\"%(forum_url)s\">forum</a> kami."
 
-msgid "Select a header image for your Theme."
-msgstr "Pilih imej pengepala untuk Tema anda."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
 
@@ -4052,12 +4127,6 @@ msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr "PNG atau JPG"
-
-msgid "Aligned to top-right"
-msgstr "Sejajar bahagian atas-kanan"
-
-msgid "Select a different header image"
-msgstr "Pilih imej pengepala yang lain"
 
 msgid "Select a footer image for your Theme."
 msgstr "Pilih imej pembawah untuk Tema anda."
@@ -4262,17 +4331,18 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Nikmati satu set ciri YouTube yang baru, seperti mod sinema, menyekat iklan, kawalan auto-main dan banyak lagi."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Serlahkan teks dan klik-kanan untuk melaksanakan carian imej dengan pantas."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4327,9 +4397,6 @@ msgstr "Tidak dapat menghuraikan manifes fail."
 
 msgid "Could not find an add-on ID."
 msgstr "Tidak dapat menemukan ID add-on."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID Add-on mesti 64 aksara atau kurang."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4615,498 +4682,6 @@ msgstr "Dapatkan akses awal kepada ciri eksperimen pelayar."
 
 msgid "Get Started"
 msgstr "Memulakan"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dirham Emiriah Arab Bersatu"
-
-msgid "Afghanistan Afghani"
-msgstr "Afghani Afghanistan"
-
-msgid "Albania Lek"
-msgstr "Lek Albania"
-
-msgid "Armenia Dram"
-msgstr "Dram Armenia"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Antilles Guilder Belanda"
-
-msgid "Angola Kwanza"
-msgstr "Kwanza Angola"
-
-msgid "Argentina Peso"
-msgstr "Peso Argentina"
-
-msgid "Australia Dollar"
-msgstr "Dollar Australia"
-
-msgid "Aruba Guilder"
-msgstr "Guilder Aruba"
-
-msgid "Azerbaijan New Manat"
-msgstr "New Manat Azerbaijan"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Convertible Marka Bosnia dan Herzegovina"
-
-msgid "Barbados Dollar"
-msgstr "Dollar Barbados"
-
-msgid "Bangladesh Taka"
-msgstr "Taka Bangladesh"
-
-msgid "Bulgaria Lev"
-msgstr "Lev Bulgaria"
-
-msgid "Bahrain Dinar"
-msgstr "Dinar Bahrain"
-
-msgid "Burundi Franc"
-msgstr "Franc Burundi"
-
-msgid "Bermuda Dollar"
-msgstr "Dollar Bermuda"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Dollar Brunei Darussalam"
-
-msgid "Bolivia Boliviano"
-msgstr "Boliviano Bolivia"
-
-msgid "Brazil Real"
-msgstr "Real Brazil"
-
-msgid "Bahamas Dollar"
-msgstr "Dollar Bahamas"
-
-msgid "Bhutan Ngultrum"
-msgstr "Ngultrum Bhutan"
-
-msgid "Botswana Pula"
-msgstr "Pula Botswana"
-
-msgid "Belarus Ruble"
-msgstr "Ruble Belarus"
-
-msgid "Belize Dollar"
-msgstr "Dollar Belize"
-
-msgid "Canada Dollar"
-msgstr "Dollar Kanada"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Franc Congo/Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Franc Switzerland"
-
-msgid "Chile Peso"
-msgstr "Peso Chile"
-
-msgid "China Yuan Renminbi"
-msgstr "Yuan Renminbi China"
-
-msgid "Colombia Peso"
-msgstr "Peso Colombia"
-
-msgid "Costa Rica Colon"
-msgstr "Colon Costa Rica"
-
-msgid "Cuba Convertible Peso"
-msgstr "Convertible Peso Cuba"
-
-msgid "Cuba Peso"
-msgstr "Peso Cuba"
-
-msgid "Cape Verde Escudo"
-msgstr "Escudo Cape Verde"
-
-msgid "Czech Republic Koruna"
-msgstr "Koruna Republik Czech"
-
-msgid "Djibouti Franc"
-msgstr "Franc Djibouti"
-
-msgid "Denmark Krone"
-msgstr "Krone Denmark"
-
-msgid "Dominican Republic Peso"
-msgstr "Peso Republik Dominika"
-
-msgid "Algeria Dinar"
-msgstr "Dinar Algeria"
-
-msgid "Egypt Pound"
-msgstr "Pound Mesir"
-
-msgid "Eritrea Nakfa"
-msgstr "Nakfa Eritrea"
-
-msgid "Ethiopia Birr"
-msgstr "Birr Ethiopia"
-
-msgid "Euro Member Countries"
-msgstr "Euro Negara Anggota"
-
-msgid "Fiji Dollar"
-msgstr "Dollar Fiji"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Pound Falkland Islands (Malvinas)"
-
-msgid "United Kingdom Pound"
-msgstr "Pound United Kingdom"
-
-msgid "Georgia Lari"
-msgstr "Lari Georgia"
-
-msgid "Guernsey Pound"
-msgstr "Pound Guernsey"
-
-msgid "Ghana Cedi"
-msgstr "Cedi Ghana"
-
-msgid "Gibraltar Pound"
-msgstr "Pound Gibraltar"
-
-msgid "Gambia Dalasi"
-msgstr "Dalasi Gambia"
-
-msgid "Guinea Franc"
-msgstr "Franc Guinea"
-
-msgid "Guatemala Quetzal"
-msgstr "Quetzal Guatemala"
-
-msgid "Guyana Dollar"
-msgstr "Dollar Guyana"
-
-msgid "Hong Kong Dollar"
-msgstr "Dolar Hong Kong"
-
-msgid "Honduras Lempira"
-msgstr "Lempira Honduras"
-
-msgid "Croatia Kuna"
-msgstr "Kuna Croatia"
-
-msgid "Haiti Gourde"
-msgstr "Gourde Haiti"
-
-msgid "Hungary Forint"
-msgstr "Forint Hungary"
-
-msgid "Indonesia Rupiah"
-msgstr "Rupiah Indonesia"
-
-msgid "Israel Shekel"
-msgstr "Shekel Israel"
-
-msgid "Isle of Man Pound"
-msgstr "Pound Isle of Man"
-
-msgid "India Rupee"
-msgstr "Rupee India"
-
-msgid "Iraq Dinar"
-msgstr "Dinar Irak"
-
-msgid "Iran Rial"
-msgstr "Rial Iran"
-
-msgid "Iceland Krona"
-msgstr "Krona Iceland"
-
-msgid "Jersey Pound"
-msgstr "Pound Jersey"
-
-msgid "Jamaica Dollar"
-msgstr "Dollar Jamaica"
-
-msgid "Jordan Dinar"
-msgstr "Dinar Jordan"
-
-msgid "Japan Yen"
-msgstr "Yen Jepun"
-
-msgid "Kenya Shilling"
-msgstr "Shilling Kenya"
-
-msgid "Kyrgyzstan Som"
-msgstr "Som Kyrgyzstan"
-
-msgid "Cambodia Riel"
-msgstr "Riel Kemboja"
-
-msgid "Comoros Franc"
-msgstr "Franc Comoros"
-
-msgid "Korea (North) Won"
-msgstr "Won Korea (Utara)"
-
-msgid "Korea (South) Won"
-msgstr "Won Korea (Selatan)"
-
-msgid "Kuwait Dinar"
-msgstr "Dinar Kuwait"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dollar Cayman Islands"
-
-msgid "Kazakhstan Tenge"
-msgstr "Tenge Kazakhstan"
-
-msgid "Laos Kip"
-msgstr "Kip Laos"
-
-msgid "Lebanon Pound"
-msgstr "Pound Lebanon"
-
-msgid "Sri Lanka Rupee"
-msgstr "Rupee Sri Lanka"
-
-msgid "Liberia Dollar"
-msgstr "Dollar Liberia"
-
-msgid "Lesotho Loti"
-msgstr "Loti Lesotho"
-
-msgid "Lithuania Litas"
-msgstr "Litas Lithuania"
-
-msgid "Latvia Lat"
-msgstr "Lat Latvia"
-
-msgid "Libya Dinar"
-msgstr "Dinar Libya"
-
-msgid "Morocco Dirham"
-msgstr "Dirham Maghribi"
-
-msgid "Moldova Leu"
-msgstr "Leu Moldova"
-
-msgid "Madagascar Ariary"
-msgstr "Ariary Madagascar"
-
-msgid "Macedonia Denar"
-msgstr "Denar Macedonia"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Kyat Myanmar (Burma)"
-
-msgid "Mongolia Tughrik"
-msgstr "Tughrik Mongolia"
-
-msgid "Macau Pataca"
-msgstr "Pataca Macau"
-
-msgid "Mauritania Ouguiya"
-msgstr "Ouguiya Mauritania"
-
-msgid "Mauritius Rupee"
-msgstr "Rupee Mauritius"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Rufiyaa Maldives (Kepulauan Maldive)"
-
-msgid "Malawi Kwacha"
-msgstr "Kwacha Malawi"
-
-msgid "Mexico Peso"
-msgstr "Peso Mexico"
-
-msgid "Malaysia Ringgit"
-msgstr "Ringgit Malaysia"
-
-msgid "Mozambique Metical"
-msgstr "Metical Mozambique"
-
-msgid "Namibia Dollar"
-msgstr "Dollar Namibia"
-
-msgid "Nigeria Naira"
-msgstr "Naira Nigeria"
-
-msgid "Nicaragua Cordoba"
-msgstr "Cordoba Nicaragua"
-
-msgid "Norway Krone"
-msgstr "Krone Norway"
-
-msgid "Nepal Rupee"
-msgstr "Rupee Nepal"
-
-msgid "New Zealand Dollar"
-msgstr "Dollar New Zealand"
-
-msgid "Oman Rial"
-msgstr "Rial Oman"
-
-msgid "Panama Balboa"
-msgstr "Balboa Panama"
-
-msgid "Peru Nuevo Sol"
-msgstr "Nuevo Sol Peru"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina Papua New Guinea"
-
-msgid "Philippines Peso"
-msgstr "Peso Filipina"
-
-msgid "Pakistan Rupee"
-msgstr "Rupee Pakistan"
-
-msgid "Poland Zloty"
-msgstr "Zloty Poland"
-
-msgid "Paraguay Guarani"
-msgstr "Guarani Paraguay"
-
-msgid "Qatar Riyal"
-msgstr "Riyal Qatar"
-
-msgid "Romania New Leu"
-msgstr "New Leu Romania"
-
-msgid "Serbia Dinar"
-msgstr "Dinar Serbia"
-
-msgid "Russia Ruble"
-msgstr "Ruble Rusia"
-
-msgid "Rwanda Franc"
-msgstr "Franc Rwanda"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Riyal Arab Saudi"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dollar Kepulauan Solomon"
-
-msgid "Seychelles Rupee"
-msgstr "Rupee Seychelles"
-
-msgid "Sudan Pound"
-msgstr "Pound Sudan"
-
-msgid "Sweden Krona"
-msgstr "Krona Sweden"
-
-msgid "Singapore Dollar"
-msgstr "Dolar Singapura"
-
-msgid "Saint Helena Pound"
-msgstr "Pound Saint Helena"
-
-msgid "Sierra Leone Leone"
-msgstr "Leone Sierra Leone"
-
-msgid "Somalia Shilling"
-msgstr "Shilling Somalia"
-
-msgid "Seborga Luigino"
-msgstr "Luigino Seborga"
-
-msgid "Suriname Dollar"
-msgstr "Dollar Suriname"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Dobra São Tomé and Príncipe"
-
-msgid "El Salvador Colon"
-msgstr "Colon El Salvador"
-
-msgid "Syria Pound"
-msgstr "Pound Syria"
-
-msgid "Swaziland Lilangeni"
-msgstr "Lilangeni Swaziland"
-
-msgid "Thailand Baht"
-msgstr "Baht Thailand"
-
-msgid "Tajikistan Somoni"
-msgstr "Somoni Tajikistan"
-
-msgid "Turkmenistan Manat"
-msgstr "Manat Turkmenistan"
-
-msgid "Tunisia Dinar"
-msgstr "Dinar Tunisia"
-
-msgid "Tonga Pa'anga"
-msgstr "Pa'anga Tonga"
-
-msgid "Turkey Lira"
-msgstr "Lira Turki"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dolar Trinidad dan Tobago"
-
-msgid "Tuvalu Dollar"
-msgstr "Dollar Tuvalu"
-
-msgid "Taiwan New Dollar"
-msgstr "New Dollar Taiwan"
-
-msgid "Tanzania Shilling"
-msgstr "Shilling Tanzania"
-
-msgid "Ukraine Hryvna"
-msgstr "Hryvna Ukraine"
-
-msgid "Uganda Shilling"
-msgstr "Shilling Uganda"
-
-msgid "United States Dollar"
-msgstr "Dolar Amerika Syarikat"
-
-msgid "Uruguay Peso"
-msgstr "Peso Uruguay"
-
-msgid "Uzbekistan Som"
-msgstr "Som Uzbekistan"
-
-msgid "Venezuela Bolivar"
-msgstr "Bolivar Venezuela"
-
-msgid "Viet Nam Dong"
-msgstr "Dong Viet Nam"
-
-msgid "Vanuatu Vatu"
-msgstr "Vatu Vanuatu"
-
-msgid "Samoa Tala"
-msgstr "Tala Samoa"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "CFA Franc BEAC Communauté Financière Africaine (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Dolar Caribbean Timur"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Hak Pengeluaran Khas Tabung Kewangan Antarabangsa (IMF)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Franc Communauté Financière Africaine (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Franc Comptoirs Français du Pacifique (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Rial Yemen"
-
-msgid "South Africa Rand"
-msgstr "Rand Afrika Selatan"
-
-msgid "Zambia Kwacha"
-msgstr "Kwacha Zambia"
-
-msgid "Zimbabwe Dollar"
-msgstr "Dollar Zimbabwe"
 
 msgid "About Mozilla Add-ons"
 msgstr "Perihal Add-ons Mozilla"
@@ -6184,6 +5759,166 @@ msgstr "Kami mengesyorkan menaik taraf ke <a href=\"%(tb_url)s\">Thunderbird</a>
 msgid "Read more about Sunbird"
 msgstr "Ketahui selanjutnya perihal Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Ulasan untuk %s"
+
+msgid "Review History for this Addon"
+msgstr "Sejarah Semakan Add-on ini"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Tahap %d daripada 5 bintang"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebagai alasan tandaan."
+
+msgid "Other (please specify)"
+msgstr "Lain-lain (sila nyatakan)"
+
+msgid "This field is required."
+msgstr "Medan ini diperlukan."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Anda tidak boleh tukar add-on sebaik sahaja semakan telah dibuat."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Anda tidak boleh membalas semakan yang sudah dijawab."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Anda tidak boleh tukar versi add-on sebaik sahaja semakan sudah dibuat."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Versi add-on ini tidak wujud atau bukan kegunaan umum."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Anda tidak boleh semak add-on anda sendiri."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan penyemak."
+
+msgid "Add a review for {0}"
+msgstr "Beri ulasan untuk {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Perlu sentiasa diingat:</h2> <ul> <li> Tulis seperti anda berkongsi pengalaman menggunakan add-on kepada rakan anda. Beri butiran khusus dan berguna, seperti ciri yangn anda suka dan/atau tidak "
+"suka, betapa mudah menggunakannya, dan keburukannya. Elakkan bahasa umum seperti \"Bagus\" atau \"Buruk\" kecuali anda ada alasan untuk berbuat begitu. </li> <li> Jangan lapor pepijat di sini. Kami "
+"tidak memberikan alamat e-mel anda kepada pembangun add-on, maka mereka tidak dapat menyelesaikan isu anda, Lihat <a href=\"%(support)s\">bahagian sokongan</a> untuk mengetahui samada ada bantuan "
+"atau tidak. Anda juga boleh tanya <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">komuniti add-on</a> untuk bantuan. </li> <li>Sila pastikan ulasan itu bersih, elakkan "
+"penggunaan bahasa kurang sopan dan menyiarkan makumat peribadi. </li> </ul> <p> Sila baca <a href=\"%(guide)s\">Garis Panduan Ulasan</a> untuk maklumat lanjut perihal ulasan add-on.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Balasan untuk ulasan oleh {0}"
+
+msgid "Write a Reply"
+msgstr "Tulis Balasan"
+
+msgid "Submit"
+msgstr "Hantar"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "atau <a href=\"%(url)s\">Batal</a>"
+
+msgid "Please select a reason:"
+msgstr "Sila pilih alasan:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "oleh %(user)s <b>(Pembangun)</b> pada %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ulasan ini untuk add-on ({0}) versi terdahulu."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Pengguna ini ada <a href=\"%(user_review_url)s\">%(cnt)s ulasan sebelum ini</a> perihal add-on ini."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
+
+msgid "Flagged for review"
+msgstr "Ditanda untuk semakan"
+
+msgid "Report this review"
+msgstr "Lapor ulasan ini"
+
+msgid "Reply to review"
+msgstr "Balasan untuk ulasan"
+
+msgid "Edit reply"
+msgstr "Edit balasan"
+
+msgid "Edit review"
+msgstr "Edit ulasan"
+
+msgid "Delete reply"
+msgstr "Buang balasan"
+
+msgid "Delete review"
+msgstr "Buang semakan"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Ulasan"
+
+msgid "Reviews for {0}"
+msgstr "Ulasan untuk {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Balasan pembangun oleh {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Ulasan untuk %(addon)s oleh %(user)s"
+
+msgid "No reviews found."
+msgstr "Belum ada ulasan."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Purata</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Tulis Ulasan Baru"
+
+msgid "Be the first to write a review."
+msgstr "Jadi orang pertama menulis ulasan."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} ulasan"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Tahap {0} daripada 5 bintang"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Tahap %(rating)s daripada 5 bintang"
+
 msgid "Approved reviews"
 msgstr "Semakan diluluskan"
 
@@ -6224,14 +5959,14 @@ msgstr "add-on, penyemak atau komen"
 msgid "Search by add-on name / author email"
 msgstr "Cari mengikut nama add-on / e-mel pengarang"
 
+msgid "Needs Admin Code Review"
+msgstr "Perlu Semakan Kod Pentadbir"
+
 msgid "yes"
 msgstr "ya"
 
 msgid "no"
 msgstr "tidak"
-
-msgid "Admin Flag"
-msgstr "Tanda Pentadbir"
 
 msgid "Add-on Types"
 msgstr "Jenis Add-on"
@@ -6254,8 +5989,11 @@ msgstr "Aplikasi:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Maklumkan saya apabila add-on ini dikemaskini. (Kemaskini seterusnya tidak akan menjana e-mel)"
 
-msgid "Clear Admin Review Flag"
-msgstr "Buang Tanda Semakan Pentadbir"
+msgid "Clear Admin Code Review Flag"
+msgstr "Buang Tanda Semakan Kod Pentadbir"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Buang Tanda Semakan Kandungan Pentadbir"
 
 msgid "Is more info requested?"
 msgstr "Perlu minta info selanjutnya?"
@@ -6280,11 +6018,8 @@ msgstr "Kekalkan semakan; buang tanda"
 msgid "Skip for now"
 msgstr "Langkau dulu sekarang"
 
-msgid "Delete review"
-msgstr "Buang semakan"
-
-msgid "Admin Review"
-msgstr "Semakan Pentadbir"
+msgid "Needs Admin Content Review"
+msgstr "Perlu Semakan Kandungan Pentadbir"
 
 msgid "Jetpack Add-on"
 msgstr "Add-on Jetpack"
@@ -6400,14 +6135,78 @@ msgstr "Kandungan Lulus"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Add-ons Baru (Kurang daripada 5 hari)"
+msgid "Legacy Add-ons"
+msgstr "Add-ons Legasi"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Memadai (5 hingga 10 hari)"
+msgid "New Add-ons ({0})"
+msgstr "Add-ons Baru ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Terlewat (Melebihi 10 hari)"
+msgid "Add-on Updates ({0})"
+msgstr "Kemaskini Add-on ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Log Semakan Add-on"
+
+msgid "Signed Beta Files Log"
+msgstr "Log Fail Beta Ditandatangani"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Panduan Penyemak"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Add-ons Auto-Lulus"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Add-on Auto Lulus ({0})"
+
+msgid "Content Review"
+msgstr "Semakan Kandungan"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Semakan Kandungan ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Tema Baru ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Kemaskini Tema ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Tema Ditanda ({0})"
+
+msgid "Themes Review Log"
+msgstr "Log Ulasan Tema"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Log tema dibuang"
+
+msgid "User Ratings Moderation"
+msgstr "Moderat Pengkadaran Pengguna"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Pengkadaran Menunggu Moderat ({0})"
+
+msgid "Moderated Review Log"
+msgstr "Log Ulasan Moderat"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Tindakan moderat:"
+
+msgid "Unlisted Add-ons"
+msgstr "Add-ons Tidak Disenaraikan"
+
+msgid "All Unlisted Add-ons"
+msgstr "Semua Add-ons Tiada-disenaraikan"
+
+msgid "Announcement"
+msgstr "Pengumuman"
+
+msgid "Update message of the day"
+msgstr "Kemaskini mesej penting hari ini"
 
 msgid "An unknown error occurred"
 msgstr "Ada ralat yang tidak diketahui"
@@ -6460,14 +6259,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Tarikh Kelulusan Terakhir"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Kelulusan Semenjak Semakan Automatik Terakhir"
-
 msgid "Abuse Reports ({num})"
 msgstr "Laporan Penyalahgunaan ({num})"
 
-msgid "Bad User Reviews ({num})"
-msgstr "Ulasan Buruk Pengguna ({num})"
+msgid "Bad User Ratings ({num})"
+msgstr "Pengkadaran Teruk Pengguna ({num})"
 
 msgid "More about this add-on"
 msgstr "Maklumat lanjut perihal add-on ini"
@@ -6478,47 +6274,9 @@ msgstr "Galeri Imej"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Kembali ke halaman utama Alatan Penyemak"
-
-msgid "Queues"
-msgstr "Giliran"
-
-msgid "New Add-ons"
-msgstr "Add-ons Baru"
-
-msgid "Updates"
-msgstr "Kemaskini"
-
-msgid "Moderated Reviews"
-msgstr "Ulasan Moderat"
-
-msgid "Auto Approved Add-ons"
-msgstr "Add-on Automatik Diluluskan"
-
-msgid "Content Review"
-msgstr "Semakan Kandungan"
-
-msgid "Unlisted Queues"
-msgstr "Barisan Tiada-disenaraikan"
-
-msgid "All Unlisted Add-ons"
-msgstr "Semua Add-ons Tiada-disenaraikan"
-
-msgid "Logs"
-msgstr "Log"
-
-msgid "Add-on Review Log"
-msgstr "Log Semakan Add-on"
-
-msgid "Moderated Review Log"
-msgstr "Log Ulasan Moderat"
-
-msgid "Signed Beta Files Log"
-msgstr "Log Fail Beta Ditandatangani"
-
-msgid "Announcement"
-msgstr "Pengumuman"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6561,42 +6319,6 @@ msgstr "Semakan telah ditandakan sebelum dihapuskan."
 msgid "Undelete"
 msgstr "Batalkan membuang"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Add-ons Baru ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Kemaskini ({num})"
-
-msgid "Current waiting times:"
-msgstr "Tempoh menunggu semasa:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-ons"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Bilangan Semakan"
-
-msgid "Reviews This Month"
-msgstr "Semakan Bulan Ini"
-
-msgid "New Reviewers"
-msgstr "Penyemak Baru"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Anda #{0} dengan {1} semakan"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Semakan Moderat ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Carta-kedudukan Penyemak"
 
@@ -6608,9 +6330,6 @@ msgstr "Kedudukan"
 
 msgid "Score"
 msgstr "Markah"
-
-msgid "Update message of the day"
-msgstr "Kemaskini mesej penting hari ini"
 
 msgid "Save"
 msgstr "Simpan"
@@ -6629,6 +6348,9 @@ msgstr "Semakan Anda"
 
 msgid "By {user_name}"
 msgstr "Mengikut {user_name}"
+
+msgid "Total Reviews"
+msgstr "Bilangan Semakan"
 
 msgid "Active Contributors"
 msgstr "Penyumbang Aktif"
@@ -6861,23 +6583,14 @@ msgstr "Alasan"
 msgid "There are currently no reviews."
 msgstr "Masih tiada semakan."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Semakan Tema Menunggu"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Semakan Ditanda"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Kemaskini"
-
 msgid "Flagged Themes"
 msgstr "Tema Ditandai"
 
 msgid "Theme Review Queue"
 msgstr "Giliran Semakan Tema"
+
+msgid "Queues"
+msgstr "Giliran"
 
 msgid "Review Options"
 msgstr "Pilihan Semakan"
@@ -6984,169 +6697,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Add-on Automatik Diluluskan ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Semakan Kandungan ({0})"
-
 msgid "Flagged"
 msgstr "Ditandai"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Ulasan untuk %s"
-
-msgid "Review History for this Addon"
-msgstr "Sejarah Semakan Add-on ini"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Tahap %d daripada 5 bintang"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebagai alasan tandaan."
-
-msgid "Other (please specify)"
-msgstr "Lain-lain (sila nyatakan)"
-
-msgid "This field is required."
-msgstr "Medan ini diperlukan."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Anda tidak boleh tukar add-on sebaik sahaja semakan telah dibuat."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Anda tidak boleh membalas semakan yang sudah dijawab."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Anda tidak boleh tukar versi add-on sebaik sahaja semakan sudah dibuat."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Versi add-on ini tidak wujud atau bukan kegunaan umum."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Anda tidak boleh semak add-on anda sendiri."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan penyemak."
-
-msgid "Add a review for {0}"
-msgstr "Beri ulasan untuk {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Perlu sentiasa diingat:</h2> <ul> <li> Tulis seperti anda berkongsi pengalaman menggunakan add-on kepada rakan anda. Beri butiran khusus dan berguna, seperti ciri yangn anda suka dan/atau tidak "
-"suka, betapa mudah menggunakannya, dan keburukannya. Elakkan bahasa umum seperti \"Bagus\" atau \"Buruk\" kecuali anda ada alasan untuk berbuat begitu. </li> <li> Jangan lapor pepijat di sini. Kami "
-"tidak memberikan alamat e-mel anda kepada pembangun add-on, maka mereka tidak dapat menyelesaikan isu anda, Lihat <a href=\"%(support)s\">bahagian sokongan</a> untuk mengetahui samada ada bantuan "
-"atau tidak. Anda juga boleh tanya <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">komuniti add-on</a> untuk bantuan. </li> <li>Sila pastikan ulasan itu bersih, elakkan "
-"penggunaan bahasa kurang sopan dan menyiarkan makumat peribadi. </li> </ul> <p> Sila baca <a href=\"%(guide)s\">Garis Panduan Ulasan</a> untuk maklumat lanjut perihal ulasan add-on.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Balasan untuk ulasan oleh {0}"
-
-msgid "Write a Reply"
-msgstr "Tulis Balasan"
-
-msgid "Submit"
-msgstr "Hantar"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "atau <a href=\"%(url)s\">Batal</a>"
-
-msgid "Please select a reason:"
-msgstr "Sila pilih alasan:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "oleh %(user)s <b>(Pembangun)</b> pada %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ulasan ini untuk add-on ({0}) versi terdahulu."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Pengguna ini ada <a href=\"%(user_review_url)s\">%(cnt)s ulasan sebelum ini</a> perihal add-on ini."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
-
-msgid "Flagged for review"
-msgstr "Ditanda untuk semakan"
-
-msgid "Report this review"
-msgstr "Lapor ulasan ini"
-
-msgid "Reply to review"
-msgstr "Balasan untuk ulasan"
-
-msgid "Edit reply"
-msgstr "Edit balasan"
-
-msgid "Edit review"
-msgstr "Edit ulasan"
-
-msgid "Delete reply"
-msgstr "Buang balasan"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Ulasan"
-
-msgid "Reviews for {0}"
-msgstr "Ulasan untuk {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Balasan pembangun oleh {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Ulasan untuk %(addon)s oleh %(user)s"
-
-msgid "No reviews found."
-msgstr "Belum ada ulasan."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Purata</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Tulis Ulasan Baru"
-
-msgid "Be the first to write a review."
-msgstr "Jadi orang pertama menulis ulasan."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} ulasan"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Tahap {0} daripada 5 bintang"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Tahap %(rating)s daripada 5 bintang"
+msgid "Updates"
+msgstr "Kemaskini"
 
 msgid "Maximum query length exceeded."
 msgstr "Melebihi panjang pertanyaan maksimum."
@@ -7277,6 +6832,9 @@ msgstr "Versi sudah wujud."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Hanya WebExtensions dibenarkan untuk mengabaikan GUID"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Sila nyatakan GUID Add-on anda dalam manifes jika tidak melebihi 64 aksara."
+
 msgid "Invalid GUID in URL"
 msgstr "GUID tidak sah dalam URL"
 
@@ -7306,9 +6864,6 @@ msgstr "mengikut Platform"
 
 msgid "by Add-on Status"
 msgstr "mengikut Status Add-on"
-
-msgid "Contributions"
-msgstr "Sumbangan"
 
 msgid "Subscribers"
 msgstr "Pelanggan"
@@ -7423,9 +6978,6 @@ msgstr "Tiada data tersedia."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Papan pemuka ini kini<b>umum</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Statistik sumbangan ini kini<b>peribadi</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Papan pemuka ini kini<b>peribadi</b>."
 
@@ -7449,9 +7001,6 @@ msgstr "Penggunaan Aplikasi mengikut Tarikh"
 
 msgid "Collections Created by Date"
 msgstr "Koleksi Dicipta mengikut Tarikh"
-
-msgid "Contributions by Date"
-msgstr "Sumbangan mengikut Tarikh"
 
 msgid "Downloaded by Date"
 msgstr "Dimuat turun mengikut Tarikh"
@@ -7670,9 +7219,6 @@ msgstr "Tinjau <a class=\"mobile-link\" href=\"#\">laman Add-ons Mobile</a> kami
 msgid "Android Add-ons"
 msgstr "Add-ons Android"
 
-msgid "required"
-msgstr "diperlukan"
-
 msgid "Required fields"
 msgstr "Medan diperlukan"
 
@@ -7742,9 +7288,6 @@ msgstr "Pengguna anonimus {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Add-ons Mobile Saya"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "pembangun add-on mengucapkan terima kasih kepada saya atas sumbangan"
 
 msgid "an add-on developer replies to my review"
 msgstr "pembangun add-on membalas ulasan saya"

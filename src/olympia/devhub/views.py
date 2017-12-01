@@ -17,6 +17,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -30,7 +31,7 @@ from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -90,15 +91,16 @@ class ThemeFilter(BaseFilter):
             ('rating', _(u'Rating')))
 
 
-def addon_listing(request, default='name', theme=False):
+def addon_listing(request, theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
+        qs = request.user.addons.filter(
+            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
+        filter_cls = ThemeFilter
+        default = 'name'
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
-            type=amo.ADDON_PERSONA)
-    filter_cls = ThemeFilter
-    if not theme:
+            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
         filter_cls = AddonFilter
         default = 'updated'
     filter_ = filter_cls(request, qs, 'sort', default)
@@ -1086,7 +1088,8 @@ def version_edit(request, addon_id, addon, version_id):
 
             if ('source' in version_form.changed_data and
                     version_form.cleaned_data['source']):
-                addon.update(admin_review=True)
+                AddonReviewerFlags.objects.update_or_create(
+                    addon=addon, defaults={'needs_admin_code_review': True})
                 if version.has_info_request:
                     version.update(has_info_request=False)
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
@@ -1279,7 +1282,7 @@ def submit_version_distribution(request, addon_id, addon):
 
 @transaction.atomic
 def _submit_upload(request, addon, channel, next_details, next_finish,
-                   version=None):
+                   version=None, wizard=False):
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
@@ -1308,7 +1311,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                     parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
-            is_beta = data['beta'] and channel == amo.RELEASE_CHANNEL_LISTED
+            is_beta = (data.get('beta') and
+                       channel == amo.RELEASE_CHANNEL_LISTED)
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1331,9 +1335,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
-        addon_update = {}
         if data.get('source'):
-            addon_update['admin_review'] = True
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
             activity_log = ActivityLog.objects.create(
                 action=amo.LOG.SOURCE_CODE_UPLOADED.id,
                 user=request.user,
@@ -1346,9 +1350,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            addon_update['status'] = amo.STATUS_NOMINATED
-        if addon_update:
-            addon.update(**addon_update)
+            addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
         next_url = (next_details
@@ -1364,14 +1366,16 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
     else:
         channel_choice_text = ''  # We only need this for Version upload.
     submit_page = 'file' if version else 'version' if addon else 'addon'
-    return render(request, 'devhub/addons/submit/upload.html',
+    template = ('devhub/addons/submit/upload.html' if not wizard else
+                'devhub/addons/submit/wizard.html')
+    return render(request, template,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
                    'addon': addon,
                    'submit_notification_warning':
                        get_config('submit_notification_warning'),
                    'submit_page': submit_page,
-                   'listed': channel == amo.RELEASE_CHANNEL_LISTED,
+                   'channel': channel,
                    'channel_choice_text': channel_choice_text})
 
 
@@ -1404,6 +1408,25 @@ def submit_version_auto(request, addon_id, addon):
     return _submit_upload(request, addon, channel,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
+
+
+@login_required
+@waffle.decorators.waffle_switch('allow-static-theme-uploads')
+def submit_addon_theme_wizard(request, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, None, channel_id,
+                          'devhub.submit.details', 'devhub.submit.finish',
+                          wizard=True)
+
+
+@dev_required
+@no_admin_disabled
+@waffle.decorators.waffle_switch('allow-static-theme-uploads')
+def submit_version_theme_wizard(request, addon_id, addon, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, addon, channel_id,
+                          'devhub.submit.version.details',
+                          'devhub.submit.version.finish', wizard=True)
 
 
 @dev_required

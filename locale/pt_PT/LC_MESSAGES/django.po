@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-21 21:04+0000\n"
-"Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-12-01 16:49+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr "Não são permitidas hiperligações."
+msgstr "Não são permitidas ligações."
 
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
@@ -74,10 +74,10 @@ msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
 
 msgid "Download Now"
-msgstr "Descarregar agora"
+msgstr "Transferir agora"
 
 msgid "Download"
-msgstr "Descarregar"
+msgstr "Transferir"
 
 msgid "Featured"
 msgstr "Em destaque"
@@ -251,8 +251,8 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s descarregamento semanal"
-msgstr[1] "%(num)s descargas semanais"
+msgstr[0] "%(num)s transferência semanal"
+msgstr[1] "%(num)s transferências semanais"
 
 #, python-format
 msgid "%(num)s user"
@@ -272,7 +272,7 @@ msgstr "Compatível com o Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} descarregamento semanal"
+msgstr[0] "{0} transferência semanal"
 msgstr[1] "{0} descargas semanais"
 
 #. {0} is the number of users.
@@ -447,7 +447,7 @@ msgid "by %(users)s"
 msgstr "por %(users)s"
 
 msgid "Download Anyway"
-msgstr "Descarregar mesmo assim"
+msgstr "Transferir mesmo assim"
 
 msgid "[Warning]"
 msgstr "[Aviso]"
@@ -662,8 +662,8 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> descarregamento semanal"
-msgstr[1] "<strong>{0}</strong> descarregamentos semanais"
+msgstr[0] "<strong>{0}</strong> transferência semanal"
+msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 msgid "Not Reviewed"
 msgstr "Não revisto"
@@ -762,10 +762,10 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Pedimos desculpa, mas não encontrámos o que procura.</h1> <p> A página ou ficheiro que pediu não foi encontrado no nosso site. É possível que tenha clicado numa ligação desatualizada, ou tenha "
-"digitado o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">submeta um issue</a>. Diga-nos de onde veio e o que procura e nós faremos os possíveis para o corrigir.</li> </ul> <p>Ou pode ir a algumas das páginas populares do nosso"
-" website. </p> <ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em destaque</a>?</li> <li>Deseja <a href=\"%(search)s\">procurar extras</a>? Pode ir para a <a "
+"<h1>Lamentamos, mas não encontrámos o que procura.</h1> <p> A página ou ficheiro que pediu não foi encontrado no nosso site. É possível que tenha clicado numa ligação desatualizada ou tenha digitado"
+" o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor, <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">submeta um comentário</a>. Diga-nos de onde veio e o que procura e nós faremos os possíveis para o corrigir.</li> </ul> <p>Ou pode ir a algumas das páginas populares do nosso "
+"website. </p> <ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em destaque</a>?</li> <li>Deseja <a href=\"%(search)s\">procurar extras</a>? Pode ir para a <a "
 "href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa em cima.</li> <li> Se preferir recomeçar, vá para a <a href=\"%(home)s\">página inicial dos extras</a>.</li> </ul>"
 
 msgid "Oops"
@@ -799,7 +799,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Esta funcionalidade está temporariamente desativada enquanto efetuamos uma manutenção ao website. Use o botão retroceder do seu navegador e tente de novo mais tarde."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Volte a tentar dentro de alguns minutos."
+msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Por favor, tente novamente dentro de alguns minutos."
 
 msgid "Are you human?"
 msgstr "Você é humano?"
@@ -1436,7 +1436,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Descarregamentos semanais"
+msgstr "Transferências semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1448,7 +1448,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Descarregamentos"
+msgstr "Transferências"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1472,10 +1472,10 @@ msgid "Install Language Pack"
 msgstr "Instalar pacote de idioma"
 
 msgid "Download Dictionary"
-msgstr "Descarregar dicionário"
+msgstr "Transferir dicionário"
 
 msgid "Download Language Pack"
-msgstr "Descarregar pacote de idioma"
+msgstr "Transferir pacote de idioma"
 
 #, python-format
 msgid ""
@@ -1555,7 +1555,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por descarregamentos semanais"
+msgstr "Extensões por transferências semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1581,7 +1581,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por descarregamentos semanais"
+msgstr "Temas completos por transferências semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -1829,8 +1829,8 @@ msgstr "{addon} adicionado a {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} removido de {collection}."
 
-msgid "{review} for {addon} written."
-msgstr "{review} para {addon} escrita."
+msgid "{rating} for {addon} written."
+msgstr "{rating} para {addon} escrita."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1863,17 +1863,17 @@ msgstr "{addon} política alterada."
 msgid "{addon} icon changed."
 msgstr "{addon} ícone alterado."
 
-msgid "{review} for {addon} approved."
-msgstr "{review} para {addon} aprovado."
+msgid "{rating} for {addon} approved."
+msgstr "{rating} para {addon} aprovada."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} aprovou a {review} para {addon}."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} aprovou {rating} para {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Revisão {review} para {addon} eliminada."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Análise {rating} para {addon} eliminada."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} eliminou {review} para {addon}."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} eliminou {rating} para {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versão máx. da aplicação atualizada para {version}."
@@ -1918,8 +1918,8 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "O administrador {0} viu o registo de atividade para {user}."
 
 # 83%
-msgid "{review} for {addon} updated."
-msgstr "{review} do {addon} atualizado."
+msgid "{rating} for {addon} updated."
+msgstr "{rating} do {addon} atualizada."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revisto."
@@ -2091,15 +2091,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Temas (estáticos)"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Pedir apenas na página deste extra e no perfil do programador"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Perguntar depois de os utilizadores começarem a descarregar este extra"
-
-msgid "Ask before users can download this add-on"
-msgstr "Perguntar antes que os utilizadores descarreguem este extra"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Outro"
@@ -2129,7 +2120,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de descarregamentos"
+msgstr "Gestão de transferências"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2156,7 +2147,7 @@ msgid "Tabs"
 msgstr "Separadores"
 
 msgid "Web Development"
-msgstr "Desenvolvimento web"
+msgstr "Desenvolvimento da web"
 
 msgid "Animals"
 msgstr "Animais"
@@ -2306,7 +2297,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Descarregamentos e gestão de ficheiros"
+msgstr "Gestão de transferências e de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -2324,7 +2315,7 @@ msgid "Site-specific"
 msgstr "Específico do site"
 
 msgid "Web and Developer Tools"
-msgstr "Ferramentas web e de programador"
+msgstr "Ferramentas da web e de Programador"
 
 msgid "All Rights Reserved"
 msgstr "Todos os direitos reservados"
@@ -2643,7 +2634,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver em destaque."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Começando com o Firefox 53, novos extres neste site só podem ser WebExtensions."
+msgstr "A partir do Firefox 53, os novos extras neste site só podem ser WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Os extras de legado não são compatíveis com o Firefox 57 ou superior. Utilize um maxVersion de 56.* ou inferior."
@@ -2981,12 +2972,12 @@ msgstr "Acerca dos papeis do autor"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
-"<p>Extras podem ter qualquer número de autores com 3 possíveis funções:</p> <ul> <li><b>Proprietário:</b> pode gerir todos os detalhes do extra, incluindo adicionar e remover outros autores</li> "
-"<li><b>Programador:</b> pode gerir todos os detalhes do extra, exceto adicionar ou remover outros autores e gerir pagamentos</li> <li><b>Visualizador:</b> pode ver as configurações e estatísticas do"
-" extra, mas não pode fazer nenhuma alteração</li> </ul>"
+"<p>Extras podem ter qualquer número de autores com 3 possíveis cargos:</p> <ul> <li><b>Proprietário:</b> pode gerir todos os detalhes do extra, incluindo adicionar e remover outros autores</li> "
+"<li><b>Programador:</b> pode gerir todos os detalhes do extra, exceto adicionar ou remover outros autores</li> <li><b>Visualizador:</b> pode ver as configurações e estatísticas do extra, mas não "
+"pode fazer quaisquer alterações</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Informação básica"
@@ -3171,7 +3162,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "No caso de as estatísticas de descarregamentos e de utilização do seu extra poderem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "Se as estatísticas de transferências e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3359,10 +3350,10 @@ msgid "Actions"
 msgstr "Ações"
 
 msgid "Resume the submission process for this add-on."
-msgstr "Continuar o processo de envio para este extra."
+msgstr "Retomar o processo de submissão para este extra."
 
 msgid "Resume"
-msgstr "Continuar"
+msgstr "Retomar"
 
 msgid "Delete this add-on."
 msgstr "Eliminar este extra."
@@ -3380,7 +3371,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre descarregamentos e utilizadores."
+msgstr "Estatísticas diárias sobre transferências e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3549,16 +3540,16 @@ msgid "File Signed"
 msgstr "Ficheiro assinado"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
+msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode transferi-lo clicando no botão abaixo."
 
 msgid "Version Signed"
 msgstr "Versão assinada"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode descarregá-la clicando no botão abaixo."
+msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode transferi-la clicando no botão abaixo."
 
 msgid "Download {0}"
-msgstr "Descarregar {0}"
+msgstr "Transferir {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Selecionou apenas algumas das plataformas disponíveis para esta submissão.Pode carregar mais ficheiros, indicados outras plataformas:"
@@ -3588,6 +3579,9 @@ msgstr "Carregar versão"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilize os campos abaixo para carregar o pacote do seu extra. Após carregar, uma série de testes automatizados irão ser executados no seu ficheiro."
 
+msgid "Create a Theme"
+msgstr "Criar um tema"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
@@ -3602,6 +3596,87 @@ msgstr "Submeter ficheiro"
 
 msgid "Sign Add-on"
 msgstr "Assinar extra"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Tema eliminado."
+
+msgid "Theme generator"
+msgstr "Gerador de temas"
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "Selecione uma imagem para o cabeçalho do seu tema."
+
+msgid "required"
+msgstr "necessário"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Alinhado em cima à direita"
+
+msgid "Select a different header image"
+msgstr "Selecione uma imagem de cabeçalho diferente"
+
+msgid "Select colors for your Theme."
+msgstr "Selecione as cores para o seu tema."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+msgid "The color of toolbar text."
+msgstr "A cor do texto da barra de ferramentas."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+msgid "optional"
+msgstr "opcional"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Passe para Visualizar"
+
+msgid "Back"
+msgstr ""
+
+msgid "Uploading Theme"
+msgstr "A carregar tema"
+
+msgid "Upload Theme"
+msgstr "Carregar tema"
 
 msgid "API Credentials"
 msgstr "Credenciais da API"
@@ -3760,8 +3835,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra recebe. "
-"Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
+"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de transferências que um extra "
+"recebe. Por favor, note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -4043,14 +4118,11 @@ msgstr "Cabeçalho"
 msgid "Footer"
 msgstr "Rodapé"
 
-msgid "Select colors for your Theme."
-msgstr "Selecione as cores para o seu tema."
-
 msgid "Foreground Text"
 msgstr "Texto de fundo"
 
 msgid "This is the color of the tab text."
-msgstr "ESta é a cor do texto do separador."
+msgstr "Esta é a cor do texto do separador."
 
 msgid "Background"
 msgstr "Fundo"
@@ -4110,10 +4182,6 @@ msgstr "Veja e subscreva ao <a href=\"%(feed_url)s\">registo de atividade</a> do
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Junte-se à conversa nos nossos <a href=\"%(forum_url)s\">fóruns</a>."
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixéis"
 
@@ -4122,12 +4190,6 @@ msgstr "300 KB máx"
 
 msgid "PNG or JPG"
 msgstr "PNG ou JPG"
-
-msgid "Aligned to top-right"
-msgstr "Alinhado em cima à direita"
-
-msgid "Select a different header image"
-msgstr "Selecione uma imagem de cabeçalho diferente"
 
 # 82%
 msgid "Select a footer image for your Theme."
@@ -4337,17 +4399,17 @@ msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin aplica milhares de filtros de conteúdo sem mastigar um monte de memória."
 
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gira palavras-passe {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Desfrute de uma suíte de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, controlo de auto-reprodução, e mais."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Encontre imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Destaque qualquer texto e clique com o lado direito para realizar rapidamente uma pesquisa de imagem."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
@@ -4402,9 +4464,6 @@ msgstr "Não foi possível analisar o ficheiro manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "Não foi possível encontrar um ID do extra."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "O ID do extra deve ter no 64 caracteres ou menos."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4525,7 +4584,7 @@ msgid "Problems decoding {0}."
 msgstr "Problemas ao decodificar {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Este ficheiro não é visível online. Por favor, descarregue o ficheiro para ver o conteúdo."
+msgstr "Este ficheiro não é visível online. Por favor, transfira o ficheiro para ver o conteúdo."
 
 msgid "This file is a directory."
 msgstr "Este ficheiro é uma directoria."
@@ -4665,7 +4724,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Obrigado por usar o %(app)s e ajudar a <a href=\"%(url)s\">missão da Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Extras descarregados:"
+msgstr "Extras transferidos:"
 
 msgid "View Privacy Policy"
 msgstr "Ver Política de privacidade"
@@ -4690,498 +4749,6 @@ msgstr "Desbloqueie o acesso antecipado a funcionalidades experimentais do naveg
 
 msgid "Get Started"
 msgstr "Começar"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Dirham Emirados Árabes Unidos"
-
-msgid "Afghanistan Afghani"
-msgstr "Afegani do Afeganistão"
-
-msgid "Albania Lek"
-msgstr "Lek Albanês"
-
-msgid "Armenia Dram"
-msgstr "Dram Arménio"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Florim das Antilhas Holandesas"
-
-msgid "Angola Kwanza"
-msgstr "Kuanza Angolano"
-
-msgid "Argentina Peso"
-msgstr "Peso Argentino"
-
-msgid "Australia Dollar"
-msgstr "Dólar Australiano"
-
-msgid "Aruba Guilder"
-msgstr "Florim de Aruba"
-
-msgid "Azerbaijan New Manat"
-msgstr "Novo Manat do Azerbaijão"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Marco Convertível da Bósnia e Herzegovina"
-
-msgid "Barbados Dollar"
-msgstr "Dólar de Barbados"
-
-msgid "Bangladesh Taka"
-msgstr "Taka do Bangladeche"
-
-msgid "Bulgaria Lev"
-msgstr "Lev da Bulgária"
-
-msgid "Bahrain Dinar"
-msgstr "Dinar do Bahrain"
-
-msgid "Burundi Franc"
-msgstr "Franco do Burúndi"
-
-msgid "Bermuda Dollar"
-msgstr "Dólar das Bermudas"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Dólar de Brunei Darussalam"
-
-msgid "Bolivia Boliviano"
-msgstr "Boliviano da Bolívia"
-
-msgid "Brazil Real"
-msgstr "Real do Brasil"
-
-msgid "Bahamas Dollar"
-msgstr "Dólar das Bahamas"
-
-msgid "Bhutan Ngultrum"
-msgstr "Ngultrum do Butão"
-
-msgid "Botswana Pula"
-msgstr "Pula do Botswana"
-
-msgid "Belarus Ruble"
-msgstr "Rublo da Bielorrússia"
-
-msgid "Belize Dollar"
-msgstr "Dólar de Belize"
-
-msgid "Canada Dollar"
-msgstr "Dólar Canadiano"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Franco do Congo/Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Franco da Suíça"
-
-msgid "Chile Peso"
-msgstr "Peso Chileno"
-
-msgid "China Yuan Renminbi"
-msgstr "Yuan Renminbi Chinês"
-
-msgid "Colombia Peso"
-msgstr "Peso Colombiano"
-
-msgid "Costa Rica Colon"
-msgstr "Colón da Costa Rica"
-
-msgid "Cuba Convertible Peso"
-msgstr "Peso Convertível Cubano"
-
-msgid "Cuba Peso"
-msgstr "Peso Cubano"
-
-msgid "Cape Verde Escudo"
-msgstr "Escudo de Cabo Verde"
-
-msgid "Czech Republic Koruna"
-msgstr "Coroa da República Checa"
-
-msgid "Djibouti Franc"
-msgstr "Franco do Jibuti"
-
-msgid "Denmark Krone"
-msgstr "Coroa da Dinamarca"
-
-msgid "Dominican Republic Peso"
-msgstr "Peso da República Dominicana"
-
-msgid "Algeria Dinar"
-msgstr "Dinar Argelino"
-
-msgid "Egypt Pound"
-msgstr "Libra Egípcia"
-
-msgid "Eritrea Nakfa"
-msgstr "Nafka de Eritreia"
-
-msgid "Ethiopia Birr"
-msgstr "Birr da Etiópia"
-
-msgid "Euro Member Countries"
-msgstr "Países membros do euro"
-
-msgid "Fiji Dollar"
-msgstr "Dólar das Fiji"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Libra, Ilhas Malvinas (Falkland)"
-
-msgid "United Kingdom Pound"
-msgstr "Libra do Reino Unido"
-
-msgid "Georgia Lari"
-msgstr "Lari da Geórgia"
-
-msgid "Guernsey Pound"
-msgstr "Libra de Guernsey"
-
-msgid "Ghana Cedi"
-msgstr "Cedi do Gana"
-
-msgid "Gibraltar Pound"
-msgstr "Libra de Gibraltar"
-
-msgid "Gambia Dalasi"
-msgstr "Dalasi da Gâmbia"
-
-msgid "Guinea Franc"
-msgstr "Franco Guineense"
-
-msgid "Guatemala Quetzal"
-msgstr "Quetzal da Guatemala"
-
-msgid "Guyana Dollar"
-msgstr "Dólar da Guiana"
-
-msgid "Hong Kong Dollar"
-msgstr "Dólar de Hong Kong"
-
-msgid "Honduras Lempira"
-msgstr "Lempira das Honduras"
-
-msgid "Croatia Kuna"
-msgstr "Coroa Croata"
-
-msgid "Haiti Gourde"
-msgstr "Gourde do Haiti"
-
-msgid "Hungary Forint"
-msgstr "Forint Húngaro"
-
-msgid "Indonesia Rupiah"
-msgstr "Rupia da Indonésia"
-
-msgid "Israel Shekel"
-msgstr "Shekel Israelita"
-
-msgid "Isle of Man Pound"
-msgstr "Libra da ilha de Man"
-
-msgid "India Rupee"
-msgstr "Rupia da Índia"
-
-msgid "Iraq Dinar"
-msgstr "Dinar Iraquiano"
-
-msgid "Iran Rial"
-msgstr "Rial Iraniano"
-
-msgid "Iceland Krona"
-msgstr "Coroa islandesa"
-
-msgid "Jersey Pound"
-msgstr "Libra de Jersey"
-
-msgid "Jamaica Dollar"
-msgstr "Dólar jamaicano"
-
-msgid "Jordan Dinar"
-msgstr "Dinar jordano"
-
-msgid "Japan Yen"
-msgstr "Iene japonês"
-
-msgid "Kenya Shilling"
-msgstr "Xelim queniano"
-
-msgid "Kyrgyzstan Som"
-msgstr "Som do Quirguistão"
-
-msgid "Cambodia Riel"
-msgstr "Riel do Cambodja"
-
-msgid "Comoros Franc"
-msgstr "Franco de Camarões"
-
-msgid "Korea (North) Won"
-msgstr "Won da Coreia (Norte)"
-
-msgid "Korea (South) Won"
-msgstr "Won da Coreia (Sul)"
-
-msgid "Kuwait Dinar"
-msgstr "Dinar do Kuwait"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dólar das Ilhas Caimão"
-
-msgid "Kazakhstan Tenge"
-msgstr "Tenge do Cazaquistão"
-
-msgid "Laos Kip"
-msgstr "Kip do Laos"
-
-msgid "Lebanon Pound"
-msgstr "Libra libanesa"
-
-msgid "Sri Lanka Rupee"
-msgstr "Rupia do Sri Lanka"
-
-msgid "Liberia Dollar"
-msgstr "Dólar da Libéria"
-
-msgid "Lesotho Loti"
-msgstr "Loti do Lesoto"
-
-msgid "Lithuania Litas"
-msgstr "Litas da Lituânia"
-
-msgid "Latvia Lat"
-msgstr "Lats da Letónia"
-
-msgid "Libya Dinar"
-msgstr "Dinar da Líbia"
-
-msgid "Morocco Dirham"
-msgstr "Diram marroquino"
-
-msgid "Moldova Leu"
-msgstr "Leu da Moldávia"
-
-msgid "Madagascar Ariary"
-msgstr "Ariary de Madagáscar"
-
-msgid "Macedonia Denar"
-msgstr "Dinar da Macedónia"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Kyat de Mianmar (Birmânia)"
-
-msgid "Mongolia Tughrik"
-msgstr "Tugrik da Mongólia"
-
-msgid "Macau Pataca"
-msgstr "Pataca de Macau"
-
-msgid "Mauritania Ouguiya"
-msgstr "Ouguiya da Mauritânia"
-
-msgid "Mauritius Rupee"
-msgstr "Rupia das Maurícias"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Rufiyaa das Maldivas (Ilhas Maldivas)"
-
-msgid "Malawi Kwacha"
-msgstr "Quacha Malauiana"
-
-msgid "Mexico Peso"
-msgstr "Peso mexicano"
-
-msgid "Malaysia Ringgit"
-msgstr "Ringgit da Malásia"
-
-msgid "Mozambique Metical"
-msgstr "Metical moçambicano"
-
-msgid "Namibia Dollar"
-msgstr "Dólar da Namíbia"
-
-msgid "Nigeria Naira"
-msgstr "Naira da Nigéria"
-
-msgid "Nicaragua Cordoba"
-msgstr "Córdoba da Nicarágua"
-
-msgid "Norway Krone"
-msgstr "Coroa Norueguesa"
-
-msgid "Nepal Rupee"
-msgstr "Rupia do Nepal"
-
-msgid "New Zealand Dollar"
-msgstr "Dólar da Nova Zelândia"
-
-msgid "Oman Rial"
-msgstr "Rial do Omã"
-
-msgid "Panama Balboa"
-msgstr "Balboa do Panamá"
-
-msgid "Peru Nuevo Sol"
-msgstr "Sol Novo do Peru"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina da Papua Nova Guiné"
-
-msgid "Philippines Peso"
-msgstr "Peso das Filipinas"
-
-msgid "Pakistan Rupee"
-msgstr "Rupia do Paquistão"
-
-msgid "Poland Zloty"
-msgstr "Zloty da Polónia"
-
-msgid "Paraguay Guarani"
-msgstr "Guarani do Paraguai"
-
-msgid "Qatar Riyal"
-msgstr "Rial do Qatar"
-
-msgid "Romania New Leu"
-msgstr "Novo Leu da Roménia"
-
-msgid "Serbia Dinar"
-msgstr "Dinar da Sérvia"
-
-msgid "Russia Ruble"
-msgstr "Rublo da Rússia"
-
-msgid "Rwanda Franc"
-msgstr "Franco do Ruanda"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Rial da Arábia Saudita"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dólar das Ilhas Salomão"
-
-msgid "Seychelles Rupee"
-msgstr "Rupia das Seicheles"
-
-msgid "Sudan Pound"
-msgstr "Libra do Sudão"
-
-msgid "Sweden Krona"
-msgstr "Coroa da Suécia"
-
-msgid "Singapore Dollar"
-msgstr "Dólar de Singapura"
-
-msgid "Saint Helena Pound"
-msgstr "Libra de Santa Helena"
-
-msgid "Sierra Leone Leone"
-msgstr "Leone da Serra Leoa"
-
-msgid "Somalia Shilling"
-msgstr "Xelim da Somália"
-
-msgid "Seborga Luigino"
-msgstr "Seborga Luigino"
-
-msgid "Suriname Dollar"
-msgstr "Dólar do Suriname"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Dobra de São Tomé e Príncipe"
-
-msgid "El Salvador Colon"
-msgstr "Colón de El Salvador"
-
-msgid "Syria Pound"
-msgstr "Libra da Síria"
-
-msgid "Swaziland Lilangeni"
-msgstr "Lilangeni da Suazilândia"
-
-msgid "Thailand Baht"
-msgstr "Baht da Tailândia"
-
-msgid "Tajikistan Somoni"
-msgstr "Somoni do Tajiquistão"
-
-msgid "Turkmenistan Manat"
-msgstr "Manat Turcomeno"
-
-msgid "Tunisia Dinar"
-msgstr "Dinar da Tunísia"
-
-msgid "Tonga Pa'anga"
-msgstr "Pa'anga do Tonga"
-
-msgid "Turkey Lira"
-msgstr "Lira da Turquia"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dólar de Trindade e Tobago"
-
-msgid "Tuvalu Dollar"
-msgstr "Dólar de Tuvalu"
-
-msgid "Taiwan New Dollar"
-msgstr "Novo Dólar de Taiwan"
-
-msgid "Tanzania Shilling"
-msgstr "Xelim da Tanzânia"
-
-msgid "Ukraine Hryvna"
-msgstr "Hryvnia da Ucrânia"
-
-msgid "Uganda Shilling"
-msgstr "Xelim do Uganda"
-
-msgid "United States Dollar"
-msgstr "Dólar dos Estados Unidos"
-
-msgid "Uruguay Peso"
-msgstr "Peso do Uruguai"
-
-msgid "Uzbekistan Som"
-msgstr "Som do Usbequistão"
-
-msgid "Venezuela Bolivar"
-msgstr "Bolivar da Venezuela"
-
-msgid "Viet Nam Dong"
-msgstr "Dong do Vietname"
-
-msgid "Vanuatu Vatu"
-msgstr "Vatu de Vanuatu"
-
-msgid "Samoa Tala"
-msgstr "Tala da Samoa"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Franco da Comunidade Financeira Africana (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Dólar das Caraíbas Orientais"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Direitos de saque especiais do Fundo Monetário Internacional (FMI)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Franco da Comunidade Financeira Africana (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Franco de Contadores Franceses do Pacifico (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Rial do Yemen"
-
-msgid "South Africa Rand"
-msgstr "Rand da África do Sul"
-
-msgid "Zambia Kwacha"
-msgstr "Kwacha da Zâmbia"
-
-msgid "Zimbabwe Dollar"
-msgstr "Dólar do Zimbabué"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos Extras da Mozilla"
@@ -5456,9 +5023,9 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir compatibilidade com o software da Mozilla mais recente, é importante descarregar atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda "
-"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente "
-"no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
+"Para garantir compatibilidade com o software da Mozilla mais recente, é importante transferir atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda funciona"
+" como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no "
+"processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu extra. Onde eu posso encontrar ajuda?"
@@ -5652,11 +5219,11 @@ msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on 
 msgstr "É por isso que é muito importante ler o <a href=\"%(g_url)s\">Guia de revisão de extras</a> para assegurar que o seu extra está configurado como esperado."
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Como posso ver quantas vezes o meu extra foi descarregado?"
+msgstr "Como posso ver quantas vezes o meu extra foi transferido?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas encontrado no painel de ferramentas de programador providencia informações que podem ajudá-lo a determinar o número de descargas do seu extra desde que o submeteu no AMO."
+"O painel de estatísticas, encontrado no painel de ferramentas de programador, fornece informações que podem ajudá-lo a determinar o número de transferências do seu extra desde que o submeteu no AMO."
 
 msgid "How can I see how many active users are using my add-on?"
 msgstr "Como posso ver quantos utilizadores ativos estão a utilizar o meu extra?"
@@ -5801,7 +5368,7 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "As <strong><a href=\"%(browse_url)s\">extensões</a></strong> adicionam novas funcionalidades ao %(app_name)s ou modificam uma funcionalidade existente. Existem extensões que lhe permitem bloquear "
-"anúncios, descarregar vídeos de websites, integrar de uma melhor maneira os websites sociais e adicionar funcionalidades que vê noutras aplicações."
+"anúncios, transferir vídeos de websites, integrar de uma melhor maneira os websites sociais e adicionar funcionalidades que vê noutras aplicações."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -6272,6 +5839,172 @@ msgstr "Nós recomendamos migrar para o <a href=\"%(tb_url)s\">Thunderbird</a> e
 msgid "Read more about Sunbird"
 msgstr "Ler mais acerca do Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Análises para %s"
+
+msgid "Review History for this Addon"
+msgstr "Rever o histórico para este extra"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Avaliado com %d de 5 estrelas"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Uma pequena explicação deve de ser providenciada ao selecionar \"Outro\" como razão de marcação."
+
+msgid "Other (please specify)"
+msgstr "Outro (por favor específique)"
+
+msgid "This field is required."
+msgstr "Este campo é requerido."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Não pode alterar o extra de uma análise assim que for criada."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Não pode responder a uma análise que já é uma resposta."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Não pode alterar a versão do extra analisado assim que a análise for criada."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Esta versão do extra não existe ou não é pública."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Não pode deixar uma análise no seu próprio extra."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Obrigado; esta análise foi marcada para aprovação do editor."
+
+msgid "Add a review for {0}"
+msgstr "Adicionar análise para {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Mantenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a dizer a um amigo acerca da sua experiência com o extra. Forneça detalhes específicos e úteis, tais como que "
+"funcionalidades que gostou e/ou não gostou, quão simples é de utilizar, e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, chamando-lhe \"Ótimo\" ou \"Mau\" a menos que possa"
+" dar razões para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatórios de bugs aqui. Não iremos disponibilizar o seu endereço de email para os programadores do extra e estes "
+"poderão ter de o/a contactar para ajudar a resolver o seu problema. Veja a <a href=\"%(support)s\">secção de apoio</a> deste extra para saber se existe assistência. Também pode tentar pedir à <a "
+"href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">comunidade de extras</a> por ajuda. </li> <li>Mantenha as análises limpas, evite a utilização de linguagem imprópria e não "
+"coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a href=\"%(guide)s\">Diretrizes de análises</a> para mais detalhes sobre análises de extras de utilizador.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Responder à análise por {0}"
+
+msgid "Write a Reply"
+msgstr "Escrever uma resposta"
+
+msgid "Submit"
+msgstr "Submeter"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ou <a href=\"%(url)s\">Cancele</a>"
+
+msgid "Please select a reason:"
+msgstr "Por favor selecione uma razão:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "por %(user)s <b>(Programador)</b> em %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Esta análise é para uma versão anterior do extra ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Este utilizador tem uma <a href=\"%(user_review_url)s\">revisão anterior</a> deste extra."
+msgstr[1] "Este utilizador tem <a href=\"%(user_review_url)s\">%(cnt)s revisões anteriores</a> deste extra."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Este utilizador tem <a href=\"%(user_review_url)s\">outras revisões</a> deste extra."
+
+msgid "Flagged for review"
+msgstr "Marcado para revisão"
+
+msgid "Report this review"
+msgstr "Reportar esta análise"
+
+msgid "Reply to review"
+msgstr "Responder à análise"
+
+msgid "Edit reply"
+msgstr "Editar resposta"
+
+msgid "Edit review"
+msgstr "Editar análise"
+
+msgid "Delete reply"
+msgstr "Eliminar resposta"
+
+msgid "Delete review"
+msgstr "Eliminar análise"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Avaliações"
+
+msgid "Reviews for {0}"
+msgstr "Análises para {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> análise para este extra"
+msgstr[1] "<b>{0}</b> análises para este extra"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Resposta do programador por {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Análise para o %(addon)s por %(user)s"
+msgstr[1] "Análises para o %(addon)s por %(user)s"
+
+msgid "No reviews found."
+msgstr "Nenhuma análise encontrada."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Média</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Escrever uma nova análise"
+
+msgid "Be the first to write a review."
+msgstr "Seja o primeiro a escrever uma análise."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} revisão"
+msgstr[1] "{num} revisões"
+
+# 87%
+msgid "Rated {0} out of 5 stars"
+msgstr "Avaliado com {0} de 5 estrelas"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Avaliado com %(rating)s de 5 estrelas"
+
 msgid "Approved reviews"
 msgstr "Revisões aprovadas"
 
@@ -6312,14 +6045,14 @@ msgstr "extra, editor ou comentário"
 msgid "Search by add-on name / author email"
 msgstr "Procurar por nome do extra / email do autor"
 
+msgid "Needs Admin Code Review"
+msgstr "Precisa de revisão de código de administrador"
+
 msgid "yes"
 msgstr "sim"
 
 msgid "no"
 msgstr "não"
-
-msgid "Admin Flag"
-msgstr "Etiqueta de administrador"
 
 msgid "Add-on Types"
 msgstr "Tipos de extras"
@@ -6342,8 +6075,11 @@ msgstr "Aplicações:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Notificar-me da próxima vez que este extra for atualizado. (As atualizações seguintes não vão gerar um email)"
 
-msgid "Clear Admin Review Flag"
-msgstr "Limpar etiqueta de revisão de administrador"
+msgid "Clear Admin Code Review Flag"
+msgstr "Limpar etiqueta de revisão de código de administrador"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Limpar etiqueta de revisão de conteúdo de administrador"
 
 msgid "Is more info requested?"
 msgstr "Mais informação solicitada?"
@@ -6368,11 +6104,8 @@ msgstr "Manter revisão; remover etiquetas"
 msgid "Skip for now"
 msgstr "Saltar por agora"
 
-msgid "Delete review"
-msgstr "Eliminar análise"
-
-msgid "Admin Review"
-msgstr "Revisão de administrador"
+msgid "Needs Admin Content Review"
+msgstr "Precisa de revisão de conteúdo de administrador"
 
 msgid "Jetpack Add-on"
 msgstr "Extra Jetpack"
@@ -6491,14 +6224,76 @@ msgstr "Aprovar conteúdo"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Isto grava a sua aprovação do conteúdo desta versão, sem notificar o programador."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "Novos extras (até 5 dias)"
+msgid "Legacy Add-ons"
+msgstr "Extras de legado"
 
-msgid "Passable (5 to 10 days)"
-msgstr "Razoável (5 a 10 dias)"
+msgid "New Add-ons ({0})"
+msgstr "Novos extras ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "Atrasados (mais de 10 dias)"
+msgid "Add-on Updates ({0})"
+msgstr "Atualizações de extra ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Registo da revisão do extra"
+
+msgid "Signed Beta Files Log"
+msgstr "Registo de ficheiros beta assinados"
+
+msgid "Review Guide"
+msgstr "Guia de análise"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Extras aprovados automaticamente"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Extra aprovado automaticamente ({0})"
+
+msgid "Content Review"
+msgstr "Revisão de conteúdo"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisão de conteúdo ({0})"
+msgstr[1] "Revisões de conteúdo ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Novos temas ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Atualizações de temas ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Temas marcados ({0})"
+
+msgid "Themes Review Log"
+msgstr "Registo de revisões de temas"
+
+msgid "Deleted Themes Log"
+msgstr "Registo de temas eliminados"
+
+msgid "User Ratings Moderation"
+msgstr "Moderação de avaliações de utilizador"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Avaliações a aguardar moderação ({0})"
+
+msgid "Moderated Review Log"
+msgstr "Registo da moderação da revisão"
+
+msgid "Moderation Guide"
+msgstr "Guia de moderação"
+
+msgid "Unlisted Add-ons"
+msgstr "Extras não-listados"
+
+msgid "All Unlisted Add-ons"
+msgstr "Todos os extras não-listados"
+
+msgid "Announcement"
+msgstr "Anúncio"
+
+msgid "Update message of the day"
+msgstr "Atualizar mensagem do dia"
 
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
@@ -6552,13 +6347,10 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Data da última aprovação"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Aprovações desde a última revisão automática"
-
 msgid "Abuse Reports ({num})"
 msgstr "Denúncias de abuso ({num})"
 
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Más análises de utilizador ({num})"
 
 msgid "More about this add-on"
@@ -6570,48 +6362,8 @@ msgstr "Galeria de imagens"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nada a mostrar aqui! O programador não incluiu quaisquer detalhes."
 
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Regressar à página inicial do Ferramentas do revisor"
-
-msgid "Queues"
-msgstr "Esperas"
-
-msgid "New Add-ons"
-msgstr "Novos extras"
-
-# 85%
-msgid "Updates"
-msgstr "Atualizações"
-
-msgid "Moderated Reviews"
-msgstr "Revisões moderadas"
-
-msgid "Auto Approved Add-ons"
-msgstr "Extras automaticamente aprovados"
-
-msgid "Content Review"
-msgstr "Revisão de conteúdo"
-
-msgid "Unlisted Queues"
-msgstr "Filas não-listadas"
-
-msgid "All Unlisted Add-ons"
-msgstr "Todos os extras não-listados"
-
-msgid "Logs"
-msgstr "Registos"
-
-msgid "Add-on Review Log"
-msgstr "Registo da revisão do extra"
-
-msgid "Moderated Review Log"
-msgstr "Registo da moderação da revisão"
-
-msgid "Signed Beta Files Log"
-msgstr "Registo de ficheiros beta assinados"
-
-msgid "Announcement"
-msgstr "Anúncio"
+msgid "Return to the Reviewer Tools dashboard"
+msgstr "Regressar ao painel de controlo das ferramentas do revisor"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6654,47 +6406,6 @@ msgstr "A revisão foi marcada antes da eliminação."
 msgid "Undelete"
 msgstr "Cancelar eliminação"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Novo extra ({num})"
-msgstr[1] "Novos extras ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Atualização ({num})"
-msgstr[1] "Atualizações ({num})"
-
-msgid "Current waiting times:"
-msgstr "Tempos de espera atuais:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} extra"
-msgstr[1] "{0} extras"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Total de revisões"
-
-msgid "Reviews This Month"
-msgstr "Revisões deste mês"
-
-# 77%
-msgid "New Reviewers"
-msgstr "Novos revisores"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Está na posição #{0} com {1} revisões"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Revisão moderada ({num})"
-msgstr[1] "Revisões moderadas ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Tabela de classificações dos revisores"
 
@@ -6706,9 +6417,6 @@ msgstr "Classificação"
 
 msgid "Score"
 msgstr "Pontuação"
-
-msgid "Update message of the day"
-msgstr "Atualizar mensagem do dia"
 
 msgid "Save"
 msgstr "Guardar"
@@ -6727,6 +6435,9 @@ msgstr "Os seus comentários"
 
 msgid "By {user_name}"
 msgstr "Por {user_name}"
+
+msgid "Total Reviews"
+msgstr "Total de revisões"
 
 msgid "Active Contributors"
 msgstr "Contribuições ativas"
@@ -6819,7 +6530,7 @@ msgid "Additional sources:"
 msgstr "Fontes adicionais:"
 
 msgid "Download files"
-msgstr "Descarregar ficheiros"
+msgstr "Transferir ficheiros"
 
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
@@ -6961,26 +6672,14 @@ msgstr "Motivo"
 msgid "There are currently no reviews."
 msgstr "Atualmente não há revisões."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} revisão de tema pendente"
-msgstr[1] "{num} revisões de temas pendentes"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} análise marcada"
-msgstr[1] "{num} análises marcadas"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} atualização"
-msgstr[1] "{num} atualizações"
-
 msgid "Flagged Themes"
 msgstr "Temas marcados"
 
 msgid "Theme Review Queue"
 msgstr "Fila de revisão de tema"
+
+msgid "Queues"
+msgstr "Esperas"
 
 msgid "Review Options"
 msgstr "Opções de revisão"
@@ -7091,176 +6790,12 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Extra aprovado automaticamente ({0})"
 msgstr[1] "Extras aprovados automaticamente ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisão de conteúdo ({0})"
-msgstr[1] "Revisões de conteúdo ({0})"
-
 msgid "Flagged"
 msgstr "Marcado"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Análises para %s"
-
-msgid "Review History for this Addon"
-msgstr "Rever o histórico para este extra"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Avaliado com %d de 5 estrelas"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Uma pequena explicação deve de ser providenciada ao selecionar \"Outro\" como razão de marcação."
-
-msgid "Other (please specify)"
-msgstr "Outro (por favor específique)"
-
-msgid "This field is required."
-msgstr "Este campo é requerido."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Não pode alterar o extra de uma análise assim que for criada."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Não pode responder a uma análise que já é uma resposta."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Não pode alterar a versão do extra analisado assim que a análise for criada."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Esta versão do extra não existe ou não é pública."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Não pode deixar uma análise no seu próprio extra."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Obrigado; esta análise foi marcada para aprovação do editor."
-
-msgid "Add a review for {0}"
-msgstr "Adicionar análise para {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Mantenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a dizer a um amigo acerca da sua experiência com o extra. Forneça detalhes específicos e úteis, tais como que "
-"funcionalidades que gostou e/ou não gostou, quão simples é de utilizar, e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, chamando-lhe \"Ótimo\" ou \"Mau\" a menos que possa"
-" dar razões para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatórios de bugs aqui. Não iremos disponibilizar o seu endereço de email para os programadores do extra e estes "
-"poderão ter de o/a contactar para ajudar a resolver o seu problema. Veja a <a href=\"%(support)s\">secção de apoio</a> deste extra para saber se existe assistência. Também pode tentar pedir à <a "
-"href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">comunidade de extras</a> por ajuda. </li> <li>Mantenha as análises limpas, evite a utilização de linguagem imprópria e não "
-"coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a href=\"%(guide)s\">Diretrizes de análises</a> para mais detalhes sobre análises de extras de utilizador.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Responder à análise por {0}"
-
-msgid "Write a Reply"
-msgstr "Escrever uma resposta"
-
-msgid "Submit"
-msgstr "Submeter"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ou <a href=\"%(url)s\">Cancele</a>"
-
-msgid "Please select a reason:"
-msgstr "Por favor selecione uma razão:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "por %(user)s <b>(Programador)</b> em %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Esta análise é para uma versão anterior do extra ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Este utilizador tem uma <a href=\"%(user_review_url)s\">revisão anterior</a> deste extra."
-msgstr[1] "Este utilizador tem <a href=\"%(user_review_url)s\">%(cnt)s revisões anteriores</a> deste extra."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Este utilizador tem <a href=\"%(user_review_url)s\">outras revisões</a> deste extra."
-
-msgid "Flagged for review"
-msgstr "Marcado para revisão"
-
-msgid "Report this review"
-msgstr "Reportar esta análise"
-
-msgid "Reply to review"
-msgstr "Responder à análise"
-
-msgid "Edit reply"
-msgstr "Editar resposta"
-
-msgid "Edit review"
-msgstr "Editar análise"
-
-msgid "Delete reply"
-msgstr "Eliminar resposta"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Avaliações"
-
-msgid "Reviews for {0}"
-msgstr "Análises para {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> análise para este extra"
-msgstr[1] "<b>{0}</b> análises para este extra"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Resposta do programador por {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Análise para o %(addon)s por %(user)s"
-msgstr[1] "Análises para o %(addon)s por %(user)s"
-
-msgid "No reviews found."
-msgstr "Nenhuma análise encontrada."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Média</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Escrever uma nova análise"
-
-msgid "Be the first to write a review."
-msgstr "Seja o primeiro a escrever uma análise."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} revisão"
-msgstr[1] "{num} revisões"
-
-# 87%
-msgid "Rated {0} out of 5 stars"
-msgstr "Avaliado com {0} de 5 estrelas"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Avaliado com %(rating)s de 5 estrelas"
+# 85%
+msgid "Updates"
+msgstr "Atualizações"
 
 msgid "Maximum query length exceeded."
 msgstr "Comprimento máximo de consulta excedido."
@@ -7400,6 +6935,9 @@ msgstr "A versão já existe."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Apenas WebExtensions têm permissão para omitir o GUID"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Por favor, especifique o GUID do seu extra no manifesto se for maior do que 64 caracteres."
+
 msgid "Invalid GUID in URL"
 msgstr "GUID inválido no URL"
 
@@ -7430,9 +6968,6 @@ msgstr "por plataforma"
 msgid "by Add-on Status"
 msgstr "por estado do extra"
 
-msgid "Contributions"
-msgstr "Contribuições"
-
 # 81%
 msgid "Subscribers"
 msgstr "Assinantes"
@@ -7452,7 +6987,7 @@ msgstr "Extras criados"
 
 # 89%
 msgid "Add-ons Downloaded"
-msgstr "Extras descarregados"
+msgstr "Extras transferidos"
 
 msgid "Add-ons Updated"
 msgstr "Extras atualizados"
@@ -7552,9 +7087,6 @@ msgstr "Sem dados disponíveis."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Este painel é atualmente <b>público</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "As estatísticas de contribuição são atualmente <b>privadas</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Este painel de momento é <b>privado</b>."
 
@@ -7565,7 +7097,7 @@ msgid "Add-ons Created by Date"
 msgstr "Extras criados por data"
 
 msgid "Add-ons Downloaded by Date"
-msgstr "Extras descarregados por data"
+msgstr "Extras transferidos por data"
 
 msgid "Add-ons in Use by Date"
 msgstr "Extras em utilização por data"
@@ -7579,21 +7111,18 @@ msgstr "Utilização da aplicação por data"
 msgid "Collections Created by Date"
 msgstr "Coleções criadas por data"
 
-msgid "Contributions by Date"
-msgstr "Contribuições por data"
-
 msgid "Downloaded by Date"
-msgstr "Descarregados por data"
+msgstr "Transferidos por data"
 
 msgid "How are downloads counted?"
-msgstr "Como é que os descarregamentos são contabilizados?"
+msgstr "Como é que as transferências são contabilizadas?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Como é que os descarregamentos são contabilizados?</h2> <p> O número de descarregamentos é atualizado todas as noites e inclui apenas descarregamentos originais de extras e não de atualizações. "
-"Os descarregamentos podem ser decompostos pela fonte específica que referenciou o descarregamento. </p>"
+"<h2>Como é que as transferências são contabilizadas?</h2> <p> O número de transferências é atualizado todas as noites e inclui apenas transferências originais de extras, e não atualizações. As "
+"transferências podem ser decompostas pela fonte específica que referenciou a transferência. </p>"
 
 msgid "User languages by Date"
 msgstr "Idiomas de utilizador por data"
@@ -7602,7 +7131,7 @@ msgid "Platform usage by Date"
 msgstr "Utilização da plataforma por data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> descarregamentos"
+msgstr "<b>{0}</b> Transferências"
 
 msgid "Loading..."
 msgstr "A carregar..."
@@ -7635,7 +7164,7 @@ msgid "Reviews Created by Date"
 msgstr "Análise criadas por data"
 
 msgid "Download sources by Date"
-msgstr "Fonte dos descarregamentos por data"
+msgstr "Fonte das transferências por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
@@ -7649,8 +7178,8 @@ msgid ""
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Monitorização de fontes externas</h2> <p> Se ligou a página de detalhes do extra ou diretamente o seu ficheiro a partir de um site externo, tal como o seu blogue ou website, pode adicionar um "
-"parâmetro para ser referenciado como uma fonte adicional de descarga nesta página. Por exemplo, as ligações seguintes iriam aparecer classificadas como o seu blogue: <dl> <dt>Página de detalhes do "
-"extra</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligação direta ao ficheiro</dt> "
+"parâmetro para ser referenciado como uma fonte adicional de transferência nesta página. Por exemplo, as ligações seguintes iriam aparecer classificadas como o seu blogue: <dl> <dt>Página de detalhes"
+" do extra</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligação direta ao ficheiro</dt> "
 "<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Apenas os parâmetros src que começam com \"external-\" serão monitorizados, até"
 " 61 carateres adicionais. Qualquer texto depois de \"external-\" pode ser utilizado para descrever a fonte, tais como \"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. Os "
 "seguintes caracteres, seguros para URLs, são permitidos: <code>a-z A-Z - . _ ~ %% +</code>"
@@ -7731,7 +7260,7 @@ msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>extras</b>"
 
 msgid "Download Firefox"
-msgstr "Descarregar o Firefox"
+msgstr "Transferir o Firefox"
 
 msgid "Android Browser"
 msgstr "Navegador para Android"
@@ -7779,7 +7308,7 @@ msgstr "<a href=\"%(reg)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessã
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Para experimentar os milhares de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
+msgstr "Para experimentar os milhares de extras aqui disponíveis, transfira o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
@@ -7800,9 +7329,6 @@ msgstr "Veja o nosso <a class=\"mobile-link\" href=\"#\">site de extras para dis
 
 msgid "Android Add-ons"
 msgstr "Extras para Android"
-
-msgid "required"
-msgstr "necessário"
 
 msgid "Required fields"
 msgstr "Campos necessários"
@@ -7873,9 +7399,6 @@ msgstr "Utilizador anónimo {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Os meus extras do Mobile"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "um programador de um extra agradece-me uma contribuição"
 
 msgid "an add-on developer replies to my review"
 msgstr "um programador de um extra responde à minha análise"

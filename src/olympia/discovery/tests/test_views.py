@@ -19,13 +19,13 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = OrderedDict([
-            (44686, addon_factory(id=44686, type=amo.ADDON_PERSONA)),
-            (455926, addon_factory(id=455926, type=amo.ADDON_EXTENSION)),
-            (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
-            (376685, addon_factory(id=376685, type=amo.ADDON_PERSONA)),
+            (676070, addon_factory(id=676070, type=amo.ADDON_PERSONA)),
             (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+            (8542, addon_factory(id=8542, type=amo.ADDON_EXTENSION)),
+            (290486, addon_factory(id=290486, type=amo.ADDON_PERSONA)),
+            (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
             (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-            (208568, addon_factory(id=208568, type=amo.ADDON_PERSONA)),
+            (21085, addon_factory(id=21085, type=amo.ADDON_PERSONA)),
         ])
 
     def test_reverse(self):

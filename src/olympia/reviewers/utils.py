@@ -17,7 +17,8 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import send_activity_mail, log_and_notify
-from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
@@ -302,7 +303,14 @@ class ReviewHelper(object):
         reviewable_because_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_not_reserved_for_admins_or_user_is_admin = (
-            not self.addon.admin_review or is_admin_tools_viewer)
+            is_admin_tools_viewer or
+            (
+                self.content_review_only and self.version and
+                not self.version.addon.needs_admin_content_review) or
+            (
+                not self.content_review_only and self.version and
+                not self.version.addon.needs_admin_code_review
+            ))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
             (self.version and
@@ -372,9 +380,10 @@ class ReviewHelper(object):
             'minimal': True,
             'comments': False,
             'available': (
-                is_auto_approved_and_current_and_user_can_post_review or
-                is_auto_approved_and_current_and_user_can_content_review or
-                is_unlisted_and_user_can_review_unlisted)
+                reviewable_because_not_reserved_for_admins_or_user_is_admin and
+                (is_auto_approved_and_current_and_user_can_post_review or
+                 is_auto_approved_and_current_and_user_can_content_review or
+                 is_unlisted_and_user_can_review_unlisted))
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -385,8 +394,9 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                is_public_and_listed_and_user_can_post_review or
-                is_public_and_listed_and_user_can_content_review
+                reviewable_because_not_reserved_for_admins_or_user_is_admin and
+                (is_public_and_listed_and_user_can_post_review or
+                 is_public_and_listed_and_user_can_content_review)
             )
         }
         actions['reply'] = {
@@ -673,11 +683,17 @@ class ReviewBase(object):
                 self.request.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
-        """Give an addon super review."""
-        self.addon.update(admin_review=True)
+        """Mark an add-on as needing admin code or content review."""
+        needs_admin_property = (
+            'needs_admin_content_review' if self.content_review_only
+            else 'needs_admin_code_review')
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.addon, defaults={needs_admin_property: True})
 
-        if not self.version.was_auto_approved:
-            # Notify the developer unless the version has been auto-approved.
+        if not self.version.was_auto_approved and not self.content_review_only:
+            # If it wasn't auto-approved, and we're not doing a content review,
+            # notify the developer, to explain to them why the review is taking
+            # longer.
             self.notify_email(
                 'author_super_review',
                 u'Mozilla Add-ons: %s %s flagged for Admin Review')

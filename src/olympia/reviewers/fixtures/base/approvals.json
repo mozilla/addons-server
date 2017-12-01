@@ -73,7 +73,6 @@
             "status": 4,
             "description": null,
             "default_locale": "en-US",
-            "admin_review": false,
             "slug": "quick-link-to-the-world-url",
             "external_software": false,
             "name": 1276305,

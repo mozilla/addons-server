@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-08 05:33+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-30 00:37+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -778,7 +778,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
 
 msgid "Are you human?"
 msgstr "ადამიანი ხართ?"
@@ -1791,8 +1791,8 @@ msgstr "{addon} დამატებულია {collection}-ში."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ამოღებულია {collection}-იდან."
 
-msgid "{review} for {addon} written."
-msgstr "{addon}-ის {review} გაკეთებულია."
+msgid "{rating} for {addon} written."
+msgstr "{addon}-ის {rating} გაკეთებულია."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1825,17 +1825,17 @@ msgstr "{addon}-ის დებულება შეიცვალა."
 msgid "{addon} icon changed."
 msgstr "{addon}-ის ხატულა შეიცვალა."
 
-msgid "{review} for {addon} approved."
-msgstr "{addon}-ის {review} მიღებულია."
+msgid "{rating} for {addon} approved."
+msgstr "{addon}-ის {rating} მიღებულია."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{addon}-ის {review} მიიღო {user}-მა."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{addon}-ის {rating} მიიღო {user}-მა."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "{addon}-ის {review} მიმოხილვა წაიშალა."
+msgid "Review {rating} for {addon} deleted."
+msgstr "{addon}-ის {rating} მიმოხილვა წაიშალა."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{addon}-ის {review} წაშალა {user}-მა."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{addon}-ის {rating} წაშალა {user}-მა."
 
 msgid "Application max version for {version} updated."
 msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
@@ -1879,8 +1879,8 @@ msgstr "მომხმარებელი {user} შეიზღუდა."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "ადმინისტრატორმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
 
-msgid "{review} for {addon} updated."
-msgstr "{addon}-ის {review} განახლდა."
+msgid "{rating} for {addon} updated."
+msgstr "{addon}-ის {rating} განახლდა."
 
 msgid "{addon} reviewed."
 msgstr "{addon} განხილულია."
@@ -2048,15 +2048,6 @@ msgstr "მოდულები"
 msgid "Themes (Static)"
 msgstr "თემა (უძრავი)"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "იკითხეთ, მხოლოდ ამ დამატების გვერდზე, ან შემმუშავებლის პროფილში"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "თხოვნის გამოჩენა მას შემდეგ, რაც მომხმარებლები დაიწყებენ დამატების ჩამოტვირთვას"
-
-msgid "Ask before users can download this add-on"
-msgstr "თხოვნის გამოჩენა მანამ, სანამ მომხმარებლებს შეეძლებათ დამატების ჩამოტვირთვა"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "სხვა"
@@ -2083,7 +2074,7 @@ msgid "Appearance"
 msgstr "იერსახე"
 
 msgid "Bookmarks"
-msgstr "სანიშნეები"
+msgstr "სანიშნები"
 
 msgid "Download Management"
 msgstr "ჩამოტვირთვების მართვა"
@@ -2935,12 +2926,13 @@ msgid "Authors"
 msgstr "ავტორები"
 
 msgid "About author roles"
-msgstr "ავტორის მოვალეობის შესახებ"
+msgstr "მოვალეობები"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>დამატებას შეიძლება ჰყავდეს ნებისმიერი რაოდენობის თანაავტორი, რომლებიც შეასრულებენ 3 ძირითად მოვალეობას:</p> <ul> <li><b>მფლობელის:</b> რომელსაც შეეძლება დამატების გამოქვეყნებასთან დაკავშირებული "
 "საკითხების გადაწყვეტა, მათ შორის სხვა ავტორების დამატება და წაშლა</li> <li><b>შემმუშავებელის:</b> რომელსაც შეეძლება დამატების გამოქვეყნებასთან დაკავშირებული საკითხების გადაწყვეტა, გარდა ავტორების "
@@ -3535,6 +3527,10 @@ msgstr "ვერსიის ატვირთვა"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "გამოიყენეთ ქვემოთ მოცემული ველები დამატების პაკეტის ასატვირთად. ატვირთვის შემდეგ, ავტომატურად დაიწყება თქვენი ფაილის შემოწმება."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "ახალი თემის შექმნა"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "რომელ სისტემებთანაა თავსებადი?"
 
@@ -3549,6 +3545,91 @@ msgstr "ფაილის წარდგენა"
 
 msgid "Sign Add-on"
 msgstr "დამატების ხელმოწერა"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "თემა წაშლილია."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "თემის ლიცენზია"
+
+msgid "Select a header image for your Theme."
+msgstr "თემის ზედა სურათის არჩევა."
+
+msgid "required"
+msgstr "აუცილებელია"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "განთავსდება ზედა მარჯვენა მხარეს"
+
+msgid "Select a different header image"
+msgstr "სხვა ზედა სურათის არჩევა"
+
+msgid "Select colors for your Theme."
+msgstr "ფერების შერჩევა თემისთვის."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "ჩანართის სათაურის ფერი."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(არასავალდებულო)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "წინასწარ სანახავად, გადაატარეთ ისარი ზედ"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "თემები ზრდადი მოთხოვნით"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "ფაილის ატვირთვა"
 
 msgid "API Credentials"
 msgstr "API მონაცემები"
@@ -3976,9 +4057,6 @@ msgstr "ზედა სურათი"
 msgid "Footer"
 msgstr "ქვედა სურათი"
 
-msgid "Select colors for your Theme."
-msgstr "ფერების შერჩევა თემისთვის."
-
 msgid "Foreground Text"
 msgstr "წინა პლანზე არსებული ტექსტი"
 
@@ -4045,9 +4123,6 @@ msgstr "გაეცანით და გამოიწერეთ თქვ
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "ჩაერთეთ საუბრებში ჩვენს <a href=\"%(forum_url)s\">ფორუმებზე</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "თემის ზედა სურათის არჩევა."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 პიქსელი"
 
@@ -4056,12 +4131,6 @@ msgstr "არაუმეტეს 300 კბ"
 
 msgid "PNG or JPG"
 msgstr "PNG ან JPG"
-
-msgid "Aligned to top-right"
-msgstr "განთავსდება ზედა მარჯვენა მხარეს"
-
-msgid "Select a different header image"
-msgstr "სხვა ზედა სურათის არჩევა"
 
 msgid "Select a footer image for your Theme."
 msgstr "თემის ქვედა სურათის არჩევა."
@@ -4264,17 +4333,18 @@ msgstr "შეზღუდეთ რეკლამები {start_sub_heading}
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატურ მართვას და ა.შ."
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
-
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -4329,9 +4399,6 @@ msgstr "მანიფესტის ფაილის დამუშავ�
 
 msgid "Could not find an add-on ID."
 msgstr "დამატების ID ვერ მოიძებნა."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "დამატების ID უნდა შედგებოდეს 64, ან უფრო ნაკლები სიმბოლოსგან."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4503,7 +4570,7 @@ msgid "Would you like to know which websites you can trust?"
 msgstr "გსურთ იცოდეთ, რომელ ვებსაიტებს შეგიძლიათ ენდოთ?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks #1 დამატებაა სანიშნეებისთვის."
+msgstr "Xmarks #1 დამატებაა სანიშნებისთვის."
 
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "ვებგვერდისა და ტექსტის მთარგმნელი, ლექსიკონი და ა.შ!"
@@ -4618,498 +4685,6 @@ msgstr "მიიღეთ წვდომა ბრაუზერის უა
 
 msgid "Get Started"
 msgstr "მუშაობის დაწყება"
-
-msgid "United Arab Emirates Dirham"
-msgstr "არაბთა გაერთიანებული საამიროების დირჰამი"
-
-msgid "Afghanistan Afghani"
-msgstr "ავღანური ავღანი"
-
-msgid "Albania Lek"
-msgstr "ალბანური ლეკი"
-
-msgid "Armenia Dram"
-msgstr "სომხური დრამი"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "ჰოლანდიური ანტილების გულდენი"
-
-msgid "Angola Kwanza"
-msgstr "ანგოლური კვანზა"
-
-msgid "Argentina Peso"
-msgstr "არგენტინული პესო"
-
-msgid "Australia Dollar"
-msgstr "ავსტრალიური დოლარი"
-
-msgid "Aruba Guilder"
-msgstr "არუბული ფლორინი"
-
-msgid "Azerbaijan New Manat"
-msgstr "აზერბაიჯანული მანათი"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "ბოსნიისა და ჰერცოგოვინის კონვერტირებადი მარკა"
-
-msgid "Barbados Dollar"
-msgstr "ბარბადოსის დოლარი"
-
-msgid "Bangladesh Taka"
-msgstr "ბანგლადეშური ტაკა"
-
-msgid "Bulgaria Lev"
-msgstr "ბულგარული ლევი"
-
-msgid "Bahrain Dinar"
-msgstr "ბაჰრეინული დინარი"
-
-msgid "Burundi Franc"
-msgstr "ბურუნდის ფრანკი"
-
-msgid "Bermuda Dollar"
-msgstr "ბერმუდული დოლარი"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "ბრუნეიული დოლარი"
-
-msgid "Bolivia Boliviano"
-msgstr "ბოლივიური ბოლივიანო"
-
-msgid "Brazil Real"
-msgstr "ბრაზილიური რეალი"
-
-msgid "Bahamas Dollar"
-msgstr "ბაჰამური დოლარი"
-
-msgid "Bhutan Ngultrum"
-msgstr "ბუტანური ნგულტრუმი"
-
-msgid "Botswana Pula"
-msgstr "ბოტსვანური პულა"
-
-msgid "Belarus Ruble"
-msgstr "ბელორუსული რუბლი"
-
-msgid "Belize Dollar"
-msgstr "ბელიზური დოლარი"
-
-msgid "Canada Dollar"
-msgstr "კანადური დოლარი"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "კონგოური/კინშასას ფრანკი"
-
-msgid "Switzerland Franc"
-msgstr "შვეიცარიული ფრანკი"
-
-msgid "Chile Peso"
-msgstr "ჩილეური პესო"
-
-msgid "China Yuan Renminbi"
-msgstr "ჩინური იუანი (რენმინბი)"
-
-msgid "Colombia Peso"
-msgstr "კოლუმბიური პესო"
-
-msgid "Costa Rica Colon"
-msgstr "კოსტა-რიკული კოლონი"
-
-msgid "Cuba Convertible Peso"
-msgstr "კუბური კონვერტირებადი პესო"
-
-msgid "Cuba Peso"
-msgstr "კუბური პესო"
-
-msgid "Cape Verde Escudo"
-msgstr "კაბო-ვერდეს ესკუდო"
-
-msgid "Czech Republic Koruna"
-msgstr "ჩეხური კორუნა"
-
-msgid "Djibouti Franc"
-msgstr "ჯიბუტური ფრანკი"
-
-msgid "Denmark Krone"
-msgstr "დანიური კრონა"
-
-msgid "Dominican Republic Peso"
-msgstr "დომინიკური პესო"
-
-msgid "Algeria Dinar"
-msgstr "ალჟირული დინარი"
-
-msgid "Egypt Pound"
-msgstr "ეგვიპტური გირვანქა"
-
-msgid "Eritrea Nakfa"
-msgstr "ერიტრეას ნაკფა"
-
-msgid "Ethiopia Birr"
-msgstr "ეთიოპიური ბირი"
-
-msgid "Euro Member Countries"
-msgstr "ევროკავშირის წევრი ქვეყნები"
-
-msgid "Fiji Dollar"
-msgstr "ფიჯის დოლარი"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "ფოლკლენდის (მალვინის) კუნძულების გირვანქა"
-
-msgid "United Kingdom Pound"
-msgstr "გაერთიანებული სამეფოს გირვანქა"
-
-msgid "Georgia Lari"
-msgstr "ქართული ლარი"
-
-msgid "Guernsey Pound"
-msgstr "გერნსული გირვანქა"
-
-msgid "Ghana Cedi"
-msgstr "განას სედი"
-
-msgid "Gibraltar Pound"
-msgstr "გიბრალტარული გირვანქა"
-
-msgid "Gambia Dalasi"
-msgstr "გამბიური დალასი"
-
-msgid "Guinea Franc"
-msgstr "გვინეის ფრანკი"
-
-msgid "Guatemala Quetzal"
-msgstr "გვატემალის კეტცალი"
-
-msgid "Guyana Dollar"
-msgstr "გაიანური დოლარი"
-
-msgid "Hong Kong Dollar"
-msgstr "ჰონკონგის დოლარი"
-
-msgid "Honduras Lempira"
-msgstr "ჰონდურასული ლემპირა"
-
-msgid "Croatia Kuna"
-msgstr "ხორვატიული კუნა"
-
-msgid "Haiti Gourde"
-msgstr "ჰაიტური გურდი"
-
-msgid "Hungary Forint"
-msgstr "უნგრული ფორინტი"
-
-msgid "Indonesia Rupiah"
-msgstr "ინდონეზიური რუპია"
-
-msgid "Israel Shekel"
-msgstr "ისრაელური შეკელი"
-
-msgid "Isle of Man Pound"
-msgstr "მენური გირვანქა"
-
-msgid "India Rupee"
-msgstr "ინდური რუპია"
-
-msgid "Iraq Dinar"
-msgstr "ერაყული დინარი"
-
-msgid "Iran Rial"
-msgstr "ირანული რიალი"
-
-msgid "Iceland Krona"
-msgstr "ისლანდიური კრონი"
-
-msgid "Jersey Pound"
-msgstr "ჯერსის გირვანქა"
-
-msgid "Jamaica Dollar"
-msgstr "იამაიკური დოლარი"
-
-msgid "Jordan Dinar"
-msgstr "იორდანიის დინარი"
-
-msgid "Japan Yen"
-msgstr "იაპონური იენი"
-
-msgid "Kenya Shilling"
-msgstr "კენიური შილინგი"
-
-msgid "Kyrgyzstan Som"
-msgstr "ყირგიზული სომი"
-
-msgid "Cambodia Riel"
-msgstr "კამბოჯური რიელი"
-
-msgid "Comoros Franc"
-msgstr "კომორის ფრანკი"
-
-msgid "Korea (North) Won"
-msgstr "ჩრდილოეთ კორეული ვონი"
-
-msgid "Korea (South) Won"
-msgstr "სამხრეთ კორეული ვონი"
-
-msgid "Kuwait Dinar"
-msgstr "ქუვეითური დინარი"
-
-msgid "Cayman Islands Dollar"
-msgstr "კაიმანის დოლარი"
-
-msgid "Kazakhstan Tenge"
-msgstr "ყაზახური ტენგი"
-
-msgid "Laos Kip"
-msgstr "ლაოსური კიპი"
-
-msgid "Lebanon Pound"
-msgstr "ლიბანური გირვანქა"
-
-msgid "Sri Lanka Rupee"
-msgstr "შრი-ლანკური რუპია"
-
-msgid "Liberia Dollar"
-msgstr "ლიბერიული დოლარი"
-
-msgid "Lesotho Loti"
-msgstr "ლესოთოს ლოტი"
-
-msgid "Lithuania Litas"
-msgstr "ლიტვური ლიტი"
-
-msgid "Latvia Lat"
-msgstr "ლატვიური ლატი"
-
-msgid "Libya Dinar"
-msgstr "ლიბიური დინარი"
-
-msgid "Morocco Dirham"
-msgstr "მაროკოული დირჰემი"
-
-msgid "Moldova Leu"
-msgstr "მოლდოვური ლეუ"
-
-msgid "Madagascar Ariary"
-msgstr "მადაგასკარის არიარი"
-
-msgid "Macedonia Denar"
-msgstr "მაკედონური დინარი"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "მიანმური (ბირმა) კიატი"
-
-msgid "Mongolia Tughrik"
-msgstr "მონღოლური ტუგრუგი"
-
-msgid "Macau Pataca"
-msgstr "მაკაოს პატაცა"
-
-msgid "Mauritania Ouguiya"
-msgstr "მავრიტანული ოუგუია"
-
-msgid "Mauritius Rupee"
-msgstr "მავრიკის რუპია"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "მალდივური (მალდივის კუნძულები) რუპია"
-
-msgid "Malawi Kwacha"
-msgstr "მალავური კვანჩა"
-
-msgid "Mexico Peso"
-msgstr "მექსიკური პესო"
-
-msgid "Malaysia Ringgit"
-msgstr "მალაიზიური რინგიტი"
-
-msgid "Mozambique Metical"
-msgstr "მოზამბიკური მეტიკალი"
-
-msgid "Namibia Dollar"
-msgstr "ნამიბიური დოლარი"
-
-msgid "Nigeria Naira"
-msgstr "ნიგერიული ნაირა"
-
-msgid "Nicaragua Cordoba"
-msgstr "ნიკარაგუის კორდობა"
-
-msgid "Norway Krone"
-msgstr "ნორვეგიული კრონი"
-
-msgid "Nepal Rupee"
-msgstr "ნეპალური რუპია"
-
-msgid "New Zealand Dollar"
-msgstr "ახალ ზელანდიური დოლარი"
-
-msgid "Oman Rial"
-msgstr "ომანური რიალი"
-
-msgid "Panama Balboa"
-msgstr "პანამური ბალბოა"
-
-msgid "Peru Nuevo Sol"
-msgstr "პერუს ნუევო სოლი"
-
-msgid "Papua New Guinea Kina"
-msgstr "პაპუა-ახალი გვინეის კინა"
-
-msgid "Philippines Peso"
-msgstr "ფილიპინური პესო"
-
-msgid "Pakistan Rupee"
-msgstr "პაკისტანური რუპია"
-
-msgid "Poland Zloty"
-msgstr "პოლონური ზლოტი"
-
-msgid "Paraguay Guarani"
-msgstr "პარაგვაული გუარანი"
-
-msgid "Qatar Riyal"
-msgstr "კატარული რიალი"
-
-msgid "Romania New Leu"
-msgstr "რუმინული ლეუ"
-
-msgid "Serbia Dinar"
-msgstr "სერბული დინარი"
-
-msgid "Russia Ruble"
-msgstr "რუსული რუბლი"
-
-msgid "Rwanda Franc"
-msgstr "რუანდის ფრანკი"
-
-msgid "Saudi Arabia Riyal"
-msgstr "საუდის რიალი"
-
-msgid "Solomon Islands Dollar"
-msgstr "სოლომონის კუნძულების დოლარი"
-
-msgid "Seychelles Rupee"
-msgstr "სეიშელის რუპია"
-
-msgid "Sudan Pound"
-msgstr "სუდანური გირვანქა"
-
-msgid "Sweden Krona"
-msgstr "შვედური კრონა"
-
-msgid "Singapore Dollar"
-msgstr "სინგაპურის დოლარი"
-
-msgid "Saint Helena Pound"
-msgstr "წმინდა ელენეს კუნძულის გირვანქა"
-
-msgid "Sierra Leone Leone"
-msgstr "სიერა-ლეონეს ლეონე"
-
-msgid "Somalia Shilling"
-msgstr "სომალის შილინგი"
-
-msgid "Seborga Luigino"
-msgstr "სებორგას ლუიჯინო"
-
-msgid "Suriname Dollar"
-msgstr "სურინამული დოლარი"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "სან-ტომე და პრინსიპის დობრა"
-
-msgid "El Salvador Colon"
-msgstr "სალვადორული კოლონი"
-
-msgid "Syria Pound"
-msgstr "სირიული გირვანქა"
-
-msgid "Swaziland Lilangeni"
-msgstr "სვაზილენდური ლილანგენი"
-
-msgid "Thailand Baht"
-msgstr "ტაილანდური ბაჰტი"
-
-msgid "Tajikistan Somoni"
-msgstr "ტაჯიკური სომონი"
-
-msgid "Turkmenistan Manat"
-msgstr "თურქმენული მანათი"
-
-msgid "Tunisia Dinar"
-msgstr "ტუნისის დინარი"
-
-msgid "Tonga Pa'anga"
-msgstr "ტონგას პა'ანგა"
-
-msgid "Turkey Lira"
-msgstr "თურქული ლირა"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "ტრინიდადი და ტობაგოს დოლარი"
-
-msgid "Tuvalu Dollar"
-msgstr "ტუვალუს დოლარი"
-
-msgid "Taiwan New Dollar"
-msgstr "ახალი ტაივანური დოლარი"
-
-msgid "Tanzania Shilling"
-msgstr "ტანზანიური შილინგი"
-
-msgid "Ukraine Hryvna"
-msgstr "უკრაინული გრივნა"
-
-msgid "Uganda Shilling"
-msgstr "უგანდური შილინგი"
-
-msgid "United States Dollar"
-msgstr "ამერიკული დოლარი"
-
-msgid "Uruguay Peso"
-msgstr "ურუგვაის პესო"
-
-msgid "Uzbekistan Som"
-msgstr "უზბეკური სომი"
-
-msgid "Venezuela Bolivar"
-msgstr "ვენესუელური ბოლივარი"
-
-msgid "Viet Nam Dong"
-msgstr "ვიეტნამური დონგი"
-
-msgid "Vanuatu Vatu"
-msgstr "ვანუატუს ვატუ"
-
-msgid "Samoa Tala"
-msgstr "სამოური ტალა"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "ცენტრალური აფრიკის ფინანსური თანამშრომლობის (BEAC) ფრანკი"
-
-msgid "East Caribbean Dollar"
-msgstr "აღმოსავლეთ კარიბული დოლარი"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "საერთაშორისო სავალუტო ფონდის (სსფ) სპეციალური სასესხო უფლებები"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "დასავლეთ აფრიკის ფინანსური თანამშრომლობის (BCEAO) ფრანკი "
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "წყნარი ოკეანის კუნძულების (CFP) ფრანკი"
-
-msgid "Yemen Rial"
-msgstr "იემენის რიალი"
-
-msgid "South Africa Rand"
-msgstr "სამხრეთ აფრიკული რანდი"
-
-msgid "Zambia Kwacha"
-msgstr "ზამბიური კვაჩა"
-
-msgid "Zimbabwe Dollar"
-msgstr "ზიმბაბვეს დოლარი"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla-ს დამატების შესახებ"
@@ -6028,7 +5603,7 @@ msgid "Write reviews for add-ons which you have not personally used."
 msgstr "იმ დამატებებზე მიმოხილვის გაკეთება, რომელიც თავად არ გამოგიყენებიათ."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "უპატივცემულო, უხამსი ფორმების, ან სიძულვილის ენის გამოყენება."
+msgstr "უპატივცემულო, უხამსი ფორმით მიმართვა, ან სიძულვილის ენის გამოყენება."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "HTML კოდების, ბმულების, სკრიპტების დართვა. მიმოხილვები უნდა შედგებოდეს მხოლოდ ტექსტისგან."
@@ -6187,6 +5762,167 @@ msgstr "გირჩევთ, მის ნაცვლად გამოი�
 msgid "Read more about Sunbird"
 msgstr "შეიტყვეთ მეტი Sunbird-ის შესახებ"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "%s-ის მიმოხილვები"
+
+msgid "Review History for this Addon"
+msgstr "დამატების მიმოხილვების ისტორია"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "%d შეფასება 5 ვარსკვლავიდან"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
+
+msgid "Other (please specify)"
+msgstr "სხვა (გთხოვთ მიუთითოთ)"
+
+msgid "This field is required."
+msgstr "ამ ველის შევსება აუცილებელია."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "განსახილველი დამატების შეცვლა, არ შეგიძლიათ."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "მიმოხილვაზე გაკეთებულ გამოხმაურებაზე, პასუხის გაცემა აღარ შეგიძლიათ."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "განსახილველი დამატების ვერსიის შეცვლა, არ შეგიძლიათ."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "დამატების ეს ვერსია არ არსებობს, ან არაა საჯარო."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "საკუთარ დამატებაზე მიმოხილვის დატოვება, არ შეგიძლიათ."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
+
+msgid "Add a review for {0}"
+msgstr "{0}-ზე მიმოხილვის დატოვება"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
+"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან \"ცუდია"
+"\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
+"მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
+"შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
+"გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "{0}-ის მიმოხილვაზე პასუხი"
+
+msgid "Write a Reply"
+msgstr "დაწერეთ პასუხი"
+
+msgid "Submit"
+msgstr "წარდგენა"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ან <a href=\"%(url)s\">გაუქმება</a>"
+
+msgid "Please select a reason:"
+msgstr "გთხოვთ მიუთითოთ მიზეზი:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "%(user)s <b>(შემმუშავებელი)</b> %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "ეს მიმოხილვა გაკეთებულია დამატების წინა ვერსიის შესახებ ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
+
+msgid "Flagged for review"
+msgstr "ჩანიშნულია განსახილველად"
+
+msgid "Report this review"
+msgstr "მოხსენება ამ მიმოხილვაზე"
+
+msgid "Reply to review"
+msgstr "პასუხი მიმოხილვაზე"
+
+msgid "Edit reply"
+msgstr "პასუხის ჩასწორება"
+
+msgid "Edit review"
+msgstr "მიმოხილვის ჩასწორება"
+
+msgid "Delete reply"
+msgstr "პასუხის წაშლა"
+
+msgid "Delete review"
+msgstr "მიმოხილვის წაშლა"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: მიმოხილვა"
+
+msgid "Reviews for {0}"
+msgstr "მიმოხილვები {0}-ის შესახებ"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "{0} შემმუშავებლის პასუხი"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
+
+msgid "No reviews found."
+msgstr "მიმოხილვები ვერ მოიძებნა."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>საშუალო</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "დაწერეთ მიმოხილვა"
+
+msgid "Be the first to write a review."
+msgstr "დატოვეთ მიმოხილვა პირველმა."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} მიმოხილვა"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "{0} შეფასება 5 ვარსკვლავიდან"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
+
 msgid "Approved reviews"
 msgstr "დამოწმებული მიმოხილვები"
 
@@ -6227,14 +5963,14 @@ msgstr "დამატება, მიმომხილველი, ან �
 msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
 
+msgid "Needs Admin Code Review"
+msgstr "კოდი საჭიროებს ადმინისტრატორის მიმოხილვას"
+
 msgid "yes"
 msgstr "დიახ"
 
 msgid "no"
 msgstr "არა"
-
-msgid "Admin Flag"
-msgstr "ადმინისტრატორის მონიშვნა"
 
 msgid "Add-on Types"
 msgstr "დამატების ტიპი"
@@ -6257,7 +5993,10 @@ msgstr "პროგრამები:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "შეტყობინება, მომავალში ამ დამატების განახლებისას. (მომდევნო განახლებებზე აღარ შეიქმნება ელფოსტის წერილები)"
 
-msgid "Clear Admin Review Flag"
+msgid "Clear Admin Code Review Flag"
+msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
+
+msgid "Clear Admin Content Review Flag"
 msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Is more info requested?"
@@ -6283,11 +6022,8 @@ msgstr "განხილვის გაგრძელება; მონი
 msgid "Skip for now"
 msgstr "ამჟამად გამოტოვება"
 
-msgid "Delete review"
-msgstr "მიმოხილვის წაშლა"
-
-msgid "Admin Review"
-msgstr "ადმინისტრატორის მიმოხილვა"
+msgid "Needs Admin Content Review"
+msgstr "დამატების შიგთავსი საჭიროებს ადმინისტრაოტრის მიმოხილვას"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack დამატება"
@@ -6403,14 +6139,78 @@ msgstr "შიგთავსის მიღება"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "ამის შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "ახალი დამატებები (5 დღეზე ნაკლები)"
+msgid "Legacy Add-ons"
+msgstr "მოძველებული დამატებები"
 
-msgid "Passable (5 to 10 days)"
-msgstr "დამაკმაყოფილებელი (5-დან 10 დღემდე)"
+msgid "New Add-ons ({0})"
+msgstr "ახალი დამატება ({0})"
 
-msgid "Overdue (Over 10 days)"
-msgstr "ვადაგადაცილებული (10 დღეზე მეტი)"
+msgid "Add-on Updates ({0})"
+msgstr "დამატების განახლებები ({0})"
+
+msgid "Add-on Review Log"
+msgstr "დამატების განხილვის აღრიცხვა"
+
+msgid "Signed Beta Files Log"
+msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "მიმომხილველის სახელმძღვანელო"
+
+msgid "Auto-Approved Add-ons"
+msgstr "ავტომატურად მიღებული დამატებები"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "ავტომატურად მიღებული დამატებები ({0})"
+
+msgid "Content Review"
+msgstr "შიგთავსის განხილვა"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "შიგთავსის განხილვა ({0})"
+
+msgid "New Themes ({0})"
+msgstr "ახალი თემა ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "თემის განახლებები ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "ჩანიშნული თემები ({0})"
+
+msgid "Themes Review Log"
+msgstr "თემის მიმოხილვის ჩანაწერი"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "წაშლილი თემის ჩანაწერი"
+
+msgid "User Ratings Moderation"
+msgstr "მომხმარებელთა შეფასების შემოწმება"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "შეფასებები, დაყოვნებული შესამოწმებლად ({0})"
+
+msgid "Moderated Review Log"
+msgstr "შემოწმებული განხილვის აღრიცხვა"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "შემმოწმებლის მოვალეობები:"
+
+msgid "Unlisted Add-ons"
+msgstr "გამოუქვეყნებელი დამატებები"
+
+msgid "All Unlisted Add-ons"
+msgstr "ყველა გამოუქვეყნებელი დამატება"
+
+msgid "Announcement"
+msgstr "გამოცხადება"
+
+msgid "Update message of the day"
+msgstr "დღის შეტყობინების განახლება"
 
 msgid "An unknown error occurred"
 msgstr "უცნობი შეცდომა"
@@ -6462,14 +6262,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "მიღების ბოლო თარიღი"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "მიღების შესახებ გადაწყვეტილებები, ბოლო ავტომატური განხილვის შემდგომ"
-
 msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
 
-msgid "Bad User Reviews ({num})"
-msgstr "მომხმარებლის ცუდი მიმოხილვები ({num})"
+msgid "Bad User Ratings ({num})"
+msgstr "მომხმარებლის უარყოფითი მიმოხილვები ({num})"
 
 msgid "More about this add-on"
 msgstr "მეტი ამ დამატების შესახებ"
@@ -6480,47 +6277,9 @@ msgstr "სურათების გალერეა"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "აქ არაფერია სანახავი! შემქმნელმა დაწვრილებითი ინფორმაცია არ მოაყოლა."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "მიმომხილველის ხელსაწყოების გვერდზე დაბრუნება"
-
-msgid "Queues"
-msgstr "რიგი"
-
-msgid "New Add-ons"
-msgstr "ახალი დამატებები"
-
-msgid "Updates"
-msgstr "განახლებები"
-
-msgid "Moderated Reviews"
-msgstr "შემოწმებული მიმოხილვები"
-
-msgid "Auto Approved Add-ons"
-msgstr "ავტომატურად მიღებული დამატებები"
-
-msgid "Content Review"
-msgstr "შიგთავსის განხილვა"
-
-msgid "Unlisted Queues"
-msgstr "გამოუქვეყნებლების რიგი"
-
-msgid "All Unlisted Add-ons"
-msgstr "ყველა გამოუქვეყნებელი დამატება"
-
-msgid "Logs"
-msgstr "აღრიცხვა"
-
-msgid "Add-on Review Log"
-msgstr "დამატების განხილვის აღრიცხვა"
-
-msgid "Moderated Review Log"
-msgstr "შემოწმებული განხილვის აღრიცხვა"
-
-msgid "Signed Beta Files Log"
-msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
-
-msgid "Announcement"
-msgstr "გამოცხადება"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6563,42 +6322,6 @@ msgstr "მიმოხილვა მონიშნულია წასა�
 msgid "Undelete"
 msgstr "წაშლილის აღდგენა"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "ახალი დამატებები ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "განახლებები ({num})"
-
-msgid "Current waiting times:"
-msgstr "ლოდინის მიმდინარე დროები:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} დამატება"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "სულ მიმოხილვები"
-
-msgid "Reviews This Month"
-msgstr "მიმოხილვები ამ თვეში"
-
-msgid "New Reviewers"
-msgstr "ახალი მიმომხილველები"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "თქვენ ხართ #{0} ადგილზე, {1} მიმოხილვით"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "შემოწმებული მიმოხილვები ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "მიმომხილველთა ჩამონათვალი"
 
@@ -6610,9 +6333,6 @@ msgstr "ადგილი"
 
 msgid "Score"
 msgstr "ქულა"
-
-msgid "Update message of the day"
-msgstr "დღის შეტყობინების განახლება"
 
 msgid "Save"
 msgstr "შენახვა"
@@ -6631,6 +6351,9 @@ msgstr "თქვენი მიმოხილვები"
 
 msgid "By {user_name}"
 msgstr "{user_name}"
+
+msgid "Total Reviews"
+msgstr "სულ მიმოხილვები"
 
 msgid "Active Contributors"
 msgstr "მოქმედი მოხალისეები"
@@ -6863,23 +6586,14 @@ msgstr "მიზეზი"
 msgid "There are currently no reviews."
 msgstr "ამ დროისთვის მიმოხილვები არაა."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} თემა განსახილველია "
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} ჩანიშნულია განსახილველად"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} განახლება"
-
 msgid "Flagged Themes"
 msgstr "ჩანიშნული თემები"
 
 msgid "Theme Review Queue"
 msgstr "განსახილველად გადასაცემი თემების რიგი"
+
+msgid "Queues"
+msgstr "რიგი"
 
 msgid "Review Options"
 msgstr "მიმოხილვის პარამეტრები"
@@ -6986,170 +6700,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ავტომატურად მიღებული დამატებები ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "შიგთავსის განხილვა ({0})"
-
 msgid "Flagged"
 msgstr "ჩანიშნული"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s-ის მიმოხილვები"
-
-msgid "Review History for this Addon"
-msgstr "დამატების მიმოხილვების ისტორია"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "%d შეფასება 5 ვარსკვლავიდან"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
-
-msgid "Other (please specify)"
-msgstr "სხვა (გთხოვთ მიუთითოთ)"
-
-msgid "This field is required."
-msgstr "ამ ველის შევსება აუცილებელია."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "განსახილველი დამატების შეცვლა, არ შეგიძლიათ."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "მიმოხილვაზე გაკეთებულ გამოხმაურებაზე, პასუხის გაცემა აღარ შეგიძლიათ."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "განსახილველი დამატების ვერსიის შეცვლა, არ შეგიძლიათ."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "დამატების ეს ვერსია არ არსებობს, ან არაა საჯარო."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "საკუთარ დამატებაზე მიმოხილვის დატოვება, არ შეგიძლიათ."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
-
-msgid "Add a review for {0}"
-msgstr "{0}-ზე მიმოხილვის დატოვება"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
-"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან \"ცუდია"
-"\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
-"მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
-"შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
-"გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "{0}-ის მიმოხილვაზე პასუხი"
-
-msgid "Write a Reply"
-msgstr "დაწერეთ პასუხი"
-
-msgid "Submit"
-msgstr "წარდგენა"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ან <a href=\"%(url)s\">გაუქმება</a>"
-
-msgid "Please select a reason:"
-msgstr "გთხოვთ მიუთითოთ მიზეზი:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(user)s <b>(შემმუშავებელი)</b> %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "ეს მიმოხილვა გაკეთებულია დამატების წინა ვერსიის შესახებ ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
-
-msgid "Flagged for review"
-msgstr "ჩანიშნულია განსახილველად"
-
-msgid "Report this review"
-msgstr "მოხსენება ამ მიმოხილვაზე"
-
-msgid "Reply to review"
-msgstr "პასუხი მიმოხილვაზე"
-
-msgid "Edit reply"
-msgstr "პასუხის ჩასწორება"
-
-msgid "Edit review"
-msgstr "მიმოხილვის ჩასწორება"
-
-msgid "Delete reply"
-msgstr "პასუხის წაშლა"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: მიმოხილვა"
-
-msgid "Reviews for {0}"
-msgstr "მიმოხილვები {0}-ის შესახებ"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0} შემმუშავებლის პასუხი"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
-
-msgid "No reviews found."
-msgstr "მიმოხილვები ვერ მოიძებნა."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>საშუალო</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "დაწერეთ მიმოხილვა"
-
-msgid "Be the first to write a review."
-msgstr "დატოვეთ მიმოხილვა პირველმა."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} მიმოხილვა"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "{0} შეფასება 5 ვარსკვლავიდან"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
+msgid "Updates"
+msgstr "განახლებები"
 
 msgid "Maximum query length exceeded."
 msgstr "მოთხოვნის სიგრძე აჭარბებს ზღვარს."
@@ -7280,6 +6835,9 @@ msgstr "ვერსია უკვე არსებობს."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID-ის გამოტოვება, მხოლოდ WebExtensions-ის შემთხვევაშია შესაძლებელი"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "გთხოვთ, მიუთითოთ დამატების GUID მანიფესტის ფაილში, თუ არ აღემატება 64 სიმბოლოს."
+
 msgid "Invalid GUID in URL"
 msgstr "უმართებულო GUID URL ბმულში"
 
@@ -7309,9 +6867,6 @@ msgstr "სისტემა"
 
 msgid "by Add-on Status"
 msgstr "დამატების მდგომარეობით"
-
-msgid "Contributions"
-msgstr "შემოწირულობები"
 
 msgid "Subscribers"
 msgstr "გამომწერები"
@@ -7426,9 +6981,6 @@ msgstr "მონაცემები არაა ხელმისაწვ�
 msgid "This dashboard is currently <b>public</b>."
 msgstr "ეს გვერდი ამჟამად <b>საჯაროა</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "შემოწირულობის შესახებ სტატისტიკური მონაცემები <b>არაა საჯარო</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "ეს გვერდი ამჟამად <b>პირადია</b>."
 
@@ -7452,9 +7004,6 @@ msgstr "პროგრამის გამოყენება თარი�
 
 msgid "Collections Created by Date"
 msgstr "კრებულები შექმნის თარიღის მიხედვით"
-
-msgid "Contributions by Date"
-msgstr "შემოწირულობები თარიღის მიხედვით"
 
 msgid "Downloaded by Date"
 msgstr "ჩამოტვირთვები თარირის მიხედვით"
@@ -7673,9 +7222,6 @@ msgstr "გაეცანით <a class=\"mobile-link\" href=\"#\">მობ�
 msgid "Android Add-ons"
 msgstr "Android დამატებები"
 
-msgid "required"
-msgstr "აუცილებელია"
-
 msgid "Required fields"
 msgstr "აუცილებელი ველები"
 
@@ -7746,9 +7292,6 @@ msgstr "უცნობი მომხმარებელი {id}"
 msgid "My Mobile Add-ons"
 msgstr "ჩემი დამატებები მობილურისთვის"
 
-msgid "an add-on developer thanks me for a contribution"
-msgstr "დამატების შემმუშავებლის მიერ მადლობის გადახდისას, წვლილის შეტანისთვის"
-
 msgid "an add-on developer replies to my review"
 msgstr "დამატების შემმუშავებლის მიერ, ჩემს მიმოხილვაზე გამოხმაურებისას"
 
@@ -7804,7 +7347,7 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "ცვლილებში აღმოჩნდა შეცდომები. გთხოვთ შეასწოროთ და ხელახლა გადმოაგზავნოთ."
 
 msgid "User reported."
-msgstr "მოხსენება გაგზავნილია მომხმარებლის შესახებ."
+msgstr "მომხმარებლის შესახებ მოხსენება გაგზავნილია."
 
 msgid "new"
 msgstr "ახალი"
@@ -7949,28 +7492,28 @@ msgid "Themes Artist"
 msgstr "თემების მხატვარი"
 
 msgid "About me"
-msgstr "ჩემ შესახებ"
+msgstr "მონაცემები"
 
 msgid "In a little more detail..."
 msgstr "ცოტა უფრო ვრცლად..."
 
 msgid "Add-ons I've created"
-msgstr "ჩემ მიერ შექმნილი დამატებები"
+msgstr "ამ შემმუშავებლის, სხვა დამატებები"
 
 msgid "My Most Popular Themes"
-msgstr "ჩემი ყველაზე მეტად სასურველი თემები"
+msgstr "შემმუშავებლის შექმნილი, ყველაზე მეტად სასურველი თემები"
 
 msgid "Themes I've created"
-msgstr "ჩემ მიერ შექმნილი თემები"
+msgstr "ამ შემმუშავებლის მიერ თემები"
 
 msgid "Followed by Me"
-msgstr "ჩემი გამომწერები"
+msgstr "შემმუშავებლის გამომწერები"
 
 msgid "Created by Me"
-msgstr "ჩემ მიერ შექმნილი"
+msgstr "ამ შემმუშავებლის მიერ შექმნილი"
 
 msgid "My Reviews"
-msgstr "ჩემი მიმოხილვები"
+msgstr "ამ შემმუშავებლის მიმოხილვები"
 
 msgid "No add-on reviews yet."
 msgstr "მიმოხილვები, ჯერ არ გაკეთებულა."

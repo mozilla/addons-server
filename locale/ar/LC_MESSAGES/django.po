@@ -9,17 +9,19 @@
 # Ellery <linux.anas@gmail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version:  messages\n"
+"Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2013-10-24 09:38+0300\n"
-"Last-Translator: Ellery <linux.anas@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-25 14:55+0000\n"
+"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
-"Language: \n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
 msgstr ""
@@ -113,17 +115,29 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -133,6 +147,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -146,6 +164,10 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
@@ -262,12 +284,20 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "لا تنزيلات خلال أسبوع"
 msgstr[1] "تنزيل واحد في الأسبوع"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "لا مستخدمين"
 msgstr[1] "مستخدم واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "Requires Restart"
@@ -277,19 +307,27 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "متوافق مع فَيَرفُكس ٥٧ فأعلى"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "لا تنزيلات"
+msgstr[0] "أقل من تنزيل واحد أسبوعيا"
 msgstr[1] "تنزيل واحد أسبوعيا"
+msgstr[2] "تنزيلان أسبوعيا"
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] "{0} تنزيل أسبوعيا"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "لا مستخدمين"
 msgstr[1] "مستخدم واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "by"
 msgstr "من"
@@ -340,6 +378,10 @@ msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "لا مستخدمين"
 msgstr[1] "مستخدم واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Hover to Preview"
 msgstr "قم بالحومان بالمؤشر للمعاينة"
@@ -367,6 +409,10 @@ msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "المستخدمين اليوميين"
 msgstr[1] "المستخدمين اليوميين"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -445,6 +491,10 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "عرض جميع التعليقات لهذه الإضافة"
 msgstr[1] "عرض جميع التعليقات لهذه الإضافة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Tags"
 msgstr "وسوم"
@@ -492,12 +542,20 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "إضافات أخرى من %(author)s"
 msgstr[1] "إضافات أخرى من هؤلاء المطورين"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "لا تعليقات"
 msgstr[1] "تعليق واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "View statistics"
 msgstr "عرض الإحصائيات"
@@ -631,6 +689,10 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "لا تقييمات"
 msgstr[1] "شاهد جميع تعليقات المستخدمين"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "This add-on has not yet been reviewed."
 msgstr "هذه الإضافة لم يُعلّق عليها بعد."
@@ -680,6 +742,10 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "لا تنزيلات"
 msgstr[1] "تنزيل واحد أسبوعيا"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Not Reviewed"
 msgstr "غير مراجعة"
@@ -1110,6 +1176,10 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "لا متابعين"
 msgstr[1] "متابع واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "About this Collection"
 msgstr "عَنْ هذه المجموعة"
@@ -1141,12 +1211,20 @@ msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "لا سِمات في هذه المجموعة"
 msgstr[1] "سِمة واحدة في هذه المجموعة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "لا إضافات في هذه المجموعة"
 msgstr[1] "إضافة واحدة في هذه المجموعة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Go"
 msgstr "إذهب"
@@ -1189,12 +1267,20 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "لا إضافات"
 msgstr[1] "إضافة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "لا متابعين"
 msgstr[1] "متابع واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1205,6 +1291,10 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "لا متابعين"
 msgstr[1] "متابع واحد أسبوعيا"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1213,6 +1303,10 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "لا متابعين"
 msgstr[1] "متابع واحد شهريا"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1223,6 +1317,10 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "لا متابعين"
 msgstr[1] "متابع واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "by {0}"
 msgstr "بواسطة {0}"
@@ -1528,6 +1626,10 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "لا إضافات"
 msgstr[1] "إضافة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Search Extensions"
 msgstr "امتدادات البحث"
@@ -1608,6 +1710,10 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "لا امتدادات أخرى"
 msgstr[1] "اعرض جميع الامتدادات الأخرى في %(name)s &raquo;"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "{0} Themes"
 msgstr "سِمات {0}"
@@ -1684,11 +1790,19 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "View all"
 msgstr ""
@@ -1841,7 +1955,7 @@ msgstr ""
 msgid "{addon} removed from {collection}."
 msgstr ""
 
-msgid "{review} for {addon} written."
+msgid "{rating} for {addon} written."
 msgstr ""
 
 #. L10n: {0} is a category name.
@@ -1875,16 +1989,16 @@ msgstr ""
 msgid "{addon} icon changed."
 msgstr ""
 
-msgid "{review} for {addon} approved."
+msgid "{rating} for {addon} approved."
 msgstr ""
 
-msgid "{user} approved {review} for {addon}."
+msgid "{user} approved {rating} for {addon}."
 msgstr ""
 
-msgid "Review {review} for {addon} deleted."
+msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-msgid "{user} deleted {review} for {addon}."
+msgid "{user} deleted {rating} for {addon}."
 msgstr ""
 
 msgid "Application max version for {version} updated."
@@ -1929,7 +2043,7 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-msgid "{review} for {addon} updated."
+msgid "{rating} for {addon} updated."
 msgstr ""
 
 msgid "{addon} reviewed."
@@ -2111,15 +2225,6 @@ msgstr "مُلحقات"
 #, fuzzy
 msgid "Themes (Static)"
 msgstr "تفاصيل السِمة"
-
-msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
-
-msgid "Ask after users start downloading this add-on"
-msgstr ""
-
-msgid "Ask before users can download this add-on"
-msgstr ""
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -3002,6 +3107,10 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> مستخدمين"
 msgstr[1] "<b>{0}</b> مستخدمين"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "Edit Information"
@@ -3022,8 +3131,8 @@ msgstr ""
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3095,6 +3204,10 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
@@ -3103,6 +3216,10 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "Contributions URL"
@@ -3462,6 +3579,10 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "لا مستخدمين نشطين"
 msgstr[1] "مستخدم واحد نشط"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "Submit a New File"
@@ -3634,6 +3755,10 @@ msgstr "رفع إصدارة جديدة"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "أنشئ سمتك الخاصة بنفسك"
+
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3650,6 +3775,90 @@ msgstr "تقديم إضافة جديدة"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "استخدام الإضافات"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "الإضافات التي أنشأتها"
+
+msgid "Theme generator"
+msgstr ""
+
+msgid "Select a header image for your Theme."
+msgstr ""
+
+msgid "required"
+msgstr "مطلوب"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr ""
+
+msgid "Select a different header image"
+msgstr ""
+
+#, fuzzy
+msgid "Select colors for your Theme."
+msgstr "اختر التصنيف الذي يصف السِمة أفضل وصف."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+msgid "The color of toolbar text."
+msgstr ""
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(اختياري)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "قم بالحومان بالمؤشر للمعاينة"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "السِمات القادمة"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "رفع إصدارة جديدة"
 
 msgid "API Credentials"
 msgstr ""
@@ -3802,6 +4011,10 @@ msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -4107,10 +4320,6 @@ msgstr ""
 msgid "Footer"
 msgstr ""
 
-#, fuzzy
-msgid "Select colors for your Theme."
-msgstr "اختر التصنيف الذي يصف السِمة أفضل وصف."
-
 msgid "Foreground Text"
 msgstr ""
 
@@ -4175,9 +4384,6 @@ msgstr ""
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr ""
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 بكسل"
 
@@ -4186,12 +4392,6 @@ msgstr "300 ك.بايت كحد أقصى"
 
 msgid "PNG or JPG"
 msgstr "PNG أو JPG"
-
-msgid "Aligned to top-right"
-msgstr ""
-
-msgid "Select a different header image"
-msgstr ""
 
 msgid "Select a footer image for your Theme."
 msgstr ""
@@ -4392,6 +4592,10 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "لا أخطاء"
 msgstr[1] "خطأ واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
@@ -4399,6 +4603,10 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "لا تحذيرات"
 msgstr[1] "تحذير واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4406,16 +4614,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4470,9 +4678,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -4762,498 +4967,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
-msgstr ""
-
-msgid "United Arab Emirates Dirham"
-msgstr ""
-
-msgid "Afghanistan Afghani"
-msgstr ""
-
-msgid "Albania Lek"
-msgstr ""
-
-msgid "Armenia Dram"
-msgstr ""
-
-msgid "Netherlands Antilles Guilder"
-msgstr ""
-
-msgid "Angola Kwanza"
-msgstr ""
-
-msgid "Argentina Peso"
-msgstr ""
-
-msgid "Australia Dollar"
-msgstr ""
-
-msgid "Aruba Guilder"
-msgstr ""
-
-msgid "Azerbaijan New Manat"
-msgstr ""
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr ""
-
-msgid "Bangladesh Taka"
-msgstr ""
-
-msgid "Bulgaria Lev"
-msgstr ""
-
-msgid "Bahrain Dinar"
-msgstr ""
-
-msgid "Burundi Franc"
-msgstr ""
-
-msgid "Bermuda Dollar"
-msgstr ""
-
-msgid "Brunei Darussalam Dollar"
-msgstr ""
-
-msgid "Bolivia Boliviano"
-msgstr ""
-
-msgid "Brazil Real"
-msgstr ""
-
-msgid "Bahamas Dollar"
-msgstr ""
-
-msgid "Bhutan Ngultrum"
-msgstr ""
-
-msgid "Botswana Pula"
-msgstr ""
-
-msgid "Belarus Ruble"
-msgstr ""
-
-msgid "Belize Dollar"
-msgstr ""
-
-msgid "Canada Dollar"
-msgstr ""
-
-msgid "Congo/Kinshasa Franc"
-msgstr ""
-
-msgid "Switzerland Franc"
-msgstr ""
-
-msgid "Chile Peso"
-msgstr ""
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr ""
-
-msgid "Costa Rica Colon"
-msgstr ""
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr ""
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr ""
-
-msgid "Djibouti Franc"
-msgstr ""
-
-msgid "Denmark Krone"
-msgstr ""
-
-msgid "Dominican Republic Peso"
-msgstr ""
-
-msgid "Algeria Dinar"
-msgstr ""
-
-msgid "Egypt Pound"
-msgstr ""
-
-msgid "Eritrea Nakfa"
-msgstr ""
-
-msgid "Ethiopia Birr"
-msgstr ""
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr ""
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr ""
-
-msgid "Georgia Lari"
-msgstr ""
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr ""
-
-msgid "Gibraltar Pound"
-msgstr ""
-
-msgid "Gambia Dalasi"
-msgstr ""
-
-msgid "Guinea Franc"
-msgstr ""
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr ""
-
-msgid "Hong Kong Dollar"
-msgstr ""
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr ""
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr ""
-
-msgid "Iraq Dinar"
-msgstr ""
-
-msgid "Iran Rial"
-msgstr ""
-
-msgid "Iceland Krona"
-msgstr ""
-
-msgid "Jersey Pound"
-msgstr ""
-
-msgid "Jamaica Dollar"
-msgstr ""
-
-msgid "Jordan Dinar"
-msgstr ""
-
-msgid "Japan Yen"
-msgstr ""
-
-msgid "Kenya Shilling"
-msgstr ""
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr ""
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr ""
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr ""
-
-msgid "Liberia Dollar"
-msgstr ""
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr ""
-
-msgid "Latvia Lat"
-msgstr ""
-
-msgid "Libya Dinar"
-msgstr ""
-
-msgid "Morocco Dirham"
-msgstr ""
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr ""
-
-msgid "Malaysia Ringgit"
-msgstr ""
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr ""
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr ""
-
-msgid "Nepal Rupee"
-msgstr ""
-
-msgid "New Zealand Dollar"
-msgstr ""
-
-msgid "Oman Rial"
-msgstr ""
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr ""
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr ""
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr ""
-
-msgid "Russia Ruble"
-msgstr ""
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr ""
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr ""
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr ""
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr ""
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr ""
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr ""
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr ""
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr ""
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr ""
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr ""
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -6205,6 +5918,184 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr ""
 
+#, python-format
+msgid "Reviews for %s"
+msgstr ""
+
+msgid "Review History for this Addon"
+msgstr ""
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "مقيمة بـ %d من 5 نجوم"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "سبب آخر (يُرجى التحديد)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "مطلوب عنوان بريد إلكتروني."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "عندما يكتب شخصا ما تعليقا على إضافتي"
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr ""
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "شكرًا؛ لقد عُلّم هذا التعليق انتظارًا لموافقة المحرّر."
+
+msgid "Add a review for {0}"
+msgstr "إضافة تعليقًا لـ {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "رد على تعليق {0}"
+
+msgid "Write a Reply"
+msgstr "اكتب ردًا"
+
+msgid "Submit"
+msgstr "أرسِل"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "أو <a href=\"%(url)s\">ألغِ</a>"
+
+msgid "Please select a reason:"
+msgstr "اختر سببًا من فضلك:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "بواسطة %(user)s <b> (مطوّر)</b> في %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "هذا التعليق كان على إصدارة سابقة من هذه الإضافة ({0})"
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "لا تعليقات سابقة لهذا المستخدم"
+msgstr[1] "هذا المستخدم لديه <a href=\"%(user_review_url)s\">تعليق سابق</a> على هذه الإضافة."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "هذا المستخدم لديه <a href=\"%(user_review_url)s\">تعليقات أخرى</a> على هذه الإضافة."
+
+msgid "Flagged for review"
+msgstr ""
+
+msgid "Report this review"
+msgstr "إبلاغ عن هذا التعليق"
+
+msgid "Reply to review"
+msgstr "رد على التعليق"
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "تعديل التعليق"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "احذف التعليق"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: التعليقات"
+
+msgid "Reviews for {0}"
+msgstr "التعليقات على {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "لا تعليقات على هذه الإضافة"
+msgstr[1] "تعليق واحد على هذه الإضافة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "رد من المطور باسم {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "لا تعليقات على %(addon)s"
+msgstr[1] "تعليق واحد على %(addon)s بواسطة %(user)s"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+msgid "No reviews found."
+msgstr "لم يُعثر على تعليقات."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>المعدّل</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "اكتب تعليقًا جديدا"
+
+msgid "Be the first to write a review."
+msgstr "كُن الأول واكتب تعليقًا."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "لا تعليقات"
+msgstr[1] "تعليق واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+msgid "Rated {0} out of 5 stars"
+msgstr "مقيمة بـ {0} من 5 نجوم"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "مقيمة بـ %(rating)s من 5 نجوم"
+
 msgid "Approved reviews"
 msgstr "التعليقات الموافق عليها"
 
@@ -6246,14 +6137,15 @@ msgstr "تعليقات المطور"
 msgid "Search by add-on name / author email"
 msgstr "بحث باسم الإضافة أو البريد الإلكتروني للمؤلف"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "أضِف تعليقًا"
+
 msgid "yes"
 msgstr "نعم"
 
 msgid "no"
 msgstr "لا"
-
-msgid "Admin Flag"
-msgstr ""
 
 msgid "Add-on Types"
 msgstr "أنواع الإضافات"
@@ -6276,8 +6168,12 @@ msgstr "التطبيقات:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "نبّهني عند وجود تحديث لهذه الإضافة (التحديثات اللاحقة لن تتسبب بإرسال رسالة)."
 
-msgid "Clear Admin Review Flag"
+msgid "Clear Admin Code Review Flag"
 msgstr ""
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "غير مراجعة"
 
 #, fuzzy
 msgid "Is more info requested?"
@@ -6303,11 +6199,9 @@ msgstr "إبقاء التعليق؛ وإزالة الأعلام"
 msgid "Skip for now"
 msgstr ""
 
-msgid "Delete review"
-msgstr "احذف التعليق"
-
-msgid "Admin Review"
-msgstr ""
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "غير مراجعة"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6362,18 +6256,30 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "أقل من دقيقة"
 msgstr[1] "دقيقة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "أقل من ساعة"
 msgstr[1] "ساعة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Last Review"
 msgstr ""
@@ -6436,13 +6342,100 @@ msgstr "المحتويات"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-msgid "New Add-ons (Under 5 days)"
-msgstr "إضافات جديدة (أقل من 5 أيام)"
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "إضافاتي"
 
-msgid "Passable (5 to 10 days)"
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "إضافات {0}"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "آخر تحديث في {0}"
+
+msgid "Add-on Review Log"
 msgstr ""
 
-msgid "Overdue (Over 10 days)"
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "إرشادات التعليقات"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "إضافات أندرويد"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "إضافات {0}"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "غير مراجعة"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "التعليق على {0}"
+msgstr[1] "التعليق على {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "إضافات {0}"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "آخر تحديث في {0}"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "السِمات المتميزة"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "تعليق مُفصّل"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "التعليقات المحذوفة"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "أضِف تعليقًا"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "إضافات أندرويد"
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Announcement"
+msgstr ""
+
+msgid "Update message of the day"
 msgstr ""
 
 msgid "An unknown error occurred"
@@ -6461,6 +6454,10 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
@@ -6498,15 +6495,12 @@ msgstr "اتفاقية ترخيص المستخدم"
 msgid "Last Approval Date"
 msgstr "المحدّثة مؤخرًا"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "بلاغات الإساءة"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "تعليقات المستخدمين"
 
 msgid "More about this add-on"
@@ -6519,50 +6513,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "عودة إلى الصفحة الرئيسية لمركز المطورين"
-
-msgid "Queues"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-ons"
-msgstr "مزيد من الإضافات"
-
-msgid "Updates"
-msgstr ""
-
-msgid "Moderated Reviews"
-msgstr ""
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "إضافات أندرويد"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "غير مراجعة"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Logs"
-msgstr ""
-
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6606,49 +6558,6 @@ msgstr ""
 msgid "Undelete"
 msgstr ""
 
-#, fuzzy
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "إضافات جديدة (أقل من 5 أيام)"
-msgstr[1] "إضافات جديدة (أقل من 5 أيام)"
-
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "آخر تحديث في {0}"
-msgstr[1] "آخر تحديث في {0}"
-
-msgid "Current waiting times:"
-msgstr ""
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
-msgid "{0}%%"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "كل التعليقات"
-
-msgid "Reviews This Month"
-msgstr ""
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "غير مراجعة"
-
-msgid "You're #{0} with {1} reviews"
-msgstr ""
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Reviewer Leaderboard"
 msgstr ""
 
@@ -6659,9 +6568,6 @@ msgid "Rank"
 msgstr ""
 
 msgid "Score"
-msgstr ""
-
-msgid "Update message of the day"
 msgstr ""
 
 msgid "Save"
@@ -6681,6 +6587,9 @@ msgstr ""
 
 msgid "By {user_name}"
 msgstr ""
+
+msgid "Total Reviews"
+msgstr "كل التعليقات"
 
 msgid "Active Contributors"
 msgstr ""
@@ -6920,25 +6829,13 @@ msgstr ""
 msgid "There are currently no reviews."
 msgstr ""
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Flagged Themes"
 msgstr ""
 
 msgid "Theme Review Queue"
+msgstr ""
+
+msgid "Queues"
 msgstr ""
 
 msgid "Review Options"
@@ -7037,17 +6934,29 @@ msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] "إضافات {0}"
 msgstr[1] "إضافات {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "آخر تحديث في {0}"
 msgstr[1] "آخر تحديث في {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -7056,174 +6965,16 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "إضافات {0}"
 msgstr[1] "إضافات {0}"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "التعليق على {0}"
-msgstr[1] "التعليق على {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Flagged"
 msgstr ""
 
-#, python-format
-msgid "Reviews for %s"
+msgid "Updates"
 msgstr ""
-
-msgid "Review History for this Addon"
-msgstr ""
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "مقيمة بـ %d من 5 نجوم"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "سبب آخر (يُرجى التحديد)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "مطلوب عنوان بريد إلكتروني."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "عندما يكتب شخصا ما تعليقا على إضافتي"
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "شكرًا؛ لقد عُلّم هذا التعليق انتظارًا لموافقة المحرّر."
-
-msgid "Add a review for {0}"
-msgstr "إضافة تعليقًا لـ {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "رد على تعليق {0}"
-
-msgid "Write a Reply"
-msgstr "اكتب ردًا"
-
-msgid "Submit"
-msgstr "أرسِل"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "أو <a href=\"%(url)s\">ألغِ</a>"
-
-msgid "Please select a reason:"
-msgstr "اختر سببًا من فضلك:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "بواسطة %(user)s <b> (مطوّر)</b> في %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "هذا التعليق كان على إصدارة سابقة من هذه الإضافة ({0})"
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "لا تعليقات سابقة لهذا المستخدم"
-msgstr[1] "هذا المستخدم لديه <a href=\"%(user_review_url)s\">تعليق سابق</a> على هذه الإضافة."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "هذا المستخدم لديه <a href=\"%(user_review_url)s\">تعليقات أخرى</a> على هذه الإضافة."
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Report this review"
-msgstr "إبلاغ عن هذا التعليق"
-
-msgid "Reply to review"
-msgstr "رد على التعليق"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "تعديل التعليق"
-
-msgid "Delete reply"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: التعليقات"
-
-msgid "Reviews for {0}"
-msgstr "التعليقات على {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "لا تعليقات على هذه الإضافة"
-msgstr[1] "تعليق واحد على هذه الإضافة"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "رد من المطور باسم {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "لا تعليقات على %(addon)s"
-msgstr[1] "تعليق واحد على %(addon)s بواسطة %(user)s"
-
-msgid "No reviews found."
-msgstr "لم يُعثر على تعليقات."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>المعدّل</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "اكتب تعليقًا جديدا"
-
-msgid "Be the first to write a review."
-msgstr "كُن الأول واكتب تعليقًا."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "لا تعليقات"
-msgstr[1] "تعليق واحد"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "مقيمة بـ {0} من 5 نجوم"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "مقيمة بـ %(rating)s من 5 نجوم"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7316,6 +7067,10 @@ msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "لا نتائج مطابقة"
 msgstr[1] "نتيجة واحدة مطابقة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Filter Results"
 msgstr "تصفية النتائج"
@@ -7364,6 +7119,9 @@ msgstr ""
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr ""
 
@@ -7393,10 +7151,6 @@ msgstr "حسب منصة التشغيل"
 
 msgid "by Add-on Status"
 msgstr "حسب إحصائيات الإضافة"
-
-#, fuzzy
-msgid "Contributions"
-msgstr "Contributions"
 
 msgid "Subscribers"
 msgstr ""
@@ -7511,9 +7265,6 @@ msgstr "لا بيانات متوفرة."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "هذه اللوحة <b>عامة</b> حاليا."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "إحصائيات المساهمة <b>خاصة</b> حاليا."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "هذه اللوحة <b>خاصة</b> حاليا."
 
@@ -7537,9 +7288,6 @@ msgstr "استخدام التطبيق حسب التاريخ"
 
 msgid "Collections Created by Date"
 msgstr "المجموعات المُنشئة حسب التاريخ"
-
-msgid "Contributions by Date"
-msgstr "المساهمات حسب التاريخ"
 
 msgid "Downloaded by Date"
 msgstr "التنزيلات حسب التاريخ"
@@ -7750,9 +7498,6 @@ msgstr "ألقِ نظرة على <a class=\"mobile-link\" href=\"#\">موقع إ
 msgid "Android Add-ons"
 msgstr "إضافات أندرويد"
 
-msgid "required"
-msgstr "مطلوب"
-
 msgid "Required fields"
 msgstr "حقول مطلوبة"
 
@@ -7822,9 +7567,6 @@ msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "إضافات هاتفي الذكي"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "عندما يشكرني مطور إضافة على مساهمتي"
 
 msgid "an add-on developer replies to my review"
 msgstr "عندما يرد مطور إضافة على تعليقي"
@@ -8119,12 +7861,20 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "لا إضافات"
 msgstr[1] "إضافة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Average rating of developer's add-ons"
 msgstr "معدّل التقييم من مطوري الإضافات"
@@ -8164,6 +7914,10 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "لا إصدارات أخرى"
 msgstr[1] "إصدارة واحدة"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Be careful with old versions!"
 msgstr "كُن حذرًا مع الإصدارات القديمة!"
