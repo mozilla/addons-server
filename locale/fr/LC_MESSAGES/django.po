@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 16:07+0000\n"
+"PO-Revision-Date: 2017-12-01 16:15+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2317,7 +2317,7 @@ msgid "Interface Customizations"
 msgstr "Personnalisation de l’interface"
 
 msgid "Language Support and Translation"
-msgstr "Support linguistique et traductions"
+msgstr "Prise en charge linguistique et traductions"
 
 msgid "Photos and Media"
 msgstr "Photos et multimédia"
@@ -2485,7 +2485,7 @@ msgid "Request More Info"
 msgstr "Demander plus d’informations"
 
 msgid "Flag"
-msgstr "Étiqueter"
+msgstr "Signaler"
 
 msgid "Duplicate"
 msgstr "Dupliquer"
@@ -2503,10 +2503,10 @@ msgid "Inappropriate or offensive content"
 msgstr "Contenu inapproprié ou choquant"
 
 msgid "Violence, war, or weaponry images"
-msgstr "Violence, guerre, ou image d’armes"
+msgstr "Violence, guerre, ou images d’armes"
 
 msgid "Nazi or other hate content"
-msgstr "Haine ethnique"
+msgstr "Contenu haineux"
 
 msgid "Defamatory content"
 msgstr "Contenu diffamatoire"
@@ -2561,7 +2561,7 @@ msgid "This add-on has an End-User License Agreement"
 msgstr "Ce module possède des conditions générales d’utilisation."
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Veuillez définir les conditions générales d’utilisation de votre module complémentaire :"
+msgstr "Veuillez définir les conditions générales d’utilisation de votre module :"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Ce module a une politique de confidentialité"
@@ -2594,10 +2594,10 @@ msgid "Do not list my add-on on this site"
 msgstr "Ne pas lister mon module sur ce site"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Cochez cette option si vous souhaitez distribuer votre module vous-même et qu’il doit uniquement être signé par Mozilla."
+msgstr "Cochez cette option si vous souhaitez distribuer votre module vous-même et qu’il doit seulement être signé par Mozilla."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Un fichier dont la version se termine par a|alpha|b|beta|pre|rc, éventuellement suivi par un nombre, est considéré comme beta."
+msgstr "Un fichier dont la version se termine par a|alpha|b|beta|pre|rc, éventuellement suivi par un nombre, est considéré comme bêta."
 
 msgid "You cannot upload any more files for this version."
 msgstr "Vous ne pouvez plus envoyer de fichier pour cette version."
@@ -2649,10 +2649,10 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Les catégories ne peuvent pas être changées lorsque votre module est mis en vedette."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "À partir de la version 53 de Firefox, les nouvelles extensions sur ce site ne peuvent être que des WebExtensions."
+msgstr "À partir de la version 53 de Firefox, les nouveaux modules de ce site ne peuvent être que des WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Les extensions considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
+msgstr "Les modules considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2678,7 +2678,7 @@ msgstr "Impossible de contacter l’hôte « %s »."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "La validation a généré trop d’erreurs et/ou d’avertissements, et %s messages ont été tronqués. Après avoir corrigé les messages visibles, vous pourrez voir les autres."
+msgstr "La validation a généré trop d’erreurs ou d’avertissements, et %s messages ont été tronqués. Après avoir corrigé les messages visibles, vous pourrez voir les autres."
 
 msgid "All My Add-ons"
 msgstr "Tous mes modules"
@@ -3098,7 +3098,7 @@ msgstr ""
 "pour les modules répertoriés."
 
 msgid "Default Locale"
-msgstr "Locale par défaut"
+msgstr "Langue par défaut"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -3851,10 +3851,10 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "HTML autorisé : %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr "Un peu de HTML supporté"
+msgstr "Un peu de HTML pris en charge."
 
 msgid "Remove this application"
-msgstr "Enlever cette application"
+msgstr "Retirer cette application"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
