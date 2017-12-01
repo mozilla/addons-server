@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 16:55+0000\n"
+"PO-Revision-Date: 2017-12-01 17:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3540,13 +3540,11 @@ msgstr "ფაილის წარდგენა"
 msgid "Sign Add-on"
 msgstr "დამატების ხელმოწერა"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "თემა წაშლილია."
+msgstr "თემის დამზადება"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "თემის ლიცენზია"
+msgstr "თემის დამამზადებელი"
 
 msgid "Select a header image for your Theme."
 msgstr "თემის ზედა სურათის არჩევა."
@@ -3555,10 +3553,10 @@ msgid "required"
 msgstr "აუცილებელია"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "სურათის სიმაღლე უნდა იყოს 200 პიქსელი"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG ან GIF (უმოძრაო)"
 
 msgid "Aligned to top-right"
 msgstr "განთავსდება ზედა მარჯვენა მხარეს"
@@ -3570,29 +3568,28 @@ msgid "Select colors for your Theme."
 msgstr "ფერების შერჩევა თემისთვის."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "ზედა ნაწილის ფონი (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "ზედა ნაწილის ფონის ფერი, გამოჩნდება იმ ადგილებში, რომელსაც სურათი არ დაფარავს."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "ზედა ნაწილის ტექსტი (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "ზედა ნაწილში არსებული წარწერის ფერი."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "ხელსაწყოთა ზოლის ფონი (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "ფონის ფერი გადასაადგილებელი ღილაკებისთვის, სანიშნების ზოლისა და არჩეული ჩანართისთვის."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "ხელსაწყოთა ზოლის ტექსტი (toolbar_text)."
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "ჩანართის სათაურის ფერი."
+msgstr "ტექსტის ფერი, ხელსაწყოთა ზოლზე."
 
 msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
