@@ -267,8 +267,8 @@ mozilla-logger==0.2 \
 natsort==5.1.1 \
     --hash=sha256:ee2f7715bf45a65cc1ab1d80360b00299102c7bf9d87757a27e14ddaafa57d0e \
     --hash=sha256:9ffbfb74bf3fc3905be1b9b052ed865675651e38fcd972ed1ed5c64a02f93cbd
-newrelic==2.96.0.80 \
-    --hash=sha256:fc7125f3caed2b678c884468c1416ab87e7150ede0d46c738fca08d88c8bd008
+newrelic==2.98.0.81 \
+    --hash=sha256:965214625392d41b9620c6928a6b10036bf1e2a2b797cdb6682650e95e1f616e
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
