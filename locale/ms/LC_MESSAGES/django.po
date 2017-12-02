@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 23:50+0000\n"
+"PO-Revision-Date: 2017-12-02 00:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3581,13 +3581,13 @@ msgid "The color of the text displayed in the header area."
 msgstr "Warna teks yang dipaparkan dalam kawasan pengepala."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Latar belakang kawasan bar alatan (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Teks kawasan bar alatan (toolbar_text)."
 
 #, fuzzy
 msgid "The color of toolbar text."
