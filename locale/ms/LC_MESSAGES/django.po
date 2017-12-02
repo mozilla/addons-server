@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-02 00:50+0000\n"
+"PO-Revision-Date: 2017-12-02 00:52+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6134,9 +6134,8 @@ msgstr "Log Semakan Add-on"
 msgid "Signed Beta Files Log"
 msgstr "Log Fail Beta Ditandatangani"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Panduan Penyemak"
+msgstr "Panduan Semakan"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Add-ons Auto-Lulus"
@@ -6163,9 +6162,8 @@ msgstr "Tema Ditanda ({0})"
 msgid "Themes Review Log"
 msgstr "Log Ulasan Tema"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Log tema dibuang"
+msgstr "Log Tema Dibuang"
 
 msgid "User Ratings Moderation"
 msgstr "Moderat Pengkadaran Pengguna"
@@ -6176,9 +6174,8 @@ msgstr "Pengkadaran Menunggu Moderat ({0})"
 msgid "Moderated Review Log"
 msgstr "Log Ulasan Moderat"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Tindakan moderat:"
+msgstr "Panduan Moderasi"
 
 msgid "Unlisted Add-ons"
 msgstr "Add-ons Tidak Disenaraikan"
@@ -6258,9 +6255,8 @@ msgstr "Galeri Imej"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Kembali ke halaman utama Alatan Penyemak"
+msgstr "Kembali ke papan pemuka Alatan Penyemak"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
