@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-02 00:30+0000\n"
+"PO-Revision-Date: 2017-12-02 00:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2924,15 +2924,14 @@ msgstr "Pengarang"
 msgid "About author roles"
 msgstr "Perihal peranan pengarang"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
 "make any changes</li> </ul>"
 msgstr ""
-"<p>Add-ons boleh diurus oleh beberapa pengarang dengan 3 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
-"pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain dan menguruskan bayaran</li> <li><b>Penyemak:</b> "
-"Boleh menyemak tetapan dan statistik add-on, tapi tidak boleh membuat apa-apa perubahan</li> </ul>"
+"<p>Add-ons boleh diuruskan oleh beberapa pengarang dengan 3 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
+"pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain</li> <li><b>Penyemak:</b> Boleh menyemak tetapan dan"
+" statistik add-on, tapi tidak boleh membuat apa-apa perubahan</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Maklumat Asas"
@@ -3520,9 +3519,8 @@ msgstr "Muat naik Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda. Selepas dimuat naik, satu siri ujian pengesahan automatik akan dijalankan kepada fail anda."
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Cipta Tema Baru"
+msgstr "Cipta Tema"
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform mana yang serasi dengan fail ini?"
@@ -3539,13 +3537,11 @@ msgstr "Hantar Fail"
 msgid "Sign Add-on"
 msgstr "Tandatangan Add-on"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Tema telah dibuang."
+msgstr "Jana tema"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Lesen Tema"
+msgstr "Penjana tema"
 
 msgid "Select a header image for your Theme."
 msgstr "Pilih imej pengepala untuk Tema anda."
@@ -3589,40 +3585,35 @@ msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih."
 msgid "Toolbar area text (toolbar_text)."
 msgstr "Teks kawasan bar alatan (toolbar_text)."
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "Ini warna untuk teks tab."
+msgstr "Warna untuk teks bar alatan."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Latar belakang kawasan medan bar alatan (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Warna latar belakang untuk medan dalam bar alatan, seperti bar URL."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Teks kawasan medan bar alatan (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Warna teks dalam medan bar alatan, seperti bar URL"
 
-#, fuzzy
 msgid "optional"
-msgstr "(pilihan)"
+msgstr "pilihan"
 
-#, fuzzy
 msgid "Browser Preview"
-msgstr "Legar untuk Previu"
+msgstr "Previu Pelayar"
 
 msgid "Back"
-msgstr ""
+msgstr "Undur"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Tema Penampilan"
+msgstr "Memuat naik Tema"
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "Muat naik Fail"
+msgstr "Muat naik Tema"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
@@ -4327,12 +4318,11 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Urus kata laluan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Permudah dan selaraskan pelbagai log masuk ke laman web anda dalam semua peranti dengan satu kata laluan untuk kesemuanya."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
