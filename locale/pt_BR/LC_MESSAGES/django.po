@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 17:41+0000\n"
+"PO-Revision-Date: 2017-12-03 16:36+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3722,40 +3722,40 @@ msgid "Select colors for your Theme."
 msgstr "Selecione as cores do seu tema."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Fundo da área do cabeçalho (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "A cor do fundo da área do cabeçalho, apresentada na parte do cabeçalho não coberta ou visível através da imagem do cabeçalho."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Área de texto do cabeçalho (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "A cor do texto apresentado na área do cabeçalho."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Fundo da área da barra de ferramentas (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Texto da área da barra de ferramentas (toolbar_text)."
 
 msgid "The color of toolbar text."
 msgstr "A cor do texto da barra de ferramentas."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Fundo da área do campo da barra de ferramentas (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "A cor de fundo para campos na barra de ferramentas, tais como a barra de URL."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Texto da área do campo da barra de ferramentas (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "A cor do texto em campos na barra de ferramentas, tais como a barra de URL"
 
 msgid "optional"
 msgstr "opcional"
@@ -3764,9 +3764,8 @@ msgstr "opcional"
 # return
 # the user to the add-on's review page (it only appears if the add-on is being
 # reviewed)
-#, fuzzy
 msgid "Browser Preview"
-msgstr "Passe para visualizar"
+msgstr "Visualização do navegador"
 
 msgid "Back"
 msgstr "Voltar"
