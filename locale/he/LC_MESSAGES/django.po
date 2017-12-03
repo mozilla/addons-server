@@ -5263,7 +5263,7 @@ msgid "A site to provide non-judgmental guidance on choosing a license for your 
 msgstr ""
 
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "תשובות לשאלות נפוצות"
 
 msgid "Using Add-ons"
 msgstr "שימוש בתוספות"
