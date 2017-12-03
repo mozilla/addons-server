@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 17:59+0000\n"
+"PO-Revision-Date: 2017-12-03 14:45+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3366,7 +3366,7 @@ msgstr "გამორთულია"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>ადგილი რიგში:</b> %(pos)s %(total)s-დან"
+msgstr "<b>ადგილი რიგში:</b> %(pos)s (%(total)s-იდან)"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
