@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-03 14:45+0000\n"
+"PO-Revision-Date: 2017-12-03 15:06+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2848,7 +2848,7 @@ msgstr "ბოლო მოქმედებები {0}-ზე"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> %(user)s მომხმარებლის მიერ"
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> - %(user)s"
 
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
@@ -2948,13 +2948,13 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "შეარჩიეთ მოკლე, უნიკალური URL დაბოლოება, თქვენი დამატებისთვის."
 
 msgid "View Listing"
-msgstr "ჩამონათვალის ნახვა"
+msgstr "იხილეთ საიტზე"
 
 msgid "Summary"
 msgstr "შეჯამება"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "ეს შეჯამება ნათლად აჩვენებს თქვენი დამატების რაობას. იგი გამოჩნდება ჩამონათვალსა და ძიებებში, მიმომხილველები კი გამოიყენებენ თქვენი დამატების გამოცდის დროს."
+msgstr "ეს შეჯამება ნათლად აჩვენებს თქვენი დამატების რაობას. იგი გამოჩნდება საიტსა და ძიებებში, მიმომხილველები კი გამოიყენებენ თქვენი დამატების გამოცდის დროს."
 
 msgid "Experimental?"
 msgstr "საცდელია?"
@@ -3177,7 +3177,7 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "გამოჩნდება დამატებების ჩამონათვალში, ძიების შედეგებსა და რჩეულ დამატებებში."
+msgstr "გამოჩნდება დამატებების გვერდზე, ძიების შედეგებსა და რჩეულ დამატებებში."
 
 #. The size of the icon
 msgid "64x64px"
@@ -3323,16 +3323,16 @@ msgid "Manage Status & Versions"
 msgstr "მდგომარეობისა & ვერსიების მართვა"
 
 msgid "View Add-on Listing"
-msgstr "დამატებების ჩამონათვალის ნახვა"
+msgstr "დამატებების ნახვა საიტზე"
 
 msgid "View Recent Changes"
 msgstr "ბოლო ცვლილებების ნახვა"
 
 msgid "Edit details about this theme's listing."
-msgstr "მონაცემების ჩასწორება, თემების ამ ჩამონათვალში."
+msgstr "მონაცემების ჩასწორება, თემების გვერდზე."
 
 msgid "Edit Listing"
-msgstr "ჩამონათვალის ჩასწორება"
+msgstr "გვერდის ჩასწორება"
 
 msgid "View the popularity of this theme over time."
 msgstr "ყველა დროის სასურველი გაფორმებების ნახვა."
@@ -3997,7 +3997,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "დაამატეთ ჭდეები, თემის უკეთ აღწერისთვის."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება ძიებაში და ჩამონათვალში, ასევე თქვენი თემის გვერდის დასაწყისში."
+msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება საიტზე, ძიებასა და ასევე თქვენი თემის გვერდის დასაწყისში."
 
 msgid "Theme License"
 msgstr "თემის ლიცენზია"
