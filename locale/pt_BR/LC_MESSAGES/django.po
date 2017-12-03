@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-03 23:11+0000\n"
+"PO-Revision-Date: 2017-12-03 23:16+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2888,7 +2888,7 @@ msgid "Community & Support"
 msgstr "Comunidade e Suporte"
 
 msgid "Add-ons Blog"
-msgstr "Blog dos Complementos"
+msgstr "Blog das extensões"
 
 msgid "Add-ons Forum"
 msgstr "Fórum das extensões"
@@ -3120,7 +3120,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr "Se você quiser solicitar contribuições monetárias de seus usuários, defina isso para uma página onde eles possam fazê-lo."
 
 msgid "Add-on Details"
-msgstr "Detalhes do complemento"
+msgstr "Detalhes da extensão"
 
 msgid "Add-on Details for {0}"
 msgstr "Detalhes de {0}"
@@ -3215,23 +3215,19 @@ msgid "Add-on Flags"
 msgstr "Propriedades"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Estas etiquetas são usadas para classificar os complementos. Isto só é\n"
-"                        válido para complementos listados."
+msgstr "Estas etiquetas são usadas para classificar as extensões. Isto só é relevante para extensões listadas."
 
 msgid "This add-on requires external software."
-msgstr "Esse complemento requer software externo."
+msgstr "Essa extensão requer software externo."
 
 msgid "View Source?"
 msgstr "Exibir código-fonte?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Se a fonte de seu add-on pode ser exibido em nosso\n"
-"                         visualizador online. Ele só é relevante para add-ons listados."
+msgstr "Se a fonte da sua extensão pode ser exibida no nosso visualizador online. Só é relevante para extensões listadas."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "O código-fonte desse complemento é visível publicamente."
+msgstr "O código-fonte dessa extensão é visível publicamente."
 
 msgid "No, this add-on's source code is not publicly viewable."
 msgstr "Não, o código-fonte desse complemento não é visível publicamente."
@@ -3289,13 +3285,13 @@ msgid "Remove this dependent add-on"
 msgstr "Remover dependência desse complemento"
 
 msgid "Enter the name of an add-on"
-msgstr "Insira o nome de um complemento"
+msgstr "Insira o nome de uma extensão"
 
 msgid "Add-on Media for {0}"
 msgstr "Mídia do complemento {0}"
 
 msgid "Add-on icon"
-msgstr "Ícone do complemento"
+msgstr "Ícone da extensão"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
