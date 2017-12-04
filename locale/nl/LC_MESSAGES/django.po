@@ -3418,7 +3418,7 @@ msgid "This add-on doesn't have any versions."
 msgstr "Deze add-on heeft geen versies."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Deze add-on heeft geen goedgekeurde versies, dus de publieke pagina’s (inclusief bètaversies) zijn verborgen."
+msgstr ""
 
 msgid "Status:"
 msgstr "Status:"
