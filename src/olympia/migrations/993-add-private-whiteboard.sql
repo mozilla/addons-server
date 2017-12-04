@@ -13,4 +13,4 @@ ALTER TABLE `review_whiteboard` ADD CONSTRAINT `addon_id_refs_id_3aa22f51` FOREI
 
 -- Move the whiteboard from the addons table to the new one
 INSERT INTO `review_whiteboard` (`created`, `modified`, `addon_id`, `private`, `public`)
-    SELECT `created`, `modified`, `id`, '', `whiteboard` FROM `addons` WHERE `whiteboard` != ''
+    SELECT `created`, `modified`, `id`, '', `whiteboard` FROM `addons` WHERE `whiteboard` != '';
