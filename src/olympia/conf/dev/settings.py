@@ -1,12 +1,8 @@
 import logging
 import os
-import environ
 import datetime
 
 from olympia.lib.settings_base import *  # noqa
-
-environ.Env.read_env(env_file='/etc/olympia/settings.env')
-env = environ.Env()
 
 # Allow addons-dev CDN for CSP.
 CSP_BASE_URI += (
