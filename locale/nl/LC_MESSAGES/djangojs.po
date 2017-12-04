@@ -399,7 +399,7 @@ msgid "Browse Listing Updated Sort"
 msgstr "Lijst doorbladeren gesorteerd op Bijgewerkt"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Lijst doorbladeren gesorteerd op Aankomend"
+msgstr ""
 
 msgid "Total Amount Contributed"
 msgstr "Totaal bijgedragen bedrag"

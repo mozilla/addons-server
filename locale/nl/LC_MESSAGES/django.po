@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 08:05+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2017-12-04 13:44+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +232,7 @@ msgid "See all »"
 msgstr "Alles bekijken »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr "Aankomende extensies"
+msgstr ""
 
 msgid "Featured Themes"
 msgstr "Aanbevolen thema’s"
@@ -480,7 +480,7 @@ msgstr "Onderdeel van deze collecties"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Overige add-ons door %(author)s"
+msgstr[0] ""
 msgstr[1] "Overige add-ons door deze schrijvers"
 
 #, python-format
@@ -1162,8 +1162,6 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Add-ons die u via de functie <b>Toevoegen aan favorieten</b> als favorieten markeert, verschijnen hieronder. Deze collectie is momenteel <b>publiek</b>, wat inhoudt dat iedereen hem kan zien. Als u "
-"hem wilt verbergen, klik dan op de onderstaande knop om de collectie privé te maken."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
@@ -1568,7 +1566,7 @@ msgid "Recently Updated Extensions"
 msgstr "Onlangs bijgewerkte extensies"
 
 msgid "Up & Coming Extensions"
-msgstr "Aankomende extensies"
+msgstr ""
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1594,7 +1592,7 @@ msgid "Recently Updated Complete Themes"
 msgstr "Onlangs bijgewerkte volledige thema’s"
 
 msgid "Up & Coming Complete Themes"
-msgstr "Aankomende volledige thema’s"
+msgstr ""
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1646,10 +1644,10 @@ msgstr ""
 "verkennen</a>"
 
 msgid "Up & Coming Themes"
-msgstr "Aankomende thema’s"
+msgstr ""
 
 msgid "View All Up & Coming"
-msgstr "Alle aankomende bekijken"
+msgstr ""
 
 msgid "No themes found"
 msgstr "Geen thema’s gevonden"
@@ -3633,40 +3631,40 @@ msgid "Select colors for your Theme."
 msgstr "Selecteer kleuren voor uw thema."
 
 msgid "Header area background (accentcolor)"
-msgstr "Achtergrond headergebied (accentkleur)"
+msgstr "Achtergrond van headergebied (accentkleur)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 msgstr "De kleur van de achtergrond van het headergebied, weergegeven in het deel van de header dat niet wordt afgedekt of zichtbaar is via de headerafbeelding."
 
 msgid "Header area text (textcolor)"
-msgstr "Tekst headergebied (textcolor)"
+msgstr "Tekst van headergebied (textcolor)"
 
 msgid "The color of the text displayed in the header area."
 msgstr "De kleur van de tekst die wordt weergegeven in het headergebied."
 
 msgid "Toolbar area background (toolbar)."
-msgstr "Achtergrond werkbalkgebied (toolbar)."
+msgstr "Achtergrond van werkbalkgebied (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
 msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr "Tekst werkbalkgebied (toolbar_text)."
+msgstr "Tekst van werkbalkgebied (toolbar_text)."
 
 msgid "The color of toolbar text."
-msgstr "De kleur van de tabbladtekst."
+msgstr "De kleur van werkbalktekst."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr "Achtergrond werkbalkveldgebied (toolbar_field)."
+msgstr "Achtergrond van werkbalkveldgebied (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "De achtergrondkleur voor velden in de werkbalk, zoals de adresbalk."
+msgstr "De achtergrondkleur voor velden in de werkbalk, zoals de URL-balk."
 
 msgid "Toolbar field area text (toolbar_field_text)."
 msgstr "Tekst werkbalkveldgebied (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "De kleur van tekst in velden in de werkbalk, zoals de adresbalk"
+msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk"
 
 msgid "optional"
 msgstr "optioneel"
