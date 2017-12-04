@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 07:27+0000\n"
+"PO-Revision-Date: 2017-12-04 07:46+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -3608,9 +3608,8 @@ msgstr "Add-on ondertekenen"
 msgid "Theme generate"
 msgstr "Thema aanmaken"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Thema-licentie"
+msgstr "Thema-generator"
 
 msgid "Select a header image for your Theme."
 msgstr "Selecteer een headerafbeelding voor uw thema."
@@ -3619,10 +3618,10 @@ msgid "required"
 msgstr "vereist"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Afbeeldingshoogte dient 200 pixels te zijn"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG of GIF (niet geanimeerd)"
 
 msgid "Aligned to top-right"
 msgstr "Rechtsboven uitgelijnd"
@@ -3634,29 +3633,28 @@ msgid "Select colors for your Theme."
 msgstr "Selecteer kleuren voor uw thema."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Achtergrond headergebied (accentkleur)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "De kleur van de achtergrond van het headergebied, weergegeven in het deel van de header dat niet wordt afgedekt of zichtbaar is via de headerafbeelding."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Tekst headergebied (tekstkleur)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "De kleur van de tekst die wordt weergegeven in het headergebied."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Achtergrond werkbalkgebied (werkbalk)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad."
 
 msgid "Toolbar area text (toolbar_text)."
 msgstr ""
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "Dit is de kleur van de tabbladtekst."
+msgstr "De kleur van de tabbladtekst."
 
 msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
@@ -3670,24 +3668,20 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar"
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(optioneel)"
+msgstr "optioneel"
 
-#, fuzzy
 msgid "Browser Preview"
-msgstr "Wijs aan voor voorbeeld"
+msgstr "Browservoorbeeld"
 
 msgid "Back"
 msgstr ""
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Aankomende thema’s"
+msgstr "Thema uploaden"
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "Bestand uploaden"
+msgstr "Thema uploaden"
 
 msgid "API Credentials"
 msgstr "API-referenties"
@@ -4401,9 +4395,8 @@ msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_headin
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Een lichtgewicht en effectieve adblocker. uBlock Origin hanteert duizenden inhoudsfilters zonder groot beslag op geheugenruimte te leggen."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
@@ -6226,7 +6219,6 @@ msgstr "Add-on-beoordelingslogboek"
 msgid "Signed Beta Files Log"
 msgstr "Logboek van ondertekende bètabestanden"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "Gids voor beoordelaars"
 
@@ -6256,7 +6248,6 @@ msgstr "Gemarkeerde thema’s ({0})"
 msgid "Themes Review Log"
 msgstr "Themabeoordelingslogboek"
 
-#, fuzzy
 msgid "Deleted Themes Log"
 msgstr "Logboek van verwijderde thema’s"
 
@@ -6269,9 +6260,8 @@ msgstr "Op moderatie wachtende waarderingen ({0})"
 msgid "Moderated Review Log"
 msgstr "Logboek van gemodereerde beoordelingen"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Evaluatie-acties:"
+msgstr "Gids voor moderatoren"
 
 msgid "Unlisted Add-ons"
 msgstr "Niet-vermelde add-ons"
@@ -6353,9 +6343,8 @@ msgstr "Afbeeldingengalerij"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Niets te zien hier!  De ontwikkelaar heeft geen details gegeven."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Terug naar de startpagina van Beoordelaarshulpmiddelen"
+msgstr "Terug naar het dashboard van Beoordelaarshulpmiddelen"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
