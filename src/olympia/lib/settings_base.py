@@ -14,6 +14,12 @@ from kombu import Queue
 
 env = environ.Env()
 
+ENVIRON_SETTINGS_FILE_PATH = '/etc/olympia/settings.env'
+
+if os.path.exists(ENVIRON_SETTINGS_FILE_PATH):
+    env.read_env(env_file=ENVIRON_SETTINGS_FILE_PATH)
+
+
 ALLOWED_HOSTS = [
     '.allizom.org',
     '.mozilla.org',
