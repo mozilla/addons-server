@@ -2532,32 +2532,6 @@ class TestAddonWatchDeveloperNotes(TestCase):
         addon.save()
         self.assertHasInfoSet(addon)
 
-    def test_has_info_update_whiteboard(self):
-        """Test saving with a change to whiteboard clears has_info_request."""
-        addon = self.make_addon()
-        self.assertHasInfoSet(addon)
-        addon.whiteboard = 'Info about things.'
-        addon.save()
-        self.assertHasInfoNotSet(addon)
-
-    def test_has_info_update_whiteboard_no_change(self):
-        """Test saving without a change to whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assertHasInfoSet(addon)
-        addon.whiteboard = 'Info about things.'
-        addon.save()
-        self.assertHasInfoSet(addon)
-
-    def test_has_info_whiteboard_removed(self):
-        """Test saving with an empty whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assertHasInfoSet(addon)
-        addon.whiteboard = ''
-        addon.save()
-        self.assertHasInfoSet(addon)
-
     def test_has_info_update_developer_comments(self):
         """Test saving with a change to developer_comments clears
         has_info_request."""

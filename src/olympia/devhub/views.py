@@ -47,6 +47,8 @@ from olympia.devhub.utils import process_validation
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
+from olympia.reviewers.forms import PublicWhiteboardForm
+from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.search.views import BaseAjaxSearch
@@ -308,9 +310,15 @@ def feed(request, addon_id=None):
 
 @dev_required
 def edit(request, addon_id, addon):
+    try:
+        whiteboard = Whiteboard.objects.get(pk=addon.pk)
+    except Whiteboard.DoesNotExist:
+        whiteboard = Whiteboard(pk=addon.pk)
+
     data = {
         'page': 'edit',
         'addon': addon,
+        'whiteboard': whiteboard,
         'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
@@ -847,7 +855,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'basic': addon_forms.AddonFormBasic,
             'details': addon_forms.AddonFormDetails,
             'support': addon_forms.AddonFormSupport,
-            'technical': addon_forms.AddonFormTechnical,
+            'technical': addon_forms.AddonFormTechnical
         })
         if not static_theme:
             models.update({'media': addon_forms.AddonFormMedia})
@@ -855,14 +863,15 @@ def addons_section(request, addon_id, addon, section, editable=False):
         models.update({
             'basic': addon_forms.AddonFormBasicUnlisted,
             'details': addon_forms.AddonFormDetailsUnlisted,
-            'technical': addon_forms.AddonFormTechnicalUnlisted,
+            'technical': addon_forms.AddonFormTechnicalUnlisted
         })
 
     if section not in models:
         raise http.Http404()
 
     tags, previews, restricted_tags = [], [], []
-    cat_form = dependency_form = None
+    cat_form = dependency_form = whiteboard_form = None
+    whiteboard = None
 
     if section == 'basic' and show_listed:
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
@@ -882,6 +891,16 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
             prefix='dependencies')
+
+    if section == 'technical':
+        try:
+            whiteboard = Whiteboard.objects.get(pk=addon.pk)
+        except Whiteboard.DoesNotExist:
+            whiteboard = Whiteboard(pk=addon.pk)
+
+        whiteboard_form = PublicWhiteboardForm(request.POST or None,
+                                               instance=whiteboard,
+                                               prefix='whiteboard')
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.slug
@@ -915,12 +934,19 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     dependency_form.save()
                 else:
                     editable = True
+            if whiteboard_form:
+                if whiteboard_form.is_valid():
+                    whiteboard_form.save()
+                else:
+                    editable = True
+
         else:
             form = models[section](instance=addon, request=request)
     else:
         form = False
 
     data = {'addon': addon,
+            'whiteboard': whiteboard,
             'show_listed_fields': show_listed,
             'form': form,
             'editable': editable,
@@ -929,6 +955,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'cat_form': cat_form,
             'preview_form': previews,
             'dependency_form': dependency_form,
+            'whiteboard_form': whiteboard_form,
             'valid_slug': valid_slug}
 
     return render(request, 'devhub/addons/edit/%s.html' % section, data)

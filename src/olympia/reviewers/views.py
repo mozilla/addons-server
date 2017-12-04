@@ -28,11 +28,11 @@ from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
-    AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
-    get_flags, get_reviewing_cache, get_reviewing_cache_key,
-    PerformanceGraph, RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
+    AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache, get_flags,
+    get_reviewing_cache, get_reviewing_cache_key, PerformanceGraph,
+    RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList)
+    ViewUnlistedAllList, Whiteboard)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
@@ -909,6 +909,14 @@ def review(request, addon, channel=None):
     else:
         flags = []
 
+    try:
+        whiteboard = Whiteboard.objects.get(pk=addon.pk)
+    except Whiteboard.DoesNotExist:
+        whiteboard = Whiteboard(pk=addon.pk)
+
+    whiteboard_form = forms.WhiteboardForm(instance=whiteboard,
+                                           prefix='whiteboard')
+
     user_changes_actions = [
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
@@ -927,7 +935,7 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,
-        whiteboard_form=forms.WhiteboardForm(instance=addon),
+        whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
 
@@ -1081,10 +1089,17 @@ def whiteboard(request, addon, channel):
     perform_review_permission_checks(
         request, addon, channel, content_review_only=content_review_only)
 
-    form = forms.WhiteboardForm(request.POST or None, instance=addon)
+    whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
+    form = forms.WhiteboardForm(request.POST or None,
+                                instance=whiteboard,
+                                prefix='whiteboard')
 
     if form.is_valid():
-        addon = form.save()
+        if whiteboard.private or whiteboard.public:
+            form.save()
+        else:
+            whiteboard.delete()
+
         return redirect('reviewers.review', channel_as_text,
                         addon.slug if addon.slug else addon.pk)
     raise PermissionDenied

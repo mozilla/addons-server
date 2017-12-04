@@ -18,6 +18,7 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import Whiteboard
 from olympia.versions.models import (
     Version, version_uploaded)
 from olympia.files.models import File, WebextPermission
@@ -1492,3 +1493,51 @@ class TestAutoApprovalSummary(TestCase):
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
+
+
+class TestWhiteboardWatchChange(TestCase):
+
+    def make_addon(self, whiteboard='', **kwargs):
+        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
+                      **kwargs)
+        addon.save()
+        addon.versions.create(has_info_request=True)
+        addon.versions.create(has_info_request=False)
+        addon.versions.create(has_info_request=True)
+
+        whiteboard = Whiteboard(pk=addon.pk, public=whiteboard)
+        whiteboard.save()
+
+        return addon
+
+    def assert_has_info_set(self, addon):
+        assert any([v.has_info_request for v in addon.versions.all()])
+
+    def assert_has_info_not_set(self, addon):
+        assert all([not v.has_info_request for v in addon.versions.all()])
+
+    def test_has_info_update_whiteboard(self):
+        """Test saving with a change to whiteboard clears has_info_request."""
+        addon = self.make_addon()
+        self.assert_has_info_set(addon)
+        addon.whiteboard.public = 'Info about things.'
+        addon.whiteboard.save()
+        self.assert_has_info_not_set(addon)
+
+    def test_has_info_update_whiteboard_no_change(self):
+        """Test saving without a change to whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assert_has_info_set(addon)
+        addon.whiteboard.public = 'Info about things.'
+        addon.whiteboard.save()
+        self.assert_has_info_set(addon)
+
+    def test_has_info_whiteboard_removed(self):
+        """Test saving with an empty whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assert_has_info_set(addon)
+        addon.whiteboard.public = ''
+        addon.whiteboard.save()
+        self.assert_has_info_set(addon)

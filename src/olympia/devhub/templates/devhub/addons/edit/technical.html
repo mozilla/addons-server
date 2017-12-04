@@ -153,9 +153,9 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.whiteboard }}
+                {{ whiteboard_form.public }}
               {% else %}
-                {% call empty_unless(addon.whiteboard) %}{{ addon.whiteboard }}{% endcall %}
+                {% call empty_unless(whiteboard.public) %}{{ whiteboard.public }}{% endcall %}
               {% endif %}
             </td>
           </tr>
