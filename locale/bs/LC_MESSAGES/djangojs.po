@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-11-21 10:37+0000\n"
-"Last-Translator: Nihad <nihad.suljic92@gmail.com>\n"
+"PO-Revision-Date: 2017-12-04 13:12+0000\n"
+"Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
@@ -93,8 +93,8 @@ msgstr[2] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaš dodatak je validiran bez grešaka i {0} poruke."
+msgstr[1] "Vaši dodaci jsu validirani bez grešaka i {0} poruka."
 msgstr[2] ""
 
 msgid "Your add-on was validated with no errors or warnings."
