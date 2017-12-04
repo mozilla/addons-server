@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-11-30 18:25+0000\n"
-"Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
+"PO-Revision-Date: 2017-12-04 20:42+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Vous avez activé un nouvel analyseur de code pour le traitement de votre module. Merci de rapporter tout problème sur GitHub."
+msgstr "Nous avons activé un nouvel analyseur de code pour le traitement de votre module. Merci de signaler tout problème sur GitHub."
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -80,7 +80,7 @@ msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue pendant la validation."
 
 msgid "Finished validating {0}"
-msgstr "Validation finie {0}"
+msgstr "Validation de {0} terminée"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "La validation de votre module n’a pu être effectuée à temps, il sera revu manuellement."
@@ -137,7 +137,7 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
 
 msgid "Sorry, no supported platform has been found."
-msgstr "Désolé, aucune plateforme supportée n’a été trouvée."
+msgstr "Désolé, aucune plateforme prise en charge n’a été trouvée."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
@@ -370,7 +370,7 @@ msgid "Collections"
 msgstr "Collections"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Catégorie d’accueil du caroussel des vedettes"
+msgstr "Catégorie d’accueil du carrousel des vedettes"
 
 msgid "Category Landing Top Rated"
 msgstr "Catégorie d’accueil des mieux notées"
@@ -477,7 +477,7 @@ msgstr "Applications du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Platformes, derniers {0} jours"
+msgstr "Plateformes, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -723,7 +723,7 @@ msgid "An email address is required."
 msgstr "Une adresse de courriel est nécessaire."
 
 msgid "You cannot add yourself as a contributor."
-msgstr "Vous ne pouvez pas vous rajouter comme contributeur."
+msgstr "Vous ne pouvez pas vous ajouter comme contributeur."
 
 msgid "You have already added that user."
 msgstr "Vous avez déjà ajouté cet utilisateur."

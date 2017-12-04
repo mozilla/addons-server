@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 16:31+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2017-11-30 20:51+0000\n"
+"Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2311,7 +2311,7 @@ msgid "Privacy and Security"
 msgstr "Vie privée et sécurité"
 
 msgid "Downloading and File Management"
-msgstr "Teléchargement et gestion de fichiers"
+msgstr "Téléchargement et gestion de fichiers"
 
 msgid "Interface Customizations"
 msgstr "Personnalisation de l’interface"
@@ -2921,7 +2921,7 @@ msgid "Activity"
 msgstr "Activité"
 
 msgid "Subscribe to this feed"
-msgstr "S’inscrire à ce flux"
+msgstr "S’abonner à ce flux"
 
 #, python-format
 msgid ""
@@ -2950,7 +2950,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr "Adapter les informations des applications ici permettra aux utilisateurs d’installer votre module, même si le manifeste d’installation dans le paquet indique que le module est incompatible."
 
 msgid "Supported Versions"
-msgstr "Versions supportées"
+msgstr "Versions prises en charge"
 
 msgid "Add Another Application&hellip;"
 msgstr "Ajouter une autre application…"
