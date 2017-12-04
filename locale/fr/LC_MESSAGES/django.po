@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 16:15+0000\n"
+"PO-Revision-Date: 2017-12-04 16:31+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -45,7 +45,7 @@ msgstr "Les images doivent être au format PNG ou JPG."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Merci d’utiliser des images de taille inférieure à %dMo."
+msgstr "Merci d’utiliser des images de taille inférieure à %d Mo."
 
 msgid "You are already logged in."
 msgstr "Vous êtes déjà connecté·e."
@@ -345,7 +345,7 @@ msgid "Add"
 msgstr "Ajouter"
 
 msgid "Edit"
-msgstr "Éditer"
+msgstr "Modifier"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -380,8 +380,8 @@ msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Si vous suspectez que ce module viole %(amo_policy_link_open)snos politiques%(link_close)s ou qu’il est sujet à des problèmes relatifs à la vie privée ou à la sécurité, merci de remplir le "
-"formulaire ci-dessous pour décrire vos préoccupations. Merci de ne pas utiliser ce formulaire pour autre chose."
+"Si vous suspectez que ce module viole %(amo_policy_link_open)s nos politiques%(link_close)s ou qu’il soulève des problèmes relatifs à la vie privée ou à la sécurité, merci de remplir le formulaire "
+"ci-dessous pour décrire vos préoccupations. Merci de ne pas utiliser ce formulaire pour autre chose."
 
 msgid "Send Report"
 msgstr "Envoyer un rapport"
@@ -567,7 +567,7 @@ msgid ""
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
 "Le canal Développement vous permet de tester une version expérimentale de ce module avant qu’il ne soit distribué au grand public. Une fois que la version de développement est installée, vous "
-"continuerez à recevoir les mises à jour de ce canal. Pour ne plus les recevoir, réinstaller la version par défaut depuis le lien ci-dessus."
+"continuerez à recevoir les mises à jour de ce canal. Pour ne plus les recevoir, réinstallez la version par défaut depuis le lien ci-dessus."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Attention :</strong> les versions de développement de ce module n’ont pas été revues par Mozilla."
@@ -781,7 +781,7 @@ msgstr ""
 "</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
-msgstr "Oops"
+msgstr "Oups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
