@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-10-17 08:19+0000\n"
+"PO-Revision-Date: 2017-12-05 14:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -148,7 +148,7 @@ msgid "Videos must be in WebM."
 msgstr "Видеото трябва да е във формат WebM."
 
 msgid "Follow this Collection"
-msgstr "Следване на колекцията"
+msgstr "Следване на списъка"
 
 msgid "Stop Following"
 msgstr "Отказ от следване"
@@ -224,7 +224,7 @@ msgid "{0} add-ons"
 msgstr "{0} добавки"
 
 msgid "{0} collections"
-msgstr "{0} колекции"
+msgstr "{0} списъци"
 
 msgid "{0} reviews"
 msgstr "{0} отзива"
@@ -258,7 +258,7 @@ msgid "Details for {0}"
 msgstr "Детайли за {0}"
 
 msgid "Collections Created"
-msgstr "Създадени колекции"
+msgstr "Създадени списъци"
 
 msgid "Add-ons in Use"
 msgstr "Добавки в употреба"
@@ -360,7 +360,7 @@ msgid "Category Pages"
 msgstr "Страници с категории"
 
 msgid "Collections"
-msgstr "Колекции"
+msgstr "Списъци"
 
 msgid "Category Landing Featured Carousel"
 msgstr "Категория Препоръчани"
@@ -574,11 +574,11 @@ msgstr "Регистрирани потребители от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Създадени колекции последните {0} дни"
+msgstr "Създадени списъци през последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Колекции, създадени от {0} до {1}"
+msgstr "Списъци, създадени от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -704,7 +704,7 @@ msgid "Comment"
 msgstr "Коментар"
 
 msgid "Remove this add-on from the collection"
-msgstr "Премахни тази добавка от колекцията"
+msgstr "Премахване на добавката от списъка"
 
 msgid "Remove"
 msgstr "Премахване"
