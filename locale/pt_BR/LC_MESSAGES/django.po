@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-03 23:16+0000\n"
+"PO-Revision-Date: 2017-12-05 18:08+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3297,30 +3297,26 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Carregue um ícone para o seu add-on ou  escolha um dos nossos. O\n"
-"                      ícone é exibido em quase toda parte em que está o seu add-on. As imagens carregadas\n"
-"                      devem ser um dos seguintes tipos de imagem: .png, .jpg. \n"
-"                      Somente é relevante para os add-ons listados."
+"Envie um ícone para sua extensão ou escolha um dos nossos. O ícone é exibido em quase toda parte em que está sua extensão. As imagens enviadas devem ser um dos seguintes tipos de imagem: .png, .jpg."
+" Somente é relevante para as extensões listadss."
 
 # %s is the application name (Firefox, Thunderbird).
 msgid "Select an icon for your add-on:"
-msgstr "Selecione um ícone para seu complemento:"
+msgstr "Selecione um ícone para sua extensão:"
 
 #. The size of the icon
 msgid "32x32px"
 msgstr "32x32"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
-"Usado em listas de complementos, como resultados de busca\n"
-"                            e complementos em destaque."
+msgstr "Usado em listas de extensões, como resultados de busca e extensões em destaque."
 
 #. The size of the icon
 msgid "64x64px"
 msgstr "64x64"
 
 msgid "Used in add-on detail pages."
-msgstr "Usado na página de detalhes do complemento."
+msgstr "Usado na página de detalhes da extensão."
 
 msgid "Upload a Custom Icon..."
 msgstr "Enviar ícone..."
@@ -3332,7 +3328,7 @@ msgid "Screenshots"
 msgstr "Capturas de tela"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Por favor, forneça pelo menos uma captura de tela do seu complemento:"
+msgstr "Por favor, forneça pelo menos uma captura de tela da sua extensão:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Por favor, forneça uma legenda para essa captura de tela:"
@@ -3411,7 +3407,7 @@ msgid "Delete Theme"
 msgstr "Excluir tema"
 
 msgid "Delete Add-on"
-msgstr "Excluir complemento"
+msgstr "Excluir extensão"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Excluir seu tema irá removê-lo permanentemente do site."
@@ -3420,8 +3416,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Excluir o seu complemento irá apagar permanentemente todas as versões e arquivos que você enviou, listados ou não. O ID da extensão continuará a ser vinculado à sua conta, então os outros não "
-"poderão apresentar versões usando o mesmo ID."
+"Excluir sua extensão irá apagar permanentemente todas as versões e arquivos que você enviou, listados ou não. O ID da extensão continuará a ser vinculado à sua conta, então os outros não poderão "
+"apresentar versões usando o mesmo ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Digite o seguinte texto para confirmar sua decisão: {slug}"
@@ -3430,29 +3426,29 @@ msgid "Please tell us why you are deleting your theme:"
 msgstr "Por favor, nos diga porquê está excluindo o seu tema:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Por favor, nos diga porquê está excluindo o seu complemento:"
+msgstr "Por favor, nos diga porquê está excluindo sua extensão:"
 
 msgid "Actions"
 msgstr "Ações"
 
 msgid "Resume the submission process for this add-on."
-msgstr "Retomar o processo de submissão para este complemento."
+msgstr "Retomar o processo de submissão para esta extensão."
 
 # Alt text to remove tag (verb)
 msgid "Resume"
 msgstr "Continuar"
 
 msgid "Delete this add-on."
-msgstr "Excluir este complemento."
+msgstr "Excluir esta extensão."
 
 msgid "Delete"
 msgstr "Excluir"
 
 msgid "Edit information about this add-on."
-msgstr "Editar informações sobre este complemento."
+msgstr "Editar informações sobre esta extensão."
 
 msgid "Upload a new version of this add-on."
-msgstr "Enviar uma versão nova desse complemento."
+msgstr "Enviar uma versão nova desta extensão."
 
 msgid "New Version"
 msgstr "Nova versão"
@@ -3468,7 +3464,7 @@ msgid "Manage Status & Versions"
 msgstr "Gerenciar status e versões"
 
 msgid "View Add-on Listing"
-msgstr "Ver página do complemento"
+msgstr "Ver lista de extensões"
 
 msgid "View Recent Changes"
 msgstr "Ver alterações recentes"
@@ -3527,10 +3523,10 @@ msgid "Submit a New Version"
 msgstr "Submeter uma nova versão"
 
 msgid "Describe Add-on"
-msgstr "Descreva o complemento"
+msgstr "Descreva a extensão"
 
 msgid "Add-on URL:"
-msgstr "URL do complemento:"
+msgstr "URL da extensão:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Por favor, use apenas letras, números, traços inferiores e barras na sua URL."
@@ -3539,12 +3535,11 @@ msgid "Summary:"
 msgstr "Resumo:"
 
 msgid "This add-on is experimental"
-msgstr "Este complemento é experimental"
+msgstr "Esta extensão é experimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Marque esta opção se seus complementos são experimentais ou não estão pronto para o uso. O complemento será listado mas terá visibilidade reduzida. Você pode alterar esta configuração "
-"posteriormente."
+"Marque esta opção se suas extensões são experimentais ou não estão pronto para o uso. A extensão será listada mas terá visibilidade reduzida. Você pode alterar esta configuração posteriormente."
 
 # {1} is the application name (Firefox, Thunderbird)
 msgid "Select a category for this add-on:"
@@ -3563,13 +3558,13 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Por favor escolha uma licença apropriada para os direitos que concede."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Se seu complemento enviar qualquer dado do computador do usuário, é obrigatória uma política de privacidade que explique quais dados são enviados e como são utilizados."
+msgstr "Se sua extensão enviar qualquer dado do computador do usuário, é obrigatória uma política de privacidade que explique quais dados são enviados e como são usados."
 
 msgid "Notes to Reviewer:"
 msgstr "Notas ao revisor:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Há alguma coisa que nossos revisores devem levar em conta ao analisar este complemento?"
+msgstr "Há alguma coisa que nossos revisores devem levar em conta ao analisar esta extensão?"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Estas notas só serão visíveis por você e nossos revisores."
@@ -3596,7 +3591,7 @@ msgid "How to Distribute this Version"
 msgstr "Como distribuir esta versão"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Mais informações sobre distribuição e assinatura de complementos"
+msgstr "Mais informações sobre distribuição e assinatura de extensões"
 
 msgid "Submission Complete"
 msgstr "Submissão concluída"
@@ -3653,10 +3648,10 @@ msgid "Go to My Submissions"
 msgstr "Ir para minhas submissões"
 
 msgid "Add-on Distribution Agreement"
-msgstr "Acordo de distribuição de complemento"
+msgstr "Acordo de distribuição de extensão"
 
 msgid "Upload Add-on"
-msgstr "Enviar complemento"
+msgstr "Enviar extensão"
 
 msgid "Where to Host File"
 msgstr "Onde hospedar o arquivo"
@@ -3686,7 +3681,7 @@ msgid "Submit File"
 msgstr "Enviar arquivo"
 
 msgid "Sign Add-on"
-msgstr "Assinar complemento"
+msgstr "Assinar extensão"
 
 msgid "Theme generate"
 msgstr "Gerar tema"
@@ -3814,18 +3809,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Por favor, complete a sua extensão adicionando uma versão ou os metadados que faltam."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Irá receber um email quando a avaliação estiver concluída. Até lá, o complemento não estará listado na nossa galeria, mas pode ser acessado diretamente da sua página de detalhes. "
+msgstr "Irá receber um email quando a avaliação estiver concluída. Até lá, a extensão não estará listada na nossa galeria, mas pode ser acessado diretamente da sua página de detalhes. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
-"Seu complemento será exibido em nossa galeria e os usuários\n"
-"                             receberão atualizações automáticas."
+msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-"Seu complemento foi desativado por um administrador do site e não será\n"
-"                             mais exibido em nossa galeria. Se você tiver alguma dúvida,\n"
-"                             por favor, envie um e-mail para amo-admins@mozilla.org."
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibido em nossa galeria. Se você tiver alguma dúvida, por favor, envie um e-mail para amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Sua extensão não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
@@ -4346,7 +4336,7 @@ msgid "Source code"
 msgstr "Código-fonte"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr "Se o seu complemento contém o código binário ou ofuscado, disponibilize a fonte para os revisores."
+msgstr "Se sua extensão contém o código binário ou ofuscado, disponibilize a fonte para os revisores."
 
 msgid "File {file_id} ({platform})"
 msgstr "Arquivo {file_id} ({platform})"
@@ -4434,7 +4424,7 @@ msgid "Delete/Disable"
 msgstr "Excluir/Desativar"
 
 msgid "Next version of this add-on"
-msgstr "Próxima versão do complemento"
+msgstr "Próxima versão da extensão"
 
 msgid "Other versions"
 msgstr "Outras versões"
