@@ -23,6 +23,7 @@ from olympia.files.models import File
 from olympia.files.utils import parse_addon
 from olympia.users.models import UserProfile
 from olympia.editors.utils import ReviewHelper
+from olympia.devhub.tasks import create_version_for_upload
 
 
 class GenerateAddonsSerializer(serializers.Serializer):
@@ -200,7 +201,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             generate_collection(addon, app=FIREFOX)
 
     def create_installable_addon(self):
-
         activate('en-US')
 
         # using whatever add-on you already have should work imho, otherwise fall back
@@ -237,23 +237,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 user=user,
                 channel=amo.RELEASE_CHANNEL_LISTED,
                 addon=addon,
-                submit=True
             )
 
-            # find the latest version that we just uploaded (should be version 1.0
-            # which is what webextension_no_id.xpi defines)
-            latest_version = upload.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-
-            parsed_data = parse_addon(upload, addon=upload.addon)
-
-            file = File.from_upload(
-                upload=upload,
-                version=latest_version,
-                platform=amo.PLATFORM_ALL.id,
-                is_beta=False,
-                parsed_data=parsed_data)
-
-            # now process the add-on and publish it
-            helper = ReviewHelper(addon=upload.addon, version=latest_version)
-            helper.handler.data = {'comments': ''}
-            helper.handler.process_public()
+            # And let's create a new version for that upload.
+            create_version_for_upload(
+                upload.addon, upload, amo.RELEASE_CHANNEL_LISTED)
