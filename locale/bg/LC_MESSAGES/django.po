@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-05 15:20+0000\n"
+"PO-Revision-Date: 2017-12-05 15:40+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2021,7 +2021,7 @@ msgid "Pending approval"
 msgstr "Очакваща одобряване"
 
 msgid "Flagged for further review"
-msgstr "Отбелязана за допълнителна рецензия"
+msgstr "Сигнализирана за допълнителна рецензия"
 
 msgid "Beta"
 msgstr "Бета"
@@ -3126,7 +3126,7 @@ msgid "Limit 3"
 msgstr "Лимит 3"
 
 msgid "Add-on Flags"
-msgstr "Флагове на добавката"
+msgstr "Сигнали на добавката"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
@@ -5982,7 +5982,7 @@ msgstr "Време за изчакване"
 # 80%
 # 100%
 msgid "Flags"
-msgstr ""
+msgstr "Сигнали"
 
 msgid "moments ago"
 msgstr "преди секунди"
@@ -6118,9 +6118,8 @@ msgstr "Нова добавка ({0})"
 msgid "Themes Updates ({0})"
 msgstr "Обновена ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Препоръчани теми"
+msgstr "Сигнализирани теми ({0})"
 
 #, fuzzy
 msgid "Themes Review Log"
@@ -6534,7 +6533,7 @@ msgid "There are currently no reviews."
 msgstr "В момента няма рецензии."
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Сигнализирани теми"
 
 msgid "Theme Review Queue"
 msgstr ""
@@ -6601,7 +6600,7 @@ msgid "More Info Requested: {0}"
 msgstr ""
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Сигнализирани: {0}"
 
 # 87%
 # 100%
@@ -6662,7 +6661,7 @@ msgstr[1] ""
 # 80%
 # 100%
 msgid "Flagged"
-msgstr ""
+msgstr "Сигнализирана"
 
 msgid "Updates"
 msgstr "Обновявания"
