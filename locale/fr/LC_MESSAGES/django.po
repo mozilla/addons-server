@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-05 01:27+0000\n"
+"PO-Revision-Date: 2017-12-05 01:46+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2170,7 +2170,7 @@ msgid "Compact"
 msgstr "Compact"
 
 msgid "Large"
-msgstr "Large"
+msgstr "Grand"
 
 msgid "Miscellaneous"
 msgstr "Divers"
@@ -2218,7 +2218,7 @@ msgid "Seasonal"
 msgstr "Saisonnier"
 
 msgid "Solid"
-msgstr "Motifs"
+msgstr "Uni"
 
 msgid "Websites"
 msgstr "Sites web"
@@ -3661,10 +3661,10 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr ""
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Texte de l’en-tête (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "La couleur du texte affiché dans la zone d’en-tête."
 
 msgid "Toolbar area background (toolbar)."
 msgstr ""
@@ -5922,15 +5922,15 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Gardez ces conseils en tête :</h2> <ul> <li> Décrivez votre impression sur ce module comme vous écririez à un ami. Fournissez des informations spécifiques et des détails utiles comme les "
+"<h2>Gardez ces conseils en tête :</h2> <ul> <li> Décrivez votre impression de ce module comme si vous écriviez à un ami. Fournissez des informations spécifiques et des détails utiles comme les "
 "fonctionnalités que vous avez appréciées ou que vous n’avez pas aimées, la simplicité d’utilisation, les inconvénients. Évitez d’utiliser des tournures trop génériques comme « C’est génial » ou « "
-"Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les commentaires pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci "
-"ne sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
+"Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les critiques pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci ne "
+"sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
 "l’assistance </a> afin de connaître les modalités d’assistance pour ce module. </li> <li>Merci de ne pas utiliser de langage injurieux et de ne pas diffuser d’informations personnelles. </li> </ul> "
-"<p>Pour plus d’informations sur les retours utilisateur à propos des modules, veuillez lire <a href=\"%(guide)s\">les recommandations pour les revues des commentaires des utilisateurs</a>.</p>"
+"<p>Pour plus d’informations sur les retours utilisateur à propos des modules, veuillez lire <a href=\"%(guide)s\">les recommandations pour les critiques des utilisateurs</a>.</p>"
 
 msgid "Reply to review by {0}"
-msgstr "Répondre à la vérification de {0}"
+msgstr "Répondre à la critique de {0}"
 
 msgid "Write a Reply"
 msgstr "Écrire une réponse"
@@ -5957,12 +5957,12 @@ msgstr "Cette critique concerne une version précédente du module ({0})."
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Cet utilisateur a une <a href=\"%(user_review_url)s\">revue précédente</a> sur ce module."
-msgstr[1] "Cet utilisateur a <a href=\"%(user_review_url)s\">%(cnt)s revues précédentes</a> sur ce module."
+msgstr[0] "Cet utilisateur a une <a href=\"%(user_review_url)s\">critique précédente</a> de ce module."
+msgstr[1] "Cet utilisateur a <a href=\"%(user_review_url)s\">%(cnt)s critiques précédentes</a> de ce module."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Cet utilisateur a <a href=\"%(user_review_url)s\">d’autres revues</a> sur ce module."
+msgstr "Cet utilisateur a <a href=\"%(user_review_url)s\">d’autres critiques</a> de ce module."
 
 msgid "Flagged for review"
 msgstr "Marqué pour revue"
@@ -5971,13 +5971,13 @@ msgid "Report this review"
 msgstr "Signaler un problème avec cette critique"
 
 msgid "Reply to review"
-msgstr "Répondre à la vérification"
+msgstr "Répondre à la critique"
 
 msgid "Edit reply"
 msgstr "Modifier la réponse"
 
 msgid "Edit review"
-msgstr "Modifier la revue"
+msgstr "Modifier la critique"
 
 msgid "Delete reply"
 msgstr "Supprimer la réponse"
@@ -5987,7 +5987,7 @@ msgstr "Supprimer la critique"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr "{0} :: Vérifications"
+msgstr "{0} :: Critiques"
 
 msgid "Reviews for {0}"
 msgstr "Critiques de {0}"
@@ -6016,7 +6016,7 @@ msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>Moyenne</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr "Écrire un nouvel avis"
+msgstr "Écrire une nouvelle critique"
 
 msgid "Be the first to write a review."
 msgstr "Soyez le premier à écrire une critique."
@@ -6068,7 +6068,7 @@ msgstr "fin"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr "module, éditeur ou commentaire"
+msgstr "module, évaluateur ou commentaire"
 
 msgid "Search by add-on name / author email"
 msgstr "Rechercher par nom de module / courriel d’auteur"
@@ -6104,10 +6104,10 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr "Me notifier la prochaine fois que ce module est mis à jour. (les mises à jours suivantes ne génèreront pas de message)"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "Enlever le drapeau de revue administrateur"
+msgstr "Enlever le signalement de revue de code par un administrateur"
 
 msgid "Clear Admin Content Review Flag"
-msgstr "Enlever le drapeau de revue administrateur pour le contenu"
+msgstr "Enlever le signalement de revue de contenu par un administrateur"
 
 msgid "Is more info requested?"
 msgstr "Besoin de plus d’informations ?"
@@ -6124,10 +6124,10 @@ msgstr "Quelqu’un d’autre est en train de vérifier ce thème."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr "thème, relecteur ou commentaire"
+msgstr "thème, évaluateur ou commentaire"
 
 msgid "Keep review; remove flags"
-msgstr "Conserver la revue ; retirer les étiquettes"
+msgstr "Conserver la revue ; retirer les signalements"
 
 msgid "Skip for now"
 msgstr "Passer pour le moment"
@@ -6142,7 +6142,7 @@ msgid "More Information Requested"
 msgstr "Plus d’information nécessaire"
 
 msgid "Contains Reviewer Comment"
-msgstr "Contient des commentaires du testeur"
+msgstr "Contient des commentaires de l’évaluateur"
 
 msgid "Sources provided"
 msgstr "Sources fournies"
@@ -6151,7 +6151,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
-msgstr "Verrouillée par un relecteur."
+msgstr "Verrouillée par un évaluateur."
 
 msgid "Duplicate Submission"
 msgstr "Envoi en double"
@@ -6175,7 +6175,7 @@ msgid "Waiting Time"
 msgstr "Temps d’attente"
 
 msgid "Flags"
-msgstr "Drapeaux"
+msgstr "Signalements"
 
 msgid "moments ago"
 msgstr "il y a peu"
@@ -6217,7 +6217,7 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Cette action rejettera le module et le supprimera de la file d’attente des revues. Les commentaires seront envoyés au développeur."
+msgstr "Cette action rejettera le module et le supprimera de la file d’attente. Les commentaires seront envoyés au développeur."
 
 msgid "Confirm Approval"
 msgstr "Confirmer l’approbation"
@@ -6232,7 +6232,7 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr "Cette action rejettera les versions publiques sélectionnées. Les commentaires seront envoyés au développeur."
 
 msgid "Reviewer reply"
-msgstr "Réponse d’un testeur"
+msgstr "Réponse d’un évaluateur"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr "Cette action enverra un message au développeur. Vous serez notifié lorsqu’il vous répondra."
@@ -6241,7 +6241,7 @@ msgid "Request super-review"
 msgstr "Demander une super-revue"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Si vous pensez que ce module devrait être revu par un relecteur administrateur, saisissez vos commentaires dans la zone ci-dessous. Ils ne seront pas envoyés au développeur."
+msgstr "Si vous pensez que ce module devrait être revu par un administrateur, saisissez vos commentaires dans la zone ci-dessous. Ils ne seront pas envoyés au développeur."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le voir."
@@ -6265,17 +6265,17 @@ msgid "Add-on Review Log"
 msgstr "Journal de revue du module"
 
 msgid "Signed Beta Files Log"
-msgstr "Journal pour les fichiers beta signés"
+msgstr "Journal pour les fichiers bêta signés"
 
 #, fuzzy
 msgid "Review Guide"
 msgstr "Guide de revue"
 
 msgid "Auto-Approved Add-ons"
-msgstr "Modules complémentaires approuvés automatiquement"
+msgstr "Modules approuvés automatiquement"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Modules complémentaires approuvés automatiquement ({0})"
+msgstr "Modules approuvés automatiquement ({0})"
 
 msgid "Content Review"
 msgstr "Revue du contenu"
@@ -6310,9 +6310,8 @@ msgstr "Notes en attente de modération ({0})"
 msgid "Moderated Review Log"
 msgstr "Journal de revue modéré"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Actions de modération :"
+msgstr "Guide de modération"
 
 msgid "Unlisted Add-ons"
 msgstr "Modules non répertoriés"
