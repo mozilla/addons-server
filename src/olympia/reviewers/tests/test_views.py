@@ -3630,6 +3630,9 @@ class TestReview(ReviewBase):
             'public|reject|')
 
     def test_post_review_ignore_disabled_or_beta(self):
+        """After #7017 was reverted this test doesn't work as we want - by
+        allowing the auto approved version to be confirmed - but as we expect.
+        """
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
@@ -3639,8 +3642,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
-            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
-            'super', 'comment']
+            'reject_multiple_versions', 'reply', 'super', 'comment']
         assert (
             [action[0] for action in response.context['actions']] ==
             expected_actions)
