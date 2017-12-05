@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-05 00:29+0000\n"
+"PO-Revision-Date: 2017-12-05 00:37+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4369,7 +4369,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Supprimer cette version va effacer définitivement :"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Important :</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de nouvelle version possédant le même numéro de version."
+msgstr "<strong>Important :</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de version portant ce numéro."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Êtes-vous sûr de vouloir supprimer cette version ?"
@@ -4421,12 +4421,11 @@ msgstr "Bloquez les publicités {start_sub_heading}avec {addon_name}{end_sub_hea
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Un bloqueur de publicités aussi léger qu’efficace. uBlock Origin met en œuvre des centaines de filtres de contenu sans pour autant consommer énormément de mémoire."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez les publicités {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Gérez les mots de passe {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Simplifiez et synchronisez vos différents identifiants sur tous les appareils avec un mot de passe unique."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -4528,7 +4527,7 @@ msgid "Validation failed:"
 msgstr "Validation échouée :"
 
 msgid "File content not supported for syntax highlighting"
-msgstr "Le contenu du fichier n’est pas supporté par la coloration syntaxique"
+msgstr "Le contenu du fichier n’est pas pris en charge par la coloration syntaxique"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -4547,7 +4546,7 @@ msgid "Deleted files:"
 msgstr "Fichiers supprimés :"
 
 msgid "Hide known files"
-msgstr "Cacher les fichiers connus"
+msgstr "Masquer les fichiers connus"
 
 msgid "Add-on SDK Version:"
 msgstr "Version du SDK Module :"
@@ -4577,7 +4576,7 @@ msgid "Expand all"
 msgstr "Tout développer"
 
 msgid "Hide or unhide tree"
-msgstr "Cacher ou afficher l’arbre"
+msgstr "Masquer ou afficher l’arbre"
 
 msgid "Wrap or unwrap text"
 msgstr "Ajouter/retirer des retours à la ligne"
