@@ -142,6 +142,7 @@ ui-tests:
 
 	# Create a proper superuser that can be used to access the API
 	python manage.py waffle_switch super-create-accounts on
+	python manage.py waffle_switch activate-autograph-signing on
 	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia.dev
 
 	# Generate test add-ons and force a reindex to make sure things are updated
