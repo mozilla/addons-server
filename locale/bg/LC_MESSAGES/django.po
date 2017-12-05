@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-05 15:00+0000\n"
+"PO-Revision-Date: 2017-12-05 15:20+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2466,7 +2466,7 @@ msgstr "Искане на повече информация"
 # 80%
 # 100%
 msgid "Flag"
-msgstr "Отбелязване"
+msgstr "Сигнализиране"
 
 msgid "Duplicate"
 msgstr "Дубликат"
