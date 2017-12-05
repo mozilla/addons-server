@@ -19,10 +19,8 @@ from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
 from olympia.reviews.models import Review
 from olympia.files.tests.test_helpers import get_file
-from olympia.files.models import File
-from olympia.files.utils import parse_addon
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.editors.utils import ReviewHelper
 from olympia.devhub.tasks import create_version_for_upload
 
 
@@ -203,8 +201,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
     def create_installable_addon(self):
         activate('en-US')
 
-        # using whatever add-on you already have should work imho, otherwise fall back
-        # to a new one for test purposes
+        # using whatever add-on you already have should work imho, otherwise
+        # fall back to a new one for test purposes
         addon = self.create_featured_addon_with_version_for_install()
 
         # the user the add-on gets created with
@@ -214,14 +212,14 @@ class GenerateAddonsSerializer(serializers.Serializer):
             pk=settings.TASK_USER_ID,
             defaults={'email': 'admin@mozilla.com', 'username': 'admin'})
 
-        # generate a proper uploaded file that simulates what django requires as
-        # request.POST
+        # generate a proper uploaded file that simulates what django requires
+        # as request.POST
         file_to_upload = 'webextension_signed_already.xpi'
         file_path = get_file(file_to_upload)
 
-        # make sure we are not using the file in the source-tree but a temporary
-        # one to avoid the files get moved somewhere else and deleted from source
-        # tree
+        # make sure we are not using the file in the source-tree but a
+        # temporary one to avoid the files get moved somewhere else and
+        # deleted from source tree
         with copy_file_to_temp(file_path) as temporary_path:
             data = open(temporary_path).read()
             filedata = SimpleUploadedFile(
