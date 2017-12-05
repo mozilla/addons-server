@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-05 14:50+0000\n"
+"PO-Revision-Date: 2017-12-05 15:00+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -237,7 +237,7 @@ msgid "Featured Themes"
 msgstr "Препоръчани теми"
 
 msgid "Featured Collections"
-msgstr "Препоръчани колекции"
+msgstr "Препоръчани списъци"
 
 msgid "Sort by:"
 msgstr "Подреждане по:"
@@ -473,7 +473,7 @@ msgid "Related Categories"
 msgstr "Подобни категории"
 
 msgid "Part of these Collections"
-msgstr "Част от тези колекции"
+msgstr "Част от тези списъци"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
@@ -631,7 +631,7 @@ msgid "More"
 msgstr "Още"
 
 msgid "Add to collection"
-msgstr "Добавяне към колекция"
+msgstr "Добавяне към списък"
 
 msgid "My Add-ons"
 msgstr "Мои добавки"
@@ -680,7 +680,7 @@ msgid "Account Settings"
 msgstr "Сметка"
 
 msgid "My Collections"
-msgstr "Колекции"
+msgstr "Мои списъци"
 
 msgid "My Favorites"
 msgstr "Любими"
@@ -833,13 +833,13 @@ msgid "Most Followers"
 msgstr "Най-следвани"
 
 msgid "Collections"
-msgstr "Колекции"
+msgstr "Списъци"
 
 msgid "Collections I've Made"
-msgstr "Колекции, които съм създал"
+msgstr "Списъци, които съм създал"
 
 msgid "Collections I'm Following"
-msgstr "Колекции, които следвам"
+msgstr "Списъци, които следвам"
 
 msgid "My Favorite Add-ons"
 msgstr "Моите любими добавки"
@@ -955,29 +955,29 @@ msgstr "Сътрудник"
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
-msgstr "Колекции :: %s"
+msgstr "Списъци :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Колекцията е група от сродни добавки, която всеки може да създава и споделя."
+msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Колекции :: {1}"
+msgstr "{0} :: Списъци :: {1}"
 
 msgid "Only I can view this collection."
-msgstr "Само аз мога да виждам тази колекция."
+msgstr "Само аз мога да виждам този списък."
 
 msgid "Anybody can view this collection."
-msgstr "Всеки може да разглежда тази колекция."
+msgstr "Всеки може да разглежда този списък."
 
 msgid "Give your collection a name."
-msgstr "Задайте име на колекцията си."
+msgstr "Именувайте списъка си."
 
 msgid "URL:"
 msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
-msgstr "Опишете колекцията си (без външни препратки)."
+msgstr "Опишете списъка си (без външни препратки)."
 
 msgid "Privacy:"
 msgstr "Поверителност:"
@@ -992,13 +992,13 @@ msgid "This name cannot be used."
 msgstr "Това име не може да бъде използвано."
 
 msgid "This url is already in use by another collection"
-msgstr "Това URL вече се използва от друга колекция"
+msgstr "Това URL вече се използва от друг списък"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Иконките трябва да са PNG или JPG."
 
 msgid "This slug is already in use by another one of your collections."
-msgstr "Това име вече се използва от друга ваша колекция."
+msgstr "Това име вече се използва от друг ваш списък."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr "Въведете валидно име, състоящо се то букви, цифри, долни черти или тирета."
@@ -1022,40 +1022,40 @@ msgid "Popularity"
 msgstr "Популярност"
 
 msgid "Collection created!"
-msgstr "Колекцията създадена!"
+msgstr "Списъкът е създаден!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Новата ви колекция е показана по-долу. Ако желаете може да <a href=\"%(url)s\">редактирате допълнителните настройки</a>."
+msgstr "Новият ви списък се вижда по-долу. Ако желаете може да <a href=\"%(url)s\">промените допълнителните настройки</a>."
 
 msgid "Collection updated!"
-msgstr "Колекцията обновена!"
+msgstr "Списъкът е обновен!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Вижте колекцията си</a>, за да видите промените."
+msgstr "<a href=\"%(url)s\">Вижте списъка си</a>, за да видите промените."
 
 msgid "Icon Deleted"
 msgstr "Иконката изтрита"
 
 msgid "Create a New Collection"
-msgstr "Нова колекция"
+msgstr "Създаване на списък"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Както е отбелязано в <a href=\"%(legal)s\">правните бележки</a>, индивидуалните колекции се управляват от Creative Commons Attribution Share-Alike лиценз"
+msgstr "Както е отбелязано в <a href=\"%(legal)s\">правните бележки</a>, отделните списъци се управляват от Creative Commons Attribution Share-Alike лиценз"
 
 msgid "Create Collection"
-msgstr "Нова колекция"
+msgstr "Нов списък"
 
 msgid "View this collection"
-msgstr "Виж тази колекция"
+msgstr "Преглед на списъка"
 
 msgid "Start a new collection..."
-msgstr "Започни нова колекция..."
+msgstr "Започване на нов списък..."
 
 msgid "Start a New Collection"
-msgstr "Започни нова колекция"
+msgstr "Започване на нов списък"
 
 msgid "Name:"
 msgstr "Име:"
@@ -1068,7 +1068,7 @@ msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Отказване</a
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr "За да оценявате колекции, трябва да имате сметка."
+msgstr "За да оценявате списъци, трябва да имате сметка."
 
 msgid "Create an Add-ons Account"
 msgstr "Създаване на сметка за Добавки"
@@ -1078,7 +1078,7 @@ msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "или <a href=\"%(login)s\">влезте в текущата сметка</a>"
 
 msgid "{0} :: Collections"
-msgstr "{0} :: Колекции"
+msgstr "{0} :: Списъци"
 
 msgid "private"
 msgstr "лична"
@@ -1090,49 +1090,49 @@ msgstr[0] "<span>%(num)s</span> последовател"
 msgstr[1] "<span>%(num)s</span> последователи"
 
 msgid "About this Collection"
-msgstr "Относно колекцията"
+msgstr "Относно списъка"
 
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr "Добавки, синхронизирани с моя мобилен Firefox"
 
 msgid "Make this Collection Private"
-msgstr "Превръщане в лична"
+msgstr "Този списък да бъде личен"
 
 msgid "Make this Collection Public"
-msgstr "Превръщане в публична"
+msgstr "Този списък да бъде общодостъпен"
 
 msgid "Learn about collections"
-msgstr "Повече за колекциите"
+msgstr "Повече за списъците"
 
 msgid "More Options:"
 msgstr "Повече настройки:"
 
 msgid "Edit Collection"
-msgstr "Редактиране на колекцията"
+msgstr "Промяна на списъка"
 
 msgid "Delete Collection"
-msgstr "Изтриване на колекцията"
+msgstr "Изтриване на списъка"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s тема в колекцията"
-msgstr[1] "%(num)s теми в колекцията"
+msgstr[0] "%(num)s тема в списъка"
+msgstr[1] "%(num)s теми в списъка"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s добавка в колекцията"
-msgstr[1] "%(num)s добавки в колекцията"
+msgstr[0] "%(num)s добавка в списъка"
+msgstr[1] "%(num)s добавки в списъка"
 
 msgid "Go"
 msgstr "Давай"
 
 msgid "What are Collections?"
-msgstr "Какво е колекция?"
+msgstr "Какво е списъкът?"
 
 msgid "Explore Collections"
-msgstr "Повече колекции"
+msgstr "Разглеждане на списъци"
 
 msgid "Common Tags"
 msgstr "Чести етикети"
@@ -1141,7 +1141,7 @@ msgid "More by this User"
 msgstr "Още от този потребител"
 
 msgid "See all collections by this user"
-msgstr "Вижте всички колекции на потребителя"
+msgstr "Всички списъци на потребителя"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1203,10 +1203,10 @@ msgid "Stop Following"
 msgstr "Отказ от следване"
 
 msgid "Follow this Collection"
-msgstr "Следване на колекцията"
+msgstr "Следване на списъка"
 
 msgid "Edit this Collection"
-msgstr "Редактиране на колекцията"
+msgstr "Промяна на списъка"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
@@ -1223,7 +1223,7 @@ msgstr "Не"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr "Редактиране на {0}"
+msgstr "Промяна на {0}"
 
 msgid "Description"
 msgstr "Описание"
@@ -1248,7 +1248,7 @@ msgid "Remove"
 msgstr "Премахни"
 
 msgid "Collection Contributors"
-msgstr "Допринесли за колекцията"
+msgstr "Допринесли за списъка"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
@@ -1278,7 +1278,7 @@ msgid "Admin Settings"
 msgstr "Администраторски настройки"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Внимание:</b> Като промените собственика на тази колекция, няма да можете да я редактирате. Ще можете само да добавяте и премахвате добавки от нея."
+msgstr "<b>Внимание:</b> Като промените собственика на този списък, няма да можете да го променяте. Ще можете само да добавяте и премахвате добавки от него."
 
 msgid "Continue"
 msgstr "Продължаване"
@@ -1294,29 +1294,29 @@ msgstr "Добавяне към любими"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "Колекции на {0}"
+msgstr "Списъци на {0}"
 
 msgid "No collections found."
-msgstr "Няма намерени колекции."
+msgstr "Няма намерени списъци."
 
 msgid "Most-Followed Collections"
-msgstr "Най-следвана колекция"
+msgstr "Най-следвани списъци"
 
 msgid "Newest Collections"
-msgstr "Най-нови колекции"
+msgstr "Най-нови списъци"
 
 msgid "Collections by Name"
-msgstr "Колекции по име"
+msgstr "Списъци по име"
 
 msgid "Recently Updated Collections"
-msgstr "Последно обновени колекции"
+msgstr "Последно обновени списъци"
 
 msgid "Recently Popular Collections"
-msgstr "Наскоро популярни колекции"
+msgstr "Наскоро популярни списъци"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Колекцията е група от сродни добавки, която всеки може да създава и споделя. Разгледайте колекции, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
+msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя. Разгледайте списъци, създадени от други потребители или <a href=\"%(url)s\">създайте ваш собствен</a>."
 
 msgid "Subscribe"
 msgstr "Абониране"
@@ -1329,13 +1329,13 @@ msgid "Following"
 msgstr "Следва"
 
 msgid "Create a Collection"
-msgstr "Създаване на колекция"
+msgstr "Създаване на списък"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Колекциите ви помагат да следите любимите си добавки и да споделяте персонализирания си четец с другите."
+msgstr "Списъците ви помагат да следите любимите си добавки и да споделяте персонализирания си четец с другите."
 
 msgid "Collection Icon"
-msgstr "Иконка на колекцията"
+msgstr "Пиктограма на списъка"
 
 msgid "Reset"
 msgstr "Нулиране"
@@ -1347,10 +1347,10 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr "В тази форма има грешки. Моля, поправете ги."
 
 msgid "Add-ons in Your Collection"
-msgstr "Добавки в колекцията Ви"
+msgstr "Добавки в списъка ви"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "За да включите добавка в тази колекция, въведете името ѝ в полето по-долу и натиснете Enter."
+msgstr "За да включите добавка в този списък, въведете името му в полето по-долу и натиснете Enter."
 
 msgid "Add-on"
 msgstr "Добавка"
@@ -1362,7 +1362,7 @@ msgid "Enter the name of the add-on to include"
 msgstr "Въведете името на добавката, която да включите"
 
 msgid "Add to Collection"
-msgstr "Добавяне"
+msgstr "Добавяне в списъка"
 
 msgid "Pending"
 msgstr "Висяща"
@@ -1371,19 +1371,19 @@ msgid "Add a comment"
 msgstr "Добави коментар"
 
 msgid "Remove this add-on from the collection"
-msgstr "Премахни тази добавка от колекцията"
+msgstr "Премахване на добавката от списъка"
 
 msgid "Add a positive vote for this collection"
-msgstr "Добави позитивен глас за тази колекция"
+msgstr "Даване на положителен глас за списъка"
 
 msgid "Add a negative vote for this collection"
-msgstr "Добави негативен глас за тази колекция"
+msgstr "Даване на отрицателен глас за списъка"
 
 msgid "Remove my vote for this collection"
-msgstr "Премахни гласа ми за тази колекция"
+msgstr "Премахване на гласа ми за списъка"
 
 msgid "Log in to vote for this collection"
-msgstr "Влез, за да гласуваш за тази колекция"
+msgstr "Влезте, за да гласувате за този списък"
 
 msgid "Favorite"
 msgstr "Любим"
@@ -1806,7 +1806,7 @@ msgid "{addon} added to {collection}."
 msgstr "{addon} добавена в {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr "{addon} премахнат от {collection}."
+msgstr "{addon} премахната от {collection}."
 
 #, fuzzy
 msgid "{rating} for {addon} written."
@@ -2672,7 +2672,7 @@ msgid "Add-on Status"
 msgstr "Състояние на добавка"
 
 msgid "User Collections"
-msgstr "Потребителски колекции"
+msgstr "Потребителски списъци"
 
 msgid "User Reviews"
 msgstr "Потребителски отзиви"
@@ -6686,7 +6686,7 @@ msgid "search for add-ons"
 msgstr "търсене на добавки"
 
 msgid "search for collections"
-msgstr "търсене на колекции"
+msgstr "търсене на списъци"
 
 msgid "search for themes"
 msgstr "търсене на теми"
@@ -6852,7 +6852,7 @@ msgid "Add-ons Updated"
 msgstr ""
 
 msgid "Collections Created"
-msgstr "Списъкът бе създаден"
+msgstr "Списъкът е създаден"
 
 msgid "Reviews Written"
 msgstr ""
@@ -7076,7 +7076,7 @@ msgid "Visit the new site"
 msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "За да създадете собствена колекция, трябва да имате сметка в Mozilla Добавки."
+msgstr "За да създадете собствен списък, трябва да имате сметка в Mozilla Добавки."
 
 msgid "Footer logo"
 msgstr ""
