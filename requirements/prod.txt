@@ -94,9 +94,9 @@ celery==4.1.0 \
 boto3==1.4.8 \
     --hash=sha256:edd35eb7cd8d56f08e65b112206936cf9f76bb406fb15f63075ff72331ef6f5f \
     --hash=sha256:332c6a17fd695581dd6f9ed825ce13c2d5ee3a6f5e1b079bed0ff7293809faf0
-botocore==1.8.8 \
-    --hash=sha256:96ada177ad01161b8469861e209b82624390888443c45a97a49c2afa1a98eeb9 \
-    --hash=sha256:e348c14a5089fe43d5e953f82b9401c2ac4c42ceebd61d1bbaf49a224cb32dbc
+botocore==1.8.9 \
+    --hash=sha256:b70d10c76b1ba920dbbf0ced67e64d156eff2d22799702d9a872609a028bc7a4 \
+    --hash=sha256:59266bd0ef146ae274cb3b4d8682314756cd07ce4ce0cf8cae76cd82790aff09
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
