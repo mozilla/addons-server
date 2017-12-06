@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 13:44+0000\n"
+"PO-Revision-Date: 2017-11-27 12:32+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -232,7 +232,7 @@ msgid "See all »"
 msgstr "Alles bekijken »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Veelbelovende extensies"
 
 msgid "Featured Themes"
 msgstr "Aanbevolen thema’s"
@@ -480,8 +480,8 @@ msgstr "Onderdeel van deze collecties"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] "Overige add-ons door deze schrijvers"
+msgstr[0] "Andere add-ons van %(author)s"
+msgstr[1] "Andere add-ons van deze schrijvers"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -1162,6 +1162,8 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Add-ons die u via de functie <b>Toevoegen aan favorieten</b> als favorieten markeert, verschijnen hieronder. Deze collectie is momenteel <b>openbaar</b>, wat inhoudt dat iedereen hem kan zien. Als u"
+" de collectie wilt verbergen, klik dan op de onderstaande knop om hem privé te maken."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
@@ -1566,7 +1568,7 @@ msgid "Recently Updated Extensions"
 msgstr "Onlangs bijgewerkte extensies"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Veelbelovende extensies"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1592,7 +1594,7 @@ msgid "Recently Updated Complete Themes"
 msgstr "Onlangs bijgewerkte volledige thema’s"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Veelbelovende volledige thema’s"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1644,10 +1646,10 @@ msgstr ""
 "verkennen</a>"
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Veelbelovende thema’s"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Alle veelbelovende bekijken"
 
 msgid "No themes found"
 msgstr "Geen thema’s gevonden"
@@ -3418,7 +3420,7 @@ msgid "This add-on doesn't have any versions."
 msgstr "Deze add-on heeft geen versies."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Deze add-on heeft geen goedgekeurde versies, dus de openbare pagina’s ervan (inclusief bètaversies) zijn verborgen."
 
 msgid "Status:"
 msgstr "Status:"
