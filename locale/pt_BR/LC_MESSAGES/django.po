@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-06 14:50+0000\n"
+"PO-Revision-Date: 2017-12-06 14:59+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5482,7 +5482,7 @@ msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></str
 msgstr "<strong><a href=\"%(browse_url)s\">Dicionários e Pacotes de idiomas</a></strong> adicionam suporte para outros idiomas ao %(app_name)s."
 
 msgid "How do I install, manage, or remove an add-on?"
-msgstr "Como eu instalo, gerencio ou excluo um complemento?"
+msgstr "Como faço para instalar, gerenciar ou remover uma extensão?"
 
 #, python-format
 msgid ""
@@ -7451,7 +7451,7 @@ msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>
 msgstr "Veja a nossa página de <a class=\"mobile-link\" href=\"#\">Complementos Móveis</a>."
 
 msgid "Android Add-ons"
-msgstr "Complementos para Android"
+msgstr "Extensões para Android"
 
 msgid "Required fields"
 msgstr "Campos obrigatórios"
@@ -7526,7 +7526,7 @@ msgid "My Mobile Add-ons"
 msgstr "Meus complementos móveis"
 
 msgid "an add-on developer replies to my review"
-msgstr "um desenvolvedor de complementos respondeu minha análise"
+msgstr "um desenvolvedor de extensões respondeu minha análise"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "novos complementos ou recursos do Firefox estão disponíveis"
@@ -7547,13 +7547,13 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu complemento não pôde ser atualizada"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr "meu complemento baseado no SDK não pôde ser atualizado"
+msgstr "minha extensão baseada no sdk não pôde ser atualizada"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "minha extensão foi analisada por um revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "a Mozilla precisa entrar em contato sobre meu complemento"
+msgstr "a Mozilla precisa entrar em contato sobre minha extensão"
 
 msgid "User Notifications"
 msgstr "Notificações do usuário"
@@ -7734,7 +7734,7 @@ msgid "In a little more detail..."
 msgstr "Mais detalhes..."
 
 msgid "Add-ons I've created"
-msgstr "Complementos que eu criei"
+msgstr "Extensões que eu criei"
 
 msgid "My Most Popular Themes"
 msgstr "Meus temas mais populares"
@@ -7806,7 +7806,7 @@ msgid "IP address of last login"
 msgstr "Endereço IP do último acesso"
 
 msgid "Number of add-ons developed"
-msgstr "Número de complementos desenvolvidos"
+msgstr "Número de extensões desenvolvidas"
 
 msgid "{0} add-ons"
 msgstr "{0} extensões"
@@ -7824,7 +7824,7 @@ msgstr[0] "%(num)s extensão"
 msgstr[1] "%(num)s extensões"
 
 msgid "Average rating of developer's add-ons"
-msgstr "Avaliação média dos complementos do desenvolvedor"
+msgstr "Avaliação média das extensões do desenvolvedor"
 
 # In a user list: user 1, user 2, "others"
 msgctxt "user_list_others"
