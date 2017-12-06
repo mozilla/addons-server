@@ -182,9 +182,9 @@ easy-thumbnails==2.5 \
 elasticsearch==5.5.1 \
     --hash=sha256:d9dac18462375e06a5425730d8aaccb874cc748658b060c0536afb4e296ba9fe \
     --hash=sha256:c4f1abf19e2e79ebc526e6f65838909123da07c2775e2c0660c69b01ebb2001a # pyup: <6
-elasticsearch-dsl==5.3.0 \
-    --hash=sha256:de5fd68901c5b94e51e2ae4e8ad6f618b22665d89794d96f9b6b763986665527 \
-    --hash=sha256:de81b2322cde9bf1171c8a41d80596cdadd433b88b93daa09060af3a512523a7 # pyup: <6
+elasticsearch-dsl==5.4.0 \
+    --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
+    --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # fastchardet is required by amo-validator
