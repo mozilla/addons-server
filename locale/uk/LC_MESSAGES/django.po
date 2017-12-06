@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 13:03+0000\n"
-"Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
+"PO-Revision-Date: 2017-12-06 14:09+0000\n"
+"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -3651,7 +3651,7 @@ msgid "Image height should be 200 pixels"
 msgstr "Висота зображення повинна бути 200 пікселів"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr "PNG, JPG, APNG, SVG або GIF (не анімований)"
+msgstr "PNG, JPG, APNG, SVG або GIF (без анімації)"
 
 msgid "Aligned to top-right"
 msgstr "Вирівняна по верхньому правому краю"
@@ -3663,16 +3663,16 @@ msgid "Select colors for your Theme."
 msgstr "Оберіть кольори для вашої теми."
 
 msgid "Header area background (accentcolor)"
-msgstr "Тло області заголовку (accentcolor)"
+msgstr "Тло області заголовка (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Колір тла області заголовку відображається в тій частині заголовку, що не закрита або видима через зображення заголовку."
+msgstr "Колір тла області заголовка відображається в тій його частині, що не закрита або видима через зображення заголовка."
 
 msgid "Header area text (textcolor)"
-msgstr "Текст області заголовка(textcolor)"
+msgstr "Текст області заголовка (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr "Колір тексту, що відображається в області заголовку."
+msgstr "Колір тексту, що відображається в області заголовка."
 
 msgid "Toolbar area background (toolbar)."
 msgstr "Тло області панелі інструментів (toolbar)."
@@ -3688,16 +3688,16 @@ msgid "The color of toolbar text."
 msgstr "Це колір тексту вкладки."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr "Фон області поля панелі інструментів (toolbar_field)."
+msgstr "Тло області поля панелі інструментів (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Колір тла полів у панелі інструментів, таких як адресна стрічка."
+msgstr "Колір тла полів у панелі інструментів, таких як рядок URL-адреси."
 
 msgid "Toolbar field area text (toolbar_field_text)."
 msgstr "Текст поля в області панелі інструментів (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Колір тексту в полі на панелі інструментів, таких як адресна стрічка"
+msgstr "Колір тексту в полі на панелі інструментів, таких як рядок URL-адреси"
 
 #, fuzzy
 msgid "optional"
@@ -4430,7 +4430,7 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Спростіть та синхронізуйте всі ваші логіни на різних веб-сайтах між пристроями за допомогою одного ключового паролю."
+msgstr "Спростіть керування та синхронізуйте всі ваші паролі для різних веб-сайтів між пристроями за допомогою одного головного пароля."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
