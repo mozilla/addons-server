@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-06 10:10+0000\n"
+"PO-Revision-Date: 2017-12-06 10:11+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -938,9 +938,8 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Người đóng góp"
+msgstr "Những người đóng góp"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
