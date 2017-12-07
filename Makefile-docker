@@ -147,6 +147,6 @@ ui-tests:
 
 	# Generate test add-ons and force a reindex to make sure things are updated
 	python manage.py generate_ui_test_addons
-	python manage.py reindex --force --noinput
+	python manage.py reindex --force --noinput --wipe
 
 initialize: update_deps initialize_db update_assets populate_data
