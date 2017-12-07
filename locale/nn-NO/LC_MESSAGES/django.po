@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-07 15:30+0000\n"
+"PO-Revision-Date: 2017-12-07 15:38+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4847,7 +4847,7 @@ msgid "Managing Your Add-on"
 msgstr "Handsam utvidinga di"
 
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Referansar for Open Source-lisensar"
 
 msgid "Add-on Developer FAQ"
 msgstr "FAQ for utvidingsutviklar"
@@ -4905,7 +4905,7 @@ msgid "Add-ons forum"
 msgstr "Utvidingsforum"
 
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Tilbyr Mozilla utviklingstenester?"
 
 msgid "No."
 msgstr "Nei."
@@ -4944,14 +4944,14 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Passar Mozilla på at kontoinformasjonen min er privat?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
 msgstr "Ja. <a href=\"%(url)s\">Personvernpraksisen</a> vår skildrar korleis din informasjon vert handsama av Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Kva inneheld «utviklingsverktøya» som er oppførte på AMO?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
@@ -5068,13 +5068,13 @@ msgid ""
 msgstr ""
 
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Korleis sender eg inn ei oppdatering av utvidinga mi?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr ""
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "Må oppdateringa vi vurderast av ein vurderar?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr ""
@@ -5202,7 +5202,7 @@ msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></str
 msgstr ""
 
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Korleis installerer, handterer, eller fjernar eg ei utviding?"
 
 #, python-format
 msgid ""
@@ -5212,7 +5212,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Korleis held eg utvidingar oppdaterte?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr ""
@@ -5228,7 +5228,7 @@ msgstr ""
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Kan utvidingar gjere %(app_name)s tregare?"
 
 #, python-format
 msgid ""
