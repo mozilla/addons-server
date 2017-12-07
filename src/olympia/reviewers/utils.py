@@ -560,9 +560,7 @@ class ReviewBase(object):
                                                  kwargs=review_url_kw,
                                                  add_prefix=False)),
                 'comments': self.data.get('comments'),
-                'SITE_URL': settings.SITE_URL,
-                'legacy_addon':
-                    not self.files[0].is_webextension if self.files else False}
+                'SITE_URL': settings.SITE_URL}
 
     def reviewer_reply(self):
         # Default to reviewer reply action.
