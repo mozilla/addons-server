@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-11-30 20:47+0000\n"
+"PO-Revision-Date: 2017-11-30 21:48+0000\n"
 "Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4575,7 +4575,7 @@ msgid "Hide or unhide tree"
 msgstr "Masquer ou afficher l’arbre"
 
 msgid "Wrap or unwrap text"
-msgstr "Ajouter/retirer des retours à la ligne"
+msgstr "Retourner à la ligne ou non"
 
 msgid "No files in the uploaded file."
 msgstr "Pas de fichier dans le fichier envoyé."
@@ -4635,7 +4635,7 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr "Connexion facile à vos réseaux sociaux, partagez ou commentez la page que vous visitez."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "Une vue rapide pour comparer les prix lorsque vous achetez en ligne ou préparez un voyage en avion."
+msgstr "Un affichage rapide pour comparer les prix lorsque vous achetez en ligne ou préparez un voyage en avion."
 
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Thèmes de la Saint Patrick"
@@ -4662,7 +4662,7 @@ msgid "Love is in the Air"
 msgstr "Love is in the Air"
 
 msgid "Add some romance to your Firefox."
-msgstr "Ajouter un peu de romantisme à votre Firefox."
+msgstr "Ajoutez un peu de romantisme à votre Firefox."
 
 msgid "Get up and move!"
 msgstr "Levez-vous et bougez !"
