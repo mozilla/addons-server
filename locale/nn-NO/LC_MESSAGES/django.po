@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 01:29+0000\n"
+"PO-Revision-Date: 2017-12-07 15:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3546,10 +3546,10 @@ msgid "required"
 msgstr "påkravd"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Bildehøgde bør vere 200 pikslar"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG eller GIF (ikkje animert)"
 
 msgid "Aligned to top-right"
 msgstr "Justert ;vst til h;gre"
@@ -3561,13 +3561,13 @@ msgid "Select colors for your Theme."
 msgstr "Vel fargar for temaet ditt."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Bakgrunn sidehovud (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 msgstr ""
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Tekst sidehovud (textcolor)"
 
 msgid "The color of the text displayed in the header area."
 msgstr ""
@@ -3603,7 +3603,7 @@ msgid "Browser Preview"
 msgstr "Nettlesarførehandsvising"
 
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 msgid "Uploading Theme"
 msgstr "Lastar opp tema"
@@ -3953,7 +3953,7 @@ msgid "Sign In"
 msgstr "Logg inn"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4324,7 +4324,7 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Tilgang til dine data for {name}"
 
 msgid "Access your data on the following websites:"
 msgstr "Få tilgang til dataa dine på følgjande nettsider:"
@@ -4333,7 +4333,7 @@ msgid "Access your data for all websites"
 msgstr "Tilgang til dine data for alle nettstadar"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID er påkravd for Firefox 47 og eldre."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -4346,7 +4346,7 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Klarte ikkje å tolke opplasta fil."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -4460,7 +4460,7 @@ msgid "Hide or unhide tree"
 msgstr "Gøym eller vis tre"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Bryt eller ikkje bryt tekst"
 
 msgid "No files in the uploaded file."
 msgstr "Ingen filer i den opplasta fila."
@@ -4474,7 +4474,7 @@ msgstr ""
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Klarte ikkje å få tilgang til fila %s."
 
 msgid "That file no longer exists."
 msgstr "Fila finst ikkje lengre."
@@ -4550,7 +4550,7 @@ msgid "Add some romance to your Firefox."
 msgstr "Legg til litt romantikk i Firefox."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Kom i gang og rør på deg!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
@@ -4559,7 +4559,7 @@ msgid "New &amp; Now"
 msgstr "Nytt &amp; No"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Få dei siste berre-må-ha-utvidingar."
 
 msgid "Worry-free browsing"
 msgstr "Sutlaus surfning"
@@ -4686,10 +4686,10 @@ msgstr ""
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Foruma</a> våre er ein bra plass å samhandle med fellesskapet omkring utvidingar, og diskutere komande endringar av AMO."
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Dette høyrest bra ut! Korleis kan eg verre med?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
@@ -4716,7 +4716,7 @@ msgstr ""
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Delta i <a href=\"%(url)s\">foruma</a> våre."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
@@ -4742,10 +4742,10 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Add-on Compatibility Reporter"
 
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Add-on Compatibility Reporter er installert"
 
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
 msgstr ""
