@@ -44,7 +44,8 @@ INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
+                           default='addons.mozilla.org')
 
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons_timer"
