@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-09-15 12:23+0000\n"
+"PO-Revision-Date: 2017-12-07 14:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -117,8 +117,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
-"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
+" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -643,7 +643,7 @@ msgid "Accept and Install"
 msgstr "Kabul et ve kur"
 
 msgid "Add to {0}"
-msgstr "{0}'a Ekle"
+msgstr "{0}’a ekle"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
