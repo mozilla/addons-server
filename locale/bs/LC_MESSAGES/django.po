@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 11:20+0000\n"
+"PO-Revision-Date: 2017-12-08 14:25+0000\n"
 "Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -92,7 +92,7 @@ msgid "Experimental"
 msgstr "Eksperimentalno"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Dodaj na {0}"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -209,10 +209,10 @@ msgid "%(addon_name)s requires that you accept the following End-User License Ag
 msgstr ""
 
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Nazad na {0}…"
 
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Dodaci za {0}"
 
 msgid "Featured Extensions"
 msgstr ""
@@ -221,13 +221,13 @@ msgid "Popular Extensions"
 msgstr ""
 
 msgid "Most Popular"
-msgstr ""
+msgstr "Najpopularnije"
 
 msgid "All »"
-msgstr ""
+msgstr "Sve »"
 
 msgid "See all »"
-msgstr ""
+msgstr "Pogledaj sve »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
@@ -239,7 +239,7 @@ msgid "Featured Collections"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Sortiraj po:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -260,9 +260,9 @@ msgstr[2] ""
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s korisnik"
+msgstr[1] "%(num)s korisnika"
+msgstr[2] "%(num)s korisnika"
 
 msgid "Requires Restart"
 msgstr ""
