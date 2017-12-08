@@ -2,6 +2,7 @@
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.reviewers.models import ReviewerScore

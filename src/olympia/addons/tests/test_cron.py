@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-import os
 import datetime
+import os
 import time
+
+import mock
 
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
-import mock
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport
+from olympia.amo.tests import TestCase
 from olympia.files.models import File
 from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from olympia.stats.models import UpdateCount

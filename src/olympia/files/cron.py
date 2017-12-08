@@ -1,11 +1,14 @@
 import os
 import shutil
+
 from datetime import datetime
 
 from django.conf import settings
 
 import olympia.core.logger
+
 from olympia.files.models import FileValidation
+
 
 log = olympia.core.logger.getLogger('z.cron')
 

@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
+import responses
+
+from requests import HTTPError
+
 from django.conf import settings
 from django.core.management import call_command
 from django.test.utils import override_settings
 from django.utils import translation
-
-import responses
-from requests import HTTPError
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    File, WebextPermission, WebextPermissionDescription)
+    File, WebextPermission, WebextPermissionDescription
+)
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.translations.models import Translation

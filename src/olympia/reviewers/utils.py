@@ -1,6 +1,10 @@
 import datetime
 import random
+
 from collections import OrderedDict
+
+import django_tables2 as tables
+import jinja2
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -8,24 +12,24 @@ from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
-import django_tables2 as tables
-import jinja2
-
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import send_activity_mail, log_and_notify
+from olympia.activity.utils import log_and_notify, send_activity_mail
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags
+)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.models import (
-    get_flags, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList)
+    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
+    get_flags
+)
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 

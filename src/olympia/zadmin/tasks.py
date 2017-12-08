@@ -1,14 +1,16 @@
 import os
 import re
 import sys
+
 from urlparse import urljoin
+
+import requests
 
 from django.conf import settings
 from django.utils import translation
 
-import requests
-
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo.celery import task
@@ -23,6 +25,7 @@ from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, Version
 from olympia.zadmin.models import EmailPreviewTopic
+
 
 log = olympia.core.logger.getLogger('z.task')
 

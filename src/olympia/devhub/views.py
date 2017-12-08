@@ -2,10 +2,15 @@ import datetime
 import json
 import os
 import time
+
 from uuid import UUID, uuid4
 
-from django import forms as django_forms
-from django import http
+import waffle
+
+from django_statsd.clients import statsd
+from PIL import Image
+
+from django import forms as django_forms, http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
@@ -17,13 +22,9 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-import waffle
-from django_statsd.clients import statsd
-from PIL import Image
-
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo import utils as amo_utils
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -33,11 +34,11 @@ from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
-from olympia.amo import messages
+from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import escape_all, MenuItem, send_mail, render
+from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
@@ -55,11 +56,12 @@ from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed)
+    system_addon_submission_allowed
+)
 from olympia.versions.models import Version
-from olympia.zadmin.models import get_config, ValidationResult
+from olympia.zadmin.models import ValidationResult, get_config
 
-from . import forms, tasks, feeds, signals
+from . import feeds, forms, signals, tasks
 
 
 log = olympia.core.logger.getLogger('z.devhub')

@@ -1,19 +1,22 @@
 import json
 import os
+
 from datetime import datetime, timedelta
+
+import mock
+
+from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from django.conf import settings
 from django.core.files import temp
-
-import mock
-from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.tests import (
-    addon_factory, formset, initial, TestCase, version_factory)
+    TestCase, addon_factory, formset, initial, version_factory
+)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID

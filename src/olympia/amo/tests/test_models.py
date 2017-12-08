@@ -1,12 +1,12 @@
 import mock
 import pytest
+
 from mock import Mock
 
 from olympia import amo
-from olympia.amo import models as amo_models
-from olympia.amo.tests import TestCase
-from olympia.amo import models as context
 from olympia.addons.models import Addon
+from olympia.amo import models as context
+from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 
 

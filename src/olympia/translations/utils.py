@@ -1,8 +1,8 @@
-from django.utils.encoding import force_text
-from django.template import engines
-
 import html5lib
 import jinja2
+
+from django.template import engines
+from django.utils.encoding import force_text
 
 
 def truncate_text(text, limit, killwords=False, end='...'):

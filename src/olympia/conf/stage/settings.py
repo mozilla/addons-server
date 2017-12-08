@@ -1,8 +1,9 @@
+import datetime
 import logging
 import os
-import datetime
 
 from olympia.lib.settings_base import *  # noqa
+
 
 CSP_BASE_URI += (
     # Required for the legacy discovery pane.

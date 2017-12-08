@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict

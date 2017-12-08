@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.core.files.storage import default_storage as storage
-
 import mock
-from pyquery import PyQuery as pq
 import waffle
 
+from pyquery import PyQuery as pq
+
+from django.core.files.storage import default_storage as storage
+
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.devhub.tasks import compatibility_check
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.users.models import UserProfile

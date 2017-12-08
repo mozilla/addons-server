@@ -2,13 +2,14 @@
 import collections
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon, Persona
+from olympia.amo.tests import TestCase
 from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 from olympia.constants.categories import CATEGORIES
 from olympia.landfill.generators import (
-    _yield_name_and_cat, create_addon, create_theme)
+    _yield_name_and_cat, create_addon, create_theme
+)
 from olympia.versions.models import Version
 
 

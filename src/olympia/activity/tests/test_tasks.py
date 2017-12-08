@@ -1,5 +1,4 @@
 import mock
-
 import pytest
 
 from olympia.activity.models import ActivityLogEmails

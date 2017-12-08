@@ -6,17 +6,19 @@ from __future__ import absolute_import
 import datetime
 
 import waffle
-from django.conf import settings
-from django.core.cache import cache
 
 from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
-from raven import Client
-from raven.contrib.celery import register_signal, register_logger_signal
 from post_request_task.task import PostRequestTask
+from raven import Client
+from raven.contrib.celery import register_logger_signal, register_signal
+
+from django.conf import settings
+from django.core.cache import cache
 
 import olympia.core.logger
+
 from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 
 

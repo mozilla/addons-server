@@ -1,17 +1,18 @@
-from datetime import datetime
 import json
 
-import jinja2
+from datetime import datetime
 
+import jinja2
 import pytest
-from mock import patch, Mock
+
+from mock import Mock, patch
 from pyquery import PyQuery
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.buttons import big_install_button, install_button
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.versions.models import Version
 

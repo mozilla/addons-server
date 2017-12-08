@@ -2,32 +2,35 @@ import json
 import os
 import tempfile
 
+import mock
+
+from PIL import Image
+from pyquery import PyQuery as pq
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.test.utils import override_settings
 
-import mock
-from PIL import Image
-from pyquery import PyQuery as pq
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase
-from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import (
-    addon_factory, formset, initial, req_factory_factory)
-from olympia.amo.tests.test_helpers import get_image_path
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, Category)
+    Addon, AddonCategory, AddonDependency, Category
+)
+from olympia.amo.templatetags.jinja_helpers import user_media_path
+from olympia.amo.tests import (
+    TestCase, addon_factory, formset, initial, req_factory_factory
+)
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
+    Collection, CollectionAddon, FeaturedCollection
+)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.views import edit_theme
-from olympia.tags.models import Tag, AddonTag
+from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
 

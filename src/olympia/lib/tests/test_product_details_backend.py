@@ -1,4 +1,5 @@
 import json
+
 from tempfile import mkdtemp
 
 from mock import patch

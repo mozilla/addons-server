@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
 import random
+
+from datetime import datetime, timedelta
+
+import mock
+import pytest
+
+from lxml import etree
+from mock import patch
+from pyquery import PyQuery as pq
 
 from django import test
 from django.conf import settings
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
-from lxml import etree
-import mock
-import pytest
-from mock import patch
-from pyquery import PyQuery as pq
-
 from olympia import amo, core
-from olympia.amo.tests import TestCase
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import check_links, WithDynamicEndpoints
+from olympia.amo.tests import TestCase, WithDynamicEndpoints, check_links
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 

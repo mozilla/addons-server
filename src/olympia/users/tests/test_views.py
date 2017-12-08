@@ -1,7 +1,12 @@
-from dateutil.parser import parse
-from datetime import datetime, timedelta
 import json
+
+from datetime import datetime, timedelta
 from urlparse import urlparse
+
+from dateutil.parser import parse
+from lxml.html import HTMLParser, fromstring
+from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from django.conf import settings
 from django.core import mail
@@ -9,24 +14,20 @@ from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
 
-from lxml.html import fromstring, HTMLParser
-from mock import Mock, patch
-from pyquery import PyQuery as pq
-
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.templatetags.jinja_helpers import urlparams
+from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
 from olympia.ratings.models import Rating
 from olympia.users import notifications as email
-from olympia.users.models import UserProfile, UserNotification
+from olympia.users.models import UserNotification, UserProfile
 from olympia.users.utils import UnsubscribeCode
 
 

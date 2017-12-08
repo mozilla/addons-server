@@ -1,19 +1,21 @@
 import os
 
+import caching.base as caching
+
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 
-import caching.base as caching
-
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, urlparams, render
 from olympia.access import acl
 from olympia.addons.decorators import (
-    addon_view_factory, owner_or_unlisted_reviewer)
+    addon_view_factory, owner_or_unlisted_reviewer
+)
 from olympia.addons.models import Addon
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
 

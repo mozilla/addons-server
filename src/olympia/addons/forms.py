@@ -1,4 +1,5 @@
 import os
+
 from datetime import datetime
 from urlparse import urlsplit
 
@@ -9,18 +10,22 @@ from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import (
+    Addon, AddonCategory, Category, DeniedSlug, Persona
+)
+from olympia.addons.tasks import save_theme, save_theme_reupload
+from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from olympia.amo.fields import (
-    ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
+    ColorField, HttpHttpsOnlyURLField, ReCaptchaField
+)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    slug_validator, slugify, sorted_groupby, remove_icons)
-from olympia.addons.models import (
-    Addon, AddonCategory, DeniedSlug, Category, Persona)
-from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
+    remove_icons, slug_validator, slugify, sorted_groupby
+)
 from olympia.devhub import tasks as devhub_tasks
 from olympia.lib import happyforms
 from olympia.tags.models import Tag

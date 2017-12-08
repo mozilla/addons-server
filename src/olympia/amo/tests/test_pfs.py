@@ -1,8 +1,7 @@
 from pyquery import PyQuery as pq
+from services.pfs import get_output
 
 from olympia.amo.tests import TestCase
-
-from services.pfs import get_output
 
 
 class TestPfs(TestCase):

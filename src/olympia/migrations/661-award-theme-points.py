@@ -2,14 +2,15 @@
 
 import datetime
 
+import mkt.constants.reviewers as rvw
+
+from amo.utils import chunked
+from devhub.models import ActivityLog
+from mkt.reviewers.tasks import _batch_award_points
+
 from django.db.models import Q
 
 from olympia import amo
-from amo.utils import chunked
-from devhub.models import ActivityLog
-
-from mkt.reviewers.tasks import _batch_award_points
-import mkt.constants.reviewers as rvw
 
 
 def run():

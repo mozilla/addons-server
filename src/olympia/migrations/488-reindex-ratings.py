@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-from celeryutils import task
-
-from amo.utils import chunked
-from amo.decorators import write
-
 from addons.models import Addon
+from amo.decorators import write
+from amo.utils import chunked
+from celeryutils import task
 
 
 @task

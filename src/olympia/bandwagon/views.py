@@ -2,47 +2,53 @@ import functools
 import hashlib
 import os
 
+import caching.base as caching
+
+from django_statsd.clients import statsd
+
 from django import http
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
-from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext, ugettext_lazy as _lazy
 from django.views.decorators.csrf import csrf_protect
-from django.utils.translation import ugettext_lazy as _lazy, ugettext
-
-import caching.base as caching
-from django_statsd.clients import statsd
+from django.views.decorators.http import require_POST
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo import messages
-from olympia.amo.decorators import (
-    allow_mine, json_view, login_required, post_required, write)
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import paginate, urlparams, render
 from olympia.access import acl
-from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.views import AccountViewSet
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
+from olympia.amo import messages
+from olympia.amo.decorators import (
+    allow_mine, json_view, login_required, post_required, write
+)
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import paginate, render, urlparams
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
-    PreventActionPermission)
+    PreventActionPermission
+)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
 from olympia.users.models import UserProfile
 
+from . import forms, tasks
 from .models import (
-    Collection, CollectionAddon, CollectionWatcher, CollectionVote,
-    SPECIAL_SLUGS)
+    SPECIAL_SLUGS, Collection, CollectionAddon, CollectionVote,
+    CollectionWatcher
+)
 from .permissions import AllowCollectionAuthor, AllowCollectionContributor
 from .serializers import CollectionAddonSerializer, CollectionSerializer
-from . import forms, tasks
+
 
 log = olympia.core.logger.getLogger('z.collections')
 

@@ -1,7 +1,7 @@
+from mock import Mock
+
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
-
-from mock import Mock
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission
@@ -9,13 +9,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
+from olympia.access.models import GroupUser
+from olympia.amo.tests import (
+    TestCase, WithDynamicEndpoints, addon_factory, user_factory
+)
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowNone, AllowOwner,
     AllowReadOnlyIfPublic, AllowRelatedObjectPermissions, AllowReviewer,
-    AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
-from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, WithDynamicEndpoints)
-from olympia.access.models import GroupUser
+    AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission
+)
 
 
 class ProtectedView(APIView):

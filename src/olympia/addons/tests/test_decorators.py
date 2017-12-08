@@ -1,12 +1,12 @@
 import urllib
 
-from django import http
-
 import mock
 
-from olympia.amo.tests import addon_factory, TestCase
+from django import http
+
 from olympia.addons import decorators as dec
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase, addon_factory
 
 
 class TestAddonView(TestCase):

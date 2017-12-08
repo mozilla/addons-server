@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-from django import test
-from django.test.client import RequestFactory
-
 import pytest
+
 from mock import patch
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase
+from django import test
+from django.test.client import RequestFactory
+
 from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException)
+    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException
+)
+from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 

@@ -1,9 +1,9 @@
 import os
 import random
 
-from django.db import models
-
 from aesfield.field import AESField
+
+from django.db import models
 
 from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile

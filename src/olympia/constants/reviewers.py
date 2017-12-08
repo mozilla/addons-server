@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
+
 # Reviewer Tools
 REVIEWER_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"

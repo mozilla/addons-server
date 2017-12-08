@@ -8,21 +8,22 @@ import re
 import socket
 import urllib
 
+import MySQLdb as mysql
+
 from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.middleware import common
-from django.utils.cache import patch_vary_headers, patch_cache_control
-from django.utils.encoding import iri_to_uri, force_bytes
+from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.translation import activate
-
-import MySQLdb as mysql
 
 from olympia import amo
 from olympia.amo.utils import render
+
 from . import urlresolvers
 from .templatetags.jinja_helpers import urlparams
 

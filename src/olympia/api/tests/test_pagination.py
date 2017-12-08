@@ -1,14 +1,13 @@
 import mock
 
-from rest_framework import generics
-from rest_framework import serializers
-from rest_framework import status
+from rest_framework import generics, serializers, status
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.tests import TestCase
 from olympia.api.pagination import (
-    CustomPageNumberPagination, OneOrZeroPageNumberPagination,
-    ESPageNumberPagination)
+    CustomPageNumberPagination, ESPageNumberPagination,
+    OneOrZeroPageNumberPagination
+)
 
 
 class PassThroughSerializer(serializers.BaseSerializer):

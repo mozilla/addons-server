@@ -6,8 +6,8 @@ end up in the correct state.
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import user_factory
 from olympia.addons.models import Addon
+from olympia.amo.tests import user_factory
 from olympia.files.models import File
 from olympia.reviewers.utils import ReviewAddon, ReviewFiles, ReviewHelper
 from olympia.versions.models import Version

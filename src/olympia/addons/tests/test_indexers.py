@@ -2,13 +2,15 @@
 from itertools import chain
 
 from olympia import amo
+from olympia.addons.indexers import AddonIndexer
+from olympia.addons.models import (
+    Addon, Preview, attach_tags, attach_translations
+)
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import (
-    addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
-    version_factory)
-from olympia.addons.models import (
-    Addon, attach_tags, attach_translations, Preview)
-from olympia.addons.indexers import AddonIndexer
+    ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
+    version_factory
+)
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC

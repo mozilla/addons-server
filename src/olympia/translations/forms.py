@@ -1,11 +1,11 @@
-from django.forms import ValidationError
 from django.conf import settings
 from django.db import models
+from django.forms import ValidationError
 from django.forms.utils import ErrorList
-from django.utils.translation.trans_real import to_language
 from django.utils.encoding import force_text
-from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
+from django.utils.translation.trans_real import to_language
 
 
 def default_locale(obj):

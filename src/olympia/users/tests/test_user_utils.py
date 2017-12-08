@@ -6,7 +6,7 @@ from django.conf import settings
 
 from olympia.amo.tests import TestCase
 from olympia.users.models import DeniedName, UserProfile
-from olympia.users.utils import autocreate_username, UnsubscribeCode
+from olympia.users.utils import UnsubscribeCode, autocreate_username
 
 
 def test_email_unsubscribe_code_parse():

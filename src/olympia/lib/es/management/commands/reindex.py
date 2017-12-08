@@ -9,13 +9,16 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
-from olympia.amo.search import get_es
+
 from olympia.amo.celery import task
+from olympia.amo.search import get_es
+from olympia.lib.es.utils import (
+    flag_reindexing_amo, is_reindexing_amo, timestamp_index,
+    unflag_reindexing_amo
+)
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
-from olympia.lib.es.utils import (
-    is_reindexing_amo, unflag_reindexing_amo, flag_reindexing_amo,
-    timestamp_index)
+
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
 

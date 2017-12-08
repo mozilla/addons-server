@@ -1,6 +1,6 @@
-from django.utils.translation import trans_real, activate
-
 import pytest
+
+from django.utils.translation import activate, trans_real
 
 
 pytestmark = pytest.mark.django_db

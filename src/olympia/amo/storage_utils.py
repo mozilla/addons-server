@@ -9,6 +9,7 @@ require leading directories to exist. The default Django file system storage
 from django.core.files.storage import default_storage
 from django.utils.encoding import force_bytes
 
+
 DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
 
 

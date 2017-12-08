@@ -1,11 +1,12 @@
 from functools import partial
 
+import jinja2
+
 from django.contrib import messages as django_messages
 from django.template import loader
 from django.utils import safestring
 from rest_framework.request import Request
 
-import jinja2
 
 """
 This file was created because AMO wants to have multi-line messages including a

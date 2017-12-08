@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 import urllib
 
-from django.utils import translation
-
 import pytest
+
 from mock import Mock
+
+from django.utils import translation
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo import LOG
-from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
-from olympia.amo.tests.test_helpers import render
 from olympia.addons.models import Addon
+from olympia.amo import LOG
+from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
+from olympia.amo.tests.test_helpers import render
 from olympia.devhub.templatetags import jinja_helpers
 from olympia.files.models import File
 from olympia.versions.models import Version

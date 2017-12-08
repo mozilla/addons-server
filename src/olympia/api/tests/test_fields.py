@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-from django.core.exceptions import ValidationError
-
 from mock import Mock
+
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.api.fields import (
     ESTranslationSerializerField, ReverseChoiceField,
-    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
-from olympia.amo.tests import addon_factory, TestCase
+    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField
+)
 from olympia.translations.models import Translation
 
 

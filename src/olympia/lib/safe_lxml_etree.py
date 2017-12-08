@@ -1,11 +1,13 @@
-from lxml.etree import *  # noqa
-from lxml.etree import XMLParser as _XMLParser
-from lxml.etree import _ElementTree, _Comment, _Element  # noqa
-
+from defusedxml.common import NotSupportedError
 # This should be imported after lxml.etree so that it overrides the
 # following attributes.
-from defusedxml.lxml import parse, fromstring, XML  # noqa
-from defusedxml.common import NotSupportedError
+from defusedxml.lxml import XML, fromstring, parse  # noqa
+from lxml.etree import (
+    XMLParser as _XMLParser, _Comment, _Element, _ElementTree
+)
+
+
+from lxml.etree import *  # noqa; noqa
 
 
 class XMLParser(_XMLParser):

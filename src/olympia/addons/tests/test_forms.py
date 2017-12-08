@@ -9,13 +9,13 @@ from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
 from olympia import amo, core
-from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
-from olympia.amo.tests.test_helpers import get_image_path
-from olympia.amo.utils import rm_local_tmp_dir
 from olympia.addons import forms
 from olympia.addons.models import Addon, Category
+from olympia.amo.tests import TestCase, addon_factory, req_factory_factory
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import rm_local_tmp_dir
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.tags.models import Tag, AddonTag
+from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
 

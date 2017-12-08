@@ -1,11 +1,10 @@
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q, Prefetch
+from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext
-
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
@@ -14,24 +13,26 @@ from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.utils import render, paginate
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
+from olympia.amo.decorators import json_view, login_required, post_required
+from olympia.amo.templatetags import jinja_helpers
+from olympia.amo.utils import paginate, render
 from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfPublic, AllowOwner,
-    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
+    AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
+    AnyOf, ByHttpMethod, GroupPermission
+)
 
-from .templatetags.jinja_helpers import user_can_delete_review
-from .models import Rating, RatingFlag, GroupedRating
+from . import forms
+from .models import GroupedRating, Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
 from .serializers import RatingSerializer, RatingSerializerReply
-from . import forms
+from .templatetags.jinja_helpers import user_can_delete_review
 
 
 log = olympia.core.logger.getLogger('z.ratings')

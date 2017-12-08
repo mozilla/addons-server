@@ -1,5 +1,6 @@
-from olympia import amo
 from addons.models import Category
+
+from olympia import amo
 
 
 def run():

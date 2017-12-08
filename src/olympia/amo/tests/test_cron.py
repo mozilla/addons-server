@@ -1,13 +1,15 @@
 import datetime
+
 from datetime import timedelta
 
 import mock
 
+from olympia.amo.celery import task
 from olympia.amo.cron import gc
 from olympia.amo.tests import TestCase
-from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.files.models import FileUpload
+
 
 fake_task_func = mock.Mock()
 

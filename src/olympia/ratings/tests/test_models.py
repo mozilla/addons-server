@@ -5,10 +5,10 @@ from django.core import mail
 from django.utils import translation
 
 from olympia import amo
-from olympia.amo.templatetags import jinja_helpers
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
+from olympia.amo.templatetags import jinja_helpers
+from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
 from olympia.ratings import tasks
 from olympia.ratings.models import GroupedRating, Rating, RatingFlag
 from olympia.users.models import UserProfile

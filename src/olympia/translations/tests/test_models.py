@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 import re
 
+import jinja2
+import multidb
+import pytest
+
+from mock import patch
+from pyquery import PyQuery as pq
+
 import django
+
 from django.conf import settings
 from django.db import connections, reset_queries
 from django.test import TransactionTestCase
@@ -9,20 +17,16 @@ from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.functional import lazy
 
-import jinja2
-import multidb
-import pytest
-from mock import patch
-from pyquery import PyQuery as pq
-
 from olympia.amo.tests import BaseTestCase
-from olympia.translations.tests.testapp.models import (
-    TranslatedModel, UntranslatedModel, FancyModel)
 from olympia.translations import widgets
-from olympia.translations.query import order_by_translation
 from olympia.translations.models import (
-    LinkifiedTranslation, NoLinksTranslation, NoLinksNoMarkupTranslation,
-    PurifiedTranslation, Translation, TranslationSequence)
+    LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
+    PurifiedTranslation, Translation, TranslationSequence
+)
+from olympia.translations.query import order_by_translation
+from olympia.translations.tests.testapp.models import (
+    FancyModel, TranslatedModel, UntranslatedModel
+)
 
 
 pytestmark = pytest.mark.django_db

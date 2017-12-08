@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
-
-import mock
 import urlparse
 
+import mock
+
+from django.conf import settings
+
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.utils import make_xpi
 from olympia.versions.compare import version_int

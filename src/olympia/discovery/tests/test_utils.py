@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
+
 import mock
 import pytest
 import requests
 import settings
+
 from django.http import HttpResponse
 
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.discovery.data import DiscoItem
 from olympia.discovery.utils import (
-    call_recommendation_server, get_recommendations, replace_extensions)
+    call_recommendation_server, get_recommendations, replace_extensions
+)
 
 
 @pytest.mark.django_db

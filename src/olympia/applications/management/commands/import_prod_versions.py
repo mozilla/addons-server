@@ -1,6 +1,6 @@
-from django.core.management.base import BaseCommand
-
 from pyquery import PyQuery
+
+from django.core.management.base import BaseCommand
 
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_GUIDS

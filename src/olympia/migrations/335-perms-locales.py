@@ -1,6 +1,6 @@
-from django.conf import settings
-
 from access.models import Group, GroupUser
+
+from django.conf import settings
 
 
 LANGS = sorted(list(

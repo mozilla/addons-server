@@ -1,12 +1,15 @@
 import json
+
 from StringIO import StringIO
 
-from mock import patch, ANY
+from mock import ANY, patch
+
 from django.core.management import call_command
 
 from olympia.amo.tests import TestCase
 from olympia.users.management.commands.createsuperuser import (
-    Command as CreateSuperUser)
+    Command as CreateSuperUser
+)
 from olympia.users.models import UserProfile
 
 

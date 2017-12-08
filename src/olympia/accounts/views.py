@@ -2,6 +2,8 @@ import base64
 import functools
 import os
 
+from waffle.decorators import waffle_switch
+
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.core import signing
@@ -9,41 +11,44 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.utils.encoding import force_bytes
-from django.utils.http import is_safe_url
 from django.utils.html import format_html
+from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
-
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
 from rest_framework.mixins import (
-    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+)
 from rest_framework.permissions import (
-    AllowAny, BasePermission, IsAuthenticated)
+    AllowAny, BasePermission, IsAuthenticated
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
-from waffle.decorators import waffle_switch
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
 from olympia.api.authentication import (
-    JWTKeyAuthentication, WebTokenAuthentication)
+    JWTKeyAuthentication, WebTokenAuthentication
+)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
-from olympia.users.models import UserProfile, UserNotification
+from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS
-
 
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer)
+    UserNotificationSerializer, UserProfileSerializer
+)
 from .utils import fxa_login_url, generate_fxa_state
+
 
 log = olympia.core.logger.getLogger('accounts')
 

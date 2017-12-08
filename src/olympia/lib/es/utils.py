@@ -1,13 +1,15 @@
-import os
 import datetime
-from copy import deepcopy
+import os
 
-from django.core.management.base import CommandError
-from django.conf import settings
+from copy import deepcopy
 
 from elasticsearch import helpers
 
+from django.conf import settings
+from django.core.management.base import CommandError
+
 import olympia.core.logger
+
 from olympia.amo import search as amo_search
 
 from .models import Reindexing

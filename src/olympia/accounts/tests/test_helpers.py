@@ -1,6 +1,6 @@
-from django.test import RequestFactory
-
 import mock
+
+from django.test import RequestFactory
 
 from olympia.accounts.templatetags import jinja_helpers
 

@@ -1,8 +1,8 @@
 from decimal import Decimal
 
-from django.db import transaction
-
 from market.models import Price
+
+from django.db import transaction
 
 
 @transaction.commit_on_success

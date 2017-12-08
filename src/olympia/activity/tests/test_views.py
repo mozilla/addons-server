@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-import mock
 import StringIO
+
+import mock
 
 from django.test.utils import override_settings
 
@@ -9,13 +10,14 @@ from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
-from olympia.activity.views import inbound_email, EmailCreationPermission
-from olympia.amo.tests import (
-    addon_factory, APITestClient, req_factory_factory, user_factory,
-    version_factory, TestCase)
-from olympia.amo.urlresolvers import reverse
+from olympia.activity.views import EmailCreationPermission, inbound_email
 from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
+from olympia.amo.tests import (
+    APITestClient, TestCase, addon_factory, req_factory_factory, user_factory,
+    version_factory
+)
+from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
 

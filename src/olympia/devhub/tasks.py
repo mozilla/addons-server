@@ -6,10 +6,18 @@ import socket
 import subprocess
 import tempfile
 import urllib2
+
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
+
+import validator
+
+from celery.exceptions import SoftTimeLimitExceeded
+from celery.result import AsyncResult
+from django_statsd.clients import statsd
+from PIL import Image
 
 from django.conf import settings
 from django.core.cache import cache
@@ -17,23 +25,19 @@ from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.utils.translation import ugettext
 
-from celery.exceptions import SoftTimeLimitExceeded
-from celery.result import AsyncResult
-from django_statsd.clients import statsd
-from PIL import Image
-import validator
-
 import olympia.core.logger
+
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
-    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch)
-from olympia.addons.models import Addon
+    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch
+)
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
+from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.models import FileUpload, File, FileValidation
 from olympia.files.utils import is_beta
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version

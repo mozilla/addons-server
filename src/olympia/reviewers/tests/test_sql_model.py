@@ -5,10 +5,10 @@ Currently these tests are coupled tighly with MySQL
 """
 from datetime import datetime
 
+import pytest
+
 from django.db import connection, models
 from django.db.models import Q
-
-import pytest
 
 from olympia.amo.tests import BaseTestCase
 from olympia.reviewers.sql_model import RawSQLModel

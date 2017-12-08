@@ -4,6 +4,7 @@ import tempfile
 import uuid
 
 from PIL import Image, ImageColor
+
 from django.conf import settings
 
 from olympia.addons.models import Preview

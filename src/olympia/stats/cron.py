@@ -1,17 +1,20 @@
 import datetime
 
-from django.core.management import call_command
-from django.db.models import Sum, Max
-
 import waffle
+
 from celery import group
 
+from django.core.management import call_command
+from django.db.models import Max, Sum
+
 import olympia.core.logger
+
 from olympia.amo.utils import chunked
-from .models import (
-    AddonCollectionCount, CollectionCount, UpdateCount)
-from . import tasks
 from olympia.lib.es.utils import raise_if_reindex_in_progress
+
+from . import tasks
+from .models import AddonCollectionCount, CollectionCount, UpdateCount
+
 
 task_log = olympia.core.logger.getLogger('z.task')
 cron_log = olympia.core.logger.getLogger('z.cron')

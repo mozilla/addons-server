@@ -1,27 +1,30 @@
 import hashlib
 import os
 
+from elasticsearch_dsl import Search
+from PIL import Image
+
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
-from elasticsearch_dsl import Search
-from PIL import Image
-
 import olympia.core.logger
+
 from olympia import amo
-from olympia.addons.models import (
-    Addon, attach_tags, attach_translations, AppSupport, CompatOverride,
-    IncompatibleVersions, Persona, Preview)
 from olympia.addons.indexers import AddonIndexer
+from olympia.addons.models import (
+    Addon, AppSupport, CompatOverride, IncompatibleVersions, Persona, Preview,
+    attach_tags, attach_translations
+)
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.storage_utils import rm_stored_dir
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    cache_ns_key, ImageCheck, LocalFileStorage, rm_local_tmp_dir)
+    ImageCheck, LocalFileStorage, cache_ns_key, rm_local_tmp_dir
+)
 from olympia.applications.models import AppVersion
-from olympia.files.utils import extract_zip, RDFExtractor
+from olympia.files.utils import RDFExtractor, extract_zip
 from olympia.lib.es.utils import index_objects
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag

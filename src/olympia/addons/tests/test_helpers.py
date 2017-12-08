@@ -1,8 +1,7 @@
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.addons.templatetags.jinja_helpers import (
-    statusflags, flag)
 from olympia.addons.models import Addon
+from olympia.addons.templatetags.jinja_helpers import flag, statusflags
+from olympia.amo.tests import TestCase
 
 
 class TestHelpers(TestCase):

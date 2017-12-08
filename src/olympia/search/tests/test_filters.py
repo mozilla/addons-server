@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 import copy
 
-from django.test.client import RequestFactory
-
 from elasticsearch_dsl import Search
 from mock import Mock
+
+from django.test.client import RequestFactory
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import create_switch, TestCase
+from olympia.amo.tests import TestCase, create_switch
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter)
+    SortingFilter
+)
 
 
 class FilterTestsBase(TestCase):

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from addons.models import Addon
+
 from olympia import amo
 
 

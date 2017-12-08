@@ -1,8 +1,9 @@
+import datetime
 import logging
 import os
-import datetime
 
 from olympia.lib.settings_base import *  # noqa
+
 
 # Allow addons-dev CDN for CSP.
 CSP_BASE_URI += (

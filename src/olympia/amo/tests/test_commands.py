@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from importlib import import_module
+
 import mock
 import pytest
-from importlib import import_module
 
 from django.conf import settings
 from django.core.management import call_command

@@ -1,16 +1,17 @@
 import datetime
+
 from datetime import timedelta
 
 import mock
 
+from post_request_task.task import _discard_tasks, _stop_queuing_tasks
+from waffle.models import Switch
+
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
-from waffle.models import Switch
-from post_request_task.task import (
-    _discard_tasks, _stop_queuing_tasks)
 
-from olympia.amo.tests import TestCase, create_switch
 from olympia.amo.celery import task
+from olympia.amo.tests import TestCase, create_switch
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 

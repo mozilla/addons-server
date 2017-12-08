@@ -6,14 +6,15 @@ from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.bandwagon.views import get_filter as get_filter_view
-from olympia.browse.views import personas_listing as personas_listing_view
 from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
-from olympia.amo.utils import sorted_groupby, render
+from olympia.amo.utils import render, sorted_groupby
 from olympia.bandwagon.models import Collection
+from olympia.bandwagon.views import get_filter as get_filter_view
+from olympia.browse.views import personas_listing as personas_listing_view
 from olympia.versions.compare import dict_from_int, version_dict, version_int
 
 from .forms import ESSearchForm, SecondarySearchForm

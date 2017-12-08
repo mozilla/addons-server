@@ -1,17 +1,19 @@
+import mock
+
+from pyquery import PyQuery as pq
+
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.encoding import smart_text
 from django.utils.translation import trim_whitespace
 
-import mock
-from pyquery import PyQuery as pq
-
 from olympia import amo
-from olympia.amo.tests import addon_factory, collection_factory, TestCase
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import format_date
 from olympia.addons.models import (
-    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
+    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview
+)
+from olympia.amo.templatetags.jinja_helpers import format_date
+from olympia.amo.tests import TestCase, addon_factory, collection_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import MonthlyPick
 from olympia.legacy_discovery import views
 from olympia.legacy_discovery.forms import DiscoveryModuleForm

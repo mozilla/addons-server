@@ -1,10 +1,10 @@
 import os
 
-from django.conf import settings as dj_settings
-
 from django_statsd.clients import statsd
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search, Q
+from elasticsearch_dsl import Q, Search
+
+from django.conf import settings as dj_settings
 
 import olympia.core.logger
 

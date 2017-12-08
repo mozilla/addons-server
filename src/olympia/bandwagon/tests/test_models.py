@@ -4,14 +4,15 @@ import random
 import mock
 
 from olympia import amo, core
-from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase, addon_factory, collection_factory
+from olympia.bandwagon import tasks
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionWatcher,
-    FeaturedCollection)
-from olympia.bandwagon import tasks
+    FeaturedCollection
+)
 from olympia.users.models import UserProfile
 
 

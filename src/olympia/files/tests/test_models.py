@@ -4,29 +4,32 @@ import json
 import os
 import tempfile
 import zipfile
-from datetime import datetime
 
-from django import forms
-from django.core.files.storage import default_storage as storage
-from django.conf import settings
-from django.test.utils import override_settings
+from datetime import datetime
 
 import mock
 import pytest
+
 from mock import patch
 
+from django import forms
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
+
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
+from olympia.amo.utils import chunked, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    EXTENSIONS, File, FileUpload, FileValidation, nfd_str, Permission,
-    track_file_status_change, WebextPermission, WebextPermissionDescription,
+    EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
+    WebextPermissionDescription, nfd_str, track_file_status_change
 )
 from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import (
-    check_xpi_info, Extractor, parse_addon, parse_xpi)
+    Extractor, check_xpi_info, parse_addon, parse_xpi
+)
 from olympia.versions.models import Version
 
 

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse
-
 from pyquery import PyQuery as pq
 
-from olympia.addons.models import Addon
+from django.core.urlresolvers import reverse
+
 from olympia.abuse.models import AbuseReport
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
 

@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
+
 urlpatterns = [
     url(r'^addons/$',
         views.VersionView.as_view(),

@@ -1,7 +1,7 @@
 
-from django.db import models
-
 import caching.base
+
+from django.db import models
 
 from olympia.amo.models import SearchMixin
 

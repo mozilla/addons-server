@@ -3,7 +3,7 @@ import mock
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 
-from ..models import APIKey, SYMMETRIC_JWT_TYPE
+from ..models import SYMMETRIC_JWT_TYPE, APIKey
 
 
 class TestAPIKey(TestCase):

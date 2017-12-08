@@ -2,15 +2,15 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.shortcuts import redirect
-from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
+from django.views.i18n import javascript_catalog
 
 from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
-from olympia.versions.urls import download_patterns
-from olympia.versions import views as version_views
 from olympia.stats import views as stats_views
+from olympia.versions import views as version_views
+from olympia.versions.urls import download_patterns
 
 
 admin.autodiscover()

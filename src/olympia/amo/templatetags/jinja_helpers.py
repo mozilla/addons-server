@@ -3,33 +3,37 @@ import json as jsonlib
 import os
 import random
 import re
+
 from operator import attrgetter
 from urlparse import urljoin
-
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from django.forms import CheckboxInput
-from django.utils.translation import (
-    ugettext, trim_whitespace, to_locale, get_language)
-from django.utils.encoding import smart_text
-from django.utils.html import format_html as django_format_html
-from django.template import defaultfilters, loader
-from django.utils.functional import lazy
-from django.utils.safestring import mark_safe
 
 import caching.base as caching
 import jinja2
 import waffle
-from django_jinja import library
-from babel.support import Format
 
-from olympia.lib.jingo_minify_helpers import (
-    _build_html, _get_compiled_css_url, get_path, is_external,
-    get_js_urls, get_css_urls)
+from babel.support import Format
+from django_jinja import library
+
+from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms import CheckboxInput
+from django.template import defaultfilters, loader
+from django.utils.encoding import smart_text
+from django.utils.functional import lazy
+from django.utils.html import format_html as django_format_html
+from django.utils.safestring import mark_safe
+from django.utils.translation import (
+    get_language, to_locale, trim_whitespace, ugettext
+)
 
 from olympia import amo
-from olympia.amo import utils, urlresolvers
+from olympia.amo import urlresolvers, utils
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
+from olympia.lib.jingo_minify_helpers import (
+    _build_html, _get_compiled_css_url, get_css_urls, get_js_urls, get_path,
+    is_external
+)
+
 
 # Registering some utils as filters:
 urlparams = library.filter(utils.urlparams)

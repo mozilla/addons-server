@@ -2,12 +2,12 @@ import os
 import shutil
 import tempfile
 
+import pytest
+
+from PIL import Image
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-
-import pytest
-from PIL import Image
 
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.users.tasks import delete_photo, resize_photo

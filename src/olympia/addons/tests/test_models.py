@@ -2,28 +2,31 @@
 import json
 import os
 import time
-from datetime import datetime, timedelta
 
-from django import forms
-from django.conf import settings
-from django.core import mail
-from django.core.files.storage import default_storage as storage
-from django.contrib.auth.models import AnonymousUser
-from django.db import IntegrityError
-from django.utils import translation
+from datetime import datetime, timedelta
 
 from mock import Mock, patch
 
+from django import forms
+from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
+from django.core import mail
+from django.core.files.storage import default_storage as storage
+from django.db import IntegrityError
+from django.utils import translation
+
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
-from olympia.amo.tests import (
-    addon_factory, collection_factory, TestCase, version_factory)
-from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
-    AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
-    Category, CompatOverride, CompatOverrideRange, FrozenAddon,
-    IncompatibleVersions, Persona, Preview, track_addon_status_change)
+    AddonFeatureCompatibility, AddonUser, AppSupport, Category, CompatOverride,
+    CompatOverrideRange, DeniedGuid, DeniedSlug, FrozenAddon,
+    IncompatibleVersions, Persona, Preview, track_addon_status_change
+)
+from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
+from olympia.amo.tests import (
+    TestCase, addon_factory, collection_factory, version_factory
+)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
@@ -32,10 +35,11 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
-    delete_translation, Translation, TranslationSequence)
+    Translation, TranslationSequence, delete_translation
+)
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, Version
 from olympia.versions.compare import version_int
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 class TestCleanSlug(TestCase):

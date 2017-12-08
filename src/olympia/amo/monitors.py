@@ -2,19 +2,22 @@ import os
 import socket
 import StringIO
 import traceback
+
+import redis as redislib
 import requests
+
+from kombu import Connection
+from PIL import Image
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
-from kombu import Connection
-from PIL import Image
-import redis as redislib
-
 import olympia.core.logger
+
 from olympia.amo import search
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.management.commands import dump_apps
+
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
 

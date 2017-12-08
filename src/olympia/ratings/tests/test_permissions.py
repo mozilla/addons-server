@@ -1,7 +1,7 @@
+from mock import mock
+
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
-
-from mock import mock
 
 from olympia.amo.tests import TestCase
 from olympia.ratings.permissions import CanDeleteRatingPermission

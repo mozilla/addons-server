@@ -1,12 +1,13 @@
+import MySQLdb as mysql
+
+from pyquery import PyQuery as pq
+
 from django.conf import settings
 from django.db import models
 from django.utils import importlib
 
-import MySQLdb as mysql
-from pyquery import PyQuery as pq
-
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 
 
 def pubdir(ob):

@@ -1,19 +1,20 @@
 import functools
+
 from operator import attrgetter
+
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.http import is_safe_url
-from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext
-
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.accounts.views import logout_user
@@ -21,12 +22,14 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, write)
+    json_view, login_required, permission_required, write
+)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, render
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
+from olympia.users import notifications as notifications
 from olympia.users.models import UserNotification
 
 from . import forms, tasks

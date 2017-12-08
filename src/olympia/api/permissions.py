@@ -1,5 +1,5 @@
 from rest_framework.exceptions import MethodNotAllowed
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 from olympia import amo
 from olympia.access import acl

@@ -1,6 +1,7 @@
 import jinja2
 
 from django_jinja import library
+
 from django.template.loader import get_template
 from django.utils.translation import ugettext
 

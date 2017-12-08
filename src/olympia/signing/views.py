@@ -3,13 +3,13 @@ import functools
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext
-
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -18,12 +18,13 @@ from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
+from olympia.signing.serializers import FileUploadSerializer
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed)
+    system_addon_submission_allowed
+)
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
-from olympia.signing.serializers import FileUploadSerializer
 
 
 log = olympia.core.logger.getLogger('signing')

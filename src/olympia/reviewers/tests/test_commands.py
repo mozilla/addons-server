@@ -9,13 +9,15 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
-    addon_factory, file_factory, TestCase, user_factory, version_factory)
+    TestCase, addon_factory, file_factory, user_factory, version_factory
+)
 from olympia.files.models import FileValidation
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, get_reviewing_cache, ReviewerScore)
+    AutoApprovalSummary, ReviewerScore, get_reviewing_cache
+)
 
 
 class TestAutoApproveCommand(TestCase):

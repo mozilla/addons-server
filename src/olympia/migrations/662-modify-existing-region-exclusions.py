@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import IntegrityError
-
 import mkt
+
 from mkt.developers.cron import exclude_new_region
 from mkt.webapps.models import AddonExcludedRegion
 from mkt.zadmin.models import FeaturedAppRegion
+
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 
 
 def run():

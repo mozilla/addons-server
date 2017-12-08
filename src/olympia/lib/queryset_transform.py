@@ -1,5 +1,6 @@
 from django.db import models
 
+
 """
 Copyright (c) 2010, Simon Willison.
 All rights reserved.

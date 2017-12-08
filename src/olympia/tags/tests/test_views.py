@@ -1,9 +1,9 @@
-from django.core.urlresolvers import reverse, NoReverseMatch
-
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase
+from django.core.urlresolvers import NoReverseMatch, reverse
+
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 
 
 class TestManagement(TestCase):

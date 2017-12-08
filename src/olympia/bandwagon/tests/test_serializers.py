@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from olympia.amo.tests import (
-    addon_factory, BaseTestCase, collection_factory, user_factory)
+    BaseTestCase, addon_factory, collection_factory, user_factory
+)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
-    CollectionAddonSerializer, CollectionSerializer)
+    CollectionAddonSerializer, CollectionSerializer
+)
 
 
 class TestCollectionSerializer(BaseTestCase):

@@ -1,28 +1,33 @@
 # -*- coding: utf-8 -*-
 import hashlib
-from datetime import datetime, timedelta
 
-from django.core.files.storage import default_storage as storage
+from datetime import datetime, timedelta
 
 import mock
 import pytest
+
 from pyquery import PyQuery
+
+from django.core.files.storage import default_storage as storage
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.addons.models import (
+    Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange
+)
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import utc_millesecs_from_epoch
-from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
+    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
-    Version, ApplicationsVersions, source_upload_path)
+    ApplicationsVersions, Version, source_upload_path
+)
 
 
 pytestmark = pytest.mark.django_db

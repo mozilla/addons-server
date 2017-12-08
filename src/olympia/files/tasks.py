@@ -1,15 +1,18 @@
 import re
 
-from django.utils import translation
-
 import requests
+
 from requests.exceptions import RequestException
 
+from django.utils import translation
+
 import olympia.core.logger
+
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.files.models import (
-    File, WebextPermission, WebextPermissionDescription)
+    File, WebextPermission, WebextPermissionDescription
+)
 from olympia.files.utils import parse_xpi
 from olympia.translations.models import Translation
 

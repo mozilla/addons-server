@@ -1,7 +1,8 @@
-from collections import defaultdict, OrderedDict
-from datetime import date, datetime, timedelta
 import json
 import time
+
+from collections import OrderedDict, defaultdict
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
@@ -9,41 +10,47 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext
+from django.views.decorators.cache import never_cache
 
 from olympia import amo
-from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona
+)
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, post_required)
-from olympia.amo.utils import paginate, render
+    json_view, login_required, permission_required, post_required
+)
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import paginate, render
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
+from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
-    AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache, get_flags,
-    get_reviewing_cache, get_reviewing_cache_key, PerformanceGraph,
+    AddonCannedResponse, AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
-    set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, Whiteboard)
+    ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList, Whiteboard,
+    clear_reviewing_cache, get_flags, get_reviewing_cache,
+    get_reviewing_cache_key, set_reviewing_cache
+)
 from olympia.reviewers.utils import (
-    AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
-    ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
+    AutoApprovedTable, ContentReviewTable, ReviewHelper,
+    ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable,
+    is_limited_reviewer
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
-    addons_reviewer_required, any_reviewer_required,
-    any_reviewer_or_moderator_required, ratings_moderator_required,
-    unlisted_addons_reviewer_required)
+    addons_reviewer_required, any_reviewer_or_moderator_required,
+    any_reviewer_required, ratings_moderator_required,
+    unlisted_addons_reviewer_required
+)
 
 
 def base_context(**kw):

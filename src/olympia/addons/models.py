@@ -8,8 +8,15 @@ import re
 import time
 import urlparse
 import uuid
-from operator import attrgetter
+
 from datetime import datetime
+from operator import attrgetter
+
+import caching.base as caching
+
+from django_extensions.db.fields.json import JSONField
+from django_statsd.clients import statsd
+from jinja2.filters import do_dictsort
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -20,37 +27,38 @@ from django.dispatch import receiver
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
-import caching.base as caching
-from django_extensions.db.fields.json import JSONField
-from django_statsd.clients import statsd
-from jinja2.filters import do_dictsort
-
 import olympia.core.logger
+
 from olympia import activity, amo, core
-from olympia.amo.models import (
-    manual_order, ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin,
-    SlugField)
 from olympia.access import acl
 from olympia.addons.utils import (
-    get_creatured_ids, get_featured_ids, generate_addon_guid)
-from olympia.amo.templatetags import jinja_helpers
+    generate_addon_guid, get_creatured_ids, get_featured_ids
+)
 from olympia.amo.decorators import use_master, write
-from olympia.amo.utils import (
-    attach_trans_dict, cache_ns_key, chunked,
-    no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
-    urlparams, find_language, AMOJSONEncoder)
+from olympia.amo.models import (
+    ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin, SlugField,
+    manual_order
+)
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import (
+    AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
+    no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
+    urlparams
+)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
-    extract_translations, resolve_i18n_message, parse_addon)
+    extract_translations, parse_addon, resolve_i18n_message
+)
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
+    LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal
+)
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import inherit_nomination, Version
+from olympia.versions.models import Version, inherit_nomination
 
 from . import signals
 

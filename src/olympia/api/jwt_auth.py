@@ -15,15 +15,18 @@ See https://github.com/GetBlimp/django-rest-framework-jwt/ for more info.
 from calendar import timegm
 from datetime import datetime
 
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-
 import jwt
-from rest_framework import exceptions
+
 from rest_framework_jwt.settings import api_settings
 
+from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+from rest_framework import exceptions
+
 import olympia.core.logger
+
 from olympia.api.models import APIKey
+
 
 log = olympia.core.logger.getLogger('z.jwt')
 

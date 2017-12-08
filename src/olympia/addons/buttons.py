@@ -1,8 +1,9 @@
+import jinja2
+
 from django.template.loader import render_to_string
 from django.utils.translation import (
-    ugettext, ugettext_lazy as _, pgettext_lazy)
-
-import jinja2
+    pgettext_lazy, ugettext, ugettext_lazy as _
+)
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams

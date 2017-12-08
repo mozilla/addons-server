@@ -1,14 +1,17 @@
 import json
 
 import requests
+
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import olympia.core.logger
+
 from olympia.files.models import FileUpload
 from olympia.github.tasks import process_webhook
-from olympia.github.utils import GithubRequest, GithubCallback
+from olympia.github.utils import GithubCallback, GithubRequest
+
 
 log = olympia.core.logger.getLogger('z.github')
 

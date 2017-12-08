@@ -1,6 +1,6 @@
-from django.utils import translation
-
 from mock import Mock
+
+from django.utils import translation
 
 from olympia.amo.tests.test_helpers import render
 

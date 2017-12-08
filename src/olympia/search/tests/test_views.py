@@ -2,23 +2,26 @@
 import json
 import urlparse
 
+import mock
+import pytest
+
+from pyquery import PyQuery as pq
+
 from django.http import QueryDict
 from django.test.client import RequestFactory
 from django.utils.translation import trim_whitespace
 
-import mock
-import pytest
-from pyquery import PyQuery as pq
-
 from olympia import amo
-from olympia.amo.tests import (
-    create_switch, ESTestCaseWithAddons, ESTestCase, addon_factory)
-from olympia.amo.templatetags.jinja_helpers import (
-    locale_url, numberfmt, urlparams, format_date)
-
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona)
+    Addon, AddonCategory, AddonUser, Category, Persona
+)
+from olympia.amo.templatetags.jinja_helpers import (
+    format_date, locale_url, numberfmt, urlparams
+)
+from olympia.amo.tests import (
+    ESTestCase, ESTestCaseWithAddons, addon_factory, create_switch
+)
+from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.tasks import unindex_collections
 from olympia.search import views
 from olympia.search.utils import floor_version
@@ -26,7 +29,8 @@ from olympia.search.views import version_sidebar
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.compare import (
-    num as vnum, version_int as vint, MAXVERSION)
+    MAXVERSION, num as vnum, version_int as vint
+)
 
 
 pytestmark = pytest.mark.django_db

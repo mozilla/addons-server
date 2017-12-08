@@ -1,7 +1,9 @@
+from market.models import Price
+
 from django.db import models
 
 from olympia import amo
-from market.models import Price
+
 
 tiers = {
     '0.00': {'CO': {'currency': 'COP', 'price': '0.00', 'region': 9},

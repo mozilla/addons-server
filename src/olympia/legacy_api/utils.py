@@ -5,10 +5,11 @@ from django.core.cache import cache
 from django.utils.html import strip_tags
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import cache_ns_key, urlparams, epoch
+from olympia.amo.utils import cache_ns_key, epoch, urlparams
 from olympia.tags.models import Tag
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version

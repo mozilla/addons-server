@@ -1,7 +1,7 @@
 import csv
 
-from django.apps import apps
 from django import http
+from django.apps import apps
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
@@ -14,17 +14,17 @@ from django.views.decorators.cache import never_cache
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo import search
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
-from olympia.applications.models import AppVersion
-from olympia.amo import messages
+from olympia.amo import messages, search
 from olympia.amo.decorators import (
-    any_permission_required, json_view, login_required, post_required)
+    any_permission_required, json_view, login_required, post_required
+)
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
+from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
@@ -41,8 +41,10 @@ from . import tasks
 from .decorators import admin_required
 from .forms import (
     AddonStatusForm, CompatForm, DevMailerForm, FeaturedCollectionFormSet,
-    FileFormSet, MonthlyPickFormSet, YesImSure)
+    FileFormSet, MonthlyPickFormSet, YesImSure
+)
 from .models import EmailPreviewTopic
+
 
 log = olympia.core.logger.getLogger('z.zadmin')
 

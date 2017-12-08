@@ -1,17 +1,18 @@
 import json
 import os
+
 from base64 import urlsafe_b64encode
 from datetime import datetime
 from urllib import urlencode
+
+import boto3
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
-import boto3
-
-from olympia.core.logger import getLogger
 from olympia.accounts.tasks import primary_email_change_event
+from olympia.core.logger import getLogger
 
 
 def fxa_config(request):

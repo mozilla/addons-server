@@ -1,9 +1,9 @@
 from django.conf.urls import include, url
 from django.views.decorators.cache import never_cache
 
-from . import views
-
 from olympia.legacy_api import views as legacy_views
+
+from . import views
 
 
 services_patterns = [

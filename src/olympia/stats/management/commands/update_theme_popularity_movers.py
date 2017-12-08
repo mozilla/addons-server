@@ -4,8 +4,10 @@ from django.core.management.base import BaseCommand
 from django.db import connection
 
 import olympia.core.logger
+
 from olympia.stats.models import (
-    ThemeUpdateCount, ThemeUpdateCountBulk, ThemeUserCount)
+    ThemeUpdateCount, ThemeUpdateCountBulk, ThemeUserCount
+)
 
 
 log = olympia.core.logger.getLogger('adi.themepopularitymovers')

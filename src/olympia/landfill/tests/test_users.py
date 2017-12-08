@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
-from olympia.users.models import UserProfile
+from olympia.amo.tests import TestCase
 from olympia.landfill.user import (
-    generate_addon_user_and_category, generate_user)
+    generate_addon_user_and_category, generate_user
+)
+from olympia.users.models import UserProfile
 
 
 class RatingsTests(TestCase):

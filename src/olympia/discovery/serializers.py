@@ -1,5 +1,4 @@
 from django.utils.translation import ugettext
-
 from rest_framework import serializers
 
 from olympia import amo

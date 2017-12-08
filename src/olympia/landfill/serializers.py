@@ -2,17 +2,14 @@ import random
 
 from rest_framework import serializers
 
-from olympia.amo.tests import user_factory, addon_factory
 from olympia import amo
 from olympia.addons.forms import icons
 from olympia.addons.models import AddonUser, Preview
 from olympia.addons.utils import generate_addon_guid
-from olympia.amo.tests import version_factory
+from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION,
-    ADDON_PERSONA,
-    STATUS_PUBLIC
+    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes

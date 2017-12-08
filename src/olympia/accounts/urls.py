@@ -1,9 +1,9 @@
-from django.conf.urls import include, url
-
-from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
-from olympia.bandwagon.views import CollectionViewSet, CollectionAddonViewSet
+from django.conf.urls import include, url
+from rest_framework.routers import SimpleRouter
+
+from olympia.bandwagon.views import CollectionAddonViewSet, CollectionViewSet
 
 from . import views
 

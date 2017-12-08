@@ -1,8 +1,8 @@
 import re
+
 from urllib2 import unquote
 
 from django.utils.translation import ugettext
-
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 

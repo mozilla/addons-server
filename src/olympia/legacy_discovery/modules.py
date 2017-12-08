@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import caching.base as caching
 import jinja2
-from django.utils.translation import ugettext_lazy as _
+
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
-    Collection, MonthlyPick as MonthlyPickModel)
+    Collection, MonthlyPick as MonthlyPickModel
+)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
 

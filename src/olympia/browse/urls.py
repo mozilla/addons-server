@@ -3,7 +3,9 @@ from django.shortcuts import redirect
 
 from olympia.amo.urlresolvers import reverse
 from olympia.browse.feeds import (
-    ExtensionCategoriesRss, FeaturedRss, SearchToolsRss, ThemeCategoriesRss)
+    ExtensionCategoriesRss, FeaturedRss, SearchToolsRss, ThemeCategoriesRss
+)
+
 from . import views
 
 

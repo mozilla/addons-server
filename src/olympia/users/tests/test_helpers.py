@@ -4,16 +4,17 @@ import urlparse
 
 import mock
 import pytest
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestPersonas
-from olympia.users.templatetags.jinja_helpers import (
-    addon_users_list, emaillink, manage_fxa_link, user_link,
-    users_list)
+from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
+from olympia.users.templatetags.jinja_helpers import (
+    addon_users_list, emaillink, manage_fxa_link, user_link, users_list
+)
 
 
 pytestmark = pytest.mark.django_db

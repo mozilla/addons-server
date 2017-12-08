@@ -1,11 +1,12 @@
-from django.template import engines
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import addon_factory, TestCase
+from django.template import engines
+
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.ratings.models import RatingFlag
 from olympia.ratings.forms import RatingForm
+from olympia.ratings.models import RatingFlag
 
 
 class HelpersTest(TestCase):
