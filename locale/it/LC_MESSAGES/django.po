@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 15:18+0000\n"
+"PO-Revision-Date: 2017-12-07 22:40+0000\n"
 "Last-Translator: Sav22999 <savemore99.sm@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3696,32 +3696,29 @@ msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi."
 
 msgid "Toolbar field area text (toolbar_field_text)."
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra degli indirizzi"
 
-#, fuzzy
 msgid "optional"
-msgstr "(facoltativo)"
+msgstr "facoltativo"
 
-#, fuzzy
 msgid "Browser Preview"
-msgstr "Anteprima al passaggio del mouse"
+msgstr "Anteprima nel browser"
 
 msgid "Back"
-msgstr ""
+msgstr "Indietro"
 
 #, fuzzy
 msgid "Uploading Theme"
 msgstr "Temi emergenti"
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "Carica file"
+msgstr "Carica tema"
 
 msgid "API Credentials"
 msgstr "Credenziali API"
@@ -4447,9 +4444,8 @@ msgstr "Blocca gli annunci pubblicitari {start_sub_heading}con {addon_name}{end_
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Un componente anti-pubblicità leggero ed efficace. uBlock Origin applica migliaia di filtri ai contenuti senza consumare troppa memoria."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca gli annunci pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Gestisci le password {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
