@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 09:25+0000\n"
+"PO-Revision-Date: 2017-12-10 09:44+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3932,6 +3932,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Utvidingar forbetrar nettopplevinga til millionar av Firefox-brukarar. Om du har kunnskap om %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, og "
+"%(css_link_open)sCSS%(link_close)s, har du allereie dei kunnskapane som trengst for å lage ei god utviding."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Lær korleis du lagar ei utviding"
@@ -3942,6 +3944,8 @@ msgstr "Porter ei Chrome-utviding"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox støttar WebExtension API-ar, som i dei fleste tilfelle er kompatible med utvidings API-ar støtta av Chrome, Opera og Edge, slik at utvidingane dine vil kunne køyre i Firefox utan større "
+"endringar."
 
 msgid "Publish Your Add-on"
 msgstr "Publiser utvidinga di"
@@ -3956,7 +3960,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Eit kommandolinjeverktøy for å utvikle, køyre og teste utvidingar."
 
 msgid "Automated code tests for your add-on."
 msgstr "Automatisert kodetestar for utvidinga di."
@@ -3965,7 +3969,7 @@ msgid "Compatibility Test"
 msgstr "Kompatibilitetstest"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Kontroller om utvidinga di er kompatibel med Firefox."
 
 msgid "Transfer ownership"
 msgstr "Overfør eigarskapet"
@@ -3974,7 +3978,7 @@ msgid "Theme Details"
 msgstr "Temadetaljar"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Vel ei flott adresse for detaljsida di."
 
 msgid "Select the category that best describes your Theme."
 msgstr "Vel kategorien som best skildrar temaet ditt."
@@ -3989,10 +3993,10 @@ msgid "Theme License"
 msgstr "Temalisens"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Kan andre dele temaet ditt så lenge dei krediterer deg?"
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Kan andre bruke temaet ditt kommersielt?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr ""
@@ -4090,7 +4094,7 @@ msgstr "Vis og abonner på <a href=\"%(feed_url)s\">aktivitetskjelda</a> til dit
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Delta i ordskiftet i <a href=\"%(forum_url)s\">foruma</a> våre."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikslar"
