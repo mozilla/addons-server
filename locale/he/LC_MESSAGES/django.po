@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-02 20:52+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"PO-Revision-Date: 2017-12-10 12:45+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -3638,10 +3638,10 @@ msgid "required"
 msgstr "נדרש"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "גובה התמונה אמור להיות 200 פיקסלים"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG,‏ JPG,‏ APNG,‏ SVG או GIF (ללא הנפשה)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -3653,37 +3653,37 @@ msgid "Select colors for your Theme."
 msgstr "בחרו צבעים עבור ערכת הנושא שלכם."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "רקע אזור הכותרת (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 msgstr ""
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "טקסט באזור הכותרת (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "צבע הטקסט שמופיע באזור הכותרת."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "רקע אזור סרגל הכלים (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "צבע הרקע של סרגל הניווט, סרגל הסימניות והלשונית הנבחרת."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "טקסט באזור סרגל הכלים (toolbar_text)."
 
 msgid "The color of toolbar text."
 msgstr "צבע הטקסט של סרגל הכלים."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "רקע אזור השדות בסרגל הכלים (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
 msgstr "צבע הרקע עבור שדות בסרגל הכלים, כמו שורת הכתובת."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "טקסט באזור השדות בסרגל הכלים (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
 msgstr "צבע הטקסט בשדות בסרגל הכלים, כמו שורת הכתובת"
