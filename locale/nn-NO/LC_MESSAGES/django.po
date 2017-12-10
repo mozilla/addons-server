@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 07:46+0000\n"
+"PO-Revision-Date: 2017-12-10 08:09+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -682,7 +682,7 @@ msgid "Log out"
 msgstr "Logg ut"
 
 msgid "Manage My Submissions"
-msgstr "Handsam bidraga mine"
+msgstr "Handter innesndingane mine"
 
 msgid "Submit a New Add-on"
 msgstr "Send inn ei ny utviding"
@@ -2547,10 +2547,10 @@ msgid "Submit my add-on for manual review."
 msgstr "Send inn utvidinga mi for manuell vurdering."
 
 msgid "Do not list my add-on on this site"
-msgstr "Ikkje list utvidinga mi på denne nettsida"
+msgstr "Ikkje før opp utvidinga mi på denne nettsida"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Marker dette alternativet om du ønskjer å distribuere utvidinga di på eiga hand og berre treng det for at det skal signerast av Mozilla."
+msgstr "Kryss av for dette alternativet om du ønskjer å distribuere utvidinga di på eiga hand og berre treng det for at det skal signerast av Mozilla."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Ei fil med ein versjon som sluttar med a|alpha|b|beta|pre|rc og eit valfritt nummer er detektert som beta."
@@ -3878,7 +3878,7 @@ msgid "Update Your Legacy Extension"
 msgstr "Oppdater den utdaterte utvisdinga di"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
+msgstr "Det finst ein ny standard for å utvidingsutvikling i Firefox. Du må oppdatere dei gamle tillegga dine for at dei skal vere kompatible."
 
 msgid "Learn How"
 msgstr "Lær deg korleis"
@@ -3887,7 +3887,7 @@ msgid "What's New"
 msgstr "Kva er nytt"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Er du klar for å sende inn ei utviding? Les steg-för-steg-rettleiinga vår for innsendingsprosessen."
 
 msgid "See Tutorial"
 msgstr "Vis rettleiing"
