@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 08:09+0000\n"
+"PO-Revision-Date: 2017-12-10 08:18+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -581,7 +581,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Visse utvidingar kan be om løyve til å utføre visse funksjonar. Sidan du har kontrollen over Firefox, vil vala om å godta, eller avvise, desse førespurnadane vere dine."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Legg merke til at denne utvidinga brukar forelda teknologi, noko som gjev henne tilgang til alle nettlesarfunksjonar og data, utan å be deg om løyve."
 
 msgid "This add-on has been removed by its author."
 msgstr "Denne utvidinga er fjerna av utviklaren."
@@ -2600,7 +2600,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorier kan ikkje endrast når utvidinga di er framheva."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Frå og med Firefox 53, kan nya utvidingar på denne nettsida berre vere WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller lågare."
@@ -3201,7 +3201,7 @@ msgid "Add a Screenshot..."
 msgstr "Legg til eit skjermbilde…"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Kan andre dele utvidinga di, så lenge du vert kreditert?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
@@ -3405,7 +3405,7 @@ msgid "License:"
 msgstr "Lisens:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Vel ein lisens som passar med rettane du gjev."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Om utvidinga di overfører data frå datamaskina til brukaren, krevst det ein personvernpraksis som skildrar kva for data som vert overførte og korleis dei vert brukte."
@@ -3570,7 +3570,7 @@ msgid "Header area text (textcolor)"
 msgstr "Tekst sidehovud (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "Fargen på teksten som vert vist i overskriftsområdet."
 
 msgid "Toolbar area background (toolbar)."
 msgstr ""
