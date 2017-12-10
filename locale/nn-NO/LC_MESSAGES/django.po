@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 08:18+0000\n"
+"PO-Revision-Date: 2017-12-10 09:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3875,10 +3875,10 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Logg inn for å redigere og oppdatere utvidinga di"
 
 msgid "Update Your Legacy Extension"
-msgstr "Oppdater den utdaterte utvisdinga di"
+msgstr "Oppdater den forelda utvidinga di"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Det finst ein ny standard for å utvidingsutvikling i Firefox. Du må oppdatere dei gamle tillegga dine for at dei skal vere kompatible."
+msgstr "Det finst ein ny standard for utvidingsutvikling i Firefox. Du må oppdatere dei gamle tillegga dine for at dei skal vere kompatible."
 
 msgid "Learn How"
 msgstr "Lær deg korleis"
@@ -4674,7 +4674,7 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr ""
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Det finst fleire måtar å finne siste nytt på frå utvidingsverda:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
