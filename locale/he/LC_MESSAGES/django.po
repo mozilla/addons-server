@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 12:45+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2017-12-11 14:41+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -7278,7 +7278,7 @@ msgstr ""
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr "משתמש {id} אנונימי"
+msgstr "משתמש אנונימי {id}"
 
 # 75%
 # 78%
