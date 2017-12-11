@@ -1,6 +1,5 @@
-
+#-*- coding: utf-8 -*-
 import json
-# -*- coding: utf-8 -*
 import os
 
 from datetime import datetime, timedelta
