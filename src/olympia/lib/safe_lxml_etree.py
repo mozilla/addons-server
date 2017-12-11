@@ -1,5 +1,5 @@
 from lxml.etree import *  # noqa isort:skip
-from lxml.etree import XMLParser as _XMLParser # isort:skip
+from lxml.etree import XMLParser as _XMLParser  # isort:skip
 from lxml.etree import _ElementTree, _Comment, _Element  # noqa isort:skip
 
 # This should be imported after lxml.etree so that it overrides the
