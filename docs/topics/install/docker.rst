@@ -161,6 +161,18 @@ Make sure you've run the ``make initialize_docker`` step as detailed in
 the initial setup instructions.
 
 
+ConnectionError during initialize_docker (elasticsearch container fails to start)
+---------------------------------------------------------------------------------
+When running ``make initialize_docker`` without a working elasticsearch container,
+you'll get a ConnectionError. Check the logs with ``docker-compose logs``.
+If elasticsearch is complaining about ``vm.max_map_count``, run this command on your computer
+or your docker-machine VM:
+
+``sudo sysctl -w vm.max_map_count=262144``
+
+This allows processes to allocate more `memory map areas`_.
+
+
 Port collisions (nginx container fails to start)
 ------------------------------------------------
 
@@ -253,3 +265,4 @@ to Docker Hub for other developers to use after they pull image changes.
 .. _docker-toolbox: https://www.docker.com/toolbox
 .. _docker-for-windows: https://docs.docker.com/engine/installation/windows/#/docker-for-windows
 .. _docker-for-mac: https://docs.docker.com/engine/installation/mac/#/docker-for-mac
+.. _memory map areas: https://stackoverflow.com/a/11685165/4496684
