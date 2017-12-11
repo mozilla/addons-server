@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-06 14:59+0000\n"
+"PO-Revision-Date: 2017-12-11 10:50+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3816,7 +3816,7 @@ msgid "Add-on Multi Process Status:"
 msgstr "Estado da extensão multi-processo:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "A compatibilidade do seu complemento com o multi-processo do Firefox (e10s)."
+msgstr "A compatibilidade da sua extensão com o multi-processo do Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listado neste site após revisão de código. Atualizações serão gerenciadas automaticamente por este site."
@@ -4466,7 +4466,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentação de Complementos :: Central do Desenvolvedor"
+msgstr "Documentação de extensões :: Central do Desenvolvedor"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4552,14 +4552,14 @@ msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
 msgid "Could not find an add-on ID."
-msgstr "Não foi possível encontrar um ID do complemento."
+msgstr "Não foi possível encontrar um ID da extensão."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "O ID do complemento no seu manifest.json ou install.rdf (%s) não coincide com o ID do seu complemento na AMO (%s)"
+msgstr "O ID da extensão no seu manifest.json ou install.rdf (%s) não coincide com o ID da sua extensão na AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr "Encontrado ID de complemento duplicado."
+msgstr "Foi encontrado um ID de extensão duplicado."
 
 # %1$s is a number.
 msgid "Version numbers should have fewer than 32 characters."
@@ -4573,7 +4573,7 @@ msgstr "O envio de temas WebExtension não são suportados atualmente."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> em seu install.rdf(%s) não coincide com o tipo do seu complemento na AMO (%s)"
+msgstr "<em:type> em seu install.rdf(%s) não coincide com o tipo da sua extensão na AMO (%s)"
 
 msgid "Back to review"
 msgstr "Voltar para a análise"
@@ -4581,7 +4581,7 @@ msgstr "Voltar para a análise"
 # 80%
 # 100%
 msgid "Back to add-on"
-msgstr "Voltar para o complemento"
+msgstr "Voltar para a extensão"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4604,7 +4604,7 @@ msgid "The output can be broken, please be careful and %(link_start)sreport an i
 msgstr "A saída pode estar corrompida, por favor, fique atento e %(link_start)s informe um problema %(link_end)s imediatamente!"
 
 msgid "Add-on file being processed, please wait."
-msgstr "O arquivo do complemento está sendo processado; por favor, aguarde."
+msgstr "O arquivo da extensão está sendo processado; por favor, aguarde."
 
 msgid "Fetching validation results..."
 msgstr "Obtendo resultados da validação..."
@@ -4733,7 +4733,7 @@ msgid "Would you like to know which websites you can trust?"
 msgstr "Você gostaria de saber em quais sites você pode confiar?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks é o complemento de gerenciamento de favoritos número 1."
+msgstr "Xmarks é a extensão de gerenciamento de favoritos número 1."
 
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Tradutor de textos, páginas da internet, dicionário e mais!"
@@ -4748,7 +4748,7 @@ msgid "Get up and move!"
 msgstr "Levante-se e se mexa!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Instale esses complementos que vão te ajudar a manter sua saúde em dia."
+msgstr "Instale estas extensões de fitness para mantê-lo ativo e saudável."
 
 msgid "New &amp; Now"
 msgstr "Novidades"
@@ -4763,7 +4763,7 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Proteja sua privacidade on-line com as extensões dessa coleção."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Complementos que servem para tudo: aumentar a produtividade no trabalho, aumentar a diversão em casa... confira!"
+msgstr "Extensões que servem para tudo: aumentar a produtividade no trabalho, aumentar a diversão em casa... confira!"
 
 msgid "Games!"
 msgstr "Jogos!"
@@ -4781,19 +4781,19 @@ msgid "Discover Add-ons"
 msgstr "Descobrir extensões"
 
 msgid "What are Add-ons?"
-msgstr "O que são Complementos?"
+msgstr "O que são Extensões?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
-"Complementos são aplicativos que permitem que você personalize o %(app)s com estilos ou recursos extras. Teste um painel lateral para economizar tempo, um notificador do clima ou um visual temático "
+"Extensões são aplicativos que permitem que você personalize o %(app)s com estilos ou recursos extras. Teste um painel lateral para economizar tempo, um notificador do clima ou um visual temático "
 "para tornar o %(app)s só seu."
 
 msgid "Learn More"
 msgstr "Saiba mais"
 
 msgid "Learn More About Add-ons"
-msgstr "Saiba mais sobre os complementos"
+msgstr "Saiba mais sobre as extensões"
 
 msgid "See all"
 msgstr "Ver todos"
@@ -4811,7 +4811,7 @@ msgid "Close Video"
 msgstr "Fechar vídeo"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Enquanto o vídeo é reproduzido, o complemento sendo mencionado aparecerá aqui."
+msgstr "Enquanto o vídeo é reproduzido, a extensão sendo mencionada aparecerá aqui."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
@@ -4822,7 +4822,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Obrigado por usar o %(app)s e apoiar a <a href=\"%(url)s\">Missão Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Complementos baixados:"
+msgstr "Extensões baixadas:"
 
 msgid "View Privacy Policy"
 msgstr "Ver a política de privacidade"
@@ -4875,7 +4875,7 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr "Como faço para acompanhar o que está acontecendo na AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr "Existem várias maneiras de descobrir as últimas notícias do mundo dos complementos:"
+msgstr "Existem várias maneiras de descobrir as últimas notícias do mundo das extensões:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
@@ -5134,7 +5134,7 @@ msgid "#webextensions (for discussions about developing and porting to WebExtens
 msgstr "#webextensions (para discussão sobre o desenvolvimento e porte para WebExtensions)"
 
 msgid "Add-ons forum"
-msgstr "Fórum sobre complementos"
+msgstr "Fórum sobre extensões"
 
 msgid "Does Mozilla offer development services?"
 msgstr "A Mozilla oferece serviços de desenvolvimento?"
@@ -5143,7 +5143,7 @@ msgid "No."
 msgstr "Não."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Existem desenvolvedores terceirizados que eu posso contratar para criar meu complemento?"
+msgstr "Existem desenvolvedores terceirizados que eu posso contratar para criar minha extensão?"
 
 #, python-format
 msgid ""
@@ -5154,7 +5154,7 @@ msgstr ""
 "href=\"%(wiki_url)s\">Mozilla Wiki</a>. Por favor, note que a Mozilla não oferece recomendações para desenvolvedores."
 
 msgid "Can I host my own add-on?"
-msgstr "Eu posso hospedar eu mesmo meu complemento?"
+msgstr "Eu posso hospedar eu mesmo minha extensão?"
 
 #, python-format
 msgid ""
@@ -5165,11 +5165,11 @@ msgstr ""
 " maior da sua extensão devido ao grande número de visitantes do site."
 
 msgid "Can Mozilla host my add-on?"
-msgstr "A Mozilla pode hospedar o meu complemento?"
+msgstr "A Mozilla pode hospedar minha extensão?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Sim. O seu complemento pode ser hospedado no site <a href=\"%(url)s\">Mozilla Add-ons</a>."
+msgstr "Sim. Sua extensão pode ser hospedado no site <a href=\"%(url)s\">Mozilla Add-ons</a>."
 
 msgid "What is AMO?"
 msgstr "O que é AMO?"
@@ -5277,7 +5277,7 @@ msgstr ""
 "seja configurada corretamente e siga as diretrizes definidas no <a href=\"%(url)s\">Guia de analise</a>."
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr "Quais são os critérios usados para analisar o meu complemento?"
+msgstr "Quais são os critérios usados para analisar minha extensão?"
 
 #, python-format
 msgid ""
@@ -5288,7 +5288,7 @@ msgstr ""
 "problemas sejam resolvidos antes de submeter sua extensão para revisão. Isso ajudará grandemente a evitar problemas de revisão."
 
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr "Quanto tempo levará para o meu complemento ser analisado?"
+msgstr "Quanto tempo levará para minha extensão ser analisada?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
 msgstr "Nós não podemos informar um tempo estimado de espera até seu complemento ser analisado. Muitos fatores afetam o tempo de espera, incluindo:"
