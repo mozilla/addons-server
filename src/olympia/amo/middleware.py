@@ -121,13 +121,16 @@ class NoVarySessionMiddleware(SessionMiddleware):
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
+
         # Let SessionMiddleware do its processing but prevent it from changing
         # the Vary header.
         vary = None
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
+
         new_response = (super(NoVarySessionMiddleware, self)
-                        .process_response(request, response))
+            .process_response(request, response))
+
         if vary:
             new_response['Vary'] = vary
         else:
