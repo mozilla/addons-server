@@ -27,8 +27,7 @@ class RatingManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(RatingManager, self).get_queryset()
-        qs = qs._clone(klass=RatingQuerySet)
+        qs = RatingQuerySet(self.model)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
         return qs
@@ -38,8 +37,7 @@ class WithoutRepliesRatingManager(ManagerBase):
     """Manager to fetch ratings that aren't replies (and aren't deleted)."""
 
     def get_queryset(self):
-        qs = super(WithoutRepliesRatingManager, self).get_queryset()
-        qs = qs._clone(klass=RatingQuerySet)
+        qs = RatingQuerySet(self.model)
         qs = qs.exclude(deleted=True)
         return qs.filter(reply_to__isnull=True)
 
