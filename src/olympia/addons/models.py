@@ -1885,6 +1885,7 @@ class Category(OnChangeMixin, ModelBase):
         Does not save it into the database by default. Useful in tests."""
         # we need to drop description as it's a StaticCategory only property.
         _dict = dict(static_category.__dict__)
+        _dict['db_name'] = _dict.pop('name', None)
         del _dict['description']
         if save:
             category, _ = Category.objects.get_or_create(
