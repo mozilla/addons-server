@@ -142,6 +142,8 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         elif hasattr(value, 'items'):
             value = self.translation_from_dict(instance, lang, value)
 
+        attname_col = self.field.get_attname_column()
+
         # Don't let this be set to None, because Django will then blank out the
         # foreign key for this object.  That's incorrect for translations.
         if value is not None:
@@ -155,7 +157,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         # when it resolves to a `_id` column, somehow, this is deep deep
         # django magic so let's query the actual column name instead and hope
         # that works for now
-        elif getattr(instance, self.field.get_attname_column()[1], None) is None:
+        elif getattr(instance, attname_col[1], None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
