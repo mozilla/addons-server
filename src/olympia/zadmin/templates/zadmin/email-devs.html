@@ -8,7 +8,7 @@
   <p><a href="{{ preview_csv }}">Download CSV of email previews</a></p>
 {% endif %}
 <form method="post">
-  {% csrf_token %}
+  {{ csrf_input }}
   {{ form.as_p() }}
   <button type="submit">Send Email</button>
 </form>

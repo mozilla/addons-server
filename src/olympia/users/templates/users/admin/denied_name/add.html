@@ -17,7 +17,7 @@
 
     {% if form %}
       <form method="post">
-        {% csrf_token %}
+        {{ csrf_input }}
         <p>Enter one name per line.</p>
         <div class="form-row">
           {{ form.names.errors }}

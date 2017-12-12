@@ -3,7 +3,6 @@ import sys
 import logging
 import warnings
 
-import session_csrf
 from django.apps import AppConfig
 from django.core.management import call_command
 from django.conf import settings
@@ -23,8 +22,6 @@ class CoreConfig(AppConfig):
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:
             warnings.simplefilter('ignore')
-
-        session_csrf.monkeypatch()
 
         self.configure_logging()
         self.load_product_details()

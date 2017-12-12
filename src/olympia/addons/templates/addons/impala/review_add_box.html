@@ -13,7 +13,7 @@
 
     <form method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
-      {% csrf_token %}
+      {{ csrf_input }}
       {{ field(review_form.title, _('Title:'), **attrs) }}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}
@@ -30,7 +30,7 @@
       </p>
       {% if addon.support_url or addon.support_email %}
         <p>
-          See this add-on's 
+          See this add-on's
           {% if addon.support_url %}
             <a class="support" href="{{ addon.support_url|external_url }}">{{ _('support section') }}</a>
           {% elif addon.support_email %}

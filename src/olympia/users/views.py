@@ -9,8 +9,6 @@ from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext
 
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-
 import olympia.core.logger
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -190,7 +188,6 @@ def _clean_next_url(request):
     return request
 
 
-@anonymous_csrf
 def login(request):
     return render(request, 'users/login.html')
 
@@ -305,7 +302,6 @@ def themes(request, user, category=None):
     return render(request, 'browse/personas/grid.html', ctx)
 
 
-@anonymous_csrf_exempt
 @user_view
 def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)

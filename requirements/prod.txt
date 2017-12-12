@@ -152,9 +152,6 @@ django-multidb-router==0.7 \
 django-post-request-task==0.2.0 \
     --hash=sha256:b761beed705c18d6ee85642049d07ca9d7f936e3392c6d56a58c36a39e5e9803 \
     --hash=sha256:7afe4c7418db8592a7b56391cbfe56a86008bc1b4622dd923573b6981ba1562c
-django-session-csrf==0.7.1 \
-    --hash=sha256:e17177e6e2e6518ec7ce6693ad10a5c747f8571d09f4cfa9082599334421605d \
-    --hash=sha256:ff8c10e30d312c77fc6a6db7710e22b9383e28c03b7fe958876ca96f39aa6cf2
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8

@@ -7,7 +7,7 @@
 
 <form action="{{ url('zadmin.langpacks') }}" method="post"
       id="admin-fetch-langpacks">
-  {% csrf_token %}
+  {{ csrf_input }}
   <div>
     <span class="edit_with_prefix">
       <span>{{ base_url }}</span><input type="text" id="id_path" name="path"

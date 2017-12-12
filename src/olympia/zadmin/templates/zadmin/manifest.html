@@ -6,7 +6,7 @@
 <h2>Manifest Re-validation</h2>
 <p>Force a re-validation of all Manifests.</p>
 <form method="post">
-  {% csrf_token %}
+  {{ csrf_input }}
   <input name="reset" type="submit" value="Force">
 </form>
 {% endblock %}

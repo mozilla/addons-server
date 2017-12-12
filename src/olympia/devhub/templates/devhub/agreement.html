@@ -16,7 +16,7 @@
   </p>
 
   <div class="submit-buttons">
-      {% csrf_token %}
+      {{ csrf_input }}
       <button id="accept-agreement" type="submit">
         {{ _('Accept') }}
       </button>

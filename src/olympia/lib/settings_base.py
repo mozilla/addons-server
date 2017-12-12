@@ -372,7 +372,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
 
@@ -412,7 +411,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
             ),
@@ -459,7 +457,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
     # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
@@ -1401,7 +1399,7 @@ def read_only_mode(env):
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'session_csrf.CsrfMiddleware'
+    before = 'django.middleware.csrf.CsrfViewMiddleware'
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
@@ -1543,6 +1541,7 @@ LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
+CSRF_USE_SESSIONS = True
 
 # Testing responsiveness without rate limits.
 CELERY_WORKER_DISABLE_RATE_LIMITS = True
