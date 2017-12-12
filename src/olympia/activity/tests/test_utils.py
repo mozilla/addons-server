@@ -41,6 +41,16 @@ class TestEmailParser(TestCase):
         with self.assertRaises(ActivityEmailEncodingError):
             ActivityEmailParser('youtube?v=dQw4w9WgXcQ')
 
+    def test_with_empty_to(self):
+        message = copy.deepcopy(sample_message_content['Message'])
+        message['To'] = None
+        parser = ActivityEmailParser(message)
+        with self.assertRaises(ActivityEmailUUIDError):
+            # It should fail, but not because of a Not Iterable TypeError,
+            # instead we handle that gracefully and raise an exception that
+            # we control and catch later.
+            parser.get_uuid()
+
 
 @override_switch('activity-email-bouncing', active=True)
 class TestEmailBouncing(TestCase):
@@ -210,11 +220,6 @@ class TestLogAndNotify(TestCase):
         self.reviewer = user_factory()
         self.grant_permission(self.reviewer, 'Addons:Review',
                               'Addon Reviewers')
-        self.senior_reviewer = user_factory()
-        self.grant_permission(self.senior_reviewer, 'Addons:Edit',
-                              'Senior Addon Reviewers')
-        self.grant_permission(self.senior_reviewer, 'Addons:Review',
-                              'Senior Addon Reviewers')
 
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(
@@ -280,7 +285,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review',
+            reverse('reviewers.review',
                     kwargs={'addon_id': self.version.addon.pk,
                             'channel': 'listed'},
                     add_prefix=False))
@@ -372,7 +377,7 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
         review_url = absolutify(
-            reverse('editors.review',
+            reverse('reviewers.review',
                     kwargs={'addon_id': self.version.addon.pk,
                             'channel': 'listed'},
                     add_prefix=False))
@@ -444,7 +449,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review', add_prefix=False,
+            reverse('reviewers.review', add_prefix=False,
                     kwargs={'channel': 'listed', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'you reviewed this add-on.')
@@ -480,7 +485,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review', add_prefix=False,
+            reverse('reviewers.review', add_prefix=False,
                     kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'you reviewed this add-on.')

@@ -1,10 +1,17 @@
+import json
 import os
 from base64 import urlsafe_b64encode
+from datetime import datetime
 from urllib import urlencode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
+
+import boto3
+
+from olympia.core.logger import getLogger
+from olympia.accounts.tasks import primary_email_change_event
 
 
 def fxa_config(request):
@@ -71,3 +78,62 @@ def path_with_query(request):
 def camel_case(snake):
     parts = snake.split('_')
     return parts[0] + ''.join(part.capitalize() for part in parts[1:])
+
+
+def process_fxa_event(raw_body, **kwargs):
+    """Parse and process a single firefox account event."""
+    # Try very hard not to error out if there's junk in the queue.
+    log = getLogger('accounts.sqs')
+    event_type = None
+    try:
+        body = json.loads(raw_body)
+        event = json.loads(body['Message'])
+        event_type = event.get('event')
+        uid = event.get('uid')
+        timestamp = datetime.fromtimestamp(event.get('ts', ''))
+        if not (event_type and uid and timestamp):
+            raise ValueError(
+                'Properties event, uuid, and ts must all be non-empty')
+    except (ValueError, KeyError, TypeError), e:
+        log.exception('Invalid account message: %s' % e)
+    else:
+        if event_type == 'primaryEmailChanged':
+            email = event.get('email')
+            if not email:
+                log.error('Email property must be non-empty for "%s" event' %
+                          event_type)
+            else:
+                primary_email_change_event.delay(email, uid, timestamp)
+        else:
+            log.debug('Dropping unknown event type %r', event_type)
+
+
+def process_sqs_queue(queue_url, aws_region, queue_wait_time):
+    log = getLogger('accounts.sqs')
+    log.info('Processing account events from %s', queue_url)
+    try:
+        # Connect to the SQS queue.
+        sqs = boto3.client(
+            'sqs', aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=aws_region)
+        # Poll for messages indefinitely.
+        while True:
+            response = sqs.receive_message(
+                QueueUrl=queue_url, WaitTimeSeconds=queue_wait_time,
+                MaxNumberOfMessages=10)
+            msgs = response.get('Messages', []) if response else []
+            for message in msgs:
+                try:
+                    process_fxa_event(message.get('Body', ''))
+                    # This intentionally deletes the event even if it was some
+                    # unrecognized type.  Not point leaving a backlog.
+                    if 'ReceiptHandle' in message:
+                        sqs.delete_message(
+                            QueueUrl=queue_url,
+                            ReceiptHandle=message['ReceiptHandle'])
+                except Exception as exc:
+                    log.exception('Error while processing message: %s' % exc)
+    except Exception as exc:
+        log.exception('Error while processing account events: %s' % exc)
+        raise exc

@@ -57,7 +57,7 @@ class TestMonitor(TestCase):
         assert status == 'check main status page for broken perms / values'
         assert path_result[0][3].endswith('should be a bytestring!')
 
-    @override_settings(BROKER_URL="amqp://localhost/test")
+    @override_settings(CELERY_BROKER_URL="amqp://localhost/test")
     @patch('olympia.amo.monitors.Connection')
     def test_rabbitmq(self, mock_connection):
         status, rabbitmq_results = monitors.rabbitmq()

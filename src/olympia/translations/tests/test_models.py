@@ -235,16 +235,6 @@ class TranslationTestCase(BaseTestCase):
         translation.activate('fr')
         self.trans_eq(get_model().name, 'oui', 'fr')
 
-    def test_dict_with_hidden_locale(self):
-        with self.settings(HIDDEN_LANGUAGES=('xxx',)):
-            o = TranslatedModel.objects.get(pk=1)
-            o.name = {'en-US': 'active language', 'xxx': 'hidden language',
-                      'de': 'another language'}
-            o.save()
-        ts = Translation.objects.filter(id=o.name_id)
-        assert sorted(ts.values_list('locale', flat=True)) == (
-            ['de', 'en-US', 'xxx'])
-
     def test_dict_bad_locale(self):
         m = TranslatedModel.objects.get(pk=1)
         m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}

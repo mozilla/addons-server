@@ -1,5 +1,4 @@
 from django.conf.urls import include, url
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 
 from olympia.stats.urls import stats_patterns
@@ -17,27 +16,39 @@ detail_patterns = [
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^abuse/', views.report_abuse, name='addons.abuse'),
 
-    url('^developers$', views.developers,
-        {'page': 'developers'}, name='addons.meet'),
-    url('^contribute/roadblock/', views.developers,
-        {'page': 'roadblock'}, name='addons.roadblock'),
-    url('^contribute/installed/', views.developers,
-        {'page': 'installed'}, name='addons.installed'),
-    url('^contribute/thanks',
-        csrf_exempt(lambda r, addon_id: redirect('addons.detail', addon_id)),
-        name='addons.thanks'),
-    url('^contribute/$', views.contribute, name='addons.contribute'),
-    url('^contribute/(?P<status>cancel|complete)$', views.paypal_result,
-        name='addons.paypal'),
-
-    url('^about$',
-        lambda r, addon_id: redirect('addons.installed',
-                                     addon_id, permanent=True),
-        name='addons.about'),
-
-    url('^reviews/', include('olympia.reviews.urls')),
+    url('^reviews/', include('olympia.ratings.urls')),
     url('^statistics/', include(stats_patterns)),
     url('^versions/', include('olympia.versions.urls')),
+
+    # Old contribution urls
+    url('^developers$',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.meet'),
+    url('^contribute/roadblock/',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.roadblock'),
+    url('^contribute/installed/',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.installed'),
+    url('^contribute/thanks',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.thanks'),
+    url('^contribute/$',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.contribute'),
+    url('^contribute/(?P<status>cancel|complete)$',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.paypal'),
+    url('^about$',
+        lambda r, addon_id: redirect('addons.detail',
+                                     addon_id, permanent=True),
+        name='addons.about'),
 ]
 
 

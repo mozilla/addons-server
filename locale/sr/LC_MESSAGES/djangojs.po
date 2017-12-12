@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -753,17 +753,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} корисничка рецензија"
 msgstr[1] "{reviews} корисничке рецензије"
 
-msgid "Learn more"
-msgstr "Сазнајте више"
-
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
-msgid "Must be a valid e-mail address."
-msgstr "Адреса е-поште мора бити исправна."
-
 msgid "No results found."
 msgstr "Нема резултата."
+
+msgid "Loading..."
+msgstr "Учитавање..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> карактер преостао."
+msgstr[1] "<b>{0}</b> карактера преостала."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ова могућност је привремено онемогућена док обављамо задатак одржавања сајта. Молимо пробајте мало касније."
+
+msgid "Remove this localization"
+msgstr "Уклони ову локализацију"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} је први гледао ову страницу."
@@ -800,21 +809,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Учитавање..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> карактер преостао."
-msgstr[1] "<b>{0}</b> карактера преостала."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ова могућност је привремено онемогућена док обављамо задатак одржавања сајта. Молимо пробајте мало касније."
-
-msgid "Remove this localization"
-msgstr "Уклони ову локализацију"
 
 msgid "Requested Info"
 msgstr "Захтеване информације"

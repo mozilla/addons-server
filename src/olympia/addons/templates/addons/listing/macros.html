@@ -36,10 +36,10 @@
   </p>
   <p class="updated">
     {% if show_date in ['created', 'new', 'newest'] %}
-    {{ _('Added {0}')|format_html(addon.created|datetime) }}
+    {{ _('Added {0}')|format_html(addon.created|date) }}
     {% elif show_date == 'updated' %}
     {# L10n: {0} is a date #}
-    {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
+    {{ _('Updated {0}')|format_html(addon.last_updated|date) }}
     {% endif %}
   </p>
 {% endmacro %}

@@ -1,0 +1,13 @@
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Your add-on, {{ name }} {{ number }}, has been reviewed and did not meet the criteria for being hosted in our gallery.
+{% include "reviewers/emails/files.ltxt" %}
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments }}
+
+{{ tested }}
+
+This version of your add-on has been disabled. You may re-request review by addressing the reviewer's comments and uploading a new version at {{ dev_versions_url }}
+{% endblock %}

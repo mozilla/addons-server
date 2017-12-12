@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
 from olympia import amo, core
-from olympia.amo.tests import TestCase, req_factory_factory
+from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.addons import forms
@@ -287,7 +287,7 @@ class TestCategoryForm(TestCase):
     def test_no_possible_categories(self):
         Category.objects.create(type=amo.ADDON_SEARCH,
                                 application=amo.FIREFOX.id)
-        addon = Addon.objects.create(type=amo.ADDON_SEARCH)
+        addon = addon_factory(type=amo.ADDON_SEARCH)
         request = req_factory_factory('/')
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]

@@ -11,11 +11,12 @@ from olympia.constants import base
 from services.utils import log_configure, log_exception, mypool
 from services.utils import settings, user_media_path, user_media_url
 
-# Configure the log.
-log_configure()
-
 # This has to be imported after the settings (utils).
 from django_statsd.clients import statsd
+
+
+# Configure the log.
+log_configure()
 
 
 class ThemeUpdate(object):
@@ -95,11 +96,12 @@ class ThemeUpdate(object):
         self.cursor.execute(sql, self.data)
         row = self.cursor.fetchone()
 
-        row_to_dict = lambda row: dict(zip((
-            'persona_id', 'addon_id', 'slug', 'current_version', 'name',
-            'description', 'username', 'header', 'footer', 'accentcolor',
-            'textcolor', 'modified'),
-            list(row)))
+        def row_to_dict(row):
+            return dict(zip((
+                'persona_id', 'addon_id', 'slug', 'current_version', 'name',
+                'description', 'username', 'header', 'footer', 'accentcolor',
+                'textcolor', 'modified'),
+                list(row)))
 
         if row:
             self.data['row'] = row_to_dict(row)
@@ -205,7 +207,6 @@ def application(environ, start_response):
 
     status = '200 OK'
     with statsd.timer('services.theme_update'):
-        data = environ['wsgi.input'].read()
         try:
             locale, id_ = url_re.match(environ['PATH_INFO']).groups()
             locale = (locale or 'en-US').lstrip('/')
@@ -221,7 +222,7 @@ def application(environ, start_response):
                 start_response('404 Not Found', [])
                 return ['']
             start_response(status, update.get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(environ['PATH_INFO'])
             raise
 

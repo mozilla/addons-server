@@ -9,4 +9,4 @@ for path in ['../',
              '../../apps']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
 
-from ..theme_update import application
+from ..theme_update import application  # noqa

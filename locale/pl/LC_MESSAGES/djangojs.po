@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2015-11-03 11:53+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -754,17 +754,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} opinia użytkownika"
 msgstr[1] "{reviews} opinie użytkowników"
 
-msgid "Learn more"
-msgstr "Dowiedz się więcej"
-
 msgid "Image changes being processed"
 msgstr "Przetwarzanie zmian obrazka…"
 
-msgid "Must be a valid e-mail address."
-msgstr "Prawidłowy adres e-mail musi zostać wprowadzony."
-
 msgid "No results found."
 msgstr "Nic nie znaleziono."
+
+msgid "Loading..."
+msgstr "Wczytywanie…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Pozostał <b>{0}</b> znak."
+msgstr[1] "Pozostały <b>{0}</b> znaki."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
+
+msgid "Remove this localization"
+msgstr "Usuń tę lokalizację"
 
 msgid "{name} was viewing this page first."
 msgstr "Strona została wyświetlona po raz pierwszy przez {name}."
@@ -801,21 +810,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Wczytywanie…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Pozostał <b>{0}</b> znak."
-msgstr[1] "Pozostały <b>{0}</b> znaki."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
-
-msgid "Remove this localization"
-msgstr "Usuń tę lokalizację"
 
 msgid "Requested Info"
 msgstr "Żądana informacja"

@@ -258,7 +258,8 @@ class TestFileViewer(TestCase):
             self.viewer.select('install.js')
             res = self.viewer.read_file()
             assert res == ''
-            assert self.viewer.selected['msg'].startswith('File size is')
+            assert (
+                self.viewer.selected['msg'].startswith(u'גודל הקובץ חורג'))
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
@@ -504,7 +505,16 @@ class TestSafeUnzipFile(TestCase, amo.tests.AMOPaths):
     def test_extract_path(self):
         zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
         assert zip_file.is_valid()
-        assert'locale browser de' in zip_file.extract_path('chrome.manifest')
+        assert 'locale browser de' in zip_file.extract_path('chrome.manifest')
+
+    def test_invalid_zip_encoding(self):
+        zip_file = SafeUnzip(self.xpi_path('invalid-cp437-encoding.xpi'))
+        with pytest.raises(forms.ValidationError) as exc:
+            zip_file.is_valid()
+
+        assert isinstance(exc.value, forms.ValidationError)
+        assert exc.value.message.endswith(
+            'Please make sure all filenames are utf-8 or latin1 encoded.')
 
     def test_not_secure(self):
         zip_file = SafeUnzip(self.xpi_path('extension'))

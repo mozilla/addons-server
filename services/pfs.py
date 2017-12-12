@@ -15,6 +15,11 @@ from utils import log_configure
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
+JAVA_PLUGIN_SUMO_URL = (
+    'https://support.mozilla.org/'
+    'kb/use-java-plugin-to-view-interactive-content')
+
+
 # Go configure the log.
 log_configure()
 
@@ -22,7 +27,8 @@ error_log = olympia.core.logger.getLogger('z.pfs')
 
 xml_template = """\
 <?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pfs="http://www.mozilla.org/2004/pfs-rdf#">
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:pfs="http://www.mozilla.org/2004/pfs-rdf#">
 
   <RDF:Description about="urn:mozilla:plugin-results:$mimetype">
     <pfs:plugins><RDF:Seq>
@@ -45,8 +51,10 @@ xml_template = """\
 </RDF:RDF>
 """
 
-quicktime_re = re.compile(r'^image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))$')
+quicktime_re = re.compile(
+    r'^image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))$')
 java_re = re.compile(r'^application/x-java-.*$')
+
 
 def get_output(data):
     g = defaultdict(str, [(k, jinja2.escape(v)) for k, v in data.iteritems()])
@@ -97,13 +105,13 @@ def get_output(data):
         # We don't want to link users directly to the Java plugin because
         # we want to warn them about ongoing security problems first. Link
         # to SUMO.
-
         plugin.update(
             name='Java Runtime Environment',
-            manualInstallationURL='https://support.mozilla.org/kb/use-java-plugin-to-view-interactive-content')
+            manualInstallationURL=JAVA_PLUGIN_SUMO_URL)
 
     # End ridiculously huge and embarrassing if-else block.
     return output.substitute(plugin)
+
 
 def format_date(secs):
     return '%s GMT' % formatdate(time() + secs)[:25]
@@ -130,7 +138,7 @@ def application(environ, start_response):
         try:
             output = get_output(data).encode('utf-8')
             start_response(status, get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(data)
             raise
         return [output]

@@ -478,14 +478,14 @@ class TestAddonManagement(TestCase):
         doc = pq(response.content)
 
         first_expected_review_link = reverse(
-            'editors.review', args=(self.addon.slug,))
+            'reviewers.review', args=(self.addon.slug,))
         elms = doc('a[href="%s"]' % first_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(first_version.pk)
         assert elms[0].text == first_version.version
 
         second_expected_review_link = reverse(
-            'editors.review', args=('unlisted', self.addon.slug,))
+            'reviewers.review', args=('unlisted', self.addon.slug,))
         elms = doc('a[href="%s"]' % second_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(second_version.pk)
@@ -820,8 +820,6 @@ class TestEmailDevs(TestCase):
     def test_exclude_pending_for_addons(self):
         self.addon.update(status=amo.STATUS_PENDING)
         for name, label in DevMailerForm._choices:
-            if name in ('payments', 'desktop_apps'):
-                continue
             res = self.post(recipients=name)
             self.assertNoFormErrors(res)
             assert len(mail.outbox) == 0
@@ -916,20 +914,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
         self.assert_status('discovery.module_admin', 200)
-
-    def test_sr_reviewers_user(self):
-        # Sr Reviewers users have only a few privileges.
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Sr Reviewer',
-                                     rules='ReviewerAdminTools:View')
-        GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(email='regular@mozilla.com')
-        self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.langpacks', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 200)
-        self.assert_status('zadmin.env', 403)
-        self.assert_status('zadmin.settings', 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.

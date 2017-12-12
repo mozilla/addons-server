@@ -78,6 +78,11 @@
             $upload_field.wrap(ui_parent);
             $upload_field.before(ui_link);
             $upload_field.parent().after(ui_details);
+            $upload_field.after($('#wizardlink'));
+
+            $('#wizardlink').on('click', function() {
+                window.location = this.href;
+            });
 
             if (!z.capabilities.fileAPI) {
                 $('.invisible-upload').addClass('legacy');
@@ -250,7 +255,6 @@
                 }};
 
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
-                $('.binary-source').show();
             });
 
             $upload_field.on("upload_onreadystatechange", function(e, file, xhr, aborted) {
@@ -395,6 +399,14 @@
                         });
                     }, 1000);
                 } else {
+                    if (results.addon_type==10) {
+                        // No source or platform selection for static themes.
+                        $('.binary-source').hide();
+                        $('.supported-platforms').hide();
+                    } else {
+                        $('.binary-source').show();
+                        $('.supported-platforms').show();
+                    }
                     var errors = getErrors(results),
                         v = results.validation,
                         timeout = checkTimeout(v);

@@ -186,8 +186,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,
-            'count': self.addon.total_reviews,
-            'text_count': self.addon.text_reviews_count,
+            'count': self.addon.total_ratings,
+            'text_count': self.addon.text_ratings_count,
         }
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True
@@ -482,19 +482,33 @@ class TestAddonIndexer(TestCase):
         assert extracted['persona']['textcolor'] == persona.textcolor
 
         # Personas are always considered compatible with every platform, and
-        # all versions of all apps.
+        # almost all versions of all apps.
         assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
-        expected_version_compat = {
-            'max': 9999000000200100,
-            'max_human': None,
-            'min': 0,
-            'min_human': None
-        }
         assert extracted['current_version']['compatible_apps'] == {
-            amo.ANDROID.id: expected_version_compat,
-            amo.FIREFOX.id: expected_version_compat,
-            amo.THUNDERBIRD.id: expected_version_compat,
-            amo.SEAMONKEY.id: expected_version_compat,
+            amo.ANDROID.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 11000000200100,
+                'min_human': '11.0',
+            },
+            amo.FIREFOX.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 4000000200100,
+                'min_human': '4.0',
+            },
+            amo.THUNDERBIRD.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 5000000200100,
+                'min_human': '5.0',
+            },
+            amo.SEAMONKEY.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 2010000200100,
+                'min_human': '2.1',
+            },
         }
         self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
         extracted = self._extract()
@@ -503,7 +517,8 @@ class TestAddonIndexer(TestCase):
     def test_extract_previews(self):
         second_preview = Preview.objects.create(
             addon=self.addon, position=2,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            sizes={'thumbnail': [199, 99], 'image': [567, 780]})
         first_preview = Preview.objects.create(addon=self.addon, position=1)
         first_preview.reload()
         second_preview.reload()
@@ -513,11 +528,14 @@ class TestAddonIndexer(TestCase):
         assert extracted['previews'][0]['id'] == first_preview.pk
         assert extracted['previews'][0]['modified'] == first_preview.modified
         assert extracted['previews'][0]['caption_translations'] == []
+        assert extracted['previews'][0]['sizes'] == first_preview.sizes == {}
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
         assert extracted['previews'][1]['caption_translations'] == [
             {'lang': 'en-US', 'string': u'My câption'},
             {'lang': 'fr', 'string': u'Mön tîtré'}]
+        assert extracted['previews'][1]['sizes'] == second_preview.sizes == {
+            'thumbnail': [199, 99], 'image': [567, 780]}
 
         # Only raw translations dict should exist, since we don't need the
         # to search against preview captions.

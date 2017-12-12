@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import copy
+
 from django.test.client import RequestFactory
 
 from elasticsearch_dsl import Search
@@ -9,8 +11,8 @@ from olympia import amo
 from olympia.amo.tests import create_switch, TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
-    InternalSearchParameterFilter, ReviewedContentFilter,
-    SearchParameterFilter, SearchQueryFilter, SortingFilter)
+    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
+    SortingFilter)
 
 
 class FilterTestsBase(TestCase):
@@ -84,13 +86,18 @@ class TestQueryFilter(FilterTestsBase):
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 1
 
+    def test_q_too_long(self):
+        with self.assertRaises(serializers.ValidationError):
+            self._filter(data={'q': 'a' * 101})
+
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'blah'
+                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
@@ -100,9 +107,10 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'search terms'
+                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
@@ -125,6 +133,20 @@ class TestQueryFilter(FilterTestsBase):
                 }}
             ]}}
         }
+
+    def test_q_exact(self):
+        qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'term': {
+                'name.raw': {
+                    'boost': 100, 'value': u'adblock plus',
+                }
+            }
+        }
+
+        assert expected in should
 
 
 class TestReviewedContentFilter(FilterTestsBase):
@@ -160,7 +182,8 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
 
     def test_sort_query(self):
-        SORTING_PARAMS = SortingFilter.SORTING_PARAMS
+        SORTING_PARAMS = copy.copy(SortingFilter.SORTING_PARAMS)
+        SORTING_PARAMS.pop('random')  # Tested separately below.
 
         for param in SORTING_PARAMS:
             qs = self._filter(data={'sort': param})
@@ -186,10 +209,49 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['sort'] == [self._reformat_order('-bayesian_rating'),
                               self._reformat_order('-created')]
 
+        qs = self._filter(data={'sort': 'created,rating'})
+        assert qs['sort'] == [self._reformat_order('-created'),
+                              self._reformat_order('-bayesian_rating')]
+
         # If the sort query is wrong.
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'sort': ['LOLWRONG,created']})
         assert context.exception.detail == ['Invalid "sort" parameter.']
+
+    def test_cant_combine_sorts_with_random(self):
+        expected = 'The "random" "sort" parameter can not be combined.'
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'sort': ['rating,random']})
+        assert context.exception.detail == [expected]
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'sort': 'random,created'})
+        assert context.exception.detail == [expected]
+
+    def test_sort_random_restrictions(self):
+        expected = ('The "sort" parameter "random" can only be specified when '
+                    'the "featured" parameter is also present, and the "q" '
+                    'parameter absent.')
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'q': 'something', 'sort': 'random'})
+        assert context.exception.detail == [expected]
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(
+                data={'q': 'something', 'featured': 'true', 'sort': 'random'})
+        assert context.exception.detail == [expected]
+
+    def test_sort_random(self):
+        qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+        # Note: this test does not call AddonFeaturedQueryParam so it won't
+        # apply the featured filtering. That's tested below in
+        # TestCombinedFilter.test_filter_featured_sort_random
+        assert qs['sort'] == ['_score']
+        assert qs['query']['function_score']['functions'] == [
+            {'random_score': {}}
+        ]
 
 
 class TestSearchParameterFilter(FilterTestsBase):
@@ -441,36 +503,6 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
 
-class TestInternalSearchParameterFilter(TestSearchParameterFilter):
-    filter_classes = [InternalSearchParameterFilter]
-
-    def test_search_by_status_invalid(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'status': unicode(amo.STATUS_PUBLIC + 999)})
-
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'status': 'nosuchstatus'})
-        assert context.exception.detail == ['Invalid "status" parameter.']
-
-    def test_search_by_status_id(self):
-        qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC)})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
-
-        qs = self._filter(data={'status': unicode(amo.STATUS_NULL)})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_NULL}} in must
-
-    def test_search_by_status_string(self):
-        qs = self._filter(data={'status': 'public'})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
-
-        qs = self._filter(data={'status': 'incomplete'})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_NULL}} in must
-
-
 class TestCombinedFilter(FilterTestsBase):
     """
     Basic test to ensure that when filters are combined they result in the
@@ -501,3 +533,18 @@ class TestCombinedFilter(FilterTestsBase):
             }
         }
         assert expected in should
+
+    def test_filter_featured_sort_random(self):
+        qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+        filtered = qs['query']['bool']
+        must = filtered['must']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
+
+        must_not = filtered['must_not']
+        assert {'term': {'is_disabled': True}} in must_not
+
+        assert qs['sort'] == ['_score']
+
+        assert filtered['must'][2]['function_score']['functions'] == [
+            {'random_score': {}}
+        ]

@@ -2,7 +2,7 @@ import datetime
 import json
 import os
 import time
-import uuid
+from uuid import UUID, uuid4
 
 from django import forms as django_forms
 from django import http
@@ -11,7 +11,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
-from django.forms import Form
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -32,7 +31,7 @@ from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -45,13 +44,14 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.templatetags.jinja_helpers import get_position
-from olympia.editors.utils import ReviewHelper
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
+from olympia.reviewers.forms import PublicWhiteboardForm
+from olympia.reviewers.models import Whiteboard
+from olympia.reviewers.templatetags.jinja_helpers import get_position
+from olympia.reviewers.utils import ReviewHelper
 from olympia.search.views import BaseAjaxSearch
-from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
@@ -63,7 +63,6 @@ from . import forms, tasks, feeds, signals
 
 
 log = olympia.core.logger.getLogger('z.devhub')
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.
@@ -71,9 +70,17 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
+def get_fileupload_by_uuid_or_404(value):
+    try:
+        UUID(value)
+    except ValueError:
+        raise http.Http404()
+    return get_object_or_404(FileUpload, uuid=value)
+
+
 class AddonFilter(BaseFilter):
-    opts = (('name', _(u'Name')),
-            ('updated', _(u'Updated')),
+    opts = (('updated', _(u'Updated')),
+            ('name', _(u'Name')),
             ('created', _(u'Created')),
             ('popular', _(u'Downloads')),
             ('rating', _(u'Rating')))
@@ -86,14 +93,18 @@ class ThemeFilter(BaseFilter):
             ('rating', _(u'Rating')))
 
 
-def addon_listing(request, default='name', theme=False):
+def addon_listing(request, theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
+        qs = request.user.addons.filter(
+            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
+        filter_cls = ThemeFilter
+        default = 'name'
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
-            type=amo.ADDON_PERSONA)
-    filter_cls = ThemeFilter if theme else AddonFilter
+            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
+        filter_cls = AddonFilter
+        default = 'updated'
     filter_ = filter_cls(request, qs, 'sort', default)
     return filter_.qs, filter_
 
@@ -236,7 +247,7 @@ def _get_items(action, addons):
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                                 amo.LOG.REMOVE_FROM_COLLECTION,),
-                   reviews=(amo.LOG.ADD_REVIEW,))
+                   reviews=(amo.LOG.ADD_RATING,))
 
     filter_ = filters.get(action)
     items = (ActivityLog.objects.for_addons(addons)
@@ -299,9 +310,15 @@ def feed(request, addon_id=None):
 
 @dev_required
 def edit(request, addon_id, addon):
+    try:
+        whiteboard = Whiteboard.objects.get(pk=addon.pk)
+    except Whiteboard.DoesNotExist:
+        whiteboard = Whiteboard(pk=addon.pk)
+
     data = {
         'page': 'edit',
         'addon': addon,
+        'whiteboard': whiteboard,
         'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
@@ -430,9 +447,12 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    policy_form = forms.PolicyForm(post_data, addon=addon)
-    ctx.update(policy_form=policy_form)
-    fs.append(policy_form)
+    if addon.type != amo.ADDON_STATICTHEME:
+        policy_form = forms.PolicyForm(post_data, addon=addon)
+        ctx.update(policy_form=policy_form)
+        fs.append(policy_form)
+    else:
+        policy_form = None
 
     def mail_user_changes(author, title, template_part, recipients):
         from olympia.amo.utils import send_mail
@@ -493,7 +513,7 @@ def ownership(request, addon_id, addon):
 
         if license_form in fs:
             license_form.save()
-        if policy_form in fs:
+        if policy_form and policy_form in fs:
             policy_form.save()
         messages.success(request, ugettext('Changes successfully saved.'))
 
@@ -501,89 +521,6 @@ def ownership(request, addon_id, addon):
 
     ctx.update(addon=addon, user_form=user_form)
     return render(request, 'devhub/addons/owner.html', ctx)
-
-
-@dev_required(owner_for_post=True)
-@waffle.decorators.waffle_switch('!simple-contributions')
-def payments(request, addon_id, addon):
-    charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
-
-    charity_form = forms.CharityForm(request.POST or None, instance=charity,
-                                     prefix='charity')
-    contrib_form = forms.ContribForm(request.POST or None, instance=addon,
-                                     initial=forms.ContribForm.initial(addon))
-    profile_form = forms.ProfileForm(request.POST or None, instance=addon,
-                                     required=True)
-    if request.method == 'POST':
-        if contrib_form.is_valid():
-            addon = contrib_form.save(commit=False)
-            addon.wants_contributions = True
-            valid = _save_charity(addon, contrib_form, charity_form)
-            if not addon.has_full_profile():
-                valid &= profile_form.is_valid()
-                if valid:
-                    profile_form.save()
-            if valid:
-                addon.save()
-                messages.success(
-                    request, ugettext('Changes successfully saved.'))
-                ActivityLog.create(amo.LOG.EDIT_CONTRIBUTIONS, addon)
-
-                return redirect(addon.get_dev_url('payments'))
-    errors = charity_form.errors or contrib_form.errors or profile_form.errors
-    if errors:
-        messages.error(
-            request, ugettext('There were errors in your submission.'))
-
-    return render(request, 'devhub/payments/payments.html',
-                  dict(addon=addon, errors=errors, charity_form=charity_form,
-                       contrib_form=contrib_form, profile_form=profile_form))
-
-
-def _save_charity(addon, contrib_form, charity_form):
-    recipient = contrib_form.cleaned_data['recipient']
-    if recipient == 'dev':
-        addon.charity = None
-    elif recipient == 'moz':
-        addon.charity_id = amo.FOUNDATION_ORG
-    elif recipient == 'org':
-        if charity_form.is_valid():
-            addon.charity = charity_form.save()
-        else:
-            return False
-    return True
-
-
-@dev_required
-@post_required
-def disable_payments(request, addon_id, addon):
-    addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('payments'))
-
-
-@dev_required
-@post_required
-def remove_profile(request, addon_id, addon):
-    delete_translation(addon, 'the_reason')
-    delete_translation(addon, 'the_future')
-    if addon.wants_contributions:
-        addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('profile'))
-
-
-@dev_required
-@waffle.decorators.waffle_switch('!simple-contributions')
-def profile(request, addon_id, addon):
-    profile_form = forms.ProfileForm(request.POST or None, instance=addon)
-
-    if request.method == 'POST' and profile_form.is_valid():
-        profile_form.save()
-        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
-        messages.success(request, ugettext('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('profile'))
-
-    return render(request, 'devhub/addons/profile.html',
-                  dict(addon=addon, profile_form=profile_form))
 
 
 @login_required
@@ -672,7 +609,7 @@ def upload_for_version(request, addon_id, addon, channel):
 @login_required
 @json_view
 def standalone_upload_detail(request, uuid):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
+    upload = get_fileupload_by_uuid_or_404(uuid)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
     return upload_validation_context(request, upload, url=url)
 
@@ -681,7 +618,7 @@ def standalone_upload_detail(request, uuid):
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
-        upload = get_object_or_404(FileUpload, uuid=uuid)
+        upload = get_fileupload_by_uuid_or_404(uuid)
         response = json_upload_detail(request, upload, addon_slug=addon.slug)
         statsd.incr('devhub.upload_detail_for_addon.success')
         return response
@@ -691,7 +628,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
         raise
 
 
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def file_validation(request, addon_id, addon, file_id):
     file_ = get_object_or_404(File, id=file_id)
 
@@ -710,7 +647,7 @@ def file_validation(request, addon_id, addon, file_id):
     return render(request, 'devhub/validation.html', context)
 
 
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
@@ -748,26 +685,26 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 
 @json_view
 @csrf_exempt
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
     try:
-        v_result = file.validation
+        result = file.validation
     except FileValidation.DoesNotExist:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
-        v_result = tasks.validate(file).get()
+        result = tasks.validate(file, synchronous=True).get()
 
-    return {'validation': v_result.processed_validation, 'error': None}
+    return {'validation': result.processed_validation, 'error': None}
 
 
 @json_view
 @csrf_exempt
 @post_required
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def json_bulk_compat_result(request, addon_id, addon, result_id):
     result = get_object_or_404(ValidationResult, pk=result_id,
                                completed__isnull=False)
@@ -830,6 +767,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 
             # Does the version number look like it's beta?
             result['beta'] = is_beta(pkg.get('version', ''))
+            result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
     return result
@@ -862,7 +800,7 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
 
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
+    upload = get_fileupload_by_uuid_or_404(uuid)
     if upload.user_id and not request.user.is_authenticated():
         return redirect_for_login(request)
 
@@ -910,32 +848,37 @@ def ajax_dependencies(request, addon_id, addon):
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {'admin': forms.AdminForm}
     if show_listed:
         models.update({
             'basic': addon_forms.AddonFormBasic,
-            'media': addon_forms.AddonFormMedia,
             'details': addon_forms.AddonFormDetails,
             'support': addon_forms.AddonFormSupport,
-            'technical': addon_forms.AddonFormTechnical,
+            'technical': addon_forms.AddonFormTechnical
         })
+        if not static_theme:
+            models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
             'basic': addon_forms.AddonFormBasicUnlisted,
             'details': addon_forms.AddonFormDetailsUnlisted,
-            'technical': addon_forms.AddonFormTechnicalUnlisted,
+            'technical': addon_forms.AddonFormTechnicalUnlisted
         })
 
     if section not in models:
         raise http.Http404()
 
     tags, previews, restricted_tags = [], [], []
-    cat_form = dependency_form = None
+    cat_form = dependency_form = whiteboard_form = None
+    whiteboard = None
 
     if section == 'basic' and show_listed:
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
-        cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon, request=request)
+        category_form_class = (forms.SingleCategoryForm if static_theme else
+                               addon_forms.CategoryFormSet)
+        cat_form = category_form_class(
+            request.POST or None, addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
@@ -943,11 +886,21 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
-    elif section == 'technical' and show_listed:
+    elif section == 'technical' and show_listed and not static_theme:
         dependency_form = forms.DependencyFormSet(
             request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
             prefix='dependencies')
+
+    if section == 'technical':
+        try:
+            whiteboard = Whiteboard.objects.get(pk=addon.pk)
+        except Whiteboard.DoesNotExist:
+            whiteboard = Whiteboard(pk=addon.pk)
+
+        whiteboard_form = PublicWhiteboardForm(request.POST or None,
+                                               instance=whiteboard,
+                                               prefix='whiteboard')
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.slug
@@ -981,12 +934,19 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     dependency_form.save()
                 else:
                     editable = True
+            if whiteboard_form:
+                if whiteboard_form.is_valid():
+                    whiteboard_form.save()
+                else:
+                    editable = True
+
         else:
             form = models[section](instance=addon, request=request)
     else:
         form = False
 
     data = {'addon': addon,
+            'whiteboard': whiteboard,
             'show_listed_fields': show_listed,
             'form': form,
             'editable': editable,
@@ -995,6 +955,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'cat_form': cat_form,
             'preview_form': previews,
             'dependency_form': dependency_form,
+            'whiteboard_form': whiteboard_form,
             'valid_slug': valid_slug}
 
     return render(request, 'devhub/addons/edit/%s.html' % section, data)
@@ -1028,7 +989,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         upload_preview = request.FILES['upload_image']
         upload_preview.seek(0)
 
-        upload_hash = uuid.uuid4().hex
+        upload_hash = uuid4().hex
         loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
 
         with storage.open(loc, 'wb') as fd:
@@ -1098,16 +1059,19 @@ def upload_image(request, addon_id, addon, upload_type):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
         request.POST or None,
         request.FILES or None,
         instance=version
-    )
+    ) if not static_theme else None
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
 
-    data = {'version_form': version_form, 'file_form': file_form}
+    data = {'file_form': file_form}
+    if version_form:
+        data['version_form'] = version_form
 
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
@@ -1123,7 +1087,6 @@ def version_edit(request, addon_id, addon, version_id):
 
     if (request.method == 'POST' and
             all([form.is_valid() for form in data.values()])):
-        data['version_form'].save()
         data['file_form'].save()
 
         if 'compat_form' in data:
@@ -1139,25 +1102,28 @@ def version_edit(request, addon_id, addon, version_id):
                         'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
 
-        if 'approvalnotes' in version_form.changed_data:
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   addon, version, request.user)
+        if 'version_form' in data:
+            data['version_form'].save()
+            if 'approvalnotes' in version_form.changed_data:
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                       addon, version, request.user)
 
-        if ('source' in version_form.changed_data and
-                version_form.cleaned_data['source']):
-            addon.update(admin_review=True)
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   addon, version, request.user)
+            if ('source' in version_form.changed_data and
+                    version_form.cleaned_data['source']):
+                AddonReviewerFlags.objects.update_or_create(
+                    addon=addon, defaults={'needs_admin_code_review': True})
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                       addon, version, request.user)
 
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1185,13 +1151,13 @@ def version_delete(request, addon_id, addon):
         messages.success(
             request,
             ugettext('Version %s disabled.') % version.version)
-        version.is_user_disabled = True
+        version.is_user_disabled = True  # Will update the files/activity log.
         version.addon.update_status()
     else:
         messages.success(
             request,
             ugettext('Version %s deleted.') % version.version)
-        version.delete()
+        version.delete()  # Will also activity log.
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1204,7 +1170,7 @@ def version_reenable(request, addon_id, addon):
     messages.success(
         request,
         ugettext('Version %s re-enabled.') % version.version)
-    version.is_user_disabled = False
+    version.is_user_disabled = False  # Will update the files/activity log.
     version.addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 
@@ -1228,12 +1194,12 @@ def auto_sign_file(file_, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1282,18 +1248,16 @@ def version_bounce(request, addon_id, addon, version):
 @dev_required
 def version_stats(request, addon_id, addon):
     qs = Version.objects.filter(addon=addon)
-    reviews = (qs.annotate(review_count=Count('reviews'))
+    reviews = (qs.annotate(review_count=Count('ratings'))
                .values('id', 'version', 'review_count'))
-    d = dict((v['id'], v) for v in reviews)
+    data = {v['id']: v for v in reviews}
     files = (
-        qs
-        .annotate(file_count=Count('files'))
-        .values_list('id', 'file_count'))
+        qs.annotate(file_count=Count('files')).values_list('id', 'file_count'))
     for id_, file_count in files:
         # For backwards compatibility
-        d[id_]['files'] = file_count
-        d[id_]['reviews'] = d[id_].pop('review_count')
-    return d
+        data[id_]['files'] = file_count
+        data[id_]['reviews'] = data[id_].pop('review_count')
+    return data
 
 
 @login_required
@@ -1345,7 +1309,7 @@ def submit_version_distribution(request, addon_id, addon):
 
 @transaction.atomic
 def _submit_upload(request, addon, channel, next_details, next_finish,
-                   version=None):
+                   version=None, wizard=False):
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
@@ -1374,7 +1338,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                     parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
-            is_beta = data['beta'] and channel == amo.RELEASE_CHANNEL_LISTED
+            is_beta = (data.get('beta') and
+                       channel == amo.RELEASE_CHANNEL_LISTED)
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1397,9 +1362,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
-        addon_update = {}
         if data.get('source'):
-            addon_update['admin_review'] = True
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
             activity_log = ActivityLog.objects.create(
                 action=amo.LOG.SOURCE_CODE_UPLOADED.id,
                 user=request.user,
@@ -1412,9 +1377,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            addon_update['status'] = amo.STATUS_NOMINATED
-        if addon_update:
-            addon.update(**addon_update)
+            addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
         next_url = (next_details
@@ -1430,14 +1393,16 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
     else:
         channel_choice_text = ''  # We only need this for Version upload.
     submit_page = 'file' if version else 'version' if addon else 'addon'
-    return render(request, 'devhub/addons/submit/upload.html',
+    template = ('devhub/addons/submit/upload.html' if not wizard else
+                'devhub/addons/submit/wizard.html')
+    return render(request, template,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
                    'addon': addon,
                    'submit_notification_warning':
                        get_config('submit_notification_warning'),
                    'submit_page': submit_page,
-                   'listed': channel == amo.RELEASE_CHANNEL_LISTED,
+                   'channel': channel,
                    'channel_choice_text': channel_choice_text})
 
 
@@ -1472,6 +1437,25 @@ def submit_version_auto(request, addon_id, addon):
                           'devhub.submit.version.finish')
 
 
+@login_required
+@waffle.decorators.waffle_switch('allow-static-theme-uploads')
+def submit_addon_theme_wizard(request, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, None, channel_id,
+                          'devhub.submit.details', 'devhub.submit.finish',
+                          wizard=True)
+
+
+@dev_required
+@no_admin_disabled
+@waffle.decorators.waffle_switch('allow-static-theme-uploads')
+def submit_version_theme_wizard(request, addon_id, addon, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, addon, channel_id,
+                          'devhub.submit.version.details',
+                          'devhub.submit.version.finish', wizard=True)
+
+
 @dev_required
 def submit_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
@@ -1482,20 +1466,32 @@ def submit_file(request, addon_id, addon, version_id):
 
 
 def _submit_details(request, addon, version):
-    if version and version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        # Not a listed version ? Then nothing to do here.
-        return redirect('devhub.submit.version.finish', addon.slug, version.pk)
-    # Figure out the latest version early in order to pass the same instance to
-    # each form that needs it (otherwise they might overwrite each other).
-    latest_version = version or addon.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_LISTED)
-    if not latest_version:
-        # No listed version ? Then nothing to do in the listed submission flow.
-        return redirect('devhub.submit.finish', addon.slug)
+    static_theme = addon.type == amo.ADDON_STATICTHEME
+    if version:
+        skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
+                             version.is_beta or
+                             (static_theme and addon.has_complete_metadata()))
+        if skip_details_step:
+            # Nothing to do here.
+            return redirect(
+                'devhub.submit.version.finish', addon.slug, version.pk)
+        latest_version = version
+    else:
+        # Figure out the latest version early in order to pass the same
+        # instance to each form that needs it (otherwise they might overwrite
+        # each other).
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        if not latest_version:
+            # No listed version ? Then nothing to do in the listed submission
+            # flow.
+            return redirect('devhub.submit.finish', addon.slug)
+
     forms_list = []
     context = {
         'addon': addon,
         'version': version,
+        'submit_page': 'version' if version else 'addon',
     }
     post_data = request.POST if request.method == 'POST' else None
     show_all_fields = not version or not addon.has_complete_metadata()
@@ -1503,17 +1499,19 @@ def _submit_details(request, addon, version):
     if show_all_fields:
         describe_form = forms.DescribeForm(
             post_data, instance=addon, request=request)
-        cat_form = addon_forms.CategoryFormSet(
-            post_data, addon=addon, request=request)
+        cat_form_class = (addon_forms.CategoryFormSet if not static_theme
+                          else forms.SingleCategoryForm)
+        cat_form = cat_form_class(post_data, addon=addon, request=request)
         license_form = forms.LicenseForm(
             post_data, version=latest_version, prefix='license')
         context.update(license_form.get_context())
         context.update(form=describe_form, cat_form=cat_form)
         forms_list.extend([describe_form, cat_form, context['license_form']])
-    reviewer_form = forms.VersionForm(
-        post_data, instance=latest_version)
-    context.update(reviewer_form=reviewer_form)
-    forms_list.append(reviewer_form)
+    if not static_theme:
+        # Static themes don't need this form
+        reviewer_form = forms.VersionForm(post_data, instance=latest_version)
+        context.update(reviewer_form=reviewer_form)
+        forms_list.append(reviewer_form)
 
     if request.method == 'POST' and all(
             form.is_valid() for form in forms_list):
@@ -1521,11 +1519,12 @@ def _submit_details(request, addon, version):
             addon = describe_form.save()
             cat_form.save()
             license_form.save(log=False)
-            reviewer_form.save()
+            if not static_theme:
+                reviewer_form.save()
             if addon.status == amo.STATUS_NULL:
                 addon.update(status=amo.STATUS_NOMINATED)
             signals.submission_done.send(sender=addon)
-        else:
+        elif not static_theme:
             reviewer_form.save()
 
         if not version:
@@ -1533,7 +1532,6 @@ def _submit_details(request, addon, version):
         else:
             return redirect('devhub.submit.version.finish',
                             addon.slug, version.id)
-    context.update(addon=addon, submit_page='version' if version else 'addon')
     template = 'devhub/addons/submit/%s' % (
         'describe.html' if show_all_fields else 'describe_minimal.html')
     return render(request, template, context)
@@ -1725,11 +1723,7 @@ def api_key_agreement(request):
 
 
 def render_agreement(request, template, next_step, **extra_context):
-    new_style_agreement = waffle.switch_is_active('post-review')
-    # If using the new style agreement, use AgreementForm, otherwise just an
-    # empty django Form that will always be valid when you POST things to it.
-    form_class = AgreementForm if new_style_agreement else Form
-    form = form_class(request.POST if request.method == 'POST' else None)
+    form = AgreementForm(request.POST if request.method == 'POST' else None)
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step.

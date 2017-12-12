@@ -24,6 +24,7 @@ jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
 @claviska/jquery-minicolors/jquery.minicolors.js \
 jquery-pjax/jquery.pjax.js \
+jszip/dist/jszip.js \
 raven-js/dist/raven.js \
 timeago/jquery.timeago.js \
 underscore/underscore.js \
@@ -92,13 +93,12 @@ populate_data:
 	python manage.py update_permissions_from_mc
 
 install_python_dependencies:
-	pip install six
-	pip install --upgrade pip setuptools
-	pip install -e .
+	pip install --no-deps --exists-action=w -r requirements/system.txt
 	pip install --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
 
@@ -124,5 +124,20 @@ update: update_deps update_db update_assets
 
 reindex:
 	python manage.py reindex $(ARGS)
+
+ui-tests:
+	rm -rf ./user-media/* ./tmp/*
+	python manage.py reset_db --noinput
+	python manage.py syncdb --noinput
+	python manage.py loaddata initial.json
+	python manage.py import_prod_versions
+	schematic --fake src/olympia/migrations/
+	python manage.py loaddata zadmin/users
+	python manage.py update_permissions_from_mc
+	python manage.py loaddata src/olympia/access/fixtures/initial.json
+	python manage.py waffle_switch super-create-accounts on
+	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia.dev
+	python manage.py reindex --wipe --force --noinput
+	python manage.py generate_ui_test_addons
 
 initialize: update_deps initialize_db update_assets populate_data

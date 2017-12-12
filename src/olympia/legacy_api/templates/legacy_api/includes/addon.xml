@@ -105,19 +105,7 @@
     {% endfor -%}
     {%- endif -%}
 
-    {%- if addon.takes_contributions and not waffle.switch('simple-contributions') -%}
-    <contribution_data>
-      <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
-      {% if addon.suggested_amount %}
-          <suggested_amount currency="USD" amount="{{ addon.suggested_amount }}">
-            {{ addon.suggested_amount|currencyfmt('USD') }}
-          </suggested_amount>
-      {% endif %}
-      <meet_developers>
-        {{ addon.meet_the_dev_url()|absolutify|urlparams(src='api') }}
-      </meet_developers>
-    </contribution_data>
-    {%- elif addon.contributions and waffle.switch('simple-contributions')-%}
+    {%- if addon.contributions -%}
     <contribution_data>
       <meet_developers>
         {{ addon.contributions }}
@@ -125,7 +113,7 @@
     </contribution_data>
     {%- endif -%}
     <developer_comments>{{ addon.developer_comments }}</developer_comments>
-    <reviews num="{{ addon.total_reviews }}">
+    <reviews num="{{ addon.total_ratings }}">
       {{ addon.reviews_url|absolutify|urlparams(src='api') }}
     </reviews>
     <total_downloads>{{ addon.total_downloads }}</total_downloads>

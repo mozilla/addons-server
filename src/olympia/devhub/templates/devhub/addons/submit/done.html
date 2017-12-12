@@ -12,7 +12,13 @@
       {{ _("You’re done!") }}
     </p>
   {% else %}
-    {% if waffle.switch('post-review') and uploaded_version.is_webextension %}
+    {% if addon.type == amo.ADDON_STATICTHEME %}
+      <h3>{{ _("Version Submitted for Review") }}</h3>
+      <p>
+        {{ _("You’re done! This version will be available after it passes review. "
+             "You will be notified when it is reviewed.") }}
+      </p>
+    {% elif uploaded_version.is_webextension %}
       <h3>{{ _("Version Submitted") }}</h3>
       <p>
         {{ _("You’re done! This version will be available on our site shortly.") }}
@@ -25,7 +31,12 @@
              "any questions about your submission.") }}
       </p>
     {% endif %}
-    {% if submit_page == 'addon' %}
+    {% if submit_page == 'addon' and addon.type == amo.ADDON_STATICTHEME %}
+      <p>
+        {{ _("Your listing will be more successful by adding a detailed description. "
+             "Get your listing ready for publication:") }}
+      </p>
+    {% elif submit_page == 'addon'  %}
       <p>
         {{ _("Your listing will be more successful by adding a detailed description "
              "and screenshots. Get your listing ready for publication:") }}
@@ -36,14 +47,16 @@
     <a class="button" href="{{ addon.get_dev_url() }}">
       {{ _("Manage Listing") }}</a>
   </p>
-  <p>
-    {{ _("You can also edit this version to add version notes, or source code "
-         "if your submission includes minified, obfuscated or compiled code.") }}
-  </p>
-  <p>
-    <a class="button" href="{{ version_edit_url }}">{{
-        _("Edit version {0}")|format_html(uploaded_version.version) }}</a>
-  </p>
+  {% if addon.type != amo.ADDON_STATICTHEME %}
+    <p>
+      {{ _("You can also edit this version to add version notes, or source code "
+           "if your submission includes minified, obfuscated or compiled code.") }}
+    </p>
+    <p>
+      <a class="button" href="{{ version_edit_url }}">{{
+          _("Edit version {0}")|format_html(uploaded_version.version) }}</a>
+    </p>
+  {% endif %}
 {% else %}
   {% if submit_page == 'file' %}
     <h3>{{ _("File Signed") }}</h3>

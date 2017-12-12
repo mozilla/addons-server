@@ -136,6 +136,12 @@ ul.errorlist {
     color: #888 !important;
 }
 
+/* 'listing footer' */
+.listing-footer,
+.tab-wrapper .fm-control {
+    background-color: #E0EFFD;
+}
+
 /************************************/
 /*             GRADIENTS            */
 /************************************/
@@ -154,20 +160,6 @@ ul.errorlist {
         to(#E0EFFD)
     );
     background: linear-gradient(#FFFFFF, #E0EFFD);
-}
-
-/* 'listing footer' */
-.listing-footer,
-.tab-wrapper .fm-control {
-    background-color: #E0EFFD;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#E0EFFD),
-        to(#FFFFFF)
-    );
-    background: linear-gradient(#E0EFFD, #FFFFFF);
 }
 
 /* 'listing item' */
@@ -3299,6 +3291,9 @@ table#addons-list, table#contributors-list {
 }
 #addons-list .comments.hascomment {
     display: block;
+}
+#addons-list .comments.hascomment textarea {
+    resize:vertical;
 }
 td.remove {
     width: 20px;

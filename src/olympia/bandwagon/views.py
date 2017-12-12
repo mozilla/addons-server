@@ -710,5 +710,17 @@ class CollectionAddonViewSet(ModelViewSet):
         return super(CollectionAddonViewSet, self).get_object()
 
     def get_queryset(self):
-        return CollectionAddon.objects.filter(
+        qs = CollectionAddon.objects.filter(
             collection=self.get_collection_viewset().get_object())
+        filter_param = self.request.GET.get('filter')
+        # We only filter list action.
+        include_all_with_deleted = (filter_param == 'all_with_deleted' or
+                                    self.action != 'list')
+        # If deleted addons are requested, that implies all addons.
+        include_all = filter_param == 'all' or include_all_with_deleted
+        if not include_all:
+            qs = qs.filter(
+                addon__status=amo.STATUS_PUBLIC, addon__disabled_by_user=False)
+        elif not include_all_with_deleted:
+            qs = qs.exclude(addon__status=amo.STATUS_DELETED)
+        return qs

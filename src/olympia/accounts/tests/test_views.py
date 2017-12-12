@@ -151,49 +151,6 @@ endpoint_overrides = [
     for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
 
 
-@override_settings(
-    FXA_CONFIG={'default': FXA_CONFIG},
-    CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
-class TestLoginView(BaseAuthenticationView):
-    client_class = APITestClient
-    view_name = 'accounts.login'
-
-    def setUp(self):
-        super(TestLoginView, self).setUp()
-        self.client.defaults['HTTP_ORIGIN'] = 'https://addons-frontend'
-        self.state = 'stateaosidoiajsdaagdsasi'
-        self.initialize_session({'fxa_state': self.state})
-        self.code = 'codeaosidjoiajsdioasjdoa'
-        self.update_user = self.patch(
-            'olympia.accounts.views.update_user')
-
-    def options(self, url, origin):
-        return self.client_class(HTTP_ORIGIN=origin).options(url)
-
-    def test_correct_config_is_used(self):
-        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local'])
-
-    def test_cors_addons_frontend(self):
-        response = self.options(self.url, origin='https://addons-frontend')
-        assert has_cors_headers(response, origin='https://addons-frontend')
-        assert response.status_code == 200
-
-    def test_cors_localhost(self):
-        response = self.options(self.url, origin='http://localhost:3000')
-        assert has_cors_headers(response, origin='http://localhost:3000')
-        assert response.status_code == 200
-
-    def test_cors_other(self):
-        response = self.options(self.url, origin='https://attacker.com')
-        assert 'Access-Control-Allow-Origin' not in response
-        assert 'Access-Control-Allow-Methods' not in response
-        assert 'Access-Control-Allow-Headers' not in response
-        assert 'Access-Control-Allow-Credentials' not in response
-        assert response.status_code == 200
-
-
 class TestLoginStartView(TestCase):
 
     def test_default_config_is_used(self):
@@ -341,7 +298,7 @@ class TestRenderErrorJSON(TestCase):
         self.addCleanup(patcher.stop)
 
     def make_request(self):
-        return APIRequestFactory().post(reverse('accounts.login'))
+        return APIRequestFactory().post(reverse('accounts.authenticate'))
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')
@@ -578,38 +535,6 @@ class TestWithUser(TestCase):
         self.fxa_identify.assert_called_with('foo', config=fxa_config)
 
 
-class TestRegisterUser(TestCase):
-
-    def setUp(self):
-        self.request = APIRequestFactory().get('/register')
-        self.identity = {'email': 'me@yeahoo.com', 'uid': '9005'}
-        patcher = mock.patch('olympia.accounts.views.login')
-        self.login = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def test_user_is_created(self):
-        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not user_qs.exists()
-        views.register_user(self.request, self.identity)
-        assert user_qs.exists()
-        user = user_qs.get()
-        assert user.username.startswith('anonymous-')
-        assert user.fxa_id == '9005'
-        assert user.auth_id
-        self.login.assert_called_with(self.request, user)
-
-    def test_username_taken_creates_user(self):
-        UserProfile.objects.create(
-            email='you@yeahoo.com', username='me@yeahoo.com')
-        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not user_qs.exists()
-        views.register_user(self.request, self.identity)
-        assert user_qs.exists()
-        user = user_qs.get()
-        assert user.username.startswith('anonymous-')
-        assert user.fxa_id == '9005'
-
-
 @override_settings(FXA_CONFIG={
     'foo': {'FOO': 123},
     'bar': {'BAR': 456},
@@ -653,125 +578,6 @@ class TestFxAConfigMixin(TestCase):
         request = RequestFactory().get('/login?config=bar')
         config = self.MultipleConfigs().get_fxa_config(request)
         assert config == {'BAZ': 789}
-
-
-@override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
-class TestLoginBaseView(WithDynamicEndpoints, TestCase):
-
-    class LoginView(views.LoginBaseView):
-        DEFAULT_FXA_CONFIG_NAME = 'current-config'
-
-    def setUp(self):
-        super(TestLoginBaseView, self).setUp()
-        self.endpoint(self.LoginView, r'^login/')
-        self.url = '/en-US/firefox/login/'
-        self.initialize_session({'fxa_state': 'some-blob'})
-        self.update_user = self.patch('olympia.accounts.views.update_user')
-        self.fxa_identify = self.patch(
-            'olympia.accounts.views.verify.fxa_identify')
-
-    def test_no_code_provided(self):
-        response = self.client.post(self.url)
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_CODE
-        assert not self.update_user.called
-
-    def test_wrong_state(self):
-        response = self.client.post(
-            self.url, {'code': 'foo', 'state': 'a-different-blob'})
-        assert response.status_code == 400
-        assert response.data['error'] == views.ERROR_STATE_MISMATCH
-        assert not self.update_user.called
-
-    def test_no_fxa_profile(self):
-        self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 401
-        assert response.data['error'] == views.ERROR_NO_PROFILE
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.update_user.called
-
-    def test_no_amo_account_cant_login(self):
-        self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_USER
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.update_user.called
-
-    def test_login_success(self):
-        user = user_factory(username='foobar', email='real@yeahoo.com')
-        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity
-        response = self.client.post(
-            self.url, {'code': 'code', 'state': 'some-blob'})
-        assert response.status_code == 200
-        assert response.data['email'] == 'real@yeahoo.com'
-        token = response.data['token']
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == user
-        self.update_user.assert_called_with(user, identity)
-
-    def test_multiple_accounts_found(self):
-        """Test that login fails if the user is logged in but the fxa_id is
-        set on a different UserProfile."""
-        UserProfile.objects.create(email='real@yeahoo.com', username='foo')
-        UserProfile.objects.create(
-            email='different@yeahoo.com', fxa_id='9005', username='bar')
-        self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
-                                          'uid': '9005'}
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            self.client.post(
-                self.url, {'code': 'code', 'state': 'some-blob'})
-        assert not self.update_user.called
-
-
-class TestRegisterView(BaseAuthenticationView):
-    view_name = 'accounts.register'
-
-    def setUp(self):
-        super(TestRegisterView, self).setUp()
-        self.initialize_session({'fxa_state': 'some-blob'})
-        self.register_user = self.patch('olympia.accounts.views.register_user')
-
-    def test_no_code_provided(self):
-        response = self.client.post(self.url)
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_CODE
-        assert not self.register_user.called
-
-    def test_wrong_state(self):
-        response = self.client.post(
-            self.url, {'code': 'foo', 'state': 'wrong-blob'})
-        assert response.status_code == 400
-        assert response.data['error'] == views.ERROR_STATE_MISMATCH
-        assert not self.register_user.called
-
-    def test_no_fxa_profile(self):
-        self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 401
-        assert response.data['error'] == views.ERROR_NO_PROFILE
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.register_user.called
-
-    def test_register_success(self):
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
-        user = UserProfile(username='foobar', email=identity['email'])
-        self.register_user.return_value = user
-        self.fxa_identify.return_value = identity
-        user.groups_list = []
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 200
-        assert response.data['email'] == 'me@yeahoo.com'
-        assert (response.cookies['api_auth_token'].value ==
-                response.data['token'])
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        self.register_user.assert_called_with(mock.ANY, identity)
 
 
 class TestAuthenticateView(BaseAuthenticationView):
@@ -1270,7 +1076,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         assert res.status_code == 404, res.content
 
     def test_requesting_user_must_have_access(self):
-        self.user.groups.all().delete()
+        GroupUser.objects.filter(user=self.user).delete()
         res = self.post(self.url, {})
         assert res.status_code == 403, res.content
         assert res.data['detail'] == (
@@ -1439,22 +1245,22 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
         assert (
-            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
 
     def test_user_set_notifications_included(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
-            user=self.user, notification_id=thanks_notification.id,
+            user=self.user, notification_id=reply_notification.id,
             enabled=False)
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
 
     def test_no_auth_fails(self):
@@ -1473,7 +1279,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
@@ -1497,43 +1303,43 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         super(TestAccountNotificationViewSetUpdate, self).setUp()
 
     def test_new_notification(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=thanks_notification.id).exists()
+            user=self.user, notification_id=reply_notification.id).exists()
         self.client.login_api(self.user)
         # Check it's set to the default True beforehand.
         assert (
-            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
             self.client.get(self.list_url).data)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=thanks_notification.id)
+            user=self.user, notification_id=reply_notification.id)
         assert not un_obj.enabled
 
     def test_updated_notification(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         # Create the UserNotification object
         UserNotification.objects.create(
-            user=self.user, notification_id=thanks_notification.id,
+            user=self.user, notification_id=reply_notification.id,
             enabled=True)
         self.client.login_api(self.user)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=thanks_notification.id)
+            user=self.user, notification_id=reply_notification.id)
         assert not un_obj.enabled
 
     def test_set_mandatory_fail(self):
@@ -1565,13 +1371,13 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=original_user, notification_id=NOTIFICATIONS_BY_ID[2].id)
+            user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id)
         assert not un_obj.enabled

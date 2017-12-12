@@ -89,18 +89,42 @@ class TestSearchPaginator(TestCase):
 
     def test_invalid_page(self):
         mocked_qs = MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
         paginator = ESPaginator(mocked_qs, 5)
+
         assert ESPaginator.max_result_window == 25000
-        with self.assertRaises(InvalidPage):
+
+        with pytest.raises(InvalidPage) as exc:
             # We're fetching 5 items per page, so requesting page 5001 should
             # fail, since the max result window should is set to 25000.
             paginator.page(5000 + 1)
+
+        # Make sure we raise exactly `InvalidPage`, this is needed
+        # unfortunately since `pytest.raises` won't check the exact
+        # instance but also accepts parent exceptions inherited.
+        assert (
+            exc.value.message ==
+            'That page number is too high for the current page size')
+        assert isinstance(exc.value, InvalidPage)
 
         with self.assertRaises(EmptyPage):
             paginator.page(0)
 
         with self.assertRaises(PageNotAnInteger):
             paginator.page('lol')
+
+    def test_no_pages_beyond_max_window_result(self):
+        mocked_qs = MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
+        paginator = ESPaginator(mocked_qs, 5)
+
+        assert ESPaginator.max_result_window == 25000
+
+        page = paginator.page(4999)
+        assert page.has_next() is True
+
+        page = paginator.page(5000)
+        assert page.has_next() is False
 
     def test_paginate_returns_this_paginator(self):
         request = MagicMock()

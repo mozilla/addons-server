@@ -87,9 +87,6 @@ stats_patterns = [
         kwargs={'report': 'apps'}),
     url('^usage/os/$', views.stats_report, name='stats.os',
         kwargs={'report': 'os'}),
-    url('^contributions/$', views.stats_report, name='stats.contributions',
-        kwargs={'report': 'contributions'}),
-
 
     # time series URLs following this pattern:
     # /addon/{addon_id}/statistics/{series}-{group}-{start}-{end}.{format}
@@ -99,8 +96,6 @@ stats_patterns = [
         name='stats.downloads_series'),
     url(series['usage'], views.usage_series,
         name='stats.usage_series'),
-    url(series['contributions'], views.contributions_series,
-        name='stats.contributions_series'),
     url(series['sources'], views.sources_series,
         name='stats.sources_series'),
     url(series['os'], views.usage_breakdown_series,

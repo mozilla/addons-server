@@ -6,15 +6,14 @@ from product_details import product_details
 import olympia.core.logger
 from olympia.constants import permissions  # noqa
 from olympia.constants.activity import (  # noqa
-    LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITOR_REVIEW_ACTION,
-    LOG_EDITORS, LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
+    LOG, LOG_BY_ID, LOG_ADMINS, LOG_REVIEWER_REVIEW_ACTION,
+    LOG_REVIEWERS, LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
     LOG_REVIEW_QUEUE_DEVELOPER, LOG_REVIEW_EMAIL_USER)
 from olympia.constants.applications import *  # noqa
 from olympia.constants.base import *  # noqa
-from olympia.constants.editors import *  # noqa
 from olympia.constants.licenses import *  # noqa
-from olympia.constants.payments import *  # noqa
 from olympia.constants.platforms import *  # noqa
+from olympia.constants.reviewers import *  # noqa
 from olympia.constants.search import *  # noqa
 
 

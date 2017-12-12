@@ -1,75 +1,61 @@
-import hashlib
-import json
-import uuid
-
 from django import http
-from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import ugettext
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import cache_control
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
-import jinja2
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
+from rest_framework import exceptions
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
-from rest_framework.exceptions import ParseError
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
-from session_csrf import anonymous_csrf_exempt
+
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.amo import messages
-from olympia.amo.decorators import post_required
 from olympia.amo.forms import AbuseForm
-from olympia.amo.utils import randslice, render
 from olympia.amo.models import manual_order
-from olympia.amo import urlresolvers
-from olympia.amo.urlresolvers import reverse
-from olympia.abuse.models import send_abuse_report
-from olympia.bandwagon.models import Collection
-from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
-from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia import paypal
+from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
+from olympia.amo.utils import randslice, render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
-from olympia.reviews.forms import ReviewForm
-from olympia.reviews.models import Review, GroupedRating
+from olympia.bandwagon.models import Collection
+from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.ratings.forms import RatingForm
+from olympia.ratings.models import Rating, GroupedRating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
-from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
-from .forms import ContributionForm
 from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
-    VersionSerializer, StaticCategorySerializer)
+    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
 log = olympia.core.logger.getLogger('z.addons')
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)
@@ -102,7 +88,7 @@ def addon_detail(request, addon):
         except IndexError:
             raise http.Http404
         else:
-            prefixer = urlresolvers.get_url_prefix()
+            prefixer = get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[addon.slug]))
@@ -115,7 +101,7 @@ def extension_detail(request, addon):
     # If current version is incompatible with this app, redirect.
     comp_apps = addon.compatible_apps
     if comp_apps and request.APP not in comp_apps:
-        prefixer = urlresolvers.get_url_prefix()
+        prefixer = get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
@@ -129,10 +115,10 @@ def extension_detail(request, addon):
         'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_denied(),
         'grouped_ratings': GroupedRating.get(addon.id),
-        'review_form': ReviewForm(),
-        'reviews': Review.without_replies.all().filter(
+        'review_form': RatingForm(),
+        'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True).exclude(body=None),
-        'get_replies': Review.get_replies,
+        'get_replies': Rating.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
     }
@@ -189,10 +175,10 @@ def persona_detail(request, addon):
     data.update({
         'dev_tags': dev_tags,
         'user_tags': user_tags,
-        'review_form': ReviewForm(),
-        'reviews': Review.without_replies.all().filter(
+        'review_form': RatingForm(),
+        'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True),
-        'get_replies': Review.get_replies,
+        'get_replies': Rating.get_replies,
         'search_cat': 'themes',
         'abuse_form': AbuseForm(request=request),
     })
@@ -364,125 +350,6 @@ def privacy(request, addon):
 
 @addon_view
 @non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def developers(request, addon, page):
-    if addon.is_persona():
-        raise http.Http404()
-    if 'src' in request.GET:
-        contribution_src = src = request.GET['src']
-    else:
-        page_srcs = {
-            'developers': ('developers', 'meet-developers'),
-            'installed': ('meet-the-developer-post-install', 'post-download'),
-            'roadblock': ('meetthedeveloper_roadblock', 'roadblock'),
-        }
-        # Download src and contribution_src are different.
-        src, contribution_src = page_srcs.get(page)
-    return render(request, 'addons/impala/developers.html',
-                  {'addon': addon, 'page': page, 'src': src,
-                   'contribution_src': contribution_src})
-
-
-@addon_view
-@anonymous_csrf_exempt
-@post_required
-@non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def contribute(request, addon):
-
-    # Enforce paypal-imposed comment length limit
-    commentlimit = PAYPAL_MAX_COMMENT_LENGTH
-
-    contrib_type = request.POST.get('type', 'suggested')
-    is_suggested = contrib_type == 'suggested'
-    source = request.POST.get('source', '')
-    comment = request.POST.get('comment', '')
-
-    amount = {
-        'suggested': addon.suggested_amount,
-        'onetime': request.POST.get('onetime-amount', '')
-    }.get(contrib_type, '')
-    if not amount:
-        amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
-
-    form = ContributionForm({'amount': amount})
-    if len(comment) > commentlimit or not form.is_valid():
-        return http.HttpResponse(json.dumps({'error': 'Invalid data.',
-                                             'status': '', 'url': '',
-                                             'paykey': ''}),
-                                 content_type='application/json')
-
-    contribution_uuid = hashlib.sha256(str(uuid.uuid4())).hexdigest()
-
-    if addon.charity:
-        # TODO(andym): Figure out how to get this in the addon authors
-        # locale, rather than the contributors locale.
-        name, paypal_id = (u'%s: %s' % (addon.name, addon.charity.name),
-                           addon.charity.paypal)
-    else:
-        name, paypal_id = addon.name, addon.paypal_id
-    # l10n: {0} is the addon name
-    contrib_for = ugettext(u'Contribution for {0}').format(jinja2.escape(name))
-
-    paykey, error, status = '', '', ''
-    try:
-        paykey, status = paypal.get_paykey(
-            dict(amount=amount,
-                 email=paypal_id,
-                 ip=request.META.get('REMOTE_ADDR'),
-                 memo=contrib_for,
-                 pattern='addons.paypal',
-                 slug=addon.slug,
-                 uuid=contribution_uuid))
-    except paypal.PaypalError as error:
-        log.error(
-            'Error getting paykey, contribution for addon '
-            '(addon: %s, contribution: %s)'
-            % (addon.pk, contribution_uuid), exc_info=True)
-
-    if paykey:
-        contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,
-                               amount=amount, source=source,
-                               source_locale=request.LANG,
-                               annoying=addon.annoying,
-                               uuid=str(contribution_uuid),
-                               is_suggested=is_suggested,
-                               suggested_amount=addon.suggested_amount,
-                               comment=comment, paykey=paykey)
-        contrib.save()
-
-    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
-    if request.GET.get('result_type') == 'json' or request.is_ajax():
-        # If there was an error getting the paykey, then JSON will
-        # not have a paykey and the JS can cope appropriately.
-        return http.HttpResponse(json.dumps({'url': url,
-                                             'paykey': paykey,
-                                             'error': str(error),
-                                             'status': status}),
-                                 content_type='application/json')
-    return http.HttpResponseRedirect(url)
-
-
-@csrf_exempt
-@addon_view
-@non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def paypal_result(request, addon, status):
-    uuid = request.GET.get('uuid')
-    if not uuid:
-        raise http.Http404()
-    if status == 'cancel':
-        log.info('User cancelled contribution: %s' % uuid)
-    else:
-        log.info('User completed contribution: %s' % uuid)
-    response = render(request, 'addons/paypal_result.html',
-                      {'addon': addon, 'status': status})
-    response['x-frame-options'] = 'allow'
-    return response
-
-
-@addon_view
-@non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
         qs = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED,
@@ -551,9 +418,14 @@ def find_replacement_addon(request):
     if not guid:
         raise http.Http404
     try:
-        path = ReplacementAddon.objects.get(guid=guid).path
+        replacement = ReplacementAddon.objects.get(guid=guid)
+        path = replacement.path
     except ReplacementAddon.DoesNotExist:
         path = DEFAULT_FIND_REPLACEMENT_PATH
+    else:
+        if replacement.has_external_url():
+            # It's an external URL:
+            return redirect(get_outgoing_url(path))
     replace_url = '%s%s?src=%s' % (
         ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
     return redirect(replace_url, permanent=False)
@@ -613,6 +485,26 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         self.kwargs[self.lookup_field] = identifier
         self.instance = super(AddonViewSet, self).get_object()
         return self.instance
+
+    def check_object_permissions(self, request, obj):
+        """
+        Check if the request should be permitted for a given object.
+        Raises an appropriate exception if the request is not permitted.
+
+        Calls DRF implementation, but adds `is_disabled_by_developer` to the
+        exception being thrown so that clients can tell the difference between
+        a 401/403 returned because an add-on has been disabled by their
+        developer or something else.
+        """
+        try:
+            super(AddonViewSet, self).check_object_permissions(request, obj)
+        except exceptions.APIException as exc:
+            exc.detail = {
+                'detail': exc.detail,
+                'is_disabled_by_developer': obj.disabled_by_user,
+                'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
+            }
+            raise exc
 
     @detail_route()
     def feature_compatibility(self, request, pk=None):
@@ -849,7 +741,7 @@ class AddonFeaturedView(GenericAPIView):
             try:
                 category = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
-                raise ParseError(
+                raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
             ids = get_creatured_ids(category, lang)
         else:
@@ -864,7 +756,7 @@ class AddonFeaturedView(GenericAPIView):
                 if 'type' in self.request.GET:
                     type_ = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
-                raise ParseError(
+                raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
             ids = get_featured_ids(app, lang=lang, type=type_)
         # ids is going to be a random list of ids, we just slice it to get
@@ -874,7 +766,7 @@ class AddonFeaturedView(GenericAPIView):
             page_size = int(
                 self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
-            raise ParseError('Invalid page_size parameter')
+            raise exceptions.ParseError('Invalid page_size parameter')
         ids = ids[:page_size]
         return manual_order(queryset, ids, 'addons.id')
 
@@ -910,7 +802,7 @@ class LanguageToolsView(ListAPIView):
         try:
             application_id = AddonAppQueryParam(self.request).get_value()
         except ValueError:
-            raise ParseError('Invalid app parameter.')
+            raise exceptions.ParseError('Invalid app parameter.')
 
         types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
         return Addon.objects.public().filter(
@@ -924,3 +816,9 @@ class LanguageToolsView(ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data})
+
+
+class ReplacementAddonView(ListAPIView):
+    authentication_classes = []
+    queryset = ReplacementAddon.objects.all()
+    serializer_class = ReplacementAddonSerializer

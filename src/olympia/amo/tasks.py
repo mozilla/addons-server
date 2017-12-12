@@ -8,7 +8,6 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
-from olympia.stats.models import Contribution
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -17,8 +16,8 @@ log = olympia.core.logger.getLogger('z.task')
 @task
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,
-               cc=None, headers=None, fail_silently=False, async=False,
-               max_retries=None, reply_to=None, **kwargs):
+               cc=None, headers=None, max_retries=3, reply_to=None,
+               **kwargs):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
 
@@ -29,16 +28,11 @@ def send_email(recipient, subject, message, from_email=None,
     if html_message:
         result.attach_alternative(html_message, 'text/html')
     try:
-        result.send(fail_silently=False)
+        result.send()
         return True
     except Exception as e:
-        log.error('send_mail failed with error: %s' % e)
-        if async:
-            return send_email.retry(exc=e, max_retries=max_retries)
-        elif not fail_silently:
-            raise
-        else:
-            return False
+        log.exception('send_mail() failed with error: %s, retrying' % e)
+        return send_email.retry(exc=e, max_retries=max_retries)
 
 
 @task
@@ -58,14 +52,6 @@ def delete_logs(items, **kw):
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=amo.LOG_KEEP).delete()
-
-
-@task
-def delete_stale_contributions(items, **kw):
-    log.info('[%s@%s] Deleting stale contributions' %
-             (len(items), delete_stale_contributions.rate_limit))
-    Contribution.objects.filter(
-        transaction_id__isnull=True, pk__in=items).delete()
 
 
 @task

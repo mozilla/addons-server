@@ -18,7 +18,7 @@
             "notes": "",
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
         "model": "users.userprofile",
@@ -45,7 +45,7 @@
             "notes": "",
             "modified": "2010-03-19 13:50:38",
             "notifyevents": 1,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
     },
@@ -68,7 +68,7 @@
             "notes": "",
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
         "model": "users.userprofile",
@@ -93,7 +93,7 @@
             "notes": "",
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
         "model": "users.userprofile",
@@ -104,9 +104,9 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "email": "editor@mozilla.com",
+            "email": "reviewer@mozilla.com",
             "notifycompat": false,
-            "username": "editor",
+            "username": "reviewer",
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "127.0.0.1",
@@ -115,28 +115,7 @@
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
             "notifyevents": false,
-            "read_dev_agreement": "2012-08-20 00:00:00",
-            "last_login": "2012-05-22 14:59:28"
-        }
-    },
-    {
-        "pk": 5497309,
-        "model": "users.userprofile",
-        "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "email": "senioreditor@mozilla.com",
-            "notifycompat": false,
-            "username": "senioreditor",
-            "failed_login_attempts": 0,
-            "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2010-11-16 10:51:34",
-            "created": "2010-10-19 13:02:25",
-            "modified": "2010-11-16 10:51:34",
-            "last_login_ip": "127.0.0.1",
-            "notifyevents": false,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
     },
@@ -146,7 +125,7 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "email": "persona-reviewer@mozilla.com",
+            "email": "persona_reviewer@mozilla.com",
             "notifycompat": false,
             "username": "Persona Reviewer",
             "failed_login_attempts": 0,
@@ -157,7 +136,7 @@
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
             "notifyevents": false,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
     },
@@ -186,7 +165,7 @@
             "modified": "2011-12-01 16:20:56",
             "last_login_ip": "",
             "notifyevents": true,
-            "read_dev_agreement": "2012-08-20 00:00:00",
+            "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
     },
@@ -214,19 +193,9 @@
         "pk": 50002,
         "model": "access.group",
         "fields": {
-            "rules": "Addons:Review,Reviews:Edit",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Add-on Reviewers",
-            "created": "2012-01-27 12:41:00"
-        }
-    },
-    {
-        "pk": 50004,
-        "model": "access.group",
-        "fields": {
-            "rules": "Addons:Review,Addons:PostReview,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Senior Add-on Reviewers",
+            "rules": "Addons:Review",
+            "modified": "2017-10-26 15:00:00",
+            "name": "Reviewers: Legacy",
             "created": "2012-01-27 12:41:00"
         }
     },
@@ -235,8 +204,8 @@
         "model": "access.group",
         "fields": {
             "rules": "Personas:Review",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Persona Reviewers",
+            "modified": "2017-10-26 15:00:00",
+            "name": "Reviewers: Themes",
             "created": "2012-01-27 12:41:00"
         }
     },
@@ -265,67 +234,11 @@
         }
     },
     {
-        "pk": 261,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50004,
-            "user": 5497309
-        }
-    },
-    {
         "pk": 265,
         "model": "access.groupuser",
         "fields": {
             "group": 50005,
             "user": 5497311
-        }
-    },
-    {
-        "pk": 15,
-        "model": "users.userprofile",
-        "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "occupation": "",
-            "display_name": "",
-            "location": "",
-            "picture_type": "",
-            "averagerating": null,
-            "homepage": "",
-            "email": "support-staff@mozilla.com",
-            "notifycompat": true,
-            "username": "support_staff",
-            "biography": null,
-            "failed_login_attempts": 0,
-            "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2012-05-22 14:59:28",
-            "read_dev_agreement": "2012-08-20 00:00:00",
-            "created": "2012-01-06 12:31:13",
-            "notes": null,
-            "modified": "2012-05-22 14:59:28",
-            "last_login_ip": "127.0.0.1",
-            "notifyevents": true,
-            "last_login": "2012-05-22 14:59:28"
-        }
-    },
-    {
-        "pk": 50057,
-        "model": "access.group",
-        "fields": {
-            "rules": "AccountLookup:View,Transaction:View,Transaction:Refund,Lookup:View",
-            "notes": "",
-            "modified": "2012-05-22 17:53:57",
-            "name": "Support Staff",
-            "created": "2012-05-22 17:53:57"
-        }
-    },
-    {
-        "pk": 6,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50057,
-            "user": 15
         }
     }
 ]

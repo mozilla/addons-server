@@ -166,10 +166,9 @@ def decode_json(json_string):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_deny_list=True, perm_setting=None,
-              manage_url=None, headers=None, cc=None, real_email=False,
-              html_message=None, attachments=None, async=False,
-              max_retries=None, reply_to=None):
+              use_deny_list=True, perm_setting=None, manage_url=None,
+              headers=None, cc=None, real_email=False, html_message=None,
+              attachments=None, max_retries=3, reply_to=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -226,10 +225,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     def send(recipient, message, **options):
         kwargs = {
-            'async': async,
             'attachments': attachments,
             'cc': cc,
-            'fail_silently': fail_silently,
             'from_email': from_email,
             'headers': headers,
             'html_message': html_message,
@@ -240,10 +237,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         kwargs.update(options)
         # Email subject *must not* contain newlines
         args = (recipient, ' '.join(subject.splitlines()), message)
-        if async:
-            return send_email.delay(*args, **kwargs)
-        else:
-            return send_email(*args, **kwargs)
+        return send_email.delay(*args, **kwargs)
 
     if white_list:
         if perm_setting:
@@ -514,7 +508,7 @@ class ImageCheck(object):
             # just "suitable ones", so let's catch them all.
             self.img.verify()
             return True
-        except:
+        except Exception:
             log.error('Error decoding image', exc_info=True)
             return False
 
@@ -827,9 +821,7 @@ def find_language(locale):
     if not locale:
         return None
 
-    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
-
-    if locale in LANGS:
+    if locale in settings.AMO_LANGUAGES:
         return locale
 
     # Check if locale has a short equivalent.
@@ -839,7 +831,7 @@ def find_language(locale):
 
     # Check if locale is something like en_US that needs to be converted.
     locale = to_language(locale)
-    if locale in LANGS:
+    if locale in settings.AMO_LANGUAGES:
         return locale
 
     return None

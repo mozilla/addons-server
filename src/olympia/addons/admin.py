@@ -1,7 +1,9 @@
 from urllib import urlencode
 
 from django import forms
+from django.conf import settings
 from django.contrib import admin
+from django.core import validators
 from django.core.urlresolvers import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext
@@ -24,25 +26,21 @@ class AddonAdmin(admin.ModelAdmin):
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
                        'privacy_policy', 'developer_comments', 'icon_type',
-                       'the_reason', 'the_future'),
+                       ),
         }),
         ('Support', {
             'fields': ('support_url', 'support_email'),
         }),
         ('Stats', {
-            'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
-                       'text_reviews_count',
+            'fields': ('average_rating', 'bayesian_rating', 'total_ratings',
+                       'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
                        'average_daily_downloads', 'average_daily_users'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
-                       'public_stats', 'is_experimental', 'admin_review',
+                       'public_stats', 'is_experimental',
                        'external_software', 'dev_agreement'),
-        }),
-        ('Money', {
-            'fields': ('wants_contributions', 'paypal_id', 'suggested_amount',
-                       'annoying'),
         }),
         ('Dictionaries', {
             'fields': ('target_locale', 'locale_disambiguation'),
@@ -87,9 +85,20 @@ class ReplacementAddonForm(forms.ModelForm):
         path = None
         try:
             path = self.data.get('path')
-            path = ('/' if not path.startswith('/') else '') + path
-            resolve(path)
-        except:
+            site = settings.SITE_URL
+            if models.ReplacementAddon.path_is_external(path):
+                if path.startswith(site):
+                    raise forms.ValidationError(
+                        'Paths for [%s] should be relative, not full URLs '
+                        'including the domain name' % site)
+                validators.URLValidator()(path)
+            else:
+                path = ('/' if not path.startswith('/') else '') + path
+                resolve(path)
+        except forms.ValidationError as validation_error:
+            # Re-raise the ValidationError about full paths for SITE_URL.
+            raise validation_error
+        except Exception:
             raise forms.ValidationError('Path [%s] is not valid' % path)
         return super(ReplacementAddonForm, self).clean()
 

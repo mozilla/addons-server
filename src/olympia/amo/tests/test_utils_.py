@@ -30,7 +30,7 @@ class TestAttachTransDict(TestCase):
         addon = addon_factory(
             name='Name', description='Description <script>alert(42)</script>!',
             eula='', summary='Summary', homepage='http://home.pa.ge',
-            developer_comments='Developer Comments', privacy_policy='Policy',
+            developer_comments='Developer Comments',
             support_email='sup@example.com', support_url='http://su.pport.url')
         addon.save()
 
@@ -50,14 +50,12 @@ class TestAttachTransDict(TestCase):
         assert addon.translations['whatever'] == []
 
         # No-translated fields should be absent.
-        assert addon.thankyou_note_id is None
+        assert addon.privacy_policy_id is None
         assert None not in translations
 
         # Build expected translations dict.
         expected_translations = {
             addon.eula_id: [('en-us', unicode(addon.eula))],
-            addon.privacy_policy_id:
-                [('en-us', unicode(addon.privacy_policy))],
             addon.description_id: [
                 ('en-us', unicode(addon.description))],
             addon.developer_comments_id:
@@ -184,7 +182,11 @@ def test_get_locale_from_lang(lang):
     locale = get_locale_from_lang(lang)
 
     debug_languages = ('dbg', 'dbr', 'dbl')
-    expected_language = lang[:2] if lang not in debug_languages else 'en'
+    long_languages = ('hsb', 'dsb', 'kab')
+    expected_language = (
+        lang[:3] if lang in long_languages else (
+            lang[:2] if lang not in debug_languages else 'en'
+        ))
 
     assert isinstance(locale, Locale)
     assert locale.language == expected_language
@@ -194,3 +196,9 @@ def test_get_locale_from_lang(lang):
     if separator:
         territory = lang.split(separator)[1]
         assert locale.territory == territory
+
+
+@pytest.mark.parametrize('lang', settings.LANGUAGES_BIDI)
+def test_bidi_language_in_amo_languages(lang):
+    """Make sure all bidi marked locales are in AMO_LANGUAGES too."""
+    assert lang in settings.AMO_LANGUAGES or lang in settings.DEBUG_LANGUAGES

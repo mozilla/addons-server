@@ -47,7 +47,7 @@ from .models import EmailPreviewTopic
 log = olympia.core.logger.getLogger('z.zadmin')
 
 
-@admin_required(reviewers=True)
+@admin_required
 def langpacks(request):
     if request.method == 'POST':
         try:
@@ -73,12 +73,11 @@ def langpacks(request):
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
-    # Retain this so that legacy PAYPAL_CGI_AUTH variables in local settings
-    # are not exposed.
-    for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH',
-              'GOOGLE_ANALYTICS_CREDENTIALS']:
-        settings_dict[i] = debug.cleanse_setting(i,
-                                                 getattr(settings, i, {}))
+    # Retain this so that GOOGLE_ANALYTICS_CREDENTIALS variables in local
+    # settings are not exposed.
+    google_cred = 'GOOGLE_ANALYTICS_CREDENTIALS'
+    settings_dict[google_cred] = debug.cleanse_setting(
+        google_cred, getattr(settings, google_cred, {}))
 
     return render(request, 'zadmin/settings.html',
                   {'settings_dict': settings_dict, 'title': 'Settings!'})
@@ -342,7 +341,7 @@ def index(request):
     return render(request, 'zadmin/index.html', {'log': log})
 
 
-@admin_required(reviewers=True)
+@admin_required
 def addon_search(request):
     ctx = {}
     if 'q' in request.GET:
@@ -384,7 +383,7 @@ def general_search(request, app_id, model_id):
             for o in qs[:limit]]
 
 
-@admin_required(reviewers=True)
+@admin_required
 @addon_view_factory(qs=Addon.objects.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
@@ -423,7 +422,7 @@ def addon_manage(request, addon):
         'formset': formset, 'form_map': form_map, 'file_map': file_map})
 
 
-@admin_required(reviewers=True)
+@admin_required
 def download_file(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 

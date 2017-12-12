@@ -11,7 +11,7 @@ from olympia.users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_addons_reviewer, check_personas_reviewer,
-                  check_unlisted_addons_reviewer, is_editor, match_rules)
+                  check_unlisted_addons_reviewer, is_reviewer, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -52,7 +52,7 @@ def test_match_rules():
         'Personas:Review',
         'Locales:Edit',
         'Locale.de:Edit',
-        'Reviews:Edit',
+        'Users:Edit',
         'None:None',
     )
 
@@ -249,15 +249,15 @@ class TestCheckReviewer(TestCase):
         assert check_unlisted_addons_reviewer(req)
         assert not check_personas_reviewer(req)
 
-    def test_is_editor_for_addon_reviewer(self):
-        """An addon editor is also a persona editor."""
+    def test_is_reviewer_for_addon_reviewer(self):
+        """An addon reviewer is also a persona reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
         req = req_factory_factory('noop', user=self.user)
-        assert is_editor(req, self.persona)
-        assert is_editor(req, self.addon)
+        assert is_reviewer(req, self.persona)
+        assert is_reviewer(req, self.addon)
 
-    def test_is_editor_for_persona_reviewer(self):
+    def test_is_reviewer_for_persona_reviewer(self):
         self.grant_permission(self.user, 'Personas:Review')
         req = req_factory_factory('noop', user=self.user)
-        assert is_editor(req, self.persona)
-        assert not is_editor(req, self.addon)
+        assert is_reviewer(req, self.persona)
+        assert not is_reviewer(req, self.addon)

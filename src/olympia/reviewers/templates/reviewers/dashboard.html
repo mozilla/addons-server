@@ -1,0 +1,16 @@
+{% extends "reviewers/base.html" %}
+
+{% block content %}
+  <div id="reviewers_main" class="dashboard">
+    <div class="listing">
+      {% for section_name in sections %}
+        <h3>{{ section_name }}</h3>
+        <ul>
+          {% for text, href in sections[section_name] %}
+            <li><a href="{{ href }}" {% if href.startswith(('https://', 'http://')) %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

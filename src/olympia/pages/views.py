@@ -29,9 +29,7 @@ def credits(request):
                       .order_by('display_name')
                       .distinct())
 
-    languages = sorted(list(
-        set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
-        set(['en-US'])))
+    languages = sorted(list(set(settings.AMO_LANGUAGES) - set(['en-US'])))
 
     localizers = []
     for lang in languages:
@@ -43,10 +41,10 @@ def credits(request):
         if users:
             localizers.append((lang, users))
 
-    total_reviews = (ActivityLog.objects.total_reviews()
+    total_ratings = (ActivityLog.objects.total_ratings()
                                         .filter(approval_count__gt=10))
     reviewers = defaultdict(list)
-    for total in total_reviews:
+    for total in total_ratings:
         cnt = total.get('approval_count', 0)
         if cnt > 10000:
             reviewers[10000].append(total)

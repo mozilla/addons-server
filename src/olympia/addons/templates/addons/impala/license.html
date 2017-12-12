@@ -17,9 +17,9 @@
   <div class="prose">
     <h2>{{ _('Source Code License') }}</h2>
     {% if license.url %}
-      <p><a href="{{ license.url }}">{{ license.name }}</a></p>
+      <p><a href="{{ license.url }}">{{ license }}</a></p>
     {% else %}
-      <h3>{{ license.name }}</h3>
+      <h3>{{ license }}</h3>
       <pre class="license">{{ license.text|nl2br }}</pre>
     {% endif %}
   </div>

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Learn more"
-msgstr "Argibide gehiago"
-
 msgid "Image changes being processed"
 msgstr "Irudi-aldaketak prozesatzen ari dira"
 
-msgid "Must be a valid e-mail address."
-msgstr ""
-
 msgid "No results found."
 msgstr ""
+
+msgid "Loading..."
+msgstr "Kargatzen..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Karaktere <b>bat</b> faltan."
+msgstr[1] "<b>{0}</b> karaktere faltan."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Funtzionaltasun hau behin-behinean desgaituta dago webgunearen mantentze-lanak burutu artean. Saiatu berriro beranduago."
+
+msgid "Remove this localization"
+msgstr "Kendu itzulpen hau"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ari zen orri hau ikusten aurrena."
@@ -799,21 +808,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Kargatzen..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Karaktere <b>bat</b> faltan."
-msgstr[1] "<b>{0}</b> karaktere faltan."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Funtzionaltasun hau behin-behinean desgaituta dago webgunearen mantentze-lanak burutu artean. Saiatu berriro beranduago."
-
-msgid "Remove this localization"
-msgstr "Kendu itzulpen hau"
 
 msgid "Requested Info"
 msgstr ""

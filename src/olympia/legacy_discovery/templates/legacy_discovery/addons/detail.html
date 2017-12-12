@@ -9,8 +9,7 @@
 
 <ul id="install">
   <li class="install-action">
-    {{ install_button(addon, show_contrib=False, show_warning=True,
-                      detailed=False) }}
+    {{ install_button(addon, show_warning=True, detailed=False) }}
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          id="learn-more" class="button">{{ _('Learn More') }}</a></li>
@@ -60,11 +59,11 @@
   {% if addon.is_persona() %}
     <h3>{{ _('Created') }}</h3>
     <p><time datetime="{{ addon.created|isotime }}">{{
-      addon.created|datetime }}</time></p>
+      addon.created|date }}</time></p>
   {% else %}
     <h3>{{ _('Last Updated') }}</h3>
     <p><time datetime="{{ addon.last_updated|isotime }}">{{
-      addon.last_updated|datetime }}</time></p>
+      addon.last_updated|date }}</time></p>
   {% endif %}
   </li>
   {% if addon.homepage %}

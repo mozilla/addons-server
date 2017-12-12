@@ -1,0 +1,10 @@
+{% block content %}
+A developer has replied to your review of add-on {{ name }}.
+
+Reply:
+{% if reply_title %}{{ reply_title }}
+{% endif %}{{ reply }}
+
+You can read the review below:
+{{ rating_url }}
+{% endblock %}

@@ -135,7 +135,7 @@ def rabbitmq():
     # Check rabbitmq
     rabbitmq_results = []
     status = ''
-    with Connection(settings.BROKER_URL, connect_timeout=2) as broker:
+    with Connection(settings.CELERY_BROKER_URL, connect_timeout=2) as broker:
         hostname = broker.hostname
         try:
             broker.connect()

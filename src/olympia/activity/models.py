@@ -20,7 +20,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile
@@ -89,7 +89,7 @@ class CommentLog(ModelBase):
     This table is for indexing the activity log by comment.
     """
     activity_log = models.ForeignKey('ActivityLog')
-    comments = models.CharField(max_length=255)
+    comments = models.TextField()
 
     class Meta:
         db_table = 'log_activity_comment'
@@ -151,8 +151,11 @@ class ActivityLogManager(ManagerBase):
                 .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
-    def for_group(self, group):
-        return self.filter(grouplog__group=group)
+    def for_groups(self, groups):
+        if isinstance(groups, Group):
+            groups = (groups,)
+
+        return self.filter(grouplog__group__in=groups)
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)
@@ -166,8 +169,8 @@ class ActivityLogManager(ManagerBase):
     def admin_events(self):
         return self.filter(action__in=constants.activity.LOG_ADMINS)
 
-    def editor_events(self):
-        return self.filter(action__in=constants.activity.LOG_EDITORS)
+    def reviewer_events(self):
+        return self.filter(action__in=constants.activity.LOG_REVIEWERS)
 
     def review_queue(self):
         qs = self._by_type()
@@ -177,7 +180,7 @@ class ActivityLogManager(ManagerBase):
     def review_log(self):
         qs = self._by_type()
         return (
-            qs.filter(action__in=constants.activity.LOG_EDITOR_REVIEW_ACTION)
+            qs.filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
             .exclude(user__id=settings.TASK_USER_ID))
 
     def beta_signed_events(self):
@@ -188,11 +191,11 @@ class ActivityLogManager(ManagerBase):
             amo.LOG.BETA_SIGNED.id,
             amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
 
-    def total_reviews(self, theme=False):
+    def total_ratings(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
         action_ids = ([amo.LOG.THEME_REVIEW.id] if theme
-                      else constants.activity.LOG_EDITOR_REVIEW_ACTION)
+                      else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=action_ids)
                   .exclude(user__id=settings.TASK_USER_ID)
@@ -204,12 +207,11 @@ class ActivityLogManager(ManagerBase):
         qs = self._by_type()
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
+        actions = ([constants.activity.LOG.THEME_REVIEW.id] if theme
+                   else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
-                          action__in=(
-                              [constants.activity.LOG.THEME_REVIEW.id] if theme
-                              else constants.activity.LOG_EDITOR_REVIEW_ACTION)
-                          )
+                          action__in=actions)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -217,7 +219,7 @@ class ActivityLogManager(ManagerBase):
     def user_approve_reviews(self, user):
         qs = self._by_type()
         return qs.filter(
-            action__in=constants.activity.LOG_EDITOR_REVIEW_ACTION,
+            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION,
             user__id=user.id)
 
     def current_month_user_approve_reviews(self, user):
@@ -232,8 +234,8 @@ class ActivityLogManager(ManagerBase):
         except StopIteration:
             return None
 
-    def total_reviews_user_position(self, user, theme=False):
-        return self.user_position(self.total_reviews(theme), user)
+    def total_ratings_user_position(self, user, theme=False):
+        return self.user_position(self.total_ratings(theme), user)
 
     def monthly_reviews_user_position(self, user, theme=False):
         return self.user_position(self.monthly_reviews(theme), user)
@@ -284,7 +286,7 @@ class ActivityLog(ModelBase):
             # d is a structure:
             # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
-        except:
+        except Exception:
             log.debug('unserializing data from addon_log failed: %s' % self.id)
             return None
 
@@ -295,6 +297,9 @@ class ActivityLog(ModelBase):
             if model_name in ('str', 'int', 'null'):
                 objs.append(pk)
             else:
+                # Cope with renames of key models:
+                if model_name == 'reviews.review':
+                    model_name = 'ratings.rating'
                 (app_label, model_name) = model_name.split('.')
                 model = apps.get_model(app_label, model_name)
                 # Cope with soft deleted models and unlisted addons.
@@ -354,7 +359,7 @@ class ActivityLog(ModelBase):
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
         addon = None
-        review = None
+        rating = None
         version = None
         collection = None
         tag = None
@@ -369,8 +374,8 @@ class ActivityLog(ModelBase):
                 else:
                     addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
-            if isinstance(arg, Review) and not review:
-                review = self.f(u'<a href="{0}">{1}</a>',
+            if isinstance(arg, Rating) and not rating:
+                rating = self.f(u'<a href="{0}">{1}</a>',
                                 arg.get_url_path(), ugettext('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
@@ -412,9 +417,16 @@ class ActivityLog(ModelBase):
         user = user_link(self.user)
 
         try:
-            kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user, group=group,
-                      file=file_)
+            kw = {
+                'addon': addon,
+                'rating': rating,
+                'version': version,
+                'collection': collection,
+                'tag': tag,
+                'user': user,
+                'group': group,
+                'file': file_,
+            }
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

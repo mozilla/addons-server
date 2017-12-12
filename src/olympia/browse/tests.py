@@ -12,12 +12,13 @@ from django.utils.translation import trim_whitespace
 import pytest
 import mock
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, numberfmt, urlparams, datetime_filter)
+    absolutify, numberfmt, urlparams, format_date)
 from olympia.addons.models import (
     Addon, AddonCategory, Category, AppSupport, FrozenAddon, Persona)
 from olympia.bandwagon.models import (
@@ -78,6 +79,14 @@ class TestListing(TestCase):
         super(TestListing, self).setUp()
         cache.clear()
         self.url = reverse('browse.extensions')
+
+    def test_try_new_frontend_banner_presence(self):
+        response = self.client.get(self.url)
+        assert 'AMO is getting a new look.' not in response.content
+
+        with override_switch('try-new-frontend', active=True):
+            response = self.client.get(self.url)
+            assert 'AMO is getting a new look.' in response.content
 
     def test_default_sort(self):
         r = self.client.get(self.url)
@@ -155,7 +164,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
             assert item('.updated').text() == (
-                u'Added %s' % trim_whitespace(datetime_filter(ts)))
+                u'Added %s' % trim_whitespace(format_date(ts)))
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -164,7 +173,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
             assert item('.updated').text() == (
-                u'Updated %s' % trim_whitespace(datetime_filter(ts)))
+                u'Updated %s' % trim_whitespace(format_date(ts)))
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
@@ -1053,6 +1062,14 @@ class TestPersonas(TestCase):
             a.status = amo.STATUS_PUBLIC
             a.save()
 
+    def test_try_new_frontend_banner_presence(self):
+        response = self.client.get(self.landing_url)
+        assert 'AMO is getting a new look.' not in response.content
+
+        with override_switch('try-new-frontend', active=True):
+            response = self.client.get(self.landing_url)
+            assert 'AMO is getting a new look.' in response.content
+
     def test_does_not_500_in_development(self):
         with self.settings(DEBUG=True):
             self.test_personas_grid()
@@ -1156,3 +1173,15 @@ class TestPersonas(TestCase):
         self.create_personas(PAGINATE_PERSONAS_BY)
         r = self.client.get(self.created_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
+
+
+class TestStaticThemeRedirects(TestCase):
+    fixtures = ['base/category']
+
+    def redirects(self, from_, to, status_code=302):
+        r = self.client.get('/en-US/firefox' + from_)
+        self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
+
+    def test_redirects(self):
+        self.redirects('/static-themes/', '/themes/')
+        self.redirects('/static-themes/abstract', '/themes/abstract')

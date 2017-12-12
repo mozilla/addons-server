@@ -1,0 +1,20 @@
+<ul class="abuse_reports">
+  {% for report in reports %}
+  <li>
+    {% if report.reporter %}
+      {% set user_link = report.reporter|user_link %}
+    {% else %}
+      {% set user_link = "<i>anonymous</i>"|safe %}
+    {% endif %}
+    {% if report.addon %}
+      {% set object_name = report.addon.name %}
+    {% else %}
+      {% set object_name = report.user|user_link %}
+    {% endif %}
+    {% trans user=user_link, date=report.created|date, ip_address=report.ip_address, object=object_name %}
+        {{ user }} [{{ ip_address }}] reported {{ object }} on {{ date }}
+    {% endtrans %}
+    <blockquote>{{ report.message }}</blockquote>
+  </li>
+  {% endfor %}
+</ul>

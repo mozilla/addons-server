@@ -19,7 +19,7 @@ customize the way you do things online.{% endtrans %}</p>
 <h3>{{ _('Who creates these add-ons?') }}</h3>
 <p>{% trans %}The add-ons listed here have been created by thousands of
 developers from our community, ranging from individual hobbyists to large
-corporations. All publicly listed add-ons are reviewed by a team of editors
+corporations. All publicly listed add-ons are reviewed by a team of reviewers
 before being released. Add-ons marked as Experimental have not been reviewed and
 should only be installed with caution.{% endtrans %}</p>
 

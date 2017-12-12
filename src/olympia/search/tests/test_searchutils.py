@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pytest
 
 from olympia.search.utils import floor_version
@@ -26,3 +27,4 @@ def test_floor_version():
     c('8.x', '8.0')
     c('8.0x', '8.0')
     c('8.0.x', '8.0')
+    c(u'acux5442À¾z1À¼z2abcxuca5442', u'acux5442À¾z1À¼z2abcxuca5442')

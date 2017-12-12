@@ -54,6 +54,7 @@ web/media/marketplace-stats
 *.po~
 site-static/*
 user-media/*
+guarded-addons/*
 .tox/
 .cache/
 MANIFEST

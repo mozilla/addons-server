@@ -1,6 +1,8 @@
 import json
+import urlparse
 
 from django.conf import settings
+from django.utils.http import urlencode
 
 import requests
 from django_statsd.clients import statsd
@@ -15,26 +17,31 @@ from . import data
 log = olympia.core.logger.getLogger('z.amo')
 
 
-def call_recommendation_server(telemetry_id):
-    endpoint = settings.RECOMMENDATION_ENGINE_URL + telemetry_id
+def call_recommendation_server(telemetry_id, locale, platform):
+    params = [(key, value) for key, value in (
+        ('locale', locale), ('platform', platform)) if value]
+    endpoint = urlparse.urljoin(
+        settings.RECOMMENDATION_ENGINE_URL,
+        '%s/%s%s' % (telemetry_id, '?' if params else '', urlencode(params)))
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
-            response = requests.post(
+            response = requests.get(
                 endpoint,
                 timeout=settings.RECOMMENDATION_ENGINE_TIMEOUT)
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
-    except requests.exceptions.RequestException:
-        msg = u'Calling recommendation engine failed: {0}'.format(
-            response.reason)
-        log.error(msg)
+    except requests.exceptions.RequestException as e:
+        log.error(u'Calling recommendation engine failed: {0}'.format(e))
+        statsd.incr('services.recommendations.fail')
         return []
+    else:
+        statsd.incr('services.recommendations.success')
     return json.loads(response.content).get('results', [])
 
 
-def get_recommendations(telemetry_id):
-    guids = call_recommendation_server(telemetry_id)
+def get_recommendations(telemetry_id, locale, platform):
+    guids = call_recommendation_server(telemetry_id, locale, platform)
     ids = (Addon.objects.public().filter(guid__in=guids)
            .values_list('id', flat=True))
     return [data.DiscoItem(addon_id=id_, is_recommendation=True)

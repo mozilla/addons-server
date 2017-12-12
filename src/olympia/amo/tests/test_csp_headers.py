@@ -107,10 +107,6 @@ class TestCSPHeaders(TestCase):
         assert "'self'" not in base_settings.CSP_SCRIPT_SRC
         assert "https://addons.mozilla.org" not in base_settings.CSP_SCRIPT_SRC
 
-    def test_full_qualified_paypal_script_in_script_src(self):
-        assert "https://www.paypalobjects.com/js/external/dg.js" in \
-            base_settings.CSP_SCRIPT_SRC
-
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in img-src and script-src"""
         analytics_host = base_settings.ANALYTICS_HOST

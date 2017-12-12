@@ -53,8 +53,12 @@ urlpatterns = [
     # Developer Hub.
     url('^developers/', include('olympia.devhub.urls')),
 
-    # Developer Hub.
-    url('editors/', include('olympia.editors.urls')),
+    # Reviewers Hub.
+    url('reviewers/', include('olympia.reviewers.urls')),
+
+    # Redirect everything under editors/ (old reviewer urls) to reviewers/.
+    url('editors/(.*)',
+        lambda r, path: redirect('/reviewers/%s' % path, permanent=True)),
 
     # AMO admin (not django admin).
     url('^admin/', include('olympia.zadmin.urls')),
@@ -67,9 +71,6 @@ urlpatterns = [
 
     # Services
     url('', include('olympia.amo.urls')),
-
-    # Paypal
-    url('^services/', include('olympia.paypal.urls')),
 
     # Search
     url('^search/', include('olympia.search.urls')),
@@ -102,10 +103,10 @@ urlpatterns = [
         lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
     url('^reviews/display/(\d+)',
-        lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
+        lambda r, id: redirect('addons.ratings.list', id, permanent=True)),
 
     url('^reviews/add/(\d+)',
-        lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
+        lambda r, id: redirect('addons.ratings.add', id, permanent=True)),
 
     url('^users/info/(\d+)',
         lambda r, id: redirect('users.profile', id, permanent=True)),
@@ -141,7 +142,7 @@ urlpatterns = [
         version_views.update_info_redirect),
 
     url('^addons/reviews/(\d+)/format:rss$',
-        lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
+        lambda r, id: redirect('addons.ratings.list.rss', id, permanent=True)),
 
     url('^search-engines.*$',
         lambda r: redirect(urlparams(reverse('search.search'), atype=4),

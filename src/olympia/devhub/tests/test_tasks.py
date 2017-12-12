@@ -449,7 +449,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
             assert tmpf.call_count == 2
             assert result['success']
-            assert result['warnings'] == 22
+            assert result['warnings'] == 24
             assert not result['errors']
 
 
@@ -990,7 +990,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         from_email=settings.NOBODY_EMAIL,
         use_deny_list=False,
         perm_setting='individual_contact',
-        headers={'Reply-To': settings.EDITORS_EMAIL})
+        headers={'Reply-To': settings.REVIEWERS_EMAIL})
 
 
 class TestSubmitFile(TestCase):

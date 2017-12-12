@@ -110,7 +110,6 @@ def test_to_language(test_input, expected):
     ('en-us', 'en-US'),
     ('en_US', 'en-US'),
     ('en', 'en-US'),
-    ('cy', 'cy'),  # A hidden language.
     ('FR', 'fr'),
     ('es-ES', None),  # We don't go from specific to generic.
     ('xxx', None),

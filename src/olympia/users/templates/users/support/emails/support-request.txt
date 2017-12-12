@@ -1,7 +1,7 @@
 Add-on, {{ addon.name }}, has received a new support request:
 User: {{ user.display_name or user.username }}
 Email: {{ user.email }}
-Purchased on {{ contribution.date|datetime }}
+Purchased on {{ contribution.date|date }}
 
 Details:
 

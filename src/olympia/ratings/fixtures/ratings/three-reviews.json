@@ -1,0 +1,181 @@
+[
+    {
+        "pk": 6,
+        "model": "versions.license",
+        "fields": {
+            "modified": "2009-04-30 23:48:48",
+            "created": "2009-04-30 23:48:48"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "modified": "2009-04-30 22:29:53",
+            "created": "2009-04-30 22:29:53"
+        }
+    },
+    {
+        "pk": 72,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "eula": null,
+            "last_updated": "2010-02-22 08:50:52",
+            "view_source": 1,
+            "total_downloads": 19093515,
+            "developer_comments": null,
+            "disabled_by_user": 0,
+            "average_daily_downloads": 18166,
+            "locale_disambiguation": null,
+            "guid": "{9f08cb5a-76b1-4bcf-aff9-90e1a5d60b1e}",
+            "weekly_downloads": 16809,
+            "support_url": null,
+            "average_rating": "4.27",
+            "average_daily_users": 842821,
+            "bayesian_rating": 4.2623699999999998,
+            "homepage": null,
+            "support_email": null,
+            "public_stats": 1,
+            "status": 4,
+            "privacy_policy": null,
+            "description": null,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "external_software": 0,
+            "name": null,
+            "created": "2004-06-14 18:50:28",
+            "type": 2,
+            "icon_type": "image/png",
+            "modified": "2010-05-24 17:50:10",
+            "summary": null,
+            "_current_version": null,
+            "total_ratings": 623
+        }
+    },
+    {
+        "pk": 96624,
+        "model": "versions.version",
+        "fields": {
+            "license": 6,
+            "created": "2010-02-18 22:35:14",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2010-02-18 22:36:07",
+            "version": "3.76",
+            "addon": 72
+        }
+    },
+    {
+        "pk": 67371,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2009-04-28 20:26:32",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2009-04-28 20:30:12",
+            "version": "3.63",
+            "addon": 72
+        }
+    },
+    {
+        "pk": 4735395,
+        "model": "users.userprofile",
+        "fields": {
+            "display_collections_fav": 0,
+            "display_collections": 0,
+            "occupation": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
+            "homepage": "",
+            "email": "happyreader@gmx.net",
+            "notifycompat": 1,
+            "deleted": 0,
+            "user": null,
+            "biography": null,
+            "username": "Join2",
+            "created": "2009-05-16 05:29:58",
+            "notes": "",
+            "modified": "2009-07-07 01:13:54",
+            "notifyevents": 1
+        }
+    },
+    {
+        "pk": 72099,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2009-07-02 07:33:26",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2009-07-02 07:38:22",
+            "version": "3.65",
+            "addon": 72
+        }
+    },
+    {
+        "pk": 130291,
+        "model": "reviews.review",
+        "fields": {
+            "body": null,
+            "rating": 2,
+            "editorreview": 0,
+            "created": "2009-05-16 05:37:27",
+            "title": null,
+            "modified": "2009-05-16 05:37:27",
+            "sandbox": 0,
+            "flag": 0,
+            "version": 67371,
+            "user": 4735395,
+            "reply_to": null,
+            "ip_address": "0.0.0.0",
+            "is_latest": 1,
+            "previous_count": 0,
+            "addon": 72
+        }
+    },
+    {
+        "pk": 130292,
+        "model": "reviews.review",
+        "fields": {
+            "body": null,
+            "rating": 2,
+            "editorreview": 0,
+            "created": "2009-05-16 05:38:02",
+            "title": null,
+            "modified": "2009-05-16 05:38:02",
+            "sandbox": 0,
+            "flag": 0,
+            "version": 67371,
+            "user": 4735395,
+            "reply_to": null,
+            "ip_address": "0.0.0.0",
+            "is_latest": 1,
+            "previous_count": 0,
+            "addon": 72
+        }
+    },
+    {
+        "pk": 142675,
+        "model": "reviews.review",
+        "fields": {
+            "body": null,
+            "rating": 3,
+            "editorreview": 0,
+            "created": "2009-07-07 01:23:52",
+            "title": null,
+            "modified": "2009-07-07 01:23:52",
+            "sandbox": 0,
+            "flag": 0,
+            "version": 72099,
+            "user": 4735395,
+            "reply_to": null,
+            "ip_address": "0.0.0.0",
+            "is_latest": 1,
+            "previous_count": 0,
+            "addon": 72
+        }
+    }
+]

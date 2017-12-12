@@ -63,6 +63,12 @@ class TestEditPolicy(TestOwnership):
         doc = pq(res.content)
         assert doc('#id_has_eula').attr('checked') == 'checked'
 
+    def test_no_policy_form_for_static_themes(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'policy_form' not in response.context
+
 
 class TestEditLicense(TestOwnership):
 
@@ -72,6 +78,9 @@ class TestEditLicense(TestOwnership):
         self.version.save()
         self.license = License.objects.create(builtin=1, name='bsd',
                                               url='license.url', on_form=True)
+        self.cc_license = License.objects.create(
+            builtin=11, name='copyright', url='license.url',
+            creative_commons=True, on_form=True)
 
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
@@ -100,6 +109,15 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.license == self.get_version().license
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_LICENSE.id).count() == 1
+
+    def test_success_add_builtin_creative_commons(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses for themes
+        data = self.formset(builtin=11)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert self.cc_license == self.get_version().license
         assert ActivityLog.objects.filter(
             action=amo.LOG.CHANGE_LICENSE.id).count() == 1
 
@@ -416,3 +434,21 @@ class TestEditAuthor(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.context['user_form'].non_form_errors() == (
             ['Must have at least one owner.'])
+
+
+class TestEditAuthorStaticTheme(TestEditAuthor):
+    def setUp(self):
+        super(TestEditAuthorStaticTheme, self).setUp()
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.cc_license = License.objects.create(
+            builtin=11, url='license.url',
+            creative_commons=True, on_form=True)
+
+    def formset(self, *args, **kw):
+        defaults = {'builtin': 11}
+        defaults.update(kw)
+        return formset(*args, **defaults)
+
+    def test_reorder_authors(self):
+        self.get_version().update(license=self.cc_license)
+        super(TestEditAuthorStaticTheme, self).test_reorder_authors()

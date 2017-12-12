@@ -29,12 +29,12 @@
       <tbody>
       {% for v in versions %}
         <tr>
-          <td>{{ v.created|datetime }}</td>
+          <td>{{ v.created|date }}</td>
           <td>
             {% if v.channel == amo.RELEASE_CHANNEL_LISTED %}
-              <a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+              <a href="{{ url('reviewers.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
             {% else %}
-              <a href="{{ url('editors.review', 'unlisted', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+              <a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
             {% endif %}
           </td>
           <td>{{ v.get_channel_display() }}</td>

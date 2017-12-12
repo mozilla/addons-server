@@ -1,12 +1,8 @@
 import logging
 import os
-import environ
 import datetime
 
 from olympia.lib.settings_base import *  # noqa
-
-environ.Env.read_env(env_file='/etc/olympia/settings.env')
-env = environ.Env()
 
 ENGAGE_ROBOTS = True
 
@@ -48,7 +44,8 @@ INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
+                           default='addons.mozilla.org')
 
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons_timer"
@@ -85,11 +82,11 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 # Celery
-BROKER_URL = env('BROKER_URL')
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 
-CELERY_IGNORE_RESULT = True
-CELERY_DISABLE_RATE_LIMITS = True
-BROKER_CONNECTION_TIMEOUT = 0.5
+CELERY_TASK_IGNORE_RESULT = True
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
+CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
@@ -177,15 +174,6 @@ AES_KEYS = env.dict('AES_KEYS')
 # Signing
 SIGNING_SERVER = env('SIGNING_SERVER')
 
-PAYPAL_APP_ID = env('PAYPAL_APP_ID')
-
-PAYPAL_EMBEDDED_AUTH = {
-    'USER': env('PAYPAL_EMBEDDED_AUTH_USER'),
-    'PASSWORD': env('PAYPAL_EMBEDDED_AUTH_PASSWORD'),
-    'SIGNATURE': env('PAYPAL_EMBEDDED_AUTH_SIGNATURE'),
-}
-PAYPAL_CGI_AUTH = PAYPAL_EMBEDDED_AUTH
-
 SENTRY_DSN = env('SENTRY_DSN')
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
@@ -249,3 +237,7 @@ RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
 GITHUB_API_USER = env('GITHUB_API_USER')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
+
+RECOMMENDATION_ENGINE_URL = env(
+    'RECOMMENDATION_ENGINE_URL',
+    default='https://taar.prod.mozaws.net/api/recommendations/')

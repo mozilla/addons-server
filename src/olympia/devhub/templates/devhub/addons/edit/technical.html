@@ -15,7 +15,7 @@
         {# L10n: {0} is an addon name #}
         <caption>{{ _('Technical Details for {0}')|format_html(addon.name) }}</caption>
         <tbody>
-          {% if show_listed_fields %}
+          {% if show_listed_fields and addon.type != amo.ADDON_STATICTHEME%}
           <tr>
             <th>
               <label data-for="developer_comments">
@@ -94,6 +94,8 @@
                        _("No, this add-on's source code is not publicly viewable.")) }}
             </td>
           </tr>
+          {% endif %}
+          {% if show_listed_fields %}
           <tr>
             <th>
               {{ tip(_("Public Stats?"),
@@ -144,16 +146,16 @@
               </abbr>
               <span class="tip tooltip" title="{% trans -%}The whiteboard is
                 the place to provide information relevant to your addon,
-                whatever the version, to the editor. Use it to provide ways
+                whatever the version, to the reviewers. Use it to provide ways
                 to test the addon, and any additional information that may
-                help. This whiteboard is also editable by editors.
+                help. This whiteboard is also editable by reviewers.
                 {%- endtrans %}">?</span>
             </th>
             <td>
               {% if editable %}
-                {{ form.whiteboard }}
+                {{ whiteboard_form.public }}
               {% else %}
-                {% call empty_unless(addon.whiteboard) %}{{ addon.whiteboard }}{% endcall %}
+                {% call empty_unless(whiteboard.public) %}{{ whiteboard.public }}{% endcall %}
               {% endif %}
             </td>
           </tr>

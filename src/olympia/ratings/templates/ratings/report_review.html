@@ -1,0 +1,15 @@
+<div class="hidden">
+  <div class="popup review-reason">
+    <h4>{{ _('Please select a reason:') }}</h4>
+    <ul>
+      {% for flag, text in RatingFlag.FLAGS %}
+        <li><a href="#{{ flag }}">{{ text }}</a></li>
+      {% endfor %}
+    </ul>
+    {# Using a fake form so we get submission on keyboard-enter. #}
+    <form class="other-note" method="post" data-no-csrf>
+      {{ flag_form.note }}
+      <input type="submit" value="{{ _('Submit') }}">
+    </form>
+  </div>
+</div>

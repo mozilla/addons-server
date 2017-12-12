@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import socket
 from datetime import datetime, timedelta
-from decimal import Decimal
 
-from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
@@ -18,24 +15,23 @@ import waffle
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
-from olympia import amo, core, paypal
+from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, AddonUser, Charity)
+    Addon, AddonCategory, AddonFeatureCompatibility, AddonUser)
 from olympia.amo.templatetags.jinja_helpers import (
-    url as url_reverse, datetime_filter)
+    url as url_reverse, format_date)
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
-from olympia.devhub.forms import ContribForm
 from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.translations.models import delete_translation, Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
@@ -104,15 +100,19 @@ class TestDashboard(HubTest):
         footer appear.
 
         """
-        # Create 9 add-ons, there's already one existing from the setUp.
-        self.clone_addon(9)
+        # Create 10 add-ons.  We going to make the existing one from the setUp
+        # a static theme which shouldn't show up as an addon in this list.
+        self.clone_addon(10)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
         assert doc('nav.paginator').length == 0
 
-        # Create 5 add-ons.
+        # Create 5 add-ons -have to change self.addon back to clone extensions.
+        self.addon.update(type=amo.ADDON_EXTENSION)
         self.clone_addon(5)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url, {'page': 2})
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 5
@@ -124,9 +124,13 @@ class TestDashboard(HubTest):
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
             addon.addonuser_set.create(user=self.user_profile)
+        # And 2 static themes.
+        for x in range(2):
+            addon = addon_factory(type=amo.ADDON_STATICTHEME)
+            addon.addonuser_set.create(user=self.user_profile)
         response = self.client.get(self.themes_url)
         doc = pq(response.content)
-        assert len(doc('.item .item-info')) == 2
+        assert len(doc('.item .item-info')) == 4
 
     def test_show_hide_statistics(self):
         # Not disabled by user: show statistics.
@@ -197,7 +201,7 @@ class TestDashboard(HubTest):
         elm = doc('.item-details .date-created')
         assert elm.length == 1
         assert elm.remove('strong').text() == (
-            datetime_filter(self.addon.created, '%b %e, %Y'))
+            format_date(self.addon.created))
 
     def test_sort_updated_filter(self):
         response = self.client.get(self.url)
@@ -207,7 +211,7 @@ class TestDashboard(HubTest):
         assert elm.length == 1
         assert elm.remove('strong').text() == (
             trim_whitespace(
-                datetime_filter(self.addon.last_updated, '%b %e, %Y')))
+                format_date(self.addon.last_updated)))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.
@@ -226,7 +230,7 @@ class TestDashboard(HubTest):
         # There's no "last updated" for themes, so always display "created".
         elm = doc('.item-details .date-created')
         assert elm.remove('strong').text() == (
-            trim_whitespace(datetime_filter(addon.created)))
+            trim_whitespace(format_date(addon.created)))
 
     def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
         self.make_addon_unlisted(self.addon)
@@ -364,8 +368,9 @@ class TestDevRequired(TestCase):
     def setUp(self):
         super(TestDevRequired, self).setUp()
         self.addon = Addon.objects.get(id=3615)
-        self.get_url = self.addon.get_dev_url('payments')
-        self.post_url = self.addon.get_dev_url('payments.disable')
+        self.edit_page_url = self.addon.get_dev_url('edit')
+        self.get_url = self.addon.get_dev_url('versions')
+        self.post_url = self.addon.get_dev_url('delete')
         assert self.client.login(email='del@icio.us')
         self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
@@ -373,9 +378,12 @@ class TestDevRequired(TestCase):
     def test_anon(self):
         self.client.logout()
         self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
+        self.assertLoginRedirects(self.client.get(
+            self.edit_page_url), self.edit_page_url)
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
@@ -384,6 +392,7 @@ class TestDevRequired(TestCase):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_viewer_post(self):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
@@ -412,7 +421,7 @@ class TestVersionStats(TestCase):
         version = addon.current_version
         user = UserProfile.objects.get(email='admin@mozilla.com')
         for _ in range(10):
-            Review.objects.create(addon=addon, user=user,
+            Rating.objects.create(addon=addon, user=user,
                                   version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
@@ -421,403 +430,6 @@ class TestVersionStats(TestCase):
                {'reviews': 10, 'files': 1, 'version': version.version,
                 'id': version.id}}
         self.assertDictEqual(data, exp)
-
-
-@override_switch('simple-contributions', active=True)
-class TestPayments404(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def test_404(self):
-        addon = Addon.objects.no_cache().get(id=3615)
-        url = addon.get_dev_url('payments')
-        assert self.client.login(email='del@icio.us')
-        assert self.client.get(url).status_code == 404
-        assert self.client.post(url).status_code == 404
-
-
-@override_switch('simple-contributions', active=False)
-class TestEditPayments(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestEditPayments, self).setUp()
-        self.addon = self.get_addon()
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        self.foundation = Charity.objects.create(
-            id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
-        self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(email='del@icio.us')
-        self.paypal_mock = mock.Mock()
-        self.paypal_mock.return_value = (True, None)
-        paypal.check_paypal_id = self.paypal_mock
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
-
-    def post(self, *args, **kw):
-        data = dict(*args, **kw)
-        assert self.client.post(self.url, data).status_code == 302
-
-    def check(self, **kw):
-        addon = self.get_addon()
-        for k, v in kw.items():
-            assert getattr(addon, k) == v
-        assert addon.wants_contributions
-        assert addon.takes_contributions
-
-    def test_logging(self):
-        count = ActivityLog.objects.all().count()
-        self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                  annoying=amo.CONTRIB_AFTER)
-        assert ActivityLog.objects.all().count() == count + 1
-
-    def test_success_dev(self):
-        self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                  annoying=amo.CONTRIB_AFTER)
-        self.check(paypal_id='greed@dev', suggested_amount=2,
-                   annoying=amo.CONTRIB_AFTER)
-
-    def test_success_foundation(self):
-        self.post(recipient='moz', suggested_amount=2,
-                  annoying=amo.CONTRIB_ROADBLOCK)
-        self.check(paypal_id='', suggested_amount=2,
-                   charity=self.foundation, annoying=amo.CONTRIB_ROADBLOCK)
-
-    def test_success_charity(self):
-        data = {
-            'recipient': 'org',
-            'suggested_amount': 11.5,
-            'annoying': amo.CONTRIB_PASSIVE,
-            'charity-name': 'fligtar fund',
-            'charity-url': 'http://feed.me',
-            'charity-paypal': 'greed@org'
-        }
-        self.post(data)
-        self.check(paypal_id='', suggested_amount=Decimal('11.50'),
-                   charity=Charity.objects.get(name='fligtar fund'))
-
-    def test_dev_paypal_id_length(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert int(doc('#id_paypal_id').attr('size')) == 50
-
-    def test_dev_paypal_reqd(self):
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'annoying': amo.CONTRIB_PASSIVE
-        }
-        response = self.client.post(self.url, data)
-        self.assertFormError(response, 'contrib_form', 'paypal_id',
-                             'PayPal ID required to accept contributions.')
-
-    def test_bad_paypal_id_dev(self):
-        self.paypal_mock.return_value = False, 'error'
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'annoying': amo.CONTRIB_AFTER,
-            'paypal_id': 'greed@dev',
-        }
-        response = self.client.post(self.url, data)
-        self.assertFormError(response, 'contrib_form', 'paypal_id', 'error')
-
-    def test_bad_paypal_id_charity(self):
-        self.paypal_mock.return_value = False, 'error'
-        data = {
-            'recipient': 'org',
-            'suggested_amount': 11.5,
-            'annoying': amo.CONTRIB_PASSIVE,
-            'charity-name': 'fligtar fund',
-            'charity-url': 'http://feed.me',
-            'charity-paypal': 'greed@org'
-        }
-        response = self.client.post(self.url, data)
-        self.assertFormError(response, 'charity_form', 'paypal', 'error')
-
-    def test_paypal_timeout(self):
-        self.paypal_mock.side_effect = socket.timeout()
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'paypal_id': 'greed@dev',
-            'annoying': amo.CONTRIB_AFTER
-        }
-        response = self.client.post(self.url, data)
-        self.assertFormError(response, 'contrib_form', 'paypal_id',
-                             'Could not validate PayPal id.')
-
-    def test_max_suggested_amount(self):
-        too_much = settings.MAX_CONTRIBUTION + 1
-        msg = ('Please enter a suggested amount less than $%d.' %
-               settings.MAX_CONTRIBUTION)
-        response = self.client.post(self.url, {'suggested_amount': too_much})
-        self.assertFormError(response, 'contrib_form', 'suggested_amount', msg)
-
-    def test_neg_suggested_amount(self):
-        msg = 'Please enter a suggested amount greater than 0.'
-        response = self.client.post(self.url, {'suggested_amount': -1})
-        self.assertFormError(response, 'contrib_form', 'suggested_amount', msg)
-
-    def test_charity_details_reqd(self):
-        data = {
-            'recipient': 'org',
-            'suggested_amount': 11.5,
-            'annoying': amo.CONTRIB_PASSIVE
-        }
-        response = self.client.post(self.url, data)
-        self.assertFormError(response, 'charity_form', 'name',
-                             'This field is required.')
-        assert self.get_addon().suggested_amount is None
-
-    def test_switch_charity_to_dev(self):
-        self.test_success_charity()
-        self.test_success_dev()
-        assert self.get_addon().charity is None
-        assert self.get_addon().charity_id is None
-
-    def test_switch_charity_to_foundation(self):
-        self.test_success_charity()
-        self.test_success_foundation()
-        # This will break if we start cleaning up licenses.
-        old_charity = Charity.objects.get(name='fligtar fund')
-        assert old_charity.id != self.foundation
-
-    def test_switch_foundation_to_charity(self):
-        self.test_success_foundation()
-        self.test_success_charity()
-        moz = Charity.objects.get(id=self.foundation.id)
-        assert moz.name == 'moz'
-        assert moz.url == '$$.moz'
-        assert moz.paypal == 'moz.pal'
-
-    def test_contrib_form_initial(self):
-        assert ContribForm.initial(self.addon)['recipient'] == 'dev'
-        self.addon.charity = self.foundation
-        assert ContribForm.initial(self.addon)['recipient'] == 'moz'
-        self.addon.charity_id = amo.FOUNDATION_ORG + 1
-        assert ContribForm.initial(self.addon)['recipient'] == 'org'
-
-        assert ContribForm.initial(self.addon)['annoying'] == (
-            amo.CONTRIB_PASSIVE)
-        self.addon.annoying = amo.CONTRIB_AFTER
-        assert ContribForm.initial(self.addon)['annoying'] == (
-            amo.CONTRIB_AFTER)
-
-    def test_enable_thankyou(self):
-        data = {
-            'enable_thankyou': 'on',
-            'thankyou_note': 'woo',
-            'annoying': 1,
-            'recipient': 'moz'
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        addon = self.get_addon()
-        assert addon.enable_thankyou
-        assert unicode(addon.thankyou_note) == 'woo'
-
-    def test_enable_thankyou_unchecked_with_text(self):
-        data = {
-            'enable_thankyou': '',
-            'thankyou_note': 'woo',
-            'annoying': 1,
-            'recipient': 'moz'
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        addon = self.get_addon()
-        assert not addon.enable_thankyou
-        assert addon.thankyou_note is None
-
-    def test_contribution_link(self):
-        self.test_success_foundation()
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-
-        span = doc('#status-bar').find('span')
-        assert span.length == 1
-        assert span.text().startswith('Your contribution page: ')
-
-        link = span.find('a')
-        assert link.length == 1
-        assert link.attr('href') == reverse(
-            'addons.about', args=[self.get_addon().slug])
-        assert link.text() == url_reverse(
-            'addons.about', self.get_addon().slug, host=settings.SITE_URL)
-
-    def test_enable_thankyou_no_text(self):
-        data = {
-            'enable_thankyou': 'on',
-            'thankyou_note': '',
-            'annoying': 1,
-            'recipient': 'moz'
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        addon = self.get_addon()
-        assert not addon.enable_thankyou
-        assert addon.thankyou_note is None
-
-    def test_no_future(self):
-        self.get_addon().update(the_future=None)
-        response = self.client.get(self.url)
-        error_msg = pq(response.content)('p.error').text()
-        assert 'completed developer profile' in error_msg
-
-    def test_addon_public(self):
-        self.get_addon().update(status=amo.STATUS_PUBLIC)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#do-setup').text() == 'Set up Contributions'
-
-    def test_voluntary_contributions_addons(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.intro').length == 1
-        assert doc('.intro.full-intro').length == 0
-
-    def test_no_voluntary_contributions_for_unlisted_addons(self):
-        self.make_addon_unlisted(self.addon)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.intro').length == 1
-        assert doc('.intro.full-intro').length == 0
-        assert not doc('#do-setup')  # No way to setup the payment.
-        assert doc('.intro .error').text().startswith(
-            'Contributions are only available for add-ons with listed')
-
-
-class TestDisablePayments(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestDisablePayments, self).setUp()
-        self.addon = Addon.objects.get(id=3615)
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        self.addon.update(wants_contributions=True, paypal_id='woohoo')
-        self.pay_url = self.addon.get_dev_url('payments')
-        self.disable_url = self.addon.get_dev_url('payments.disable')
-        assert self.client.login(email='del@icio.us')
-
-    def test_statusbar_visible(self):
-        response = self.client.get(self.pay_url)
-        self.assertContains(response, '<div id="status-bar">')
-
-        self.addon.update(wants_contributions=False)
-        response = self.client.get(self.pay_url)
-        self.assertNotContains(response, '<div id="status-bar">')
-
-    def test_disable(self):
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 302
-        assert(response['Location'].endswith(self.pay_url))
-        assert not Addon.objects.no_cache().get(id=3615).wants_contributions
-
-
-@override_switch('simple-contributions', active=False)
-class TestPaymentsProfile(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestPaymentsProfile, self).setUp()
-        self.addon = self.get_addon()
-        self.url = self.addon.get_dev_url('payments')
-        # Make sure all the payment/profile data is clear.
-        assert not (
-            self.addon.wants_contributions or
-            self.addon.paypal_id or
-            self.addon.the_reason or
-            self.addon.the_future or
-            self.addon.takes_contributions)
-        assert self.client.login(email='del@icio.us')
-        self.paypal_mock = mock.Mock()
-        self.paypal_mock.return_value = (True, None)
-        paypal.check_paypal_id = self.paypal_mock
-
-    def get_addon(self):
-        return Addon.objects.get(id=3615)
-
-    def test_intro_box(self):
-        # We don't have payments/profile set up, so we see the intro.
-        doc = pq(self.client.get(self.url).content)
-        assert doc('.intro')
-        assert doc('#setup.hidden')
-
-    def test_status_bar(self):
-        # We don't have payments/profile set up, so no status bar.
-        doc = pq(self.client.get(self.url).content)
-        assert not doc('#status-bar')
-
-    def test_profile_form_exists(self):
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#trans-the_reason')
-        assert doc('#trans-the_future')
-
-    def test_profile_form_success(self):
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'paypal_id': 'xx@yy',
-            'annoying': amo.CONTRIB_ROADBLOCK,
-            'the_reason': 'xxx',
-            'the_future': 'yyy'
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 302
-
-        # The profile form is gone, we're accepting contributions.
-        doc = pq(self.client.get(self.url).content)
-        assert not doc('.intro')
-        assert not doc('#setup.hidden')
-        assert doc('#status-bar')
-        assert not doc('#trans-the_reason')
-        assert not doc('#trans-the_future')
-
-        addon = self.get_addon()
-        assert unicode(addon.the_reason) == 'xxx'
-        assert unicode(addon.the_future) == 'yyy'
-        assert addon.wants_contributions
-
-    def test_profile_required(self):
-        def check_page(request):
-            doc = pq(request.content)
-            assert not doc('.intro')
-            assert not doc('#setup.hidden')
-            assert not doc('#status-bar')
-            assert doc('#trans-the_reason')
-            assert doc('#trans-the_future')
-
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'paypal_id': 'xx@yy',
-            'annoying': amo.CONTRIB_ROADBLOCK
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        self.assertFormError(response, 'profile_form', 'the_reason',
-                             'This field is required.')
-        self.assertFormError(response, 'profile_form', 'the_future',
-                             'This field is required.')
-        check_page(response)
-        assert not self.get_addon().wants_contributions
-
-        data = {
-            'recipient': 'dev',
-            'suggested_amount': 2,
-            'paypal_id': 'xx@yy',
-            'annoying': amo.CONTRIB_ROADBLOCK,
-            'the_reason': 'xxx'
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        self.assertFormError(response, 'profile_form', 'the_future',
-                             'This field is required.')
-        check_page(response)
-        assert not self.get_addon().wants_contributions
 
 
 class TestDelete(TestCase):
@@ -970,7 +582,8 @@ class TestHome(TestCase):
 
     def test_my_addons_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()  # Make add-on incomplete
+        # Make add-on incomplete
+        AddonCategory.objects.filter(addon=self.addon).delete()
         doc = self.get_pq()
         addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
         assert addon_item.length == 1
@@ -1024,7 +637,7 @@ class TestActivityFeed(TestCase):
             reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 302
 
-    def add_log(self, action=amo.LOG.ADD_REVIEW):
+    def add_log(self, action=amo.LOG.ADD_RATING):
         core.set_user(UserProfile.objects.get(email='del@icio.us'))
         ActivityLog.create(action, self.addon, self.version)
 
@@ -1079,179 +692,6 @@ class TestActivityFeed(TestCase):
         assert len(doc('#recent-activity .item')) == 1
 
 
-@override_switch('simple-contributions', active=True)
-class TestProfile404(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def test_404(self):
-        addon = Addon.objects.get(id=3615)
-        url = addon.get_dev_url('profile')
-        assert self.client.login(email='del@icio.us')
-        assert self.client.post(url).status_code == 404
-        assert self.client.get(url).status_code == 404
-
-
-@override_switch('simple-contributions', active=False)
-class TestProfileBase(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestProfileBase, self).setUp()
-        self.addon = Addon.objects.get(id=3615)
-        self.version = self.addon.current_version
-        self.url = self.addon.get_dev_url('profile')
-        assert self.client.login(email='del@icio.us')
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=self.addon.id)
-
-    def enable_addon_contributions(self):
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'somebody'
-        self.addon.save()
-
-    def post(self, *args, **kw):
-        data = dict(*args, **kw)
-        assert self.client.post(self.url, data).status_code == 302
-
-    def check(self, **kw):
-        addon = self.get_addon()
-        for k, v in kw.items():
-            if k in ('the_reason', 'the_future'):
-                assert getattr(getattr(addon, k), 'localized_string') == (
-                    unicode(v))
-            else:
-                assert getattr(addon, k) == v
-
-
-@override_switch('simple-contributions', active=False)
-class TestProfileStatusBar(TestProfileBase):
-
-    def setUp(self):
-        super(TestProfileStatusBar, self).setUp()
-        self.remove_url = self.addon.get_dev_url('profile.remove')
-
-    def test_no_status_bar(self):
-        self.addon.the_reason = self.addon.the_future = None
-        self.addon.save()
-        assert not pq(self.client.get(self.url).content)('#status-bar')
-
-    def test_status_bar_no_contrib(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = False
-        self.addon.save()
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#status-bar')
-        assert doc('#status-bar button').text() == 'Remove Profile'
-
-    def test_status_bar_with_contrib(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'xxx'
-        self.addon.save()
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#status-bar')
-        assert doc('#status-bar button').text() == 'Remove Both'
-
-    def test_remove_profile(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        self.client.post(self.remove_url)
-        addon = self.get_addon()
-        assert addon.the_reason is None
-        assert addon.the_future is None
-        assert not addon.takes_contributions
-        assert not addon.wants_contributions
-
-    def test_remove_profile_without_content(self):
-        # See bug 624852
-        self.addon.the_reason = self.addon.the_future = None
-        self.addon.save()
-        self.client.post(self.remove_url)
-        addon = self.get_addon()
-        assert addon.the_reason is None
-        assert addon.the_future is None
-
-    def test_remove_both(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'xxx'
-        self.addon.save()
-        self.client.post(self.remove_url)
-        addon = self.get_addon()
-        assert addon.the_reason is None
-        assert addon.the_future is None
-        assert not addon.takes_contributions
-        assert not addon.wants_contributions
-
-
-@override_switch('simple-contributions', active=False)
-class TestProfile(TestProfileBase):
-
-    def test_without_contributions_labels(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('label[for=the_reason] .optional').length == 1
-        assert doc('label[for=the_future] .optional').length == 1
-
-    def test_without_contributions_fields_optional(self):
-        self.post(the_reason='', the_future='')
-        self.check(the_reason='', the_future='')
-
-        self.post(the_reason='to be cool', the_future='')
-        self.check(the_reason='to be cool', the_future='')
-
-        self.post(the_reason='', the_future='hot stuff')
-        self.check(the_reason='', the_future='hot stuff')
-
-        self.post(the_reason='to be hot', the_future='cold stuff')
-        self.check(the_reason='to be hot', the_future='cold stuff')
-
-    def test_with_contributions_labels(self):
-        self.enable_addon_contributions()
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('label[for=the_reason] .req').length, (
-            'the_reason field should be required.')
-        assert doc('label[for=the_future] .req').length, (
-            'the_future field should be required.')
-
-    def test_log(self):
-        self.enable_addon_contributions()
-        data = {'the_reason': 'because', 'the_future': 'i can'}
-        assert ActivityLog.objects.count() == 0
-        self.client.post(self.url, data)
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.EDIT_PROPERTIES.id).count() == 1
-
-    def test_with_contributions_fields_required(self):
-        self.enable_addon_contributions()
-
-        data = {'the_reason': '', 'the_future': ''}
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        self.assertFormError(response, 'profile_form', 'the_reason',
-                             'This field is required.')
-        self.assertFormError(response, 'profile_form', 'the_future',
-                             'This field is required.')
-
-        data = {'the_reason': 'to be cool', 'the_future': ''}
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        self.assertFormError(response, 'profile_form', 'the_future',
-                             'This field is required.')
-
-        data = {'the_reason': '', 'the_future': 'hot stuff'}
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        self.assertFormError(response, 'profile_form', 'the_reason',
-                             'This field is required.')
-
-        self.post(the_reason='to be hot', the_future='cold stuff')
-        self.check(the_reason='to be hot', the_future='cold stuff')
-
-
 class TestAPIAgreement(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
@@ -1260,20 +700,24 @@ class TestAPIAgreement(TestCase):
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
 
-    def test_agreement_first(self):
-        render_agreement_path = 'olympia.devhub.views.render_agreement'
-        with mock.patch(render_agreement_path) as mock_submit:
-            mock_submit.return_value = http.HttpResponse("Okay")
-            self.client.get(reverse('devhub.api_key_agreement'))
-        assert mock_submit.called
-
-    def test_agreement_second(self):
-        self.user.update(read_dev_agreement=None)
-
-        response = self.client.post(reverse('devhub.api_key_agreement'),
-                                    follow=True)
-
+    def test_agreement_read(self):
+        self.user.update(read_dev_agreement=self.days_ago(0))
+        response = self.client.get(reverse('devhub.api_key_agreement'))
         self.assert3xx(response, reverse('devhub.api_key'))
+
+    def test_agreement_unread(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
+    def test_agreement_read_but_too_long_ago(self):
+        before_agreement_last_changed = (
+            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
 
 
 class TestAPIKeyPage(TestCase):
@@ -1412,6 +856,11 @@ class TestUpload(BaseUploadTest):
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         self.assert3xx(response, url)
 
+    def test_not_an_uuid(self):
+        url = reverse('devhub.upload_detail', args=['garbage', 'json'])
+        response = self.client.get(url)
+        assert response.status_code == 404
+
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self hosted" addons."""
@@ -1492,6 +941,15 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
 
+    def test_upload_detail_for_version_not_an_uuid(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user)
+        url = reverse(
+            'devhub.upload_detail_for_version', args=[addon.slug, 'garbage'])
+        response = self.client.get(url)
+        assert response.status_code == 404
+
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(
@@ -1542,6 +1000,11 @@ class TestUploadDetail(BaseUploadTest):
             args=[upload.uuid.hex])
         assert suite.attr('data-validateurl') == expected
 
+    def test_not_an_uuid_standalon_upload_detail(self):
+        url = reverse('devhub.standalone_upload_detail', args=['garbage'])
+        response = self.client.get(url)
+        assert response.status_code == 404
+
     @mock.patch('olympia.devhub.tasks.run_validator')
     def check_excluded_platforms(self, xpi, platforms, v):
         v.return_value = json.dumps(self.validation_ok())
@@ -1589,6 +1052,21 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('valid_webextension_max_47.xpi', [
             str(amo.PLATFORM_ANDROID.id)
         ])
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_supports_all_desktop_platforms(self):
+        # Support was added in 53
+        self.create_appversion('firefox', '53.0')
+
+        # No Android support yet, but make sure.
+        self.create_appversion('android', '53.0')
+        self.create_appversion('android', '42.*')
+        self.create_appversion('android', '47.*')
+        self.create_appversion('android', '48.*')
+        self.create_appversion('android', '*')
+
+        self.check_excluded_platforms('static_theme.zip', [
+            str(amo.PLATFORM_ANDROID.id)])
 
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
@@ -1747,7 +1225,7 @@ class TestUploadDetail(BaseUploadTest):
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(status=amo.STATUS_NULL)
-        addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=addon).delete()
         addon.addonuser_set.create(user=user)
         self.post()
 

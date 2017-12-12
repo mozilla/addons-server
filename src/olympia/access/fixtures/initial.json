@@ -14,7 +14,7 @@
     "model": "access.group",
     "fields": {
         "name": "Staff",
-        "rules": "Addons:Review,Addons:PostReview,Apps:Review,Personas:Review,Reviews:Edit,Addons:Edit,Addons:Configure,Users:Edit,Stats:View,CollectionStats:View,Collections:Edit,AdminTools:View,SeniorPersonasTools:View,Apps:Configure,AccountLookup:View,AppLookup:View,Lookup:View,FeaturedApps:View,FeaturedApps:Edit,Stats:View,Apps:ReviewPrivileged,Apps:Publisher,Apps:ReviewRegionCN",
+        "rules": "Addons:Configure,Addons:ContentReview,Addons:Edit,Addons:PostReview,Addons:Review,Addons:ReviewUnlisted,Addons:ViewDeleted,AdminTools:View,Collections:Edit,CollectionStats:View,Personas:Review,ReviewerAdminTools:View,Reviews:Edit,Stats:View,Users:Edit",
         "created": "2010-09-08 07:06:05",
         "modified": "2010-09-08 07:06:05"
     }
@@ -23,20 +23,50 @@
     "pk": 3,
     "model": "access.group",
     "fields": {
-        "name": "Add-on Reviewers",
-        "rules": "Addons:Review,Reviews:Edit",
+        "name": "Reviewers: Legacy",
+        "rules": "Addons:Review",
         "created": "2010-09-08 07:06:05",
-        "modified": "2010-09-08 07:06:05"
+        "modified": "2017-10-26 15:00:00"
     }
   },
   {
     "pk": 4,
     "model": "access.group",
     "fields": {
-        "name": "Senior Add-on Reviewers",
-        "rules": "Addons:Review,Addons:PostReview,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Addons:ReviewUnlisted",
+        "name": "Reviewers: Themes",
+        "rules": "Personas:Review",
         "created": "2010-09-08 07:06:05",
-        "modified": "2010-09-08 07:06:05"
+        "modified": "2017-10-26 15:00:00"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "access.group",
+    "fields": {
+        "name": "Reviewers: Unlisted",
+        "rules": "Addons:ReviewUnlisted",
+        "created": "2017-10-26 15:00:00",
+        "modified": "2017-10-26 15:00:00"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "access.group",
+    "fields": {
+        "name": "Reviewers: Content",
+        "rules": "Addons:ContentReview",
+        "created": "2017-10-26 15:00:00",
+        "modified": "2017-10-26 15:00:00"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "access.group",
+    "fields": {
+        "name": "Reviewers: Add-ons",
+        "rules": "Addons:PostReview",
+        "created": "2017-10-26 15:00:00",
+        "modified": "2017-10-26 15:00:00"
     }
   }
 ]

@@ -27,8 +27,8 @@ class SearchResultList(Base):
     class SearchResultItem(Region):
         """Represents individual results on the search page."""
         _name_locator = (By.CSS_SELECTOR, 'h3 > a')
-        _rating_locator = (By.CSS_SELECTOR, '.rating > .stars')
-        _users_sort_locator = (By.CSS_SELECTOR, '.vitals > .adu')
+        _rating_locator = (By.CSS_SELECTOR, '.rating .stars')
+        _users_sort_locator = (By.CSS_SELECTOR, '.vitals .adu')
 
         @property
         def name(self):

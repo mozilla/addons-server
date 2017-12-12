@@ -1,10 +1,7 @@
-import smtplib
 import sys
-import traceback
 
 from django.utils.encoding import force_bytes
 from email.Utils import formatdate
-from email.mime.text import MIMEText
 from time import time
 from urlparse import parse_qsl
 
@@ -12,9 +9,6 @@ from services.utils import mypool, settings
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
-
-import MySQLdb as mysql
-import sqlalchemy.pool as pool
 
 try:
     from compare import version_int
@@ -26,6 +20,7 @@ import olympia.core.logger
 
 from utils import (
     APP_GUIDS, get_cdn_url, log_configure, PLATFORMS)
+
 
 # Go configure the log.
 log_configure()
@@ -225,10 +220,10 @@ class Update(object):
             """)
             # Filter out versions that don't have the minimum maxVersion
             # requirement to qualify for default-to-compatible.
-            d2c_max = applications.D2C_MAX_VERSIONS.get(data['app_id'])
-            if d2c_max:
-                data['d2c_max_version'] = version_int(d2c_max)
-                sql.append("AND appmax.version_int >= %(d2c_max_version)s ")
+            d2c_min = applications.D2C_MIN_VERSIONS.get(data['app_id'])
+            if d2c_min:
+                data['d2c_min_version'] = version_int(d2c_min)
+                sql.append("AND appmax.version_int >= %(d2c_min_version)s ")
 
             # Filter out versions found in compat overrides
             sql.append("""AND
@@ -339,7 +334,7 @@ def application(environ, start_response):
             update = Update(data, compat_mode)
             output = force_bytes(update.get_rdf())
             start_response(status, update.get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(data)
             raise
     return [output]

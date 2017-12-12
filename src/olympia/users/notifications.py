@@ -8,15 +8,6 @@ class _NOTIFICATION(object):
     pass
 
 
-class thanks(_NOTIFICATION):
-    id = 2
-    group = 'user'
-    short = 'dev_thanks'
-    label = _('an add-on developer thanks me for a contribution')
-    mandatory = False
-    default_checked = True
-
-
 class reply(_NOTIFICATION):
     id = 3
     group = 'user'
@@ -90,10 +81,10 @@ class sdk_upgrade_fail(_NOTIFICATION):
     default_checked = True
 
 
-class editor_reviewed(_NOTIFICATION):
+class reviewer_reviewed(_NOTIFICATION):
     id = 11
     group = 'dev'
-    short = 'editor_reviewed'
+    short = 'reviewer_reviewed'
     label = _('my add-on is reviewed by a reviewer')
     mandatory = True
     default_checked = True

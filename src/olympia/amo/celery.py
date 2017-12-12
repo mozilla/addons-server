@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import datetime
 
+import waffle
 from django.conf import settings
 from django.core.cache import cache
 
@@ -13,6 +14,7 @@ from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from raven import Client
 from raven.contrib.celery import register_signal, register_logger_signal
+from post_request_task.task import PostRequestTask
 
 import olympia.core.logger
 from olympia.amo.utils import chunked, utc_millesecs_from_epoch
@@ -21,11 +23,23 @@ from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 log = olympia.core.logger.getLogger('z.task')
 
 
-app = Celery('olympia')
+class WaffleablePostRequestTask(PostRequestTask):
+    """Same as `PostRequestTask` only that this listens for a waffle-flag."""
+    abstract = True
+
+    def apply_async(self, args=None, kwargs=None, **extrakw):
+        if waffle.switch_is_active('activate-django-post-request'):
+            return super(WaffleablePostRequestTask, self).apply_async(
+                args, kwargs, **extrakw)
+
+        return self.original_apply_async(args=args, kwargs=kwargs, **extrakw)
+
+
+app = Celery('olympia', task_cls=WaffleablePostRequestTask)
 task = app.task
 
-app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(settings.INSTALLED_APPS)
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
 
 # Hook up Sentry in celery.
 raven_client = Client(settings.SENTRY_DSN)

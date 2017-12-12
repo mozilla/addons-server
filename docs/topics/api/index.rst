@@ -40,7 +40,6 @@ using the API.
    collections
    discovery
    download_sources
-   internal
    reviews
    signing
    stats

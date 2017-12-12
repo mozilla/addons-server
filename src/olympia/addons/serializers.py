@@ -1,20 +1,27 @@
+import re
+
+from django.conf import settings
+
 from rest_framework import serializers
 
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
+
+from .models import (
+    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview,
+    ReplacementAddon)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -54,7 +61,8 @@ class PreviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Preview
-        fields = ('id', 'caption', 'image_url', 'thumbnail_url')
+        fields = ('id', 'caption', 'image_size', 'image_url', 'thumbnail_size',
+                  'thumbnail_url')
 
     def get_image_url(self, obj):
         return absolutify(obj.image_url)
@@ -72,7 +80,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'])
+        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.
@@ -85,13 +93,18 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    name = TranslationSerializerField()
+    name = serializers.SerializerMethodField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
         fields = ('id', 'name', 'text', 'url')
+
+    def __init__(self, *args, **kwargs):
+        super(LicenseSerializer, self).__init__(*args, **kwargs)
+        self.db_name = TranslationSerializerField()
+        self.db_name.bind('name', self)
 
     def get_url(self, obj):
         return obj.url or self.get_version_license_url(obj)
@@ -103,9 +116,26 @@ class LicenseSerializer(serializers.ModelSerializer):
         # given License. However, since we're serializing through a nested
         # serializer, we cheat and use `instance.version_instance` which is
         # set by SimpleVersionSerializer.to_representation() while serializing.
-        if hasattr(obj, 'version_instance'):
+        # Only get the version license url for non-builtin licenses.
+        if not obj.builtin and hasattr(obj, 'version_instance'):
             return absolutify(obj.version_instance.license_url())
         return None
+
+    def get_name(self, obj):
+        # See if there is a license constant
+        license_constant = obj._constant
+        if not license_constant:
+            # If not fall back on the name in the database.
+            return self.db_name.get_attribute(obj)
+        else:
+            request = self.context.get('request', None)
+            if request and request.method == 'GET' and 'lang' in request.GET:
+                # A single lang requested so return a flat string
+                return unicode(license_constant.name)
+            else:
+                # Otherwise mock the dict with the default lang.
+                lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
+                return {lang: unicode(license_constant.name)}
 
 
 class CompactLicenseSerializer(LicenseSerializer):
@@ -144,11 +174,13 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             'versions.edit', args=[obj.pk], prefix_only=True))
 
     def get_compatibility(self, obj):
-        if obj.addon.type in amo.NO_COMPAT:
-            return {}
-        return {app.short: {'min': compat.min.version,
-                            'max': compat.max.version}
-                for app, compat in obj.compatible_apps.items()}
+        return {
+            app.short: {
+                'min': compat.min.version if compat else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': compat.max.version if compat else amo.FAKE_MAX_VERSION
+            } for app, compat in obj.compatible_apps.items()
+        }
 
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
@@ -332,7 +364,7 @@ class AddonSerializer(serializers.ModelSerializer):
         return absolutify(obj.get_dev_url())
 
     def get_review_url(self, obj):
-        return absolutify(reverse('editors.review', args=[obj.pk]))
+        return absolutify(reverse('reviewers.review', args=[obj.pk]))
 
     def get_icon_url(self, obj):
         if self.is_broken_persona(obj):
@@ -343,8 +375,8 @@ class AddonSerializer(serializers.ModelSerializer):
         return {
             'average': obj.average_rating,
             'bayesian_average': obj.bayesian_rating,
-            'count': obj.total_reviews,
-            'text_count': obj.text_reviews_count,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
         }
 
     def get_theme_data(self, obj):
@@ -433,7 +465,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 compatible_apps[app_name] = ApplicationsVersions(
                     min=AppVersion(version=compat_dict.get('min_human', '')),
                     max=AppVersion(version=compat_dict.get('max_human', '')))
-            version.compatible_apps = compatible_apps
+            version._compatible_apps = compatible_apps
         else:
             version = None
         return version
@@ -509,8 +541,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
-        obj.total_reviews = ratings.get('count')
-        obj.text_reviews_count = ratings.get('text_count')
+        obj.total_ratings = ratings.get('count')
+        obj.text_ratings_count = ratings.get('text_count')
 
         obj._is_featured = data.get('is_featured', False)
 
@@ -588,6 +620,52 @@ class LanguageToolsSerializer(AddonSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'current_version', 'default_locale',
-                  'locale_disambiguation', 'name', 'target_locale', 'type',
-                  'url', )
+        fields = ('id', 'current_version', 'default_locale', 'guid',
+                  'locale_disambiguation', 'name', 'slug', 'target_locale',
+                  'type', 'url', )
+
+
+class ReplacementAddonSerializer(serializers.ModelSerializer):
+    replacement = serializers.SerializerMethodField()
+    ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
+    COLLECTION_PATH_REGEX = (
+        r"""/collections/(?P<user_id>[^/<>"']+)/(?P<coll_slug>[^/]+)/$""")
+
+    class Meta:
+        model = ReplacementAddon
+        fields = ('guid', 'replacement')
+
+    def _get_addon_guid(self, addon_id):
+        try:
+            addon = Addon.objects.public().id_or_slug(addon_id).get()
+        except Addon.DoesNotExist:
+            return []
+        return [addon.guid]
+
+    def _get_collection_guids(self, user_id, collection_slug):
+        try:
+            get_args = {'slug': collection_slug, 'listed': True}
+            if isinstance(user_id, basestring) and not user_id.isdigit():
+                get_args.update(**{'author__username': user_id})
+            else:
+                get_args.update(**{'author': user_id})
+            collection = Collection.objects.get(**get_args)
+        except Collection.DoesNotExist:
+            return []
+        valid_q = Addon.objects.get_queryset().valid_q([amo.STATUS_PUBLIC])
+        return list(
+            collection.addons.filter(valid_q).values_list('guid', flat=True))
+
+    def get_replacement(self, obj):
+        if obj.has_external_url():
+            # It's an external url so no guids.
+            return []
+        addon_match = re.search(self.ADDON_PATH_REGEX, obj.path)
+        if addon_match:
+            return self._get_addon_guid(addon_match.group('addon_id'))
+
+        coll_match = re.search(self.COLLECTION_PATH_REGEX, obj.path)
+        if coll_match:
+            return self._get_collection_guids(
+                coll_match.group('user_id'), coll_match.group('coll_slug'))
+        return []

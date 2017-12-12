@@ -4,7 +4,7 @@ from django.db import models
 from django.forms.utils import ErrorList
 from django.utils.translation.trans_real import to_language
 from django.utils.encoding import force_text
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html, format_html_join, conditional_escape
 
 
 def default_locale(obj):

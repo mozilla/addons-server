@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-06-13 10:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} brukervurdering"
 msgstr[1] "{reviews} brukervurderinger"
 
-msgid "Learn more"
-msgstr "Les mer"
-
 msgid "Image changes being processed"
 msgstr "Endringer på bilde blir behandlet"
 
-msgid "Must be a valid e-mail address."
-msgstr "Må være en gyldig e-postadresse"
-
 msgid "No results found."
 msgstr "Ingen resultater funnet."
+
+msgid "Loading..."
+msgstr "Laster ..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> tegn igjen."
+msgstr[1] "<b>{0}</b> tegn igjen."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold. Kom tilbake senere."
+
+msgid "Remove this localization"
+msgstr "Fjern denne oversettelsen"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} så på denne siden først."
@@ -799,21 +808,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Laster ..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> tegn igjen."
-msgstr[1] "<b>{0}</b> tegn igjen."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold. Kom tilbake senere."
-
-msgid "Remove this localization"
-msgstr "Fjern denne oversettelsen"
 
 msgid "Requested Info"
 msgstr "Forespurt info"

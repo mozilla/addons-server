@@ -13,7 +13,7 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.users.models import UserProfile
@@ -167,6 +167,10 @@ class TestVersion(TestCase):
         self.delete_data['disable_version'] = ''
         self.client.post(self.delete_url, self.delete_data)
         assert Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
 
     def test_reenable_version(self):
         Version.objects.get(pk=81551).all_files[0].update(
@@ -176,12 +180,16 @@ class TestVersion(TestCase):
             self.reenable_url, self.delete_data, follow=True)
         assert response.status_code == 200
         assert not Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_VERSION.id).count() == 1
 
     def test_reenable_deleted_version(self):
         Version.objects.get(pk=81551).delete()
         self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 404
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_VERSION.id).count() == 0
 
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
@@ -691,7 +699,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
-        assert version.addon.admin_review
+        assert version.addon.needs_admin_code_review
 
         # Check that the corresponding automatic activity log has been created.
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
@@ -708,7 +716,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             assert response.status_code == 200
             assert not Version.objects.get(pk=self.version.pk).source
 
-    def test_dont_reset_admin_review_flag_if_no_new_source(self):
+    def test_dont_reset_needs_admin_code_review_flag_if_no_new_source(self):
         tdir = temp.gettempdir()
         tmp_file = temp.NamedTemporaryFile
         with tmp_file(suffix=".zip", dir=tdir) as source_file:
@@ -719,17 +727,18 @@ class TestVersionEditDetails(TestVersionEditBase):
             assert response.status_code == 302
             version = Version.objects.get(pk=self.version.pk)
             assert version.source
-            assert version.addon.admin_review
+            assert version.addon.needs_admin_code_review
 
         # Unset the "admin review" flag, and re save the version. It shouldn't
         # reset the flag, as the source hasn't changed.
-        version.addon.update(admin_review=False)
+        AddonReviewerFlags.objects.get(addon=version.addon).update(
+            needs_admin_code_review=False)
         data = self.formset(name='some other name')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
-        assert not version.addon.admin_review
+        assert not version.addon.needs_admin_code_review
 
     def test_update_source_file_should_drop_info_request_flag(self):
         version = Version.objects.get(pk=self.version.pk)
@@ -901,11 +910,11 @@ class TestVersionEditFiles(TestVersionEditBase):
             sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
-class TestPlatformSearch(TestVersionEditMixin, TestCase):
+class TestPlatformSearchEngine(TestVersionEditMixin, TestCase):
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        super(TestPlatformSearch, self).setUp()
+        super(TestPlatformSearchEngine, self).setUp()
         self.client.login(email='admin@mozilla.com')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
@@ -925,6 +934,40 @@ class TestPlatformSearch(TestVersionEditMixin, TestCase):
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
         file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
+        assert amo.PLATFORM_ALL.id == file_.platform
+
+
+class TestPlatformStaticTheme(TestVersionEditMixin, TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.get_addon().update(type=amo.ADDON_STATICTHEME)
+        super(TestPlatformStaticTheme, self).setUp()
+        self.client.login(email='admin@mozilla.com')
+        self.version = self.get_version()
+        self.file = self.version.files.all()[0]
+        self.url = reverse('devhub.versions.edit',
+                           args=[self.version.addon.slug, self.version.id])
+
+    def formset(self, *args, **kw):
+        defaults = dict(self.initial)
+        defaults.update(kw)
+        return super(TestPlatformStaticTheme, self).formset(*args, **defaults)
+
+    def test_no_platform_selector(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('#id_files-0-platform')
+
+    def test_no_changing_platform(self):
+        ctx = self.client.get(self.url).context
+        compat = initial(ctx['compat_form'].forms[0])
+        files = initial(ctx['file_form'].forms[0])
+        files['platform'] = amo.PLATFORM_LINUX.id
+        self.initial = formset(compat, **formset(files, prefix='files'))
+        response = self.client.post(self.url, self.formset())
+        assert response.status_code == 302
+        file_ = self.get_version().files.all()[0]
         assert amo.PLATFORM_ALL.id == file_.platform
 
 

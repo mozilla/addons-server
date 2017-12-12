@@ -8,12 +8,8 @@ from django.core.exceptions import PermissionDenied
 from django.db import connection, transaction
 
 import olympia.core.logger
-from olympia import core
-from olympia.accounts.utils import redirect_for_login
-from olympia.users.utils import get_task_user
 
 from . import models as context
-from .utils import AMOJSONEncoder
 
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -29,6 +25,8 @@ def login_required(f=None, redirect=True):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, *args, **kw):
+            # Prevent circular ref in accounts.utils
+            from olympia.accounts.utils import redirect_for_login
             if request.user.is_authenticated():
                 return func(request, *args, **kw)
             else:
@@ -89,6 +87,8 @@ def json_response(response, has_trans=False, status_code=200):
     Return a response as JSON. If you are just wrapping a view,
     then use the json_view decorator.
     """
+    # to avoid circular imports with users.models
+    from .utils import AMOJSONEncoder
     if has_trans:
         response = json.dumps(response, cls=AMOJSONEncoder)
     else:
@@ -188,20 +188,6 @@ def allow_cross_site_request(f):
     return wrapper
 
 
-def set_task_user(f):
-    """Sets the user to be the task user, then unsets it."""
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        old_user = core.get_user()
-        core.set_user(get_task_user())
-        try:
-            result = f(*args, **kw)
-        finally:
-            core.set_user(old_user)
-        return result
-    return wrapper
-
-
 def allow_mine(f):
     @functools.wraps(f)
     def wrapper(request, username, *args, **kw):
@@ -209,6 +195,8 @@ def allow_mine(f):
         If the author is `mine` then show the current user's collection
         (or something).
         """
+        # Prevent circular ref in accounts.utils
+        from olympia.accounts.utils import redirect_for_login
         if username == 'mine':
             if not request.user.is_authenticated():
                 return redirect_for_login(request)

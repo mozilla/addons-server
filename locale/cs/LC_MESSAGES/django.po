@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-08-27 11:33+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-29 07:47+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -84,10 +84,6 @@ msgstr "Stáhnout"
 msgid "Download"
 msgstr "Stáhnout"
 
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Přejít na stažení&nbsp;&rarr;"
-
 msgid "Featured"
 msgstr "Doporučené"
 
@@ -141,7 +137,7 @@ msgstr[2] "Všechny štítky musí mít alespoň {0} znaků."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "Doména v URL adrese musí být jedna z těchto [%s], nebo jejich subdoména."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "V době, kdy je váš doplněk pro tuto aplikaci veden jako doporučený, nemůžete změnit jeho umístění v kategoriích."
@@ -172,23 +168,12 @@ msgstr "Popište svůj motiv."
 msgid "Enter a new author's email address"
 msgstr "Vložte novou e-mailovou adresu autora"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Uživatelé mají možnost přispět více nebo méně než je tato částka."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Uživatelé budou vždy žádáni ve Správci doplňků (Firefox 4 a vyšší). Platí pouze pro desktop."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Zobrazení"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Cesta k doplňkům a sbírkám musí končit znakem \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Příspěvek k {0}"
 
 msgid "Abuse reported."
 msgstr "Zneužití bylo nahlášeno."
@@ -215,97 +200,6 @@ msgstr "Tento doplněk nebyl Mozillou zkontrolován. <a href=\"%(url)s\">Dozvěd
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tento doplněk byl vývojářem označen jako experimentální."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Vývojář tohoto doplňku vás žádá o podporu dalšího vývoje formou malého příspěvku."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Vývojář tohoto doplňku vás žádá, zda byste nepřispěli finančním příspěvkem na <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Vývojář tohoto doplňku vás žádá, zda byste nepřispěli malým finančním příspěvkem na <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Přispějte"
-
-#. Click Contribute button OR Install button
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "nebo"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Navržený příspěvek: {0}"
-
-msgid "What's this?"
-msgstr "Co je to?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Vývojář tohoto doplňku vás žádá, zda byste nezvážili finanční příspěvek na <a href=\"%(charity_url)s\">%(charity_name)s</a>, pokud se vám tento doplněk líbí."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Vývojář tohoto doplňku vás žádá, zda byste nezvážili malý finanční příspěvek na <a href=\"%(charity_url)s\">%(charity_name)s</a>, pokud se vám tento doplněk líbí."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla podporuje energický a zdravý ekosystém vývojářů. Váš volitelný příspěvek pomůže podpořit budoucí vývoj tohoto doplňku."
-
-msgid "Make a Contribution"
-msgstr "Přispět"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Pomozte podpořit další vývoj doplňku <strong>%(addon_name)s</strong> malým příspěvkem skrze <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "Kolik chcete přispět?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "Maximální příspěvek může být {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "Minimální příspěvek musí být {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Částka příspěvku musí být číslo."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Jednorázový navržený příspěvek {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Jednorázový příspěvek na {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Vložte komentář či žádost spojenou s vaším příspěvkem."
-
-msgid "(optional)"
-msgstr "(volitelné)"
-
-msgid "Make Contribution"
-msgstr "Přispět"
-
-msgid "Contacting PayPal"
-msgstr "Připojování k serveru PayPal"
-
-msgid "No Thanks"
-msgstr "Ne, děkuji"
-
-msgid "Contribution made, thank you."
-msgstr "Příspěvek byl odeslán, děkujeme."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -401,15 +295,6 @@ msgstr[0] "{0} uživatel"
 msgstr[1] "{0} uživatelé"
 msgstr[2] "{0} uživatelů"
 
-msgid "Payment cancelled"
-msgstr "Platba zrušena"
-
-msgid "Payment completed"
-msgstr "Platba dokončena"
-
-msgid "Return to the addon."
-msgstr "Zpět na doplněk."
-
 msgid "by"
 msgstr "od"
 
@@ -472,10 +357,6 @@ msgstr "Upravit"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d.%%m.%%Y"
-
 msgid "by {0} on {1}"
 msgstr "uživatelem {0} dne {1}"
 
@@ -514,6 +395,11 @@ msgstr ""
 msgid "Send Report"
 msgstr "Odeslat hlášení"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "nebo"
+
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -544,8 +430,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Podívejte se do <a href=\"%(support)s\">sekce podpory tohoto doplňku</a>, kde zjistíte, jestli je dostupná podpora. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-community.org/c"
-"/add-ons/add-on-support\">komunitu doplňků</a>."
+"Podívejte se do <a href=\"%(support)s\">sekce podpory tohoto doplňku</a>, kde zjistíte, jestli je dostupná podpora. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-community.org/c/"
+"add-ons/add-on-support\">komunitu doplňků</a>."
 
 msgid "Review Guidelines"
 msgstr "Příručka recenzenta"
@@ -589,25 +475,6 @@ msgstr "Oprávnění"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Tento doplněk byl vývojářem označen jako experimentální"
-
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "doporučeno <b>%(amt)s</b>"
-
-msgid "Enjoy this add-on?"
-msgstr "Líbí se vám doplněk?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Vývojář doplňku</a> se ptá, zda byste nepřispěli malou částkou na podporu pokračování vývoje tohoto doplňku."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Vývojář doplňku</a> se ptá, zda byste nepřispěli malou částkou na <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Vývojář doplňku</a> se ptá, zda byste nepřispěli malou částkou na <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Aby doplněk fungoval korektně, vyžaduje následující doplňky:"
@@ -654,16 +521,14 @@ msgstr "Správa administrace"
 msgid "Icon of {0}"
 msgstr "Ikona doplňku {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Seznamte se s vývojářem: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Seznamte se s vývojáři</a>"
-msgstr[2] "<a href=\"%(url)s\">Seznamte se s vývojáři</a>"
+msgid "Contribute"
+msgstr "Přispějte"
 
-# {0} is an add-on name.
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Přečtěte si, proč byl doplněk {0} vytvořen a co dalšího je plánováno."
+msgid "Enjoy this add-on?"
+msgstr "Líbí se vám doplněk?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "Vývojář tohoto doplňku vás žádá o podporu dalšího vývoje formou malého příspěvku."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -681,6 +546,7 @@ msgstr "E-mail podpory"
 msgid "Info"
 msgstr "Informace"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Naposledy aktualizován:"
 
@@ -726,8 +592,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Některé doplňky vyžadují oprávnění k provádění určitých akcí (příklad: doplněk pro správu panelů bude požadovat oprávnění pro přístup k systému panelů prohlížeče)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Jelikož jste to vy, kdo má kontrolu nad svým Firefoxem, rozhodnutí, zda oprávnění udělit či neudělit, je jen na vás. Udělení oprávnění nemusí znamenat ovlivnění výkonu nebo bezpečnosti vašeho "
 "prohlížeče, ale v některých vzácných případech toto riziko vyskytuje."
@@ -741,38 +607,6 @@ msgstr "Některé doplňky vyžadují oprávnění k provádění určitých akc
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Berte prosím na vědomí, že tento doplněk využívá zastaralou technologii, která mu dává přístup ke všem funkcím a datům prohlížeče bez nutnosti žádat vás o svolení."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Děkujeme za instalaci {0}"
-
-#. {0} is an add-on name.
-# %1 is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Seznamte se s vývojářem doplňku {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Před stažením prosím zvažte podporu vývoje tohoto doplňku malým příspěvkem."
-
-# %1 is an add-on name.
-msgid "Why was {0} created?"
-msgstr "Proč byl {0} vytvořen?"
-
-# %1 is an add-on name.
-msgid "What's next for {0}"
-msgstr "Co je dalšího u {0} plánováno"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "O vývojáři"
-msgstr[1] "O vývojářích"
-msgstr[2] "O vývojářích"
-
-msgid "No Photo"
-msgstr "Žádná fotografie"
-
-msgid "Who is {0}?"
-msgstr "Kdo je {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Tento doplněk byl autorem odstraněn."
@@ -788,10 +622,10 @@ msgid "Source Code License"
 msgstr "Licence zdrojového kódu"
 
 msgid "support section"
-msgstr ""
+msgstr "sekce podpory"
 
 msgid "support email"
-msgstr ""
+msgstr "e-mail podpory"
 
 msgid "permalink"
 msgstr "trvalý odkaz"
@@ -937,8 +771,8 @@ msgstr "Doplňky pro Firefox"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom to"
-" napravili."
+"Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom "
+"to napravili."
 
 msgid "Not Found"
 msgstr "Nenalezeno"
@@ -946,16 +780,16 @@ msgstr "Nenalezeno"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně jste klepli na neaktuální odkaz nebo napsali "
-"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, <a href=\"https://github.com/mozilla/addons-"
-"server/issues/new/\">dejte nám o tom prosím vědět</a>. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé "
-"populární stránky na našem serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na "
-"stránku <a href=\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
+"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, <a href=\"https://github.com/mozilla/addons-server/issues/"
+"new/\">dejte nám o tom prosím vědět</a>. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární stránky na "
+"našem serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a href="
+"\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
 
 msgid "Oops"
 msgstr "Jejda"
@@ -993,12 +827,15 @@ msgstr "Některá funkčnost na této stránce je v průběhu údržby webu doč
 msgid "Are you human?"
 msgstr "Jste člověk?"
 
+msgid "What's this?"
+msgstr "Co je to?"
+
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" "
-"id=\"recaptcha_different\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
+"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different"
+"\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
 
 msgid "Top Rated"
 msgstr "Nejlépe hodnocené"
@@ -1135,9 +972,12 @@ msgstr "Verze"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "Pokud vámi podporovaná aplikace nevyžaduje manifest, musíte přidat takový, který obsahuje povinné atributy specifikované %(amo_manifests_mdn_link_open)szde%(amo_manifests_mdn_link_close)s."
+
+msgid "Contributors"
+msgstr "Přispěvatelé"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1247,6 +1087,9 @@ msgstr "Vytvoření nové sbírky"
 msgid "Name:"
 msgstr "Jméno:"
 
+msgid "(optional)"
+msgstr "(volitelné)"
+
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "nebo <a id=\"collections-new-cancel\" href=\"#\">Zrušit</a>"
 
@@ -1338,8 +1181,8 @@ msgstr ""
 "rádi skryli, klepněte na tlačítko níže a učiňte ji soukromou."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Doplňky označené jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> se zobrazí níže. Tato sbírka je nyní <b>soukromá</b>, což znamená, že ji můžete vidět jenom vy. Pokud byste ji chtěli "
 "zveřejnit, klepněte na tlačítko níže."
@@ -1663,8 +1506,8 @@ msgstr "Stáhnout jazykový balíček"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 "Nainstalováním slovníku se přidá nový jazyk k vestavěné kontrole pravopisu aplikace %(app_name)s, která kontroluje překlepy při vyplňování formulářů na webu. Jazykové balíčky mění jazyk celé "
 "aplikace."
@@ -1839,11 +1682,11 @@ msgstr "Hlášení o kompatibilitě doplňků"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Hlášení, která nám byla odeslána skrze <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, jsou zde dostupná pro vývojáře. Tato hlášení nám pomohou rozpoznat, které doplňky potřebují pomoc s"
-" podporou pro nadcházející verzi Firefoxu. </p>"
+"<p> Hlášení, která nám byla odeslána skrze <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, jsou zde dostupná pro vývojáře. Tato hlášení nám pomohou rozpoznat, které doplňky potřebují pomoc "
+"s podporou pro nadcházející verzi Firefoxu. </p>"
 
 msgid "Reports for your Add-ons"
 msgstr "Hlášení pro vaše doplňky"
@@ -1999,6 +1842,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentář u doplňku {addon} {version}."
 
+msgid "Commented"
+msgstr "Okomentováno"
+
 msgid "{tag} added to {addon}."
 msgstr "K doplňku {addon} byl přidán štítek {tag}."
 
@@ -2011,7 +1857,8 @@ msgstr "Doplněk {addon} byl přidán do sbírky {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "Doplněk {addon} byl odebrán ze sbírky {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "K doplňku {addon} byla napsána recenze {review}."
 
 #. L10n: {0} is a category name.
@@ -2036,8 +1883,8 @@ msgstr "{0} {1} byl přidán."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Uživatel {0.name} má u doplňku {addon} nově roli {1}."
 
-msgid "{addon} is now licensed under {0.name}."
-msgstr "Doplněk {addon} je nyní dostupný pod licencí {0.name}."
+msgid "{addon} is now licensed under {0}."
+msgstr "Doplněk {addon} je nyní dostupný pod licencí {0}."
 
 msgid "{addon} policy changed."
 msgstr "U doplňku {addon} se změnily zásady použití."
@@ -2045,16 +1892,20 @@ msgstr "U doplňku {addon} se změnily zásady použití."
 msgid "{addon} icon changed."
 msgstr "Ikonka doplňku {addon} byla změněna."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "Recenze {review} pro doplněk {addon} byla schválena."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "Uživatel {user} schválil recenzi {review} pro doplněk {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Recenze {review} byla pro {addon} smazána."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} smazal/a {review} pro {addon}."
 
 msgid "Application max version for {version} updated."
@@ -2099,7 +1950,8 @@ msgstr "Uživatel {user} byl omezen."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrátor {0} si zobrazil log aktivity u uživatele {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "Recenze {review} pro doplněk {addon} byla aktualizována."
 
 msgid "{addon} reviewed."
@@ -2153,6 +2005,24 @@ msgstr "Automatické schválení doplňku {addon} {version} potvrzeno."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatické schválení potvrzeno"
+
+msgid "{addon} {version} re-enabled."
+msgstr "Doplněk {addon} {version} znovu povolen."
+
+msgid "{addon} {version} disabled."
+msgstr "Doplněk {addon} {version} zakázán."
+
+msgid "{addon} {version} content approved."
+msgstr "Obsah doplňku {addon} {version} schválen."
+
+msgid "Content approved"
+msgstr "Obsah schválen"
+
+msgid "{addon} {version} content rejected."
+msgstr "Obsah doplňku {addon} {version} zamítnut."
+
+msgid "Content rejected"
+msgstr "Obsah zamítnut"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2230,6 +2100,9 @@ msgstr "Zásuvný modul"
 msgid "Theme"
 msgstr "Motiv vzhledu"
 
+msgid "Theme (Static)"
+msgstr "Motiv (statický)"
+
 msgid "Complete Themes"
 msgstr "Plné motivy"
 
@@ -2247,14 +2120,8 @@ msgstr "Jazykové balíčky (doplněk)"
 msgid "Plugins"
 msgstr "Zásuvné moduly"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Žádat pouze na stránce doplňku a profilu vývojáře"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Žádat uživatele po začátku stahování doplňku"
-
-msgid "Ask before users can download this add-on"
-msgstr "Žádat dříve, než mohou uživatelé stáhnout doplněk"
+msgid "Themes (Static)"
+msgstr "Motivy (statické)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2268,102 +2135,6 @@ msgstr "Vydání"
 
 msgid "Change"
 msgstr "Změna"
-
-msgid "App"
-msgstr "Aplikace"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Ruční body redaktora"
-
-msgid "New Add-on Review"
-msgstr "Nová kontrola doplňku"
-
-msgid "Preliminary Add-on Review"
-msgstr "Kontrola doplňku pro předběžné schválení"
-
-msgid "Updated Add-on Review"
-msgstr "Kontrola aktualizace doplňku"
-
-msgid "New Dictionary Review"
-msgstr "Nová kontrola slovníku"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Předběžné kontroly slovníků"
-
-msgid "Updated Dictionary Review"
-msgstr "Kontroly aktualizovaných slovníků"
-
-msgid "New Language Pack Review"
-msgstr "Nová kontrola jazykového balíčku"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Předběžné kontroly jazykových balíčků"
-
-msgid "Updated Language Pack Review"
-msgstr "Kontroly aktualizovaných jazykových balíčků"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za zpožděné kontroly"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny před uplatněním bonusových bodů"
-
-msgid "Theme Review"
-msgstr "Kontrola motivu"
-
-msgid "New Search Provider Review"
-msgstr "Nová kontrola vyhledávacích modulů"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Předběžné kontroly vyhledávacích modulů"
-
-msgid "Updated Search Provider Review"
-msgstr "Kontroly aktualizovaných vyhledávacích modulů"
-
-msgid "New Complete Theme Review"
-msgstr "Nová kontrola plného motivu"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Předběžná kontrola plných motivů"
-
-msgid "Updated Complete Theme Review"
-msgstr "Kontrola aktualizovaných plných motivů"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderovaná recenze doplňku"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Úprava recenze doplňku byla odstraněna"
-
-msgid "Level 1"
-msgstr "Úroveň 1"
-
-msgid "Level 2"
-msgstr "Úroveň 2"
-
-msgid "Level 3"
-msgstr "Úroveň 3"
-
-msgid "Level 4"
-msgstr "Úroveň 4"
-
-msgid "Level 5"
-msgstr "Úroveň 5"
-
-msgid "Level 6"
-msgstr "Úroveň 6"
-
-msgid "Level 7"
-msgstr "Úroveň 7"
-
-msgid "Level 8"
-msgstr "Úroveň 8"
-
-msgid "Level 9"
-msgstr "Úroveň 9"
 
 msgid "Compatible"
 msgstr "Kompatibilní"
@@ -2437,42 +2208,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Obecné"
-
-msgid "Business"
-msgstr "Business"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Slovníky a encyklopedie"
-
-msgid "Kids"
-msgstr "Pro děti"
-
-msgid "Multiple Search"
-msgstr "Vícenásobné vyhledávání"
-
-msgid "Music"
-msgstr "Hudba"
-
-msgid "News & Blogs"
-msgstr "Novinky a blogy"
-
-msgid "Photos & Images"
-msgstr "Fotografie a obrázky"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupování a e-komerce"
-
-msgid "Social & People"
-msgstr "Sociální sítě a lidé"
-
-msgid "Travel"
-msgstr "Cestování"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktní"
 
@@ -2491,6 +2226,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Svátek"
 
+msgid "Music"
+msgstr "Hudba"
+
 msgid "Scenery"
 msgstr "Krajina"
 
@@ -2502,6 +2240,39 @@ msgstr "Jednoduché"
 
 msgid "Websites"
 msgstr "Stránky"
+
+msgid "General"
+msgstr "Obecné"
+
+msgid "Business"
+msgstr "Business"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Slovníky a encyklopedie"
+
+msgid "Kids"
+msgstr "Pro děti"
+
+msgid "Multiple Search"
+msgstr "Vícenásobné vyhledávání"
+
+msgid "News & Blogs"
+msgstr "Novinky a blogy"
+
+msgid "Photos & Images"
+msgstr "Fotografie a obrázky"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupování a e-komerce"
+
+msgid "Social & People"
+msgstr "Sociální sítě a lidé"
+
+msgid "Travel"
+msgstr "Cestování"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Vlastnosti zařízení a umístění"
@@ -2578,48 +2349,6 @@ msgstr "Specifický server"
 msgid "Web and Developer Tools"
 msgstr "Vývoj webu"
 
-msgid "Request More Info"
-msgstr "Požádat o více informací"
-
-msgid "Flag"
-msgstr "Označit"
-
-msgid "Duplicate"
-msgstr "Duplicitní"
-
-msgid "Reject"
-msgstr "Zamítnout"
-
-msgid "Approve"
-msgstr "Schválit"
-
-msgid "Sexual or pornographic content"
-msgstr "Obsah se sexuální či pornografickou tématikou"
-
-msgid "Inappropriate or offensive content"
-msgstr "Nekorektní či ofenzivní obsah"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Obrázky násilí, války nebo zbraní"
-
-msgid "Nazi or other hate content"
-msgstr "Obsah s nacistickou či nenávistnou tématikou"
-
-msgid "Defamatory content"
-msgstr "Pomlouvačný obsah"
-
-msgid "Online gambling"
-msgstr "Online sázení"
-
-msgid "Spam content"
-msgstr "Spam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Obrázek nízké kvality, špatných rozměrů či prázdný obrázek"
-
-msgid "Header image alignment problem"
-msgstr "Problém se zarovnáním obrázku záhlaví"
-
 msgid "All Rights Reserved"
 msgstr "Všechna práva vyhrazena"
 
@@ -2664,6 +2393,153 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+msgid "App"
+msgstr "Aplikace"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Ruční body redaktora"
+
+msgid "New Add-on Review"
+msgstr "Nová kontrola doplňku"
+
+msgid "Preliminary Add-on Review"
+msgstr "Kontrola doplňku pro předběžné schválení"
+
+msgid "Updated Add-on Review"
+msgstr "Kontrola aktualizace doplňku"
+
+msgid "New Dictionary Review"
+msgstr "Nová kontrola slovníku"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Předběžné kontroly slovníků"
+
+msgid "Updated Dictionary Review"
+msgstr "Kontroly aktualizovaných slovníků"
+
+msgid "New Language Pack Review"
+msgstr "Nová kontrola jazykového balíčku"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Předběžné kontroly jazykových balíčků"
+
+msgid "Updated Language Pack Review"
+msgstr "Kontroly aktualizovaných jazykových balíčků"
+
+msgid "Theme Review"
+msgstr "Kontrola motivu"
+
+msgid "New Search Provider Review"
+msgstr "Nová kontrola vyhledávacích modulů"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Předběžné kontroly vyhledávacích modulů"
+
+msgid "Updated Search Provider Review"
+msgstr "Kontroly aktualizovaných vyhledávacích modulů"
+
+msgid "New Complete Theme Review"
+msgstr "Nová kontrola plného motivu"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Předběžná kontrola plných motivů"
+
+msgid "Updated Complete Theme Review"
+msgstr "Kontrola aktualizovaných plných motivů"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderovaná recenze doplňku"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Úprava recenze doplňku byla odstraněna"
+
+msgid "Add-on Content Review"
+msgstr "Kontrola obsahu doplňku"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Kontrola doplňku po schválení (nejvyšší riziko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Kontrola doplňku po schválení (vysoké riziko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Kontrola doplňku po schválení (střední riziko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Kontrola doplňku po schválení (nízké riziko)"
+
+msgid "Level 1"
+msgstr "Úroveň 1"
+
+msgid "Level 2"
+msgstr "Úroveň 2"
+
+msgid "Level 3"
+msgstr "Úroveň 3"
+
+msgid "Level 4"
+msgstr "Úroveň 4"
+
+msgid "Level 5"
+msgstr "Úroveň 5"
+
+msgid "Level 6"
+msgstr "Úroveň 6"
+
+msgid "Level 7"
+msgstr "Úroveň 7"
+
+msgid "Level 8"
+msgstr "Úroveň 8"
+
+msgid "Level 9"
+msgstr "Úroveň 9"
+
+msgid "Request More Info"
+msgstr "Požádat o více informací"
+
+msgid "Flag"
+msgstr "Označit"
+
+msgid "Duplicate"
+msgstr "Duplicitní"
+
+msgid "Reject"
+msgstr "Zamítnout"
+
+msgid "Approve"
+msgstr "Schválit"
+
+msgid "Sexual or pornographic content"
+msgstr "Obsah se sexuální či pornografickou tématikou"
+
+msgid "Inappropriate or offensive content"
+msgstr "Nekorektní či ofenzivní obsah"
+
+msgid "Violence, war, or weaponry images"
+msgstr "Obrázky násilí, války nebo zbraní"
+
+msgid "Nazi or other hate content"
+msgstr "Obsah s nacistickou či nenávistnou tématikou"
+
+msgid "Defamatory content"
+msgstr "Pomlouvačný obsah"
+
+msgid "Online gambling"
+msgstr "Online sázení"
+
+msgid "Spam content"
+msgstr "Spam"
+
+msgid "Low-quality, stretched, or blank image"
+msgstr "Obrázek nízké kvality, špatných rozměrů či prázdný obrázek"
+
+msgid "Header image alignment problem"
+msgstr "Problém se zarovnáním obrázku záhlaví"
 
 msgid "Core"
 msgstr "Jádro"
@@ -2710,33 +2586,6 @@ msgstr "Doplněk má zásady ochrany soukromí"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Zadejte prosím zásady ochrany soukromí vašeho doplňku:"
-
-msgid "Why did you make this add-on?"
-msgstr "Proč jste vytvořili tento doplněk?"
-
-msgid "What's next for this add-on?"
-msgstr "Co máte s doplňkem do budoucna v plánu?"
-
-msgid "The developers of this add-on"
-msgstr "Vývojáři tohoto doplňku"
-
-msgid "The Mozilla Foundation"
-msgstr "Mozilla Foundation"
-
-msgid "An organization of my choice"
-msgstr "Organizace dle mé volby"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Vložte prosím doporučenou částku, která je větší než 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Vložte prosím doporučenou částku, která je menší než ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "Pro přijímání příspěvků je vyžadováno PayPal ID."
-
-msgid "Could not validate PayPal id."
-msgstr "Nelze zkontrolovat PayPal id."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {extensions}."
@@ -2809,10 +2658,14 @@ msgstr ""
 "uživatelů. Automatické aktualizace budou spravovány touto stránkou. Doplněk také může být brán v potaz v soutěžích a propagacích od Mozilly. Po kontrole bude také možné distribuovat doplněk "
 "vlastními kanály.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Na vlastní pěst. <span class=\"helptext\">Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi "
-"aplikace.</span>"
+"Na vlastní pěst. <span class=\"helptext\">Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi aplikace."
+"</span>"
+
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Dokud je váš doplněk veden jako doporučený, nemůžete měnit jeho umístění v kategoriích."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Počínaje Firefoxem 53, nové doplňky na této stránce mohou být pouze typu WebExtensions."
@@ -2893,9 +2746,6 @@ msgstr "U vašeho doplňku autor změnil roli"
 msgid "An author has been removed from your add-on"
 msgstr "Autor byl u vašeho doplňku odebrán"
 
-msgid "There were errors in your submission."
-msgstr "V rámci vašeho odeslání se vyskytly chyby."
-
 msgid "Validate Add-on"
 msgstr "Kontrola doplňku"
 
@@ -2962,8 +2812,8 @@ msgid "API key revoked"
 msgstr "API klíč byl revokován"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznáky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše oznámení o zásadách ochrany osobních "
 "údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
@@ -2972,20 +2822,13 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
 
 msgid "Review Policies and Rules"
-msgstr ""
-
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, které odkazují na naše oznámení o zásadách ochrany osobních údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
-
-msgid "Printable Version"
-msgstr "Tisková verze"
+msgstr "Zásady a pravidla pro kontrolu doplňků"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Přečetl jsem si a souhlasím s podmínkami, pravidly i poznámkou zmíněnými výše"
 
-msgid "I Accept this Agreement"
-msgstr "Souhlasím s tímto ujednáním"
+msgid "Accept"
+msgstr "Přijmout"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "nebo <a href=\"{0}\">Zrušit</a>"
@@ -3107,7 +2950,9 @@ msgstr ""
 "verzi."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovat kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Nahrát novou verzi</a> nebo <a href=\"#\" "
 "class=\"close\">Ignorovat</a>"
@@ -3165,34 +3010,15 @@ msgstr "Autoři"
 msgid "About author roles"
 msgstr "O uživatelských rolích"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
-"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> "
-"<li><b>Vývojář:</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho "
-"statistiky, ale nesmí dělat jakékoliv změny</li> </ul>"
-
-msgid "Manage Developer Profile"
-msgstr "Správa profilu vývojáře"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Váš <a href=\"%(url)s\">profil vývojáře</a> je nyní <strong>veřejný</strong> a <strong>žádá</strong> o příspěvky."
-
-msgid "Remove Both"
-msgstr "Odebrat obojí"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Váš <a href=\"%(url)s\">profil vývojáře</a> je nyní <strong>veřejný</strong>."
-
-msgid "Remove Profile"
-msgstr "Odebrat profil"
-
-msgid "Create Profile"
-msgstr "Vytvořit profil"
+"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> <li><b>Vývojář:"
+"</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, ale nesmí "
+"dělat jakékoliv změny</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Základní informace"
@@ -3240,19 +3066,24 @@ msgstr "Tento doplněk vyžaduje platbu, placené služby nebo software, či dod
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Tento doplněk nevyžaduje platby, placené služby či software, ani dodatečný hardware."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr ""
-"Kategorie jsou hlavní prvek, podle kterého se uživatelé mezi doplňky orientují. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které se k němu hodí. Relevantní pouze pro zveřejněné "
-"doplňky."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr "Kategorie jsou pro uživatele hlavní způsob orientace mezi doplňky. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které se k němu hodí."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a href=\"mailto:"
+"%(email)s\">%(email)s</a>."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr "Tagy pomáhají uživatelům najít doplněk. Měly by to být krátké popisky jako například panely, lišta nebo twitter. Můžete zadat maximálně {0} tagů. Relevantní pouze pro zveřejněné doplňky."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho kategorie. Pokud máte důvod, proč je potřeba kategorie změnit, napište nám prosím e-mailem na <a href=\"mailto:%(email)s"
+"\">%(email)s</a>."
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Štítky pomáhají uživatelům najít doplněk. Měly by to být krátké popisky jako například panely, lišta nebo twitter. Můžete zadat maximálně {0} tagů."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3270,10 +3101,10 @@ msgstr[1] "Rezervované štítky:"
 msgstr[2] "Rezervované štítky:"
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "URL pro příspěvky"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Pokud byste rádi dostávali příspěvky od uživatelů, nastavte zde stránku, kde vám je mohou posílat."
 
 msgid "Add-on Details"
 msgstr "Detaily doplňku"
@@ -3310,8 +3141,8 @@ msgid "Support Information for {0}"
 msgstr "Informace o podpoře pro {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Chcete-li zobrazit e-mailovou adresu pro dotazy na podporu, zadejte ji zde. Máte-li různé adresy pro různé jazyky, můžete přidat více překladů tohoto políčka. Relevantní pouze pro zveřejněné "
 "doplňky."
@@ -3406,11 +3237,11 @@ msgid "Whiteboard"
 msgstr "Poznámka pro redaktora"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Poznámka pro redaktora je místo, kde můžete poskytnout informace relevantní pro váš doplněk redaktorovi. Používejte jej pro informace, jak otestovat doplněk, a pro kterékoliv informace, které mohou "
-"pomoci. Poznámka je upravitelná redaktory."
+"Poznámka pro redaktora je místo, kde můžete pro redaktora napsat informace relevantní pro váš doplněk a jeho verzi. Používejte jej pro informace, jak otestovat doplněk, a jakékoliv další informace, "
+"které mohou pomoci. Poznámka je upravitelná redaktory."
 
 msgid "Remove this dependent add-on"
 msgstr "Odebrat závislý doplněk"
@@ -3428,8 +3259,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro zveřejněné"
-" doplňky."
+"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro "
+"zveřejněné doplňky."
 
 msgid "Select an icon for your add-on:"
 msgstr "Vyberte ikonku vašeho doplňku:"
@@ -3465,6 +3296,39 @@ msgstr "Zadejte prosím nadpis tohoto obrázku:"
 
 msgid "Add a Screenshot..."
 msgstr "Přidání obrázku..."
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Mohou ostatní sdílet váš doplněk za předpokladu, že vás uvedou jako autora?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. A to včetně komerčního použití."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Bez možnosti komerčního použití."
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Mohou ostatní komerčně využívat váš doplněk?"
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Mohou ostatní vytvářet odvozená díla z vašeho doplňku?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Dává též svolení na vytváření odvozených děl."
+
+msgid "Yes, as long as they share alike"
+msgstr "Ano, pokud je respektována původní licence"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "Licence umožňuje ostatním distribuovat odvozenou práci pouze pod stejnou licencí či jinou, která je slučitelná s licencí původního díla."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licence umožňuje ostatním kopírovat, distribuovat a přenášet dílo pouze v nezměněné podobě — odvozená díla nejsou povolena."
+
+msgid "Your Add-on will be released under the following license:"
+msgstr "Váš motiv bude k dispozici pod následující licencí:"
+
+msgid "Select a different license."
+msgstr "Volba odlišné licence."
 
 msgid "Tests"
 msgstr "Testy"
@@ -3548,9 +3412,6 @@ msgstr "Denní statistiky o počtech stažení a uživatelích."
 msgid "Statistics"
 msgstr "Statistiky"
 
-msgid "Manage Payments"
-msgstr "Správa plateb"
-
 msgid "Manage Status & Versions"
 msgstr "Správa stavů a verzí"
 
@@ -3632,6 +3493,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Označte, pokud je váš doplněk experimentální nebo jiným způsobem nevhodný pro běžné používání.  Doplněk bude zveřejněn, ale bude mít omezenou viditelnost.  Toto nastavení můžete později změnit."
 
+msgid "Select a category for this add-on:"
+msgstr "Zvolte kategorii pro tento doplněk:"
+
 msgid "Support email:"
 msgstr "E-mail podpory:"
 
@@ -3641,8 +3505,8 @@ msgstr "Stránka podpory:"
 msgid "License:"
 msgstr "Licence:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Vyberte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke svému zdrojovému kódu."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Zvolte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke svému zdrojovému kódu."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany soukromí vysvětlit, jaká data jsou odesílána a jak jsou použita."
@@ -3659,14 +3523,8 @@ msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 msgid "Cancel and Disable Version"
 msgstr "Zrušit a zakázat verzi"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Zrušit kontrolu a zakázat verzi"
-
 msgid "Submit Version"
 msgstr "Odeslat verzi"
-
-msgid "Submit Version for Review"
-msgstr "Odeslat verzi ke kontrole"
 
 msgid "Describe Version"
 msgstr "Popište verzi"
@@ -3755,8 +3613,12 @@ msgstr "Kde bude verze hostována"
 msgid "Upload Version"
 msgstr "Nahrát verzi"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Pro nahrání balíčku se svým doplňkem a omezení cílových platforem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Pro nahrání balíčku se svým doplňkem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Vytvoření nového motivu"
 
 msgid "Which platforms is this file compatible with?"
 msgstr "S kterými platformami je tento soubor kompatibilní?"
@@ -3772,6 +3634,91 @@ msgstr "Odeslat soubor"
 
 msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Motiv byl smazán."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Licence motivu"
+
+msgid "Select a header image for your Theme."
+msgstr "Zvolte obrázek hlavičky pro váš motiv."
+
+msgid "required"
+msgstr "vyžadováno"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Zarovnána doprava nahoru"
+
+msgid "Select a different header image"
+msgstr "Vybrat jiný obrázek hlavičky"
+
+msgid "Select colors for your Theme."
+msgstr "Zvolte barvy pro váš motiv."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Jedná se o barvu textu na panelech."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(volitelné)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Pro náhled přejeďte myší"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Úspěšné motivy vzhledu"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Nahrát soubor"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -3791,11 +3738,11 @@ msgstr "JWT secret"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a "
-"href=\"%(docs_url)s\">API dokumentaci</a>."
+"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a href="
+"\"%(docs_url)s\">API dokumentaci</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Nemáte žádné přihlašovací údaje k API."
@@ -3827,14 +3774,11 @@ msgstr "Váš doplněk byl zakázán správcem stránky a již není na našich 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Váš doplněk nebude zobrazován ve výsledcích vyhledávání a na jeho stránce se zobrazí informace, že jste jej zakázali. V tomto stavu také nebudou přijímány nové verze."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Vytvořeno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b. %%e %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Stav kompatibility doplňku s multiprocesovou architekturou:"
 
@@ -3874,38 +3818,6 @@ msgstr "Poslední verze:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Toto je nejnovější nezveřejněná nahraná veze."
-
-msgid "(required since this add-on accepts contributions)"
-msgstr "(vyžadováno, protože tento doplněk přijímá příspěvky)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Správa svého profilu vývojáře"
-
-msgid "Create a Developer Profile"
-msgstr "Vytvořit profil vývojáře"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Váš profil vývojáře řekne uživatelům něco více o vás. Dozvědí se, proč jste tento doplněk vytvořili, co s ním dalšího plánujete apod. Tento profil je vyžadován u doplňků, které žádají o příspěvky, "
-"ale může být též užitečný u vývojářů, kteří chtějí být ve spojení s uživateli."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Ujistěte se, že je váš uživatelský profil aktuální."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Aktualizace mého uživatelského profilu.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Ať už to byl nápad, který se zrodil ve frontě v obchodě s potravinami nebo řešení konkrétní potřeby, řekněte svůj příběh."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Řekněte svým uživatelům, co se v brzké době chystá a na co se mohou těšit."
 
 msgid "Upload New Version"
 msgstr "Nahrát novou verzi"
@@ -4019,11 +3931,11 @@ msgstr "Nahlásit chybu"
 msgid "Site Status"
 msgstr "Stav stránky "
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: nástroj pro sestavení a testování rozšíření"
+
 msgid "Compatibility Checker"
 msgstr "Kontrola kompatibility doplňku"
-
-msgid "Compatibility Reporter"
-msgstr "Hlášení o kompatibilitě"
 
 msgid "Promote"
 msgstr "Propagovat"
@@ -4094,6 +4006,7 @@ msgstr "Jste připraveni nahrát doplněk? Přečtěte si našeho průvodce, kte
 msgid "See Tutorial"
 msgstr "Prohlédnout si průvoce"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Zobrazit všechny příspěvky"
 
@@ -4116,6 +4029,9 @@ msgstr "Dokumenty"
 msgid "Sign Out"
 msgstr "Odhlásit se"
 
+msgid "No Photo"
+msgstr "Žádná fotografie"
+
 msgid "User Photo"
 msgstr "Fotografie uživatele"
 
@@ -4128,11 +4044,11 @@ msgstr "Přizpůsobte si Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
-"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Doplňky umožňují milionům uživatelů Firefoxu vylepšit svůj prohlížeč. Pokud znáte %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a %(css_link_open)sCSS%(link_close)s,"
-" máte všechny potřebné schopnosti pro vytvoření skvělého doplňku."
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit jejich prohlížeč. Pokud znáte %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a %(css_link_open)sCSS"
+"%(link_close)s, máte všechny potřebné schopnosti k vytvoření skvělého doplňku."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučit se vytvářet doplňky"
@@ -4153,114 +4069,20 @@ msgstr "Je váš doplněk hotový? Odešlete své rozšíření nebo motiv ke zv
 msgid "Sign In"
 msgstr "Přihlásit se"
 
-# Header for a column in a table
-msgid "Validator"
-msgstr "Validátor"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Nástroj do příkazové řádky pro sestavování, spouštění a testování rozšíření."
 
 msgid "Automated code tests for your add-on."
 msgstr "Automatické testy kódu vašeho doplňku."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Zjistěte, jak pravděpodobné je, že váš doplněk bude ovlivněn změnami ve Firefoxu."
+msgid "Compatibility Test"
+msgstr "Test kompatibility"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Sdělte nám, zda doplněk funguje v konkrétní verzi Firefoxu."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "Aktuálně žádáte o <b>příspěvky</b> od uživatelů"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Vaše stránka s příspěvky: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Zakázat příspěvky"
-
-msgid "Voluntary Contributions"
-msgstr "Dobrovolné příspěvky"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Doplněk zahrnutý v našem programu pro příspěvky smí žádat od uživatelů dobrovolné finanční příspěvky."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Umožněte v Centru pro vývojáře uživatelům podporovat váš doplněk"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Zvolte, kdy a jak budou uživatelé žádáni o příspěvek"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Dostávat příspěvky na svůj účet na PayPal či je zasílat organizaci dle své volby"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Příspěvky jsou dostupné pouze pro doplňky se zveřejněnými verzemi."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Příspěvky jsou dostupné pouze pro doplňky s <a href=\"%(url)s\">vyplněným profilem vývojáře</a>."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Příspěvky jsou dostupné pouze pro schválené doplňky."
-
-msgid "Set up Contributions"
-msgstr "Nastavení příspěvků"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Krok 2: Ceny a dostupnost"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "nebo <a href=\"%(cancel)s\">Zrušit</a>"
-
-msgid "Contributions"
-msgstr "Příspěvky"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Pokud chcete začít žádat o příspěvky od uživatelů, vyplňte pole níže."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Kdo u doplňku dostane získané příspěvky?"
-
-msgid "What is the name of the organization?"
-msgstr "Jaké je jméno organizace?"
-
-msgid "What is the URL of the organization?"
-msgstr "Jaké je URL organizace?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "Jaké je PayPal ID organizace?"
-
-msgid "What is your PayPal ID?"
-msgstr "Co je vaše PayPal ID?"
-
-msgid "Sign up for PayPal"
-msgstr "Přihlásit se k PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "Jaká je doporučená částka příspěvku?"
-
-msgid "(Example: 3.99)"
-msgstr "(Například: 3,99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Kdy by měli být uživatelé žádáni o příspěvky?"
-
-msgid "Send a thank-you note?"
-msgstr "Poslat poděkování?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Uživatelům, kteří přispějí na doplněk, zašleme e-mail s tímto textem."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"Doporučujeme poděkovat uživateli a říci mu, jak moc oceňujete jeho podporu. Můžete mu též říci, co dalšího s doplňkem plánujete či jaké další doplňky jste vytvořili, a které tak může vyzkoušet."
-
-msgid "Activate Contributions"
-msgstr "Aktivace příspěvků"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "nebo <a id=\"setup-cancel\" href=\"#\">Zrušit</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Ověřte, zda je vaše rozšíření kompatibilní s Firefoxem."
 
 msgid "Transfer ownership"
 msgstr "Přesun vlastnictví"
@@ -4286,35 +4108,14 @@ msgstr "Licence motivu"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mohou ostatní sdílet váš motiv za předpokladu, že vás uvedou jako autora?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. A to včetně komerčního použití."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Bez možnosti komerčního použití."
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Mohou ostatní komerčně využívat váš motiv?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Mohou ostatní vytvářet odvozená díla z vašeho motivu?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Dává též svolení na vytváření odvozených děl."
-
-msgid "Yes, as long as they share alike"
-msgstr "Ano, pokud je respektována původní licence"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Licence umožňuje ostatním distribuovat odvozenou práci pouze pod stejnou licencí či jinou, která je slučitelná s licencí původního díla."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licence umožňuje ostatním kopírovat, distribuovat a přenášet dílo pouze v nezměněné podobě — odvozená díla nejsou povolena."
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Váš motiv bude k dispozici pod následující licencí:"
-
-msgid "Select a different license."
-msgstr "Volba odlišné licence."
 
 msgid "Select a license for your Theme."
 msgstr "Zvolte licenci vašeho motivu."
@@ -4345,9 +4146,6 @@ msgstr "Hlavička"
 
 msgid "Footer"
 msgstr "Patička"
-
-msgid "Select colors for your Theme."
-msgstr "Zvolte barvy pro váš motiv."
 
 msgid "Foreground Text"
 msgstr "Text na popředí"
@@ -4383,8 +4181,8 @@ msgstr "Dejte vašemu motivu jméno."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Souhlasím s %(agreement_link_open)sDohodou o distribuci doplňků pro Firefox%(link_close)s a se zpracováním mých údajů v souladu se %(privacy_notice_link_open)sZásadami ochrany osobních údajů pro "
 "webové stránky, sdělení a soubory cookies%(link_close)s."
@@ -4413,9 +4211,6 @@ msgstr "Zobrazte si a odebírejte svůj <a href=\"%(feed_url)s\">přehled aktivi
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Připojte se do konverzace v našich <a href=\"%(forum_url)s\">fórech</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Zvolte obrázek hlavičky pro váš motiv."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixelů"
 
@@ -4424,12 +4219,6 @@ msgstr "max 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG nebo JPG"
-
-msgid "Aligned to top-right"
-msgstr "Zarovnána doprava nahoru"
-
-msgid "Select a different header image"
-msgstr "Vybrat jiný obrázek hlavičky"
 
 msgid "Select a footer image for your Theme."
 msgstr "Zvolte obrázek patičky pro váš motiv."
@@ -4446,8 +4235,8 @@ msgstr "Vybrat jiný obrázek patičky"
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Správa {0}"
 
@@ -4617,39 +4406,34 @@ msgstr "Opravdu chcete zrušit vaši žádost o kontrolu?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentace k doplňku :: Centrum pro vývojáře doplňků"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chyb"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Rychlý a efektivní blokovač reklam. uBlock Origin upravuje stránku pomocí tisíců filtrů bez toho, aby plýtval vaší pamětí."
+
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
-
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zlepšete svůj pravopis {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Kontrola pravopisu ve více než 25 jazycích přímo ve vašem prohlížeči."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -4657,869 +4441,11 @@ msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Užijte si sadu nových funkcí pro YouTube, např. režim kina, blokování reklam, ovládání automatického přehrávání a další."
 
-msgid "Approved reviews"
-msgstr "Schválené recenze"
-
-msgid "Deleted reviews"
-msgstr "Smazané recenze"
-
-msgid "View entries between"
-msgstr "Zobrazit položky mezi"
-
-msgid "and"
-msgstr "a"
-
-msgid "Filter by type/action"
-msgstr "Filtrovat dle typu/akce"
-
-msgid "Passed automatic validation"
-msgstr "Prošlo automatickou kontrolou"
-
-msgid "Failed automatic validation"
-msgstr "Neprošlo automatickou kontrolou"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrovat podle stavu automatické kontroly"
-
-msgid "containing"
-msgstr "obsahující"
-
-msgid "start"
-msgstr "začátek"
-
-msgid "end"
-msgstr "konec"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "doplněk, recenze nebo komentář"
-
-msgid "Search by add-on name / author email"
-msgstr "Hledat dle jména doplňku / e-mailu autora"
-
-msgid "yes"
-msgstr "ano"
-
-msgid "no"
-msgstr "ne"
-
-msgid "Admin Flag"
-msgstr "Kontrola administrátorem"
-
-msgid "Add-on Types"
-msgstr "Typy doplňků"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Hledat dle jména doplňku / e-mailu autora / guid"
-
-msgid "Max. Version"
-msgstr "Max. verze"
-
-msgid "Comments:"
-msgstr "Komentář:"
-
-msgid "Operating systems:"
-msgstr "Operační systémy:"
-
-msgid "Applications:"
-msgstr "Aplikace:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Upozornit mě příště, když je doplněk aktualizován. (Následné aktualizace nebudou generovat e-mail)"
-
-msgid "Clear Admin Review Flag"
-msgstr "Vymazat příznat kontroly administrátorem"
-
-msgid "Is more info requested?"
-msgstr "Vyžadováno více informací?"
-
-msgid "Choose a canned response..."
-msgstr "Volba předpřipravené odpovědi..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "jméno motivu"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Někdo jiný aktuálně kontroluje tento motiv."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "aplikace, recenze nebo komentář"
-
-msgid "Keep review; remove flags"
-msgstr "Ponechat recenzi; odstranit nahlášení"
-
-msgid "Skip for now"
-msgstr "Nyní neřešit"
-
-msgid "Delete review"
-msgstr "Smazat recenzi"
-
-msgid "Admin Review"
-msgstr "Kontrola administrátorem"
-
-msgid "Jetpack Add-on"
-msgstr "Doplněk postavený na Jetpacku"
-
-msgid "More Information Requested"
-msgstr "Vyžadováno více informací"
-
-msgid "Contains Reviewer Comment"
-msgstr "Obsahuje komentář redaktora"
-
-msgid "Sources provided"
-msgstr "Poskytnuty zdrojové kódy"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Používá vlastní CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Používá oprávnění nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr "Pro všechny URL adresy přidává do obsahu vlastní skript."
-
-msgid "Has too many daily users."
-msgstr "Má příliš mnoho denních uživatelů."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Má příliš málo po sobě jdoucích lidmi schválených aktualizací."
-
-msgid "Has a pending info request."
-msgstr "Čeká na doplnění informací."
-
-msgid "Is flagged for admin review."
-msgstr "Označeno pro kontrolu správcem."
-
-msgid "Is locked by a reviewer."
-msgstr "Uzamčeno redaktorem."
-
-msgid "Duplicate Submission"
-msgstr "Duplicitní odeslání"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Děkujeme za přidání vašeho motivu"
-
-msgid "A problem with your Theme submission"
-msgstr "Při přidávání vašeho motivu nastal problém"
-
-msgid "Theme submission flagged for review"
-msgstr "Odeslání motivu označeno pro kontrolu"
-
-msgid "A question about your Theme submission"
-msgstr "Otázka k vašemu odeslání motivu"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Waiting Time"
-msgstr "Doba čekání"
-
-msgid "Flags"
-msgstr "Atributy"
-
-msgid "moments ago"
-msgstr "před chvílí"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuta"
-msgstr[1] "{0} minuty"
-msgstr[2] "{0} minut"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hodina"
-msgstr[1] "{0} hodiny"
-msgstr[2] "{0} hodin"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} den"
-msgstr[1] "{0} dny"
-msgstr[2] "{0} dní"
-
-msgid "Last Review"
-msgstr "Poslední kontrola"
-
-msgid "Last Update"
-msgstr "Poslední aktualizace"
-
-msgid "No Reviews"
-msgstr "Žádné recenze"
-
-msgid "Weight"
-msgstr "Váha"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentáře budou zaslány vývojáři."
-
-msgid "Confirm Approval"
-msgstr "Potvrdit schválení"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
-
-msgid "Reject Multiple Versions"
-msgstr "Odmítnout více verzí"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Toto povede k odmítnutí vybraných zveřejněných verzí. Komentáře budou odeslány vývojáři."
-
-msgid "Reviewer reply"
-msgstr "Odpověď redaktora"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Tímto pošlete vývojáři zprávu. Jakmile odpoví, budete upozorněni."
-
-msgid "Request super-review"
-msgstr "Vyžádat kontrolu administrátorem"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Pokud máte ohledně doplňku pochybnosti, o kterých si myslíte, že by se na ně měl podívat hlavní redaktor, vložte svůj komentář níže. Vývojář jej neuvidí."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nové doplňky (pod 58 dní)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Snesitelné (5 až 10 dní)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "S prodlevou (více než 10 dní)"
-
-msgid "An unknown error occurred"
-msgstr "Nastala neznámá chyba"
-
-msgid "Self-reviews are not allowed."
-msgstr "Kontrola vlastních doplňků není povolena."
-
-msgid "Review successfully processed."
-msgstr "Kontrola úspěšně provedena."
-
-msgid "Review lock limit reached"
-msgstr "Dosažen limit recenzí"
-
-msgid "was approved"
-msgstr "byl schválen"
-
-msgid "given preliminary review"
-msgstr "byl předběžně zkontrolován"
-
-msgid "rejected"
-msgstr "zamítnuto"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "bude detailně zkontrolován"
-
-msgid "needs more information"
-msgstr "potřeba více informací"
-
-msgid "needs super review"
-msgstr "potřebuje kontrolu administrátory"
-
-msgid "commented"
-msgstr "okomentováno"
-
-msgid "confirmed as approved"
-msgstr "byl potvrzen a schválen"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} motiv úspěšně zpracován (+{1} bodů, {2} celkem)."
-msgstr[1] "{0} motivy úspěšně zpracovány (+{1} bodů, {2} celkem)."
-msgstr[2] "{0} motivů úspěšně zpracováno (+{1} bodů, {2} celkem)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři nyní mohou tyto doplňky kontrolovat. Můžete nyní chtít obnovit stránku a vidět změny níže v tabulce."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Nahlášená zneužití"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Nahlášená zneužití doplňku {addon} ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Podporuje"
-
-msgid "Visibility"
-msgstr "Viditelnost"
-
-msgid "Visible"
-msgstr "Viditelné"
-
-msgid "Average Daily Users"
-msgstr "Průměrný počet denních uživatelů"
-
-msgid "Abuse Reports"
-msgstr "Hlášená zneužití"
-
-msgid "View Privacy Policy"
-msgstr "Zobrazit zásady ochrany soukromí"
-
-msgid "Requires Payment"
-msgstr "Vyžaduje platbu"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "Datum posledního schválení"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Schválení od poslední automatické kontroly"
-
-msgid "Abuse Reports ({num})"
-msgstr "Nahlášená zneužití ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Záporné recenze ({num})"
-
-msgid "More about this add-on"
-msgstr "Více o doplňku"
-
-msgid "Image Gallery"
-msgstr "Galerie obrázků"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Zpět na domovskou stránku Nástrojů redaktora"
-
-msgid "Queues"
-msgstr "Fronty"
-
-msgid "New Add-ons"
-msgstr "Nové doplňky"
-
-msgid "Updates"
-msgstr "Aktualizace"
-
-msgid "Moderated Reviews"
-msgstr "Moderované recenze"
-
-msgid "Auto Approved Add-ons"
-msgstr "Automaticky schválené doplňky"
-
-msgid "Unlisted Queues"
-msgstr "Nezařazené fronty"
-
-msgid "All Unlisted Add-ons"
-msgstr "Všechny neveřejné doplňky"
-
-msgid "Logs"
-msgstr "Záznamy"
-
-msgid "Add-on Review Log"
-msgstr "Seznam kontrol doplňků"
-
-msgid "Moderated Review Log"
-msgstr "Seznam moderovaných recenzí"
-
-msgid "Signed Beta Files Log"
-msgstr "Žurnál podepsaných beta souborů"
-
-msgid "Announcement"
-msgstr "Oznámení"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filtr"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Event"
-msgstr "Událost"
-
-msgid "More details."
-msgstr "Více informací."
-
-msgid "No events found for this period."
-msgstr "V této periodě nebyla nalezena žádná událost."
-
-msgid "Log details"
-msgstr "Detaily záznamů"
-
-msgid "Review Author"
-msgstr "Autor recenze"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Název doplňku"
-
-msgid "Review Title"
-msgstr "Nadpis recenze"
-
-msgid "Review Text"
-msgstr "Text recenze"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Recenze byla označena k odstranění."
-
-msgid "Undelete"
-msgstr "Vrátit zpět odstranění"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nový doplněk ({num})"
-msgstr[1] "Nové doplňky ({num})"
-msgstr[2] "Nové doplňky ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Aktualizace ({num})"
-msgstr[1] "Aktualizace ({num})"
-msgstr[2] "Aktualizace ({num})"
-
-msgid "Current waiting times:"
-msgstr "Aktuální doby čekání:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} doplněk"
-msgstr[1] "{0} doplňky"
-msgstr[2] "{0} doplňků"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Celkový počet kontrol"
-
-msgid "Reviews This Month"
-msgstr "Kontrol tento měsíc"
-
-msgid "New Reviewers"
-msgstr "Noví redaktoři"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Jste #{0}. s {1} kontrolami"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Moderování recenzí ({num})"
-msgstr[1] "Moderování recenzí ({num})"
-msgstr[2] "Moderování recenzí ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Nástěnka redaktorů"
-
-# 75%
-# 100%
-msgid "No review points awarded yet."
-msgstr "Dosud jste neobdrželi žádný bod."
-
-msgid "Rank"
-msgstr "Hodnocení"
-
-msgid "Score"
-msgstr "Skóre"
-
-msgid "Update message of the day"
-msgstr "Aktualizace zprávy dne"
-
-msgid "Save"
-msgstr "Uložit"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Aktivita redaktora"
-
-msgid "View statistics for user"
-msgstr "Zobrazit statistiky uživatele"
-
-msgid "Range"
-msgstr "Rozsah"
-
-msgid "Your Reviews"
-msgstr "Vaše kontroly"
-
-msgid "By {user_name}"
-msgstr "Od {user_name}"
-
-msgid "Active Contributors"
-msgstr "Aktivní přispěvatelé"
-
-msgid "This Month"
-msgstr "Tento měsíc"
-
-msgid "This Year"
-msgstr "Tento rok"
-
-msgid "Monthly Performance"
-msgstr "Měsíční aktivita"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "All-time Point Breakdown by Type"
-
-msgid "Total"
-msgstr "Celkem"
-
-msgid "Month"
-msgstr "Měsíce"
-
-msgid "Year"
-msgstr "Rok"
-
-msgid "All-Time"
-msgstr "Po celou dobu"
-
-msgid "Advanced Search"
-msgstr "Rozšířené vyhledávání"
-
-msgid "clear search"
-msgstr "vymazat hledání"
-
-msgid "Process Reviews"
-msgstr "Provést kontrolu"
-
-msgid "Moderation actions:"
-msgstr "Akce moderátora:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "od %(user)s dne %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s dne %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Všechny recenze byly zkontrolovány. Skvělá práce!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Aktuálně zde nejsou na kontrolu žádné doplňky tohoto typu."
-
-msgid "Helpful Links:"
-msgstr "Užitečné odkazy:"
-
-msgid "Add-on Policy"
-msgstr "Zásady pro doplňky"
-
-msgid "Editors' Guide"
-msgstr "Průvodce redaktora"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Kontrola {0}"
-
-msgid "Add-on user change history"
-msgstr "Historie změn doplňku uživatelem"
-
-msgid "Add-on History"
-msgstr "Historie doplňku"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Kompatibilita:"
-
-msgid "Additional sources:"
-msgstr "Další zdroje:"
-
-msgid "Download files"
-msgstr "Stáhnout soubory"
-
-msgid "The developer has provided source code."
-msgstr "Vývojář poskytl zdrojový kód."
-
-msgid "Not Auto Approved Because"
-msgstr "Nebylo automaticky schváleno"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Skript pro automatické schválení ještě pro tuto verzi neproběhl."
-
-msgid "This version has not been reviewed."
-msgstr "Tato verze nebyla zkontrolována."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Prosím, vyberte jednu nebo více verzí ze seznamu níže."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Stále můžete tento formulář odeslat, ale udělejte to pouze tehdy, když víte, že to nezpůsobí konflikt."
-
-msgid "Insert canned response..."
-msgstr "Vložení předpřipravené odpovědi..."
-
-msgid "Files:"
-msgstr "Soubory:"
-
-msgid "Tested on:"
-msgstr "Testováno na:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku prohlížel."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "Poznámka pro redaktora je místo pro výměnu relevantních informací o tomto doplňku (bez ohledu na verzi) mezi vývojářem a redaktorem. Poznámka je viditelná a upravovatelná oběma."
-
-msgid "Update the whiteboard"
-msgstr "Aktualizovat poznámku pro redaktora"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Stránka administrace"
-
-msgid "Review This Add-on"
-msgstr "Kontrola doplňku"
-
-msgid "More Information"
-msgstr "Více informací"
-
-msgid "Resolution"
-msgstr "Řešení"
-
-msgid "Reviewer"
-msgstr "Redaktor"
-
-msgid "Add-on has been deleted."
-msgstr "Doplněk byl smazán."
-
-msgid "Show Comments"
-msgstr "Zobrazit komentáře"
-
-msgid "Hide Comments"
-msgstr "Skrýt komentáře"
-
-msgid "No reviews found for this period."
-msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "Uživatel %(user)s [%(ip_address)s] %(object)s nahlásil dne %(date)s"
-
-msgid "Dismiss this announcement"
-msgstr "Skrýt toto oznámení"
-
-msgid "Files in this version:"
-msgstr "Soubory v této verzi:"
-
-msgid "Contents"
-msgstr "Obsah"
-
-msgid "Compare"
-msgstr "Porovnání"
-
-msgid "Permissions:"
-msgstr "Oprávnění:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Od %(user)s dne %(date)s</div>"
-
-msgid "Older"
-msgstr "Starší"
-
-msgid "Newer"
-msgstr "Novější"
-
-msgid "Recent Points"
-msgstr "Nedávno přidělené body"
-
-msgid "No points awarded yet."
-msgstr "Dosud jste neobdrželi žádný bod."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Aktivní redaktoři (posledních 7 dní)"
-
-msgid "No top reviewers yet."
-msgstr "Dosud nejsou žádní hlavní redaktoři."
-
-msgid "All Time"
-msgstr "Po celý čas"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Obdrželi jste <span>{0}</span> bodů."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s dne %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Datum smazáno"
-
-msgid "No deleted themes found for this period."
-msgstr "V tomto období nebyly nalezeny žádné smazané motivy."
-
-msgid "Theme Review History for {0}"
-msgstr "Historie kontrol motivů pro {0}"
-
-msgid "Review Date"
-msgstr "Datum kontroly"
-
-msgid "Action"
-msgstr "Akce"
-
-msgid "Reason"
-msgstr "Důvod"
-
-msgid "There are currently no reviews."
-msgstr "Aktuálně nejsou dostupné žádné kontroly."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} čekajících kontrol na motivy"
-msgstr[1] "{num} čekající kontroly na motivy"
-msgstr[2] "{num} čekajících kontrol na motivy"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} označená recenze"
-msgstr[1] "{num} označené recenze"
-msgstr[2] "{num} označených recenzí"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} aktualizace"
-msgstr[1] "{num} aktualizace"
-msgstr[2] "{num} aktualizací"
-
-msgid "Flagged Themes"
-msgstr "Označené motivy"
-
-msgid "Theme Review Queue"
-msgstr "Fronta pro schválení motivů"
-
-msgid "Review Options"
-msgstr "Možnosti kontroly"
-
-msgid "Auto-advance after review"
-msgstr "Pokročilé možnosti po kontrole"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Povolit klávesové zkratky"
-
-msgid "Keyboard Shortcuts"
-msgstr "Klávesové zkratky"
-
-msgid "Next Theme"
-msgstr "Další motiv"
-
-msgid "Previous Theme"
-msgstr "Předchozí motiv"
-
-msgid "Your Review History"
-msgstr "Vaše historie kontrol"
-
-msgid "Commit Review"
-msgstr "Odeslat kontrolu"
-
-msgid "Commit Reviews"
-msgstr "Odeslat kontroly"
-
-msgid "{0} out of {1} reviewed"
-msgstr "Zkontrolováno {0} z {1}"
-
-msgid "There are currently no Themes to review."
-msgstr "Aktuálně nejsou dostupné žádné motivy na kontrolu."
-
-msgid "Clear Search"
-msgstr "Zrušit hledání"
-
-msgid "Release My Theme Locks"
-msgstr "Uvolnit mé zámky u motivů"
-
-msgid "Interactive Theme Queue"
-msgstr "Interaktivní fronta s motivy"
-
-msgid "Reviewers' Guide"
-msgstr "Příručka redaktora"
-
-msgid "Theme Review for {0}"
-msgstr "Kontroly motivu {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Pravděpodobně duplicitní odeslání)"
-
-msgid "Past Review Notes"
-msgstr "Předchozí poznámky ke kontrola"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Vyžadováno více informací: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Označeno: {0}"
-
-msgid "Approve Theme"
-msgstr "Schválit motiv"
-
-msgid "Field required"
-msgstr "Pole je vyžadováno"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Vložte ID či URL duplikátu"
-
-msgid "Select a reason for rejection"
-msgstr "Zvolte důvod odmítnutí"
-
-msgid "Describe your reason for rejection"
-msgstr "Popište důvod odmítnutí"
-
-msgid "Ask a question to the artist"
-msgstr "Položit otázku umělci"
-
-msgid "Describe your reason for flagging"
-msgstr "Popište váš důvod pro označení"
-
-msgid "Rejected or Unreviewed"
-msgstr "Zamítnuté nebo nezkontrolované"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[stav:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nový doplněk ({0})"
-msgstr[1] "Nové doplňky ({0})"
-msgstr[2] "Nové doplňky ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Aktualizace ({0})"
-msgstr[1] "Aktualizace ({0})"
-msgstr[2] "Aktualizace ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderované recenze ({0})"
-msgstr[1] "Moderované recenze ({0})"
-msgstr[2] "Moderované recenze ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Automaticky schválený doplněk ({0})"
-msgstr[1] "Automaticky schválené doplňky ({0})"
-msgstr[2] "Automaticky schválené doplňky ({0})"
-
-msgid "Flagged"
-msgstr "Označeno"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Tisíce úžasných emoji vždy po ruce."
 
 msgid "Cannot diff a version against itself"
 msgstr "Nelze porovnat verzi proti sama sobě"
@@ -5537,7 +4463,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID je vyžadováno pro Firefox verze 47 a nižší."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Nejnižší možná hodnota \"strict_min_version\" je 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Nelze nalézt minimální / maximální verzi. Zkontrolujte, zda \"strict_min_version\" nebo \"strict_max_version\" neobsahuje nepodporovanou verzi."
@@ -5548,6 +4474,10 @@ msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je
 
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "V archivu se nachází soubor s neplatným názvem. Ujistěte se prosím, že všechny názvy souborů jsou v kódování utf-8 nebo latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5564,9 +4494,6 @@ msgstr "Nepodařilo se zpracovat manifest soubor."
 
 msgid "Could not find an add-on ID."
 msgstr "ID doplňku nelze nalézt."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID doplňku může být maximálně 64 znaků dlouhé."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5619,6 +4546,9 @@ msgstr "Soubor s doplňkem je zpracováván. Čekejte prosím."
 
 msgid "Fetching validation results..."
 msgstr "Probíhá získávání výsledků kontroly..."
+
+msgid "Files:"
+msgstr "Soubory:"
 
 msgid "Deleted files:"
 msgstr "Smazané soubory:"
@@ -5826,6 +4756,9 @@ msgstr "Děkujeme, že používáte aplikaci %(app)s a podporujete tak <a href=\
 msgid "Add-ons downloaded:"
 msgstr "Stažené doplňky:"
 
+msgid "View Privacy Policy"
+msgstr "Zobrazit zásady ochrany soukromí"
+
 msgid "Active Users"
 msgstr "Aktivní uživatelé"
 
@@ -5847,498 +4780,6 @@ msgstr "Objevte experimentální funkce prohlížeče jako první."
 msgid "Get Started"
 msgstr "Začínáme"
 
-msgid "United Arab Emirates Dirham"
-msgstr "Dirham Spojených arabských emirátů"
-
-msgid "Afghanistan Afghani"
-msgstr "Afghánský afghání"
-
-msgid "Albania Lek"
-msgstr "Albánský lek"
-
-msgid "Armenia Dram"
-msgstr "Arménská drachma"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Gulden Nizozemských Antil"
-
-msgid "Angola Kwanza"
-msgstr "Angolská kwanza"
-
-msgid "Argentina Peso"
-msgstr "Argentinské peso"
-
-msgid "Australia Dollar"
-msgstr "Australský dolar"
-
-msgid "Aruba Guilder"
-msgstr "Arubský gulden"
-
-msgid "Azerbaijan New Manat"
-msgstr "Ázerbájdžánský nový manat"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Bosenskohercegovská marka"
-
-msgid "Barbados Dollar"
-msgstr "Barbadoský dolar"
-
-msgid "Bangladesh Taka"
-msgstr "Bangladéšská taka"
-
-msgid "Bulgaria Lev"
-msgstr "Bulharská leva"
-
-msgid "Bahrain Dinar"
-msgstr "Bahrajnský dinár"
-
-msgid "Burundi Franc"
-msgstr "Burundský frank"
-
-msgid "Bermuda Dollar"
-msgstr "Bermudský dolar"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Brunejský dolar"
-
-msgid "Bolivia Boliviano"
-msgstr "Bolivijský boliviano"
-
-msgid "Brazil Real"
-msgstr "Brazilský reál"
-
-msgid "Bahamas Dollar"
-msgstr "Bahamský dolar"
-
-msgid "Bhutan Ngultrum"
-msgstr "Bhútánský ngultrum"
-
-msgid "Botswana Pula"
-msgstr "Botswanská pula"
-
-msgid "Belarus Ruble"
-msgstr "Běloruský rubl"
-
-msgid "Belize Dollar"
-msgstr "Belizský dolar"
-
-msgid "Canada Dollar"
-msgstr "Kanadský dolar"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Frank v Kongu a Kinshase"
-
-msgid "Switzerland Franc"
-msgstr "Švýcarský frank"
-
-msgid "Chile Peso"
-msgstr "Chilské peso"
-
-msgid "China Yuan Renminbi"
-msgstr "Čínský jüan"
-
-msgid "Colombia Peso"
-msgstr "Kolumbijské peso"
-
-msgid "Costa Rica Colon"
-msgstr "Kostarický colón"
-
-msgid "Cuba Convertible Peso"
-msgstr "Kubánské konvertibilní peso"
-
-msgid "Cuba Peso"
-msgstr "Kubánské peso"
-
-msgid "Cape Verde Escudo"
-msgstr "Kapverdské escudo"
-
-msgid "Czech Republic Koruna"
-msgstr "Česká koruna"
-
-msgid "Djibouti Franc"
-msgstr "Džibutský frank"
-
-msgid "Denmark Krone"
-msgstr "Dánská koruna"
-
-msgid "Dominican Republic Peso"
-msgstr "Peso Dominikánské republiky"
-
-msgid "Algeria Dinar"
-msgstr "Alžírský dinár"
-
-msgid "Egypt Pound"
-msgstr "Egyptská libra"
-
-msgid "Eritrea Nakfa"
-msgstr "Eritrejská nakfa"
-
-msgid "Ethiopia Birr"
-msgstr "Etiopský birr"
-
-msgid "Euro Member Countries"
-msgstr "Členské země eurozóny, Euro"
-
-msgid "Fiji Dollar"
-msgstr "Fidžijský dolar"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Libra Falklandských ostrovů (Malvíny)"
-
-msgid "United Kingdom Pound"
-msgstr "Libra Spojeného království"
-
-msgid "Georgia Lari"
-msgstr "Gruzínské lari"
-
-msgid "Guernsey Pound"
-msgstr "Guernseyská libra"
-
-msgid "Ghana Cedi"
-msgstr "Ghanský cedi"
-
-msgid "Gibraltar Pound"
-msgstr "Gibraltarská libra"
-
-msgid "Gambia Dalasi"
-msgstr "Gambijský dalasi"
-
-msgid "Guinea Franc"
-msgstr "Guinejský frank"
-
-msgid "Guatemala Quetzal"
-msgstr "Guatemalský quetzal"
-
-msgid "Guyana Dollar"
-msgstr "Guyanský dolar"
-
-msgid "Hong Kong Dollar"
-msgstr "Hongkongský dolar"
-
-msgid "Honduras Lempira"
-msgstr "Honduraská lempira"
-
-msgid "Croatia Kuna"
-msgstr "Chorvatská kuna"
-
-msgid "Haiti Gourde"
-msgstr "Haitské gourde"
-
-msgid "Hungary Forint"
-msgstr "Maďarský forint"
-
-msgid "Indonesia Rupiah"
-msgstr "Indonéská rupie"
-
-msgid "Israel Shekel"
-msgstr "Izraelský šekel"
-
-msgid "Isle of Man Pound"
-msgstr "Libra Ostrova Man"
-
-msgid "India Rupee"
-msgstr "Indická rupie"
-
-msgid "Iraq Dinar"
-msgstr "Irácký dinár"
-
-msgid "Iran Rial"
-msgstr "Íránský rial"
-
-msgid "Iceland Krona"
-msgstr "Islandská koruna"
-
-msgid "Jersey Pound"
-msgstr "Jerseyská libra"
-
-msgid "Jamaica Dollar"
-msgstr "Jamajský dolar"
-
-msgid "Jordan Dinar"
-msgstr "Jordánský dinár"
-
-msgid "Japan Yen"
-msgstr "Japonský jen"
-
-msgid "Kenya Shilling"
-msgstr "Keňský šilink"
-
-msgid "Kyrgyzstan Som"
-msgstr "Kyrgyzský som"
-
-msgid "Cambodia Riel"
-msgstr "Kambodžský riel"
-
-msgid "Comoros Franc"
-msgstr "Komorský frank"
-
-msgid "Korea (North) Won"
-msgstr "Severokorejský won"
-
-msgid "Korea (South) Won"
-msgstr "Jihokorejský won"
-
-msgid "Kuwait Dinar"
-msgstr "Kuvajtský dinár"
-
-msgid "Cayman Islands Dollar"
-msgstr "Dolar Kajmanských ostrovů"
-
-msgid "Kazakhstan Tenge"
-msgstr "Kazachstánské tenge"
-
-msgid "Laos Kip"
-msgstr "Laoský kip"
-
-msgid "Lebanon Pound"
-msgstr "Libanonská libra"
-
-msgid "Sri Lanka Rupee"
-msgstr "Srílanská rupie"
-
-msgid "Liberia Dollar"
-msgstr "Liberijský dolar"
-
-msgid "Lesotho Loti"
-msgstr "Lesothský loti"
-
-msgid "Lithuania Litas"
-msgstr "Litevský litas"
-
-msgid "Latvia Lat"
-msgstr "Lotyšský lat"
-
-msgid "Libya Dinar"
-msgstr "Libyjský dinár"
-
-msgid "Morocco Dirham"
-msgstr "Marocký dirham"
-
-msgid "Moldova Leu"
-msgstr "Moldavské leu"
-
-msgid "Madagascar Ariary"
-msgstr "Madagaskarský ariary"
-
-msgid "Macedonia Denar"
-msgstr "Makedonský denár"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Kyat Myanmaru (Barma)"
-
-msgid "Mongolia Tughrik"
-msgstr "Mongolský tugrik"
-
-msgid "Macau Pataca"
-msgstr "Macauská pataca"
-
-msgid "Mauritania Ouguiya"
-msgstr "Mauretánský ouguiya"
-
-msgid "Mauritius Rupee"
-msgstr "Mauricijská rupie"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Maledivská rupie"
-
-msgid "Malawi Kwacha"
-msgstr "Malawijská kwacha"
-
-msgid "Mexico Peso"
-msgstr "Mexické peso"
-
-msgid "Malaysia Ringgit"
-msgstr "Malajský ringgit"
-
-msgid "Mozambique Metical"
-msgstr "Mozambický metical"
-
-msgid "Namibia Dollar"
-msgstr "Namibijský dolar"
-
-msgid "Nigeria Naira"
-msgstr "Nigerijská niara"
-
-msgid "Nicaragua Cordoba"
-msgstr "Nikaragujská cordoba"
-
-msgid "Norway Krone"
-msgstr "Norská koruna"
-
-msgid "Nepal Rupee"
-msgstr "Nepálská rupie"
-
-msgid "New Zealand Dollar"
-msgstr "Novozélandský dolar"
-
-msgid "Oman Rial"
-msgstr "Ománský rial"
-
-msgid "Panama Balboa"
-msgstr "Panamská balboa"
-
-msgid "Peru Nuevo Sol"
-msgstr "Peruánské Nuevo Sol"
-
-msgid "Papua New Guinea Kina"
-msgstr "Kina Papuy-Nové Guineje"
-
-msgid "Philippines Peso"
-msgstr "Filipínské peso"
-
-msgid "Pakistan Rupee"
-msgstr "Pákistánská rupie"
-
-msgid "Poland Zloty"
-msgstr "Polský złoty"
-
-msgid "Paraguay Guarani"
-msgstr "Paraguajský guarani"
-
-msgid "Qatar Riyal"
-msgstr "Katarský rial"
-
-msgid "Romania New Leu"
-msgstr "Nové rumunské leva"
-
-msgid "Serbia Dinar"
-msgstr "Srbský dinár"
-
-msgid "Russia Ruble"
-msgstr "Ruský rubl"
-
-msgid "Rwanda Franc"
-msgstr "Rwandský frank"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Saúdskoarabský rijál"
-
-msgid "Solomon Islands Dollar"
-msgstr "Dolar Šalamounových ostrovů"
-
-msgid "Seychelles Rupee"
-msgstr "Seychelská rupie"
-
-msgid "Sudan Pound"
-msgstr "Súdánská libra"
-
-msgid "Sweden Krona"
-msgstr "Švédská koruna"
-
-msgid "Singapore Dollar"
-msgstr "Singapurský dolar"
-
-msgid "Saint Helena Pound"
-msgstr "Libra Svaté Heleny"
-
-msgid "Sierra Leone Leone"
-msgstr "Sierraleonský leon"
-
-msgid "Somalia Shilling"
-msgstr "Somálský šilink"
-
-msgid "Seborga Luigino"
-msgstr "Seborgské luigino"
-
-msgid "Suriname Dollar"
-msgstr "Surinamský dolar"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Svatotomášská dobra"
-
-msgid "El Salvador Colon"
-msgstr "Salvadorský colón"
-
-msgid "Syria Pound"
-msgstr "Syrská libra"
-
-msgid "Swaziland Lilangeni"
-msgstr "Svazijský lilangeni"
-
-msgid "Thailand Baht"
-msgstr "Thajský baht"
-
-msgid "Tajikistan Somoni"
-msgstr "Tádžikistánský somoni"
-
-msgid "Turkmenistan Manat"
-msgstr "Turkmenský manat"
-
-msgid "Tunisia Dinar"
-msgstr "Tuniský dinár"
-
-msgid "Tonga Pa'anga"
-msgstr "Tonžská pa'anga"
-
-msgid "Turkey Lira"
-msgstr "Turecká lira"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Dolar Trinidadu a Tobaga"
-
-msgid "Tuvalu Dollar"
-msgstr "Tuvalský dolar"
-
-msgid "Taiwan New Dollar"
-msgstr "Nový taiwanský dolar"
-
-msgid "Tanzania Shilling"
-msgstr "Tanzánský šilink"
-
-msgid "Ukraine Hryvna"
-msgstr "Ukrajinská hřivna"
-
-msgid "Uganda Shilling"
-msgstr "Ugandský šilink"
-
-msgid "United States Dollar"
-msgstr "Americký dolar"
-
-msgid "Uruguay Peso"
-msgstr "Uruguayské peso"
-
-msgid "Uzbekistan Som"
-msgstr "Uzbekistánský som"
-
-msgid "Venezuela Bolivar"
-msgstr "Venezuelský bolívar"
-
-msgid "Viet Nam Dong"
-msgstr "Vietnamský dong"
-
-msgid "Vanuatu Vatu"
-msgstr "Vanuatský vatu"
-
-msgid "Samoa Tala"
-msgstr "Samojský tala"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "CFA Frank Francouzského afrického společenství (BEAC)"
-
-msgid "East Caribbean Dollar"
-msgstr "Východokaribský dolar"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Zvláštní práva čerpání Mezinárodního měnového fondu (IMF SDR)"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Frank Francouzského afrického společenství (BCEAO)"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Frank Francouzské kolonie v Tichém oceánu (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Jemenský rial"
-
-msgid "South Africa Rand"
-msgstr "Jihoafrický rand"
-
-msgid "Zambia Kwacha"
-msgstr "Zambijská kwacha"
-
-msgid "Zimbabwe Dollar"
-msgstr "Zimbabwský dolar"
-
 msgid "About Mozilla Add-ons"
 msgstr "O serveru Doplňky Mozilly"
 
@@ -6357,10 +4798,10 @@ msgstr "Kdo tyto doplňky vytváří?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Doplňky, které zde naleznete, jsou vytvářeny tisíci vývojáři z naší komunity, která zahrnuje jednotlivce, kteří je vytváří ve svém volném čase, ale i velké korporace. Všechny veřejné doplňky, které "
-"jsou zde vystaveny, jsou kontrolovány týmem redaktorů dříve, než jsou publikovány. Doplňky označené jako experimentální nebyly zkontrolovány a jejich používání je na vlastní riziko."
+"Doplňky, které tu najdete, vytváří tisíce vývojářů z naší komunity, která zahrnuje jednotlivce, kteří je vytváří ve svém volném čase, ale i velké firmy. Všechny zde zveřejněné doplňky jsou před "
+"publikováním kontrolovány týmem redaktorů. Doplňky označené jako experimentální nebyly zkontrolovány a jejich používání je na vlastní riziko."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Jak mohu sledovat, co se okolo AMO děje?"
@@ -6394,10 +4835,12 @@ msgstr "<a href=\"%(url)s\">Vytvořit vlastní doplněk</a>. Poskytujeme pro ně
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
+msgstr ""
+"Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomozte nám vylepšit tento web. Má otevřený zdrojový kód a hlásit chyby a posílat záplaty na mě můžete i vy. <a href=\"%(url)s\">GitHub</a> obsahuje soupis všech aktuálních chyb, starší chyby pak "
 "můžete nalézt na BugZille."
@@ -6419,7 +4862,9 @@ msgid "I have a question"
 msgstr "Mám otázku"
 
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 "Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často kladené otázky\">FAQ</abbr></a>. Pokud tam nenaleznete odpověď na svůj dotaz, můžete se <a href=\"%(forum_url)s\"> zeptat v "
 "našem fóru</a>."
@@ -6433,8 +4878,8 @@ msgstr "Kdo pracuje na tomto webu?"
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 "Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů můžete nalézt na <a href=\"%(url)s\"> stránce s "
 "poděkováním</a>."
@@ -6462,8 +4907,8 @@ msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Jakmile budete vědět, zda konkrétní doplněk funguje korektně či má problémy, otevřete Správce doplňků a klepněte na tlačítko Kompatibilita, které je umístěno u doplňku a dejte Mozille vědět, co jste"
-" při testování našli. Odeslání reportu nám pomůže říci vývojářům doplňků, zda jejich doplněk nefunguje v této verzi aplikace korektně či potřebuje některé opravy."
+"Jakmile budete vědět, zda konkrétní doplněk funguje korektně či má problémy, otevřete Správce doplňků a klepněte na tlačítko Kompatibilita, které je umístěno u doplňku a dejte Mozille vědět, co "
+"jste při testování našli. Odeslání reportu nám pomůže říci vývojářům doplňků, zda jejich doplněk nefunguje v této verzi aplikace korektně či potřebuje některé opravy."
 
 #, python-format
 msgid ""
@@ -6515,8 +4960,8 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Některé ikonky jsou z <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> a jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons"
-" Attribution 2.5 License</a>."
+"Některé ikonky jsou z <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> a jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
+"Commons Attribution 2.5 License</a>."
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
@@ -6529,8 +4974,8 @@ msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Některé stránky používají prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerční), které jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Některé stránky používají prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerční), které jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
+"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
@@ -6586,9 +5031,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
-"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
-" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
+"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 "<strong>Poznámka:</strong> XUL je ve Firefoxu považován za zastaralou technologii a doplňky používající XUL se od Firefoxu 57 nenačtou. Prosím, pro vývoj nových doplňků používejte "
 "%(webext_link_open)sWebExtensions%(link_close)s API. Pokud máte zastaralý doplněk, zvažte jeho převod na WebExtensions. Pro více informací o převodu zastaralého doplňku navštivte "
@@ -6603,8 +5048,8 @@ msgid ""
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Pro zajištění kompatibility s nejnovějším softwarem Mozilly je důležité stahovat jeho aktualizace co nejdříve jsou dostupné, a otestovat váš doplněk, zda stále správně funguje. Protože mohou nové "
-"verze mohou přinášet změny architektury, které mohou mít vliv na fungování vašeho doplňku, je třeba se aktivně zapojit do procesu testování beta verze, aby uživatelé vašeho doplňku nebyly při vydání"
-" finálního verze softwaru Mozilly změnami negativně ovlivnění."
+"verze mohou přinášet změny architektury, které mohou mít vliv na fungování vašeho doplňku, je třeba se aktivně zapojit do procesu testování beta verze, aby uživatelé vašeho doplňku nebyly při "
+"vydání finálního verze softwaru Mozilly změnami negativně ovlivnění."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "V souvislosti s tvorbou doplňku potřebuji pomoc. Kde se mohu zeptat?"
@@ -6635,8 +5080,8 @@ msgstr "Jsou nějací vývojáři třetích stran, které mohu zaměstnat pro v�
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Ano. Další vývojáře třetích stran můžete najít na <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forech</a> nebo <a "
 "href=\"%(wiki_url)s\">Mozilla Wiki</a>. Nezapomeňte, že Mozilla doporučení pro vývojáře neposkytuje."
@@ -6702,8 +5147,8 @@ msgstr "Jak svůj doplněk nahraji?"
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
+"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli "
 "%(review_policy_link_open)spoznámky ke kontrole doplňků%(link_close)s serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat."
@@ -6718,11 +5163,11 @@ msgid "What category do I choose for my add-on?"
 msgstr "Jakou kategorii mam pro svůj doplněk zvolit?"
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie by měl váš doplněk spadat, zvolte \"Ostatní\". Tým"
-" AMO může kategorie u vašeho doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
+"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie by měl váš doplněk spadat, zvolte \"Ostatní\". "
+"Tým AMO může kategorie u vašeho doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
 
 msgid "Can I specify a license agreement for using my add-on?"
 msgstr "Mohu si pro svůj doplněk určit licenční ujednání?"
@@ -6752,13 +5197,13 @@ msgstr "Kdo kontroluje můj doplněk?"
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
-" href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, zda jsou všechny nahrané doplňky"
-" stabilní a pro uživatele bezpečné. Když komunikujete s redaktory, buďte prosím slušní, trpěliví a berte ohled na to, že na kontrole doplňků (v souladu s <a href=\"%(url)s\">příručkou pro kontrolu "
-"doplňků</a>) pracují ve svém volném čase."
+"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, zda jsou všechny nahrané "
+"doplňky stabilní a pro uživatele bezpečné. Když komunikujete s redaktory, buďte prosím slušní, trpěliví a berte ohled na to, že na kontrole doplňků (v souladu s <a href=\"%(url)s\">příručkou pro "
+"kontrolu doplňků</a>) pracují ve svém volném čase."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Jaké body jsou kontrolovány u doplňku?"
@@ -6856,10 +5301,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr "Pokud nás autor kontaktuje s žádosti o kontrolu recenze, která obsahuje chybné či nepravdivé informace, provedeme její kontrolu a rozhodneme, zda ji smažeme či nikoliv."
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 "Potřebujete více informací o různých open-source licencích? Nevíte, kterou licenci byste si měli zvolit? Jaká práva která licence poskytuje? Ačkoliv nic nenahradí kompletní přečtení licence, níže "
 "jsou některé weby, které obsahují informace o některých nejpoužívanějších open-source licencích, které vám mohou pomoci si zvolit tu správnou. Tyto stránky jsou odkazovány pro vaše pohodlí a jsou "
@@ -6914,15 +5359,14 @@ msgstr "Budou doplňky fungovat s mým webovým prohlížečem či aplikací?"
 
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
 "Doplňky, které jsou dostupné v této galerii, fungují pouze v aplikacích postavených na Mozille, což jsou <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for "
 "Android</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> či <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ne všechny doplňky však fungují ve všech těchto aplikacích a jejich verzích. Každý "
-"doplněk specifikuje, které aplikace a verze podporuje. Příkladem může být doplněk fungující v aplikaci Firefox 50.0 - 52.*. U doplňků pro Firefox instalační tlačítko na webu indikuje, zda je doplněk"
-" kompatibilní či ne."
+"doplněk specifikuje, které aplikace a verze podporuje. Příkladem může být doplněk fungující v aplikaci Firefox 50.0 - 52.*. U doplňků pro Firefox instalační tlačítko na webu indikuje, zda je "
+"doplněk kompatibilní či ne."
 
 msgid "What are the different types of add-ons?"
 msgstr "Jaké typy doplňků jsou dostupné?"
@@ -6965,8 +5409,8 @@ msgid ""
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
 "Ve většině případů mohou být doplňky nainstalovány jednoduchým klepnutím na tlačítko pro instalaci. Doplňky mohou být spravovány, zakazovány či odinstalovávány ve Správci doplňků aplikace "
-"%(app_name)s. Pro detailní informaci přečtěte <a href=\"%(extension_url)s\">tento článek o rozšíření</a> nebo <a href=\"%(theme_url)s\">tento o motivech či plných motivech</a>. Pokud máte problémy s"
-" instalací doplňků, přečtěte si článek <a href=\"%(troubleshooting_url)s\">Řešení problémů s rozšířeními a motivy</a>."
+"%(app_name)s. Pro detailní informaci přečtěte <a href=\"%(extension_url)s\">tento článek o rozšíření</a> nebo <a href=\"%(theme_url)s\">tento o motivech či plných motivech</a>. Pokud máte problémy "
+"s instalací doplňků, přečtěte si článek <a href=\"%(troubleshooting_url)s\">Řešení problémů s rozšířeními a motivy</a>."
 
 msgid "How do I keep add-ons up-to-date?"
 msgstr "Jak zajistím, že budu mít doplňky aktuální?"
@@ -7008,8 +5452,8 @@ msgid ""
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Pokud doplněk není kompatibilní s vaší verzí aplikace %(app_name)s, je to obvykle proto, že vaše verze aplikace %(app_name)s je zastaralá nebo autor doplňku dosud neaktualizoval doplněk, aby byl "
-"kompatibilní s novější verzí, kterou používáte. Mozilla nedoporučuje obcházet kontrolu kompatibility, protože může vést k nestabilitě prohlížeče či ke ztrátě dat. Pokud patříte mezi uživatele, kteří"
-" testují alfa a beta verze Firefoxu, nabízíme vám <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a>, pomocí kterého můžete vývojářům doplňů pomoci s aktualizací kompatibility."
+"kompatibilní s novější verzí, kterou používáte. Mozilla nedoporučuje obcházet kontrolu kompatibility, protože může vést k nestabilitě prohlížeče či ke ztrátě dat. Pokud patříte mezi uživatele, "
+"kteří testují alfa a beta verze Firefoxu, nabízíme vám <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a>, pomocí kterého můžete vývojářům doplňů pomoci s aktualizací kompatibility."
 
 msgid "What if I have problems with an add-on?"
 msgstr "Co dělat, když mám problém s doplňkem?"
@@ -7034,8 +5478,8 @@ msgid ""
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
 "Obvykle existuje více doplňků, které nabízí obdobné funkce. Abyste si zvolili ten nejlepší, přečtěte si jeho popis a prohlédněte si přiložené snímky obrazovky. Pokud si stále ještě nemůžete vybrat, "
-"zkuste se podívat na jejich hodnocení, recenze uživatelů a statistiky. Díky tomu zjistíte, který doplněk je mezi uživateli nejpopulárnější. Můžete je také vyzkoušet všechny, čímž zjistíte, který vám"
-" nejlépe vyhovuje."
+"zkuste se podívat na jejich hodnocení, recenze uživatelů a statistiky. Díky tomu zjistíte, který doplněk je mezi uživateli nejpopulárnější. Můžete je také vyzkoušet všechny, čímž zjistíte, který "
+"vám nejlépe vyhovuje."
 
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Co mám dělat, když nemohu nalézt doplněk, který hledám?"
@@ -7045,8 +5489,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"S tisíci dostupnými doplňky je tady pro každého něco. Pokud hledáte určitý doplněk a nemůžete ho najít, zkuste hledat na jiných stránkách nebo o něm napište na našem <a "
-"href=\"%(forum_url)s\">fóru</a>."
+"S tisíci dostupnými doplňky je tady pro každého něco. Pokud hledáte určitý doplněk a nemůžete ho najít, zkuste hledat na jiných stránkách nebo o něm napište na našem <a href=\"%(forum_url)s\">fóru</"
+"a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Co znamená, že je doplněk \"experimentální\"?"
@@ -7090,11 +5534,11 @@ msgid "What are beta add-ons?"
 msgstr "Co jsou betaverze doplňků?"
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
-"Betaverze doplňků jsou nekontrolované verze, které obsahují poslední novinky, které autor doplňku připravil. Každý autor pohlíží na kvalitu betaverzí rozdílně, ale obecně byste měli předpokládat, že"
-" tyto doplňky mají horší stabilitu než ty, které jsou standardně vydávány."
+"Betaverze doplňků jsou nekontrolované verze, které obsahují poslední novinky, které autor doplňku připravil. Každý autor pohlíží na kvalitu betaverzí rozdílně, ale obecně byste měli předpokládat, "
+"že tyto doplňky mají horší stabilitu než ty, které jsou standardně vydávány."
 
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
@@ -7108,10 +5552,10 @@ msgstr "Jak mohu nahlásit nevhodnou recenzi uživatele či nevyžádaný přís
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Pro nahlášení uživatelské recenze doplňku se přihlaste ke svému účtu a navštivte stránku s recenzemi doplňku. Nalezněte recenzi, kterou si přejete nahlásit, klepněte na odkaz \"Nahlásit recenzi\" a "
-"zvolte důvod. Náš tým redaktorů se poté bude touto recenzí zabývat a provede odpovídající reakci."
+"Pro nahlášení uživatelské recenze doplňku se přihlaste ke svému účtu a navštivte stránku s recenzemi doplňku. Nalezněte recenzi, kterou chcete nahlásit, klepněte na odkaz \"Nahlásit recenzi\" a "
+"vyberte důvod nahlášení. Náš tým redaktorů se poté bude touto recenzí zabývat a provede odpovídající reakci."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Jak mohu nahlásit chybu či kontaktovat tým serveru Doplňky Mozilly?"
@@ -7125,13 +5569,13 @@ msgstr "Pod jakou licencí je zdrojový kód dostupný?"
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Zdrojový kód použitý k vytvoření doplňku patří exkluzivně autoru doplňku, pokud není deklarovanou licencí zdrojového kódu řečeno jinak. Mnoho doplňků na tomto webu je pod <a href=\"%(url)s\" "
-"lang=\"en\">open source licencí</a>, která dává zdrojový kód veřejně k dispozici pro kopírování a opětovné použití pod podmínkami řečenými autorem. Většina autorů nevytváří vlastní licence, ale volí"
-" široce rozšířené open source licence jako je GPL či BSD."
+"Zdrojový kód použitý k vytvoření doplňku patří exkluzivně autoru doplňku, pokud není deklarovanou licencí zdrojového kódu řečeno jinak. Mnoho doplňků na tomto webu je pod <a href=\"%(url)s\" lang="
+"\"en\">open source licencí</a>, která dává zdrojový kód veřejně k dispozici pro kopírování a opětovné použití pod podmínkami řečenými autorem. Většina autorů nevytváří vlastní licence, ale volí "
+"široce rozšířené open source licence jako je GPL či BSD."
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
@@ -7188,8 +5632,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Často kladené otázky k recenzím"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Recenze doplňků jsou způsob, jak sdílet váš názor na doplněk, který jste si nainstalovali a vyzkoušeli. Náš tým kontrolující recenze si vyhrazuje právo recenze odmítnout nebo smazat, pokud "
 "neodpovídají těmto pokynům."
@@ -7258,8 +5702,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro své"
-" fungování potřebuje."
+"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro "
+"své fungování potřebuje."
 
 msgid "How can I report a problematic review?"
 msgstr "Jak mohu nahlásit problematickou recenzi?"
@@ -7393,23 +5837,6 @@ msgstr "Doporučujeme aktualizovate na <a href=\"%(tb_url)s\">Thunderbird</a> a 
 msgid "Read more about Sunbird"
 msgstr "Dozvědět se více o Sunbirdu"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Vyskytl se problém při komunikaci se serverem PayPal. Zkuste to prosím znovu později."
-
-msgid "There was an error with this currency."
-msgstr "V souvislosti s měnou nastala chyba."
-
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Množství je příliš malé pro konverzi do cílové měny."
-
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "Kupující a prodávající musí mít odlišné účty na PayPalu."
-
-#. L10n: {0} is the currency.
-#, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "Prodávající neakceptuje platby v %s."
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Recenze %s"
@@ -7444,12 +5871,12 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Tato verze doplňku neexistuje nebo je neveřejná."
 
 msgid "You can't leave a review on your own add-on."
-msgstr "Nemůžete svůj vlastní doplněk."
+msgstr "Nemůžete hodnotit svůj vlastní doplněk."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nemůžete zanechat více než jednu recenzi ke stejné verzi doplňku."
 
-msgid "Thanks; this review has been flagged for editor approval."
+msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Děkujeme, tato recenze bude zkontrolována redaktorem."
 
 msgid "Add a review for {0}"
@@ -7459,15 +5886,15 @@ msgstr "Přidat recenzi na {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Mějte na mysli tyto rady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se vám"
-" líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud k nim "
-"neposkytnete pádné důvody.</li><li>Nehlaste do recenzí chyby. vývojářům neposkytujeme vaši e-mailovou adresu, pomocí které by vás mohl v souvislosti s vyřešením problému kontaktovat. Podívejte se do"
-" <a href=\"%(support)s\">sekce podpory doplňku</a>, kde naleznete více informací o tom, jak získat podporu pro tento doplněk. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-"
+"<h2>Mějte na mysli tyto rady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se "
+"vám líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud k nim "
+"neposkytnete pádné důvody.</li><li>Nehlaste do recenzí chyby. vývojářům neposkytujeme vaši e-mailovou adresu, pomocí které by vás mohl v souvislosti s vyřešením problému kontaktovat. Podívejte se "
+"do <a href=\"%(support)s\">sekce podpory doplňku</a>, kde naleznete více informací o tom, jak získat podporu pro tento doplněk. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-"
 "community.org/c/add-ons/add-on-support\">komunitu doplňků</a>.</li><li>Udržujte své recenze přehledné, vyvarujte se nevhodného jazyka a neuvádějte v nich své osobní informace.</li></ul><p>Pro více "
 "informacích o recenzích doplňků si přečtěte naši <a href=\"%(guide)s\">příručku recenzenta</a>.</p>"
 
@@ -7525,6 +5952,9 @@ msgstr "Upravit recenzi"
 msgid "Delete reply"
 msgstr "Smazat odpověď"
 
+msgid "Delete review"
+msgstr "Smazat recenzi"
+
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
 msgstr "{0} :: Recenze"
@@ -7575,6 +6005,827 @@ msgstr "Ohodnoceno {0} z 5 hvězdiček"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
+
+msgid "Approved reviews"
+msgstr "Schválené recenze"
+
+msgid "Deleted reviews"
+msgstr "Smazané recenze"
+
+msgid "View entries between"
+msgstr "Zobrazit položky mezi"
+
+msgid "and"
+msgstr "a"
+
+msgid "Filter by type/action"
+msgstr "Filtrovat dle typu/akce"
+
+msgid "Passed automatic validation"
+msgstr "Prošlo automatickou kontrolou"
+
+msgid "Failed automatic validation"
+msgstr "Neprošlo automatickou kontrolou"
+
+msgid "Filter by automatic validation"
+msgstr "Filtrovat podle stavu automatické kontroly"
+
+msgid "containing"
+msgstr "obsahující"
+
+msgid "start"
+msgstr "začátek"
+
+msgid "end"
+msgstr "konec"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "doplněk, recenze nebo komentář"
+
+msgid "Search by add-on name / author email"
+msgstr "Hledat dle jména doplňku / e-mailu autora"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Kontrola administrátorem"
+
+msgid "yes"
+msgstr "ano"
+
+msgid "no"
+msgstr "ne"
+
+msgid "Add-on Types"
+msgstr "Typy doplňků"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Hledat dle jména doplňku / e-mailu autora / guid"
+
+msgid "Max. Version"
+msgstr "Max. verze"
+
+msgid "Comments:"
+msgstr "Komentář:"
+
+msgid "Operating systems:"
+msgstr "Operační systémy:"
+
+msgid "Applications:"
+msgstr "Aplikace:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Upozornit mě příště, když je doplněk aktualizován. (Následné aktualizace nebudou generovat e-mail)"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Vymazat příznat kontroly administrátorem"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Vymazat příznat kontroly administrátorem"
+
+msgid "Is more info requested?"
+msgstr "Vyžadováno více informací?"
+
+msgid "Choose a canned response..."
+msgstr "Volba předpřipravené odpovědi..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "jméno motivu"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Někdo jiný aktuálně kontroluje tento motiv."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "aplikace, recenze nebo komentář"
+
+msgid "Keep review; remove flags"
+msgstr "Ponechat recenzi; odstranit nahlášení"
+
+msgid "Skip for now"
+msgstr "Nyní neřešit"
+
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Kontrola obsahu doplňku"
+
+msgid "Jetpack Add-on"
+msgstr "Doplněk postavený na Jetpacku"
+
+msgid "More Information Requested"
+msgstr "Vyžadováno více informací"
+
+msgid "Contains Reviewer Comment"
+msgstr "Obsahuje komentář redaktora"
+
+msgid "Sources provided"
+msgstr "Poskytnuty zdrojové kódy"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Uzamčeno redaktorem."
+
+msgid "Duplicate Submission"
+msgstr "Duplicitní odeslání"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Děkujeme za přidání vašeho motivu"
+
+msgid "A problem with your Theme submission"
+msgstr "Při přidávání vašeho motivu nastal problém"
+
+msgid "Theme submission flagged for review"
+msgstr "Odeslání motivu označeno pro kontrolu"
+
+msgid "A question about your Theme submission"
+msgstr "Otázka k vašemu odeslání motivu"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Waiting Time"
+msgstr "Doba čekání"
+
+msgid "Flags"
+msgstr "Atributy"
+
+msgid "moments ago"
+msgstr "před chvílí"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} minuta"
+msgstr[1] "{0} minuty"
+msgstr[2] "{0} minut"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} hodina"
+msgstr[1] "{0} hodiny"
+msgstr[2] "{0} hodin"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} den"
+msgstr[1] "{0} dny"
+msgstr[2] "{0} dní"
+
+msgid "Last Review"
+msgstr "Poslední kontrola"
+
+msgid "Last Update"
+msgstr "Poslední aktualizace"
+
+msgid "No Reviews"
+msgstr "Žádné recenze"
+
+msgid "Weight"
+msgstr "Váha"
+
+msgid "Last Content Review"
+msgstr "Poslední kontrola obsahu"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentáře budou zaslány vývojáři."
+
+msgid "Confirm Approval"
+msgstr "Potvrdit schválení"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
+
+msgid "Reject Multiple Versions"
+msgstr "Odmítnout více verzí"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Toto povede k odmítnutí vybraných zveřejněných verzí. Komentáře budou odeslány vývojáři."
+
+msgid "Reviewer reply"
+msgstr "Odpověď redaktora"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Tímto pošlete vývojáři zprávu. Jakmile odpoví, budete upozorněni."
+
+msgid "Request super-review"
+msgstr "Vyžádat kontrolu administrátorem"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Pokud máte ohledně doplňku pochybnosti, o kterých si myslíte, že by se na ně měl podívat hlavní redaktor, vložte svůj komentář níže. Vývojář jej neuvidí."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
+
+msgid "Approve Content"
+msgstr "Schválit obsah"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
+
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Mé doplňky"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Nový doplněk ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Aktualizace doplňku"
+
+msgid "Add-on Review Log"
+msgstr "Seznam kontrol doplňků"
+
+msgid "Signed Beta Files Log"
+msgstr "Žurnál podepsaných beta souborů"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Příručka recenzenta"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Automaticky schválené doplňky"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Automaticky schválený doplněk ({0})"
+
+msgid "Content Review"
+msgstr "Kontrola obsahu"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Jedna kontrola obsahu"
+msgstr[1] "{0} kontroly obsahu"
+msgstr[2] "{0} kontrol obsahu"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Nový doplněk ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Aktualizace ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Označené motivy"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Kontrola motivu"
+
+#, fuzzy
+msgid "Deleted Themes Log"
+msgstr "Smazání motivu"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Seznam moderovaných recenzí"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Akce moderátora:"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Všechny neveřejné doplňky"
+
+msgid "All Unlisted Add-ons"
+msgstr "Všechny neveřejné doplňky"
+
+msgid "Announcement"
+msgstr "Oznámení"
+
+msgid "Update message of the day"
+msgstr "Aktualizace zprávy dne"
+
+msgid "An unknown error occurred"
+msgstr "Nastala neznámá chyba"
+
+msgid "Self-reviews are not allowed."
+msgstr "Kontrola vlastních doplňků není povolena."
+
+msgid "Review successfully processed."
+msgstr "Kontrola úspěšně provedena."
+
+msgid "Review lock limit reached"
+msgstr "Dosažen limit recenzí"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} motiv úspěšně zpracován (+{1} bodů, {2} celkem)."
+msgstr[1] "{0} motivy úspěšně zpracovány (+{1} bodů, {2} celkem)."
+msgstr[2] "{0} motivů úspěšně zpracováno (+{1} bodů, {2} celkem)."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr "Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři nyní mohou tyto doplňky kontrolovat. Můžete nyní chtít obnovit stránku a vidět změny níže v tabulce."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: Nahlášená zneužití"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Nahlášená zneužití doplňku {addon} ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Podporuje"
+
+msgid "Visibility"
+msgstr "Viditelnost"
+
+msgid "Visible"
+msgstr "Viditelné"
+
+msgid "Average Daily Users"
+msgstr "Průměrný počet denních uživatelů"
+
+msgid "Abuse Reports"
+msgstr "Hlášená zneužití"
+
+msgid "Requires Payment"
+msgstr "Vyžaduje platbu"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "Datum posledního schválení"
+
+msgid "Abuse Reports ({num})"
+msgstr "Nahlášená zneužití ({num})"
+
+#, fuzzy
+msgid "Bad User Ratings ({num})"
+msgstr "Záporné recenze ({num})"
+
+msgid "More about this add-on"
+msgstr "Více o doplňku"
+
+msgid "Image Gallery"
+msgstr "Galerie obrázků"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
+
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
+msgstr "Zpět na domovskou stránku Nástrojů redaktora"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Event"
+msgstr "Událost"
+
+msgid "More details."
+msgstr "Více informací."
+
+msgid "No events found for this period."
+msgstr "V této periodě nebyla nalezena žádná událost."
+
+msgid "Log details"
+msgstr "Detaily záznamů"
+
+msgid "Review Author"
+msgstr "Autor recenze"
+
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Název doplňku"
+
+msgid "Review Title"
+msgstr "Nadpis recenze"
+
+msgid "Review Text"
+msgstr "Text recenze"
+
+msgid "Review was flagged prior to deletion."
+msgstr "Recenze byla označena k odstranění."
+
+msgid "Undelete"
+msgstr "Vrátit zpět odstranění"
+
+msgid "Reviewer Leaderboard"
+msgstr "Nástěnka redaktorů"
+
+# 75%
+# 100%
+msgid "No review points awarded yet."
+msgstr "Dosud jste neobdrželi žádný bod."
+
+msgid "Rank"
+msgstr "Hodnocení"
+
+msgid "Score"
+msgstr "Skóre"
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Aktivita redaktora"
+
+msgid "View statistics for user"
+msgstr "Zobrazit statistiky uživatele"
+
+msgid "Range"
+msgstr "Rozsah"
+
+msgid "Your Reviews"
+msgstr "Vaše kontroly"
+
+msgid "By {user_name}"
+msgstr "Od {user_name}"
+
+msgid "Total Reviews"
+msgstr "Celkový počet kontrol"
+
+msgid "Active Contributors"
+msgstr "Aktivní přispěvatelé"
+
+msgid "This Month"
+msgstr "Tento měsíc"
+
+msgid "This Year"
+msgstr "Tento rok"
+
+msgid "Monthly Performance"
+msgstr "Měsíční aktivita"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "All-time Point Breakdown by Type"
+
+msgid "Total"
+msgstr "Celkem"
+
+msgid "Month"
+msgstr "Měsíce"
+
+msgid "Year"
+msgstr "Rok"
+
+msgid "All-Time"
+msgstr "Po celou dobu"
+
+msgid "Advanced Search"
+msgstr "Rozšířené vyhledávání"
+
+msgid "clear search"
+msgstr "vymazat hledání"
+
+msgid "Process Reviews"
+msgstr "Provést kontrolu"
+
+msgid "Moderation actions:"
+msgstr "Akce moderátora:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "od %(user)s dne %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s dne %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Všechny recenze byly zkontrolovány. Skvělá práce!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "Aktuálně zde nejsou na kontrolu žádné doplňky tohoto typu."
+
+msgid "Helpful Links:"
+msgstr "Užitečné odkazy:"
+
+msgid "Add-on Policy"
+msgstr "Zásady pro doplňky"
+
+msgid "Reviewer's Guide"
+msgstr "Příručka recenzenta"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Kontrola obsahu {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Kontrola {0}"
+
+msgid "Add-on user change history"
+msgstr "Historie změn doplňku uživatelem"
+
+msgid "Add-on History"
+msgstr "Historie doplňku"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "(Confirmed)"
+msgstr "(Potvrzeno)"
+
+msgid "Compatibility:"
+msgstr "Kompatibilita:"
+
+msgid "Additional sources:"
+msgstr "Další zdroje:"
+
+msgid "Download files"
+msgstr "Stáhnout soubory"
+
+msgid "The developer has provided source code."
+msgstr "Vývojář poskytl zdrojový kód."
+
+msgid "Weight:"
+msgstr "Důležitost:"
+
+msgid "Not Auto Approved Because"
+msgstr "Nebylo automaticky schváleno"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Skript pro automatické schválení ještě pro tuto verzi neproběhl."
+
+msgid "This version has not been reviewed."
+msgstr "Tato verze nebyla zkontrolována."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Prosím, vyberte jednu nebo více verzí ze seznamu níže."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "Stále můžete tento formulář odeslat, ale udělejte to pouze tehdy, když víte, že to nezpůsobí konflikt."
+
+msgid "Insert canned response..."
+msgstr "Vložení předpřipravené odpovědi..."
+
+msgid "Tested on:"
+msgstr "Testováno na:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku prohlížel."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "Poznámka pro redaktora je místo, kde si mohou vývojář a redaktor vyměňovat informace relevantní pro doplněk (bez ohledu na verzi). Poznámka je viditelná a upravitelná oběma."
+
+msgid "Update the whiteboard"
+msgstr "Aktualizovat poznámku pro redaktora"
+
+msgid "(admin)"
+msgstr "(admin)"
+
+msgid "Admin Page"
+msgstr "Stránka administrace"
+
+msgid "Review This Add-on"
+msgstr "Kontrola doplňku"
+
+msgid "More Information"
+msgstr "Více informací"
+
+msgid "Resolution"
+msgstr "Řešení"
+
+msgid "Reviewer"
+msgstr "Redaktor"
+
+msgid "Add-on has been deleted."
+msgstr "Doplněk byl smazán."
+
+msgid "Show Comments"
+msgstr "Zobrazit komentáře"
+
+msgid "Hide Comments"
+msgstr "Skrýt komentáře"
+
+msgid "No reviews found for this period."
+msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "Uživatel %(user)s [%(ip_address)s] %(object)s nahlásil dne %(date)s"
+
+msgid "Dismiss this announcement"
+msgstr "Skrýt toto oznámení"
+
+msgid "Files in this version:"
+msgstr "Soubory v této verzi:"
+
+msgid "Contents"
+msgstr "Obsah"
+
+msgid "Compare"
+msgstr "Porovnání"
+
+msgid "Permissions:"
+msgstr "Oprávnění:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>Od %(user)s dne %(date)s</div>"
+
+msgid "Older"
+msgstr "Starší"
+
+msgid "Newer"
+msgstr "Novější"
+
+msgid "Recent Points"
+msgstr "Nedávno přidělené body"
+
+msgid "No points awarded yet."
+msgstr "Dosud jste neobdrželi žádný bod."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Aktivní redaktoři (posledních 7 dní)"
+
+msgid "No top reviewers yet."
+msgstr "Dosud nejsou žádní hlavní redaktoři."
+
+msgid "All Time"
+msgstr "Po celý čas"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "Obdrželi jste <span>{0}</span> bodů."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s dne %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Datum smazáno"
+
+msgid "No deleted themes found for this period."
+msgstr "V tomto období nebyly nalezeny žádné smazané motivy."
+
+msgid "Theme Review History for {0}"
+msgstr "Historie kontrol motivů pro {0}"
+
+msgid "Review Date"
+msgstr "Datum kontroly"
+
+msgid "Action"
+msgstr "Akce"
+
+msgid "Reason"
+msgstr "Důvod"
+
+msgid "There are currently no reviews."
+msgstr "Aktuálně nejsou dostupné žádné kontroly."
+
+msgid "Flagged Themes"
+msgstr "Označené motivy"
+
+msgid "Theme Review Queue"
+msgstr "Fronta pro schválení motivů"
+
+msgid "Queues"
+msgstr "Fronty"
+
+msgid "Review Options"
+msgstr "Možnosti kontroly"
+
+msgid "Auto-advance after review"
+msgstr "Pokročilé možnosti po kontrole"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Povolit klávesové zkratky"
+
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové zkratky"
+
+msgid "Next Theme"
+msgstr "Další motiv"
+
+msgid "Previous Theme"
+msgstr "Předchozí motiv"
+
+msgid "Your Review History"
+msgstr "Vaše historie kontrol"
+
+msgid "Commit Review"
+msgstr "Odeslat kontrolu"
+
+msgid "Commit Reviews"
+msgstr "Odeslat kontroly"
+
+msgid "{0} out of {1} reviewed"
+msgstr "Zkontrolováno {0} z {1}"
+
+msgid "There are currently no Themes to review."
+msgstr "Aktuálně nejsou dostupné žádné motivy na kontrolu."
+
+msgid "Clear Search"
+msgstr "Zrušit hledání"
+
+msgid "Release My Theme Locks"
+msgstr "Uvolnit mé zámky u motivů"
+
+msgid "Interactive Theme Queue"
+msgstr "Interaktivní fronta s motivy"
+
+msgid "Reviewers' Guide"
+msgstr "Příručka redaktora"
+
+msgid "Theme Review for {0}"
+msgstr "Kontroly motivu {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Pravděpodobně duplicitní odeslání)"
+
+msgid "Past Review Notes"
+msgstr "Předchozí poznámky ke kontrola"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Vyžadováno více informací: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Označeno: {0}"
+
+msgid "Approve Theme"
+msgstr "Schválit motiv"
+
+msgid "Field required"
+msgstr "Pole je vyžadováno"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Vložte ID či URL duplikátu"
+
+msgid "Select a reason for rejection"
+msgstr "Zvolte důvod odmítnutí"
+
+msgid "Describe your reason for rejection"
+msgstr "Popište důvod odmítnutí"
+
+msgid "Ask a question to the artist"
+msgstr "Položit otázku umělci"
+
+msgid "Describe your reason for flagging"
+msgstr "Popište váš důvod pro označení"
+
+msgid "Rejected or Unreviewed"
+msgstr "Zamítnuté nebo nezkontrolované"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[stav:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Nový doplněk ({0})"
+msgstr[1] "Nové doplňky ({0})"
+msgstr[2] "Nové doplňky ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Aktualizace ({0})"
+msgstr[1] "Aktualizace ({0})"
+msgstr[2] "Aktualizace ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Moderované recenze ({0})"
+msgstr[1] "Moderované recenze ({0})"
+msgstr[2] "Moderované recenze ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Automaticky schválený doplněk ({0})"
+msgstr[1] "Automaticky schválené doplňky ({0})"
+msgstr[2] "Automaticky schválené doplňky ({0})"
+
+msgid "Flagged"
+msgstr "Označeno"
+
+msgid "Updates"
+msgstr "Aktualizace"
+
+msgid "Maximum query length exceeded."
+msgstr "Překročena maximální délka dotazu."
 
 msgid "Most popular this week"
 msgstr "Nejpopulárnější tento týden"
@@ -7711,6 +6962,9 @@ msgstr "Tato verze již existuje."
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
 msgid "Invalid GUID in URL"
 msgstr "Neplatný identifikátor GUID v adrese URL"
 
@@ -7719,9 +6973,6 @@ msgstr "Kvůli chybějícím metadatům nemůžete k tomuto doplňku přidat ve�
 
 msgid "No uploaded file for that addon and version."
 msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
-
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Děkujeme za příspěvek na doplněk {addon_name}"
 
 msgid "Overview"
 msgstr "Přehled"
@@ -7857,9 +7108,6 @@ msgstr "Nejsou dostupná žádná data."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Nástěnka je aktuálně <b>veřejná</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Statistiky příspívání jsou aktuálně <b>soukromé</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Tato nástěnka je aktuálně <b>soukromá</b>."
 
@@ -7883,9 +7131,6 @@ msgstr "Podíl aplikace dle data"
 
 msgid "Collections Created by Date"
 msgstr "Vytvořené sbírky dle data"
-
-msgid "Contributions by Date"
-msgstr "Příspěvky dle data"
 
 msgid "Downloaded by Date"
 msgstr "Stažení dle data"
@@ -7947,17 +7192,17 @@ msgstr "O sledování externích zdrojů..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete přidat parametr, který vám umožní sledovat zdroje, "
-"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b"
-">external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou pouze "
-"zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar\", "
-"\"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
+"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
+"src=<b>external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
+"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar"
+"\", \"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stav doplňku dle data"
@@ -8000,6 +7245,12 @@ msgstr "Zobrazí doplňky pro ostatní aplikace"
 msgid "Other Applications"
 msgstr "Ostatní aplikace"
 
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO získává nový vzhled. Chcete se na něj podívat?"
+
+msgid "Visit the new site"
+msgstr "Navštivte novou stránku"
+
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Pro založení své vlastní sbírky musíte mít účet na serveru Doplňky Mozilly."
 
@@ -8009,8 +7260,11 @@ msgstr "Logo v patičce"
 msgid "Choose a category"
 msgstr "Vybere kategorii"
 
-msgid "View Mobile Site"
-msgstr "Zobrazit mobilní verzi"
+msgid "The new website supports mobile and desktop clients"
+msgstr "Nová stránka funguje na mobilech i počítačích"
+
+msgid "View the new site"
+msgstr "Zobrazit novou verzi"
 
 msgid "Report a bug"
 msgstr "Nahlásit chybu"
@@ -8024,6 +7278,24 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "seznamte se s <b>doplňky</b>"
+
+msgid "Download Firefox"
+msgstr "Stáhnout Firefox"
+
+msgid "Android Browser"
+msgstr "Prohlížeč pro Android"
+
+msgid "iOS Browser"
+msgstr "Prohlížeč pro iOS"
+
+msgid "Focus Browser"
+msgstr "Prohlížeč Focus"
+
+msgid "Desktop Browser"
+msgstr "Prohlížeč pro počítač"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Ostatní jazyky"
@@ -8077,9 +7349,6 @@ msgstr "Vyzkoušejte si naši <a class=\"mobile-link\" href=\"#\">mobilní verzi
 
 msgid "Android Add-ons"
 msgstr "Doplňky pro Android"
-
-msgid "required"
-msgstr "vyžadováno"
 
 msgid "Required fields"
 msgstr "Vyžadovaná pole"
@@ -8151,9 +7420,6 @@ msgstr "Anonymní uživatel {id}"
 msgid "My Mobile Add-ons"
 msgstr "Mé mobilní doplňky"
 
-msgid "an add-on developer thanks me for a contribution"
-msgstr "vývojář doplňku mi poděkuje za příspěvek"
-
 msgid "an add-on developer replies to my review"
 msgstr "vývojář doplňku odpoví na mou recenzi"
 
@@ -8222,8 +7488,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás odstranila"
-" ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
+"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás "
+"odstranila ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "Po klepnutí na \"smazat\" bude váš účet <strong>trvale odstraněn</strong>. To prakticky znamená:"
@@ -8416,7 +7682,8 @@ msgstr "Nemůžeme vás odhlásit"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Bohužel, ale nemůžeme vás odhlásit z odběru. Odkaz, na který jste klepli, je neplatný. Odhlášení odběru však můžete stále provést na <a href=\"%(edit_url)s\">stránce pro úpravy svého profilu</a>."
+msgstr ""
+"Bohužel, ale nemůžeme vás odhlásit z odběru. Odkaz, na který jste klepli, je neplatný. Odhlášení odběru však můžete stále provést na <a href=\"%(edit_url)s\">stránce pro úpravy svého profilu</a>."
 
 msgid "Developer Information"
 msgstr "Informace o vývojáři"
@@ -8478,8 +7745,8 @@ msgstr "Vydáno dne {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Zdrojový kód je uvolněn pod <a href=\"%(url)s\">%(name)s</a>"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "Historie verzí doplňku {0}"
 

@@ -4,8 +4,10 @@
 
 {% block primary %}
 
+{% set channel_param = 'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
+
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
-    data-addon-is-listed="{% if listed %}true{% else %}false{% endif %}">
+    data-addon-is-listed="{% if channel_param == 'listed' %}true{% else %}false{% endif %}">
   {% csrf_token %}
   {% if submit_page in ['version', 'file']%}
     {% if submit_page == 'file' %}
@@ -16,7 +18,6 @@
     <p class="addon-submit-distribute">
       {{ channel_choice_text|safe }}
       {% if submit_page == 'version' %}
-        {% set channel_param = 'listed' if listed else 'unlisted' %}
         <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?channel={{ channel_param }}">{{ _('Change') }}</a>
       {% endif %}
     </p>
@@ -28,9 +29,8 @@
   {% endif %}
   <p>
   {% trans %}
-    Use the fields below to upload your add-on package and select any platform
-    restrictions. After upload, a series of automated validation tests will be run
-    on your file.
+    Use the fields below to upload your add-on package. After upload, a series
+    of automated validation tests will be run on your file.
   {% endtrans %}
   </p>
   <section id="upload-file">
@@ -40,19 +40,25 @@
   </div>
   <input type="file" id="upload-addon"
   {% if addon %}
-    {% if listed %}
-      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'listed') }}"
-    {% else %}
-      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'unlisted') }}"
-    {% endif %}
+      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
   {% else %}
-    {% if listed %}
+    {% if channel == amo.RELEASE_CHANNEL_LISTED %}
       data-upload-url="{{ url('devhub.upload') }}"
     {% else %}
       data-upload-url="{{ url('devhub.upload_unlisted') }}"
     {% endif %}
   {% endif %}
   >
+  {% if submit_page in ['addon', 'version'] and waffle.switch('allow-static-theme-uploads') %}
+    {% if addon and addon.type == amo.ADDON_STATICTHEME %}
+        {% set wizard_url = url('devhub.submit.version.wizard', addon.slug, channel_param) %}
+    {% elif not addon %}
+        {% set wizard_url = url('devhub.submit.wizard', channel_param) %}
+    {% endif %}
+    {% if wizard_url %}
+        <a class="button" id="wizardlink" href="{{ wizard_url }}">{{ _('Create a Theme') }}</a>
+    {% endif %}
+  {% endif %}
 
   {{ new_addon_form.non_field_errors() }}
 
@@ -61,13 +67,13 @@
   {% endif %}
 
     <div class="platform">
-      <div class="supported-platforms">
+      <div class="supported-platforms{% if not new_addon_form.supported_platforms.errors %} edit_initially_hidden{% endif %}">
         <label>{{ _('Which platforms is this file compatible with?') }}</label>
-        {{ new_addon_form.errors.supported_platforms }}
+        {{ new_addon_form.supported_platforms.errors }}
         {{ new_addon_form.supported_platforms }}
       </div>
-
     </div>
+
     {% if submit_page == 'version' and addon.status == amo.STATUS_PUBLIC %}
       <div class="beta-status hide">
         <label>{{ new_addon_form.beta }} {{ _('Only publish this version to my beta channel.') }}
@@ -88,7 +94,7 @@
     {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-        {% if listed %}
+        {% if channel == amo.RELEASE_CHANNEL_LISTED %}
           {% if submit_page != 'file' %}
             {{ _('Continue') }}
           {% else %}

@@ -1,29 +1,27 @@
 # -*- coding: utf-8 -*-
 import os
-import socket
 
 from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.functional import cached_property
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
 
-import olympia.core.logger
 from olympia.access import acl
-from olympia import amo, paypal
+from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
-    Addon, AddonDependency, AddonUser, Charity, Preview)
+    Addon, AddonCategory, AddonDependency, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.applications.models import AppVersion
+from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib import happyforms
@@ -36,9 +34,6 @@ from olympia.versions.models import (
     ApplicationsVersions, License, VALID_SOURCE_EXTENSIONS, Version)
 
 from . import tasks
-
-
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -119,12 +114,19 @@ class LicenseForm(AMOModelForm):
             if getattr(kwargs['instance'], 'builtin', None):
                 kwargs['initial'] = {'builtin': kwargs['instance'].builtin}
                 kwargs['instance'] = None
+            self.cc_licenses = kwargs.pop(
+                'cc', self.version.addon.type == amo.ADDON_STATICTHEME)
+        else:
+            self.cc_licenses = kwargs.pop(
+                'cc', False)
 
         super(LicenseForm, self).__init__(*args, **kwargs)
-
-        cs = [(x.builtin, x)
-              for x in License.objects.builtins().filter(on_form=True)]
-        cs.append((License.OTHER, ugettext('Other')))
+        licenses = License.objects.builtins(
+            cc=self.cc_licenses).filter(on_form=True)
+        cs = [(x.builtin, x) for x in licenses]
+        if not self.cc_licenses:
+            # creative commons licenses don't have an 'other' option.
+            cs.append((License.OTHER, ugettext('Other')))
         self.fields['builtin'].choices = cs
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
@@ -148,13 +150,10 @@ class LicenseForm(AMOModelForm):
         return data
 
     def get_context(self):
-        """Returns a view context dict having keys license_urls, license_form,
+        """Returns a view context dict having keys license_form,
         and license_other_val.
         """
-        license_urls = dict(License.objects.builtins()
-                            .values_list('builtin', 'url'))
         return {
-            'license_urls': license_urls,
             'version': self.version,
             'license_form': self.version and self,
             'license_other_val': License.OTHER
@@ -178,7 +177,8 @@ class LicenseForm(AMOModelForm):
         builtin = self.cleaned_data['builtin']
         if builtin == '':  # No license chosen, it must be an unlisted add-on.
             return
-        if builtin != License.OTHER:
+        is_other = builtin == License.OTHER
+        if not is_other:
             # We're dealing with a builtin license, there is no modifications
             # allowed to it, just return it.
             license = License.objects.get(builtin=builtin)
@@ -188,7 +188,7 @@ class LicenseForm(AMOModelForm):
             license = super(LicenseForm, self).save(*args, **kw)
 
         if self.version:
-            if changed or license != self.version.license:
+            if (changed and is_other) or license != self.version.license:
                 self.version.update(license=license)
                 if log:
                     ActivityLog.create(amo.LOG.CHANGE_LICENSE, license,
@@ -242,116 +242,6 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
                                self.instance)
 
         return ob
-
-
-def ProfileForm(*args, **kw):
-    # If the add-on takes contributions, then both fields are required.
-    addon = kw['instance']
-    fields_required = (kw.pop('required', False) or
-                       bool(addon.takes_contributions))
-    the_reason_label = ugettext('Why did you make this add-on?')
-    the_future_label = ugettext('What\'s next for this add-on?')
-
-    class _Form(TranslationFormMixin, happyforms.ModelForm):
-        the_reason = TransField(widget=TransTextarea(),
-                                required=fields_required,
-                                label=the_reason_label)
-        the_future = TransField(widget=TransTextarea(),
-                                required=fields_required,
-                                label=the_future_label)
-
-        class Meta:
-            model = Addon
-            fields = ('the_reason', 'the_future')
-
-    return _Form(*args, **kw)
-
-
-class CharityForm(happyforms.ModelForm):
-    url = Charity._meta.get_field('url').formfield()
-
-    class Meta:
-        model = Charity
-        fields = ('name', 'url', 'paypal')
-
-    def clean_paypal(self):
-        check_paypal_id(self.cleaned_data['paypal'])
-        return self.cleaned_data['paypal']
-
-    def save(self, commit=True):
-        # We link to the charity row in contrib stats, so we force all charity
-        # changes to create a new row so we don't forget old charities.
-        if self.changed_data and self.instance.id:
-            self.instance.id = None
-        return super(CharityForm, self).save(commit)
-
-
-class ContribForm(TranslationFormMixin, happyforms.ModelForm):
-    RECIPIENTS = (('dev', _(u'The developers of this add-on')),
-                  ('moz', _(u'The Mozilla Foundation')),
-                  ('org', _(u'An organization of my choice')))
-
-    recipient = forms.ChoiceField(
-        choices=RECIPIENTS,
-        widget=forms.RadioSelect(attrs={'class': 'recipient'}))
-    thankyou_note = TransField(widget=TransTextarea(), required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('paypal_id', 'suggested_amount', 'annoying',
-                  'enable_thankyou', 'thankyou_note')
-        widgets = {
-            'annoying': forms.RadioSelect(),
-            'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
-            'paypal_id': forms.TextInput(attrs={'size': '50'})
-        }
-
-    @staticmethod
-    def initial(addon):
-        if addon.charity:
-            recip = 'moz' if addon.charity_id == amo.FOUNDATION_ORG else 'org'
-        else:
-            recip = 'dev'
-        return {'recipient': recip,
-                'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
-
-    def clean(self):
-        data = self.cleaned_data
-        try:
-            if not self.errors and data['recipient'] == 'dev':
-                check_paypal_id(data['paypal_id'])
-        except forms.ValidationError, e:
-            self.errors['paypal_id'] = self.error_class(e.messages)
-        # thankyou_note is a dict since it's a Translation.
-        if not (data.get('enable_thankyou') and
-                any(data.get('thankyou_note').values())):
-            data['thankyou_note'] = {}
-            data['enable_thankyou'] = False
-        return data
-
-    def clean_suggested_amount(self):
-        amount = self.cleaned_data['suggested_amount']
-        if amount is not None and amount <= 0:
-            msg = ugettext(u'Please enter a suggested amount greater than 0.')
-            raise forms.ValidationError(msg)
-        if amount > settings.MAX_CONTRIBUTION:
-            msg = ugettext(
-                u'Please enter a suggested amount less than ${0}.').format(
-                settings.MAX_CONTRIBUTION)
-            raise forms.ValidationError(msg)
-        return amount
-
-
-def check_paypal_id(paypal_id):
-    if not paypal_id:
-        raise forms.ValidationError(
-            ugettext('PayPal ID required to accept contributions.'))
-    try:
-        valid, msg = paypal.check_paypal_id(paypal_id)
-        if not valid:
-            raise forms.ValidationError(msg)
-    except socket.error:
-        raise forms.ValidationError(ugettext('Could not validate PayPal id.'))
 
 
 class WithSourceMixin(object):
@@ -431,8 +321,11 @@ class CompatForm(happyforms.ModelForm):
 
         # Legacy extensions can't set compatibility higher than 56.* for
         # Firefox and Firefox for Android.
+        # This does not concern Mozilla Signed Legacy extensions which
+        # are shown the same version choice as WebExtensions.
         if (self.app in (amo.FIREFOX, amo.ANDROID) and
                 not version.is_webextension and
+                not version.is_mozilla_signed and
                 version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)):
             qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
@@ -456,10 +349,15 @@ class BaseCompatFormSet(BaseModelFormSet):
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
         qs = kwargs['queryset'].values_list('application', flat=True)
-        apps = [a for a in amo.APP_USAGE if a.id not in qs]
+        version = self.form_kwargs.get('version')
+        static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
+        available_apps = (amo.APP_USAGE if not static_theme
+                          else amo.APP_USAGE_STATICTHEME)
+        self.can_delete = not static_theme  # No tinkering with apps please.
+        apps = [a for a in available_apps if a.id not in qs]
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
-        self.extra = len(amo.APP_GUIDS) - len(self.forms)
+        self.extra = len(available_apps) - len(self.forms)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
@@ -632,7 +530,8 @@ class FileForm(happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
+        addon_type = kw['instance'].version.addon.type
+        if addon_type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()
@@ -858,3 +757,43 @@ class DistributionChoiceForm(happyforms.Form):
 class AgreementForm(happyforms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
+
+
+class SingleCategoryForm(happyforms.Form):
+    category = forms.ChoiceField(widget=forms.RadioSelect)
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        self.request = kw.pop('request', None)
+        if len(self.addon.all_categories) > 0:
+            kw['initial'] = {'category': self.addon.all_categories[0].id}
+        super(SingleCategoryForm, self).__init__(*args, **kw)
+
+        # Hack because we know this is only used for Static Themes that only
+        # support Firefox.  Hoping to unify per-app categories in the meantime.
+        app = amo.FIREFOX
+        sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
+                             key=lambda (slug, cat): slug)
+        self.fields['category'].choices = [
+            (c.id, c.name) for _, c in sorted_cats]
+
+        # If this add-on is featured for this application, category changes are
+        # forbidden.
+        if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
+            self.disabled = self.addon.is_featured(app)
+
+    def save(self):
+        category = self.cleaned_data['category']
+        # Clear any old categor[y|ies]
+        AddonCategory.objects.filter(addon=self.addon).delete()
+        # Add new category
+        AddonCategory(addon=self.addon, category_id=category).save()
+        # Remove old, outdated categories cache on the model.
+        del self.addon.all_categories
+
+    def clean_category(self):
+        if getattr(self, 'disabled', False) and self.cleaned_data['category']:
+            raise forms.ValidationError(ugettext(
+                'Categories cannot be changed while your add-on is featured.'))
+
+        return self.cleaned_data['category']

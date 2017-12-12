@@ -25,7 +25,6 @@ from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str
-from django.utils.http import urlencode
 
 import mock
 import pytest
@@ -206,15 +205,18 @@ def check_links(expected, elements, selected=None, verify=True):
             assert bool(e.length) == (text == selected)
 
 
-def assert_url_equal(url, other, compare_host=False):
+def assert_url_equal(url, expected, compare_host=False):
     """Compare url paths and query strings."""
     parsed = urlparse(unicode(url))
-    parsed_other = urlparse(unicode(other))
-    assert parsed.path == parsed_other.path  # Paths are equal.
-    # Params are equal.
-    assert parse_qs(parsed.query) == parse_qs(parsed_other.query)
+    parsed_expected = urlparse(unicode(expected))
+    compare_url_part(parsed.path, parsed_expected.path)
+    compare_url_part(parse_qs(parsed.query), parse_qs(parsed_expected.query))
     if compare_host:
-        assert parsed.netloc == parsed_other.netloc
+        compare_url_part(parsed.netloc, parsed_expected.netloc)
+
+
+def compare_url_part(part, expected):
+    assert part == expected, u'Expected %s, got %s' % (expected, part)
 
 
 def create_sample(name=None, **kw):
@@ -684,6 +686,9 @@ def addon_factory(
     if type_ != amo.ADDON_PERSONA:
         # Personas don't have a summary.
         kwargs['summary'] = u'Summary for %s' % name
+    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
+        # Personas and search engines don't need guids
+        kwargs['guid'] = kw.pop('guid', '{%s}' % unicode(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.

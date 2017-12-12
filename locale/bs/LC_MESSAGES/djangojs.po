@@ -1,93 +1,101 @@
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-12-04 13:12+0000\n"
+"Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} zvjezdica"
+msgstr[1] "{0} zvjezdica"
+msgstr[2] "{0} zvjezdica"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Došlo je do greške u kontaktu sa serverom."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Izaberite datoteku..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Vaš dodatak treba završavati sa .zip, .xpi, .crx, .jar ili .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% završeno"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} od {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Učitavanje {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Greška sa {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Omogućili smo novi linter kako bi procesirali vaš dodatak. Molimo da zabilježite sve probleme na GiHub-u"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
+msgstr[1] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
+msgstr[2] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;i {0} više"
+msgstr[1] "&hellip;i {0} više"
+msgstr[2] "&hellip;i {0} više"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Pogledajte cijeli izvještaj ovjere"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Ovjera {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Vaš dodatak premašuje maksimalnu veličinu od {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Primljen prazan odgovor od servera; status: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Neočekivana greška servera prilikom ovjere."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Završena ovjera {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Ovjera vašeg dodatka je istekla i biće ručno pregledana."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vaš dodatak je validiran bez grešaka i {0} poruke."
+msgstr[1] "Vaši dodaci jsu validirani bez grešaka i {0} poruka."
+msgstr[2] ""
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
@@ -635,11 +643,13 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -741,22 +751,34 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Learn more"
-msgstr ""
+msgstr[2] ""
 
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Must be a valid e-mail address."
+msgid "No results found."
 msgstr ""
 
-msgid "No results found."
+msgid "Loading..."
+msgstr ""
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ""
+
+msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
@@ -793,21 +815,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr ""
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"
@@ -871,16 +878,19 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""

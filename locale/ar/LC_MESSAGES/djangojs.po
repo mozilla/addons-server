@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2016-02-15 10:49+0000\n"
-"Last-Translator: Abdalrahman Hwoij <howij1995@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-25 14:53+0000\n"
+"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -57,12 +57,12 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "فشل التحقق من إضافتك ب {0} خطأ."
-msgstr[1] "فشل التحقق من إضافتك بخطأ واحد."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لم يفشل التثبّت من الإضافة."
+msgstr[1] "فشل التحقق من الإضافة بخطأ واحد."
+msgstr[2] "فشل التحقق من الإضافة بخطأين."
+msgstr[3] "فشل التحقق من الإضافة بِ‍ {0} أخطاء."
+msgstr[4] "فشل التحقق من الإضافة بِ‍ {0} خطأ."
+msgstr[5] "فشل التحقق من الإضافة بِ‍ {0} خطأ."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -83,10 +83,10 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "استقبلتُ استجابة فارغة من الخادوم، الحالة: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "خطأ في الخادوم غير متوقّع أثناء التثبّت."
 
 msgid "Finished validating {0}"
 msgstr "تم انتهاء التحقق {0}"
@@ -137,7 +137,7 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "رجاءً تحقق من النقاط الآتية قبل إنهاء الطلب. سيقلّل هذا احتمالية التأخير أو سوء الفهم أثناء عملية المراجعة:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -148,7 +148,7 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "نعتذر، لم يُعثر على منصة مدعومة."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
@@ -200,13 +200,13 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "اسم السمة"
 
 msgid "Flagged for review"
 msgstr "تم تعليمه للمراجعة"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "الدخل مطلوب"
 
 msgid "Marked for deletion"
 msgstr "تم تعليمه ليُحذف"
@@ -357,7 +357,7 @@ msgid "Others By Author"
 msgstr ""
 
 msgid "Dependencies"
-msgstr ""
+msgstr "الاعتماديات"
 
 msgid "Upsell"
 msgstr ""
@@ -772,33 +772,46 @@ msgstr "كانت هناك أخطاء أثناء رفع ملفك."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا ملفات"
+msgstr[1] "ملف واحد"
+msgstr[2] "ملفان"
+msgstr[3] "{files} ملفات"
+msgstr[4] "{files} ملفا"
+msgstr[5] "{files} ملف"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "لا مراجعات من المستخدمين"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
-
-msgid "Learn more"
-msgstr "اعرف المزيد"
 
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Must be a valid e-mail address."
-msgstr ""
-
 msgid "No results found."
 msgstr "لم يُعثر على نتائج."
+
+msgid "Loading..."
+msgstr "يُحمّل..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "لا حروف متبقية"
+msgstr[1] "حرف واحد متبقي"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيانة الموقع حاليًا. رجاءً حاول مجددًا بعد قليل."
+
+msgid "Remove this localization"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -834,25 +847,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr "يُحمّل..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيانة الموقع حاليًا. رجاءً حاول مجددًا بعد قليل."
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"

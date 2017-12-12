@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-08-10 15:01+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -740,17 +740,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 筆使用者評論"
 
-msgid "Learn more"
-msgstr "了解詳情"
-
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
-msgid "Must be a valid e-mail address."
-msgstr "必須為有效的電子郵件地址。"
-
 msgid "No results found."
 msgstr "找不到結果。"
+
+msgid "Loading..."
+msgstr "載入中..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
+
+msgid "Remove this localization"
+msgstr "移除此語系"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
@@ -787,20 +795,6 @@ msgstr "平均評等"
 
 msgid "Number of Reviews"
 msgstr "留言數量"
-
-msgid "Loading..."
-msgstr "載入中..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
-
-msgid "Remove this localization"
-msgstr "移除此語系"
 
 msgid "Requested Info"
 msgstr "已要求資訊"

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -49,7 +48,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
                                        args=[upload.uuid.hex]))
         assert resp.status_code == 200
         doc = pq(resp.content)
-        assert doc('td').text() == 'December  6, 2010'
+        assert doc('td').text() == 'Dec. 6, 2010'
 
     def test_upload_processed_validation_error(self):
         addon_file = open(
@@ -108,18 +107,8 @@ class TestUploadErrors(BaseUploadTest):
               'type': 'error', 'fatal': True}])
         assert data['validation']['ending_tier'] == 1
 
-    def test_too_long_uuid(self):
-        """An add-on uuid must be 64chars at most, see bug 1201176."""
-        with self.assertRaises(forms.ValidationError) as exc:
-            check_xpi_info({
-                'guid': u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
-                        u'bug_1201176_and_should_fail@xpi'})
-        expected = 'Add-on ID must be 64 characters or less.'
-        assert exc.exception.message == expected
-
     def test_long_uuid(self):
         """An add-on uuid may be more than 64 chars, see bug 1203915."""
-        self.create_switch('allow-long-addon-guid')
         long_guid = (u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
                      u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi')
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
@@ -171,14 +160,14 @@ class TestFileValidation(TestCase):
         assert self.client.login(email='regular@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 403
 
-    def test_editor_can_see_results(self):
+    def test_reviewer_can_see_results(self):
         self.client.logout()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.url, follow=True).status_code == 200
 
-    def test_editor_can_see_json_results(self):
+    def test_reviewer_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
     def test_no_html_in_messages(self):
@@ -241,9 +230,12 @@ class TestValidateAddon(TestCase):
         response = self.client.get(reverse('devhub.validate_addon'))
         assert response.status_code == 302
 
-    def test_context(self):
+    def test_context_and_content(self):
         response = self.client.get(reverse('devhub.validate_addon'))
         assert response.status_code == 200
+
+        assert 'this tool only works with legacy' not in response.content
+
         doc = pq(response.content)
         assert doc('#upload-addon').attr('data-upload-url') == (
             reverse('devhub.standalone_upload'))
@@ -581,7 +573,7 @@ class TestCompatibilityResults(TestCase):
 
     def setUp(self):
         super(TestCompatibilityResults, self).setUp()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         self.addon = Addon.objects.get(slug='addon-compat-results')
         self.result = ValidationResult.objects.get(
             file__version__addon=self.addon)
@@ -697,6 +689,8 @@ class TestUploadCompatCheck(BaseUploadTest):
         assert res.status_code == 200
         doc = pq(res.content)
 
+        assert 'this tool only works with legacy add-ons' in res.content
+
         options = doc('#id_application option')
         expected = [(str(a.id), unicode(a.pretty)) for a in amo.APP_USAGE]
         for idx, element in enumerate(options):
@@ -706,7 +700,6 @@ class TestUploadCompatCheck(BaseUploadTest):
             assert e.text() == text
 
         assert doc('#upload-addon').attr('data-upload-url') == self.upload_url
-        # TODO(Kumar) actually check the form here after bug 671587
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_js_upload_validates_compatibility(self, run_validator):

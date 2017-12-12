@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.tests import (
     create_switch, ESTestCaseWithAddons, ESTestCase, addon_factory)
 from olympia.amo.templatetags.jinja_helpers import (
-    locale_url, numberfmt, urlparams, datetime_filter)
+    locale_url, numberfmt, urlparams, format_date)
 
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
@@ -179,9 +179,21 @@ class TestESSearch(SearchBase):
     def test_results_sort_name(self):
         self.check_sort_links('name', 'Name', 'name', reverse=False)
 
+    def test_new_frontend_type_redirect(self):
+        response = self.client.get(self.url + u'?q=fôo&type=extension')
+        # Can't use assert3xx because the query parameters ordering is not
+        # guaranteed.
+        assert response.status_code == 302
+        expected_params = 'q=f%C3%B4o&atype=1'
+        redirected = response.url
+        parsed = urlparse.urlparse(redirected)
+        params = parsed.query
+        assert parsed.path == self.url
+        assert urlparse.parse_qs(params) == urlparse.parse_qs(expected_params)
+
     def test_legacy_redirects(self):
-        r = self.client.get(self.url + '?sort=averagerating')
-        self.assert3xx(r, self.url + '?sort=rating', status_code=301)
+        response = self.client.get(self.url + '?sort=averagerating')
+        self.assert3xx(response, self.url + '?sort=rating', status_code=301)
 
     def test_legacy_redirects_to_non_ascii(self):
         # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
@@ -715,29 +727,29 @@ class TestSearchResultScoring(ESTestCase):
         self.refresh()
 
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
         # Doesn't match "All Downloader Professional"
-        assert addons[2].pk not in result
+        assert addons[2].pk not in results
 
         # Matches both "Merge Windows" and "Merge All Windows" but can't
         # correctly predict their exact scoring since we don't have
         # an exact match that would prefer 'merge windows'. Both should be
         # the first two matches though.
-        assert addons[1].pk in result[:2]
-        assert addons[0].pk in result[:2]
+        assert addons[1].pk in results[:2]
+        assert addons[0].pk in results[:2]
 
         response = self.client.get(self.url, {'q': 'merge all windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
         # Make sure we match 'All Downloader Professional' but it's
         # term match frequency is much lower than the other two so it's
         # last.
-        assert addons[2].pk == result[-1]
+        assert addons[2].pk == results[-1]
 
         # Other two are first rank again.
-        assert addons[1].pk in result[:2]
-        assert addons[0].pk in result[:2]
+        assert addons[1].pk in results[:2]
+        assert addons[0].pk in results[:2]
 
     def test_score_boost_name_match_slop(self):
         addon = amo.tests.addon_factory(
@@ -748,9 +760,54 @@ class TestSearchResultScoring(ESTestCase):
 
         # direct match
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
-        assert result[0] == addon.pk
+        assert results[0] == addon.pk
+
+    def test_score_boost_exact_match(self):
+        """Test that we rank exact matches at the top."""
+        addons = [
+            amo.tests.addon_factory(
+                name='test addon test11', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test21', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test31', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+        ]
+
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': 'test addon test21'})
+        results = self.get_results(response)
+
+        assert results[0] == addons[1].pk
+
+    def test_score_boost_exact_match_description_hijack(self):
+        """Test that we rank exact matches at the top."""
+        addons = [
+            amo.tests.addon_factory(
+                name='1-Click YouTube Video Download',
+                type=amo.ADDON_EXTENSION,
+                average_daily_users=566337, weekly_downloads=150000,
+                description=(
+                    'button, click that button, 1-Click Youtube Video '
+                    'Downloader is a click click great tool')),
+            amo.tests.addon_factory(
+                name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
+                average_daily_users=50, weekly_downloads=0),
+        ]
+
+        self.refresh()
+
+        response = self.client.get(self.url, {
+            'q': 'Amazon 1-Click Lock'
+        })
+        results = self.get_results(response)
+
+        assert results[0] == addons[1].pk
 
 
 class TestPersonaSearch(SearchBase):
@@ -840,7 +897,7 @@ class TestPersonaSearch(SearchBase):
         # Try to match 'The Life Aquatic with SeaVan'.
         # We have prefix_length=4 so fuzziness matching starts
         # at the 4th character for performance reasons.
-        for term in ('life', 'aquatic', 'seavan', 'seav an'):
+        for term in ('life', 'aquatic', 'seavan', 'sea van'):
             self.check_name_results({'q': term}, [p2.pk])
 
     def test_results_popularity(self):
@@ -991,7 +1048,7 @@ class TestCollectionSearch(SearchBase):
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
             assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Added %s' % trim_whitespace(datetime_filter(c.created)))
+                'Added %s' % trim_whitespace(format_date(c.created)))
 
     def test_updated_timestamp(self):
         self._generate()
@@ -999,7 +1056,7 @@ class TestCollectionSearch(SearchBase):
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
             assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Updated %s' % trim_whitespace(datetime_filter(c.modified)))
+                'Updated %s' % trim_whitespace(format_date(c.modified)))
 
     def check_followers_count(self, sort, column):
         # Checks that we show the correct type/number of followers.
@@ -1180,6 +1237,10 @@ class TestCollectionSearch(SearchBase):
     ('pid=2', 'platform=linux'),
     ('q=woo&lver=6.0&sort=users&pid=5',
      'q=woo&appver=6.0&sort=users&platform=windows'),
+    ('type=extension', 'atype=1'),
+    ('type=dictionary', 'atype=3'),
+    ('type=search', 'atype=4'),
+    ('type=language', 'atype=5'),
 ])
 def test_search_redirects(test_input, expected):
     assert views.fix_search_query(QueryDict(test_input)) == (

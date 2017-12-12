@@ -1,0 +1,63 @@
+{% extends "impala/base_shared.html" %}
+{% from 'includes/forms.html' import pretty_field, required_note %}
+
+{% set title = _('Add a review for {0}')|format_html(addon.name) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block bodyclass %}reviews gutter{% endblock %}
+
+{% block content %}
+
+  <h1>{{ title }}</h1>
+
+  <div class="secondary">
+    {{ addon|sidebar_listing }}
+  </div>
+
+  <div id="reviews" class="primary island hero prettyform c">
+    <fieldset class="prose">
+      {# Text for add-ons: #}
+      {% trans support=addon.get_url_path() + "#support",
+               guide=url('pages.review_guide') %}
+      <h2>Keep these tips in mind:</h2>
+      <ul>
+        <li>
+          Write like you're telling a friend about your experience with the add-on.
+          Give specifics and helpful details, such as what features you liked and/or
+          disliked, how easy to use it is, and any disadvantages it has. Avoid generic
+          language such as calling it "Great" or "Bad" unless you can give reasons why
+          you believe this is so.
+        </li>
+        <li>
+          Please do not post bug reports here. We do not make your email
+          address available to add-on developers, so they can't contact you
+          to resolve your issue. See this add-on's <a href="{{ support }}">support section</a>
+          to find out if assistance is available. You can also try asking the
+          <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
+        </li>
+        <li>Please keep reviews clean, avoid the use of improper language and do not
+            post any personal information.
+        </li>
+      </ul>
+      <p>Please read the <a href="{{ guide }}">Review Guidelines</a> for more detail
+      about user add-on reviews.</p>
+      {% endtrans %}
+    </fieldset>
+    <form method="post" class="review-form" id="review-form"
+          action="{{ url('addons.ratings.add', addon.slug) }}">
+      {% csrf_token %}
+      <fieldset>
+        <ul>
+          {{ pretty_field(form.title, label=_('Title')) }}
+          {{ pretty_field(form.rating, label=_('Rating')) }}
+          {{ pretty_field(form.body, label=_('Review')) }}
+        </ul>
+      </fieldset>
+      <footer>
+        {{ required_note() }}
+        <button type="submit">{{ _('Submit review') }}</button>
+      </footer>
+    </form>
+  </div>
+{% endblock %}

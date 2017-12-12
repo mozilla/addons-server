@@ -13,7 +13,6 @@ from django.utils.translation import ugettext
 import caching.base
 import jinja2
 from django_statsd.clients import statsd
-from waffle import switch_is_active
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -23,6 +22,7 @@ from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
 from olympia.applications.models import AppVersion
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
@@ -90,7 +90,8 @@ class Version(OnChangeMixin, ModelBase):
     reviewed = models.DateTimeField(null=True)
 
     has_info_request = models.BooleanField(default=False)
-    has_editor_comment = models.BooleanField(default=False)
+    has_reviewer_comment = models.BooleanField(
+        db_column='has_editor_comment', default=False)
 
     deleted = models.BooleanField(default=False)
 
@@ -178,10 +179,10 @@ class Version(OnChangeMixin, ModelBase):
         # fetching the ApplicationsVersions that were just created. To work
         # around this we pre-generate version.compatible_apps and avoid the
         # queries completely.
-        version.compatible_apps = compatible_apps
+        version._compatible_apps = compatible_apps
 
-        if addon.type == amo.ADDON_SEARCH:
-            # Search extensions are always for all platforms.
+        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
+            # Search extensions and static themes are always for all platforms.
             platforms = [amo.PLATFORM_ALL.id]
         else:
             platforms = cls._make_safe_platform_files(platforms)
@@ -279,11 +280,13 @@ class Version(OnChangeMixin, ModelBase):
     def is_user_disabled(self, disable):
         # User wants to disable (and the File isn't already).
         if disable:
+            activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
             for file in self.files.exclude(status=amo.STATUS_DISABLED).all():
                 file.update(original_status=file.status,
                             status=amo.STATUS_DISABLED)
         # User wants to re-enable (and user did the disable, not Mozilla).
         else:
+            activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
             for file in self.files.exclude(
                     original_status=amo.STATUS_NULL).all():
                 file.update(status=file.original_status,
@@ -292,7 +295,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
-        from olympia.editors.models import (
+        from olympia.reviewers.models import (
             ViewFullReviewQueue, ViewPendingQueue)
 
         if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -317,8 +320,19 @@ class Version(OnChangeMixin, ModelBase):
               .select_related('activity_log', 'version').no_cache())
         return al
 
-    @cached_property
+    @property
     def compatible_apps(self):
+        # Dicts, search providers and personas don't have compatibility info.
+        # Fake one for them.
+        if self.addon and self.addon.type in amo.NO_COMPAT:
+            return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
+        # Otherwise, return _compatible_apps which is a cached property that
+        # is filled by the transformer, or simply calculated from the related
+        # compat instances.
+        return self._compatible_apps
+
+    @cached_property
+    def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
         avs = self.apps.select_related('version')
         return self._compat_map(avs)
@@ -352,10 +366,12 @@ class Version(OnChangeMixin, ModelBase):
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
+        if self.addon.type in amo.NO_COMPAT:
+            return True
         appversion = self.compatible_apps.get(app)
-        if appversion and app.id in amo.D2C_MAX_VERSIONS:
+        if appversion and app.id in amo.D2C_MIN_VERSIONS:
             return (version_int(appversion.max.version) >=
-                    version_int(amo.D2C_MAX_VERSIONS.get(app.id, '*')))
+                    version_int(amo.D2C_MIN_VERSIONS.get(app.id, '*')))
         return False
 
     def compat_override_app_versions(self):
@@ -477,8 +493,12 @@ class Version(OnChangeMixin, ModelBase):
         return bool(self.source)
 
     @property
-    def admin_review(self):
-        return self.addon.admin_review
+    def needs_admin_code_review(self):
+        return self.addon.needs_admin_code_review
+
+    @property
+    def needs_admin_content_review(self):
+        return self.addon.needs_admin_content_review
 
     @classmethod
     def _compat_map(cls, avs):
@@ -510,7 +530,7 @@ class Version(OnChangeMixin, ModelBase):
 
         for version in versions:
             v_id = version.id
-            version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
+            version._compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
             for f in version.all_files:
                 f.version = version
@@ -586,13 +606,8 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
-        addon_statuses = [amo.STATUS_PUBLIC]
-        if switch_is_active('post-review'):
-            # If post-review switch is active, we also accept initial version
-            # submissions, so the add-on can also be NOMINATED.
-            addon_statuses.append(amo.STATUS_NOMINATED)
         return (
-            self.addon.status in addon_statuses and
+            self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
             self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
             self.is_webextension and
             self.is_unreviewed and
@@ -601,7 +616,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def was_auto_approved(self):
         """Return whether or not this version was auto-approved."""
-        from olympia.editors.models import AutoApprovalSummary
+        from olympia.reviewers.models import AutoApprovalSummary
         try:
             return self.is_public() and AutoApprovalSummary.objects.filter(
                 version=self).get().verdict == amo.AUTO_APPROVED
@@ -712,15 +727,16 @@ models.signals.post_delete.connect(
 
 class LicenseManager(ManagerBase):
 
-    def builtins(self):
-        return self.filter(builtin__gt=0).order_by('builtin')
+    def builtins(self, cc=False):
+        return self.filter(
+            builtin__gt=0, creative_commons=cc).order_by('builtin')
 
 
 class License(ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, db_column='url')
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(
@@ -731,6 +747,7 @@ class License(ModelBase):
     icons = models.CharField(
         max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
+    creative_commons = models.BooleanField(default=False)
 
     objects = LicenseManager()
 
@@ -738,7 +755,12 @@ class License(ModelBase):
         db_table = 'licenses'
 
     def __unicode__(self):
-        return unicode(self.name)
+        license = self._constant or self
+        return unicode(license.name)
+
+    @property
+    def _constant(self):
+        return LICENSES_BY_BUILTIN.get(self.builtin)
 
 
 models.signals.pre_save.connect(

@@ -73,13 +73,13 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
-            addon = create_addon(admin_review=False, type=amo.ADDON_EXTENSION)
-            addon.admin_review = True
+            addon = create_addon(public_stats=False, type=amo.ADDON_EXTENSION)
+            addon.public_stats = True
             addon.save()
             assert self.cb.called
             kw = self.cb.call_args[1]
-            assert not kw['old_attr']['admin_review']
-            assert kw['new_attr']['admin_review']
+            assert not kw['old_attr']['public_stats']
+            assert kw['new_attr']['public_stats']
             assert kw['instance'].id == addon.id
             assert kw['sender'] == Addon
 
@@ -113,12 +113,13 @@ class TestModelBase(TestCase):
                      sender=None, **kw):
             fn.called = True
             # Both save and update should be protected:
-            instance.update(admin_review=False)
+            instance.update(public_stats=True)
             instance.save()
 
         Addon.on_change(callback)
 
         addon = Addon.objects.get(pk=3615)
+        assert not addon.public_stats
         addon.save()
         assert fn.called
         # No exception = pass

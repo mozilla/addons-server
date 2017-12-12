@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-09-15 12:23+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-12-07 14:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -117,8 +117,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
-"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
+" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -643,7 +643,7 @@ msgid "Accept and Install"
 msgstr "Kabul et ve kur"
 
 msgid "Add to {0}"
-msgstr "{0}'a Ekle"
+msgstr "{0}’a ekle"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -742,17 +742,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} kullanıcı incelemesi"
 
-msgid "Learn more"
-msgstr "Daha fazla bilgi"
-
 msgid "Image changes being processed"
 msgstr "Resim değişiklikleri işleniyor"
 
-msgid "Must be a valid e-mail address."
-msgstr "Geçerli bir e-posta adresi olmalı."
-
 msgid "No results found."
 msgstr "Sonuç bulunamadı."
+
+msgid "Loading..."
+msgstr "Yükleniyor..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> karakter kaldı."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar deneyin."
+
+msgid "Remove this localization"
+msgstr "Bu yerelleştirmeyi kaldır"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} bu sayfayı ilk olarak inceliyordu."
@@ -789,20 +797,6 @@ msgstr "İncelemelerin Ortalaması"
 
 msgid "Number of Reviews"
 msgstr "İncelemelerin Sayısı"
-
-msgid "Loading..."
-msgstr "Yükleniyor..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> karakter kaldı."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar deneyin."
-
-msgid "Remove this localization"
-msgstr "Bu yerelleştirmeyi kaldır"
 
 msgid "Requested Info"
 msgstr "İstenen Bilgi"

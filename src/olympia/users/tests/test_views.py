@@ -24,7 +24,7 @@ from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification
 from olympia.users.utils import UnsubscribeCode
@@ -173,7 +173,7 @@ class TestEdit(UserViewBase):
         choices = email.NOTIFICATIONS_CHOICES
         self.check_default_choices(choices)
 
-        self.data['notifications'] = [2, 4, 6]
+        self.data['notifications'] = [4, 6]
         r = self.client.post(self.url, self.data)
         self.assert3xx(r, self.url, 302)
 
@@ -240,7 +240,7 @@ class TestEditAdmin(UserViewBase):
 
     def test_edit_forbidden(self):
         self.client.logout()
-        self.client.login(email='editor@mozilla.com')
+        self.client.login(email='reviewer@mozilla.com')
         res = self.client.get(self.url)
         assert res.status_code == 403
 
@@ -316,7 +316,7 @@ class TestUnsubscribe(UserViewBase):
 
     def setUp(self):
         super(TestUnsubscribe, self).setUp()
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
 
     def test_correct_url_update_notification(self):
         # Make sure the user is subscribed
@@ -530,7 +530,7 @@ class TestProfileLinks(UserViewBase):
 class TestProfileSections(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
-                'reviews/dev-reply']
+                'ratings/dev-reply']
 
     def setUp(self):
         super(TestProfileSections, self).setUp()
@@ -644,7 +644,7 @@ class TestProfileSections(TestCase):
         assert items('a[href="%s"]' % a.get_url_path()).length == 1
 
     def test_my_reviews(self):
-        r = Review.objects.filter(reply_to=None)[0]
+        r = Rating.objects.filter(reply_to=None)[0]
         r.update(user=self.user)
         cache.clear()
         self.assertSetEqual(set(self.user.reviews), {r})
@@ -657,7 +657,7 @@ class TestProfileSections(TestCase):
         assert doc('#review-218207').length == 1
 
         # Edit Review form should be present.
-        self.assertTemplateUsed(r, 'reviews/edit_review.html')
+        self.assertTemplateUsed(r, 'ratings/edit_review.html')
 
     def _get_reviews(self, username):
         self.client.login(email=username)
@@ -666,21 +666,24 @@ class TestProfileSections(TestCase):
         return doc('#review-218207 .item-actions a.delete-review')
 
     def test_my_reviews_delete_link(self):
-        review = Review.objects.filter(reply_to=None)[0]
-        review.user_id = 999
-        review.save()
+        moderator = UserProfile.objects.create(
+            username='moderator', email='moderator@mozilla.com')
+        self.grant_permission(moderator, 'Ratings:Moderate')
+        rating = Rating.objects.filter(reply_to=None)[0]
+        rating.user_id = 999
+        rating.save()
         cache.clear()
-        slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+        slug = Addon.objects.get(id=rating.addon_id).slug
+        delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
         # Admins get the Delete Review link.
         r = self._get_reviews(username='admin@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
-        # Editors don't get the Delete Review link
+        # Moderators don't get the Delete Review link
         # (unless it's pending moderation).
-        r = self._get_reviews(username='editor@mozilla.com')
+        r = self._get_reviews(username='moderator@mozilla.com')
         assert r.length == 0
 
         # Author gets the Delete Review link.
@@ -693,17 +696,20 @@ class TestProfileSections(TestCase):
         assert r.length == 0
 
     def test_my_reviews_delete_link_moderated(self):
-        review = Review.objects.filter(reply_to=None)[0]
-        review.user_id = 999
-        review.editorreview = True
-        review.save()
+        moderator = UserProfile.objects.create(
+            username='moderator', email='moderator@mozilla.com')
+        self.grant_permission(moderator, 'Ratings:Moderate')
+        rating = Rating.objects.filter(reply_to=None)[0]
+        rating.user_id = 999
+        rating.editorreview = True
+        rating.save()
         cache.clear()
-        slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+        slug = Addon.objects.get(id=rating.addon_id).slug
+        delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
-        # Editors get the Delete Review link
+        # Moderators get the Delete Review link
         # because the review is pending moderation
-        r = self._get_reviews(username='editor@mozilla.com')
+        r = self._get_reviews(username='moderator@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
@@ -773,7 +779,7 @@ class TestProfileSections(TestCase):
 
     def test_review_abuse_form(self):
         r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
+        self.assertTemplateUsed(r, 'ratings/report_review.html')
 
     def test_user_abuse_form(self):
         abuse_url = reverse('users.abuse', args=[self.user.id])

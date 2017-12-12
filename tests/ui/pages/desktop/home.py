@@ -40,6 +40,13 @@ class Home(Base):
             def __repr__(self):
                 return '{0.name} ({0.users:,} users)'.format(self)
 
+            def click(self):
+                """Clicks on the addon."""
+                self.find_element(*self._name_locator).click()
+                from pages.desktop.details import Details
+                return Details(
+                    self.selenium, self.page.base_url).wait_for_page_to_load()
+
             @property
             def name(self):
                 """Extension name"""
@@ -54,7 +61,7 @@ class Home(Base):
     class FeaturedExtensions(Region):
         """Featured Extension region"""
         _root_locator = (By.ID, 'featured-extensions')
-        _extension_locator = (By.CSS_SELECTOR, 'section > li > div')
+        _extension_locator = (By.CSS_SELECTOR, 'section > li > .addon')
         _see_all_locator = (By.CSS_SELECTOR, 'h2 > a')
 
         @property
@@ -65,10 +72,10 @@ class Home(Base):
         class Extension(Region):
 
             _name_locator = (By.CSS_SELECTOR, 'h3')
-            _link_locator = (By.TAG_NAME, 'a')
+            _link_locator = (By.CSS_SELECTOR, '.addon .summary a')
 
-            def see_all(self):
-                """Clicks the 'See All' link"""
+            def click(self):
+                """Clicks the addon link"""
                 self.find_element(*self._link_locator).click()
                 from pages.desktop.details import Details
                 return Details(

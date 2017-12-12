@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-08-11 21:28+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -755,17 +755,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} αξιολόγηση χρήστη"
 msgstr[1] "{reviews} αξιολογήσεις χρήστη"
 
-msgid "Learn more"
-msgstr "Μάθετε περισσότερα"
-
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
-msgid "Must be a valid e-mail address."
-msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
-
 msgid "No results found."
 msgstr "Δεν βρέθηκαν αποτελέσματα."
+
+msgid "Loading..."
+msgstr "Γίνεται φόρτωση..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
+msgstr[1] "<b>{0}</b> χαρακτήρες διαθέσιμοι."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Αυτό το χαρακτηριστικό έχει απενεργοποιηθεί προς το παρόν λόγω εκτέλεσης εργασιών συντήρησης. Παρακαλούμε προσπαθήστε ξανά αργότερα."
+
+msgid "Remove this localization"
+msgstr "Αφαίρεση αυτής της μετάφρασης"
 
 msgid "{name} was viewing this page first."
 msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
@@ -802,21 +811,6 @@ msgstr "Μέσες αξιολογήσεις"
 
 msgid "Number of Reviews"
 msgstr "Αριθμός αξιολογήσεων"
-
-msgid "Loading..."
-msgstr "Γίνεται φόρτωση..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
-msgstr[1] "<b>{0}</b> χαρακτήρες διαθέσιμοι."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Αυτό το χαρακτηριστικό έχει απενεργοποιηθεί προς το παρόν λόγω εκτέλεσης εργασιών συντήρησης. Παρακαλούμε προσπαθήστε ξανά αργότερα."
-
-msgid "Remove this localization"
-msgstr "Αφαίρεση αυτής της μετάφρασης"
 
 msgid "Requested Info"
 msgstr "Ζητούμενες πληροφορίες"

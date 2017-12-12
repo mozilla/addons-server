@@ -32,6 +32,7 @@ class Command(BaseCommand):
                 'Please provide at least one addon id to sign. If you want to '
                 'sign them all, use the "process_addons --task sign_addons" '
                 'management command.')
+
         full_server = options.get('signing_server') or settings.SIGNING_SERVER
 
         addon_ids = [int(addon_id) for addon_id in options['addon_id']]

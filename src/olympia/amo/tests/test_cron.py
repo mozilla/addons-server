@@ -1,14 +1,11 @@
 import datetime
 from datetime import timedelta
 
-from django.core.signals import request_finished, request_started
-
 import mock
-import pytest
 
 from olympia.amo.cron import gc
 from olympia.amo.tests import TestCase
-from olympia.amo.celery import app, task
+from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.files.models import FileUpload
 
@@ -58,39 +55,6 @@ class TestTaskTiming(TestCase):
         self.cache.get.return_value = None  # cache miss
         fake_task.delay()
         assert not self.statsd.timing.called
-
-
-@pytest.mark.skipif('PostRequestTask' not in unicode(app.task_cls),
-                    reason='requires PostRequestTask to be active')
-class TestTaskQueued(TestCase):
-    """Test that our celery tasks are queued to be triggered only when the
-    request is finished, thanks to django-post-request-task."""
-    def setUp(self):
-        fake_task_func.reset_mock()
-
-    def test_not_queued_outside_request_response_cycle(self):
-        fake_task.delay()
-        assert fake_task_func.call_count == 1
-
-    def test_queued_inside_request_response_cycle(self):
-        request_started.send(sender=self)
-        fake_task.delay()
-        assert fake_task_func.call_count == 0
-        request_finished.send_robust(sender=self)
-        assert fake_task_func.call_count == 1
-
-    def test_no_dedupe_outside_request_response_cycle(self):
-        fake_task.delay()
-        fake_task.delay()
-        assert fake_task_func.call_count == 2
-
-    def test_dedupe_inside_request_response_cycle(self):
-        request_started.send(sender=self)
-        fake_task.delay()
-        fake_task.delay()
-        assert fake_task_func.call_count == 0
-        request_finished.send_robust(sender=self)
-        assert fake_task_func.call_count == 1
 
 
 @mock.patch('olympia.amo.cron.storage')

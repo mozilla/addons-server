@@ -7,7 +7,7 @@
       <span class="meta">
         <time datetime="{{ version.created|isotime }}">
           {# L10n: {0} is a timestamp, such as September 28, 2011. #}
-          {{ _('Released {0}')|format_html(version.created|datetime) }}
+          {{ _('Released {0}')|format_html(version.created|date) }}
         </time>
         {% if version.has_files %}
           <span class="filesize">
@@ -56,10 +56,6 @@
 
   </div>
   <div class="action">
-    {% if skip_contrib %}
-      {{ install_button(addon, version=version, impala=impala, show_contrib=False, show_download_anyway=True) }}
-    {% else %}
       {{ install_button(addon, version=version, impala=impala, show_download_anyway=True) }}
-    {% endif %}
   </div>
 </div>

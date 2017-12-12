@@ -51,6 +51,12 @@ urlpatterns = [
     url('^complete-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ThemeCategoriesRss(), name='browse.themes.rss'),
 
+    # This won't let you browse any themes but detail page needs the url.
+    url('^static-themes/(?P<category>[^/]+)?$',
+        lambda r, category: redirect(
+            reverse('browse.personas', kwargs={'category': category or ''})),
+        name='browse.static-themes'),
+
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
 

@@ -1,25 +1,15 @@
-from importlib import import_module
 import logging
 import logging.config
 import os
-import urllib
-
-# get the right settings module
-settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
-if settingmodule.startswith(('zamboni',  # typical git clone destination
-                             'workspace',  # Jenkins
-                             'freddo')):
-    settingmodule = settingmodule.split('.', 1)[1]
-
-
 import posixpath
 import re
 import sys
+import urllib
 
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-settings = import_module(settingmodule)
+from services.settings import settings
 
 import olympia.core.logger
 from olympia.lib.log_settings_base import formatters, handlers

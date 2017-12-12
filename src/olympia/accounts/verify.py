@@ -15,7 +15,7 @@ def fxa_identify(code, config=None):
         with statsd.timer('accounts.fxa.identify.all'):
             token = get_fxa_token(code, config)['access_token']
             profile = get_fxa_profile(token, config)
-    except:
+    except Exception:
         statsd.incr('accounts.fxa.identify.all.fail')
         raise
     else:

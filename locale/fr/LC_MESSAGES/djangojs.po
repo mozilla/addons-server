@@ -2,14 +2,14 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-09-14 03:00+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-11-30 18:22+0000\n"
+"Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Vous avez activé un nouvel analyseur de code pour le traitement de votre module. Merci de rapporter tout problème sur GitHub."
+msgstr "Nous avons activé un nouvel analyseur de code pour le traitement de votre module. Merci de signaler tout problème sur GitHub."
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -80,7 +80,7 @@ msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue pendant la validation."
 
 msgid "Finished validating {0}"
-msgstr "Validation finie {0}"
+msgstr "Validation de {0} terminée"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "La validation de votre module n’a pu être effectuée à temps, il sera revu manuellement."
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -137,7 +137,7 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
 
 msgid "Sorry, no supported platform has been found."
-msgstr "Désolé, aucune plateforme supportée n’a été trouvée."
+msgstr "Désolé, aucune plateforme prise en charge n’a été trouvée."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
@@ -370,7 +370,7 @@ msgid "Collections"
 msgstr "Collections"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Catégorie d’accueil du caroussel des vedettes"
+msgstr "Catégorie d’accueil du carrousel des vedettes"
 
 msgid "Category Landing Top Rated"
 msgstr "Catégorie d’accueil des mieux notées"
@@ -477,7 +477,7 @@ msgstr "Applications du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Platformes, derniers {0} jours"
+msgstr "Plateformes, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -668,7 +668,7 @@ msgid "Download for {0} anyway"
 msgstr "Télécharger tout de même pour {0}"
 
 msgid "Not available for your platform"
-msgstr "Non disponible sur votre plateforme"
+msgstr "Non disponible pour votre plateforme"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
@@ -723,7 +723,7 @@ msgid "An email address is required."
 msgstr "Une adresse de courriel est nécessaire."
 
 msgid "You cannot add yourself as a contributor."
-msgstr "Vous ne pouvez pas vous rajouter comme contributeur."
+msgstr "Vous ne pouvez pas vous ajouter comme contributeur."
 
 msgid "You have already added that user."
 msgstr "Vous avez déjà ajouté cet utilisateur."
@@ -744,7 +744,7 @@ msgid "Changes Saved"
 msgstr "Changements enregistrés"
 
 msgid "Enter a new author's email address"
-msgstr "Entrer l’adresse courriel d’un nouvel auteur"
+msgstr "Saisir l’adresse courriel d’un nouvel auteur"
 
 msgid "There was an error uploading your file."
 msgstr "Une erreur est survenue pendant l’envoi de votre fichier."
@@ -759,17 +759,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} revue utilisateur"
 msgstr[1] "{reviews} revues utilisateur"
 
-msgid "Learn more"
-msgstr "En savoir plus"
-
 msgid "Image changes being processed"
 msgstr "Changements d’images en cours"
 
-msgid "Must be a valid e-mail address."
-msgstr "Doit être une adresse courriel valide."
-
 msgid "No results found."
 msgstr "Aucun résultat trouvé."
+
+msgid "Loading..."
+msgstr "Chargement…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> caractère restant."
+msgstr[1] "<b>{0}</b> caractères restants."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Cette fonctionnalité est désactivée temporairement pendant la maintenance. Merci de revenir un peu plus tard."
+
+msgid "Remove this localization"
+msgstr "Retirer cette localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
@@ -793,7 +802,7 @@ msgid "Notes for Reviewers"
 msgstr "Notes aux testeurs"
 
 msgid "No version notes found"
-msgstr "Pas de note de version"
+msgstr "Pas de notes de version"
 
 msgid "Review Text"
 msgstr "Réviser le texte"
@@ -806,21 +815,6 @@ msgstr "Revues moyennes"
 
 msgid "Number of Reviews"
 msgstr "Nombre de revues"
-
-msgid "Loading..."
-msgstr "Chargement…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> caractère restant."
-msgstr[1] "<b>{0}</b> caractères restants."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Cette fonctionnalité est désactivée temporairement pendant la maintenance. Merci de revenir un peu plus tard."
-
-msgid "Remove this localization"
-msgstr "Retirer cette localisation"
 
 msgid "Requested Info"
 msgstr "Infos demandées"

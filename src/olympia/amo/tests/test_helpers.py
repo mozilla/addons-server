@@ -38,12 +38,6 @@ def render(s, context=None):
     return t.render(context)
 
 
-def test_currencyfmt():
-    assert jinja_helpers.currencyfmt(None, 'USD') == ''
-    assert jinja_helpers.currencyfmt(5, 'USD') == '$5.00'
-    assert jinja_helpers.currencyfmt('12', 'USD') == '$12.00'
-
-
 def test_strip_controls():
     # We want control codes like \x0c to disappear.
     assert 'I ove you' == jinja_helpers.strip_controls('I \x0cove you')

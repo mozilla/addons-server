@@ -40,6 +40,8 @@ test_failed:
 update_docker:
 	docker-compose exec worker make update_deps
 	docker-compose exec web make update
+	docker-compose exec web supervisorctl restart all
+	docker-compose exec worker supervisorctl restart all
 
 initialize_docker:
 	docker-compose exec web make initialize
@@ -51,7 +53,7 @@ shell:
 	docker-compose exec web bash
 
 djshell:
-	docker-compose exec web ./manage.py shell
+	docker-compose exec web ./manage.py shell_plus
 
 dbshell:
 	docker-compose exec web ./manage.py dbshell

@@ -1,0 +1,16 @@
+{% if grouped_ratings and addon.total_ratings %}
+  <div>
+    <ul class="grouped_ratings" data-total="{{ addon.total_ratings }}">
+    {% for rating, count in grouped_ratings|sort(reverse=True) %}
+      {% set pct = ( count|float / addon.total_ratings * 100 )|round( method='floor' ) %}
+      <li class="c">{{ rating|stars }}
+        <div class="rating_bar" data-num-reviews="{{ count }}">
+          <span class="bar" style="width:{{ pct }}%">
+            <span class="num_ratings">{{ count }}</span>
+          </span>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endif %}

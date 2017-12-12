@@ -19,13 +19,13 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = OrderedDict([
-            (696234, addon_factory(id=696234, type=amo.ADDON_PERSONA)),
-            (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
-            (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-            (265123, addon_factory(id=265123, type=amo.ADDON_PERSONA)),
-            (708770, addon_factory(id=708770, type=amo.ADDON_EXTENSION)),
+            (676070, addon_factory(id=676070, type=amo.ADDON_PERSONA)),
+            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+            (8542, addon_factory(id=8542, type=amo.ADDON_EXTENSION)),
+            (290486, addon_factory(id=290486, type=amo.ADDON_PERSONA)),
             (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
-            (644254, addon_factory(id=644254, type=amo.ADDON_PERSONA)),
+            (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+            (21085, addon_factory(id=21085, type=amo.ADDON_PERSONA)),
         ])
 
     def test_reverse(self):
@@ -154,8 +154,11 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
 
-        response = self.client.get(self.url, {'lang': 'en-US',
-                                              'telemetry-client-id': '666'})
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
+                       'platform': 'WINNT'})
+        self.get_recommendations.assert_called_with('666', 'en-US', 'WINNT')
+
         # should still be the same number of results.
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']

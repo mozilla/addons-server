@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-08-28 13:16+0000\n"
-"Last-Translator: wenke <wenketel@live.com>\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-10-24 04:58+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgid "WebExtension upgrade"
 msgstr "升级为 WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla 为您提供了升级的途径，也鼓励您如此，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
+msgstr "Mozilla 为您提供了升级的途径，也鼓励您升级，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "到 MDN 了解如何移植旧式 Firefox 附加组件"
@@ -177,13 +177,13 @@ msgid "Your Theme's Name"
 msgstr "您的主题名称"
 
 msgid "Flagged for review"
-msgstr "已标记评价"
+msgstr "待审的评价"
 
 msgid "Your input is required"
 msgstr "必填"
 
 msgid "Marked for deletion"
-msgstr "标记为删除"
+msgstr "已请求删除"
 
 msgid "Updating results&hellip;"
 msgstr "正在更新结果&hellip;"
@@ -740,17 +740,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 条用户评价"
 
-msgid "Learn more"
-msgstr "详细了解"
-
 msgid "Image changes being processed"
 msgstr "正在处理图像更改"
 
-msgid "Must be a valid e-mail address."
-msgstr "必须是一个有效的电子邮件地址。"
-
 msgid "No results found."
 msgstr "找不到结果。"
+
+msgid "Loading..."
+msgstr "正在加载..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "剩余 <b>{0}</b> 个字符。"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+
+msgid "Remove this localization"
+msgstr "移除此本地化"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} 第一个查看了这个页面。"
@@ -788,25 +796,11 @@ msgstr "平均评价"
 msgid "Number of Reviews"
 msgstr "评价数量"
 
-msgid "Loading..."
-msgstr "正在加载..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "剩余 <b>{0}</b> 个字符。"
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
-
-msgid "Remove this localization"
-msgstr "移除此本地化"
-
 msgid "Requested Info"
 msgstr "已请求信息"
 
 msgid "Flagged"
-msgstr "已标记"
+msgstr "待审"
 
 msgid "Duplicate"
 msgstr "重复"

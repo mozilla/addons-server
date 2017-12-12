@@ -22,7 +22,8 @@ class AddonIndexer(BaseSearchIndexer):
     """Fields we don't need to expose in the results, only used for filtering
     or sorting."""
     hidden_fields = (
-        'name_sort',
+        '*.raw',
+        '*_sort',
         'boost',
         'hotness',
         # Translated content that is used for filtering purposes is stored
@@ -140,11 +141,17 @@ class AddonIndexer(BaseSearchIndexer):
                         },
                     },
                     'modified': {'type': 'date', 'index': False},
-                    # Adding word-delimiter to split on camelcase and
-                    # punctuation.
-                    'name': {'type': 'text',
-                             'analyzer': 'standardPlusWordDelimiter'},
-                    # Turn off analysis on name so we can sort by it.
+                    'name': {
+                        'type': 'text',
+                        # Adding word-delimiter to split on camelcase and
+                        # punctuation.
+                        'analyzer': 'standardPlusWordDelimiter',
+                        'fields': {
+                            # Turn off analysis on name so we can sort by it.
+                            'raw': {'type': 'keyword'}
+                        },
+                    },
+                    # TODO: Can be removed once we have `name.raw` indexed
                     'name_sort': {'type': 'keyword'},
                     'persona': {
                         'type': 'object',
@@ -163,6 +170,14 @@ class AddonIndexer(BaseSearchIndexer):
                         'properties': {
                             'id': {'type': 'long', 'index': False},
                             'modified': {'type': 'date', 'index': False},
+                            'sizes': {
+                                'type': 'object',
+                                'properties': {
+                                    'thumbnail': {'type': 'short',
+                                                  'index': False},
+                                    'image': {'type': 'short', 'index': False},
+                                },
+                            },
                         },
                     },
                     'public_stats': {'type': 'boolean', 'index': False},
@@ -228,19 +243,7 @@ class AddonIndexer(BaseSearchIndexer):
         """Return compatibility info for the specified version_obj, as will be
         indexed in ES."""
         compatible_apps = {}
-        # <Version>.compatible_apps and <Addon>.compatible_apps have a subtle
-        # difference: the latter handles addons with no compatibility info,
-        # something the former can not do in a performant way easily (it
-        # computes compatibility info in a transformer where it does not have
-        # access to the parent addon without making additional queries).
-        # Here, in the indexer, we have access to both already, so if we detect
-        # that the add-on is not supposed to have compatibility information, we
-        # use the implementation from Addon.
-        if obj.type in amo.NO_COMPAT:
-            source = obj
-        else:
-            source = version_obj
-        for app, appver in source.compatible_apps.items():
+        for app, appver in version_obj.compatible_apps.items():
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
                 min_human, max_human = appver.min.version, appver.max.version
@@ -252,9 +255,13 @@ class AddonIndexer(BaseSearchIndexer):
                     # alone to leave the API representation intact.
                     max_ = version_int('9999')
             else:
-                # Fake wide compatibility for search tools and personas.
-                min_, max_ = 0, version_int('9999')
-                min_human, max_human = None, None
+                # Fake wide compatibility for add-ons with no info. We don't
+                # want to reindex every time a new version of the app is
+                # released, so we directly index a super high version as the
+                # max.
+                min_human, max_human = amo.D2C_MIN_VERSIONS.get(
+                    app.id, '1.0'), amo.FAKE_MAX_VERSION,
+                min_, max_ = version_int(min_human), version_int(max_human)
             compatible_apps[app.id] = {
                 'min': min_, 'min_human': min_human,
                 'max': max_, 'max_human': max_human,
@@ -343,12 +350,13 @@ class AddonIndexer(BaseSearchIndexer):
 
         # We can use all_previews because the indexing code goes through the
         # transformer that sets it.
-        data['previews'] = [{'id': preview.id, 'modified': preview.modified}
+        data['previews'] = [{'id': preview.id, 'modified': preview.modified,
+                             'sizes': preview.sizes}
                             for preview in obj.all_previews]
         data['ratings'] = {
             'average': obj.average_rating,
-            'count': obj.total_reviews,
-            'text_count': obj.text_reviews_count,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
         }
         # We can use tag_list because the indexing code goes through the
         # transformer that sets it (attach_tags).

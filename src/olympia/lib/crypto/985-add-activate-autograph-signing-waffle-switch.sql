@@ -1,0 +1,1 @@
+INSERT INTO waffle_switch (name, active, created, modified, note) VALUES ('activate-autograph-signing', 0, NOW(), NOW(), 'Activate new Autograph signing server based signing') ON DUPLICATE KEY UPDATE active = 0;

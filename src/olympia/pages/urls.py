@@ -19,7 +19,9 @@ urlpatterns = [
     url('^google1f3e37b7351799a5\.html$',
         TemplateView.as_view(
             template_name='pages/google_webmaster_verification.html')),
-
+    url('^google231a41e803e464e9\.html$',
+        TemplateView.as_view(
+            template_name='pages/google_search_console.html')),
     url('^compatibility_firstrun$',
         TemplateView.as_view(template_name='pages/acr_firstrun.html'),
         name='pages.acr_firstrun'),
@@ -92,4 +94,7 @@ urlpatterns = [
         TemplateView.as_view(template_name='pages/sunbird.html'),
         name='pages.sunbird'),
     url('^sunbird/', lambda r: perma_redirect(reverse('pages.sunbird'))),
+    url('^pioneer$',
+        TemplateView.as_view(template_name='pages/pioneer.html'),
+        name='pages.pioneer'),
 ]

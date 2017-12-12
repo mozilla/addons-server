@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from decimal import Decimal
 from urlparse import urlsplit
 
 from django import forms
@@ -251,13 +250,11 @@ class BaseCategoryFormSet(BaseFormSet):
         self.request = kw.pop('request', None)
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
-        apps = sorted(self.addon.compatible_apps.keys(),
-                      key=lambda x: x.id)
+        apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
 
         # Drop any apps that don't have appropriate categories.
         qs = Category.objects.filter(type=self.addon.type)
-        app_cats = dict((k, list(v)) for k, v in
-                        sorted_groupby(qs, 'application'))
+        app_cats = {k: list(v) for k, v in sorted_groupby(qs, 'application')}
         for app in list(apps):
             if app and not app_cats.get(app.id):
                 apps.remove(app)
@@ -398,13 +395,13 @@ class AddonFormTechnical(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('developer_comments', 'view_source', 'external_software',
-                  'auto_repackage', 'public_stats', 'whiteboard')
+                  'auto_repackage', 'public_stats')
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):
     class Meta:
         model = Addon
-        fields = ('whiteboard',)
+        fields = ()
 
 
 class AbuseForm(happyforms.Form):
@@ -705,7 +702,3 @@ class EditThemeOwnerForm(happyforms.Form):
             self.instance.save()
 
         return data
-
-
-class ContributionForm(happyforms.Form):
-    amount = forms.DecimalField(required=True, min_value=Decimal('0.01'))

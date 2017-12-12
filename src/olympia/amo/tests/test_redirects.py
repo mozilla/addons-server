@@ -8,7 +8,7 @@ from olympia.addons.models import Category
 
 
 class TestRedirects(TestCase):
-    fixtures = ['reviews/test_models', 'addons/persona', 'base/global-stats']
+    fixtures = ['ratings/test_models', 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /themes/film-and-tv"""
@@ -22,13 +22,13 @@ class TestRedirects(TestCase):
         r = self.client.get(u'/addon/5326/about', follow=True)
         redirect = r.redirect_chain[-1][0]
         assert redirect.endswith(
-            '/en-US/firefox/addon/5326/contribute/installed/')
+            '/en-US/firefox/addon/5326/')
 
     def test_contribute(self):
         """`/addons/contribute/$id` should go to `/addon/$id/contribute`."""
         response = self.client.get(u'/addon/5326/contribute', follow=True)
         redirect = response.redirect_chain[-1][0]
-        assert redirect.endswith('/en-US/firefox/addon/5326/contribute/')
+        assert redirect.endswith('/en-US/firefox/addon/5326/')
 
     def test_utf8(self):
         """Without proper unicode handling this will fail."""

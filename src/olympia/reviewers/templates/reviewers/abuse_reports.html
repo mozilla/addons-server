@@ -1,0 +1,11 @@
+{% extends "reviewers/base.html" %}
+
+{% block title %}
+  {{ reviewer_page_title(_('{addon} :: Abuse Reports')|format_html(addon=addon.name)) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{{_('Abuse Reports for {addon} and its developers ({num})')|format_html(addon=addon.name, num=reports.paginator.count|numberfmt) }}</h2>
+  {% include "reviewers/includes/abuse_reports_list.html" %}
+  {{ reports|paginator }}
+{% endblock %}

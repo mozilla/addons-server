@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-08-10 10:22+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"PO-Revision-Date: 2017-12-10 08:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -25,10 +25,10 @@ msgid "There was a problem contacting the server."
 msgstr "Det gjekk ikkje å kontakte tenaren."
 
 msgid "Select a file..."
-msgstr "Vel ei fil …"
+msgstr "Vel ei fil…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Utvidinga di må slutta på .zip, .xpi, .crx, .jar or .xml"
+msgstr "Utvidinga di må slutte på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} brukarvurdering"
 msgstr[1] "{reviews} brukarvurderingar"
 
-msgid "Learn more"
-msgstr "Les meir"
-
 msgid "Image changes being processed"
 msgstr "Endringar i bildet vert behandla"
 
-msgid "Must be a valid e-mail address."
-msgstr "Må vera ei gyldig e-postadresse."
-
 msgid "No results found."
 msgstr "Resultatlaust."
+
+msgid "Loading..."
+msgstr "Lastar …"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> teikn igjen."
+msgstr[1] "<b>{0}</b> tegn igjen."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Denne funksjonen er mellombels slått av medan vi utfører vedlikehald av nettsida. Kom tilbake seinere."
+
+msgid "Remove this localization"
+msgstr "Fjern denne omsettinga"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
@@ -799,21 +808,6 @@ msgstr "Gjennomsnittlege vurderingar"
 
 msgid "Number of Reviews"
 msgstr "Tal på vurderingar"
-
-msgid "Loading..."
-msgstr "Lastar …"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> teikn igjen."
-msgstr[1] "<b>{0}</b> tegn igjen."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funksjonen er mellombels slått av medan vi utfører vedlikehald av nettsida. Kom tilbake seinere."
-
-msgid "Remove this localization"
-msgstr "Fjern denne omsettinga"
 
 msgid "Requested Info"
 msgstr "Etterspurd info"

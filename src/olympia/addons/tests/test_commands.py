@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 import mock
 
 from django.conf import settings
@@ -8,13 +10,14 @@ import pytest
 
 from olympia import amo
 from olympia.activity.models import AddonLog
-from olympia.addons.management.commands import approve_addons
+from olympia.addons.management.commands import (
+    approve_addons, process_addons as pa)
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     addon_factory, AMOPaths, TestCase, version_factory)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 from olympia.files.models import FileValidation
+from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 from olympia.versions.models import ApplicationsVersions
 
 
@@ -214,9 +217,33 @@ def test_process_addons_invalid_task():
         call_command('process_addons', task='foo')
 
 
+@contextmanager
+def count_subtask_calls(original_function):
+    """Mock a celery tasks subtask method and record it's calls.
+
+    You can't mock a celery task `.subtask` method if that task is used
+    inside a chord or group unfortunately because of some type checking
+    that is use inside Celery 4+.
+
+    So this wraps the original method and restores it and records the calls
+    on it's own.
+    """
+    original_function_subtask = original_function.subtask
+    called = []
+
+    def _subtask_wrapper(*args, **kwargs):
+        called.append({'args': args, 'kwargs': kwargs})
+        return original_function_subtask(*args, **kwargs)
+
+    original_function.subtask = _subtask_wrapper
+
+    yield called
+
+    original_function.subtask = original_function_subtask
+
+
 class AddFirefox57TagTestCase(TestCase):
-    @mock.patch('olympia.addons.tasks.add_firefox57_tag.subtask')
-    def test_affects_only_public_webextensions(self, add_firefox57_tag_mock):
+    def test_affects_only_public_webextensions(self):
         addon_factory()
         addon_factory(file_kw={'is_webextension': True,
                                'status': amo.STATUS_AWAITING_REVIEW},
@@ -225,13 +252,14 @@ class AddFirefox57TagTestCase(TestCase):
         public_mozilla_signed = addon_factory(file_kw={
             'is_mozilla_signed_extension': True})
 
-        call_command(
-            'process_addons', task='add_firefox57_tag_to_webextensions')
+        with count_subtask_calls(pa.add_firefox57_tag) as calls:
+            call_command(
+                'process_addons', task='add_firefox57_tag_to_webextensions')
 
-        assert add_firefox57_tag_mock.call_count == 1
-        add_firefox57_tag_mock.assert_called_with(
-            args=[[public_webextension.pk, public_mozilla_signed.pk]],
-            kwargs={})
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [
+            [public_webextension.pk, public_mozilla_signed.pk]
+        ]
 
     def test_tag_added_for_is_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
@@ -258,9 +286,7 @@ class AddFirefox57TagTestCase(TestCase):
 
 
 class RecalculateWeightTestCase(TestCase):
-    @mock.patch('olympia.editors.tasks.recalculate_post_review_weight.subtask')
-    def test_only_affects_auto_approved(
-            self, recalculate_post_review_weight_mock):
+    def test_only_affects_auto_approved(self):
         # Non auto-approved add-on, should not be considered.
         addon_factory()
 
@@ -291,12 +317,12 @@ class RecalculateWeightTestCase(TestCase):
         version_factory(
             addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        call_command(
-            'process_addons', task='recalculate_post_review_weight')
+        with count_subtask_calls(pa.recalculate_post_review_weight) as calls:
+            call_command(
+                'process_addons', task='recalculate_post_review_weight')
 
-        assert recalculate_post_review_weight_mock.call_count == 1
-        recalculate_post_review_weight_mock.assert_called_with(
-            args=[[auto_approved_addon.pk]], kwargs={})
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[auto_approved_addon.pk]]
 
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
@@ -322,9 +348,7 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         self.firefox_for_android_56_star, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='56.*')
 
-    @mock.patch('olympia.addons.tasks.bump_appver_for_legacy_addons.subtask')
-    def test_only_affects_legacy_addons_targeting_firefox_lower_than_56(
-            self, bump_appver_for_legacy_addons_mock):
+    def test_only_affects_legacy_addons_targeting_firefox_lower_than_56(self):
         # Should be included:
         addon = addon_factory(version_kw={'max_app_version': '55.*'})
         addon2 = addon_factory(version_kw={'application': amo.ANDROID.id})
@@ -343,11 +367,13 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         ApplicationsVersions.objects.get_or_create(
             application=amo.FIREFOX.id, version=weird_addon.current_version,
             min=av_min, max=self.firefox_56_star)
-        call_command('process_addons', task='bump_appver_for_legacy_addons')
-        assert bump_appver_for_legacy_addons_mock.call_count == 1
-        assert (
-            bump_appver_for_legacy_addons_mock.call_args[1]['args'] ==
-            [[addon.pk, addon2.pk, addon3.pk]])
+
+        with count_subtask_calls(pa.bump_appver_for_legacy_addons) as calls:
+            call_command(
+                'process_addons', task='bump_appver_for_legacy_addons')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
 
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')

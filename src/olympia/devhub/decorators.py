@@ -11,11 +11,11 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 
 
-def dev_required(owner_for_post=False, allow_editors=False, theme=False,
+def dev_required(owner_for_post=False, allow_reviewers=False, theme=False,
                  submitting=False):
     """Requires user to be add-on owner or admin.
 
-    When allow_editors is True, an editor can view the page.
+    When allow_reviewers is True, reviewers can view the page.
     """
     def decorator(f):
         @addon_view_factory(qs=Addon.objects.all)
@@ -31,8 +31,8 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
-            if allow_editors:
-                if acl.is_editor(request, addon):
+            if allow_reviewers:
+                if acl.is_reviewer(request, addon):
                     return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':

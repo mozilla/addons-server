@@ -34,12 +34,6 @@ detail_patterns = [
     url('^cancel$', views.cancel, name='devhub.addons.cancel'),
     url('^ownership$', views.ownership, name='devhub.addons.owner'),
     url('^admin$', views.admin, name='devhub.addons.admin'),
-    url('^payments$', views.payments, name='devhub.addons.payments'),
-    url('^payments/disable$', views.disable_payments,
-        name='devhub.addons.payments.disable'),
-    url('^profile$', views.profile, name='devhub.addons.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='devhub.addons.profile.remove'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 
@@ -83,6 +77,11 @@ detail_patterns = [
     url('^versions/submit/(?P<version_id>\d+)/finish$',
         views.submit_version_finish,
         name='devhub.submit.version.finish'),
+
+    url('^versions/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_version_theme_wizard,
+        name='devhub.submit.version.wizard'),
+
     # New file submission
     url('^versions/(?P<version_id>\d+)/submit-file/$',
         views.submit_file,
@@ -153,6 +152,8 @@ urlpatterns = decorate(write, [
         name='devhub.submit.distribution'),
     url('^addon/submit/upload-(?P<channel>listed|unlisted)$',
         views.submit_addon_upload, name='devhub.submit.upload'),
+    url('^addon/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_addon_theme_wizard, name='devhub.submit.wizard'),
 
     # Submission API
     url('^addon/agreement/$', views.api_key_agreement,

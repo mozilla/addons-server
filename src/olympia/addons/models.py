@@ -6,6 +6,8 @@ import os
 import posixpath
 import re
 import time
+import urlparse
+import uuid
 from operator import attrgetter
 from datetime import datetime
 
@@ -37,12 +39,12 @@ from olympia.amo.utils import (
     attach_trans_dict, cache_ns_key, chunked,
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
     urlparams, find_language, AMOJSONEncoder)
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
     extract_translations, resolve_i18n_message, parse_addon)
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField)
@@ -57,25 +59,34 @@ from . import signals
 log = olympia.core.logger.getLogger('z.addons')
 
 
+MAX_SLUG_INCREMENT = 99
+SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
+
+
+def get_random_slug():
+    """Return a 20 character long random string"""
+    return ''.join(str(uuid.uuid4()).split('-')[:-1])
+
+
 def clean_slug(instance, slug_field='slug'):
     """Cleans a model instance slug.
 
-    This strives to be as generic as possible as it's used by Addons
-    and Collections, and maybe more in the future.
+    This strives to be as generic as possible but is only used
+    by Add-ons at the moment.
 
+    :param instance: The instance to clean the slug for.
+    :param slug_field: The field where to get the currently set slug from.
     """
     slug = getattr(instance, slug_field, None) or instance.name
 
     if not slug:
-        # Initialize the slug with what we have available: a name translation,
-        # or the id of the instance, or in last resort the model name.
+        # Initialize the slug with what we have available: a name translation
+        # or in last resort a random slug.
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
-        elif instance.id:
-            slug = str(instance.id)
         else:
-            slug = instance.__class__.__name__
+            slug = get_random_slug()
 
     max_length = instance._meta.get_field(slug_field).max_length
     slug = slugify(slug)[:max_length]
@@ -99,32 +110,39 @@ def clean_slug(instance, slug_field='slug'):
     # suffix that is available. Eg, if there's a "foo-bar" slug, "foo" is still
     # available.
     clash = qs.filter(**{slug_field: slug})
+
     if clash.exists():
-        # Leave space for 99 clashes.
-        slug = slugify(slug)[:max_length - 2]
+        max_postfix_length = len(str(MAX_SLUG_INCREMENT))
+
+        slug = slugify(slug)[:max_length - max_postfix_length]
 
         # There is a clash, so find a suffix that will make this slug unique.
         lookup = {'%s__startswith' % slug_field: slug}
         clashes = qs.filter(**lookup)
 
-        # Try numbers between 1 and the number of clashes + 1 (+ 1 because we
-        # start the range at 1, not 0):
-        # if we have two clashes "foo1" and "foo2", we need to try "foox"
-        # for x between 1 and 3 to be absolutely sure to find an available one.
-        for idx in range(1, len(clashes) + 2):
-            new = ('%s%s' % (slug, idx))[:max_length]
-            if new not in clashes:
-                slug = new
-                break
+        prefix_len = len(slug)
+        used_slug_numbers = [value[prefix_len:] for value in clashes]
+
+        # find the next free slug number
+        slug_numbers = {int(i) for i in used_slug_numbers if i.isdigit()}
+        unused_numbers = SLUG_INCREMENT_SUFFIXES - slug_numbers
+
+        if unused_numbers:
+            num = min(unused_numbers)
+        elif max_length is None:
+            num = max(slug_numbers) + 1
         else:
             # This could happen. The current implementation (using
-            # ``[:max_length -3]``) only works for the first 100 clashes in the
+            # ``[:max_length -2]``) only works for the first 100 clashes in the
             # worst case (if the slug is equal to or longuer than
-            # ``max_length - 3`` chars).
+            # ``max_length - 2`` chars).
             # After that, {verylongslug}-100 will be trimmed down to
             # {verylongslug}-10, which is already assigned, but it's the last
             # solution tested.
-            raise RuntimeError
+            raise RuntimeError(
+                'No suitable slug increment for {} found'.format(slug))
+
+        slug = u'{slug}{postfix}'.format(slug=slug, postfix=num)
 
     setattr(instance, slug_field, slug)
 
@@ -277,16 +295,14 @@ class Addon(OnChangeMixin, ModelBase):
     developer_comments = PurifiedField(db_column='developercomments')
     eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    the_reason = PurifiedField()
-    the_future = PurifiedField()
 
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')
     bayesian_rating = models.FloatField(default=0, db_index=True,
                                         db_column='bayesianrating')
-    total_reviews = models.PositiveIntegerField(default=0,
+    total_ratings = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
-    text_reviews_count = models.PositiveIntegerField(
+    text_ratings_count = models.PositiveIntegerField(
         default=0, db_column='textreviewscount')
     weekly_downloads = models.PositiveIntegerField(
         default=0, db_column='weeklydownloads', db_index=True)
@@ -305,7 +321,6 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    admin_review = models.BooleanField(default=False, db_column='adminreview')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
     dev_agreement = models.BooleanField(
@@ -322,24 +337,6 @@ class Addon(OnChangeMixin, ModelBase):
         help_text="For dictionaries and language packs")
 
     contributions = models.URLField(max_length=255, blank=True)
-    wants_contributions = models.BooleanField(default=False)
-    paypal_id = models.CharField(max_length=255, blank=True)
-    charity = models.ForeignKey('Charity', null=True)
-
-    suggested_amount = models.DecimalField(
-        max_digits=9, decimal_places=2, blank=True,
-        null=True, help_text=_('Users have the option of contributing more '
-                               'or less than this amount.'))
-
-    annoying = models.PositiveIntegerField(
-        choices=amo.CONTRIB_CHOICES, default=0,
-        help_text=_(u'Users will always be asked in the Add-ons'
-                    u' Manager (Firefox 4 and above).'
-                    u' Only applies to desktop.'))
-    enable_thankyou = models.BooleanField(
-        default=False, help_text='Should the thank you note be sent to '
-                                 'contributors?')
-    thankyou_note = TranslatedField()
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
@@ -351,8 +348,6 @@ class Addon(OnChangeMixin, ModelBase):
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
-
-    whiteboard = models.TextField(blank=True)
 
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
@@ -430,6 +425,7 @@ class Addon(OnChangeMixin, ModelBase):
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
+
         clean_slug(self, slug_field)
 
     def is_soft_deleteable(self):
@@ -503,7 +499,7 @@ class Addon(OnChangeMixin, ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
-            self._reviews.all().delete()
+            self._ratings.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
                                 unicode(self.guid), self)
@@ -544,13 +540,14 @@ class Addon(OnChangeMixin, ModelBase):
 
         data = cls.resolve_webext_translations(data, upload)
 
+        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+            data['slug'] = get_random_slug()
+
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
-                         addon.default_locale in (
-                             settings.AMO_LANGUAGES +
-                             settings.HIDDEN_LANGUAGES) and
+                         addon.default_locale in settings.AMO_LANGUAGES and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
@@ -579,7 +576,8 @@ class Addon(OnChangeMixin, ModelBase):
         addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
 
         if upload.validation_timeout:
-            addon.update(admin_review=True)
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
         Version.from_upload(upload, addon, platforms, source=source,
                             channel=channel)
 
@@ -647,7 +645,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def reviews_url(self):
-        return jinja_helpers.url('addons.reviews.list', self.slug)
+        return jinja_helpers.url('addons.ratings.list', self.slug)
 
     def get_ratings_url(self, action='list', args=None, add_prefix=True):
         return reverse('ratings.themes.%s' % action,
@@ -680,8 +678,8 @@ class Addon(OnChangeMixin, ModelBase):
         return cls._meta.get_field('default_locale')
 
     @property
-    def reviews(self):
-        return Review.objects.filter(addon=self, reply_to=None)
+    def ratings(self):
+        return Rating.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app_id):
         categories = self.app_categories.get(amo.APP_IDS.get(app_id))
@@ -1234,12 +1232,10 @@ class Addon(OnChangeMixin, ModelBase):
         return out
 
     def has_full_profile(self):
-        """Is developer profile public (completed)?"""
-        return self.the_reason and self.the_future
+        pass
 
     def has_profile(self):
-        """Is developer profile (partially or entirely) completed?"""
-        return self.the_reason or self.the_future
+        pass
 
     @cached_property
     def tags_partitioned_by_developer(self):
@@ -1254,10 +1250,6 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
-        # Search providers and personas don't list their supported apps.
-        if self.type in amo.NO_COMPAT:
-            return dict((app, None) for app in
-                        amo.APP_TYPE_SUPPORT[self.type])
         if self.current_version:
             return self.current_version.compatible_apps
         else:
@@ -1283,9 +1275,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def takes_contributions(self):
-        return (self.status == amo.STATUS_PUBLIC and
-                self.wants_contributions and
-                (self.paypal_id or self.charity_id))
+        pass
 
     @classmethod
     def _last_updated_queries(cls):
@@ -1392,6 +1382,20 @@ class Addon(OnChangeMixin, ModelBase):
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions))
 
+    @property
+    def needs_admin_code_review(self):
+        try:
+            return self.addonreviewerflags.needs_admin_code_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def needs_admin_content_review(self):
+        try:
+            return self.addonreviewerflags.needs_admin_content_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1475,13 +1479,10 @@ def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
-    whiteboard_changed = (
-        new_attr.get('whiteboard') and
-        old_attr.get('whiteboard') != new_attr.get('whiteboard'))
     developer_comments_changed = (new_attr.get('_developer_comments_cache') and
                                   old_attr.get('_developer_comments_cache') !=
                                   new_attr.get('_developer_comments_cache'))
-    if whiteboard_changed or developer_comments_changed:
+    if developer_comments_changed:
         instance.versions.update(has_info_request=False)
 
 
@@ -1496,6 +1497,13 @@ def attach_tags(addons):
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
+
+
+class AddonReviewerFlags(ModelBase):
+    addon = addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE)
+    needs_admin_code_review = models.BooleanField(default=False)
+    needs_admin_content_review = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):
@@ -1721,9 +1729,9 @@ class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
 @AddonUser.on_change
 def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
                      **kwargs):
+    instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-    instance.user.update_is_public()
 
 
 class AddonDependency(models.Model):
@@ -1751,11 +1759,19 @@ class AddonFeatureCompatibility(ModelBase):
 class AddonApprovalsCounter(ModelBase):
     """Model holding a counter of the number of times a listed version
     belonging to an add-on has been approved by a human. Reset everytime a
-    listed version is auto-approved for this add-on."""
+    listed version is auto-approved for this add-on.
+
+    Holds 2 additional date fields:
+    - last_human_review, the date of the last time a human fully reviewed the
+      add-on
+    - last_content_review, the date of the last time a human fully reviewed the
+      add-on content (not code).
+    """
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
+    last_content_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
         return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
@@ -1764,12 +1780,15 @@ class AddonApprovalsCounter(ModelBase):
     def increment_for_addon(cls, addon):
         """
         Increment approval counter for the specified addon, setting the last
-        human review date to now. If an AddonApprovalsCounter already exists,
-        it updates it, otherwise it creates and saves a new instance.
+        human review date and last content review date to now.
+        If an AddonApprovalsCounter already exists, it updates it, otherwise it
+        creates and saves a new instance.
         """
+        now = datetime.now()
         data = {
             'counter': 1,
-            'last_human_review': datetime.now(),
+            'last_human_review': now,
+            'last_content_review': now,
         }
         obj, created = cls.objects.get_or_create(
             addon=addon, defaults=data)
@@ -1781,10 +1800,19 @@ class AddonApprovalsCounter(ModelBase):
     @classmethod
     def reset_for_addon(cls, addon):
         """
-        Reset the approval counter for the specified addon.
+        Reset the approval counter (but not the dates) for the specified addon.
         """
         obj, created = cls.objects.update_or_create(
             addon=addon, defaults={'counter': 0})
+        return obj
+
+    @classmethod
+    def approve_content_for_addon(cls, addon):
+        """
+        Set last_content_review for this addon.
+        """
+        obj, created = cls.objects.update_or_create(
+            addon=addon, defaults={'last_content_review': datetime.now()})
         return obj
 
 
@@ -1974,21 +2002,6 @@ class AppSupport(ModelBase):
         unique_together = ('addon', 'app')
 
 
-class Charity(ModelBase):
-    name = models.CharField(max_length=255)
-    url = models.URLField()
-    paypal = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'charities'
-
-    @property
-    def outgoing_url(self):
-        if self.pk == amo.FOUNDATION_ORG:
-            return self.url
-        return get_outgoing_url(unicode(self.url))
-
-
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
@@ -2175,6 +2188,13 @@ class ReplacementAddon(ModelBase):
 
     class Meta:
         db_table = 'replacement_addons'
+
+    @staticmethod
+    def path_is_external(path):
+        return urlparse.urlsplit(path).scheme in ['http', 'https']
+
+    def has_external_url(self):
+        return self.path_is_external(self.path)
 
 
 models.signals.post_save.connect(update_incompatible_versions,
