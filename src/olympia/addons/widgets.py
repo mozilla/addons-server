@@ -16,7 +16,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
     def render(self, name, value, attrs=None):
         value = value or []
         has_id = attrs and 'id' in attrs
-        final_attrs = self.build_attrs(attrs, name=name)
+        final_attrs = self.build_attrs(attrs, {'name': name})
 
         choices = []
         other = None
