@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-12 00:40+0000\n"
+"PO-Revision-Date: 2017-12-11 23:45+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -605,13 +605,11 @@ msgstr "Licens for kildekode til {addon}"
 msgid "Source Code License"
 msgstr "Licens for kildekode"
 
-#, fuzzy
 msgid "support section"
-msgstr "Supportwebsted"
+msgstr "support-afsnit"
 
-#, fuzzy
 msgid "support email"
-msgstr "Supportmail:"
+msgstr "support-mail"
 
 msgid "permalink"
 msgstr "permalink"
@@ -1827,9 +1825,8 @@ msgstr "{addon} føjet til {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} fjernet fra {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} af {addon} skrevet."
+msgstr "{rating} af {addon} skrevet."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1853,9 +1850,8 @@ msgstr "{0} {1} tilføjet."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} er nu udgivet under {0.name}."
+msgstr "{addon} er nu udgivet under {0}."
 
 msgid "{addon} policy changed."
 msgstr ""
@@ -1863,21 +1859,17 @@ msgstr ""
 msgid "{addon} icon changed."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} af {addon} godkendt."
+msgstr "{rating} af {addon} godkendt."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} godkendte {review} af {addon}."
+msgstr "{user} godkendte {rating} af {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{review} af {addon} skrevet."
+msgstr "Anmeldelse {rating} af {addon} slettet."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} slettede {review} af {addon}."
+msgstr "{user} slettede {rating} af {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -1921,9 +1913,8 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} af {addon} godkendt."
+msgstr "{rating} af {addon} opdateret."
 
 msgid "{addon} reviewed."
 msgstr ""
@@ -3554,9 +3545,8 @@ msgstr "Upload version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Lav et nyt tema"
+msgstr "Lav et tema"
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
@@ -3623,9 +3613,8 @@ msgstr ""
 msgid "Toolbar area text (toolbar_text)."
 msgstr ""
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "Dette er farven på tekst i faneblade."
+msgstr "Farven på tekst i værktøjslinjen."
 
 msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
@@ -3639,9 +3628,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar"
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(valgfri)"
+msgstr "valgfri"
 
 #, fuzzy
 msgid "Browser Preview"
@@ -6169,9 +6157,8 @@ msgstr[1] "Anmeld {0}"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Ny tilføjelse ({0})"
+msgstr "Nye temaer ({0})"
 
 #, fuzzy
 msgid "Themes Updates ({0})"
