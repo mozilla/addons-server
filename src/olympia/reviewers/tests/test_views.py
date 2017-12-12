@@ -151,7 +151,6 @@ class TestBetaSignedLog(ReviewerTest):
         assert response.status_code == 200
         results = pq(response.content)('tbody tr')
         assert results.length == 2
-
         assert self.file1_url in unicode(results)
         assert self.file2_url in unicode(results)
 
@@ -500,12 +499,12 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         # Auto-approved and Content Review.
         addon1 = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon1)
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED)
         under_content_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version,
@@ -513,14 +512,14 @@ class TestDashboard(TestCase):
         AddonReviewerFlags.objects.create(
             addon=under_content_review, needs_admin_content_review=True)
         addon2 = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon2)
         AutoApprovalSummary.objects.create(
             version=addon2.current_version, verdict=amo.AUTO_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=addon2, needs_admin_content_review=True)
         under_code_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version,
@@ -650,7 +649,7 @@ class TestDashboard(TestCase):
         # Create an add-on to test the queue count. It's under admin content
         # review but that does not have an impact.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -658,7 +657,7 @@ class TestDashboard(TestCase):
             addon=addon, needs_admin_content_review=True)
         # This one however is under admin code review, it's ignored.
         under_code_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version,
@@ -687,7 +686,7 @@ class TestDashboard(TestCase):
         # Create an add-on to test the queue count. It's under admin code
         # review but that does not have an impact.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -695,7 +694,7 @@ class TestDashboard(TestCase):
             addon=addon, needs_admin_code_review=True)
         # This one is under admin *content* review so it's ignored.
         under_content_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version,
@@ -798,13 +797,13 @@ class TestDashboard(TestCase):
         # content approved, so the post review queue should contain 2 add-ons,
         # and the content review queue only 1.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
 
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
