@@ -60,6 +60,7 @@ def etag(request, obj, key=None, **kw):
         return quote_etag(value)
     return value
 
+
 def file_view(func, **kwargs):
     @functools.wraps(func)
     def wrapper(request, file_id, *args, **kw):
