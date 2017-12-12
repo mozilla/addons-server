@@ -29,7 +29,7 @@ import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.amo.models import (
     manual_order, ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin,
-    SlugField)
+    SlugField, BaseQuerySet)
 from olympia.access import acl
 from olympia.addons.utils import (
     get_creatured_ids, get_featured_ids, generate_addon_guid)
@@ -149,7 +149,7 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonQuerySet(caching.CachingQuerySet):
+class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
