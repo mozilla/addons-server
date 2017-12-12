@@ -23,7 +23,7 @@ class StaticCategory(object):
         object.__setattr__(self, 'id', id)
         object.__setattr__(self, 'application', app)
         object.__setattr__(self, 'misc', misc)
-        object.__setattr__(self, 'name', name)
+        object.__setattr__(self, 'db_name', name)
         object.__setattr__(self, 'slug', slug)
         object.__setattr__(self, 'type', type)
         object.__setattr__(self, 'weight', weight)
