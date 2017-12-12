@@ -213,14 +213,15 @@ class TestDownloadsBase(TestCase):
         assert response[settings.XSENDFILE_HEADER] == file_path
 
     def assert_served_locally(self, response, file_=None, attachment=False):
-        host = settings.SITE_URL + user_media_url('addons')
+        path = user_media_url('addons')
         if attachment:
-            host += '_attachments/'
-        self.assert_served_by_host(response, host, file_)
+            path += '_attachments/'
+        self.assert_served_by_host(response, path, file_)
 
     def assert_served_by_cdn(self, response, file_=None):
-        url = settings.SITE_URL + user_media_url('addons')
-        self.assert_served_by_host(response, url, file_)
+        assert response.url.startswith(settings.MEDIA_URL)
+        assert response.url.startswith('http')
+        self.assert_served_by_host(response, user_media_url('addons'), file_)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -274,6 +275,7 @@ class TestDownloads(TestDownloadsBase):
         r = self.client.get(reverse('downloads.file', args=[234]))
         assert r.status_code == 404
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_public(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
@@ -289,6 +291,7 @@ class TestDownloads(TestDownloadsBase):
         self.addon.save()
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_type_attachment(self):
         self.assert_served_by_cdn(self.client.get(self.file_url))
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
@@ -298,10 +301,12 @@ class TestDownloads(TestDownloadsBase):
         url = self.file_url.replace('firefox', 'thunderbird')
         self.assert_served_locally(self.client.get(url), attachment=True)
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
         self.assert_served_by_cdn(self.client.get(url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_beta_file(self):
         url = reverse('downloads.file', args=[self.beta_file.id])
         self.assert_served_by_cdn(self.client.get(url),
@@ -311,6 +316,7 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_public_addon_beta_file(self):
         self.file.update(status=amo.STATUS_BETA)
         self.addon.update(status=amo.STATUS_PUBLIC)
@@ -321,6 +327,7 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
 
@@ -409,10 +416,12 @@ class TestDownloadsLatest(TestDownloadsBase):
                          urlencode({'filehash': self.file.hash}))
         assert r['Location'].endswith(url), r['Location']
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_success(self):
         assert self.addon.current_version
         self.assert_served_by_cdn(self.client.get(self.latest_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_beta(self):
         self.assert_served_by_cdn(self.client.get(self.latest_beta_url),
                                   file_=self.beta_file)
@@ -426,6 +435,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.beta_file.update(status=amo.STATUS_PUBLIC)
         assert self.client.get(self.latest_beta_url).status_code == 404
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
