@@ -12,7 +12,6 @@ from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.utils import clean_nl, has_links, slug_validator
-from olympia.lib import happyforms
 from olympia.users import notifications
 
 from . import tasks
@@ -54,7 +53,7 @@ class UserDeleteForm(forms.Form):
             raise forms.ValidationError("")
 
 
-class UserEditForm(happyforms.ModelForm):
+class UserEditForm(forms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
     display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
                                    required=False)

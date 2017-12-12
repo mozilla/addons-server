@@ -14,7 +14,6 @@ from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
 from olympia.compat.forms import APPVER_CHOICES
-from olympia.lib import happyforms
 from olympia.files.models import File
 from olympia.zadmin.models import SiteEvent
 
@@ -22,7 +21,7 @@ LOGGER_NAME = 'z.zadmin'
 log = olympia.core.logger.getLogger(LOGGER_NAME)
 
 
-class DevMailerForm(happyforms.Form):
+class DevMailerForm(forms.Form):
     _choices = [('eula',
                  'Developers who have set up EULAs for active add-ons'),
                 ('sdk', 'Developers of active SDK add-ons'),
@@ -38,7 +37,7 @@ class DevMailerForm(happyforms.Form):
     message = forms.CharField(widget=forms.Textarea, required=True)
 
 
-class FeaturedCollectionForm(happyforms.ModelForm):
+class FeaturedCollectionForm(forms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
         (i, product_details.languages[i]['native'])
         for i in settings.AMO_LANGUAGES
@@ -88,7 +87,7 @@ FeaturedCollectionFormSet = modelformset_factory(
     can_delete=True, extra=0)
 
 
-class MonthlyPickForm(happyforms.ModelForm):
+class MonthlyPickForm(forms.ModelForm):
     image = forms.CharField(required=False)
     blurb = forms.CharField(max_length=200,
                             widget=forms.Textarea(attrs={'cols': 20,
@@ -136,7 +135,7 @@ class SiteEventForm(ModelForm):
                   'more_info_url')
 
 
-class YesImSure(happyforms.Form):
+class YesImSure(forms.Form):
     yes = forms.BooleanField(required=True, label="Yes, I'm sure")
 
 

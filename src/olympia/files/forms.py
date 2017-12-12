@@ -10,7 +10,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.files.models import File
-from olympia.lib import happyforms
 from olympia.versions.models import Version
 
 log = olympia.core.logger.getLogger('z.files')
@@ -77,7 +76,7 @@ class FileSelectWidget(widgets.Select):
         return jinja2.Markup(u''.join(output))
 
 
-class FileCompareForm(happyforms.Form):
+class FileCompareForm(forms.Form):
     left = forms.ModelChoiceField(queryset=File.objects.all(),
                                   widget=FileSelectWidget)
     right = forms.ModelChoiceField(queryset=File.objects.all(),

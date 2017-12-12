@@ -4,11 +4,10 @@ from django import forms
 from django.conf import settings
 
 from olympia.amo.fields import ReCaptchaField
-from olympia.lib import happyforms
 from olympia.translations.fields import TranslatedField
 
 
-class AbuseForm(happyforms.Form):
+class AbuseForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
@@ -26,7 +25,7 @@ class AbuseForm(happyforms.Form):
             self.has_recaptcha = False
 
 
-class AMOModelForm(happyforms.ModelForm):
+class AMOModelForm(forms.ModelForm):
 
     def _get_changed_data(self):
         """
