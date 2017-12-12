@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-12 05:50+0000\n"
+"PO-Revision-Date: 2017-12-12 05:52+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2744,10 +2744,10 @@ msgid "Add-on deleted."
 msgstr "Extensão excluída."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "O nome da URL estava incorreto. O tema não foi excluído."
+msgstr "O nome do URL estava incorreto. O tema não foi excluído."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "O nome da URL estava incorreto. A extensão não foi excluída."
+msgstr "O nome do URL estava incorreto. A extensão não foi excluída."
 
 msgid "An author has been added to your add-on"
 msgstr "Foi adicionado um autor a sua extensão"
@@ -3047,7 +3047,7 @@ msgid "Add-on URL"
 msgstr "URL da extensão"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Escolha uma URL curta e exclusiva para sua extensão."
+msgstr "Escolha um URL curto e exclusivo para sua extensão."
 
 msgid "View Listing"
 msgstr "Ver listagem"
@@ -3516,7 +3516,7 @@ msgid "Add-on URL:"
 msgstr "URL da extensão:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Por favor, use apenas letras, números, traços inferiores e barras na sua URL."
+msgstr "Use apenas letras, números, sublinhados e traços em seu URL."
 
 msgid "Summary:"
 msgstr "Resumo:"
@@ -4136,7 +4136,7 @@ msgid "Theme Details"
 msgstr "Detalhes do tema"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr "Forneça uma URL fácil para a sua página de detalhes."
+msgstr "Forneça um URL fácil para a sua página de detalhes."
 
 # 86%
 msgid "Select the category that best describes your Theme."
