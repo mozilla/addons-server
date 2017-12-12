@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-11 10:50+0000\n"
+"PO-Revision-Date: 2017-12-12 05:50+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -132,7 +132,7 @@ msgstr[1] "Todas as etiquetas devem ter pelo menos {0} caracteres."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "A URL do domínio deve ser um dos [%s], ou um subdomínio."
+msgstr "O URL do domínio deve ser um dos [%s], ou um subdomínio."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "As categorias não podem ser alteradas enquanto sua extensão for destaque para este aplicativo."
@@ -1025,7 +1025,7 @@ msgid "This name cannot be used."
 msgstr "Este nome não pode ser usado."
 
 msgid "This url is already in use by another collection"
-msgstr "Essa URL já está sendo usada por outra coleção"
+msgstr "Este URL já está sendo usado por outra coleção"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser em PNG ou JPG."
