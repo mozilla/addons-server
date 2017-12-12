@@ -32,7 +32,7 @@ class TranslationTextarea(forms.widgets.Textarea):
             value = get_string(value)
         return super(TranslationTextarea, self).render(name, value, attrs)
 
-    def _has_changed(self, initial, data):
+    def has_changed(self, initial, data):
         return not ((initial is None and data is None) or
                     (force_text(initial) == force_text(data)))
 
