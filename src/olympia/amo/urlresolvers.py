@@ -9,7 +9,7 @@ import bleach
 import jinja2
 
 from django.conf import settings
-from django.core import urlresolvers
+from django import urls
 from django.utils.encoding import force_bytes
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils.http import _urlparse as urlparse
@@ -21,8 +21,8 @@ from olympia import amo
 # As we're using a url prefixer to automatically add the locale and the app to
 # URLs, we're not compatible with Django's default reverse and resolve, and
 # thus need to monkeypatch them.
-django_reverse = urlresolvers.reverse
-django_resolve = urlresolvers.resolve
+django_reverse = urls.reverse
+django_resolve = urls.resolve
 
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
@@ -57,7 +57,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None,
 
 
 # Replace Django's reverse with our own.
-urlresolvers.reverse = reverse
+urls.reverse = reverse
 
 
 def resolve(path, urlconf=None):
@@ -70,7 +70,7 @@ def resolve(path, urlconf=None):
 
 
 # Replace Django's resolve with our own.
-urlresolvers.resolve = resolve
+urls.resolve = resolve
 
 
 class Prefixer(object):
