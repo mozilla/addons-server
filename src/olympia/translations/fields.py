@@ -100,7 +100,9 @@ class NoLinksNoMarkupField(TranslatedField):
 
 def switch(obj, new_model):
     """Switch between Translation and Purified/Linkified Translations."""
-    fields = [(f.name, getattr(obj, f.name)) for f in new_model._meta.fields]
+    fields = [
+        (f.name, getattr(obj, f.name, None))
+        for f in new_model._meta.fields]
     return new_model(**dict(fields))
 
 
