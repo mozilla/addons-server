@@ -120,8 +120,10 @@ DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
 }
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+DATABASES['default']['TEST'] = {
+    'CHARSET': 'utf8',
+    'COLLATION': 'utf8_general_ci'
+}
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 # Pool our database connections up for 300 seconds
