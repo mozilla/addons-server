@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.urls import reverse, NoReverseMatch
 
 from pyquery import PyQuery as pq
 

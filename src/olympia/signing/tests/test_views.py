@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation

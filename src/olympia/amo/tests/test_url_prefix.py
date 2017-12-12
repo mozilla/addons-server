@@ -1,6 +1,6 @@
 from django import shortcuts
 from django.conf import settings
-from django.core.urlresolvers import set_script_prefix
+from django.urls import set_script_prefix
 from django.test.client import Client, RequestFactory
 
 import pytest

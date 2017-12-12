@@ -151,6 +151,8 @@ class TestBetaSignedLog(ReviewerTest):
         assert response.status_code == 200
         results = pq(response.content)('tbody tr')
         assert results.length == 2
+
+        import ipdb; ipdb.set_trace()
         assert self.file1_url in unicode(results)
         assert self.file2_url in unicode(results)
 

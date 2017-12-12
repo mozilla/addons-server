@@ -6,7 +6,7 @@ import os
 import socket
 
 from django.utils.functional import lazy
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 import environ
 from kombu import Queue

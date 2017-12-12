@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from django.core import mail
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 import mock
 from freezegun import freeze_time
