@@ -128,7 +128,8 @@ class NoVarySessionMiddleware(SessionMiddleware):
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
 
-        new_response = (super(NoVarySessionMiddleware, self)
+        new_response = (
+            super(NoVarySessionMiddleware, self)
             .process_response(request, response))
 
         if vary:
