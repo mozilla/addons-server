@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-06-12 02:49+0000\n"
+"PO-Revision-Date: 2017-12-13 07:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -64,7 +64,7 @@ msgid "Validating {0}"
 msgstr "{0} 검사중"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "부가 기능 최대 크기인 {0}을 초과했습니다."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
@@ -116,9 +116,7 @@ msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시"
-"오."
+msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시오."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
@@ -130,7 +128,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "업로드한 파일 형식을 인식할 수 없습니다."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "파일 최대 크기인 {0}을 초과했습니다."
 
 msgid "You cancelled the upload."
 msgstr "업로드를 취소했습니다."
@@ -202,9 +200,8 @@ msgstr "<b>{0}</b> 앱 검색"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 부가 기능 검색"
 
-#, fuzzy
 msgid "Use original"
-msgstr "오리지널 사용"
+msgstr "원본 사용"
 
 msgid "Week of {0}"
 msgstr "{0}번째 주"
@@ -657,9 +654,8 @@ msgid "Not available for your platform"
 msgstr "현재 플랫폼에서 사용 불가"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
+msgstr "이 부가 기능은 현재 {0}버전과 호환되지 않습니다."
 
 msgid "View other versions"
 msgstr "다른 버전 보기"
@@ -667,9 +663,8 @@ msgstr "다른 버전 보기"
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max}에서 작동"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "{app} {min} - {max}에서 작동"
+msgstr "{app}과 작동"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
@@ -790,7 +785,7 @@ msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
 msgid "Review Text"
-msgstr ""
+msgstr "검토 내용"
 
 msgid "Review notes found"
 msgstr "심사 메모가 발견됨"
@@ -846,9 +841,8 @@ msgstr "경고"
 msgid "{0} line {1} column {2}"
 msgstr "{0} 줄 {1} 열 {2}"
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} / {1}"
+msgstr "{0} 줄 {1}"
 
 msgid "Compatibility Tests"
 msgstr "호환성 검사"
