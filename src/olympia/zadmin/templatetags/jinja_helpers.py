@@ -34,6 +34,5 @@ def admin_site_links():
             ('View event log', reverse('admin:reviewers_eventlog_changelist')),
             ('View addon log',
              reverse('admin:activity_activitylog_changelist')),
-            ('Site Status', reverse('amo.monitor')),
         ],
     }
