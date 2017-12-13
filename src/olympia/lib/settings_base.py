@@ -513,7 +513,6 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'rest_framework',
     'waffle',
-    'jingo_minify',
     'django_jinja',
     'puente',
 
