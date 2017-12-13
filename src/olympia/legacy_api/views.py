@@ -30,8 +30,7 @@ from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
 from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import (
-    addon_to_dict, extract_filters, find_compatible_version
-)
+    addon_to_dict, extract_filters, find_compatible_version)
 from olympia.search.views import AddonSuggestionsAjax, PersonaSuggestionsAjax
 from olympia.versions.compare import version_int
 

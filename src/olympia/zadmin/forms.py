@@ -12,8 +12,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
-    Collection, FeaturedCollection, MonthlyPick
-)
+    Collection, FeaturedCollection, MonthlyPick)
 from olympia.compat.forms import APPVER_CHOICES
 from olympia.files.models import File
 from olympia.lib import happyforms

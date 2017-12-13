@@ -11,8 +11,7 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands.createsuperuser import (
-    Command as CreateSuperUserCommand
-)
+    Command as CreateSuperUserCommand)
 from django.core import exceptions
 from django.core.management.base import CommandError
 from django.utils.six.moves import input

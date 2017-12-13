@@ -26,8 +26,7 @@ from signing_clients.apps import get_signer_organizational_unit_name
 from django import forms
 from django.conf import settings
 from django.core.files.storage import (
-    File as DjangoFile, default_storage as storage
-)
+    File as DjangoFile, default_storage as storage)
 from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext

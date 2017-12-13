@@ -11,8 +11,7 @@ import jinja2
 from django_jinja import library
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
-    blacklisted_extensions, blacklisted_magic_numbers
-)
+    blacklisted_extensions, blacklisted_magic_numbers)
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -28,8 +27,7 @@ from olympia.amo.cache_nuggets import Message, memoize
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.files.utils import (
-    atomic_lock, extract_xpi, get_all_files, get_sha256
-)
+    atomic_lock, extract_xpi, get_all_files, get_sha256)
 
 
 # Allow files with a shebang through.

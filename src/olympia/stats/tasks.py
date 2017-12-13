@@ -25,8 +25,7 @@ from olympia.versions.models import Version
 from . import search
 from .models import (
     AddonCollectionCount, CollectionCount, CollectionStats, DownloadCount,
-    ThemeUserCount, UpdateCount
-)
+    ThemeUserCount, UpdateCount)
 
 
 log = olympia.core.logger.getLogger('z.task')

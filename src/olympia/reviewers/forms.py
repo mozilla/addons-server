@@ -6,8 +6,7 @@ from django import forms
 from django.db.models import Q
 from django.forms import widgets
 from django.forms.models import (
-    BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory
-)
+    BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory)
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -22,11 +21,9 @@ from olympia.lib import happyforms
 from olympia.ratings.models import Rating
 from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
 from olympia.reviewers.models import (
-    CannedResponse, ReviewerScore, ThemeLock, Whiteboard
-)
+    CannedResponse, ReviewerScore, ThemeLock, Whiteboard)
 from olympia.reviewers.tasks import (
-    approve_rereview, reject_rereview, send_mail
-)
+    approve_rereview, reject_rereview, send_mail)
 from olympia.versions.models import Version
 
 

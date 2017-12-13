@@ -16,8 +16,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonUser, Preview
-)
+    Addon, AddonCategory, AddonDependency, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
@@ -31,11 +30,9 @@ from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
-    TranslationTextarea, TranslationTextInput
-)
+    TranslationTextarea, TranslationTextInput)
 from olympia.versions.models import (
-    VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version
-)
+    VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
 from . import tasks
 

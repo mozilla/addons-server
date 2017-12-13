@@ -19,18 +19,15 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Persona, ReplacementAddon
-)
+    Persona, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
-    AddonAutoCompleteSearchView, AddonSearchView
-)
+    AddonAutoCompleteSearchView, AddonSearchView)
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
-    user_factory, version_factory
-)
+    user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID

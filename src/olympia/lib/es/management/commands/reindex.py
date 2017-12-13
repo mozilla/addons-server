@@ -14,8 +14,7 @@ from olympia.amo.celery import task
 from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
     flag_reindexing_amo, is_reindexing_amo, timestamp_index,
-    unflag_reindexing_amo
-)
+    unflag_reindexing_amo)
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 

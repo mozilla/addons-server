@@ -20,8 +20,7 @@ from . import tasks
 from .models import DeniedName, UserNotification, UserProfile
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
-    RequiredTextarea
-)
+    RequiredTextarea)
 
 
 log = olympia.core.logger.getLogger('z.users')

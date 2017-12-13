@@ -8,8 +8,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
-    AddonAbuseReportSerializer, UserAbuseReportSerializer
-)
+    AddonAbuseReportSerializer, UserAbuseReportSerializer)
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 

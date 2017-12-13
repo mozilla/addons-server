@@ -16,8 +16,7 @@ from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (
     LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
     no_jinja_autoescape, no_translation, resize_image, rm_local_tmp_dir,
-    slug_validator, slugify, to_language
-)
+    slug_validator, slugify, to_language)
 
 
 pytestmark = pytest.mark.django_db

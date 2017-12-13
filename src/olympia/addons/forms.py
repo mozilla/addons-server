@@ -15,17 +15,14 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonCategory, Category, DeniedSlug, Persona
-)
+    Addon, AddonCategory, Category, DeniedSlug, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
 from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from olympia.amo.fields import (
-    ColorField, HttpHttpsOnlyURLField, ReCaptchaField
-)
+    ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    remove_icons, slug_validator, slugify, sorted_groupby
-)
+    remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
 from olympia.lib import happyforms
 from olympia.tags.models import Tag

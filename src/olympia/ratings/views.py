@@ -25,8 +25,7 @@ from olympia.amo.utils import paginate, render
 from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
-    AnyOf, ByHttpMethod, GroupPermission
-)
+    AnyOf, ByHttpMethod, GroupPermission)
 
 from . import forms
 from .models import GroupedRating, Rating, RatingFlag

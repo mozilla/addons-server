@@ -13,8 +13,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    File, WebextPermission, WebextPermissionDescription
-)
+    File, WebextPermission, WebextPermissionDescription)
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.translations.models import Translation

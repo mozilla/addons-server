@@ -15,8 +15,7 @@ from olympia.tags.models import Tag
 
 from .indexers import CollectionIndexer
 from .models import (
-    Collection, CollectionAddon, CollectionVote, CollectionWatcher
-)
+    Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
 
 log = olympia.core.logger.getLogger('z.task')

@@ -23,8 +23,7 @@ from olympia.stats import search, tasks, views
 from olympia.stats.management.commands import save_stats_to_file
 from olympia.stats.models import (
     CollectionCount, DownloadCount, GlobalStat, ThemeUpdateCount,
-    ThemeUserCount, UpdateCount
-)
+    ThemeUserCount, UpdateCount)
 from olympia.users.models import UserProfile
 
 

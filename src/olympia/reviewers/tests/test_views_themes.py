@@ -16,8 +16,7 @@ from olympia.addons.models import Persona
 from olympia.amo.tests import TestCase, addon_factory, days_ago
 from olympia.amo.urlresolvers import reverse
 from olympia.reviewers.models import (
-    RereviewQueueTheme, ReviewerScore, ThemeLock
-)
+    RereviewQueueTheme, ReviewerScore, ThemeLock)
 from olympia.reviewers.views_themes import _get_themes, themes_search
 from olympia.users.models import UserProfile
 

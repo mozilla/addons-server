@@ -13,8 +13,7 @@ from olympia import amo
 from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
 from olympia.lib import happyforms
 from olympia.translations.widgets import (
-    TranslationTextarea, TranslationTextInput
-)
+    TranslationTextarea, TranslationTextInput)
 from olympia.users.models import DeniedName, UserProfile
 
 from . import tasks

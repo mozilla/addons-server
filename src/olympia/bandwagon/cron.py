@@ -11,8 +11,7 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import (
-    Collection, CollectionVote, CollectionWatcher
-)
+    Collection, CollectionVote, CollectionWatcher)
 
 
 task_log = olympia.core.logger.getLogger('z.task')

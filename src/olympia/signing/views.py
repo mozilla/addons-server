@@ -21,8 +21,7 @@ from olympia.files.utils import parse_addon
 from olympia.signing.serializers import FileUploadSerializer
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed
-)
+    system_addon_submission_allowed)
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 

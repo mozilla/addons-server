@@ -24,12 +24,10 @@ from olympia.amo.utils import chunked, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
-    WebextPermissionDescription, nfd_str, track_file_status_change
-)
+    WebextPermissionDescription, nfd_str, track_file_status_change)
 from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import (
-    Extractor, check_xpi_info, parse_addon, parse_xpi
-)
+    Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
 
 

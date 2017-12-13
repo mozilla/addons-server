@@ -13,8 +13,7 @@ from olympia import amo
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache
-)
+    AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
 from olympia.versions.models import Version
 

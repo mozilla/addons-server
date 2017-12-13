@@ -18,8 +18,7 @@ from olympia.amo.tests import TestCase, addon_factory, safe_exec
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, UserEmailField, UserForeignKey, UserProfile
-)
+    DeniedName, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
 
 

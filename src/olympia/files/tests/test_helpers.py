@@ -20,8 +20,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.files.templatetags.jinja_helpers import (
-    DiffHelper, FileViewer, extract_file
-)
+    DiffHelper, FileViewer, extract_file)
 from olympia.files.utils import SafeUnzip, get_all_files
 
 

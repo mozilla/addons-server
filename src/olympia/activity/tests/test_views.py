@@ -15,8 +15,7 @@ from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, req_factory_factory, user_factory,
-    version_factory
-)
+    version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 

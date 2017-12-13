@@ -3,8 +3,7 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo.tests import TestCase
 from olympia.landfill.user import (
-    generate_addon_user_and_category, generate_user
-)
+    generate_addon_user_and_category, generate_user)
 from olympia.users.models import UserProfile
 
 

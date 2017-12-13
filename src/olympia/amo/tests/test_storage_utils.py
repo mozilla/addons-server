@@ -9,8 +9,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
 from olympia.amo.storage_utils import (
-    copy_stored_file, move_stored_file, rm_stored_dir, walk_storage
-)
+    copy_stored_file, move_stored_file, rm_stored_dir, walk_storage)
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import rm_local_tmp_dir
 

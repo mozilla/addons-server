@@ -5,8 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
 from rest_framework import status
 from rest_framework.decorators import (
-    api_view, authentication_classes, permission_classes
-)
+    api_view, authentication_classes, permission_classes)
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -19,12 +18,10 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
-    action_from_user, filter_queryset_to_pending_replies, log_and_notify
-)
+    action_from_user, filter_queryset_to_pending_replies, log_and_notify)
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf
-)
+    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
 from olympia.versions.models import Version
 
 

@@ -19,8 +19,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, user_factory, version_factory
-)
+    APITestClient, TestCase, addon_factory, user_factory, version_factory)
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
 

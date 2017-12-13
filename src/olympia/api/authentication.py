@@ -9,8 +9,7 @@ from django.utils.encoding import smart_text
 from django.utils.translation import ugettext
 from rest_framework import exceptions
 from rest_framework.authentication import (
-    BaseAuthentication, get_authorization_header
-)
+    BaseAuthentication, get_authorization_header)
 
 import olympia.core.logger
 

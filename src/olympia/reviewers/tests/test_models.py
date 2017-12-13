@@ -14,19 +14,16 @@ from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser
-)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
-    TestCase, addon_factory, file_factory, user_factory, version_factory
-)
+    TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
     ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, Whiteboard, send_notifications, set_reviewing_cache
-)
+    ViewUnlistedAllList, Whiteboard, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 

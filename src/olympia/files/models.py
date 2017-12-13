@@ -31,8 +31,7 @@ from olympia.amo.decorators import use_master
 from olympia.amo.models import ModelBase, OnChangeMixin, UncachedManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, urlparams, user_media_path, user_media_url
-)
+    absolutify, urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi

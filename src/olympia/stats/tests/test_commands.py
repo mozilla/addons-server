@@ -14,14 +14,12 @@ from olympia import amo
 from olympia.addons.models import Persona
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.stats.management.commands import (
-    save_stats_to_file, serialize_stats
-)
+    save_stats_to_file, serialize_stats)
 from olympia.stats.management.commands.download_counts_from_file import \
     is_valid_source  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
 from olympia.stats.models import (
-    DownloadCount, ThemeUpdateCount, ThemeUserCount, UpdateCount
-)
+    DownloadCount, ThemeUpdateCount, ThemeUserCount, UpdateCount)
 from olympia.zadmin.models import DownloadSource
 
 

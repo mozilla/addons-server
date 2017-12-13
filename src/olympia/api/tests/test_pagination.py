@@ -6,8 +6,7 @@ from rest_framework.test import APIRequestFactory
 from olympia.amo.tests import TestCase
 from olympia.api.pagination import (
     CustomPageNumberPagination, ESPageNumberPagination,
-    OneOrZeroPageNumberPagination
-)
+    OneOrZeroPageNumberPagination)
 
 
 class PassThroughSerializer(serializers.BaseSerializer):

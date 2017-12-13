@@ -11,8 +11,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import (
-    addon_view_factory, owner_or_unlisted_reviewer
-)
+    addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams

@@ -14,13 +14,11 @@ from django.core import mail
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import (
-    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken
-)
+    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken)
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP, ActivityEmailEncodingError, ActivityEmailParser,
     ActivityEmailTokenError, ActivityEmailUUIDError, add_email_to_activity_log,
-    add_email_to_activity_log_wrapper, log_and_notify, send_activity_mail
-)
+    add_email_to_activity_log_wrapper, log_and_notify, send_activity_mail)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse

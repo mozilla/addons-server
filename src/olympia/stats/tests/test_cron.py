@@ -11,8 +11,7 @@ from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.stats import cron, tasks
 from olympia.stats.models import (
     AddonCollectionCount, DownloadCount, GlobalStat, ThemeUserCount,
-    UpdateCount
-)
+    UpdateCount)
 
 
 class TestGlobalStats(TestCase):

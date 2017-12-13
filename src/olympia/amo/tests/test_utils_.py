@@ -13,8 +13,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, get_locale_from_lang, translations_for_field, walkfiles
-)
+    attach_trans_dict, get_locale_from_lang, translations_for_field, walkfiles)
 from olympia.versions.models import Version
 
 

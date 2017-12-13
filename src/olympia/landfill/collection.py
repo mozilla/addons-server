@@ -6,8 +6,7 @@ from datetime import datetime
 from olympia import amo
 from olympia.amo.utils import slugify
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection
-)
+    Collection, CollectionAddon, FeaturedCollection)
 
 from .translations import generate_translations
 

@@ -32,8 +32,7 @@ from olympia.amo.utils import randslice, render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
-    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission
-)
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
@@ -41,8 +40,7 @@ from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter
-)
+    SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
@@ -53,8 +51,7 @@ from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
-    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer
-)
+    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 

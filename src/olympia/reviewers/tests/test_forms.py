@@ -5,8 +5,7 @@ from django.utils.encoding import force_text
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import (
-    TestCase, addon_factory, file_factory, version_factory
-)
+    TestCase, addon_factory, file_factory, version_factory)
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.utils import ReviewHelper

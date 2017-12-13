@@ -18,11 +18,9 @@ from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
 from rest_framework.mixins import (
-    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
-)
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
-    AllowAny, BasePermission, IsAuthenticated
-)
+    AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -35,8 +33,7 @@ from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
 from olympia.api.authentication import (
-    JWTKeyAuthentication, WebTokenAuthentication
-)
+    JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
 from olympia.users.models import UserNotification, UserProfile
@@ -45,8 +42,7 @@ from olympia.users.notifications import NOTIFICATIONS
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer
-)
+    UserNotificationSerializer, UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 

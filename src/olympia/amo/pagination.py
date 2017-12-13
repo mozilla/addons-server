@@ -2,8 +2,7 @@ from math import ceil
 
 from django.conf import settings
 from django.core.paginator import (
-    EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator
-)
+    EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):

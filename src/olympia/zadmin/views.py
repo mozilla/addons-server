@@ -19,8 +19,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
-    any_permission_required, json_view, login_required, post_required
-)
+    any_permission_required, json_view, login_required, post_required)
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
@@ -41,8 +40,7 @@ from . import tasks
 from .decorators import admin_required
 from .forms import (
     AddonStatusForm, CompatForm, DevMailerForm, FeaturedCollectionFormSet,
-    FileFormSet, MonthlyPickFormSet, YesImSure
-)
+    FileFormSet, MonthlyPickFormSet, YesImSure)
 from .models import EmailPreviewTopic
 
 

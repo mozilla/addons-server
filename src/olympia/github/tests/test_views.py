@@ -9,8 +9,7 @@ from olympia.amo.tests import AMOPaths, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileUpload
 from olympia.github.tests.test_github import (
-    GithubBaseTestCase, example_pull_request
-)
+    GithubBaseTestCase, example_pull_request)
 
 
 class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):

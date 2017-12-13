@@ -20,8 +20,7 @@ from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.models import (
-    ManagerBase, ModelBase, OnChangeMixin, skip_cache
-)
+    ManagerBase, ModelBase, OnChangeMixin, skip_cache)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail

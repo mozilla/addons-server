@@ -8,8 +8,7 @@ from django import test
 from django.test.client import RequestFactory
 
 from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException
-)
+    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config

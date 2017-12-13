@@ -33,8 +33,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.cache_nuggets import memoize
 from olympia.amo.decorators import (
-    allow_cross_site_request, json_view, login_required
-)
+    allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.api.authentication import JWTKeyAuthentication

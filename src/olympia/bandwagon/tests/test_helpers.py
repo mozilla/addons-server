@@ -5,8 +5,7 @@ from olympia.amo.tests import BaseTestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection
 from olympia.bandwagon.templatetags.jinja_helpers import (
-    barometer, user_collection_list
-)
+    barometer, user_collection_list)
 from olympia.users.models import UserProfile
 
 

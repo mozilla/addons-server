@@ -18,8 +18,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
-    RereviewQueueTheme, ReviewerScore, ThemeLock
-)
+    RereviewQueueTheme, ReviewerScore, ThemeLock)
 from olympia.reviewers.views import base_context as context
 
 from .decorators import personas_reviewer_required

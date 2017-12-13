@@ -27,19 +27,16 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
-    AddonUser
-)
+    AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, check_links, file_factory, formset, initial,
-    user_factory, version_factory
-)
+    user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
-    ReviewerSubscription, Whiteboard
-)
+    ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config

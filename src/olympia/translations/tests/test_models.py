@@ -21,12 +21,10 @@ from olympia.amo.tests import BaseTestCase
 from olympia.translations import widgets
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
-    PurifiedTranslation, Translation, TranslationSequence
-)
+    PurifiedTranslation, Translation, TranslationSequence)
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
-    FancyModel, TranslatedModel, UntranslatedModel
-)
+    FancyModel, TranslatedModel, UntranslatedModel)
 
 
 pytestmark = pytest.mark.django_db

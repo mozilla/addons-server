@@ -21,12 +21,10 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonUser, AppSupport, Category, CompatOverride,
     CompatOverrideRange, DeniedGuid, DeniedSlug, FrozenAddon,
-    IncompatibleVersions, Persona, Preview, track_addon_status_change
-)
+    IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, version_factory
-)
+    TestCase, addon_factory, collection_factory, version_factory)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
@@ -35,8 +33,7 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
-    Translation, TranslationSequence, delete_translation
-)
+    Translation, TranslationSequence, delete_translation)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import ApplicationsVersions, Version

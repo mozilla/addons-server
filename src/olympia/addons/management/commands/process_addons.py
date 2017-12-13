@@ -7,8 +7,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_firefox57_tag, bump_appver_for_legacy_addons,
-    find_inconsistencies_between_es_and_db
-)
+    find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons

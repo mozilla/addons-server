@@ -20,8 +20,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.amo.tests import (
-    TestCase, formset, initial, user_factory, version_factory
-)
+    TestCase, formset, initial, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams

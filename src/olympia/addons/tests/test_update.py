@@ -8,8 +8,7 @@ from django.db import connection
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions
-)
+    Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions)
 from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File

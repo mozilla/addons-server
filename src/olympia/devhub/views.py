@@ -56,8 +56,7 @@ from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed
-)
+    system_addon_submission_allowed)
 from olympia.versions.models import Version
 from olympia.zadmin.models import ValidationResult, get_config
 

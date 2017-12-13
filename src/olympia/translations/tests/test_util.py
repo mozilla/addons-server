@@ -2,8 +2,7 @@ import pytest
 
 from olympia.translations.models import Translation
 from olympia.translations.utils import (
-    transfield_changed, truncate, truncate_text
-)
+    transfield_changed, truncate, truncate_text)
 
 
 pytestmark = pytest.mark.django_db

@@ -11,8 +11,7 @@ from olympia.addons.serializers import AddonSerializer
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.api.fields import (
     ESTranslationSerializerField, ReverseChoiceField,
-    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField
-)
+    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
 from olympia.translations.models import Translation
 
 

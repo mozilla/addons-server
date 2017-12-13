@@ -2,8 +2,7 @@ from django.db import models
 
 from olympia.amo.models import ModelBase
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, save_signal
-)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 
 class TranslatedModel(ModelBase):

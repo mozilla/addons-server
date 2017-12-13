@@ -26,8 +26,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.tests import (
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
     WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,
-    user_factory
-)
+    user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase

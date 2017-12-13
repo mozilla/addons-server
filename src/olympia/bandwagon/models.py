@@ -17,12 +17,10 @@ from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, user_media_path, user_media_url
-)
+    absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.fields import (
-    LinkifiedField, NoLinksNoMarkupField, TranslatedField, save_signal
-)
+    LinkifiedField, NoLinksNoMarkupField, TranslatedField, save_signal)
 from olympia.users.models import UserProfile
 
 

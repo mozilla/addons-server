@@ -7,8 +7,7 @@ from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.api.fields import (
-    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField
-)
+    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 

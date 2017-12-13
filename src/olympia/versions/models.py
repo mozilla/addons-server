@@ -29,8 +29,7 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, save_signal
-)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 from .compare import version_dict, version_int
 

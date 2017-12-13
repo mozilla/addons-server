@@ -10,8 +10,7 @@ from olympia.users.models import UserProfile
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
     check_ownership, check_personas_reviewer, check_unlisted_addons_reviewer,
-    is_reviewer, match_rules
-)
+    is_reviewer, match_rules)
 
 
 pytestmark = pytest.mark.django_db

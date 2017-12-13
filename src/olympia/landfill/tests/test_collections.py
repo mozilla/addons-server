@@ -3,8 +3,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection
-)
+    Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.applications import APPS
 from olympia.landfill.collection import generate_collection
 

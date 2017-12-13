@@ -15,8 +15,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.tests import (
-    TestCase, addon_factory, formset, initial, version_factory
-)
+    TestCase, addon_factory, formset, initial, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID

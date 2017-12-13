@@ -32,8 +32,7 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
-    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch
-)
+    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch)
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation

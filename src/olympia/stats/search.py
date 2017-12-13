@@ -6,8 +6,7 @@ from olympia import amo
 from olympia.applications.models import AppVersion
 from olympia.lib.es.utils import create_index
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount
-)
+    CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount)
 
 
 # Number of elements to index at once in ES. The size of a dict to send to ES

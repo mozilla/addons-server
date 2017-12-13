@@ -12,8 +12,7 @@ from olympia.amo.tests import TestCase, create_switch
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter
-)
+    SortingFilter)
 
 
 class FilterTestsBase(TestCase):

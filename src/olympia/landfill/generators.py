@@ -11,8 +11,7 @@ from olympia.addons.models import Addon, Persona, update_search_index
 from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC
-)
+    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 
 from .categories import generate_categories
 from .collection import generate_collection

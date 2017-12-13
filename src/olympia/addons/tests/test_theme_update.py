@@ -12,8 +12,7 @@ from django.db import connection
 
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import (
-    user_media_path, user_media_url
-)
+    user_media_path, user_media_url)
 from olympia.amo.tests import TestCase
 from olympia.versions.models import Version
 

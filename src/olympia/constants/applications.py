@@ -2,8 +2,7 @@ import re
 
 from base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_PLUGIN,
-    ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME
-)
+    ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME)
 
 from django.utils.translation import ugettext_lazy as _
 

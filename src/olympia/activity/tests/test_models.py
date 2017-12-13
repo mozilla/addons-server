@@ -8,12 +8,10 @@ from django.core.urlresolvers import reverse
 
 from olympia import amo, core
 from olympia.activity.models import (
-    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog
-)
+    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog)
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory
-)
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag

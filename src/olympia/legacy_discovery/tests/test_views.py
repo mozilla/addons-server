@@ -9,8 +9,7 @@ from django.utils.translation import trim_whitespace
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview
-)
+    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.amo.templatetags.jinja_helpers import format_date
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.amo.urlresolvers import reverse

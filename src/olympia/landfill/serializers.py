@@ -9,8 +9,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC
-)
+    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
 from olympia.ratings.models import Rating

@@ -19,11 +19,9 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona
-)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona)
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, post_required
-)
+    json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
@@ -35,13 +33,11 @@ from olympia.reviewers.models import (
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList, Whiteboard,
     clear_reviewing_cache, get_flags, get_reviewing_cache,
-    get_reviewing_cache_key, set_reviewing_cache
-)
+    get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable,
-    is_limited_reviewer
-)
+    is_limited_reviewer)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -49,8 +45,7 @@ from olympia.zadmin.models import get_config, set_config
 from .decorators import (
     addons_reviewer_required, any_reviewer_or_moderator_required,
     any_reviewer_required, ratings_moderator_required,
-    unlisted_addons_reviewer_required
-)
+    unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):

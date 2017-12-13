@@ -19,11 +19,9 @@ from rest_framework.views import APIView
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClient, TestCase, WithDynamicEndpoints, user_factory
-)
+    APITestClient, TestCase, WithDynamicEndpoints, user_factory)
 from olympia.api.authentication import (
-    JWTKeyAuthentication, WebTokenAuthentication
-)
+    JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
 
 

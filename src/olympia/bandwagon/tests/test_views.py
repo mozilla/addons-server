@@ -17,16 +17,14 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, collection_factory, user_factory
-)
+    APITestClient, TestCase, addon_factory, collection_factory, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionVote,
-    CollectionWatcher
-)
+    CollectionWatcher)
 from olympia.bandwagon.views import CollectionFilter
 from olympia.browse.tests import TestFeeds
 from olympia.users.models import UserProfile

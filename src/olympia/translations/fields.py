@@ -8,8 +8,7 @@ from django.utils.translation.trans_real import to_language
 from .hold import add_translation, make_key, save_translations
 from .models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
-    PurifiedTranslation, Translation
-)
+    PurifiedTranslation, Translation)
 from .widgets import TransInput, TransTextarea
 
 

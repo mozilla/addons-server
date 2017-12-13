@@ -11,8 +11,7 @@ from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.bandwagon import tasks
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionWatcher,
-    FeaturedCollection
-)
+    FeaturedCollection)
 from olympia.users.models import UserProfile
 
 

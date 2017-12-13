@@ -5,8 +5,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import (
     BaseUserSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer
-)
+    UserNotificationSerializer, UserProfileSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.users.models import UserNotification, UserProfile

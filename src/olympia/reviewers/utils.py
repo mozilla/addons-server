@@ -20,16 +20,14 @@ from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify, send_activity_mail
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags
-)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
-    get_flags
-)
+    get_flags)
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 

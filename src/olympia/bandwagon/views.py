@@ -27,15 +27,13 @@ from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    allow_mine, json_view, login_required, post_required, write
-)
+    allow_mine, json_view, login_required, post_required, write)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render, urlparams
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
-    PreventActionPermission
-)
+    PreventActionPermission)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -44,8 +42,7 @@ from olympia.users.models import UserProfile
 from . import forms, tasks
 from .models import (
     SPECIAL_SLUGS, Collection, CollectionAddon, CollectionVote,
-    CollectionWatcher
-)
+    CollectionWatcher)
 from .permissions import AllowCollectionAuthor, AllowCollectionContributor
 from .serializers import CollectionAddonSerializer, CollectionSerializer
 

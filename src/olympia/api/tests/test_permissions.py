@@ -11,13 +11,11 @@ from rest_framework.views import APIView
 from olympia import amo
 from olympia.access.models import GroupUser
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpoints, addon_factory, user_factory
-)
+    TestCase, WithDynamicEndpoints, addon_factory, user_factory)
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowNone, AllowOwner,
     AllowReadOnlyIfPublic, AllowRelatedObjectPermissions, AllowReviewer,
-    AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission
-)
+    AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 
 
 class ProtectedView(APIView):

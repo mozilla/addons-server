@@ -33,11 +33,9 @@ import django.core.mail
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import (
-    FileSystemStorage, default_storage as storage
-)
+    FileSystemStorage, default_storage as storage)
 from django.core.paginator import (
-    EmptyPage, InvalidPage, Paginator as DjangoPaginator
-)
+    EmptyPage, InvalidPage, Paginator as DjangoPaginator)
 from django.core.validators import ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
