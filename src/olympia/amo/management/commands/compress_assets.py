@@ -209,8 +209,10 @@ class Command(BaseCommand):
     def _is_changed(self, concatted_file):
         """Check if the file has been changed."""
         tmp_concatted = '%s.tmp' % concatted_file
-        if ((os.path.exists(concatted_file) and
-             os.path.getsize(concatted_file) == os.path.getsize(tmp_concatted))):
+        file_exists = (
+            os.path.exists(concatted_file) and
+            os.path.getsize(concatted_file) == os.path.getsize(tmp_concatted))
+        if file_exists:
             orig_hash = self._file_hash(concatted_file)
             temp_hash = self._file_hash(tmp_concatted)
             return orig_hash != temp_hash
@@ -231,8 +233,10 @@ class Command(BaseCommand):
         with open(css_file, 'r') as css_in:
             css_content = css_in.read()
 
-        parse = lambda url: self._cachebust_regex(url, css_file)
-        css_parsed = re.sub('url\(([^)]*?)\)', parse, css_content)
+        def _parse(url):
+            self._cachebust_regex(url, css_file)
+
+        css_parsed = re.sub('url\(([^)]*?)\)', _parse, css_content)
 
         with open(css_file, 'w') as css_out:
             css_out.write(css_parsed)
@@ -252,8 +256,9 @@ class Command(BaseCommand):
         """Run the proper minifier on the file."""
         if ftype == 'js' and hasattr(settings, 'UGLIFY_BIN'):
             o = {'method': 'UglifyJS', 'bin': settings.UGLIFY_BIN}
-            self._call('%s %s -o %s %s -m' % (o['bin'], self.v, file_out, file_in),
-                       shell=True, stdout=PIPE)
+            self._call(
+                '%s %s -o %s %s -m' % (o['bin'], self.v, file_out, file_in),
+                shell=True, stdout=PIPE)
         elif ftype == 'css' and hasattr(settings, 'CLEANCSS_BIN'):
             o = {'method': 'clean-css', 'bin': settings.CLEANCSS_BIN}
             self._call('%s -o %s %s' % (o['bin'], file_out, file_in),
