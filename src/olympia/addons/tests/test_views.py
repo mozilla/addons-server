@@ -2736,6 +2736,41 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon2.pk
         assert result['slug'] == addon2.slug
 
+    def test_filter_by_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'guid': u'random@guid'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_multiple_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               guid='random2@guid',
+                               weekly_downloads=333)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(
+            self.url, {'guid': u'random@guid,random2@guid'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
