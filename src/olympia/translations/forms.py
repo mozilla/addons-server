@@ -24,9 +24,9 @@ class TranslationFormMixin(object):
     default locale.
     """
 
-    def __init__(self, *args, **kw):
-        super(TranslationFormMixin, self).__init__(*args, **kw)
-        self.error_class = LocaleErrorList
+    def __init__(self, *args, **kwargs):
+        kwargs['error_class'] = LocaleErrorList
+        super(TranslationFormMixin, self).__init__(*args, **kwargs)
         self.set_default_locale()
 
     def set_default_locale(self):

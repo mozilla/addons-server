@@ -250,7 +250,7 @@ class _TransField(object):
                 errors.extend(e.messages, locale)
 
         if errors:
-            raise LocaleValidationError(errors)
+            raise forms.ValidationError(errors)
 
         return value
 
@@ -258,16 +258,6 @@ class _TransField(object):
         # This used to be called on the field's widget and always returned
         # False!
         return False
-
-
-class LocaleValidationError(forms.ValidationError):
-
-    def __init__(self, messages, code=None, params=None):
-        self.msgs = messages
-
-    @property
-    def messages(self):
-        return self.msgs
 
 
 class TransField(_TransField, forms.CharField):
@@ -287,8 +277,7 @@ class TransField(_TransField, forms.CharField):
         return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
 
 
-# Subclass list so that isinstance(list) in Django works.
-class LocaleList(dict):
+class LocaleList(list):
     """
     List-like objects that maps list elements to a locale.
 

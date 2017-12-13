@@ -1,6 +1,7 @@
 from django import forms
 from django.utils import translation
 from django.utils.encoding import force_text
+from django.utils.safestring import mark_safe
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation
@@ -44,6 +45,7 @@ class TransMulti(forms.widgets.MultiWidget):
     The backend dumps all the available translations into a set of widgets
     wrapped in div.trans and javascript handles the rest of the UI.
     """
+    # TODO: Port to proper templates
     choices = None  # Django expects widgets to have a choices attribute.
 
     def __init__(self, attrs=None):
@@ -62,7 +64,28 @@ class TransMulti(forms.widgets.MultiWidget):
                                      translation.get_language())
             self.widgets = [self.widget()]
             value = [Translation(locale=default_locale)]
-        return super(TransMulti, self).render(name, value, attrs)
+
+        if self.is_localized:
+            for widget in self.widgets:
+                widget.is_localized = self.is_localized
+
+        # value is a list of values, each corresponding to a widget
+        # in self.widgets.
+        if not isinstance(value, list):
+            value = self.decompress(value)
+
+        output = []
+        final_attrs = self.build_attrs(attrs)
+        id_ = final_attrs.get('id', None)
+        for i, widget in enumerate(self.widgets):
+            try:
+                widget_value = value[i]
+            except IndexError:
+                widget_value = None
+            if id_:
+                final_attrs = dict(final_attrs, id='%s_%s' % (id_, i))
+            output.append(widget.render(name + '_%s' % i, widget_value, final_attrs))
+        return mark_safe(self.format_output(output))
 
     def decompress(self, value):
         if not value:
@@ -101,12 +124,12 @@ class TransMulti(forms.widgets.MultiWidget):
         return rv
 
     def format_output(self, widgets):
-        s = super(TransMulti, self).format_output(widgets)
+        formatted = ''.join(widgets)
         init = self.widget().render(self.name + '_',
                                     Translation(locale='init'),
                                     {'class': 'trans-init'})
         return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
-            self.name, self.name, s, init)
+            self.name, self.name, formatted, init)
 
 
 class _TransWidget(object):
