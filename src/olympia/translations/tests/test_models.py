@@ -484,7 +484,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         # Make sure we are in a clean environnement.
         self.reset_queries()
         TranslatedModel.objects.get(pk=1)
-        assert len(connections['default'].queries) == 3
+        assert len(connections['default'].queries) == 2
 
     @override_settings(DEBUG=True)
     @patch('multidb.get_slave', lambda: 'slave-2')
@@ -508,7 +508,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 
             TranslatedModel.objects.using('slave-1').get(pk=1)
             assert len(connections['default'].queries) == 0
-            assert len(connections['slave-1'].queries) == 3
+            assert len(connections['slave-1'].queries) == 2
             assert len(connections['slave-2'].queries) == 0
 
     @override_settings(DEBUG=True)
@@ -520,7 +520,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 
             with multidb.pinning.use_master:
                 TranslatedModel.objects.get(pk=1)
-                assert len(connections['default'].queries) == 3
+                assert len(connections['default'].queries) == 2
                 assert len(connections['slave-1'].queries) == 0
                 assert len(connections['slave-2'].queries) == 0
 
