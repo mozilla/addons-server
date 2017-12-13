@@ -341,9 +341,6 @@ class CompatForm(forms.ModelForm):
 class BaseCompatFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
-        # form_kwargs is only present in Django 1.9 and newer, so we
-        # re-implement it.
-        self.form_kwargs = kwargs.pop('form_kwargs', {})
         super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
@@ -374,27 +371,6 @@ class BaseCompatFormSet(BaseModelFormSet):
         if not apps:
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
-
-    # The 2 methods below, forms() and get_form_kwargs(), are lifted from
-    # Django 1.9, because we need form_kwargs to work.
-    @cached_property
-    def forms(self):
-        """
-        Instantiate forms at first property access.
-        """
-        # DoS protection is included in total_form_count()
-        forms = [self._construct_form(i, **self.get_form_kwargs(i))
-                 for i in range(self.total_form_count())]
-        return forms
-
-    def get_form_kwargs(self, index):
-        """
-        Return additional keyword arguments for each individual formset form.
-
-        index will be None if the form being constructed is a new empty
-        form.
-        """
-        return self.form_kwargs.copy()
 
 
 CompatFormSet = modelformset_factory(
