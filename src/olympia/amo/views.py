@@ -18,8 +18,7 @@ from . import monitors
 
 @never_cache
 @non_atomic_requests
-def monitor(request, format=None):
-
+def monitor(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     results = {}
@@ -40,14 +39,7 @@ def monitor(request, format=None):
     status_code = 200 if all(a['state']
                              for a in status_summary.values()) else 500
 
-    if format == '.json':
-        return http.HttpResponse(json.dumps(status_summary),
-                                 status=status_code)
-    ctx = {}
-    ctx.update(results)
-    ctx['status_summary'] = status_summary
-
-    return render(request, 'services/monitor.html', ctx, status=status_code)
+    return http.HttpResponse(json.dumps(status_summary), status=status_code)
 
 
 @non_atomic_requests
