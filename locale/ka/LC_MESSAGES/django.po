@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-08 02:26+0000\n"
+"PO-Revision-Date: 2017-12-13 21:18+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -122,7 +122,7 @@ msgstr "შეუსაბამო სიმბოლოების მოშ�
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან უნდა შედგებოდეს."
+msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -2476,7 +2476,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "ბოლო ცვლილებები ჩემს დამატებებში"
 
 msgid "Must have at least one owner."
-msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება."
+msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება მაინც."
 
 msgid "At least one author must be listed."
 msgstr "ერთი ავტორი მაინც უნდა იყოს მითითებული."
@@ -2521,7 +2521,7 @@ msgid "Invalid version range."
 msgstr "ვერსიის არასწორი დიაპაზონი."
 
 msgid "Need at least one compatible application."
-msgstr "საჭიროა სულ მცირე ერთი თავსებადი პროგრამა."
+msgstr "საჭიროა, სულ მცირე ერთი თავსებადი პროგრამა მაინც."
 
 msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
@@ -2995,7 +2995,7 @@ msgstr "ჭდეები ეხმარება მომხმარებ�
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "უნდა იყოს მძიმით გამოყოფილი და შეიცავდეს, სულ მცირე {0} სიმბოლოს."
+msgstr[0] "მძიმით გამოყოფილი, არანაკლებ {0} სიმბოლოთი."
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "მაგალითად: მუქი, კინო, თრილერი. არაუმეტეს 20 ცალი."
@@ -3131,13 +3131,13 @@ msgid "No, this add-on will be upgraded manually."
 msgstr "არა, ეს დამატება განახლდება ხელით."
 
 msgid "Universally unique identifier"
-msgstr "უნიკალური იდენტიფიკატორი"
+msgstr "ყოვლისმომცველი უნიკალური მოწმობა"
 
 msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "თქვენი დამატების UUID განასზღვრულია მის მანიფესტში და უნიკალურია. წარდგენის შემდეგ, თქვენი UUID-ს შეცვლა, აღარ შეგიძლიათ."
+msgstr "თქვენი დამატების UUID განასზღვრულია მის მანიფესტში და უნიკალურ ამომცნობად გამოიყენება. წარდგენის შემდეგ, თქვენი UUID-ს შეცვლა, აღარ შეგიძლიათ."
 
 msgid "Whiteboard"
 msgstr "თეთრი დაფა"
@@ -3195,7 +3195,7 @@ msgid "Screenshots"
 msgstr "ეკრანის სურათები"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "გთხოვთ მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი:"
+msgstr "გთხოვთ, მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი მაინც:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "გთხოვთ მიუთითოთ წარწერა, სურათზე:"
@@ -7256,7 +7256,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "ანონიმურობისთვის, მიუთითეთ ცვლილების მიზეზი, მაგრამ არ შეაფასოთ სხვა ველები."
 
 msgid "Please enter at least one name to be denied."
-msgstr "გთხოვთ შეიყვანოთ სულ მცირე ერთი სახელი, უარყოფილთა სიაში."
+msgstr "გთხოვთ შეიყვანოთ, სულ მცირე ერთი სახელი მაინც, უარყოფილთა სიაში."
 
 msgid "No user with that email."
 msgstr "ამ ელფოსტით მომხმარებელი არ იძებნება."

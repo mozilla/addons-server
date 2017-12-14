@@ -462,7 +462,7 @@ class SortingFilter(BaseFilterBackend):
         'name': 'name_sort',
         'random': '_score',
         'rating': '-bayesian_rating',
-        'relevance': '-_score',
+        'relevance': '_score',
         'updated': '-last_updated',
         'users': '-average_daily_users',
     }

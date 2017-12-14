@@ -68,9 +68,9 @@ PyJWT==1.5.3 \
     --hash=sha256:500be75b17a63f70072416843dc80c8821109030be824f4d14758f114978bae7
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.74 \
-    --hash=sha256:f6acbeb4d9b4918ae350939c383bb4a1d636d7500d6c53dac8138106a2ade780 \
-    --hash=sha256:8d1c3b5cab40c29174bdd46f6426bb9b22e33b4716272dbc8f1bf4fc62202f7c
+amo-validator==1.10.75 \
+    --hash=sha256:e5195706e7d0181f6834032408e1c7f40560fb329ef70b2c294d573b641df61d \
+    --hash=sha256:266dcbca8075e3f1526120c1325b61403be77b34d3d214bffc761d465d4d2c8b
 # amqp is required by kombu
 amqp==2.2.2 \
     --hash=sha256:4e28d3ea61a64ae61830000c909662cb053642efddbe96503db0e7783a6ee85b \
@@ -94,9 +94,9 @@ celery==4.1.0 \
 boto3==1.4.8 \
     --hash=sha256:edd35eb7cd8d56f08e65b112206936cf9f76bb406fb15f63075ff72331ef6f5f \
     --hash=sha256:332c6a17fd695581dd6f9ed825ce13c2d5ee3a6f5e1b079bed0ff7293809faf0
-botocore==1.8.10 \
-    --hash=sha256:929a6973bc149fd8a9f880c3263debe2df0fd3329e8b717f09399d16e0941c98 \
-    --hash=sha256:90cda6580aaad820bc348968a9de3b3bfd9574e91b0941758d48f75e41b3bf99
+botocore==1.8.13 \
+    --hash=sha256:415f561d58ecfd18b06c158ce00e91400b3475c51af8cd12fad670bd55f581e9 \
+    --hash=sha256:740f77e855b06a6061e2a7c5513b943b61758f3ebd483160935473922739c37a
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -182,9 +182,9 @@ easy-thumbnails==2.5 \
 elasticsearch==5.5.1 \
     --hash=sha256:d9dac18462375e06a5425730d8aaccb874cc748658b060c0536afb4e296ba9fe \
     --hash=sha256:c4f1abf19e2e79ebc526e6f65838909123da07c2775e2c0660c69b01ebb2001a # pyup: <6
-elasticsearch-dsl==5.3.0 \
-    --hash=sha256:de5fd68901c5b94e51e2ae4e8ad6f618b22665d89794d96f9b6b763986665527 \
-    --hash=sha256:de81b2322cde9bf1171c8a41d80596cdadd433b88b93daa09060af3a512523a7 # pyup: <6
+elasticsearch-dsl==5.4.0 \
+    --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
+    --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # fastchardet is required by amo-validator
@@ -312,9 +312,9 @@ pytz==2017.3 \
     --hash=sha256:dd2e4ca6ce3785c8dd342d1853dd9052b19290d5bf66060846e5dc6b8d6667f7 \
     --hash=sha256:699d18a2a56f19ee5698ab1123bbcc1d269d061996aeb1eda6d89248d3542b82 \
     --hash=sha256:fae4cffc040921b8a2d60c6cf0b5d662c1190fe54d718271db4eb17d44a185b7
-raven==6.3.0 \
-    --hash=sha256:cb644fb12ee886a341041dcd533540dfc82619a50bf0b7c587af070054bd2c7f \
-    --hash=sha256:f3e465a545dcdb6a387d1fcb199d08f786ba3732d7ce6aa681718b04da6aedf1
+raven==6.4.0 \
+    --hash=sha256:2c9cd4d8c267f57db625305aaa89e7dd852d6864c13c7b84f4d4500df07bebd9 \
+    --hash=sha256:b8edbb3335ed6c23cb168ced37fb523c1b91d9f3b0eddb90934249977841a902
 # rdflib is required by amo-validator
 rdflib==3.4.0 \
     --hash=sha256:78d5f11a7001661d7637f9e61554a5f8971e197f3f6d17ba5e4039b0668116cf # pyup: ==3.4.0

@@ -1030,6 +1030,33 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=['a3615']))
 
+    def test_finish_submitting_listed_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        assert version.supported_platforms == ([amo.PLATFORM_ALL])
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 2
+        # First link is to edit listing.
+        assert links[0].attrib['href'] == self.addon.get_dev_url()
+        # Second link is back to my submissions.
+        assert links[1].attrib['href'] == reverse('devhub.addons')
+
+        # Text is static theme specific.
+        assert "This version will be available after it passes review." in (
+            response.content)
+
+    def test_finish_submitting_unlisted_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        # Page should be identical to extensions
+        self.test_finish_submitting_unlisted_addon
+
 
 class TestAddonSubmitResume(TestSubmitBase):
 

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-07 18:45+0000\n"
+"PO-Revision-Date: 2017-12-08 21:46+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -875,7 +875,7 @@ msgid "Jump to first page"
 msgstr "Shko te faqja e parë"
 
 msgid "Previous"
-msgstr "I mëparshmi"
+msgstr "E mëparshmja"
 
 msgid "Jump to last page"
 msgstr "Shko te faqja e fundit"
@@ -1822,7 +1822,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Koment për {addon} {version}."
 
 msgid "Commented"
-msgstr ""
+msgstr "Komentoi"
 
 msgid "{tag} added to {addon}."
 msgstr "Te {addon} u shtua etiketa {tag}."
@@ -1992,7 +1992,7 @@ msgid "Content approved"
 msgstr "Lënda u miratua"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Lënda për {addon} {version} u hodh tej."
 
 msgid "Content rejected"
 msgstr "Lënda u hodh tej"
@@ -3629,40 +3629,40 @@ msgid "Select colors for your Theme."
 msgstr "Përzgjidhni ngjyra për Temën tuaj."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Sfond fushe kryesh (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Tekst fushe kryesh (accentcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "Ngjyra e tekstit të shfaqur te fushë kryesh."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Sfond fushe paneli (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "Ngjyra e sfondit  për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Tekst fushe paneli (toolbar_text)."
 
 msgid "The color of toolbar text."
 msgstr "Ngjyra e tekstit të panelit."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Sfond fushe zone paneli (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Ngjyra e sfondit për fusha në panel, të tilla si shtylla e URL-ve."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Tekst fushe zone paneli (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve"
 
 msgid "optional"
 msgstr "opsionale"
@@ -3677,7 +3677,7 @@ msgid "Uploading Theme"
 msgstr "Ngarkim Teme"
 
 msgid "Upload Theme"
-msgstr ""
+msgstr "Ngarkoni Temë"
 
 msgid "API Credentials"
 msgstr "Kredenciale API"
@@ -3860,7 +3860,7 @@ msgid "Resources"
 msgstr "Burime"
 
 msgid "Porting"
-msgstr ""
+msgstr "Kalimi në format të ri"
 
 msgid "Community"
 msgstr "Bashkësi"
@@ -4398,19 +4398,19 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Administroni fjalëkalime {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Thjeshtojini dhe njëkohësojini nëpër pajisje krejt kredencialet tuaj për sajte, përmes një fjalëkalimi që i zotëron të tërë."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përmirësoni videot {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Shijoni një suitë veçorish të reja për YouTube, të tilla si mënyra kinema, bllokim reklamash, kontroll vetëluajtjesh, etj."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Dhjetra emoji mahnitës - vetëm një klik larg."
 
 msgid "Cannot diff a version against itself"
 msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
@@ -4428,7 +4428,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID është i domosdoshëm për Firefox 47 dhe më të hershëm."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Versioni më u ulët që mbulojmë është \"strict_min_version\" 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "S’gjendet dot version minimal/maksimal. Mos vallë \"strict_min_version\" ose \"strict_max_version\" përmban një version të pambuluar?"
@@ -4442,7 +4442,7 @@ msgstr "S’u përtyp dot kartela e ngarkuar."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Emër kartele i pavlefshëm në arkiv. Ju lutemi, bëni të mundur që krejt emrat e kartelave të jenë nën kodim utf-8 ose latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4999,6 +4999,9 @@ msgid ""
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
+"<strong>Shënim:</strong> XUL-i konsiderohet teknologji e dikurshme në Firefox dhe, duke filluar nga Firefox 57, shtesat që përdorin XUL s’do të ngarkohen më prej tij. Ju lutemi, përdorni API "
+"%(webext_link_open)sWebExtensions%(link_close)s që të zhvilloni shtesa të reja. Nëse keni një shtojcë të dikurshme, shihni mundësinë e migrimit të saj si WebExtensions. Për më tepër të dhëna mbi "
+"migrimin e një shtese të dikurshme, ju lutemi, vizitoni %(portlegacy_link_open)sSjellja e një shtese të dikurshme Firefox nën formatin e ri%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Si ta provoj për përputhshmëri me versionin më të ri të software-it Mozilla-s?"
@@ -5025,7 +5028,7 @@ msgstr "#amo (për asistencë lidhur me strehimin e shtesës suaj te AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (për diskutime rreth zhvillimit me WebExtensions dhe kalimin e shtesave nën të.)"
 
 msgid "Add-ons forum"
 msgstr "Forum shtesash"
@@ -5202,7 +5205,7 @@ msgstr "numër zonash problematike të zbuluara"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Kjo është arsyeja pse është shumë e rëndësishme të lexohet <a href=\"%(g_url)s\">Udhërrëfyesi i Shqyrtimit të Shtesave</a>, për të bërë të mundur që shtesa juaj të jetë rregulluar siç pritet."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Si mund ta shoh se sa herë është shkarkuar shtesa ime?"
@@ -5231,7 +5234,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "A lypset që përditësimi im të shqyrtohet nga shqyrtuesit?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Përditësimet e shtesave mund të jenë subjekt shqyrtimi po njësoj si parashtrimet e reja."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Si t’i përgjigjem një përdoruesi që ka postuar një shqyrtim negativ të shtesës sime?"
@@ -5390,7 +5393,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Si t’i mbaj të përditësuara shtesat?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Shtesat kontrollohen vetvetiu për përditësime një herë në ditë. Në Firefox, si parazgjedhje, përditësimet instalohen vetvetiu. "
 
 msgid "Are add-ons safe to install?"
 msgstr "A janë të sigurta shtesat për t’i instaluar?"
@@ -5400,6 +5403,9 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
+"Jini të matur kur instaloni shtesa, ngaqë ato mund të dëmtojnë kompjuterin tuaj ose të cenojnë privatësinë tuaj. Shtesat që mund të merren prej këtij sajti janë subjekt i shqyrtimit nga ekipi "
+"Mozilla i shqyrtuesve, dhe përshtypjet e përdoruesve mbikëqyren me rreptësi, kështu që përgjithësisht duhet të jenë të parrezik për t’u instaluar. %(learnmore_link_open)sMësoni më tepër rreth "
+"procesit tonë të shqyrtimit%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6061,7 +6067,7 @@ msgid "Clear Admin Code Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Hiqja Shenjën për Shqyrtim Lënde Nga Përgjegjës"
 
 msgid "Is more info requested?"
 msgstr "A duhen më tepër të dhëna?"
@@ -6087,7 +6093,7 @@ msgid "Skip for now"
 msgstr "Hëpërhë anashkaloje"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Lyp Shqyrtim Lënde Nga Përgjegjës"
 
 msgid "Jetpack Add-on"
 msgstr "Shtesë Jetpack"
@@ -6204,7 +6210,7 @@ msgid "Approve Content"
 msgstr "Miratojeni Lëndën"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Kjo regjistron miratimin tuaj të lëndës së këtij versioni, pa e njoftuar zhvilluesin."
 
 msgid "Legacy Add-ons"
 msgstr "Shtesa të Dikurshme"
@@ -6254,7 +6260,7 @@ msgid "Deleted Themes Log"
 msgstr "Regjistër Temash të Fshira"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderim Vlerësimesh Nga Përdorues"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr "Vlerësime Në Pritje të Moderimit ({0})"
@@ -6530,7 +6536,7 @@ msgid "This version has not been reviewed."
 msgstr "Ky version s’është shqyrtuar."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Ju lutemi, përzgjidhni te lista më sipër një ose më shumë versione. "
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Mundeni prapë ta parashtroni këtë formular, megjithatë, këtë bëjeni, nëse e dini që s’do të ketë përplasje."
@@ -6864,8 +6870,8 @@ msgstr "Përfundime Kërkimi për etiketën \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> përfundim përputhjeje"
-msgstr[1] "<b>{0}</b> përfundime përputhjesh"
+msgstr[0] "<b>{0}</b> përfundim me përputhje"
+msgstr[1] "<b>{0}</b> përfundime me përputhje"
 
 msgid "Filter Results"
 msgstr "Filtroni Përfundimet"
@@ -6915,7 +6921,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Ju lutemi, specifikoni në manifest GUID-në e shtesës tuaj, nëse është më gjatë se 64 shenja."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID i pavlefshëm në URL"
@@ -7390,7 +7396,7 @@ msgid "someone writes a review of my add-on"
 msgstr "dikush shkruan një shqyrtim të shtesës sime"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "jini përherë i përditësuar me lajme dhe rreth veprimtarish që lidhen me zhvillues shtesash (përfshi buletinin about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "përputhshmëria e shtesës sime s’mund të përmirësohet"

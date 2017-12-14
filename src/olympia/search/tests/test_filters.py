@@ -176,7 +176,7 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
-        assert qs['sort'] == [self._reformat_order('-_score')]
+        assert qs['sort'] == [self._reformat_order('_score')]
 
         qs = self._filter()
         assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
@@ -522,7 +522,7 @@ class TestCombinedFilter(FilterTestsBase):
         must_not = filtered['must_not']
         assert {'term': {'is_disabled': True}} in must_not
 
-        assert qs['sort'] == [{'_score': {'order': 'desc'}}]
+        assert qs['sort'] == ['_score']
 
         should = must[2]['function_score']['query']['bool']['should']
         expected = {

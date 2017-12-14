@@ -40,9 +40,9 @@ class BaseESSerializer(ModelSerializer):
         return fields
 
     def to_representation(self, data):
-        # Support `Result` instances to allow passing in ElasticSearch
+        # Support `Hit` instances to allow passing in ElasticSearch
         # results directly into the serializer.
-        if isinstance(data, (Result, Hit)):
+        if isinstance(data, Hit):
             data = data.to_dict()
 
         obj = self.fake_object(data)

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2016-11-09 11:01+0000\n"
+"PO-Revision-Date: 2017-12-09 08:53+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -70,7 +70,7 @@ msgid "Validating {0}"
 msgstr "Po vleftësohet {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Shtesa juaj e tejkalon madhësinë maksimum për {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prej shërbyesit u mor një përgjigje e zbrazët, me gjendjen: {0}"
@@ -140,7 +140,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Kartela juaj e tejkalon madhësinë maksimum për {0}."
 
 msgid "You cancelled the upload."
 msgstr "E anuluat ngarkimin."
@@ -301,13 +301,13 @@ msgid "Add-ons Manager"
 msgstr "Përgjegjës  Shtesash"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Në promocion te Përgjegjës Shtesash"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "E zgjedhur te Përgjegjës Shtesash"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "E shfaqur te Mësoni Më Tepër e Përgjegjësit të Shtesave"
 
 msgid "Search Suggestions"
 msgstr "Këshillime Kërkimi"
@@ -316,16 +316,16 @@ msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promocion te Faqja Hyrëse"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "E zgjedhur te Faqja Hyrëse"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Premtuese te Faqja Hyrëse"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Më Populloret te Faqja Hyrëse"
 
 msgid "Detail Page"
 msgstr "Faqe Hollësish"
@@ -668,9 +668,8 @@ msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
+msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të {0}."
 
 msgid "View other versions"
 msgstr "Shihni versione të tjera"
