@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-15 12:19+0000\n"
+"PO-Revision-Date: 2017-12-15 14:35+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5314,8 +5314,8 @@ msgstr "Como eu posso ver quantas vezes minha extensão foi baixada?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas disponível no painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar o número de downloads do seu complemento desde que o submeteu para o"
-" AMO."
+"O painel de estatísticas disponível no painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar o número de downloads da sua extensão desde que o submeteu para o "
+"AMO."
 
 msgid "How can I see how many active users are using my add-on?"
 msgstr "Como eu posso ver quantos usuários ativos estão usando meu complemento?"
@@ -5327,11 +5327,10 @@ msgstr ""
 "desde que o submeteu para o AMO."
 
 msgid "How do I submit an update for my add-on?"
-msgstr "Como eu submeto uma atualização do meu complemento?"
+msgstr "Como eu submeto uma atualização da minha extensão?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-"Você pode submeter uma atualização do seu complemento pelo painel de ferramentas do desenvolvedor ao escolher opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu complemento."
+msgstr "Você pode submeter uma atualização da sua extensão pelo painel de ferramentas do desenvolvedor ao escolher opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para sua extensão."
 
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "A minha atualização precisa ser analisada pelos revisores?"
@@ -5368,7 +5367,7 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Eu posso solicitar que uma análise seja removida caso ela seja negativa?"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Não. Nós não removemos análises negativas dos complementos a menos que provem ser falsas."
+msgstr "Não. Nós não removemos análises negativas das extensões a menos que provem ser falsas."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr "Eu posso solicitar que uma análise seja removida caso ela seja imprecisa?"
@@ -5430,12 +5429,12 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
-"Complementos são pequenos pedaços de programas que adicionam novos recursos e funcionalidades à sua instalação do %(app_name)s. Os complementos podem melhorar o %(app_name)s com novos recursos, como"
-" corretores ortográficos, ou alterar a sua aparência. Usando complementos, você pode personalizar o %(app_name)s para que ele corresponda às suas necessidades e gostos. <a "
+"Extensões são pequenos pedaços de programas que adicionam novos recursos e funcionalidades à sua instalação do %(app_name)s. As extensões podem melhorar o %(app_name)s com novos recursos, como "
+"corretores ortográficos, ou alterar a sua aparência. Usando extensões, você pode personalizar o %(app_name)s para que ele corresponda às suas necessidades e gostos. <a "
 "href=\"%(learnmore_url)s\">Saiba mais sobre personalização</a>"
 
 msgid "Will add-ons work with my web browser or application?"
-msgstr "Os complementos funcionarão com o meu navegador ou aplicação?"
+msgstr "As extensões funcionarão com o meu navegador ou aplicativo?"
 
 #, python-format
 msgid ""
@@ -5490,18 +5489,18 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"Na maioria dos casos, os complementos podem ser instalados com um clique no botão Instalar. Para gerenciar, desabilitar ou desinstalar um complemento, use o Gerenciador de complementos do "
-"%(app_name)s. Para mais informações, leia <a href=\"%(extension_url)s\">este artigo sobre complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver dificuldades ao instalar "
-"complementos, leia o artigo <a href=\"%(troubleshooting_url)s\">Solucionando problemas com extensões e temas</a>."
+"Na maioria dos casos, as extensões podem ser instalados com um clique no botão Instalar. Para gerenciar, desabilitar ou desinstalar uma extensão, use o Gerenciador de extensões do %(app_name)s. Para"
+" mais informações, leia <a href=\"%(extension_url)s\">este artigo sobre extensões</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver dificuldades ao instalar extensões, leia o artigo <a"
+" href=\"%(troubleshooting_url)s\">Solucionando problemas com extensões e temas</a>."
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr "Como eu mantenho os complementos atualizados?"
+msgstr "Como eu mantenho as extensões atualizadas?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr "Extensões verificam automaticamente por atualizações uma vez por dia. No Firefox, as atualizações são instaladas automaticamente por padrão. "
 
 msgid "Are add-ons safe to install?"
-msgstr "É seguro instalar complementos?"
+msgstr "É seguro instalar extensões?"
 
 #, python-format
 msgid ""
@@ -5513,19 +5512,19 @@ msgstr ""
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Os complementos podem tornar o %(app_name)s lento?"
+msgstr "As extensões podem tornar o %(app_name)s lento?"
 
 #, python-format
 msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
 msgstr ""
-"A maioria dos complementos não causam uma perda de performance perceptível no %(app_name)s, entretanto instalar muitos complementos pode ter efeitos adversos. Se suspeita que um complemento está "
-"fazendo %(app_name)s ficar lento, tente desativá-lo."
+"A maioria das extensões não causam uma perda de performance perceptível no %(app_name)s, entretanto instalar muitos extensões pode ter efeitos adversos. Se suspeita que uma extensão está fazendo "
+"%(app_name)s ficar lento, tente desativá-lo."
 
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "O %(app_name)s me informou que um complemento não é compatível. Eu ainda posso usá-lo de alguma maneira?"
+msgstr "O %(app_name)s me informou que uma extensão não é compatível. Eu ainda posso usá-lo de alguma maneira?"
 
 #, python-format
 msgid ""
