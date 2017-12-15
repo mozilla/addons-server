@@ -91,12 +91,12 @@ bleach==1.5.0 \
 celery==4.1.0 \
     --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
     --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
-boto3==1.4.8 \
-    --hash=sha256:edd35eb7cd8d56f08e65b112206936cf9f76bb406fb15f63075ff72331ef6f5f \
-    --hash=sha256:332c6a17fd695581dd6f9ed825ce13c2d5ee3a6f5e1b079bed0ff7293809faf0
 botocore==1.8.14 \
     --hash=sha256:d6cb24a6a4c41674f8fc0c788e2c34e0f30059ccf4a21279fb9ae99720e77576 \
     --hash=sha256:298df48c0ed880f485e97a8ce5e6524533e6aea022a052d678f2cf20c52e6fde
+boto3==1.5.0 \
+    --hash=sha256:a29dcc184a3e27d6e9cb5e48822d9030bab5725a1dfa91753e1ae0fa8d044bb1 \
+    --hash=sha256:02f92bdfa316524b94647efaed31b0e1b0d1343fcaffda20c2b5331d02a4dda6
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
