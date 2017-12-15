@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-12 05:52+0000\n"
+"PO-Revision-Date: 2017-12-15 12:10+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4879,7 +4879,7 @@ msgstr "Existem várias maneiras de descobrir as últimas notícias do mundo das
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr "Nosso <a href=\"%(url)s\">blog de complementos</a> é atualizado regularmente com informações sobre os complementos tanto para entusiastas como desenvolvedores."
+msgstr "Nosso <a href=\"%(url)s\">blog de extensões</a> é atualizado regularmente com informações sobre extensões tanto para entusiastas como desenvolvedores."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -4887,7 +4887,7 @@ msgstr "Muitas vezes postamos notícias, dicas e truques na nossa conta do Twitt
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr "Nossos <a href=\"%(url)s\">fórum</a> são um bom lugar para interagir com a comunidade de complementos e discutir futuras alterações na AMO."
+msgstr "Nossos <a href=\"%(url)s\">fórum</a> são um bom lugar para interagir com a comunidade de extensões e discutir futuras alterações na AMO."
 
 msgid "This sounds great! How can I get involved?"
 msgstr "Isto soa muito bem! Como posso me envolver?"
@@ -4897,7 +4897,7 @@ msgstr "Há muitas maneiras de se envolver. Se você tem habilidades técnicas:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">Faça o seu próprio complemento</a>. Nós fornecemos os serviços de hospedagem e atualização gratuita e podemos te ajudar a atingir uma grande audiência de usuários."
+msgstr "<a href=\"%(url)s\">Faça sua extensão</a>. Nós fornecemos os serviços de hospedagem e atualização gratuita e podemos te ajudar a atingir uma grande audiência de usuários."
 
 #, python-format
 msgid ""
