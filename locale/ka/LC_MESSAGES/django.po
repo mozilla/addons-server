@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-13 21:18+0000\n"
+"PO-Revision-Date: 2017-12-14 22:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -638,7 +638,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ეს თემა გადის შემოწმებას. ხილულია მხოლოდ თქვენთვის."
 
 msgid "Collector's Note"
-msgstr "კრებულის შემდგენელის შენიშვნა"
+msgstr "კრებულის შემდგენის შენიშვნა"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -5832,7 +5832,7 @@ msgstr "ეს მიმოხილვა გაკეთებულია დ
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
+msgstr[0] "მომხმარებელს აქვს გაკეთებული <a href=\"%(user_review_url)s\">%(cnt)s ადრინდელი მიმოხილვა</a>, ამ დამატების შესახებ."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
