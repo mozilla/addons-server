@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-15 14:51+0000\n"
+"PO-Revision-Date: 2017-12-15 14:53+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6157,7 +6157,7 @@ msgid "Add-on Types"
 msgstr "Tipos de extensões"
 
 msgid "Search by add-on name / author email / guid"
-msgstr "Procurar pelo nome do complemento / e-mail do autor / guid"
+msgstr "Procurar pelo nome da extensão/ e-mail do autor / guid"
 
 msgid "Max. Version"
 msgstr "Versão máx."
@@ -7511,7 +7511,7 @@ msgid "Anonymous user {id}"
 msgstr "Usuário anônimo {id}"
 
 msgid "My Mobile Add-ons"
-msgstr "Meus complementos móveis"
+msgstr "Minhas extensões móveis"
 
 msgid "an add-on developer replies to my review"
 msgstr "um desenvolvedor de extensões respondeu minha análise"
@@ -7582,8 +7582,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Você não pode excluir sua conta se estiver listado como um <a href=\"%(link)s\">autor de algum complemento</a>. Para excluir sua conta, peça a outra pessoa do seu grupo de desenvolvimento para "
-"excluí-lo da lista de autores dos seus complementos. Após isso, você poderá excluir aqui a sua conta."
+"Você não pode excluir sua conta se estiver listado como um <a href=\"%(link)s\">autor de alguma extensão</a>. Para excluir sua conta, peça a outra pessoa do seu grupo de desenvolvimento para excluí-"
+"lo da lista de autores das suas extensões. Após isso, você poderá excluir aqui a sua conta."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "Ao clicar em \"Excluir\" sua conta vai ser <strong>removida permanentemente</strong>. Isso significa que:"
@@ -7663,10 +7663,10 @@ msgid "Notifications"
 msgstr "Notificações"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "De tempos em tempos, a Mozilla pode enviar mensagens para você sobre novos lançamentos e eventos de complementos. Por favor, selecione os tópicos nos quais você tem interesse."
+msgstr "De tempos em tempos, a Mozilla pode enviar mensagens para você sobre novos lançamentos e eventos de extensões. Por favor, selecione os tópicos nos quais você tem interesse."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "A Mozilla reserva para si o direito de entrar em contato com você individualmente sobre possíveis questões com os seus complementos hospedados."
+msgstr "A Mozilla reserva para si o direito de entrar em contato com você individualmente sobre possíveis questões com suas extensões hospedadas."
 
 msgid "Admin"
 msgstr "Administrador"
@@ -7684,7 +7684,7 @@ msgid "all"
 msgstr "todas"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Complementos da Mozilla fizeram a transição para as Contas Firefox para o login. Continue para completar o processo de login simplificado."
+msgstr "Extensões da Mozilla fizeram a transição para as Contas Firefox para o login. Continue para completar o processo de login simplificado."
 
 msgid "User Login"
 msgstr "Identificação do usuário"
@@ -7709,7 +7709,7 @@ msgstr "Denunciar usuário"
 
 # The title for a user if they are a developer
 msgid "Add-ons Developer"
-msgstr "Desenvolvedor de complementos"
+msgstr "Desenvolvedor de extensões"
 
 msgid "Themes Artist"
 msgstr "Artista"
@@ -7742,7 +7742,7 @@ msgid "My Reviews"
 msgstr "Minhas análises"
 
 msgid "No add-on reviews yet."
-msgstr "Ainda não analisou nenhum complemento."
+msgstr "Ainda não analisou nenhuma extensão."
 
 msgid "Report User"
 msgstr "Denunciar usuário"
