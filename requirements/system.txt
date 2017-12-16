@@ -81,9 +81,8 @@ idna==2.6 \
     --hash=sha256:8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4 \
     --hash=sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f
 # ipaddress is required by cryptography, docker-py
-ipaddress==1.0.18 \
-    --hash=sha256:d34cf15d95ce9a734560f7400a8bd2ac2606f378e2a1d0eadbf1c98707e7c74a \
-    --hash=sha256:5d8534c8e185f2d8a1fda1ef73f2c8f4b23264e8e30063feeb9511d492a413e1
+ipaddress==1.0.19 \
+    --hash=sha256:200d8686011d470b5e4de207d803445deee427455cd0cb7c982b68cf82524f81
 ndg-httpsclient==0.4.3 \
     --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
     --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
