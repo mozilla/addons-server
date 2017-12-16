@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-15 14:53+0000\n"
+"PO-Revision-Date: 2017-12-16 11:52+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5094,7 +5094,7 @@ msgid ""
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
 "XUL (XML User Interface Language, linguagem de interface XML) é uma linguagem da Mozilla baseada em XML que permite construir interfaces ricas compatíveis com diversas aplicações multiplataforma. "
-"Ela oferece widgets de interface como botões, barras de ferramentas, árvores, entre outros, que podem ser usados para melhorar os complementos modificando partes da interface do navegador."
+"Ela oferece widgets de interface como botões, barras de ferramentas, árvores, entre outros, que podem ser usados para melhorar as extensões modificando partes da interface do navegador."
 
 #, python-format
 msgid ""
@@ -5323,8 +5323,8 @@ msgstr "Como eu posso ver quantos usuários ativos estão usando meu complemento
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas disponível na painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar quantos utilizadores estão a utilizar ativamente o seu complemento "
-"desde que o submeteu para o AMO."
+"O painel de estatísticas disponível na painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar quantos usuários estão a utilizar ativamente sua extensão desde que "
+"o submeteu para o AMO."
 
 msgid "How do I submit an update for my add-on?"
 msgstr "Como eu submeto uma atualização da minha extensão?"
@@ -5339,10 +5339,10 @@ msgid "Add-on updates may be subject to review just the same as new submissions.
 msgstr "Atualizações de extensões podem ser submetidas a avaliação nos mesmos moldes de novas extensões."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Como eu posso responder para um usuário que postou uma análise negativa do meu complemento?"
+msgstr "Como eu posso responder para um usuário que postou uma análise negativa da minha extensão?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Um desenvolvedor pode responder qualquer análise postada para seu complemento desde que esteja identificado no AMO. Além disso, qualquer usuário pode denunciar uma análise como:"
+msgstr "Um desenvolvedor pode responder qualquer análise postada para sua extensão desde que esteja identificado no AMO. Além disso, qualquer usuário pode denunciar uma análise como:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
@@ -5777,20 +5777,20 @@ msgid "Include HTML, links, source code or code snippets. Reviews are meant to b
 msgstr "Incluir HTML, links, código fonte ou partes de código. As análises devem ser apenas texto."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Não faça afirmações falsas, deprecie os autores do complemento ou os insulte pessoalmente."
+msgstr "Não faça afirmações falsas, deprecie os autores da extensão ou os insulte pessoalmente."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Incluir o seu e-mail, telefone ou quaisquer outros dados ou os de qualquer outra pessoa."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Não poste análises para um complemento que você ou sua organização criou ou representa."
+msgstr "Não poste análises para uma extensão que você ou sua organização criou ou representa."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticar um complemento por algo que é suposto fazer. Por exemplo, deixar uma análise negativa de um complemento por mostrar complementos ou necessitar de recolher dados, quando este é o objetivo do"
-" complemento ou se o complemento necessita de recolher dados para funcionar."
+"Criticar uma extensão por algo que ela pretende fazer. Por exemplo, deixar uma análise negativa de uma extensão por ela mostrar anúncios ou necessitar de recolher dados, quando este é o objetivo da "
+"extensão ou se a extensão necessita de recolher dados para funcionar."
 
 msgid "How can I report a problematic review?"
 msgstr "Como eu posso denunciar uma análise problemática?"
@@ -5803,14 +5803,14 @@ msgstr ""
 "para análises para excluir ou voltar com a análise para o site."
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Eu sou um autor de complementos, eu posso responder análises?"
+msgstr "Eu sou um autor de extensões, eu posso responder análises?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr "Sim, os autores de um extra podem fornecer uma única reposta a uma análise. Pode definir o tópico de discussão no nosso <a href=\"%(forum_url)s\">fórum</a> para continuar a discussão."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Eu sou um autor de complemento, eu posso excluir análises ou avaliações desfavoráveis?"
+msgstr "Eu sou um autor deextensões, eu posso excluir análises ou avaliações desfavoráveis?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
