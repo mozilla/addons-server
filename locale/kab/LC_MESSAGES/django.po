@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-08 22:18+0000\n"
-"Last-Translator: Uccen Marzuq <merzouk.ouchene@laposte.net>\n"
+"PO-Revision-Date: 2017-12-13 21:44+0000\n"
+"Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -1810,9 +1810,8 @@ msgstr "{addon} yettwarna ɣer {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} yettwakkes si {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} i {addon} yura."
+msgstr "{rating} i {addon} yettwaru."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1845,21 +1844,17 @@ msgstr "{addon} yesnifel tasertit."
 msgid "{addon} icon changed."
 msgstr "{addon} yesnifel tignit."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} i {addon} yettwaqbel."
+msgstr "{rating} i {addon} yettwaqbel."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} yeqbel {review} i {addon}."
+msgstr "{user} yeqbel {rating} i {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Aceggir {review} n {addon} yettwakkes."
+msgstr "Asefqed {rating} i {addon} yettwakkes."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} yekkes {review} n {addon}."
+msgstr "{user} yekkes {rating} i {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Lqem afellay n usnas i {version} yettusnifel."
@@ -1903,9 +1898,8 @@ msgstr "Aseqdac {user} yettuẓẓeyeṛ."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Anebdal {0} yeɣra aɣmis n urmud n {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} i {addon} yettusnifel."
+msgstr "{rating} i {addon} yettusnifel."
 
 msgid "{addon} reviewed."
 msgstr "{addon} yettacegger."

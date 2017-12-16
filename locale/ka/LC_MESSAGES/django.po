@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-09 18:30+0000\n"
+"PO-Revision-Date: 2017-12-14 22:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -122,7 +122,7 @@ msgstr "შეუსაბამო სიმბოლოების მოშ�
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან უნდა შედგებოდეს."
+msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -638,7 +638,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ეს თემა გადის შემოწმებას. ხილულია მხოლოდ თქვენთვის."
 
 msgid "Collector's Note"
-msgstr "კრებულის შემდგენელის შენიშვნა"
+msgstr "კრებულის შემდგენის შენიშვნა"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2476,7 +2476,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "ბოლო ცვლილებები ჩემს დამატებებში"
 
 msgid "Must have at least one owner."
-msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება."
+msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება მაინც."
 
 msgid "At least one author must be listed."
 msgstr "ერთი ავტორი მაინც უნდა იყოს მითითებული."
@@ -2521,7 +2521,7 @@ msgid "Invalid version range."
 msgstr "ვერსიის არასწორი დიაპაზონი."
 
 msgid "Need at least one compatible application."
-msgstr "საჭიროა სულ მცირე ერთი თავსებადი პროგრამა."
+msgstr "საჭიროა, სულ მცირე ერთი თავსებადი პროგრამა მაინც."
 
 msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
@@ -2995,7 +2995,7 @@ msgstr "ჭდეები ეხმარება მომხმარებ�
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "უნდა იყოს მძიმით გამოყოფილი და შეიცავდეს, სულ მცირე {0} სიმბოლოს."
+msgstr[0] "მძიმით გამოყოფილი, არანაკლებ {0} სიმბოლოთი."
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "მაგალითად: მუქი, კინო, თრილერი. არაუმეტეს 20 ცალი."
@@ -3195,7 +3195,7 @@ msgid "Screenshots"
 msgstr "ეკრანის სურათები"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "გთხოვთ მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი:"
+msgstr "გთხოვთ, მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი მაინც:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "გთხოვთ მიუთითოთ წარწერა, სურათზე:"
@@ -5832,7 +5832,7 @@ msgstr "ეს მიმოხილვა გაკეთებულია დ
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
+msgstr[0] "მომხმარებელს აქვს გაკეთებული <a href=\"%(user_review_url)s\">%(cnt)s ადრინდელი მიმოხილვა</a>, ამ დამატების შესახებ."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -7256,7 +7256,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "ანონიმურობისთვის, მიუთითეთ ცვლილების მიზეზი, მაგრამ არ შეაფასოთ სხვა ველები."
 
 msgid "Please enter at least one name to be denied."
-msgstr "გთხოვთ შეიყვანოთ სულ მცირე ერთი სახელი, უარყოფილთა სიაში."
+msgstr "გთხოვთ შეიყვანოთ, სულ მცირე ერთი სახელი მაინც, უარყოფილთა სიაში."
 
 msgid "No user with that email."
 msgstr "ამ ელფოსტით მომხმარებელი არ იძებნება."

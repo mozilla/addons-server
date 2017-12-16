@@ -7,7 +7,7 @@ from olympia.legacy_api import views as legacy_views
 
 
 services_patterns = [
-    url('^monitor(\.json)?$', never_cache(views.monitor),
+    url('^monitor\.json$', never_cache(views.monitor),
         name='amo.monitor'),
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
     url('^403', views.handler403),
