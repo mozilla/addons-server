@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 11:34+0000\n"
+"PO-Revision-Date: 2017-12-10 11:33+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3640,9 +3640,8 @@ msgstr "Firma digitalmente il componente aggiuntivo"
 msgid "Theme generate"
 msgstr "Tema generato"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Licenza del tema"
+msgstr "Strumento generazione temi"
 
 msgid "Select a header image for your Theme."
 msgstr "Seleziona un’immagine di testata per il tema."
@@ -3651,10 +3650,10 @@ msgid "required"
 msgstr "obbligatorio"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "L’altezza dell’immagine deve essere 200 pixel"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG o GIF (senza animazione)"
 
 msgid "Aligned to top-right"
 msgstr "Allinea in alto a destra"
@@ -3710,9 +3709,8 @@ msgstr "Anteprima nel browser"
 msgid "Back"
 msgstr "Indietro"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Temi emergenti"
+msgstr "Caricamento tema in corso…"
 
 msgid "Upload Theme"
 msgstr "Carica tema"
