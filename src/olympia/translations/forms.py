@@ -68,7 +68,7 @@ class LocaleErrorList(ErrorList):
         li = []
         for item in self.data:
             if isinstance(item, LocaleErrorMessage):
-                locale, message = item.locale, item.messages
+                locale, message = item.locale, item.message
                 extra = ' data-lang="%s"' % locale
             else:
                 message, extra = item, ''
