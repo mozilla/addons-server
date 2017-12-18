@@ -1,4 +1,7 @@
+from collections import namedtuple
+
 from django import forms
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
@@ -7,6 +10,9 @@ from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
 from .widgets import TransInput, TransTextarea
+
+
+LocaleErrorMessage = namedtuple('LocaleErrorMessage', 'message locale')
 
 
 class TranslatedField(models.ForeignKey):
@@ -23,9 +29,14 @@ class TranslatedField(models.ForeignKey):
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
-        options = dict(null=True, to_field='id', unique=True, blank=True,
-                       on_delete=models.SET_NULL)
-        kwargs.update(options)
+        kwargs.update({
+            'null': True,
+            'to_field': 'id',
+            'unique': True,
+            'blank': True,
+            'on_delete': models.SET_NULL
+        })
+
         self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)
 
@@ -151,7 +162,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             if not isinstance(value, self.field.related_model):
                 value = switch(value, self.field.related_model)
             super(TranslationDescriptor, self).__set__(instance, value)
-        # TODO: we ran into a `DoesNotExist` with `self.field.attname`
+        # We ran into a `DoesNotExist` with `self.field.attname`
         # when it resolves to a `_id` column, somehow, this is deep deep
         # django magic so let's query the actual column name instead and hope
         # that works for now
@@ -229,9 +240,14 @@ class _TransField(object):
         kwargs.pop('limit_choices_to', None)
         super(_TransField, self).__init__(*args, **kwargs)
 
-    def clean(self, value):
-        errors = LocaleList()
+    def set_default_values(self, field_name, parent_form, default_locale):
+        self.parent_form = parent_form
+        self.default_locale = default_locale
+        self.widget.default_locale = default_locale
+        self._field_name = field_name
 
+    def clean(self, value):
+        errors = []
         value = dict((k, v.strip() if v else v) for (k, v) in value.items())
 
         # Raise an exception if the default locale is required and not present
@@ -247,11 +263,10 @@ class _TransField(object):
                     super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
             except forms.ValidationError, e:
-                errors.extend(e.messages, locale)
-
-        if errors:
-            raise forms.ValidationError(errors)
-
+                for message in e.messages:
+                    self.parent_form.add_error(
+                        self._field_name,
+                        LocaleErrorMessage(message=message, locale=locale))
         return value
 
     def has_changed(self, initial, data):
@@ -275,41 +290,6 @@ class TransField(_TransField, forms.CharField):
         if opts is None:
             opts = {}
         return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
-
-
-class LocaleList(list):
-    """
-    List-like objects that maps list elements to a locale.
-
-    >>> LocaleList([1, 2], 'en')
-    [1, 2]
-    ['en', 'en']
-
-    This is useful for validation error lists where we want to associate an
-    error with a locale.
-    """
-
-    def __init__(self, seq=None, locale=None):
-        self.seq, self.locales = [], []
-        if seq:
-            assert seq and locale
-            self.extend(seq, locale)
-
-    def __iter__(self):
-        return iter(self.zip())
-
-    def extend(self, seq, locale):
-        self.seq.extend(seq)
-        self.locales.extend([locale] * len(seq))
-
-    def __nonzero__(self):
-        return bool(self.seq)
-
-    def __contains__(self, item):
-        return item in self.seq
-
-    def zip(self):
-        return zip(self.locales, self.seq)
 
 
 def save_signal(sender, instance, **kw):
