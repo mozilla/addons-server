@@ -67,7 +67,7 @@ CACHE_COUNT_TIMEOUT = -1
 # until we're sure the deadlock issues are fixed.
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'olympia',
     }
 }
