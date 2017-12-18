@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.query import ModelIterable
+from caching.base import CachingModelIterable
 
 """
 Copyright (c) 2010, Simon Willison.
@@ -49,6 +50,9 @@ class TransformQuerySet(models.query.QuerySet):
 
     def _fetch_all(self):
         super(TransformQuerySet, self)._fetch_all()
-        if self._iterable_class == ModelIterable and self._transform_fns:
+        is_iterable = self._iterable_class in (
+            ModelIterable, CachingModelIterable
+        )
+        if is_iterable and self._transform_fns:
             for fn in self._transform_fns:
                 fn(self._result_cache)
