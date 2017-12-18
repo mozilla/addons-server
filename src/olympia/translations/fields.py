@@ -1,7 +1,6 @@
 from collections import namedtuple
 
 from django import forms
-from django.core.exceptions import NON_FIELD_ERRORS
 from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
@@ -247,7 +246,6 @@ class _TransField(object):
         self._field_name = field_name
 
     def clean(self, value):
-        errors = []
         value = dict((k, v.strip() if v else v) for (k, v) in value.items())
 
         # Raise an exception if the default locale is required and not present

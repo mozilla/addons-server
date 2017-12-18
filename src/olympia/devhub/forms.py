@@ -5,7 +5,6 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.functional import cached_property
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
