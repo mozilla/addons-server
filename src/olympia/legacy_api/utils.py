@@ -267,7 +267,7 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
 
     # Use no_cache to make the result not depend on cache-machine
     # caches. The whole function is heavily cached anyway.
-    version = Version.objects.no_cache().raw(''.join(raw_sql) % data)
+    version = list(Version.objects.no_cache().raw(''.join(raw_sql) % data))
     if version:
         version = version[0]
         version_id = version.id
