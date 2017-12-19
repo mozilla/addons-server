@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-19 02:12+0000\n"
+"PO-Revision-Date: 2017-12-19 14:21+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -312,7 +312,7 @@ msgid "See all Themes by this Artist"
 msgstr "Vezi toate temele acestui artist"
 
 msgid "Categories"
-msgstr ""
+msgstr "Categorii"
 
 msgid "Updated"
 msgstr "Actualizat"
@@ -378,7 +378,7 @@ msgstr ""
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politica de confidențialitate"
 
 msgid "Report Abuse"
 msgstr "Raportează un abuz"
@@ -751,9 +751,8 @@ msgstr ""
 msgid "Page Not Found"
 msgstr "Pagina nu a fost găsită"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Suplimentele mele"
+msgstr "Suplimente Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -902,7 +901,7 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Suplimente"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -1382,7 +1381,7 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Suplimente în colecția ta"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr ""
@@ -3150,7 +3149,7 @@ msgid ""
 msgstr ""
 
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Suplimente necesare"
 
 msgid "Limit 3"
 msgstr ""
@@ -3933,14 +3932,13 @@ msgid "Legal"
 msgstr ""
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Raportează abuzul mărcilor înregistrate"
 
 msgid "Legal Notices"
 msgstr "Mențiuni legale"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Suplimentele mele"
+msgstr "Recenzează suplimente"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -4674,7 +4672,7 @@ msgid "Worry-free browsing"
 msgstr ""
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Protejează-ți intimitatea online cu suplimente din această colecție."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
@@ -4692,7 +4690,7 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Descoperă suplimente"
 
 msgid "What are Add-ons?"
 msgstr "Ce sunt suplimentele?"
@@ -4705,7 +4703,7 @@ msgid "Learn More"
 msgstr "Află mai multe"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Află mai multe despre suplimente"
 
 msgid "See all"
 msgstr ""
@@ -4714,7 +4712,7 @@ msgid "More ways to customize"
 msgstr ""
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Răsfoiește toate suplimentele"
 
 msgid "See all complete themes"
 msgstr ""
@@ -4737,7 +4735,7 @@ msgid "Add-ons downloaded:"
 msgstr ""
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Vezi politica de confidențialitate"
 
 msgid "Active Users"
 msgstr ""
@@ -5257,7 +5255,7 @@ msgid "Frequently Asked Questions"
 msgstr ""
 
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Folosirea suplimentelor"
 
 msgid "What is an add-on?"
 msgstr ""
@@ -5417,7 +5415,7 @@ msgid ""
 msgstr ""
 
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Ce sunt suplimentele beta?"
 
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
@@ -6091,16 +6089,14 @@ msgstr ""
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Suplimentele mele"
+msgstr "Suplimente obsolete"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Suplimente pentru {0}"
+msgstr "Suplimente noi ({0})"
 
 #, fuzzy
 msgid "Add-on Updates ({0})"
@@ -6176,7 +6172,7 @@ msgid "Unlisted Add-ons"
 msgstr "Suplimente %s"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Toate suplimentele nelistate"
 
 msgid "Announcement"
 msgstr ""
@@ -6670,12 +6666,11 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Suplimente pentru {0}"
-msgstr[1] "Suplimente pentru {0}"
-msgstr[2] "Suplimente pentru {0}"
+msgstr[0] "Supliment nou ({0})"
+msgstr[1] "Suplimente noi ({0})"
+msgstr[2] "Suplimente noi ({0})"
 
 #, fuzzy
 msgid "Update ({0})"
@@ -6893,13 +6888,13 @@ msgid "Add-ons in Use"
 msgstr ""
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Suplimente create"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Suplimente descărcate"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Suplimente actualizate"
 
 msgid "Collections Created"
 msgstr ""
@@ -7111,7 +7106,7 @@ msgid "Application versions by Date"
 msgstr "Versiunile aplicațiiei în funcție de dată"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Suplimente Mozilla"
 
 msgid "Find add-ons for other applications"
 msgstr "Găsește suplimente pentru alte aplicații"
@@ -7138,7 +7133,7 @@ msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "Vezi noul site"
 
 msgid "Report a bug"
 msgstr ""
@@ -7500,7 +7495,7 @@ msgid "In a little more detail..."
 msgstr ""
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Suplimente pe care le-am creat"
 
 msgid "My Most Popular Themes"
 msgstr "Cele mai populare teme ale mele"
@@ -7575,7 +7570,7 @@ msgid "Number of add-ons developed"
 msgstr "Numărul de suplimente dezvoltate"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} suplimente"
 
 #, python-format
 msgid "%(num)s theme"
@@ -7587,9 +7582,9 @@ msgstr[2] ""
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s supliment"
+msgstr[1] "%(num)s suplimente"
+msgstr[2] "%(num)s de suplimente"
 
 msgid "Average rating of developer's add-ons"
 msgstr "Media evaluărilor suplimentelor dezvoltatorului"
