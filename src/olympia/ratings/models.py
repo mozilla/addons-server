@@ -94,14 +94,15 @@ class Rating(ModelBase):
         default=0, editable=False,
         help_text="How many previous ratings by the user for this add-on?")
 
-    # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instantiation.
     unfiltered = RatingManager(include_deleted=True)
     objects = RatingManager()
     without_replies = WithoutRepliesRatingManager()
 
     class Meta:
         db_table = 'reviews'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         ordering = ('-created',)
 
     def __unicode__(self):

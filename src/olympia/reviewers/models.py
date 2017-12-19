@@ -1137,6 +1137,9 @@ class RereviewQueueTheme(ModelBase):
 
     class Meta:
         db_table = 'rereview_queue_theme'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
 
     def __str__(self):
         return str(self.id)
