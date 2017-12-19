@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-19 11:52+0000\n"
+"PO-Revision-Date: 2017-12-19 14:21+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -312,7 +312,7 @@ msgid "See all Themes by this Artist"
 msgstr "Vezi toate temele acestui artist"
 
 msgid "Categories"
-msgstr ""
+msgstr "Categorii"
 
 msgid "Updated"
 msgstr "Actualizat"
@@ -378,7 +378,7 @@ msgstr ""
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politica de confidențialitate"
 
 msgid "Report Abuse"
 msgstr "Raportează un abuz"
@@ -3932,7 +3932,7 @@ msgid "Legal"
 msgstr ""
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Raportează abuzul mărcilor înregistrate"
 
 msgid "Legal Notices"
 msgstr "Mențiuni legale"
@@ -4735,7 +4735,7 @@ msgid "Add-ons downloaded:"
 msgstr ""
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Vezi politica de confidențialitate"
 
 msgid "Active Users"
 msgstr ""
@@ -7133,7 +7133,7 @@ msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "Vezi noul site"
 
 msgid "Report a bug"
 msgstr ""
