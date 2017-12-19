@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-19 01:49+0000\n"
+"PO-Revision-Date: 2017-12-19 02:07+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -692,7 +692,7 @@ msgid "Not Reviewed"
 msgstr ""
 
 msgid "Tools"
-msgstr "Unelte"
+msgstr "Instrumente"
 
 msgid "My Profile"
 msgstr "Profilul meu"
@@ -724,9 +724,8 @@ msgstr "Hubul dezvoltatorilor"
 msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Developer"
+msgstr "Instrumente pentru recenzori"
 
 msgid "Admin Tools"
 msgstr ""
@@ -828,7 +827,7 @@ msgid "Are you human?"
 msgstr "Ești om?"
 
 msgid "What's this?"
-msgstr ""
+msgstr "Ce este asta?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -839,7 +838,7 @@ msgid "Top Rated"
 msgstr "Cele mai apreciate"
 
 msgid "Newest"
-msgstr ""
+msgstr "Cele mai noi"
 
 msgid "Explore"
 msgstr "Explorează"
@@ -853,22 +852,22 @@ msgid "Themes"
 msgstr "Teme"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Dorești mai multă personalizare? Încearcă <b>temele complete</b>"
 
 msgid "Most Followers"
-msgstr "Cei mai mulți urmăritori"
+msgstr "Cu cei mai mulți urmăritori"
 
 msgid "Collections"
 msgstr "Colecții"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Colecții pe care le-am făcut"
 
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Colecții pe care le urmăresc"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Suplimentele mele favorite"
 
 msgid "More&hellip;"
 msgstr "Mai multe&hellip;"
@@ -880,7 +879,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Dicționare și pachete lingvistice"
 
 msgid "Search Tools"
-msgstr "Unelte pentru căutare"
+msgstr "Instrumente pentru căutare"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1036,10 +1035,10 @@ msgid "Name"
 msgstr ""
 
 msgid "Recently Updated"
-msgstr ""
+msgstr "Actualizare recent"
 
 msgid "Recently Popular"
-msgstr ""
+msgstr "Populare recent"
 
 msgid "Added"
 msgstr ""
@@ -1183,7 +1182,7 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Suplimentele mele favorite"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
@@ -1336,26 +1335,26 @@ msgid "No collections found."
 msgstr "Colecție negăsită!"
 
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Colecțiile cele mai urmărite"
 
 msgid "Newest Collections"
-msgstr ""
+msgstr "Cele mai noi colecții"
 
 msgid "Collections by Name"
 msgstr ""
 
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Colecții actualizate recent"
 
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Colecții populare recent"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Colecțiile sunt grupuri de suplimente conexe pe care oricine le poate crea și partaja. Explorează colecțiile create de alți utilizatori sau <a href=\"%(url)s\">creează una poprie</a>."
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonează-te"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1457,7 +1456,7 @@ msgid "Search tools"
 msgstr ""
 
 msgid "Most Users"
-msgstr "Cei mai mulți utilizatori"
+msgstr "Cu cei mai mulți utilizatori"
 
 msgid "Weekly Downloads"
 msgstr ""
@@ -1572,7 +1571,7 @@ msgid "Top-Rated Extensions"
 msgstr ""
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Cele mai noi extensii"
 
 msgid "Extensions by Name"
 msgstr "Extensii după nume"
@@ -1581,7 +1580,7 @@ msgid "Extensions by Weekly Downloads"
 msgstr "Extensii după descărcările săptămânale"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Extensii actualizate recent"
 
 msgid "Up & Coming Extensions"
 msgstr "Extensii în ascensiune"
@@ -1598,7 +1597,7 @@ msgid "Top-Rated Complete Themes"
 msgstr ""
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Cele mai noi teme complete"
 
 msgid "Complete Themes by Name"
 msgstr ""
@@ -1607,7 +1606,7 @@ msgid "Complete Themes by Weekly Downloads"
 msgstr ""
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Teme complete actualizate recent"
 
 msgid "Up & Coming Complete Themes"
 msgstr ""
@@ -1639,7 +1638,7 @@ msgid "Learn more"
 msgstr "Află mai multe"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Vezi toate adăugate recent"
 
 msgid "View All Most Popular"
 msgstr ""
@@ -1652,7 +1651,7 @@ msgid "Over 300,000 designs to personalize your browser! Move your mouse over a 
 msgstr ""
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Dorești mai multă personalizare?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -2204,19 +2203,19 @@ msgid "Abstract"
 msgstr "Abstract"
 
 msgid "Causes"
-msgstr ""
+msgstr "Cauze"
 
 msgid "Fashion"
 msgstr "Modă"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Film și TV"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
-msgstr ""
+msgstr "Vacanțe și sărbători"
 
 msgid "Music"
 msgstr "Muzică"
@@ -2225,10 +2224,10 @@ msgid "Scenery"
 msgstr "Peisaj"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "De sezon"
 
 msgid "Solid"
-msgstr ""
+msgstr "Solid"
 
 msgid "Websites"
 msgstr "Site-uri web"
@@ -2345,7 +2344,7 @@ msgid "Site-specific"
 msgstr "Pentru anumite saituri"
 
 msgid "Web and Developer Tools"
-msgstr "Unelte pentru dezvoltatori web"
+msgstr "Instrumente pentru dezvoltatori web"
 
 msgid "All Rights Reserved"
 msgstr ""
@@ -7204,7 +7203,7 @@ msgstr ""
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Pentru a încerca mii de suplimente disponibile aici, descarcă <a href=\"%(url)s\">Mozilla Firefox</a>, o modalitate rapidă și gratuită de a naviga pe web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
@@ -7534,7 +7533,7 @@ msgid "Report user {0}"
 msgstr ""
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Dezabonează-te"
 
 msgid "You are successfully unsubscribed!"
 msgstr ""
@@ -7607,7 +7606,7 @@ msgid "Version History with Changelogs"
 msgstr "Istoricul versiunilor cu jurnale de modificări"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} și versiunile superioare"
 
 msgid "Permanent link to this version"
 msgstr "Link permanent la această versiune"
@@ -7637,7 +7636,7 @@ msgstr "Fii atent cu versiunile vechi!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Aceste versiuni sunt afișate în scopuri de testare și de referință. Ar trebui să folosești întotdeauna <a href=\"%(url)s\">cea mai recentă versiune</a> a unui supliment."
 
 msgid "Deleted versions can`t be changed."
 msgstr ""

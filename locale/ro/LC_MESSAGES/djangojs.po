@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-11-26 15:43+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"PO-Revision-Date: 2017-01-26 15:15+0000\n"
+"Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -281,7 +281,7 @@ msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonați"
 
 msgid "Ratings"
 msgstr "Evaluări"
