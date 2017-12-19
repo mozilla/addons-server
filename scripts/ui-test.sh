@@ -7,4 +7,5 @@ source ~/.bash_profile
 nvm install node
 unset NPM_CONFIG_PREFIX
 pip install tox
+make -f Makefile-docker ui-tests
 tox -e ui-tests

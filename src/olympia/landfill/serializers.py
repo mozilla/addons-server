@@ -118,7 +118,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 icon_type=random.choice(default_icons),
                 name=u'Ui-Addon-Install',
                 public_stats=True,
-                slug='ui-test-2',
+                slug='ui-test-install',
                 summary=u'My Addon summary',
                 tags=['some_tag', 'another_tag', 'ui-testing',
                       'selenium', 'python'],
