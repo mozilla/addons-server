@@ -364,14 +364,14 @@ class Addon(OnChangeMixin, ModelBase):
         # `version.addon`. We thus want one that is NOT filtered in any case,
         # we don't want a 500 if the addon is not found (because it has the
         # status amo.STATUS_DELETED for example).
-        # The CLASS of the first one discovered will also be used for "many to many
-        # relations" like `collection.addons`. In that case, we do want the
-        # filtered version by default, to make sure we're not displaying stuff by
-        # mistake. You thus want the CLASS of the first one to be filtered by
-        # default.
-        # We don't control the instantiation, but AddonManager sets include_deleted
-        # to False by default, so filtering is enabled by default. This is also why
-        # it's not repeated for 'objects' below.
+        # The CLASS of the first one discovered will also be used for "many to
+        # many relations" like `collection.addons`. In that case, we do want
+        # the filtered version by default, to make sure we're not displaying
+        # stuff by mistake. You thus want the CLASS of the first one to be
+        # filtered by default.
+        # We don't control the instantiation, but AddonManager sets
+        # include_deleted to False by default, so filtering is enabled by
+        # default. This is also why it's not repeated for 'objects' below.
         # TODO: This changed during django 1.11 work, verify it's working.
         # See https://github.com/django/django/commit/ed0ff913c648
         base_manager_name = 'unfiltered'
