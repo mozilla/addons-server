@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-20 16:50+0000\n"
+"PO-Revision-Date: 2017-12-20 16:56+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -778,7 +778,7 @@ msgstr "Hata"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz.</p>"
 
 msgid "Some rights reserved"
 msgstr "Bazı hakları saklıdır"
@@ -1949,10 +1949,10 @@ msgid "{addon} reviewed."
 msgstr "{addon} incelendi."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "{0.name} adlı kullanıcı {group} grubuna eklendi."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{0.name} adlı kullanıcı {group} grubundan çıkarıldı."
 
 msgid "{addon} unlisted."
 msgstr "{addon} yayından kaldırıldı."
@@ -2608,7 +2608,7 @@ msgid "Override failed validation"
 msgstr "Başarısız doğrulamayı geçersiz kıl"
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Elle inceleme için eklentimi gönder."
 
 msgid "Do not list my add-on on this site"
 msgstr "Eklentilerimi bu sitede listeleme"
@@ -3513,7 +3513,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "İptal et ve sürümü devre dışı bırak"
 
 msgid "Submit Version"
 msgstr "Sürümü gönder"
@@ -3599,7 +3599,7 @@ msgid "Upload Add-on"
 msgstr "Eklenti yükle"
 
 msgid "Where to Host File"
-msgstr ""
+msgstr "Dosya nerede barındırılsın"
 
 msgid "Where to Host Version"
 msgstr ""
@@ -3704,7 +3704,7 @@ msgid "Browser Preview"
 msgstr "Ön izleme için üstüne gelin"
 
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #, fuzzy
 msgid "Uploading Theme"
@@ -3719,7 +3719,7 @@ msgstr "API Kimlik Bilgileri"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Ayrıntılı yönergeler için <a href=\"%(docs_url)s\">API belgelerimize</a> bakabilirsiniz."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
@@ -5090,7 +5090,7 @@ msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your inform
 msgstr ""
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "AMO'da listelenen \"geliştirici araçları\" nelerdir?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
@@ -5130,7 +5130,7 @@ msgid ""
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Eklentimi kullananlar için bir lisans sözleşmesi belirleyebilir miyim?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
@@ -5314,7 +5314,7 @@ msgid ""
 msgstr ""
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Eklenti türleri nelerdir?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
@@ -5369,7 +5369,7 @@ msgstr ""
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Eklentiler %(app_name)s uygulamasını yavaşlatabilir mi?"
 
 #, python-format
 msgid ""
@@ -5551,7 +5551,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Bunları yapın:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -6835,7 +6835,7 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "{0} tema arama sonuçları"
 
 msgid "Themes Search Results"
 msgstr "Tema Arama Sonuçları"
@@ -7051,7 +7051,7 @@ msgid "365 days"
 msgstr "365 gün"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Özelleştir..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
