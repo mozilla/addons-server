@@ -244,11 +244,38 @@ class TestLookup(VersionCheckMixin, TestCase):
     def test_public_beta(self):
         """
         If the addon status is public, you are in beta and the file is
-        beta, the you get a beta.
+        beta, then you get a beta.
         """
         self.change_version(self.version_1_2_0, '1.2beta')
         self.change_status(self.version_1_2_0, amo.STATUS_BETA)
         self.change_status(self.version_1_2_1, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_1
+
+    @override_switch('beta-versions', active=False)
+    def test_beta_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_2
+
+    @override_switch('beta-versions', active=False)
+    def test_beta_updates_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version, even if there are newer betas
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)

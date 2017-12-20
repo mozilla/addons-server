@@ -108,7 +108,7 @@ def create_version_for_upload(addon, upload, channel):
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
         beta = (bool(upload.version) and is_beta(upload.version) and
-                waffle.switch('beta-versions'))
+                waffle.switch_is_active('beta-versions'))
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
             is_beta=beta)

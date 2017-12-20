@@ -2,7 +2,7 @@
 import hashlib
 from datetime import datetime, timedelta
 
-from waffle.textutils import override_switch
+from waffle.testutils import override_switch
 
 from django.core.files.storage import default_storage as storage
 

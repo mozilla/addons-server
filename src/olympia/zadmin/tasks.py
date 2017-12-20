@@ -179,7 +179,7 @@ def fetch_langpack(url, xpi, **kw):
             return
 
         is_beta = (amo.VERSION_BETA.search(data['version']) and
-                   waffle.switch('beta-versions'))
+                   waffle.switch_is_active('beta-versions'))
         owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:

@@ -150,7 +150,7 @@ class InstallButton(object):
             url = file.latest_xpi_url()
             download_url = file.latest_xpi_url(attachment=True)
         elif (self.latest and self.is_beta and self.addon.show_beta and
-              waffle.switch('beta-versions')):
+              waffle.switch_is_active('beta-versions')):
             url = file.latest_xpi_url(beta=True)
             download_url = file.latest_xpi_url(beta=True, attachment=True)
         else:

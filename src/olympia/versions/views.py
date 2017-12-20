@@ -55,7 +55,7 @@ def version_list(request, addon, beta=False):
 @non_atomic_requests
 def version_detail(request, addon, version_num):
     beta = (amo.VERSION_BETA.search(version_num) and
-            waffle.switch('beta-versions'))
+            waffle.switch_is_active('beta-versions'))
     qs = _version_list_qs(addon, beta=beta)
 
     # Use cached_with since values_list won't be cached.
@@ -66,7 +66,7 @@ def version_detail(request, addon, version_num):
 
 
 def _find_version_page(qs, addon, version_num, beta=False):
-    if beta and waffle.switch('beta-versions'):
+    if beta and waffle.switch_is_active('beta-versions'):
         url = reverse('addons.beta-versions', args=[addon.slug])
     else:
         url = reverse('addons.versions', args=[addon.slug])

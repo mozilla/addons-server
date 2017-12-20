@@ -193,7 +193,7 @@ class Version(OnChangeMixin, ModelBase):
             File.from_upload(upload, version, platform,
                              parsed_data=parsed_data,
                              is_beta=(is_beta and
-                                      waffle.switch('beta-versions')))
+                                      waffle.switch_is_active('beta-versions')))
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()

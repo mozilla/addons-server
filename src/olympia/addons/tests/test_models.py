@@ -4,7 +4,7 @@ import os
 import time
 from datetime import datetime, timedelta
 
-from waffle.textutils import override_switch
+from waffle.testutils import override_switch
 
 from django import forms
 from django.conf import settings
