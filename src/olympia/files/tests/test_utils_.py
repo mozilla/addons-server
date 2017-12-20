@@ -9,6 +9,7 @@ from datetime import timedelta
 
 from django import forms
 from django.conf import settings
+from waffle.testutils import override_switch
 
 import flufl.lock
 import lxml
@@ -32,6 +33,7 @@ def _touch(fname):
     os.utime(fname, None)
 
 
+@override_switch('beta-versions', active=True)
 def test_is_beta():
     assert not utils.is_beta('1.2')
 

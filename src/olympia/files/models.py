@@ -6,6 +6,7 @@ import re
 import time
 import unicodedata
 import uuid
+import waffle
 import zipfile
 
 from collections import namedtuple
@@ -177,7 +178,8 @@ class File(OnChangeMixin, ModelBase):
         file_.is_mozilla_signed_extension = parsed_data.get(
             'is_mozilla_signed_extension', False)
 
-        if (is_beta and addon.status == amo.STATUS_PUBLIC and
+        if (is_beta and waffle.switch_is_active('beta-versions') and
+            addon.status == amo.STATUS_PUBLIC and
                 version.channel == amo.RELEASE_CHANNEL_LISTED):
             file_.status = amo.STATUS_BETA
 

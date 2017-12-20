@@ -27,6 +27,8 @@ from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import activity, amo, core
@@ -1082,6 +1084,8 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
+        if not waffle.switch_is_active('beta-versions'):
+            return
         versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
 
         if versions:

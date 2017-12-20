@@ -3,6 +3,8 @@ import hashlib
 
 from datetime import datetime, timedelta
 
+from waffle.testutils import override_switch
+
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -303,6 +305,7 @@ class TestVersion(TestCase):
         assert not hide_disabled_file_mock.called
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
+    @override_switch('beta-versions', active=True)
     def test_new_version_beta_dont_disable_old_unreviewed(
             self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
@@ -893,6 +896,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         assert File.objects.filter(version=self.current)[0].status == (
             amo.STATUS_DISABLED)
 
+    @override_switch('beta-versions', active=True)
     def test_status_beta(self):
         # Check that the add-on + files are in the public status.
         assert self.addon.status == amo.STATUS_PUBLIC

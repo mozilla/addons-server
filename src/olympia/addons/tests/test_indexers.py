@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -248,6 +250,7 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version'] is None
 
+    @override_switch('beta-versions', active=True)
     def test_extract_version_and_files(self):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)

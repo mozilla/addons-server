@@ -95,7 +95,7 @@
   {% endfor -%}
   {%- endif -%}
   {%- if new_api %}
-    {%- if addon.current_beta_version -%}
+    {%- if addon.current_beta_version and waffle.switch('beta-versions') -%}
     {%- for file in addon.current_beta_version.all_files -%}
     <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
              size="{{ file.size }}"

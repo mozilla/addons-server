@@ -12,6 +12,8 @@ from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
 
+import waffle
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
@@ -110,7 +112,8 @@ def create_version_for_upload(addon, upload, channel, use_autograph=False):
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
-        beta = bool(upload.version) and is_beta(upload.version)
+        beta = (bool(upload.version) and is_beta(upload.version) and
+                waffle.switch_is_active('beta-versions'))
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
             is_beta=beta)

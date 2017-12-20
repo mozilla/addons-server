@@ -1,5 +1,6 @@
 import mimetypes
 import random
+import waffle
 
 from django.conf import settings
 from django.utils.translation import activate
@@ -119,8 +120,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
-        version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
-                        version='1.1beta')
+        if waffle.switch_is_active('beta-versions'):
+            version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
+                            version='1.1beta')
         addon.save()
         generate_collection(addon, app=FIREFOX)
         print(

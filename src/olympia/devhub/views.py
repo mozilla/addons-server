@@ -772,7 +772,8 @@ def json_upload_detail(request, upload, addon_slug=None):
             plat_exclude = [str(p) for p in plat_exclude]
 
             # Does the version number look like it's beta?
-            result['beta'] = is_beta(pkg.get('version', ''))
+            result['beta'] = (is_beta(pkg.get('version', '')) and
+                              waffle.switch_is_active('beta-versions'))
             result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
@@ -1225,7 +1226,10 @@ def auto_sign_version(version, use_autograph=False, **kwargs):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    qs = addon.versions.order_by('-created').transform(Version.transformer)
+    versions = addon.versions
+    if not waffle.switch_is_active('beta-versions'):
+        versions = versions.exclude(files__status=amo.STATUS_BETA)
+    qs = versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
@@ -1350,7 +1354,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         data = form.cleaned_data
 
         if version:
-            is_beta = version.is_beta
+            is_beta = (version.is_beta and
+                       waffle.switch_is_active('beta-versions'))
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],
@@ -1361,7 +1366,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug, version.id]
         elif addon:
             is_beta = (data.get('beta') and
-                       channel == amo.RELEASE_CHANNEL_LISTED)
+                       channel == amo.RELEASE_CHANNEL_LISTED and
+                       waffle.switch_is_active('beta-versions'))
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1498,7 +1504,8 @@ def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
-                             version.is_beta or
+                             (version.is_beta and
+                              waffle.switch_is_active('beta-versions')) or
                              (static_theme and addon.has_complete_metadata()))
         if skip_details_step:
             # Nothing to do here.
