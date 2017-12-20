@@ -131,7 +131,6 @@ class Update(object):
         data = self.data
 
         data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
-        data['STATUS_BETA'] = base.STATUS_BETA
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
         sql = ["""
@@ -179,30 +178,7 @@ class Update(object):
                 -- add-on, and the ORDER BY and LIMIT 1 clauses below make it
                 -- unlikely that we'll be examining a large number of rows,
                 -- so this is fairly cheap.
-                CASE
-                WHEN curfile.status = %(STATUS_BETA)s
-                THEN
-                    -- User's current version is a known beta version.
-                    --
-                    -- Serve only beta updates. Serving a full version here
-                    -- will forever kick users out of the beta update channel.
-                    --
-                    -- If the add-on does not have full review, serve no
-                    -- updates.
-
-                    addons.status = %(STATUS_PUBLIC)s AND
-                    files.status = %(STATUS_BETA)s
-
-                ELSE
-                   -- Anything else, including:
-                   --
-                   --  * Add-on has full review
-                   --  * User's current version has full review, regardless
-                   --    of add-on status
-                   --
-                   -- Serve only full-reviewed updates.
-                   files.status = %(STATUS_PUBLIC)s
-                END
+                files.status = %(STATUS_PUBLIC)s
         """)
 
         sql.append('AND appmin.version_int <= %(version_int)s ')
