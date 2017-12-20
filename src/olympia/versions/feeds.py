@@ -54,7 +54,7 @@ class VersionsRss(NonAtomicFeed):
         status_list = ((amo.STATUS_BETA,)
                        if beta and waffle.switch_is_active('beta-versions')
                        else tuple(set(amo.VALID_FILE_STATUSES) -
-                                  set(amo.STATUS_BETA)))
+                                  set([amo.STATUS_BETA])))
         items_qs = (self.addon.versions
                     .filter(files__status__in=status_list)
                     .distinct().order_by('-created'))

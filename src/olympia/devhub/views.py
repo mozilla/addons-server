@@ -766,8 +766,8 @@ def json_upload_detail(request, upload, addon_slug=None):
             plat_exclude = [str(p) for p in plat_exclude]
 
             # Does the version number look like it's beta?
-            result['beta'] = (is_beta(pkg.get('version', '') and
-                              waffle.switch_is_active('beta-versions')))
+            result['beta'] = (is_beta(pkg.get('version', '')) and
+                              waffle.switch_is_active('beta-versions'))
             result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
@@ -1329,7 +1329,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         data = form.cleaned_data
 
         if version:
-            is_beta = version.is_beta and waffle.switch_is_active('beta-versions')
+            is_beta = (version.is_beta and
+                       waffle.switch_is_active('beta-versions'))
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],

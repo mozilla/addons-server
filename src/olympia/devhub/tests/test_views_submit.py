@@ -1269,6 +1269,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
 
+    @override_switch('beta-versions', isActive=True)
     def test_beta_field(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
