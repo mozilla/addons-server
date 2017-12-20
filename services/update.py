@@ -135,7 +135,7 @@ class Update(object):
         data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
         # Return beta versions only if the waffle is enabled
         data['STATUS_BETA'] = (base.STATUS_BETA
-                               if waffle.switch('beta-versions')
+                               if waffle.switch_is_active('beta-versions')
                                else base.STATUS_PUBLIC)
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
