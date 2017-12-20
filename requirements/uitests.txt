@@ -4,8 +4,8 @@ fxapom==1.10.1 \
 hawkauthlib==2.0.0 \
     --hash=sha256:935878d3a75832aa76f78ddee13491f1466cbd69a8e7e4248902763cf9953ba9 \
     --hash=sha256:effd64a2572e3c0d9090b55ad2180b36ad50e7760bea225cb6ce2248f421510d
-PyBrowserID==0.12.0 \
-    --hash=sha256:40cfec78212d79af67ca8744c563dc029d30196585e4848b03e01bbbd36cf53e
+PyBrowserID==0.13.0 \
+    --hash=sha256:669a387e8135c48438638ef17eaacdd33a145c8cc8c2b0d9496aadcc1de206a6
 PyFxA==0.4.0 \
     --hash=sha256:78f7cc76d9d22f17cdb5212ecb7c946aaeac43c9c9a4e6f141e2e232d1fe7290
 PyJWT==1.5.3 \
