@@ -1,4 +1,5 @@
 import os
+import waffle
 
 from django import http
 from django.db.transaction import non_atomic_requests
@@ -28,7 +29,7 @@ log = olympia.core.logger.getLogger('z.versions')
 
 def _version_list_qs(addon, beta=False):
     # We only show versions that have files with the right status.
-    if beta:
+    if beta and waffle.switch_is_active('beta-versions'):
         status = amo.STATUS_BETA
     elif addon.is_unreviewed():
         status = amo.STATUS_AWAITING_REVIEW
@@ -53,7 +54,8 @@ def version_list(request, addon, beta=False):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    beta = amo.VERSION_BETA.search(version_num)
+    beta = (amo.VERSION_BETA.search(version_num) and
+            waffle.switch('beta-versions'))
     qs = _version_list_qs(addon, beta=beta)
 
     # Use cached_with since values_list won't be cached.
@@ -64,7 +66,7 @@ def version_detail(request, addon, version_num):
 
 
 def _find_version_page(qs, addon, version_num, beta=False):
-    if beta:
+    if beta and waffle.switch('beta-versions'):
         url = reverse('addons.beta-versions', args=[addon.slug])
     else:
         url = reverse('addons.versions', args=[addon.slug])

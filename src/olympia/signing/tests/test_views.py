@@ -3,6 +3,7 @@
 import os
 import json
 from datetime import datetime, timedelta
+from waffle.testutils import override_switch
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -375,6 +376,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
+    @override_switch('beta-versions', active=True)
     def test_version_is_beta(self):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         version_string = '4.0-beta1'

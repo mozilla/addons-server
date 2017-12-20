@@ -2,6 +2,8 @@
 import datetime
 import os
 
+import waffle
+
 import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
@@ -189,7 +191,9 @@ class Version(OnChangeMixin, ModelBase):
 
         for platform in platforms:
             File.from_upload(upload, version, platform,
-                             parsed_data=parsed_data, is_beta=is_beta)
+                             parsed_data=parsed_data,
+                             is_beta=(is_beta and
+                                      waffle.switch('beta-versions')))
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()

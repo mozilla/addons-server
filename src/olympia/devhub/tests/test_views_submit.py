@@ -1389,6 +1389,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
+    @override_switch('beta-versions', active=True)
     def test_force_beta(self):
         response = self.post(beta=True)
         # Need latest() rather than find_latest_version as Beta isn't returned.
@@ -1450,6 +1451,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         mock_auto_sign_file.assert_has_calls(
             [mock.call(f, is_beta=False) for f in version.all_files])
 
+    @override_switch('beta-versions', active=True)
     def test_no_force_beta_for_unlisted(self):
         """No beta version for unlisted addons."""
         self.post(beta=True)
@@ -1726,6 +1728,7 @@ class TestFileSubmitUpload(UploadTest):
         assert pq(response.content)('ul.errorlist').text() == (
             "Version doesn't match")
 
+    @override_switch('beta-versions', active=True)
     def test_force_beta_is_ignored(self):
         """Files must have the same beta status as the existing version."""
         self.post(beta=True)
@@ -1733,6 +1736,7 @@ class TestFileSubmitUpload(UploadTest):
         version = self.addon.versions.latest()
         assert version.all_files[0].status != amo.STATUS_BETA
 
+    @override_switch('beta-versions', active=True)
     def test_beta_automatically_if_version_is_beta(self):
         """Files must have the same beta status as the existing version."""
         existing_file = self.version.all_files[0]

@@ -3,6 +3,8 @@ import re
 import sys
 from urlparse import urljoin
 
+import waffle
+
 from django.conf import settings
 from django.utils import translation
 
@@ -176,7 +178,8 @@ def fetch_langpack(url, xpi, **kw):
                       'it has no valid compatible apps.'.format(**data))
             return
 
-        is_beta = amo.VERSION_BETA.search(data['version'])
+        is_beta = (amo.VERSION_BETA.search(data['version']) and
+                   waffle.switch('beta-versions'))
         owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:

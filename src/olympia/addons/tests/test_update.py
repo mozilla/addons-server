@@ -2,6 +2,8 @@
 from datetime import datetime, timedelta
 from email import utils
 
+from waffle.testutils import override_switch
+
 from django.db import connection
 
 from olympia import amo
@@ -238,6 +240,7 @@ class TestLookup(VersionCheckMixin, TestCase):
                                  self.app, self.platform)
         assert version == self.version_1_2_1
 
+    @override_switch('beta-versions', active=True)
     def test_public_beta(self):
         """
         If the addon status is public, you are in beta and the file is
@@ -625,6 +628,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         assert up.data['row']['min'] == '2.0'
         assert up.data['row']['max'] == '4.0'
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version(self):
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA
@@ -713,6 +717,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         up.get_rdf()
         assert up.data['row']['url'] == self.get_file_url()
 
+    @override_switch('beta-versions', active=True)
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA

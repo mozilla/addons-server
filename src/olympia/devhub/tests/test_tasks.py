@@ -6,6 +6,8 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from waffle.testutils import override_switch
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -1090,6 +1092,7 @@ class TestCreateVersionForUpload(TestCase):
             upload, self.addon, [amo.PLATFORM_ALL.id],
             amo.RELEASE_CHANNEL_LISTED, is_beta=False)
 
+    @override_switch('beta-versions', active=True)
     def test_file_passed_all_validations_beta(self):
         upload = self.create_upload(version='1.0-beta1')
         self.create_version_for_upload(self.addon, upload,
@@ -1097,6 +1100,15 @@ class TestCreateVersionForUpload(TestCase):
         self.version__from_upload.assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
             amo.RELEASE_CHANNEL_LISTED, is_beta=True)
+
+    @override_switch('beta-versions', active=False)
+    def test_file_passed_all_validations_beta_string(self):
+        upload = self.create_upload(version='1.0-beta1')
+        self.create_version_for_upload(self.addon, upload,
+                                       amo.RELEASE_CHANNEL_LISTED)
+        self.version__from_upload.assert_called_with(
+            upload, self.addon, [amo.PLATFORM_ALL.id],
+            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
 
     def test_file_passed_all_validations_no_version(self):
         upload = self.create_upload(version=None)
