@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-08 21:46+0000\n"
+"PO-Revision-Date: 2017-12-20 19:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -778,7 +778,7 @@ msgstr "Oh"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Oh!  Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
+msgstr "<h1>Oh! Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Disa të drejta të ruajtura"
@@ -1065,7 +1065,7 @@ msgid "View this collection"
 msgstr "Shihni këtë koleksion"
 
 msgid "Start a new collection..."
-msgstr "Filloni një koleksion të ri..."
+msgstr "Filloni një koleksion të ri…"
 
 msgid "Start a New Collection"
 msgstr "Filloni një Koleksion të Ri"
@@ -2820,7 +2820,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr "Qendra e Zhvilluesve të <small>Shtesave</small>"
 
 msgid "more add-ons..."
-msgstr "më tepër shtesa..."
+msgstr "më tepër shtesa…"
 
 msgid "Documentation"
 msgstr "Dokumentim"
@@ -3247,7 +3247,7 @@ msgid "Used in add-on detail pages."
 msgstr "E përdorur te faqja e hollësive të shtesës."
 
 msgid "Upload a Custom Icon..."
-msgstr "Ngarkoni një Ikonë të Personalizuar..."
+msgstr "Ngarkoni një Ikonë të Personalizuar…"
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Mbulohen PNG-të dhe JPG-të. Ikonat ripërmasohen në 64x64 piksel, po qenë më të mëdha."
@@ -3262,7 +3262,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr "Ju lutemi, jepni një titull për këtë foto ekrani:"
 
 msgid "Add a Screenshot..."
-msgstr "Shtoni një Foto Ekrani..."
+msgstr "Shtoni një Foto Ekrani…"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "A mundet të tjerët të ndajnë me dikë Temën tuaj, për sa kohë që ju përmendin si autor?"
@@ -4280,7 +4280,7 @@ msgid "We had a problem retrieving review notes"
 msgstr "Patëm një problem me marrjen e shënimeve të shqyrtimit"
 
 msgid "Load older..."
-msgstr "Ngarko më të hershme..."
+msgstr "Ngarko më të hershme…"
 
 msgid "Leave a reply"
 msgstr "Lini një përgjigje"
@@ -4510,7 +4510,7 @@ msgid "Add-on file being processed, please wait."
 msgstr "Po përpunohet kartela e shtesës, ju lutemi, prisni."
 
 msgid "Fetching validation results..."
-msgstr "Po sillen përfundimet e vleftësimit..."
+msgstr "Po sillen përfundimet e vleftësimit…"
 
 msgid "Files:"
 msgstr "Kartela:"
@@ -6073,7 +6073,7 @@ msgid "Is more info requested?"
 msgstr "A duhen më tepër të dhëna?"
 
 msgid "Choose a canned response..."
-msgstr "Zgjidhni një përgjigje të gatshme..."
+msgstr "Zgjidhni një përgjigje të gatshme…"
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
@@ -6542,7 +6542,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr "Mundeni prapë ta parashtroni këtë formular, megjithatë, këtë bëjeni, nëse e dini që s’do të ketë përplasje."
 
 msgid "Insert canned response..."
-msgstr "Fusni përgjigje të gatshme..."
+msgstr "Fusni përgjigje të gatshme…"
 
 msgid "Tested on:"
 msgstr "Provuar me:"
@@ -7052,7 +7052,7 @@ msgid "365 days"
 msgstr "365 ditë"
 
 msgid "Custom..."
-msgstr "Vetjake..."
+msgstr "Vetjake…"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Përpunimi i statistikave është hëpërhë i çaktivizuar, kështu që s’ka të dhëna të reja. Statistikat ende po grumbullohen dhe kjo faqe do të përditësohet së shpejti me të dhënat që mungojnë."
@@ -7113,7 +7113,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Shkarkime"
 
 msgid "Loading..."
-msgstr "Po ngarkohet..."
+msgstr "Po ngarkohet…"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> Përdorues të Përditshëm Mesatarisht"
@@ -7146,7 +7146,7 @@ msgid "Download sources by Date"
 msgstr "Burime Shkarkimesh sipas Datash"
 
 msgid "About tracking external sources..."
-msgstr "Si të ndiqni burime të jashtme..."
+msgstr "Si të ndiqni burime të jashtme…"
 
 #, python-format
 msgid ""
@@ -7492,7 +7492,7 @@ msgid "Email Address"
 msgstr "Adresë Email"
 
 msgid "Manage Firefox Account..."
-msgstr "Administroni Llogari Firefox-i..."
+msgstr "Administroni Llogari Firefox-i…"
 
 msgid "Profile"
 msgstr "Profil"
@@ -7584,7 +7584,7 @@ msgid "About me"
 msgstr "Rreth meje"
 
 msgid "In a little more detail..."
-msgstr "Me pak më tepër hollësira..."
+msgstr "Me pak më tepër hollësira…"
 
 msgid "Add-ons I've created"
 msgstr "Shtesat që kam krijuar"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-20 08:57+0000\n"
+"PO-Revision-Date: 2017-12-20 19:43+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -27,7 +27,7 @@ msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 
 msgid "Select a file..."
-msgstr "Përzgjidhni një kartelë..."
+msgstr "Përzgjidhni një kartelë…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, .jar ose .xml"
@@ -255,7 +255,7 @@ msgid "Number of Contributions"
 msgstr "Numër Kontributesh"
 
 msgid "More Info..."
-msgstr "Më tepër të Dhëna..."
+msgstr "Më tepër të Dhëna…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -763,7 +763,7 @@ msgid "No results found."
 msgstr "Nuk u gjetën përfundime."
 
 msgid "Loading..."
-msgstr "Po ngarkohet..."
+msgstr "Po ngarkohet…"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
