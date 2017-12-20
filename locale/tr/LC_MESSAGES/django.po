@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-07 14:44+0000\n"
+"PO-Revision-Date: 2017-12-20 16:50+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -129,7 +129,7 @@ msgstr[0] "Tüm etiketler en az {0} karakter olmalıdır."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değiştirilemez."
@@ -753,6 +753,8 @@ msgstr "Eklentiler Ana Sayfası"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Bir yerdeki bir bağlantıya tıkladıysanız lütfen %(open_bug_link)sbu sorunu bildirin%(close_bug_link)s. Nereden geldiğinizi ve neyi aradığınızı yazarsanız sorunu düzeltmek için elimizden geleni "
+"yaparız."
 
 msgid "Not Found"
 msgstr "Bulunamadı"
