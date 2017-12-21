@@ -3606,9 +3606,8 @@ msgstr "Nahrát verzi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pro nahrání balíčku se svým doplňkem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Vytvoření nového motivu"
+msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr "S kterými platformami je tento soubor kompatibilní?"
@@ -3625,13 +3624,11 @@ msgstr "Odeslat soubor"
 msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Motiv byl smazán."
+msgstr ""
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Licence motivu"
+msgstr ""
 
 msgid "Select a header image for your Theme."
 msgstr "Zvolte obrázek hlavičky pro váš motiv."
@@ -3675,9 +3672,8 @@ msgstr ""
 msgid "Toolbar area text (toolbar_text)."
 msgstr ""
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "Jedná se o barvu textu na panelech."
+msgstr ""
 
 msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
@@ -3691,24 +3687,20 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar"
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(volitelné)"
+msgstr ""
 
-#, fuzzy
 msgid "Browser Preview"
-msgstr "Pro náhled přejeďte myší"
+msgstr ""
 
 msgid "Back"
 msgstr ""
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Úspěšné motivy vzhledu"
+msgstr ""
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "Nahrát soubor"
+msgstr ""
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -4418,9 +4410,8 @@ msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_hea
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Rychlý a efektivní blokovač reklam. uBlock Origin upravuje stránku pomocí tisíců filtrů bez toho, aby plýtval vaší pamětí."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
@@ -6262,9 +6253,8 @@ msgstr ""
 msgid "Themes Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Smazání motivu"
+msgstr ""
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6275,9 +6265,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr "Seznam moderovaných recenzí"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Akce moderátora:"
+msgstr ""
 
 msgid "Unlisted Add-ons"
 msgstr ""
@@ -6358,9 +6347,8 @@ msgstr "Galerie obrázků"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Zpět na domovskou stránku Nástrojů redaktora"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
