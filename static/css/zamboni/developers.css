@@ -669,7 +669,8 @@ div.review-entry p {
 
 div.review-entry pre {
     white-space: pre-wrap;
-    word-break: break-all;
+    max-width: 650px;
+    word-wrap: break-word;
     margin-bottom: 0px;
 }
 
