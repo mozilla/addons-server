@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-16 12:08+0000\n"
+"PO-Revision-Date: 2017-12-23 12:22+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1687,7 +1687,7 @@ msgid "All"
 msgstr "Todas"
 
 msgid "Add-on Compatibility Reports"
-msgstr "Relatórios de Compatibilidade de Extensões"
+msgstr "Relatórios de compatibilidade de extensões"
 
 #, python-format
 msgid ""
@@ -3127,10 +3127,8 @@ msgstr "Detalhes de {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Uma explicação mais longa das características,\n"
-"                          funcionalidades e outras informações relevantes. Este\n"
-"                          campo é exibido apenas na página de detalhes do\n"
-"                          complemento. É relevante apenas para complementos listados."
+"Uma explicação mais longa das características, funcionalidades e outras informações relevantes. Este campo é exibido apenas na página de detalhes da extensão. É relevante apenas para extensões "
+"listadas."
 
 msgid "Default Locale"
 msgstr "Idioma padrão"
@@ -3885,9 +3883,7 @@ msgid "View the blog &#9658;"
 msgstr "Ver o blog &#9658;"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Por favor escolha uma licença apropriada para o seu código fonte.\n"
-"                  Isto é relevante apenas para complementos listados."
+msgstr "Por favor escolha uma licença apropriada para o seu código fonte. Isto é relevante apenas para complementos listados."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -5169,7 +5165,7 @@ msgstr "A Mozilla pode hospedar minha extensão?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Sim. Sua extensão pode ser hospedado no site <a href=\"%(url)s\">Mozilla Add-ons</a>."
+msgstr "Sim. Sua extensão pode ser hospedado no site <a href=\"%(url)s\">de extensões da Mozilla</a>."
 
 msgid "What is AMO?"
 msgstr "O que é AMO?"
