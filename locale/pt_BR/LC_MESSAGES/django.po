@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-23 12:22+0000\n"
+"PO-Revision-Date: 2017-12-23 22:51+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -358,7 +358,7 @@ msgid "by {0} on {1}"
 msgstr "por {0} em {1}"
 
 msgid "Not yet rated"
-msgstr "Ainda não foi avaliado"
+msgstr "Ainda sem avaliação"
 
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> usuários"
@@ -3794,7 +3794,7 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Por favor, complete a sua extensão adicionando uma versão ou os metadados que faltam."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Irá receber um email quando a avaliação estiver concluída. Até lá, a extensão não estará listada na nossa galeria, mas pode ser acessado diretamente da sua página de detalhes. "
+msgstr "Irá receber um email quando a análise estiver concluída. Até lá, a extensão não estará listada na nossa galeria, mas pode ser acessada diretamente da sua página de detalhes. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
@@ -3923,7 +3923,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Por favor, inclua instruções sobre como reproduzir o arquivo final da extensão, um arquivo LEIAME ou notas ao Revisor para esta versão."
 
 msgid "Read more about the source code review policy."
-msgstr "Leia mais sobre a política de avaliação de código fonte."
+msgstr "Leia mais sobre a política de revisão de código."
 
 msgid "Latest News"
 msgstr "Últimas noticias"
@@ -3995,7 +3995,7 @@ msgid "Review Add-ons"
 msgstr "Revisar extensões"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Avaliações de voluntários ajudam a manter a extensão segura e confiável para uso. Eles também aproveitam as vantagens!"
+msgstr "Os revisores voluntários ajudam a manter as extensões seguras e confiáveis ​​para usar. Eles desfrutam de ótimas vantagens também!"
 
 msgid "Join us!"
 msgstr "Junte-se a nós!"
@@ -5616,7 +5616,7 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
-"Extensões em fase Beta são versões não avaliadas que representam o trabalho mais recente do autor de uma extensão. Diferentes autores têm diferentes parâmetros de qualidade de código em fase beta, "
+"Extensões em fase Beta são versões não analisada que representam o trabalho mais recente do autor de uma extensão. Diferentes autores têm diferentes parâmetros de qualidade de código em fase beta, "
 "você deve assumir que estas extensões são menos estáveis que as versões disponibilizadas ao público em geral."
 
 msgid ""
