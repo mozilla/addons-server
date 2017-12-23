@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-23 22:51+0000\n"
+"PO-Revision-Date: 2017-12-23 22:55+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5962,13 +5962,13 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Essa versão da extensão não existe ou não é pública."
 
 msgid "You can't leave a review on your own add-on."
-msgstr "Você não pode deixar uma avaliação na sua própria extensão."
+msgstr "Você não pode deixar uma analise na sua própria extensão."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Você não pode deixar mais de uma avaliação para a mesma versão de uma extensão."
+msgstr "Você não pode deixar mais do que uma análise para a mesma versão de uma extensão."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Obrigado; esta análise foi marcada para aprovação de um editor."
+msgstr "Obrigado; esta análise foi marcada para aprovação do revisor."
 
 # %s is the name of the add-on
 msgid "Add a review for {0}"
@@ -6015,7 +6015,7 @@ msgstr "por %(user)s <b>(Desenvolvedor)</b> em %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Essa avaliação é para um versão anterior da extensão ({0})."
+msgstr "Esta análise é para uma versão anterior da extensão ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -7589,7 +7589,7 @@ msgid "You will not be able to log into %(site)s anymore."
 msgstr "Você não será capaz de entrar no %(site)s mais."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Seus comentários e avaliações não serão excluídos, mas deixarão de estar associados a você."
+msgstr "Suas análises e avaliações não serão excluídas, mas deixarão de estar associados a você."
 
 msgid "Confirm account deletion"
 msgstr "Confirmar exclusão da conta"
