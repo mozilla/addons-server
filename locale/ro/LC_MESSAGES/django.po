@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-25 01:31+0000\n"
+"PO-Revision-Date: 2017-12-25 01:39+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -92,7 +92,7 @@ msgstr "Review"
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 msgid "Add to {0}"
 msgstr ""
@@ -260,9 +260,9 @@ msgstr ""
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s descărcare săptămânală"
+msgstr[1] "%(num)s descărcări săptămânale"
+msgstr[2] "%(num)s de descărcări săptămânale"
 
 #, python-format
 msgid "%(num)s user"
@@ -283,9 +283,9 @@ msgstr "Compatibil cu Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} descărcare săptămânală"
+msgstr[1] "{0} descărcări săptămânale"
+msgstr[2] "{0} de descărcări săptămânale"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -684,9 +684,9 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<strong>{0}</strong> descărcare săptămânală"
+msgstr[1] "<strong>{0}</strong> descărcări săptămânale"
+msgstr[2] "<strong>{0}</strong> de descărcări săptămânale"
 
 msgid "Not Reviewed"
 msgstr ""
@@ -905,7 +905,7 @@ msgstr "Suplimente"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} în urmă"
 
 msgid "Title"
 msgstr "Titlu"
@@ -1458,7 +1458,7 @@ msgid "Most Users"
 msgstr "Cu cei mai mulți utilizatori"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Descărcări săptămânale"
 
 msgid "Up & Coming"
 msgstr ""
@@ -1470,7 +1470,7 @@ msgid "Created"
 msgstr "Creat"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Descărcări"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -2921,7 +2921,7 @@ msgstr ""
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> de %(user)s"
 
 msgid "No results found."
 msgstr "Niciun rezultat găsit."
@@ -2971,7 +2971,7 @@ msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s de %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -3569,7 +3569,7 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "Descarcă {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
@@ -4732,7 +4732,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr ""
 
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Suplimente descărcate:"
 
 msgid "View Privacy Policy"
 msgstr "Vezi politica de confidențialitate"
@@ -5821,9 +5821,9 @@ msgstr ""
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> recenzie pentru acest supliment"
+msgstr[1] "<b>{0}</b> recenzii pentru acest supliment"
+msgstr[2] "<b>{0}</b> de recenzii pentru acest supliment"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -6011,7 +6011,7 @@ msgid "Flags"
 msgstr ""
 
 msgid "moments ago"
-msgstr ""
+msgstr "momente în urmă"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
@@ -7148,9 +7148,8 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr ""
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Descarcă acum"
+msgstr "Descarcă Firefox"
 
 msgid "Android Browser"
 msgstr ""
