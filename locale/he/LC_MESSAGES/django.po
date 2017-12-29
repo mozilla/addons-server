@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-29 12:03+0000\n"
+"PO-Revision-Date: 2017-12-29 12:18+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -522,7 +522,7 @@ msgstr "מפתח התוספת הזאת מבקש תמיכה בהמשך קיומה
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "צילום תוספת מס׳ {0}"
 
 msgid "Add-on home page"
 msgstr "דף הבית של התוספת"
@@ -2411,7 +2411,7 @@ msgid "Android"
 msgstr "Android"
 
 msgid "App"
-msgstr ""
+msgstr "יישום"
 
 msgid "Persona"
 msgstr "Persona"
@@ -5190,7 +5190,7 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr ""
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "האם העדכון שלי דורש סקירה מצד סוקרים?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr ""
@@ -5278,7 +5278,7 @@ msgid ""
 msgstr ""
 
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "האם תוספות יעבדו עם הדפדפן או היישום שלי?"
 
 #, python-format
 msgid ""
@@ -5289,7 +5289,7 @@ msgid ""
 msgstr ""
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "מהם הסוגים השונים של התוספות?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
@@ -5364,7 +5364,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "מה אם נתקלתי בבעיות עם תוספת?"
 
 #, python-format
 msgid ""
@@ -5412,10 +5412,10 @@ msgid ""
 msgstr ""
 
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "כמה עולה לרכוש תוספות?"
 
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ""
+msgstr "תוספות שמתארחות בגלריה שלנו הן בחינם אלמלא צוין אחרת באופן מפורש."
 
 msgid "What does it mean when an add-on asks for contributions?"
 msgstr ""
@@ -5426,7 +5426,7 @@ msgid ""
 msgstr ""
 
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "מה הן תוספות במצב בטא?"
 
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
@@ -5447,11 +5447,11 @@ msgid ""
 msgstr ""
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "איך ניתן לדווח על תקלות או ליצור קשר עם צוות התוספות של Mozilla?"
 
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "נא לבקר בדף <a href=\"%(contact_url)s\">יצירת קשר</a> שלנו."
 
 msgid "What is a Source Code License?"
 msgstr "מהו רישיון קוד מקור?"
@@ -5489,7 +5489,7 @@ msgid "Mobile Add-ons"
 msgstr "תוספות עבור מכשירים ניידים"
 
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "מה הן תוספות לניידים?"
 
 #, python-format
 msgid ""
@@ -5698,7 +5698,7 @@ msgid "Brought to you by:"
 msgstr "מוגש בחסות:"
 
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird יצאה לגמלאות"
 
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
@@ -5717,7 +5717,7 @@ msgid "Reviews for %s"
 msgstr "סקירות עבור %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "היסטוריית סקירות עבור תוספת זו"
 
 #. L10n: This describes the number of stars given out of 5
 # %1 is the number of stars this add-on has
@@ -6271,7 +6271,7 @@ msgid "No events found for this period."
 msgstr "לא נמצאו אירועים לטווח זה."
 
 msgid "Log details"
-msgstr ""
+msgstr "פרטי רישום"
 
 # 75%
 # 100%
@@ -6819,7 +6819,7 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "לא ניתן להוסיף גרסאות לתוספת שנמצאת במצב: %s."
 
 msgid "Version does not match the manifest file."
 msgstr ""
@@ -6870,19 +6870,19 @@ msgid "Ratings"
 msgstr "דירוגים"
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "סטטיסטיקת תוספת"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "תוספות בשימוש"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "תוספות שנוצרו"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "תוספות שהורדו"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "תוספות שעודכנו"
 
 msgid "Collections Created"
 msgstr ""
@@ -6894,7 +6894,7 @@ msgid "User Signups"
 msgstr "הרשמות משתמשים"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "נתונים בארכיון"
 
 msgid "Custom Date Range"
 msgstr "טווח תאריכים מותאם אישית"
@@ -6915,20 +6915,20 @@ msgstr "ייצוא"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: לוח סטטיסטיקה :: תוספות עבור {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: לוח סטטיסטיקה"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "לוח סטטיסטיקה :: תוספות עבור {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "סטטיסטיקות עבור {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "לוח סטטיסטיקה"
 
 msgid "Controls:"
 msgstr "בקרים:"
@@ -7006,7 +7006,7 @@ msgid "Downloaded by Date"
 msgstr ""
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "איך הורדות נספרות?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7014,7 +7014,7 @@ msgid ""
 msgstr ""
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "שפות משתמשים לפי תאריך"
 
 msgid "Platform usage by Date"
 msgstr ""
@@ -7029,19 +7029,19 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "יישומים מובילים"
 
 msgid "See more applications&hellip;"
 msgstr "צפייה ביישומים נוספים&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "שפות מובילות"
 
 msgid "See more languages&hellip;"
 msgstr "צפייה בשפות נוספות&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "פלטפורמות מובילות"
 
 msgid "See more platforms&hellip;"
 msgstr "צפייה בפלטפורמות נוספות"
@@ -7168,13 +7168,13 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "חזרה לדף הבית של תוספות עבור {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "תוספות עבור <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "תוספות עבור <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "תוספות עבור <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
@@ -7183,7 +7183,7 @@ msgid "My Account"
 msgstr "החשבון שלי"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "ברוך בואך, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7246,7 +7246,7 @@ msgid "Delete Locale"
 msgstr "מחיקת שפה"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "כתובת הדוא״ל חייבת להיות {email}."
 
 msgid "Display Name"
 msgstr "שם תצוגה"
@@ -7270,10 +7270,10 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "נא להקליד לפחות שם אחד לדחייה."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "אין משתמש עם כתובת דוא״ל זו."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -7336,7 +7336,7 @@ msgid "Profile Updated"
 msgstr "הפרופיל עודכן"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "נמצאו שגיאות"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "אירעו שגיאות בשינויים שביצעת. נא לתקן אותן ולשלוח שוב."
@@ -7345,7 +7345,7 @@ msgid "User reported."
 msgstr ""
 
 msgid "new"
-msgstr ""
+msgstr "חדש"
 
 msgid "Delete User Account"
 msgstr "מחיקת חשבון משתמש"
@@ -7421,7 +7421,7 @@ msgstr "הציגו את עצמכם לקהילה, אם תרצו! מלל זה יו
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "HTML מותר: %(html)s. אסור להשתמש בקישורים."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "החליטו אילו אוספים צריכים להיות מוצגים בפרופיל שלך."
@@ -7442,7 +7442,7 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr "מוזילה שומרת על הזכות ליצור אתך קשר אישי על דאגות מסוימות בנוגע לתוספות שמתארחות אצלנו."
 
 msgid "Admin"
-msgstr ""
+msgstr "מנהל"
 
 msgid "Delete Account"
 msgstr "מחיקת חשבון"
@@ -7460,7 +7460,7 @@ msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue 
 msgstr ""
 
 msgid "User Login"
-msgstr ""
+msgstr "כניסת משתמש"
 
 msgid "Log in with Firefox Accounts"
 msgstr "התחברות באמצעות Firefox Accounts"
@@ -7475,7 +7475,7 @@ msgid "Edit profile"
 msgstr "עריכת פרופיל"
 
 msgid "Manage user"
-msgstr ""
+msgstr "ניהול משתמש"
 
 msgid "Report user"
 msgstr "דיווח על משתמש"
@@ -7610,7 +7610,7 @@ msgstr "שוחררה בתאריך {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "קוד המקור משוחרר תחת <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 # {0} is the add-on name
@@ -7634,7 +7634,7 @@ msgid "Deleted versions can`t be changed."
 msgstr "לא ניתן לשנות גרסאות שנמחקו."
 
 msgid "Binary"
-msgstr ""
+msgstr "בינרי"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "לא בינרי"
