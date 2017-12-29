@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-18 21:49+0000\n"
+"PO-Revision-Date: 2017-12-29 12:03+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2947,7 +2947,7 @@ msgid "Activity"
 msgstr "פעילות"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "הרשמה להזנה זו"
 
 #, python-format
 msgid ""
@@ -4430,10 +4430,10 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "אי אפשר להשוות שינויים בין הגרסה לעצמה"
 
 msgid "Access your data for {name}"
 msgstr ""
@@ -4462,7 +4462,7 @@ msgstr "לא ניתן לנתח את הקובץ שהועלה."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "שם קובץ שגוי בארכיון. נא לוודא שכל שמות הקבצים הם בקידוד utf-8 או latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4475,14 +4475,14 @@ msgid "Invalid archive."
 msgstr "ארכיון שגוי."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "לא ניתן לפענח את קובץ ה־manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "לא ניתן למצוא מזהה תוספת."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "מזהה התוספת ב־manifest.json או ב־install.rdf שלך (%s) אינה תואמת את מזהה התוספת שלך ב־AMO‏ (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "נמצא מזהה תוספת כפול."
@@ -4491,14 +4491,14 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr "מספרי הגרסאות חייבים להיות באורך של פחות מ־32 תווים."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, מספרים ואת הסימנים הבאים: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "בשלב זה אין תמיכה בהעלאת ערכות נושא בתבנית WebExtension."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "‏<em:type> ב־install.rdf שלך (%s) אינו תואם את סוג התוספת שלך ב־AMO‏ (%s)"
 
 msgid "Back to review"
 msgstr "חזרה לסקירה"
@@ -4508,7 +4508,7 @@ msgstr "חזרה לתוספת"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "גרסה: %(version)s &bull; גודל: %(size)s &bull; גיבוב SHA256:‏ %(sha256)s &bull; סוג Mime:‏ %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "השוואת קבצים :: כלי סוקרים"
@@ -4524,10 +4524,10 @@ msgstr ""
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "הפלט עשוי להיות פגום, נא להיזהר ו%(link_start)sלדווח על תקלה%(link_end)s באופן מיידי!"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "קובץ התוספת בהליכי עיבוד, נא להמתין."
 
 msgid "Fetching validation results..."
 msgstr ""
@@ -4644,7 +4644,7 @@ msgid "A+ add-ons for School"
 msgstr ""
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "תוספות למורים, להורים ולתלמידים שחוזרים לבית הספר."
 
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
@@ -4680,7 +4680,7 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "הגנו על הפרטיות שלכם ברשת בעזרת התוספות שבאוסף זה."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "תוספות נהדרות לצורכי עבודה, הנאה, פרטיות ומשרד&hellip; כמעט לכל דבר!"
 
 msgid "Games!"
 msgstr "משחקים!"
@@ -4827,7 +4827,7 @@ msgid "Help improve this website. It's open source, and you can file bugs and su
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "אם תוספות מעניינות אותך אבל חסרה לך הנגיעה הטכנית, עדיין יש דרכים לסייע:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
@@ -4972,7 +4972,7 @@ msgstr "שו״ת למפתחי תוספות"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr ""
+msgstr "<h3>איך ניתן לבנות תוספת?</h3> <p> Mozilla מספקת תיעוד על איך לבנות תוספת ב%(addons_link_open)sרשת המפתחים של Mozilla%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "מה זה קובץ xpi?"
@@ -5066,7 +5066,7 @@ msgstr "האם Mozilla שומר על פרטיות נתוני החשבון שלי
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "כן. <a href=\"%(url)s\">מדיניות הפרטיות</a> שלנו מתארת איך המידע שלך מנוהל על ידי Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr ""
