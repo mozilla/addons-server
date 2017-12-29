@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-29 12:18+0000\n"
+"PO-Revision-Date: 2017-12-29 12:50+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -706,7 +706,7 @@ msgid "Submit a New Theme"
 msgstr "שליחת ערכת נושא חדשה"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "מרכז המפתחים"
 
 msgid "Manage API Keys"
 msgstr "ניהול מפתחות API"
@@ -2682,13 +2682,13 @@ msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensi
 msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "תוספות מדור קודם אינן נתמכות ב־Firefox 57 ומעלה. יש להשתמש ב־maxVersion של *.56 ומטה."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2902,7 +2902,7 @@ msgstr "יש להשתמש בשדה שלהלן כדי להעלות את חביל�
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "נא לשים לב כי כלי זה עובד רק עם תוספות מדור קודם. מנשקי ה־API של WebExtension <a href=\"%(webext_doc_url)s\">מתועדים כאן</a> בהרחבה."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "לאחר ההעלאה, תורץ סדרה של בדיקות אימות אוטומטיות על מנת לבדוק תאימות עם גרסת היישום הבאה:"
@@ -3415,7 +3415,7 @@ msgid "View Statistics"
 msgstr "צפייה בסטטיסטיקות"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "שינוי הבעלים של ערכת נושא זו."
 
 msgid "Transfer Ownership"
 msgstr "העברת בעלות"
@@ -3976,7 +3976,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "התחברות לעריכה ועדכון התוספת שלך"
 
 msgid "Update Your Legacy Extension"
-msgstr ""
+msgstr "עדכון ההרחבה מדור קודם שלך"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
@@ -4012,7 +4012,7 @@ msgid "Add-on Developer Hub"
 msgstr "מרכז מפתחי תוספות"
 
 msgid "Docs"
-msgstr ""
+msgstr "מסמכים"
 
 msgid "Sign Out"
 msgstr "התנתקות"
@@ -4048,7 +4048,7 @@ msgstr "הסבת הרחבה מ־Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
+msgstr "ב־Firefox קיימת תמיכה ב־APIs של WebExtension, שברוב המקרים תואמים ל־APIs של הרחבות הנתמכים ב־Chrome,‏ Opera ו־Edge, כך שההרחבות שלך תפעלנה ב־Firefox לאחר מספר שינויים בודדים."
 
 msgid "Publish Your Add-on"
 msgstr "פרסום התוספת שלך"
@@ -4392,7 +4392,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "האם ברצונך לבטל את בקשת הסקירה שלך?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "תיעוד תוספות :: מרכז המפתחים"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -5009,15 +5009,15 @@ msgstr "אזדקק לעצה בנוגע לבניית התוספת שלי. איפ�
 
 #. #extdev is the name of the IRC channel.  do not change.
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "‏‎#extdev (לדיונים בנושא פיתוח תוספות)"
 
 #. #amo is the name of the IRC channel.  do not change.
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "‏‎#amo (לתמיכה בנוגע לאירוח של התוספת שלך ב־AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "‏‎#webextensions (לדיונים על פיתוח והסבה ל־WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "פורום תוספות"
@@ -7526,7 +7526,7 @@ msgid "Report user {0}"
 msgstr "דיווח על משתמש {0}"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "ביטול הרשמה כמנוי"
 
 msgid "You are successfully unsubscribed!"
 msgstr ""
@@ -7545,7 +7545,7 @@ msgid "edit your profile"
 msgstr "עריכת הפרופיל שלך"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "לא הצלחנו לבטל את ההרשמה למנוי שלך"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
