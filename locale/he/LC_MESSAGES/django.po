@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-29 12:50+0000\n"
+"PO-Revision-Date: 2018-01-01 09:36+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2849,7 +2849,7 @@ msgid "{0} Add-ons"
 msgstr "התוספות של {0}"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "חזרה לדף הבית של מרכז המפתחים"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -2953,7 +2953,7 @@ msgstr "הרשמה להזנה זו"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr ""
+msgstr "תוספת זו אינה נתמכת ב־<b>%(app_name)s %(app_version)s</b>, הגרסה העדכנית ביותר של %(app_name)s. מוטב לעדכן את פרטי התאימות של התוספת שלך או להעלות גרסה חדשה יותר של תוספת זו."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -5038,7 +5038,7 @@ msgid ""
 msgstr ""
 
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "אוכל לארח את התוספת שלי?"
 
 #, python-format
 msgid ""
@@ -6247,7 +6247,7 @@ msgid "Image Gallery"
 msgstr "גלריית תמונות"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "אין מה לראות כאן!  המפתח לא צירף שום פרטים."
 
 # {0} is the application name.  Example:  Firefox
 #, fuzzy
@@ -6970,7 +6970,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "הנתונים האחרונים נטענים&hellip;"
 
 msgid "No data available."
 msgstr "אין נתונים זמינים."
