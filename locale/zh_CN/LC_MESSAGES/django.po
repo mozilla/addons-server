@@ -2933,7 +2933,7 @@ msgid "Experimental?"
 msgstr "实验性？"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "如果您的附加组件还在实验测试中，或者尚未准备好供用户日常使用，请勾选此选项。这仍将公开上架此附加组件，但曝光度会被降低。"
+msgstr "如果您的附加组件还在实验测试中，或者尚未准备好供用户日常使用，请勾选此项。这仍将公开上架此附加组件，但曝光度会被降低。"
 
 msgid "This add-on is experimental."
 msgstr "这个附加组件为实验性。"
