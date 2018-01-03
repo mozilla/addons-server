@@ -2771,6 +2771,15 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon2.pk
         assert result['slug'] == addon2.slug
 
+        # Throw in soome random invalid guids too that will be ignored.
+        data = self.perform_search(
+            self.url, {
+                'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'}
+        )
+        assert data['count'] == len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == addon2.pk
+
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
