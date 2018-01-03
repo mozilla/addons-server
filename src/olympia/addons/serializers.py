@@ -1,6 +1,7 @@
 import re
 
 from django.conf import settings
+
 from rest_framework import serializers
 
 from olympia import amo

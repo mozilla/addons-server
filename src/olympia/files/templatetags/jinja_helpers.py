@@ -6,19 +6,19 @@ import stat
 from collections import OrderedDict
 from datetime import datetime
 
-import jinja2
-
-from django_jinja import library
-# TODO (andym): change the validator variables.
-from validator.testcases.packagelayout import (
-    blacklisted_extensions, blacklisted_magic_numbers)
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.template import loader
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
 from django.utils.translation import get_language, ugettext
+
+import jinja2
+
+from django_jinja import library
+# TODO (andym): change the validator variables.
+from validator.testcases.packagelayout import (
+    blacklisted_extensions, blacklisted_magic_numbers)
 
 import olympia.core.logger
 

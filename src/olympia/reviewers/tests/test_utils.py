@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
-import pytest
-
-from mock import Mock, patch
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
+
+import pytest
+
+from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken

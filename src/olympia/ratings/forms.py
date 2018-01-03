@@ -2,10 +2,10 @@ import re
 
 from urllib2 import unquote
 
-from bleach import TLDS
-
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+from bleach import TLDS
 
 from olympia.amo.utils import raise_required
 

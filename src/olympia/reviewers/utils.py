@@ -3,14 +3,14 @@ import random
 
 from collections import OrderedDict
 
-import django_tables2 as tables
-import jinja2
-
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+
+import django_tables2 as tables
+import jinja2
 
 import olympia.core.logger
 

@@ -1,9 +1,9 @@
 import datetime
 
-import mock
-
 from django.conf import settings
 from django.core.management import call_command
+
+import mock
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory

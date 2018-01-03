@@ -3,14 +3,14 @@ import json
 
 from datetime import timedelta
 
+from django.core import mail
+from django.core.cache import cache
+from django.core.urlresolvers import reverse
+
 import mock
 
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
-
-from django.core import mail
-from django.core.cache import cache
-from django.core.urlresolvers import reverse
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser

@@ -4,16 +4,16 @@ import os
 import shutil
 import zipfile
 
+from django import forms
+from django.conf import settings
+from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
+
 import flufl.lock
 import pytest
 
 from freezegun import freeze_time
 from mock import Mock, patch
-
-from django import forms
-from django.conf import settings
-from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.amo.tests import TestCase

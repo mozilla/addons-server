@@ -1,13 +1,13 @@
 import json
 import os
 
-from django_statsd.clients import statsd
-
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
+
+from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 
 from olympia import amo, legacy_api

@@ -3,14 +3,14 @@ import socket
 import StringIO
 import traceback
 
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+
 import redis as redislib
 import requests
 
 from kombu import Connection
 from PIL import Image
-
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
 
 import olympia.core.logger
 

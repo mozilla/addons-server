@@ -1,8 +1,8 @@
+from django.test.utils import override_settings
+
 import responses
 
 from mock import Mock, patch
-
-from django.test.utils import override_settings
 
 from olympia.amo import monitors
 from olympia.amo.tests import TestCase

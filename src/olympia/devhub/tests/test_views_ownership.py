@@ -1,7 +1,7 @@
 """Tests related to the ``devhub.addons.owner`` view."""
-from pyquery import PyQuery as pq
-
 from django.core import mail
+
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

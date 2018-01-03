@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import override
+
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo

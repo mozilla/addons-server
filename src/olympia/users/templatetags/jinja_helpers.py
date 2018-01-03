@@ -1,11 +1,11 @@
-import jinja2
-
-from django_jinja import library
-
 from django.conf import settings
 from django.template import loader
 from django.utils.encoding import force_text
 from django.utils.translation import pgettext
+
+import jinja2
+
+from django_jinja import library
 
 from olympia import amo
 from olympia.amo.utils import urlparams

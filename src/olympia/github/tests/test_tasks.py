@@ -1,8 +1,8 @@
 import json
 
-import mock
-
 from django.test.utils import override_settings
+
+import mock
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import AMOPaths

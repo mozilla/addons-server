@@ -1,8 +1,7 @@
 from django_statsd.clients import statsd
-from waffle import switch_is_active
-
 from rest_framework.mixins import ListModelMixin
 from rest_framework.viewsets import GenericViewSet
+from waffle import switch_is_active
 
 from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items

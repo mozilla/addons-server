@@ -8,8 +8,6 @@ import re
 import socket
 import urllib
 
-import MySQLdb as mysql
-
 from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
@@ -20,6 +18,8 @@ from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.translation import activate
+
+import MySQLdb as mysql
 
 from olympia import amo
 from olympia.amo.utils import render

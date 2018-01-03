@@ -1,6 +1,6 @@
-from pyquery import PyQuery as pq
-
 from django.template import engines
+
+from pyquery import PyQuery as pq
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory

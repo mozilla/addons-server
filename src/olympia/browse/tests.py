@@ -3,18 +3,18 @@ import re
 
 from urlparse import urlparse
 
+from django.conf import settings
+from django.core.cache import cache
+from django.test.utils import override_settings
+from django.utils import http as urllib
+from django.utils.translation import trim_whitespace
+
 import mock
 import pytest
 
 from dateutil.parser import parse as parse_dt
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
-
-from django.conf import settings
-from django.core.cache import cache
-from django.test.utils import override_settings
-from django.utils import http as urllib
-from django.utils.translation import trim_whitespace
 
 from olympia import amo
 from olympia.addons.models import (

@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+
 from rest_framework.routers import SimpleRouter
 
 from olympia.ratings.views import RatingViewSet

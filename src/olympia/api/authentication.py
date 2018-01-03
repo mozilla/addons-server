@@ -1,15 +1,15 @@
-import jwt
-
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-
 from django.conf import settings
 from django.core import signing
 from django.utils.crypto import constant_time_compare
 from django.utils.encoding import smart_text
 from django.utils.translation import ugettext
+
+import jwt
+
 from rest_framework import exceptions
 from rest_framework.authentication import (
     BaseAuthentication, get_authorization_header)
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 import olympia.core.logger
 

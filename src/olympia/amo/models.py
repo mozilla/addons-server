@@ -1,16 +1,16 @@
 import contextlib
 import threading
 
+from django.conf import settings
+from django.db import models, transaction
+from django.utils import translation
+from django.utils.encoding import force_text
+
 import caching.base
 import elasticsearch
 import multidb.pinning
 
 from django_statsd.clients import statsd
-
-from django.conf import settings
-from django.db import models, transaction
-from django.utils import translation
-from django.utils.encoding import force_text
 
 import olympia.lib.queryset_transform as queryset_transform
 

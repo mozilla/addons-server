@@ -1,10 +1,10 @@
 import re
 
+from django.utils.translation import ugettext_lazy as _
+
 from base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_PLUGIN,
     ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME)
-
-from django.utils.translation import ugettext_lazy as _
 
 from olympia.versions.compare import version_int as vint
 

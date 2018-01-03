@@ -1,6 +1,6 @@
-from pyquery import PyQuery as pq
-
 from django.forms import ModelForm
+
+from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
 from olympia.translations import fields, forms

@@ -4,13 +4,14 @@ import os
 
 from datetime import datetime, timedelta
 
-import mock
-
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation
+
+import mock
+
 from rest_framework.response import Response
 
 from olympia import amo

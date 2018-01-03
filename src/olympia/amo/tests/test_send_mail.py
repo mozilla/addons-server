@@ -1,15 +1,15 @@
 import mimetypes
 import os.path
 
-import mock
-
-from celery.exceptions import Retry
-
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.utils import translation
+
+import mock
+
+from celery.exceptions import Retry
 
 from olympia.amo.models import FakeEmail
 from olympia.amo.tests import BaseTestCase

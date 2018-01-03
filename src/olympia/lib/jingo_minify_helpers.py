@@ -2,11 +2,11 @@ import os
 import subprocess
 import time
 
+from django.conf import settings
+
 import jinja2
 
 from jingo_minify.utils import get_media_url, get_path
-
-from django.conf import settings
 
 
 try:

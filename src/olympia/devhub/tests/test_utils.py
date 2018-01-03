@@ -1,11 +1,11 @@
 import os.path
 
+from django.conf import settings
+from django.test.utils import override_settings
+
 import mock
 
 from celery.result import AsyncResult
-
-from django.conf import settings
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory

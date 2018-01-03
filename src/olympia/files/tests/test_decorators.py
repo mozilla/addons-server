@@ -1,10 +1,10 @@
-import pytest
-
-from mock import Mock, patch
-
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.test import RequestFactory
+
+import pytest
+
+from mock import Mock, patch
 
 from olympia import amo
 from olympia.access import acl

@@ -2,11 +2,11 @@
 import os
 import tempfile
 
-from mock import patch
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
+
+from mock import patch
 
 from olympia import amo, core
 from olympia.addons import forms

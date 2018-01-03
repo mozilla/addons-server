@@ -1,9 +1,9 @@
+from django.utils.html import escape
+from django.utils.translation import ugettext
+
 import jinja2
 
 from django_jinja import library
-
-from django.utils.html import escape
-from django.utils.translation import ugettext
 
 from .. import forms
 

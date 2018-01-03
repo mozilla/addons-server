@@ -1,10 +1,10 @@
 import os
 
-import caching.base as caching
-
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+
+import caching.base as caching
 
 import olympia.core.logger
 

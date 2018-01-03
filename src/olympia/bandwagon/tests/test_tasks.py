@@ -2,11 +2,11 @@ import os
 import shutil
 import tempfile
 
+from django.conf import settings
+
 import pytest
 
 from PIL import Image
-
-from django.conf import settings
 
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.tasks import resize_icon

@@ -5,6 +5,9 @@ from __future__ import absolute_import
 
 import datetime
 
+from django.conf import settings
+from django.core.cache import cache
+
 import waffle
 
 from celery import Celery, group
@@ -13,9 +16,6 @@ from django_statsd.clients import statsd
 from post_request_task.task import PostRequestTask
 from raven import Client
 from raven.contrib.celery import register_logger_signal, register_signal
-
-from django.conf import settings
-from django.core.cache import cache
 
 import olympia.core.logger
 

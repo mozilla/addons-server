@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import json
 
-import pytest
-
-from mock import Mock, patch
-from pyquery import PyQuery as pq
-
 import django.test
 
 from django.core.cache import cache
 from django.forms import ValidationError
 from django.utils.datastructures import MultiValueDict
+
+import pytest
+
+from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser

@@ -5,8 +5,6 @@ import time
 
 from datetime import datetime, timedelta
 
-from mock import Mock, patch
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -14,6 +12,8 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
+
+from mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog

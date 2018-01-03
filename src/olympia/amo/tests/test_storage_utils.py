@@ -3,10 +3,10 @@ import tempfile
 
 from functools import partial
 
-import pytest
-
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
+
+import pytest
 
 from olympia.amo.storage_utils import (
     copy_stored_file, move_stored_file, rm_stored_dir, walk_storage)

@@ -3,13 +3,13 @@ import re
 
 from email.utils import formataddr
 
-import waffle
-
-from email_reply_parser import EmailReplyParser
-
 from django.conf import settings
 from django.template import loader
 from django.utils import translation
+
+import waffle
+
+from email_reply_parser import EmailReplyParser
 
 import olympia.core.logger
 

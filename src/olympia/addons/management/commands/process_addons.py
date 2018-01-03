@@ -1,7 +1,7 @@
-from celery import chord, group
-
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
+
+from celery import chord, group
 
 from olympia import amo
 from olympia.addons.models import Addon

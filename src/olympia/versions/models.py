@@ -2,11 +2,6 @@
 import datetime
 import os
 
-import caching.base
-import jinja2
-
-from django_statsd.clients import statsd
-
 import django.dispatch
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -15,6 +10,11 @@ from django.db import models
 from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
+
+import caching.base
+import jinja2
+
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 

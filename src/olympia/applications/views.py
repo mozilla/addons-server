@@ -1,7 +1,7 @@
-import caching.base as caching
-
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
+
+import caching.base as caching
 
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed

@@ -6,11 +6,11 @@ import urlparse
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from datetime import datetime
 
-import mock
-
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
+
+import mock
 
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event

@@ -1,12 +1,12 @@
 import json
 import urlparse
 
+from django.conf import settings
+from django.utils.http import urlencode
+
 import requests
 
 from django_statsd.clients import statsd
-
-from django.conf import settings
-from django.utils.http import urlencode
 
 import olympia.core.logger
 

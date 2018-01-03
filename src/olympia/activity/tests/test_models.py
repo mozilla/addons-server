@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 from uuid import UUID
 
+from django.core.urlresolvers import reverse
+
 from mock import Mock
 from pyquery import PyQuery as pq
-
-from django.core.urlresolvers import reverse
 
 from olympia import amo, core
 from olympia.activity.models import (

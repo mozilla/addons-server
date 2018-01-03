@@ -1,9 +1,9 @@
-import pytest
-
 from django import shortcuts
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 from django.test.client import Client, RequestFactory
+
+import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware

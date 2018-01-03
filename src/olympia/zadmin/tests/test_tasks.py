@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import urlparse
 
-import mock
-
 from django.conf import settings
+
+import mock
 
 from olympia import amo
 from olympia.addons.models import Addon

@@ -4,10 +4,10 @@ import time
 
 from datetime import datetime, timedelta
 
-import mock
-
 from django.conf import settings
 from django.core import mail
+
+import mock
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport

@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
 
-import mock
-import pytest
-
 from django import http
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
+
+import mock
+import pytest
 
 from olympia import amo
 from olympia.amo import decorators

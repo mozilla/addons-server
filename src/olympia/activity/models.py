@@ -5,13 +5,13 @@ import uuid
 from copy import copy
 from datetime import datetime
 
-import jinja2
-
 from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext
+
+import jinja2
 
 import olympia.core.logger
 

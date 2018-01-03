@@ -12,18 +12,18 @@ from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
 
+from django.conf import settings
+from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
+from django.utils.translation import ugettext
+
 import validator
 
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from PIL import Image
-
-from django.conf import settings
-from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
-from django.core.management import call_command
-from django.utils.translation import ugettext
 
 import olympia.core.logger
 

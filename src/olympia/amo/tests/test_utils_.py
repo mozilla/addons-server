@@ -1,13 +1,13 @@
 import collections
 import tempfile
 
+from django.conf import settings
+from django.utils.functional import cached_property
+
 import mock
 import pytest
 
 from babel import Locale
-
-from django.conf import settings
-from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon

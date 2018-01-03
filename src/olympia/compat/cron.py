@@ -1,8 +1,8 @@
 from collections import defaultdict
 
-import elasticsearch.helpers
-
 from django.db.models import Count, Max
+
+import elasticsearch.helpers
 
 import olympia.core.logger
 

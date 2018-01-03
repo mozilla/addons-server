@@ -1,8 +1,8 @@
+from django.db import connections
+
 import multidb
 
 from celery import group
-
-from django.db import connections
 
 import olympia.core.logger
 

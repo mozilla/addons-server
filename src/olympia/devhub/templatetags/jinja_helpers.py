@@ -2,12 +2,12 @@ import urllib
 
 from collections import defaultdict
 
+from django.utils.encoding import force_bytes
+from django.utils.translation import ugettext, ungettext
+
 import jinja2
 
 from django_jinja import library
-
-from django.utils.encoding import force_bytes
-from django.utils.translation import ugettext, ungettext
 
 from olympia import amo
 from olympia.access import acl

@@ -3,12 +3,12 @@ import hashlib
 
 from datetime import datetime, timedelta
 
+from django.core.files.storage import default_storage as storage
+
 import mock
 import pytest
 
 from pyquery import PyQuery
-
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog

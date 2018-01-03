@@ -1,7 +1,7 @@
-from rest_framework_nested.routers import NestedSimpleRouter
-
 from django.conf.urls import include, url
+
 from rest_framework.routers import SimpleRouter
+from rest_framework_nested.routers import NestedSimpleRouter
 
 from olympia.activity.views import VersionReviewNotesViewSet
 

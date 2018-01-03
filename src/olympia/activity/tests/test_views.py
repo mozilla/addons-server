@@ -2,9 +2,9 @@
 import json
 import StringIO
 
-import mock
-
 from django.test.utils import override_settings
+
+import mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken

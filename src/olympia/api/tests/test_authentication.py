@@ -3,19 +3,19 @@ import json
 from calendar import timegm
 from datetime import datetime, timedelta
 
+from django.conf import settings
+from django.core import signing
+from django.test import RequestFactory
+
 import jwt
 import mock
 
 from freezegun import freeze_time
-from rest_framework_jwt.views import refresh_jwt_token
-
-from django.conf import settings
-from django.core import signing
-from django.test import RequestFactory
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (

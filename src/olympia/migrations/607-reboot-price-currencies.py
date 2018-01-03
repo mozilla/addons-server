@@ -1,6 +1,6 @@
-from market.models import Price
-
 from django.db import models
+
+from market.models import Price
 
 from olympia import amo
 

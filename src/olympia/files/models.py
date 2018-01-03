@@ -10,10 +10,6 @@ import zipfile
 
 from collections import namedtuple
 
-from django_extensions.db.fields.json import JSONField
-from django_statsd.clients import statsd
-from jinja2 import escape as jinja2_escape
-
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -22,6 +18,10 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+from django_extensions.db.fields.json import JSONField
+from django_statsd.clients import statsd
+from jinja2 import escape as jinja2_escape
 
 import olympia.core.logger
 

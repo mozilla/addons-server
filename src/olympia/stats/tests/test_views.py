@@ -5,12 +5,12 @@ import json
 import os
 import shutil
 
+from django.http import Http404
+from django.test.client import RequestFactory
+
 import mock
 
 from pyquery import PyQuery as pq
-
-from django.http import Http404
-from django.test.client import RequestFactory
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser

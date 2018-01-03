@@ -1,11 +1,11 @@
-import mock
-
-from pyquery import PyQuery as pq
-
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.encoding import smart_text
 from django.utils.translation import trim_whitespace
+
+import mock
+
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import (

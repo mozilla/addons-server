@@ -4,11 +4,11 @@ import shutil
 
 from datetime import date, timedelta
 
-import mock
-
 from django.conf import settings
 from django.core import management
 from django.test.testcases import TransactionTestCase
+
+import mock
 
 from olympia import amo
 from olympia.addons.models import Persona

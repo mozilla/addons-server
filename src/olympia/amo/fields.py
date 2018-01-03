@@ -1,11 +1,11 @@
 import re
 
-from nobot.fields import HumanCaptchaField
-
 from django.core import exceptions
 from django.core.validators import URLValidator
 from django.forms import fields
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+from nobot.fields import HumanCaptchaField
 
 from olympia.amo.widgets import ColorWidget
 

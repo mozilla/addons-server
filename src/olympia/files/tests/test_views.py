@@ -4,15 +4,15 @@ import os
 import shutil
 import urlparse
 
-import pytest
-
-from mock import patch
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.http import http_date
+
+import pytest
+
+from mock import patch
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon

@@ -8,9 +8,6 @@ import time
 from collections import OrderedDict
 from datetime import date, datetime, timedelta
 
-from dateutil.parser import parse
-from product_details import product_details
-
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
@@ -20,6 +17,9 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
+
+from dateutil.parser import parse
+from product_details import product_details
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response

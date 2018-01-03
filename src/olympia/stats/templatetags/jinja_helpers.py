@@ -1,8 +1,8 @@
+from django.template import loader
+
 import jinja2
 
 from django_jinja import library
-
-from django.template import loader
 
 from olympia import amo
 from olympia.access import acl

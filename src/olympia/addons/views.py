@@ -1,9 +1,3 @@
-import caching.base as caching
-import session_csrf
-import waffle
-
-from elasticsearch_dsl import Search
-
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
@@ -11,6 +5,12 @@ from django.utils.cache import patch_cache_control
 from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control
 from django.views.decorators.vary import vary_on_headers
+
+import caching.base as caching
+import session_csrf
+import waffle
+
+from elasticsearch_dsl import Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from rest_framework.generics import GenericAPIView, ListAPIView

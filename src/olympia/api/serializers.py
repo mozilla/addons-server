@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from elasticsearch_dsl.response.hit import Hit
-
 from rest_framework.serializers import ModelSerializer
 
 from .fields import ESTranslationSerializerField, TranslationSerializerField

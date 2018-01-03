@@ -1,15 +1,15 @@
 import datetime
 import itertools
 
+from django.conf import settings
+from django.db import connection
+from django.db.models import Max, Sum
+
 import httplib2
 
 from apiclient.discovery import build
 from elasticsearch.helpers import bulk as bulk_index
 from oauth2client.client import OAuth2Credentials
-
-from django.conf import settings
-from django.db import connection
-from django.db.models import Max, Sum
 
 import olympia.core.logger
 

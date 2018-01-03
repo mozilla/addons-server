@@ -2,12 +2,12 @@
 import datetime
 import json
 
+from django.conf import settings
+from django.utils.encoding import smart_text
+
 import mock
 
 from pyquery import PyQuery as pq
-
-from django.conf import settings
-from django.utils.encoding import smart_text
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser

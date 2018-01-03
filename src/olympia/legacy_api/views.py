@@ -9,10 +9,6 @@ import urllib
 
 from datetime import date, timedelta
 
-import waffle
-
-from caching.base import cached_with
-
 from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
@@ -20,6 +16,10 @@ from django.template import engines
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
+
+import waffle
+
+from caching.base import cached_with
 
 import olympia.core.logger
 

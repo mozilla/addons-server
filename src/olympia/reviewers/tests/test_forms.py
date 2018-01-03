@@ -1,6 +1,6 @@
-import mock
-
 from django.utils.encoding import force_text
+
+import mock
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags

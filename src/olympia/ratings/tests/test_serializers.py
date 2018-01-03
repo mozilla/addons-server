@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from mock import Mock
-
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify

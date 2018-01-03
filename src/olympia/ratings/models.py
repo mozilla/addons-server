@@ -1,9 +1,9 @@
-import caching.base as caching
-
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
+
+import caching.base as caching
 
 import olympia.core.logger
 

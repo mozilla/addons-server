@@ -2,9 +2,9 @@
 from datetime import datetime, timedelta
 from email import utils
 
-from services import update
-
 from django.db import connection
+
+from services import update
 
 from olympia import amo
 from olympia.addons.models import (

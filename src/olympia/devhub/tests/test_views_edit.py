@@ -2,16 +2,16 @@ import json
 import os
 import tempfile
 
-import mock
-
-from PIL import Image
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.test.utils import override_settings
+
+import mock
+
+from PIL import Image
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

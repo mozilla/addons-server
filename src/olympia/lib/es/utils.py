@@ -3,10 +3,10 @@ import os
 
 from copy import deepcopy
 
-from elasticsearch import helpers
-
 from django.conf import settings
 from django.core.management.base import CommandError
+
+from elasticsearch import helpers
 
 import olympia.core.logger
 

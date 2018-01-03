@@ -6,13 +6,6 @@ import urlparse
 from collections import OrderedDict
 from datetime import datetime, timedelta
 
-import mock
-
-from freezegun import freeze_time
-from lxml.html import HTMLParser, fromstring
-from mock import Mock, patch
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -20,6 +13,13 @@ from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.template import defaultfilters
 from django.test.utils import override_settings
+
+import mock
+
+from freezegun import freeze_time
+from lxml.html import HTMLParser, fromstring
+from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport

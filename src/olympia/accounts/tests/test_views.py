@@ -6,17 +6,17 @@ import urlparse
 from datetime import datetime
 from os import path
 
-import mock
-
-from waffle.models import Switch
-
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
 from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
+
+import mock
+
 from rest_framework.test import APIRequestFactory, APITestCase
+from waffle.models import Switch
 
 from olympia import amo
 from olympia.access.acl import action_allowed_user

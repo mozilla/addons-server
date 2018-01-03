@@ -1,10 +1,10 @@
 import socket
 import time
 
-import redis as redislib
-
 from django.conf import settings
 from django.core.management.base import BaseCommand
+
+import redis as redislib
 
 import olympia.core.logger
 

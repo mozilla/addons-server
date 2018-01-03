@@ -4,18 +4,18 @@ import os
 
 from datetime import datetime, timedelta
 
-import mock
-import waffle
-
-from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
-
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
+
+import mock
+import waffle
+
+from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog

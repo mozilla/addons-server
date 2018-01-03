@@ -5,13 +5,13 @@ import os
 
 from cStringIO import StringIO
 
-import mock
-
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+
+import mock
+
+from pyquery import PyQuery as pq
 
 import olympia
 

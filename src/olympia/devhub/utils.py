@@ -1,11 +1,11 @@
 import uuid
 
-from celery import chain
-
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
+
+from celery import chain
 
 import olympia.core.logger
 

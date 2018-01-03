@@ -1,10 +1,11 @@
 from functools import partial
 
-import jinja2
-
 from django.contrib import messages as django_messages
 from django.template import loader
 from django.utils import safestring
+
+import jinja2
+
 from rest_framework.request import Request
 
 

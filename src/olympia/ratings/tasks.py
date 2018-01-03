@@ -1,6 +1,6 @@
-import caching.base as caching
-
 from django.db.models import Avg, Count, F
+
+import caching.base as caching
 
 import olympia.core.logger
 

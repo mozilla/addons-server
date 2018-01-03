@@ -1,10 +1,10 @@
 import re
 
+from django.utils import translation
+
 import requests
 
 from requests.exceptions import RequestException
-
-from django.utils import translation
 
 import olympia.core.logger
 

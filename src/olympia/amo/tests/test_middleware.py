@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from django import test
+from django.test.client import RequestFactory
+
 import pytest
 
 from mock import patch
 from pyquery import PyQuery as pq
-
-from django import test
-from django.test.client import RequestFactory
 
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException)

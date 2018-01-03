@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import responses
-
-from requests import HTTPError
-
 from django.conf import settings
 from django.core.management import call_command
 from django.test.utils import override_settings
 from django.utils import translation
+
+import responses
+
+from requests import HTTPError
 
 from olympia import amo
 from olympia.addons.models import Addon

@@ -1,8 +1,8 @@
 import urllib
 
-import mock
-
 from django import http
+
+import mock
 
 from olympia.addons import decorators as dec
 from olympia.addons.models import Addon

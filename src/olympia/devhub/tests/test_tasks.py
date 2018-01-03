@@ -7,13 +7,13 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from django.conf import settings
+from django.test.utils import override_settings
+
 import mock
 import pytest
 
 from PIL import Image
-
-from django.conf import settings
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.addons.models import Addon

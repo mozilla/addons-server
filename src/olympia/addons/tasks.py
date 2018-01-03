@@ -1,12 +1,12 @@
 import hashlib
 import os
 
-from elasticsearch_dsl import Search
-from PIL import Image
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+
+from elasticsearch_dsl import Search
+from PIL import Image
 
 import olympia.core.logger
 

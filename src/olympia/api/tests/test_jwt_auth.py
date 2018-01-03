@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 
+from django.conf import settings
+
 import jwt
 
-from rest_framework_jwt.settings import api_settings
-
-from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework_jwt.settings import api_settings
 
 from olympia.amo.tests import TestCase
 from olympia.api import jwt_auth

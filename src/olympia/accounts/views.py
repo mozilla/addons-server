@@ -2,8 +2,6 @@ import base64
 import functools
 import os
 
-from waffle.decorators import waffle_switch
-
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.core import signing
@@ -14,6 +12,7 @@ from django.utils.encoding import force_bytes
 from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
+
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
@@ -24,6 +23,7 @@ from rest_framework.permissions import (
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
+from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 

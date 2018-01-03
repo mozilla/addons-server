@@ -2,10 +2,6 @@ import functools
 import hashlib
 import os
 
-import caching.base as caching
-
-from django_statsd.clients import statsd
-
 from django import http
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
@@ -15,6 +11,10 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext, ugettext_lazy as _lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
+
+import caching.base as caching
+
+from django_statsd.clients import statsd
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger

@@ -2,11 +2,11 @@
 import datetime
 import re
 
+from django.core.files import temp
+
 import mock
 
 from pyquery import PyQuery as pq
-
-from django.core.files import temp
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE

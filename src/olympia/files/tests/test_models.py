@@ -7,15 +7,15 @@ import zipfile
 
 from datetime import datetime
 
-import mock
-import pytest
-
-from mock import patch
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+
+import mock
+import pytest
+
+from mock import patch
 
 from olympia import amo
 from olympia.addons.models import Addon

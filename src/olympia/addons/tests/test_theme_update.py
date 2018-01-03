@@ -3,12 +3,12 @@ import json
 
 from StringIO import StringIO
 
+from django.conf import settings
+from django.db import connection
+
 import mock
 
 from services import theme_update
-
-from django.conf import settings
-from django.db import connection
 
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import (

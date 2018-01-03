@@ -4,17 +4,17 @@ import random
 
 from datetime import datetime, timedelta
 
+from django import test
+from django.conf import settings
+from django.test.testcases import TransactionTestCase
+from django.test.utils import override_settings
+
 import mock
 import pytest
 
 from lxml import etree
 from mock import patch
 from pyquery import PyQuery as pq
-
-from django import test
-from django.conf import settings
-from django.test.testcases import TransactionTestCase
-from django.test.utils import override_settings
 
 from olympia import amo, core
 from olympia.access import acl

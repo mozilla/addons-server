@@ -1,8 +1,8 @@
+from django.conf import settings
+
 import feedparser
 
 from dateutil import parser
-
-from django.conf import settings
 
 import olympia.core.logger
 

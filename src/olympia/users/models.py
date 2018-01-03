@@ -5,8 +5,6 @@ import time
 
 from datetime import datetime
 
-import caching.base as caching
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
@@ -17,6 +15,8 @@ from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
+
+import caching.base as caching
 
 import olympia.core.logger
 

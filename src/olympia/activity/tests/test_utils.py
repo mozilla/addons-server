@@ -3,13 +3,13 @@ import copy
 import json
 import os
 
+from django.conf import settings
+from django.core import mail
+
 import mock
 import pytest
 
 from waffle.testutils import override_switch
-
-from django.conf import settings
-from django.core import mail
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser

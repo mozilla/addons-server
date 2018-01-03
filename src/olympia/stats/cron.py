@@ -1,11 +1,11 @@
 import datetime
 
+from django.core.management import call_command
+from django.db.models import Max, Sum
+
 import waffle
 
 from celery import group
-
-from django.core.management import call_command
-from django.db.models import Max, Sum
 
 import olympia.core.logger
 

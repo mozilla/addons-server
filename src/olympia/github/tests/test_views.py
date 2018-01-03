@@ -1,9 +1,9 @@
 import json
 
+from django.utils.http import urlencode
+
 import mock
 import requests
-
-from django.utils.http import urlencode
 
 from olympia.amo.tests import AMOPaths, TestCase
 from olympia.amo.urlresolvers import reverse

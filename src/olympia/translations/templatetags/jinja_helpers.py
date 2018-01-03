@@ -1,13 +1,13 @@
-import bleach
-import jinja2
-
-from django_jinja import library
-
 from django.conf import settings
 from django.template import engines, loader
 from django.utils import translation
 from django.utils.encoding import force_text
 from django.utils.translation.trans_real import to_language
+
+import bleach
+import jinja2
+
+from django_jinja import library
 
 from olympia.amo.utils import clean_nl
 from olympia.translations.models import PurifiedTranslation

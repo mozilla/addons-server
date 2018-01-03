@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import caching.base as caching
-import jinja2
-
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+
+import caching.base as caching
+import jinja2
 
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (

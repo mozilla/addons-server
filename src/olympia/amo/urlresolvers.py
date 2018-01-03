@@ -6,14 +6,14 @@ import urllib
 
 from threading import local
 
-import bleach
-import jinja2
-
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils.encoding import force_bytes
 from django.utils.http import _urlparse as urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
+
+import bleach
+import jinja2
 
 from olympia import amo
 

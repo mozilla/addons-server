@@ -2,8 +2,6 @@ import collections
 
 from operator import attrgetter
 
-from product_details import product_details
-
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.http import (
@@ -11,6 +9,8 @@ from django.http import (
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import cache_page
+
+from product_details import product_details
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon

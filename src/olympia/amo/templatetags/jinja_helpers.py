@@ -7,13 +7,6 @@ import re
 from operator import attrgetter
 from urlparse import urljoin
 
-import caching.base as caching
-import jinja2
-import waffle
-
-from babel.support import Format
-from django_jinja import library
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
@@ -24,6 +17,13 @@ from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
     get_language, to_locale, trim_whitespace, ugettext)
+
+import caching.base as caching
+import jinja2
+import waffle
+
+from babel.support import Format
+from django_jinja import library
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils

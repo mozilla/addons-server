@@ -2,13 +2,13 @@ import datetime
 
 from datetime import timedelta
 
+from django.core.signals import request_finished, request_started
+from django.test.testcases import TransactionTestCase
+
 import mock
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 from waffle.models import Switch
-
-from django.core.signals import request_finished, request_started
-from django.test.testcases import TransactionTestCase
 
 from olympia.amo.celery import task
 from olympia.amo.tests import TestCase, create_switch

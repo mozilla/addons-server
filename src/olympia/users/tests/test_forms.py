@@ -1,7 +1,7 @@
+from django.utils.http import urlsafe_base64_encode
+
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-
-from django.utils.http import urlsafe_base64_encode
 
 from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file

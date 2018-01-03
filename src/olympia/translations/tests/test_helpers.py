@@ -1,9 +1,9 @@
+from django.conf import settings
+from django.utils import translation
+
 import pytest
 
 from mock import Mock, patch
-
-from django.conf import settings
-from django.utils import translation
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase

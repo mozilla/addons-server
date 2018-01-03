@@ -3,11 +3,11 @@ import itertools
 from datetime import datetime, timedelta
 from subprocess import PIPE, Popen
 
-import waffle
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import connection
+
+import waffle
 
 import olympia.core.logger
 

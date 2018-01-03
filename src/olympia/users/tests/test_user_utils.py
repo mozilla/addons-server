@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+
 import mock
 import pytest
-
-from django.conf import settings
 
 from olympia.amo.tests import TestCase
 from olympia.users.models import DeniedName, UserProfile

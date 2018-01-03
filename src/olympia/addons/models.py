@@ -12,12 +12,6 @@ import uuid
 from datetime import datetime
 from operator import attrgetter
 
-import caching.base as caching
-
-from django_extensions.db.fields.json import JSONField
-from django_statsd.clients import statsd
-from jinja2.filters import do_dictsort
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
@@ -26,6 +20,12 @@ from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
+
+import caching.base as caching
+
+from django_extensions.db.fields.json import JSONField
+from django_statsd.clients import statsd
+from jinja2.filters import do_dictsort
 
 import olympia.core.logger
 

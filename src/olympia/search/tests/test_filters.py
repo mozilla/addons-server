@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import copy
 
+from django.test.client import RequestFactory
+
 from elasticsearch_dsl import Search
 from mock import Mock
-
-from django.test.client import RequestFactory
 from rest_framework import serializers
 
 from olympia import amo

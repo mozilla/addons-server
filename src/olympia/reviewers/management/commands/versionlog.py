@@ -1,6 +1,6 @@
-from celery import group
-
 from django.core.management.base import BaseCommand
+
+from celery import group
 
 from olympia.activity.models import ActivityLog
 from olympia.amo.utils import chunked

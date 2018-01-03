@@ -3,15 +3,15 @@ import time
 
 from datetime import datetime, timedelta
 
-import multidb
-import waffle
-
-from celery import group
-
 from django.conf import settings
 from django.db import connections
 from django.db.models import Avg, F, Q
 from django.utils.encoding import force_text
+
+import multidb
+import waffle
+
+from celery import group
 
 import olympia.core.logger
 

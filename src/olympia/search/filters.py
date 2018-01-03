@@ -1,9 +1,9 @@
+from django.utils import translation
+from django.utils.translation import ugettext
+
 import waffle
 
 from elasticsearch_dsl import Q, query
-
-from django.utils import translation
-from django.utils.translation import ugettext
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
 

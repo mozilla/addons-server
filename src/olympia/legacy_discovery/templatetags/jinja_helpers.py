@@ -1,8 +1,8 @@
+from django.conf import settings
+
 import jinja2
 
 from django_jinja import library
-
-from django.conf import settings
 
 from olympia.addons.templatetags.jinja_helpers import persona_preview
 from olympia.amo.urlresolvers import reverse

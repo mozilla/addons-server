@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.translation import ugettext
+
 from rest_framework import serializers
 
 import olympia.core.logger

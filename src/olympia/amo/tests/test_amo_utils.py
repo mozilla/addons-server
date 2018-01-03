@@ -2,15 +2,15 @@
 import os
 import tempfile
 
-import mock
-import pytest
-
-from product_details import product_details
-
 from django.conf import settings
 from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
+
+import mock
+import pytest
+
+from product_details import product_details
 
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (

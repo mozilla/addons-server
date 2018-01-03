@@ -1,7 +1,7 @@
-from mock import Mock
-
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
+
+from mock import Mock
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission

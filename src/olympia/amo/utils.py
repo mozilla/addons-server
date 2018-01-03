@@ -16,18 +16,6 @@ import unicodedata
 import urllib
 import urlparse
 
-import bleach
-import html5lib
-import jinja2
-import pytz
-
-from babel import Locale
-from django_statsd.clients import statsd
-from easy_thumbnails import processors
-from html5lib.serializer.htmlserializer import HTMLSerializer
-from PIL import Image
-from validator import unicodehelper
-
 import django.core.mail
 
 from django.conf import settings
@@ -43,7 +31,19 @@ from django.template import engines, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse
+
+import bleach
+import html5lib
+import jinja2
+import pytz
+
+from babel import Locale
+from django_statsd.clients import statsd
+from easy_thumbnails import processors
+from html5lib.serializer.htmlserializer import HTMLSerializer
+from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
+from validator import unicodehelper
 
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator

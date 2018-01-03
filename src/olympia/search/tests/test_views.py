@@ -2,14 +2,14 @@
 import json
 import urlparse
 
+from django.http import QueryDict
+from django.test.client import RequestFactory
+from django.utils.translation import trim_whitespace
+
 import mock
 import pytest
 
 from pyquery import PyQuery as pq
-
-from django.http import QueryDict
-from django.test.client import RequestFactory
-from django.utils.translation import trim_whitespace
 
 from olympia import amo
 from olympia.addons.models import (

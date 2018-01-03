@@ -5,11 +5,6 @@ import time
 
 from uuid import UUID, uuid4
 
-import waffle
-
-from django_statsd.clients import statsd
-from PIL import Image
-
 from django import forms as django_forms, http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
@@ -21,6 +16,11 @@ from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+
+import waffle
+
+from django_statsd.clients import statsd
+from PIL import Image
 
 import olympia.core.logger
 

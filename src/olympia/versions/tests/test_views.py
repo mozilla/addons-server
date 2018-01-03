@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
 
-import mock
-import pytest
-
-from pyquery import PyQuery
-
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.test.utils import override_settings
 from django.utils.http import urlquote
+
+import mock
+import pytest
+
+from pyquery import PyQuery
 
 from olympia import amo
 from olympia.access import acl

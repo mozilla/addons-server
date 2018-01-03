@@ -2,14 +2,14 @@
 import json
 import os
 
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.utils import translation
+
 import mock
 import pytest
 
 from PIL import Image
-
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
-from django.utils import translation
 
 from olympia import amo
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm

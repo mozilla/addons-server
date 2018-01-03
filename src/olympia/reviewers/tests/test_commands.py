@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import mock
-
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
+
+import mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

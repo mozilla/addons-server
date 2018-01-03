@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from pyquery import PyQuery as pq
-
 from django.core.urlresolvers import reverse
+
+from pyquery import PyQuery as pq
 
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import Addon

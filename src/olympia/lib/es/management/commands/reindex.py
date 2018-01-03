@@ -2,11 +2,11 @@ import json
 import os
 import time
 
-from celery import group
-from elasticsearch.exceptions import NotFoundError
-
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+
+from celery import group
+from elasticsearch.exceptions import NotFoundError
 
 import olympia.core.logger
 

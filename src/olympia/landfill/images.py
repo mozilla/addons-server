@@ -3,9 +3,9 @@ import random
 import tempfile
 import uuid
 
-from PIL import Image, ImageColor
-
 from django.conf import settings
+
+from PIL import Image, ImageColor
 
 from olympia.addons.models import Preview
 from olympia.addons.tasks import save_theme

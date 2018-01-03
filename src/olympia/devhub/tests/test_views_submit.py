@@ -3,13 +3,13 @@ import os
 
 from datetime import datetime, timedelta
 
+from django.conf import settings
+from django.core.files import temp
+
 import mock
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
-
-from django.conf import settings
-from django.core.files import temp
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

@@ -1,12 +1,12 @@
 import datetime
 
-import jinja2
-
-from django_jinja import library
-
 from django.conf import settings
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+
+import jinja2
+
+from django_jinja import library
 
 from olympia import amo
 from olympia.access import acl

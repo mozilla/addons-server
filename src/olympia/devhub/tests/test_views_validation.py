@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.core.files.storage import default_storage as storage
+
 import mock
 import waffle
 
 from pyquery import PyQuery as pq
-
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser

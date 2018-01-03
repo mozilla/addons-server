@@ -1,6 +1,6 @@
-from django_extensions.db.fields.json import JSONField
-
 from django.db import models
+
+from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.models import ModelBase
 

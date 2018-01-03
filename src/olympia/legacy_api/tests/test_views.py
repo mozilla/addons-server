@@ -3,15 +3,15 @@ import json
 
 from textwrap import dedent
 
+from django.conf import settings
+from django.test.client import Client
+from django.utils import translation
+
 import jinja2
 import pytest
 
 from mock import patch
 from pyquery import PyQuery as pq
-
-from django.conf import settings
-from django.test.client import Client
-from django.utils import translation
 
 from olympia import amo, legacy_api
 from olympia.addons.models import (

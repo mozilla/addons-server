@@ -1,11 +1,11 @@
-from product_details import product_details
-
 from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+from product_details import product_details
 
 import olympia.core.logger
 

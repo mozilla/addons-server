@@ -1,9 +1,9 @@
 from datetime import date
 
-from celery import group
-
 from django.db import connection
 from django.db.models import Count
+
+from celery import group
 
 import olympia.core.logger
 

@@ -1,9 +1,9 @@
+from django.core.paginator import (
+    EmptyPage, InvalidPage, PageNotAnInteger, Paginator)
+
 import pytest
 
 from mock import MagicMock, Mock
-
-from django.core.paginator import (
-    EmptyPage, InvalidPage, PageNotAnInteger, Paginator)
 
 from olympia.addons.models import Addon
 from olympia.amo.pagination import ESPaginator

@@ -3,17 +3,17 @@ import json
 import random
 import re
 
-import waffle
-
-from mock import patch
-from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
+
+import waffle
+
+from mock import patch
+from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport

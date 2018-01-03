@@ -2,13 +2,13 @@ import os
 import uuid
 import zipfile
 
-import requests
-
-from django_statsd.clients import statsd
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+
+import requests
+
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 

@@ -5,11 +5,11 @@ import uuid
 
 from datetime import datetime
 
-import caching.base as caching
-
 from django.conf import settings
 from django.core.cache import cache
 from django.db import connection, models
+
+import caching.base as caching
 
 from olympia import activity, amo
 from olympia.access import acl

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from mock import Mock
-
 from django.core.exceptions import ValidationError
+
+from mock import Mock
 from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory

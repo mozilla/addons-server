@@ -3,16 +3,16 @@ import json
 from datetime import datetime, timedelta
 from urlparse import urlparse
 
-from dateutil.parser import parse
-from lxml.html import HTMLParser, fromstring
-from mock import Mock, patch
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
+
+from dateutil.parser import parse
+from lxml.html import HTMLParser, fromstring
+from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport

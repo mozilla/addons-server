@@ -1,8 +1,8 @@
+from django.test.client import RequestFactory
+
 import mock
 
 from elasticsearch import TransportError
-
-from django.test.client import RequestFactory
 
 from olympia.amo.tests import TestCase
 from olympia.search.middleware import ElasticsearchExceptionMiddleware as ESM

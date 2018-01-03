@@ -17,12 +17,6 @@ from datetime import datetime, timedelta
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
 
-import flufl.lock
-import rdflib
-import waffle
-
-from signing_clients.apps import get_signer_organizational_unit_name
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import (
@@ -30,6 +24,12 @@ from django.core.files.storage import (
 from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
+
+import flufl.lock
+import rdflib
+import waffle
+
+from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
 

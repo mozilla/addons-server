@@ -6,17 +6,17 @@ import shutil
 import tempfile
 import zipfile
 
+from django.conf import settings
+from django.core import mail
+from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
+
 import mock
 import pytest
 import responses
 
 from signing_clients.apps import SignatureInfo
 from waffle.models import Switch
-
-from django.conf import settings
-from django.core import mail
-from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.addons.models import AddonUser

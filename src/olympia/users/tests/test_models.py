@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import date, timedelta
 
-import pytest
-
 import django  # noqa
 
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
+
+import pytest
 
 import olympia  # noqa
 

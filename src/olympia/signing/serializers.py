@@ -1,6 +1,7 @@
 import json
 
 from django.core.urlresolvers import reverse
+
 from rest_framework import serializers
 
 from olympia import amo

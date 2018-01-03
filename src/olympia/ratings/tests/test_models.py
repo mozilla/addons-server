@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import mock
-
 from django.core import mail
 from django.utils import translation
+
+import mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

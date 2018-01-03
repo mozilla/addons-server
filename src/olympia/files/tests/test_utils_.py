@@ -7,14 +7,14 @@ import zipfile
 
 from datetime import timedelta
 
+from django import forms
+
 import flufl.lock
 import lxml
 import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
-
-from django import forms
 
 from olympia import amo
 from olympia.amo.tests import TestCase, create_switch
