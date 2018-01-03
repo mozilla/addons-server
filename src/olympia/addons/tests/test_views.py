@@ -1678,13 +1678,18 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
-        assert result['slug'] == 'my-addon'
+        assert result['slug'] == self.addon.slug
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         return result
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-detail', kwargs={'pk': param})
+
+    def test_detail_url_with_reviewers_in_the_url(self):
+        self.addon.update(slug='something-reviewers')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self._test_url()
 
     def test_hide_latest_unlisted_version_anonymous(self):
         unlisted_version = version_factory(
