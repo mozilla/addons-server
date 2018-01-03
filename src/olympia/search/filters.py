@@ -114,6 +114,17 @@ class AddonAuthorQueryParam(AddonQueryParam):
         return self.request.GET.get(self.query_param, '').split(',')
 
 
+class AddonGuidQueryParam(AddonQueryParam):
+    # Note: this returns add-ons that match a guid when several are provided
+    # (separated by a comma).
+    operator = 'terms'
+    query_param = 'guid'
+    es_field = 'guid'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '').split(',')
+
+
 class AddonPlatformQueryParam(AddonQueryParam):
     query_param = 'platform'
     reverse_dict = amo.PLATFORM_DICT
@@ -398,7 +409,7 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
                          AddonAuthorQueryParam, AddonCategoryQueryParam,
-                         AddonFeaturedQueryParam,
+                         AddonGuidQueryParam, AddonFeaturedQueryParam,
                          AddonPlatformQueryParam, AddonTagQueryParam,
                          AddonTypeQueryParam]
 
