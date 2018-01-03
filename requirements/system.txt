@@ -81,9 +81,8 @@ idna==2.6 \
     --hash=sha256:8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4 \
     --hash=sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f
 # ipaddress is required by cryptography, docker-py
-ipaddress==1.0.18 \
-    --hash=sha256:d34cf15d95ce9a734560f7400a8bd2ac2606f378e2a1d0eadbf1c98707e7c74a \
-    --hash=sha256:5d8534c8e185f2d8a1fda1ef73f2c8f4b23264e8e30063feeb9511d492a413e1
+ipaddress==1.0.19 \
+    --hash=sha256:200d8686011d470b5e4de207d803445deee427455cd0cb7c982b68cf82524f81
 ndg-httpsclient==0.4.3 \
     --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
     --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
@@ -123,9 +122,9 @@ pyparsing==2.2.0 \
     --hash=sha256:8f1e18d3fd36c6795bb7e02a39fd05c611ffc2596c1e0d995d34d67630426c18 \
     --hash=sha256:e4d45427c6e20a59bf4f88c639dcc03ce30d193112047f94012102f235853a58
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==38.2.4 \
-    --hash=sha256:ca69216173b631cc29314bbce4d0b7e8a69784c8b6d7ea6b9e4952ac9ec0897d \
-    --hash=sha256:9c671a6291a5b1171fb9da81665eb4f9625c7dbddc613d82abdc6002a4bce896
+setuptools==38.2.5 \
+    --hash=sha256:bcf0d4f3e2f7890e658db11e218b8643afffb905a0e2f2a7d5a6a3e949bb87e6 \
+    --hash=sha256:b080f276cc868670540b2c03cee06cc14d2faf9da7bec0f15058d1b402c94507
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \

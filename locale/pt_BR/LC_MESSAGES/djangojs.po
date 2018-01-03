@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-08-27 16:08+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2017-12-23 22:46+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgid "Finished validating {0}"
 msgstr "Validação de {0} concluída"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "O tempo para validação da extensão esgotou, ela será avaliada manualmente."
+msgstr "A validação da sua extensão expirou, ela será analisada manualmente."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -804,10 +804,10 @@ msgid "Review notes found"
 msgstr "Notas de análises encontradas"
 
 msgid "Average Reviews"
-msgstr "Média de avaliações"
+msgstr "Pontuação média"
 
 msgid "Number of Reviews"
-msgstr "Número de avaliações"
+msgstr "Número de análises"
 
 msgid "Requested Info"
 msgstr "Informações solicitadas"

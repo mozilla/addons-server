@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-12 22:27+0000\n"
+"PO-Revision-Date: 2017-12-16 21:25+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -620,13 +620,11 @@ msgstr "Licencia pre zdrojový kód doplnku {addon}"
 msgid "Source Code License"
 msgstr "Licencia pre zdrojový kód"
 
-#, fuzzy
 msgid "support section"
-msgstr "Stránka podpory"
+msgstr "sekcia podpory"
 
-#, fuzzy
 msgid "support email"
-msgstr "E-mail podpory:"
+msgstr "e-mail podpory"
 
 msgid "permalink"
 msgstr "permanentný odkaz"
@@ -794,10 +792,9 @@ msgstr ""
 msgid "Oops"
 msgstr "Ups"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
-"<h1>Ups! Vyskytla sa chyba.</h1> <p>Pokúsime sa ju čím skôr opraviť.</p> <p>Môžete skúsiť znova načítať túto stránku alebo prejdite na <a href=\"%(home)s\">domovskú stránku Mozilla Add-ons</a>.</p>"
+msgstr "<h1>Ups!  Vyskytla sa chyba.</h1> <p>Pokúsime sa ju čím skôr opraviť.</p> <p> Môžete skúsiť znova načítať túto stránku alebo prejdite na <a href=\"%(home)s\">domovskú stránku Doplnkov</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Niektoré práva vyhradené"
@@ -2114,11 +2111,10 @@ msgid "Plugin"
 msgstr "Zásuvný modul"
 
 msgid "Theme"
-msgstr "Téma"
+msgstr "Téma vzhľadu"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Detaily o téme"
+msgstr "Téma vzhľadu (statická)"
 
 msgid "Complete Themes"
 msgstr "Plné témy vzhľadu"
@@ -2137,9 +2133,8 @@ msgstr "Jazykové balíčky (doplnok)"
 msgid "Plugins"
 msgstr "Zásuvné moduly"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Autor tém"
+msgstr "Témy vzhľadu (statické)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2842,7 +2837,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
 
 msgid "Accept"
-msgstr ""
+msgstr "Prijať"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
@@ -3927,9 +3922,8 @@ msgstr "Ďalšie informácie nájdete na našom blogu"
 msgid "Resources"
 msgstr "Zdroje"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Hodnotenie"
+msgstr "Portovanie"
 
 msgid "Community"
 msgstr "Komunita"
@@ -3947,9 +3941,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kontaktujte nás"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Zásady tvorby a správy doplnkov"
+msgstr "Zásady"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -3969,7 +3962,7 @@ msgid "Compatibility Checker"
 msgstr "Kontrola kompatibility doplnku"
 
 msgid "Promote"
-msgstr ""
+msgstr "Propagácia"
 
 # 82%
 #, fuzzy
@@ -4025,12 +4018,11 @@ msgstr "Správa vášho doplnku"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Odporúčané doplnky"
+msgstr "Aktualizujte svoje zastarané rozšírenie"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
+msgstr "Firefox odteraz podporuje nový štandard doplnkov, ktorý je kompatibilný naprieč prehliadačmi. Aby zostali vaše doplnky kompatibilné, musíte ich aktualizovať."
 
 msgid "Learn How"
 msgstr "Ďalšie informácie"
@@ -4041,9 +4033,8 @@ msgstr "Čo je nové"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Zobraziť všetky"
+msgstr "Zobraziť návod"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4114,7 +4105,7 @@ msgid "Sign In"
 msgstr "Prihlásiť sa"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4122,12 +4113,11 @@ msgstr ""
 msgid "Automated code tests for your add-on."
 msgstr "Automatické testy kódu vášho doplnku."
 
-#, fuzzy
 msgid "Compatibility Test"
 msgstr "Testy kompatibility"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Overte si, či je vaše rozšírenie kompatibilné s Firefoxom."
 
 msgid "Transfer ownership"
 msgstr "Presun vlastníctva"
@@ -4337,9 +4327,8 @@ msgstr "Upraviť túto verziu"
 msgid "0 files"
 msgstr "0 súborov"
 
-#, fuzzy
 msgid "Re-enable Version"
-msgstr "Verzia pre tlač"
+msgstr "Opätovne povoliť verziu"
 
 #, fuzzy
 msgid "Close Review History"
@@ -4351,9 +4340,8 @@ msgstr "Nie je overená."
 msgid "Validate now."
 msgstr "Overiť teraz"
 
-#, fuzzy
 msgid "Request Review"
-msgstr "Požiadať o riadnu kontrolu"
+msgstr "Požiadať o kontrolu"
 
 msgid "Cancel Review Request"
 msgstr "Zrušiť požiadavku o kontrolu"
@@ -4515,10 +4503,10 @@ msgid "Access your data for all websites"
 msgstr "Prístup k údajom pre všetky webové stránky"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Pre Firefox 47 a nižší je vyžadované GUID."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Najnižšia možná hodnota \"strict_min_version\" je 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
@@ -4678,7 +4666,7 @@ msgid "This file is a directory."
 msgstr "Tento súbor je priečinok."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Verzia API {0:.1f}, ktorú používate, nie je platná. Prosím, aktualizujte na súčasnú verziu API {1:.1f}."
 
 msgid "Not implemented yet."
 msgstr "Zatiaľ nie je implementované."
@@ -6287,16 +6275,14 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Pridajte komentár k tejto verzii. Vývojár ho neuvidí."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Schváliť / Zamietnuť"
+msgstr "Schváliť obsah"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Moje doplnky"
+msgstr "Zastarané doplnky"
 
 #, fuzzy
 msgid "New Add-ons ({0})"
@@ -6435,9 +6421,8 @@ msgstr "Vyžaduje platbu"
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Stav schválenia"
+msgstr "Dátum posledného schválenia"
 
 #, fuzzy
 msgid "Abuse Reports ({num})"
@@ -7339,9 +7324,8 @@ msgid "Choose a category"
 msgstr "Výber kategórie"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Nová webová stránka funguje na mobiloch i počítačoch"
 
-#, fuzzy
 msgid "View the new site"
 msgstr "Navštívte novú stránku"
 

@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-03 15:48+0000\n"
-"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2017-12-16 21:16+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1012,7 +1012,7 @@ msgid "Give your collection a name."
 msgstr "Poimenujte svojo zbirko."
 
 msgid "URL:"
-msgstr "URL:"
+msgstr "Spletni naslov:"
 
 msgid "Describe your collection (no links allowed)."
 msgstr "Opišite svojo zbirko (povezave niso dovoljene)."
@@ -1030,7 +1030,7 @@ msgid "This name cannot be used."
 msgstr "Tega imena ne morete uporabiti."
 
 msgid "This url is already in use by another collection"
-msgstr "Ta url že uporablja druga zbirka"
+msgstr "Ta spletni naslov že uporablja druga zbirka"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikone morajo biti bodisi PNG ali JPG."
@@ -1673,7 +1673,7 @@ msgstr "Ogled vseh najbolje ocenjenih"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Več kot 300,000 dizajnov, s katerimi si lahko preoblečete svoj brskalnik! Premaknite miško prek teme za ozadje, da si jo ogledate. <a href=\"%(url)s\" class=\"more-info\">Začnite raziskovati</a>"
+msgstr "Več kot 300&thinsp;000 videzov, s katerimi lahko preoblečete svoj brskalnik! Premaknite miško prek teme za ozadje, da si jo ogledate. <a href=\"%(url)s\" class=\"more-info\">Začnite raziskovati</a>"
 
 msgid "Want more personalization?"
 msgstr "Želite večjo prilagodljivost?"
@@ -2749,10 +2749,10 @@ msgid "Add-on deleted."
 msgstr "Dodatek izbrisan."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "Ime URL-ja je nepravilno. Tema ni bila izbrisana."
+msgstr "Nepravilno ime spletnega naslova. Tema ni bila izbrisana."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "Ime URL-ja je nepravilno. Dodatek ni bil izbrisan."
+msgstr "Nepravilno ime spletnega naslova. Dodatek ni bil izbrisan."
 
 msgid "An author has been added to your add-on"
 msgstr "Vašemu dodatku je bil dodan avtor"
@@ -3040,10 +3040,10 @@ msgid "Basic Information for {0}"
 msgstr "Osnovni podatki za {0}"
 
 msgid "Add-on URL"
-msgstr "URL za dodatek"
+msgstr "Spletni naslov dodatka"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Izberite kratko, enolično URL rekleto za vaš dodatek."
+msgstr "Izberite kratko, enolično rekleto za spletni naslov vašega dodatka."
 
 msgid "View Listing"
 msgstr "Prikaži stran"
@@ -3499,10 +3499,10 @@ msgid "Describe Add-on"
 msgstr "Opišite dodatek"
 
 msgid "Add-on URL:"
-msgstr "URL dodatka:"
+msgstr "Spletni naslov dodatka:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "V URL-ju uporabljajte prosim le črke, številke, podčrtaje in vezaje."
+msgstr "V spletnem naslovu uporabljajte le črke, številke, podčrtaje in vezaje."
 
 msgid "Summary:"
 msgstr "Povzetek:"
@@ -4117,7 +4117,7 @@ msgid "Theme Details"
 msgstr "Podrobnosti o temi"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr "Poskrbite za čeden URL-naslov za stran s podrobnostmi."
+msgstr "Poskrbite za čeden spletni naslov za stran s podrobnostmi."
 
 # 86%
 msgid "Select the category that best describes your Theme."
@@ -4851,7 +4851,7 @@ msgstr "Obstaja veliko načinov, da ostanete na tekočem z novicami iz sveta dod
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr "Naš <a href=\"%(url)s\">blog dodatkov</a> je redno posodobljen z informacijami za navdušence za dodatke in za razvijalce."
+msgstr "Naš <a href=\"%(url)s\">blog dodatkov</a> je vedno poln svežih informacij za navdušence nad dodatki in za razvijalce."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -6814,7 +6814,7 @@ msgid "Field required"
 msgstr "Obvezno polje"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr "Vnesite ID ali URL duplikata"
+msgstr "Vnesite ID ali spletni naslov dvojnika"
 
 msgid "Select a reason for rejection"
 msgstr "Izberite razlog za zavrnitev"
@@ -7601,7 +7601,7 @@ msgid "Give us a bit more information about yourself. All these fields are optio
 msgstr "Povejte nam kaj več o sebi.  Vsa ta polja sicer niso obvezna, vendar pa bodo pomagala drugim uporabnikom, da vas bolje spoznajo."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr "Ta URL bo viden samo, če ste razvijalec."
+msgstr "Ta spletni naslov bo viden samo, če ste razvijalec."
 
 msgid "Choose Photo&hellip;"
 msgstr "Izberite sliko &hellip;"
