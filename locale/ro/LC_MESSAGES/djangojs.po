@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-11-26 15:43+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"PO-Revision-Date: 2017-08-12 15:17+0000\n"
+"Last-Translator: tudor.croitoru <tudor.croitoru@icloud.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -59,9 +59,9 @@ msgstr[2] ""
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "&hellip;și încă {0}"
+msgstr[1] "&hellip;și încă {0}"
+msgstr[2] "&hellip;și încă {0}"
 
 msgid "See full validation report"
 msgstr ""
@@ -208,7 +208,7 @@ msgid "Search apps for <b>{0}</b>"
 msgstr ""
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Caută suplimente pentru <b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
@@ -272,7 +272,7 @@ msgid "Add-ons Downloaded"
 msgstr "Suplimente descărcate"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Suplimente actualizate"
 
 msgid "Reviews Written"
 msgstr ""
@@ -281,7 +281,7 @@ msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonați"
 
 msgid "Ratings"
 msgstr "Evaluări"
@@ -290,13 +290,13 @@ msgid "Sales"
 msgstr ""
 
 msgid "Installs"
-msgstr ""
+msgstr "Instalări"
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Managerul de suplimente"
 
 msgid "Add-ons Manager Promo"
 msgstr ""

@@ -209,9 +209,11 @@ class AutoApprovedTable(ReviewerQueueTable):
         return super(AutoApprovedTable, self).render_flags(
             record.current_version)
 
-    def render_addon_name(self, record, url=None):
-        if url is None:
-            url = reverse('reviewers.review', args=[record.slug])
+    def _get_addon_name_url(self, record):
+        return reverse('reviewers.review', args=[record.slug])
+
+    def render_addon_name(self, record):
+        url = self._get_addon_name_url(record)
         return u'<a href="%s">%s <em>%s</em></a>' % (
             url, jinja2.escape(record.name),
             jinja2.escape(record.current_version))
@@ -246,10 +248,8 @@ class ContentReviewTable(AutoApprovedTable):
                    'weight')
         orderable = False
 
-    def render_addon_name(self, record):
-        url = reverse('reviewers.review', args=['content', record.slug])
-        return super(ContentReviewTable, self).render_addon_name(
-            record, url=url)
+    def _get_addon_name_url(self, record):
+        return reverse('reviewers.review', args=['content', record.slug])
 
 
 class ReviewHelper(object):

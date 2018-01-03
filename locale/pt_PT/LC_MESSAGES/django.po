@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 23:01+0000\n"
+"PO-Revision-Date: 2017-12-27 18:18+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3876,7 +3876,7 @@ msgid "Blog"
 msgstr "Blogue"
 
 msgid "Contact Us"
-msgstr "Contacte-nos"
+msgstr "Contactar-nos"
 
 msgid "Policies"
 msgstr "Políticas"
@@ -3902,7 +3902,7 @@ msgstr "Promover"
 
 # 82%
 msgid "Get Your Add-on Featured"
-msgstr "Tenha o seu extra em destaque"
+msgstr "Ter o seu extra em destaque"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Botão \"Obter o extra\""
@@ -3945,7 +3945,7 @@ msgstr "Ver como"
 
 # 82%
 msgid "Manage Your Add-on"
-msgstr "Gerir o seu extra"
+msgstr "Gira o seu extra"
 
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Iniciar sessão para editar e atualizar o seu extra"
@@ -4002,7 +4002,7 @@ msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a
 msgstr "<a href=\"%(register)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessão</a>"
 
 msgid "Customize Firefox"
-msgstr "Personalizar o Firefox"
+msgstr "Personalize o Firefox"
 
 #, python-format
 msgid ""
@@ -4013,10 +4013,10 @@ msgstr ""
 "%(css_link_open)sCSS%(link_close)s, então já tem todas as capacidades necessárias para fazer um ótimo extra."
 
 msgid "Learn How to Make an Add-on"
-msgstr "Aprenda a fazer um extra"
+msgstr "Aprender a fazer um extra"
 
 msgid "Port a Chrome Extension"
-msgstr "Portar uma extensão Chrome"
+msgstr "Porte uma extensão Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -4025,7 +4025,7 @@ msgstr ""
 "executadas no Firefox com apenas algumas alterações."
 
 msgid "Publish Your Add-on"
-msgstr "Publicar o seu extra"
+msgstr "Publique o seu extra"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Possui um extra pronto? Submeta a sua extensão ou tema para ser listado em addons.mozilla.org ou assine e distribua a sua extensão por si próprio."
