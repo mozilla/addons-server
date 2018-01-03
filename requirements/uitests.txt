@@ -34,9 +34,9 @@ pytest-selenium==1.11.3 \
 pytest-variables==1.7.0 \
     --hash=sha256:d333e1df272f9ef4bf45d8665ee46a4901b11ab52bf661e83174f42f2f83df39 \
     --hash=sha256:61a6098175a59af5dbabf4c93ceee81a75f045868078903c44e2edb9582d5d6e
-pytest-xdist==1.20.1 \
-    --hash=sha256:997ed2d6ed487fc41e16b5a0d00b944574a2f635375ee7fbea6a1d6b3876e2cd \
-    --hash=sha256:433e82f9b34986a4e4b2be38c60e82cca3ac64b7e1b38f4d8e3e118292939712
+pytest-xdist==1.21.0 \
+    --hash=sha256:74b18cc78abb334bfaaac223d82565be1ebcecf85c66a3cabe3ede8f86e16943 \
+    --hash=sha256:0b8622435e3c0650a8d5a07b73a7f9c4f79b52d7ed060536a6041f0da423ba8e
 selenium==3.8.0 \
     --hash=sha256:af448c15b3225056cd406b435cda10bfcee250460a4811e4fd8b21be9f61626c \
     --hash=sha256:3af07d7a4b5d523540fa4f32902b9dec15e0379862406aef974729f42411053d
