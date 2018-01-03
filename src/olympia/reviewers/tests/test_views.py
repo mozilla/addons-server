@@ -2054,8 +2054,8 @@ class BaseTestQueueSearch(SearchTest):
         addon = Addon.objects.get(pk=generated.id)
         addon.name = {'ja': uni}
         addon.save()
-        response = self.client.get('/ja/' + self.url, {'text_query': uni},
-                                   follow=True)
+        self.url = self.url.replace('/en-US/', '/ja/')
+        response = self.client.get(self.url, {'text_query': uni}, follow=True)
         assert response.status_code == 200
         assert self.named_addons(response) == [name]
 
@@ -2084,8 +2084,8 @@ class BaseTestQueueSearch(SearchTest):
         addon = Addon.objects.get(pk=generated.id)
         addon.support_email = {'ja': uni}
         addon.save()
-        response = self.client.get('/ja/' + self.url, {'text_query': uni},
-                                   follow=True)
+        self.url = self.url.replace('/en-US/', '/ja/')
+        response = self.client.get(self.url, {'text_query': uni}, follow=True)
         assert response.status_code == 200
         assert self.named_addons(response) == [name]
 
