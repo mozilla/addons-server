@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 12:07+0000\n"
+"PO-Revision-Date: 2018-01-04 11:37+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3032,7 +3032,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Dizze add-on fereasket betelling, net-fergese tsjinsten of software, of oanfoljende hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Dizze add-on fereasket gjin oanfoljende betellingen, net-fergese tsjinsten of software, of oanfoljende hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Kategoryen binne de ferneamdste manier wêrop brûkers troch add-ons blêdzje. Kies der ien dy't de funksjonaliteit fan jo add-on yn de measte gefallen beskriuwt."
@@ -3067,7 +3067,7 @@ msgid "Contributions URL"
 msgstr "Bydragen-URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "As jo om jildlike bydragen fan jo brûkers freegje wolle, stel dit dan yn op in side wêrop se dy leverje kinne."
 
 msgid "Add-on Details"
 msgstr "Add-ondetails"
@@ -3407,13 +3407,13 @@ msgid "Delete this theme."
 msgstr "Dit tema fuortmsite."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Dizze add-on mist wat fereaske ynformaasje eardat dizze foar publikaasje yntsjinne wurde kin."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Dizze add-on hat gjin ferzjes."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Dizze add-on hat gjin goedkarre ferzjes, dus de iepenbiere siden derfan (ynklusyf bètaferzjes) binne ferburgen."
 
 msgid "Status:"
 msgstr "Steat:"
@@ -3518,7 +3518,7 @@ msgid "Version Submitted"
 msgstr "Ferzje ynstjinne"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Jo binne klear! Dizze ferzje wurdt ynkoarten op ús website beskikber."
 
 msgid "Version Submitted for Review"
 msgstr "Ferzje yntsjinne foar beoardieling"
@@ -3611,7 +3611,7 @@ msgid "required"
 msgstr ""
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Ofbyldingshichte moat 200 pixels wêze"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr ""
