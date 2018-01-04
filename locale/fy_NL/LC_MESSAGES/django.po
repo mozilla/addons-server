@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2018-01-04 11:37+0000\n"
+"PO-Revision-Date: 2018-01-04 11:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3614,7 +3614,7 @@ msgid "Image height should be 200 pixels"
 msgstr "Ofbyldingshichte moat 200 pixels wêze"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG of GIF (net animearre)"
 
 msgid "Aligned to top-right"
 msgstr "Rjochtsboppe útline"
@@ -3626,40 +3626,40 @@ msgid "Select colors for your Theme."
 msgstr "Selektearje kleuren foar jo tema."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Eftergrûn fan headergebied (aksintkleur)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Tekst fan headergebied (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "De kleur fan de tekst dy't werjûn wurdt yn it headergebied."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Eftergrûn fan arkbalkegebied (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Tekst fan arkbalkegebied (toolbar_text)."
 
 msgid "The color of toolbar text."
 msgstr "De kleur fan de ljepblêdtekst."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Eftergrûn fan arkbalkefjildgebied (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Tekst arkbalkefjildgebied (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke"
 
 msgid "optional"
 msgstr "opsjoneel"
@@ -3668,7 +3668,7 @@ msgid "Browser Preview"
 msgstr "Browserfoarbyld"
 
 msgid "Back"
-msgstr ""
+msgstr "Tebek"
 
 msgid "Uploading Theme"
 msgstr "Tema oplade"
@@ -3716,7 +3716,7 @@ msgid "Invisible"
 msgstr "Net sichtber"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Foltôgje jo add-on troch in ferzje of ûntbrekkende metagegevens ta te foegjen."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Jo ûntfange in e-mailberjocht as de beoardieling is foltôge. Oant dy tiid wurdt jo add-on net fermeld yn ús galery mar kinne jo him streekrjocht fan de detailside ôf benaderje. "
@@ -3744,7 +3744,7 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "De kompatibiliteit fan jo add-on mei Multiproses-Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
 
 msgid "Listed Version:"
 msgstr "Fermelde ferzje:"
@@ -3769,7 +3769,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s fan %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Undertekene foar eigen distribúsje. Fernijingen wurde troch jo fersoarge."
 
 msgid "Latest Version:"
 msgstr "Nijste ferzje:"
@@ -3918,7 +3918,7 @@ msgid "Review Add-ons"
 msgstr "Add-ons beoardiele"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Frijwillige oersetters helpe by it feilich en betrouber hâlden fan add-ons. En se krije geweldige foardielen!"
 
 msgid "Join us!"
 msgstr "Doch mei!"
@@ -3927,7 +3927,7 @@ msgid "Write Some Code"
 msgstr "Wat koade skriuwe"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Help add-ons te ferbetterjen troch jo koadefeardichheden yn te setten."
 
 msgid "Get started"
 msgstr "Begjinne"
@@ -3936,7 +3936,7 @@ msgid "More Ways to Participate"
 msgstr "Mear manieren om mei te dwaan"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Jo hawwe gjin koadefeardichheden nedich om Firefox de meast oanpasbere browser dy't te krijen is te helpen hâlden!"
 
 msgid "See how"
 msgstr "Lês hoe"
