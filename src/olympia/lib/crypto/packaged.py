@@ -119,7 +119,7 @@ def call_signing(file_obj):
     cert_serial_num = get_signer_serial_number(pkcs7)
 
     # We only want the (unique) temporary file name.
-    with tempfile.NamedTemporaryFile() as temp_file:
+    with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as temp_file:
         temp_filename = temp_file.name
 
     jar.make_signed(

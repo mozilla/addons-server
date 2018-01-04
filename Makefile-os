@@ -20,22 +20,22 @@ help_submake:
 	@echo "  update_docker     to update a docker image"
 
 test:
-	docker-compose exec web py.test $(APP) $(ARGS)
+	docker-compose exec web pytest $(APP) $(ARGS)
 
 test_es:
-	docker-compose exec web py.test -m es_tests $(APP) $(ARGS)
+	docker-compose exec web pytest -m es_tests $(APP) $(ARGS)
 
 test_no_es:
-	docker-compose exec web py.test -m "not es_tests" $(APP) $(ARGS)
+	docker-compose exec web pytest -m "not es_tests" $(APP) $(ARGS)
 
 test_force_db:
-	docker-compose exec web py.test --create-db $(APP) $(ARGS)
+	docker-compose exec web pytest --create-db $(APP) $(ARGS)
 
 tdd:
-	docker-compose exec web py.test -x --pdb $(ARGS) $(APP)
+	docker-compose exec web pytest -x --pdb $(ARGS) $(APP)
 
 test_failed:
-	docker-compose exec web py.test --lf $(ARGS) $(APP)
+	docker-compose exec web pytest --lf $(ARGS) $(APP)
 
 update_docker:
 	docker-compose exec worker make update_deps

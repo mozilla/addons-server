@@ -506,12 +506,14 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     """
     from validator.validate import validate
 
-    apps = dump_apps.Command.JSON_PATH
+    apps = dump_apps.Command.get_json_path()
 
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    with NamedTemporaryFile(suffix='_' + os.path.basename(path)) as temp:
+    suffix = '_' + os.path.basename(path)
+
+    with NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH) as temp:
         if path and not os.path.exists(path) and storage.exists(path):
             # This file doesn't exist locally. Write it to our
             # currently-open temp file and switch to that path.
@@ -555,7 +557,9 @@ def run_addons_linter(path, listed=True):
             'Path "{}" is not a file or directory or does not exist.'
             .format(path))
 
-    stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+    stdout, stderr = (
+        tempfile.TemporaryFile(dir=settings.TMP_PATH),
+        tempfile.TemporaryFile(dir=settings.TMP_PATH))
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(

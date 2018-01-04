@@ -226,7 +226,7 @@ class TestIconForm(TestCase):
     # so this isn't necessary
     def setUp(self):
         super(TestIconForm, self).setUp()
-        self.temp_dir = tempfile.mkdtemp()
+        self.temp_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
         self.addon = Addon.objects.get(pk=3615)
 
         class DummyRequest:
