@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2018-01-04 11:49+0000\n"
+"PO-Revision-Date: 2018-01-04 12:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3960,7 +3960,7 @@ msgid "What's New"
 msgstr "Wat is nij"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Klear om in add-on yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
 
 msgid "See Tutorial"
 msgstr "Hantlieding besjen"
@@ -4033,7 +4033,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "In opdrachtrigelhelpprogramma foar it bouwen, útfieren en testen fan útwreidingen."
 
 msgid "Automated code tests for your add-on."
 msgstr "Automatisearre koadetests foar jo add-on."
@@ -4042,7 +4042,7 @@ msgid "Compatibility Test"
 msgstr "Kompatibiliteitstests"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Kontrolearje oft jo útwreiding kompatibel is mei Firefox."
 
 msgid "Transfer ownership"
 msgstr "Eigendom oerdrage"
@@ -4362,7 +4362,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Binne jo wis dat jo jo add-on ferstopje wolle?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Troch jo beoardielingsfersyk te annulearjen, wurdt jo add-on as net folslein markearre, en wurde eventuele op beoardieling wachtsjende ferzjes útskeakele."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bine jo wis dat jo jo beoardielingsfersyk annulearje wolle?"
@@ -4388,25 +4388,25 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "In ljochtgewicht en effektive adblocker. uBlock Origin hantearret tûzenen ynhâldsfilters sûnder grut beslach op ûnthâldromte te lizzen."
 
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Behear wachtwurden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Ferienfâldigje en syngronisearje al jo oanmeldgegevens foar websites tusken ferskate apparaten mei ien wachtwurd dat alle oare wachtwurden behearst."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Genietsje fan in pakket nije YouTube-funksjes, lykas bioskoopmodus, advertinsjeblokkearring, behear foar automatysk ôfspyljen en mear."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Tsientallen geweldige emoji’s – altyd fia ien mûsklik."
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -4438,7 +4438,7 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Unjildige bestânsnamme yn argyf. Soargje derfoar dat alle bestânsnammen utf-8- of latin1-kodearre binne."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4484,7 +4484,7 @@ msgstr ""
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Ferzje: %(version)s &bull; Grutte: %(size)s &bull; SHA256-hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Bestânsfergeliking :: Beoardielershelpmiddelen"
@@ -4500,7 +4500,7 @@ msgstr "Bestânsynhâld wurdt net stipe foar syntaksismarkearring"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "De útfier kin skansearre wêze, wês foarsichtich en %(link_start)smeld in probleem%(link_end)s daliks!"
 
 msgid "Add-on file being processed, please wait."
 msgstr ""
@@ -4757,6 +4757,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"De hjir fermelde add-ons binne makke troch tûzenen ûntwikkelers út ús mienskip, fariearjend fan yndividuele hobbyisten oant grutte bedriuwen. Alle iepenlik fermelde add-ons wurde beoardiele troch in"
+" team fan beoardielers eardat se frijjûn wurde. As Eksperiminteel markearre add-ons binne net beoardiele en moatte allinnich mei omtinken ynstallearre wurde."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr ""
