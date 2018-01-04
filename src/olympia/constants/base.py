@@ -424,3 +424,6 @@ ADDON_GUID_PATTERN = re.compile(
     # guids. Copied from mozilla-central XPIProvider.jsm.
     r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
     r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
+
+SYSTEM_ADDON_GUIDS = (
+    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org')

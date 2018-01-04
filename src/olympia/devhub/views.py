@@ -728,9 +728,11 @@ def json_upload_detail(request, upload, addon_slug=None):
                     ugettext(u'You cannot submit this type of add-on'))
             if not addon and not system_addon_submission_allowed(
                     request.user, pkg):
+                guids = ' or '.join(
+                    '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
                 raise django_forms.ValidationError(
                     ugettext(u'You cannot submit an add-on with a guid '
-                             u'ending "@mozilla.org"'))
+                             u'ending %s' % guids))
             if not mozilla_signed_extension_submission_allowed(
                     request.user, pkg):
                 raise django_forms.ValidationError(
