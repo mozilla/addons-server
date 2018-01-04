@@ -1149,8 +1149,10 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'] == [
-            {u'tier': 1, u'message': u'You cannot submit an add-on with a '
-                                     u'guid ending "@mozilla.org"',
+            {u'tier': 1,
+             u'message': u'You cannot submit an add-on with a guid ending '
+                         u'"@mozilla.org" or "@shield.mozilla.org" or '
+                         u'"@pioneer.mozilla.org"',
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')

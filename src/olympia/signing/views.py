@@ -138,9 +138,11 @@ class VersionView(APIView):
 
         if not addon and not system_addon_submission_allowed(
                 request.user, pkg):
+            guids = ' or '.join(
+                    '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
             raise forms.ValidationError(
                 ugettext(u'You cannot submit an add-on with a guid ending '
-                         u'"@mozilla.org"'),
+                         u'%s' % guids),
                 status.HTTP_400_BAD_REQUEST)
 
         if not mozilla_signed_extension_submission_allowed(request.user, pkg):
