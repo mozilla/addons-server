@@ -1346,11 +1346,18 @@ class TestCollectionViewSetList(TestCase):
         col_a = collection_factory(author=self.user)
         col_b = collection_factory(author=self.user)
         col_c = collection_factory(author=self.user)
-        col_a.update(modified=self.days_ago(3))
-        col_b.update(modified=self.days_ago(1))
-        col_c.update(modified=self.days_ago(6))
         collection_factory(author=user_factory())  # Not our collection.
         Collection.objects.all().count() == 4
+        addon = addon_factory()
+        addon2 = addon_factory()
+        CollectionAddon.objects.create(collection=col_a, addon=addon)
+        CollectionAddon.objects.create(collection=col_b, addon=addon2)
+        CollectionAddon.objects.create(collection=col_c, addon=addon)
+
+        # Reset modified date to ensure ordering.
+        col_a.update(modified=self.days_ago(1))
+        col_b.update(modified=self.days_ago(2))
+        col_c.update(modified=self.days_ago(3))
 
         self.client.login_api(self.user)
         response = self.client.get(self.url, {'has_addon': 42})
@@ -1359,6 +1366,16 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][0]['has_addon'] is False
         assert response.data['results'][1]['has_addon'] is False
         assert response.data['results'][2]['has_addon'] is False
+
+        response = self.client.get(self.url, {'has_addon': addon.pk})
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+        assert response.data['results'][0]['uuid'] == col_a.uuid
+        assert response.data['results'][0]['has_addon'] is True
+        assert response.data['results'][1]['uuid'] == col_b.uuid
+        assert response.data['results'][1]['has_addon'] is False
+        assert response.data['results'][2]['uuid'] == col_c.uuid
+        assert response.data['results'][2]['has_addon'] is True
 
     def test_has_addon_not_int(self):
         self.client.login_api(self.user)
