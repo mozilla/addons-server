@@ -1360,6 +1360,13 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['has_addon'] is False
         assert response.data['results'][2]['has_addon'] is False
 
+    def test_has_addon_not_int(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'has_addon': u'holà'})
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'has_addon parameter should be an integer.'}
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
