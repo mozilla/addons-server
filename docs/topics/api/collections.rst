@@ -18,9 +18,9 @@ List
 This endpoint allows you to list all collections authored by the specified user.
 The results are sorted by the most recently updated collection first.
 
-
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
 
+    :query int has_addon: Optional add-on id parameter allowing you to check if a given add-on is part of the collections being returned. When passed, each collection object in the results will have an extra `has_addon` boolean property indicating whether the add-on is present in this collection or not.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.

@@ -1281,6 +1281,9 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
+        assert 'has_addon' not in response.data['results'][0]
+        assert 'has_addon' not in response.data['results'][1]
+        assert 'has_addon' not in response.data['results'][2]
 
     def test_no_auth(self):
         collection_factory(author=self.user)
@@ -1339,6 +1342,24 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['uuid'] == col_a.uuid
         assert response.data['results'][2]['uuid'] == col_c.uuid
 
+    def test_has_addon(self):
+        col_a = collection_factory(author=self.user)
+        col_b = collection_factory(author=self.user)
+        col_c = collection_factory(author=self.user)
+        col_a.update(modified=self.days_ago(3))
+        col_b.update(modified=self.days_ago(1))
+        col_c.update(modified=self.days_ago(6))
+        collection_factory(author=user_factory())  # Not our collection.
+        Collection.objects.all().count() == 4
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'has_addon': 42})
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+        assert response.data['results'][0]['has_addon'] is False
+        assert response.data['results'][1]['has_addon'] is False
+        assert response.data['results'][2]['has_addon'] is False
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1355,6 +1376,7 @@ class TestCollectionViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
+        assert 'has_addon' not in response.data
 
     def test_not_listed(self):
         self.collection.update(listed=False)

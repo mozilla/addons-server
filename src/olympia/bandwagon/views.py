@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST
 import caching.base as caching
 
 from django_statsd.clients import statsd
+from rest_framework.exceptions import ParseError
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
@@ -679,9 +680,22 @@ class CollectionViewSet(ModelViewSet):
         return self.account_viewset
 
     def get_queryset(self):
-        return Collection.objects.filter(
+        qs = Collection.objects.filter(
             author=self.get_account_viewset().get_object()).order_by(
             '-modified')
+        if 'has_addon' in self.request.GET and self.action == 'list':
+            # When listing collections belonging to someone, you can pass an
+            # addon id and we'll expose whether or not the add-on is part of
+            # each collection returned. No checks are made to see whether the
+            # add-on is public, but we're only revealing that it's part of a
+            # collection, and you need to be the collection author or an admin
+            # to access this anyway.
+            try:
+                addon_id = int(self.request.GET.get('has_addon'))
+            except ValueError:
+                raise ParseError('has_addon parameter should be an integer.')
+            qs = qs.with_has_addon(addon_id)
+        return qs
 
 
 class CollectionAddonViewSet(ModelViewSet):
