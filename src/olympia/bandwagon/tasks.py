@@ -79,7 +79,7 @@ def collection_meta(*ids, **kw):
                           .annotate(Count('id')))
     tags = (Tag.objects.not_denied().values_list('id')
             .annotate(cnt=Count('id')).filter(cnt__gt=1).order_by('-cnt'))
-    for collection in Collection.objects.no_cache().filter(id__in=ids):
+    for collection in Collection.objects.filter(id__in=ids):
         addon_count = counts.get(collection.id, 0)
         all_personas = addon_count == persona_counts.get(collection.id, None)
         addons = list(collection.addons.values_list('id', flat=True))

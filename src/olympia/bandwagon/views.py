@@ -12,8 +12,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 
-import caching.base as caching
-
 from django_statsd.clients import statsd
 from rest_framework.exceptions import ParseError
 from rest_framework.viewsets import ModelViewSet
@@ -236,11 +234,6 @@ def collection_detail(request, username, slug):
             amo.VALID_ADDON_STATUSES, prefix='addon__'),
         collection=collection.id)
     addons = paginate(request, filter.qs, per_page=15, count=count.count())
-
-    # The add-on query is not related to the collection, so we need to manually
-    # hook them up for invalidation.  Bonus: count invalidation.
-    keys = [addons.object_list.flush_key(), count.flush_key()]
-    caching.invalidator.add_to_flush_list({collection.flush_key(): keys})
 
     if collection.author_id:
         qs = Collection.objects.listed().filter(author=collection.author)
@@ -480,29 +473,33 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
-    qs = (CollectionAddon.objects.no_cache().using('default')
+    qs = (CollectionAddon.objects.using('default')
           .filter(collection=collection))
-    meta = dict((c.addon_id, c) for c in qs)
-    addons = collection.addons.no_cache().all()
+    meta = {c.addon_id: c for c in qs}
+    addons = collection.addons.all()
     comments = get_notes(collection, raw=True).next()
 
     if is_admin:
-        initial = dict(type=collection.type,
-                       application=collection.application)
+        initial = {
+            'type': collection.type,
+            'application': collection.application
+        }
         admin_form = forms.AdminForm(initial=initial)
     else:
         admin_form = None
 
-    data = dict(collection=collection,
-                form=form,
-                username=username,
-                slug=slug,
-                meta=meta,
-                filter=get_filter(request),
-                is_admin=is_admin,
-                admin_form=admin_form,
-                addons=addons,
-                comments=comments)
+    data = {
+        'collection': collection,
+        'form': form,
+        'username': username,
+        'slug': slug,
+        'meta': meta,
+        'filter': get_filter(request),
+        'is_admin': is_admin,
+        'admin_form': admin_form,
+        'addons': addons,
+        'comments': comments
+    }
     return render_cat(request, 'bandwagon/edit.html', data)
 
 
@@ -615,13 +612,13 @@ def watch(request, username, slug):
     Otherwise, redirect to the collection page.
     """
     collection = get_collection(request, username, slug)
-    d = dict(user=request.user, collection=collection)
-    qs = CollectionWatcher.objects.no_cache().using('default').filter(**d)
+    params = {'user': request.user, 'collection': collection}
+    qs = CollectionWatcher.objects.using('default').filter(**params)
     watching = not qs  # Flip the bool since we're about to change it.
     if qs:
         qs.delete()
     else:
-        CollectionWatcher.objects.create(**d)
+        CollectionWatcher.objects.create(**params)
 
     if request.is_ajax():
         return {'watching': watching}

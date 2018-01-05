@@ -286,7 +286,7 @@ class TestVotes(TestCase):
         self.assert3xx(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
-        c = Collection.objects.no_cache().get(slug='slug', author=9945)
+        c = Collection.objects.get(slug='slug', author=9945)
         assert c.upvotes == upvotes
         assert c.downvotes == downvotes
         assert CollectionVote.objects.filter(
@@ -1166,7 +1166,7 @@ class TestCollectionDetailFeed(TestCase):
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('olympia.amo.models.ModelBase.update')
+    @patch('olympia.amo.models.UncachedModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
