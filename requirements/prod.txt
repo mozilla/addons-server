@@ -2,9 +2,9 @@ Babel==2.5.1 \
     --hash=sha256:f20b2acd44f587988ff185d8949c3e208b4b3d5d20fcab7d91fe481ffa435528 \
     --hash=sha256:6007daf714d0cd5524bbe436e2d42b3c20e68da66289559341e48d2cd6d25811
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
-Django==1.11.8 \
-    --hash=sha256:fad46f44f6f4de66aacaa92e7753dbc4fe3ae834aa2daffaca0bf16c64798186 \
-    --hash=sha256:fed3e79bb5a3a8d5eb054c7a1ec1de229ef3f43335a67821cc3e489e9582f711
+Django==1.11.9 \
+    --hash=sha256:90952c46d2b7b042db00e98b05f5dd97a5775822948d46fd82ff074d8ac75853 \
+    --hash=sha256:353d129f22e1d24980d6061666f435781141c2dfd852f14ffc8a670175821034
 # Jinja2 is required by Sphinx
 Jinja2==2.10 \
     --hash=sha256:74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd \
