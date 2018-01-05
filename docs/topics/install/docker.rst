@@ -95,7 +95,7 @@ Run the tests using ``make``, *outside* of the Docker container::
 
     make test
     # or
-    docker-compose exec web py.test src/olympia/
+    docker-compose exec web pytest src/olympia/
 
 You can run commands inside the Docker container by ``ssh``\ing into it using::
 
@@ -105,13 +105,13 @@ You can run commands inside the Docker container by ``ssh``\ing into it using::
 
 Then to run the tests inside the Docker container you can run::
 
-    py.test
+    pytest
 
 You can also run single commands from your host machine without opening a shell
-on each container. Here is an example of running the ``py.test`` command on the
+on each container. Here is an example of running the ``pytest`` command on the
 ``web`` container::
 
-    docker-compose run web py.test
+    docker-compose run web pytest
 
 If you'd like to use a python debugger to interactively
 debug Django view code, check out the :ref:`debugging` section.

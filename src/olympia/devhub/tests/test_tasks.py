@@ -69,8 +69,8 @@ def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
 
-    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                      delete=False)
+    src = tempfile.NamedTemporaryFile(
+        mode='r+w+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
 
     # resize_icon removes the original
     shutil.copyfile(img, src.name)
@@ -96,7 +96,7 @@ def _uploader(resize_size, final_size):
             assert not os.path.exists(dest_image.filename)
         shutil.rmtree(uploadto)
     else:
-        dest = tempfile.mktemp(suffix='.png')
+        dest = tempfile.mktemp(suffix='.png', dir=settings.TMP_PATH)
         tasks.resize_icon(src.name, dest, resize_size, locally=True)
         dest_image = Image.open(dest)
         assert dest_image.size == final_size
