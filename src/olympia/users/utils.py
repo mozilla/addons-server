@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.users.models import DeniedName, UserProfile
 
 
@@ -88,7 +89,7 @@ def autocreate_username(candidate, tries=1):
 def system_addon_submission_allowed(user, parsed_addon_data):
     guid = parsed_addon_data.get('guid') or ''
     return (
-        not guid.endswith(u'@mozilla.org') or
+        not guid.endswith(amo.SYSTEM_ADDON_GUIDS) or
         user.email.endswith(u'@mozilla.com'))
 
 

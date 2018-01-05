@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-23 22:46+0000\n"
+"PO-Revision-Date: 2018-01-03 22:45+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} estrela"
 msgstr[1] "{0} estrelas"
 
 msgid "There was a problem contacting the server."
-msgstr "Houve um problema ao entrar em contato com o servidor."
+msgstr "Houve um problema contatando o servidor."
 
 msgid "Select a file..."
 msgstr "Selecione um arquivo..."
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Erro com {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Habilitamos um novo linter para processar sua extensão. Por favor, reporte quaisquer problemas no GitHub"
+msgstr "Habilitamos um novo linter para processar sua extensão. Certifique-se de reportar quaisquer problemas no GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -158,7 +158,7 @@ msgstr "Seguindo"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Esse tema não é compatível com a sua versão do {0}"
+msgstr "Este tema não é compatível com a sua versão do {0}"
 
 msgid "All Rights Reserved"
 msgstr "Todos os direitos reservados"

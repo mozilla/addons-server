@@ -1679,13 +1679,18 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
-        assert result['slug'] == 'my-addon'
+        assert result['slug'] == self.addon.slug
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         return result
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-detail', kwargs={'pk': param})
+
+    def test_detail_url_with_reviewers_in_the_url(self):
+        self.addon.update(slug='something-reviewers')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self._test_url()
 
     def test_hide_latest_unlisted_version_anonymous(self):
         unlisted_version = version_factory(
@@ -2731,6 +2736,50 @@ class TestAddonSearchView(ESTestCase):
         result = data['results'][1]
         assert result['id'] == addon2.pk
         assert result['slug'] == addon2.slug
+
+    def test_filter_by_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'guid': u'random@guid'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_multiple_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               guid='random2@guid',
+                               weekly_downloads=333)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(
+            self.url, {'guid': u'random@guid,random2@guid'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
+        # Throw in soome random invalid guids too that will be ignored.
+        data = self.perform_search(
+            self.url, {
+                'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'}
+        )
+        assert data['count'] == len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == addon2.pk
 
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 12:07+0000\n"
+"PO-Revision-Date: 2018-01-04 12:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3032,7 +3032,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Dizze add-on fereasket betelling, net-fergese tsjinsten of software, of oanfoljende hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Dizze add-on fereasket gjin oanfoljende betellingen, net-fergese tsjinsten of software, of oanfoljende hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Kategoryen binne de ferneamdste manier wêrop brûkers troch add-ons blêdzje. Kies der ien dy't de funksjonaliteit fan jo add-on yn de measte gefallen beskriuwt."
@@ -3067,7 +3067,7 @@ msgid "Contributions URL"
 msgstr "Bydragen-URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "As jo om jildlike bydragen fan jo brûkers freegje wolle, stel dit dan yn op in side wêrop se dy leverje kinne."
 
 msgid "Add-on Details"
 msgstr "Add-ondetails"
@@ -3407,13 +3407,13 @@ msgid "Delete this theme."
 msgstr "Dit tema fuortmsite."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Dizze add-on mist wat fereaske ynformaasje eardat dizze foar publikaasje yntsjinne wurde kin."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Dizze add-on hat gjin ferzjes."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Dizze add-on hat gjin goedkarre ferzjes, dus de iepenbiere siden derfan (ynklusyf bètaferzjes) binne ferburgen."
 
 msgid "Status:"
 msgstr "Steat:"
@@ -3518,7 +3518,7 @@ msgid "Version Submitted"
 msgstr "Ferzje ynstjinne"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Jo binne klear! Dizze ferzje wurdt ynkoarten op ús website beskikber."
 
 msgid "Version Submitted for Review"
 msgstr "Ferzje yntsjinne foar beoardieling"
@@ -3611,10 +3611,10 @@ msgid "required"
 msgstr ""
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Ofbyldingshichte moat 200 pixels wêze"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG of GIF (net animearre)"
 
 msgid "Aligned to top-right"
 msgstr "Rjochtsboppe útline"
@@ -3626,40 +3626,40 @@ msgid "Select colors for your Theme."
 msgstr "Selektearje kleuren foar jo tema."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Eftergrûn fan headergebied (aksintkleur)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Tekst fan headergebied (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "De kleur fan de tekst dy't werjûn wurdt yn it headergebied."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Eftergrûn fan arkbalkegebied (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Tekst fan arkbalkegebied (toolbar_text)."
 
 msgid "The color of toolbar text."
 msgstr "De kleur fan de ljepblêdtekst."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Eftergrûn fan arkbalkefjildgebied (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Tekst arkbalkefjildgebied (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke"
 
 msgid "optional"
 msgstr "opsjoneel"
@@ -3668,7 +3668,7 @@ msgid "Browser Preview"
 msgstr "Browserfoarbyld"
 
 msgid "Back"
-msgstr ""
+msgstr "Tebek"
 
 msgid "Uploading Theme"
 msgstr "Tema oplade"
@@ -3716,7 +3716,7 @@ msgid "Invisible"
 msgstr "Net sichtber"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Foltôgje jo add-on troch in ferzje of ûntbrekkende metagegevens ta te foegjen."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Jo ûntfange in e-mailberjocht as de beoardieling is foltôge. Oant dy tiid wurdt jo add-on net fermeld yn ús galery mar kinne jo him streekrjocht fan de detailside ôf benaderje. "
@@ -3744,7 +3744,7 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "De kompatibiliteit fan jo add-on mei Multiproses-Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
 
 msgid "Listed Version:"
 msgstr "Fermelde ferzje:"
@@ -3769,7 +3769,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s fan %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Undertekene foar eigen distribúsje. Fernijingen wurde troch jo fersoarge."
 
 msgid "Latest Version:"
 msgstr "Nijste ferzje:"
@@ -3918,7 +3918,7 @@ msgid "Review Add-ons"
 msgstr "Add-ons beoardiele"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Frijwillige oersetters helpe by it feilich en betrouber hâlden fan add-ons. En se krije geweldige foardielen!"
 
 msgid "Join us!"
 msgstr "Doch mei!"
@@ -3927,7 +3927,7 @@ msgid "Write Some Code"
 msgstr "Wat koade skriuwe"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Help add-ons te ferbetterjen troch jo koadefeardichheden yn te setten."
 
 msgid "Get started"
 msgstr "Begjinne"
@@ -3936,7 +3936,7 @@ msgid "More Ways to Participate"
 msgstr "Mear manieren om mei te dwaan"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Jo hawwe gjin koadefeardichheden nedich om Firefox de meast oanpasbere browser dy't te krijen is te helpen hâlden!"
 
 msgid "See how"
 msgstr "Lês hoe"
@@ -3960,7 +3960,7 @@ msgid "What's New"
 msgstr "Wat is nij"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Klear om in add-on yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
 
 msgid "See Tutorial"
 msgstr "Hantlieding besjen"
@@ -4033,7 +4033,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "In opdrachtrigelhelpprogramma foar it bouwen, útfieren en testen fan útwreidingen."
 
 msgid "Automated code tests for your add-on."
 msgstr "Automatisearre koadetests foar jo add-on."
@@ -4042,7 +4042,7 @@ msgid "Compatibility Test"
 msgstr "Kompatibiliteitstests"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Kontrolearje oft jo útwreiding kompatibel is mei Firefox."
 
 msgid "Transfer ownership"
 msgstr "Eigendom oerdrage"
@@ -4362,7 +4362,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Binne jo wis dat jo jo add-on ferstopje wolle?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Troch jo beoardielingsfersyk te annulearjen, wurdt jo add-on as net folslein markearre, en wurde eventuele op beoardieling wachtsjende ferzjes útskeakele."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bine jo wis dat jo jo beoardielingsfersyk annulearje wolle?"
@@ -4388,25 +4388,25 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "In ljochtgewicht en effektive adblocker. uBlock Origin hantearret tûzenen ynhâldsfilters sûnder grut beslach op ûnthâldromte te lizzen."
 
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Behear wachtwurden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Ferienfâldigje en syngronisearje al jo oanmeldgegevens foar websites tusken ferskate apparaten mei ien wachtwurd dat alle oare wachtwurden behearst."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Genietsje fan in pakket nije YouTube-funksjes, lykas bioskoopmodus, advertinsjeblokkearring, behear foar automatysk ôfspyljen en mear."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Tsientallen geweldige emoji’s – altyd fia ien mûsklik."
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -4438,7 +4438,7 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Unjildige bestânsnamme yn argyf. Soargje derfoar dat alle bestânsnammen utf-8- of latin1-kodearre binne."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4484,7 +4484,7 @@ msgstr ""
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Ferzje: %(version)s &bull; Grutte: %(size)s &bull; SHA256-hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Bestânsfergeliking :: Beoardielershelpmiddelen"
@@ -4500,7 +4500,7 @@ msgstr "Bestânsynhâld wurdt net stipe foar syntaksismarkearring"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "De útfier kin skansearre wêze, wês foarsichtich en %(link_start)smeld in probleem%(link_end)s daliks!"
 
 msgid "Add-on file being processed, please wait."
 msgstr ""
@@ -4757,6 +4757,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"De hjir fermelde add-ons binne makke troch tûzenen ûntwikkelers út ús mienskip, fariearjend fan yndividuele hobbyisten oant grutte bedriuwen. Alle iepenlik fermelde add-ons wurde beoardiele troch in"
+" team fan beoardielers eardat se frijjûn wurde. As Eksperiminteel markearre add-ons binne net beoardiele en moatte allinnich mei omtinken ynstallearre wurde."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr ""

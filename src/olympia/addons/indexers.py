@@ -121,7 +121,7 @@ class AddonIndexer(BaseSearchIndexer):
                             },
                         },
                     },
-                    'guid': {'type': 'keyword', 'index': False},
+                    'guid': {'type': 'keyword'},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
                     'has_theme_rereview': {'type': 'boolean'},
