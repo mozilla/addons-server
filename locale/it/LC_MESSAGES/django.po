@@ -4012,7 +4012,7 @@ msgstr "Segui il tutorial"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Visualizza tutti i file caricati"
+msgstr "Visualizza tutti i progetti caricati"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
