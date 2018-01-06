@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2018-01-06 22:44+0000\n"
+"PO-Revision-Date: 2018-01-06 23:02+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -808,11 +808,11 @@ msgstr ""
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Q'ijul"
 
 #: static/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Juley chik"
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1287 static/js/zamboni/reviewers.js:326
 msgid "Select an application first"
@@ -895,7 +895,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "Oyob'en"
 
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
@@ -1070,7 +1070,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Wachinïk"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
@@ -1078,7 +1078,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "B'anikil"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1094,11 +1094,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:225 static/js/zamboni/validator.js:513 static/js/zamboni/validator.js:532
 msgid "Error"
-msgstr ""
+msgstr "Sachoj"
 
 #: static/js/zamboni/validator.js:226
 msgid "Warning"
-msgstr ""
+msgstr "Rutzijol k'ayewal"
 
 #: static/js/zamboni/validator.js:293
 msgid "{0} line {1} column {2}"
@@ -1123,20 +1123,20 @@ msgstr ""
 #: static/js/zamboni/validator.js:419
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} sachoj"
+msgstr[1] "{0} taq sachoj"
 
 #: static/js/zamboni/validator.js:421
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} rutzijol k'ayewal"
+msgstr[1] "{0} kitzijol taq k'ayewal"
 
 #: static/js/zamboni/validator.js:423
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tzijol"
+msgstr[1] "{0} taq tzijol"
 
 #: static/js/zamboni/validator.js:515
 msgid "Validation task could not complete or completed with errors"
@@ -1144,4 +1144,4 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:533
 msgid "Internal server error"
-msgstr ""
+msgstr "Sachoj chupam ri ruk'u'x samaj"
