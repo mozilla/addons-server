@@ -36,7 +36,11 @@ def index_objects(ids, model, extract_func, index=None, transforms=None,
     if transforms is None:
         transforms = []
 
-    qs = objects.no_cache().filter(id__in=ids)
+    if hasattr(objects, 'no_cache'):
+        qs = objects.no_cache()
+    else:
+        qs = objects
+    qs = qs.filter(id__in=ids)
     for t in transforms:
         qs = qs.transform(t)
 

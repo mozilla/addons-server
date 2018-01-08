@@ -31,6 +31,18 @@ class TestCollectionSerializer(BaseTestCase):
         assert data['slug'] == self.collection.slug
         assert data['public'] == self.collection.listed
         assert data['default_locale'] == self.collection.default_locale
+        assert 'has_addon' not in data
+
+    def test_has_addon(self):
+        self.collection.has_addon = False
+        data = self.serialize()
+        assert data['id'] == self.collection.id
+        assert data['has_addon'] is False
+
+        self.collection.has_addon = True
+        data = self.serialize()
+        assert data['id'] == self.collection.id
+        assert data['has_addon'] is True
 
 
 class TestCollectionAddonSerializer(BaseTestCase):
