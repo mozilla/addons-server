@@ -141,7 +141,6 @@ class TestCollections(TestCase):
         c.add_addon(Addon.objects.all()[0])
         assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == 1
         c = Collection.objects.get(id=c.id)
-        assert not c.from_cache
         assert c.addon_count == 1
 
     def test_favorites_slug(self):

@@ -56,7 +56,7 @@
         </td>
       </tr>
       {{ user_row(collection.author, _('Owner')) }}
-      {% for user in collection.users.no_cache().all() %}
+      {% for user in collection.users.all() %}
         {{ user_row(user, _('Contributor')) }}
       {% endfor %}
     </tbody>

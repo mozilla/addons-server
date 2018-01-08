@@ -286,7 +286,7 @@ class TestVotes(TestCase):
         self.assert3xx(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
-        c = Collection.objects.no_cache().get(slug='slug', author=9945)
+        c = Collection.objects.get(slug='slug', author=9945)
         assert c.upvotes == upvotes
         assert c.downvotes == downvotes
         assert CollectionVote.objects.filter(
@@ -1166,7 +1166,7 @@ class TestCollectionDetailFeed(TestCase):
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('olympia.amo.models.ModelBase.update')
+    @patch('olympia.amo.models.UncachedModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
@@ -1281,6 +1281,9 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
+        assert 'has_addon' not in response.data['results'][0]
+        assert 'has_addon' not in response.data['results'][1]
+        assert 'has_addon' not in response.data['results'][2]
 
     def test_no_auth(self):
         collection_factory(author=self.user)
@@ -1339,6 +1342,48 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['uuid'] == col_a.uuid
         assert response.data['results'][2]['uuid'] == col_c.uuid
 
+    def test_has_addon(self):
+        col_a = collection_factory(author=self.user)
+        col_b = collection_factory(author=self.user)
+        col_c = collection_factory(author=self.user)
+        collection_factory(author=user_factory())  # Not our collection.
+        Collection.objects.all().count() == 4
+        addon = addon_factory()
+        addon2 = addon_factory()
+        CollectionAddon.objects.create(collection=col_a, addon=addon)
+        CollectionAddon.objects.create(collection=col_b, addon=addon2)
+        CollectionAddon.objects.create(collection=col_c, addon=addon)
+
+        # Reset modified date to ensure ordering.
+        col_a.update(modified=self.days_ago(1))
+        col_b.update(modified=self.days_ago(2))
+        col_c.update(modified=self.days_ago(3))
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'has_addon': 42})
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+        assert response.data['results'][0]['has_addon'] is False
+        assert response.data['results'][1]['has_addon'] is False
+        assert response.data['results'][2]['has_addon'] is False
+
+        response = self.client.get(self.url, {'has_addon': addon.pk})
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+        assert response.data['results'][0]['uuid'] == col_a.uuid
+        assert response.data['results'][0]['has_addon'] is True
+        assert response.data['results'][1]['uuid'] == col_b.uuid
+        assert response.data['results'][1]['has_addon'] is False
+        assert response.data['results'][2]['uuid'] == col_c.uuid
+        assert response.data['results'][2]['has_addon'] is True
+
+    def test_has_addon_not_int(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'has_addon': u'holà'})
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'has_addon parameter should be an integer.'}
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1355,6 +1400,7 @@ class TestCollectionViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
+        assert 'has_addon' not in response.data
 
     def test_not_listed(self):
         self.collection.update(listed=False)
