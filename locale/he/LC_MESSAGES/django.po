@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-06 16:57+0000\n"
+"PO-Revision-Date: 2018-01-08 12:45+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3727,7 +3727,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "להנחיות מפורטות, יש לפנות אל <a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "יש לשמור על מפתחות ה־API שלך בסוד <strong>ולעולם לא לשתף אותם עם אף אחד</strong>, אפילו לא עם תורמים אחרים ל־Mozilla."
 
 msgid "JWT issuer"
 msgstr ""
@@ -5015,7 +5015,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "איך ניתן לבדוק תאימות לגרסאות העדכניות ביותר של תוכנות Mozilla?"
 
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
@@ -5131,7 +5131,7 @@ msgid "Can I specify a license agreement for using my add-on?"
 msgstr "אוכל לציין הסכם רישוי לשימוש בתוספת שלי?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "כן. ניתן לציין הסכם רישוי בעת הגשת התוספת שלך. ניתן גם להוסיף או לעדכן הסכם רישוי באמצעות לוח הבקרה של כלי הפיתוח לאחר הגשת התוספת שלך."
+msgstr "כן. באפשרותך לציין הסכם רישוי בעת הגשת התוספת שלך. ניתן גם להוסיף או לעדכן הסכם רישוי באמצעות לוח הבקרה של כלי הפיתוח לאחר הגשת התוספת שלך."
 
 msgid "Can I include a privacy policy for my add-on?"
 msgstr "אוכל לכלול מדיניות פרטיות בתוספת שלי?"
@@ -6473,7 +6473,7 @@ msgid "Tested on:"
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>אזהרה!</strong> משתמש אחר צפה בעמוד הזה לפניך."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -6909,10 +6909,10 @@ msgid "Add-ons Updated"
 msgstr "תוספות שעודכנו"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "אוספים שנוצרו"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "סקירות שנכתבו"
 
 msgid "User Signups"
 msgstr "הרשמות משתמשים"
@@ -6991,7 +6991,7 @@ msgid "Custom..."
 msgstr "מותאם אישית..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "העיבוד הסטטיסטי מושבת כרגע, לכן אין מידע עדכני. הסטטיסטיקה עדיין נאספת והעמוד הזה יעודכן בקרוב עם הנתונים החסרים."
 
 msgid "Loading the latest data&hellip;"
 msgstr "הנתונים האחרונים נטענים&hellip;"
