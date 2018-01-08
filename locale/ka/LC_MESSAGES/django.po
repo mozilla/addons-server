@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 15:09+0000\n"
+"PO-Revision-Date: 2018-01-08 17:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3141,14 +3141,14 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "თქვენი დამატების UUID განასზღვრულია მის მანიფესტში და უნიკალურ ამომცნობად გამოიყენება. წარდგენის შემდეგ, თქვენი UUID-ს შეცვლა, აღარ შეგიძლიათ."
 
 msgid "Whiteboard"
-msgstr "თეთრი დაფა"
+msgstr "შენიშვნების გვერდი"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"თეთრი დაფა არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია, ვერსიის განურჩევლად. გამოიყენეთ დამატების გამოცდის გზებისა და სხვა საჭირო ინფორმაციის მისათითებლად. "
-"არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
+"შენიშვნების გვერდი არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია, ვერსიის განურჩევლად. გამოიყენეთ დამატების გამოცდის გზებისა და სხვა საჭირო ინფორმაციის "
+"მისათითებლად. არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
 
 msgid "Remove this dependent add-on"
 msgstr "დაქვემდებარებული დამატების წაშლა"
@@ -6008,7 +6008,7 @@ msgid "theme, reviewer, or comment"
 msgstr "თემა, მიმომხილველი ან გამოხმაურება"
 
 msgid "Private Whiteboard"
-msgstr "პირადი თეთრი დაფა"
+msgstr "პირადი შენიშვნების გვერდი"
 
 msgid "Keep review; remove flags"
 msgstr "განხილვის გაგრძელება; მონიშვნების მოხსნა"
@@ -6468,14 +6468,13 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "თეთრი დაფა არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
+msgstr "შენიშვნების გვერდი არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "პირადი შენიშვნების გვერდი გამოიყენება ინფორმაციის მიმოცვლისთვის შემსწორებელთა შორის, ვერსიის განურჩევლად. გთხოვთ, გამოიყენოთ საქმიანი მიმართვებისთვის. ხილულია, მხოლოდ შემსწორებლებისთვის."
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "შენიშვნების განახლება"
+msgstr "შენიშვნების გვერდის განახლება"
 
 msgid "(admin)"
 msgstr "(ადმინისტრატორი)"
