@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2696,8 +2696,9 @@ msgstr "Ƈħḗƈķ Aḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 msgid "You cannot submit this type of add-on"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ ẇīŧħ ȧ ɠŭīḓ ḗƞḓīƞɠ \"@ḿǿẑīŀŀȧ.ǿřɠ\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ ẇīŧħ ȧ ɠŭīḓ ḗƞḓīƞɠ %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧ Ḿǿẑīŀŀȧ Şīɠƞḗḓ Ḗẋŧḗƞşīǿƞ"
@@ -3484,17 +3485,23 @@ msgstr "Şŭƀḿīşşīǿƞ Ƈǿḿƥŀḗŧḗ"
 msgid "You’re done!"
 msgstr "Ẏǿŭ’řḗ ḓǿƞḗ!"
 
+msgid "Version Submitted for Review"
+msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ ƒǿř Řḗṽīḗẇ"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ṽḗřşīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ ȧƒŧḗř īŧ ƥȧşşḗş řḗṽīḗẇ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ẇħḗƞ īŧ īş řḗṽīḗẇḗḓ."
+
 msgid "Version Submitted"
 msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ṽḗřşīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ ǿƞ ǿŭř şīŧḗ şħǿřŧŀẏ."
 
-msgid "Version Submitted for Review"
-msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ ƒǿř Řḗṽīḗẇ"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ṽḗřşīǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ƒǿř řḗṽīḗẇ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ẇħḗƞ ŧħḗ řḗṽīḗẇ ħȧş ƀḗḗƞ ƈǿḿƥŀḗŧḗḓ, ǿř īƒ ǿŭř řḗṽīḗẇḗřş ħȧṽḗ ȧƞẏ ɋŭḗşŧīǿƞş ȧƀǿŭŧ ẏǿŭř şŭƀḿīşşīǿƞ."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Ẏǿŭř ŀīşŧīƞɠ ẇīŀŀ ƀḗ ḿǿřḗ şŭƈƈḗşşƒŭŀ ƀẏ ȧḓḓīƞɠ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ. Ɠḗŧ ẏǿŭř ŀīşŧīƞɠ řḗȧḓẏ ƒǿř ƥŭƀŀīƈȧŧīǿƞ:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Ẏǿŭř ŀīşŧīƞɠ ẇīŀŀ ƀḗ ḿǿřḗ şŭƈƈḗşşƒŭŀ ƀẏ ȧḓḓīƞɠ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ȧƞḓ şƈřḗḗƞşħǿŧş. Ɠḗŧ ẏǿŭř ŀīşŧīƞɠ řḗȧḓẏ ƒǿř ƥŭƀŀīƈȧŧīǿƞ:"
@@ -3550,9 +3557,6 @@ msgstr "Ŭƥŀǿȧḓ Ṽḗřşīǿƞ"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓş ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ. Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
-msgid "Create a Theme"
-msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
@@ -3561,6 +3565,12 @@ msgstr "Ǿƞŀẏ ƥŭƀŀīşħ ŧħīş ṽḗřşīǿƞ ŧǿ ḿẏ ƀḗŧȧ
 
 msgid "Administrative overrides"
 msgstr "Aḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
+
+msgid "Create a Theme Version"
+msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ Ṽḗřşīǿƞ"
+
+msgid "Create a Theme"
+msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ"
 
 msgid "Submit File"
 msgstr "Şŭƀḿīŧ Ƒīŀḗ"
@@ -6014,6 +6024,9 @@ msgstr "Şǿḿḗǿƞḗ ḗŀşḗ īş řḗṽīḗẇīƞɠ ŧħīş ŧħ�
 msgid "theme, reviewer, or comment"
 msgstr "ŧħḗḿḗ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
 
+msgid "Private Whiteboard"
+msgstr "Ƥřīṽȧŧḗ Ẇħīŧḗƀǿȧřḓ"
+
 msgid "Keep review; remove flags"
 msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 
@@ -6479,8 +6492,11 @@ msgstr "<strong>Ẇȧřƞīƞɠ!</strong> Aƞǿŧħḗř ŭşḗř ẇȧş ṽī
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "Ŧħḗ ẇħīŧḗƀǿȧřḓ īş ŧħḗ ƥŀȧƈḗ ŧǿ ḗẋƈħȧƞɠḗ īƞƒǿřḿȧŧīǿƞ řḗŀḗṽȧƞŧ ŧǿ ŧħīş ȧḓḓǿƞ (ẇħȧŧḗṽḗř ŧħḗ ṽḗřşīǿƞ), ƀḗŧẇḗḗƞ ŧħḗ ḓḗṽḗŀǿƥḗř ȧƞḓ ŧħḗ řḗṽīḗẇḗř. Ŧħīş īş ṽīşīƀŀḗ ȧƞḓ ḗḓīŧȧƀŀḗ ƀẏ ƀǿŧħ."
 
-msgid "Update the whiteboard"
-msgstr "Ŭƥḓȧŧḗ ŧħḗ ẇħīŧḗƀǿȧřḓ"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Ŧħḗ ƥřīṽȧŧḗ ẇħīŧḗƀǿȧřḓ īş ŭşḗḓ ƒǿř ḗẋƈħȧƞɠīƞɠ īƞƒǿřḿȧŧīǿƞ ƀḗŧẇḗḗƞ řḗṽīḗẇḗřş ŧħȧŧ īş īƞḓḗƥḗƞḓḗƞŧ ǿƒ ŧħḗ ṽḗřşīǿƞ. Ƥŀḗȧşḗ ķḗḗƥ ŧħḗ ŀȧƞɠŭȧɠḗ ǿƀĵḗƈŧīṽḗ. Īŧ īş ṽīşīƀŀḗ ǿƞŀẏ ŧǿ řḗṽīḗẇḗřş."
+
+msgid "Update whiteboards"
+msgstr "Ŭƥḓȧŧḗ ẇħīŧḗƀǿȧřḓş"
 
 msgid "(admin)"
 msgstr "(ȧḓḿīƞ)"

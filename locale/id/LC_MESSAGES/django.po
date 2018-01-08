@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: 2017-11-16 07:48+0000\n"
 "Last-Translator: Romi Hardiyanto <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2732,7 +2732,8 @@ msgstr "Memeriksa Kompatibilitas Pengaya"
 msgid "You cannot submit this type of add-on"
 msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3597,17 +3598,23 @@ msgid "You’re done!"
 msgstr "Selesai!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Catatan Versi / Catatan untuk Pengulas"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Catatan Versi"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Catatan Versi / Catatan untuk Pengulas"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3679,10 +3686,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 "Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas anda."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Membuat Tema Baru"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 
@@ -3691,6 +3694,14 @@ msgstr "Hanya publikasikan versi ini ke saluran beta saya."
 
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Membuat Tema Baru"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Membuat Tema Baru"
 
 #, fuzzy
 msgid "Submit File"
@@ -6279,6 +6290,10 @@ msgstr "Orang lain mengulas tema ini."
 msgid "theme, reviewer, or comment"
 msgstr "tema, pengulas, atau komentar"
 
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Papan tulis"
+
 msgid "Keep review; remove flags"
 msgstr "Terus mengulas; hilangkan penanda"
 
@@ -6786,7 +6801,11 @@ msgstr ""
 "               pengaya ini (apapun versinya), antara para pengaya dan\n"
 "               penyunting. Ini dapat dilihat dan disunting oleh kedua belah pihak."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Perbarui papan tulis"
 
 msgid "(admin)"

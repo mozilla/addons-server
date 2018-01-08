@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2781,7 +2781,8 @@ msgstr "Verifique a compatibilidade do extra"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3613,17 +3614,23 @@ msgid "You’re done!"
 msgstr "Está feito!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Notas da versão / Notas para o editor"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Notas da versão"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Notas da versão / Notas para o editor"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3695,10 +3702,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 "Utilize os campos abaixo para submeter o pacote do seu extra e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes automáticos irão ser executados no seu ficheiro."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Criar um novo tema"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
@@ -3707,6 +3710,14 @@ msgstr "Publicar esta versão apenas para o meu canal beta."
 
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Criar um novo tema"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Criar um novo tema"
 
 #, fuzzy
 msgid "Submit File"
@@ -6255,6 +6266,10 @@ msgstr "Este tema está a ser revisto por outra pessoa."
 msgid "theme, reviewer, or comment"
 msgstr "aplicação, revisor ou comentário"
 
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Quadro branco"
+
 msgid "Keep review; remove flags"
 msgstr "Manter análise; remover etiquetas"
 
@@ -6768,7 +6783,11 @@ msgstr "<strong>Aviso!</strong> Outro utilizador estava a visualizar esta págin
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "O quadro branco é o sítio para trocar informação relevante para este extra (qualquer que seja a versão), entre o programador e o editor. Isto é visível e editável por ambos."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Atualizar o quadro branco"
 
 msgid "(admin)"

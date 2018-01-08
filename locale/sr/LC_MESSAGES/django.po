@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2799,7 +2799,8 @@ msgstr "Проверите компатибилност додатка"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3606,17 +3607,23 @@ msgid "You’re done!"
 msgstr "Готови сте!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Белешке о верзији / Белешке за рецензента"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Белешке о верзији"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Белешке о верзији / Белешке за рецензента"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3686,10 +3693,6 @@ msgstr ""
 "Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите било која ограничења платформе. Након постављања, низ аутоматизованих тестова за проверу ваљаности ће бити покренути на "
 "Вашој датотеци."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Направи нову тему"
-
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3698,6 +3701,14 @@ msgstr "Објави ову верзију само на мој бета кан�
 
 msgid "Administrative overrides"
 msgstr "Административна поништавања"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Направи нову тему"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Направи нову тему"
 
 #, fuzzy
 msgid "Submit File"
@@ -6148,6 +6159,10 @@ msgstr "Неко други прегледава ову тему."
 msgid "theme, reviewer, or comment"
 msgstr "апликација, рецензент, или коментар"
 
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Табла"
+
 msgid "Keep review; remove flags"
 msgstr "Задржи рецензију; уклони заставице"
 
@@ -6658,7 +6673,11 @@ msgstr "<strong>Упозорење!</strong> Други корисник је п
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "Табла је место где могу да се мењају информације које су релавантне за овај додатак (било која верзија), између програмера и уредника. Ово је видљиво за обоје и обоје могу да га уређују."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Ажурирај таблу"
 
 msgid "(admin)"
