@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from waffle.testutils import override_switch
+
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -314,6 +316,7 @@ class AddonSerializerOutputTestMixin(object):
             result['latest_unlisted_version'])
         assert result['latest_unlisted_version']['url'] == absolutify('')
 
+    @override_switch('beta-versions', active=True)
     def test_current_beta_version(self):
         self.addon = addon_factory()
 

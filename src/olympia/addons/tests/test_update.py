@@ -2,6 +2,8 @@
 from datetime import datetime, timedelta
 from email import utils
 
+from waffle.testutils import override_switch
+
 from django.db import connection
 
 from olympia import amo
@@ -238,14 +240,42 @@ class TestLookup(VersionCheckMixin, TestCase):
                                  self.app, self.platform)
         assert version == self.version_1_2_1
 
+    @override_switch('beta-versions', active=True)
     def test_public_beta(self):
         """
         If the addon status is public, you are in beta and the file is
-        beta, the you get a beta.
+        beta, then you get a beta.
         """
         self.change_version(self.version_1_2_0, '1.2beta')
         self.change_status(self.version_1_2_0, amo.STATUS_BETA)
         self.change_status(self.version_1_2_1, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_1
+
+    @override_switch('beta-versions', active=False)
+    def test_beta_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_2
+
+    @override_switch('beta-versions', active=False)
+    def test_beta_updates_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version, even if there are newer betas
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
@@ -625,6 +655,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         assert up.data['row']['min'] == '2.0'
         assert up.data['row']['max'] == '4.0'
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version(self):
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA
@@ -713,6 +744,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         up.get_rdf()
         assert up.data['row']['url'] == self.get_file_url()
 
+    @override_switch('beta-versions', active=True)
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA

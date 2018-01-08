@@ -3,6 +3,7 @@ from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams
@@ -148,7 +149,8 @@ class InstallButton(object):
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
             download_url = file.latest_xpi_url(attachment=True)
-        elif self.latest and self.is_beta and self.addon.show_beta:
+        elif (self.latest and self.is_beta and self.addon.show_beta and
+              waffle.switch_is_active('beta-versions')):
             url = file.latest_xpi_url(beta=True)
             download_url = file.latest_xpi_url(beta=True, attachment=True)
         else:

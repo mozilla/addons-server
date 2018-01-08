@@ -1,5 +1,7 @@
 import sys
 
+import waffle
+
 from django.utils.encoding import force_bytes
 from email.Utils import formatdate
 from time import time
@@ -131,7 +133,10 @@ class Update(object):
         data = self.data
 
         data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
-        data['STATUS_BETA'] = base.STATUS_BETA
+        # Return beta versions only if the waffle is enabled
+        data['STATUS_BETA'] = (base.STATUS_BETA
+                               if waffle.switch_is_active('beta-versions')
+                               else base.STATUS_PUBLIC)
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
         sql = ["""

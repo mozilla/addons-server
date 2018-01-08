@@ -211,8 +211,8 @@ class TestVersion(TestCase):
         assert self.addon.versions.count() == 1
         assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
-    def test_version_delete_status_unreviewd(self):
-        self._extra_version_and_file(amo.STATUS_BETA)
+    def test_version_delete_status_unreviewed(self):
+        self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 302
@@ -459,7 +459,7 @@ class TestVersion(TestCase):
         self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        self._extra_version_and_file(amo.STATUS_BETA)
+        self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         response = self.client.get(self.url)
         assert response.status_code == 200

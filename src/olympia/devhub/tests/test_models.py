@@ -42,7 +42,7 @@ class TestVersion(TestCase):
         assert Addon.objects.get(id=3615).status == amo.STATUS_BETA
 
     def test_version_delete_status_unreviewed(self):
-        self._extra_version_and_file(amo.STATUS_BETA)
+        self._extra_version_and_file(amo.STATUS_PUBLIC)
 
         self.version.delete()
         assert self.addon.versions.count() == 1

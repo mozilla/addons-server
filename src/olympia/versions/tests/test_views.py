@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 
+from waffle.testutils import override_switch
+
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
@@ -149,6 +151,7 @@ class TestViews(TestCase):
         doc = self.get_content(beta=True)
         assert len(doc('.version')) == 0
 
+    @override_switch('beta-versions', active=True)
     def test_version_list_beta_shows_beta_version(self):
         version = version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_BETA},
@@ -311,11 +314,13 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_switch('beta-versions', active=True)
     def test_public_addon_beta_file(self):
         self.file.update(status=amo.STATUS_BETA)
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.assert_served_by_cdn(self.client.get(self.file_url))
 
+    @override_switch('beta-versions', active=True)
     def test_beta_addon_beta_file(self):
         self.addon.update(status=amo.STATUS_BETA)
         self.file.update(status=amo.STATUS_BETA)

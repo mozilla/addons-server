@@ -413,6 +413,7 @@ class TestDetailPage(TestCase):
         assert doc('#more-about').length == 0
         assert doc('.article.userinput').length == 0
 
+    @override_switch('beta-versions', active=True)
     def test_beta(self):
         """Test add-on with a beta channel."""
         def get_pq_content():
@@ -2124,6 +2125,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version(self):
         self.old_version.files.update(status=amo.STATUS_BETA)
         self._test_url_only_contains_old_version(filter='only_beta')
