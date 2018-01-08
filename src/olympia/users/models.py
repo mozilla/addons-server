@@ -510,6 +510,6 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
     if (new_attr.get('username') != old_attr.get('username') or
             new_attr.get('display_name') != old_attr.get('display_name')):
         from olympia.addons.tasks import index_addons
-        ids = [a.pk for a in instance.get_addons_listed()]
+        ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
