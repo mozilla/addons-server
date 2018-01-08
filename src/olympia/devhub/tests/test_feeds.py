@@ -1,4 +1,5 @@
 import uuid
+
 from urllib import urlencode
 
 from pyquery import PyQuery as pq
@@ -6,9 +7,9 @@ from pyquery import PyQuery as pq
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
+from olympia.bandwagon.models import Collection
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
-from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.versions.models import Version

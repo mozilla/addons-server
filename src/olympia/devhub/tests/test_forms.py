@@ -8,19 +8,20 @@ from django.utils import translation
 
 import mock
 import pytest
+
 from PIL import Image
 
 from olympia import amo
+from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
+from olympia.addons.models import Addon, Category, Persona
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.models import AppVersion
-from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
-from olympia.addons.models import Addon, Category, Persona
 from olympia.devhub import forms
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import FileUpload
+from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile

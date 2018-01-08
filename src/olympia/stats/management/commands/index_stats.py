@@ -1,10 +1,12 @@
 import random
+
 from datetime import date, timedelta
 
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
 
 import olympia.core.logger
+
 from olympia.amo.celery import create_subtasks
 from olympia.stats.models import (
     CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)

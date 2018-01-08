@@ -6,7 +6,7 @@ from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
 
-from olympia.amo.tests import addon_factory, ESTestCase
+from olympia.amo.tests import ESTestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo

@@ -9,27 +9,27 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
 
-from olympia.access import acl
 from olympia import amo
+from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
+from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.translations.fields import TransField, TransTextarea
+from olympia.translations.forms import TranslationFormMixin
+from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.translations.fields import TransTextarea, TransField
-from olympia.translations.models import delete_translation, Translation
-from olympia.translations.forms import TranslationFormMixin
 from olympia.versions.models import (
-    ApplicationsVersions, License, VALID_SOURCE_EXTENSIONS, Version)
+    VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
 from . import tasks
 

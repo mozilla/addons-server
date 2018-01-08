@@ -1,6 +1,8 @@
-from olympia import amo
 import mkt
+
 from mkt.webapps.models import AddonExcludedRegion
+
+from olympia import amo
 
 
 def run():

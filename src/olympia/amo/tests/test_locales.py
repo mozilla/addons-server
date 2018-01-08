@@ -1,4 +1,4 @@
-from django.utils.translation import trans_real, activate
+from django.utils.translation import activate, trans_real
 
 import pytest
 

@@ -1,5 +1,5 @@
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.tags.models import AddonTag, Tag
 
 

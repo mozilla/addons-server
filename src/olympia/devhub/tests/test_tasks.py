@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import tempfile
+
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -11,13 +12,14 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
+
 from PIL import Image
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests.test_helpers import get_image_path, get_addon_file
+from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
@@ -69,8 +71,8 @@ def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
 
-    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                      delete=False)
+    src = tempfile.NamedTemporaryFile(
+        mode='r+w+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
 
     # resize_icon removes the original
     shutil.copyfile(img, src.name)
@@ -96,7 +98,7 @@ def _uploader(resize_size, final_size):
             assert not os.path.exists(dest_image.filename)
         shutil.rmtree(uploadto)
     else:
-        dest = tempfile.mktemp(suffix='.png')
+        dest = tempfile.mktemp(suffix='.png', dir=settings.TMP_PATH)
         tasks.resize_icon(src.name, dest, resize_size, locally=True)
         dest_image = Image.open(dest)
         assert dest_image.size == final_size

@@ -1,16 +1,16 @@
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.translation import ugettext
 from django.utils.cache import patch_cache_control
+from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
 import waffle
+
 from elasticsearch_dsl import Search
-from rest_framework import exceptions
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
@@ -18,8 +18,8 @@ from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
-
 import olympia.core.logger
+
 from olympia import amo
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
@@ -35,7 +35,7 @@ from olympia.api.permissions import (
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
-from olympia.ratings.models import Rating, GroupedRating
+from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
@@ -45,7 +45,7 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, Persona, FrozenAddon, ReplacementAddon
+from .models import Addon, FrozenAddon, Persona, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData,

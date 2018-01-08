@@ -3,17 +3,19 @@ from collections import defaultdict
 from django import forms
 from django.forms import widgets
 from django.forms.utils import flatatt
-from django.utils.translation import ugettext
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext
 
 import jinja2
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.files.models import File
 from olympia.versions.models import Version
+
 
 log = olympia.core.logger.getLogger('z.files')
 

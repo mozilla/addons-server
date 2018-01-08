@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from dateutil.parser import parse as parse_dt
 import re
+
 from urlparse import urlparse
 
 from django.conf import settings
@@ -9,24 +9,26 @@ from django.test.utils import override_settings
 from django.utils import http as urllib
 from django.utils.translation import trim_whitespace
 
-import pytest
 import mock
+import pytest
+
+from dateutil.parser import parse as parse_dt
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.addons.models import (
+    Addon, AddonCategory, AppSupport, Category, FrozenAddon, Persona)
+from olympia.amo.templatetags.jinja_helpers import (
+    absolutify, format_date, numberfmt, urlparams)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, numberfmt, urlparams, format_date)
-from olympia.addons.models import (
-    Addon, AddonCategory, Category, AppSupport, FrozenAddon, Persona)
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.browse import feeds
 from olympia.browse.views import (
-    AddonFilter, locale_display_name, MIN_COUNT_FOR_LANDING,
-    PAGINATE_PERSONAS_BY, ThemeFilter)
+    MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY, AddonFilter, ThemeFilter,
+    locale_display_name)
 from olympia.constants.applications import THUNDERBIRD
 from olympia.translations.models import Translation
 from olympia.versions.models import Version

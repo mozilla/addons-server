@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -12,27 +13,28 @@ from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
+
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonCategory, AddonFeatureCompatibility, AddonUser)
 from olympia.amo.templatetags.jinja_helpers import (
-    url as url_reverse, format_date)
-from olympia.amo.tests import addon_factory, user_factory, version_factory
+    format_date, url as url_reverse)
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.ratings.models import Rating
-from olympia.translations.models import delete_translation, Translation
+from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -1149,8 +1151,10 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'] == [
-            {u'tier': 1, u'message': u'You cannot submit an add-on with a '
-                                     u'guid ending "@mozilla.org"',
+            {u'tier': 1,
+             u'message': u'You cannot submit an add-on with a guid ending '
+                         u'"@mozilla.org" or "@shield.mozilla.org" or '
+                         u'"@pioneer.mozilla.org"',
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')

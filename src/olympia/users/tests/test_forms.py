@@ -4,10 +4,10 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.users.models import UserProfile
+from olympia.amo.urlresolvers import reverse
 from olympia.users.forms import AdminUserEditForm, UserEditForm
+from olympia.users.models import UserProfile
 
 
 class UserFormBase(TestCase):

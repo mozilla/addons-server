@@ -1,6 +1,6 @@
 from django.template.loader import render_to_string
 from django.utils.translation import (
-    ugettext, ugettext_lazy as _, pgettext_lazy)
+    pgettext_lazy, ugettext, ugettext_lazy as _)
 
 import jinja2
 

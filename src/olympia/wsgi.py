@@ -1,15 +1,21 @@
-import os
 import logging
+import os
+import sys
+
 from datetime import datetime
+
+import django
+import django.conf
+import django.core.management
+import django.utils
+
+from django.core.wsgi import get_wsgi_application
+
 
 log = logging.getLogger('z.startup')
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
-
-import django
-import django.conf
-from django.core.wsgi import get_wsgi_application
 
 # Do activate translations before running the app.
 django.setup()

@@ -1,16 +1,17 @@
-
-# -*- coding: utf-8 -*
-import os
+# -*- coding: utf-8 -*-
 import json
+import os
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.urls import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils import translation
 
 import mock
+
 from rest_framework.response import Response
 
 from olympia import amo
@@ -323,10 +324,11 @@ class TestUploadVersion(BaseUploadVersionCase):
             'PUT',
             addon=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/'
-                     'telemetry_experiment.xpi')
+                     'mozilla_guid.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
-            'You cannot submit this type of add-on')
+            u'You cannot submit an add-on with a guid ending "@mozilla.org" '
+            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org"')
 
     def test_system_addon_update_allowed(self):
         """Updates to system addons are allowed from anyone."""

@@ -1,29 +1,29 @@
 # -*- coding: utf-8 -*-
 import csv
 import datetime
+import json
 import os
 import shutil
-import json
 
 from django.http import Http404
 from django.test.client import RequestFactory
 
 import mock
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase, version_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.bandwagon.models import Collection
-from olympia.stats import views, tasks
-from olympia.stats import search
-from olympia.stats.models import (
-    CollectionCount, DownloadCount, GlobalStat, ThemeUserCount, UpdateCount,
-    ThemeUpdateCount)
+from olympia.stats import search, tasks, views
 from olympia.stats.management.commands import save_stats_to_file
+from olympia.stats.models import (
+    CollectionCount, DownloadCount, GlobalStat, ThemeUpdateCount,
+    ThemeUserCount, UpdateCount)
 from olympia.users.models import UserProfile
 
 

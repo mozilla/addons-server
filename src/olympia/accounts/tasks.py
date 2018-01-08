@@ -1,8 +1,8 @@
+import olympia.core.logger
+
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.users.models import UserProfile
-
-import olympia.core.logger
 
 
 log = olympia.core.logger.getLogger('z.accounts')

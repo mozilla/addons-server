@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-import mock
-import pytest
 from importlib import import_module
 
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
+
+import mock
+import pytest
 
 
 def sample_cron_job(*args):

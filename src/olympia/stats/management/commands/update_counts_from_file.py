@@ -1,6 +1,7 @@
 import codecs
 import json
 import re
+
 from datetime import datetime, timedelta
 from os import path, unlink
 
@@ -8,9 +9,10 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.stats.models import update_inc, UpdateCount
+from olympia.stats.models import UpdateCount, update_inc
 
 from . import get_date_from_file, save_stats_to_file
 

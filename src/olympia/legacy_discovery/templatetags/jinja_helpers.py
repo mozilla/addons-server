@@ -1,11 +1,12 @@
 from django.conf import settings
 
 import jinja2
+
 from django_jinja import library
 
-from olympia.amo.utils import urlparams
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.templatetags.jinja_helpers import persona_preview
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
 
 
 @library.global_function

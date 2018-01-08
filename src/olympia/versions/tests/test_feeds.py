@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import mock
+
 from pyquery import PyQuery
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.versions import feeds
 

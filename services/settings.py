@@ -1,7 +1,5 @@
 import os
-from importlib import import_module
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings_local')
 
-# get the right settings module
-settings = import_module(
-    os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local'))
+from django.conf import settings  # noqa isort:nofix

@@ -1,22 +1,25 @@
 import os
 import time
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections
-from django.db.models import Q, F, Avg
+from django.db.models import Avg, F, Q
 from django.utils.encoding import force_text
 
 import multidb
-from celery import group
 import waffle
 
+from celery import group
+
 import olympia.core.logger
+
 from olympia import amo
+from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.utils import chunked, walkfiles
-from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount

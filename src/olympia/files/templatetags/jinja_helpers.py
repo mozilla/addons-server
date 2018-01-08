@@ -2,29 +2,33 @@ import codecs
 import mimetypes
 import os
 import stat
+
 from collections import OrderedDict
 from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_text
-from django.utils.translation import get_language, ugettext
 from django.template import loader
 from django.template.defaultfilters import filesizeformat
+from django.utils.encoding import force_text
+from django.utils.translation import get_language, ugettext
+
+import jinja2
+
+from django_jinja import library
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
-import jinja2
-from django_jinja import library
-
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize, Message
-from olympia.amo.utils import rm_local_tmp_dir
+from olympia.amo.cache_nuggets import Message, memoize
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import rm_local_tmp_dir
 from olympia.files.utils import (
-    extract_xpi, get_sha256, get_all_files, atomic_lock)
+    atomic_lock, extract_xpi, get_all_files, get_sha256)
+
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
@@ -118,8 +122,9 @@ class FileViewer(object):
         self.file = file_obj
         self.addon = self.file.version.addon
         self.src = file_obj.current_file_path
+        self.base_tmp_path = os.path.join(settings.TMP_PATH, 'file_viewer')
         self.dest = os.path.join(
-            settings.TMP_PATH, 'file_viewer',
+            self.base_tmp_path,
             datetime.now().strftime('%m%d'),
             str(file_obj.pk))
         self._files, self.selected = None, None
@@ -395,7 +400,7 @@ class FileViewer(object):
         return result
 
     def _check_dest_for_complete_listing(self, expected_files):
-        """Check that all filex we expect are in `self.dest`."""
+        """Check that all files we expect are in `self.dest`."""
         dest_len = len(self.dest)
 
         files_to_verify = get_all_files(self.dest)
@@ -408,10 +413,14 @@ class FileViewer(object):
 
     def _normalize_file_list(self, expected_files):
         """Normalize file names, strip /tmp/xxxx/ prefix."""
-        normalized_files = [fname.strip('/') for fname in expected_files]
-        normalized_files = [
-            os.path.join(*fname.split(os.path.sep)[2:])
-            for fname in normalized_files]
+        prefix_len = settings.TMP_PATH.count('/')
+
+        normalized_files = filter(None, (
+            fname.strip('/').split('/')[prefix_len + 1:]
+            for fname in expected_files
+            if fname.startswith(settings.TMP_PATH)))
+
+        normalized_files = [os.path.join(*fname) for fname in normalized_files]
 
         return normalized_files
 
@@ -420,7 +429,7 @@ class FileViewer(object):
         # few milliseconds but it's still way faster than doing any
         # kind of sleeps to wait for writes to happen.
         for fname in files:
-            fpath = os.path.join(settings.TMP_PATH, fname)
+            fpath = os.path.join(self.base_tmp_path, fname)
             descriptor = os.open(fpath, os.O_RDONLY)
             os.fsync(descriptor)
 

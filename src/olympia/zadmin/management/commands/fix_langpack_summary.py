@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from django.db.models import Q, F
+from django.db.models import F, Q
 
-from olympia.users.models import UserProfile
 from olympia.translations.models import Translation
+from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):

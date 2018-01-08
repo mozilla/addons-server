@@ -7,6 +7,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
@@ -15,8 +16,7 @@ from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.users import notifications
 
 from . import tasks
-from .models import (
-    UserProfile, UserNotification, DeniedName)
+from .models import DeniedName, UserNotification, UserProfile
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
     RequiredTextarea)

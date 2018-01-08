@@ -1,33 +1,31 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
-import mock
 import time
+
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+
+import mock
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase
-from olympia.amo.tests import (
-    addon_factory, file_factory, user_factory, version_factory)
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
-from olympia.files.models import FileValidation
+from olympia.amo.tests import (
+    TestCase, addon_factory, file_factory, user_factory, version_factory)
+from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import Whiteboard
-from olympia.versions.models import (
-    Version, version_uploaded)
-from olympia.files.models import File, WebextPermission
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
-    ReviewerSubscription, send_notifications, set_reviewing_cache,
-    ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList)
+    ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
+    ViewUnlistedAllList, Whiteboard, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
+from olympia.versions.models import Version, version_uploaded
 
 
 def create_search_ext(name, version_str, addon_status, file_status,

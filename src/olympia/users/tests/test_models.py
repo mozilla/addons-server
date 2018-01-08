@@ -2,22 +2,23 @@
 from datetime import date, timedelta
 
 import django  # noqa
+
 from django import forms
-from django.db import models, migrations
+from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
 
 import pytest
 
 import olympia  # noqa
+
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, addon_factory, safe_exec
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, UserEmailField, UserProfile,
-    UserForeignKey)
+    DeniedName, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
 
 

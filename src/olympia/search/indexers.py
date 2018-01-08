@@ -1,7 +1,8 @@
 import olympia.core.logger
-from olympia.amo.indexers import BaseSearchIndexer
+
 from olympia.addons.cron import reindex_addons
 from olympia.addons.indexers import AddonIndexer
+from olympia.amo.indexers import BaseSearchIndexer
 from olympia.bandwagon.cron import reindex_collections
 from olympia.bandwagon.indexers import CollectionIndexer
 from olympia.compat.cron import compatibility_report

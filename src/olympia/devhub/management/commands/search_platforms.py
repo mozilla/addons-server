@@ -5,8 +5,8 @@ from django.db.models import Count
 
 from olympia import amo
 from olympia.addons.models import Version
-from olympia.amo.utils import chunked
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import chunked
 from olympia.files.models import File
 
 

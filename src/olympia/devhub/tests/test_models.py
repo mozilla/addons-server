@@ -1,6 +1,6 @@
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.devhub.models import BlogPost
 from olympia.files.models import File
 from olympia.versions.models import Version

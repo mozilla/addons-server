@@ -1,13 +1,15 @@
+import json
+
 from calendar import timegm
 from datetime import datetime, timedelta
-import mock
-import json
 
 from django.conf import settings
 from django.core import signing
 from django.test import RequestFactory
 
 import jwt
+import mock
+
 from freezegun import freeze_time
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
@@ -17,9 +19,9 @@ from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClient, TestCase, user_factory, WithDynamicEndpoints)
+    APITestClient, TestCase, WithDynamicEndpoints, user_factory)
 from olympia.api.authentication import (
-    WebTokenAuthentication, JWTKeyAuthentication)
+    JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
 
 

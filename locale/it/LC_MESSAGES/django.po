@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-10 11:33+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-01-05 12:26+0000\n"
+"Last-Translator: mte90net <mte90net@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -3523,7 +3523,7 @@ msgid "Cancel and Disable Version"
 msgstr "Disattiva questa versione e annulla la richiesta di revisione"
 
 msgid "Submit Version"
-msgstr "Carica un aversione"
+msgstr "Carica una versione"
 
 msgid "Describe Version"
 msgstr "Descrivi le novità di questa versione"
@@ -4012,7 +4012,7 @@ msgstr "Segui il tutorial"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Visualizza tutti i file caricati"
+msgstr "Visualizza tutti i progetti caricati"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""

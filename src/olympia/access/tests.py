@@ -1,17 +1,18 @@
+from django.contrib.auth.models import AnonymousUser
+
 import mock
 import pytest
 
-from django.contrib.auth.models import AnonymousUser
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.users.models import UserProfile
 
-from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  check_addons_reviewer, check_personas_reviewer,
-                  check_unlisted_addons_reviewer, is_reviewer, match_rules)
+from .acl import (
+    action_allowed, check_addon_ownership, check_addons_reviewer,
+    check_ownership, check_personas_reviewer, check_unlisted_addons_reviewer,
+    is_reviewer, match_rules)
 
 
 pytestmark = pytest.mark.django_db

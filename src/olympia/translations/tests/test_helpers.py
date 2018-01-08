@@ -2,14 +2,15 @@ from django.conf import settings
 from django.utils import translation
 
 import pytest
+
 from mock import Mock, patch
 
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import from_string
-from olympia.addons.models import Addon
-from olympia.translations.templatetags import jinja_helpers
 from olympia.translations.fields import save_signal
 from olympia.translations.models import PurifiedTranslation
+from olympia.translations.templatetags import jinja_helpers
 from olympia.translations.tests.testapp.models import TranslatedModel
 
 

@@ -1,4 +1,5 @@
 import mkt
+
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 

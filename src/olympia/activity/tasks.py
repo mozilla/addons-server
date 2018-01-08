@@ -1,8 +1,9 @@
 import olympia.core.logger
-from olympia.amo.celery import task
-from olympia.amo.decorators import write
+
 from olympia.activity.models import ActivityLogEmails
 from olympia.activity.utils import add_email_to_activity_log_wrapper
+from olympia.amo.celery import task
+from olympia.amo.decorators import write
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')

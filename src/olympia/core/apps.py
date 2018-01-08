@@ -1,11 +1,11 @@
+import logging
 import os
 import sys
-import logging
 import warnings
 
 from django.apps import AppConfig
-from django.core.management import call_command
 from django.conf import settings
+from django.core.management import call_command
 from django.utils.translation import ugettext_lazy as _
 
 

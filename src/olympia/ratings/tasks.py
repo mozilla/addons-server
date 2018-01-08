@@ -1,13 +1,15 @@
-from django.db.models import Count, Avg, F
+from django.db.models import Avg, Count, F
 
 import caching.base as caching
 
 import olympia.core.logger
+
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 
-from .models import Rating, GroupedRating
+from .models import GroupedRating, Rating
+
 
 log = olympia.core.logger.getLogger('z.task')
 

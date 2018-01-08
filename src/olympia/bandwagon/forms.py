@@ -8,14 +8,16 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
 from olympia.translations.widgets import (
-    TranslationTextInput, TranslationTextarea)
+    TranslationTextarea, TranslationTextInput)
 from olympia.users.models import DeniedName, UserProfile
 
-from .models import Collection, CollectionUser
 from . import tasks
+from .models import Collection, CollectionUser
+
 
 privacy_choices = (
     (False, _(u'Only I can view this collection.')),

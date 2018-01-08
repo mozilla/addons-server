@@ -9,8 +9,8 @@ import mock
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
 from olympia.amo import decorators
+from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
 from olympia.users.models import UserProfile
 
 

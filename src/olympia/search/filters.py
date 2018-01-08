@@ -1,10 +1,11 @@
 from django.utils import translation
 from django.utils.translation import ugettext
 
+import waffle
+
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
-import waffle
 
 from olympia import amo
 from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
@@ -109,6 +110,17 @@ class AddonAuthorQueryParam(AddonQueryParam):
     operator = 'terms'
     query_param = 'author'
     es_field = 'listed_authors.username'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '').split(',')
+
+
+class AddonGuidQueryParam(AddonQueryParam):
+    # Note: this returns add-ons that match a guid when several are provided
+    # (separated by a comma).
+    operator = 'terms'
+    query_param = 'guid'
+    es_field = 'guid'
 
     def get_value(self):
         return self.request.GET.get(self.query_param, '').split(',')
@@ -398,7 +410,7 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
                          AddonAuthorQueryParam, AddonCategoryQueryParam,
-                         AddonFeaturedQueryParam,
+                         AddonGuidQueryParam, AddonFeaturedQueryParam,
                          AddonPlatformQueryParam, AddonTagQueryParam,
                          AddonTypeQueryParam]
 

@@ -3,9 +3,11 @@ import re
 from django.utils import translation
 
 import requests
+
 from requests.exceptions import RequestException
 
 import olympia.core.logger
+
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.files.models import (

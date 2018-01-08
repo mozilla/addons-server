@@ -1,8 +1,9 @@
-from django.urls import reverse
 from django.http import Http404
-from django.test import override_settings, TestCase
+from django.test import TestCase, override_settings
+from django.urls import reverse
 
 import mock
+
 from rest_framework.exceptions import APIException, PermissionDenied
 from rest_framework.request import Request
 from rest_framework.response import Response

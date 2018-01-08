@@ -1,12 +1,14 @@
 import json
 
 import olympia.core.logger
+
 from olympia.amo.celery import task
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.github.utils import GithubCallback, rezip_file
-from olympia.files.models import FileUpload
 from olympia.devhub.tasks import validate
+from olympia.files.models import FileUpload
+from olympia.github.utils import GithubCallback, rezip_file
+
 
 log = olympia.core.logger.getLogger('z.github')
 

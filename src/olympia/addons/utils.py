@@ -1,10 +1,11 @@
-import uuid
 import random
+import uuid
 
 from django.core.cache import cache
 from django.db.models import Q
 
 import olympia.core.logger
+
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.constants.categories import CATEGORIES_BY_ID
 

@@ -1,13 +1,15 @@
-import pytest
-from mock import MagicMock, Mock
 from django.core.paginator import (
-    Paginator, InvalidPage, EmptyPage, PageNotAnInteger)
+    EmptyPage, InvalidPage, PageNotAnInteger, Paginator)
 
-from olympia.amo.tests import TestCase
-from olympia.amo.templatetags.jinja_helpers import PaginationRenderer
-from olympia.amo.pagination import ESPaginator
-from olympia.amo.utils import paginate
+import pytest
+
+from mock import MagicMock, Mock
+
 from olympia.addons.models import Addon
+from olympia.amo.pagination import ESPaginator
+from olympia.amo.templatetags.jinja_helpers import PaginationRenderer
+from olympia.amo.tests import TestCase
+from olympia.amo.utils import paginate
 
 
 pytestmark = pytest.mark.django_db

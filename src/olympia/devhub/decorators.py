@@ -5,10 +5,10 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 from olympia import amo
-from olympia.amo.decorators import login_required
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
+from olympia.amo.decorators import login_required
 
 
 def dev_required(owner_for_post=False, allow_reviewers=False, theme=False,

@@ -2,12 +2,14 @@ import json
 import os
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
+from django.core.management.base import BaseCommand
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.applications.models import AppVersion
+
 
 log = olympia.core.logger.getLogger('z.cron')
 
@@ -17,7 +19,9 @@ log = olympia.core.logger.getLogger('z.cron')
 class Command(BaseCommand):
     help = 'Dump a json file containing AMO apps and versions.'
 
-    JSON_PATH = os.path.join(settings.MEDIA_ROOT, 'apps.json')
+    @classmethod
+    def get_json_path(self):
+        return os.path.join(settings.MEDIA_ROOT, 'apps.json')
 
     def handle(self, *args, **kw):
         apps = {}
@@ -34,6 +38,6 @@ class Command(BaseCommand):
                 pass
 
         # Local file, to be read by validator.
-        with storage.open(self.JSON_PATH, 'w') as f:
+        with storage.open(self.get_json_path(), 'w') as f:
             json.dump(apps, f)
             log.debug("Wrote: %s" % f.name)

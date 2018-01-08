@@ -6,35 +6,36 @@ import re
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.utils.http import urlunquote
 from django.test.client import Client
+from django.utils.http import urlunquote
 
 import waffle
+
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
-from olympia.amo.tests import (
-    addon_factory, collection_factory, user_factory, version_factory)
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
     Persona, ReplacementAddon)
+from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
-    AddonSearchView, AddonAutoCompleteSearchView)
+    AddonAutoCompleteSearchView, AddonSearchView)
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
+from olympia.amo.tests import (
+    APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
+    user_factory, version_factory)
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.ratings.models import Rating
-from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
 
@@ -1678,13 +1679,18 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
-        assert result['slug'] == 'my-addon'
+        assert result['slug'] == self.addon.slug
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         return result
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-detail', kwargs={'pk': param})
+
+    def test_detail_url_with_reviewers_in_the_url(self):
+        self.addon.update(slug='something-reviewers')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self._test_url()
 
     def test_hide_latest_unlisted_version_anonymous(self):
         unlisted_version = version_factory(
@@ -2730,6 +2736,50 @@ class TestAddonSearchView(ESTestCase):
         result = data['results'][1]
         assert result['id'] == addon2.pk
         assert result['slug'] == addon2.slug
+
+    def test_filter_by_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'guid': u'random@guid'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_multiple_guid(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               guid='random2@guid',
+                               weekly_downloads=333)
+        addon_factory()
+        self.reindex(Addon)
+
+        data = self.perform_search(
+            self.url, {'guid': u'random@guid,random2@guid'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
+        # Throw in soome random invalid guids too that will be ignored.
+        data = self.perform_search(
+            self.url, {
+                'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'}
+        )
+        assert data['count'] == len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == addon2.pk
 
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):

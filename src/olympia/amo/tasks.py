@@ -3,6 +3,7 @@ import datetime
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task

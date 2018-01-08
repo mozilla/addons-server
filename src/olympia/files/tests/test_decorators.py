@@ -1,13 +1,14 @@
 from django import http
-from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.test import RequestFactory
 
 import pytest
+
 from mock import Mock, patch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.access import acl
+from olympia.amo.tests import TestCase
 from olympia.files.decorators import allowed
 
 

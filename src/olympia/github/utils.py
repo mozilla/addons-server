@@ -7,11 +7,14 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import requests
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.files.utils import SafeUnzip
+
 
 log = olympia.core.logger.getLogger('z.github')
 

@@ -1,16 +1,19 @@
 import datetime
 import re
+
 from email.utils import formataddr
 
-from django.forms import ValidationError
 from django.conf import settings
+from django.forms import ValidationError
 from django.template import loader
 from django.utils import translation
 
-from email_reply_parser import EmailReplyParser
 import waffle
 
+from email_reply_parser import EmailReplyParser
+
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
@@ -19,6 +22,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import no_translation, send_mail
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
+
 
 log = olympia.core.logger.getLogger('z.amo.activity')
 

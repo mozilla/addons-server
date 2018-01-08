@@ -8,15 +8,15 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from olympia import amo
-from olympia.amo.utils import render, paginate
-from olympia.amo.decorators import post_required
 from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.addons.models import Addon
+from olympia.amo.decorators import post_required
+from olympia.amo.utils import paginate, render
 from olympia.search.utils import floor_version
 from olympia.versions.compare import version_dict as vdict
 
-from .models import CompatReport
 from .forms import AppVerForm
+from .models import CompatReport
 
 
 @csrf_exempt

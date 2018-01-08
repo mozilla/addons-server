@@ -1,7 +1,7 @@
 import copy
 import re
 
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.db import connection
 from django.db.models import Q
 from django.db.models.sql.query import AND, OR

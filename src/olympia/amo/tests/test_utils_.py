@@ -1,18 +1,19 @@
 import collections
 import tempfile
 
-import mock
-import pytest
-from babel import Locale
 from django.conf import settings
 from django.utils.functional import cached_property
 
+import mock
+import pytest
+
+from babel import Locale
+
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, translations_for_field, walkfiles,
-    get_locale_from_lang)
-from olympia.addons.models import Addon
+    attach_trans_dict, get_locale_from_lang, translations_for_field, walkfiles)
 from olympia.versions.models import Version
 
 
@@ -121,7 +122,7 @@ def test_has_links():
 
 
 def test_walkfiles():
-    basedir = tempfile.mkdtemp()
+    basedir = tempfile.mkdtemp(dir=settings.TMP_PATH)
     subdir = tempfile.mkdtemp(dir=basedir)
     file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
     file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')

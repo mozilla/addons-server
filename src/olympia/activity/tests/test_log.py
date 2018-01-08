@@ -3,7 +3,7 @@ import json
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.users.models import UserProfile
 
 

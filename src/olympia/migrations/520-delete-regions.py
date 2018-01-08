@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-from celeryutils import task
-
-from mkt.webapps.models import AddonExcludedRegion
 from amo.decorators import write
+from celeryutils import task
+from mkt.webapps.models import AddonExcludedRegion
 
 
 @task

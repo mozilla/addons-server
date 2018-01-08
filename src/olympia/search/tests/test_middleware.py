@@ -1,6 +1,7 @@
 from django.test.client import RequestFactory
 
 import mock
+
 from elasticsearch import TransportError
 
 from olympia.amo.tests import TestCase

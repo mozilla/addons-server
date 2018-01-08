@@ -8,6 +8,7 @@ from django.db import transaction
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.models import (

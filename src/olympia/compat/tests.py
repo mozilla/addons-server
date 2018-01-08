@@ -1,16 +1,17 @@
 import json
+
 from datetime import datetime
 
-from django_extensions.db.fields.json import JSONList
-
 import mock
+
+from django_extensions.db.fields.json import JSONList
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import ESTestCase, TestCase, version_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon, AppSupport
 from olympia.addons.utils import generate_addon_guid
+from olympia.amo.tests import ESTestCase, TestCase, version_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.cron import compatibility_report
 from olympia.compat.indexers import AppCompatIndexer

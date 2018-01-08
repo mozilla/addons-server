@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
-import os
 import mimetypes
+import os
 import shutil
 import zipfile
 
+from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
-from django import forms
 
-import pytest
 import flufl.lock
-from mock import Mock, patch
+import pytest
+
 from freezegun import freeze_time
+from mock import Mock, patch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.templatetags.jinja_helpers import (
-    FileViewer, DiffHelper, extract_file)
 from olympia.files.models import File
+from olympia.files.templatetags.jinja_helpers import (
+    DiffHelper, FileViewer, extract_file)
 from olympia.files.utils import SafeUnzip, get_all_files
+
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
 

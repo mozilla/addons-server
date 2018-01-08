@@ -5,17 +5,19 @@ from django.db.models import Count, Max
 import elasticsearch.helpers
 
 import olympia.core.logger
+
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo import search as amo_search
 from olympia.amo.utils import chunked
-from olympia.addons.models import Addon
 from olympia.compat import FIREFOX_COMPAT
+from olympia.lib.es.utils import get_indices
 from olympia.search.utils import floor_version
 from olympia.stats.models import UpdateCount
 from olympia.versions.compare import version_int as vint
-from olympia.lib.es.utils import get_indices
 
 from .models import AppCompat, CompatReport, CompatTotals
+
 
 log = olympia.core.logger.getLogger('z.compat')
 

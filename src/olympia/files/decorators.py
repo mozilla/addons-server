@@ -1,5 +1,6 @@
-from datetime import datetime
 import functools
+
+from datetime import datetime
 
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
@@ -7,12 +8,14 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import http_date, quote_etag
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.cache_nuggets import Token
 from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
-from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
+from olympia.amo.cache_nuggets import Token
 from olympia.files.models import File
+from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
+
 
 log = olympia.core.logger.getLogger('z.addons')
 

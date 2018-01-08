@@ -1,5 +1,8 @@
 import json
+
 from tempfile import mkdtemp
+
+from django.conf import settings
 
 from mock import patch
 
@@ -7,9 +10,9 @@ from olympia.lib.product_details_backend import NoCachePDFileStorage
 
 
 class TestNoCachePDFileStorage(object):
-    storage = NoCachePDFileStorage(json_dir=mkdtemp())
-
     def setup(self):
+        self.storage = NoCachePDFileStorage(
+            json_dir=mkdtemp(dir=settings.TMP_PATH))
         self.storage.clear_cache()
 
     def test_no_cache(self):

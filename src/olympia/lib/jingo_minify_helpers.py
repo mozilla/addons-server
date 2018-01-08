@@ -7,6 +7,7 @@ from django.contrib.staticfiles.finders import find as static_finder
 
 import jinja2
 
+
 try:
     from build import BUILD_ID_CSS, BUILD_ID_JS, BUILD_ID_IMG, BUNDLE_HASHES
 except ImportError:

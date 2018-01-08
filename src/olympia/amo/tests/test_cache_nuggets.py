@@ -4,7 +4,7 @@ from django.core.cache import cache
 from django.test.utils import override_settings
 
 from olympia.amo.cache_nuggets import (
-    memoize, memoize_get, memoize_key, Message, Token)
+    Message, Token, memoize, memoize_get, memoize_key)
 
 
 @override_settings(CACHE_PREFIX='testing')

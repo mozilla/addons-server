@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import mimetypes
 import os
+
 from datetime import datetime, timedelta
 from urlparse import urljoin
 
@@ -11,14 +12,16 @@ from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
 
 import pytest
+
 from mock import Mock, patch
 from pyquery import PyQuery
 
 import olympia
+
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.amo import urlresolvers, utils
 from olympia.amo.templatetags import jinja_helpers
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import ImageCheck
 from olympia.versions.models import License
 

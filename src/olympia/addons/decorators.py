@@ -4,8 +4,10 @@ from django import http
 from django.shortcuts import get_object_or_404
 
 import olympia.core.logger
+
 from olympia.access import acl
 from olympia.addons.models import Addon
+
 
 log = olympia.core.logger.getLogger('mkt.purchase')
 

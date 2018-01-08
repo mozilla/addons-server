@@ -1,15 +1,17 @@
 import codecs
+
 from datetime import datetime, timedelta
 from os import path, unlink
 
-from django.db import close_old_connections
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.db import close_old_connections
 
 import olympia.core.logger
+
 from olympia.addons.models import Addon
 from olympia.files.models import File
-from olympia.stats.models import update_inc, DownloadCount
+from olympia.stats.models import DownloadCount, update_inc
 from olympia.zadmin.models import DownloadSource
 
 from . import get_date_from_file, save_stats_to_file

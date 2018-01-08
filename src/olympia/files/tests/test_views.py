@@ -6,21 +6,23 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.http import http_date, quote_etag
 from django.test.utils import override_settings
+from django.utils.http import http_date, quote_etag
 
 import pytest
+
 from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.cache_nuggets import Message
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.models import Addon
-from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
 from olympia.files.models import File
+from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
 from olympia.users.models import UserProfile
+
 
 dictionary = 'src/olympia/files/fixtures/files/dictionary-test.xpi'
 unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
@@ -438,13 +440,13 @@ class TestFileViewer(FilesBase, TestCase):
         res = self.client.get(self.file_url(u'\u1109\u1161\u11a9'))
         assert res.status_code == 200
 
-    @override_settings(TMP_PATH=unicode(settings.TMP_PATH))
     def test_unicode_fails_with_wrong_configured_basepath(self):
-        file_viewer = FileViewer(self.file)
-        file_viewer.src = unicode_filenames
+        with override_settings(TMP_PATH=unicode(settings.TMP_PATH)):
+            file_viewer = FileViewer(self.file)
+            file_viewer.src = unicode_filenames
 
-        with pytest.raises(UnicodeDecodeError):
-            file_viewer.extract()
+            with pytest.raises(UnicodeDecodeError):
+                file_viewer.extract()
 
     def test_serve_no_token(self):
         self.file_viewer.extract()

@@ -6,6 +6,7 @@ import socket
 import subprocess
 import tempfile
 import urllib2
+
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
@@ -17,23 +18,25 @@ from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.utils.translation import ugettext
 
+import validator
+
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from PIL import Image
-import validator
 
 import olympia.core.logger
+
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
     resize_image, send_html_mail_jinja, utc_millesecs_from_epoch)
-from olympia.addons.models import Addon
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
+from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.models import FileUpload, File, FileValidation
 from olympia.files.utils import is_beta
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
@@ -506,12 +509,14 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     """
     from validator.validate import validate
 
-    apps = dump_apps.Command.JSON_PATH
+    apps = dump_apps.Command.get_json_path()
 
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    with NamedTemporaryFile(suffix='_' + os.path.basename(path)) as temp:
+    suffix = '_' + os.path.basename(path)
+
+    with NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH) as temp:
         if path and not os.path.exists(path) and storage.exists(path):
             # This file doesn't exist locally. Write it to our
             # currently-open temp file and switch to that path.
@@ -555,7 +560,9 @@ def run_addons_linter(path, listed=True):
             'Path "{}" is not a file or directory or does not exist.'
             .format(path))
 
-    stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+    stdout, stderr = (
+        tempfile.TemporaryFile(dir=settings.TMP_PATH),
+        tempfile.TemporaryFile(dir=settings.TMP_PATH))
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(

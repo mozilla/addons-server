@@ -8,10 +8,10 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.api.fields import (
     ESTranslationSerializerField, ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
-from olympia.amo.tests import addon_factory, TestCase
 from olympia.translations.models import Translation
 
 

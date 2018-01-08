@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+
 import mock
 import pytest
 
-from django.conf import settings
-
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import DeniedName, UserProfile
-from olympia.users.utils import autocreate_username, UnsubscribeCode
+from olympia.users.utils import (
+    UnsubscribeCode, autocreate_username, system_addon_submission_allowed)
 
 
 def test_email_unsubscribe_code_parse():
@@ -53,3 +54,23 @@ class TestAutoCreateUsername(TestCase):
         UserProfile.objects.create(username='existingname')
         UserProfile.objects.create(username='existingname2')
         assert autocreate_username('existingname') == 'existingname3'
+
+
+system_guids = pytest.mark.parametrize('guid', [
+    'foo@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org'])
+
+
+@system_guids
+@pytest.mark.django_db
+def test_system_addon_submission_allowed_mozilla_allowed(guid):
+    user = user_factory(email='firefox@mozilla.com')
+    data = {'guid': guid}
+    assert system_addon_submission_allowed(user, data)
+
+
+@system_guids
+@pytest.mark.django_db
+def test_system_addon_submission_allowed_not_mozilla_not_allowed(guid):
+    user = user_factory(email='waterbadger@notzilla.org')
+    data = {'guid': guid}
+    assert not system_addon_submission_allowed(user, data)

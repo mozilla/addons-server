@@ -2,11 +2,11 @@ import re
 
 from django.utils.translation import ugettext_lazy as _
 
-from olympia.versions.compare import version_int as vint
-
 from base import (
-    ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
-    ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME)
+    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_PLUGIN,
+    ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME)
+
+from olympia.versions.compare import version_int as vint
 
 
 class App(object):

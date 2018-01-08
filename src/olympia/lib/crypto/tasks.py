@@ -3,11 +3,12 @@ import re
 import shutil
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.celery import task
 from olympia.files.utils import update_version_number
-from olympia.lib.crypto.packaged import sign_file, SIGN_FOR_APPS
+from olympia.lib.crypto.packaged import SIGN_FOR_APPS, sign_file
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 

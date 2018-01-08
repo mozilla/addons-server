@@ -3,8 +3,9 @@ import random
 import tempfile
 import uuid
 
-from PIL import Image, ImageColor
 from django.conf import settings
+
+from PIL import Image, ImageColor
 
 from olympia.addons.models import Preview
 from olympia.addons.tasks import save_theme
@@ -21,7 +22,7 @@ def generate_addon_preview(addon):
     color = random.choice(ImageColor.colormap.keys())
     im = Image.new('RGB', (320, 480), color)
     p = Preview.objects.create(addon=addon, caption='Screenshot 1', position=1)
-    f = tempfile.NamedTemporaryFile()
+    f = tempfile.NamedTemporaryFile(dir=settings.TMP_PATH)
     im.save(f, 'png')
     resize_preview(f.name, p)
 

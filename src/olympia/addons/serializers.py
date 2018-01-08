@@ -20,8 +20,8 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 from .models import (
-    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview,
-    ReplacementAddon)
+    Addon, AddonFeatureCompatibility, Persona, Preview, ReplacementAddon,
+    attach_tags)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):

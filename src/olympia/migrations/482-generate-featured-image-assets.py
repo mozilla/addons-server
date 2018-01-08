@@ -1,5 +1,4 @@
 from amo.utils import chunked
-
 from mkt.developers.tasks import generate_image_assets
 from mkt.webapps.models import Webapp
 

@@ -7,8 +7,8 @@ import os
 import re
 import shutil
 import stat
-import struct
 import StringIO
+import struct
 import tempfile
 import zipfile
 
@@ -20,22 +20,24 @@ from zipfile import BadZipfile, ZipFile
 from django import forms
 from django.conf import settings
 from django.core.files.storage import (
-    default_storage as storage, File as DjangoFile)
+    File as DjangoFile, default_storage as storage)
+from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
-from django.utils.encoding import force_text
 
 import flufl.lock
 import rdflib
 import waffle
+
 from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
+
 from olympia import amo, core
-from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
+from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
-from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
+from olympia.versions.compare import version_int as vint
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -647,6 +649,7 @@ class SafeUnzip(object):
         """Extracts the given info to a directory and checks the file size."""
         self.zip_file.extract(info, dest)
         dest = os.path.join(dest, info.filename)
+
         if not os.path.isdir(dest):
             # Directories consistently report their size incorrectly.
             size = os.stat(dest)[stat.ST_SIZE]
@@ -673,7 +676,7 @@ class SafeUnzip(object):
 
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     zip_file = SafeUnzip(source)
     try:
@@ -695,6 +698,7 @@ def copy_over(source, dest):
     """
     if os.path.exists(dest) and os.path.isdir(dest):
         shutil.rmtree(dest)
+
     shutil.copytree(source, dest)
     # mkdtemp will set the directory permissions to 700
     # for the webserver to read them, we need 755
@@ -784,8 +788,8 @@ def parse_xpi(xpi, addon=None, minimal=False):
     only the minimal set of properties needed to decide what to do with the
     add-on: guid, version and is_webextension.
     """
-    # Extract to /tmp
-    path = tempfile.mkdtemp()
+    # Extract to our configured temporary directory
+    path = tempfile.mkdtemp(dir=settings.TMP_PATH)
     try:
         xpi = get_file(xpi)
         extract_xpi(xpi, path)
@@ -967,17 +971,15 @@ def write_crx_as_xpi(chunks, storage, target):
     archive, then write it to `target`. Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx
     """
-    temp_crx_file = tempfile.mkstemp()[1]  # a temp file to store the CRX
-
     # First we open the uploaded CRX so we can see how much we need
     # to trim from the header of the file to make it a valid ZIP.
-    with storage.open(temp_crx_file, 'rwb+') as temp_file:
+    with tempfile.NamedTemporaryFile('rwb+', dir=settings.TMP_PATH) as tmp:
         for chunk in chunks:
-            temp_file.write(chunk)
+            tmp.write(chunk)
 
-        temp_file.seek(0)
+        tmp.seek(0)
 
-        header = temp_file.read(16)
+        header = tmp.read(16)
         header_info = struct.unpack('4cHxII', header)
         public_key_length = header_info[5]
         signature_length = header_info[6]
@@ -987,16 +989,16 @@ def write_crx_as_xpi(chunks, storage, target):
         start_position = 16 + public_key_length + signature_length
 
         hash = hashlib.sha256()
-        temp_file.seek(start_position)
+        tmp.seek(start_position)
 
         # Now we open the Django storage and write our real XPI file.
         with storage.open(target, 'wb') as file_destination:
-            bytes = temp_file.read(65536)
+            bytes = tmp.read(65536)
             # Keep reading bytes and writing them to the XPI.
             while bytes:
                 hash.update(bytes)
                 file_destination.write(bytes)
-                bytes = temp_file.read(65536)
+                bytes = tmp.read(65536)
 
     return hash
 

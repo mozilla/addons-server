@@ -5,7 +5,8 @@ import shutil
 import time
 import urllib2
 import uuid
-from subprocess import call, check_output, PIPE
+
+from subprocess import PIPE, call, check_output
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError

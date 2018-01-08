@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 
 from olympia.files import views
 
+
 file_patterns = [
     url(r'^$', views.browse, name='files.list'),
     url(r'^(?P<type>fragment|file)/(?P<key>.*)$', views.browse,

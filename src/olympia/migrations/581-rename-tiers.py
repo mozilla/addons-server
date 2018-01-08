@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from market.models import Price
 
+
 tiers = """
 0 0.00
 1 0.10

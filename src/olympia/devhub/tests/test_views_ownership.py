@@ -1,13 +1,12 @@
 """Tests related to the ``devhub.addons.owner`` view."""
-from pyquery import PyQuery as pq
-
 from django.core import mail
+
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase
-from olympia.amo.tests import formset
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, formset
 from olympia.devhub.forms import LicenseForm
 from olympia.versions.models import License, Version
 

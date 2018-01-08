@@ -1,19 +1,21 @@
 import datetime
-import httplib2
 import itertools
 
 from django.conf import settings
 from django.db import connection
-from django.db.models import Sum, Max
+from django.db.models import Max, Sum
+
+import httplib2
 
 from apiclient.discovery import build
 from elasticsearch.helpers import bulk as bulk_index
 from oauth2client.client import OAuth2Credentials
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo import search as amo_search
 from olympia.addons.models import Addon
+from olympia.amo import search as amo_search
 from olympia.amo.celery import task
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating

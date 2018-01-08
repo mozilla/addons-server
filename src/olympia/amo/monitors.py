@@ -2,19 +2,22 @@ import os
 import socket
 import StringIO
 import traceback
-import requests
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
+import redis as redislib
+import requests
+
 from kombu import Connection
 from PIL import Image
-import redis as redislib
 
 import olympia.core.logger
+
 from olympia.amo import search
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.management.commands import dump_apps
+
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
 
@@ -102,7 +105,7 @@ def path():
           user_media_path('previews'),
           user_media_path('userpics'),
           user_media_path('reviewer_attachments'),
-          dump_apps.Command.JSON_PATH,)
+          dump_apps.Command.get_json_path(),)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
          # We do not want Django to have write access though.

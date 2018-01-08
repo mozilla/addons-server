@@ -3,12 +3,13 @@ from datetime import datetime, timedelta
 from django.conf import settings
 
 import jwt
+
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_jwt.settings import api_settings
 
 from olympia.amo.tests import TestCase
 from olympia.api import jwt_auth
-from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.users.models import UserProfile
 
 

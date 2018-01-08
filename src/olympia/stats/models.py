@@ -1,7 +1,8 @@
 from django.db import models
-from django_extensions.db.fields.json import JSONField
 
 import caching.base
+
+from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.models import SearchMixin
 

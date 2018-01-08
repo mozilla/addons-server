@@ -3,8 +3,8 @@
 from django.db import connection
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Category
+from olympia.amo.tests import TestCase
 
 
 class TestRedirects(TestCase):

@@ -3,6 +3,7 @@ import datetime
 import os
 
 import django.dispatch
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -12,23 +13,26 @@ from django.utils.translation import ugettext
 
 import caching.base
 import jinja2
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+
 from olympia import activity, amo
-from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.amo.decorators import use_master
+from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.templatetags.jinja_helpers import id_to_path, user_media_path
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
+from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, save_signal, TranslatedField)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 from .compare import version_dict, version_int
+
 
 log = olympia.core.logger.getLogger('z.versions')
 

@@ -3,20 +3,24 @@ import os
 import shutil
 import tempfile
 import zipfile
+
 from base64 import b64decode, b64encode
 
-import waffle
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_bytes
 
 import requests
-from requests_hawk import HawkAuth
+import waffle
+
 from django_statsd.clients import statsd
-from signing_clients.apps import get_signer_serial_number, JarExtractor
+from requests_hawk import HawkAuth
+from signing_clients.apps import JarExtractor, get_signer_serial_number
 
 import olympia.core.logger
+
 from olympia import amo
+
 
 log = olympia.core.logger.getLogger('z.crypto')
 
@@ -119,7 +123,7 @@ def call_signing(file_obj):
     cert_serial_num = get_signer_serial_number(pkcs7)
 
     # We only want the (unique) temporary file name.
-    with tempfile.NamedTemporaryFile() as temp_file:
+    with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as temp_file:
         temp_filename = temp_file.name
 
     jar.make_signed(

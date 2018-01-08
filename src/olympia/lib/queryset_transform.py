@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.query import ModelIterable
+
 from caching.base import CachingModelIterable
+
 
 """
 Copyright (c) 2010, Simon Willison.

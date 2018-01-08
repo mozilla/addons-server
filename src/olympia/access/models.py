@@ -1,10 +1,11 @@
-from django.db import models
 from django import dispatch
+from django.db import models
 from django.db.models import signals
+
+import olympia.core.logger
 
 from olympia import activity, amo
 from olympia.amo.models import ModelBase
-import olympia.core.logger
 
 
 log = olympia.core.logger.getLogger('z.users')

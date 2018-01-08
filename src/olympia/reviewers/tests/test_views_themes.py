@@ -6,14 +6,14 @@ from django.conf import settings
 from django.utils.encoding import smart_text
 
 import mock
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import Persona
-from olympia.amo.tests import addon_factory, days_ago
+from olympia.amo.tests import TestCase, addon_factory, days_ago
 from olympia.amo.urlresolvers import reverse
 from olympia.reviewers.models import (
     RereviewQueueTheme, ReviewerScore, ThemeLock)

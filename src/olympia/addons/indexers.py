@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict
@@ -120,7 +121,7 @@ class AddonIndexer(BaseSearchIndexer):
                             },
                         },
                     },
-                    'guid': {'type': 'keyword', 'index': False},
+                    'guid': {'type': 'keyword'},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
                     'has_theme_rereview': {'type': 'boolean'},

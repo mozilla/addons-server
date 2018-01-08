@@ -1,22 +1,25 @@
 import json
 import os
 import shutil
+
 from datetime import date, timedelta
 
-import mock
 from django.conf import settings
 from django.core import management
 from django.test.testcases import TransactionTestCase
 
+import mock
+
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
 from olympia.addons.models import Persona
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.stats.management.commands import (
     save_stats_to_file, serialize_stats)
-from olympia.stats.management.commands.download_counts_from_file import is_valid_source  # noqa
+from olympia.stats.management.commands.download_counts_from_file import \
+    is_valid_source  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
 from olympia.stats.models import (
-    DownloadCount, ThemeUpdateCount, UpdateCount, ThemeUserCount)
+    DownloadCount, ThemeUpdateCount, ThemeUserCount, UpdateCount)
 from olympia.zadmin.models import DownloadSource
 
 

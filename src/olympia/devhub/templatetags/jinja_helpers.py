@@ -1,17 +1,20 @@
-from collections import defaultdict
 import urllib
 
-import jinja2
-from django.utils.translation import ugettext, ungettext
+from collections import defaultdict
+
 from django.utils.encoding import force_bytes
+from django.utils.translation import ugettext, ungettext
+
+import jinja2
+
 from django_jinja import library
 
 from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import page_title, format_date
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.templatetags.jinja_helpers import new_context
+from olympia.amo.templatetags.jinja_helpers import format_date, page_title
 from olympia.compat.models import CompatReport
 from olympia.files.models import File
 

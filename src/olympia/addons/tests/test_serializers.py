@@ -5,11 +5,6 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
-from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import (
-    addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
-    version_factory, user_factory)
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview,
     ReplacementAddon)
@@ -20,7 +15,12 @@ from olympia.addons.serializers import (
     LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
     VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
-from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
+from olympia.addons.views import AddonAutoCompleteSearchView, AddonSearchView
+from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.tests import (
+    ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
+    user_factory, version_factory)
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN

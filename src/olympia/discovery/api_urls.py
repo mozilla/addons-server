@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 
 from . import views
 
+
 discovery = SimpleRouter()
 discovery.register('discovery', views.DiscoveryViewSet, base_name='discovery')
 

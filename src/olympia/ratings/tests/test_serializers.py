@@ -3,7 +3,7 @@ from mock import Mock
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating
 from olympia.ratings.serializers import RatingSerializer
 

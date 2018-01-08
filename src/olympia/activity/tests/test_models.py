@@ -8,13 +8,13 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import (
-    ActivityLog, ActivityLogToken, AddonLog, MAX_TOKEN_USE_COUNT)
+    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog)
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
-    addon_factory, user_factory, TestCase, version_factory)
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.bandwagon.models import Collection
-from olympia.tags.models import Tag
 from olympia.ratings.models import Rating
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
