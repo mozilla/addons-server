@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2697,8 +2697,9 @@ msgstr "ʎʇıʅıqıʇɐdɯoↃ uo-pp∀ ʞɔǝɥↃ"
 msgid "You cannot submit this type of add-on"
 msgstr "uo-ppɐ ɟo ǝdʎʇ sıɥʇ ʇıɯqns ʇouuɐɔ no⅄"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "„ƃɹo.ɐʅʅızoɯ@„ ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "%s ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "uoısuǝʇxƎ pǝuƃıS ɐʅʅızoW ɐ ʇıɯqns ʇouuɐɔ no⅄"
@@ -3485,17 +3486,23 @@ msgstr "ǝʇǝʅdɯoↃ uoıssıɯqnS"
 msgid "You’re done!"
 msgstr "¡ǝuop ǝɹ’no⅄"
 
+msgid "Version Submitted for Review"
+msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ".pǝʍǝıʌǝɹ sı ʇı uǝɥʍ pǝıɟıʇou ǝq ʅʅıʍ no⅄ .ʍǝıʌǝɹ sǝssɐd ʇı ɹǝʇɟɐ ǝʅqɐʅıɐʌɐ ǝq ʅʅıʍ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
+
 msgid "Version Submitted"
 msgstr "pǝʇʇıɯqnS uoısɹǝɅ"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ".ʎʅʇɹoɥs ǝʇıs ɹno uo ǝʅqɐʅıɐʌɐ ǝq ʅʅıʍ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
 
-msgid "Version Submitted for Review"
-msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ".uoıssıɯqns ɹnoʎ ʇnoqɐ suoıʇsǝnb ʎuɐ ǝʌɐɥ sɹǝʍǝıʌǝɹ ɹno ɟı ɹo ´pǝʇǝʅdɯoɔ uǝǝq sɐɥ ʍǝıʌǝɹ ǝɥʇ uǝɥʍ pǝıɟıʇou ǝq ʅʅıʍ no⅄ .ʍǝıʌǝɹ ɹoɟ pǝʇʇıɯqns uǝǝq sɐɥ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr ":uoıʇɐɔıʅqnd ɹoɟ ʎpɐǝɹ ƃuıʇsıʅ ɹnoʎ ʇǝ⅁ .uoıʇdıɹɔsǝp pǝʅıɐʇǝp ɐ ƃuıppɐ ʎq ʅnɟssǝɔɔns ǝɹoɯ ǝq ʅʅıʍ ƃuıʇsıʅ ɹno⅄"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ":uoıʇɐɔıʅqnd ɹoɟ ʎpɐǝɹ ƃuıʇsıʅ ɹnoʎ ʇǝ⅁ .sʇoɥsuǝǝɹɔs puɐ uoıʇdıɹɔsǝp pǝʅıɐʇǝp ɐ ƃuıppɐ ʎq ʅnɟssǝɔɔns ǝɹoɯ ǝq ʅʅıʍ ƃuıʇsıʅ ɹno⅄"
@@ -3551,9 +3558,6 @@ msgstr "uoısɹǝɅ pɐoʅd∩"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ".ǝʅıɟ ɹnoʎ uo unɹ ǝq ʅʅıʍ sʇsǝʇ uoıʇɐpıʅɐʌ pǝʇɐɯoʇnɐ ɟo sǝıɹǝs ɐ ´pɐoʅdn ɹǝʇɟ∀ .ǝƃɐʞɔɐd uo-ppɐ ɹnoʎ pɐoʅdn oʇ ʍoʅǝq spʅǝıɟ ǝɥʇ ǝs∩"
 
-msgid "Create a Theme"
-msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝʅıɟ sıɥʇ sı sɯɹoɟʇɐʅd ɥɔıɥＭ"
 
@@ -3562,6 +3566,12 @@ msgstr ".ʅǝuuɐɥɔ ɐʇǝq ʎɯ oʇ uoısɹǝʌ sıɥʇ ɥsıʅqnd ʎʅuO"
 
 msgid "Administrative overrides"
 msgstr "sǝpıɹɹǝʌo ǝʌıʇɐɹʇsıuıɯp∀"
+
+msgid "Create a Theme Version"
+msgstr "uoısɹǝɅ ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
+
+msgid "Create a Theme"
+msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
 
 msgid "Submit File"
 msgstr "ǝʅıℲ ʇıɯqnS"
@@ -6014,6 +6024,9 @@ msgstr ".ǝɯǝɥʇ sıɥʇ ƃuıʍǝıʌǝɹ sı ǝsʅǝ ǝuoǝɯoS"
 msgid "theme, reviewer, or comment"
 msgstr "ʇuǝɯɯoɔ ɹo ´ɹǝʍǝıʌǝɹ ´ǝɯǝɥʇ"
 
+msgid "Private Whiteboard"
+msgstr "pɹɐoqǝʇıɥＭ ǝʇɐʌıɹԀ"
+
 msgid "Keep review; remove flags"
 msgstr "sƃɐʅɟ ǝʌoɯǝɹ ;ʍǝıʌǝɹ dǝǝӼ"
 
@@ -6479,8 +6492,11 @@ msgstr ".noʎ ǝɹoɟǝq ǝƃɐd sıɥʇ ƃuıʍǝıʌ sɐʍ ɹǝsn ɹǝɥʇou�
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ".ɥʇoq ʎq ǝʅqɐʇıpǝ puɐ ǝʅqısıʌ sı sıɥ⊥ .ɹǝʍǝıʌǝɹ ǝɥʇ puɐ ɹǝdoʅǝʌǝp ǝɥʇ uǝǝʍʇǝq ´(uoısɹǝʌ ǝɥʇ ɹǝʌǝʇɐɥʍ) uoppɐ sıɥʇ oʇ ʇuɐʌǝʅǝɹ uoıʇɐɯɹoɟuı ǝƃuɐɥɔxǝ oʇ ǝɔɐʅd ǝɥʇ sı pɹɐoqǝʇıɥʍ ǝɥ⊥"
 
-msgid "Update the whiteboard"
-msgstr "pɹɐoqǝʇıɥʍ ǝɥʇ ǝʇɐpd∩"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ".sɹǝʍǝıʌǝɹ oʇ ʎʅuo ǝʅqısıʌ sı ʇI .ǝʌıʇɔǝɾqo ǝƃɐnƃuɐʅ ǝɥʇ dǝǝʞ ǝsɐǝʅԀ .uoısɹǝʌ ǝɥʇ ɟo ʇuǝpuǝdǝpuı sı ʇɐɥʇ sɹǝʍǝıʌǝɹ uǝǝʍʇǝq uoıʇɐɯɹoɟuı ƃuıƃuɐɥɔxǝ ɹoɟ pǝsn sı pɹɐoqǝʇıɥʍ ǝʇɐʌıɹd ǝɥ⊥"
+
+msgid "Update whiteboards"
+msgstr "spɹɐoqǝʇıɥʍ ǝʇɐpd∩"
 
 msgid "(admin)"
 msgstr "(uıɯpɐ)"

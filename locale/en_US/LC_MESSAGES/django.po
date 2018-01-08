@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-01-08 11:27+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2810,7 +2810,8 @@ msgstr "Check Add-on Compatibility"
 msgid "You cannot submit this type of add-on"
 msgstr "You cannot submit this type of add-on"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, fuzzy, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3640,18 +3641,26 @@ msgid "You’re done!"
 msgstr "You're done!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Version Notes / Notes for Reviewer"
+
+#, fuzzy
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "You’re done! This version will be available on our site shortly."
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Version Notes"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "You’re done! This version will be available on our site shortly."
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Version Notes / Notes for Reviewer"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+
+#, fuzzy
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3723,10 +3732,6 @@ msgstr "Upload New Version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Create a New Theme"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
@@ -3735,6 +3740,14 @@ msgstr "Only publish this version to my beta channel."
 
 msgid "Administrative overrides"
 msgstr "Administrative overrides"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Create a New Theme"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Create a New Theme"
 
 #, fuzzy
 msgid "Submit File"
@@ -6291,6 +6304,10 @@ msgstr "Someone else is reviewing this theme."
 msgid "theme, reviewer, or comment"
 msgstr "app, reviewer, or comment"
 
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Whiteboard"
+
 msgid "Keep review; remove flags"
 msgstr "Keep review; remove flags"
 
@@ -6800,7 +6817,11 @@ msgstr "<strong>Warning!</strong> Another user was viewing this page before you.
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Update the whiteboard"
 
 msgid "(admin)"
