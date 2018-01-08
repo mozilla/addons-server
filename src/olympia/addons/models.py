@@ -50,7 +50,8 @@ from olympia.files.utils import (
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version, inherit_nomination
