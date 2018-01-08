@@ -7,11 +7,13 @@ from django.utils.translation import ugettext
 import jinja2
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.files.models import File
 from olympia.lib import happyforms
 from olympia.versions.models import Version
+
 
 log = olympia.core.logger.getLogger('z.files')
 

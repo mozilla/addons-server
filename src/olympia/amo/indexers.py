@@ -1,6 +1,7 @@
 from django.conf import settings
 
 import olympia.core.logger
+
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 
 from .models import SearchMixin

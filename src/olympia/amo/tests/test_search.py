@@ -3,7 +3,7 @@ import mock
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo import search
-from olympia.amo.tests import TestCase, ESTestCaseWithAddons
+from olympia.amo.tests import ESTestCaseWithAddons, TestCase
 from olympia.tags.models import Tag
 
 

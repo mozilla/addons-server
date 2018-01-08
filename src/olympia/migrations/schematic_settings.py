@@ -1,12 +1,15 @@
-import sys
 import os
+import sys
+
 from os.path import dirname
+
+from django.conf import settings  # noqa
+
 
 sys.path.insert(
     0, dirname(dirname(dirname(dirname(os.path.abspath(__file__))))))
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-from django.conf import settings  # noqa
 
 config = settings.DATABASES['default']
 config['HOST'] = config.get('HOST', 'localhost')

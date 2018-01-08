@@ -2,29 +2,33 @@ import codecs
 import mimetypes
 import os
 import stat
+
 from collections import OrderedDict
 from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_text
-from django.utils.translation import get_language, ugettext
 from django.template import loader
 from django.template.defaultfilters import filesizeformat
+from django.utils.encoding import force_text
+from django.utils.translation import get_language, ugettext
+
+import jinja2
+
+from django_jinja import library
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
-import jinja2
-from django_jinja import library
-
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize, Message
-from olympia.amo.utils import rm_local_tmp_dir
+from olympia.amo.cache_nuggets import Message, memoize
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import rm_local_tmp_dir
 from olympia.files.utils import (
-    extract_xpi, get_sha256, get_all_files, atomic_lock)
+    atomic_lock, extract_xpi, get_all_files, get_sha256)
+
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)

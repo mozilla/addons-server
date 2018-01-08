@@ -1,10 +1,11 @@
-from decimal import Decimal
 import json
 
-import caching
+from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
+
+import caching
 
 from olympia import amo
 from olympia.amo.models import ModelBase

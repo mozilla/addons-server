@@ -1,18 +1,22 @@
-import os
 import logging
+import os
 import sys
+
 from datetime import datetime
+
+import django
+import django.conf
+import django.core.management
+import django.utils
+
+from django.core.wsgi import get_wsgi_application
+
 
 log = logging.getLogger('z.startup')
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
 
-import django
-import django.conf
-from django.core.wsgi import get_wsgi_application
-import django.core.management
-import django.utils
 
 # Do validate and activate translations like using `./manage.py runserver`.
 # http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html

@@ -1,10 +1,11 @@
 import zipfile
-from copy import deepcopy
 
-import mock
+from copy import deepcopy
 
 from django import forms
 from django.test.utils import override_settings
+
+import mock
 
 from olympia.amo.tests import AMOPaths, TestCase
 from olympia.github.utils import GithubCallback, GithubRequest, rezip_file

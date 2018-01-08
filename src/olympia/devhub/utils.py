@@ -8,6 +8,7 @@ from django.utils.translation import ugettext
 from celery import chain
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
@@ -15,6 +16,7 @@ from olympia.files.utils import is_beta, parse_addon
 from olympia.versions.compare import version_int
 
 from . import tasks
+
 
 log = olympia.core.logger.getLogger('z.devhub')
 

@@ -1,16 +1,19 @@
 import base64
-from functools import partial
 import hashlib
 import hmac
 import uuid
+
+from functools import partial
 
 from django.conf import settings
 from django.db.models import Q
 from django.utils.encoding import force_bytes
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.users.models import UserProfile, DeniedName
+from olympia.users.models import DeniedName, UserProfile
+
 
 log = olympia.core.logger.getLogger('z.users')
 

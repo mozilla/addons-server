@@ -6,6 +6,7 @@ import itertools
 import json
 import random
 import urllib
+
 from datetime import date, timedelta
 
 from django.core.cache import cache
@@ -13,24 +14,24 @@ from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template import engines
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 from django.utils.encoding import force_bytes
+from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import waffle
+
 from caching.base import cached_with
 
 import olympia.core.logger
+
 from olympia import amo, legacy_api
 from olympia.addons.models import Addon, CompatOverride
-from olympia.amo.decorators import (
-    allow_cross_site_request, json_view)
+from olympia.amo.decorators import allow_cross_site_request, json_view
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
 from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import (
     addon_to_dict, extract_filters, find_compatible_version)
-from olympia.search.views import (
-    AddonSuggestionsAjax, PersonaSuggestionsAjax)
+from olympia.search.views import AddonSuggestionsAjax, PersonaSuggestionsAjax
 from olympia.versions.compare import version_int
 
 

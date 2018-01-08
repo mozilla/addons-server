@@ -1,5 +1,6 @@
 import math
 import random
+
 from datetime import datetime
 
 from olympia import amo

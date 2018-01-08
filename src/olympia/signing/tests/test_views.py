@@ -1,7 +1,7 @@
-
-# -*- coding: utf-8 -*
-import os
+# -*- coding: utf-8 -*-
 import json
+import os
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -11,6 +11,7 @@ from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
+
 from rest_framework.response import Response
 
 from olympia import amo

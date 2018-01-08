@@ -2,13 +2,14 @@
 from collections import OrderedDict
 
 import mock
+
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.discovery.data import discopane_items, DiscoItem
+from olympia.discovery.data import DiscoItem, discopane_items
 from olympia.discovery.utils import replace_extensions
 
 

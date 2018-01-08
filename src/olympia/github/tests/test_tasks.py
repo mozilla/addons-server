@@ -1,14 +1,15 @@
 import json
 
-import mock
 from django.test.utils import override_settings
+
+import mock
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import AMOPaths
-from olympia.github.tasks import process_results, process_webhook
-from olympia.github.tests.test_github import GithubBaseTestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileUpload
+from olympia.github.tasks import process_results, process_webhook
+from olympia.github.tests.test_github import GithubBaseTestCase
 
 
 @override_settings(GITHUB_API_USER='key', GITHUB_API_TOKEN='token')

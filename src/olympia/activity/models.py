@@ -1,6 +1,7 @@
 import json
 import string
 import uuid
+
 from copy import copy
 from datetime import datetime
 
@@ -13,17 +14,17 @@ from django.utils.translation import ugettext
 import jinja2
 
 import olympia.core.logger
-from olympia import amo
-from olympia import constants
+
+from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase, ManagerBase
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
-from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile
+from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.versions.models import Version
 
 

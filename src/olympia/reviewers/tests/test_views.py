@@ -2,6 +2,7 @@
 import json
 import time
 import urlparse
+
 from collections import OrderedDict
 from datetime import datetime, timedelta
 
@@ -10,25 +11,26 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.test.utils import override_settings
 from django.template import defaultfilters
+from django.test.utils import override_settings
 
-from lxml.html import fromstring, HTMLParser
 import mock
+
+from freezegun import freeze_time
+from lxml.html import HTMLParser, fromstring
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-from freezegun import freeze_time
 
 from olympia import amo, core, ratings
-from olympia.amo.tests import (
-    addon_factory, file_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
     AddonUser)
-from olympia.amo.tests import check_links, formset, initial
+from olympia.amo.tests import (
+    TestCase, addon_factory, check_links, file_factory, formset, initial,
+    user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag

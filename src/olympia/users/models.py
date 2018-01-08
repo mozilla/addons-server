@@ -2,6 +2,7 @@ import os
 import random
 import re
 import time
+
 from datetime import datetime
 
 from django import forms
@@ -11,20 +12,22 @@ from django.core import validators
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.translation import ugettext
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
+from django.utils.translation import ugettext
 
 import caching.base as caching
 
 import olympia.core.logger
+
 from olympia import amo, core
-from olympia.amo.decorators import write
-from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
+from olympia.amo.decorators import write
+from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
+
 
 log = olympia.core.logger.getLogger('z.users')
 

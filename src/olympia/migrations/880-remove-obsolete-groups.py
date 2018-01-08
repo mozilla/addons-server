@@ -1,5 +1,6 @@
 from olympia.access.models import Group
 
+
 GROUPS_TO_REMOVE = (
     'App Reviewer MOTD',
     'App Reviewers',

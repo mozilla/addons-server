@@ -1,10 +1,11 @@
-import pytest
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+import pytest
+
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
-from olympia.amo.tests import addon_factory, user_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class TestRepudiateActivityLogToken(TestCase):

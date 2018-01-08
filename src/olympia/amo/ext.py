@@ -1,7 +1,7 @@
-import jinja2.runtime
-from jinja2 import nodes
-
 import caching.ext
+import jinja2.runtime
+
+from jinja2 import nodes
 
 
 class FragmentCacheExtension(caching.ext.FragmentCacheExtension):

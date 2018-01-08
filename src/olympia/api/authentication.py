@@ -5,13 +5,14 @@ from django.utils.encoding import smart_text
 from django.utils.translation import ugettext
 
 import jwt
+
 from rest_framework import exceptions
 from rest_framework.authentication import (
-    BaseAuthentication, get_authorization_header
-)
+    BaseAuthentication, get_authorization_header)
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 import olympia.core.logger
+
 from olympia import core
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey

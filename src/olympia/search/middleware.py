@@ -1,6 +1,7 @@
 from elasticsearch import TransportError
 
 import olympia.core.logger
+
 from olympia.amo.utils import render
 
 

@@ -6,10 +6,8 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 """
 import json
 import os
-from datetime import datetime
 
-from olympia.api.models import APIKey
-from olympia.users.models import Group, GroupUser
+from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands.createsuperuser import (
@@ -18,6 +16,9 @@ from django.core import exceptions
 from django.core.management.base import CommandError
 from django.utils.six.moves import input
 from django.utils.text import capfirst
+
+from olympia.api.models import APIKey
+from olympia.users.models import Group, GroupUser
 
 
 class Command(CreateSuperUserCommand):

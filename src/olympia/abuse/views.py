@@ -7,10 +7,10 @@ from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import GenericViewSet
 
-from olympia.accounts.views import AccountViewSet
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer, UserAbuseReportSerializer)
+from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 
 

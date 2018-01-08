@@ -2,11 +2,11 @@ import os
 import shutil
 import tempfile
 
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import pytest
+
 from PIL import Image
 
 from olympia.amo.tests.test_helpers import get_image_path

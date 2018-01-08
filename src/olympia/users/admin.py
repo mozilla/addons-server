@@ -4,8 +4,8 @@ from django.db.utils import IntegrityError
 from olympia.access.admin import GroupUserInline
 from olympia.amo.utils import render
 
-from .models import UserProfile, DeniedName
 from . import forms
+from .models import DeniedName, UserProfile
 
 
 class UserAdmin(admin.ModelAdmin):

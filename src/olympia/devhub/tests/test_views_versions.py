@@ -2,18 +2,18 @@
 import datetime
 import re
 
-import mock
-from pyquery import PyQuery as pq
-
 from django.core.files import temp
+
+import mock
+
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase, version_factory
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.amo.tests import TestCase, formset, initial, version_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.users.models import UserProfile

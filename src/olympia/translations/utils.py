@@ -1,5 +1,5 @@
-from django.utils.encoding import force_text
 from django.template import engines
+from django.utils.encoding import force_text
 
 import html5lib
 import jinja2

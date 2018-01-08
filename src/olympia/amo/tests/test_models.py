@@ -1,12 +1,12 @@
 import mock
 import pytest
+
 from mock import Mock
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo import models as amo_models
 from olympia.amo.tests import TestCase
-from olympia.amo import models as context
-from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
 
 
@@ -27,21 +27,21 @@ class ManualOrderTest(TestCase):
 
 
 def test_skip_cache():
-    assert not getattr(context._locals, 'skip_cache', False)
-    with context.skip_cache():
-        assert context._locals.skip_cache
-        with context.skip_cache():
-            assert context._locals.skip_cache
-        assert context._locals.skip_cache
-    assert not context._locals.skip_cache
+    assert not getattr(amo_models._locals, 'skip_cache', False)
+    with amo_models.skip_cache():
+        assert amo_models._locals.skip_cache
+        with amo_models.skip_cache():
+            assert amo_models._locals.skip_cache
+        assert amo_models._locals.skip_cache
+    assert not amo_models._locals.skip_cache
 
 
 def test_use_master():
-    local = context.multidb.pinning._locals
+    local = amo_models.multidb.pinning._locals
     assert not getattr(local, 'pinned', False)
-    with context.use_master():
+    with amo_models.use_master():
         assert local.pinned
-        with context.use_master():
+        with amo_models.use_master():
             assert local.pinned
         assert local.pinned
     assert not local.pinned

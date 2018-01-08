@@ -1,4 +1,5 @@
 import olympia.core.logger
+
 from olympia import amo
 from olympia.files.models import File
 from olympia.files.utils import parse_addon

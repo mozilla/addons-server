@@ -8,7 +8,7 @@ from mock import Mock
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import create_switch, TestCase
+from olympia.amo.tests import TestCase, create_switch
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,

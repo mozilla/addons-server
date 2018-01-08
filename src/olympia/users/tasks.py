@@ -1,13 +1,14 @@
 from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
+
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
-from olympia.amo.utils import resize_image
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-
+from olympia.amo.utils import resize_image
 
 from .models import UserProfile
+
 
 task_log = olympia.core.logger.getLogger('z.task')
 

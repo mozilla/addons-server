@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.landfill.ratings import generate_ratings
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile

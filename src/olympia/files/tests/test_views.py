@@ -6,21 +6,23 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.http import http_date
 from django.test.utils import override_settings
+from django.utils.http import http_date
 
 import pytest
+
 from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.cache_nuggets import Message
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.models import Addon
-from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
 from olympia.files.models import File
+from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
 from olympia.users.models import UserProfile
+
 
 dictionary = 'src/olympia/files/fixtures/files/dictionary-test.xpi'
 unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'

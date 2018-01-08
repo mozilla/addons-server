@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
+
 from textwrap import dedent
 
 from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
-import pytest
 import jinja2
+import pytest
+
 from mock import patch
 from pyquery import PyQuery as pq
 
@@ -15,7 +17,7 @@ from olympia import amo, legacy_api
 from olympia.addons.models import (
     Addon, AppSupport, CompatOverride, CompatOverrideRange, Persona, Preview)
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.tests import ESTestCase, TestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.views import handler500
 from olympia.applications.models import AppVersion

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from celery import group
-
 from django.core.management.base import BaseCommand
+
+from celery import group
 
 from olympia.amo.utils import chunked
 from olympia.files.models import File

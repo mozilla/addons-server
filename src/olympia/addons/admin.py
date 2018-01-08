@@ -9,7 +9,7 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext
 
 from olympia.amo.urlresolvers import reverse
-from olympia.zadmin.admin import staff_admin_site, StaffModelAdmin
+from olympia.zadmin.admin import StaffModelAdmin, staff_admin_site
 
 from . import models
 

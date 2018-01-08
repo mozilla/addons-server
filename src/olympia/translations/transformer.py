@@ -2,8 +2,9 @@ from django.conf import settings
 from django.db import connections, models, router
 from django.utils import translation
 
-from olympia.translations.models import Translation
 from olympia.translations.fields import TranslatedField
+from olympia.translations.models import Translation
+
 
 isnull = """IF(!ISNULL({t1}.localized_string), {t1}.{col}, {t2}.{col})
             AS {name}_{col}"""

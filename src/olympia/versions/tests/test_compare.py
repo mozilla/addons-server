@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from olympia.versions.compare import (
-    MAXVERSION, version_int, dict_from_int, version_dict)
+    MAXVERSION, dict_from_int, version_dict, version_int)
 
 
 def test_version_int():

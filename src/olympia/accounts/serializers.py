@@ -5,6 +5,7 @@ from django.utils.translation import ugettext
 from rest_framework import serializers
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import Group

@@ -1,16 +1,17 @@
 import datetime
+
 from datetime import timedelta
 
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
 from django.forms.models import (
-    BaseModelFormSet, modelformset_factory, ModelMultipleChoiceField)
-from django.utils.translation import ugettext, ugettext_lazy as _, get_language
+    BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory)
+from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import olympia.core.logger
-from olympia import amo
-from olympia import ratings
+
+from olympia import amo, ratings
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Persona
 from olympia.amo.urlresolvers import reverse

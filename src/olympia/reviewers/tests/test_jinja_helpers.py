@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import pytest
+
 from mock import Mock
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.files.models import File
 from olympia.reviewers.templatetags import jinja_helpers
 from olympia.translations.models import Translation

@@ -1,4 +1,5 @@
 import codecs
+
 from datetime import datetime, timedelta
 from os import path, unlink
 
@@ -6,6 +7,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.stats.models import ThemeUpdateCount

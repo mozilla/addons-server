@@ -2,12 +2,14 @@ import json
 import os
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
+from django.core.management.base import BaseCommand
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.applications.models import AppVersion
+
 
 log = olympia.core.logger.getLogger('z.cron')
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+
 from StringIO import StringIO
 
 from django.conf import settings
@@ -7,13 +8,13 @@ from django.db import connection
 
 import mock
 
-from olympia.amo.tests import TestCase
+from services import theme_update
+
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import (
     user_media_path, user_media_url)
+from olympia.amo.tests import TestCase
 from olympia.versions.models import Version
-
-from services import theme_update
 
 
 class TestWSGIApplication(TestCase):

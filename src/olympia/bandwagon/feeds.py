@@ -1,11 +1,11 @@
 from django import http
 from django.utils.translation import ugettext
 
-from olympia.amo.templatetags.jinja_helpers import absolutify, page_name
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.feeds import NonAtomicFeed
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.templatetags.jinja_helpers import absolutify, page_name
+from olympia.amo.urlresolvers import reverse
 from olympia.browse.feeds import AddonFeedMixin
 
 from . import views

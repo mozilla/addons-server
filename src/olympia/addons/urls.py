@@ -2,7 +2,9 @@ from django.conf.urls import include, url
 from django.shortcuts import redirect
 
 from olympia.stats.urls import stats_patterns
+
 from . import views
+
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 

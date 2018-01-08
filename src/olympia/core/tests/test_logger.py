@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
+
 import mock
 
 import olympia.core.logger
+
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 

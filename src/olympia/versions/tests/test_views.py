@@ -4,22 +4,22 @@ import os
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.utils.http import urlquote
 from django.test.utils import override_settings
+from django.utils.http import urlquote
 
 import mock
 import pytest
+
 from pyquery import PyQuery
 
 from olympia import amo
-from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
-from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions import views

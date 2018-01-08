@@ -19,11 +19,14 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 import jwt
+
 from rest_framework import exceptions
 from rest_framework_jwt.settings import api_settings
 
 import olympia.core.logger
+
 from olympia.api.models import APIKey
+
 
 log = olympia.core.logger.getLogger('z.jwt')
 

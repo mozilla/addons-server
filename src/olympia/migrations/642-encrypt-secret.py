@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from olympia import amo
-
 from aesfield.field import AESField
+
+from olympia import amo
 
 
 class FrozenAPIAccess(amo.models.ModelBase):

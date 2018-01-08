@@ -5,9 +5,11 @@ from django.conf import settings
 from django.utils.http import urlencode
 
 import requests
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import Addon
 

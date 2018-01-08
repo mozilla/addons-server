@@ -7,8 +7,8 @@ import os
 import re
 import shutil
 import stat
-import struct
 import StringIO
+import struct
 import tempfile
 import zipfile
 
@@ -20,22 +20,24 @@ from zipfile import BadZipfile, ZipFile
 from django import forms
 from django.conf import settings
 from django.core.files.storage import (
-    default_storage as storage, File as DjangoFile)
+    File as DjangoFile, default_storage as storage)
+from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
-from django.utils.encoding import force_text
 
 import flufl.lock
 import rdflib
 import waffle
+
 from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
+
 from olympia import amo, core
-from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
+from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
-from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
+from olympia.versions.compare import version_int as vint
 
 
 log = olympia.core.logger.getLogger('z.files.utils')

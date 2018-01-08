@@ -1,6 +1,6 @@
 from django import forms
-from django.forms.fields import FileField
 from django.core.exceptions import ValidationError
+from django.forms.fields import FileField
 
 
 class BaseFormMixin(object):

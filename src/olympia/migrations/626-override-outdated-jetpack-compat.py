@@ -1,5 +1,6 @@
-from olympia import amo
 from addons.models import Addon, CompatOverride, CompatOverrideRange
+
+from olympia import amo
 
 
 def run():

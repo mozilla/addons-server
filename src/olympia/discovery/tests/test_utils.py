@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
+
+from django.http import HttpResponse
+
 import mock
 import pytest
 import requests
 import settings
-from django.http import HttpResponse
 
 from olympia import amo
 from olympia.amo.tests import addon_factory

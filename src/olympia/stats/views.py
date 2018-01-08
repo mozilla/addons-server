@@ -4,8 +4,9 @@ import itertools
 import json
 import os
 import time
+
 from collections import OrderedDict
-from datetime import date, timedelta, datetime
+from datetime import date, datetime, timedelta
 
 from django import http
 from django.conf import settings
@@ -25,23 +26,23 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize
-from olympia.amo.utils import render, AMOJSONEncoder
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.bandwagon.models import Collection
 from olympia.bandwagon.views import get_collection
 from olympia.stats.forms import DateForm
 from olympia.zadmin.models import SiteEvent
 
-from .models import (
-    CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)
+from .models import CollectionCount, DownloadCount, ThemeUserCount, UpdateCount
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')

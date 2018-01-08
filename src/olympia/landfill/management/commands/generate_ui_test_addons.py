@@ -1,6 +1,6 @@
 from django.core.cache import cache
-from django.core.management.base import BaseCommand
 from django.core.management import call_command
+from django.core.management.base import BaseCommand
 from django.utils import translation
 
 from olympia.landfill.serializers import GenerateAddonsSerializer

@@ -3,9 +3,9 @@ import urllib
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
 
-from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.feeds import NonAtomicFeed
 from olympia.addons.models import Addon
+from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.templatetags import jinja_helpers
 from olympia.ratings.models import Rating
 
 

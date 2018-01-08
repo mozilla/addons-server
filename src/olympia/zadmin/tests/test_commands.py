@@ -1,9 +1,9 @@
-from django.core import management
 from django.conf import settings
+from django.core import management
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory
 from olympia.access.acl import action_allowed_user
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.users.models import UserProfile
 
 

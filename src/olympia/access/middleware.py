@@ -5,6 +5,7 @@ their ACLs into the request.
 from functools import partial
 
 import olympia.core.logger
+
 from olympia import core
 from olympia.access import acl
 

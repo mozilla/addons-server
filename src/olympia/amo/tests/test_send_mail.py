@@ -6,15 +6,16 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.utils import translation
-from celery.exceptions import Retry
 
 import mock
 
+from celery.exceptions import Retry
+
 from olympia.amo.models import FakeEmail
 from olympia.amo.tests import BaseTestCase
-from olympia.amo.utils import send_mail, send_html_mail_jinja
-from olympia.users.models import UserProfile, UserNotification
+from olympia.amo.utils import send_html_mail_jinja, send_mail
 from olympia.users import notifications
+from olympia.users.models import UserNotification, UserProfile
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))

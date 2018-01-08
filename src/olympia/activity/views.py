@@ -5,14 +5,15 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
 
 from rest_framework import status
-from rest_framework.decorators import (api_view, authentication_classes,
-                                       permission_classes)
+from rest_framework.decorators import (
+    api_view, authentication_classes, permission_classes)
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer

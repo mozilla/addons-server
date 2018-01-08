@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS
 from olympia.files.models import File

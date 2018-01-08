@@ -4,17 +4,19 @@ from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import attach_trans_dict, resize_image
-from olympia.tags.models import Tag
 from olympia.lib.es.utils import index_objects
+from olympia.tags.models import Tag
 
 from .indexers import CollectionIndexer
 from .models import (
     Collection, CollectionAddon, CollectionVote, CollectionWatcher)
+
 
 log = olympia.core.logger.getLogger('z.task')
 

@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.applications.models import AppVersion
 

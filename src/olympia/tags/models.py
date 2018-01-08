@@ -1,9 +1,8 @@
-from django.db import models
 from django.core.urlresolvers import NoReverseMatch
+from django.db import models
 
-from olympia import amo
-from olympia import activity
-from olympia.amo.models import ModelBase, ManagerBase
+from olympia import activity, amo
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.urlresolvers import reverse
 
 

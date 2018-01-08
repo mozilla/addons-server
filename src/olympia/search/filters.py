@@ -1,10 +1,11 @@
 from django.utils import translation
 from django.utils.translation import ugettext
 
+import waffle
+
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
-import waffle
 
 from olympia import amo
 from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT

@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.test import RequestFactory
 
-from olympia.amo.tests import (
-    addon_factory, collection_factory, TestCase, user_factory)
-from olympia.addons.models import ReplacementAddon
 from olympia.addons.admin import ReplacementAddonAdmin
+from olympia.addons.models import ReplacementAddon
+from olympia.amo.tests import (
+    TestCase, addon_factory, collection_factory, user_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 from olympia.zadmin.admin import StaffAdminSite

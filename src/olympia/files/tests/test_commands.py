@@ -5,6 +5,7 @@ from django.test.utils import override_settings
 from django.utils import translation
 
 import responses
+
 from requests import HTTPError
 
 from olympia import amo

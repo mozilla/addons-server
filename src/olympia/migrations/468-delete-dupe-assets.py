@@ -1,5 +1,4 @@
 from amo.utils import chunked
-
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.webapps.models import ImageAsset, Webapp
 

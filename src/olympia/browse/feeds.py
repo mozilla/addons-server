@@ -2,12 +2,12 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
-from olympia.amo.feeds import NonAtomicFeed
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import absolutify, url, page_name
 from olympia.addons.models import Addon, Category
+from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.templatetags.jinja_helpers import absolutify, page_name, url
+from olympia.amo.urlresolvers import reverse
 
-from .views import addon_listing, SearchToolsFilter
+from .views import SearchToolsFilter, addon_listing
 
 
 class AddonFeedMixin(object):

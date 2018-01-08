@@ -6,13 +6,14 @@ from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 
 import olympia.core.logger
+
 from olympia import amo
-from olympia.amo.models import manual_order
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import render
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
+from olympia.amo.models import manual_order
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import render
 from olympia.browse.views import personas_listing
 from olympia.legacy_api import views as legacy_api_views
 from olympia.ratings.models import Rating
@@ -20,9 +21,10 @@ from olympia.stats.models import GlobalStat
 from olympia.versions.compare import version_int
 from olympia.zadmin.decorators import admin_required
 
-from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
+from .models import DiscoveryModule
 from .modules import PromoVideoCollection, registry as module_registry
+
 
 addon_view = addon_view_factory(Addon.objects.valid)
 

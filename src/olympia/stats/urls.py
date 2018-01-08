@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 
 from . import views
 
+
 group_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS) + ')'
 group_date_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS_DATE) + ')'
 range_re = '(?P<start>\d{8})-(?P<end>\d{8})'

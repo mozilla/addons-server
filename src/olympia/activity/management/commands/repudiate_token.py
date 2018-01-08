@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
+
 from olympia.activity.models import ActivityLogToken
+
 
 log = olympia.core.logger.getLogger('z.amo.activity')
 

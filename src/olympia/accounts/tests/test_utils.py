@@ -2,6 +2,7 @@
 import json
 import time
 import urlparse
+
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from datetime import datetime
 
@@ -15,6 +16,7 @@ from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
+
 
 FXA_CONFIG = {
     'default': {

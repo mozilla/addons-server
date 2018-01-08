@@ -5,8 +5,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory)
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class LogMixin(object):

@@ -1,4 +1,5 @@
 import json
+
 from collections import OrderedDict
 from datetime import date, datetime, timedelta
 
@@ -6,22 +7,23 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Func, Coalesce
+from django.db.models.functions import Coalesce, Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.addons.models import Addon, Persona
 from olympia.amo.models import (
     ManagerBase, ModelBase, OnChangeMixin, skip_cache)
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.addons.models import Addon, Persona
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel

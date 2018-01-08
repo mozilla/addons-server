@@ -1,10 +1,13 @@
 from django.conf import settings
 
-from dateutil import parser
 import feedparser
 
+from dateutil import parser
+
 import olympia.core.logger
+
 from olympia.devhub.models import BlogPost
+
 
 log = olympia.core.logger.getLogger('z.cron')
 

@@ -6,35 +6,36 @@ import re
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.utils.http import urlunquote
 from django.test.client import Client
+from django.utils.http import urlunquote
 
 import waffle
+
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
-from olympia.amo.tests import (
-    addon_factory, collection_factory, user_factory, version_factory)
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
     Persona, ReplacementAddon)
+from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
-    AddonSearchView, AddonAutoCompleteSearchView)
+    AddonAutoCompleteSearchView, AddonSearchView)
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
+from olympia.amo.tests import (
+    APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
+    user_factory, version_factory)
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.ratings.models import Rating
-from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
 

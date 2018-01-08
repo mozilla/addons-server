@@ -5,7 +5,7 @@ from olympia.constants.applications import (
     ANDROID, FIREFOX, SEAMONKEY, THUNDERBIRD)
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
-    ADDON_SLUGS, ADDON_THEME, ADDON_STATICTHEME)
+    ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)
 
 
 class StaticCategory(object):

@@ -2,6 +2,7 @@ import os
 import re
 import time
 import uuid
+
 from datetime import datetime
 
 from django.conf import settings
@@ -11,15 +12,15 @@ from django.db import connection, models
 import caching.base as caching
 
 from olympia import activity, amo
-from olympia.amo.models import ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.fields import (
-    LinkifiedField, save_signal, NoLinksNoMarkupField, TranslatedField)
+    LinkifiedField, NoLinksNoMarkupField, TranslatedField, save_signal)
 from olympia.users.models import UserProfile
 
 

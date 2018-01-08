@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+
 from datetime import timedelta
 
 from django.core import mail
@@ -7,17 +8,18 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
 import mock
+
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.addons.utils import generate_addon_guid
-from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import (
-    addon_factory, APITestClient, TestCase, version_factory, user_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
+from olympia.addons.utils import generate_addon_guid
+from olympia.amo.templatetags import jinja_helpers
+from olympia.amo.tests import (
+    APITestClient, TestCase, addon_factory, user_factory, version_factory)
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
 

@@ -17,16 +17,17 @@ import urllib
 import urlparse
 
 import django.core.mail
-from django.http import HttpResponse
+
 from django.conf import settings
+from django.core.cache import cache
+from django.core.files.storage import (
+    FileSystemStorage, default_storage as storage)
 from django.core.paginator import (
     EmptyPage, InvalidPage, Paginator as DjangoPaginator)
-from django.core.cache import cache
-from django.core.files.storage import (FileSystemStorage,
-                                       default_storage as storage)
-from django.core.validators import validate_slug, ValidationError
+from django.core.validators import ValidationError, validate_slug
 from django.forms.fields import Field
-from django.template import loader, engines
+from django.http import HttpResponse
+from django.template import engines, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse
@@ -35,18 +36,18 @@ import bleach
 import html5lib
 import jinja2
 import pytz
+
 from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from PIL import Image
-from validator import unicodehelper
 from rest_framework.utils.encoders import JSONEncoder
+from validator import unicodehelper
 
-from olympia.amo import search
-from olympia.amo import ADDON_ICON_SIZES
-from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
+from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
+from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode

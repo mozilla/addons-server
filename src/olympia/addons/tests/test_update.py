@@ -4,15 +4,15 @@ from email import utils
 
 from django.db import connection
 
+from services import update
+
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions)
+from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
-
-from services import update
 
 
 class VersionCheckMixin(object):

@@ -1,6 +1,7 @@
-from olympia import amo
 from bandwagon.models import Collection
 from users.models import UserProfile
+
+from olympia import amo
 
 
 def run():

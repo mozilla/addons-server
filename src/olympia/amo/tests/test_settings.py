@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import pytest
-
 from django.conf import settings
+
+import pytest
 
 
 @pytest.mark.parametrize('key', (

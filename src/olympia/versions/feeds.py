@@ -3,12 +3,11 @@ from django.utils.feedgenerator import DefaultFeed
 from django.utils.translation import ugettext
 
 from olympia import amo
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, url, format_date)
-from olympia.amo.feeds import NonAtomicFeed
-from olympia.amo.utils import urlparams
 from olympia.addons.models import Addon
+from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.templatetags.jinja_helpers import absolutify, format_date, url
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
 from olympia.versions.views import PER_PAGE
 
 

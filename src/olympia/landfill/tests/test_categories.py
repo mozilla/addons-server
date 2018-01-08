@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Category
+from olympia.amo.tests import TestCase
 from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 from olympia.constants.categories import CATEGORIES

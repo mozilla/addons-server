@@ -2,6 +2,7 @@
 import base64
 import json
 import urlparse
+
 from datetime import datetime
 from os import path
 
@@ -13,6 +14,7 @@ from django.test import RequestFactory
 from django.test.utils import override_settings
 
 import mock
+
 from rest_framework.test import APIRequestFactory, APITestCase
 from waffle.models import Switch
 
@@ -22,9 +24,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    addon_factory, assert_url_equal, create_switch, user_factory,
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
-    WithDynamicEndpoints)
+    WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,
+    user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase

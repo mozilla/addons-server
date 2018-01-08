@@ -1,11 +1,10 @@
 from contextlib import contextmanager
 
-import mock
-
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+import mock
 import pytest
 
 from olympia import amo
@@ -14,7 +13,7 @@ from olympia.addons.management.commands import (
     approve_addons, process_addons as pa)
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    addon_factory, AMOPaths, TestCase, version_factory)
+    AMOPaths, TestCase, addon_factory, version_factory)
 from olympia.applications.models import AppVersion
 from olympia.files.models import FileValidation
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore

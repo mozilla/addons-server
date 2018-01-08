@@ -1,18 +1,20 @@
 import json
 import os
-import zipfile
+import shutil
 import tempfile
 import time
-import shutil
+import zipfile
+
 from datetime import timedelta
+
+from django import forms
+from django.conf import settings
 
 import flufl.lock
 import lxml
 import mock
 import pytest
 
-from django.conf import settings
-from django import forms
 from defusedxml.common import EntitiesForbidden, NotSupportedError
 
 from olympia import amo

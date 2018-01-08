@@ -1,7 +1,7 @@
 import datetime
 
-from stats.models import GlobalStat
 from mkt.monolith.models import MonolithRecord
+from stats.models import GlobalStat
 
 
 METRIC = 'apps_count_installed'

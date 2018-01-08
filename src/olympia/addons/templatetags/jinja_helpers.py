@@ -1,6 +1,7 @@
+from django.utils.translation import ugettext
+
 import jinja2
 
-from django.utils.translation import ugettext
 from django_jinja import library
 
 from olympia.amo.utils import chunked

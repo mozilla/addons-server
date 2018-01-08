@@ -2,10 +2,10 @@ import itertools
 
 from django.conf import settings
 from django.db import models
-from django.utils import translation as translation_utils
 from django.db.models.sql import compiler
 from django.db.models.sql.constants import LOUTER
 from django.db.models.sql.datastructures import Join
+from django.utils import translation as translation_utils
 
 
 def order_by_translation(qs, fieldname):

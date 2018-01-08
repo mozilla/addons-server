@@ -1,4 +1,5 @@
 from decimal import Decimal
+
 from market.models import Price
 
 

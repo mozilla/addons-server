@@ -6,8 +6,9 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
-from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
-                     NoLinksTranslation, NoLinksNoMarkupTranslation)
+from .models import (
+    LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
+    PurifiedTranslation, Translation)
 from .widgets import TransInput, TransTextarea
 
 

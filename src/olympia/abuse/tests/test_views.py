@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
-    addon_factory, APITestClient, TestCase, user_factory)
+    APITestClient, TestCase, addon_factory, user_factory)
 
 
 class AddonAbuseViewSetTestBase(object):

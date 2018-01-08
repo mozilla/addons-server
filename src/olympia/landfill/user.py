@@ -1,5 +1,5 @@
-from olympia.amo.utils import slugify
 from olympia.addons.models import AddonCategory, AddonUser
+from olympia.amo.utils import slugify
 from olympia.users.models import UserProfile
 
 

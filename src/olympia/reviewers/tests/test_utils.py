@@ -7,20 +7,21 @@ from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
 import pytest
+
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.amo.tests import file_factory, TestCase, version_factory
-from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.tests import TestCase, file_factory, version_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 from olympia.reviewers.utils import (
-    ReviewAddon, ReviewFiles, ReviewHelper, PENDING_STATUSES,
+    PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
     ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile

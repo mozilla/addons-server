@@ -7,6 +7,7 @@ import time
 import unicodedata
 import uuid
 import zipfile
+
 from collections import namedtuple
 
 from django.core.files.storage import default_storage as storage
@@ -15,22 +16,23 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
-from django.utils.safestring import mark_safe
 from jinja2 import escape as jinja2_escape
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize
-from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
 from olympia.amo.decorators import use_master
+from olympia.amo.models import ModelBase, OnChangeMixin, UncachedManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import (
-    user_media_path, user_media_url, urlparams, absolutify)
+    absolutify, urlparams, user_media_path, user_media_url)
+from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
 from olympia.translations.fields import TranslatedField

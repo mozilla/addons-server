@@ -1,12 +1,14 @@
 import math
 
-import jinja2
-from django.utils.translation import ugettext
 from django.template import loader
+from django.utils.translation import ugettext
+
+import jinja2
+
 from django_jinja import library
 
-from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.accounts.templatetags.jinja_helpers import login_link
+from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 

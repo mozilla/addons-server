@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import csv
-import os
 import json
+import os
+
 from cStringIO import StringIO
 
 from django.conf import settings
@@ -9,15 +10,17 @@ from django.core import mail
 from django.core.cache import cache
 
 import mock
+
 from pyquery import PyQuery as pq
 
 import olympia
+
 from olympia import amo
-from olympia.amo.tests import (
-    TestCase, formset, initial, user_factory, version_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
+from olympia.amo.tests import (
+    TestCase, formset, initial, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams

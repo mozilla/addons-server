@@ -1,7 +1,7 @@
 from olympia import amo
 from olympia.addons.models import Category
-from olympia.addons.utils import get_featured_ids, get_creatured_ids
-from olympia.amo.tests import addon_factory, collection_factory, TestCase
+from olympia.addons.utils import get_creatured_ids, get_featured_ids
+from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES_BY_ID
 

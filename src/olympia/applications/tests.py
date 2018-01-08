@@ -1,12 +1,13 @@
 import json
-import mock
 
 from django.core.management import call_command
 from django.db import IntegrityError
 
+import mock
+
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.amo.templatetags.jinja_helpers import url
+from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 
 

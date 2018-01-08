@@ -3,9 +3,9 @@ from django.db import models
 from django.utils.translation import ugettext
 
 from olympia import amo
-from olympia.amo.models import ModelBase
-from olympia.amo.utils import send_mail, no_translation
 from olympia.addons.models import Addon
+from olympia.amo.models import ModelBase
+from olympia.amo.utils import no_translation, send_mail
 from olympia.users.models import UserProfile
 
 

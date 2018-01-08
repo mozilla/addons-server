@@ -9,14 +9,14 @@ from django.utils import translation
 
 import mock
 import pytest
+
 from product_details import product_details
 
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (
-    cache_ns_key, escape_all, find_language,
-    LocalFileStorage, no_jinja_autoescape, no_translation,
-    resize_image, rm_local_tmp_dir, slugify, slug_validator,
-    to_language, from_string)
+    LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
+    no_jinja_autoescape, no_translation, resize_image, rm_local_tmp_dir,
+    slug_validator, slugify, to_language)
 
 
 pytestmark = pytest.mark.django_db

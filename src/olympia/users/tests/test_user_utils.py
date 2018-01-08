@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+
 import mock
 import pytest
-
-from django.conf import settings
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.utils import (
-    autocreate_username, system_addon_submission_allowed, UnsubscribeCode)
+    UnsubscribeCode, autocreate_username, system_addon_submission_allowed)
 
 
 def test_email_unsubscribe_code_parse():

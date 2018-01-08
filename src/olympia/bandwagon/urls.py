@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 
 from olympia.stats.urls import collection_stats_urls
 
-from . import views, feeds
+from . import feeds, views
 
 
 edit_urls = [

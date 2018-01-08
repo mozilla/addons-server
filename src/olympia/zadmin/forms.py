@@ -1,22 +1,23 @@
 from django import forms
 from django.conf import settings
 from django.forms import ModelForm
-from django.forms.models import modelformset_factory
+from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
-from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from product_details import product_details
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
 from olympia.compat.forms import APPVER_CHOICES
-from olympia.lib import happyforms
 from olympia.files.models import File
+from olympia.lib import happyforms
 from olympia.zadmin.models import SiteEvent
+
 
 LOGGER_NAME = 'z.zadmin'
 log = olympia.core.logger.getLogger(LOGGER_NAME)

@@ -6,6 +6,7 @@ from django.db.models import Count
 from celery import group
 
 import olympia.core.logger
+
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import chunked

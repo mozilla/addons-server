@@ -1,13 +1,14 @@
 import collections
 import random
+
 from datetime import datetime
 from itertools import cycle, islice
 
 from django.db.models.signals import post_save
 
-from olympia.amo.utils import slugify
 from olympia.addons.forms import icons
 from olympia.addons.models import Addon, Persona, update_search_index
+from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
@@ -16,8 +17,8 @@ from .categories import generate_categories
 from .collection import generate_collection
 from .images import generate_addon_preview, generate_theme_images
 from .names import generate_names
-from .translations import generate_translations
 from .ratings import generate_ratings
+from .translations import generate_translations
 from .user import generate_addon_user_and_category, generate_user
 from .version import generate_version
 
