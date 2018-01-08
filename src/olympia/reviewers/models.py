@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Coalesce, Func
+from django.db.models.functions import Cast, Coalesce
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -48,13 +48,6 @@ VIEW_QUEUE_FLAGS = (
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
-
-
-# Django 1.8 does not have Cast(), so this is a simple dumb implementation
-# that only handles Cast(..., DateTimeField())
-class DateTimeCast(Func):
-    function = 'CAST'
-    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -1078,7 +1071,7 @@ class AutoApprovalSummary(ModelBase):
                     # an arbitrary old date, January 1st, 2000.
                     Coalesce(
                         'addonapprovalscounter__last_human_review',
-                        DateTimeCast(datetime(2000, 1, 1))
+                        Cast(datetime(2000, 1, 1), models.DateTimeField())
                     ))
             )
         )
