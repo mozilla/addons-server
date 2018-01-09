@@ -1,5 +1,5 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_url=addon.get_absolute_url addon_name=addon.name author_url=author.user.get_absolute_url author_name=author.user.name %}
-The following author has been removed from addon {{ addon_name }} ({{ site_url }}{{ addon_url }}):
+The following author has been removed from addon {{ addon_name }} ( {{ site_url }}{{ addon_url }} ):
 
-{{ author_name }} ({{ site_url }}{{ author_url }})
+{{ author_name }} ( {{ site_url }}{{ author_url }} )
 {% endblocktrans %}
