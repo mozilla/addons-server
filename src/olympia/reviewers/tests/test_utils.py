@@ -760,8 +760,9 @@ class TestReviewHelper(TestCase):
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
-        AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.current_version = self.version
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=152)
         self.version = version_factory(
             addon=self.addon, version='3.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -769,9 +770,60 @@ class TestReviewHelper(TestCase):
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
-        # Confirm approval action should not be available since the latest
-        # version is not public (#5604)
-        assert 'confirm_auto_approved' not in self.helper.actions
+        # Confirm approval action should be available even if the latest
+        # version is not public, what we care about is the current_version.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.current_version]
+        assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
+
+    def test_public_with_disabled_version_addon_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.current_version = self.version
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=153)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            file_kw={'status': amo.STATUS_DISABLED})
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # Confirm approval action should be available even if the latest
+        # version is not public, what we care about is the current_version.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.current_version]
+        assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
 
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')

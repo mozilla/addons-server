@@ -756,7 +756,6 @@ def review(request, addon, channel=None):
         perform_review_permission_checks(
             request, addon, channel, content_review_only=content_review_only)
 
-    # Reverted #7017's changes here
     version = addon.find_latest_version(
         channel=channel, exclude=(amo.STATUS_BETA,))
 

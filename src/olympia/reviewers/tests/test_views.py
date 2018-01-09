@@ -3632,9 +3632,8 @@ class TestReview(ReviewBase):
             'public|reject|')
 
     def test_post_review_ignore_disabled_or_beta(self):
-        """After #7017 was reverted this test doesn't work as we want - by
-        allowing the auto approved version to be confirmed - but as we expect.
-        """
+        # Though the latest version will be disabled, the add-on is public and
+        # was auto-approved so the confirmation action is available.
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
@@ -3644,7 +3643,28 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
-            'reject_multiple_versions', 'reply', 'super', 'comment']
+            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'super', 'comment']
+        assert (
+            [action[0] for action in response.context['actions']] ==
+            expected_actions)
+
+    def test_content_review_ignore_disabled_or_beta(self):
+        # Though the latest version will be disabled, the add-on is public and
+        # was auto-approved so the content approval action is available.
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected_actions = [
+            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'super', 'comment']
         assert (
             [action[0] for action in response.context['actions']] ==
             expected_actions)

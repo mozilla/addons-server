@@ -322,15 +322,17 @@ class ReviewHelper(object):
         reviewable_because_pending = (
             self.version and
             len(self.version.is_unreviewed) > 0)
-        is_auto_approved_and_current_and_user_can_post_review = (
-            self.version and
-            self.version == self.addon.current_version and
-            self.version.was_auto_approved and
+        # Note: approval/content confirmation do not care about self.version,
+        # only self.addon.current_version. This allows reviewers to approve
+        # add-ons even when their latest submitted version is disabled for some
+        # reason.
+        was_auto_approved_and_user_can_post_review = (
+            self.addon.current_version and
+            self.addon.current_version.was_auto_approved and
             is_post_reviewer)
-        is_auto_approved_and_current_and_user_can_content_review = (
-            self.version and
-            self.version == self.addon.current_version and
-            self.version.was_auto_approved and
+        was_auto_approved_and_user_can_content_review = (
+            self.addon.current_version and
+            self.addon.current_version.was_auto_approved and
             is_content_reviewer and self.content_review_only)
         is_unlisted_and_user_can_review_unlisted = (
             self.version and
@@ -374,17 +376,16 @@ class ReviewHelper(object):
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
             'label': _('Confirm Approval'),
-            'details': _('The latest public version of this '
-                         'add-on was automatically approved. This '
-                         'records your confirmation of the '
-                         'approval, without notifying the '
-                         'developer.'),
+            'details': _('The latest public version of this add-on was '
+                         'automatically approved. This records your '
+                         'confirmation of the approval of that version, '
+                         'without notifying the developer.'),
             'minimal': True,
             'comments': False,
             'available': (
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                (is_auto_approved_and_current_and_user_can_post_review or
-                 is_auto_approved_and_current_and_user_can_content_review or
+                (was_auto_approved_and_user_can_post_review or
+                 was_auto_approved_and_user_can_content_review or
                  is_unlisted_and_user_can_review_unlisted))
         }
         actions['reject_multiple_versions'] = {
@@ -436,8 +437,8 @@ class ReviewHelper(object):
                 actions['confirm_auto_approved'].update({
                     'label': _('Approve Content'),
                     'details': _('This records your approbation of the '
-                                 'content of this version, without notifying '
-                                 'the developer.'),
+                                 'content of the latest public version, '
+                                 'without notifying the developer.'),
                 })
         return OrderedDict(
             ((key, action) for key, action in actions.items()
@@ -702,15 +703,18 @@ class ReviewBase(object):
         log.info(u'Super review requested for %s' % (self.addon))
 
     def confirm_auto_approved(self):
-        """Confirm an auto-approval decision.
+        """Confirm an auto-approval decision."""
 
-        We don't need to really store that information, what we care about
-        is logging something for future reviewers to be aware of, and, if the
-        version is listed, incrementing AddonApprovalsCounter, which also
-        resets the last human review date to now, and log it so that it's
-        displayed later in the review page."""
-        status = self.addon.status
-        latest_version = self.version
+        channel = self.version.channel if self.version else None
+        if channel == amo.RELEASE_CHANNEL_LISTED:
+            # When doing an approval in listed channel, the version we care
+            # about is always current_version and *not* self.version.
+            # This allows reviewers to confirm approval of a public add-on even
+            # when their latest version is disabled.
+            version = self.addon.current_version
+        else:
+            # For unlisted, we just use self.version.
+            version = self.version
         # The confirm auto-approval action should not show the comment box,
         # so override the text in case the reviewer switched between actions
         # and accidently submitted some comments from another action.
@@ -720,18 +724,20 @@ class ReviewBase(object):
             # the counter, just record the date of the content approval
             # and log it.
             AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
-            self.log_action(amo.LOG.APPROVE_CONTENT)
+            self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
         else:
-            if self.version.channel == amo.RELEASE_CHANNEL_LISTED:
-                self.version.autoapprovalsummary.update(confirmed=True)
+            if channel == amo.RELEASE_CHANNEL_LISTED:
+                version.autoapprovalsummary.update(confirmed=True)
                 AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-            self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
+            self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         # Assign reviewer incentive scores.
         if self.request:
+            is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=latest_version,
-                post_review=True, content_review=self.content_review_only)
+                self.request.user, self.addon, self.addon.status,
+                version=version, post_review=is_post_review,
+                content_review=self.content_review_only)
 
     def reject_multiple_versions(self):
         """Reject a list of versions."""
