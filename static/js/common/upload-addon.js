@@ -416,6 +416,7 @@
                     $('.addon-upload-dependant').prop('disabled', false);
                     $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                                'checked': false});
+                    $('.addon-create-theme-section').hide();
 
                     upload_title.html(format(gettext('Finished validating {0}'), [escape_(file.name)]));
 
@@ -449,7 +450,7 @@
                     $("<strong>").text(message).appendTo(upload_results);
 
                     // Specific messages for unlisted addons.
-                    var validation_type = results.validation.detected_type
+                    var validation_type = results.validation.detected_type;
                     if ((["extension", "dictionary", "languagepack"].indexOf(validation_type) != -1) && isUnlisted()) {
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     }
