@@ -73,7 +73,7 @@ jobs:
             docker-compose exec worker supervisorctl restart all
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose exec web supervisorctl restart all
-            docker-compose exec web bash /code/scripts/ui-test.sh
+            docker-compose exec selenium-firefox tox -e ui-tests
       - store_artifacts:
           path: ui-test-results
       - save_cache:
