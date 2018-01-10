@@ -89,21 +89,6 @@ def pytest_configure(config):
     prefix_indexes(config)
 
 
-@pytest.fixture
-def generate_addons(transactional_db):
-    from django.core.management import call_command
-    from django.utils import translation
-
-    from olympia.landfill.serializers import GenerateAddonsSerializer
-    
-    translation.activate('en-US')
-    serializer = GenerateAddonsSerializer()
-    serializer.create_installable_addon()
-    cache.clear()
-    call_command('clear_cache')
-
-
-"""
 @pytest.fixture(scope='session')
 def es_test(pytestconfig):
     from olympia.amo.tests import (
@@ -124,4 +109,3 @@ def es_test(pytestconfig):
 
     amo.SEARCH_ANALYZER_MAP = _SEARCH_ANALYZER_MAP
     start_es_mocks()
-"""
