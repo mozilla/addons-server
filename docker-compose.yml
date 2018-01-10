@@ -1,26 +1,29 @@
 version: "2"
 
+x-env-mapping: &env
+  environment:
+    - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+    - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    - DATABASE_URL=mysql://root:@mysqld/olympia
+    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - MEMCACHE_LOCATION=memcached:11211
+    - MYSQL_DATABASE=olympia
+    - MYSQL_ROOT_PASSWORD=docker
+    - OLYMPIA_SITE_URL=http://olympia.dev
+    - PYTHONDONTWRITEBYTECODE=1
+    - PYTHONUNBUFFERED=1
+    - RECURSION_LIMIT=10000
+    - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
+    - TERM=xterm-256color
+
 services:
   worker: &worker
+    <<: *env
     image: addons/addons-server
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     entrypoint: ./scripts/start-docker.sh
     volumes:
       - .:/code
-    environment:
-      - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
-      - CELERY_RESULT_BACKEND=redis://redis:6379/1
-      - DATABASE_URL=mysql://root:@mysqld/olympia
-      - ELASTICSEARCH_LOCATION=elasticsearch:9200
-      - MEMCACHE_LOCATION=memcached:11211
-      - MYSQL_DATABASE=olympia
-      - MYSQL_ROOT_PASSWORD=docker
-      - OLYMPIA_SITE_URL=http://olympia.dev
-      - PYTHONDONTWRITEBYTECODE=1
-      - PYTHONUNBUFFERED=1
-      - RECURSION_LIMIT=10000
-      - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
-      - TERM=xterm-256color
     extra_hosts:
      - "olympia.dev:127.0.0.1"
 
@@ -68,21 +71,8 @@ services:
     image: mozilla/autograph:2.0.5
 
   selenium-firefox:
+    <<: *env
     image: b4handjr/selenium-firefox
-    environment:
-      - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
-      - CELERY_RESULT_BACKEND=redis://redis:6379/1
-      - DATABASE_URL=mysql://root:@mysqld/olympia
-      - ELASTICSEARCH_LOCATION=elasticsearch:9200
-      - MEMCACHE_LOCATION=memcached:11211
-      - MYSQL_DATABASE=olympia
-      - MYSQL_ROOT_PASSWORD=docker
-      - OLYMPIA_SITE_URL=http://olympia.dev
-      - PYTHONDONTWRITEBYTECODE=1
-      - PYTHONUNBUFFERED=1
-      - RECURSION_LIMIT=10000
-      - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
-      - TERM=xterm-256color
     volumes:
       - .:/code
     expose:
