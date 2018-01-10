@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2017-07-17 11:29+0000\n"
-"Last-Translator: నితిన్ <sainithin95@gmail.com>\n"
+"PO-Revision-Date: 2018-01-10 09:02+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "మీ థీము పేరు"
+msgstr "మీ అంలంకారం పేరు"
 
 msgid "Flagged for review"
 msgstr ""
