@@ -59,14 +59,13 @@ jobs:
           name: Install Docker Compose
           command: |
             set -x
-            sudo pip install docker-compose>=1.18
+            pip install docker-compose>=1.18
+            docker-compose --version
       - run:
           name: Start container, verify it's running and start tests
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            pip install docker-compose>=1.18
-            docker-compose --version
             docker-compose up -d
             sleep 20
             docker-compose ps
