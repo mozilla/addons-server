@@ -65,6 +65,7 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
+            pip install docker-compose>=1.18
             docker-compose --version
             docker-compose up -d
             sleep 20
