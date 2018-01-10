@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-10 09:12+0000\n"
+"PO-Revision-Date: 2018-01-10 09:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3518,9 +3518,8 @@ msgstr "Jo binne klear!"
 msgid "Version Submitted for Review"
 msgstr "Ferzje yntsjinne foar beoardieling"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Jo binne klear! Dizze ferzje wurdt ynkoarten op ús website beskikber."
+msgstr "Jo binne klear! Dizze ferzje wurdt beskikber nei suksesfolle beoardieling. Jo ûntfange berjocht nei de beoardieling."
 
 msgid "Version Submitted"
 msgstr "Ferzje ynstjinne"
@@ -3531,9 +3530,8 @@ msgstr "Jo binne klear! Dizze ferzje wurdt ynkoarten op ús website beskikber."
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Jo binne klear! Dizze ferzje is yntsjinne foar beoardieling. Jo krije berjocht as de beoardieling foltôge is, of as ús beoardielers fragen hawwe oer jo ynstjoering."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing en skermôfbyldingen tafoege. Meitsje jo fermelding klear foar publikaasje:"
+msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing tafoegje. Meitsje jo fermelding klear foar publikaasje:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing en skermôfbyldingen tafoege. Meitsje jo fermelding klear foar publikaasje:"
@@ -3598,9 +3596,8 @@ msgstr "Allinnich dizze ferzje op myn bètakanaal publisearje."
 msgid "Administrative overrides"
 msgstr "Negearhannelingen fan behear"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "In tema meitsje"
+msgstr "In temaferzje meitsje"
 
 msgid "Create a Theme"
 msgstr "In tema meitsje"
@@ -5954,9 +5951,8 @@ msgstr "In oar beoardielet dit tema."
 msgid "theme, reviewer, or comment"
 msgstr "tema, beoardieler of opmerking"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Notysjeboerd"
+msgstr "Priveenotysjeboerd"
 
 msgid "Keep review; remove flags"
 msgstr "Beoardieling bewarje; labels fuortsmite"
@@ -6432,9 +6428,8 @@ msgstr ""
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Notysjeboerd"
+msgstr "Notysjeboerden bywurkje"
 
 msgid "(admin)"
 msgstr ""
