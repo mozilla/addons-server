@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-11 11:43+0000\n"
+"PO-Revision-Date: 2018-01-11 12:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5136,6 +5136,9 @@ msgid ""
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
+"Add-ons wurde beoardiele troch de Add-on-beoardielers, in groep talintrike ûntwikkelers dy't frijwillich it Mozilla-projekt helpe troch add-ons te beoardielen en sa te soargjen foar in stabile en "
+"feilige ûnderfining foar Mozilla-brûkers. Wês yn de kommunikaasje mei in beoardieler freonlik, geduldich en respektfol, omdat se hurd wurkje om derfoar te soargjen dat jo add-on krekt opset is en de"
+" rjochtlinen yn de <a href=\"%(url)s\">Add-on-beoardielingsgids</a> folget."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr ""
@@ -5188,10 +5191,10 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr ""
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "Moat myn fernijing troch beoardielers beoardiele wurde?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Fernijingen fan add-ons kinne net as nije ynstjoeringen oanhelle mei oan beoradieling."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
@@ -5738,7 +5741,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Dizze ferzje fan de add-on bestiet net of is net iepenbier."
 
 msgid "You can't leave a review on your own add-on."
 msgstr ""
