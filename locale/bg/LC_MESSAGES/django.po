@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-11 11:41+0000\n"
+"PO-Revision-Date: 2018-01-11 12:00+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -5442,10 +5442,10 @@ msgid "Collections and Favorites"
 msgstr ""
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Какво е списъкът?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Списъкът е набор от сродни добавки, създаден и споделен от други потребители."
 
 msgid "What is the My Favorites collection?"
 msgstr ""
@@ -5475,7 +5475,7 @@ msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(
 msgstr ""
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Все още имате въпроси?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -5496,31 +5496,31 @@ msgid "Do:"
 msgstr ""
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Пишете така, както бихте разказали на приятел за опита си с добавката."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Пишете кратки и лесни за разбиране отзиви."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Дайте конкретни и полезни детайли. Например"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Добавката работи ли по очаквания от вас начин?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Кои възможности харесвате или не харесвате?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Полезна ли е?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Лесна ли е за ползване?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Ще продължите ли да я използвате?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Отделете време да прочетете отново отзива преди да го изпратите, за да избегнете правописните грешки."
 
 msgid "Don’t:"
 msgstr ""
