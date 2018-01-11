@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-11 12:31+0000\n"
+"PO-Revision-Date: 2018-01-11 12:50+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5744,13 +5744,13 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Dizze ferzje fan de add-on bestiet net of is net iepenbier."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Jo kinne gjin beoardieling foar jo eigen add-on skriuwe."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriuwe."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
+msgstr "Tank; dizze beoardieling is markearre foar goedkarring troch in beoardieler."
 
 msgid "Add a review for {0}"
 msgstr ""
@@ -5764,6 +5764,12 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Hâld dizze tips yn gedachten</h2> <ul> <li> Skriuw as oft jo in freon oer jo ûnderfining mei de add-on fertelle. Jou spesifike en nuttige details, lykas hokker funksjes jo noflik en/of ûnnoflik "
+"fûn, hoe maklik it gebrûk is, en eventuele neidielen. Foarkom algemiene uteringen as ‘Geweldich’ of ‘Slim’, útsein jo redenen jaan kinne wêrom jo dit fine. </li> <li> Meld hjir gjin bugs. Wy stelle "
+"jo e-mailadres net beskikber oan ûntwikkelers fan add-ons, wêrtroch gjin kontakt mei jo opnommen wurde kin as se jo probleem ferhelpe wolle. Yn de <a href=\"%(support)s\">stipeseksje</a> fine jo "
+"wêr't jo stipe foar dizze add-on krije kinne. Jo kinne ek probearje de <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on-mienskip</a> om help freegje.</li> <li>Hâld"
+" beoardielingen kreas, foarkom stoef taalgebrûk en pleats gjin persoanlike gegevens. </li> </ul> <p>Lês de <a href=\"%(guide)s\">Beoardielingsrjochtlinen</a> foar mear details oer add-on-"
+"beoardielingen troch brûkers.</p>"
 
 msgid "Reply to review by {0}"
 msgstr ""
@@ -6062,19 +6068,19 @@ msgid "Confirm Approval"
 msgstr "Goedkarring befêstigje"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "De lêste publike ferzje fan dizze add-on is automatysk goedkard. Dit hâldt jo befêstiging fan de goedkarring by, sûnder de ûntwikkeler te ynformearjen."
 
 msgid "Reject Multiple Versions"
 msgstr "Mear ferzjes ôfwize"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Hjirtroch wurde de selektearre publike ferzjes ôfwêzen. De opmerkingen wurde nei de ûntwikkeler stjoerd."
 
 msgid "Reviewer reply"
 msgstr "Antwurd fan beoardieler"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Dit stjoert in berjocht nei de ûntwikkeler. Jo ûntfange in berjocht as der antwurd jûn is."
 
 msgid "Request super-review"
 msgstr ""
@@ -6089,7 +6095,7 @@ msgid "Approve Content"
 msgstr "Ynhâld goedkarre"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Dit leit jo goedkarring fan de ynhâld fan dizze ferzje fêst, sûnder de ûntwikkeler te ynformearjen."
 
 msgid "Legacy Add-ons"
 msgstr "Ferâldere add-ons"
@@ -6143,10 +6149,10 @@ msgid "Deleted Themes Log"
 msgstr "Lochboek fan fuortsmiten tema’s"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderaasje fan brûkerswurdearringen"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Op moderaasje wachtsjende wurdearringen ({0})"
 
 msgid "Moderated Review Log"
 msgstr ""
@@ -6190,7 +6196,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Misbrûkmeldingen foar {addon} en de ûntwikkelers derfan ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6437,7 +6443,7 @@ msgstr ""
 " behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôfhinklike ynformaasje tusken beoardielers. Hâld it taalgebrûk objektyf. Dit is allinnich sichtber foar beoardielers."
 
 msgid "Update whiteboards"
 msgstr "Notysjeboerden bywurkje"
