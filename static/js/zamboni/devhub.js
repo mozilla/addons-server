@@ -1349,7 +1349,7 @@ function initCCLicense() {
     }
     function setLicenseFromWizard() {
         cc_data = $('input[name^="cc-"]:checked').map(function() {
-            return this.dataset.cc}).get();
+            return this.dataset.cc;}).get();
         radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
         if (radio.length) {
             radio.prop('checked', true);
@@ -1390,17 +1390,21 @@ function initCCLicense() {
     }
     function licenseChangeHandler() {
         $license = $('#submit-describe #license-list input[type=radio][name=license-builtin]:checked');
-        setWizardFromLicense($license);
-        updateLicenseBox($license);
+        if ($license.length) {
+            setWizardFromLicense($license);
+            updateLicenseBox($license);
+        } else {
+            $('.noncc').addClass('disabled');
+        }
     }
 
     $('#submit-describe input[name="cc-attrib"]').change(function() {
         setCopyright($('input[name="cc-attrib"]:checked').data('cc') == 'copyr');
-    })
+    });
     $('#submit-describe input[name^="cc-"]').change(function() {
         $license = setLicenseFromWizard();
         updateLicenseBox($license);
-    })
+    });
     $('#submit-describe #license-list input[type=radio][name=license-builtin]').change(licenseChangeHandler);
 
     $('#persona-license .select-license').click(_pd(function() {
