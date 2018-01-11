@@ -705,7 +705,7 @@ class ReviewBase(object):
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
 
-        channel = self.version.channel if self.version else None
+        channel = self.version.channel
         if channel == amo.RELEASE_CHANNEL_LISTED:
             # When doing an approval in listed channel, the version we care
             # about is always current_version and *not* self.version.
