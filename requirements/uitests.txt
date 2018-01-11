@@ -28,9 +28,9 @@ pytest-instafail==0.3.0 \
 pytest-metadata==1.5.1 \
     --hash=sha256:e126a4ab80b77f08d3bc7da6ec1ed053317eaed042690eb5b4272b79a25c7f88 \
     --hash=sha256:26761319ecc916f16dc95f166e41e041d50a6d587d8332300594dfcfda6a7199
-pytest-selenium==1.11.3 \
-    --hash=sha256:835b03c5aa05547ce625ce957b7213c810089abce8c3a75e829da89b9b390239 \
-    --hash=sha256:b80ca8cf78411587bddeaef8412c77903a145ce2fd479e8d0a1988e333a31d5a
+pytest-selenium==1.11.4 \
+    --hash=sha256:9a0c48c434b538387ed6fa9d0c2f0b2e32f4fb71a4c41754df49be0aa4c64ae1 \
+    --hash=sha256:b66651fe7cbeee02b511f7b59f250ca77fcdb6024f193ca10da27d1d91240688
 pytest-variables==1.7.0 \
     --hash=sha256:d333e1df272f9ef4bf45d8665ee46a4901b11ab52bf661e83174f42f2f83df39 \
     --hash=sha256:61a6098175a59af5dbabf4c93ceee81a75f045868078903c44e2edb9582d5d6e
