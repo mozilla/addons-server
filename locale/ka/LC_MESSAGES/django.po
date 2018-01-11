@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 17:30+0000\n"
+"PO-Revision-Date: 2018-01-11 21:08+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1711,7 +1711,7 @@ msgstr "{addon} ჩართულია."
 
 #. L10n: {0} is the status
 msgid "{addon} status changed to {0}."
-msgstr "{addon} სტატუსი გახდა {0}."
+msgstr "{addon} მდგომარეობა გახდა {0}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} დაემატა {addon}-ს."
@@ -3813,7 +3813,7 @@ msgid "Community"
 msgstr "ერთობა"
 
 msgid "About"
-msgstr "ჩვენ შესახებ"
+msgstr "საიტის შესახებ"
 
 msgid "Forum"
 msgstr "ფორუმი"
@@ -4248,7 +4248,7 @@ msgid "Currently on AMO"
 msgstr "ამჟამად AMO საიტზე"
 
 msgid "Status"
-msgstr "სტატუსი"
+msgstr "მდგომარეობა"
 
 msgid "Validation"
 msgstr "შემოწმება"
@@ -6859,7 +6859,7 @@ msgid "by Platform"
 msgstr "სისტემა"
 
 msgid "by Add-on Status"
-msgstr "დამატების მდგომარეობით"
+msgstr "დამატების მდგომარეობა"
 
 msgid "Subscribers"
 msgstr "გამომწერები"
@@ -6871,7 +6871,7 @@ msgid "Add-on Statistics"
 msgstr "დამატების სტატისტიკა"
 
 msgid "Add-ons in Use"
-msgstr "დამატებები, რომლებიც გამოიყენება"
+msgstr "გამოყენებული დამატებები"
 
 msgid "Add-ons Created"
 msgstr "შექმნილი დამატებები"
@@ -6886,7 +6886,7 @@ msgid "Collections Created"
 msgstr "შექმნილი კრებულები"
 
 msgid "Reviews Written"
-msgstr "მიმოხილვები დაწერილია"
+msgstr "დაწერილი მიმოხილვები "
 
 msgid "User Signups"
 msgstr "დარეგისტრებული მომხმარებლები"
@@ -6907,7 +6907,7 @@ msgid "Update"
 msgstr "განახლება"
 
 msgid "Export"
-msgstr "გატანა"
+msgstr "ფაილად შენახვა"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
