@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-10 07:37+0000\n"
+"PO-Revision-Date: 2018-01-11 06:09+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2738,9 +2738,9 @@ msgstr "Перевірка сумісності додатку"
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Ви не можете подати додаток з інструкцією, що завершується на \"@mozilla.org\""
+msgstr "Ви не можете подати додаток з GUID, що завершується на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
@@ -3545,9 +3545,8 @@ msgstr "Все готово!"
 msgid "Version Submitted for Review"
 msgstr "Версія подана для перевірки"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Готово! Ця версія скоро з'явиться на нашому сайті."
+msgstr "Готово! Ця версія стане доступною після проходження перевірки. Ви отримаєте сповіщення про це."
 
 msgid "Version Submitted"
 msgstr "Версія надіслана"
@@ -3558,9 +3557,8 @@ msgstr "Готово! Ця версія скоро з'явиться на наш
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Готово! Ця версія була подана для перевірки. Ви отримаєте сповіщення при завершенні перевірки, або при виникненні будь-яких запитань щодо вашого подання."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Ваша публікація буде більш успішною, якщо додати детальний опис і знімки екрану. Зробіть її готовою до публікації:"
+msgstr "Сторінка вашого додатку буде більш успішною, якщо додати детальний опис. Зробіть її готовою до публікації:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Ваша публікація буде більш успішною, якщо додати детальний опис і знімки екрану. Зробіть її готовою до публікації:"
@@ -3625,9 +3623,8 @@ msgstr "Опублікувати цю версію тільки на моєму 
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Створити тему"
+msgstr "Створити версію теми"
 
 msgid "Create a Theme"
 msgstr "Створити тему"
