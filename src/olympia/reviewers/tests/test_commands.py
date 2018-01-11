@@ -356,3 +356,47 @@ class TestAwardPostReviewPoints(TestCase):
         call_command('award_post_review_points')
         call_command('award_post_review_points')
         assert ReviewerScore.objects.count() == 3
+
+
+class TestRecalculatePostReviewWeightsCommand(TestCase):
+    @mock.patch.object(AutoApprovalSummary, 'calculate_weight')
+    def test_ignore_confirmed(self, calculate_weight_mock):
+        addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        call_command('recalculate_post_review_weights')
+        assert calculate_weight_mock.call_count == 0
+
+    @mock.patch.object(AutoApprovalSummary, 'calculate_weight')
+    def test_ignore_not_auto_approved(self, calculate_weight_mock):
+        addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version,
+            verdict=amo.NOT_AUTO_APPROVED, confirmed=False)
+        call_command('recalculate_post_review_weights')
+        assert calculate_weight_mock.call_count == 0
+
+    def test_dont_save_if_weight_has_not_changed(self):
+        addon = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=addon.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=False, weight=200)
+        old_modified_date = self.days_ago(42)
+        summary.update(modified=old_modified_date)
+        call_command('recalculate_post_review_weights')
+        summary.reload()
+        assert summary.weight == 200  # Because of no validation results found.
+        assert summary.modified == old_modified_date
+
+    def test_save_new_weight(self):
+        addon = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=addon.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=False, weight=666)
+        old_modified_date = self.days_ago(42)
+        summary.update(modified=old_modified_date)
+        call_command('recalculate_post_review_weights')
+        summary.reload()
+        assert summary.weight == 200  # Because of no validation results found.
+        assert summary.modified != old_modified_date
