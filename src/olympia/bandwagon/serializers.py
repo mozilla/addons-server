@@ -68,13 +68,6 @@ class CollectionSerializer(serializers.ModelSerializer):
 
         return value
 
-    def to_representation(self, obj):
-        data = super(CollectionSerializer, self).to_representation(obj)
-        # If has_addon is present on the object, include it in the output.
-        if hasattr(obj, 'has_addon'):
-            data['has_addon'] = bool(obj.has_addon)
-        return data
-
 
 class ThisCollectionDefault(object):
     def set_context(self, serializer_field):
