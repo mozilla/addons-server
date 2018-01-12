@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-16 21:25+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1034,6 +1034,10 @@ msgstr "Zadajte platnú URL, ktorá obsahuje znaky abecedy, čísla, podčiarky 
 
 msgid "This slug cannot be used."
 msgstr "Táto URL nemôže byť použitá."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Táto adresa URL je už používaná inou kolekciou."
 
 msgid "Name"
 msgstr "Názov"
@@ -6266,7 +6270,7 @@ msgstr "Zamietne doplnok a odstráni ho zo zoznamu na kontrolu."
 msgid "Confirm Approval"
 msgstr "Čakajúci na schválenie"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6300,7 +6304,7 @@ msgstr "Pridajte komentár k tejto verzii. Vývojár ho neuvidí."
 msgid "Approve Content"
 msgstr "Schváliť obsah"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"

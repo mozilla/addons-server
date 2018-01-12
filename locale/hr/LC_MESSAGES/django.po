@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -1039,6 +1039,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Ikonice ne smiju biti animirane."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "{addon} dodan u {collection}."
 
 msgid "Name"
 msgstr "Ime"
@@ -6169,7 +6173,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6200,7 +6204,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Odobri / Odbaci"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 # 80%

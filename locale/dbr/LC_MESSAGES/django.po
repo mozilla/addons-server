@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1003,6 +1003,9 @@ msgstr ".suǝɥdʎɥ ɹo sǝɹoɔsɹǝpun ´sɹǝqɯnu ´sɹǝʇʇǝʅ ɟo ƃuı
 
 msgid "This slug cannot be used."
 msgstr ".pǝsn ǝq ʇouuɐɔ ƃnʅs sıɥ⊥"
+
+msgid "This add-on already belongs to the collection"
+msgstr "uoıʇɔǝʅʅoɔ ǝɥʇ oʇ sƃuoʅǝq ʎpɐǝɹʅɐ uo-ppɐ sıɥ⊥"
 
 msgid "Name"
 msgstr "ǝɯɐN"
@@ -6123,8 +6126,8 @@ msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʇuǝs ǝq ʅʅıʍ sʇuǝɯɯoɔ ǝɥ⊥ .�
 msgid "Confirm Approval"
 msgstr "ʅɐʌoɹdd∀ ɯɹıɟuoↃ"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´ʅɐʌoɹddɐ ǝɥʇ ɟo uoıʇɐɯɹıɟuoɔ ɹnoʎ spɹoɔǝɹ sıɥ⊥ .pǝʌoɹddɐ ʎʅʅɐɔıʇɐɯoʇnɐ sɐʍ uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥ⊥"
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ ʇɐɥʇ ɟo ʅɐʌoɹddɐ ǝɥʇ ɟo uoıʇɐɯɹıɟuoɔ ɹnoʎ spɹoɔǝɹ sıɥ⊥ .pǝʌoɹddɐ ʎʅʅɐɔıʇɐɯoʇnɐ sɐʍ uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥ⊥"
 
 msgid "Reject Multiple Versions"
 msgstr "suoısɹǝɅ ǝʅdıʇʅnW ʇɔǝɾǝᴚ"
@@ -6150,8 +6153,8 @@ msgstr ".sıɥʇ ǝǝs oʇ ǝʅqɐ ǝq ʇ,uoʍ ɹǝdoʅǝʌǝp ǝɥ⊥ .uoısɹ�
 msgid "Approve Content"
 msgstr "ʇuǝʇuoↃ ǝʌoɹdd∀"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ sıɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɟo uoıʇɐqoɹddɐ ɹnoʎ spɹoɔǝɹ sıɥ⊥"
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɟo uoıʇɐqoɹddɐ ɹnoʎ spɹoɔǝɹ sıɥ⊥"
 
 msgid "Legacy Add-ons"
 msgstr "suo-pp∀ ʎɔɐƃǝ⅂"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1033,6 +1033,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "\"{0}\" on varattu tagi ja sitä ei voi käyttää."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Poista lisäosa kokoelmasta"
 
 msgid "Name"
 msgstr "Nimi"
@@ -6280,7 +6284,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6313,7 +6317,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Hyväksy tai hylkää"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

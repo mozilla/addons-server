@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-09-09 12:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1051,6 +1051,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "«{0}» és una etiqueta reservada i no es pot fer servir."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 
 msgid "Name"
 msgstr "Nom"
@@ -6240,7 +6244,7 @@ msgstr "Rebutja el complement i el suprimeix de la cua de revisió."
 msgid "Confirm Approval"
 msgstr "Pendent d'aprovació"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6275,7 +6279,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Aprovat"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
