@@ -94,10 +94,9 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'match': {
+            'fuzzy': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
-                    'fuzziness': 'AUTO',
+                    'boost': 2, 'value': 'blah',
                 }
             }
         }
@@ -107,14 +106,19 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'match': {
+            'fuzzy': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
-                    'fuzziness': 'AUTO',
+                    'boost': 2, 'value': 'search terms'
                 }
             }
         }
         assert expected in should
+
+    def test_no_fuzzy_if_query_too_long(self):
+        qs = self._filter(data={'q': 'this search query is too long.'})
+        should = qs['query']['function_score']['query']['bool']['should']
+        # Make sure there is no fuzzy clause (the search query is too long).
+        assert all(not any(['fuzzy' in clause.keys()]) for clause in should)
 
     def test_webextension_boost(self):
         create_switch('boost-webextensions-in-search')
