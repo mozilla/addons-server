@@ -17,4 +17,4 @@ def test_addon_install(
     firefox.browser.wait_for_notification(
         firefox_notifications.AddOnInstallConfirmation).install()
     firefox.browser.wait_for_notification(
-        firefox_notifications.AddOnInstallComplete)
+        firefox_notifications.AddOnInstallComplete).close()
