@@ -72,7 +72,7 @@ services:
 
   selenium-firefox:
     <<: *env
-    image: b4handjr/selenium-firefox
+    image: f5b19ce8e882
     volumes:
       - .:/code
     expose:

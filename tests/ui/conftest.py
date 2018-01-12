@@ -13,7 +13,6 @@ from olympia import amo
 @pytest.fixture
 def capabilities(capabilities):
     # In order to run these tests in Firefox 48, marionette is required
-    capabilities['marionette'] = True
     return capabilities
 
 
@@ -23,10 +22,15 @@ def firefox_options(firefox_options):
         'extensions.install.requireBuiltInCerts', False)
     firefox_options.set_preference('xpinstall.signatures.required', False)
     firefox_options.set_preference('extensions.webapi.testing', True)
-    firefox_options.set_preference('testpilot.env', 'local')
+    firefox_options.set_preference('ui.popup.disable_autohide', True)
     firefox_options.add_argument('-foreground')
     firefox_options.log.level = 'trace'
     return firefox_options
+
+
+@pytest.fixture
+def firefox_notifications(notifications):
+    return notifications
 
 
 @pytest.fixture

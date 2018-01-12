@@ -149,4 +149,6 @@ ui-tests:
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
 
+	pip install --no-deps -r requirements/uitests.txt
+
 initialize: update_deps initialize_db update_assets populate_data
