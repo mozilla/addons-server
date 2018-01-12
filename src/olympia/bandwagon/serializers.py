@@ -91,6 +91,13 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollectionAddon
         fields = ('addon', 'downloads', 'notes', 'collection')
+        validators = [
+            UniqueTogetherValidator(
+                queryset=CollectionAddon.objects.all(),
+                message=_(u'This add-on already belongs to the collection'),
+                fields=('addon', 'collection')
+            ),
+        ]
         writeable_fields = (
             'notes',
         )

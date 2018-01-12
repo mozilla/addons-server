@@ -1951,6 +1951,17 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data={'addon': self.addon.slug})
         self.check_response(response)
 
+    def test_uniqueness_message(self):
+        CollectionAddon.objects.create(
+            collection=self.collection, addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'addon': self.addon.slug})
+        assert response.status_code == 400
+        assert response.data == {
+            u'non_field_errors':
+                [u'This add-on already belongs to the collection']
+        }
+
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
     client_class = APITestClient
