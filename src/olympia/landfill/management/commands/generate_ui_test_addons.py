@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.utils import translation
+from django.test.utils import override_settings
 
 from olympia.landfill.serializers import GenerateAddonsSerializer
 
@@ -21,12 +22,15 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **kwargs):
-        translation.activate('en-US')
-        serializer = GenerateAddonsSerializer()
-        serializer.create_generic_featured_addons()
-        serializer.create_featured_addon_with_version()
-        serializer.create_featured_theme()
-        serializer.create_featured_collections()
-        serializer.create_featured_themes()
+        with override_settings(CELERY_ALWAYS_EAGER=True):
+            translation.activate('en-US')
+            serializer = GenerateAddonsSerializer()
+            serializer.create_generic_featured_addons()
+            serializer.create_featured_addon_with_version()
+            serializer.create_featured_theme()
+            serializer.create_featured_collections()
+            serializer.create_featured_themes()
+            serializer.create_installable_addon()
+
         cache.clear()
         call_command('clear_cache')
