@@ -20,7 +20,6 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
-from olympia.reviews.models import Review
 from olympia.files.tests.test_helpers import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -125,7 +124,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 summary=u'My Addon summary',
                 tags=['some_tag', 'another_tag', 'ui-testing',
                       'selenium', 'python'],
-                total_reviews=500,
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
             )

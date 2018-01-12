@@ -11,12 +11,6 @@ from olympia import amo
 
 
 @pytest.fixture
-def capabilities(capabilities):
-    # In order to run these tests in Firefox 48, marionette is required
-    return capabilities
-
-
-@pytest.fixture
 def firefox_options(firefox_options):
     firefox_options.set_preference(
         'extensions.install.requireBuiltInCerts', False)
