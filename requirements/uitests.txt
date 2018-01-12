@@ -1,3 +1,6 @@
+FoxPuppet==1.0.1 \
+    --hash=sha256:e912d18e15c202dd3bfe4b2b837411f267b231925feb170bc5af26787fccb4c2 \
+    --hash=sha256:a78918ea0b4846fe54cc853e3ab1bd11aa1c5ec6647a65eaa62c79a056b39581
 fxapom==1.10.1 \
     --hash=sha256:2d3c6cb8182b6d0f525628c6cf84cfe7d8f9dbd1dad487e8514cc2f5461e5009 \
     --hash=sha256:062c114b16281774470fffbbe80772f3fa9976cb4d2fe9db1a81d2028243a82c
@@ -23,6 +26,9 @@ pytest-base-url==1.4.1 \
 pytest-html==1.16.1 \
     --hash=sha256:135ea10b9ec0a5e370dc1820a5552d761aa3fec8400eabc0b06646f90f5c820e \
     --hash=sha256:d6ae1ae5d10158d290b603ccf46b5d103e93cf7d67df42bb7d6516fb4f1317f3
+pytest-firefox==0.1.1 \
+    --hash=sha256:d91ddd9b7090986d6e45df38830328d7178e95a846eafb1a975a12b7eb5a9fdb \
+    --hash=sha256:7c7acb4dc3d068a6d356797f18731b6ad2f64b5681043c0119f4b821bf20ea07
 pytest-instafail==0.3.0 \
     --hash=sha256:b4d5fc3ca81e530a8d0e15a7771dc14b06fc9a0930c4b3909a7f4527040572c3
 pytest-metadata==1.5.1 \
