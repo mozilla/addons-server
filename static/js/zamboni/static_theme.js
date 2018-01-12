@@ -141,7 +141,7 @@ $(document).ready(function() {
             manifest = {
                 name: $wizard.find('#theme-name').val(),
                 manifest_version: 2,
-                version: generateVersionString(),
+                version: $wizard.data('version'),
                 theme: {
                     images: {
                         headerURL: headerURL
@@ -150,12 +150,6 @@ $(document).ready(function() {
                 }
             };
             return JSON.stringify(manifest, null, 4);
-        }
-
-        function generateVersionString() {
-            var dateNow = new Date();
-            return [dateNow.getFullYear(), dateNow.getMonth() + 1, dateNow.getDate(),
-                    dateNow.getHours() * 60 + dateNow.getMinutes()].join('.');
         }
 
         function buildZip() {

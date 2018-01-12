@@ -417,6 +417,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -444,6 +445,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -1167,6 +1169,7 @@ class VersionSubmitUploadMixin(object):
         self.url = reverse('devhub.submit.version.upload',
                            args=[self.addon.slug, channel])
         assert self.addon.has_complete_metadata()
+        self.version.save()
 
     def post(self, supported_platforms=None,
              override_validation=False, expected_status=302, source=None,
@@ -1334,6 +1337,7 @@ class VersionSubmitUploadMixin(object):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '3.0'
 
         # And then check the upload works.
         path = os.path.join(
