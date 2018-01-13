@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2018-01-01 16:49+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1003,6 +1003,10 @@ msgstr "Enter a valid slug consisting of letters, numbers, underscores or hyphen
 
 msgid "This slug cannot be used."
 msgstr "This slug cannot be used."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "This url is already in use by another collection"
 
 msgid "Name"
 msgstr "Name"
@@ -6188,7 +6192,8 @@ msgstr "This will reject this version and remove it from the queue. The comments
 msgid "Confirm Approval"
 msgstr "Confirm Approval"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 
 msgid "Reject Multiple Versions"
@@ -6215,7 +6220,8 @@ msgstr "Make a comment on this version. The developer won't be able to see this.
 msgid "Approve Content"
 msgstr "Approve Content"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "This records your approbation of the content of this version, without notifying the developer."
 
 msgid "Legacy Add-ons"

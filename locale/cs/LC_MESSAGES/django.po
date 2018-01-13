@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-11-29 07:47+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1032,6 +1032,10 @@ msgstr "Vložte platnou URL, která obsahuje znaky abecedy, čísla, podtržítk
 
 msgid "This slug cannot be used."
 msgstr "Tuto URL nelze použít."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Tato URL je používána jinou sbírkou"
 
 msgid "Name"
 msgstr "Jméno"
@@ -6196,7 +6200,8 @@ msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentá�
 msgid "Confirm Approval"
 msgstr "Potvrdit schválení"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
 
 msgid "Reject Multiple Versions"
@@ -6223,7 +6228,8 @@ msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
 msgid "Approve Content"
 msgstr "Schválit obsah"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
 
 msgid "Legacy Add-ons"

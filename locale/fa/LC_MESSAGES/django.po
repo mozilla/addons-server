@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1010,6 +1010,10 @@ msgstr ""
 
 msgid "This slug cannot be used."
 msgstr ""
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "{addon} به مجموعه‌ی {collection} افزوده شد."
 
 msgid "Name"
 msgstr ""
@@ -6081,7 +6085,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6110,7 +6114,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

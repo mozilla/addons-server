@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1002,6 +1002,9 @@ msgstr "Ḗƞŧḗř ȧ ṽȧŀīḓ şŀŭɠ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧ�
 
 msgid "This slug cannot be used."
 msgstr "Ŧħīş şŀŭɠ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Ŧħīş ȧḓḓ-ǿƞ ȧŀřḗȧḓẏ ƀḗŀǿƞɠş ŧǿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
 msgid "Name"
 msgstr "Ƞȧḿḗ"
@@ -6123,8 +6126,8 @@ msgstr "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħīş ṽḗřşīǿƞ ȧƞḓ ř�
 msgid "Confirm Approval"
 msgstr "Ƈǿƞƒīřḿ Aƥƥřǿṽȧŀ"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Ŧħḗ ŀȧŧḗşŧ ƥŭƀŀīƈ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ ẇȧş ȧŭŧǿḿȧŧīƈȧŀŀẏ ȧƥƥřǿṽḗḓ. Ŧħīş řḗƈǿřḓş ẏǿŭř ƈǿƞƒīřḿȧŧīǿƞ ǿƒ ŧħḗ ȧƥƥřǿṽȧŀ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Ŧħḗ ŀȧŧḗşŧ ƥŭƀŀīƈ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ ẇȧş ȧŭŧǿḿȧŧīƈȧŀŀẏ ȧƥƥřǿṽḗḓ. Ŧħīş řḗƈǿřḓş ẏǿŭř ƈǿƞƒīřḿȧŧīǿƞ ǿƒ ŧħḗ ȧƥƥřǿṽȧŀ ǿƒ ŧħȧŧ ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
 msgid "Reject Multiple Versions"
 msgstr "Řḗĵḗƈŧ Ḿŭŀŧīƥŀḗ Ṽḗřşīǿƞş"
@@ -6150,8 +6153,8 @@ msgstr "Ḿȧķḗ ȧ ƈǿḿḿḗƞŧ ǿƞ ŧħīş ṽḗřşīǿƞ. Ŧħḗ 
 msgid "Approve Content"
 msgstr "Aƥƥřǿṽḗ Ƈǿƞŧḗƞŧ"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Ŧħīş řḗƈǿřḓş ẏǿŭř ȧƥƥřǿƀȧŧīǿƞ ǿƒ ŧħḗ ƈǿƞŧḗƞŧ ǿƒ ŧħīş ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ŧħīş řḗƈǿřḓş ẏǿŭř ȧƥƥřǿƀȧŧīǿƞ ǿƒ ŧħḗ ƈǿƞŧḗƞŧ ǿƒ ŧħḗ ŀȧŧḗşŧ ƥŭƀŀīƈ ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
 msgid "Legacy Add-ons"
 msgstr "Ŀḗɠȧƈẏ Aḓḓ-ǿƞş"

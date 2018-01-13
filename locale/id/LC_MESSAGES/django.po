@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-11-16 07:48+0000\n"
 "Last-Translator: Romi Hardiyanto <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1008,6 +1008,10 @@ msgstr "Masukkan nama pengguna yang benar, terdiri dari huruf, angka, garis bawa
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Nama ini tidak dapat digunakan."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "URL ini telah dipakai oleh koleksi lain"
 
 msgid "Name"
 msgstr "Nama"
@@ -6393,7 +6397,7 @@ msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 msgid "Confirm Approval"
 msgstr "Penundaan persetujuan"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6429,7 +6433,7 @@ msgstr "Berikan komentar untuk versi ini.  Penulis tidak akan dapat melihatnya."
 msgid "Approve Content"
 msgstr "Setujui / Tolak"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

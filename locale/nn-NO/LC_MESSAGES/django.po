@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-10 09:44+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1000,6 +1000,10 @@ msgstr "Spesifiser ein gyldig slugg som har bokstavar, tal, understrek eller bin
 
 msgid "This slug cannot be used."
 msgstr "Denne sluggen kan ikkje brukast."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Denne URL-en vert allereie brukt av ei anna samling"
 
 msgid "Name"
 msgstr "Namn"
@@ -5967,7 +5971,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "Stadfest godkjenning"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5994,7 +5998,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Godkjenn innhald"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"

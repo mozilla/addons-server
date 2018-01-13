@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-28 00:32+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1028,6 +1028,9 @@ msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens
 msgstr ""
 
 msgid "This slug cannot be used."
+msgstr ""
+
+msgid "This add-on already belongs to the collection"
 msgstr ""
 
 msgid "Name"
@@ -6078,7 +6081,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -6106,7 +6109,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"

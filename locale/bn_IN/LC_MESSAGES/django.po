@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2016-11-03 13:40+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -993,6 +993,9 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
+
+msgid "This add-on already belongs to the collection"
+msgstr ""
 
 msgid "Name"
 msgstr ""
@@ -5949,7 +5952,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5977,7 +5980,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

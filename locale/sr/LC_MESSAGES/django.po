@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1029,6 +1029,10 @@ msgstr "Унесите исправно корисничко име које с�
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Ово име не може бити употребљено."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Овај url је у употреби од стране друге колекције"
 
 msgid "Name"
 msgstr "Име"
@@ -6265,7 +6269,7 @@ msgstr "Ово ће одбити додатак и уклонити га са л
 msgid "Confirm Approval"
 msgstr "Одобрење у току"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6301,7 +6305,7 @@ msgstr "Коментаришите ову верзију. Аутор неће б
 msgid "Approve Content"
 msgstr "Дозволи / одбиј"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

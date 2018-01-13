@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -1001,6 +1001,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "\"{0}\" เป็นป้ายกำกับที่สงวนไว้และไม่สามารถใช้ได้"
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "url นี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
 
 msgid "Name"
 msgstr "ชื่อ"
@@ -6074,7 +6078,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "กำลังรอการอนุมัติ"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6104,7 +6108,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "อนุมัติ / ปฏิเสธ"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
