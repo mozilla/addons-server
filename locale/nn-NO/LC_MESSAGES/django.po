@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 10:57+0000\n"
+"PO-Revision-Date: 2018-01-13 11:44+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1001,9 +1001,8 @@ msgstr "Spesifiser ein gyldig slugg som har bokstavar, tal, understrek eller bin
 msgid "This slug cannot be used."
 msgstr "Denne sluggen kan ikkje brukast."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Denne URL-en vert allereie brukt av ei anna samling"
+msgstr "Denne utvidinga høyrer allereie til samlinga"
 
 msgid "Name"
 msgstr "Namn"
@@ -2688,9 +2687,9 @@ msgstr "Kontroller kompatibliteten til utvidinga"
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan ikkje sende inn denne typen av utviding"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med \"@mozilla.org\""
+msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
@@ -3457,9 +3456,8 @@ msgstr "Du er klar!"
 msgid "Version Submitted for Review"
 msgstr "Versjon sendt inn for vurdering"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Du er klar! Denne versjon vert snart tilgjengeleg på heimesida vår."
+msgstr "Du er klar! Denne versjonen vert tilgjengeleg etter at han har gått gjennom ei vurdering. Du får ei melding når vurderinga er gjennomført."
 
 msgid "Version Submitted"
 msgstr "Versjonen sendt inn"
