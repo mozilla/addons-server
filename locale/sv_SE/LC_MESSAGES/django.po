@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 08:50+0000\n"
+"PO-Revision-Date: 2018-01-13 08:52+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6200,9 +6200,8 @@ msgstr "Detta kommer att avvisa tillägget och ta bort den från kön. Kommentar
 msgid "Confirm Approval"
 msgstr "Bekräfta godkännande"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatiskt. Detta registrerar din bekräftelse av godkännande, utan att meddela utvecklaren."
+msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatiskt. Detta registrerar din bekräftelse av godkännande av den versionen, utan att meddela utvecklaren."
 
 msgid "Reject Multiple Versions"
 msgstr "Avvisa flera versioner"
@@ -6228,9 +6227,8 @@ msgstr "Kommentera den här versionen. Utvecklaren kommer inte att kunna se dett
 msgid "Approve Content"
 msgstr "Godkänn innehåll"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Detta registrerar ditt godkännande av innehållet i den här versionen utan att meddela utvecklaren."
+msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
 
 msgid "Legacy Add-ons"
 msgstr "Äldre tillägg"
