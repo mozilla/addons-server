@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2018-01-11 21:10+0000\n"
+"PO-Revision-Date: 2018-01-14 08:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -130,7 +130,7 @@ msgid "Sorry, no supported platform has been found."
 msgstr "სამწუხაროდ, მხარდაჭერილი პლატფორმები არ მოიძებნა."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "ატვირთული ფაილის ტიპი,  გაურკვეველია."
+msgstr "ატვირთული ფაილის სახეობა, გაურკვეველია."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "თქვენი ფაილის ზომა აჭარბებს {0} დაშვებულ ზღვარს."
