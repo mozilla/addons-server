@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-14 08:09+0000\n"
+"PO-Revision-Date: 2018-01-14 08:24+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -568,7 +568,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "დამატებების ნაწილი ითხოვს ნებართვებს, გარკვეული მოქმედებებისთვის. Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, დართავთ ნებას, თუ არა."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა ფუნქციასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
+msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა შესაძლებლობასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
 
 msgid "This add-on has been removed by its author."
 msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
@@ -607,7 +607,7 @@ msgid "{0} users"
 msgstr "{0} მომხმარებელი"
 
 msgid "More"
-msgstr "დამატებით"
+msgstr "სხვა"
 
 msgid "Add to collection"
 msgstr "კრებულში დამატება"
@@ -775,10 +775,10 @@ msgid "Maintenance in progress"
 msgstr "მიმდინარეობს ტექნიკური სამუშაოები"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს შესაძლებლობა დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს შესაძლებლობა დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
 
 msgid "Are you human?"
 msgstr "ადამიანი ხართ?"
@@ -5994,7 +5994,7 @@ msgid "Clear Admin Content Review Flag"
 msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Is more info requested?"
-msgstr "მოითხოვება დამატებითი ინფორმაცია?"
+msgstr "დამატებით მონაცემებს საჭიროებს?"
 
 msgid "Choose a canned response..."
 msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
@@ -7203,7 +7203,7 @@ msgid "Welcome to {0} Add-ons."
 msgstr "მოგესალმებით, {0} დამატებების გვერდზე."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "აირჩიეთ ათასობით დამატებითი შესაძლებლობებისა და გაფორმებიდან სასურველი, Firefox-ის უკეთ მოსარგებად."
+msgstr "აირჩიეთ ათასობით დამატებითი შესაძლებლობისა და გაფორმებიდან სასურველი, Firefox-ის უკეთ მოსარგებად."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
