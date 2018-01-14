@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-14 14:47+0000\n"
+"PO-Revision-Date: 2018-01-14 14:51+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -7358,7 +7358,7 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "אירעו שגיאות בשינויים שביצעת. נא לתקן אותן ולשלוח שוב."
 
 msgid "User reported."
-msgstr ""
+msgstr "המשתמש דווח."
 
 msgid "new"
 msgstr "חדש"
