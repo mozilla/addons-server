@@ -1033,9 +1033,8 @@ msgstr "Vložte platnou URL, která obsahuje znaky abecedy, čísla, podtržítk
 msgid "This slug cannot be used."
 msgstr "Tuto URL nelze použít."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Tato URL je používána jinou sbírkou"
+msgstr ""
 
 msgid "Name"
 msgstr "Jméno"
