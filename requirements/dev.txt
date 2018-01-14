@@ -91,9 +91,9 @@ pexpect==4.3.1 \
 ipython_genutils==0.2.0 \
     --hash=sha256:72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c61fab8 \
     --hash=sha256:eb2e116e75ecef9d4d228fdc66af54269afa26ab4463042e33785b887c628ba8
-decorator==4.1.2 \
-    --hash=sha256:95a26b17806e284452bfd97fa20aa1e8cb4ee23542bda4dbac5e4562aa1642cd \
-    --hash=sha256:7cb64d38cb8002971710c8899fbdfb859a23a364b7c99dab19d1f719c2ba16b5
+decorator==4.2.0 \
+    --hash=sha256:72b457ffb547d0b80c7e361b09533cb4aabbae1537b1dc944b00b9bb15aee0ed \
+    --hash=sha256:e2b4f92f540e4a36f9bebb1bd1abbb60245f0fdbee1157242292a1ba6303f09c
 ptyprocess==0.5.2 \
     --hash=sha256:e8c43b5eee76b2083a9badde89fd1bbce6c8942d1045146e100b7b5e014f4f1a \
     --hash=sha256:e64193f0047ad603b71f202332ab5527c5e52aa7c8b609704fc28c0dc20c4365
