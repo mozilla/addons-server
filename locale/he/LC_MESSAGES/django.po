@@ -1900,9 +1900,8 @@ msgstr "{0} {1} נוסף."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "המצב של {addon} השתנה ל־{0}."
+msgstr ""
 
 msgid "{addon} policy changed."
 msgstr "המדיניות של התוספת {addon} השתנתה."
