@@ -15,7 +15,7 @@
     </div>
     <div id="theme-header" class="row">
       <label class="row" for="header-img">
-        {{ _('Select a header image for your Theme.') }}
+        {{ _('Select a header image for your theme') }}
         <span class="req" title="{{ _('required') }}">*</span>
       </label>
       <input data-allowed-types="image/jpeg|image/png|image/apng|image/svg|image/gif"
@@ -31,34 +31,35 @@
         {{ _('Select a different header image') }}</a>
     </div>
     <div class="colors">
-      <h3>{{ _('Select colors for your Theme.') }}</h4>
+      <h3>{{ _('Select colors for your theme') }}</h4>
       {% set colors = [
-        ('accentcolor', _('Header area background (accentcolor)'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image.'), true),
-        ('textcolor', _('Header area text (textcolor)'), _('The color of the text displayed in the header area.'), true),
-        ('toolbar', _('Toolbar area background (toolbar).'), _('The background color for the navigation bar, the bookmarks bar, and the selected tab.'), false),
-        ('toolbar_text', _('Toolbar area text (toolbar_text).'), _('The color of toolbar text.'), false),
-        ('toolbar_field', _('Toolbar field area background (toolbar_field).'), _('The background color for fields in the toolbar, such as the URL bar.'), false),
-        ('toolbar_field_text', _('Toolbar field area text (toolbar_field_text).'), _('The color of text in fields in the toolbar, such as the URL bar'), false)] %}
+        ('accentcolor', _('Header area background'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor.'), '#e3e4e6'),
+        ('textcolor', _('Header area text'), _('The color of the text displayed in the header area. Manifest field:  textcolor.'), '#000'),
+        ('toolbar', _('Toolbar area background'), _('The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar.'), false),
+        ('toolbar_text', _('Toolbar area text'), _('The color of toolbar text. Manifest field:  toolbar_text.'), false),
+        ('toolbar_field', _('Toolbar field area background'), _('The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field.'), false),
+        ('toolbar_field_text', _('Toolbar field area text'), _('The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text.'), false)] %}
 
       <ul class="colors">
-        {% for (property, label, tip, required) in colors %}
+        {% for (property, label, tip, val_default) in colors %}
         <li class="row">
           <label class="row" for="{{ property }}">
             {{ label }}
-            {% if required %}
+            {% if val_default %}
                 <span class="req" title="{{ _('required') }}">*</span>
             {% else %}
                 <span class="optional">{{ _('optional') }}</span>
             {% endif %}
             <span class="tip tooltip" title="{{ tip }}" data-oldtitle="">?</span>
           </label>
-          <input class="color-picker" id="{{ property }}" name="{{ property }}" type="text">
+          <input class="color-picker" id="{{ property }}" name="{{ property }}"
+                 type="text"{{ ('value=' + val_default + '') if val_default else '' }}>
         </li>
         {% endfor %}
       </ul>
     </div>
     <div>
-        <h3>{{ _('Browser Preview') }}</h3>
+        <h3>{{ _('Browser preview') }}</h3>
         <div id="browser-preview">
             {% include 'devhub/addons/includes/static_theme_preview_svg.xml' %}
         </div>
@@ -94,7 +95,7 @@
                                    if channel == amo.RELEASE_CHANNEL_UNLISTED
                                    else 'devhub.upload') }}"
             {% endif %}
-            data-uploading-text="{{ _('Uploading Theme') }}">{{ _('Upload Theme') }}</button>
+            data-uploading-text="{{ _('Uploading Theme') }}">{{ _('Finish Theme') }}</button>
       </div>
     </form>
   </div>

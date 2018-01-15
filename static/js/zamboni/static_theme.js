@@ -1,83 +1,15 @@
 $(document).ready(function() {
-    function StaticThemeBrowserPreview() {
-        Object.defineProperty(this, 'accentcolor', {
-            set: function(color) {
-                if (!color) {
-                    color = '#ccc';
-                }
-                $('rect.accentcolor').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'textcolor', {
-            set: function(color) {
-                $('text.textcolor').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar', {
-            set: function(color) {
-                var attrs;
-                if (!color) {
-                    attrs = {'fill': '#fff', 'fill-opacity': "0.6"};
-                } else {
-                    attrs = {'fill': color, 'fill-opacity': "1"};
-                }
-                $('rect.toolbar').attr(attrs);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_text', {
-            set: function(color) {
-                $('text.toolbar_text').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_field', {
-            set: function(color) {
-                if (!color) {
-                    color = '#fff';
-                }
-                $('rect.toolbar_field').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_field_text', {
-            set: function(color) {
-                $('text.toolbar_field_text').attr('fill', color);
-            }
-        });
-
-        this.updateHeaderURL = function(src, width) {
-            var header_img = $('#svg-header-img');
-
-            var img  = new window.Image();
-            $(img).on('load', function() {
-                header_img.attr({width: img.width, height: img.height});
-            });
-            header_img.attr('href', (img.src = header_img.src = src));
-
-            var div = header_img.parents('div')[0];
-            header_img.attr('x', div.clientWidth - width);
-        };
-    }
-
 
     $('#theme-wizard').each(initThemeWizard);
 
 
     function initThemeWizard() {
-        var $wizard = $(this),
-            browserPreview = new StaticThemeBrowserPreview();
+        var $wizard = $(this);
 
         $wizard.on('click', '.reset', _pd(function() {
             var $this = $(this),
             $row = $this.closest('.row');
-            $row.find('input[type="hidden"]').val('');
-            $row.find('input[type=file], .note').show();
-            var preview = $row.find('.preview');
-            preview.removeAttr('src').removeClass('loaded');
-            $this.hide();
+            $row.find('input[type="file"]').click();
         }));
 
         $wizard.on('change', 'input[type="file"]', function() {
@@ -106,8 +38,8 @@ $(document).ready(function() {
         $wizard.find('input[type="file"]').trigger('change');
 
         $wizard.find('img.preview').on('load', function(e) {
-            img = e.target;
-            browserPreview.updateHeaderURL(img.src, img.naturalWidth);
+            var svg_img = $('#svg-header-img');
+            svg_img.attr('href', (svg_img.src = e.target.src));
         });
 
         function updateManifest() {
@@ -170,8 +102,18 @@ $(document).ready(function() {
 
         var $color = $wizard.find('input.color-picker');
         $color.change(function() {
-            var $this = $(this);
-            browserPreview[$this[0].id] = $this.val();
+            var $this = $(this),
+                $svg_element = $('.' + $this[0].id);
+            if (!$this.val()) {
+                $svg_element.attr(
+                    {'fill': $svg_element.data('fill'),
+                     'fill-opacity': $svg_element.data('fill-opacity')});
+            } else {
+                $svg_element.attr(
+                    {'fill': $this.val(),
+                     'fill-opacity': "1"});
+            }
+
             updateManifest();
         }).trigger('change');
 
