@@ -282,7 +282,9 @@ class SearchQueryFilter(BaseFilterBackend):
         # short query strings only (long strings, depending on what characters
         # they contain and how many words are present, can be too costly).
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
-            rules.append((query.Fuzzy, {'value': search_query, 'boost': 2}))
+            rules.append((query.Match, {
+                'query': search_query, 'boost': 2,
+                'prefix_length': 4, 'fuzziness': 'AUTO'}))
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.

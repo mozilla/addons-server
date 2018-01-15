@@ -4,7 +4,7 @@ import copy
 from django.test.client import RequestFactory
 
 from elasticsearch_dsl import Search
-from mock import Mock
+from mock import Mock, patch
 from rest_framework import serializers
 
 from olympia import amo
@@ -94,9 +94,10 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'value': 'blah',
+                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
@@ -106,19 +107,40 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'value': 'search terms'
+                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
         assert expected in should
 
     def test_no_fuzzy_if_query_too_long(self):
-        qs = self._filter(data={'q': 'this search query is too long.'})
-        should = qs['query']['function_score']['query']['bool']['should']
+        def do_test():
+            qs = self._filter(data={'q': 'this search query is too long.'})
+            should = qs['query']['function_score']['query']['bool']['should']
+            return should
+
         # Make sure there is no fuzzy clause (the search query is too long).
-        assert all(not any(['fuzzy' in clause.keys()]) for clause in should)
+        should = do_test()
+        expected = {
+            'match': {
+                'name': {
+                    'boost': 2, 'prefix_length': 4,
+                    'query': 'this search query is too long.',
+                    'fuzziness': 'AUTO',
+                }
+            }
+        }
+        assert expected not in should
+
+        # Re-do the same test but mocking the limit to a higher value, the
+        # fuzzy query should be present.
+        with patch.object(
+                SearchQueryFilter, 'MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH', 100):
+            should = do_test()
+            assert expected in should
 
     def test_webextension_boost(self):
         create_switch('boost-webextensions-in-search')
