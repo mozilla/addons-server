@@ -253,6 +253,7 @@ class SearchQueryFilter(BaseFilterBackend):
     to what's in the `q` GET parameter.
     """
     MAX_QUERY_LENGTH = 100
+    MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH = 20
 
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
@@ -265,7 +266,6 @@ class SearchQueryFilter(BaseFilterBackend):
         * Prefer phrase matches that allows swapped terms (boost=4)
         * Then text matches, using the standard text analyzer (boost=3)
         * Then text matches, using a language specific analyzer (boost=2.5)
-        * Then try fuzzy matches ("fire bug" => firebug) (boost=2)
         * Then look for the query as a prefix of a name (boost=1.5)
         """
         should = []
@@ -275,12 +275,16 @@ class SearchQueryFilter(BaseFilterBackend):
             (query.Match, {
                 'query': search_query, 'boost': 3,
                 'analyzer': 'standard'}),
-            (query.Match, {
-                'query': search_query, 'boost': 2,
-                'prefix_length': 4, 'fuzziness': 'AUTO'}),
             (query.Prefix, {
                 'value': search_query, 'boost': 1.5}),
         ]
+        # Add a rule for fuzzy matches ("fire bug" => firebug) (boost=2) for
+        # short query strings only (long strings, depending on what characters
+        # they contain and how many words are present, can be too costly).
+        if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
+            rules.append((query.Match, {
+                'query': search_query, 'boost': 2,
+                'prefix_length': 4, 'fuzziness': 'AUTO'}))
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
