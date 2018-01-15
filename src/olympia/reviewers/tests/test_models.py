@@ -804,6 +804,9 @@ class TestAutoApprovalSummary(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             average_daily_users=666, version_kw={'version': '1.0'})
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            confirmed=True)
         self.current_file_validation = FileValidation.objects.create(
             file=self.addon.current_version.all_files[0], validation=u'{}')
         self.version = version_factory(
@@ -1192,9 +1195,9 @@ class TestAutoApprovalSummary(TestCase):
         assert weight_info['uses_unknown_minified_code'] == 10
 
     def test_calculate_size_of_code_changes_no_current_validation(self):
-        # Delete the validation for the current version and reload the version
-        # we're testing (otherwise the file validation has already been loaded
-        # and is still attached to the instance...)
+        # Delete the validation for the previously confirmed version and reload
+        # the version we're testing (otherwise the file validation has already
+        # been loaded and is still attached to the instance...)
         self.current_file_validation.delete()
         self.version = Version.objects.get(pk=self.version.pk)
         summary = AutoApprovalSummary(version=self.version)
@@ -1220,7 +1223,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 0
         assert weight_info['size_of_code_changes'] == 0
 
-    def test_calculate_size_of_code_changes_no_current_version(self):
+    def test_calculate_size_of_code_changes_no_previous_version_size(self):
         validation_data = {
             'metadata': {
                 'totalScannedFileSize': 15000,
@@ -1249,6 +1252,48 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(
             validation=json.dumps(new_validation_data))
         summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 10000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 2
+        assert weight_info['size_of_code_changes'] == 2
+
+    def test_calculate_size_of_code_change_use_previously_confirmed(self):
+        old_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 5000,
+            }
+        }
+        self.current_file_validation.update(
+            validation=json.dumps(old_validation_data))
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 15000,
+            }
+        }
+        self.file_validation.update(
+            validation=json.dumps(new_validation_data))
+
+        # Add a new current_version, unconfirmed. This version will be ignored
+        # for the comparison as all we care about is the previous confirmed
+        # version.
+        self.addon.current_version.update(created=self.days_ago(2))
+        new_version = version_factory(addon=self.addon)
+        self.addon.reload()
+        assert self.addon.current_version == new_version
+        AutoApprovalSummary.objects.create(
+            version=new_version, verdict=amo.AUTO_APPROVED)
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 14999,
+            }
+        }
+        FileValidation.objects.create(
+            file=new_version.all_files[0],
+            validation=json.dumps(new_validation_data))
+
+        summary = AutoApprovalSummary(version=self.version)
+        # Size of code changes should be 10000 and not 1, proving that it
+        # compared with the old, confirmed version.
         assert summary.calculate_size_of_code_changes() == 10000
         weight_info = summary.calculate_weight()
         assert summary.weight == 2

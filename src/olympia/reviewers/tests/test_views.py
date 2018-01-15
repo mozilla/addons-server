@@ -1534,7 +1534,7 @@ class TestAutoApprovedQueue(QueueTest):
         extra_addon3 = addon_factory(name=u'Extra Addôn 3')
         extra_summary3 = AutoApprovalSummary.objects.create(
             version=extra_addon3.current_version,
-            verdict=amo.AUTO_APPROVED)
+            verdict=amo.AUTO_APPROVED, confirmed=True)
         AddonApprovalsCounter.objects.create(
             addon=extra_addon3, counter=1,
             last_human_review=extra_summary3.created)
