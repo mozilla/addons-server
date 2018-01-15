@@ -568,7 +568,7 @@ class TestESSearch(SearchBase):
             assert self.get_results(r) == (
                 sorted(self.addons.values_list('id', flat=True)))
 
-    def test_slug_indexed(self):
+    def test_slug_indexed_but_not_searched(self):
         a = self.addons[0]
 
         r = self.client.get(self.url, {'q': 'omgyes'})
@@ -577,7 +577,7 @@ class TestESSearch(SearchBase):
         a.update(slug='omgyes')
         self.refresh()
         r = self.client.get(self.url, {'q': 'omgyes'})
-        assert self.get_results(r) == [a.id]
+        assert self.get_results(r) == []
 
     def test_authors_indexed(self):
         a = self.addons[0]

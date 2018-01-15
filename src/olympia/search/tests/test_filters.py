@@ -60,7 +60,8 @@ class TestQueryFilter(FilterTestsBase):
             'match': {
                 'name_l10n_english': {
                     'query': 'tea pot', 'boost': 2.5,
-                    'analyzer': 'english'
+                    'analyzer': 'english',
+                    'operator': 'and'
                 }
             }
         }
@@ -71,7 +72,7 @@ class TestQueryFilter(FilterTestsBase):
                 'description_l10n_english': {
                     'query': 'tea pot',
                     'boost': 0.6,
-                    'analyzer': 'english'
+                    'analyzer': 'english',
                 }
             }
         }
@@ -528,7 +529,8 @@ class TestCombinedFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 2.5, 'query': u'test'
+                    'analyzer': 'english', 'boost': 2.5, 'query': u'test',
+                    'operator': 'and'
                 }
             }
         }
