@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1007,6 +1007,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
 
 msgid "Name"
 msgstr "নাম"
@@ -6056,7 +6060,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "অনুমোদনের অপেক্ষায় আছে"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6086,7 +6090,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "অনুমোদন / বাতিল"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

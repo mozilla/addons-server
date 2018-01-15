@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-11 06:09+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 18:23+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1030,6 +1030,9 @@ msgstr "Введіть дійсну адресу URL, що складаєтьс�
 
 msgid "This slug cannot be used."
 msgstr "ЦеяURL не може бути використана."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Цей додаток вже належить до цієї збірки"
 
 msgid "Name"
 msgstr "Ім'я"
@@ -6214,8 +6217,8 @@ msgstr "Ця дія відхилить цю версію і вилучить ї�
 msgid "Confirm Approval"
 msgstr "Підтвердити схвалення"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Остання публічна версія цього додатку була схвалена автоматично. Це записує ваше підтвердження про схвалення, без сповіщення розробника."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Остання публічна версія цього додатку була схвалена автоматично. Це записує ваше підтвердження про схвалення тієї версії, без сповіщення розробника."
 
 msgid "Reject Multiple Versions"
 msgstr "Відхилити кілька версій"
@@ -6241,8 +6244,8 @@ msgstr "Залиште коментар для цієї версії. Розро
 msgid "Approve Content"
 msgstr "Схвалити вміст"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Ця дія записує ваше схвалення вмісту цієї версії без сповіщення розробника."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ця дія записує ваше схвалення вмісту останньої публічної версії, без сповіщення розробника."
 
 msgid "Legacy Add-ons"
 msgstr "Застарілі додатки"

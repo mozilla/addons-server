@@ -2873,6 +2873,23 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
+    def test_prevent_too_complex_to_determinize_exception(self):
+        # too_complex_to_determinize_exception happens in elasticsearch when
+        # we do a fuzzy query with a query string that is well, too complex,
+        # with specific unicode chars and too long. For this reason we
+        # deactivate fuzzy matching if the query is over 20 chars. This test
+        # contain a string that was causing such breakage before.
+        # Populate the index with a few add-ons first (enough to trigger the
+        # issue locally).
+        for i in range(0, 10):
+            addon_factory()
+        self.refresh()
+        query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
+                 u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
+        data = self.perform_search(self.url, {'q': query})
+        # No results, but no 500 either.
+        assert data['count'] == 0
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient

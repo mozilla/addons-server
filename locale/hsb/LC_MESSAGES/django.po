@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-09 21:02+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 11:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1038,6 +1038,9 @@ msgstr "Zapodajće płaćiwe adresowe mjeno, kotrež z pismikow, ličbow, podsmu
 
 msgid "This slug cannot be used."
 msgstr "Tute adresowe mjeno njeda so wužiwać."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Tutón přidatk hižo k zběrce słuša"
 
 msgid "Name"
 msgstr "Mjeno"
@@ -6235,8 +6238,8 @@ msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentar
 msgid "Confirm Approval"
 msgstr "Schwalenje wobkrućić"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so to wuwiwarjej zdźěliło."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so wuwiwar informował."
 
 msgid "Reject Multiple Versions"
 msgstr "Wjacore wersije wotpokazać"
@@ -6262,8 +6265,8 @@ msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
 msgid "Approve Content"
 msgstr "Wobsah schwalić"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
 msgid "Legacy Add-ons"
 msgstr "Zestarjene přidatki"

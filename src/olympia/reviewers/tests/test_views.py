@@ -1534,7 +1534,7 @@ class TestAutoApprovedQueue(QueueTest):
         extra_addon3 = addon_factory(name=u'Extra Addôn 3')
         extra_summary3 = AutoApprovalSummary.objects.create(
             version=extra_addon3.current_version,
-            verdict=amo.AUTO_APPROVED)
+            verdict=amo.AUTO_APPROVED, confirmed=True)
         AddonApprovalsCounter.objects.create(
             addon=extra_addon3, counter=1,
             last_human_review=extra_summary3.created)
@@ -3082,20 +3082,21 @@ class TestReview(ReviewBase):
         Test whether identical files for different platforms
         show up as one link with the appropriate text.
         """
-        version = Version.objects.create(addon=self.addon, version='0.2')
-        version.created = datetime.today() + timedelta(days=1)
-        version.save()
+        version = version_factory(
+            addon=self.addon, version='0.2', file_kw=False)
+        file_mac = file_factory(version=version, platform=amo.PLATFORM_MAC.id)
+        file_android = file_factory(
+            version=version, platform=amo.PLATFORM_ANDROID.id)
 
-        for plat in (amo.PLATFORM_WIN, amo.PLATFORM_MAC):
-            File.objects.create(platform=plat.id, version=version,
-                                status=amo.STATUS_PUBLIC)
-        self.addon.update(_current_version=version)
+        # Signing causes the same uploaded file to be different
+        file_mac.update(hash='xyz789', original_hash='123abc')
+        file_android.update(hash='zyx987', original_hash='123abc')
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         text = doc('.reviewers-install').eq(1).text()
-        assert text == "Windows / Mac OS X"
+        assert text == "Mac OS X / Android"
 
     def test_compare_no_link(self):
         response = self.client.get(self.url)

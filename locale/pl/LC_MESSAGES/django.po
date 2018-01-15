@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1039,6 +1039,10 @@ msgstr "Podaj poprawną nazwę użytkownika składającą się z liter, cyfr, po
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Nie można użyć tej nazwy"
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Ten adres url jest już używany przez inną kolekcję"
 
 msgid "Name"
 msgstr "Nazwa"
@@ -6366,7 +6370,7 @@ msgstr "Dodatek zostanie odrzucony i usunięty z kolejki do sprawdzenia."
 msgid "Confirm Approval"
 msgstr "Oczekuje na akceptację"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6402,7 +6406,7 @@ msgstr "Skomentuj tę wersję. Twój komentarz nie będzie widoczny dla autora."
 msgid "Approve Content"
 msgstr "Zatwierdzenie / Odrzucenie"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

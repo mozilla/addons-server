@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1020,6 +1020,10 @@ msgstr "Digite um nome de utilizador válido constituído por letras, números, 
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Este nome não pode ser utilizado."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Esta url já está a ser utilizada por outra coleção"
 
 msgid "Name"
 msgstr "Nome"
@@ -6372,7 +6376,7 @@ msgstr "Isto vai rejeitar o extra e removê-lo da fila de revisão."
 msgid "Confirm Approval"
 msgstr "A aguardar pela aprovação"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6410,7 +6414,7 @@ msgstr "Faça um comentário sobre esta versão. O autor não será capaz de o v
 msgid "Approve Content"
 msgstr "Aprovar / Rejeitar"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

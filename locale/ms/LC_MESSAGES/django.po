@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-10 06:20+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 10:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -992,6 +992,9 @@ msgstr "Masukkan slug yang sah yang mengandungi huruf, nombor, garis bawah atau 
 
 msgid "This slug cannot be used."
 msgstr "Slug ini tidak boleh digunakan."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Add-on ini sudah ada dalam koleksi"
 
 msgid "Name"
 msgstr "Nama"
@@ -6102,7 +6105,7 @@ msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Ko
 msgid "Confirm Approval"
 msgstr "Sahkan Kelulusan"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Versi umum terkini add-on ini diluluskan secara automatik. Ini akan merekodkan pengesahan kelulusan anda tanpa memaklumkan pembangun."
 
 msgid "Reject Multiple Versions"
@@ -6129,7 +6132,7 @@ msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
 msgid "Approve Content"
 msgstr "Kandungan Lulus"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 msgid "Legacy Add-ons"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-13 21:44+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1002,6 +1002,10 @@ msgstr ""
 
 msgid "This slug cannot be used."
 msgstr "Tamsisɣelt-agi urtezmir ara ad tettwaseqdec."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
 
 msgid "Name"
 msgstr "Isem"
@@ -6071,7 +6075,7 @@ msgstr "Tigawt-agi ad tagi lqem-agi akk ad t-tekkes seg wedras. Iwenniten ad ttw
 msgid "Confirm Approval"
 msgstr "Sentem aqbal"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -6099,7 +6103,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Qbel agbur"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

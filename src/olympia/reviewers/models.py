@@ -895,6 +895,18 @@ class AutoApprovalSummary(ModelBase):
             }
         return factors
 
+    def find_previous_confirmed_version(self):
+        """Return the most recent version in the add-on history that has been
+        confirmed, excluding the one this summary is about, or None if there
+        isn't one."""
+        addon = self.version.addon
+        try:
+            version = addon.versions.exclude(pk=self.version.pk).filter(
+                autoapprovalsummary__confirmed=True).latest()
+        except Version.DoesNotExist:
+            version = None
+        return version
+
     def calculate_size_of_code_changes(self):
         """Return the size of code changes between the version being
         approved and the previous public one."""
@@ -910,7 +922,7 @@ class AutoApprovalSummary(ModelBase):
             return total_code_size / number_of_files
 
         try:
-            old_version = self.version.addon.current_version
+            old_version = self.find_previous_confirmed_version()
             old_size = find_code_size(old_version) if old_version else 0
             new_size = find_code_size(self.version)
         except FileValidation.DoesNotExist:
@@ -1068,19 +1080,9 @@ class AutoApprovalSummary(ModelBase):
         qs = (
             Addon.objects.public()
             .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict,
-                # Was auto-approved after the last human review, so its
-                # approval hasn't been confirmed yet.
-                _current_version__autoapprovalsummary__created__gt=(
-                    # MySQL straight up refuses to compare NULL values
-                    # (ignoring that row completely!) if we don't use
-                    # Coalesce(). This forces NULLs to be considered as being
-                    # an arbitrary old date, January 1st, 2000.
-                    Coalesce(
-                        'addonapprovalscounter__last_human_review',
-                        DateTimeCast(datetime(2000, 1, 1))
-                    ))
-            )
+                _current_version__autoapprovalsummary__verdict=success_verdict)
+            .exclude(
+                _current_version__autoapprovalsummary__confirmed=True)
         )
         if not admin_reviewer:
             qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)

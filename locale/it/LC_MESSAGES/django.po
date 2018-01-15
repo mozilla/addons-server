@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-09 13:21+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-14 16:25+0000\n"
+"Last-Translator: Winfox <openlib@email.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1027,6 +1027,9 @@ msgstr "Inserisci uno slug valido utilizzando lettere, cifre, trattini o trattin
 
 msgid "This slug cannot be used."
 msgstr "Impossibile utilizzare questo slug."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Questo componente aggiuntivo appartiene già alla raccolta"
 
 msgid "Name"
 msgstr "Nome"
@@ -6258,7 +6261,7 @@ msgstr "Questa azione rifiuterà l’attuale versione del componente aggiuntivo 
 msgid "Confirm Approval"
 msgstr "Conferma approvazione"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 "L’ultima versione pubblica di questo componente aggiuntivo è stata approvata automaticamente. Questo è un semplice promemoria dell’avvenuta approvazione. Nessuna notifica verrà inviata allo "
 "sviluppatore."
@@ -6289,7 +6292,7 @@ msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
 msgid "Approve Content"
 msgstr "Approva contenuti"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "Legacy Add-ons"

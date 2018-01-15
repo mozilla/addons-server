@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 14:52+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 07:52+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1020,6 +1020,9 @@ msgstr "Voer een geldige identificator in die uit letters, cijfers, liggende str
 
 msgid "This slug cannot be used."
 msgstr "Deze identificator kan niet worden gebruikt."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Deze add-on behoort al tot de collectie"
 
 msgid "Name"
 msgstr "Naam"
@@ -6187,8 +6190,8 @@ msgstr "Dit wijst deze versie af en verwijdert deze uit de wachtrij. De opmerkin
 msgid "Confirm Approval"
 msgstr "Goedkeuring bevestigen"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. Dit houdt uw bevestiging van de goedkeuring bij, zonder de ontwikkelaar te informeren."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. Dit houdt uw bevestiging van de goedkeuring van die versie bij, zonder de ontwikkelaar te informeren."
 
 msgid "Reject Multiple Versions"
 msgstr "Meerdere versies afwijzen"
@@ -6214,8 +6217,8 @@ msgstr "Maak een opmerking bij deze versie. De schrijver kan dit niet zien."
 msgid "Approve Content"
 msgstr "Inhoud goedkeuren"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Dit legt uw goedkeuring van de inhoud van de laatste publieke versie vast, zonder de ontwikkelaar te informeren."
 
 msgid "Legacy Add-ons"
 msgstr "Verouderde add-ons"

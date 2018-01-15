@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1093,6 +1093,10 @@ msgstr "أدخِل كلمة سر صالحة تتكون من حروف، أو أر
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "اسم المستخدم هذا لا يمكن استخدامه."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "هذا الرابط مستخدم بالفعل من مجموعة أخرى"
 
 msgid "Name"
 msgstr "الاسم"
@@ -6320,7 +6324,7 @@ msgstr "سيؤدي ذلك لرفض الإضافة وإزالتها من قائم
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6353,7 +6357,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "المحتويات"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

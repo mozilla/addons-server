@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 18:37+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 12:09+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1043,6 +1043,9 @@ msgstr "Vnesite veljavno rekleto, sestavljeno iz črk, števk, podčrtajev in ve
 
 msgid "This slug cannot be used."
 msgstr "Te reklete ne morete uporabiti."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Ta dodatek že pripada zbirki"
 
 msgid "Name"
 msgstr "Ime"
@@ -6265,8 +6268,8 @@ msgstr "S tem boste različico zavrnili in jo odstranili iz čakalne vrste. Kome
 msgid "Confirm Approval"
 msgstr "Potrdi odobritev"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Najnovejša javna različica tega dodatka je bila samodejno odobrena. To zabeleži vašo potrditev odobritve, brez obveščanja razvijalca."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Najnovejša javna različica tega dodatka je bila samodejno odobrena. To zabeleži vašo potrditev odobritve te različice, brez obveščanja razvijalca."
 
 msgid "Reject Multiple Versions"
 msgstr "Zavrni več različic"
@@ -6292,8 +6295,8 @@ msgstr "Oddajte pripombo za to različico. Avtor tega ne bo mogel videti."
 msgid "Approve Content"
 msgstr "Odobri vsebino"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja razvijalca."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To zabeleži vašo odobritev vsebine zadnje javne različice, brez obveščanja razvijalca."
 
 msgid "Legacy Add-ons"
 msgstr "Zastareli dodatki"

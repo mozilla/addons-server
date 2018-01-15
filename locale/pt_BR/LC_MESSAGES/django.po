@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-09 13:48+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 14:10+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1038,6 +1038,9 @@ msgstr "Digite um slug válido constituído por letras, números, traços inferi
 
 msgid "This slug cannot be used."
 msgstr "Este slug não pode ser usado."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Essa extensão já pertence à coleção"
 
 # 80%
 # 100%
@@ -6300,8 +6303,8 @@ msgstr "Isto rejeitará esta versão da extensão e a removerá da fila. Os come
 msgid "Confirm Approval"
 msgstr "Confirmar aprovação"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "A última versão pública desta extensão foi aprovada automaticamente. Isto grava a sua confirmação da aprovação, sem notificar o desenvolvedor."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "A última versão pública desta extensão foi aprovada automaticamente. Isto registra sua confirmação de aprovação dessa versão, sem notificar o desenvolvedor."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar várias versões"
@@ -6327,8 +6330,8 @@ msgstr "Faça um comentário sobre esta versão. O desenvolvedor não poderá ve
 msgid "Approve Content"
 msgstr "Aprovar conteúdo"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Registrar a aprovação do conteúdo desta versão, sem notificar o desenvolvedor."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Isso registra sua aprovação do conteúdo da última versão pública, sem notificar o desenvolvedor."
 
 msgid "Legacy Add-ons"
 msgstr "Extensões legadas"

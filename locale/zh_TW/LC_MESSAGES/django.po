@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 14:03+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 06:29+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -980,6 +980,9 @@ msgstr "請輸入有效的 slug，當中只能有字母、數字、底線或連�
 
 msgid "This slug cannot be used."
 msgstr "無法使用此 slug。"
+
+msgid "This add-on already belongs to the collection"
+msgstr "此附加元件屬於收藏集"
 
 msgid "Name"
 msgstr "名稱"
@@ -5955,8 +5958,8 @@ msgstr "將會退回此版本並從佇列移除，將傳送留言給開發者。
 msgid "Confirm Approval"
 msgstr "確認批准"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "此附加元件的最新公開版本是系統自動審核通過的，這筆紀錄確認無須通知開發者，直接通過審核。"
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "此附加元件的最新公開版本是系統自動審核通過的，此紀錄確認您同意無須通知開發者，直接通過審核。"
 
 msgid "Reject Multiple Versions"
 msgstr "退回多個版本"
@@ -5982,8 +5985,8 @@ msgstr "為此版本加上留言，開發者不會看到。"
 msgid "Approve Content"
 msgstr "核准內容"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "將紀錄您對此版本內容的接受或拒絕，而不通知開發者。"
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
 
 msgid "Legacy Add-ons"
 msgstr "傳統附加元件"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 14:29+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-14 14:51+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1024,6 +1024,9 @@ msgstr ""
 msgid "This slug cannot be used."
 msgstr "לא ניתן להשתמש בשם זה."
 
+msgid "This add-on already belongs to the collection"
+msgstr "תוספת זו כבר שייכת לאוסף"
+
 msgid "Name"
 msgstr "שם"
 
@@ -1897,9 +1900,8 @@ msgstr "{0} {1} נוסף."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "המצב של {addon} השתנה ל־{0}."
+msgstr "הרישיון של {addon} הוא {0} כעת."
 
 msgid "{addon} policy changed."
 msgstr "המדיניות של התוספת {addon} השתנתה."
@@ -3065,7 +3067,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "קטגוריות הן הדרך העיקרית שבאמצעותה משתמשים יכולים לדפדף בין התוספות. יש לבחור בכל אחת מהן שתואמת לתכונות של התוספת שלך לקבלת החשיפה המיטבית."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3634,13 +3636,11 @@ msgstr "שליחת קובץ"
 msgid "Sign Add-on"
 msgstr "חתימת תוספת"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "ערכת הנושא נמחקה."
+msgstr "יצירת ערכת נושא"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "רישיון ערכת נושא"
+msgstr "מחולל ערכות נושא"
 
 msgid "Select a header image for your Theme."
 msgstr "נא לבחור בתמונת כותרת לערכת הנושא שלך."
@@ -3725,7 +3725,7 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr "יש לשמור על מפתחות ה־API שלך בסוד <strong>ולעולם לא לשתף אותם עם אף אחד</strong>, אפילו לא עם תורמים אחרים ל־Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "מנפיק JWT"
 
 msgid "JWT secret"
 msgstr ""
@@ -3786,7 +3786,7 @@ msgid "Listed Version:"
 msgstr ""
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "זוהי גרסת התוספת שלך שתותקן לאחר לחיצה על כפתור ההתקנה תחת addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr ""
@@ -4664,7 +4664,7 @@ msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "‏Xmarks היא התוספת המובילה לניהול סימניות."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "תרגום טקסט ודפי אינטרנט, מילון ועוד!"
 
 msgid "Love is in the Air"
 msgstr "אהבה בכל מקום"
@@ -6084,7 +6084,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "אימות האישור"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 # 75%
@@ -6113,7 +6113,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "אישור תוכן"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"
@@ -6264,9 +6264,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "אין מה לראות כאן!  המפתח לא צירף שום פרטים."
 
 # {0} is the application name.  Example:  Firefox
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "חזרה לעמוד הבית של כלי הסוקרים"
+msgstr "חזרה ללוח הבקרה של כלי הסוקרים"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6566,7 +6565,7 @@ msgid "No deleted themes found for this period."
 msgstr ""
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "היסטוריית סקירת ערכת נושא עבור {0}"
 
 msgid "Review Date"
 msgstr "תאריך סקירה"
@@ -7359,7 +7358,7 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "אירעו שגיאות בשינויים שביצעת. נא לתקן אותן ולשלוח שוב."
 
 msgid "User reported."
-msgstr ""
+msgstr "המשתמש דווח."
 
 msgid "new"
 msgstr "חדש"

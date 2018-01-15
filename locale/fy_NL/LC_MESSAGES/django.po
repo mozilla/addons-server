@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-11 12:50+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-15 07:47+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1019,6 +1019,9 @@ msgstr "Fier in jildige identifikator yn dy't út letters, sifers, lizzende stre
 
 msgid "This slug cannot be used."
 msgstr "Dizze identifikator kin net brûkt wurde."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Dizze add-on heart al by de kolleksje"
 
 msgid "Name"
 msgstr "Namme"
@@ -6067,8 +6070,8 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "Goedkarring befêstigje"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "De lêste publike ferzje fan dizze add-on is automatysk goedkard. Dit hâldt jo befêstiging fan de goedkarring by, sûnder de ûntwikkeler te ynformearjen."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "De lêste publike ferzje fan dizze add-on is automatysk goedkard. Dit hâldt jo befêstiging fan de goedkarring fan de ferzje by, sûnder de ûntwikkeler te ynformearjen."
 
 msgid "Reject Multiple Versions"
 msgstr "Mear ferzjes ôfwize"
@@ -6094,8 +6097,8 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Ynhâld goedkarre"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dit leit jo goedkarring fan de ynhâld fan dizze ferzje fêst, sûnder de ûntwikkeler te ynformearjen."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Dit leit jo goedkarring fan de ynhâld fan de lêste publike ferzje fêst, sûnder de ûntwikkeler te ynformearjen."
 
 msgid "Legacy Add-ons"
 msgstr "Ferâldere add-ons"
