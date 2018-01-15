@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-10-26 00:50+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1004,6 +1004,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "Nun pue usase esti nome."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Esta URL yá ta n'usu por otra coleición"
 
 msgid "Name"
 msgstr "Nome"
@@ -6064,7 +6068,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6093,7 +6097,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

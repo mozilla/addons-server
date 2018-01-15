@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-07 20:32+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -1029,6 +1029,10 @@ msgstr "Entrez une référence valide, composée de lettres, nombres, souligneme
 
 msgid "This slug cannot be used."
 msgstr "Cette référence ne peut être utilisée."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Cette adresse est déjà utilisée par une autre collection"
 
 msgid "Name"
 msgstr "Nom"
@@ -6243,7 +6247,8 @@ msgstr "Cette action rejettera le module et le supprimera de la file d’attente
 msgid "Confirm Approval"
 msgstr "Confirmer l’approbation"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "La dernière version publique de ce module a été automatiquement approuvée. Ce message valide votre confirmation, sans en notifier le développeur."
 
 msgid "Reject Multiple Versions"
@@ -6270,7 +6275,8 @@ msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le
 msgid "Approve Content"
 msgstr "Approuver le contenu"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Cela enregistre votre approbation du contenu de cette version sans en informer le développeur."
 
 msgid "Legacy Add-ons"

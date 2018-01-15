@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2017-12-03 21:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-09 19:17+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -1025,6 +1025,10 @@ msgstr "Introduce una URL válida que incluya letras, números, guiones o guione
 
 msgid "This slug cannot be used."
 msgstr "No se puede utilizar esta URL."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Esta URL ya la utiliza otra colección"
 
 msgid "Name"
 msgstr "Nombre"
@@ -2732,9 +2736,9 @@ msgstr "Comprobar la compatibilidad del complemento"
 msgid "You cannot submit this type of add-on"
 msgstr "No puedes enviar este tipo de complemento"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "No puedes enviar un complemento con un guid acabado en \"@mozilla.org\""
+msgstr "No puedes enviar un complemento con un guid acabado en %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
@@ -3566,9 +3570,8 @@ msgstr "¡Ya está!"
 msgid "Version Submitted for Review"
 msgstr "Versión enviada para revisión"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "¡Ya está! Esta versión estará disponible muy pronto en nuestro sitio."
+msgstr "¡Ya está! Esta versión estará disponible una vez revisada. Se te enviará una notificación cuando la revisen."
 
 msgid "Version Submitted"
 msgstr "Versión enviada"
@@ -3579,9 +3582,8 @@ msgstr "¡Ya está! Esta versión estará disponible muy pronto en nuestro sitio
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "¡Listo! Has enviado esta versión para revisión. Se te notificará cuando se haya completado la revisión o si alguno de los revisores tiene alguna pregunta."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Tu lista tendrá más éxito si agregas una descripción detallada y capturas de pantalla. Prepara tu lista para su publicación:"
+msgstr "Tu lista tendrá más éxito si agregas una descripción detallada. Prepara tu lista para su publicación:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Tu lista tendrá más éxito si agregas una descripción detallada y capturas de pantalla. Prepara tu lista para su publicación:"
@@ -3646,9 +3648,8 @@ msgstr "Solo publicar esta versión a mi canal beta."
 msgid "Administrative overrides"
 msgstr "Anulaciones administrativas"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Crear un tema"
+msgstr "Crear una versión del tema"
 
 msgid "Create a Theme"
 msgstr "Crear un tema"
@@ -6199,9 +6200,8 @@ msgstr "Alguien más está revisando este tema."
 msgid "theme, reviewer, or comment"
 msgstr "tema, revisor o comentario"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Pizarra"
+msgstr "Pizarra privada"
 
 msgid "Keep review; remove flags"
 msgstr "Mantener revisión; eliminar marcadores"
@@ -6299,7 +6299,8 @@ msgstr "Esto eliminará esta versión y la eliminará de la cola de revisiones. 
 msgid "Confirm Approval"
 msgstr "Confirmar aprobación"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto es un registro de la confirmación de tu aprobación sin enviarle ninguna notificación al desarrollador."
 
 msgid "Reject Multiple Versions"
@@ -6326,7 +6327,8 @@ msgstr "Haz un comentario de esta versión. El desarrollador no podrá verlo."
 msgid "Approve Content"
 msgstr "Aprobar contenido"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Se guardará tu aprobación del contenido de esta versión sin notificárselo al desarrollador."
 
 msgid "Legacy Add-ons"
@@ -6675,11 +6677,10 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "La pizarra es donde se intercambia información importante del complemento (sea cual sea la versión), entre el desarrollador y el editor. Ambos pueden verla y editarla."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "La pizarra privada se utiliza para que los revisores intercambien información y es independiente de la versión. Utiliza un lenguaje objetivo. Solo está disponible para los revisores."
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Actualizar la pizarra"
+msgstr "Actualizar pizarras"
 
 msgid "(admin)"
 msgstr "(administrador)"

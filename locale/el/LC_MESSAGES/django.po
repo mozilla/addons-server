@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1028,6 +1028,10 @@ msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο απ
 
 msgid "This slug cannot be used."
 msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
 
 msgid "Name"
 msgstr "Όνομα"
@@ -6123,7 +6127,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "Επιβεβαίωση έγκρισης"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -6151,7 +6155,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Αποδοχή / Απόρριψη"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

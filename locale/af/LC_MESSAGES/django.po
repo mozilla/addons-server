@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1038,6 +1038,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "\"{0}\" is 'n gereserveerde etiket en kan nie gebruik word nie."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Dié URL is reeds in gebruik deur 'n ander versameling"
 
 msgid "Name"
 msgstr "Naam"
@@ -6185,7 +6189,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "Wag op goedkeuring"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6214,7 +6218,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

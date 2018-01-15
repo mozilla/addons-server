@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-20 19:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1018,6 +1018,10 @@ msgstr "Jepni një identifikues të vlefshëm, të përbërë nga shkronja, numr
 
 msgid "This slug cannot be used."
 msgstr "Ky identifikues s’përdoret dot."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 
 msgid "Name"
 msgstr "Emër"
@@ -6207,7 +6211,8 @@ msgstr "Kështu do të hidhet tej ky version dhe do të hiqet prej radhës së s
 msgid "Confirm Approval"
 msgstr "Ripohoni Miratimin"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit, pa u njoftuar zhvilluesi. "
 
 msgid "Reject Multiple Versions"
@@ -6234,7 +6239,8 @@ msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendj
 msgid "Approve Content"
 msgstr "Miratojeni Lëndën"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Kjo regjistron miratimin tuaj të lëndës së këtij versioni, pa e njoftuar zhvilluesin."
 
 msgid "Legacy Add-ons"

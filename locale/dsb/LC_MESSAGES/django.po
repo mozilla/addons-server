@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 22:23+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 13:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1038,6 +1038,9 @@ msgstr "Zapódajśo płaśiwe adresowe mě, kótarež wobstoj z pismikow, licbow
 
 msgid "This slug cannot be used."
 msgstr "Toś to adresowe mě njedajo se wužywaś."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Toś ten dodank južo k zběrce słuša"
 
 msgid "Name"
 msgstr "Mě"
@@ -3558,9 +3561,8 @@ msgstr "Sćo gótowy!"
 msgid "Version Submitted for Review"
 msgstr "Wersija, kótaraž jo se za pśeglědowanje zapódała"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Sćo gótowy! Toś ta wersija buźo skóro na našom sedle k dispoziciji."
+msgstr "Sćo gótowy! Toś ta wersija buźo k dispoziciji, za tym až jo se wuspěšnje pśeglědała. Dostańśo powěźeńku, gaž jo pśeglědana."
 
 msgid "Version Submitted"
 msgstr "Wersija jo se zapódała"
@@ -3571,9 +3573,8 @@ msgstr "Sćo gótowy! Toś ta wersija buźo skóro na našom sedle k dispoziciji
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Gótowo! Toś ta wersija jo se za pśeglědowanje zapódała. Dostanjośo powěźeńku, gaž pśeglědanje jo se dokóńcyło abo jolic naše pśeglědowarje maju pšašanja wó wašom zapódaśu."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje a fota wobrazowki. Pśigótujśo swój lisćinwoy zapisk za wózjawjenje:"
+msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje. Pśigótujśo swój lisćinowy zapisk za wózjawjenje:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje a fota wobrazowki. Pśigótujśo swój lisćinwoy zapisk za wózjawjenje:"
@@ -6238,8 +6239,8 @@ msgstr "To wótpokažo toś ten dodank a wótpórajo jen z cakańskego rěda. Ko
 msgid "Confirm Approval"
 msgstr "Pśizwólenje wobkšuśiś"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Nejnowša zjawna wersija toś tog dodanka jo se awtomatiski pśizwóliła. To registrěrujo wašo wobkšuśenje pśizwólenja mimo aby se dał to wuwijarjeju k wěsći."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Nejnowša zjawna wersija toś togo dodanka jo se awtomatiski pśizwóliła. To registrěrujo wašo wobkšuśenje pśizwólenja teje wersije, mimo aby se wuwijaŕ informěrował."
 
 msgid "Reject Multiple Versions"
 msgstr "Někotare wersije wótpokazaś"
@@ -6265,8 +6266,8 @@ msgstr "Komentěrujśo toś tu wersiju. Wuwijaŕ njamóžo to wiźeś."
 msgid "Approve Content"
 msgstr "Wopśimjeśe pśizwóliś"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "To wašo pśizwólenje wopśimjeśe toś teje wersije registrěrujo, mimo až wuwijaŕ powěsć dostanjo."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
 
 msgid "Legacy Add-ons"
 msgstr "Zesttarjone dodanki"
@@ -6613,7 +6614,7 @@ msgstr ""
 "Informaciska tofla jo městno, źož wuwijaŕ a pśepytowaŕ móžotej informacije wuměniś, kótarež su relewantne za toś ten dodank (njeźiwajucy na wersiju). To dajo se wót wobeju woglědaś a wobźěłaś."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Priwatne pokaze se za wuměnu informacijow mjazy pśeglědowarjami wužywaju, kótarež su njetwótwisne wót wersije. Pšosym wóstańśo objektiwny. Jano pśeglědowarje mógu to wiźeś."
 
 msgid "Update whiteboards"
 msgstr "Pokaze aktualizěrowaś"

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-09 09:03+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 10:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1019,6 +1019,9 @@ msgstr "Adjon meg egy érvényes SEO URL-t, amely betűkből, számokból, aláh
 
 msgid "This slug cannot be used."
 msgstr "Ez a SEO URL nem használható."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
 
 msgid "Name"
 msgstr "Név"
@@ -6191,8 +6194,8 @@ msgstr "Ez elutasítja ezt a verziót, és eltávolítja a sorból. A megjegyzé
 msgid "Confirm Approval"
 msgstr "Jóváhagyás megerősítése"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "A kiegészítő legutóbbi nyilvános verziója automatikus lett jóváhagyva. Ez rögzíti a jóváhagyás megerősítését, a fejlesztő értesítése nélkül."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "A kiegészítő legutóbbi nyilvános verziója automatikusan lett jóváhagyva. Ez rögzíti a verzió jóváhagyásának megerősítését, anélkül hogy értesítené a fejlesztőt."
 
 msgid "Reject Multiple Versions"
 msgstr "Több verzió elutasítása"
@@ -6218,8 +6221,8 @@ msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt l�
 msgid "Approve Content"
 msgstr "Tartalom jóváhagyása"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Ez rögzíti, hogy jóváhagyta a verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
 msgid "Legacy Add-ons"
 msgstr "Örökölt kiegészítők"

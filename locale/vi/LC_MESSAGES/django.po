@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-06 10:11+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -996,6 +996,10 @@ msgstr ""
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Url này đã được dùng bởi bộ sưu tập khác"
 
 msgid "Name"
 msgstr "Tên"
@@ -6127,7 +6131,7 @@ msgstr "Việc này sẽ từ chối tiện ích và loại bỏ nó khỏi danh
 msgid "Confirm Approval"
 msgstr "Đang chờ chấp thuận"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6162,7 +6166,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Trạng thái Chấp thuận"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

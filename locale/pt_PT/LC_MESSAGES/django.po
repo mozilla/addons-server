@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 16:13+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 11:44+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1013,6 +1013,9 @@ msgstr "Digite um identificador válido constituído por letras, números, traç
 
 msgid "This slug cannot be used."
 msgstr "Este identificador não pode ser utilizado."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Este extra já pertence à coleção"
 
 msgid "Name"
 msgstr "Nome"
@@ -6205,8 +6208,8 @@ msgstr "Isto vai rejeitar esta versão e removê-la da fila. Os comentários ser
 msgid "Confirm Approval"
 msgstr "Confirmar aprovação"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "A última versão pública deste extra foi aprovada automaticamente. Isto grava a sua confirmação da aprovação, sem notificar o programador."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "A última versão pública deste extra foi aprovada automaticamente. Isto grava a sua confirmação da aprovação dessa versão, sem notificar o programador."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar múltiplas versões"
@@ -6232,8 +6235,8 @@ msgstr "Faça um comentário a esta versão. O programador não poderá ver isto
 msgid "Approve Content"
 msgstr "Aprovar conteúdo"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Isto grava a sua aprovação do conteúdo desta versão, sem notificar o programador."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Isto grava a sua aprovação do conteúdo da última versão pública, sem notificar o programador."
 
 msgid "Legacy Add-ons"
 msgstr "Extras de legado"
@@ -7690,7 +7693,7 @@ msgid "Time of last login"
 msgstr "Momento do último início de sessão"
 
 msgid "IP address of last login"
-msgstr "Endereço de IP do último início de sessão"
+msgstr "Endereço IP do último início de sessão"
 
 msgid "Number of add-ons developed"
 msgstr "Número de extras desenvolvidos"

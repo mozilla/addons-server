@@ -1,1756 +1,1868 @@
 [
 {
-  "pk": 1, 
-  "model": "versions.license", 
+  "pk": 1,
+  "model": "versions.license",
   "fields": {
-    "name": 1, 
-    "created": "2009-04-30T23:48:48", 
-    "url": "http://www.gnu.org/licenses/gpl-3.0.html", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:13", 
-    "some_rights": false, 
-    "builtin": 3, 
+    "name": 1,
+    "created": "2009-04-30T23:48:48",
+    "url": "http://www.gnu.org/licenses/gpl-3.0.html",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:13",
+    "some_rights": false,
+    "builtin": 3,
     "on_form": true
   }
 },
 {
-  "pk": 2, 
-  "model": "versions.license", 
+  "pk": 2,
+  "model": "versions.license",
   "fields": {
-    "name": 2, 
-    "created": "2009-05-01T04:53:42", 
-    "url": "http://www.gnu.org/licenses/lgpl-3.0.html", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:13", 
-    "some_rights": false, 
-    "builtin": 5, 
+    "name": 2,
+    "created": "2009-05-01T04:53:42",
+    "url": "http://www.gnu.org/licenses/lgpl-3.0.html",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:13",
+    "some_rights": false,
+    "builtin": 5,
     "on_form": true
   }
 },
 {
-  "pk": 3, 
-  "model": "versions.license", 
+  "pk": 3,
+  "model": "versions.license",
   "fields": {
-    "name": 3, 
-    "created": "2009-05-01T05:00:44", 
-    "url": "http://www.gnu.org/licenses/gpl-2.0.html", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:14", 
-    "some_rights": false, 
-    "builtin": 2, 
+    "name": 3,
+    "created": "2009-05-01T05:00:44",
+    "url": "http://www.gnu.org/licenses/gpl-2.0.html",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:14",
+    "some_rights": false,
+    "builtin": 2,
     "on_form": true
   }
 },
 {
-  "pk": 4, 
-  "model": "versions.license", 
+  "pk": 4,
+  "model": "versions.license",
   "fields": {
-    "name": 4, 
-    "created": "2009-05-01T08:02:14", 
-    "url": "http://www.gnu.org/licenses/lgpl-2.1.html", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:14", 
-    "some_rights": false, 
-    "builtin": 4, 
+    "name": 4,
+    "created": "2009-05-01T08:02:14",
+    "url": "http://www.gnu.org/licenses/lgpl-2.1.html",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:14",
+    "some_rights": false,
+    "builtin": 4,
     "on_form": true
   }
 },
 {
-  "pk": 5, 
-  "model": "versions.license", 
+  "pk": 5,
+  "model": "versions.license",
   "fields": {
-    "name": 5, 
-    "created": "2009-05-01T08:36:09", 
-    "url": "http://www.opensource.org/licenses/bsd-license.php", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:15", 
-    "some_rights": false, 
-    "builtin": 7, 
+    "name": 5,
+    "created": "2009-05-01T08:36:09",
+    "url": "http://www.opensource.org/licenses/bsd-license.php",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:15",
+    "some_rights": false,
+    "builtin": 7,
     "on_form": true
   }
 },
 {
-  "pk": 6, 
-  "model": "versions.license", 
+  "pk": 6,
+  "model": "versions.license",
   "fields": {
-    "name": 6, 
-    "created": "2009-05-01T17:29:25", 
-    "url": "http://www.opensource.org/licenses/mit-license.php", 
-    "text": null, 
-    "icons": null, 
-    "modified": "2010-10-14T16:14:15", 
-    "some_rights": false, 
-    "builtin": 6, 
+    "name": 6,
+    "created": "2009-05-01T17:29:25",
+    "url": "http://www.opensource.org/licenses/mit-license.php",
+    "text": null,
+    "icons": null,
+    "modified": "2010-10-14T16:14:15",
+    "some_rights": false,
+    "builtin": 6,
     "on_form": true
   }
 },
 {
-  "pk": 7, 
-  "model": "versions.license", 
+  "pk": 7,
+  "model": "versions.license",
   "fields": {
-    "name": 7, 
-    "created": "2013-04-16T14:12:38", 
-    "url": "http://www.mozilla.org/MPL/2.0/", 
-    "text": null, 
-    "icons": " ", 
-    "modified": "2013-04-16T14:12:38", 
-    "some_rights": false, 
-    "builtin": 1, 
+    "name": 7,
+    "created": "2013-04-16T14:12:38",
+    "url": "http://www.mozilla.org/MPL/2.0/",
+    "text": null,
+    "icons": " ",
+    "modified": "2013-04-16T14:12:38",
+    "some_rights": false,
+    "builtin": 1,
     "on_form": true
   }
 },
 {
-  "pk": 1, 
-  "model": "translations.translation", 
+  "pk": 8,
+  "model": "versions.license",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": null,
+    "text": null,
+    "icons": "copyr",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": true,
+    "builtin": 11,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 9,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by/3.0/",
+    "text": null,
+    "icons": "cc-attrib",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 12,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 10,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by-nc/3.0/",
+    "text": null,
+    "icons": "cc-attrib cc-noncom",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 13,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 11,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by-nc-nd/3.0/",
+    "text": null,
+    "icons": "cc-attrib cc-noncom cc-noderiv",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 14,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 12,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+    "text": null,
+    "icons": "cc-attrib cc-noncom cc-share",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 15,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 13,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by-nd/3.0/",
+    "text": null,
+    "icons": "cc-attrib cc-noderiv",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 16,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 14,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "text": null,
+    "icons": "cc-attrib cc-share",
+    "modified": "2018-01-01T00:00:00",
+    "some_rights": false,
+    "builtin": 17,
+    "on_form": true,
+    "creative_commons": true
+  }
+},
+{
+  "pk": 1,
+  "model": "translations.translation",
+  "fields": {
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, version 3.0"
   }
 },
 {
-  "pk": 2, 
-  "model": "translations.translation", 
+  "pk": 2,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 3.0"
   }
 },
 {
-  "pk": 3, 
-  "model": "translations.translation", 
+  "pk": 3,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "Leje e P\u00ebrgjithshme Publike GNU, version 3.0"
   }
 },
 {
-  "pk": 4, 
-  "model": "translations.translation", 
+  "pk": 4,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, versie 3.0"
   }
 },
 {
-  "pk": 5, 
-  "model": "translations.translation", 
+  "pk": 5,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "\u0645\u062c\u0648\u0632 \u0639\u0645\u0648\u0645\u06cc \u06a9\u0644\u06cc \u06af\u0646\u0648\u060c \u0646\u0633\u062e\u0647\u0654 \u06f3\u066b\u06f0"
   }
 },
 {
-  "pk": 6, 
-  "model": "translations.translation", 
+  "pk": 6,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, vers\u00e3o 3.0"
   }
 },
 {
-  "pk": 7, 
-  "model": "translations.translation", 
+  "pk": 7,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "Gi\u1ea5y ph\u00e9p C\u00f4ng c\u1ed9ng GNU, phi\u00ean b\u1ea3n 3.0"
   }
 },
 {
-  "pk": 8, 
-  "model": "translations.translation", 
+  "pk": 8,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "Llic\u00e8ncia GPL (General Public License) de GNU, version 3.0"
   }
 },
 {
-  "pk": 9, 
-  "model": "translations.translation", 
+  "pk": 9,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, Version 3.0"
   }
 },
 {
-  "pk": 10, 
-  "model": "translations.translation", 
+  "pk": 10,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "Licenza GNU General Public License, versione 3.0"
   }
 },
 {
-  "pk": 11, 
-  "model": "translations.translation", 
+  "pk": 11,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, leagan 3.0"
   }
 },
 {
-  "pk": 12, 
-  "model": "translations.translation", 
+  "pk": 12,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ja", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ja",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License \u30d0\u30fc\u30b8\u30e7\u30f3 3.0"
   }
 },
 {
-  "pk": 13, 
-  "model": "translations.translation", 
+  "pk": 13,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, verzia 3.0"
   }
 },
 {
-  "pk": 14, 
-  "model": "translations.translation", 
+  "pk": 14,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, 3.0 bertsioa"
   }
 },
 {
-  "pk": 15, 
-  "model": "translations.translation", 
+  "pk": 15,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU \u901a\u7528\u516c\u5171\u6388\u6743\uff0c\u7248\u672c 3.0"
   }
 },
 {
-  "pk": 16, 
-  "model": "translations.translation", 
+  "pk": 16,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "uk", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "uk",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, \u0432\u0435\u0440\u0441\u0456\u044f 3.0"
   }
 },
 {
-  "pk": 17, 
-  "model": "translations.translation", 
+  "pk": 17,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "zh-TW", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "zh-TW",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License\uff0c\u7248\u672c 3.0"
   }
 },
 {
-  "pk": 18, 
-  "model": "translations.translation", 
+  "pk": 18,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, verze 3.0"
   }
 },
 {
-  "pk": 19, 
-  "model": "translations.translation", 
+  "pk": 19,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, \u0432\u0435\u0440\u0441\u0438\u044f 3.0"
   }
 },
 {
-  "pk": 20, 
-  "model": "translations.translation", 
+  "pk": 20,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "Licencia p\u00fablica GNU, versi\u00f3n 3.0"
   }
 },
 {
-  "pk": 21, 
-  "model": "translations.translation", 
+  "pk": 21,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "GNU General Public License, versi 3.0"
   }
 },
 {
-  "pk": 22, 
-  "model": "translations.translation", 
+  "pk": 22,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "pl", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 1, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "pl",
+    "modified": "2010-10-14T16:14:13",
+    "id": 1,
     "localized_string": "General Public Licence, wersja 3.0"
   }
 },
 {
-  "pk": 23, 
-  "model": "translations.translation", 
+  "pk": 23,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, version 3.0"
   }
 },
 {
-  "pk": 24, 
-  "model": "translations.translation", 
+  "pk": 24,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 3.0"
   }
 },
 {
-  "pk": 25, 
-  "model": "translations.translation", 
+  "pk": 25,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "Leje e P\u00ebrgjithshme Publike M\u00eb e Pak\u00ebt GNU, version 3.0"
   }
 },
 {
-  "pk": 26, 
-  "model": "translations.translation", 
+  "pk": 26,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, versie 3.0"
   }
 },
 {
-  "pk": 27, 
-  "model": "translations.translation", 
+  "pk": 27,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "\u0645\u062c\u0648\u0632 \u0639\u0645\u0648\u0645\u06cc \u06a9\u0644\u06cc \u06a9\u0627\u0647\u0634\u200c\u06cc\u0627\u0641\u062a\u0647\u0654 \u06af\u0646\u0648\u060c \u0646\u0633\u062e\u0647\u0654 \u06f3\u066b\u06f0"
   }
 },
 {
-  "pk": 28, 
-  "model": "translations.translation", 
+  "pk": 28,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, vers\u00e3o 3.0"
   }
 },
 {
-  "pk": 29, 
-  "model": "translations.translation", 
+  "pk": 29,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "Gi\u1ea5y ph\u00e9p C\u00f4ng c\u1ed9ng \u00cdt h\u01a1n GNU, phi\u00ean b\u1ea3n 3.0"
   }
 },
 {
-  "pk": 30, 
-  "model": "translations.translation", 
+  "pk": 30,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "Llic\u00e8ncia LGPL (Lesser General Public License) de GNU, versi\u00f3 3.0"
   }
 },
 {
-  "pk": 31, 
-  "model": "translations.translation", 
+  "pk": 31,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, Version 3.0"
   }
 },
 {
-  "pk": 32, 
-  "model": "translations.translation", 
+  "pk": 32,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "Licenza GNU Lesser General Public License, versione 3.0"
   }
 },
 {
-  "pk": 33, 
-  "model": "translations.translation", 
+  "pk": 33,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, leagan 3.0"
   }
 },
 {
-  "pk": 34, 
-  "model": "translations.translation", 
+  "pk": 34,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ja", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ja",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License \u30d0\u30fc\u30b8\u30e7\u30f3 3.0"
   }
 },
 {
-  "pk": 35, 
-  "model": "translations.translation", 
+  "pk": 35,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, verzia 3.0"
   }
 },
 {
-  "pk": 36, 
-  "model": "translations.translation", 
+  "pk": 36,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, 3.0 bertsioa"
   }
 },
 {
-  "pk": 37, 
-  "model": "translations.translation", 
+  "pk": 37,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU \u8f83\u5bbd\u677e\u516c\u5171\u8bb8\u53ef\u8bc1\uff08LGPL\uff09\uff0c\u7248\u672c 3.0"
   }
 },
 {
-  "pk": 38, 
-  "model": "translations.translation", 
+  "pk": 38,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "uk", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "uk",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, \u0432\u0435\u0440\u0441\u0456\u044f 3.0"
   }
 },
 {
-  "pk": 39, 
-  "model": "translations.translation", 
+  "pk": 39,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "zh-TW", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "zh-TW",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License\uff0c\u7248\u672c 3.0"
   }
 },
 {
-  "pk": 40, 
-  "model": "translations.translation", 
+  "pk": 40,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, verze 3.0"
   }
 },
 {
-  "pk": 41, 
-  "model": "translations.translation", 
+  "pk": 41,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, \u0432\u0435\u0440\u0441\u0438\u044f 3.0"
   }
 },
 {
-  "pk": 42, 
-  "model": "translations.translation", 
+  "pk": 42,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "Licencia p\u00fablica menor GNU Lesser, versi\u00f3n 3.0"
   }
 },
 {
-  "pk": 43, 
-  "model": "translations.translation", 
+  "pk": 43,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, versi 3.0"
   }
 },
 {
-  "pk": 44, 
-  "model": "translations.translation", 
+  "pk": 44,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:13", 
-    "locale": "pl", 
-    "modified": "2010-10-14T16:14:13", 
-    "id": 2, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:13",
+    "locale": "pl",
+    "modified": "2010-10-14T16:14:13",
+    "id": 2,
     "localized_string": "GNU Lesser General Public License, wersja 3.0"
   }
 },
 {
-  "pk": 45, 
-  "model": "translations.translation", 
+  "pk": 45,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, version 2.0"
   }
 },
 {
-  "pk": 46, 
-  "model": "translations.translation", 
+  "pk": 46,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 2.0"
   }
 },
 {
-  "pk": 47, 
-  "model": "translations.translation", 
+  "pk": 47,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "Leje e P\u00ebrgjithshme Publike GNU, version 2.0"
   }
 },
 {
-  "pk": 48, 
-  "model": "translations.translation", 
+  "pk": 48,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, versie 2.0"
   }
 },
 {
-  "pk": 49, 
-  "model": "translations.translation", 
+  "pk": 49,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "\u0645\u062c\u0648\u0632 \u0639\u0645\u0648\u0645\u06cc \u06a9\u0644\u06cc \u06af\u0646\u0648\u060c \u0646\u0633\u062e\u0647\u0654 \u06f2\u066b\u06f0"
   }
 },
 {
-  "pk": 50, 
-  "model": "translations.translation", 
+  "pk": 50,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, vers\u00e3o 2.0"
   }
 },
 {
-  "pk": 51, 
-  "model": "translations.translation", 
+  "pk": 51,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "Gi\u1ea5y ph\u00e9p C\u00f4ng c\u1ed9ng GNU, phi\u00ean b\u1ea3n 2.0"
   }
 },
 {
-  "pk": 52, 
-  "model": "translations.translation", 
+  "pk": 52,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "Llic\u00e8ncia GPL (General Public License) de GNU, version 2.0"
   }
 },
 {
-  "pk": 53, 
-  "model": "translations.translation", 
+  "pk": 53,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, Version 2.0"
   }
 },
 {
-  "pk": 54, 
-  "model": "translations.translation", 
+  "pk": 54,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "Licenza GNU General Public License, versione 2.0"
   }
 },
 {
-  "pk": 55, 
-  "model": "translations.translation", 
+  "pk": 55,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, leagan 2.0"
   }
 },
 {
-  "pk": 56, 
-  "model": "translations.translation", 
+  "pk": 56,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ja", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ja",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License \u30d0\u30fc\u30b8\u30e7\u30f3 2.0"
   }
 },
 {
-  "pk": 57, 
-  "model": "translations.translation", 
+  "pk": 57,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, verzia 2.0"
   }
 },
 {
-  "pk": 58, 
-  "model": "translations.translation", 
+  "pk": 58,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, 2.0 bertsioa"
   }
 },
 {
-  "pk": 59, 
-  "model": "translations.translation", 
+  "pk": 59,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU \u901a\u7528\u516c\u5171\u6388\u6743\uff0c\u7248\u672c 2.0"
   }
 },
 {
-  "pk": 60, 
-  "model": "translations.translation", 
+  "pk": 60,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "uk", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "uk",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, \u0432\u0435\u0440\u0441\u0456\u044f 2.0"
   }
 },
 {
-  "pk": 61, 
-  "model": "translations.translation", 
+  "pk": 61,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "zh-TW", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "zh-TW",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License\uff0c\u7248\u672c 2.0"
   }
 },
 {
-  "pk": 62, 
-  "model": "translations.translation", 
+  "pk": 62,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, verze 2.0"
   }
 },
 {
-  "pk": 63, 
-  "model": "translations.translation", 
+  "pk": 63,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, \u0432\u0435\u0440\u0441\u0438\u044f 2.0"
   }
 },
 {
-  "pk": 64, 
-  "model": "translations.translation", 
+  "pk": 64,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "Licencia p\u00fablica GNU, versi\u00f3n 2.0"
   }
 },
 {
-  "pk": 65, 
-  "model": "translations.translation", 
+  "pk": 65,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public License, versi 2.0"
   }
 },
 {
-  "pk": 66, 
-  "model": "translations.translation", 
+  "pk": 66,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "pl", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 3, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "pl",
+    "modified": "2010-10-14T16:14:14",
+    "id": 3,
     "localized_string": "GNU General Public Licence, wersja 2.0"
   }
 },
 {
-  "pk": 67, 
-  "model": "translations.translation", 
+  "pk": 67,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, version 2.1"
   }
 },
 {
-  "pk": 68, 
-  "model": "translations.translation", 
+  "pk": 68,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7 2.1"
   }
 },
 {
-  "pk": 69, 
-  "model": "translations.translation", 
+  "pk": 69,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "Leje e P\u00ebrgjithshme Publike M\u00eb e Pak\u00ebt GNU, version 2.1"
   }
 },
 {
-  "pk": 70, 
-  "model": "translations.translation", 
+  "pk": 70,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, versie 2.1"
   }
 },
 {
-  "pk": 71, 
-  "model": "translations.translation", 
+  "pk": 71,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "\u0645\u062c\u0648\u0632 \u0639\u0645\u0648\u0645\u06cc \u06a9\u0644\u06cc \u06a9\u0627\u0647\u0634\u200c\u06cc\u0627\u0641\u062a\u0647\u0654 \u06af\u0646\u0648\u060c \u0646\u0633\u062e\u0647\u0654 \u06f2\u066b\u06f1"
   }
 },
 {
-  "pk": 72, 
-  "model": "translations.translation", 
+  "pk": 72,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, vers\u00e3o 2.1"
   }
 },
 {
-  "pk": 73, 
-  "model": "translations.translation", 
+  "pk": 73,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "Gi\u1ea5y ph\u00e9p C\u00f4ng c\u1ed9ng \u00cdt h\u01a1n GNU, phi\u00ean b\u1ea3n 2.1"
   }
 },
 {
-  "pk": 74, 
-  "model": "translations.translation", 
+  "pk": 74,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "Llic\u00e8ncia LGPL (Lesser General Public License) de GNU, versi\u00f3 2.1"
   }
 },
 {
-  "pk": 75, 
-  "model": "translations.translation", 
+  "pk": 75,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, Version 2.1"
   }
 },
 {
-  "pk": 76, 
-  "model": "translations.translation", 
+  "pk": 76,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "Licenza GNU Lesser General Public License, versione 2.1"
   }
 },
 {
-  "pk": 77, 
-  "model": "translations.translation", 
+  "pk": 77,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, leagan 2.1"
   }
 },
 {
-  "pk": 78, 
-  "model": "translations.translation", 
+  "pk": 78,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ja", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ja",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License \u30d0\u30fc\u30b8\u30e7\u30f3 2.1"
   }
 },
 {
-  "pk": 79, 
-  "model": "translations.translation", 
+  "pk": 79,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, verzia 2.1"
   }
 },
 {
-  "pk": 80, 
-  "model": "translations.translation", 
+  "pk": 80,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, 2.1 bertsioa"
   }
 },
 {
-  "pk": 81, 
-  "model": "translations.translation", 
+  "pk": 81,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU \u8f83\u5bbd\u677e\u516c\u5171\u8bb8\u53ef\u8bc1\uff08LGPL\uff09\uff0c\u7248\u672c 2.1"
   }
 },
 {
-  "pk": 82, 
-  "model": "translations.translation", 
+  "pk": 82,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "uk", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "uk",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, \u0432\u0435\u0440\u0441\u0456\u044f 2.1"
   }
 },
 {
-  "pk": 83, 
-  "model": "translations.translation", 
+  "pk": 83,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "zh-TW", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "zh-TW",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License\uff0c\u7248\u672c 2.1"
   }
 },
 {
-  "pk": 84, 
-  "model": "translations.translation", 
+  "pk": 84,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, verze 2.1"
   }
 },
 {
-  "pk": 85, 
-  "model": "translations.translation", 
+  "pk": 85,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, \u0432\u0435\u0440\u0441\u0438\u044f 2.1"
   }
 },
 {
-  "pk": 86, 
-  "model": "translations.translation", 
+  "pk": 86,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "Licencia p\u00fablica menor GNU Lesser, versi\u00f3n 2.1"
   }
 },
 {
-  "pk": 87, 
-  "model": "translations.translation", 
+  "pk": 87,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, versi 2.1"
   }
 },
 {
-  "pk": 88, 
-  "model": "translations.translation", 
+  "pk": 88,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "pl", 
-    "modified": "2010-10-14T16:14:14", 
-    "id": 4, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "pl",
+    "modified": "2010-10-14T16:14:14",
+    "id": 4,
     "localized_string": "GNU Lesser General Public License, wersja 2.1"
   }
 },
 {
-  "pk": 89, 
-  "model": "translations.translation", 
+  "pk": 89,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD License"
   }
 },
 {
-  "pk": 90, 
-  "model": "translations.translation", 
+  "pk": 90,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:14", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:14",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "\u0386\u03b4\u03b5\u03b9\u03b1 BSD"
   }
 },
 {
-  "pk": 91, 
-  "model": "translations.translation", 
+  "pk": 91,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Gi\u1ea5y ph\u00e9p BSD"
   }
 },
 {
-  "pk": 92, 
-  "model": "translations.translation", 
+  "pk": 92,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Llic\u00e8ncia BSD"
   }
 },
 {
-  "pk": 93, 
-  "model": "translations.translation", 
+  "pk": 93,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Licenza BSD"
   }
 },
 {
-  "pk": 94, 
-  "model": "translations.translation", 
+  "pk": 94,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD licence"
   }
 },
 {
-  "pk": 95, 
-  "model": "translations.translation", 
+  "pk": 95,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD Lizentzia"
   }
 },
 {
-  "pk": 96, 
-  "model": "translations.translation", 
+  "pk": 96,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sv-SE", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sv-SE",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD-licens"
   }
 },
 {
-  "pk": 97, 
-  "model": "translations.translation", 
+  "pk": 97,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Licencia BSD"
   }
 },
 {
-  "pk": 98, 
-  "model": "translations.translation", 
+  "pk": 98,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Lisensi BSD"
   }
 },
 {
-  "pk": 99, 
-  "model": "translations.translation", 
+  "pk": 99,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "\u041b\u0438\u0446\u0435\u043d\u0437\u0438\u044f BSD"
   }
 },
 {
-  "pk": 100, 
-  "model": "translations.translation", 
+  "pk": 100,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD-licentie"
   }
 },
 {
-  "pk": 101, 
-  "model": "translations.translation", 
+  "pk": 101,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "fr", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "fr",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Licence BSD"
   }
 },
 {
-  "pk": 102, 
-  "model": "translations.translation", 
+  "pk": 102,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "bg", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "bg",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD \u041b\u0438\u0446\u0435\u043d\u0437"
   }
 },
 {
-  "pk": 103, 
-  "model": "translations.translation", 
+  "pk": 103,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD-Lizenz"
   }
 },
 {
-  "pk": 104, 
-  "model": "translations.translation", 
+  "pk": 104,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "da", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "da",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD-licens"
   }
 },
 {
-  "pk": 105, 
-  "model": "translations.translation", 
+  "pk": 105,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "\u0645\u062c\u0648\u0632 BSD"
   }
 },
 {
-  "pk": 106, 
-  "model": "translations.translation", 
+  "pk": 106,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "hu", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "hu",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD licenc"
   }
 },
 {
-  "pk": 107, 
-  "model": "translations.translation", 
+  "pk": 107,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Licen\u00e7a BSD"
   }
 },
 {
-  "pk": 108, 
-  "model": "translations.translation", 
+  "pk": 108,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sr", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sr",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "\u0411\u0421\u0414 \u043b\u0438\u0446\u0435\u043d\u0446\u0430"
   }
 },
 {
-  "pk": 109, 
-  "model": "translations.translation", 
+  "pk": 109,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Leje BSD"
   }
 },
 {
-  "pk": 110, 
-  "model": "translations.translation", 
+  "pk": 110,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Cead\u00fanas BSD"
   }
 },
 {
-  "pk": 111, 
-  "model": "translations.translation", 
+  "pk": 111,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "Licencia BSD"
   }
 },
 {
-  "pk": 112, 
-  "model": "translations.translation", 
+  "pk": 112,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 5, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:15",
+    "id": 5,
     "localized_string": "BSD \u6388\u6743"
   }
 },
 {
-  "pk": 113, 
-  "model": "translations.translation", 
+  "pk": 113,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "en-us", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "en-us",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 License"
   }
 },
 {
-  "pk": 114, 
-  "model": "translations.translation", 
+  "pk": 114,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "el", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "el",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "\u0386\u03b4\u03b5\u03b9\u03b1 MIT/X11"
   }
 },
 {
-  "pk": 115, 
-  "model": "translations.translation", 
+  "pk": 115,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "vi", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "vi",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Gi\u1ea5y ph\u00e9p MIT/X11"
   }
 },
 {
-  "pk": 116, 
-  "model": "translations.translation", 
+  "pk": 116,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ca", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ca",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Llic\u00e8ncia MIT/X11"
   }
 },
 {
-  "pk": 117, 
-  "model": "translations.translation", 
+  "pk": 117,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "it", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "it",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Licenza MIT/X11"
   }
 },
 {
-  "pk": 118, 
-  "model": "translations.translation", 
+  "pk": 118,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "cs", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "cs",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 licence"
   }
 },
 {
-  "pk": 119, 
-  "model": "translations.translation", 
+  "pk": 119,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "eu", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "eu",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 Lizentzia"
   }
 },
 {
-  "pk": 120, 
-  "model": "translations.translation", 
+  "pk": 120,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sv-SE", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sv-SE",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11-licens"
   }
 },
 {
-  "pk": 121, 
-  "model": "translations.translation", 
+  "pk": 121,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "es", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "es",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Licencia MIT/X11"
   }
 },
 {
-  "pk": 122, 
-  "model": "translations.translation", 
+  "pk": 122,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "id", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "id",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Lisensi MIT/X11"
   }
 },
 {
-  "pk": 123, 
-  "model": "translations.translation", 
+  "pk": 123,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ru", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ru",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "\u041b\u0438\u0446\u0435\u043d\u0437\u0438\u044f MIT/X11"
   }
 },
 {
-  "pk": 124, 
-  "model": "translations.translation", 
+  "pk": 124,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "nl", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "nl",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11-licentie"
   }
 },
 {
-  "pk": 125, 
-  "model": "translations.translation", 
+  "pk": 125,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "fr", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "fr",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Licence MIT/X11"
   }
 },
 {
-  "pk": 126, 
-  "model": "translations.translation", 
+  "pk": 126,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "bg", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "bg",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 \u041b\u0438\u0446\u0435\u043d\u0437"
   }
 },
 {
-  "pk": 127, 
-  "model": "translations.translation", 
+  "pk": 127,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "de", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "de",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11-Lizenz"
   }
 },
 {
-  "pk": 128, 
-  "model": "translations.translation", 
+  "pk": 128,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "da", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "da",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11-licens"
   }
 },
 {
-  "pk": 129, 
-  "model": "translations.translation", 
+  "pk": 129,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "fa", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "fa",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "\u0645\u062c\u0648\u0632 MIT/X11"
   }
 },
 {
-  "pk": 130, 
-  "model": "translations.translation", 
+  "pk": 130,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "hu", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "hu",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 licenc"
   }
 },
 {
-  "pk": 131, 
-  "model": "translations.translation", 
+  "pk": 131,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "pt-PT", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "pt-PT",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Licen\u00e7a MIT/X11"
   }
 },
 {
-  "pk": 132, 
-  "model": "translations.translation", 
+  "pk": 132,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sr", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sr",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 \u043b\u0438\u0446\u0435\u043d\u0446\u0430"
   }
 },
 {
-  "pk": 133, 
-  "model": "translations.translation", 
+  "pk": 133,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sq", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sq",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Leje MIT/X11"
   }
 },
 {
-  "pk": 134, 
-  "model": "translations.translation", 
+  "pk": 134,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "ga-IE", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "ga-IE",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Cead\u00fanas MIT/X11"
   }
 },
 {
-  "pk": 135, 
-  "model": "translations.translation", 
+  "pk": 135,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "sk", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "sk",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "Licencia MIT/X11"
   }
 },
 {
-  "pk": 136, 
-  "model": "translations.translation", 
+  "pk": 136,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2010-10-14T16:14:15", 
-    "locale": "zh-CN", 
-    "modified": "2010-10-14T16:14:15", 
-    "id": 6, 
+    "localized_string_clean": null,
+    "created": "2010-10-14T16:14:15",
+    "locale": "zh-CN",
+    "modified": "2010-10-14T16:14:15",
+    "id": 6,
     "localized_string": "MIT/X11 \u8bb8\u53ef\u534f\u8bae"
   }
 },
 {
-  "pk": 137, 
-  "model": "translations.translation", 
+  "pk": 137,
+  "model": "translations.translation",
   "fields": {
-    "localized_string_clean": null, 
-    "created": "2013-04-16T14:12:38", 
-    "locale": "en-us", 
-    "modified": "2013-04-16T14:12:38", 
-    "id": 7, 
+    "localized_string_clean": null,
+    "created": "2013-04-16T14:12:38",
+    "locale": "en-us",
+    "modified": "2013-04-16T14:12:38",
+    "id": 7,
     "localized_string": "Mozilla Public License, version 2.0"
   }
 },
 {
-  "pk": 7, 
-  "model": "translations.translationsequence", 
+  "pk": 7,
+  "model": "translations.translationsequence",
   "fields": {}
 }
 ]

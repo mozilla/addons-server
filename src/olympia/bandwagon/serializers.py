@@ -68,13 +68,6 @@ class CollectionSerializer(serializers.ModelSerializer):
 
         return value
 
-    def to_representation(self, obj):
-        data = super(CollectionSerializer, self).to_representation(obj)
-        # If has_addon is present on the object, include it in the output.
-        if hasattr(obj, 'has_addon'):
-            data['has_addon'] = bool(obj.has_addon)
-        return data
-
 
 class ThisCollectionDefault(object):
     def set_context(self, serializer_field):
@@ -98,6 +91,13 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollectionAddon
         fields = ('addon', 'downloads', 'notes', 'collection')
+        validators = [
+            UniqueTogetherValidator(
+                queryset=CollectionAddon.objects.all(),
+                message=_(u'This add-on already belongs to the collection'),
+                fields=('addon', 'collection')
+            ),
+        ]
         writeable_fields = (
             'notes',
         )

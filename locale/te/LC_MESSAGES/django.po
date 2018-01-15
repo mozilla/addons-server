@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-04 11:57+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-11 10:44+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -987,6 +987,10 @@ msgstr ""
 msgid "This slug cannot be used."
 msgstr ""
 
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "ఈ url మరొక సేకరణతో ఇప్పటికే ఉపయోగంలో ఉంది"
+
 msgid "Name"
 msgstr "పేరు"
 
@@ -1174,8 +1178,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s అనుచరుడు"
+msgstr[1] "%(num)s అనుచరులు"
 
 msgid "by {0}"
 msgstr "{0} ద్వారా"
@@ -1771,9 +1775,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} పై వ్యాఖ్యానించండి."
 
-#, fuzzy
 msgid "Commented"
-msgstr "వ్యాఖ్యానింపబడింది"
+msgstr "వ్యాఖ్యానించారు"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon}కు {tag} జోడించబడింది."
@@ -3385,9 +3388,8 @@ msgstr ""
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "ఈ పొడిగింత యొక్క అన్ని సమీక్షలను చూడండి"
+msgstr "ఈ పొడగింతకి ఒక వర్గాన్ని ఎంచుకోండి:"
 
 msgid "Support email:"
 msgstr "మద్దతు ఇమెయిల్:"
@@ -3528,9 +3530,8 @@ msgstr ""
 msgid "Create a Theme Version"
 msgstr "నేను సృష్టించినది"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "నేను సృష్టించినది"
+msgstr "అలంకారం సృష్టించు"
 
 msgid "Submit File"
 msgstr "ఫైల్ను సమర్పించండి"
@@ -3615,9 +3616,8 @@ msgstr ""
 msgid "Uploading Theme"
 msgstr "అలంకరణను సవరించండి"
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "అలంకరణను సవరించండి"
+msgstr "అలంకారాన్ని ఎక్కించు"
 
 msgid "API Credentials"
 msgstr ""
@@ -3729,7 +3729,7 @@ msgid "Unlisted Review Page"
 msgstr ""
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "గణాంకాల డాష్‌బోర్డు చూడండి"
 
 msgid "Compatibility Reports"
 msgstr ""
@@ -3744,7 +3744,7 @@ msgid "Developer News"
 msgstr ""
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "బ్లాగుని చూడండి &#9658;"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3752,7 +3752,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "అనుమతించే HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
@@ -3967,9 +3967,8 @@ msgstr ""
 msgid "Automated code tests for your add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "అనుకూలత పరీక్షలు"
+msgstr "అనుగుణ్యతా పరీక్ష"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
@@ -4567,7 +4566,7 @@ msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "చింతలు లేని విహారణ"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
@@ -5747,8 +5746,8 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} సమీక్ష"
+msgstr[1] "{num} సమీక్షలు"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -5954,7 +5953,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "ఆమోదాన్ని నిర్ధారించండి"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5981,7 +5980,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "విషయం ఆమోదం"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6000,9 +5999,8 @@ msgstr ""
 msgid "Signed Beta Files Log"
 msgstr ""
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "మార్గదర్శకాలను సమీక్షించండి"
+msgstr "సమీక్షల మార్గదర్శిని"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6029,13 +6027,11 @@ msgstr "అలంకారాల తాజాకరణలు ({0})"
 msgid "Flagged Themes ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "సమీక్షను అభ్యర్థించండి"
+msgstr "అలంకారాల సమీక్షల చిట్టా"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "తొలగించిన సమీక్షలు"
+msgstr "తొలగించిన అలంకారాల చిట్టా"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6050,9 +6046,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "మోడరేట్ చేసిన పొడిగింత సమీక్ష"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "పొడిగింతను ధృవీకరించండి"
+msgstr "చూపించని పొడగింతలు"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -6266,9 +6261,8 @@ msgstr ""
 msgid "Add-on Policy"
 msgstr "పొడిగింత విధానం"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "మార్గదర్శకాలను సమీక్షించండి"
+msgstr "సమీక్షకుల మార్గదర్శిని"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6508,7 +6502,7 @@ msgstr ""
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "మరింత సమాచారం అడిగారు: {0}"
 
 msgid "Flagged: {0}"
 msgstr ""
@@ -7273,7 +7267,7 @@ msgstr ""
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "అనుమతించే HTML: %(html)s. లంకెలు నిషేధం."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "ఏ సేకరణలు మీ ప్రొఫైల్లో చూపించాలో నిర్ణయించండి."

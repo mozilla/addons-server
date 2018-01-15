@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2018-01-08 19:04+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-13 09:20+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1022,6 +1022,9 @@ msgstr "Geben Sie einen gültigen Adressnamen ein, der aus Buchstaben, Zahlen, U
 
 msgid "This slug cannot be used."
 msgstr "Dieser Adressname kann nicht verwendet werden."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
 
 msgid "Name"
 msgstr "Name"
@@ -6213,8 +6216,8 @@ msgstr "Dies lehnt diese Version ab und entfernt sie aus der Warteschlange für 
 msgid "Confirm Approval"
 msgstr "Freischaltung bestätigt"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Die neueste öffentliche Version dieses Add-ons wurde automatisch freigeschaltet. Dies zeichnet Ihre Bestätigung der Freischaltung auf, ohne den Entwickler zu benachrichtigen."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Die neueste öffentliche Version dieses Add-ons wurde automatisch freigeschaltet. Dies zeichnet Ihre Bestätigung der Freischaltung dieser Version auf, ohne den Entwickler zu benachrichtigen."
 
 msgid "Reject Multiple Versions"
 msgstr "Mehrere Versionen ablehnen"
@@ -6240,8 +6243,8 @@ msgstr "Geben Sie einen Kommentar zu dieser Version ab. Der Entwickler kann ihn 
 msgid "Approve Content"
 msgstr "Inhalt annehmen"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dadurch wird Ihre Zustimmung zum Inhalt dieser Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Dadurch wird Ihre Zustimmung zum Inhalt der neuesten öffentlichen Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
 msgid "Legacy Add-ons"
 msgstr "Alt-Add-ons"

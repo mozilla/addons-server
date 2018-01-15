@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2017-12-01 19:39+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1003,6 +1003,10 @@ msgstr "英数字、アンダーバー、ハイフンを含む適切な形式の
 
 msgid "This slug cannot be used."
 msgstr "このスラグは使えません。"
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "この URL は他のコレクションで既に使われています"
 
 msgid "Name"
 msgstr "タイトル"
@@ -6032,7 +6036,8 @@ msgstr "これにより、このバージョンを却下し、待ち行列から
 msgid "Confirm Approval"
 msgstr "承認を確認"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "このアドオンの最新公開バージョンは自動承認されました。これにより、開発者に通知することなく、あなたによる承認の確認が記録されます。"
 
 msgid "Reject Multiple Versions"
@@ -6059,7 +6064,7 @@ msgstr "このバージョンに関するコメントを残してください。
 msgid "Approve Content"
 msgstr "コンテンツを承認"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"

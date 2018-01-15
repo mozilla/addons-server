@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2017-12-04 08:45+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-11 11:59+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1037,6 +1037,10 @@ msgstr "Введите корректное имя, состоящее из бу
 
 msgid "This slug cannot be used."
 msgstr "Этот slug не может быть использован."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Эта ссылка уже используется другой подборкой"
 
 msgid "Name"
 msgstr "Имя"
@@ -2753,9 +2757,9 @@ msgstr "Проверка совместимости дополнений"
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Вы не можете представить дополнение с guid, оканчивающимся на «@mozilla.org»"
+msgstr "Вы не можете представить дополнение с guid, оканчивающимся на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
@@ -3572,9 +3576,8 @@ msgstr "Вы сделали это!"
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Готово! Эта версия скоро появится на нашем сайте."
+msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
 
 msgid "Version Submitted"
 msgstr "Версия представлена"
@@ -3585,9 +3588,8 @@ msgstr "Готово! Эта версия скоро появится на на�
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Вы сделали это! Эта версия загружена для проверки. Вы будете оповещены, когда проверка будет завершена, или проверяющие зададут вопросы о вашем представлении."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание и скриншоты. Подготовьте вашу информацию для публикации:"
+msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание. Подготовьте вашу информацию для публикации:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание и скриншоты. Подготовьте вашу информацию для публикации:"
@@ -3652,9 +3654,8 @@ msgstr "Опубликовать эту версию только на моём 
 msgid "Administrative overrides"
 msgstr "Административные действия"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Создать тему"
+msgstr "Создать версию темы"
 
 msgid "Create a Theme"
 msgstr "Создать тему"
@@ -6177,9 +6178,8 @@ msgstr "Кто-то ещё проверяет эту тему."
 msgid "theme, reviewer, or comment"
 msgstr "тема, редактор или комментарий"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Белая доска"
+msgstr "Приватная белая доска"
 
 msgid "Keep review; remove flags"
 msgstr "Удержать рецензию; удалить флаги"
@@ -6280,7 +6280,8 @@ msgstr "Это действие отклонит эту версию и удал
 msgid "Confirm Approval"
 msgstr "Подтвердить одобрение"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения, без уведомления разработчика."
 
 msgid "Reject Multiple Versions"
@@ -6307,7 +6308,8 @@ msgstr "Прокомментируйте эту версию. Разработч
 msgid "Approve Content"
 msgstr "Одобрить содержимое"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Это действие записывает ваше одобрение содержимого этой версии, без уведомления разработчика."
 
 msgid "Legacy Add-ons"
@@ -6652,11 +6654,10 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Белая доска является местом для обмена информацией, относящейся к этому дополнению (независимо от версии), между разработчиком и проверяющим. Она видима и редактируема ими обоими."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Приватная белая доска используется для обмена информацией между проверяющими, вне зависимости от версии. Пожалуйста, будьте конкретны. Доска видна только проверяющим."
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Обновить белую доску"
+msgstr "Обновить белые доски"
 
 msgid "(admin)"
 msgstr "(админ)"

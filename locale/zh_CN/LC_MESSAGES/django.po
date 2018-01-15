@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2018-01-02 15:11+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -985,6 +985,10 @@ msgstr "请输入一个有效的网址标识，只能由字母、数字、下划
 
 msgid "This slug cannot be used."
 msgstr "不能使用这个标识符。"
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "此网址已被其他收藏集使用"
 
 msgid "Name"
 msgstr "名称"
@@ -5989,7 +5993,8 @@ msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给
 msgid "Confirm Approval"
 msgstr "确认批准"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "此附加组件的最新公开版本已自动批准。这将记录您对此批准的确认（不会通知开发人员）。"
 
 msgid "Reject Multiple Versions"
@@ -6016,7 +6021,8 @@ msgstr "对此版本进行注释。其开发者不会看到这些。"
 msgid "Approve Content"
 msgstr "核准内容"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "这将记录您接受此版本的内容，不会通知开发者。"
 
 msgid "Legacy Add-ons"

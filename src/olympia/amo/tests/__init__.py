@@ -857,7 +857,7 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    if addon_type != amo.ADDON_PERSONA:
+    if addon_type != amo.ADDON_PERSONA and file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     return ver

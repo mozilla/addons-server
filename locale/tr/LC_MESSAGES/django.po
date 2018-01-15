@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2018-01-02 14:05+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1017,6 +1017,10 @@ msgstr ""
 
 msgid "This slug cannot be used."
 msgstr "Bu kısa ad kullanılamaz."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 
 msgid "Name"
 msgstr "İsim"
@@ -6129,7 +6133,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr "Onayı doğrula"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 # 78%
@@ -6160,7 +6164,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "İçeriği onayla"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

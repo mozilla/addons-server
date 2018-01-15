@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2017-12-14 12:59+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-11 12:00+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1005,6 +1005,10 @@ msgstr "Въведете валидно име, състоящо се то бу�
 
 msgid "This slug cannot be used."
 msgstr "Това име не може да бъде използвано."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Това URL вече се използва от друг списък"
 
 msgid "Name"
 msgstr "Име"
@@ -5418,13 +5422,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"За да докладвате отзив към добавка, влезте в сметката си и посетете страницата на рецензиите. Намерете рецензията, която искате да докладвате, изберете \"Докладване на отзив\" и изберете причина. "
-"Нашият редакторски екип ще разследва рецензията и ще предприеме подходящи действия."
+"За да докладвате отзив към добавка, влезте в сметката си и посетете страницата на отзивите. Намерете този, който искате да докладвате, изберете \"Докладване на отзива\" и изберете причина. Нашият "
+"редакторски екип ще разследва този отзив и ще предприеме подходящи действия."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Как да докладвам дефект или да се свържа с екипа на Добавки?"
@@ -5451,10 +5454,10 @@ msgid "Collections and Favorites"
 msgstr ""
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Какво е списъкът?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Списъкът е набор от сродни добавки, създаден и споделен от други потребители."
 
 msgid "What is the My Favorites collection?"
 msgstr ""
@@ -5484,7 +5487,7 @@ msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(
 msgstr ""
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Все още имате въпроси?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -5505,31 +5508,31 @@ msgid "Do:"
 msgstr ""
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Пишете така, както бихте разказали на приятел за опита си с добавката."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Пишете кратки и лесни за разбиране отзиви."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Дайте конкретни и полезни детайли. Например"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Добавката работи ли по очаквания от вас начин?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Кои възможности харесвате или не харесвате?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Полезна ли е?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Лесна ли е за ползване?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Ще продължите ли да я използвате?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Отделете време да прочетете отново отзива преди да го изпратите, за да избегнете правописните грешки."
 
 msgid "Don’t:"
 msgstr ""
@@ -5587,6 +5590,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
+"В общия случай, не. Но ако отзива не отговаря на критериите по-горе може да изберете „Докладване на отзива“ и ще бъде редактиран. В случай, че той съдържа оплакване, причината за което е отстранена "
+"в ново издание на добавката, ще бъде разгледана и възможността за изтриването му."
 
 msgid "Start Now"
 msgstr ""
@@ -5787,7 +5792,7 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Report this review"
-msgstr "Докладване на рецензията"
+msgstr "Докладване на отзива"
 
 msgid "Reply to review"
 msgstr ""
@@ -6053,7 +6058,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -6081,7 +6086,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Одобряване / отхвърляне"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy

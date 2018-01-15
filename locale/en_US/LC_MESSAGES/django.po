@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1038,6 +1038,10 @@ msgstr "Enter a valid username consisting of letters, numbers, underscores or hy
 #, fuzzy
 msgid "This slug cannot be used."
 msgstr "This name cannot be used."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "This url is already in use by another collection"
 
 msgid "Name"
 msgstr "Name"
@@ -6410,7 +6414,8 @@ msgstr "This will reject the add-on and remove it from the review queue."
 msgid "Confirm Approval"
 msgstr "Pending approval"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+#, fuzzy
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 
 #, fuzzy
@@ -6446,7 +6451,8 @@ msgstr "Make a comment on this version.  The author won't be able to see this."
 msgid "Approve Content"
 msgstr "Approve / Reject"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+#, fuzzy
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "This records your approbation of the content of this version, without notifying the developer."
 
 #, fuzzy

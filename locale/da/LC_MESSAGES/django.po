@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-08 11:27+0000\n"
-"PO-Revision-Date: 2017-12-18 20:35+0000\n"
+"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"PO-Revision-Date: 2018-01-12 13:39+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1013,6 +1013,10 @@ msgstr "Indtast en gyldig URL bestående af bogstaver, tal, understreger eller b
 
 msgid "This slug cannot be used."
 msgstr "Denne URL kan ikke benyttes."
+
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Denne url anvendes allerede af en anden samling"
 
 msgid "Name"
 msgstr "Navn"
@@ -6099,7 +6103,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -6126,7 +6130,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr "Godkend indhold"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -7161,9 +7165,8 @@ msgstr "Vælg en kategori"
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Besøg det nye websted"
+msgstr "Se det nye websted"
 
 msgid "Report a bug"
 msgstr "Rapportér en fejl"

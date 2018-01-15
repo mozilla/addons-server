@@ -1,23 +1,35 @@
-<svg id="SvgjsSvg1006" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs">
+{% autoescape true %}
+<svg id="SvgjsSvg1006" width="900" height="200" xmlns="http://www.w3.org/2000/svg"
+     version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:svgjs="http://svgjs.com/svgjs" font-size="18px" font-family="Helvetica, Arial, sans-serif">
     <defs id="SvgjsDefs1007"></defs>
-    <rect id="SvgjsRect1008" width="900" height="200" class="accentcolor"></rect>
-    <image id="svg-header-img" width="0" height="0"></image>
-    <text id="SvgjsText1010" font-family="Helvetica, Arial, sans-serif" x="5" y="34" font-size="1.4em" class="textcolor" fill="">
-        <tspan id="SvgjsTspan1011" dy="1.8199999999999998" x="5">{{ _('File    Edit   View    History   Bookmarks   Tools   Help') }}</tspan>
+    <rect id="SvgjsRect1008" width="900" height="200"
+          class="accentcolor" fill="{{ accentcolor|d('#ccc') }}" data-fill="#e3e4e6"></rect>
+    <image id="svg-header-img" width="900" height="200" preserveAspectRatio="xMaxYMin slice"
+           xlink:href="{{ header_src|d }}"></image>
+    <text id="SvgjsText1010" x="5" y="34" class="textcolor" fill="{{ textcolor|d }}">
+        <tspan id="SvgjsTspan1011" dy="1.8199999999999998" x="5">
+            {{ _('File    Edit   View    History   Bookmarks   Tools   Help') }}
+        </tspan>
     </text>
-    <text id="SvgjsText1012" font-family="Helvetica, Arial, sans-serif" x="160" y="84" font-size="1.4em" class="textcolor" fill="">
+    <text id="SvgjsText1012" x="160" y="84" class="textcolor" fill="{{ textcolor|d }}">
         <tspan id="SvgjsTspan1013" dy="1.8199999999999998" x="160">{{ _('Inactive Tab') }}</tspan>
     </text>
-    <rect id="SvgjsRect1014" width="900" height="100" y="100" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>
-    <rect id="SvgjsRect1015" width="150" height="50" y="50" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>
-    <text id="SvgjsText1016" font-family="Helvetica, Arial, sans-serif" x="10" y="84" font-size="1.4em" class="toolbar_text" fill="">
+    <rect id="SvgjsRect1014" width="900" height="100" y="100"
+          class="toolbar" fill="{{ toolbar|d('#fff') }}" fill-opacity="{{ '1' if toolbar else '0.6' }}" data-fill="#fff" data-fill-opacity="0.6"></rect>
+    <rect id="SvgjsRect1015" width="150" height="50" y="50"
+          class="toolbar" fill="{{ toolbar|d('#fff') }}" fill-opacity="{{ '1' if toolbar else '0.6' }}" data-fill="#fff" data-fill-opacity="0.6"></rect>
+    <text id="SvgjsText1016" x="10" y="84"
+          class="toolbar_text" fill="{{ toolbar_text|d }}">
         <tspan id="SvgjsTspan1017" dy="1.8199999999999998" x="10">{{ _('Active Tab') }}</tspan>
     </text>
-    <text id="SvgjsText1018" font-family="Helvetica, Arial, sans-serif" x="10" y="184" font-size="1.4em" class="toolbar_text" fill="">
+    <text id="SvgjsText1018" x="10" y="184" class="toolbar_text" fill="{{ toolbar_text|d }}">
         <tspan id="SvgjsTspan1019" dy="1.8199999999999998" x="10">{{ _('# Most Visited. # Getting Started. # Other Bookmark') }}</tspan>
     </text>
-    <rect id="SvgjsRect1020" width="400" height="30" x="100" y="110" class="toolbar_field" fill="#fff"></rect>
-    <text id="SvgjsText1021" font-family="Helvetica, Arial, sans-serif" x="130" y="128" font-size="1.4em" class="toolbar_field_text" fill="">
+    <rect id="SvgjsRect1020" width="400" height="30" x="100" y="110"
+          class="toolbar_field" fill="{{ toolbar_field|d('#fff') }}" data-fill="#fff"></rect>
+    <text id="SvgjsText1021" x="130" y="128" class="toolbar_field_text" fill="{{ toolbar_field_text|d }}">
         <tspan id="SvgjsTspan1022" dy="1.8199999999999998" x="130">https://addons.mozilla.org/</tspan>
     </text>
 </svg>
+{% endautoescape %}
