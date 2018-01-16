@@ -57,6 +57,7 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
+from olympia.versions import compare
 from olympia.versions.models import Version
 from olympia.zadmin.models import ValidationResult, get_config
 
@@ -1263,6 +1264,22 @@ def version_stats(request, addon_id, addon):
     return data
 
 
+def get_next_version_number(addon):
+    if not addon:
+        return '1.0'
+    last_version = Version.unfiltered.filter(addon=addon).last()
+    version_int_parts = compare.dict_from_int(last_version.version_int)
+
+    version_counter = 1
+    while True:
+        next_version = '%s.0' % (version_int_parts['major'] + version_counter)
+        if not Version.unfiltered.filter(addon=addon,
+                                         version=next_version).exists():
+            return next_version
+        else:
+            version_counter += 1
+
+
 @login_required
 def submit_addon(request):
     return render_agreement(request, 'devhub/addons/submit/start.html',
@@ -1406,7 +1423,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                        get_config('submit_notification_warning'),
                    'submit_page': submit_page,
                    'channel': channel,
-                   'channel_choice_text': channel_choice_text})
+                   'channel_choice_text': channel_choice_text,
+                   'version_number':
+                       get_next_version_number(addon) if wizard else None})
 
 
 @login_required

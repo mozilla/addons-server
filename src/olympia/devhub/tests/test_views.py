@@ -12,6 +12,7 @@ from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
 import mock
+import pytest
 import waffle
 
 from pyquery import PyQuery as pq
@@ -31,6 +32,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
+from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.ratings.models import Rating
@@ -1559,3 +1561,22 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_devhub_version_list_page(self):
         url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+@pytest.mark.django_db
+def test_get_next_version_number():
+    addon = addon_factory(version_kw={'version': '1.0'})
+    # Easy case - 1.0 to 2.0
+    assert get_next_version_number(addon) == '2.0'
+    # We just iterate the major version number
+    addon.current_version.update(version='34.45.0a1pre', version_int=None)
+    addon.current_version.save()
+    assert get_next_version_number(addon) == '35.0'
+    # "Take" 35.0
+    version_factory(addon=addon, version='35.0',
+                    file_kw={'status': amo.STATUS_DISABLED})
+    assert get_next_version_number(addon) == '36.0'
+    # And 36.0, even though it's deleted.
+    version_factory(addon=addon, version='36.0').delete()
+    assert addon.current_version.version == '34.45.0a1pre'
+    assert get_next_version_number(addon) == '37.0'
