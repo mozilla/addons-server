@@ -158,7 +158,8 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         response = self.client.get(
             self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
                        'platform': 'WINNT'})
-        self.get_recommendations.assert_called_with('666', 'en-US', 'WINNT')
+        self.get_recommendations.assert_called_with(
+            '666', {'locale': 'en-US', 'platform': 'WINNT'})
 
         # should still be the same number of results.
         assert response.data['count'] == len(discopane_items)
@@ -175,3 +176,24 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
             else:
                 self._check_disco_addon(result, new_discopane_items[i])
                 assert result['is_recommendation'] is True
+
+    def test_extra_params(self):
+        author = user_factory()
+        recommendations = {
+            101: addon_factory(id=101, guid='101@mozilla', users=[author]),
+        }
+        replacement_items = [
+            DiscoItem(addon_id=101, is_recommendation=True),
+        ]
+        self.addons.update(recommendations)
+        self.get_recommendations.return_value = replacement_items
+
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
+                       'platform': 'WINNT', 'extra': 'stuff', 'this': 'too'})
+        self.get_recommendations.assert_called_with(
+            '666', {'locale': 'en-US', 'platform': 'WINNT', 'extra': 'stuff',
+                    'this': 'too'})
+
+        # should still be the same number of results.
+        assert response.data['count'] == len(discopane_items)

@@ -19,9 +19,7 @@ from . import data
 log = olympia.core.logger.getLogger('z.amo')
 
 
-def call_recommendation_server(telemetry_id, locale, platform):
-    params = [(key, value) for key, value in (
-        ('locale', locale), ('platform', platform)) if value]
+def call_recommendation_server(telemetry_id, params):
     endpoint = urlparse.urljoin(
         settings.RECOMMENDATION_ENGINE_URL,
         '%s/%s%s' % (telemetry_id, '?' if params else '', urlencode(params)))
@@ -42,8 +40,8 @@ def call_recommendation_server(telemetry_id, locale, platform):
     return json.loads(response.content).get('results', [])
 
 
-def get_recommendations(telemetry_id, locale, platform):
-    guids = call_recommendation_server(telemetry_id, locale, platform)
+def get_recommendations(telemetry_id, params):
+    guids = call_recommendation_server(telemetry_id, params)
     ids = (Addon.objects.public().filter(guid__in=guids)
            .values_list('id', flat=True))
     return [data.DiscoItem(addon_id=id_, is_recommendation=True)

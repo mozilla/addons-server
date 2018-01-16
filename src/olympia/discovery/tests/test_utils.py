@@ -21,7 +21,7 @@ from olympia.discovery.utils import (
 def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
     requests_get.side_effect = requests.exceptions.RequestException()
     # Check the exception in requests.get is handled okay.
-    assert call_recommendation_server('123456', None, None) == []
+    assert call_recommendation_server('123456', {}) == []
     statsd_incr.assert_called_with('services.recommendations.fail')
 
 
@@ -31,7 +31,7 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
 def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
     requests_get.return_value = HttpResponse(
         json.dumps({'results': ['@lolwut']}))
-    assert call_recommendation_server('123456', None, None) == ['@lolwut']
+    assert call_recommendation_server('123456', {}) == ['@lolwut']
     statsd_incr.assert_called_with('services.recommendations.success')
 
 
@@ -42,20 +42,29 @@ def test_call_recommendation_server_parameters(requests_get):
     requests_get.return_value = HttpResponse(
         json.dumps({'results': ['@lolwut']}))
     # No locale or platform
-    call_recommendation_server('123456', None, None)
+    call_recommendation_server('123456', {})
     requests_get.assert_called_with(taar_url + '123456/', timeout=taar_timeout)
     # locale no platform
-    call_recommendation_server('123456', 'en-US', None)
+    call_recommendation_server('123456', {'locale': 'en-US'})
     requests_get.assert_called_with(
         taar_url + '123456/?locale=en-US', timeout=taar_timeout)
     # platform no locale
-    call_recommendation_server('123456', None, 'WINNT')
+    call_recommendation_server('123456', {'platform': 'WINNT'})
     requests_get.assert_called_with(
         taar_url + '123456/?platform=WINNT', timeout=taar_timeout)
     # both locale and platform
-    call_recommendation_server('123456', 'en-US', 'WINNT')
+    call_recommendation_server('123456',
+                               {'locale': 'en-US', 'platform': 'WINNT'})
     requests_get.assert_called_with(
         taar_url + '123456/?locale=en-US&platform=WINNT', timeout=taar_timeout)
+    # and some extra parameters
+    call_recommendation_server(
+        '123456',
+        {'locale': 'en-US', 'platform': 'WINNT', 'study': 'sch',
+         'branch': 'tree'})
+    requests_get.assert_called_with(
+        taar_url + '123456/?locale=en-US&platform=WINNT&study=sch&branch=tree',
+        timeout=taar_timeout)
 
 
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
@@ -69,7 +78,8 @@ def test_get_recommendations(call_recommendation_server):
     call_recommendation_server.return_value = [
         '101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'
     ]
-    recommendations = get_recommendations('0', 'en-US', 'WINNT')
+    recommendations = get_recommendations(
+        '0', {'locale': 'en-US', 'platform': 'WINNT'})
     assert ([r.addon_id for r in recommendations] == [101, 102, 103, 104])
     assert all([r.is_recommendation for r in recommendations])
 
@@ -78,8 +88,9 @@ def test_get_recommendations(call_recommendation_server):
     call_recommendation_server.return_value = [
         '101@mozilla', '102@mozilla', '103@mozilla', '104@badguid'
     ]
-    assert ([r.addon_id for r in get_recommendations('0', 'en-US', 'WINNT')] ==
-            [102, 103])
+    recommendations = get_recommendations(
+        '0', {'locale': 'en-US', 'platform': 'WINNT'})
+    assert ([r.addon_id for r in recommendations] == [102, 103])
 
 
 def test_replace_extensions():
