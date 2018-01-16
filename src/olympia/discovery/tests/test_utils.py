@@ -63,7 +63,7 @@ def test_call_recommendation_server_parameters(requests_get):
         {'locale': 'en-US', 'platform': 'WINNT', 'study': 'sch',
          'branch': 'tree'})
     requests_get.assert_called_with(
-        taar_url + '123456/?locale=en-US&platform=WINNT&study=sch&branch=tree',
+        taar_url + '123456/?branch=tree&locale=en-US&platform=WINNT&study=sch',
         timeout=taar_timeout)
 
 

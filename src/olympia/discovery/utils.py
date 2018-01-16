@@ -1,5 +1,6 @@
 import json
 import urlparse
+from collections import OrderedDict
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -20,6 +21,7 @@ log = olympia.core.logger.getLogger('z.amo')
 
 
 def call_recommendation_server(telemetry_id, params):
+    params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
     endpoint = urlparse.urljoin(
         settings.RECOMMENDATION_ENGINE_URL,
         '%s/%s%s' % (telemetry_id, '?' if params else '', urlencode(params)))
