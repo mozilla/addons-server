@@ -46,5 +46,6 @@ be replaced. The API will still return a total of 7 items.
  .. http:get:: /api/v3/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef
 
     :query string telemetry-client-id: The telemetry client ID to be passed to the TAAR service.
-    :query string lang: In addition to activating translations (see :ref:`Discovery Content <disco-content>`), this will be passed as `locale` to TAAR..
+    :query string lang: In addition to activating translations (see :ref:`Discovery Content <disco-content>`), this will be passed as `locale` to TAAR.
     :query string platform: The platform identifier to be passed to TAAR.
+    :query string <anything>: Any additional parameters will also be passed along to TAAR.
