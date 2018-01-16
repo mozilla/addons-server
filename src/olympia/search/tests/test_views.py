@@ -1107,11 +1107,15 @@ class TestCollectionSearch(SearchBase):
 
         self.refresh()
 
-        # These contain terms that are in every result - so return everything.
-        for term in ('collection',
-                     'seavan: a collection of cars at the beach'):
-            self.check_name_results(
-                {'q': term}, sorted(p.id for p in self.public_collections))
+        self.check_name_results(
+            {'q': 'collection'},
+            sorted(p.id for p in self.public_collections))
+
+        # This is a very specific search so we really just return precisely
+        # that.
+        self.check_name_results(
+            {'q': 'seavan: a collection of cars at the beach'},
+            [c1.id])
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):
