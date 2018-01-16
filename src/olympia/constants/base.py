@@ -429,4 +429,4 @@ SYSTEM_ADDON_GUIDS = (
     u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org')
 
 TAAR_ALLOWED_PARAMETERS = (
-    'telemetry-client-id', 'lang', 'platform', 'branch', 'tree')
+    'telemetry-client-id', 'lang', 'platform', 'branch', 'study')

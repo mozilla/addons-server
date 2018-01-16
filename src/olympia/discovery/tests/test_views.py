@@ -191,11 +191,11 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         # send known taar parameters
         known_params = {
             'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT',
-            'branch': 'bob', 'tree': 'timmy'}
+            'branch': 'bob', 'study': 'sally'}
         response = self.client.get(self.url, known_params)
         self.get_recommendations.assert_called_with(
             '666', {'locale': 'en-US', 'platform': 'WINNT', 'branch': 'bob',
-                    'tree': 'timmy'})
+                    'study': 'sally'})
         assert response.data['results']
 
         # Sense check to make sure we're testing all known params in this test
