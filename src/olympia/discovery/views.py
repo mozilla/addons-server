@@ -3,6 +3,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.viewsets import GenericViewSet
 from waffle import switch_is_active
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items
 from olympia.discovery.serializers import DiscoverySerializer
@@ -16,6 +17,8 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     def get_params(self):
         params = dict(self.kwargs)
         params.update(self.request.GET.iteritems())
+        params = {param: value for (param, value) in params.iteritems()
+                  if param in amo.TAAR_ALLOWED_PARAMETERS}
         lang = params.pop('lang', None)
         if lang:
             # Need to change key to what taar expects
