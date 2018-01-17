@@ -38,18 +38,19 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
-    AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
-    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter)
+    AddonAppQueryParam, AddonCategoryQueryParam, AddonGuidQueryParam,
+    AddonTypeQueryParam, ReviewedContentFilter, SearchParameterFilter,
+    SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, FrozenAddon, Persona, ReplacementAddon
+from .models import (
+    Addon, CompatOverride, FrozenAddon, Persona, ReplacementAddon)
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData,
+    AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
@@ -822,3 +823,16 @@ class ReplacementAddonView(ListAPIView):
     authentication_classes = []
     queryset = ReplacementAddon.objects.all()
     serializer_class = ReplacementAddonSerializer
+
+
+class CompatOverrideView(ListAPIView):
+    queryset = CompatOverride.objects.all()
+    serializer_class = CompatOverrideSerializer
+
+    def filter_queryset(self, queryset):
+        # Use the same Filter we use for AddonSearchView for consistency.
+        guid_filter = AddonGuidQueryParam(self.request)
+        guids = guid_filter.get_value()
+        print guids
+        return queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer)

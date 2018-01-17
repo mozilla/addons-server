@@ -2083,6 +2083,11 @@ class CompatOverride(ModelBase):
     def compat_ranges(self):
         return list(self._compat_ranges.all())
 
+    @property
+    def version_ranges(self):
+        """Property primarily to make the serializer a little cleaner."""
+        return self.collapsed_ranges()
+
     def collapsed_ranges(self):
         """Collapse identical version ranges into one entity."""
         Range = collections.namedtuple('Range', 'type min max apps')

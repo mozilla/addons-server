@@ -7,8 +7,8 @@ from olympia.activity.views import VersionReviewNotesViewSet
 
 from .views import (
     AddonAutoCompleteSearchView, AddonFeaturedView, AddonSearchView,
-    AddonVersionViewSet, AddonViewSet, LanguageToolsView, ReplacementAddonView,
-    StaticCategoryView)
+    AddonVersionViewSet, AddonViewSet, CompatOverrideView, LanguageToolsView,
+    ReplacementAddonView, StaticCategoryView)
 
 
 addons = SimpleRouter()
@@ -34,4 +34,6 @@ urlpatterns = [
         name='addon-language-tools'),
     url(r'^replacement-addon/$', ReplacementAddonView.as_view(),
         name='addon-replacement-addon'),
+    url(r'^compat-override/$', CompatOverrideView.as_view(),
+        name='addon-compat-override'),
 ]
