@@ -13,10 +13,19 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
+from rest_framework import status
+from rest_framework.decorators import detail_route
+from rest_framework.exceptions import ParseError
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
+
+import olympia.core.logger
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
+from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona)
@@ -24,6 +33,7 @@ from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
+from olympia.api.permissions import AllowAnyKindOfReviewer, GroupPermission
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
@@ -772,7 +782,7 @@ def review(request, addon, channel=None):
         content_review_only=content_review_only)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
-    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_EDIT)
 
     approvals_info = None
     reports = None
@@ -806,22 +816,6 @@ def review(request, addon, channel=None):
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
-        if form.cleaned_data.get('notify'):
-            ReviewerSubscription.objects.get_or_create(user=request.user,
-                                                       addon=addon)
-        if is_admin:
-            flags_data = {}
-            if form.cleaned_data.get('clear_admin_code_review'):
-                flags_data['needs_admin_code_review'] = False
-            if form.cleaned_data.get('clear_admin_content_review'):
-                flags_data['needs_admin_content_review'] = False
-            if flags_data:
-                try:
-                    reviewerflags = addon.addonreviewerflags
-                    reviewerflags.update(**flags_data)
-                except AddonReviewerFlags.DoesNotExist:
-                    # If it does not exist, there is nothing to unflag.
-                    pass
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
@@ -927,10 +921,13 @@ def review(request, addon, channel=None):
         request, actions=actions, actions_comments=actions_comments,
         actions_info_request=actions_info_request,
         actions_minimal=actions_minimal, addon=addon,
+        api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         canned=canned, content_review_only=content_review_only, count=count,
         flags=flags, form=form, is_admin=is_admin, num_pages=num_pages,
         pager=pager, reports=reports, show_diff=show_diff,
+        subscribed=ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,
@@ -1108,3 +1105,68 @@ def whiteboard(request, addon, channel):
 def unlisted_list(request):
     return _queue(request, ViewUnlistedAllListTable, 'all',
                   unlisted=True, SearchForm=forms.AllAddonSearchForm)
+
+
+class AddonReviewerViewSet(GenericViewSet):
+    log = olympia.core.logger.getLogger('z.reviewers')
+
+    @detail_route(
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def subscribe(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.get_or_create(
+            user=request.user, addon=addon)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def unsubscribe(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon).delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+    def disable(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_DISABLED)
+        self.log.info('Addon "%s" status changed to: %s' %
+                      (addon.slug, amo.STATUS_DISABLED))
+        addon.update(status=amo.STATUS_DISABLED)
+        addon.update_version()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+    def enable(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
+        self.log.info('Addon "%s" status changed to: %s' %
+                      (addon.slug, amo.STATUS_PUBLIC))
+        addon.update(status=amo.STATUS_PUBLIC)
+        # Call update_status() to fix the status if the add-on is not actually
+        # in a state that allows it to be public.
+        addon.update_status()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+    def clear_admin_review_flag(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        flag_type = request.data.get('flag_type', None)
+        if flag_type not in ('code', 'content'):
+            raise ParseError('Invalid or missing flag_type parameter.')
+        flags_data = {
+            'needs_admin_%s_review' % flag_type: False
+        }
+        try:
+            reviewerflags = addon.addonreviewerflags
+            reviewerflags.update(**flags_data)
+        except AddonReviewerFlags.DoesNotExist:
+            # If it does not exist, there is nothing to unflag.
+            pass
+        return Response(status=status.HTTP_202_ACCEPTED)
