@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-17 09:06+0000\n"
+"PO-Revision-Date: 2018-01-17 11:30+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2225,7 +2225,7 @@ msgid "Sports"
 msgstr "ספורט"
 
 msgid "Abstract"
-msgstr ""
+msgstr "מופשט"
 
 msgid "Causes"
 msgstr ""
@@ -3876,7 +3876,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "נא לציין הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
 
 msgid "Read more about the source code review policy."
 msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
@@ -3955,7 +3955,7 @@ msgid "Review Add-ons"
 msgstr "סקירת תוספות"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "סוקרים בהתנדבות מסייעים לשמור על התוספות בטוחות ואמינות לשימוש. הם גם נהנים מכל מיני הטבות בהתאם!"
 
 msgid "Join us!"
 msgstr "הצטרפו אלינו!"
@@ -4771,7 +4771,7 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "קבלת גישה מוקדמת לתכונות ניסיוניות בדפדפן."
 
 msgid "Get Started"
 msgstr "תחילת עבודה"
