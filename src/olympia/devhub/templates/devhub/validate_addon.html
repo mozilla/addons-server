@@ -42,21 +42,12 @@
   <section id="upload-file" class="validate-addon">
     <div class="list-addon">
       <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
-      <div>
-        <label for="{{ new_addon_form.is_unlisted.auto_id }}">
-          {{ new_addon_form.is_unlisted }}
-          {{ new_addon_form.is_unlisted.label }}
-          <span class="tip tooltip"
-                title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
-        </label>
-      </div>
+      {{ new_addon_form.channel }}
     </div>
-
     <input type="file" id="upload-addon"
       data-upload-url="{{ url('devhub.standalone_upload') }}"
       data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
       data-upload-url-unlisted="{{ url('devhub.standalone_upload_unlisted') }}"">
-
   </section>
 </form>
 {% endblock content %}
