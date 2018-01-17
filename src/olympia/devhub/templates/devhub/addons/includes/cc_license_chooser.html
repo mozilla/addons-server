@@ -5,18 +5,12 @@
               <label>
                 <input type="radio" name="cc-attrib" value="0" data-cc="cc-attrib">
                 {{ _('Yes') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute, '
-                               'display, and perform the work, including for '
-                               'commercial purposes.')) }}
               </label>
             </li>
             <li>
               <label>
                 <input type="radio" name="cc-attrib" value="1" data-cc="copyr">
                 {{ _('No') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute, '
-                               'display, and perform the work for non-commercial '
-                               'purposes only.')) }}
               </label>
             </li>
           </ul>
@@ -26,18 +20,12 @@
               <label>
                 <input type="radio" name="cc-noncom" value="0">
                 {{ _('Yes') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute, '
-                               'display, and perform the work, including for '
-                               'commercial purposes.')) }}
               </label>
             </li>
             <li>
               <label>
                 <input type="radio" name="cc-noncom" value="1" data-cc="cc-noncom">
                 {{ _('No') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute, '
-                               'display, and perform the work for non-commercial '
-                               'purposes only.')) }}
               </label>
             </li>
           </ul>
@@ -47,9 +35,6 @@
               <label>
                 <input type="radio" name="cc-noderiv" value="0">
                 {{ _('Yes') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute, '
-                               'display and perform the work, as well as make '
-                               'derivative works based on it.')) }}
               </label>
             </li>
             <li>
@@ -65,9 +50,6 @@
               <label>
                 <input type="radio" name="cc-noderiv" value="2" data-cc="cc-noderiv">
                 {{ _('No') }}
-                {{ tip(None, _('The licensor permits others to copy, distribute and '
-                               'transmit only unaltered copies of the work — not '
-                               'derivative works based on it.')) }}
               </label>
             </li>
           </ul>
@@ -76,6 +58,10 @@
             <p id="cc-license" class="license icon"></p>
             <p class="select-license">
               <a href="#">{{ _('Select a different license.') }}</a>
+            </p>
+            <p>
+              <a href= https://creativecommons.org/licenses/ target="_blank" rel="noopener noreferrer"
+                >{{ _('More information on Creative Commons licenses') }}</a>
             </p>
           </div>
         </div>
