@@ -20,10 +20,14 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
+from olympia.landfill.user import generate_user
 from olympia.files.tests.test_helpers import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
+
+FIRST_COLLECTION_SLUG = 'be-more-productive'
+SECOND_COLLECTION_SLUG = 'privacy-matters'
 
 
 class GenerateAddonsSerializer(serializers.Serializer):
@@ -199,6 +203,33 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(status=STATUS_PUBLIC, type=ADDON_PERSONA)
             generate_collection(addon, app=FIREFOX)
 
+    def create_mozilla_addons_and_collections(self):
+        """Creates 2 collections for the account 'mozilla'."""
+
+        generate_user('mozilla@mozilla.com')
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            users=[UserProfile.objects.get(username='mozilla')],
+        )
+        addon.save()
+        generate_collection(
+            addon,
+            app=FIREFOX,
+            author=UserProfile.objects.get(username='mozilla'),
+            type=amo.COLLECTION_FEATURED,
+            name=FIRST_COLLECTION_SLUG)
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            users=[UserProfile.objects.get(username='mozilla')],
+        )
+        addon.save()
+        generate_collection(
+            addon,
+            app=FIREFOX,
+            author=UserProfile.objects.get(username='mozilla'),
+            type=amo.COLLECTION_FEATURED,
+            name=SECOND_COLLECTION_SLUG)
+
     def create_installable_addon(self):
         activate('en-US')
 
@@ -241,3 +272,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # And let's create a new version for that upload.
             create_version_for_upload(
                 upload.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+
+            # Change status to public
+            addon.update(status=amo.STATUS_PUBLIC)
