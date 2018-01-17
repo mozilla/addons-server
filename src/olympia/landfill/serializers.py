@@ -44,6 +44,17 @@ class GenerateAddonsSerializer(serializers.Serializer):
             AddonUser.objects.create(
                 user=user_factory(), addon=addon_factory())
 
+    def create_generic_mozilla_addon(self):
+        """Create a generic addon and a user 'mozilla'."""
+
+        generate_user('mozilla@mozilla.com')
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            users=[UserProfile.objects.get(username='mozilla')],
+        )
+        addon.save()
+        return addon
+
     def create_featured_addon_with_version(self):
         """Creates a custom addon named 'Ui-Addon'.
 
@@ -204,27 +215,16 @@ class GenerateAddonsSerializer(serializers.Serializer):
             generate_collection(addon, app=FIREFOX)
 
     def create_mozilla_addons_and_collections(self):
-        """Creates 2 collections for the account 'mozilla'."""
+        """Create 2 collections for the account 'mozilla'."""
 
-        generate_user('mozilla@mozilla.com')
-        addon = addon_factory(
-            status=STATUS_PUBLIC,
-            users=[UserProfile.objects.get(username='mozilla')],
-        )
-        addon.save()
         generate_collection(
-            addon,
+            self.create_generic_mozilla_addon(),
             app=FIREFOX,
             author=UserProfile.objects.get(username='mozilla'),
             type=amo.COLLECTION_FEATURED,
             name=FIRST_COLLECTION_SLUG)
-        addon = addon_factory(
-            status=STATUS_PUBLIC,
-            users=[UserProfile.objects.get(username='mozilla')],
-        )
-        addon.save()
         generate_collection(
-            addon,
+            self.create_generic_mozilla_addon(),
             app=FIREFOX,
             author=UserProfile.objects.get(username='mozilla'),
             type=amo.COLLECTION_FEATURED,
