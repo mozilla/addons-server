@@ -88,9 +88,9 @@ celery==4.1.0 \
 boto3==1.5.16 \
     --hash=sha256:941641b6b2fc10c5f9e8c2cbb14eca2620e2d7f605d38d763e03674a1879dc55 \
     --hash=sha256:895b5899bb81daf0190b4484f5595e88d01545875dc2a7bf36852cd0b9df045b
-botocore==1.8.29 \
-    --hash=sha256:bd52dff2cdc952347d289d15743c71c0958419526f741d348be576ad24a813b1 \
-    --hash=sha256:a631a36f75301c479f8edf134c06fba53b5695d6333086081576fff5f30613b3
+botocore==1.8.30 \
+    --hash=sha256:52f60526afc6e7bad415a9c7f5176af71f0b11e521c0985256a9c8106a6c9096 \
+    --hash=sha256:081326d5c931954b4000b37fdbd69cc53080dfc92ba237399820a586a104fd66
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -173,9 +173,9 @@ drf-nested-routers==0.90.0 \
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==5.5.1 \
-    --hash=sha256:d9dac18462375e06a5425730d8aaccb874cc748658b060c0536afb4e296ba9fe \
-    --hash=sha256:c4f1abf19e2e79ebc526e6f65838909123da07c2775e2c0660c69b01ebb2001a # pyup: <6
+elasticsearch==5.5.2 \
+    --hash=sha256:2e6dcdf9cb62377e0d6b82d2931ebc67b5a549081bbb531aa3be60ece33257b2 \
+    --hash=sha256:8539e30c33fa0ad09617893a458056a35a654c92226390c30a07a3776bb8a94f # pyup: <6
 elasticsearch-dsl==5.4.0 \
     --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
