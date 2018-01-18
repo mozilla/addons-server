@@ -833,6 +833,8 @@ class CompatOverrideView(ListAPIView):
         # Use the same Filter we use for AddonSearchView for consistency.
         guid_filter = AddonGuidQueryParam(self.request)
         guids = guid_filter.get_value()
-        print guids
+        if not guids:
+            raise exceptions.ParseError(
+                'Empty, or no, guid parameter provided.')
         return queryset.filter(guid__in=guids).transform(
             CompatOverride.transformer)

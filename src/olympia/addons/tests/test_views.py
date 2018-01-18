@@ -3346,3 +3346,22 @@ class TestCompatOverrideView(TestCase):
         assert len(results) == 2
         assert results[0]['addon_guid'] == 'bad@thing'
         assert results[1]['addon_guid'] == 'extrabad@thing'
+
+    def test_no_guid_param(self):
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': u'invalid@thing'})
+        # Searching for non-matching guids, it should be an empty 200 response.
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 0
+
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': ''})
+        # Empty query is a 400 because a guid is required for overrides.
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content
+
+        response = self.client.get(
+            reverse('addon-compat-override'))
+        # And no guid param should be a 400 too
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content
