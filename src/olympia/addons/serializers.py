@@ -687,7 +687,8 @@ class CompatOverrideSerializer(serializers.ModelSerializer):
 
     addon_id = serializers.IntegerField()
     addon_guid = serializers.CharField(source='guid')
-    version_ranges = VersionRangeSerializer(many=True)
+    version_ranges = VersionRangeSerializer(
+        source='collapsed_ranges', many=True)
 
     class Meta:
         model = CompatOverride

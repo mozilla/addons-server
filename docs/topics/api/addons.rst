@@ -492,14 +492,14 @@ This endpoint returns a list of suggested replacements for legacy add-ons that a
     :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.
 
 
-----------------
-Compat Overrides
-----------------
+---------------
+Compat Override
+---------------
 
-.. _addon-compat-overrides:
+.. _addon-compat-override:
 
-This endpoint allows compatability overrides specified by AMO admins to be searched.
-Compatabilty overrides are used within Firefox (and other toolkit applications e.g. Thunderbird) to change compatability of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
+This endpoint allows compatibility overrides specified by AMO admins to be searched.
+Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
 
 .. http:get:: /api/v3/addons/compat-override/
 
