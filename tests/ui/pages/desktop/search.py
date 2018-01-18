@@ -1,4 +1,5 @@
 from pypom import Region
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 from base import Base
@@ -46,5 +47,8 @@ class SearchResultList(Base):
         @property
         def rating(self):
             """Returns the rating"""
-            rating = self.find_element(*self._rating_locator).text
-            return int(rating.split()[1])
+            try:
+                rating = self.find_element(*self._rating_locator).text
+                return int(rating.split()[1])
+            except NoSuchElementException:
+                return 0
