@@ -1,6 +1,6 @@
-Babel==2.5.2 \
-    --hash=sha256:3dc5399f1d0672c200e69759612ed751cb9edc46fc2df1c5faf42a88f54b18cb \
-    --hash=sha256:f9ecc03310233ffa9f2575bda3ebccf9ee3ece18ace7239aa83ca56a368844f9
+Babel==2.5.3 \
+    --hash=sha256:ad209a68d7162c4cff4b29cdebe3dec4cef75492df501b0049a9433c96ce6f80 \
+    --hash=sha256:8ce4cb6fdd4393edd323227cba3a077bceb2a6ce5201c902c65e730046f41f14
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
 Django==1.8.18 \
     --hash=sha256:d8e2fd119756ab10b43a31052c3c8efbc262064b81eecb7871372de4d37b1a94 \
@@ -85,12 +85,12 @@ bleach==1.5.0 \
 celery==4.1.0 \
     --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
     --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
-boto3==1.5.14 \
-    --hash=sha256:6ec3bc48ce7164cdeccf9325252f09ec73a64dc317cc8b0f51a97cbf61d03ce0 \
-    --hash=sha256:f1d5870a0ca4bcacaea02ca338e7761777340a56b09d2fe3c03194b84ce0cb57
-botocore==1.8.28 \
-    --hash=sha256:adf58e6824c433b9a46aad9409f22a18a19c74f7f10ccdfff104bc201359e638 \
-    --hash=sha256:02d360797944f091fb5341a2a51810aa6f44f8b40ac66951c876555e410e5f06
+botocore==1.8.32 \
+    --hash=sha256:213b3b8157bfd056d230fd418e739da330e102a26def193f0f5efab5a8796ea7 \
+    --hash=sha256:3573298ddc68c711a827085ff26631a3e568531ea5441ac44230241b5a5a1c2f
+boto3==1.5.18 \
+    --hash=sha256:744b5080ea8cefb9d831e21e959ab1bd46a5c0918fdd806534090546137a355a \
+    --hash=sha256:8178acd18c8bc92e35eaf6dd4e9900ccc2ccc927b5d64d42f87816118de67646
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -173,9 +173,9 @@ drf-nested-routers==0.90.0 \
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==5.5.1 \
-    --hash=sha256:d9dac18462375e06a5425730d8aaccb874cc748658b060c0536afb4e296ba9fe \
-    --hash=sha256:c4f1abf19e2e79ebc526e6f65838909123da07c2775e2c0660c69b01ebb2001a # pyup: <6
+elasticsearch==5.5.2 \
+    --hash=sha256:2e6dcdf9cb62377e0d6b82d2931ebc67b5a549081bbb531aa3be60ece33257b2 \
+    --hash=sha256:8539e30c33fa0ad09617893a458056a35a654c92226390c30a07a3776bb8a94f # pyup: <6
 elasticsearch-dsl==5.4.0 \
     --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6

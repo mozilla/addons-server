@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-14 14:51+0000\n"
+"PO-Revision-Date: 2018-01-17 14:53+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2225,7 +2225,7 @@ msgid "Sports"
 msgstr "ספורט"
 
 msgid "Abstract"
-msgstr ""
+msgstr "מופשט"
 
 msgid "Causes"
 msgstr ""
@@ -3433,7 +3433,7 @@ msgid "This add-on doesn't have any versions."
 msgstr "לתוספת זו אין שום גרסאות."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "לתוספת זו אין גרסאות שאושרו, לכן העמודים הציבוריים שלה (לרבות גרסאות הבטא) מוסתרים."
 
 msgid "Status:"
 msgstr "מצב:"
@@ -3493,7 +3493,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם."
 
 msgid "Notes to Reviewer:"
 msgstr "הערות לסוקר:"
@@ -3550,7 +3550,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "סיימת! גרסה זו תהיה זמינה באתר שלנו בעוד זמן קצר."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "סיימת! גרסה זו נשלחה לסקירה. תישלח אליך הודעה ברגע שהסקירה תסתיים, או אם לסוקרים שלנו יש שאלות בנוגע להגשה שלך."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -3583,7 +3583,7 @@ msgid "Download {0}"
 msgstr "הורדת {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "בחרת רק חלק מהפלטפורמות הזמינות להגשה זו. ניתן להעלות קבצים נוספים שמיועדים לפלטפורמות אחרות:"
 
 msgid "Upload File"
 msgstr "העלאת קובץ"
@@ -3755,13 +3755,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "נא להשלים את התוספת שלך על ידי הוספת גרסה או פרטי על חסרים."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "תישלח אליך הודעה בדוא״ל עם השלמת הסקירה. עד אז, התוספת שלך לא תופיע בגלריה שלנו אך ניתן לגשת אליה ישירות מעמוד הפירוט שלה. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "התוספת שלך מוצגת בגלריה שלנו והמשתמשים מקבלים עדכונים אוטומטיים."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "התוספת שלך הושבתה על ידי מנהל האתר ואינה מופיעה עוד בגלריה שלנו. אם יש לך שאלות, נא לשלוח דוא״ל אל amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3811,7 +3811,7 @@ msgid "Latest Version:"
 msgstr "גרסה עדכנית:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "זו הגרסה העדכנית ביותר שהועלתה ואינה מוצגת."
 
 msgid "Upload New Version"
 msgstr "העלאת גרסה חדשה"
@@ -3870,13 +3870,13 @@ msgid ""
 msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם. אילוץ זה תקף על תוספות שמוצגות בלבד."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "נא לציין הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
 
 msgid "Read more about the source code review policy."
 msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
@@ -3955,7 +3955,7 @@ msgid "Review Add-ons"
 msgstr "סקירת תוספות"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "סוקרים בהתנדבות מסייעים לשמור על התוספות בטוחות ואמינות לשימוש. הם גם נהנים מכל מיני הטבות בהתאם!"
 
 msgid "Join us!"
 msgstr "הצטרפו אלינו!"
@@ -4771,7 +4771,7 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "קבלת גישה מוקדמת לתכונות ניסיוניות בדפדפן."
 
 msgid "Get Started"
 msgstr "תחילת עבודה"
@@ -5047,6 +5047,8 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"כן. ניתן למצוא מפתחי צד־שלישי דרך <a href=\"%(forum_url)s\">פורום התוספות</a>, <a href=\"%(list_url)s\">רשימת mozilla.jobs</a>, <a href=\"%(mz_url)s\">הפורומים של mozillaZine</a> או ב<a "
+"href=\"%(wiki_url)s\">וויקי של Mozilla</a>. לתשומת לבך: Mozilla אינה מציעה המלצות על מפתחים."
 
 msgid "Can I host my own add-on?"
 msgstr "אוכל לארח את התוספת שלי?"
@@ -5755,10 +5757,10 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "גרסה זו של התוספת אינה קיימת או שאינה ציבורית."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "אין לך אפשרות לכתוב סקירה על התוספת של עצמך."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
@@ -6447,7 +6449,7 @@ msgid "Not Auto Approved Because"
 msgstr "לא אושר אוטומטית עקב"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "תסריט לאישור אוטומטי עוד לא הופעל על גרסה זו."
 
 msgid "This version has not been reviewed."
 msgstr "גרסה זו לא עברה סקירה."
@@ -6462,7 +6464,7 @@ msgid "Insert canned response..."
 msgstr ""
 
 msgid "Tested on:"
-msgstr ""
+msgstr "נבדק על גבי:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>אזהרה!</strong> משתמש אחר צפה בעמוד הזה לפניך."
@@ -6822,7 +6824,7 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "חלק מהתכונות מושבתות באופן זמני בעת ביצוע פעולות תחזוקה באתר. נשוב לפעילות מלאה בקרוב."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "לא ניתן למצוא תוספת עם המזהה ״{}״."

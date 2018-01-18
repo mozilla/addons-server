@@ -10,7 +10,7 @@
     "potools": "potools"
   },
   "dependencies": {
-    "addons-linter": "0.32.0",
+    "addons-linter": "0.33.0",
     "clean-css": "4.1.9",
     "clean-css-cli": "4.1.10",
     "jqmodal": "1.4.2",
@@ -24,12 +24,12 @@
     "less": "2.7.2",
     "source-map": "0.6.1",
     "stylus": "0.54.5",
-    "raven-js": "3.22.0",
+    "raven-js": "3.22.1",
     "timeago": "1.6.1",
     "uglify-js": "3.3.6",
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "potools": "0.1.0"
+    "potools": "0.2.0"
   }
 }
