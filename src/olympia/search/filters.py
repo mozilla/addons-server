@@ -123,7 +123,8 @@ class AddonGuidQueryParam(AddonQueryParam):
     es_field = 'guid'
 
     def get_value(self):
-        return self.request.GET.get(self.query_param, '').split(',')
+        value = self.request.GET.get(self.query_param)
+        return value.split(',') if value else []
 
 
 class AddonPlatformQueryParam(AddonQueryParam):

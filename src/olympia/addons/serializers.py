@@ -20,8 +20,8 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 from .models import (
-    Addon, AddonFeatureCompatibility, Persona, Preview, ReplacementAddon,
-    attach_tags)
+    Addon, AddonFeatureCompatibility, CompatOverride, Persona, Preview,
+    ReplacementAddon, attach_tags)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -669,3 +669,30 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             return self._get_collection_guids(
                 coll_match.group('user_id'), coll_match.group('coll_slug'))
         return []
+
+
+class CompatOverrideSerializer(serializers.ModelSerializer):
+
+    class VersionRangeSerializer(serializers.Serializer):
+        class ApplicationSerializer(serializers.Serializer):
+            name = serializers.CharField(source='app.pretty')
+            id = serializers.IntegerField(source='app.id')
+            min_version = serializers.CharField(source='min')
+            max_version = serializers.CharField(source='max')
+            guid = serializers.CharField(source='app.guid')
+
+        addon_min_version = serializers.CharField(source='min')
+        addon_max_version = serializers.CharField(source='max')
+        applications = ApplicationSerializer(source='apps', many=True)
+
+    addon_id = serializers.IntegerField()
+    addon_guid = serializers.CharField(source='guid')
+    version_ranges = VersionRangeSerializer(
+        source='collapsed_ranges', many=True)
+
+    class Meta:
+        model = CompatOverride
+        fields = ('addon_id', 'addon_guid', 'name', 'version_ranges')
+
+    def get_addon_id(self, obj):
+        return obj.addon_id

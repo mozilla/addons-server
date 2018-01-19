@@ -19,7 +19,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Persona, ReplacementAddon)
+    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -3292,3 +3292,76 @@ class TestReplacementAddonView(TestCase):
                  'replacement': [rep_addon2.guid, rep_addon3.guid]} in results)
         assert ({'guid': 'notgonnawork@moz',
                  'replacement': []} in results)
+
+
+class TestCompatOverrideView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(guid='extrabad@thing')
+        self.override_addon = CompatOverride.objects.create(
+            name='override with addon', guid=self.addon.guid, addon=self.addon)
+        CompatOverrideRange.objects.create(
+            compat=self.override_addon, app=amo.FIREFOX.id)
+        self.override_without = CompatOverride.objects.create(
+            name='override no addon', guid='bad@thing')
+        CompatOverrideRange.objects.create(
+            compat=self.override_without, app=amo.FIREFOX.id)
+
+    def test_single_guid(self):
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': u'extrabad@thing'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 1
+        result = data['results'][0]
+        assert result['addon_guid'] == 'extrabad@thing'
+        assert result['addon_id'] == self.addon.id
+        assert result['name'] == 'override with addon'
+
+    def test_multiple_guid(self):
+        response = self.client.get(
+            reverse('addon-compat-override'),
+            data={'guid': u'extrabad@thing,bad@thing'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 2
+
+        assert results[0]['addon_guid'] == 'bad@thing'
+        assert results[0]['addon_id'] is None
+        assert results[0]['name'] == 'override no addon'
+        assert results[1]['addon_guid'] == 'extrabad@thing'
+        assert results[1]['addon_id'] == self.addon.id
+        assert results[1]['name'] == 'override with addon'
+
+        # Throw in some random invalid guids too that will be ignored.
+        response = self.client.get(
+            reverse('addon-compat-override'),
+            data={'guid': (
+                u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 2
+        assert results[0]['addon_guid'] == 'bad@thing'
+        assert results[1]['addon_guid'] == 'extrabad@thing'
+
+    def test_no_guid_param(self):
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': u'invalid@thing'})
+        # Searching for non-matching guids, it should be an empty 200 response.
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 0
+
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': ''})
+        # Empty query is a 400 because a guid is required for overrides.
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content
+
+        response = self.client.get(
+            reverse('addon-compat-override'))
+        # And no guid param should be a 400 too
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content
