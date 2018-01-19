@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-17 14:53+0000\n"
+"PO-Revision-Date: 2018-01-19 13:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1487,7 +1487,7 @@ msgid "Weekly Downloads"
 msgstr "הורדות בשבוע"
 
 msgid "Up & Coming"
-msgstr "בקרוב"
+msgstr ""
 
 msgid "Recently Added"
 msgstr "נוספו לאחרונה"
@@ -2801,7 +2801,7 @@ msgstr "הגרסה %s נמחקה."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr "הגרסה %s הופעלה מחדש."
+msgstr "הגרסה %s אופשרה מחדש."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -3078,7 +3078,7 @@ msgid "Categories cannot be changed while your add-on is featured. Please email 
 msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "תגים מסייעים למשתמשים למצוא את התוספת שלך ואמורים להיות תיאורים קצרים כגון: tabs‏, toolbar או twitter. מותר להשתמש ב־{0} תגים לכל היותר."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -6423,7 +6423,7 @@ msgstr "היסטוריית התוספת"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "גרסה %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr ""
