@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-19 13:10+0000\n"
+"PO-Revision-Date: 2018-01-19 13:24+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -48,7 +48,7 @@ msgid "You are already logged in."
 msgstr "כבר נכנסת."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "לא ניתן לפענח את נסיון הכניסה שלך. נא לנסות שוב."
+msgstr "לא ניתן לפענח את נסיון ההתחברות שלך. נא לנסות שוב."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
@@ -2462,13 +2462,13 @@ msgid "Updated Search Provider Review"
 msgstr "סקירת ספק חיפוש מעודכנת"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה חדשה"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה ראשונית"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה מעודכנת"
 
 msgid "Moderated Add-on Review"
 msgstr ""
@@ -5316,7 +5316,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">ערכות נושא שלמות</a></strong> משנות את כל התצוגה של %(app_name)s, בדרך כלל לרבות סמלים, צבעים, תיבות דו־שיח וסגנונות חזותיים אחרים."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -7475,7 +7475,7 @@ msgid "all"
 msgstr "הכל"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "‏Mozilla Add-ons עבר ל־Firefox Accounts לצורך התחברות. יש להמשיך כדי להשלים את תהליך ההתחברות."
 
 msgid "User Login"
 msgstr "כניסת משתמש"
