@@ -22,7 +22,7 @@
     "jquery-ui": "1.12.1",
     "jszip": "3.1.4",
     "less": "2.7.2",
-    "source-map": "0.6.1",
+    "source-map": "0.7.0",
     "stylus": "0.54.5",
     "raven-js": "3.22.1",
     "timeago": "1.6.1",
