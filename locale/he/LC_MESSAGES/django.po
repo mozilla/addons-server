@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-19 13:46+0000\n"
+"PO-Revision-Date: 2018-01-19 13:50+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1394,7 +1394,7 @@ msgid "Create a Collection"
 msgstr "יצירת אוסף"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "אוספים מקלים על מעקב אחר תוספות מועדפות, ומאפשרים לשתף את הדפדפן המותאם אישית שלך עם אחרים."
 
 msgid "Collection Icon"
 msgstr "צלמית אוסף"
@@ -7220,7 +7220,7 @@ msgstr "ניתן לבחור מבין אלפי תכונות וסגנונות נו
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "הוספת תכונות וסגנונות נוספים כדי להתאים את %(app)s לטעמך."
 
 msgid "On the go?"
 msgstr "בדרכים?"
