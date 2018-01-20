@@ -2658,9 +2658,9 @@ msgstr "检查附加组件兼容性"
 msgid "You cannot submit this type of add-on"
 msgstr "您不能提交此类型的附加组件"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "您提交的附加组件不能以“@mozilla.org”作为 GUID 结尾"
+msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
