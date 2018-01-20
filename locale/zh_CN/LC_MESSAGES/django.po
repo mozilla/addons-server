@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-18 12:04+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2018-01-20 18:15+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2660,7 +2660,7 @@ msgstr "您不能提交此类型的附加组件"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
@@ -3420,9 +3420,8 @@ msgstr "完成了！"
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "完工！此版本将在我们的网站上发布。"
+msgstr "完成！此版本在审核通过后就会在网站上出现。您将在审核完成后收到我们的通知。"
 
 msgid "Version Submitted"
 msgstr "版本已提交"
@@ -3433,9 +3432,8 @@ msgstr "完工！此版本将在我们的网站上发布。"
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "大功告成！此版本已提交审核。您将在审核完成时收到通知，如果审核发现任何问题也会给您通知。"
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "添加详细的描述和截图，您的上架将更加成功。准备要公布的内容吧："
+msgstr "添加更详细的描述可以使您上架的项目更加成功。请准备您要公布的内容："
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "添加详细的描述和截图，您的上架将更加成功。准备要公布的内容吧："
@@ -5832,9 +5830,8 @@ msgstr "其他人正在审核这个主题。"
 msgid "theme, reviewer, or comment"
 msgstr "主题、审核员或评论"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "白板"
+msgstr "私人白板"
 
 msgid "Keep review; remove flags"
 msgstr "保留评价、移除标记"
@@ -5929,7 +5926,6 @@ msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给
 msgid "Confirm Approval"
 msgstr "确认批准"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "此附加组件的最新公开版本已自动批准。这将记录您对此批准的确认（不会通知开发人员）。"
 
@@ -5957,9 +5953,8 @@ msgstr "对此版本进行注释。其开发者不会看到这些。"
 msgid "Approve Content"
 msgstr "核准内容"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "这将记录您接受此版本的内容，不会通知开发者。"
+msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
 msgid "Legacy Add-ons"
 msgstr "旧式附加组件"
