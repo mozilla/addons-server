@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-21 01:47+0000\n"
+"PO-Revision-Date: 2018-01-21 02:03+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6191,9 +6191,8 @@ msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentá�
 msgid "Confirm Approval"
 msgstr "Potvrdit schválení"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
+msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Tímto označíte verzi jako vámi schválenou bez toho, aby byl vývojář upozorněn."
 
 msgid "Reject Multiple Versions"
 msgstr "Odmítnout více verzí"
@@ -6219,9 +6218,8 @@ msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
 msgid "Approve Content"
 msgstr "Schválit obsah"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
+msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
 msgid "Legacy Add-ons"
 msgstr "Zastaralé doplňky"
@@ -6272,19 +6270,19 @@ msgid "Deleted Themes Log"
 msgstr "Záznam smazaných motivů"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderování uživatelských hodnocení"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Hodnocení, které je třeba moderovat ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Seznam moderovaných recenzí"
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "Příručka moderátora"
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Neveřejné doplňky"
 
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
@@ -6351,7 +6349,7 @@ msgid "Abuse Reports ({num})"
 msgstr "Nahlášená zneužití ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Špatná uživatelská hodnocení ({num})"
 
 msgid "More about this add-on"
 msgstr "Více o doplňku"
@@ -6363,7 +6361,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Zpět na nástěnku s nástroji redaktora"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6567,10 +6565,10 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Poznámka pro redaktora je místo, kde si mohou vývojář a redaktor vyměňovat informace relevantní pro doplněk (bez ohledu na verzi). Poznámka je viditelná a upravitelná oběma."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Soukromé poznámky lze použít k výměně informací, které nejsou závislé na verzi, mezi jednotlivými kontrolory. Buďte prosím objektivní. Viditelné pouze ostatním kontrolorům."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Aktualizovat poznámky"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6942,7 +6940,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Je-li identifikátor GUID doplňku delší než 64 znaků, specifikujte jej prosím v manifestu."
 
 msgid "Invalid GUID in URL"
 msgstr "Neplatný identifikátor GUID v adrese URL"
