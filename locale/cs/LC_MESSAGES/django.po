@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2017-11-29 07:47+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2018-01-21 01:31+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1034,7 +1034,7 @@ msgid "This slug cannot be used."
 msgstr "Tuto URL nelze použít."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Tento doplněk už ve sbírce je"
 
 msgid "Name"
 msgstr "Jméno"
@@ -1861,7 +1861,7 @@ msgid "{addon} removed from {collection}."
 msgstr "Doplněk {addon} byl odebrán ze sbírky {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "K doplňku {addon} bylo přidáno hodnocení {rating}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1895,16 +1895,16 @@ msgid "{addon} icon changed."
 msgstr "Ikonka doplňku {addon} byla změněna."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "Hodnocení {rating} pro doplněk {addon} bylo schváleno."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "Uživatel {user} schválil hodnocení {rating} pro doplněk {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Hodnocení {rating} bylo pro {addon} smazáno."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "Uživatel {user} smazal hodnocení {rating} pro doplněk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Maximální verze aplikace byla pro verzi {version} aktualizována."
@@ -1949,7 +1949,7 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrátor {0} si zobrazil log aktivity u uživatele {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "Hodnocení {rating} pro doplněk {addon} bylo aktualizováno."
 
 msgid "{addon} reviewed."
 msgstr "Doplněk {addon} byl zkontrolován."
@@ -2753,7 +2753,7 @@ msgstr "Přidávání tohoto typu doplňku není povoleno"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
@@ -3010,6 +3010,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
 "make any changes</li> </ul>"
 msgstr ""
+"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> "
+"<li><b>Vývojář:</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání ostatních autorů</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, "
+"ale nemůže dělat žádné změny</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Základní informace"
@@ -3544,7 +3547,7 @@ msgid "Version Submitted for Review"
 msgstr "Verze odeslaná ke kontrole"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Hotovo! Tato verze bude k dispozici po její kontrole. O jejím dokončení vás budeme informovat."
 
 msgid "Version Submitted"
 msgstr "Verze odeslána"
@@ -3556,7 +3559,7 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "A je to! Tato verze byla odeslána ke kontrole. Jakmile bude kontrola dokončena, nebo v případě otázek našich redaktorů, obdržíte e-mail."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný popis. Připravte svůj záznam k publikaci:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný popis a snímky obrazovky. Připravte svůj záznam k publikaci:"
@@ -3622,10 +3625,10 @@ msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
 msgid "Create a Theme Version"
-msgstr ""
+msgstr "Vytvořit verzi motivu"
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Vytvořit nový motiv"
 
 msgid "Submit File"
 msgstr "Odeslat soubor"
@@ -3634,10 +3637,10 @@ msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Vygenerovat motiv"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "Generátor motivů"
 
 msgid "Select a header image for your Theme."
 msgstr "Zvolte obrázek hlavičky pro váš motiv."
@@ -3646,10 +3649,10 @@ msgid "required"
 msgstr "vyžadováno"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Výška obrázku by měla být 200 pixelů"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG nebo GIF (neanimovaný)"
 
 msgid "Aligned to top-right"
 msgstr "Zarovnána doprava nahoru"
@@ -3661,7 +3664,7 @@ msgid "Select colors for your Theme."
 msgstr "Zvolte barvy pro váš motiv."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Pozadí hlavičky (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 msgstr ""
