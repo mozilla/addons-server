@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-21 01:31+0000\n"
+"PO-Revision-Date: 2018-01-21 01:47+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3667,52 +3667,52 @@ msgid "Header area background (accentcolor)"
 msgstr "Pozadí hlavičky (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "Barva pozadí v oblasti hlavičky, která se zobrazí v částech hlavičky, které nejsou překryty obrázkem v záhlaví."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Text v oblasti hlavičky (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "Barva textu zobrazeného v oblasti hlavičky."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Pozadí nástrojových lišt (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "Barva pozadí listy záložek, navigační lišty a vybraného panelu."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Text v nástrojových lištách (toolbar_text)."
 
 msgid "The color of toolbar text."
-msgstr ""
+msgstr "Barva textu v nástrojových lištách."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Pozadí polí v nástrojových lištách (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Barva pozadí polí v nástrojových lištách. Určuje například barvu pozadí adresního řádku."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Text v polích adresního řádku (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Barva textu v polích na nástrojových lištách. Určuje například barvu textu v adresním řádku."
 
 msgid "optional"
-msgstr ""
+msgstr "volitelné"
 
 msgid "Browser Preview"
-msgstr ""
+msgstr "Náhled v prohlížeči"
 
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Nahrávání motivu"
 
 msgid "Upload Theme"
-msgstr ""
+msgstr "Nahrát motiv"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -4423,10 +4423,10 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Rychlý a efektivní blokovač reklam. uBlock Origin upravuje stránku pomocí tisíců filtrů bez toho, aby plýtval vaší pamětí."
 
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Spravujte hesla {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Zjednodušte si přihlašování k různým webovým stránkám. Jedno heslo vládne všem, jedno jim všem káže."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -6037,7 +6037,7 @@ msgid "Search by add-on name / author email"
 msgstr "Hledat dle jména doplňku / e-mailu autora"
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "Čeká na kontrolu kódu administrátorem"
 
 msgid "yes"
 msgstr "ano"
@@ -6067,10 +6067,10 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr "Upozornit mě příště, když je doplněk aktualizován. (Následné aktualizace nebudou generovat e-mail)"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Vymazat příznak kontroly kódu administrátorem"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Vymazat příznak kontroly obsahu recenze administrátorem"
 
 msgid "Is more info requested?"
 msgstr "Vyžadováno více informací?"
@@ -6090,7 +6090,7 @@ msgid "theme, reviewer, or comment"
 msgstr "aplikace, recenze nebo komentář"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Soukromé poznámky"
 
 msgid "Keep review; remove flags"
 msgstr "Ponechat recenzi; odstranit nahlášení"
@@ -6099,7 +6099,7 @@ msgid "Skip for now"
 msgstr "Nyní neřešit"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Čeká na kontrolu obsahu administrátorem"
 
 msgid "Jetpack Add-on"
 msgstr "Doplněk postavený na Jetpacku"
@@ -6224,13 +6224,13 @@ msgid "This records your approbation of the content of the latest public version
 msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
 
 msgid "Legacy Add-ons"
-msgstr ""
+msgstr "Zastaralé doplňky"
 
 msgid "New Add-ons ({0})"
-msgstr ""
+msgstr "Nové doplňky ({0})"
 
 msgid "Add-on Updates ({0})"
-msgstr ""
+msgstr "Aktualizace doplňků ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Seznam kontrol doplňků"
@@ -6238,16 +6238,14 @@ msgstr "Seznam kontrol doplňků"
 msgid "Signed Beta Files Log"
 msgstr "Žurnál podepsaných beta souborů"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "Příručka recenzenta"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Automaticky schválené doplňky ({0})"
 
 msgid "Content Review"
 msgstr "Kontrola obsahu"
@@ -6259,19 +6257,19 @@ msgstr[1] "{0} kontroly obsahu"
 msgstr[2] "{0} kontrol obsahu"
 
 msgid "New Themes ({0})"
-msgstr ""
+msgstr "Nové motivy vzhledu ({0})"
 
 msgid "Themes Updates ({0})"
-msgstr ""
+msgstr "Aktualizace motivů vzhledu ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr ""
+msgstr "Označené motivy vzhledu ({0})"
 
 msgid "Themes Review Log"
-msgstr ""
+msgstr "Záznam kontroly motivů vzhledu"
 
 msgid "Deleted Themes Log"
-msgstr ""
+msgstr "Záznam smazaných motivů"
 
 msgid "User Ratings Moderation"
 msgstr ""
