@@ -99,13 +99,9 @@ $(document).ready(function() {
             var $this = $(this),
                 $svg_element = $('.' + $this[0].id);
             if (!$this.val()) {
-                $svg_element.attr(
-                    {'fill': $svg_element.data('fill'),
-                     'fill-opacity': $svg_element.data('fill-opacity')});
+                $svg_element.attr('fill', $svg_element.data('fill'));
             } else {
-                $svg_element.attr(
-                    {'fill': $this.val(),
-                     'fill-opacity': "1"});
+                $svg_element.attr('fill', $this.val());
             }
 
             updateManifest();
@@ -113,6 +109,8 @@ $(document).ready(function() {
 
         $color.minicolors({
             dataUris: true,
+            opacity: true,
+            format: 'rgb',
             change: function() {
                 $color.trigger('change');
                 updateManifest();
