@@ -1,7 +1,7 @@
 FROM centos:centos7
 
 # Allow scripts to detect we're running in our own container
-RUN touch /addons-server-centos7-container
+RUN touch /addons-server-docker-container
 
 ADD docker/mysql-community.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
