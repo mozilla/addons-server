@@ -782,7 +782,7 @@ def review(request, addon, channel=None):
         content_review_only=content_review_only)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_EDIT)
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
     reports = None
@@ -1128,7 +1128,7 @@ class AddonReviewerViewSet(GenericViewSet):
 
     @detail_route(
         methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def disable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_DISABLED)
@@ -1140,7 +1140,7 @@ class AddonReviewerViewSet(GenericViewSet):
 
     @detail_route(
         methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def enable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
@@ -1154,7 +1154,7 @@ class AddonReviewerViewSet(GenericViewSet):
 
     @detail_route(
         methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_EDIT)])
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def clear_admin_review_flag(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         flag_type = request.data.get('flag_type', None)

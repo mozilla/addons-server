@@ -4161,7 +4161,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_enable_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.enable_url = reverse(
             'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
@@ -4169,7 +4169,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 404
 
     def test_enable(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.post(self.enable_url)
@@ -4182,7 +4182,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_already_public(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         response = self.client.post(self.enable_url)
         assert response.status_code == 202
@@ -4194,7 +4194,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_no_public_versions_should_fall_back_to_incomplete(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.addon.update(status=amo.STATUS_DISABLED)
         self.addon.versions.all().delete()
@@ -4204,7 +4204,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_NULL
 
     def test_enable_version_is_awaiting_review_fall_back_to_nominated(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.addon.current_version.files.all().update(
             status=amo.STATUS_AWAITING_REVIEW)
@@ -4229,7 +4229,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_disable_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.disable_url = reverse(
             'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
@@ -4237,7 +4237,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 404
 
     def test_disable(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.addon.versions.all().delete()
         response = self.client.post(self.disable_url)
@@ -4267,7 +4267,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_clear_admin_review_flag_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.clear_admin_review_flag_url = reverse(
             'reviewers-addon-clear-admin-review-flag',
@@ -4277,7 +4277,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 404
 
     def test_clear_admin_review_flag_wrong_flag_type(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         response = self.client.post(
             self.clear_admin_review_flag_url, {'flag_type': 'lol'})
@@ -4286,7 +4286,7 @@ class TestAddonReviewerViewSet(TestCase):
             'detail': 'Invalid or missing flag_type parameter.'}
 
     def test_clear_admin_review_flag_no_flag_type(self):
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         response = self.client.post(self.clear_admin_review_flag_url)
         assert response.status_code == 400
@@ -4295,7 +4295,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_clear_admin_review_flag_no_flags_yet(self):
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         response = self.client.post(
             self.clear_admin_review_flag_url, {'flag_type': 'code'})
@@ -4307,7 +4307,7 @@ class TestAddonReviewerViewSet(TestCase):
             addon=self.addon,
             needs_admin_code_review=True,
             needs_admin_content_review=True)
-        self.grant_permission(self.user, 'Reviews:Edit')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         response = self.client.post(
             self.clear_admin_review_flag_url, {'flag_type': 'code'})

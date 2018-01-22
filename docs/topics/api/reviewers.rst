@@ -43,7 +43,7 @@ Disable
 This endpoint allows you to disable the public listing for an add-on.
 
     .. note::
-       Requires authentication and the current user to have ``Reviews:Edit``
+       Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
 .. http:post::/api/v3/reviewers/addon/(int:addon_id)/disable/
@@ -58,7 +58,7 @@ instead be changed to awaiting review or incomplete depending on the status
 of its versions.
 
     .. note::
-        Requires authentication and the current user to have ``Reviews:Edit``
+        Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
 .. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable/
@@ -71,7 +71,7 @@ This endpoint allows you to clear either the code or the content admin review
 flag that reviewers can set on an add-on.
 
     .. note::
-        Requires authentication and the current user to have ``Reviews:Edit``
+        Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
 .. http:post::/api/v3/reviewers/addon/1/clear_admin_review_flag/
