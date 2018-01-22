@@ -384,15 +384,20 @@ class TestReviewerSubscription(TestCase):
         emails = sorted([o.to for o in mail.outbox])
         assert emails == [[u'del@icio.us'], [u'regular@mozilla.com']]
 
-    def test_notifications_clean(self):
+    def test_notifications_setting_persists(self):
         send_notifications(Version, self.version)
-        assert ReviewerSubscription.objects.count() == 0
+        assert ReviewerSubscription.objects.count() == 2
         mail.outbox = []
         send_notifications(Version, self.version)
+        assert len(mail.outbox) == 2
+
+    def test_dont_send_notifications_beta(self):
+        self.version.all_files[0].update(status=amo.STATUS_BETA)
+        version_uploaded.send(sender=self.version)
         assert len(mail.outbox) == 0
 
-    def test_notifications_beta(self):
-        self.version.all_files[0].update(status=amo.STATUS_BETA)
+    def test_dont_send_notifications_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_uploaded.send(sender=self.version)
         assert len(mail.outbox) == 0
 
@@ -413,7 +418,7 @@ class TestReviewerSubscription(TestCase):
         mail.outbox = []
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 2
 
     def test_no_email_for_ex_reviewers(self):
         self.user_one.delete()
