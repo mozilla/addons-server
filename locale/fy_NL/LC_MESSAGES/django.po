@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-22 12:18+0000\n"
+"PO-Revision-Date: 2018-01-22 13:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5426,6 +5426,8 @@ msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
+"As jo in direkte keppeling nei in add-on ûntfange dy't noch net beoardiele is, betsjut dit dat de add-on op dat stuit wachtet op beoardieling troch Mozilla. Gean foarsichtich om mei it ynstallearjen"
+" fan dizze add-ons, omdat se skea oan jo kompjûter tabringe kinne of jo privacy skeine kinne. %(learnmore_link_open)sMear ynfo oer ús beoardielingsproses%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr ""
@@ -5641,16 +5643,16 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr ""
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Nei inkelde wiken wurdt it ûndersyk fansels beëinige. Jo Firefox keart dan werom nei de normale tastân."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Wy sille jo freegje in flugge opsjonele enkête yn te foljen om jo ûnderfining mei ús te dielen. De enkête nimt minder as 5 minuten."
 
 msgid "Leaving the study"
 msgstr "It ûndersyk ferlitte"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "It ûndersyk rint nei inkelde wiken fansels ôf. Jo kinne it ûndersyk ier ferlitte. Om dit te dwaan, folgje jo dizze stappen:"
 
 msgid "Type about:addons into the location bar, and press enter."
 msgstr "Typ about:addons yn de lokaasjebalke, en druk op Enter."
