@@ -9,6 +9,7 @@ from django.utils.translation import trim_whitespace
 import mock
 import pytest
 
+from elasticsearch import Elasticsearch
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -137,19 +138,36 @@ class TestESSearch(SearchBase):
         self.refresh()
 
     def test_get(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        assert 'X-PJAX' in r['vary'].split(','), 'Expected "Vary: X-PJAX"'
-        self.assertTemplateUsed(r, 'search/results.html')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'X-PJAX' in response['vary'].split(',')
+        self.assertTemplateUsed(response, 'search/results.html')
+
+    def test_es_queries_made_get_with_results(self):
+        with mock.patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            assert search_mock.call_count == 1
+
+    def test_es_queries_made_get_without_results(self):
+        with mock.patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            response = self.client.get(self.url, {'q': 'foo'})
+            assert response.status_code == 200
+            assert search_mock.call_count == 1
 
     def test_search_space(self):
-        r = self.client.get(urlparams(self.url, q='+'))
-        assert r.status_code == 200
+        response = self.client.get(urlparams(self.url, q='+'))
+        assert response.status_code == 200
 
     def test_search_tools_omit_users(self):
-        r = self.client.get(self.url, {'cat': '%s,5' % amo.ADDON_SEARCH})
-        assert r.status_code == 200
-        sorter = pq(r.content)('#sorter')
+        response = self.client.get(
+            self.url, {'cat': '%s,5' % amo.ADDON_SEARCH})
+        assert response.status_code == 200
+        sorter = pq(response.content)('#sorter')
         assert sorter.length == 1
         assert 'sort=users' not in sorter.text(), (
             'Sort by "Most Users" should not appear for search tools.')
