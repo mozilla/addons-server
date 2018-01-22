@@ -61,6 +61,10 @@ MAILING_LISTS_VIEW = AclPermission('MailingLists', 'View')
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 
+# Can access advanced reviewer features meant for admins, such as disabling an
+# add-on or clearing needs admin review flags.
+REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]

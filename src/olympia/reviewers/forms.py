@@ -304,15 +304,6 @@ class ReviewForm(happyforms.Form):
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
                                    label=_(u'Applications:'))
-    notify = forms.BooleanField(required=False,
-                                label=_(u'Notify me the next time this '
-                                        u'add-on is updated. (Subsequent '
-                                        u'updates will not generate an '
-                                        u'email)'))
-    clear_admin_code_review = forms.BooleanField(
-        required=False, label=_(u'Clear Admin Code Review Flag'))
-    clear_admin_content_review = forms.BooleanField(
-        required=False, label=_(u'Clear Admin Content Review Flag'))
     info_request = forms.BooleanField(
         required=False, label=_(u'Is more info requested?'))
 

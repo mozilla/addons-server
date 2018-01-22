@@ -904,7 +904,8 @@ form.review-form .data-toggle {
     text-align: right;
 }
 
-.review-actions-section label {
+.review-actions-section label,
+.more-actions label {
     font-weight: normal;
 }
 
@@ -1107,5 +1108,28 @@ gradient-two-color($color1, $color2) {
         .whiteboard-actions {
             text-align: right;
         }
+    }
+}
+
+.more-actions {
+    border: 1px solid #ebebeb;
+    padding: 10px;
+
+    .more-actions-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .admin_only {
+        background-color: oldlace;
+        padding: 1em;
+    }
+
+    li {
+      margin: 0 0 1em 0;
+    }
+
+    #force_disable_addon, #force_enable_addon {
+        background-color: orange;
     }
 }

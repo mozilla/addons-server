@@ -138,3 +138,24 @@ def is_reviewer(request, addon):
     and the addon is a persona."""
     return (check_addons_reviewer(request) or
             (check_personas_reviewer(request) and addon.is_persona()))
+
+
+def is_any_kind_of_reviewer(request):
+    """More lax version of is_reviewer: does not check what kind of reviewer
+    the user is, and accepts unlisted reviewers, post reviewers, content
+    reviewers, or people with just revierwer tools view access.
+
+    Don't use on anything that would alter add-on data.
+
+    any_reviewer_required() decorator and AllowAnyKindOfReviewer DRF permission
+    use this function behind the scenes to guard views that don't change the
+    add-on but still need to be restricted to reviewers only.
+    """
+    allow_access = (
+        action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW) or
+        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
+        action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED) or
+        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
+        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW) or
+        action_allowed(request, amo.permissions.THEMES_REVIEW))
+    return allow_access

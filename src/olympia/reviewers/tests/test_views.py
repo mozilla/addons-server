@@ -24,13 +24,14 @@ from pyquery import PyQuery as pq
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
+from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
     AddonUser)
 from olympia.amo.tests import (
-    TestCase, addon_factory, check_links, file_factory, formset, initial,
-    user_factory, version_factory)
+    APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
+    initial, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
@@ -2365,19 +2366,6 @@ class TestReview(ReviewBase):
         assert len(mail.outbox) == 1
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
-    def test_notify(self):
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor',
-                                               'notify': True})
-        assert response.status_code == 302
-        assert ReviewerSubscription.objects.count() == 1
-
-    def test_no_notify(self):
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor'})
-        assert response.status_code == 302
-        assert ReviewerSubscription.objects.count() == 0
-
     def test_page_title(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2736,6 +2724,52 @@ class TestReview(ReviewBase):
         admin = doc('#actions-addon li')
         assert admin.length == 1
 
+    def test_extra_actions_subscribe_checked_state(self):
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        subscribe_input = doc('#notify_new_listed_versions')[0]
+        assert 'checked' not in subscribe_input.attrib
+
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.reviewer)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        subscribe_input = doc('#notify_new_listed_versions')[0]
+        assert subscribe_input.attrib['checked'] == 'checked'
+
+    def test_extra_actions_token(self):
+        self.login_as_reviewer()
+        self.client.cookies[API_TOKEN_COOKIE] = 'youdidntsaythemagicword'
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        token = doc('#extra-review-actions').attr('data-api-token')
+        assert token == 'youdidntsaythemagicword'
+
+    def test_extra_actions_admin_disable_enable_not_for_reviewers(self):
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#force_disable_addon')
+        assert not doc('#force_enable_addon')
+
+    def test_extra_actions_admin_disable_enable(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#force_disable_addon')
+        elem = doc('#force_disable_addon')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        assert doc('#force_enable_addon')
+        elem = doc('#force_enable_addon')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
@@ -2743,8 +2777,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_clear_admin_code_review').length == 1
-        assert doc('#id_clear_admin_content_review').length == 0
+        assert doc('#clear_admin_code_review').length == 1
+        assert doc('#clear_admin_content_review').length == 0
 
     def test_unflag_option_forflagged_as_reviewer(self):
         self.login_as_reviewer()
@@ -2753,8 +2787,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_clear_admin_code_review').length == 0
-        assert doc('#id_clear_admin_content_review').length == 0
+        assert doc('#clear_admin_code_review').length == 0
+        assert doc('#clear_admin_content_review').length == 0
 
     def test_unflag_content_option_forflagged_as_admin(self):
         self.login_as_admin()
@@ -2765,40 +2799,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_clear_admin_code_review').length == 0
-        assert doc('#id_clear_admin_content_review').length == 1
-
-    def test_unadmin_flag_as_admin(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            needs_admin_code_review=True,
-            needs_admin_content_review=True)
-        self.login_as_admin()
-        response = self.client.post(
-            self.url, {'action': 'reply',
-                       'comments': 'hello sailor',
-                       'clear_admin_code_review': True,
-                       'clear_admin_content_review': True})
-        self.assert3xx(response, reverse('reviewers.queue_pending'),
-                       status_code=302)
-        self.addon.addonreviewerflags.reload()
-        assert not self.addon.needs_admin_code_review
-        assert not self.addon.needs_admin_content_review
-
-    def test_unadmin_flag_as_reviewer(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True)
-        self.login_as_reviewer()
-        response = self.client.post(
-            self.url, {'action': 'reply',
-                       'comments': 'hello sailor',
-                       'clear_admin_code_review': True})
-        # Should silently fail to clear admin code review flag but work
-        # otherwise.
-        self.assert3xx(response, reverse('reviewers.queue_pending'),
-                       status_code=302)
-        assert self.addon.needs_admin_code_review
-        assert not self.addon.needs_admin_content_review
+        assert doc('#clear_admin_code_review').length == 0
+        assert doc('#clear_admin_content_review').length == 1
 
     def test_info_request_checkbox(self):
         self.login_as_reviewer()
@@ -4030,3 +4032,293 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_reviewers_review_page(self):
         url = reverse('reviewers.review', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+class TestAddonReviewerViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestAddonReviewerViewSet, self).setUp()
+        self.user = user_factory()
+        self.addon = addon_factory()
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.unsubscribe_url = reverse(
+            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+        self.enable_url = reverse(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk})
+        self.disable_url = reverse(
+            'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
+        self.clear_admin_review_flag_url = reverse(
+            'reviewers-addon-clear-admin-review-flag',
+            kwargs={'pk': self.addon.pk})
+
+    def test_subscribe_not_logged_in(self):
+        response = self.client.post(self.subscribe_url)
+        assert response.status_code == 401
+
+    def test_subscribe_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url)
+        assert response.status_code == 403
+
+    def test_subscribe_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.subscribe_url)
+        assert response.status_code == 404
+
+    def test_subscribe_already_subscribed(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon)
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(self.subscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(self.subscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_unsubscribe_not_logged_in(self):
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 401
+
+    def test_unsubscribe_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 403
+
+    def test_unsubscribe_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.unsubscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 404
+
+    def test_unsubscribe_not_subscribed(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon)
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_dont_touch_another(self):
+        another_user = user_factory()
+        another_addon = addon_factory()
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon)
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=another_addon)
+        ReviewerSubscription.objects.create(
+            user=another_user, addon=self.addon)
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        self.subscribe_url = reverse(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(self.unsubscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 2
+        assert not ReviewerSubscription.objects.filter(
+            addon=self.addon, user=self.user).exists()
+
+    def test_enable_not_logged_in(self):
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 401
+
+    def test_enable_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 403
+
+    def test_enable_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.enable_url = reverse(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 404
+
+    def test_enable(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 202
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.arguments[0] == self.addon
+
+    def test_enable_already_public(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 202
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.arguments[0] == self.addon
+
+    def test_enable_no_public_versions_should_fall_back_to_incomplete(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        self.addon.versions.all().delete()
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 202
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
+
+    def test_enable_version_is_awaiting_review_fall_back_to_nominated(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.current_version.files.all().update(
+            status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 202
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NOMINATED
+
+    def test_disable_not_logged_in(self):
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 401
+
+    def test_disable_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 403
+
+    def test_disable_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.disable_url = reverse(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 404
+
+    def test_disable(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.versions.all().delete()
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 202
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.arguments[0] == self.addon
+
+    def test_clear_admin_review_flag_not_logged_in(self):
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 401
+
+    def test_clear_admin_review_flag_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 403
+
+    def test_clear_admin_review_flag_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.clear_admin_review_flag_url = reverse(
+            'reviewers-addon-clear-admin-review-flag',
+            kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 404
+
+    def test_clear_admin_review_flag_wrong_flag_type(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'lol'})
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'Invalid or missing flag_type parameter.'}
+
+    def test_clear_admin_review_flag_no_flag_type(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.clear_admin_review_flag_url)
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'Invalid or missing flag_type parameter.'}
+
+    def test_clear_admin_review_flag_no_flags_yet(self):
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 202
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
+    def test_clear_admin_review_flag(self):
+        reviewer_flags = AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=True,
+            needs_admin_content_review=True)
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        assert response.status_code == 202
+        reviewer_flags.reload()
+        assert not reviewer_flags.needs_admin_code_review
+        assert reviewer_flags.needs_admin_content_review  # Not touched.
+
+        response = self.client.post(
+            self.clear_admin_review_flag_url, {'flag_type': 'content'})
+        assert response.status_code == 202
+        reviewer_flags.reload()
+        assert not reviewer_flags.needs_admin_code_review
+        assert not reviewer_flags.needs_admin_content_review

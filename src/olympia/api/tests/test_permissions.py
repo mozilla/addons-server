@@ -13,9 +13,9 @@ from olympia.access.models import GroupUser
 from olympia.amo.tests import (
     TestCase, WithDynamicEndpoints, addon_factory, user_factory)
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfPublic, AllowNone, AllowOwner,
-    AllowReadOnlyIfPublic, AllowRelatedObjectPermissions, AllowReviewer,
-    AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
+    AllowAddonAuthor, AllowAnyKindOfReviewer, AllowIfPublic, AllowNone,
+    AllowOwner, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 
 
 class ProtectedView(APIView):
@@ -298,6 +298,62 @@ class TestAllowReviewer(TestCase):
             # As above it doesn't work with the object though.
             assert not self.permission.has_object_permission(
                 request, myview, obj)
+
+
+class TestAllowAnyKindOfReviewer(TestCase):
+    # Note: be careful when testing, under the hood we're using a method that
+    # relies on UserProfile.groups_list, which is cached on the UserProfile
+    # instance.
+    def setUp(self):
+        self.permission = AllowAnyKindOfReviewer()
+        self.request = RequestFactory().post('/')
+
+    def test_user_cannot_be_anonymous(self):
+        self.request.user = AnonymousUser()
+        obj = Mock(spec=[])
+        assert not self.permission.has_permission(self.request, myview)
+        assert not self.permission.has_object_permission(
+            self.request, myview, obj)
+
+    def test_authenticated_but_not_reviewer(self):
+        self.request.user = user_factory()
+        obj = Mock(spec=[])
+        assert not self.permission.has_permission(self.request, myview)
+        assert not self.permission.has_object_permission(
+            self.request, myview, obj)
+
+    def test_admin(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, '*:*')
+        obj = Mock(spec=[])
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
+    def test_regular_reviewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'Addons:Review')
+        obj = Mock(spec=[])
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
+    def test_unlisted_reviewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        obj = Mock(spec=[])
+        obj.has_unlisted_versions = lambda: True
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
+    def test_post_reviewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        obj = Mock(spec=[])
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
 
 
 class TestAllowUnlistedReviewer(TestCase):
