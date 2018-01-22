@@ -8,11 +8,11 @@
     <image id="svg-header-img" width="680" height="200" preserveAspectRatio="xMaxYMin slice"
            xlink:href="{{ header_src|d }}"></image>
     <text id="SvgText1012" x="200" y="25" class="textcolor" fill="{{ textcolor|d }}">
-        <tspan id="SvgTspan1013" dy="2">֍ .... ....</tspan>
+        <tspan id="SvgTspan1013" dy="2">🌐 .... ....</tspan>
         <tspan id="SvgTspan1013x" dy="5" dx="45" font-size="150%">×</tspan>
     </text>
     <text id="SvgText1012a" x="340" y="25" class="textcolor" fill="{{ textcolor|d }}">
-        <tspan id="SvgTspan1024a" dy="2">֍ .... ....</tspan>
+        <tspan id="SvgTspan1024a" dy="2">🌐 .... ....</tspan>
         <tspan id="SvgTspan1024ax" dy="5" dx="45" font-size="150%">×</tspan>
     </text>
     <text id="SvgText1012b" x="480" y="25" class="textcolor" fill="{{ textcolor|d }}">
@@ -26,7 +26,7 @@
           class="toolbar" fill="{{ toolbar|d('rgba(255,255,255,0.6)') }}" data-fill="rgba(255,255,255,0.6)"></rect>
     <text id="SvgText1016" x="60" y="25"
           class="toolbar_text" fill="{{ toolbar_text|d }}">
-        <tspan id="SvgTspan1017" dy="2">֍ .... .... </tspan>
+        <tspan id="SvgTspan1017" dy="2">🌐 .... .... </tspan>
         <tspan id="SvgTspan1013x" dy="5" dx="45" font-size="150%">×</tspan>
     </text>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" x="10" y="65" class="toolbar_text" fill="{{ toolbar_text|d }}">
