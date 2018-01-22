@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-22 13:00+0000\n"
+"PO-Revision-Date: 2018-01-22 14:50+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5664,10 +5664,10 @@ msgid "Click the remove button."
 msgstr "Klik op de fuortsmytknop."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "As jo jo bytiids foar it ûndersyk ôfmelde, freegje wy jo in enkête yn te foljen. Wy binne ynteressearre yn jo ûnderfining, sels as jo net oan it hiele ûndersyk dielnommen hawwe."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Ofmelde foar in ûndersyk foarkomt net dat jo oan takomstige ûndersiken dielnimme kinne."
 
 msgid "Your privacy"
 msgstr "Jo privacy"
@@ -5677,29 +5677,30 @@ msgstr "Alle Shield-ûndersiken"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
+"Elk Shield-ûndersyk sammelet gegevens oer wichtige ûndersyksbarrens, lykas ynstallearjen, de-ynstallearjen, deistich gebrûk, en ein fan it ûndersyk. Undersiken befetsje ek in opsjonele enkête."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Dizze gegevens binne oan <a href=\"%(url)s\">Firefox Telemetry-saameling</a> keppele."
 
 msgid "This particular Study"
 msgstr "Dit spesifike ûndersyk"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Neist de gegevens dy't troch alle Shield-ûndersiken sammele wurde, sammelet Mozilla gegevens oer:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Websites dy't jo besykje en dy ynstekkers probearje te brûken, en hokker ynhâld op de website de ynstekker fereasket;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Hokker ynteraksje jo mei ynstekker-ynhâld op dy websites hawwe, lykas oft en hoe't jo dy ynstekker útfiere litte."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla hâldt dizze gegevens privee; gegevens wurde allinnich yn gearfoege of anonymisearre foarm dield."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Mear ynfo oer de gegevenssamling foar dit ûndersyk kinne jo <a href=\"%(url)s\">hjir</a> fine."
 
 msgid "You Help Make Firefox Better"
 msgstr "Jo helpe Firefox te ferbetterjen"
@@ -5708,6 +5709,8 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"By Mozilla binne wy grutsk op it bouwen fan projekten foar jo, de brûker! Dêrom hawwe wy jo help nedich. Troch oan dit ûndersyk diel te nimmen, helpe jo ús út namme fan jo bettere beslissingen te "
+"nimmen en daliks de takomst fan Firefox foarm te jaan!"
 
 msgid "Brought to you by:"
 msgstr "Oanbean troch:"
@@ -5755,7 +5758,7 @@ msgid "You can't reply to a review that is already a reply."
 msgstr "Jo kinne net antwurdzje op in beoardieling dy't al in antwurd is."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Jo kinne de ferzje fan de beoardiele add-on net wizigje as de beoardieling oanmakke is."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Dizze ferzje fan de add-on bestiet net of is net iepenbier."
