@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 00:08+0000\n"
+"PO-Revision-Date: 2018-01-23 00:30+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2967,7 +2967,7 @@ msgid "Add Another Application&hellip;"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 msgid "Recent Activity"
 msgstr ""
@@ -3106,7 +3106,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Pagina principală"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -5790,7 +5790,7 @@ msgstr ""
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Această recenzie este pentru o versiune anterioară a suplimentului ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -6606,7 +6606,7 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Următoarea temă"
 
 msgid "Previous Theme"
 msgstr ""
@@ -6874,7 +6874,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Prezentare generală"
 
 msgid "by Source"
 msgstr ""
@@ -6966,19 +6966,19 @@ msgid "reset zoom"
 msgstr ""
 
 msgid "Group by:"
-msgstr ""
+msgstr "Grupează după:"
 
 msgid "day"
-msgstr ""
+msgstr "zi"
 
 msgid "week"
-msgstr ""
+msgstr "săptămână"
 
 msgid "month"
-msgstr ""
+msgstr "lună"
 
 msgid "For last:"
-msgstr ""
+msgstr "Pentru ultimele:"
 
 msgid "7 days"
 msgstr ""
@@ -6993,7 +6993,7 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
-msgstr ""
+msgstr "Personalizat..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7005,10 +7005,10 @@ msgid "No data available."
 msgstr ""
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Acest tablou de bord este în prezent <b>public</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Acest tablou de bord este în prezent <b>privat</b>."
 
 msgid "Change settings."
 msgstr ""
@@ -7058,19 +7058,19 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Aplicaţii de top"
 
 msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Limbi de top"
 
 msgid "See more languages&hellip;"
 msgstr ""
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Platforme de top"
 
 msgid "See more platforms&hellip;"
 msgstr ""
@@ -7161,8 +7161,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Cu excepția cazurilor când <a href=\"https://www.mozilla.org/about/legal/\">se specifică altfel</a>, conținutul de pe acest site este licențiat sub licența <br /><a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> sau orice versiune ulterioară."
+"Cu excepția cazurilor când <a href=\"https://www.mozilla.org/about/legal/\">se specifică altfel</a>, conținutul de pe acest site este licențiat sub licența <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike v3.0 </a> sau orice versiune ulterioară."
 
 msgid "get to know <b>add-ons</b>"
 msgstr ""
@@ -7277,10 +7277,10 @@ msgid "Display Name"
 msgstr ""
 
 msgid "Location"
-msgstr ""
+msgstr "Locație"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Ocupație"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
@@ -7497,7 +7497,7 @@ msgid "Manage user"
 msgstr ""
 
 msgid "Report user"
-msgstr ""
+msgstr "Raportează utilizatorul"
 
 # The title for a user if they are a developer
 msgid "Add-ons Developer"
@@ -7522,12 +7522,11 @@ msgid "Themes I've created"
 msgstr ""
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Urmărite de mine"
 
 # "Me" in this context is the user shown on the User Info page
-#, fuzzy
 msgid "Created by Me"
-msgstr "Created by Me"
+msgstr "Create de mine"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
@@ -7537,13 +7536,13 @@ msgid "No add-on reviews yet."
 msgstr ""
 
 msgid "Report User"
-msgstr ""
+msgstr "Raportează utilizatorul"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Raportează utilizatorul {0}"
 
 msgid "Unsubscribe"
 msgstr "Dezabonează-te"
