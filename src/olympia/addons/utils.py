@@ -130,7 +130,7 @@ def verify_mozilla_trademark(name, user):
                 except forms.ValidationError as exc:
                     errors.extend(exc.messages, locale)
 
-    if errors:
-        raise LocaleValidationError(errors)
+        if errors:
+            raise LocaleValidationError(errors)
 
     return name
