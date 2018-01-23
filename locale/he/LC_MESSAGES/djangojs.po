@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2017-12-03 07:32+0000\n"
+"PO-Revision-Date: 2018-01-23 15:53+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -662,7 +662,7 @@ msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "תוספת זו אינה תואמת לגרסת ה־{0} שלך."
 
 msgid "View other versions"
 msgstr "צפייה בגרסאות אחרות"

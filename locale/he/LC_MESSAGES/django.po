@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 14:37+0000\n"
+"PO-Revision-Date: 2018-01-23 20:51+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1800,10 +1800,10 @@ msgid "{addon} status changed to {0}."
 msgstr "המצב של {addon} השתנה ל־{0}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "הגרסה {version} נוספה אל {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "הגרסה {version} נערכה עבור {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
@@ -1936,7 +1936,7 @@ msgid "Password changed."
 msgstr "הססמה שונתה."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} אושרה אך היא עדיין בהמתנה לפרסום ציבורי."
 
 msgid "Approved but waiting"
 msgstr "עבר אישור אך בהמתנה"
@@ -1991,7 +1991,7 @@ msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "תגובה לפי מפתח על {addon} {version}."
 
 msgid "Developer Reply"
 msgstr "תגובת המפתח"
@@ -3792,7 +3792,7 @@ msgid "Next Listed Version:"
 msgstr ""
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "זוהי הגרסה העדכנית ביותר שהוגשה, עם זאת, אינה זמינה באתר עדיין."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
@@ -6080,10 +6080,10 @@ msgid "Last Content Review"
 msgstr "סקירת התוכן האחרונה"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תאשר, תחתום ותפיץ את הגרסה הזאת. ההערות תישלחנה אל המפתח."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תדחה את הגרסה הזאת ותסיר אותה מהתור. ההערות תישלחנה אל המפתח."
 
 msgid "Confirm Approval"
 msgstr "אימות האישור"
@@ -6097,7 +6097,7 @@ msgid "Reject Multiple Versions"
 msgstr "דחיית גרסאות מרובות"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תדחה את הגרסאות הציבוריות שנבחרו. ההערות תישלחנה אל המפתח."
 
 msgid "Reviewer reply"
 msgstr "תגובת הסוקר"
