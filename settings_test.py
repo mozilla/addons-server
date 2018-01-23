@@ -53,7 +53,7 @@ INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 TASK_USER_ID = 1337
 
 ES_DEFAULT_NUM_REPLICAS = 0
-ES_DEFAULT_NUM_SHARDS = 3
+ES_DEFAULT_NUM_SHARDS = 1
 
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
@@ -74,8 +74,6 @@ LOGGING = {
     'loggers': {}
 }
 
-ES_DEFAULT_NUM_REPLICAS = 1
-ES_DEFAULT_NUM_SHARDS = 1
 
 ###############################################################################
 # Only if running on a CI server.
