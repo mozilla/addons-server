@@ -11,7 +11,8 @@ from olympia import amo
 
 def get_results(response):
     """Return pks of add-ons shown on search results page."""
-    return [a.id for a in response.context['pager'].object_list]
+    results = json.loads(response.content)['results']
+    return [addon['id'] for addon in results]
 
 
 @pytest.mark.es_test
