@@ -15,8 +15,8 @@ def get_results(response):
 
 
 @pytest.mark.es_test
-def test_score_boost_name_match(es_search, client):
-    url = reverse('search.search')
+def test_score_boost_name_match(es_search, api_client):
+    url = reverse('addon-search')
 
     addons = [
         amo.tests.addon_factory(
@@ -32,7 +32,7 @@ def test_score_boost_name_match(es_search, client):
 
     es_search.indices.refresh()
 
-    response = client.get(url, {'q': 'merge windows'})
+    response = api_client.get(url, {'q': 'merge windows'})
     results = get_results(response)
 
     # Doesn't match "All Downloader Professional"
@@ -45,7 +45,7 @@ def test_score_boost_name_match(es_search, client):
     assert addons[1].pk in results[:2]
     assert addons[0].pk in results[:2]
 
-    response = client.get(url, {'q': 'merge all windows'})
+    response = api_client.get(url, {'q': 'merge all windows'})
     results = get_results(response)
 
     # Make sure we match 'All Downloader Professional' but it's
@@ -59,23 +59,23 @@ def test_score_boost_name_match(es_search, client):
 
 
 @pytest.mark.es_test
-def test_score_boost_name_match_slop(es_search, client):
+def test_score_boost_name_match_slop(es_search, api_client):
     addon = amo.tests.addon_factory(
         name='Merge all Windows', type=amo.ADDON_EXTENSION,
         average_daily_users=0, weekly_downloads=0)
 
     es_search.indices.refresh()
-    url = reverse('search.search')
+    url = reverse('addon-search')
 
     # direct match
-    response = client.get(url, {'q': 'merge windows'})
+    response = api_client.get(url, {'q': 'merge windows'})
     results = get_results(response)
 
     assert results[0] == addon.pk
 
 
 @pytest.mark.es_test
-def test_score_boost_exact_match(es_search, client):
+def test_score_boost_exact_match(es_search, api_client):
     """Test that we rank exact matches at the top."""
     addons = [
         amo.tests.addon_factory(
@@ -90,16 +90,16 @@ def test_score_boost_exact_match(es_search, client):
     ]
 
     es_search.indices.refresh()
-    url = reverse('search.search')
+    url = reverse('addon-search')
 
-    response = client.get(url, {'q': 'test addon test21'})
+    response = api_client.get(url, {'q': 'test addon test21'})
     results = get_results(response)
 
     assert results[0] == addons[1].pk
 
 
 @pytest.mark.es_test
-def test_score_boost_exact_match_description_hijack(es_search, client):
+def test_score_boost_exact_match_description_hijack(es_search, api_client):
     """Test that we rank exact matches at the top."""
     addons = [
         amo.tests.addon_factory(
@@ -115,9 +115,9 @@ def test_score_boost_exact_match_description_hijack(es_search, client):
     ]
 
     es_search.indices.refresh()
-    url = reverse('search.search')
+    url = reverse('addon-search')
 
-    response = client.get(url, {
+    response = api_client.get(url, {
         'q': 'Amazon 1-Click Lock'
     })
     results = get_results(response)
