@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 13:16+0000\n"
+"PO-Revision-Date: 2018-01-23 14:18+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5478,7 +5478,7 @@ msgstr ""
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "‏Firefox ותכניות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
+msgstr "‏Firefox ותוכנות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
 
 msgid "Collections and Favorites"
 msgstr "אוספים ומועדפים"
