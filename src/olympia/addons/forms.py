@@ -119,12 +119,11 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_name(self):
-        data = self.cleaned_data.copy()
         user = getattr(self.request, 'user', None)
 
-        verify_mozilla_trademark(data['name'], user)
+        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
 
-        return data['name']
+        return name
 
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])

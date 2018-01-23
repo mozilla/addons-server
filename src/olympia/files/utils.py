@@ -867,8 +867,10 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
                 'WebExtension theme uploads are currently not supported.'))
 
     if xpi_file:
+        # Make sure we pass in a copy of `xpi_info` since
+        # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(
-            xpi_info, xpi_file)
+            xpi_info.copy(), xpi_file)
         verify_mozilla_trademark(translations['name'], core.get_user())
 
     return xpi_info
