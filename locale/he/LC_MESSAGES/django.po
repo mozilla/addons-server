@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 13:10+0000\n"
+"PO-Revision-Date: 2018-01-23 13:16+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5640,25 +5640,25 @@ msgid "We may add security and plugin control features to Firefox to help with o
 msgstr "אנו עשויים להוסיף תכונות בקרת אבטחה ותוספים חיצוניים ל־Firefox כדי לסייע באבטחה מקוונת ובביצועים."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "ניתן להמשיך להשתמש ב־Firefox כרגיל. בהתאם לאופן השימוש שלך באינטרנט, יתכן שלא תבחין בשינויים כלשהם."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "לאחר מספר שבועות, המחקר יסתיים באופן עצמאי. ה־Firefox שלך יחזור לקדמותו."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "אנו נבקש ממך למלא סקר כרשות כדי לספר לנו על החוויה שלך. השלמת הסקר אמורה לארוך עד 5 דקות."
 
 msgid "Leaving the study"
 msgstr "עזיבת המחקר"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "המחקר יפוג באופן עצמאי בעוד מספר שבועות. יש לך אפשרות לעזוב את המחקר לפני כן. כדי לעזוב, יש לעקוב אחר הצעדים הבאים:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "יש להקליד about:addons בסרגל המיקום וללחוץ על enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr "ברשימת התוספת יש לאתר את Plugin Safety."
+msgstr "ברשימת התוספות יש לאתר את Plugin Safety."
 
 msgid "Click the remove button."
 msgstr "יש ללחוץ על לחצן ההסרה."
@@ -5667,7 +5667,7 @@ msgid "If you opt out of the study early we will ask you to fill out a survey. W
 msgstr ""
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "עזיבת מחקר אינה מונעת ממך להשתתף במחקרים עתידיים."
 
 msgid "Your privacy"
 msgstr "הפרטיות שלך"
@@ -5699,7 +5699,7 @@ msgstr ""
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "באפשרותך ללמוד עוד על איסוף נתונים למחקר זה <a href=\"%(url)s\">כאן</a>."
 
 msgid "You Help Make Firefox Better"
 msgstr ""
