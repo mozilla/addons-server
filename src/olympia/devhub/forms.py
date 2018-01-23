@@ -456,16 +456,6 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
                          u'Please try again.'))
 
 
-class StandaloneValidationForm(AddonUploadForm):
-    is_unlisted = forms.BooleanField(
-        initial=False,
-        required=False,
-        label=_(u'Do not list my add-on on this site'),
-        help_text=_(
-            u'Check this option if you intend to distribute your add-on on '
-            u'your own and only need it to be signed by Mozilla.'))
-
-
 class NewUploadForm(AddonUploadForm):
     supported_platforms = forms.TypedMultipleChoiceField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,

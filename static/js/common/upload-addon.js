@@ -316,13 +316,14 @@
             $('.addon-upload-failure-dependant').prop('disabled', true);
 
             var $newForm = $('.new-addon-file');
-            var $isUnlistedCheckbox = $('#id_is_unlisted');
+            var $channelChoice = $('input[name="channel"]');
 
             function isUnlisted() {
-              // True if there's a '#id_is_unlisted' checkbox that is checked, or a
+              // True if there's radio input with 'name="channel"' with 'value="unlisted"' checked, or a
               // 'addon-is-listed' data on the new file form that is true.
               return (($isUnlistedCheckbox.length && $isUnlistedCheckbox.is(':checked')) ||
-                      (typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')));
+                      (typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')) ||
+                      ($channelChoice.length && $('input[name="channel"]:checked').val() != 'listed'));
             }
 
             // is_unlisted checkbox: should the add-on be listed on AMO? If not,
@@ -350,8 +351,8 @@
                                                          'checked': false});
               $('.upload-status').remove();
             }
-            $isUnlistedCheckbox.on('change', updateListedStatus);
-            if ($isUnlistedCheckbox.length) updateListedStatus();
+            $channelChoice.on('change', updateListedStatus);
+            if ($channelChoice.length) updateListedStatus();
 
             $('#id_is_manual_review').on('change', function() {
                 $('.addon-upload-dependant').prop('disabled', !($(this).is(':checked')));

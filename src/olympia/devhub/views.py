@@ -538,8 +538,7 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': ugettext('Validate Add-on'),
-                   'new_addon_form': forms.StandaloneValidationForm(
-                       None, None, request=request)})
+                   'new_addon_form': forms.DistributionChoiceForm()})
 
 
 @login_required
@@ -548,8 +547,7 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': ugettext('Check Add-on Compatibility'),
-                   'new_addon_form': forms.StandaloneValidationForm(
-                       None, None, request=request)})
+                   'new_addon_form': forms.DistributionChoiceForm()})
 
 
 def handle_upload(filedata, user, channel, app_id=None, version_id=None,
