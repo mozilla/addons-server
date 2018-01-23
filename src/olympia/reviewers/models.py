@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Coalesce, Func
+from django.db.models.functions import Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
