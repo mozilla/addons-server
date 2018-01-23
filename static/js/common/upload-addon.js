@@ -321,8 +321,7 @@
             function isUnlisted() {
               // True if there's radio input with 'name="channel"' with 'value="unlisted"' checked, or a
               // 'addon-is-listed' data on the new file form that is true.
-              return (($isUnlistedCheckbox.length && $isUnlistedCheckbox.is(':checked')) ||
-                      (typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')) ||
+              return ((typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')) ||
                       ($channelChoice.length && $('input[name="channel"]:checked').val() != 'listed'));
             }
 

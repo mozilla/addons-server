@@ -762,6 +762,7 @@ class DistributionChoiceForm(happyforms.Form):
         choices=(
             ('listed', mark_safe_lazy(LISTED_LABEL)),
             ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),
+        initial='listed',
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
 
 
