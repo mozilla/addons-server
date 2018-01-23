@@ -428,5 +428,11 @@ ADDON_GUID_PATTERN = re.compile(
 SYSTEM_ADDON_GUIDS = (
     u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org')
 
+MOZILLA_TRADEMARK_SYMBOLS = (
+    'mozilla', 'firefox')
+
+ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
+    '@mozilla.com', '@mozilla.org')
+
 TAAR_ALLOWED_PARAMETERS = (
     'telemetry-client-id', 'lang', 'platform', 'branch', 'study')
