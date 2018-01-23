@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 10:31+0000\n"
+"PO-Revision-Date: 2018-01-23 10:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4480,20 +4480,20 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> yn jo install.rdf (%s) komt net oerien mei it type fan jo add-on op AMO (%s)"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Tebek nei beoardieling"
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Tebek nei add-on"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4506,7 +4506,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr "Bestân besjen :: Beoardielershelpmiddelen"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "Falidaasje mislearre:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr "Bestânsynhâld wurdt net stipe foar syntaksismarkearring"
@@ -4516,58 +4516,58 @@ msgid "The output can be broken, please be careful and %(link_start)sreport an i
 msgstr "De útfier kin skansearre wêze, wês foarsichtich en %(link_start)smeld in probleem%(link_end)s daliks!"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Add-onbestân wurdt ferwurke, in momint geduld."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Falidaasjeresultaten ophelje…"
 
 msgid "Files:"
-msgstr ""
+msgstr "Bestannen:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Fuortsmiten bestannen:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "Bekende bestannen ferstopje"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Add-on SDK-ferzje:"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tabstops:"
 
 msgid "Up file"
-msgstr ""
+msgstr "Bestân omheech"
 
 msgid "Down file"
-msgstr ""
+msgstr "Bestân omleech"
 
 msgid "Previous diff"
-msgstr ""
+msgstr "Foargeand ferskil"
 
 msgid "Previous note"
-msgstr ""
+msgstr "Foargeande opmerking"
 
 msgid "Next diff"
-msgstr ""
+msgstr "Folgjend ferskil"
 
 msgid "Next note"
-msgstr ""
+msgstr "Folgjende opmerking"
 
 msgid "Expand all"
-msgstr ""
+msgstr "Alles útklappe"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Struktuer werjaan of ferstopje"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Rigelôfbrekking oan/út"
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Gjin bestannen yn oplaad bestân."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Bestân ophelje."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4575,23 +4575,23 @@ msgstr "Bestânswerjefe is beskoattele, ekstraksje foar %s is mooglik yn behanne
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Der is in flater bard by it iepenjen fan it bestân %s."
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Dat bestân bestiet net mear."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Bestânsgrutte is boppe de limyt fan {0}."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemen by dekodearjen fan {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Dit bestân kin net online besjoen wurde. Download it bestân om de ynhâld te besjen."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Dit bestân is in map."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
