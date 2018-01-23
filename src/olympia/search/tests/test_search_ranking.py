@@ -149,8 +149,6 @@ class TestRankingScenarios(ESTestCase):
             )
         )
 
-        print([x['name']['en-US'] for x in results], expected)
-
         for idx, name in enumerate(expected):
             assert results[idx]['name']['en-US'] == name, (
                 'Expected "{}" to be on position {} but "{}" is for query {}'
