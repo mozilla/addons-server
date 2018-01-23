@@ -100,7 +100,7 @@ def get_creatured_ids(category, lang=None):
 
 def verify_mozilla_trademark(name, user):
     skip_trademark_check = (
-        user and user.is_authenticated() and
+        user and user.is_authenticated() and user.email and
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
 
     def _check(name):
