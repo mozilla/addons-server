@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-18 11:36+0000\n"
+"PO-Revision-Date: 2018-01-23 10:08+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1402,7 +1402,7 @@ msgid "Search tools"
 msgstr "శోధన సాధనాలు"
 
 msgid "Most Users"
-msgstr ""
+msgstr "ఎక్కువ వాడుకరులు"
 
 msgid "Weekly Downloads"
 msgstr "వారపు దింపుకోళ్ళు"
@@ -1465,7 +1465,7 @@ msgid "Dictionary"
 msgstr "నిఘంటువు"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "భాషా ప్యాక్"
 
 msgid "All locales"
 msgstr "అన్ని స్థానికీకరణలు"
@@ -2170,7 +2170,7 @@ msgid "Solid"
 msgstr "ముదురు"
 
 msgid "Websites"
-msgstr ""
+msgstr "వెబ్‌సైట్లు"
 
 msgid "General"
 msgstr "సాధారణం"
@@ -2188,7 +2188,7 @@ msgid "Multiple Search"
 msgstr "బహుళ శోధన"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "వార్తలు & బ్లాగులు"
 
 msgid "Photos & Images"
 msgstr "ఫోటోలు మరియు చిత్రాలు"
@@ -2362,7 +2362,7 @@ msgid "Updated Language Pack Review"
 msgstr ""
 
 msgid "Theme Review"
-msgstr ""
+msgstr "అలంకారపు సమీక్ష"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2648,7 +2648,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "పొడిగింత తొలగించబడదు. దానికి బదులుగా ఈ పొడిగింతను అచేతనపరచు."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "అలంకారం తొలగించబడింది."
 
 msgid "Add-on deleted."
 msgstr "పొడిగింత తొలగించబడింది."
@@ -2769,7 +2769,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "మరిన్ని పొడగింతలు..."
 
 msgid "Documentation"
 msgstr ""
@@ -2802,7 +2802,7 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "మరిన్ని వనరులు"
 
 msgid "Search Developer Docs"
 msgstr ""
@@ -2907,7 +2907,7 @@ msgstr ""
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "<b>{0}</b> అలంకారాలు"
 
 msgid "Edit Information"
 msgstr "సమాచారాన్ని సవరించండి"
@@ -3048,7 +3048,7 @@ msgid ""
 msgstr ""
 
 msgid "Website"
-msgstr ""
+msgstr "వెబ్‌సైటు"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -3179,7 +3179,7 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "తెరపట్లు"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
@@ -3606,7 +3606,7 @@ msgid "Browser Preview"
 msgstr "విహారిణి మునుజూపు"
 
 msgid "Back"
-msgstr ""
+msgstr "వెనుకకు"
 
 #, fuzzy
 msgid "Uploading Theme"
@@ -3850,7 +3850,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "మాతో చేరండి!"
 
 msgid "Write Some Code"
 msgstr "కొంత కోడ్ను వ్రాయండి"
@@ -3973,7 +3973,7 @@ msgid "Transfer ownership"
 msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
 
 msgid "Theme Details"
-msgstr ""
+msgstr "అలంకారపు వివరాలు"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4039,7 +4039,7 @@ msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "వెనుతలం"
 
 msgid "This is the color of the tabs."
 msgstr "ఇది ట్యాబ్ల రంగు."
@@ -4048,7 +4048,7 @@ msgid "Preview"
 msgstr "ముందస్తు వీక్షణం"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "మీ అలంకారం పేరు"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
@@ -4790,7 +4790,7 @@ msgid "Localizers"
 msgstr ""
 
 msgid "Reviewers"
-msgstr ""
+msgstr "సమీక్షకులు"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
@@ -4835,7 +4835,7 @@ msgstr ""
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
-msgstr ""
+msgstr "తోడ్పాటు వనరులు"
 
 msgid "Contributing your Add-on"
 msgstr ""
@@ -4863,7 +4863,7 @@ msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the
 msgstr ""
 
 msgid "What is XUL?"
-msgstr ""
+msgstr "XUL అంటే ఏమిటి?"
 
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
@@ -4936,7 +4936,7 @@ msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on web
 msgstr ""
 
 msgid "What is AMO?"
-msgstr ""
+msgstr "AMO అంటే ఏమిటి?"
 
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
@@ -5658,7 +5658,7 @@ msgstr ""
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "లేదా <a href=\"%(url)s\">రద్దు చేయండి</a>"
 
 msgid "Please select a reason:"
 msgstr ""
@@ -5704,7 +5704,7 @@ msgstr "సమీక్షను తొలగించండి"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: సమీక్షలు"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -6649,7 +6649,7 @@ msgid "Filter Results"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "వర్గం"
 
 msgid "Tag"
 msgstr ""
@@ -6698,7 +6698,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "అవలోకనం"
 
 msgid "by Source"
 msgstr ""
@@ -6796,25 +6796,25 @@ msgid "day"
 msgstr ""
 
 msgid "week"
-msgstr ""
+msgstr "వారం"
 
 msgid "month"
-msgstr ""
+msgstr "నెల"
 
 msgid "For last:"
 msgstr ""
 
 msgid "7 days"
-msgstr ""
+msgstr "7 రోజులు"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 రోజులు"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 రోజులు"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 రోజులు"
 
 msgid "Custom..."
 msgstr ""
@@ -6859,7 +6859,7 @@ msgid "Downloaded by Date"
 msgstr ""
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "దింపుకోళ్ళను ఎలా లెక్కిస్తారు?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -6873,22 +6873,22 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> దింపుకోళ్ళు"
 
 msgid "Loading..."
-msgstr ""
+msgstr "వస్తోంది..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "మేటి అనువర్తనాలు"
 
 msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "మేటి భాషలు"
 
 msgid "See more languages&hellip;"
 msgstr ""
@@ -7008,7 +7008,7 @@ msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"
-msgstr ""
+msgstr "ఇతర భాషలు"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr ""
@@ -7026,10 +7026,10 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
 msgid "My Account"
-msgstr ""
+msgstr "నా ఖాతా"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "స్వాగతం, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7098,7 +7098,7 @@ msgid "Display Name"
 msgstr "ప్రదర్శిత నామం"
 
 msgid "Location"
-msgstr ""
+msgstr "స్థానం"
 
 msgid "Occupation"
 msgstr ""
@@ -7327,7 +7327,7 @@ msgid "Themes Artist"
 msgstr ""
 
 msgid "About me"
-msgstr ""
+msgstr "నా గురించి"
 
 msgid "In a little more detail..."
 msgstr ""
@@ -7348,7 +7348,7 @@ msgid "Created by Me"
 msgstr "నేను సృష్టించినది"
 
 msgid "My Reviews"
-msgstr ""
+msgstr "నా సమీక్షలు"
 
 msgid "No add-on reviews yet."
 msgstr ""
@@ -7373,7 +7373,7 @@ msgid "The email address <strong>%(email)s</strong> will no longer get messages 
 msgstr ""
 
 msgid "More Actions:"
-msgstr ""
+msgstr "మరిన్ని చర్యలు:"
 
 msgid "edit your notification settings"
 msgstr ""
@@ -7410,7 +7410,7 @@ msgstr "{0} పొడిగింతలు"
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%(num)s అలంకారాలు"
 
 #, python-format
 msgid "%(num)s add-on"

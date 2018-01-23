@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2018-01-10 09:02+0000\n"
+"PO-Revision-Date: 2018-01-23 09:56+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -206,7 +206,7 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "పొడిగింతల కోసం శోధించండి<b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "అసలుది వాడు"
 
 msgid "Week of {0}"
 msgstr "వారం {0}"
