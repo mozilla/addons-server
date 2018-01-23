@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 10:39+0000\n"
+"PO-Revision-Date: 2018-01-23 12:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4594,46 +4594,46 @@ msgid "This file is a directory."
 msgstr "Dit bestân is in map."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "De API-ferzje, {0:.1f}, dy't jo brûke is net jildich. Wurkje by nei de aktuele ferzje fan de API, {1:.1f}."
 
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Noch net ymplemintearre."
 
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Winkelje wurdt ienfâldich"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Besparje op jo favorite produkten fan de leunstoel fan jo browser út."
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Bou de perfekte website"
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Earste kennen learen fan add-ons?"
 
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Gjin soargen, hjir binne der trije om mei fan start te gean."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Set ynhâld oer op it web fan en yn mear as 40 talen."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Lis ienfâldich ferbining mei jo sosjale netwurken, en diel of bekommentariearje de troch jo besochte side."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "In flugge priisfergeliking wylst online winkelje of sykjen nei fluchten."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Tema’s foar St. Patrick’s Day"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Fersier jo browser om St. Patrick’s Day te fieren."
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "Treflike add-ons foar skoalle"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Add-ons foar leararen, âlders en learlingen dy't wer nei skoalle gean."
 
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
@@ -4651,43 +4651,43 @@ msgid "Add some romance to your Firefox."
 msgstr ""
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Stean op en beweech!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Ynstallearje dizze fitness-add-ons om josels aktyf en sûn te hâlden."
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nij en no"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Download de lêste en populêrste add-ons fan dit momint."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Soargeleas browse"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Beskermje online jo privacy mei de add-ons yn dizze kolleksje."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
 
 msgid "Games!"
-msgstr ""
+msgstr "Spultsjes!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Unmisbere media"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Untdek add-ons"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "Wat binne add-ons?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -4697,29 +4697,29 @@ msgid "Learn More"
 msgstr "Mear ynfo"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Lês mear oer add-ons"
 
 msgid "See all"
-msgstr ""
+msgstr "Alles besjen"
 
 msgid "More ways to customize"
-msgstr ""
+msgstr "Mear manieren om oan te passen"
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Troch alle add-ons blêdzje"
 
 msgid "See all complete themes"
-msgstr ""
+msgstr "Alle folsleine tema’s"
 
 msgid "Close Video"
-msgstr ""
+msgstr "Fideo slute"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr ""
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Hallo {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
@@ -4732,31 +4732,31 @@ msgid "View Privacy Policy"
 msgstr "Privacybelied besjen"
 
 msgid "Active Users"
-msgstr ""
+msgstr "Aktive brûkers"
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Lêst bywurke"
 
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Ynstallaasje annulearje"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla’s Kar fan de moanne!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Wurd in testpiloat"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Krij betiid tagong ta eksperimintele browserfunksjes."
 
 msgid "Get Started"
-msgstr ""
+msgstr "Fan start"
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Oer Mozilla Add-ons"
 
 msgid "What is this website?"
-msgstr ""
+msgstr "Wat is dizze website?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -4764,7 +4764,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Wa makket dizze add-ons?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -4827,7 +4827,7 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "Ik haw in fraach"
 
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -4847,10 +4847,10 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Add-on Compatibility Reporter"
 
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Add-on Compatibility Reporter is ynstallearre"
 
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
 msgstr ""
@@ -4880,29 +4880,29 @@ msgid ""
 msgstr ""
 
 msgid "Thank you!"
-msgstr ""
+msgstr "Tige tank!"
 
 msgid "Site Credits"
-msgstr ""
+msgstr "Website-tanksizzing"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
 msgstr ""
 
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Untwikkelers en behearders"
 
 msgid "Localizers"
-msgstr ""
+msgstr "Oersetters"
 
 msgid "Reviewers"
-msgstr ""
+msgstr "Beoardielers"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Mear as {0} add-on-beoardielingen"
 
 msgid "Other Contributors"
-msgstr ""
+msgstr "Oare meiwurkers"
 
 msgid "Past Developers &amp; Administrators"
 msgstr ""
@@ -4933,14 +4933,14 @@ msgid "Developer FAQ"
 msgstr ""
 
 msgid "Sections"
-msgstr ""
+msgstr "Seksjes"
 
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Untwikkeling fan in add-on"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
-msgstr ""
+msgstr "Helpboarnen foar stipe"
 
 msgid "Contributing your Add-on"
 msgstr ""
@@ -4968,7 +4968,7 @@ msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the
 msgstr ""
 
 msgid "What is XUL?"
-msgstr ""
+msgstr "Wat is XUL?"
 
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
@@ -5013,13 +5013,13 @@ msgid "#webextensions (for discussions about developing and porting to WebExtens
 msgstr "#webextensions (foar diskusjes oer it ûntwikkeljen fan en portearjen nei WebExtensions)"
 
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Add-onsfoarum"
 
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Biedt Mozilla ûntwikkelingstsjinsten?"
 
 msgid "No."
-msgstr ""
+msgstr "Nee."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
@@ -5049,7 +5049,7 @@ msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on web
 msgstr ""
 
 msgid "What is AMO?"
-msgstr ""
+msgstr "Wat is AMO?"
 
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
@@ -5269,13 +5269,13 @@ msgid "A site to provide non-judgmental guidance on choosing a license for your 
 msgstr ""
 
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Faakstelde fragen"
 
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Add-ons brûke"
 
 msgid "What is an add-on?"
-msgstr ""
+msgstr "Wat is in add-on?"
 
 #, python-format
 msgid ""
@@ -5386,7 +5386,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Add-ongalerij"
 
 msgid "How do I choose between add-ons that seem to do the same thing?"
 msgstr ""
@@ -5444,7 +5444,7 @@ msgid ""
 msgstr ""
 
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Wat binne bèta-add-ons?"
 
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
@@ -5476,7 +5476,7 @@ msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr ""
 
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Wat is in boarnekoadelisinsje?"
 
 #, python-format
 msgid ""
@@ -5490,10 +5490,10 @@ msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a
 msgstr ""
 
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Kolleksjes en favoriten"
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Wat is in kolleksje?"
 
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
@@ -5505,10 +5505,10 @@ msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back 
 msgstr ""
 
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "Add-ons foar Mobyl"
 
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Wat binne mobile add-ons?"
 
 #, python-format
 msgid ""
@@ -5519,14 +5519,14 @@ msgstr ""
 "foar Android wurkje fine yn ús <a href=\"%(gallery_url)s\">galerij</a>."
 
 msgid "Developer Topics"
-msgstr ""
+msgstr "Untwikkelersûnderwerpen"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
 msgstr ""
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Noch hieltyd fragen?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -5544,7 +5544,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Dwaan:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -5574,7 +5574,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Net dwaan:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
@@ -5736,19 +5736,19 @@ msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a h
 msgstr ""
 
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Lês mear oer Sunbird"
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Beoardielingen foar %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Beoardielingsskiednis foar dizze add-on"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Wurdearring: %d fan de 5 stjerren"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
