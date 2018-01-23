@@ -68,5 +68,15 @@
         "created": "2017-10-26 15:00:00",
         "modified": "2017-10-26 15:00:00"
     }
+  },
+  {
+    "pk": 8,
+    "model": "access.group",
+    "fields": {
+        "name": "Reviewers: Admins",
+        "rules": "Reviews:Admin",
+        "created": "2018-01-22 14:32:10",
+        "modified": "2018-01-22 14:32:10"
+    }
   }
 ]
