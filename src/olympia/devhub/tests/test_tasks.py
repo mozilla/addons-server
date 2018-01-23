@@ -822,7 +822,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = tasks.annotate_addon_restrictions(
             data, is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -844,7 +844,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = tasks.annotate_addon_restrictions(
             data, is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -965,14 +965,14 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = tasks.annotate_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_addons_max_version']
 
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = tasks.annotate_addon_restrictions(
             data.copy(), is_new_upload=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0

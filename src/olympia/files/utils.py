@@ -34,6 +34,7 @@ from signing_clients.apps import get_signer_organizational_unit_name
 import olympia.core.logger
 
 from olympia import amo, core
+from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib.safe_xml import lxml
@@ -813,10 +814,10 @@ def parse_xpi(xpi, addon=None, minimal=False):
 
     if minimal:
         return xpi_info
-    return check_xpi_info(xpi_info, addon)
+    return check_xpi_info(xpi_info, addon, xpi)
 
 
-def check_xpi_info(xpi_info, addon=None):
+def check_xpi_info(xpi_info, addon=None, xpi_file=None):
     from olympia.addons.models import Addon, DeniedGuid
     guid = xpi_info['guid']
     is_webextension = xpi_info.get('is_webextension', False)
@@ -838,6 +839,7 @@ def check_xpi_info(xpi_info, addon=None):
                 authors__id=current_user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
+
         if addon and addon.guid != guid:
             msg = ugettext(
                 'The add-on ID in your manifest.json or install.rdf (%s) '
@@ -863,6 +865,11 @@ def check_xpi_info(xpi_info, addon=None):
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))
+
+    if xpi_file:
+        translations = Addon.resolve_webext_translations(
+            xpi_info, xpi_file)
+        verify_mozilla_trademark(translations['name'], core.get_user())
 
     return xpi_info
 

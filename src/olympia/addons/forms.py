@@ -18,6 +18,7 @@ from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
 from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
+from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
@@ -117,6 +118,16 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
+    def clean_name(self):
+        # TODO: This should be handled a bit cleaner in `TranslationFormMixin`
+        # but let's see if this actually works...
+        data = self.cleaned_data.copy()
+        user = getattr(self.request, 'user', None)
+
+        verify_mozilla_trademark(data['name'], user)
+
+        return data
+
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
@@ -149,9 +160,6 @@ class AddonFormBasic(AddonFormBase):
         if self.fields.get('tags'):
             self.fields['tags'].initial = ', '.join(
                 self.get_tags(self.instance))
-
-    def clean_slug(self):
-        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_contributions(self):
         if self.cleaned_data['contributions']:
