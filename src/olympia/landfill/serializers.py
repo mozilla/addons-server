@@ -26,9 +26,6 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 
-FIRST_COLLECTION_SLUG = 'be-more-productive'
-SECOND_COLLECTION_SLUG = 'privacy-matters'
-
 
 class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
@@ -44,15 +41,35 @@ class GenerateAddonsSerializer(serializers.Serializer):
             AddonUser.objects.create(
                 user=user_factory(), addon=addon_factory())
 
-    def create_generic_mozilla_addon(self):
-        """Create a generic addon and a user 'mozilla'."""
+    def create_named_addon_with_author(self, name, author=None):
+        """Create a generic addon and a user.
 
-        generate_user('mozilla@mozilla.com')
-        addon = addon_factory(
-            status=STATUS_PUBLIC,
-            users=[UserProfile.objects.get(username='mozilla')],
-        )
-        addon.save()
+        The user will be created if a user is not given.
+
+        """
+
+        if author is None:
+            author = user_factory()
+        try:
+            generate_user(author)
+        except Exception:  # django.db.utils.IntegrityError
+            # If the user is already made, use that same user,
+            # if not use created user
+            addon = addon_factory(
+                status=STATUS_PUBLIC,
+                users=[UserProfile.objects.get(username=author)],
+                name=u'{}'.format(name),
+                slug='{}'.format(name),
+            )
+            addon.save()
+        else:
+            addon = addon_factory(
+                status=STATUS_PUBLIC,
+                users=[UserProfile.objects.get(username=author.username)],
+                name=u'{}'.format(name),
+                slug='{}'.format(name),
+            )
+            addon.save()
         return addon
 
     def create_featured_addon_with_version(self):
@@ -214,21 +231,16 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(status=STATUS_PUBLIC, type=ADDON_PERSONA)
             generate_collection(addon, app=FIREFOX)
 
-    def create_mozilla_addons_and_collections(self):
-        """Create 2 collections for the account 'mozilla'."""
+    def create_a_named_collection_and_addon(self, name, author):
+        """Creates a collection with a name and author."""
 
         generate_collection(
-            self.create_generic_mozilla_addon(),
+            self.create_named_addon_with_author(name, author=author),
             app=FIREFOX,
-            author=UserProfile.objects.get(username='mozilla'),
+            author=UserProfile.objects.get(username=author),
             type=amo.COLLECTION_FEATURED,
-            name=FIRST_COLLECTION_SLUG)
-        generate_collection(
-            self.create_generic_mozilla_addon(),
-            app=FIREFOX,
-            author=UserProfile.objects.get(username='mozilla'),
-            type=amo.COLLECTION_FEATURED,
-            name=SECOND_COLLECTION_SLUG)
+            name=name
+        )
 
     def create_installable_addon(self):
         activate('en-US')
