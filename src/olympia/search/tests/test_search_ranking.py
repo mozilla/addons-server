@@ -3,10 +3,10 @@ import json
 
 import pytest
 
-from olympia.amo.urlresolvers import reverse
-from olympia.addons.views import AddonSearchView
-from olympia.amo.tests import ESTestCase, APITestClient
 from olympia import amo
+from olympia.addons.views import AddonSearchView
+from olympia.amo.tests import APITestClient, ESTestCase
+from olympia.amo.urlresolvers import reverse
 
 
 def get_results(response):
