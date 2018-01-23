@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-19 13:50+0000\n"
+"PO-Revision-Date: 2018-01-23 10:38+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5237,7 +5237,7 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם היא שלילית?"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "לא. איננו מסירים סקירות שליליות מתוספות אלא אם כן הן שגויות."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם אינה מדויקת?"
@@ -5270,10 +5270,10 @@ msgid "Open Source Initiative provides the terms of some of the key open source 
 msgstr ""
 
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "השוואה בין רישיונות קוד פתוח נפוצים בוויקיפדיה."
 
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "אתר שמספק הדרכה בלתי שיפוטית על בחירת רישיון למיזם הקוד הפתוח שלך."
 
 msgid "Frequently Asked Questions"
 msgstr "תשובות לשאלות נפוצות"
@@ -5344,7 +5344,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "איך אוכל לשמור על התוספות שלי עדכניות?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "כל יום מתבצעת בדיקה לאיתור עדכונים לתוספות. ב־Firefox העדכונים מותקנים אוטומטית כברירת מחדל. "
 
 msgid "Are add-ons safe to install?"
 msgstr "האם בטוח להתקין תוספות?"
@@ -5431,7 +5431,7 @@ msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr "תוספות שמתארחות בגלריה שלנו הן בחינם אלמלא צוין אחרת באופן מפורש."
 
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "מה הכוונה בכך שתוספת מבקשת תרומות?"
 
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
@@ -5478,7 +5478,7 @@ msgstr ""
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "‏Firefox ותכניות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
 
 msgid "Collections and Favorites"
 msgstr "אוספים ומועדפים"
@@ -5600,7 +5600,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "איך ניתן לדווח על סקירה בעייתית?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
