@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 13:16+0000\n"
+"PO-Revision-Date: 2018-01-23 14:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1819,7 +1819,7 @@ msgid "{addon} {version} approved."
 msgstr ""
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "לתוספת {addon} {version} ניתנה סקירה ראשונית."
 
 msgid "Preliminarily approved"
 msgstr "לאחר אישור טרומי"
@@ -5478,7 +5478,7 @@ msgstr ""
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "‏Firefox ותכניות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
+msgstr "‏Firefox ותוכנות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
 
 msgid "Collections and Favorites"
 msgstr "אוספים ומועדפים"
@@ -7320,13 +7320,13 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr ""
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "מישהו כותב סקירה על התוספת שלי"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "לא ניתן לשדרג את התאימות של התוספת שלי"
 
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""

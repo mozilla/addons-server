@@ -39,7 +39,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
     ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, AppVersion, Version
+from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.zadmin.models import get_config, set_config
 
 
