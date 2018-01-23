@@ -36,12 +36,13 @@
             </tr>
             <tr class="comments hide">
               <td>&nbsp;</td>
-              <td colspan="4">
+              <td colspan="3">
                 {{ item.details.comment }}
                 {% if item.details.reject_reason %}
                   {{ REJECT_REASONS[item.details.reject_reason] }}
                 {% endif %}
               </td>
+              <td>&nbsp;</td>
             </tr>
           {% endfor %}
         </tbody>
