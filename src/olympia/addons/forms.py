@@ -124,7 +124,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
 
         verify_mozilla_trademark(data['name'], user)
 
-        return data
+        return data['name']
 
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
