@@ -194,6 +194,10 @@ function initReviewActions() {
 }
 
 function initExtraReviewActions() {
+    /* Inline actions that should trigger a XHR and modify the form element
+     * accordingly.
+     */
+    // Checkbox-style actions.
     $('#notify_new_listed_versions').click(_pd(function() {
         var $input = $(this);
         $input.prop('disabled', true);  // Prevent double-send.
@@ -220,6 +224,7 @@ function initExtraReviewActions() {
          });
     }));
 
+    // One-off-style buttons
     $('#clear_admin_code_review, #clear_admin_content_review').click(_pd(function() {
         var $button = $(this);
         $button.prop('disabled', true);  // Prevent double-send.
@@ -243,9 +248,10 @@ function initExtraReviewActions() {
          });
     }));
 
-    $('#force_disable_addon, #force_enable_addon').click(_pd(function() {
+    // Toggle-style buttons.
+    $('#force_disable_addon, #force_enable_addon, #disable_auto_approval, #enable_auto_approval').click(_pd(function() {
         var $button = $(this);
-        var $other_button = $('.hidden #force_disable_addon, .hidden #force_enable_addon');
+        var $other_button = $($button.data('toggle-button-selector'));
         $button.prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var token = $button.parents('form.more-actions').data('api-token');

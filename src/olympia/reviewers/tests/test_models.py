@@ -1421,6 +1421,18 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_uses_native_messaging(self.version)
             is True)
 
+    def test_check_has_auto_approval_disabled(self):
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags.update(auto_approval_disabled=True)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1476,6 +1488,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.is_locked is False
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
         }
 
@@ -1491,6 +1504,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1500,6 +1514,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1508,6 +1523,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1516,26 +1532,29 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
-    def test_calculate_verdict_post_review(self):
-        summary = AutoApprovalSummary.objects.create(version=self.version)
+    def test_calculate_verdict_has_auto_approval_disabled(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, has_auto_approval_disabled=True)
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': True,
         }
-        # Regardless of the many flags that are set, it's approved because we
-        # are in post-review mode.
-        assert summary.verdict == amo.AUTO_APPROVED
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'is_locked': True,
+            'has_auto_approval_disabled': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
+            u'Has auto-approval disabled flag set.',
             u'Is locked by a reviewer.',
         ]
 

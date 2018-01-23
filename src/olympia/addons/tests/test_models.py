@@ -19,9 +19,10 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
-    AddonFeatureCompatibility, AddonUser, AppSupport, Category, CompatOverride,
-    CompatOverrideRange, DeniedGuid, DeniedSlug, FrozenAddon,
-    IncompatibleVersions, Persona, Preview, track_addon_status_change)
+    AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
+    Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
+    FrozenAddon, IncompatibleVersions, Persona, Preview,
+    track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
@@ -1428,6 +1429,42 @@ class TestAddonModels(TestCase):
 
         user = UserProfile.objects.get(pk=2519)
         assert not addon.has_author(user)
+
+    def test_auto_approval_disabled_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_disabled is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_disabled is False
+        assert addon.auto_approval_disabled is False
+        # Flag present, value is True: True.
+        flags.update(auto_approval_disabled=True)
+        assert addon.auto_approval_disabled is True
+
+    def test_needs_admin_code_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_code_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_code_review is False
+        assert addon.needs_admin_code_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_code_review=True)
+        assert addon.needs_admin_code_review is True
+
+    def test_needs_admin_content_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_content_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_content_review is False
+        assert addon.needs_admin_content_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_content_review=True)
+        assert addon.needs_admin_content_review is True
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):
