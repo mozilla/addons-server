@@ -11,6 +11,7 @@ from django.utils.http import urlunquote
 
 import waffle
 
+from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -2295,6 +2296,29 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
+
+    def test_es_queries_made_no_results(self):
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(self.url, data={'q': 'foo'})
+            assert data['count'] == 0
+            assert len(data['results']) == 0
+            assert search_mock.call_count == 1
+
+    def test_es_queries_made_some_result(self):
+        addon_factory(slug='foormidable', name=u'foo')
+        addon_factory(slug='foobar', name=u'foo')
+        self.refresh()
+
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(
+                self.url, data={'q': 'foo', 'page_size': 1})
+            assert data['count'] == 2
+            assert len(data['results']) == 1
+            assert search_mock.call_count == 1
 
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
