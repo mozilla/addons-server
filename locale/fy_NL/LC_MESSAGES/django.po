@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-22 15:07+0000\n"
+"PO-Revision-Date: 2018-01-23 08:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3621,7 +3621,7 @@ msgid "Select a header image for your Theme."
 msgstr "Selektearje in headerôfbylding foar jo tema."
 
 msgid "required"
-msgstr ""
+msgstr "fereaske"
 
 msgid "Image height should be 200 pixels"
 msgstr "Ofbyldingshichte moat 200 pixels wêze"
@@ -4422,7 +4422,7 @@ msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tsientallen geweldige emoji’s – altyd fia ien mûsklik."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Kin gjin diff fan in ferzje tsjin himsels meitsje"
 
 msgid "Access your data for {name}"
 msgstr "Jo gegevens foar {name} benaderje"
@@ -4434,20 +4434,20 @@ msgid "Access your data for all websites"
 msgstr "Jo gegevens foar alle websites benaderje"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Foar Firefox 47 en leger is in GUID ferplicht."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Kin min/maks ferzje net fine. Miskien befettet ‘strict_min_version’ of ‘strict_max_version’  in net-stipe ferzje?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Kin opladen bestân net útpakke."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -4455,7 +4455,7 @@ msgstr "Unjildige bestânsnamme yn argyf. Soargje derfoar dat alle bestânsnamme
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Unjildige bestânsnamme yn argyf: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
