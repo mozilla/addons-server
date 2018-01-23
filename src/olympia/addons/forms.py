@@ -119,8 +119,6 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_name(self):
-        # TODO: This should be handled a bit cleaner in `TranslationFormMixin`
-        # but let's see if this actually works...
         data = self.cleaned_data.copy()
         user = getattr(self.request, 'user', None)
 
