@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 08:00+0000\n"
+"PO-Revision-Date: 2018-01-23 10:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4458,26 +4458,26 @@ msgid "Invalid file name in archive: {0}"
 msgstr "Unjildige bestânsnamme yn argyf: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Te grut bestân yn argyf: {0}"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Unjildich argyf."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Kin it manifest-bestân net ferwurkje."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Kin add-on-ID net fine."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "De add-on-ID yn jo manifest.json of install.rdf (%s) komt net oerien mei de ID fan jo add-on op AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Dûbele add-on-ID fûn."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
