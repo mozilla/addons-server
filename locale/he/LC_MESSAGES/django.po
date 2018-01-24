@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-08 09:21+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-01-24 10:30+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -3305,10 +3305,10 @@ msgid "Yes, as long as they share alike"
 msgstr ""
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "מעניק הרישיון מתיר לאחרים להפיץ יצירות נגזרות תחת אותו הרישיון או רישיון שתואם לזה שחל על היצירה של מעניק הרישיון."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "מעניק הרישיון מתיר לאחרים להעתיק, להפיץ ולהעביר גרסאות ללא שינוי של היצירה — לא נגזרות שמבוססות עליה."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "התוספת שלך תופץ תחת הרישיון הבא:"
@@ -3775,7 +3775,7 @@ msgid "Add-on Multi Process Status:"
 msgstr ""
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "תאימות התוספת שלך ל־Firefox עם תמיכה בריבוי תהליכים (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3795,7 +3795,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "זוהי הגרסה העדכנית ביותר שהוגשה, עם זאת, אינה זמינה באתר עדיין."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "התורים אינם נסקרים בדיוק לפי הסדר"
 
 msgid "Queue Position:"
 msgstr "מיקום בתור:"
