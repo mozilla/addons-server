@@ -15,6 +15,7 @@ def get_results(response):
 
 
 @pytest.mark.es_test
+@pytest.mark.django_db
 def test_score_boost_name_match(es_search, api_client):
     url = reverse('addon-search')
 
@@ -59,12 +60,14 @@ def test_score_boost_name_match(es_search, api_client):
 
 
 @pytest.mark.es_test
+@pytest.mark.django_db
 def test_score_boost_name_match_slop(es_search, api_client):
     addon = amo.tests.addon_factory(
         name='Merge all Windows', type=amo.ADDON_EXTENSION,
         average_daily_users=0, weekly_downloads=0)
 
     es_search.indices.refresh()
+
     url = reverse('addon-search')
 
     # direct match
@@ -75,6 +78,7 @@ def test_score_boost_name_match_slop(es_search, api_client):
 
 
 @pytest.mark.es_test
+@pytest.mark.django_db
 def test_score_boost_exact_match(es_search, api_client):
     """Test that we rank exact matches at the top."""
     addons = [
@@ -99,6 +103,7 @@ def test_score_boost_exact_match(es_search, api_client):
 
 
 @pytest.mark.es_test
+@pytest.mark.django_db
 def test_score_boost_exact_match_description_hijack(es_search, api_client):
     """Test that we rank exact matches at the top."""
     addons = [

@@ -1,4 +1,5 @@
 from django import http, test
+from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
 
@@ -40,8 +41,8 @@ def mock_elasticsearch():
     stop_es_mocks()
 
 
-@pytest.fixture
-def es_search(db, settings):
+@pytest.fixture()
+def es_search():
     stop_es_mocks()
 
     es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
