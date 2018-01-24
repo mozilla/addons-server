@@ -20,6 +20,7 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
+from olympia.landfill.user import generate_user
 from olympia.files.tests.test_helpers import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -39,6 +40,37 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(10):
             AddonUser.objects.create(
                 user=user_factory(), addon=addon_factory())
+
+    def create_named_addon_with_author(self, name, author=None):
+        """Create a generic addon and a user.
+
+        The user will be created if a user is not given.
+
+        """
+
+        if author is None:
+            author = user_factory()
+        try:
+            generate_user(author)
+        except Exception:  # django.db.utils.IntegrityError
+            # If the user is already made, use that same user,
+            # if not use created user
+            addon = addon_factory(
+                status=STATUS_PUBLIC,
+                users=[UserProfile.objects.get(username=author)],
+                name=u'{}'.format(name),
+                slug='{}'.format(name),
+            )
+            addon.save()
+        else:
+            addon = addon_factory(
+                status=STATUS_PUBLIC,
+                users=[UserProfile.objects.get(username=author.username)],
+                name=u'{}'.format(name),
+                slug='{}'.format(name),
+            )
+            addon.save()
+        return addon
 
     def create_featured_addon_with_version(self):
         """Creates a custom addon named 'Ui-Addon'.
@@ -199,6 +231,17 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(status=STATUS_PUBLIC, type=ADDON_PERSONA)
             generate_collection(addon, app=FIREFOX)
 
+    def create_a_named_collection_and_addon(self, name, author):
+        """Creates a collection with a name and author."""
+
+        generate_collection(
+            self.create_named_addon_with_author(name, author=author),
+            app=FIREFOX,
+            author=UserProfile.objects.get(username=author),
+            type=amo.COLLECTION_FEATURED,
+            name=name
+        )
+
     def create_installable_addon(self):
         activate('en-US')
 
@@ -241,3 +284,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # And let's create a new version for that upload.
             create_version_for_upload(
                 upload.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+
+            # Change status to public
+            addon.update(status=amo.STATUS_PUBLIC)

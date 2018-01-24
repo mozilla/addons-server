@@ -259,6 +259,7 @@ def add_api_token_to_response(response, user):
     response.set_cookie(
         API_TOKEN_COOKIE,
         token,
+        domain=settings.SESSION_COOKIE_DOMAIN,
         max_age=settings.SESSION_COOKIE_AGE,
         secure=settings.SESSION_COOKIE_SECURE,
         httponly=settings.SESSION_COOKIE_HTTPONLY)

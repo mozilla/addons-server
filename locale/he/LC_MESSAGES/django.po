@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-17 14:53+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"PO-Revision-Date: 2018-01-08 09:21+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid "You are already logged in."
 msgstr "כבר נכנסת."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "לא ניתן לפענח את נסיון הכניסה שלך. נא לנסות שוב."
+msgstr "לא ניתן לפענח את נסיון ההתחברות שלך. נא לנסות שוב."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
@@ -1394,7 +1394,7 @@ msgid "Create a Collection"
 msgstr "יצירת אוסף"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "אוספים מקלים על מעקב אחר תוספות מועדפות, ומאפשרים לשתף את הדפדפן המותאם אישית שלך עם אחרים."
 
 msgid "Collection Icon"
 msgstr "צלמית אוסף"
@@ -1487,7 +1487,7 @@ msgid "Weekly Downloads"
 msgstr "הורדות בשבוע"
 
 msgid "Up & Coming"
-msgstr "בקרוב"
+msgstr ""
 
 msgid "Recently Added"
 msgstr "נוספו לאחרונה"
@@ -1631,7 +1631,7 @@ msgid "Complete Themes by Name"
 msgstr "ערכות נושא שלמות לפי שם"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "ערכות נושא שלמות לפי הורדות שבועיות"
+msgstr "ערכות נושא שלמות לפי מספר הורדות בשבוע"
 
 msgid "Recently Updated Complete Themes"
 msgstr "ערכות נושא שלמות שעודכנו לאחרונה"
@@ -1800,10 +1800,10 @@ msgid "{addon} status changed to {0}."
 msgstr "המצב של {addon} השתנה ל־{0}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "הגרסה {version} נוספה אל {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "הגרסה {version} נערכה עבור {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
@@ -1819,7 +1819,7 @@ msgid "{addon} {version} approved."
 msgstr ""
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "לתוספת {addon} {version} ניתנה סקירה ראשונית."
 
 msgid "Preliminarily approved"
 msgstr "לאחר אישור טרומי"
@@ -1936,7 +1936,7 @@ msgid "Password changed."
 msgstr "הססמה שונתה."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} אושרה אך היא עדיין בהמתנה לפרסום ציבורי."
 
 msgid "Approved but waiting"
 msgstr "עבר אישור אך בהמתנה"
@@ -1991,19 +1991,19 @@ msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "תגובה לפי מפתח על {addon} {version}."
 
 msgid "Developer Reply"
 msgstr "תגובת המפתח"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "תגובה לפי סוקר על {addon} {version}."
 
 msgid "Reviewer Reply"
 msgstr "תגובת הסוקר"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "הערות האישור השתנו עבור {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr "הערות האישור השתנו"
@@ -2015,10 +2015,10 @@ msgid "Source code uploaded"
 msgstr "קוד מקור הועלה"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "אומת אישור אוטומטי עבור {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "אומת אישור אוטומטי"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -2462,13 +2462,13 @@ msgid "Updated Search Provider Review"
 msgstr "סקירת ספק חיפוש מעודכנת"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה חדשה"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה ראשונית"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "סקירת ערכת נושא שלמה מעודכנת"
 
 msgid "Moderated Add-on Review"
 msgstr ""
@@ -2801,7 +2801,7 @@ msgstr "הגרסה %s נמחקה."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr "הגרסה %s הופעלה מחדש."
+msgstr "הגרסה %s אופשרה מחדש."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -3078,7 +3078,7 @@ msgid "Categories cannot be changed while your add-on is featured. Please email 
 msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "תגים מסייעים למשתמשים למצוא את התוספת שלך ואמורים להיות תיאורים קצרים כגון: tabs‏, toolbar או twitter. מותר להשתמש ב־{0} תגים לכל היותר."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3792,7 +3792,7 @@ msgid "Next Listed Version:"
 msgstr ""
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "זוהי הגרסה העדכנית ביותר שהוגשה, עם זאת, אינה זמינה באתר עדיין."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
@@ -5237,7 +5237,7 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם היא שלילית?"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "לא. איננו מסירים סקירות שליליות מתוספות אלא אם כן הן שגויות."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם אינה מדויקת?"
@@ -5270,10 +5270,10 @@ msgid "Open Source Initiative provides the terms of some of the key open source 
 msgstr ""
 
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "השוואה בין רישיונות קוד פתוח נפוצים בוויקיפדיה."
 
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "אתר שמספק הדרכה בלתי שיפוטית על בחירת רישיון למיזם הקוד הפתוח שלך."
 
 msgid "Frequently Asked Questions"
 msgstr "תשובות לשאלות נפוצות"
@@ -5316,7 +5316,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">ערכות נושא שלמות</a></strong> משנות את כל התצוגה של %(app_name)s, בדרך כלל לרבות סמלים, צבעים, תיבות דו־שיח וסגנונות חזותיים אחרים."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -5344,7 +5344,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "איך אוכל לשמור על התוספות שלי עדכניות?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "כל יום מתבצעת בדיקה לאיתור עדכונים לתוספות. ב־Firefox העדכונים מותקנים אוטומטית כברירת מחדל. "
 
 msgid "Are add-ons safe to install?"
 msgstr "האם בטוח להתקין תוספות?"
@@ -5431,7 +5431,7 @@ msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr "תוספות שמתארחות בגלריה שלנו הן בחינם אלמלא צוין אחרת באופן מפורש."
 
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "מה הכוונה בכך שתוספת מבקשת תרומות?"
 
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
@@ -5478,7 +5478,7 @@ msgstr ""
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "‏Firefox ותוכנות אחרות מבית Mozilla הן <a href=\"%(url)s\">קוד פתוח</a>."
 
 msgid "Collections and Favorites"
 msgstr "אוספים ומועדפים"
@@ -5600,7 +5600,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "איך ניתן לדווח על סקירה בעייתית?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -5621,9 +5621,11 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
+"באופן כללי, לא. אבל אם הסקירה אינה עומדת בקווים המנחים שמופיעים לעיל, ניתן ללחוץ על „דיווח על סקירה זו” כדי שתיבדק. אם סקירה כוללת תלונה שאינה תקפה עוד בזכות מהדורה חדשה של התוספת שלך, אנו עשויים "
+"לשקול להסיר את הסקירה."
 
 msgid "Start Now"
-msgstr ""
+msgstr "להתחיל כעת"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -5638,25 +5640,25 @@ msgid "We may add security and plugin control features to Firefox to help with o
 msgstr "אנו עשויים להוסיף תכונות בקרת אבטחה ותוספים חיצוניים ל־Firefox כדי לסייע באבטחה מקוונת ובביצועים."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "ניתן להמשיך להשתמש ב־Firefox כרגיל. בהתאם לאופן השימוש שלך באינטרנט, יתכן שלא תבחין בשינויים כלשהם."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "לאחר מספר שבועות, המחקר יסתיים באופן עצמאי. ה־Firefox שלך יחזור לקדמותו."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "אנו נבקש ממך למלא סקר כרשות כדי לספר לנו על החוויה שלך. השלמת הסקר אמורה לארוך עד 5 דקות."
 
 msgid "Leaving the study"
 msgstr "עזיבת המחקר"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "המחקר יפוג באופן עצמאי בעוד מספר שבועות. יש לך אפשרות לעזוב את המחקר לפני כן. כדי לעזוב, יש לעקוב אחר הצעדים הבאים:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "יש להקליד about:addons בסרגל המיקום וללחוץ על enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "ברשימת התוספות יש לאתר את Plugin Safety."
 
 msgid "Click the remove button."
 msgstr "יש ללחוץ על לחצן ההסרה."
@@ -5665,7 +5667,7 @@ msgid "If you opt out of the study early we will ask you to fill out a survey. W
 msgstr ""
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "עזיבת מחקר אינה מונעת ממך להשתתף במחקרים עתידיים."
 
 msgid "Your privacy"
 msgstr "הפרטיות שלך"
@@ -5697,7 +5699,7 @@ msgstr ""
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "באפשרותך ללמוד עוד על איסוף נתונים למחקר זה <a href=\"%(url)s\">כאן</a>."
 
 msgid "You Help Make Firefox Better"
 msgstr ""
@@ -6078,10 +6080,10 @@ msgid "Last Content Review"
 msgstr "סקירת התוכן האחרונה"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תאשר, תחתום ותפיץ את הגרסה הזאת. ההערות תישלחנה אל המפתח."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תדחה את הגרסה הזאת ותסיר אותה מהתור. ההערות תישלחנה אל המפתח."
 
 msgid "Confirm Approval"
 msgstr "אימות האישור"
@@ -6095,7 +6097,7 @@ msgid "Reject Multiple Versions"
 msgstr "דחיית גרסאות מרובות"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "פעולה זו תדחה את הגרסאות הציבוריות שנבחרו. ההערות תישלחנה אל המפתח."
 
 msgid "Reviewer reply"
 msgstr "תגובת הסוקר"
@@ -6423,7 +6425,7 @@ msgstr "היסטוריית התוספת"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "גרסה %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr ""
@@ -7220,7 +7222,7 @@ msgstr "ניתן לבחור מבין אלפי תכונות וסגנונות נו
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "הוספת תכונות וסגנונות נוספים כדי להתאים את %(app)s לטעמך."
 
 msgid "On the go?"
 msgstr "בדרכים?"
@@ -7318,13 +7320,13 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr ""
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "מישהו כותב סקירה על התוספת שלי"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "לא ניתן לשדרג את התאימות של התוספת שלי"
 
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
@@ -7475,7 +7477,7 @@ msgid "all"
 msgstr "הכל"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "‏Mozilla Add-ons עבר ל־Firefox Accounts לצורך התחברות. יש להמשיך כדי להשלים את תהליך ההתחברות."
 
 msgid "User Login"
 msgstr "כניסת משתמש"
@@ -7521,7 +7523,7 @@ msgid "Themes I've created"
 msgstr "ערכות נושא שיצרתי"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "ברשימת המעקב שלי"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

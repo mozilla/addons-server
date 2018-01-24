@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2018-01-07 18:37+0000\n"
-"Last-Translator: Lovegaming <contact@lovegaming.net>\n"
+"PO-Revision-Date: 2018-01-23 00:29+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -22,18 +22,18 @@ msgstr[1] "{0} steluțe"
 msgstr[2] "{0} de steluțe"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "A apărut o problemă la contactarea serverului."
 
 msgid "Select a file..."
 msgstr "Selectează un fișier..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Suplimentul ar trebui să aibă extensia .zip, .xpi, .crx, .jar sau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% complet"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -53,9 +53,9 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suplimentul tău a eșuat validarea cu {0} eroare."
+msgstr[1] "Suplimentul tău a eșuat validarea cu {0} erori."
+msgstr[2] "Suplimentul tău a eșuat validarea cu {0} de erori."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -64,25 +64,25 @@ msgstr[1] "&hellip;și încă {0}"
 msgstr[2] "&hellip;și încă {0}"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Vezi raportul de validare întreg"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Se validează {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Suplimentul tău depășește dimensiunea maximă de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "S-a primit un răspuns gol de la server; stare: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Eroare de server neașteptată în timpul validării."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "S-a terminat validarea {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Validarea suplimentului tău a depășit timpul acordat, acesta va fi verificat manual."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -103,10 +103,10 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Actualizare WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Acceptăm și încurajăm actualizările dar procesul este ireversibil. Odată ce utilizatorii tăi au instalat WebExtension, nu vor mai putea instala un supliment învechit."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
@@ -432,11 +432,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Descărcări și utilizatori zilnici, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Descărcări și utilizatori zilnici din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -616,7 +616,7 @@ msgstr ""
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> în ultimele {1} zile"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -624,7 +624,7 @@ msgstr ""
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> în medie în ultimele {1} zile"
 
 msgid "No data available."
 msgstr ""
@@ -814,7 +814,7 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Numărul de recenzii"
 
 msgid "Requested Info"
 msgstr ""

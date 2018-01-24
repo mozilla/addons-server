@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2017-11-29 07:47+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2018-01-21 02:03+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1034,7 +1034,7 @@ msgid "This slug cannot be used."
 msgstr "Tuto URL nelze použít."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Tento doplněk už ve sbírce je"
 
 msgid "Name"
 msgstr "Jméno"
@@ -1861,7 +1861,7 @@ msgid "{addon} removed from {collection}."
 msgstr "Doplněk {addon} byl odebrán ze sbírky {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "K doplňku {addon} bylo přidáno hodnocení {rating}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1895,16 +1895,16 @@ msgid "{addon} icon changed."
 msgstr "Ikonka doplňku {addon} byla změněna."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "Hodnocení {rating} pro doplněk {addon} bylo schváleno."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "Uživatel {user} schválil hodnocení {rating} pro doplněk {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Hodnocení {rating} bylo pro {addon} smazáno."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "Uživatel {user} smazal hodnocení {rating} pro doplněk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Maximální verze aplikace byla pro verzi {version} aktualizována."
@@ -1949,7 +1949,7 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrátor {0} si zobrazil log aktivity u uživatele {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "Hodnocení {rating} pro doplněk {addon} bylo aktualizováno."
 
 msgid "{addon} reviewed."
 msgstr "Doplněk {addon} byl zkontrolován."
@@ -2753,7 +2753,7 @@ msgstr "Přidávání tohoto typu doplňku není povoleno"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
@@ -3010,6 +3010,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
 "make any changes</li> </ul>"
 msgstr ""
+"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> "
+"<li><b>Vývojář:</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání ostatních autorů</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, "
+"ale nemůže dělat žádné změny</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Základní informace"
@@ -3544,7 +3547,7 @@ msgid "Version Submitted for Review"
 msgstr "Verze odeslaná ke kontrole"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Hotovo! Tato verze bude k dispozici po její kontrole. O jejím dokončení vás budeme informovat."
 
 msgid "Version Submitted"
 msgstr "Verze odeslána"
@@ -3556,7 +3559,7 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "A je to! Tato verze byla odeslána ke kontrole. Jakmile bude kontrola dokončena, nebo v případě otázek našich redaktorů, obdržíte e-mail."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný popis. Připravte svůj záznam k publikaci:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný popis a snímky obrazovky. Připravte svůj záznam k publikaci:"
@@ -3622,10 +3625,10 @@ msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
 msgid "Create a Theme Version"
-msgstr ""
+msgstr "Vytvořit verzi motivu"
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Vytvořit nový motiv"
 
 msgid "Submit File"
 msgstr "Odeslat soubor"
@@ -3634,10 +3637,10 @@ msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Vygenerovat motiv"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "Generátor motivů"
 
 msgid "Select a header image for your Theme."
 msgstr "Zvolte obrázek hlavičky pro váš motiv."
@@ -3646,10 +3649,10 @@ msgid "required"
 msgstr "vyžadováno"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Výška obrázku by měla být 200 pixelů"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG nebo GIF (neanimovaný)"
 
 msgid "Aligned to top-right"
 msgstr "Zarovnána doprava nahoru"
@@ -3661,55 +3664,55 @@ msgid "Select colors for your Theme."
 msgstr "Zvolte barvy pro váš motiv."
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "Pozadí hlavičky (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "Barva pozadí v oblasti hlavičky, která se zobrazí v částech hlavičky, které nejsou překryty obrázkem v záhlaví."
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "Text v oblasti hlavičky (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "Barva textu zobrazeného v oblasti hlavičky."
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "Pozadí nástrojových lišt (toolbar)."
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "Barva pozadí listy záložek, navigační lišty a vybraného panelu."
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "Text v nástrojových lištách (toolbar_text)."
 
 msgid "The color of toolbar text."
-msgstr ""
+msgstr "Barva textu v nástrojových lištách."
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "Pozadí polí v nástrojových lištách (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Barva pozadí polí v nástrojových lištách. Určuje například barvu pozadí adresního řádku."
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "Text v polích adresního řádku (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Barva textu v polích na nástrojových lištách. Určuje například barvu textu v adresním řádku."
 
 msgid "optional"
-msgstr ""
+msgstr "volitelné"
 
 msgid "Browser Preview"
-msgstr ""
+msgstr "Náhled v prohlížeči"
 
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Nahrávání motivu"
 
 msgid "Upload Theme"
-msgstr ""
+msgstr "Nahrát motiv"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -4420,10 +4423,10 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Rychlý a efektivní blokovač reklam. uBlock Origin upravuje stránku pomocí tisíců filtrů bez toho, aby plýtval vaší pamětí."
 
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Spravujte hesla {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Zjednodušte si přihlašování k různým webovým stránkám. Jedno heslo vládne všem, jedno jim všem káže."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -6034,7 +6037,7 @@ msgid "Search by add-on name / author email"
 msgstr "Hledat dle jména doplňku / e-mailu autora"
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "Čeká na kontrolu kódu administrátorem"
 
 msgid "yes"
 msgstr "ano"
@@ -6064,10 +6067,10 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr "Upozornit mě příště, když je doplněk aktualizován. (Následné aktualizace nebudou generovat e-mail)"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Vymazat příznak kontroly kódu administrátorem"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Vymazat příznak kontroly obsahu recenze administrátorem"
 
 msgid "Is more info requested?"
 msgstr "Vyžadováno více informací?"
@@ -6087,7 +6090,7 @@ msgid "theme, reviewer, or comment"
 msgstr "aplikace, recenze nebo komentář"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Soukromé poznámky"
 
 msgid "Keep review; remove flags"
 msgstr "Ponechat recenzi; odstranit nahlášení"
@@ -6096,7 +6099,7 @@ msgid "Skip for now"
 msgstr "Nyní neřešit"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Čeká na kontrolu obsahu administrátorem"
 
 msgid "Jetpack Add-on"
 msgstr "Doplněk postavený na Jetpacku"
@@ -6188,9 +6191,8 @@ msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentá�
 msgid "Confirm Approval"
 msgstr "Potvrdit schválení"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
+msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Tímto označíte verzi jako vámi schválenou bez toho, aby byl vývojář upozorněn."
 
 msgid "Reject Multiple Versions"
 msgstr "Odmítnout více verzí"
@@ -6216,18 +6218,17 @@ msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
 msgid "Approve Content"
 msgstr "Schválit obsah"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
+msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
 msgid "Legacy Add-ons"
-msgstr ""
+msgstr "Zastaralé doplňky"
 
 msgid "New Add-ons ({0})"
-msgstr ""
+msgstr "Nové doplňky ({0})"
 
 msgid "Add-on Updates ({0})"
-msgstr ""
+msgstr "Aktualizace doplňků ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Seznam kontrol doplňků"
@@ -6235,16 +6236,14 @@ msgstr "Seznam kontrol doplňků"
 msgid "Signed Beta Files Log"
 msgstr "Žurnál podepsaných beta souborů"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "Příručka recenzenta"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Automaticky schválené doplňky ({0})"
 
 msgid "Content Review"
 msgstr "Kontrola obsahu"
@@ -6256,34 +6255,34 @@ msgstr[1] "{0} kontroly obsahu"
 msgstr[2] "{0} kontrol obsahu"
 
 msgid "New Themes ({0})"
-msgstr ""
+msgstr "Nové motivy vzhledu ({0})"
 
 msgid "Themes Updates ({0})"
-msgstr ""
+msgstr "Aktualizace motivů vzhledu ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr ""
+msgstr "Označené motivy vzhledu ({0})"
 
 msgid "Themes Review Log"
-msgstr ""
+msgstr "Záznam kontroly motivů vzhledu"
 
 msgid "Deleted Themes Log"
-msgstr ""
+msgstr "Záznam smazaných motivů"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderování uživatelských hodnocení"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Hodnocení, které je třeba moderovat ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Seznam moderovaných recenzí"
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "Příručka moderátora"
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Neveřejné doplňky"
 
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
@@ -6350,7 +6349,7 @@ msgid "Abuse Reports ({num})"
 msgstr "Nahlášená zneužití ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Špatná uživatelská hodnocení ({num})"
 
 msgid "More about this add-on"
 msgstr "Více o doplňku"
@@ -6362,7 +6361,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Zpět na nástěnku s nástroji redaktora"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6566,10 +6565,10 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Poznámka pro redaktora je místo, kde si mohou vývojář a redaktor vyměňovat informace relevantní pro doplněk (bez ohledu na verzi). Poznámka je viditelná a upravitelná oběma."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Soukromé poznámky lze použít k výměně informací, které nejsou závislé na verzi, mezi jednotlivými kontrolory. Buďte prosím objektivní. Viditelné pouze ostatním kontrolorům."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Aktualizovat poznámky"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6941,7 +6940,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Je-li identifikátor GUID doplňku delší než 64 znaků, specifikujte jej prosím v manifestu."
 
 msgid "Invalid GUID in URL"
 msgstr "Neplatný identifikátor GUID v adrese URL"

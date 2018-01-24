@@ -43,11 +43,15 @@ class TestUserProfile(TestCase):
         assert not user.is_developer
 
     def test_delete(self):
-        u = UserProfile.objects.get(id='4043307')
-        assert u.email == 'jbalogh@mozilla.com'
-        u.delete()
-        x = UserProfile.objects.get(id='4043307')
-        assert x.email is None
+        user = UserProfile.objects.get(pk=4043307)
+        assert user.email == 'jbalogh@mozilla.com'
+        assert user.auth_id is not None
+        old_auth_id = user.auth_id
+        user.delete()
+        user = UserProfile.objects.get(pk=4043307)
+        assert user.email is None
+        assert user.auth_id
+        assert user.auth_id != old_auth_id
 
     def test_groups_list(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')

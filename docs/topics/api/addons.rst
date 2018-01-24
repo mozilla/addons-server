@@ -490,3 +490,35 @@ This endpoint returns a list of suggested replacements for legacy add-ons that a
     :>json array results: An array of replacements matches.
     :>json string results[].guid: The extension identifier of the legacy add-on.
     :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.
+
+
+---------------
+Compat Override
+---------------
+
+.. _addon-compat-override:
+
+This endpoint allows compatibility overrides specified by AMO admins to be searched.
+Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
+
+.. http:get:: /api/v3/addons/compat-override/
+
+    :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified.
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of compat overrides.
+    :>json int|null results[].addon_id: The add-on identifier on AMO, if specified.
+    :>json string results[].addon_guid: The add-on extension identifier.
+    :>json string results[].name: A description entered by AMO admins to describe the override.
+    :>json array results[].version_ranges: An array of affected versions of the add-on.
+    :>json string results[].version_ranges[].addon_min_version: minimum version of the add-on to be disabled.
+    :>json string results[].version_ranges[].addon_max_version: maximum version of the add-on to be disabled.
+    :>json array string results[].version_ranges[].applications: An array of affected applications for this range of versions.
+    :>json string results[].version_ranges[].applications[].name: Application name (e.g. Firefox).
+    :>json int results[].version_ranges[].applications[].id: Application id on AMO.
+    :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
+    :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
+    :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.

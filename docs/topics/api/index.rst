@@ -41,6 +41,7 @@ using the API.
    discovery
    download_sources
    reviews
+   reviewers
    signing
    stats
    github

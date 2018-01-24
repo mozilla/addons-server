@@ -339,6 +339,34 @@ class TestManifestJSONExtractor(TestCase):
             # We set `strictCompatibility` in install.rdf
             assert parsed['strict_compatibility']
 
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_mozilla_trademark_disallowed(self, resolve_message):
+        resolve_message.return_value = 'Notify Mozilla'
+
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        fixture = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            with pytest.raises(forms.ValidationError) as exc:
+                utils.parse_xpi(file_obj.file_path)
+                assert dict(exc.value.messages)['en-us'].startswith(
+                    u'Add-on names cannot contain the Mozilla or'
+                )
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_mozilla_trademark_for_prefix_allowed(self, resolve_message):
+        resolve_message.return_value = 'Notify for Mozilla'
+
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        fixture = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            utils.parse_xpi(file_obj.file_path)
+
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
         WebExtensions are allowed to omit `applications[/gecko]` and we

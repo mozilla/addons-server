@@ -374,6 +374,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.homepage = ""
             self.deleted = True
             self.picture_type = ""
+            self.auth_id = generate_auth_id()
             self.save()
 
     def set_unusable_password(self):

@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Coalesce, Func
+from django.db.models.functions import Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -387,7 +387,7 @@ class ReviewerSubscription(ModelBase):
 
 
 def send_notifications(signal=None, sender=None, **kw):
-    if sender.is_beta:
+    if sender.is_beta or sender.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
     subscribers = sender.addon.reviewersubscription_set.all()
@@ -402,7 +402,6 @@ def send_notifications(signal=None, sender=None, **kw):
             acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
         if is_reviewer:
             subscriber.send_notification(sender)
-        subscriber.delete()
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')

@@ -6,11 +6,11 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona, Preview,
-    ReplacementAddon)
+    Addon, AddonCategory, AddonUser, Category, CompatOverride,
+    CompatOverrideRange, Persona, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
-    ESAddonAutoCompleteSerializer, ESAddonSerializer,
+    CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
     LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
     VersionSerializer)
@@ -1101,3 +1101,144 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_PUBLIC)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
+
+
+class TestCompatOverrideSerializer(TestCase):
+
+    def serialize(self, override):
+        serializer = CompatOverrideSerializer()
+        return serializer.to_representation(override)
+
+    def test_linked_addon(self):
+        addon = addon_factory(guid='extrabad@thing')
+        override = CompatOverride.objects.create(
+            name='override with addon', guid=addon.guid, addon=addon)
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id)
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'extrabad@thing'
+        assert result['addon_id'] == addon.id
+        assert result['name'] == 'override with addon'
+        version_range = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert result['version_ranges'] == [version_range]
+
+    def test_no_addon(self):
+        override = CompatOverride.objects.create(
+            name='override', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id)
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override'
+        version_range = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert result['version_ranges'] == [version_range]
+
+    def test_multiple_ranges(self):
+        override = CompatOverride.objects.create(
+            name='override with multiple ranges', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id, min_version='23.4',
+            max_version='56.7.*')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.THUNDERBIRD.id, min_app_version='1.35',
+            max_app_version='90.*')
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override with multiple ranges'
+        assert len(result['version_ranges']) == 2
+        version_range_firefox = {
+            'addon_min_version': '23.4',
+            'addon_max_version': '56.7.*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert version_range_firefox in result['version_ranges']
+        version_range_thunderbird = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.THUNDERBIRD.pretty,
+                'id': amo.THUNDERBIRD.id,
+                'min_version': '1.35',
+                'max_version': '90.*',
+                'guid': amo.THUNDERBIRD.guid
+            }]
+        }
+        assert version_range_thunderbird in result['version_ranges']
+
+    def test_collapsed_ranges(self):
+        """Collapsed ranges are where there is a single version range of
+        affected addons, but multiple applications affected."""
+        override = CompatOverride.objects.create(
+            name='override with single version range', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id,
+            min_version='23.4', max_version='56.7.*')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.THUNDERBIRD.id,
+            min_version='23.4', max_version='56.7.*',
+            min_app_version='1.35', max_app_version='90.*')
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override with single version range'
+        assert len(result['version_ranges']) == 1
+        assert result['version_ranges'][0]['addon_min_version'] == '23.4'
+        assert result['version_ranges'][0]['addon_max_version'] == '56.7.*'
+        applications = result['version_ranges'][0]['applications']
+        assert len(applications) == 2
+        application_firefox = {
+            'name': amo.FIREFOX.pretty,
+            'id': amo.FIREFOX.id,
+            'min_version': '0',
+            'max_version': '*',
+            'guid': amo.FIREFOX.guid
+        }
+        assert application_firefox in applications
+        application_thunderbird = {
+            'name': amo.THUNDERBIRD.pretty,
+            'id': amo.THUNDERBIRD.id,
+            'min_version': '1.35',
+            'max_version': '90.*',
+            'guid': amo.THUNDERBIRD.guid
+        }
+        assert application_thunderbird in applications

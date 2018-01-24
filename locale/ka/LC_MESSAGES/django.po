@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-14 08:24+0000\n"
+"PO-Revision-Date: 2018-01-19 14:44+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -834,7 +834,7 @@ msgid "Add-ons for Mobile"
 msgstr "დამატებები მობილურისთვის"
 
 msgid "Dictionaries & Language Packs"
-msgstr "ლექსიკონები & ენის პაკეტები"
+msgstr "ლექსიკონები და ენის პაკეტები"
 
 msgid "Search Tools"
 msgstr "ძიების ხელსაწყოები"
@@ -2082,7 +2082,7 @@ msgid "Download Management"
 msgstr "ჩამოტვირთვების მართვა"
 
 msgid "Feeds, News & Blogging"
-msgstr "სიახლეების არხები & სვეტები"
+msgstr "სიახლეების არხები და სვეტები"
 
 msgid "Games & Entertainment"
 msgstr "თამაშები და გართობა"
@@ -2094,7 +2094,7 @@ msgid "Photos, Music & Videos"
 msgstr "ფოტო, მუსიკა და ვიდეო"
 
 msgid "Privacy & Security"
-msgstr "პირადულობა & უსაფრთხოება"
+msgstr "პირადულობა და უსაფრთხოება"
 
 msgid "Shopping"
 msgstr "ვაჭრობა"
@@ -2175,7 +2175,7 @@ msgid "Business"
 msgstr "საქმიანობა"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "ლექსიკონები & ენციკლოპედიები"
+msgstr "ლექსიკონები და ენციკლოპედიები"
 
 msgid "Kids"
 msgstr "საბავშვო"
@@ -2184,10 +2184,10 @@ msgid "Multiple Search"
 msgstr "გაერთიანებული საძიებოები"
 
 msgid "News & Blogs"
-msgstr "სიახლეები & სვეტები"
+msgstr "სიახლეები და სვეტები"
 
 msgid "Photos & Images"
-msgstr "ფოტო & სურათები"
+msgstr "ფოტო და სურათები"
 
 msgid "Shopping & E-Commerce"
 msgstr "ვაჭრობა და ელკომერცია"
@@ -2202,28 +2202,28 @@ msgid "Video"
 msgstr "ვიდეო"
 
 msgid "Device Features & Location"
-msgstr "მოწყობილობის შესაძლებლობები & ადგილმდებარეობა"
+msgstr "მოწყობილობის შესაძლებლობები და ადგილმდებარეობა"
 
 msgid "Experimental"
 msgstr "საცდელი"
 
 msgid "Feeds, News, & Blogging"
-msgstr "არხები, სიახლეები & სვეტები"
+msgstr "არხები, სიახლეები და სვეტები"
 
 msgid "Performance"
 msgstr "წარმადობა"
 
 msgid "Photos & Media"
-msgstr "ფოტო & მედია"
+msgstr "ფოტო და მედია"
 
 msgid "Security & Privacy"
-msgstr "უსაფრთხოება & პირადულობა"
+msgstr "უსაფრთხოება და პირადულობა"
 
 msgid "Social Networking"
 msgstr "სოციალური ქსელები"
 
 msgid "Sports & Games"
-msgstr "სპორტი & თამაშები"
+msgstr "სპორტი და თამაშები"
 
 msgid "User Interface"
 msgstr "სამომხმარებლო გარემო"
@@ -2920,7 +2920,7 @@ msgid "None"
 msgstr "არცერთი"
 
 msgid "Manage Authors & License"
-msgstr "ავტორების & ლიცენზიის მართვა"
+msgstr "ავტორების და ლიცენზიის მართვა"
 
 msgid "Authors"
 msgstr "ავტორები"
@@ -3323,7 +3323,7 @@ msgid "Statistics"
 msgstr "სტატისტიკური მონაცემები"
 
 msgid "Manage Status & Versions"
-msgstr "მდგომარეობისა & ვერსიების მართვა"
+msgstr "მდგომარეობისა და ვერსიების მართვა"
 
 msgid "View Add-on Listing"
 msgstr "დამატებების ნახვა საიტზე"
@@ -4193,7 +4193,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr "შექმნის თარიღია %(created)s და მდგომარეობა შეცვლილია %(status)s-ით"
 
 msgid "Status & Versions"
-msgstr "მდგომარეობა & ვერსიები"
+msgstr "მდგომარეობა და ვერსიები"
 
 msgid "Edit this version"
 msgstr "ვერსიის ჩასწორება"
@@ -4586,7 +4586,7 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "დააყენეთ ვარჯიშისთვის განკუთვნილი დამატებები, სიჯანსაღისა და ჯანმრთელობის შესანარჩუნებლად."
 
 msgid "New &amp; Now"
-msgstr "ახალი &amp; ახლა"
+msgstr "ახალი და ახლა"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "დააყენეთ ამ დროისთვის უახლესი და აუცილებელი დამატებები."
@@ -4836,7 +4836,7 @@ msgid "Mozilla would like to thank the following people for their contributions 
 msgstr "Mozilla-ს სურს მადლობა გადაუხადოს თითოეულ ამ ადამიანს, addons.mozilla.org პროექტში თავიანთი წვლილის შეტანისთვის, წლების განმავლობაში:"
 
 msgid "Developers &amp; Administrators"
-msgstr "შემმუშავებლები &amp; ადმინისტრატორები"
+msgstr "შემმუშავებლები და ადმინისტრატორები"
 
 msgid "Localizers"
 msgstr "მთარგმნელები"
@@ -4852,7 +4852,7 @@ msgid "Other Contributors"
 msgstr "სხვა შემოწირულობები"
 
 msgid "Past Developers &amp; Administrators"
-msgstr "წინა შემმუშავებლები &amp; ადმინისტრატორები"
+msgstr "წინა შემმუშავებლები და ადმინისტრატორები"
 
 msgid "Software and Images"
 msgstr "პროგრამა და სურათები"
@@ -5306,7 +5306,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">საძიებო სისტე
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">ლექსიკონები & ენის პაკეტები</a></strong> %(app_name)s-ს ამატებს სხვადასხვა ენების მხარდაჭერას."
+msgstr "<strong><a href=\"%(browse_url)s\">ლექსიკონები და ენის პაკეტები</a></strong> %(app_name)s-ს ამატებს სხვადასხვა ენების მხარდაჭერას."
 
 msgid "How do I install, manage, or remove an add-on?"
 msgstr "როგორ უნდა დავაყენო, ვმართო და წავშალო დამატებები?"

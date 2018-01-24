@@ -1,12 +1,16 @@
 import random
 import uuid
 
+from django import forms
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils.translation import ugettext
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
+from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
@@ -92,3 +96,42 @@ def get_creatured_ids(category, lang=None):
     random.shuffle(others)
     random.shuffle(per_locale)
     return map(int, filter(None, per_locale + others))
+
+
+def verify_mozilla_trademark(name, user):
+    skip_trademark_check = (
+        user and user.is_authenticated() and user.email and
+        user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
+
+    def _check(name):
+        name = name.lower()
+        contains_trademark_symbol = any(
+            symbol in name for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
+
+        violates_trademark = (
+            contains_trademark_symbol and not
+            name.endswith(tuple(
+                'for {}'.format(symbol)
+                for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)))
+
+        if violates_trademark:
+            raise forms.ValidationError(ugettext(
+                u'Add-on names cannot contain the Mozilla or '
+                u'Firefox trademarks.'))
+
+    if not skip_trademark_check:
+        errors = LocaleList()
+
+        if not isinstance(name, dict):
+            _check(name)
+        else:
+            for locale, localized_name in name.items():
+                try:
+                    _check(localized_name)
+                except forms.ValidationError as exc:
+                    errors.extend(exc.messages, locale)
+
+        if errors:
+            raise LocaleValidationError(errors)
+
+    return name

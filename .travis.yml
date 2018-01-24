@@ -9,7 +9,7 @@ env:
     - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
     - AUTOGRAPH_SERVER_URL: http://localhost:5500
   matrix:
-  - TOXENV=flake8
+  - TOXENV=codestyle
   - TOXENV=docs
   - TOXENV=assets
   - TOXENV=es

@@ -31,6 +31,10 @@
         initReviewActions();
     }
 
+    if ($('#extra-review-actions').length) {
+        initExtraReviewActions();
+    }
+
     if($('#monthly.highcharts-container').length) {
         initPerformanceStats();
     }
@@ -187,6 +191,78 @@ function initReviewActions() {
         }
     }
     check_receipt();
+}
+
+function initExtraReviewActions() {
+    $('#notify_new_listed_versions').click(_pd(function() {
+        var $input = $(this);
+        $input.prop('disabled', true);  // Prevent double-send.
+        var checked = !$input.prop('checked');  // It's already changed.
+        var apiUrl;
+        if (checked) {
+            apiUrl = $input.data('api-url-unsubscribe');
+        } else {
+            apiUrl = $input.data('api-url-subscribe');
+        }
+        var token = $input.parents('form.more-actions').data('api-token');
+        $.ajax({
+            url: apiUrl,
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $input.prop('disabled', false);
+                $input.prop('checked', !checked)
+            },
+         });
+    }));
+
+    $('#clear_admin_code_review, #clear_admin_content_review').click(_pd(function() {
+        var $button = $(this);
+        $button.prop('disabled', true);  // Prevent double-send.
+        var apiUrl = $button.data('api-url');
+        var token = $button.parents('form.more-actions').data('api-token');
+        var flagType = $button.data('api-flag');
+        $.ajax({
+            url: apiUrl,
+            data: JSON.stringify({
+                flag_type: flagType,
+            }),
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $button.remove();
+            },
+         });
+    }));
+
+    $('#force_disable_addon, #force_enable_addon').click(_pd(function() {
+        var $button = $(this);
+        var $other_button = $('.hidden #force_disable_addon, .hidden #force_enable_addon');
+        $button.prop('disabled', true);  // Prevent double-send.
+        var apiUrl = $button.data('api-url');
+        var token = $button.parents('form.more-actions').data('api-token');
+        $.ajax({
+            url: apiUrl,
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $button.prop('disabled', false).parents('li').addClass('hidden').hide();
+                $other_button.parents('li').removeClass('hidden').show();
+            },
+         });
+    }));
 }
 
 function insertAtCursor(textarea, text) {
