@@ -315,11 +315,11 @@ class TestEditAuthor(TestOwnership):
         # Edit the user we just added.
         user_form = self.client.get(self.url).context['user_form']
         one, two = user_form.initial_forms
-        two.initial['role'] = amo.AUTHOR_ROLE_VIEWER
+        two.initial['role'] = amo.AUTHOR_ROLE_OWNER
         empty = {
             'user': '',
             'listed': True,
-            'role': 5,
+            'role': amo.AUTHOR_ROLE_OWNER,
             'position': 0
         }
         data = self.formset(one.initial, two.initial, empty, initial_count=2)

@@ -289,7 +289,7 @@ def feed(request, addon_id=None):
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
 
-            if not acl.check_addon_ownership(request, addons, viewer=True,
+            if not acl.check_addon_ownership(request, addons, dev=True,
                                              ignore_disabled=True):
                 raise PermissionDenied
         else:

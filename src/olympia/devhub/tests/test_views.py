@@ -392,17 +392,6 @@ class TestDevRequired(TestCase):
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
 
-    def test_viewer_get(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.get(self.get_url).status_code == 200
-        assert self.client.get(self.edit_page_url).status_code == 200
-
-    def test_viewer_post(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.post(self.get_url).status_code == 403
-
     def test_disabled_post_dev(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.post(self.get_url).status_code == 403

@@ -17,8 +17,7 @@ def owner_or_unlisted_reviewer(request, addon):
             # We don't want "admins" here, because it includes anyone with the
             # "Addons:Edit" perm, we only want those with
             # "Addons:ReviewUnlisted" perm (which is checked above).
-            acl.check_addon_ownership(request, addon, admin=False, dev=True,
-                                      viewer=True, support=True))
+            acl.check_addon_ownership(request, addon, admin=False, dev=True))
 
 
 def addon_view(f, qs=Addon.objects.all):

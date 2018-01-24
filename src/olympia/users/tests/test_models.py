@@ -326,12 +326,8 @@ class TestUserProfile(TestCase):
         assert user.is_public
 
         # Only developer and owner roles make a profile public.
-        addon_user.update(role=amo.AUTHOR_ROLE_VIEWER)
-        assert not user.is_public
         addon_user.update(role=amo.AUTHOR_ROLE_DEV)
         assert user.is_public
-        addon_user.update(role=amo.AUTHOR_ROLE_SUPPORT)
-        assert not user.is_public
         addon_user.update(role=amo.AUTHOR_ROLE_OWNER)
         assert user.is_public
         # But only if they're listed
