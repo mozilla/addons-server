@@ -469,6 +469,8 @@ class TestRankingScenarios(ESTestCase):
                 'unofficial client for the excellent Pocket service. '
                 'Hope you\'ll enjoy it!'),
             weekly_downloads=1123)
+        amo.tests.addon_factory(
+            name='GrApple Yummy')
 
         cls.refresh()
 
@@ -581,4 +583,13 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
             'Disable Hello, Pocket & Reader+', # yeay!
+        ))
+
+    def test_scenario_grapple(self):
+        """Making sure this scenario works via the API,
+
+        see `legacy_api.SearchTest` for various examples.
+        """
+        self._check_scenario('Grapple', (
+            'GrApple Yummy',
         ))
