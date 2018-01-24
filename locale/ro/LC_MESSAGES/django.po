@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 00:32+0000\n"
+"PO-Revision-Date: 2018-01-24 01:03+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -557,7 +557,7 @@ msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Lansat sub <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
-msgstr ""
+msgstr "Licenţă personalizată"
 
 msgid "About this Add-on"
 msgstr "Despre acest supliment"
@@ -885,19 +885,19 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr ""
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Sari la prima pagină"
 
 msgid "Previous"
 msgstr ""
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Sari la ultima pagină"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Se afișează <b>%(begin)s</b>&ndash;<b>%(end)s</b> din <b>%(count)s</b>"
 
 msgid "Add-ons"
 msgstr "Suplimente"
@@ -6825,16 +6825,14 @@ msgstr ""
 # {1} is a number
 # {2} is a number
 # {3} is the word the person is searching for
-#, fuzzy
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "Se afișează {0} - {1} din {2} rezultate pentru <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
 # {2} is a number
-#, fuzzy
 msgid "Showing {0} - {1} of {2} results"
-msgstr "Showing {0} - {1} of {2} results"
+msgstr "Se afișează {0} - {1} din {2} rezultate"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -7488,7 +7486,7 @@ msgid "Password Reset"
 msgstr "Resetarea parolei"
 
 msgid "User Info for {0}"
-msgstr "Informații privind utilizatorul pentru {0}"
+msgstr "Informații privind utilizatorul {0}"
 
 msgid "Edit profile"
 msgstr ""
