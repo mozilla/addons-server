@@ -52,6 +52,8 @@ INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
 TASK_USER_ID = 1337
 
+# Make sure we have no replicas and only one shard to allow for impedent
+# search scoring
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 1
 
