@@ -270,9 +270,10 @@ class SearchQueryFilter(BaseFilterBackend):
         * Then look for the query as a prefix of a name (boost=1.5)
         """
         should = [
-            # Exact matches need to be queried against a non-analyzed field. Let's
-            # do a term query on `name.raw` for an exact match against the add-on
-            # name and boost it since this is likely what the user wants.
+            # Exact matches need to be queried against a non-analyzed field.
+            # Let's do a term query on `name.raw` for an exact match against
+            # the add-on name and boost it since this is likely what the user
+            # wants.
             # Use a super-high boost to avoid `description` or `summary`
             # getting in our way.
             # Put the raw query first to give it a higher priority during

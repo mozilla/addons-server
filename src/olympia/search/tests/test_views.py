@@ -18,7 +18,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import (
     format_date, locale_url, numberfmt, urlparams)
 from olympia.amo.tests import (
-    ESTestCase, ESTestCaseWithAddons, addon_factory, create_switch)
+    ESTestCaseWithAddons, addon_factory, create_switch)
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.tasks import unindex_collections
 from olympia.search import views

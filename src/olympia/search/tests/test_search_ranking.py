@@ -4,7 +4,6 @@ import json
 import pytest
 
 from olympia import amo
-from olympia.addons.views import AddonSearchView
 from olympia.amo.tests import APITestClient, ESTestCase
 from olympia.amo.urlresolvers import reverse
 
@@ -173,16 +172,18 @@ class TestRankingScenarios(ESTestCase):
             slug=u'tab-mix-plus',
             summary=(
                 'Tab Mix Plus enhances Firefox\'s tab browsing capabilities. '
-                'It includes such features as duplicating tabs, controlling tab '
-                'focus, tab clicking options, undo closed tabs and windows, plus '
-                'much more. It also includes a full-featured session manager.'),
+                'It includes such features as duplicating tabs, controlling '
+                'tab focus, tab clicking options, undo closed tabs and '
+                'windows, plus much more. It also includes a full-featured '
+                'session manager.'),
             weekly_downloads=3985)
         amo.tests.addon_factory(
             average_daily_users=8838,
             description=None,
             name='Redux DevTools',
             slug=u'remotedev',
-            summary='DevTools for Redux with actions history, undo and replay.',
+            summary=(
+                'DevTools for Redux with actions history, undo and replay.'),
             weekly_downloads=1032)
         amo.tests.addon_factory(
             average_daily_users=482,
@@ -204,8 +205,8 @@ class TestRankingScenarios(ESTestCase):
             name='Open Bookmarks in New Tab',
             slug=u'open-bookmarks-in-new-tab',
             summary=(
-                'After you installed this addon to your Firefox, bookmarks are '
-                'opened in new tab always.'),
+                'After you installed this addon to your Firefox, bookmarks '
+                'are opened in new tab always.'),
             weekly_downloads=145)
         amo.tests.addon_factory(
             average_daily_users=528,
@@ -230,11 +231,11 @@ class TestRankingScenarios(ESTestCase):
             name='NoMiners',
             slug=u'nominers',
             summary=(
-                'NoMiners is an Add-on that tries to block cryptominers such as '
-                'coinhive.\n\nBlocking those pesky miner scripts will relieve '
-                'your CPU and BATTERY while browsing the web.\n\nIt\'s open '
-                'source, so feel free to check out the code and submit '
-                'improvements.'),
+                'NoMiners is an Add-on that tries to block cryptominers such '
+                'as coinhive.\n\nBlocking those pesky miner scripts will '
+                'relieve your CPU and BATTERY while browsing the web.'
+                '\n\nIt\'s open source, so feel free to check out the code '
+                'and submit improvements.'),
             weekly_downloads=71)
         amo.tests.addon_factory(
             average_daily_users=399485,
@@ -251,8 +252,8 @@ class TestRankingScenarios(ESTestCase):
             name='Privacy Pass',
             slug=u'privacy-pass',
             summary=(
-                'Handles passes containing cryptographically blinded tokens for '
-                'bypassing challenge pages.'),
+                'Handles passes containing cryptographically blinded tokens '
+                'for bypassing challenge pages.'),
             weekly_downloads=4599)
         amo.tests.addon_factory(
             average_daily_users=15406,
@@ -294,9 +295,10 @@ class TestRankingScenarios(ESTestCase):
             name='Firebug',
             slug=u'firebug',
             summary=(
-                'Firebug integrates with Firefox to put a wealth of development '
-                'tools at your fingertips while you browse. You can edit, debug, '
-                'and monitor CSS, HTML, and JavaScript live in any web page...'),
+                'Firebug integrates with Firefox to put a wealth of '
+                'development tools at your fingertips while you browse. You '
+                'can edit, debug, and monitor CSS, HTML, and JavaScript live '
+                'in any web page...'),
             weekly_downloads=21969)
         amo.tests.addon_factory(
             average_daily_users=10821,
@@ -328,8 +330,8 @@ class TestRankingScenarios(ESTestCase):
             slug=u's3menu-wizard',
             summary=(
                 'Customizemenus=Helps removing, moving and renaming menus and '
-                'menu items\nColorize important menu for ease of use! (use Style '
-                '(CSS))\nChange or disable any of used keyboard '
+                'menu items\nColorize important menu for ease of use! (use '
+                'Style (CSS))\nChange or disable any of used keyboard '
                 'shortcutsnSuppor=Firefox, Thunderbird and SeaMonkey'),
             weekly_downloads=927)
         amo.tests.addon_factory(
@@ -345,7 +347,8 @@ class TestRankingScenarios(ESTestCase):
             name='Frame Demolition',
             slug=u'frame-demolition',
             summary=(
-                'Enabling route to load abstracted file layer in select sites.'),
+                'Enabling route to load abstracted file layer in select '
+                'sites.'),
             weekly_downloads=70)
         amo.tests.addon_factory(
             average_daily_users=99,
@@ -362,9 +365,10 @@ class TestRankingScenarios(ESTestCase):
             name='MegaUpload DownloadHelper',
             slug=u'megaupload-downloadhelper',
             summary=(
-                'Download from MegaUpload.\nMegaUpload Download Helper will start '
-                'your download once ready.\nMegaUpload Download Helper will '
-                'monitor time limitations and will auto-start your download.'),
+                'Download from MegaUpload.\nMegaUpload Download Helper will '
+                'start your download once ready.\nMegaUpload Download Helper '
+                'will monitor time limitations and will auto-start your '
+                'download.'),
             weekly_downloads=77)
         amo.tests.addon_factory(
             average_daily_users=2830,
@@ -373,9 +377,10 @@ class TestRankingScenarios(ESTestCase):
             slug=u'rapidshare-downloadhelper',
             summary=(
                 'Note from Mozilla: This add-on has been discontinued. Try '
-                '<a rel="nofollow" href="https://addons.mozilla.org/firefox/addon/'
-                'rapidshare-helper/">Rapidshare Helper</a> instead.\n\nRapidShare '
-                'Download Helper will start your download once ready.'),
+                '<a rel="nofollow" href="https://addons.mozilla.org/firefox/'
+                'addon/rapidshare-helper/">Rapidshare Helper</a> instead.\n\n'
+                'RapidShare Download Helper will start your download once '
+                'ready.'),
             weekly_downloads=125)
         amo.tests.addon_factory(
             average_daily_users=98716,
@@ -383,8 +388,8 @@ class TestRankingScenarios(ESTestCase):
             name='Popup Blocker',
             slug=u'popup_blocker',
             summary=(
-                'Prevents your web browser from opening a new window on top of '
-                'the content or web site you are viewing. The Addon also '
+                'Prevents your web browser from opening a new window on top '
+                'of the content or web site you are viewing. The Addon also '
                 'supresses unwanted advertisement windows on your screen. '
                 'The one deciding what consitutes a popup is the user.'),
             weekly_downloads=3940)
@@ -395,12 +400,12 @@ class TestRankingScenarios(ESTestCase):
             slug=u'no-flash',
             summary=(
                 'Replace Youtube, Vimeo and Dailymotion Flash video players '
-                'embedded on third-party website by the HTML5 counterpart when '
-                'the content author still use the old style embed (Flash).\n\n'
-                'Source code at <a rel="nofollow" href="https://outgoing.prod.'
-                'mozaws.net/v1/14b404a3c05779fa94b24e0bffc0d7106836f1d6b771367b06'
-                '5fb96e9c8656b9/https%3A//github.com/hfiguiere/no-flash">https://'
-                'github.com/hfiguiere/no-flash</a>'),
+                'embedded on third-party website by the HTML5 counterpart '
+                'when the content author still use the old style embed '
+                '(Flash).\n\nSource code at <a rel="nofollow" href="https://'
+                'outgoing.prod.mozaws.net/v1/14b404a3c05779fa94b24e0bffc0d710'
+                '6836f1d6b771367b065fb96e9c8656b9/https%3A//github.com/hfigui'
+                'ere/no-flash">https://github.com/hfiguiere/no-flash</a>'),
             weekly_downloads=77)
         amo.tests.addon_factory(
             average_daily_users=547880,
@@ -408,10 +413,10 @@ class TestRankingScenarios(ESTestCase):
             name='Download Flash and Video',
             slug=u'download-flash-and-video',
             summary=(
-                'Download Flash and Video is a great download helper tool that '
-                'lets you download Flash games and Flash videos (YouTube, '
-                'Facebook, Dailymotion, Google Videos and more) with a single '
-                'click.\nThe downloader is very easy to use.'),
+                'Download Flash and Video is a great download helper tool '
+                'that lets you download Flash games and Flash videos '
+                '(YouTube, Facebook, Dailymotion, Google Videos and more) '
+                'with a single click.\nThe downloader is very easy to use.'),
             weekly_downloads=65891)
         amo.tests.addon_factory(
             average_daily_users=158796,
@@ -419,8 +424,9 @@ class TestRankingScenarios(ESTestCase):
             name='YouTube Flash Video Player',
             slug=u'youtube-flash-video-player',
             summary=(
-                'YouTube Flash Video Player is a powerful tool that will let you '
-                'choose Flash video player as default YouTube video player.'),
+                'YouTube Flash Video Player is a powerful tool that will let '
+                'you choose Flash video player as default YouTube video '
+                'player.'),
             weekly_downloads=12239)
         amo.tests.addon_factory(
             average_daily_users=206980,
@@ -431,8 +437,8 @@ class TestRankingScenarios(ESTestCase):
                 u'A very lightweight add-on that allows you to watch YouTube™ '
                 u'videos using Flash® Player instead of the '
                 u'default HTML5 player. The Flash® Player will consume less '
-                u'CPU and RAM resources if your device doesn\'t easily support '
-                u'HTML5 videos. Try it!'),
+                u'CPU and RAM resources if your device doesn\'t easily '
+                u'support HTML5 videos. Try it!'),
             weekly_downloads=21882)
         amo.tests.addon_factory(
             average_daily_users=5056, description=None,
@@ -455,8 +461,8 @@ class TestRankingScenarios(ESTestCase):
             name='Disable WebRTC',
             slug=u'happy-bonobo-disable-webrtc',
             summary=(
-                'WebRTC leaks your actual IP addresses from behind your VPN, by '
-                'default.'),
+                'WebRTC leaks your actual IP addresses from behind your VPN, '
+                'by default.'),
             weekly_downloads=10583)
         amo.tests.addon_factory(
             average_daily_users=12953,
@@ -464,13 +470,15 @@ class TestRankingScenarios(ESTestCase):
             name='In My Pocket',
             slug=u'in-my-pocket',
             summary=(
-                'For all those who are missing the old Firefox Pocket addon, and '
-                'not satisfied with the new Pocket integration, here is an '
-                'unofficial client for the excellent Pocket service. '
+                'For all those who are missing the old Firefox Pocket addon, '
+                'and not satisfied with the new Pocket integration, here is '
+                'an unofficial client for the excellent Pocket service. '
                 'Hope you\'ll enjoy it!'),
             weekly_downloads=1123)
         amo.tests.addon_factory(
             name='GrApple Yummy')
+        amo.tests.addon_factory(
+            name='Delicious Bookmarks')
 
         cls.refresh()
 
@@ -486,25 +494,24 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario('Open Image in New Tab', (
             'Open image in a new tab',
             'Open Image in New Tab',
-            #'Open Bookmarks in New Tab',
         ))
 
     def test_scenario_coinhive(self):
         # TODO, should match "CoinBlock"
         self._check_scenario('CoinHive', (
             'Coinhive Blocker',
-            'NoMiners', # via description
-            # 'CoinBlock', # via prefix search
+            'NoMiners',  # via description
+            # 'CoinBlock',  # via prefix search
         ))
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
             'Privacy Badger',
             'Privacy Settings',
-            'Google Privacy', # More users, summary
+            'Google Privacy',  # More users, summary
             'Privacy Pass',
-            'Ghostery', # Crazy amount of users, summary
-            'Blur', # summary + many users but not as many as ghostery
+            'Ghostery',  # Crazy amount of users, summary
+            'Blur',  # summary + many users but not as many as ghostery
         ))
 
     def test_scenario_firebu(self):
@@ -527,8 +534,8 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_menu_wizzard(self):
         self._check_scenario('Menu Wizzard', (
-            'Menu Wizard', # (fuzzy, typo)
-            'Add-ons Manager Context Menu', # partial match + users
+            'Menu Wizard',  # (fuzzy, typo)
+            'Add-ons Manager Context Menu',  # partial match + users
         ))
 
     def test_scenario_frame_demolition(self):
@@ -582,7 +589,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            'Disable Hello, Pocket & Reader+', # yeay!
+            'Disable Hello, Pocket & Reader+',  # yeay!
         ))
 
     def test_scenario_grapple(self):
@@ -590,6 +597,15 @@ class TestRankingScenarios(ESTestCase):
 
         see `legacy_api.SearchTest` for various examples.
         """
-        self._check_scenario('Grapple', (
+        self._check_scenario('grapple', (
             'GrApple Yummy',
+        ))
+
+    def test_scenario_delicious(self):
+        """Making sure this scenario works via the API,
+
+        see `legacy_api.SearchTest` for various examples.
+        """
+        self._check_scenario('delicious', (
+            'Delicious Bookmarks',
         ))
