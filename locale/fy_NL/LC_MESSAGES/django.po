@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-23 13:21+0000\n"
+"PO-Revision-Date: 2018-01-24 12:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4717,7 +4717,7 @@ msgid "Close Video"
 msgstr "Fideo slute"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Wylst de fideo ôfspile wurdt ferskine hjir de neamde add-ons."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
@@ -4725,10 +4725,10 @@ msgstr "Hallo {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Tank foar it brûken fan %(app)s en it stypjen fan <a href=\"%(url)s\">de missy fan Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Downloade add-ons:"
 
 msgid "View Privacy Policy"
 msgstr "Privacybelied besjen"
@@ -4764,6 +4764,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, ek wol bekend as “AMO”, is de offisjele website fan Mozilla foar add-ons foar Mozilla-software, lykas Firefox, Thunderbird en SeaMonkey. Mei add-ons kinne jo nije funksjes "
+"tafoegje en de wize wêrop jo browser of tapassing wurket wizigje. Sjoch ris rûn en ferken de tûzenen manieren wêrop jo de manier wêrop jo dingen online dogge oanpasse kinne."
 
 msgid "Who creates these add-ons?"
 msgstr "Wa makket dizze add-ons?"
@@ -4776,32 +4778,32 @@ msgstr ""
 " team fan beoardielers eardat se frijjûn wurde. As Eksperiminteel markearre add-ons binne net beoardiele en moatte allinnich mei omtinken ynstallearre wurde."
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Hoe hâld ik de ûntwikkelingen by AMO yn 'e gaten?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Der binne ferskate manieren om it lêste nijs út de wrâld fan add-ons te ûntfangen:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Us <a href=\"%(url)s\">Add-onsblog</a> wurdt regelmjittich bywurke mei ynformaasje foar sawol add-on-fans as ûntwikkelers."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Wy pleatse faaks nijs, tips en trúks op ús Twitter-account, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "Us <a href=\"%(url)s\">foarums</a> binne in goed plak om kontakt te lizzen mei de add-onsmienskip en takomstige wizigingen fan AMO te bepraten."
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Dat klinkt goed! Hoe kin ik meidwaan?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Der binne mear as genôch manieren om mei te dwaan. As jo technysk ynsteld binne:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Meitsje jo eigen add-on</a>. Wy biede fergees hosting en fernijingstsjinsten en kinne jo helpe in grut publyk te berikjen."
 
 #, python-format
 msgid ""
@@ -4814,6 +4816,8 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Help dizze website te ferbetterjen. It is iepen boarne, en jo kinne bugs melde en patches yntsjinje. <a href=\"%(url)s\"> GitHub</a> befettet al ús aktuele bugs, âlde bugs binne noch yn Bugzilla te "
+"finen."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
