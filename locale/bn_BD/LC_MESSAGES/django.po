@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-24 15:30+0000\n"
-"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
+"PO-Revision-Date: 2017-12-16 02:26+0000\n"
+"Last-Translator: Ashikur Rahman <ashikurrahman068@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -3656,9 +3656,8 @@ msgstr ""
 msgid "Uploading Theme"
 msgstr "আসন্ন থিম সমূহ"
 
-#, fuzzy
 msgid "Upload Theme"
-msgstr "ফাইল আপলোড করুন"
+msgstr "থিম আপলোড করুন"
 
 msgid "API Credentials"
 msgstr ""
@@ -4469,7 +4468,6 @@ msgstr ""
 msgid "Back to review"
 msgstr ""
 
-#, fuzzy
 msgid "Back to add-on"
 msgstr "অ্যাড-অনে ফিরে যান"
 
