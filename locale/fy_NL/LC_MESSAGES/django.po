@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-24 12:12+0000\n"
+"PO-Revision-Date: 2018-01-24 13:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4830,7 +4830,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "Doch mei oan ús <a href=\"%(url)s\">foarums</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Beoardielje add-ons op de website. Add-onskriuwers sille harren add-ons earder ferbetterje en nije add-ons skriuwe as se witte dat harren wurk wurdearre wurdt."
 
 msgid "I have a question"
 msgstr "Ik haw in fraach"
@@ -4844,7 +4844,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Wa wurket oan dizze website?"
 
 #, python-format
 msgid ""
@@ -4911,10 +4911,10 @@ msgid "Other Contributors"
 msgstr "Oare meiwurkers"
 
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Eardere ûntwikkelers en behearders"
 
 msgid "Software and Images"
-msgstr ""
+msgstr "Software en ôfbyldingen"
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
