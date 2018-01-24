@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-24 12:10+0000\n"
+"PO-Revision-Date: 2018-01-24 12:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4820,14 +4820,14 @@ msgstr ""
 "finen."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "As jo ynteresse hawwe yn add-ons mar net sa technysk binne, binne der noch hieltyd manieren om te helpen:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Fertel it jo freonen! Lit minsken witte hokker add-ons jo brûke."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Doch mei oan ús <a href=\"%(url)s\">foarums</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
