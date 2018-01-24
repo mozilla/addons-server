@@ -927,7 +927,6 @@ class SearchTest(ESTestCase):
         zeros = (
             'yslow',
             'jsonview',
-            'firebug',
             'firebug/3',
             'grapple/all/10/Linux',
             'jsonview/all/10/Darwin/1.0',

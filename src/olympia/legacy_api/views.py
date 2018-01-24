@@ -350,7 +350,7 @@ class SearchView(APIView):
             'current_version__exists': True,
         }
 
-        params = {'version': version}
+        params = {'version': version, 'platform': None}
 
         # Specific case for Personas (bug 990768): if we search providing the
         # Persona addon type (9), don't filter on the platform as Personas
@@ -381,13 +381,13 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        qs = list(
+        qs = (
             Addon.search()
             .filter(**filters)
             .filter_query_string(query)
             [:limit])
 
-        total = len(qs)
+        total = qs.count()
 
         results = []
         for addon in qs:
