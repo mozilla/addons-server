@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-24 10:30+0000\n"
+"PO-Revision-Date: 2018-01-24 21:52+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2827,7 +2827,7 @@ msgstr "מפתח API נשלל"
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr ""
+msgstr "לפני שנתחיל, נא לקרוא ולאשר את הסכם הפצת התוספות של Firefox כמו גם הכללים והמדיניות שלנו לסקירה. הסכם הפצת התוספות של Firefox מקשר גם אל הצהרת הפרטיות שלנו שמסבירה איך אנחנו מטפלים במידע שלך."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "הסכם הפצת תוספת של Firefox"
@@ -2938,7 +2938,7 @@ msgstr "פעילות אחרונה עבור {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> מאת %(user)s"
 
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
@@ -6395,7 +6395,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "כל הסקירות עברו ביקורת. כל הכבוד!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr "כרגע אין תוספות מסוג זה לסקירה."
