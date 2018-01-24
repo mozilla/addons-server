@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-22 20:48+0000\n"
+"PO-Revision-Date: 2018-01-24 15:30+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -996,9 +996,8 @@ msgstr "এই ইউআরএলটি অন্য একটি সংগ্�
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "এই নামটি ব্যবহার করা যাবে না।"
+msgstr "এই স্লাগটি ব্যবহার করা যাবে না।"
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -3546,9 +3545,8 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "অ্যাড-অন আপলোড করুন"
 
-#, fuzzy
 msgid "Where to Host File"
-msgstr "সংস্করণ মুছে ফেলুন"
+msgstr "হোস্ট ফাইল কোথায়"
 
 msgid "Where to Host Version"
 msgstr "হোস্ট সংস্করণ কোথায়"
@@ -3572,24 +3570,20 @@ msgstr ""
 msgid "Create a Theme Version"
 msgstr "একটি নতুন থিম তৈরী করুন"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "একটি নতুন থিম তৈরী করুন"
+msgstr "একটি থিম তৈরি করুন"
 
-#, fuzzy
 msgid "Submit File"
-msgstr "নতুন থিম জমা দিন"
+msgstr "ফাইল জমা দিন"
 
 msgid "Sign Add-on"
 msgstr "সাইন অ্যাড-অন"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "থিম মুছে ফেলা হয়েছে।"
+msgstr "থিম জেনারেট"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "থিম লাইসেন্স"
+msgstr "থিম জেনারেটর"
 
 msgid "Select a header image for your Theme."
 msgstr ""
@@ -3633,9 +3627,8 @@ msgstr ""
 msgid "Toolbar area text (toolbar_text)."
 msgstr ""
 
-#, fuzzy
 msgid "The color of toolbar text."
-msgstr "এটি ট্যাবের রঙ"
+msgstr "টুলবারের টেক্সটের রং।"
 
 msgid "Toolbar field area background (toolbar_field)."
 msgstr ""
@@ -3649,9 +3642,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar"
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(ঐচ্ছিক)"
+msgstr "ঐচ্ছিক"
 
 #, fuzzy
 msgid "Browser Preview"
