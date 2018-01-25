@@ -912,7 +912,9 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        qs = AddonAutoCompleteSearchView().get_queryset()
+        view = AddonAutoCompleteSearchView()
+        view.request = self.request
+        qs = view.get_queryset()
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):

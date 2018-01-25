@@ -659,11 +659,19 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(
+        qset = Search(
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
                 _source={'excludes': AddonIndexer.hidden_fields})
+
+        dfs_query_then_fetch = waffle.flag_is_active(
+            self.request,
+            'search-use-dfs-query-then-fetch')
+        if dfs_query_then_fetch:
+            qset = qset.params(search_type='dfs_query_then_fetch')
+
+        return qset
 
     @classmethod
     def as_view(cls, **kwargs):
