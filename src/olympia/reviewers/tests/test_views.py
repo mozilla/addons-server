@@ -1041,7 +1041,7 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 2')
+            u'Results 1\u20131 of 2')
 
     @patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
     def test_reviews_per_page(self):
@@ -1051,7 +1051,7 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 2')
+            u'Results 1\u20131 of 2')
 
     def test_grid_headers(self):
         response = self.client.get(self.url)
@@ -1107,9 +1107,9 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 2')
+            u'Results 1\u20131 of 2')
         assert doc('.data-grid-bottom .num-results').text() == (
-            u'Results 1 \u2013 1 of 2')
+            u'Results 1\u20131 of 2')
 
     def test_legacy_queue_sort(self):
         sorts = (
@@ -1638,7 +1638,7 @@ class TestAutoApprovedQueue(QueueTest):
         assert link.text() == 'Auto Approved Add-ons (4)'
         assert link.attr('href') == self.url
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 4')
+            u'Results 1\u20131 of 4')
 
 
 class TestContentReviewQueue(QueueTest):
@@ -1767,7 +1767,7 @@ class TestContentReviewQueue(QueueTest):
         assert link.text() == 'Content Review (4)'
         assert link.attr('href') == self.url
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 4')
+            u'Results 1\u20131 of 4')
 
     def test_results_admin(self):
         # Admins should see the extra add-on that needs admin content review.
@@ -1991,7 +1991,7 @@ class BaseTestQueueSearch(SearchTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 2')
+            u'Results 1\u20131 of 2')
 
     def test_search_by_addon_name_admin(self):
         self.login_as_admin()
@@ -2039,7 +2039,7 @@ class BaseTestQueueSearch(SearchTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 3')
+            u'Results 1\u20131 of 3')
 
     def test_search_by_addon_name(self):
         self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
@@ -3504,7 +3504,7 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.1.2.3] reported Public on %s Et mël mazim ludus.'
+            u'anonymous [10.1.2.3] reported Public on %s\nEt mël mazim ludus.'
             % created_at)
 
     def test_abuse_reports_developers(self):
@@ -3521,7 +3521,7 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.4.5.6] reported regularuser التطب on %s Foo, Bâr!'
+            u'anonymous [10.4.5.6] reported regularuser التطب on %s\nFoo, Bâr!'
             % created_at)
 
     def test_user_ratings(self):
@@ -3557,7 +3557,8 @@ class TestReview(ReviewBase):
         assert doc('.user_ratings')
         assert (
             doc('.user_ratings').text() ==
-            u'%s on %s [10.5.6.7] Rated 3 out of 5 stars Lôrem ipsum dolor' % (
+            u'%s on %s [10.5.6.7]\n'
+            u'Rated 3 out of 5 stars\nLôrem ipsum dolor' % (
                 user.username, created_at
             )
         )

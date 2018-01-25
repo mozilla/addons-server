@@ -159,15 +159,15 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
         authors = record.authors
         if not len(authors):
             return ''
-        more = '\n'.join(
+        more = ' '.join(
             safe_substitute(u'%s', uname) for (_, uname) in authors)
-        author_links = ''.join(
+        author_links = ' '.join(
             safe_substitute(u'<a href="%s">%s</a>',
                             UserProfile.create_user_url(id_, username=uname),
                             uname)
             for (id_, uname) in authors[0:3])
         return u'<span title="%s">%s%s</span>' % (
-            more, author_links, '...' if len(authors) > 3 else '')
+            more, author_links, ' ...' if len(authors) > 3 else '')
 
     @classmethod
     def default_order_by(cls):
