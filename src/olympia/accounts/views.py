@@ -267,11 +267,6 @@ def add_api_token_to_response(response, user):
     return response
 
 
-def remove_api_token_cookie(response):
-    """Delete the api token cookie."""
-    response.delete_cookie(API_TOKEN_COOKIE)
-
-
 class FxAConfigMixin(object):
 
     def get_config_name(self, request):
@@ -330,7 +325,8 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
 def logout_user(request, response):
     logout(request)
-    remove_api_token_cookie(response)
+    response.delete_cookie(
+        API_TOKEN_COOKIE, domain=settings.SESSION_COOKIE_DOMAIN)
 
 
 class SessionView(APIView):
