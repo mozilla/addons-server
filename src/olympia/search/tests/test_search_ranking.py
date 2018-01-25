@@ -1,139 +1,16 @@
 # -*- coding: utf-8 -*-
 import json
 
-import pytest
-
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase
 from olympia.amo.urlresolvers import reverse
 
 
-def get_results(response):
-    """Return pks of add-ons shown on search results page."""
-    results = json.loads(response.content)['results']
-    return [addon['id'] for addon in results]
-
-
-@pytest.mark.es_test
-@pytest.mark.django_db
-def test_score_boost_name_match(es_search, api_client):
-    url = reverse('addon-search')
-
-    addons = [
-        amo.tests.addon_factory(
-            name='Merge Windows', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-        amo.tests.addon_factory(
-            name='Merge All Windows', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-        amo.tests.addon_factory(
-            name='All Downloader Professional', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-    ]
-
-    es_search.indices.refresh()
-
-    response = api_client.get(url, {'q': 'merge windows'})
-    results = get_results(response)
-
-    # Doesn't match "All Downloader Professional"
-    assert addons[2].pk not in results
-
-    # Matches both "Merge Windows" and "Merge All Windows" but can't
-    # correctly predict their exact scoring since we don't have
-    # an exact match that would prefer 'merge windows'. Both should be
-    # the first two matches though.
-    assert addons[1].pk in results[:2]
-    assert addons[0].pk in results[:2]
-
-    response = api_client.get(url, {'q': 'merge all windows'})
-    results = get_results(response)
-
-    # Make sure we match 'All Downloader Professional' but it's
-    # term match frequency is much lower than the other two so it's
-    # last.
-    assert addons[2].pk == results[-1]
-
-    # Other two are first rank again.
-    assert addons[1].pk in results[:2]
-    assert addons[0].pk in results[:2]
-
-
-@pytest.mark.es_test
-@pytest.mark.django_db
-def test_score_boost_name_match_slop(es_search, api_client):
-    addon = amo.tests.addon_factory(
-        name='Merge all Windows', type=amo.ADDON_EXTENSION,
-        average_daily_users=0, weekly_downloads=0)
-
-    es_search.indices.refresh()
-
-    url = reverse('addon-search')
-
-    # direct match
-    response = api_client.get(url, {'q': 'merge windows'})
-    results = get_results(response)
-
-    assert results[0] == addon.pk
-
-
-@pytest.mark.es_test
-@pytest.mark.django_db
-def test_score_boost_exact_match(es_search, api_client):
-    """Test that we rank exact matches at the top."""
-    addons = [
-        amo.tests.addon_factory(
-            name='test addon test11', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-        amo.tests.addon_factory(
-            name='test addon test21', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-        amo.tests.addon_factory(
-            name='test addon test31', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0),
-    ]
-
-    es_search.indices.refresh()
-    url = reverse('addon-search')
-
-    response = api_client.get(url, {'q': 'test addon test21'})
-    results = get_results(response)
-
-    assert results[0] == addons[1].pk
-
-
-@pytest.mark.es_test
-@pytest.mark.django_db
-def test_score_boost_exact_match_description_hijack(es_search, api_client):
-    """Test that we rank exact matches at the top."""
-    addons = [
-        amo.tests.addon_factory(
-            name='1-Click YouTube Video Download',
-            type=amo.ADDON_EXTENSION,
-            average_daily_users=566337, weekly_downloads=150000,
-            description=(
-                'button, click that button, 1-Click Youtube Video '
-                'Downloader is a click click great tool')),
-        amo.tests.addon_factory(
-            name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
-            average_daily_users=50, weekly_downloads=0),
-    ]
-
-    es_search.indices.refresh()
-    url = reverse('addon-search')
-
-    response = api_client.get(url, {
-        'q': 'Amazon 1-Click Lock'
-    })
-    results = get_results(response)
-
-    assert results[0] == addons[1].pk
-
-
 class TestRankingScenarios(ESTestCase):
     client_class = APITestClient
 
-    def _check_scenario(self, query, expected):
+    def _check_scenario(self, query, expected, no_match=None):
+        # Make sure things are properly flushed and searchable
         url = reverse('addon-search')
 
         response = self.client.get(url, {'q': query})
@@ -159,9 +36,17 @@ class TestRankingScenarios(ESTestCase):
                 .format(name, idx, results[idx]['name']['en-US'], query)
             )
 
+        if no_match is not None:
+            for name in no_match:
+                names = [item['name']['en-US'] for item in results]
+                assert name not in names, (
+                    'Expected "{}" not to exist in results for query {}'
+                    .format(name, query)
+                )
+
     @classmethod
-    def setUpClass(cls):
-        super(TestRankingScenarios, cls).setUpClass()
+    def setUpTestData(cls):
+        super(TestRankingScenarios, cls).setUpTestData()
 
         amo.tests.addon_factory(
             average_daily_users=18981,
@@ -485,6 +370,37 @@ class TestRankingScenarios(ESTestCase):
         amo.tests.addon_factory(
             name='Delicious Bookmarks')
 
+        amo.tests.addon_factory(
+            name='Merge Windows', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+        amo.tests.addon_factory(
+            name='Merge All Windows', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+        amo.tests.addon_factory(
+            name='All Downloader Professional', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+
+        amo.tests.addon_factory(
+            name='test addon test11', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+        amo.tests.addon_factory(
+            name='test addon test21', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+        amo.tests.addon_factory(
+            name='test addon test31', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0),
+
+        amo.tests.addon_factory(
+            name='1-Click YouTube Video Download',
+            type=amo.ADDON_EXTENSION,
+            average_daily_users=566337, weekly_downloads=150000,
+            description=(
+                'button, click that button, 1-Click Youtube Video '
+                'Downloader is a click click great tool')),
+        amo.tests.addon_factory(
+            name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
+            average_daily_users=50, weekly_downloads=0),
+
         cls.refresh()
 
     def test_scenario_tab_center_redux(self):
@@ -571,6 +487,7 @@ class TestRankingScenarios(ESTestCase):
         # huge amount of users that puts it first here
         self._check_scenario('DownloadHelper', (
             'Download Flash and Video',
+            '1-Click YouTube Video Download',
             'RapidShare DownloadHelper',
             'MegaUpload DownloadHelper',
         ))
@@ -613,4 +530,33 @@ class TestRankingScenarios(ESTestCase):
         """
         self._check_scenario('delicious', (
             'Delicious Bookmarks',
+        ))
+
+    def test_score_boost_name_match(self):
+        # Tests that we match directly "Merge Windows" and also find
+        # "Merge All Windows" because of slop=1
+        self._check_scenario('merge windows', (
+            'Merge Windows',
+            'Merge All Windows',
+        ), no_match=(
+            'All Downloader Professional',
+        ))
+
+        self._check_scenario('merge all windows', (
+            'Merge All Windows',
+            'Merge Windows',
+            'All Downloader Professional',
+        ))
+
+    def test_score_boost_exact_match(self):
+        """Test that we rank exact matches at the top."""
+        self._check_scenario('test addon test21', (
+            'test addon test21',
+        ))
+
+    def test_score_boost_exact_match_description_hijack(self):
+        """Test that we rank exact matches at the top."""
+        self._check_scenario('Amazon 1-Click Lock', (
+            'Amazon 1-Click Lock',
+            '1-Click YouTube Video Download',
         ))

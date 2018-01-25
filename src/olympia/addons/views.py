@@ -691,11 +691,17 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'type',  # Needed to attach the Persona for icon_url (sadly).
         )
 
-        return Search(
-            using=amo.search.get_es(),
-            index=AddonIndexer.get_index_alias(),
-            doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'includes': included_fields})
+        qset = (
+            Search(
+                using=amo.search.get_es(),
+                index=AddonIndexer.get_index_alias(),
+                doc_type=AddonIndexer.get_doctype_name())
+            .extra(_source={'includes': included_fields}))
+
+        if waffle.flag_is_active('search-use-dfs-query-then-fetch'):
+            qset = qset.params('dfs_query_then_fetch')
+
+        return qset
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (slice directly) but do wrap the data in a

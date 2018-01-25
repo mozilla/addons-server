@@ -11,7 +11,8 @@ from multidb import pinning
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import (
-    amo_search, setup_es_test_data, start_es_mocks, stop_es_mocks)
+    amo_search, setup_es_test_data, start_es_mocks, stop_es_mocks,
+    create_flag)
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.hold import clean_translations
 from olympia.users.models import UserProfile
@@ -39,36 +40,6 @@ def mock_elasticsearch():
     yield
 
     stop_es_mocks()
-
-
-@pytest.fixture()
-def es_search():
-    stop_es_mocks()
-
-    es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
-    _SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
-    amo.SEARCH_ANALYZER_MAP = {
-        'english': ['en-us'],
-        'spanish': ['es'],
-    }
-
-    setup_es_test_data(es)
-    es.indices.refresh()
-
-    yield es
-
-    es.indices.refresh()
-
-    # Delete all documents from the index
-    es.delete_by_query(
-        settings.ES_INDEXES['default'],
-        body={'query': {'match_all': {}}},
-        conflicts='proceed',
-    )
-
-    es.indices.refresh()
-    amo.SEARCH_ANALYZER_MAP = _SEARCH_ANALYZER_MAP
-    start_es_mocks()
 
 
 @pytest.fixture()
@@ -160,6 +131,9 @@ def test_pre_setup(request, tmpdir, settings):
 
     # Make sure we revert everything we might have changed to prefixers.
     amo.urlresolvers.clean_url_prefixes()
+
+    # Force our search results to be more predictable during testing
+    create_flag('search-use-dfs-query-then-fetch')
 
 
 @pytest.fixture
