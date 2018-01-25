@@ -889,11 +889,15 @@ class ESTestCase(TestCase):
         stop_es_mocks()
         setup_es_test_data(cls.es)
 
+        # Force our search results to be more predictable during testing
+        create_flag('search-use-dfs-query-then-fetch')
+
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
     def tearDownClass(cls):
         amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        Flag.objects.filter(name='search-use-dfs-query-then-fetch').delete()
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod

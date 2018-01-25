@@ -2260,7 +2260,10 @@ class TestAddonSearchView(ESTestCase):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
         waffle.switch_is_active('boost-webextensions-in-search')
-        waffle.flag_is_active('search-use-dfs-query-then-fetch')
+
+        request = APIRequestFactory().get('/')
+
+        waffle.flag_is_active(request, 'search-use-dfs-query-then-fetch')
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)

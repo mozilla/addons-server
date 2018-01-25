@@ -132,9 +132,6 @@ def test_pre_setup(request, tmpdir, settings):
     # Make sure we revert everything we might have changed to prefixers.
     amo.urlresolvers.clean_url_prefixes()
 
-    # Force our search results to be more predictable during testing
-    create_flag('search-use-dfs-query-then-fetch')
-
 
 @pytest.fixture
 def admin_group(db):

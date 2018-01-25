@@ -599,8 +599,11 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        qs = AddonSearchView().get_queryset()
-        return qs.filter('term', id=self.addon.pk).execute()[0]
+        view = AddonSearchView()
+        view.request = self.request
+        qset = view.get_queryset()
+
+        return qset.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
         self.serializer = self.serializer_class(
