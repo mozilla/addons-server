@@ -241,19 +241,11 @@ class ES(object):
 
         es = get_es()
         try:
-            params = {}
-
-            if waffle.flag_is_active('search-use-dfs-query-then-fetch'):
-                params = {
-                    'search_type': 'dfs_query_then_fetch'
-                }
-
             with statsd.timer('search.es.timer') as timer:
                 hits = es.search(
                     body=build_body,
                     index=self.index,
                     doc_type=self.type._meta.db_table,
-                    **params
                 )
         except Exception:
             log.error(build_body)

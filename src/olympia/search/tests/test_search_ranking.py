@@ -48,6 +48,8 @@ class TestRankingScenarios(ESTestCase):
     def setUpTestData(cls):
         super(TestRankingScenarios, cls).setUpTestData()
 
+        # This data was taken from our production add-ons to test
+        # a few search scenarios. (2018-01-25)
         amo.tests.addon_factory(
             average_daily_users=18981,
             description=None,
@@ -370,6 +372,8 @@ class TestRankingScenarios(ESTestCase):
         amo.tests.addon_factory(
             name='Delicious Bookmarks')
 
+        # Some more or less Dummy data to test a few very specific scenarios
+        # e.g for exact name matching
         amo.tests.addon_factory(
             name='Merge Windows', type=amo.ADDON_EXTENSION,
             average_daily_users=0, weekly_downloads=0),

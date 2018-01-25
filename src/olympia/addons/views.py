@@ -698,7 +698,10 @@ class AddonAutoCompleteSearchView(AddonSearchView):
                 doc_type=AddonIndexer.get_doctype_name())
             .extra(_source={'includes': included_fields}))
 
-        if waffle.flag_is_active('search-use-dfs-query-then-fetch'):
+        dfs_query_then_fetch = waffle.flag_is_active(
+            self.request,
+            'search-use-dfs-query-then-fetch')
+        if dfs_query_then_fetch:
             qset = qset.params('dfs_query_then_fetch')
 
         return qset
