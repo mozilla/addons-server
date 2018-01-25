@@ -702,7 +702,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             self.request,
             'search-use-dfs-query-then-fetch')
         if dfs_query_then_fetch:
-            qset = qset.params('dfs_query_then_fetch')
+            qset = qset.params(search_type='dfs_query_then_fetch')
 
         return qset
 

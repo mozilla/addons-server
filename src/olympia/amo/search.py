@@ -1,7 +1,5 @@
 import os
 
-import waffle
-
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
