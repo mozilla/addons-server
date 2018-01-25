@@ -106,13 +106,13 @@ class TestHomepage(TestCase):
         r = self.client.get('/en-US/firefox/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
-            'Welcome to Firefox Add-ons. Choose from thousands of extra '
+            'Welcome to Firefox Add-ons.\nChoose from thousands of extra '
             'features and styles to make Firefox your own.')
         r = self.client.get('/en-US/thunderbird/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
-            'Welcome to Thunderbird Add-ons. Add extra features and styles to '
-            'make Thunderbird your own.')
+            'Welcome to Thunderbird Add-ons.\nAdd extra features and styles '
+            'to make Thunderbird your own.')
 
     def test_try_new_frontend_banner_presence(self):
         self.url = '/en-US/firefox/'
@@ -585,8 +585,8 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data on the following websites: '
-            u'<script>alert("//")</script> '
+            u'Access your data on the following websites:\n'
+            u'<script>alert("//")</script>\n'
             u'<script>foo("https://")</script>')
         assert '<script>alert(' not in response.content
         assert '<script>foo(' not in response.content

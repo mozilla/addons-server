@@ -103,7 +103,7 @@ class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
                 u'rel="noopener noreferrer">%s</a>')
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
-            self.choice_label = mark_safe(self.choice_label + details)
+            self.choice_label = mark_safe(self.choice_label + ' ' + details)
         if hasattr(license, 'icons'):
             self.attrs['data-cc'] = license.icons
         self.attrs['data-name'] = unicode(license)
