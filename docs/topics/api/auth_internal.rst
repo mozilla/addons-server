@@ -27,7 +27,7 @@ responses of the following endpoint:
 The token is available in two forms:
 
     * For the endpoint mentioned above, as a property called ``token``.
-    * For all endpoints, as a cookie called ``api_auth_token``. This cookie
+    * For all endpoints, as a cookie called ``frontend_auth_token``. This cookie
       expires after 30 days and is set as ``HttpOnly``.
 
 
