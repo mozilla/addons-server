@@ -28,7 +28,7 @@
       {{ form.slug.errors }}
     </div>
     <div class="addon-submission-field">
-      <label>{{ _('Summary:') }}</label>
+      <label>{{ _('Summary:') }}<span class="req" title="{{ _('required') }}">*</span></label>
       {{ form.summary }}
       {{ form.summary.errors }}
       <div class="edit-addon-details">
@@ -73,7 +73,7 @@
     </div>
     {% else %}
     <div id="addon-categories-edit" class="addon-submission-field">
-      <label>{{ _('Select a category for this add-on:') }}</label>
+      <label>{{ _('Select a category for this add-on:') }}<span class="req" title="{{ _('required') }}">*</span></label>
       {{ cat_form.category.errors }}
       {{ cat_form.category }}
     </div>
@@ -93,7 +93,7 @@
       {{ form.support_url.errors }}
     </div>
     {% if license_form %}
-        <b>{{ _('License:') }}</b>
+        <b>{{ _('License:') }}<span class="req" title="{{ _('required') }}">*</span></b>
         {{ license_form.builtin.errors }}
         {% if addon.type == amo.ADDON_STATICTHEME %}
           {% include 'devhub/addons/includes/cc_license_chooser.html' %}
