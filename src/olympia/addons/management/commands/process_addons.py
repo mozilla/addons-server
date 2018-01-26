@@ -117,7 +117,8 @@ class Command(BaseCommand):
             # Add the post task on to the end.
             post = None
             if 'post' in task:
-                post = task['post'].subtask(args=[], kwargs=kwargs, immutable=True)
+                post = task['post'].subtask(
+                    args=[], kwargs=kwargs, immutable=True)
                 ts = chord(grouping, post)
             else:
                 ts = group(grouping)
