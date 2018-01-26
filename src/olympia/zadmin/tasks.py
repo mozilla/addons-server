@@ -6,8 +6,10 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.utils import translation
+from django.test import RequestFactory
 
 import requests
+import waffle
 
 import olympia.core.logger
 
@@ -249,7 +251,17 @@ def fetch_langpack(url, xpi, **kw):
             # Not `version.files.update`, because we need to trigger save
             # hooks.
             file_.update(status=amo.STATUS_PUBLIC)
-        sign_file(file_)
+
+        # Create a dummy request to be able to tie the autograph enabling
+        # flag to our language pack users to enable signing for
+        # language packs
+        dummy_request = RequestFactory().get('/')
+        dummy_request.user = owner
+
+        sign_file(
+            file_,
+            use_autograph=waffle.flag_is_active(
+                dummy_request, 'use-autograph'))
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC

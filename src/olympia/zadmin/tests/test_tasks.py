@@ -6,12 +6,14 @@ from django.conf import settings
 import mock
 
 from olympia import amo
+from olympia.amo.tests import create_flag
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.utils import make_xpi
 from olympia.versions.compare import version_int
 from olympia.versions.models import License
+from olympia.users.models import UserProfile
 from olympia.zadmin import tasks
 
 
@@ -134,7 +136,32 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_once_with(file_)
+        mock_sign_file.assert_called_once_with(file_, use_autograph=False)
+
+    @mock.patch('olympia.zadmin.tasks.sign_file')
+    def test_fetch_new_langpack_use_autograph(self, mock_sign_file):
+        assert self.get_langpacks().count() == 0
+
+        flag = create_flag(
+            'use-autograph', everyone=None, authenticated=True)
+        flag.users.add(
+            UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL))
+        flag.save()
+
+        self.fetch_langpacks(amo.FIREFOX.latest_version)
+
+        langpacks = self.get_langpacks()
+        assert langpacks.count() == 1
+
+        addon = langpacks[0]
+        file_ = addon.current_version.files.get()
+
+        # has_complete_metadata checks license and categories were set.
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
+        assert file_.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_PUBLIC
+
+        mock_sign_file.assert_called_once_with(file_, use_autograph=True)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
@@ -164,7 +191,7 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_with(file_)
+        mock_sign_file.assert_called_with(file_, use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_duplicate_langpack(self, mock_sign_file):
@@ -186,7 +213,8 @@ class TestLangpackFetcher(TestCase):
                 amo.FIREFOX.latest_version)
 
         mock_sign_file.assert_called_once_with(
-            addon.current_version.files.get())
+            addon.current_version.files.get(),
+            use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack_beta(self, mock_sign_file):
@@ -208,7 +236,8 @@ class TestLangpackFetcher(TestCase):
         version = addon.versions.get(version=versions[1])
         assert version.files.all()[0].status == amo.STATUS_BETA
 
-        mock_sign_file.assert_called_with(version.files.get())
+        mock_sign_file.assert_called_with(
+            version.files.get(), use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):
