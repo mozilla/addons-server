@@ -86,7 +86,7 @@ def call_signing(file_obj):
         }]
 
         # post the request
-        with statsd.timer('services.sign.addon'):
+        with statsd.timer('services.sign.addon.autograph'):
             response = requests.post(
                 '{server}/sign/data'.format(server=conf['server_url']),
                 json=signing_request,
