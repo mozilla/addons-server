@@ -9,7 +9,7 @@ x-env-mapping: &env
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
-    - OLYMPIA_SITE_URL=http://olympia.dev
+    - OLYMPIA_SITE_URL=http://olympia.test
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - RECURSION_LIMIT=10000
@@ -25,7 +25,7 @@ services:
     volumes:
       - .:/code
     extra_hosts:
-     - "olympia.dev:127.0.0.1"
+     - "olympia.test:127.0.0.1"
 
   web:
     <<: *worker
@@ -81,4 +81,4 @@ services:
       - "5900"
     shm_size: 2g
     links:
-      - "nginx:olympia.dev"
+      - "nginx:olympia.test"

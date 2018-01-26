@@ -67,18 +67,18 @@ Accessing the web server
 
 By default our docker-compose config exposes the web-server on port 80 of localhost.
 
-We use ``olympia.dev`` as the default hostname to access your container server (e.g. for
-Firefox Accounts). To be able access the development environment using ``http://olympia.dev``
+We use ``olympia.test`` as the default hostname to access your container server (e.g. for
+Firefox Accounts). To be able access the development environment using ``http://olympia.test``
 you'll need to  edit your ``/etc/hosts`` file on your native operating system.
 For example::
 
-    [ip-address]  olympia.dev
+    [ip-address]  olympia.test
 
 Typically the IP address is localhost (127.0.0.1) but if you're using docker-machine
 see :ref:`accessing-the-web-server-docker-machine` for details of how to get the ip of
 the Docker vm.
 
-By default we configure `OLYMPIA_SITE_URL` to point to `http://olympia.dev`.
+By default we configure `OLYMPIA_SITE_URL` to point to `http://olympia.test`.
 
 If you choose a different hostname you'll need to set that environment variable
 and restart the Docker containers::
@@ -146,7 +146,7 @@ Here's a list of a few of the issues you might face when using Docker.
 Can't access the web server?
 ----------------------------
 
-Check you've created a hosts file entry pointing ``olympia.dev`` to the
+Check you've created a hosts file entry pointing ``olympia.test`` to the
 relevant IP address.
 
 If containers are failing to start use ``docker-compose ps`` to check their
@@ -215,9 +215,9 @@ to the container ``nginx`` from the host ``nginx`` with the following ``nginx`` 
 
     server {
         listen       80;
-        server_name  olympia.dev;
+        server_name  olympia.test;
         location / {
-            proxy_pass   http://olympia.dev:8880;
+            proxy_pass   http://olympia.test:8880;
         }
     }
 

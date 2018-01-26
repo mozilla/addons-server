@@ -113,7 +113,7 @@ def cors_endpoint_overrides(internal, public):
 
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['localhost:3000', 'olympia.dev'],
+    public=['localhost:3000', 'olympia.test'],
     internal=['localhost:3000'],
 )
 
