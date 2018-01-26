@@ -1015,7 +1015,8 @@ class TestSubmitFile(TestCase):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED,
+            use_autograph=False)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)

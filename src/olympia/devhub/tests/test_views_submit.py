@@ -1455,7 +1455,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         mock_auto_sign_file.assert_has_calls([
-            mock.call(f, is_beta=False, use_autograph=use_autograph)
+            mock.call(f, is_beta=False, use_autograph=False)
             for f in version.all_files])
 
     def test_no_force_beta_for_unlisted(self):

@@ -460,7 +460,7 @@ class TestTasks(TestCase):
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             tasks.sign_addons([self.addon.pk])
-            mock_sign_file.assert_called_with(self.file_)
+            mock_sign_file.assert_called_with(self.file_, use_autograph=False)
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_supported_applications(self, mock_sign_file):
@@ -471,7 +471,8 @@ class TestTasks(TestCase):
             for app in (amo.ANDROID.id, amo.FIREFOX.id):
                 self.max_appversion.update(application=app)
                 tasks.sign_addons([self.addon.pk])
-                mock_sign_file.assert_called_with(self.file_)
+                mock_sign_file.assert_called_with(
+                    self.file_, use_autograph=False)
                 mock_sign_file.reset_mock()
 
     def assert_not_signed(self, mock_sign_file, file_hash):
@@ -661,7 +662,7 @@ class TestTasks(TestCase):
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             tasks.sign_addons([self.addon.pk], reason='expiry')
-            mock_sign_file.assert_called_with(self.file_)
+            mock_sign_file.assert_called_with(self.file_, use_autograph=False)
 
         assert 'expiration' in mail.outbox[0].message().as_string()
 
