@@ -35,7 +35,11 @@ class MiddlewareTest(BaseTestCase):
             # Check an invalid locale.
             '/sda/firefox/addon/1': '/en-US/firefox/addon/1',
 
+            # Check an invalid locale with a non-app part of the site.
+            '/sda/developers': '/en-US/developers',
+
             # Check a consolidated language (e.g. es-* -> es).
+            '/es-ES/developers': '/es/developers',
             '/es-ES/firefox/addon/1': '/es/firefox/addon/1',
             '/es-PE/firefox/addon/1': '/es/firefox/addon/1',
 

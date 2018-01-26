@@ -156,12 +156,19 @@ class Prefixer(object):
     def fix(self, path):
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
+        splitted_path = path.partition('/')
 
         if not path.startswith(settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX):
-            if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
+            if splitted_path[0] not in settings.SUPPORTED_NONLOCALES:
                 url_parts.append(self.locale or self.get_language())
 
-            if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
+            if (len(url_parts) == 2 and
+                    splitted_path[2].startswith(settings.SUPPORTED_NONAPPS)):
+                # We want to handle <unknown-locale>/<supported-non-app>. In
+                # that scenario url_parts would have added the locale, so we
+                # need to correct the path and avoid adding the app.
+                path = splitted_path[2]
+            elif splitted_path[0] not in settings.SUPPORTED_NONAPPS:
                 url_parts.append(self.app or self.get_app())
 
         url_parts.append(path)
