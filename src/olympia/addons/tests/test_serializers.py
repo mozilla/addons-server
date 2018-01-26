@@ -888,11 +888,6 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
-        addon_testcase = AddonSerializerOutputTestMixin()
-        addon_testcase.addon = self.addon
-        addon_testcase._test_version(
-            self.addon.current_version, result['current_version'])
-
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)
         result = self.serialize()
