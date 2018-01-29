@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,9 @@ msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -2637,12 +2640,6 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 msgid "Submit my add-on for manual review."
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "ਇਸ ਚੋਣ ਤੇ ਨਿਸ਼ਾਨ ਲਗਾਓ ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਆਪ ਵੰਡਣਾ ਤੈਅ ਕੀਤਾ ਅਤੇ ਕੇਵਲ ਇਸ ਨੂੰ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਹਸਤਾਖਰਿਤ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
 
@@ -3319,12 +3316,6 @@ msgstr "ਇੱਕ ਸਕਰੀਨਸ਼ਾੱਟ ਜੋੜੋ..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡਾ ਥੀਮ ਸਾਂਝਾ ਕਰ ਸਕਦਾ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਦਿੱਤਾ?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "ਲਾਇਸੰਸਰ ਵਪਾਰਕ ਮਕਸਦਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ, ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "ਲਾਇਸੰਸ ਦੂਜਿਆਂ ਨੂੰ ਗੈਰ-ਵਪਾਰਕ ਮਕਸਦਾਂ ਲਈ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾਰਕ ਵਰਤੋਂ ਕਰ ਸਕਦਾ?"
@@ -3333,17 +3324,11 @@ msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾ
 msgid "Can others create derivative works from your Add-on?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਤੋਂ ਛਾਪ ਲੈ ਕੇ ਰਚਨਾ ਕਰ ਸਕਦਾ?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ, ਨਾਲ ਦੀ ਨਾਲ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਬਣਾਉਣਾ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
 msgid "Yes, as long as they share alike"
 msgstr "ਹਾਂ, ਜਦੋਂ ਤੱਕ ਉਹ ਵੀ ਇਸੇ ਤਰ੍ਹਾਂ ਸਾਂਝਾ ਕਰਨ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸੇ ਵਰਗੇ ਲਾਇਸੰਸ ਦੇ ਅਧੀਨ ਛਾਪ ਵੰਡਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦੇ ਸਕਦਾ ਜਾਂ ਜਿੜੜਾ ਲਾਇਸੰਸਰ ਦੇ ਕੰਮ ਅਨੁਸਾਰ ਅਨੁਕੂਲ ਹੋਵੇ।"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸਦੇ ਕੰਮ ਦੀਆਂ ਬਿਨਾਂ-ਬਦਲਾਅ ਵਾਲੀਆਂ ਨਕਲਾਂ ਦੀ ਕਾਪੀ, ਵੰਡਣ ਅਤੇ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ— ਨਾ ਕਿ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਦੀ।"
 
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
@@ -3351,6 +3336,10 @@ msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸ�
 
 msgid "Select a different license."
 msgstr "ਇੱਕ ਵੱਖ ਲਾਇਸੰਸ ਚੁਣੋ।"
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 msgid "Tests"
 msgstr "ਪਰਖ"
@@ -3709,7 +3698,8 @@ msgstr "ਥੀਮ ਹਟਾਇਆ।"
 msgid "Theme generator"
 msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
 msgid "required"
@@ -3727,44 +3717,45 @@ msgstr "ਉੱਪਰੀ-ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ"
 msgid "Select a different header image"
 msgstr "ਇੱਕ ਵੱਖ ਹੈਡਰ ਤਸਵੀਰ ਚੁਣੋ"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3772,7 +3763,7 @@ msgid "optional"
 msgstr "(ਵਿਕਲਪਿਕ)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
 
 msgid "Back"
@@ -3783,8 +3774,8 @@ msgid "Uploading Theme"
 msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
+msgid "Finish Theme"
+msgstr "%s ਥੀਮ"
 
 msgid "API Credentials"
 msgstr ""
@@ -4205,11 +4196,23 @@ msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡਾ ਥੀਮ ਸਾਂਝਾ ਕਰ ਸਕਦਾ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਦਿੱਤਾ?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "ਲਾਇਸੰਸਰ ਵਪਾਰਕ ਮਕਸਦਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ, ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "ਲਾਇਸੰਸ ਦੂਜਿਆਂ ਨੂੰ ਗੈਰ-ਵਪਾਰਕ ਮਕਸਦਾਂ ਲਈ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾਰਕ ਵਰਤੋਂ ਕਰ ਸਕਦਾ?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਤੋਂ ਛਾਪ ਲੈ ਕੇ ਰਚਨਾ ਕਰ ਸਕਦਾ?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ, ਨਾਲ ਦੀ ਨਾਲ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਬਣਾਉਣਾ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸਦੇ ਕੰਮ ਦੀਆਂ ਬਿਨਾਂ-ਬਦਲਾਅ ਵਾਲੀਆਂ ਨਕਲਾਂ ਦੀ ਕਾਪੀ, ਵੰਡਣ ਅਤੇ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ— ਨਾ ਕਿ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਦੀ।"
 
 msgid "Your Theme will be released under the following license:"
 msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸੰਸ ਦੇ ਅਧੀਨ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇਗਾ:"
@@ -4243,6 +4246,9 @@ msgstr "ਸਿਰਲੇਖ"
 
 msgid "Footer"
 msgstr "ਪਦਲੇਖ"
+
+msgid "Select colors for your Theme."
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
 msgid "Foreground Text"
 msgstr "ਫ਼ੌਰਗਰਾਂਊਡ ਟੈਕਸਟ"
@@ -4305,6 +4311,9 @@ msgstr "ਸਮੀਖਿਆਵਾਂ, ਸੰਗ੍ਰਹਿਾਂ ਅਤੇ ਹ�
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "ਸਾਡੀਆਂ <a href=\"%(forum_url)s\">ਫ਼ੋਰਮਾਂ</a> ਵਿੱਚ ਗੱਲਬਾਤ ਦਾ ਹਿੱਸਾ ਬਣੋ।"
+
+msgid "Select a header image for your Theme."
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 ਪਿਕਸਲ"
@@ -6152,17 +6161,6 @@ msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ:"
 msgid "Applications:"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "ਅਗਲੀ ਵਾਰ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਹੋਵੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ। (ਪਿਛਲੀਆਂ ਅੱਪਡੇਟਾਂ ਈਮੇਲ ਜਾਰੀ ਨਹੀਂ ਕਰਨਗੀਆਂ)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
@@ -6698,6 +6696,28 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
 msgid "(admin)"
 msgstr "(ਪ੍ਰਬੰਧਕ)"

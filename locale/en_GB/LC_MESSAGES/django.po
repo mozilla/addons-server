@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2018-01-01 16:49+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,6 +163,9 @@ msgstr "Listed"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Addon and collection paths need to end with \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
 
 msgid "Abuse reported."
 msgstr "Abuse reported."
@@ -2559,12 +2562,6 @@ msgstr "Override failed validation"
 msgid "Submit my add-on for manual review."
 msgstr "Submit my add-on for manual review."
 
-msgid "Do not list my add-on on this site"
-msgstr "Do not list my add-on on this site"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 
@@ -3273,20 +3270,11 @@ msgstr "Add a Screenshot..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Can others share your Add-on, as long as you're given credit?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Can others make commercial use of your Add-on?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Can others create derivative works from your Add-on?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 
 msgid "Yes, as long as they share alike"
 msgstr "Yes, as long as they share alike"
@@ -3294,14 +3282,15 @@ msgstr "Yes, as long as they share alike"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "The licensor permits others to distribute derivative works only under the same licence or one compatible with the one that governs the licensor's work."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Your Add-on will be released under the following licence:"
 
 msgid "Select a different license."
 msgstr "Select a different licence."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "More information requested"
 
 msgid "Tests"
 msgstr "Tests"
@@ -3623,7 +3612,8 @@ msgstr "Theme generate"
 msgid "Theme generator"
 msgstr "Theme generator"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "Select a header image for your Theme."
 
 msgid "required"
@@ -3641,49 +3631,63 @@ msgstr "Aligned to top-right"
 msgid "Select a different header image"
 msgstr "Select a different header image"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Select colours for your Theme."
 
-msgid "Header area background (accentcolor)"
+#, fuzzy
+msgid "Header area background"
 msgstr "Header area background (accentcolour)"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr "The colour of the header area background, displayed in the part of the header not covered or visible through the header image."
 
-msgid "Header area text (textcolor)"
+#, fuzzy
+msgid "Header area text"
 msgstr "Header area text (textcolour)"
 
-msgid "The color of the text displayed in the header area."
+#, fuzzy
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr "The colour of the text displayed in the header area."
 
-msgid "Toolbar area background (toolbar)."
+#, fuzzy
+msgid "Toolbar area background"
 msgstr "Toolbar area background (toolbar)."
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "The background colour for the navigation bar, the bookmarks bar, and the selected tab."
 
-msgid "Toolbar area text (toolbar_text)."
+#, fuzzy
+msgid "Toolbar area text"
 msgstr "Toolbar area text (toolbar_text)."
 
-msgid "The color of toolbar text."
+#, fuzzy
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "The colour of toolbar text."
 
-msgid "Toolbar field area background (toolbar_field)."
+#, fuzzy
+msgid "Toolbar field area background"
 msgstr "Toolbar field area background (toolbar_field)."
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+#, fuzzy
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "The background colour for fields in the toolbar, such as the URL bar."
 
-msgid "Toolbar field area text (toolbar_field_text)."
+#, fuzzy
+msgid "Toolbar field area text"
 msgstr "Toolbar field area text (toolbar_field_text)."
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+#, fuzzy
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "The colour of text in fields in the toolbar, such as the URL bar"
 
 msgid "optional"
 msgstr "optional"
 
-msgid "Browser Preview"
+#, fuzzy
+msgid "Browser preview"
 msgstr "Browser Preview"
 
 msgid "Back"
@@ -3692,8 +3696,9 @@ msgstr "Back"
 msgid "Uploading Theme"
 msgstr "Uploading Theme"
 
-msgid "Upload Theme"
-msgstr "Upload Theme"
+#, fuzzy
+msgid "Finish Theme"
+msgstr "%s Themes"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -4095,11 +4100,23 @@ msgstr "Theme Licence"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Can others share your Theme, as long as you're given credit?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Can others make commercial use of your Theme?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Can others create derivative works from your Theme?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Your Theme will be released under the following licence:"
@@ -4133,6 +4150,9 @@ msgstr "Header"
 
 msgid "Footer"
 msgstr "Footer"
+
+msgid "Select colors for your Theme."
+msgstr "Select colours for your Theme."
 
 msgid "Foreground Text"
 msgstr "Foreground Text"
@@ -4197,6 +4217,9 @@ msgstr "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity fee
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Select a header image for your Theme."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
@@ -6066,15 +6089,6 @@ msgstr "Operating systems:"
 msgid "Applications:"
 msgstr "Applications:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Clear Admin Code Review Flag"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Clear Admin Content Review Flag"
-
 msgid "Is more info requested?"
 msgstr "Is more info requested?"
 
@@ -6569,6 +6583,26 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Update the whiteboard"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "More Actions:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Re-enable Version"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Clear Admin Code Review Flag"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Clear Admin Content Review Flag"
 
 msgid "(admin)"
 msgstr "(admin)"

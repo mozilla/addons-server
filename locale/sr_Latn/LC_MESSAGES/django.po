@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -182,6 +182,9 @@ msgid "Listed"
 msgstr "Navedene"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -2868,14 +2871,6 @@ msgstr "Prepis nije prešao validaciju"
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid ""
-"Check this option if you intend to distribute your add-on on your own and "
-"only need it to be signed by Mozilla."
-msgstr ""
-
 msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
@@ -3672,18 +3667,6 @@ msgstr "Dodaj sliku ekrana..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Da li drugi mogu da dele Vašu temu, ukoliko Vama idu zasluge?"
 
-msgid ""
-"The licensor permits others to copy, distribute, display, and perform the "
-"work, including for commercial purposes."
-msgstr ""
-"Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i "
-"obavljaju posao, uključujući i komercijalne svrhe."
-
-msgid ""
-"The licensor permits others to copy, distribute, display, and perform the "
-"work for non-commercial purposes only."
-msgstr ""
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Da li drugi mogu da koriste Vašu temu u komercijalne svrhe?"
@@ -3691,11 +3674,6 @@ msgstr "Da li drugi mogu da koriste Vašu temu u komercijalne svrhe?"
 #, fuzzy
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Da li drugi mogu da prave izvedena dela na osnovu Vaše teme?"
-
-msgid ""
-"The licensor permits others to copy, distribute, display and perform the "
-"work, as well as make derivative works based on it."
-msgstr ""
 
 msgid "Yes, as long as they share alike"
 msgstr "Da, ukoliko i oni podele"
@@ -3705,17 +3683,16 @@ msgid ""
 "same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid ""
-"The licensor permits others to copy, distribute and transmit only unaltered "
-"copies of the work — not derivative works based on it."
-msgstr ""
-
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
 msgstr "Vaša tema biće izdata pod sledećom licencom:"
 
 msgid "Select a different license."
 msgstr "Izaberite drugačiju licencu."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Zahtevane dodatne informacije"
 
 msgid "Tests"
 msgstr "Testovi"
@@ -4106,7 +4083,8 @@ msgstr "Tema obrisana."
 msgid "Theme generator"
 msgstr "Licenca teme"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "Izaberite sliku zaglavlja za Vašu temu."
 
 msgid "required"
@@ -4124,48 +4102,56 @@ msgstr "Poravnato na gore-desno"
 msgid "Select a different header image"
 msgstr "Izaberite drugu sliku za zaglavlje"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Odaberite boje za Vašu temu."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
 msgid ""
 "The color of the header area background, displayed in the part of the header "
-"not covered or visible through the header image."
+"not covered or visible through the header image. Manifest field:  "
+"accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid ""
+"The color of the text displayed in the header area. Manifest field:  "
+"textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
-"selected tab."
+"selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "Ovo je boja teksta na jezičku."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid ""
+"The background color for fields in the toolbar, such as the URL bar. "
+"Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid ""
+"The color of text in fields in the toolbar, such as the URL bar. Manifest "
+"field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -4173,7 +4159,7 @@ msgid "optional"
 msgstr "(izborno)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Prevuci za pregled"
 
 msgid "Back"
@@ -4184,8 +4170,8 @@ msgid "Uploading Theme"
 msgstr "Nadolazeće teme"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Postavi još jednu datoteku"
+msgid "Finish Theme"
+msgstr "%s teme"
 
 msgid "API Credentials"
 msgstr ""
@@ -4673,11 +4659,33 @@ msgstr "Licenca teme"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Da li drugi mogu da dele Vašu temu, ukoliko Vama idu zasluge?"
 
+msgid ""
+"The licensor permits others to copy, distribute, display, and perform the "
+"work, including for commercial purposes."
+msgstr ""
+"Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i "
+"obavljaju posao, uključujući i komercijalne svrhe."
+
+msgid ""
+"The licensor permits others to copy, distribute, display, and perform the "
+"work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Da li drugi mogu da koriste Vašu temu u komercijalne svrhe?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Da li drugi mogu da prave izvedena dela na osnovu Vaše teme?"
+
+msgid ""
+"The licensor permits others to copy, distribute, display and perform the "
+"work, as well as make derivative works based on it."
+msgstr ""
+
+msgid ""
+"The licensor permits others to copy, distribute and transmit only unaltered "
+"copies of the work — not derivative works based on it."
+msgstr ""
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Vaša tema biće izdata pod sledećom licencom:"
@@ -4715,6 +4723,9 @@ msgstr "Zaglavlje"
 
 msgid "Footer"
 msgstr "Podnožje"
+
+msgid "Select colors for your Theme."
+msgstr "Odaberite boje za Vašu temu."
 
 msgid "Foreground Text"
 msgstr "Prednji tekst"
@@ -4797,6 +4808,9 @@ msgstr ""
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Priključi se razgovoru u našim <a href=\"%(forum_url)s\">forumima</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Izaberite sliku zaglavlja za Vašu temu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksela"
@@ -7126,21 +7140,6 @@ msgstr "Operativni sistemi:"
 msgid "Applications:"
 msgstr "Aplikacije:"
 
-msgid ""
-"Notify me the next time this add-on is updated. (Subsequent updates will not "
-"generate an email)"
-msgstr ""
-"Obavesti me sledeći put kada se ovaj dodatak ažurira. (Naknadna ažuriranja "
-"neće generisati e-poštu)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Ukloni oznaku za recenziju administratora"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Ukloni oznaku za recenziju administratora"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "Zahtevane dodatne informacije"
@@ -7729,6 +7728,28 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Ažuriraj tablu"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Još opcija:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Verzija za štampanje"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Ukloni oznaku za recenziju administratora"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Ukloni oznaku za recenziju administratora"
 
 msgid "(admin)"
 msgstr "(administrator)"

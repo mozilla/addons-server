@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2017-12-13 21:44+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,9 @@ msgstr "Yettwabder"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Abrid n uzegrir akked taggayt isra ad ifak s \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
 
 msgid "Abuse reported."
 msgstr "Yir aseqdec yettwammel."
@@ -2558,12 +2561,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr "Azen azegrir-inu i ucegger s ufus."
 
-msgid "Do not list my add-on on this site"
-msgstr "Ur d-skan ara izegrar inu ɣef usmel"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Ṛcem aɣewwaṛ-agi ma tebɣiḍ azuzer n uzegrir inek s yiman-ik udiɣ ad yettwazmel kan sɣur Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta|pre|rc, yettwaḍfaṛen ahat s umḍan, yettwammel d lqem beta."
 
@@ -3231,12 +3228,6 @@ msgstr "Rnu tuṭṭfa n ugdil"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
@@ -3245,16 +3236,10 @@ msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
 msgid "Yes, as long as they share alike"
 msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 #, fuzzy
@@ -3263,6 +3248,10 @@ msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
 
 msgid "Select a different license."
 msgstr "Fren turagt nniḍen."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Ugar n telɣut tettusuter"
 
 msgid "Tests"
 msgstr "Ikayaden"
@@ -3589,7 +3578,8 @@ msgstr "Asentel yettwakkes."
 msgid "Theme generator"
 msgstr "Turagt n usentel"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "Fren tugna n uqeṛṛu i usentel inek."
 
 msgid "required"
@@ -3607,44 +3597,45 @@ msgstr "Reyyec d asawen ayeffus"
 msgid "Select a different header image"
 msgstr "Fren tugna nniḍen n uqeṛṛu"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Fren initeni usentel inek."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "Wagi d ini n uḍris n yiccer."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3652,7 +3643,7 @@ msgid "optional"
 msgstr "(afrayan)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Srifeg s ufella akken ad d-sekneḍ"
 
 msgid "Back"
@@ -3663,8 +3654,8 @@ msgid "Uploading Theme"
 msgstr "Isental yettnernin"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Sali afaylu"
+msgid "Finish Theme"
+msgstr "%s Isental"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
@@ -4051,11 +4042,23 @@ msgstr "Turagt n usentel"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ""
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
@@ -4089,6 +4092,9 @@ msgstr "Aqeṛṛu"
 
 msgid "Footer"
 msgstr "Aḍaṛ"
+
+msgid "Select colors for your Theme."
+msgstr "Fren initeni usentel inek."
 
 msgid "Foreground Text"
 msgstr "Aḍris n zdat"
@@ -4153,6 +4159,9 @@ msgstr ""
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Ddu ɣer usqerdec deg  <a href=\"%(forum_url)s\">inmagaren</a>-nneɣ."
+
+msgid "Select a header image for your Theme."
+msgstr "Fren tugna n uqeṛṛu i usentel inek."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &tikalt; 200 ipiksilen"
@@ -5946,17 +5955,6 @@ msgstr "Inagrawen n wammud:"
 msgid "Applications:"
 msgstr "Isnasen:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Acegger n unedbal"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Asentem n ugbur n uzegrir"
-
 msgid "Is more info requested?"
 msgstr "Tesriḍ ugar n talγut?"
 
@@ -6467,6 +6465,28 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Snifel tafelwit tamellalt"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Ugar n tigawin:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Rmed tikelt nniḍen lqem-agi"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Acegger n unedbal"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Asentem n ugbur n uzegrir"
 
 msgid "(admin)"
 msgstr "(anedbal)"

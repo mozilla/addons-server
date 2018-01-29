@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2018-01-02 14:05+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -163,6 +163,9 @@ msgid "Listed"
 msgstr "Listelenen"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -2614,12 +2617,6 @@ msgstr "Başarısız doğrulamayı geçersiz kıl"
 msgid "Submit my add-on for manual review."
 msgstr "Elle inceleme için eklentimi gönder."
 
-msgid "Do not list my add-on on this site"
-msgstr "Eklentilerimi bu sitede listeleme"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Eklentinizi kendi başınıza dağıtmayı düşünüyorsanız ve yalnızca Mozilla tarafından imzalanmış olması gerekiyorsa bu seçeneği işaretleyin."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Sürümü a|alpha|b|beta|pre|rc ve isteğe bağlı bir sayı ile biten bir dosya beta olarak algılanır."
 
@@ -3298,20 +3295,11 @@ msgstr "Ekran görüntüsü ekle..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kaynak gösterildiği sürece başkaları eklentinizi paylaşabilir mi?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Lisans sahibi; bu çalışmanın ticari amaçlar için de dahil olmak üzere başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Lisans sahibi; bu çalışmanın yalnızca ticari olmayan amaçlar için başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Başkaları eklentinizi ticari amaçla kullanabilir mi?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Başkaları eklentinizi temel alan farklı çalışmalar yapabilir mi?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Lisans sahibi; bu çalışmanın başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine, uygulanmasına ve bu çalışmayı temel alan çalışmalar oluşturulmasına izin veriyor."
 
 msgid "Yes, as long as they share alike"
 msgstr "Aynı lisansla paylaştıkları sürece evet"
@@ -3319,16 +3307,15 @@ msgstr "Aynı lisansla paylaştıkları sürece evet"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Lisans sahibi; bu çalışmayı temel alacak çalışmaların yalnızca aynı lisans veya diğer uyumlu lisanslardan biriyle dağıtılmasına izin veriyor."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka "
-"çalışmalara izin vermiyor."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Eklentiniz şu lisansla yayımlanacaktır:"
 
 msgid "Select a different license."
 msgstr "Farklı bir lisans seçin."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Daha fazla bilgi istendi"
 
 msgid "Tests"
 msgstr "Testler"
@@ -3655,7 +3642,8 @@ msgstr "Tema silindi."
 msgid "Theme generator"
 msgstr "Tema oluşturucu"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "Temanız için üstbilgi resmi seçin."
 
 msgid "required"
@@ -3673,50 +3661,52 @@ msgstr "Sağ üste hizalı"
 msgid "Select a different header image"
 msgstr "Farklı bir üst kısım resmi seçin"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Temanızın renklerini seçin."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "Bu renk, sekme metninin rengidir."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "optional"
 msgstr "tercihe bağlı"
 
-msgid "Browser Preview"
+#, fuzzy
+msgid "Browser preview"
 msgstr "Tarayıcı ön izlemesi"
 
 msgid "Back"
@@ -3725,8 +3715,9 @@ msgstr "Geri"
 msgid "Uploading Theme"
 msgstr "Tema yükleniyor"
 
-msgid "Upload Theme"
-msgstr "Temayı yükle"
+#, fuzzy
+msgid "Finish Theme"
+msgstr "%s Temaları"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
@@ -4117,11 +4108,25 @@ msgstr "Tema Lisansı"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Kaynak gösterildiği sürece başkaları temanızı paylaşabilir mi?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Lisans sahibi; bu çalışmanın ticari amaçlar için de dahil olmak üzere başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Lisans sahibi; bu çalışmanın yalnızca ticari olmayan amaçlar için başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Başkaları temanızı ticari amaçla kullanabilir mi?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Başkaları temanızı temel alan farklı çalışmalar yapabilir mi?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Lisans sahibi; bu çalışmanın başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine, uygulanmasına ve bu çalışmayı temel alan çalışmalar oluşturulmasına izin veriyor."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ""
+"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka "
+"çalışmalara izin vermiyor."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Temanız şu lisansla yayımlanacaktır:"
@@ -4157,6 +4162,9 @@ msgstr "Üstbilgi"
 
 msgid "Footer"
 msgstr "Altbilgi"
+
+msgid "Select colors for your Theme."
+msgstr "Temanızın renklerini seçin."
 
 msgid "Foreground Text"
 msgstr "Ön plan metni"
@@ -4219,6 +4227,9 @@ msgstr ""
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
+
+msgid "Select a header image for your Theme."
+msgstr "Temanız için üstbilgi resmi seçin."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
@@ -6001,17 +6012,6 @@ msgstr "İşletim sistemleri:"
 msgid "Applications:"
 msgstr "Uygulamalar:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Eklenti İnceleme Süreci"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Eklenti İnceleme Süreci"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "Daha fazla bilgi istendi"
@@ -6543,6 +6543,28 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Beyaz tahtayı güncelle"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Diğer eylemler:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Sürümü yeniden etkinleştir"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Eklenti İnceleme Süreci"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Eklenti İnceleme Süreci"
 
 msgid "(admin)"
 msgstr "(yönetici)"
