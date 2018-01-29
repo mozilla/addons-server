@@ -64,6 +64,8 @@ class Command(BaseCommand):
     pre: a method to further pre process the pks, must return the pks (opt.)
     qs: a list of Q objects to apply to the method
     kwargs: any extra kwargs you want to apply to the delay method (optional)
+    allowed_kwargs: any extra boolean kwargs that can be applied via
+        additional arguments. Make sure to add it to `add_arguments` too.
     """
     def add_arguments(self, parser):
         """Handle command arguments."""

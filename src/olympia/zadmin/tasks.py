@@ -252,16 +252,7 @@ def fetch_langpack(url, xpi, **kw):
             # hooks.
             file_.update(status=amo.STATUS_PUBLIC)
 
-        # Create a dummy request to be able to tie the autograph enabling
-        # flag to our language pack users to enable signing for
-        # language packs
-        dummy_request = RequestFactory().get('/')
-        dummy_request.user = owner
-
-        sign_file(
-            file_,
-            use_autograph=waffle.flag_is_active(
-                dummy_request, 'activate-autograph-signing'))
+        sign_file(file_, use_autograph=False)
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC
