@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 14:55+0000\n"
+"PO-Revision-Date: 2018-01-29 16:12+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3629,9 +3629,8 @@ msgstr "יצירת ערכת נושא"
 msgid "Theme generator"
 msgstr "מחולל ערכות נושא"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "נא לבחור בתמונת כותרת לערכת הנושא שלך."
+msgstr "נא לבחור בתמונת כותרת לערכת הנושא שלך"
 
 msgid "required"
 msgstr "נדרש"
@@ -3649,47 +3648,44 @@ msgid "Select a different header image"
 msgstr "בחירת תמונת כותרת אחרת"
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "נא לבחור צבעים לערכת הנושא שלך"
 
 msgid "Header area background"
-msgstr ""
+msgstr "רקע אזור הכותרת"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
 msgid "Header area text"
-msgstr ""
+msgstr "טקסט אזור הכותרת"
 
 #, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr "צבע הטקסט שמופיע באזור הכותרת."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "רקע אזור סרגל הכלים"
 
 #, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "צבע הרקע של סרגל הניווט, סרגל הסימניות והלשונית הנבחרת."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "טקסט באזור סרגל הכלים (toolbar_text)."
+msgstr "טקסט אזור סרגל הכלים"
 
 #, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "צבע הטקסט של סרגל הכלים."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "רקע אזור השדות בסרגל הכלים (toolbar_field)."
+msgstr "רקע אזור השדות בסרגל הכלים"
 
 #, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "צבע הרקע עבור שדות בסרגל הכלים, כמו שורת הכתובת."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "טקסט באזור השדות בסרגל הכלים (toolbar_field_text)."
+msgstr "טקסט אזור השדות בסרגל הכלים"
 
 #, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
@@ -3708,7 +3704,7 @@ msgid "Uploading Theme"
 msgstr "ערכת נושא בהעלאה"
 
 msgid "Finish Theme"
-msgstr ""
+msgstr "סיום ערכת נושא"
 
 msgid "API Credentials"
 msgstr ""
@@ -3768,7 +3764,7 @@ msgstr "מועד היצירה:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "מצב ריבוי תהליכים של תוספת:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "תאימות התוספת שלך ל־Firefox עם תמיכה בריבוי תהליכים (e10s)."
@@ -4720,7 +4716,7 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "גילוי תוספות"
 
 msgid "What are Add-ons?"
 msgstr "מהן תוספות?"
@@ -5281,7 +5277,7 @@ msgid ""
 msgstr ""
 
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ""
+msgstr "יזמת הקוד הפתוח מספקת את התנאים לחלק מרישיונות הקוד הפתוח המובילים."
 
 msgid "A comparison of known open source licenses on Wikipedia."
 msgstr "השוואה בין רישיונות קוד פתוח נפוצים בוויקיפדיה."
@@ -5991,7 +5987,7 @@ msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "ערכת נושא, סוקר או הערה"
 
 msgid "Private Whiteboard"
 msgstr ""
