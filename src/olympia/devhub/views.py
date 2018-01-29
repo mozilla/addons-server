@@ -1199,12 +1199,12 @@ def auto_sign_file(file_, use_autograph=False, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, use_autograph=False)
+        sign_file(file_, use_autograph=use_autograph)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_, use_autograph=False)
+        sign_file(file_, use_autograph=use_autograph)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1400,7 +1400,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
-        use_autograph = waffle.flag_is_active(request, 'autograph-signing')
+        use_autograph = waffle.flag_is_active(
+            request, 'activate-autograph-signing')
         auto_sign_version(
             version,
             is_beta=is_beta,
