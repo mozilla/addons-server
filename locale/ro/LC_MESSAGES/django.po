@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-24 01:03+0000\n"
+"PO-Revision-Date: 2018-01-27 19:54+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2141,7 +2141,7 @@ msgid "Appearance"
 msgstr "Aspect"
 
 msgid "Bookmarks"
-msgstr "Semne de carte"
+msgstr "Marcaje"
 
 msgid "Download Management"
 msgstr "Gestionare de descărcări"
@@ -3467,9 +3467,8 @@ msgstr ""
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Vezi toate recenziile acestui supliment"
+msgstr "Selectează o categorie pentru acest supliment:"
 
 #, fuzzy
 msgid "Support email:"
