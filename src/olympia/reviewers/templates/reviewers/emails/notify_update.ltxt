@@ -14,4 +14,4 @@ Thanks!
 Mozilla Add-ons
 {{ SITE_URL }}
 
-This is a one-time notification sent to you because you requested a follow up email regarding queue activity for {{ name }}.  There is no need to unsubscribe if you don't wish to receive further mail.
+This is a notification sent to you because you requested a follow up email regarding new listed version uploads for {{ name }}. To unsubscribe, visit the review link above and uncheck the "Notify me about new listed versions" checkbox.
