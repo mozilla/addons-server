@@ -1363,7 +1363,7 @@ class Addon(OnChangeMixin, ModelBase):
             ignore_disabled = True
             admin = False
         return acl.check_addon_ownership(request, self, admin=admin,
-                                         viewer=(not require_owner),
+                                         dev=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
     @property

@@ -141,60 +141,12 @@ class TestHasPerm(TestCase):
         self.au.save()
         assert not check_addon_ownership(self.request, self.addon)
 
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
-
     def test_dev(self):
         assert check_addon_ownership(self.request, self.addon, dev=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, dev=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, dev=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, dev=True)
-
-    def test_viewer(self):
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-    def test_support(self):
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon,
-                                         support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon,
-                                         support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, support=True)
 
     def test_add_and_remove_group(self):
         group = Group.objects.create(name='A Test Group', rules='Test:Group')

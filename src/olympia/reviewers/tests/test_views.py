@@ -2074,11 +2074,6 @@ class BaseTestQueueSearch(SearchTest):
             response = self.search(text_query=email)
             assert response.status_code == 200
             assert self.named_addons(response) == [name]
-        author.role = amo.AUTHOR_ROLE_VIEWER
-        author.save()
-        response = self.search(text_query=email)
-        assert response.status_code == 200
-        assert self.named_addons(response) == []
 
     def test_search_by_supported_email_in_locale(self):
         name = 'Not Needing Admin Review'

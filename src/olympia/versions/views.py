@@ -116,7 +116,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
         if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, viewer=True, ignore_disabled=True):
+                request, addon, dev=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.guarded_file_path,
                 content_type='application/x-xpinstall')
@@ -129,7 +129,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
         if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, viewer=True, ignore_disabled=True):
+                request, addon, dev=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.file_path,
                 content_type='application/x-xpinstall')
@@ -184,8 +184,7 @@ def download_source(request, version_id):
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
         if not (version.source and
                 (acl.check_addon_ownership(
-                    request, version.addon,
-                    viewer=True, ignore_disabled=True))):
+                    request, version.addon, dev=True, ignore_disabled=True))):
             raise http.Http404()
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):

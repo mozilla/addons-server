@@ -83,8 +83,8 @@ def check_collection_ownership(request, collection, require_owner=False):
         return False
 
 
-def check_addon_ownership(request, addon, viewer=False, dev=False,
-                          support=False, admin=True, ignore_disabled=False):
+def check_addon_ownership(request, addon, dev=False, admin=True,
+                          ignore_disabled=False):
     """
     Check request.user's permissions for the addon.
 
@@ -92,8 +92,6 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     If the add-on is disabled only admins have permission.
     If they're an add-on owner they can do anything.
     dev=True checks that the user has an owner or developer role.
-    viewer=True checks that the user has an owner, developer, or viewer role.
-    support=True checks that the user has a support role.
     """
     if not request.user.is_authenticated():
         return False
@@ -110,13 +108,6 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     roles = (amo.AUTHOR_ROLE_OWNER,)
     if dev:
         roles += (amo.AUTHOR_ROLE_DEV,)
-    # Viewer privs are implied for devs.
-    elif viewer:
-        roles += (amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_VIEWER,
-                  amo.AUTHOR_ROLE_SUPPORT)
-    # Support can do support.
-    elif support:
-        roles += (amo.AUTHOR_ROLE_SUPPORT,)
     return addon.authors.filter(pk=request.user.pk,
                                 addonuser__role__in=roles).exists()
 
