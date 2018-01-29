@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 15:10+0000\n"
+"PO-Revision-Date: 2018-01-29 15:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3714,9 +3714,8 @@ msgstr "Slědk"
 msgid "Uploading Theme"
 msgstr "Drastwa se nagrawa"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Drastwy kategorije %s"
+msgstr "Drastwu dokóńcyś"
 
 msgid "API Credentials"
 msgstr "Pśizjawjeńske API-daty"
@@ -6617,9 +6616,8 @@ msgstr "Priwatne pokaze se za wuměnu informacijow mjazy pśeglědowarjami wužy
 msgid "Update whiteboards"
 msgstr "Pokaze aktualizěrowaś"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Dalšne akcije:"
+msgstr "Dalšne akcije"
 
 msgid "Notify me about new listed versions"
 msgstr "Wó nowych naliconych wersijach informěrowaś"
@@ -6627,9 +6625,8 @@ msgstr "Wó nowych naliconych wersijach informěrowaś"
 msgid "Force-disable add-on"
 msgstr "Znjemóžnjanje dodanka wunuźiś"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Wersiju zasej zmóžniś"
+msgstr "Zmóžnjanje dodanka wunuźiś"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Marku za pśeglědowanje žrědłowego teksta wót administratora wótpóraś"
