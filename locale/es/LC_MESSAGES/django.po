@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 17:47+0000\n"
+"PO-Revision-Date: 2018-01-29 17:57+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -3682,42 +3682,35 @@ msgid "Header area text"
 msgstr "Texto del área del título"
 
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "El color del texto que aparece en el área del título. Campo del manifesto:  textcolor."
+msgstr "El color del texto que aparece en el área del título. Campo del manifiesto:  textcolor."
 
 msgid "Toolbar area background"
 msgstr "Fondo del área de la barra de herramientas"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifesto:  toolbar."
+msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Texto del área de la barra de herramientas (toolbar_text)."
+msgstr "Texto del área de la barra de herramientas"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "El color del texto de la barra de herramientas."
+msgstr "El color del texto de la barra de herramientas. Campo del manifiesto:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Fondo de los campos de la barra de herramientas (toolbar_field)."
+msgstr "Fondo de los campos de la barra de herramientas"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "El color de fondo de los campos de la barra de herramientas, como el de la barra de URL."
+msgstr "El color de fondo de los campos de la barra de herramientas, como el de la barra de URL. Campo del manifiesto:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Texto de los campos de la barra de herramientas (toolbar_field_text)."
+msgstr "Texto de los campos de la barra de herramientas"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "El color del texto de los campos de la barra de herramientas, como la barra de URL"
+msgstr "El color del texto de los campos de la barra de herramientas, como la barra de URL. Campo del manifiesto:  toolbar_field_text."
 
 msgid "optional"
 msgstr "opcional"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Vista previa del navegador"
 
@@ -3727,9 +3720,8 @@ msgstr "Atrás"
 msgid "Uploading Theme"
 msgstr "Subiendo tema"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Temas de %s"
+msgstr "Finalizar tema"
 
 msgid "API Credentials"
 msgstr "Credenciales de API"
@@ -6680,19 +6672,17 @@ msgstr "La pizarra privada se utiliza para que los revisores intercambien inform
 msgid "Update whiteboards"
 msgstr "Actualizar pizarras"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Más acciones:"
+msgstr "Más acciones"
 
 msgid "Notify me about new listed versions"
 msgstr "Notificarme cuando haya nuevas versiones listadas"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Forzar desactivación del complemento"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Reactivar versión"
+msgstr "Forzar activación del complemento"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpiar la etiqueta de revisión de código de administrador"
