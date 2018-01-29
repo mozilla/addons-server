@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 20:31+0000\n"
+"PO-Revision-Date: 2018-01-29 20:34+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3721,17 +3721,14 @@ msgstr "Área de texto da barra de ferramentas"
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "A cor do texto da barra de ferramentas. Campo do manifesto:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Fundo da área do campo da barra de ferramentas (toolbar_field)."
+msgstr "Área de fundo do campo da barra de ferramentas"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "A cor de fundo para campos na barra de ferramentas, tais como a barra de URL."
+msgstr "A cor de fundo para campos na barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Texto da área do campo da barra de ferramentas (toolbar_field_text)."
+msgstr "Área do campo de texto da barra de ferramentas"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "A cor do texto em campos da barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
@@ -6699,9 +6696,8 @@ msgstr "Notificar sobre novas versões"
 msgid "Force-disable add-on"
 msgstr "Forçar desativação da extensão"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Reativar versão"
+msgstr "Forçar ativação da extensão"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpar a sinalização de revisão do código de administração"
