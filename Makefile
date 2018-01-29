@@ -1,6 +1,6 @@
 .PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_deps update_db update_assets initialize update reindex flake8 shell debug
 
-IN_DOCKER = $(wildcard /addons-server-docker-container)
+IN_DOCKER = $(wildcard /addons-server-centos7-container)
 
 ifneq ($(IN_DOCKER),)
 	SUB_MAKEFILE = Makefile-docker
