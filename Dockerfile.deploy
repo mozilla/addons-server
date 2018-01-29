@@ -67,6 +67,9 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/syste
 # Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
 RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
+# Fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=783738
+RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
+
 RUN echo "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
