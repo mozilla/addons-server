@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 19:10+0000\n"
+"PO-Revision-Date: 2018-01-29 19:22+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -176,7 +176,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Pot dodatka in zbirke se morata končati s \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Imena dodatkov ne smejo vsebovati blagovnih znamk Mozilla ali Firefox."
 
 msgid "Abuse reported."
 msgstr "Zloraba sporočena."
@@ -3690,36 +3690,29 @@ msgstr "Izberite barve za svojo temo"
 msgid "Header area background"
 msgstr "Ozadje območja glave"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Barva ozadja območja glave, s katero je zapolnjen del, ki ga ne prekriva slika glave."
+msgstr "Barva ozadja območja glave, s katero je zapolnjen del, ki ga ne prekriva slika glave. Polje manifesta:  accentcolor."
 
 msgid "Header area text"
 msgstr "Besedilo območja glave"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "Barva besedila, prikazanega v območju orodne vrstice."
+msgstr "Barva besedila, prikazanega v območju orodne vrstice. Polje manifesta:  textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Ozadje območja orodne vrstice (toolbar)."
+msgstr "Ozadje območja orodne vrstice"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek."
+msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek.  Polje manifesta:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Besedilo v območju orodne vrstice (toolbar_text)."
+msgstr "Besedilo v območju orodne vrstice"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Barva besedila orodne vrstice."
+msgstr "Barva besedila orodne vrstice. Polje manifesta:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Ozadje območja polja orodne vrstice (toolbar_field)."
+msgstr "Ozadje območja polja orodne vrstice"
 
 #, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
@@ -6671,9 +6664,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr "Prisilno onemogoči dodatek"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Ponovno omogoči različico"
+msgstr "Prisilno omogoči dodatek"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Izbriši zastavico za skrbnikov pregled kode"
