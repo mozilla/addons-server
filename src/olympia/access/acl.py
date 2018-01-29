@@ -140,7 +140,7 @@ def is_reviewer(request, addon):
             (check_personas_reviewer(request) and addon.is_persona()))
 
 
-def is_any_kind_of_reviewer(request):
+def is_user_any_kind_of_reviewer(user):
     """More lax version of is_reviewer: does not check what kind of reviewer
     the user is, and accepts unlisted reviewers, post reviewers, content
     reviewers, or people with just revierwer tools view access.
@@ -152,10 +152,10 @@ def is_any_kind_of_reviewer(request):
     add-on but still need to be restricted to reviewers only.
     """
     allow_access = (
-        action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW) or
-        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED) or
-        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed(request, amo.permissions.THEMES_REVIEW))
+        action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_REVIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
+        action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
+        action_allowed_user(user, amo.permissions.THEMES_REVIEW))
     return allow_access

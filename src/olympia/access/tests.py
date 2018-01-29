@@ -10,7 +10,7 @@ from olympia.users.models import UserProfile
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
     check_ownership, check_personas_reviewer, check_unlisted_addons_reviewer,
-    is_any_kind_of_reviewer, is_reviewer, match_rules)
+    is_reviewer, is_user_any_kind_of_reviewer, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -227,7 +227,7 @@ class TestCheckReviewer(TestCase):
         assert not check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
-        assert not is_any_kind_of_reviewer(request)
+        assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.persona)
 
@@ -237,7 +237,7 @@ class TestCheckReviewer(TestCase):
         assert check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_themes(self):
         self.grant_permission(self.user, 'Personas:Review')
@@ -245,7 +245,7 @@ class TestCheckReviewer(TestCase):
         assert not check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
         assert check_personas_reviewer(request)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_unlisted_addons(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
@@ -253,7 +253,7 @@ class TestCheckReviewer(TestCase):
         assert not check_addons_reviewer(request)
         assert check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
         """An addon reviewer is also a persona reviewer."""
@@ -261,19 +261,19 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert is_reviewer(request, self.persona)
         assert is_reviewer(request, self.addon)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_persona_reviewer(self):
         self.grant_permission(self.user, 'Personas:Review')
         request = req_factory_factory('noop', user=self.user)
         assert is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.addon)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_post_review(self):
         self.grant_permission(self.user, 'Addons:PostReview')
         request = req_factory_factory('noop', user=self.user)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
@@ -289,7 +289,7 @@ class TestCheckReviewer(TestCase):
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         request = req_factory_factory('noop', user=self.user)
-        assert is_any_kind_of_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)

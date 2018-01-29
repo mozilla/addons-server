@@ -106,7 +106,7 @@ def any_reviewer_required(f):
     """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if acl.is_any_kind_of_reviewer(request):
+        if acl.is_user_any_kind_of_reviewer(request.user):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper
@@ -118,7 +118,7 @@ def any_reviewer_or_moderator_required(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         allow_access = (
-            acl.is_any_kind_of_reviewer(request) or
+            acl.is_user_any_kind_of_reviewer(request.user) or
             acl.action_allowed(request, permissions.RATINGS_MODERATE))
         if allow_access:
             return f(request, *args, **kw)
