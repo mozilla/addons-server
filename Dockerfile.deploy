@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
         nodejs                           \
         npm                              \
         uwsgi                            \
+        uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
         git                              \
         # Dependencies for mysql-python
