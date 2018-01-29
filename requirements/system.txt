@@ -79,10 +79,10 @@ idna==2.6 \
 # ipaddress is required by cryptography, docker-py
 ipaddress==1.0.19 \
     --hash=sha256:200d8686011d470b5e4de207d803445deee427455cd0cb7c982b68cf82524f81
-ndg-httpsclient==0.4.3 \
-    --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
-    --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
-    --hash=sha256:7bfd8c5cfcbc241a93ca6a4e45f952650f5c7ecf7c49b1dbcf5f4d390240be0b
+ndg-httpsclient==0.4.4 \
+    --hash=sha256:0c48887887979f2cb30f3f341f33d02f7dd5167b3a9b417048e8e94f51a1527a \
+    --hash=sha256:e0c815950873a7ff13ff41c5fe585b2904e4b808c75f2aba587b73cc9fbfde67 \
+    --hash=sha256:fba4d4798dcac2965874f24afb6631b4326baa4bd02505744d34f690c354856a
 # packaging is required by setuptools
 packaging==16.8 \
     --hash=sha256:99276dc6e3a7851f32027a68f1095cd3f77c148091b092ea867a351811cfe388 \
