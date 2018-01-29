@@ -3657,17 +3657,15 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-#, fuzzy
 msgid "Header area text"
-msgstr "טקסט באזור הכותרת (textcolor)"
+msgstr ""
 
 #, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr "צבע הטקסט שמופיע באזור הכותרת."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "רקע אזור סרגל הכלים (toolbar)."
+msgstr ""
 
 #, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
@@ -3709,9 +3707,8 @@ msgstr "חזרה"
 msgid "Uploading Theme"
 msgstr "ערכת נושא בהעלאה"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "ערכות נושא של %s"
+msgstr ""
 
 msgid "API Credentials"
 msgstr ""
