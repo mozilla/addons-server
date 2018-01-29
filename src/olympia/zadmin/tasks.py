@@ -6,10 +6,8 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.utils import translation
-from django.test import RequestFactory
 
 import requests
-import waffle
 
 import olympia.core.logger
 

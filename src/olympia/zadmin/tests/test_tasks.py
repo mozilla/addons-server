@@ -142,12 +142,6 @@ class TestLangpackFetcher(TestCase):
     def test_fetch_new_langpack_use_autograph(self, mock_sign_file):
         assert self.get_langpacks().count() == 0
 
-        flag = create_flag(
-            'activate-autograph-signing', everyone=None, authenticated=True)
-        flag.users.add(
-            UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL))
-        flag.save()
-
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
         langpacks = self.get_langpacks()
@@ -161,7 +155,7 @@ class TestLangpackFetcher(TestCase):
         assert file_.status == amo.STATUS_PUBLIC
         assert addon.status == amo.STATUS_PUBLIC
 
-        mock_sign_file.assert_called_once_with(file_, use_autograph=True)
+        mock_sign_file.assert_called_once_with(file_, use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
