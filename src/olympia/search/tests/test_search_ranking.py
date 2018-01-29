@@ -498,7 +498,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            #TODO: I have litterally NO idea :-/
+            # TODO: I have litterally NO idea :-/
             'Popup Blocker',
             'MegaUpload DownloadHelper',
         ))
