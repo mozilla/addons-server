@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 19:41+0000\n"
+"PO-Revision-Date: 2018-01-29 19:52+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3714,17 +3714,14 @@ msgstr "Barva besedila orodne vrstice. Polje manifesta:  toolbar_text."
 msgid "Toolbar field area background"
 msgstr "Ozadje območja polja orodne vrstice"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Barva ozadja polj v orodni vrstici, kot je vrstica z naslovom."
+msgstr "Barva ozadja polj v orodni vrstici, kot je vrstica z naslovom. Polje manifesta:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Besedilo območja polja orodne vrstice (toolbar_field_text)."
+msgstr "Besedilo območja polja orodne vrstice"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom"
+msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom. Polje manifesta:  toolbar_field_text."
 
 msgid "optional"
 msgstr "neobvezno"
@@ -6657,7 +6654,7 @@ msgid "More Actions"
 msgstr "Več dejanj"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Obvesti me o novih dodatkih na seznamu"
 
 msgid "Force-disable add-on"
 msgstr "Prisilno onemogoči dodatek"
