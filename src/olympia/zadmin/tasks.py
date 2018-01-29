@@ -261,7 +261,7 @@ def fetch_langpack(url, xpi, **kw):
         sign_file(
             file_,
             use_autograph=waffle.flag_is_active(
-                dummy_request, 'use-autograph'))
+                dummy_request, 'activate-autograph-signing'))
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC

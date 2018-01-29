@@ -575,7 +575,8 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
     elif submit:
         tasks.validate_and_submit(
             addon, upload, channel=channel,
-            use_autograph=waffle.flag_is_active(request, 'use-autograph'))
+            use_autograph=waffle.flag_is_active(
+                request, 'activate-autograph-signing'))
     else:
         tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 

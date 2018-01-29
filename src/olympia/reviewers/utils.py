@@ -612,7 +612,8 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(self.request, 'use-autograph')
+        use_autograph = waffle.flag_is_active(
+            self.request, 'activate-autograph-signing')
         for file_ in self.files:
             sign_file(file_, use_autograph=use_autograph)
 
@@ -811,7 +812,8 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(self.request, 'use-autograph')
+        use_autograph = waffle.flag_is_active(
+            self.request, 'activate-autograph-signing')
         for file_ in self.files:
             sign_file(file_, use_autograph=use_autograph)
 

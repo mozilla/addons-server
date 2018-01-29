@@ -16,11 +16,11 @@ import pytest
 import responses
 
 from signing_clients.apps import SignatureInfo
-from waffle.models import Switch
+from waffle.models import Flag
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase, create_flag
 from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
@@ -86,6 +86,9 @@ class TestPackagedTrunion(TestCase):
             json={'mozilla.rsa': base64.b64encode(signature)},
             status=200)
 
+    def _sign_file(self, file_):
+        packaged.sign_file(file_)
+
     def assert_not_signed(self):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
@@ -108,7 +111,7 @@ class TestPackagedTrunion(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     @responses.activate
@@ -120,7 +123,7 @@ class TestPackagedTrunion(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     @responses.activate
@@ -131,7 +134,7 @@ class TestPackagedTrunion(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     @responses.activate
@@ -143,7 +146,7 @@ class TestPackagedTrunion(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     @responses.activate
@@ -154,7 +157,7 @@ class TestPackagedTrunion(TestCase):
         max_appversion.update(version='37', version_int=version_int('37'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     @responses.activate
@@ -166,7 +169,7 @@ class TestPackagedTrunion(TestCase):
                               version='37', version_int=version_int('37'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     def test_get_trunion_endpoint(self):
@@ -177,13 +180,13 @@ class TestPackagedTrunion(TestCase):
 
     def test_no_server_full(self):
         with self.settings(SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
+            self._sign_file(self.file_)
         self.assert_not_signed()
 
     @responses.activate
     def test_sign_file(self):
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
@@ -197,7 +200,7 @@ class TestPackagedTrunion(TestCase):
         self.file_.update(filename=u'jétpack.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_signed()
 
     def test_no_sign_missing_file(self):
@@ -205,7 +208,7 @@ class TestPackagedTrunion(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
@@ -215,25 +218,25 @@ class TestPackagedTrunion(TestCase):
         """Don't sign hotfix addons."""
         for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
             self.addon.update(guid=hotfix_guid)
-            packaged.sign_file(self.file_)
+            self._sign_file(self.file_)
             self.assert_not_signed()
 
     def test_no_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         self.assert_not_signed()
 
     @responses.activate
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         assert packaged.is_signed(self.file_.file_path)
 
     @responses.activate
     def test_size_updated(self):
         unsigned_size = storage.size(self.file_.file_path)
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
         signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
@@ -245,7 +248,7 @@ class TestPackagedTrunion(TestCase):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            packaged.sign_file(self.file_)
+            self._sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
             assert not packaged.is_signed(self.file_.file_path)
@@ -313,11 +316,11 @@ class TestPackagedTrunion(TestCase):
 class TestPackagedAutograph(TestPackagedTrunion):
 
     def setUp(self):
-        create_switch('activate-autograph-signing')
+        create_flag('activate-autograph-signing')
         super(TestPackagedAutograph, self).setUp()
 
     def tearDown(self):
-        Switch.objects.filter(name='activate-autograph-signing').delete()
+        Flag.objects.filter(name='activate-autograph-signing').delete()
         super(TestPackagedAutograph, self).tearDown()
 
     def _register_urls(self):
@@ -329,6 +332,9 @@ class TestPackagedAutograph(TestPackagedTrunion):
                 pkcs7 = fobj.read()
 
         return SignatureInfo(pkcs7)
+
+    def _sign_file(self, file_):
+        packaged.sign_file(file_, use_autograph=True)
 
     def assert_not_signed(self):
         # Overwritten to not rely on `responses` but check the real deal
@@ -349,7 +355,7 @@ class TestPackagedAutograph(TestPackagedTrunion):
         return
 
     def test_call_signing(self):
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
 
         signature_info = self._get_signature_info()
 
@@ -360,7 +366,7 @@ class TestPackagedAutograph(TestPackagedTrunion):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
-        packaged.sign_file(self.file_)
+        self._sign_file(self.file_)
 
         signature_info = self._get_signature_info()
 

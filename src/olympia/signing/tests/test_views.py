@@ -129,7 +129,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
 
-        create_flag('use-autograph')
+        create_flag('activate-autograph-signing')
 
         response = self.request('PUT', addon=guid, version='1.0')
         assert response.status_code == 201

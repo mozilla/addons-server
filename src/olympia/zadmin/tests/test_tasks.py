@@ -143,7 +143,7 @@ class TestLangpackFetcher(TestCase):
         assert self.get_langpacks().count() == 0
 
         flag = create_flag(
-            'use-autograph', everyone=None, authenticated=True)
+            'activate-autograph-signing', everyone=None, authenticated=True)
         flag.users.add(
             UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL))
         flag.save()
