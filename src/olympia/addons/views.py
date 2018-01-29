@@ -665,6 +665,11 @@ class AddonSearchView(ListAPIView):
             doc_type=AddonIndexer.get_doctype_name()).extra(
                 _source={'excludes': AddonIndexer.hidden_fields})
 
+        # Allow us to optionally use dfs-query-then-fetch, primarily
+        # for testing purposes here.
+        # dfs-query-then-fetch makes one extra round-trip to allow for more
+        # stable scores across ElasticSearch shards.
+        # See ES docs for more information: https://bitly.com/
         dfs_query_then_fetch = waffle.flag_is_active(
             self.request,
             'search-use-dfs-query-then-fetch')
