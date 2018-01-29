@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 14:47+0000\n"
+"PO-Revision-Date: 2018-01-29 15:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3321,9 +3321,8 @@ msgstr "Waš dodank wózjawijo se pód slědujuceju licencu:"
 msgid "Select a different license."
 msgstr "Wubjeŕśo drugu licencu."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Dalšne informacije trěbne"
+msgstr "Dalšne informacije wó licencach Creative Commons\n"
 
 msgid "Tests"
 msgstr "Testy"
@@ -3646,9 +3645,8 @@ msgstr "Drastwu napóraś"
 msgid "Theme generator"
 msgstr "Generator drastwow"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu."
+msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu"
 
 msgid "required"
 msgstr "trěbny"
@@ -3665,62 +3663,48 @@ msgstr "Napšawo górjejce wusměrjony"
 msgid "Select a different header image"
 msgstr "Wubjeŕśo drugi głowowy wobraz"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Wubjeŕśo barwy za swóju drastwu."
+msgstr "Wubjeŕśo barwy za swóju drastwu"
 
-#, fuzzy
 msgid "Header area background"
-msgstr "Slězyna głowowego wobcerka (accentcolor)"
+msgstr "Slězyna głowowego wobcerka"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Barwa slězyny głowowego wobcerka, kótaraž se w tom źělu głowowego wobcerka pokazujo, kótaryž njejo zakšyty abo widobny pśez wobraz głowowego wobcerka."
+msgstr "Barwa slězyny głowowego wobcerka, kótaraž se w tom źělu głowowego wobcerka pokazujo, kótaryž njejo zakšyty abo widobny pśez wobraz głowowego wobcerka. Pólo manifesta: accentcolor."
 
-#, fuzzy
 msgid "Header area text"
-msgstr "Tekst głowowego wobcerka (textcolor)"
+msgstr "Tekst głowowego wobcerka"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "Barwa teksta, kótaryž se w głowowem wobcerku pokazujo."
+msgstr "Barwa teksta, kótaryž se w głowowem wobcerku pokazujo. Pólo manifesta: textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Slězyna wobcerka symboloweje rědki (toolbar)."
+msgstr "Slězyna wobcerka symboloweje rědki"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtark."
+msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtark. Pólo manifesta: toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Tekst wobcerka symboloweje rědki (toolbar_text)."
+msgstr "Tekst wobcerka symboloweje rědki"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Barwa teksta symboloweje rědki."
+msgstr "Barwa teksta symboloweje rědki. Pólo manifesta: toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Slězyna pólnego wobcerka symboloweje rědki (toolbar_field)."
+msgstr "Slězyna pólnego wobcerka symboloweje rědki"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Slězynowa barwa za póla w symbolowej rědce, kaž na pś. adresowe pólo."
+msgstr "Slězynowa barwa za póla w symbolowej rědce, kaž na pś. adresowe pólo. Pólo manifesta: toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Tekst pólnego wobcerka symboloweje rědki (toolbar_field_text)."
+msgstr "Tekst pólnego wobcerka symboloweje rědki"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu"
+msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu Pólo manifesta: toolbar_field_text."
 
 msgid "optional"
 msgstr "opcionalny"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Pśeglěd we wobglědowaku"
 
@@ -6641,7 +6625,7 @@ msgid "Notify me about new listed versions"
 msgstr "Wó nowych naliconych wersijach informěrowaś"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Znjemóžnjanje dodanka wunuźiś"
 
 #, fuzzy
 msgid "Force-enable add-on"
