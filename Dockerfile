@@ -1,46 +1,49 @@
-FROM python:2.7.14-slim-stretch
+FROM centos:centos7
 
 # Allow scripts to detect we're running in our own container
-RUN touch /addons-server-docker-container
+RUN touch /addons-server-centos7-container
 
-# Add nodesource repository and requirements
-ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
-RUN apt-get update && apt-get install -y \
-        gnupg2 \
-    && rm -rf /var/lib/apt/lists/*
-# ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
-RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
-ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/mysql-community.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
+ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
+
+# For mysql-python dependencies
+ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
+
+ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
 # For git dependencies
-# ADD docker/git.repo /etc/yum.repos.d/git.repo
+ADD docker/git.repo /etc/yum.repos.d/git.repo
 
 # Upgrade git
-RUN apt-get update && apt-get install -y \
+RUN yum install -y \
         # General (dev-) dependencies
         bash-completion \
-        build-essential \
+        gcc-c++ \
         curl \
-        libjpeg-dev \
-        libsasl2-dev \
-        libxml2-dev \
-        libxslt-dev \
-        locales \
-        zlib1g-dev \
-        libffi-dev \
-        libssl-dev \
-        python-dev \
-        python-pip \
-        nodejs \
-        npm \
+        make \
+        libjpeg-devel \
+        cyrus-sasl-devel \
+        libxml2-devel \
+        libxslt-devel \
+        zlib-devel \
+        libffi-devel \
+        openssl-devel \
+        python-devel \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python
-        mysql-client \
-        default-libmysqlclient-dev \
+        mysql-community-devel \
+        mysql-community-client \
+        mysql-community-libs \
+        epel-release \
         swig \
         gettext \
-    && rm -rf /var/lib/apt/lists/*
+    && yum clean all
+
+# Install Nodejs (for less, stylus, uglifyjs and others) separately, because
+# it's part of epel which we just installed above.
+RUN yum install -y nodejs
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -49,6 +52,8 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 # disk.
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+
+RUN yum install -y python-pip
 
 COPY . /code
 WORKDIR /code
