@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 19:22+0000\n"
+"PO-Revision-Date: 2018-01-29 19:41+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3729,7 +3729,6 @@ msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom"
 msgid "optional"
 msgstr "neobvezno"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Predogled v brskalniku"
 
@@ -3739,9 +3738,8 @@ msgstr "Nazaj"
 msgid "Uploading Theme"
 msgstr "Nalaganje teme"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s teme"
+msgstr "Dokončaj temo"
 
 msgid "API Credentials"
 msgstr "Poverila API"
