@@ -366,6 +366,7 @@ class ActivityLog(ModelBase):
         tag = None
         group = None
         file_ = None
+        status = None
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
@@ -414,6 +415,21 @@ class ActivityLog(ModelBase):
                                arg.filename,
                                validation)
                 arguments.remove(arg)
+            if (self.action == amo.LOG.CHANGE_STATUS.id and
+                    not isinstance(arg, Addon)):
+                # Unfortunately, this action has been abused in the past and
+                # the non-addon argument could be a string or an int. If it's
+                # an int, we want to retrieve the string and translate it.
+                # Note that we use STATUS_CHOICES_PERSONA because it's a
+                # superset of STATUS_CHOICES_ADDON, and we need to handle all
+                # statuses.
+                if isinstance(arg, int) and arg in amo.STATUS_CHOICES_PERSONA:
+                    status = ugettext(amo.STATUS_CHOICES_PERSONA[arg])
+                else:
+                    # It's not an int or not one of the choices, so assume it's
+                    # a string or an unknown int we want to display as-is.
+                    status = arg
+                arguments.remove(arg)
 
         user = user_link(self.user)
 
@@ -427,6 +443,7 @@ class ActivityLog(ModelBase):
                 'user': user,
                 'group': group,
                 'file': file_,
+                'status': status,
             }
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):

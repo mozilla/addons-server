@@ -76,8 +76,8 @@ class USER_ENABLE(_LOG):
 
 class CHANGE_STATUS(_LOG):
     id = 12
-    # L10n: {0} is the status
-    format = _(u'{addon} status changed to {0}.')
+    # L10n: {status} is the status
+    format = _(u'{addon} status changed to {status}.')
     keep = True
 
 
