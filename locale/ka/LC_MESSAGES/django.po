@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 17:10+0000\n"
+"PO-Revision-Date: 2018-01-29 17:58+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1776,7 +1776,7 @@ msgstr "{addon} {version} საჭიროებს პროფესიო�
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"თქვენი დამატება გადაცემულია ადმინისტრაციისთვის განსახილველად.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტ ხანს შეიძლება გაგრძელდეს."
+"თქვენი დამატება მონიშნულია ადმინისტრაციული განხილვისთვის.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტ ხანს შეიძლება გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
 msgstr "კომენტარი {addon} {version}-ზე."
@@ -1994,7 +1994,7 @@ msgid "Pending approval"
 msgstr "ელოდება დამოწმებას"
 
 msgid "Flagged for further review"
-msgstr "ჩანიშნულია დამატებითი განხილვისთვის"
+msgstr "მონიშნულია დამატებითი განხილვისთვის"
 
 msgid "Beta"
 msgstr "Beta"
@@ -2433,7 +2433,7 @@ msgid "Request More Info"
 msgstr "დამატებითი ინფორმაციის მოთხოვნა"
 
 msgid "Flag"
-msgstr "ჩანიშვნა"
+msgstr "მონიშვნა"
 
 msgid "Duplicate"
 msgstr "დუბლიკატი"
@@ -3087,10 +3087,10 @@ msgid "Limit 3"
 msgstr "შეზღუდვა 3"
 
 msgid "Add-on Flags"
-msgstr "დამატების აღნიშვნები"
+msgstr "დამატების მონიშვნები"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "ეს აღნიშვნები გამოიყენება დამატებების დასაჯგუფებლად. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+msgstr "ეს მონიშვნები გამოიყენება დამატებების დასაჯგუფებლად. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on requires external software."
 msgstr "ამ დამატებას ესაჭიროება გარე პროგრამა."
@@ -5858,7 +5858,7 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
 
 msgid "Flagged for review"
-msgstr "ჩანიშნულია განსახილველად"
+msgstr "მონიშნულია განსახილველად"
 
 msgid "Report this review"
 msgstr "მოხსენება ამ მიმოხილვაზე"
@@ -6059,7 +6059,7 @@ msgid "Waiting Time"
 msgstr "ლოდინის დრო"
 
 msgid "Flags"
-msgstr "ჩანიშვნები"
+msgstr "მონიშვნები"
 
 msgid "moments ago"
 msgstr "წინ"
@@ -6171,7 +6171,7 @@ msgid "Themes Updates ({0})"
 msgstr "თემის განახლებები ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr "ჩანიშნული თემები ({0})"
+msgstr "მონიშნული თემები ({0})"
 
 msgid "Themes Review Log"
 msgstr "თემის მიმოხილვის ჩანაწერი"
@@ -6390,7 +6390,7 @@ msgstr "%(user)s-ის მიერ %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong><span class=\"light\">ჩანიშნულია %(user)s-ის მიერ %(date)s</span>"
+msgstr "<strong>%(reason)s</strong><span class=\"light\">მონიშნულია %(user)s-ის მიერ %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
@@ -6598,7 +6598,7 @@ msgid "There are currently no reviews."
 msgstr "ამ დროისთვის მიმოხილვები არაა."
 
 msgid "Flagged Themes"
-msgstr "ჩანიშნული თემები"
+msgstr "მონიშნული თემები"
 
 msgid "Theme Review Queue"
 msgstr "განსახილველად გადასაცემი თემების რიგი"
@@ -6665,7 +6665,7 @@ msgid "More Info Requested: {0}"
 msgstr "საჭიროა მეტი ინფორმაცია: {0}"
 
 msgid "Flagged: {0}"
-msgstr "ჩანიშნულია: {0}"
+msgstr "მონიშნულია: {0}"
 
 msgid "Approve Theme"
 msgstr "თემის მიღება"
@@ -6686,7 +6686,7 @@ msgid "Ask a question to the artist"
 msgstr "მხატვრისთვვის შეკითხვის დასმა"
 
 msgid "Describe your reason for flagging"
-msgstr "ჩანიშვნის მიზეზის აღწერა"
+msgstr "მონიშვნის მიზეზის აღწერა"
 
 msgid "Rejected or Unreviewed"
 msgstr "უარყოფილი ან განუხილველი"
@@ -6712,7 +6712,7 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ავტომატურად მიღებული დამატებები ({0})"
 
 msgid "Flagged"
-msgstr "ჩანიშნული"
+msgstr "მონიშნულია"
 
 msgid "Updates"
 msgstr "განახლებები"
