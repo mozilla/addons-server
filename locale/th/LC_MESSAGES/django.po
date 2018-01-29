@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -163,6 +163,9 @@ msgid "Listed"
 msgstr "รายการ"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -2593,12 +2596,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -3258,19 +3255,10 @@ msgstr ""
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr ""
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
 
 msgid "Yes, as long as they share alike"
@@ -3279,13 +3267,13 @@ msgstr ""
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
+msgstr ""
+
+msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "Tests"
@@ -3636,7 +3624,7 @@ msgstr "ลบชุดตกแต่งแล้ว"
 msgid "Theme generator"
 msgstr "ลบชุดตกแต่งแล้ว"
 
-msgid "Select a header image for your Theme."
+msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "required"
@@ -3654,43 +3642,44 @@ msgstr ""
 msgid "Select a different header image"
 msgstr ""
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
+msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
+
+msgid "Header area background"
 msgstr ""
 
-msgid "Header area background (accentcolor)"
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "Header area text"
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "Toolbar area text"
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr ""
 
-msgid "The color of toolbar text."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3698,7 +3687,7 @@ msgid "optional"
 msgstr "(ไม่บังคับ)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "เขียนบทวิจารณ์"
 
 msgid "Back"
@@ -3709,8 +3698,8 @@ msgid "Uploading Theme"
 msgstr "ชุดตกแต่งที่กำลังจะมา"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "แก้ไขชุดตกแต่ง"
+msgid "Finish Theme"
+msgstr "%s ชุดตกแต่ง"
 
 msgid "API Credentials"
 msgstr ""
@@ -4120,10 +4109,22 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
 
 msgid "Can others create derivative works from your Theme?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
@@ -4158,6 +4159,9 @@ msgstr "ส่วนหัว"
 
 msgid "Footer"
 msgstr "ส่วนท้าย"
+
+msgid "Select colors for your Theme."
+msgstr ""
 
 msgid "Foreground Text"
 msgstr ""
@@ -4219,6 +4223,9 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr ""
+
+msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
@@ -5951,16 +5958,6 @@ msgstr ""
 msgid "Applications:"
 msgstr ""
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "ยังไม่ถูกตรวจสอบ"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "บทวิจารณ์:"
@@ -6476,6 +6473,26 @@ msgstr ""
 
 msgid "Update whiteboards"
 msgstr ""
+
+#, fuzzy
+msgid "More Actions"
+msgstr "ตัวเลือกเพิ่มเติม:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+msgid "Force-enable add-on"
+msgstr ""
+
+msgid "Clear Admin Code Review Flag"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "ยังไม่ถูกตรวจสอบ"
 
 msgid "(admin)"
 msgstr "(ผู้ดูแล)"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-01-29 12:20+0000\n"
 "PO-Revision-Date: 2017-12-01 19:39+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -163,6 +163,9 @@ msgstr "表示"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
 
 msgid "Abuse reported."
 msgstr "不正報告が送信されました。"
@@ -2555,12 +2558,6 @@ msgstr "失敗した検証を上書き"
 msgid "Submit my add-on for manual review."
 msgstr "このアドオンの手作業による審査を申請します。"
 
-msgid "Do not list my add-on on this site"
-msgstr "アドオンをこのサイト上に掲載しない"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "アドオンを自分自身で配布するつもりで、Mozilla による署名を受ける必要があるだけの場合は、このオプションにチェックを入れてください。"
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
 
@@ -3231,20 +3228,11 @@ msgstr "スクリーンショットを追加..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "このアドオンを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "このアドオンを他の人が商用にも利用できるようにしますか？"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "他の人がこのアドオンを元にした派生作品を作れるようにしますか？"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
 
 msgid "Yes, as long as they share alike"
 msgstr ""
@@ -3252,14 +3240,15 @@ msgstr ""
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "このアドオンは以下のライセンスで公開されます:"
 
 msgid "Select a different license."
 msgstr "別のライセンスを選択してください。"
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "詳細情報リクエスト済み"
 
 msgid "Tests"
 msgstr "テスト"
@@ -3581,7 +3570,8 @@ msgstr "テーマ作成ツール"
 msgid "Theme generator"
 msgstr "テーマ作成ツール"
 
-msgid "Select a header image for your Theme."
+#, fuzzy
+msgid "Select a header image for your theme"
 msgstr "テーマのヘッダー画像を選択してください。"
 
 msgid "required"
@@ -3599,49 +3589,63 @@ msgstr "右上に位置合わせ"
 msgid "Select a different header image"
 msgstr "別のヘッダー画像を選択"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "テーマの配色を選択してください。"
 
-msgid "Header area background (accentcolor)"
+#, fuzzy
+msgid "Header area background"
 msgstr "ヘッダー領域の背景 (accentcolor)"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。"
 
-msgid "Header area text (textcolor)"
+#, fuzzy
+msgid "Header area text"
 msgstr "ヘッダー領域の文字 (textcolor)"
 
-msgid "The color of the text displayed in the header area."
+#, fuzzy
+msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
 msgstr "ヘッダー領域内に表示される文字色。"
 
-msgid "Toolbar area background (toolbar)."
+#, fuzzy
+msgid "Toolbar area background"
 msgstr "ツールバー領域の背景 (toolbar)"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。"
 
-msgid "Toolbar area text (toolbar_text)."
+#, fuzzy
+msgid "Toolbar area text"
 msgstr "ツールバー領域の文字 (toolbar_text)"
 
-msgid "The color of toolbar text."
+#, fuzzy
+msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "これはツールバー上の文字色です。"
 
-msgid "Toolbar field area background (toolbar_field)."
+#, fuzzy
+msgid "Toolbar field area background"
 msgstr "ツールバー入力領域の背景 (toolbar_field)"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+#, fuzzy
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "アドレスバーなどツールバー上の入力欄の背景色。"
 
-msgid "Toolbar field area text (toolbar_field_text)."
+#, fuzzy
+msgid "Toolbar field area text"
 msgstr "ツールバー入力領域の文字 (toolbar_field_text)"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+#, fuzzy
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "アドレスバーなどツールバー上の入力欄の文字色。"
 
 msgid "optional"
 msgstr "任意"
 
-msgid "Browser Preview"
+#, fuzzy
+msgid "Browser preview"
 msgstr "ブラウザープレビュー"
 
 msgid "Back"
@@ -3650,8 +3654,9 @@ msgstr "戻る"
 msgid "Uploading Theme"
 msgstr "テーマをアップロード中"
 
-msgid "Upload Theme"
-msgstr "テーマをアップロード"
+#, fuzzy
+msgid "Finish Theme"
+msgstr "%s カテゴリーのテーマ"
 
 msgid "API Credentials"
 msgstr "API 認証情報"
@@ -4042,11 +4047,23 @@ msgstr "テーマのライセンス"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "このテーマを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "このテーマを他の人が商用にも利用できるようにしますか？"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "他の人がこのテーマを元にした派生作品を作れるようにしますか？"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ""
 
 msgid "Your Theme will be released under the following license:"
 msgstr "このテーマは以下のライセンスで公開されます:"
@@ -4080,6 +4097,9 @@ msgstr "ヘッダー"
 
 msgid "Footer"
 msgstr "フッター"
+
+msgid "Select colors for your Theme."
+msgstr "テーマの配色を選択してください。"
 
 msgid "Foreground Text"
 msgstr "前景テキスト"
@@ -4142,6 +4162,9 @@ msgstr ""
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "私たちの <a href=\"%(forum_url)s\">フォーラム</a> での議論に参加してください。"
+
+msgid "Select a header image for your Theme."
+msgstr "テーマのヘッダー画像を選択してください。"
 
 msgid "3000 &times; 200 pixels"
 msgstr "3,000 × 200 ピクセル"
@@ -5913,15 +5936,6 @@ msgstr "OS:"
 msgid "Applications:"
 msgstr "アプリケーション:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "次回のアドオンが更新されたときメールで通知を受け取ります。(その後の更新は通知されません)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "管理者コード審査フラグをクリア"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "管理者コンテンツ審査フラグをクリア"
-
 msgid "Is more info requested?"
 msgstr "他の情報が要求されていますか？"
 
@@ -6410,6 +6424,26 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "ホワイトボードを更新"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "その他のアクション:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "バージョンを再度有効化"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "管理者コード審査フラグをクリア"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "管理者コンテンツ審査フラグをクリア"
 
 msgid "(admin)"
 msgstr "(管理者)"
