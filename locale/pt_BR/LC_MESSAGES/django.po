@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-29 20:04+0000\n"
+"PO-Revision-Date: 2018-01-29 20:31+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3347,9 +3347,8 @@ msgstr "Sua extensão será lançada sob a seguinte licença:"
 msgid "Select a different license."
 msgstr "Selecione uma licença diferente."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Mais informações solicitadas"
+msgstr "Mais informações sobre licenças Creative Commons"
 
 msgid "Tests"
 msgstr "Testes"
@@ -3677,9 +3676,8 @@ msgid "Theme generator"
 msgstr "Gerador de temas"
 
 # 82%
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Selecione uma imagem de cabeçalho para seu tema."
+msgstr "Selecione uma imagem de cabeçalho para o seu tema"
 
 msgid "required"
 msgstr "obrigatório"
@@ -3696,41 +3694,32 @@ msgstr "Alinhada ao canto superior direito"
 msgid "Select a different header image"
 msgstr "Selecione uma imagem de cabeçalho diferente"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Selecione as cores do seu tema."
+msgstr "Selecione as cores do seu tema"
 
-#, fuzzy
 msgid "Header area background"
-msgstr "Fundo da área do cabeçalho (accentcolor)"
+msgstr "Área de fundo do cabeçalho"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "A cor do fundo da área do cabeçalho, apresentada na parte do cabeçalho não coberta ou visível através da imagem do cabeçalho."
+msgstr "A cor da área de fundo do cabeçalho, apresentada na parte do cabeçalho não coberta ou visível através da imagem do cabeçalho. Campo do manifesto:  accentcolor."
 
-#, fuzzy
 msgid "Header area text"
-msgstr "Área de texto do cabeçalho (textcolor)"
+msgstr "Área de texto do cabeçalho"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "A cor do texto apresentado na área do cabeçalho."
+msgstr "A cor do texto apresentado na área do cabeçalho. Campo do manifesto:  textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Fundo da área da barra de ferramentas (toolbar)."
+msgstr "Área de fundo da barra de ferramentas"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada."
+msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada.  Campo do manifesto:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Texto da área da barra de ferramentas (toolbar_text)."
+msgstr "Área de texto da barra de ferramentas"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "A cor do texto da barra de ferramentas."
+msgstr "A cor do texto da barra de ferramentas. Campo do manifesto:  toolbar_text."
 
 #, fuzzy
 msgid "Toolbar field area background"
@@ -3744,9 +3733,8 @@ msgstr "A cor de fundo para campos na barra de ferramentas, tais como a barra de
 msgid "Toolbar field area text"
 msgstr "Texto da área do campo da barra de ferramentas (toolbar_field_text)."
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "A cor do texto em campos na barra de ferramentas, tais como a barra de URL"
+msgstr "A cor do texto em campos da barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
 
 msgid "optional"
 msgstr "opcional"
@@ -3755,7 +3743,6 @@ msgstr "opcional"
 # return
 # the user to the add-on's review page (it only appears if the add-on is being
 # reviewed)
-#, fuzzy
 msgid "Browser preview"
 msgstr "Visualização do navegador"
 
@@ -3765,9 +3752,8 @@ msgstr "Voltar"
 msgid "Uploading Theme"
 msgstr "Carregando Tema"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Temas de %s"
+msgstr "Finalizar tema"
 
 msgid "API Credentials"
 msgstr "Credenciais da API"
@@ -6704,15 +6690,14 @@ msgstr "O quadro branco privativo é usado apenas para trocar informação entre
 msgid "Update whiteboards"
 msgstr "Atualizar quadros brancos"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Mais ações:"
+msgstr "Mais ações"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Notificar sobre novas versões"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Forçar desativação da extensão"
 
 #, fuzzy
 msgid "Force-enable add-on"
