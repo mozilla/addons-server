@@ -16,7 +16,7 @@
         }
     }
     h3 {
-        font-size: 1.1em;
+        font-size: 14px;
         font-weight: bold;
     }
     h3.colors {
@@ -26,12 +26,14 @@
         li.row {
             display: inline-block;
             margin-right: 2em;
+            width: 340px;
 
             label {
                 font-weight: normal;
+                margin-top: 5px;
             }
             input {
-                width: 384px;
+                width: 250px;
                 padding-left: 30px;
                 padding-right: 7px;
                 padding-bottom: 4px;
@@ -50,11 +52,13 @@
     .reset {
         font-weight: bold;
     }
-    .preview, #browser-preview {
-        background-color: #ccc;
-        width: 100%;
+    .preview {
+        width: auto;
+        max-width: 680px;
+        max-height: 200px;
     }
     #browser-preview {
+        background-color: #ccc;
         height: 100px;
         width: 680px;
     }

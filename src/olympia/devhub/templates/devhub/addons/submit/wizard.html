@@ -10,13 +10,12 @@
   <h3>{{ _('Theme generator') }}</h3>
   <div id="theme-wizard" data-version="{{ version_number }}">
     <div>
-        <h3>Theme name</h3>
+        <h3>{{ _('Theme name') }}<span class="req" title="{{ _('required') }}">*</span></h3>
         <input type="text" id="theme-name"/>
     </div>
     <div id="theme-header" class="row">
       <label class="row" for="header-img">
-        {{ _('Select a header image for your theme') }}
-        <span class="req" title="{{ _('required') }}">*</span>
+        <h3>{{ _('Select a header image for your theme') }}<span class="req" title="{{ _('required') }}">*</span></h3>
       </label>
       <input data-allowed-types="image/jpeg|image/png|image/apng|image/svg|image/gif"
              id="header-img" name="header" type="file">
@@ -34,9 +33,9 @@
       <h3>{{ _('Select colors for your theme') }}</h4>
       {% set colors = [
         ('accentcolor', _('Header area background'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor.'), 'rgba(229,230,232,1)'),
-        ('textcolor', _('Header area text'), _('The color of the text displayed in the header area. Manifest field:  textcolor.'), 'rgba(0,0,0,1'),
+        ('textcolor', _('Header area text and icons'), _('The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor.'), 'rgba(0,0,0,1'),
         ('toolbar', _('Toolbar area background'), _('The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar.'), false),
-        ('toolbar_text', _('Toolbar area text'), _('The color of toolbar text. Manifest field:  toolbar_text.'), false),
+        ('toolbar_text', _('Toolbar area text icons'), _('The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text.'), false),
         ('toolbar_field', _('Toolbar field area background'), _('The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field.'), false),
         ('toolbar_field_text', _('Toolbar field area text'), _('The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text.'), false)] %}
 
