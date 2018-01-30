@@ -925,10 +925,8 @@ class SearchTest(ESTestCase):
         """
         # The following URLs should yield zero results.
         zeros = (
-            'yslow category:alerts',
-            'jsonview version:1.0',
-            'firebug type:dictionary',
-            'grapple platform:linux',
+            'yslow',
+            'jsonview',
             'firebug/3',
             'grapple/all/10/Linux',
             'jsonview/all/10/Darwin/1.0',
@@ -954,11 +952,6 @@ class SearchTest(ESTestCase):
         """
         expect = {
             'delicious': 'Delicious Bookmarks',
-            'delicious category:feeds': 'Delicious Bookmarks',
-            'delicious version:3.6': 'Delicious Bookmarks',
-            'delicious type:extension': 'Delicious Bookmarks',
-            'delicious tag:ballin': 'Delicious Bookmarks',
-            'grapple platform:mac': 'GrApple',
             'delicious/1': 'Delicious Bookmarks',
             'grapple/all/10/Darwin': 'GrApple',
             'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',

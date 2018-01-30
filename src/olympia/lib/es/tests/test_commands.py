@@ -48,7 +48,7 @@ class TestIndexCommand(ESTestCase):
 
             # These should be set in settings_test.
             assert int(settings['index']['number_of_replicas']) == 0
-            assert int(settings['index']['number_of_shards']) == 3
+            assert int(settings['index']['number_of_shards']) == 1
 
     def check_results(self, expected):
         """Make sure the expected addons are listed in a standard search."""

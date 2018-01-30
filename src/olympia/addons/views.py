@@ -659,11 +659,24 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(
+        qset = Search(
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
                 _source={'excludes': AddonIndexer.hidden_fields})
+
+        # Allow us to optionally use dfs-query-then-fetch, primarily
+        # for testing purposes here.
+        # dfs-query-then-fetch makes one extra round-trip to allow for more
+        # stable scores across ElasticSearch shards.
+        # See ES docs for more information: https://bitly.com/
+        dfs_query_then_fetch = waffle.flag_is_active(
+            self.request,
+            'search-use-dfs-query-then-fetch')
+        if dfs_query_then_fetch:
+            qset = qset.params(search_type='dfs_query_then_fetch')
+
+        return qset
 
     @classmethod
     def as_view(cls, **kwargs):
@@ -691,11 +704,20 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'type',  # Needed to attach the Persona for icon_url (sadly).
         )
 
-        return Search(
-            using=amo.search.get_es(),
-            index=AddonIndexer.get_index_alias(),
-            doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'includes': included_fields})
+        qset = (
+            Search(
+                using=amo.search.get_es(),
+                index=AddonIndexer.get_index_alias(),
+                doc_type=AddonIndexer.get_doctype_name())
+            .extra(_source={'includes': included_fields}))
+
+        dfs_query_then_fetch = waffle.flag_is_active(
+            self.request,
+            'search-use-dfs-query-then-fetch')
+        if dfs_query_then_fetch:
+            qset = qset.params(search_type='dfs_query_then_fetch')
+
+        return qset
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (slice directly) but do wrap the data in a

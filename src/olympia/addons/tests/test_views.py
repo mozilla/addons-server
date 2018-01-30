@@ -15,6 +15,7 @@ from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -29,6 +30,7 @@ from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     user_factory, version_factory)
+
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -2222,7 +2224,9 @@ class TestAddonSearchView(ESTestCase):
                       weekly_downloads=555)
         self.refresh()
 
-        qset = AddonSearchView().get_queryset()
+        view = AddonSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
             ('*.raw', '*_sort', 'boost', 'hotness', 'name', 'description',
@@ -2256,6 +2260,10 @@ class TestAddonSearchView(ESTestCase):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
         waffle.switch_is_active('boost-webextensions-in-search')
+
+        request = APIRequestFactory().get('/')
+
+        waffle.flag_is_active(request, 'search-use-dfs-query-then-fetch')
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
@@ -2934,6 +2942,10 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # assertNumQueries() call later.
         waffle.switch_is_active('boost-webextensions-in-search')
 
+        request = APIRequestFactory().get('/')
+
+        waffle.flag_is_active(request, 'search-use-dfs-query-then-fetch')
+
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
@@ -2984,7 +2996,9 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
                       type=amo.ADDON_PERSONA)
         self.refresh()
 
-        qset = AddonAutoCompleteSearchView().get_queryset()
+        view = AddonAutoCompleteSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'modified',

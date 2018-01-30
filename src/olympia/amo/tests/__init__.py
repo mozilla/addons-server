@@ -102,7 +102,7 @@ def setup_es_test_data(es):
                               es.indices.get_alias().keys())
 
     for key in aliases_and_indexes:
-        if key.startswith('test_amo'):
+        if key.startswith('test_'):
             es.indices.delete(key, ignore=[404])
 
     # Figure out the name of the indices we're going to create from the
@@ -889,11 +889,15 @@ class ESTestCase(TestCase):
         stop_es_mocks()
         setup_es_test_data(cls.es)
 
+        # Force our search results to be more predictable during testing
+        create_flag('search-use-dfs-query-then-fetch')
+
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
     def tearDownClass(cls):
         amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        Flag.objects.filter(name='search-use-dfs-query-then-fetch').delete()
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
