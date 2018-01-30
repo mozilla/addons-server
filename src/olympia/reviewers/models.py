@@ -127,9 +127,8 @@ class EventLog(models.Model):
                             .filter(action=action.id)
                             .order_by('-created')[:5])
 
-        # We re-filter the results by calling is_reviewer(), to make sure to
-        # display only users that are still part of the reviewers groups we've
-        # looked at.
+        # We re-filter the results to make sure to display only users that are
+        # still part of the reviewers groups we've looked at.
         return [{'user': i.arguments[1], 'created': i.created}
                 for i in items if i.arguments[1].groups.filter(
                     name__startswith='Reviewers: ').exists()]
@@ -399,7 +398,7 @@ def send_notifications(signal=None, sender=None, **kw):
         user = subscriber.user
         is_reviewer = (
             user and not user.deleted and user.email and
-            acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
+            acl.is_user_any_kind_of_reviewer(user))
         if is_reviewer:
             subscriber.send_notification(sender)
 

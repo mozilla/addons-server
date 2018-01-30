@@ -365,10 +365,17 @@ class TestReviewerSubscription(TestCase):
         self.user_one = UserProfile.objects.get(pk=55021)
         self.user_two = UserProfile.objects.get(pk=999)
         self.reviewer_group = Group.objects.create(
-            name='reviewers', rules='Addons:Review')
-        for user in [self.user_one, self.user_two]:
-            ReviewerSubscription.objects.create(addon=self.addon, user=user)
-            GroupUser.objects.create(group=self.reviewer_group, user=user)
+            name='Reviewers: Legacy', rules='Addons:Review')
+        GroupUser.objects.create(
+            group=self.reviewer_group, user=self.user_one)
+        self.post_reviewer_group = Group.objects.create(
+            name='Reviewers: Add-ons', rules='Addons:PostReview')
+        GroupUser.objects.create(
+            group=self.post_reviewer_group, user=self.user_two)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_one)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_two)
 
     def test_email(self):
         es = ReviewerSubscription.objects.get(user=self.user_one)
@@ -422,16 +429,16 @@ class TestReviewerSubscription(TestCase):
 
     def test_no_email_for_ex_reviewers(self):
         self.user_one.delete()
-        # Remove user_two from reviewers.
+        # Remove user_one from reviewers.
         GroupUser.objects.get(
-            group=self.reviewer_group, user=self.user_two).delete()
+            group=self.reviewer_group, user=self.user_one).delete()
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
     def test_no_email_address_for_reviewer(self):
         self.user_one.update(email=None)
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
 
 class TestReviewerScore(TestCase):
