@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 13:53+0000\n"
+"PO-Revision-Date: 2018-01-30 16:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -174,7 +174,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
 msgid "Abuse reported."
 msgstr "Visszaélést jelentettek."
@@ -6583,10 +6583,10 @@ msgid "More Actions"
 msgstr "További műveletek:"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Értesítsen az új listázott verziókról"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Kiegészítő erőltetett letiltása"
 
 #, fuzzy
 msgid "Force-enable add-on"
