@@ -238,7 +238,8 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         'comments': comments,
         'url': absolutify(version.addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
-        'email_reason': 'you are an author of this add-on'
+        'email_reason': 'you are listed as an author of this add-on',
+        'is_info_request': action == amo.LOG.REQUEST_INFORMATION,
     }
 
     reviewer_context_dict = author_context_dict.copy()
@@ -255,8 +256,12 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = u'Mozilla Add-ons: %s %s' % (
-            version.addon.name, version.version)
+        if action == amo.LOG.REQUEST_INFORMATION:
+            subject = u'Mozilla Add-ons: Action Required for %s %s' % (
+                version.addon.name, version.version)
+        else:
+            subject = u'Mozilla Add-ons: %s %s' % (
+                version.addon.name, version.version)
     template = template_from_user(note_creator, version)
     from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
