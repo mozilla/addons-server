@@ -158,7 +158,7 @@ class TestLocalFileStorage(BaseTestCase):
 
     def setUp(self):
         super(TestLocalFileStorage, self).setUp()
-        self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        self.tmp = tempfile.mkdtemp()
         self.stor = LocalFileStorage()
 
     def tearDown(self):

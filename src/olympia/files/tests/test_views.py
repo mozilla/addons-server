@@ -440,13 +440,13 @@ class TestFileViewer(FilesBase, TestCase):
         res = self.client.get(self.file_url(u'\u1109\u1161\u11a9'))
         assert res.status_code == 200
 
+    @override_settings(TMP_PATH=unicode(settings.TMP_PATH))
     def test_unicode_fails_with_wrong_configured_basepath(self):
-        with override_settings(TMP_PATH=unicode(settings.TMP_PATH)):
-            file_viewer = FileViewer(self.file)
-            file_viewer.src = unicode_filenames
+        file_viewer = FileViewer(self.file)
+        file_viewer.src = unicode_filenames
 
-            with pytest.raises(UnicodeDecodeError):
-                file_viewer.extract()
+        with pytest.raises(UnicodeDecodeError):
+            file_viewer.extract()
 
     def test_serve_no_token(self):
         self.file_viewer.extract()

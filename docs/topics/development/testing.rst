@@ -38,7 +38,7 @@ Running Tests
 
 To run the whole test suite use::
 
-    pytest
+    py.test
 
 There are a lot of options you can pass to adjust the output.  Read `pytest`_
 and `pytest-django`_ docs for the full set, but some common ones are:
@@ -83,7 +83,7 @@ Our test runner is configured by default to reuse the database between each
 test run.  If you really want to make a new database (e.g. when models have
 changed), use the ``--create-db`` parameter::
 
-    pytest --create-db
+    py.test --create-db
 
 or
 

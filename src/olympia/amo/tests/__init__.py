@@ -1032,7 +1032,7 @@ class WithDynamicEndpoints(TestCase):
 
 def get_temp_filename():
     """Get a unique, non existing, temporary filename."""
-    with NamedTemporaryFile(dir=settings.TMP_PATH) as tempfile:
+    with NamedTemporaryFile() as tempfile:
         return tempfile.name
 
 

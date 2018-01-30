@@ -3,7 +3,6 @@ import tempfile
 
 from functools import partial
 
-from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
@@ -19,7 +18,7 @@ pytestmark = pytest.mark.django_db
 
 
 def test_storage_walk():
-    tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    tmp = tempfile.mkdtemp()
     jn = partial(os.path.join, tmp)
     try:
         storage.save(jn('file1.txt'), ContentFile(''))
@@ -55,7 +54,7 @@ def test_storage_walk():
 
 
 def test_rm_stored_dir():
-    tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    tmp = tempfile.mkdtemp()
     jn = partial(os.path.join, tmp)
     try:
         storage.save(jn('file1.txt'), ContentFile('<stuff>'))
@@ -80,7 +79,7 @@ class TestFileOps(BaseTestCase):
 
     def setUp(self):
         super(TestFileOps, self).setUp()
-        self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        self.tmp = tempfile.mkdtemp()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)

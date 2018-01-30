@@ -1,13 +1,43 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
+import atexit
+import tempfile
+
 from django.utils.functional import lazy
+
+
+_tmpdirs = set()
+
+
+def _cleanup():
+    try:
+        import sys
+        import shutil
+    except ImportError:
+        return
+    tmp = None
+    try:
+        for tmp in _tmpdirs:
+            shutil.rmtree(tmp)
+    except Exception, exc:
+        sys.stderr.write("\n** shutil.rmtree(%r): %s\n" % (tmp, exc))
+
+atexit.register(_cleanup)
+
+
+def _polite_tmpdir():
+    tmp = tempfile.mkdtemp()
+    _tmpdirs.add(tmp)
+    return tmp
 
 # Make sure the app needed to test translations is present.
 INSTALLED_APPS += TEST_INSTALLED_APPS
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
+MEDIA_ROOT = _polite_tmpdir()
+TMP_PATH = _polite_tmpdir()
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (

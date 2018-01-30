@@ -1,9 +1,12 @@
 import json
 import os
+import tempfile
 
+from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
+from django.test.utils import override_settings
 
 import mock
 
@@ -28,6 +31,7 @@ from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
 
+@override_settings(MEDIA_ROOT=None)  # Make it overridable.
 class BaseTestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
@@ -35,6 +39,8 @@ class BaseTestEdit(TestCase):
     __test__ = False  # this is an abstract test case
 
     def setUp(self):
+        # Make new for each test.
+        settings.MEDIA_ROOT = tempfile.mkdtemp()
         super(BaseTestEdit, self).setUp()
         assert self.client.login(email='del@icio.us')
 

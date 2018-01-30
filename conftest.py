@@ -1,4 +1,5 @@
 from django import http, test
+from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
 
@@ -74,7 +75,7 @@ def instrument_jinja():
     jinja2.Template.render = instrumented_render
 
 
-def default_prefixer(settings):
+def default_prefixer():
     """Make sure each test starts with a default URL prefixer."""
     request = http.HttpRequest()
     request.META['SCRIPT_NAME'] = ''
@@ -84,8 +85,8 @@ def default_prefixer(settings):
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
-@pytest.yield_fixture(autouse=True)
-def test_pre_setup(request, tmpdir, settings):
+@pytest.fixture(autouse=True)
+def test_pre_setup():
     cache.clear()
     # Override django-cache-machine caching.base.TIMEOUT because it's
     # computed too early, before settings_test.py is imported.
@@ -96,25 +97,12 @@ def test_pre_setup(request, tmpdir, settings):
     translation.trans_real._translations = {}
     translation.trans_real.activate(settings.LANGUAGE_CODE)
 
-    settings.MEDIA_ROOT = str(tmpdir.mkdir('media'))
-    settings.TMP_PATH = str(tmpdir.mkdir('tmp'))
-    settings.NETAPP_STORAGE = settings.TMP_PATH
+    # Reset the prefixer.
+    default_prefixer()
 
-    # Reset the prefixer and urlconf after updating media root
-    default_prefixer(settings)
 
-    from django.core.urlresolvers import clear_url_caches, set_urlconf
-
-    def _clear_urlconf():
-        clear_url_caches()
-        set_urlconf(None)
-
-    _clear_urlconf()
-
-    request.addfinalizer(_clear_urlconf)
-
-    yield
-
+@pytest.fixture(autouse=True)
+def test_post_teardown():
     core.set_user(None)
     clean_translations(None)  # Make sure queued translations are removed.
 
@@ -129,7 +117,7 @@ def admin_group(db):
 
 
 @pytest.fixture
-def mozilla_user(admin_group, settings):
+def mozilla_user(admin_group):
     """Create a "Mozilla User"."""
     user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
                                       email='admin@mozilla.com',
