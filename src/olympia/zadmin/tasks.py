@@ -249,7 +249,8 @@ def fetch_langpack(url, xpi, **kw):
             # Not `version.files.update`, because we need to trigger save
             # hooks.
             file_.update(status=amo.STATUS_PUBLIC)
-        sign_file(file_)
+
+        sign_file(file_, use_autograph=False)
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC

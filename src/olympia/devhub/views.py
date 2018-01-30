@@ -550,7 +550,7 @@ def check_addon_compatibility(request):
                    'new_addon_form': forms.DistributionChoiceForm()})
 
 
-def handle_upload(filedata, user, channel, app_id=None, version_id=None,
+def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
@@ -558,8 +558,8 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         filedata, filedata.name, filedata.size,
         automated_signing=automated_signing, addon=addon)
     log.info('FileUpload created: %s' % upload.uuid.hex)
-    if user.is_authenticated():
-        upload.user = user
+    if request.user.is_authenticated():
+        upload.user = request.user
         upload.save()
     if app_id and version_id:
         # If app_id and version_id are present, we are dealing with a
@@ -573,7 +573,10 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
+        tasks.validate_and_submit(
+            addon, upload, channel=channel,
+            use_autograph=waffle.flag_is_active(
+                request, 'activate-autograph-signing'))
     else:
         tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
@@ -588,7 +591,7 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
     app_id = request.POST.get('app_id')
     version_id = request.POST.get('version_id')
     upload = handle_upload(
-        filedata=filedata, user=request.user, app_id=app_id,
+        filedata=filedata, request=request, app_id=app_id,
         version_id=version_id, addon=addon, is_standalone=is_standalone,
         channel=channel)
     if addon:
@@ -1190,18 +1193,18 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False):
+def auto_sign_file(file_, use_autograph=False, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
+        sign_file(file_, use_autograph=use_autograph)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_)
+        sign_file(file_, use_autograph=use_autograph)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1213,10 +1216,10 @@ def auto_sign_file(file_, is_beta=False):
         ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
 
 
-def auto_sign_version(version, **kwargs):
+def auto_sign_version(version, use_autograph=False, **kwargs):
     # Sign all the unapproved files submitted, one for each platform.
     for file_ in version.files.exclude(status=amo.STATUS_PUBLIC):
-        auto_sign_file(file_, **kwargs)
+        auto_sign_file(file_, use_autograph=use_autograph, **kwargs)
 
 
 @dev_required
@@ -1397,7 +1400,12 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version, is_beta=is_beta)
+        use_autograph = waffle.flag_is_active(
+            request, 'activate-autograph-signing')
+        auto_sign_version(
+            version,
+            is_beta=is_beta,
+            use_autograph=use_autograph)
         next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
                     else next_finish)

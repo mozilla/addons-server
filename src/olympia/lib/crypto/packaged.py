@@ -11,7 +11,6 @@ from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_bytes
 
 import requests
-import waffle
 
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
@@ -61,14 +60,13 @@ def get_id(addon):
     return hashlib.sha256(guid).hexdigest()
 
 
-def call_signing(file_obj):
+def call_signing(file_obj, use_autograph=False):
     """Get the jar signature and send it to the signing server to be signed."""
     # Extract jar signature.
     jar = JarExtractor(path=storage.open(file_obj.file_path))
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
-    use_autograph = waffle.switch_is_active('activate-autograph-signing')
     signed_manifest = unicode(jar.signatures)
     has_error = False
 
@@ -86,7 +84,7 @@ def call_signing(file_obj):
         }]
 
         # post the request
-        with statsd.timer('services.sign.addon'):
+        with statsd.timer('services.sign.addon.autograph'):
             response = requests.post(
                 '{server}/sign/data'.format(server=conf['server_url']),
                 json=signing_request,
@@ -135,7 +133,7 @@ def call_signing(file_obj):
     return cert_serial_num
 
 
-def sign_file(file_obj):
+def sign_file(file_obj, use_autograph=False):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
@@ -180,7 +178,8 @@ def sign_file(file_obj):
         return
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = unicode(call_signing(file_obj))
+    cert_serial_num = unicode(
+        call_signing(file_obj, use_autograph=use_autograph))
 
     size = storage.size(file_obj.file_path)
 

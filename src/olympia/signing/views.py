@@ -224,7 +224,7 @@ class VersionView(APIView):
                     status.HTTP_400_BAD_REQUEST)
 
         file_upload = handle_upload(
-            filedata=filedata, user=request.user, addon=addon, submit=True,
+            filedata=filedata, request=request, addon=addon, submit=True,
             channel=channel)
 
         return file_upload, created

@@ -323,8 +323,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
-        mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False) for f in latest_version.all_files])
+        mock_auto_sign_file.assert_has_calls([
+            mock.call(f, is_beta=False, use_autograph=False)
+            for f in latest_version.all_files])
 
     def test_with_source(self):
         response = self.client.get(
@@ -1453,8 +1454,9 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
               self).test_one_xpi_for_multiple_platforms()
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False) for f in version.all_files])
+        mock_auto_sign_file.assert_has_calls([
+            mock.call(f, is_beta=False, use_autograph=False)
+            for f in version.all_files])
 
     def test_no_force_beta_for_unlisted(self):
         """No beta version for unlisted addons."""
