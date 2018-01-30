@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 02:32+0000\n"
+"PO-Revision-Date: 2018-01-30 02:43+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3224,9 +3224,8 @@ msgstr "Add-on anda akan dikeluarkan di bawah lesen berikut:"
 msgid "Select a different license."
 msgstr "Pilih lesen yang lain."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Perlukan maklumat lanjut"
+msgstr "Maklumat lanjut tentang lesen Creative Commons"
 
 msgid "Tests"
 msgstr "Ujian"
@@ -3545,9 +3544,8 @@ msgstr "Jana tema"
 msgid "Theme generator"
 msgstr "Penjana tema"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Pilih imej pengepala untuk Tema anda."
+msgstr "Pilih imej pengepala untuk tema anda"
 
 msgid "required"
 msgstr "diperlukan"
@@ -3564,64 +3562,50 @@ msgstr "Sejajar bahagian atas-kanan"
 msgid "Select a different header image"
 msgstr "Pilih imej pengepala yang lain"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Pilih warna untuk Tema anda."
+msgstr "Pilih warna untuk tema anda"
 
-#, fuzzy
 msgid "Header area background"
-msgstr "Latar belakang kawasan pengepala (accentcolor)"
+msgstr "Latar belakang kawasan pengepala"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Warna latar belakang kawasan pengepala, dipaparkan dengan sebahagian pengepala tidak dilindungi atau boleh dilihat menembusi imej pengepala."
+msgstr "Warna latar belakang kawasan pengepala, dipaparkan dengan sebahagian pengepala tidak dilindungi atau boleh dilihat menembusi imej pengepala. Medan manifes:  accentcolour."
 
-#, fuzzy
 msgid "Header area text"
-msgstr "Teks kawasan pengepala (textcolor)"
+msgstr "Teks kawasan pengepala"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "Warna teks yang dipaparkan dalam kawasan pengepala."
+msgstr "Warna teks yang dipaparkan dalam kawasan pengepala. Medan manifes:  textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Latar belakang kawasan bar alatan (toolbar)."
+msgstr "Latar belakang kawasan bar alatan"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih."
+msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih.  Medan manifes:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Teks kawasan bar alatan (toolbar_text)."
+msgstr "Teks kawasan bar alatan"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Warna untuk teks bar alatan."
+msgstr "Warna untuk teks bar alatan. Medan manifes:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Latar belakang kawasan medan bar alatan (toolbar_field)."
+msgstr "Latar belakang kawasan medan bar alatan"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Warna latar belakang untuk medan dalam bar alatan, seperti bar URL."
+msgstr "Warna latar belakang untuk medan dalam bar alatan, seperti bar URL. Medan manifes:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Teks kawasan medan bar alatan (toolbar_field_text)."
+msgstr "Teks kawasan medan bar alatan"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Warna teks dalam medan bar alatan, seperti bar URL"
+msgstr "Warna teks dalam medan bar alatan, seperti bar URL. Medan manifes:  toolbar_field_text."
 
 msgid "optional"
 msgstr "pilihan"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Previu Pelayar"
+msgstr "Previu pelayar"
 
 msgid "Back"
 msgstr "Undur"
@@ -3629,9 +3613,8 @@ msgstr "Undur"
 msgid "Uploading Theme"
 msgstr "Memuat naik Tema"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Tema %s"
+msgstr "Tema Siap"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
@@ -6493,19 +6476,17 @@ msgstr "Papan putih peribadi digunakan untuk penyemak bertukar maklumat bebas ve
 msgid "Update whiteboards"
 msgstr "Kemaskini papan putih"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Tindakan Lanjutan:"
+msgstr "Tindakan Lanjutan"
 
 msgid "Notify me about new listed versions"
 msgstr "Maklumkan saya apabila ada versi baru yang disenaraikan"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Add-on yang dipaksa-nyahdaya"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Versi Didayakan-semula"
+msgstr "Add-on yang dipaksa-daya"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Buang Tanda Semakan Kod Pentadbir"
