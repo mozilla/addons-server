@@ -19,9 +19,7 @@ log = olympia.core.logger.getLogger('z.cron')
 class Command(BaseCommand):
     help = 'Dump a json file containing AMO apps and versions.'
 
-    @classmethod
-    def get_json_path(self):
-        return os.path.join(settings.MEDIA_ROOT, 'apps.json')
+    JSON_PATH = os.path.join(settings.MEDIA_ROOT, 'apps.json')
 
     def handle(self, *args, **kw):
         apps = {}
@@ -38,6 +36,6 @@ class Command(BaseCommand):
                 pass
 
         # Local file, to be read by validator.
-        with storage.open(self.get_json_path(), 'w') as f:
+        with storage.open(self.JSON_PATH, 'w') as f:
             json.dump(apps, f)
             log.debug("Wrote: %s" % f.name)

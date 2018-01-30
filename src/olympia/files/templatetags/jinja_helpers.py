@@ -122,9 +122,8 @@ class FileViewer(object):
         self.file = file_obj
         self.addon = self.file.version.addon
         self.src = file_obj.current_file_path
-        self.base_tmp_path = os.path.join(settings.TMP_PATH, 'file_viewer')
         self.dest = os.path.join(
-            self.base_tmp_path,
+            settings.TMP_PATH, 'file_viewer',
             datetime.now().strftime('%m%d'),
             str(file_obj.pk))
         self._files, self.selected = None, None
@@ -400,7 +399,7 @@ class FileViewer(object):
         return result
 
     def _check_dest_for_complete_listing(self, expected_files):
-        """Check that all files we expect are in `self.dest`."""
+        """Check that all filex we expect are in `self.dest`."""
         dest_len = len(self.dest)
 
         files_to_verify = get_all_files(self.dest)
@@ -413,14 +412,10 @@ class FileViewer(object):
 
     def _normalize_file_list(self, expected_files):
         """Normalize file names, strip /tmp/xxxx/ prefix."""
-        prefix_len = settings.TMP_PATH.count('/')
-
-        normalized_files = filter(None, (
-            fname.strip('/').split('/')[prefix_len + 1:]
-            for fname in expected_files
-            if fname.startswith(settings.TMP_PATH)))
-
-        normalized_files = [os.path.join(*fname) for fname in normalized_files]
+        normalized_files = [fname.strip('/') for fname in expected_files]
+        normalized_files = [
+            os.path.join(*fname.split(os.path.sep)[2:])
+            for fname in normalized_files]
 
         return normalized_files
 
@@ -429,7 +424,7 @@ class FileViewer(object):
         # few milliseconds but it's still way faster than doing any
         # kind of sleeps to wait for writes to happen.
         for fname in files:
-            fpath = os.path.join(self.base_tmp_path, fname)
+            fpath = os.path.join(settings.TMP_PATH, fname)
             descriptor = os.open(fpath, os.O_RDONLY)
             os.fsync(descriptor)
 

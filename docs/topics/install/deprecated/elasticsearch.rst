@@ -96,7 +96,7 @@ All test cases using Elasticsearch should inherit from ``amo.tests.ESTestCase``.
 All such tests are marked with the ``es_tests`` pytest_ marker. To run only
 those tests::
 
-    pytest -m es_tests
+    py.test -m es_tests
 
 or
 

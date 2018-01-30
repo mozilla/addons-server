@@ -13,27 +13,27 @@ Other, more niche, test commands::
     make tdd # run the entire test suite, but stop on the first error
 
 
-Using pytest directly
+Using py.test directly
 ----------------------
 
 **For advanced users.**
-To run the entire test suite you never need to use ``pytest`` directly.
+To run the entire test suite you never need to use ``py.test`` directly.
 
 You can connect to the docker container using ``make shell``; then use
-``pytest`` directly, which allows for finer-grained control of the test
+``py.test`` directly, which allows for finer-grained control of the test
 suite.
 
 Run your tests like this::
 
-    pytest
+    py.test
 
 For running subsets of the entire test suite, you can specify which tests
 run using different methods:
 
-* `pytest -m es_tests` to run the tests that are marked_ as `es_tests`
-* `pytest -k test_no_license` to run all the tests that have
+* `py.test -m es_tests` to run the tests that are marked_ as `es_tests`
+* `py.test -k test_no_license` to run all the tests that have
   `test_no_license` in their name
-* `pytest src/olympia/addons/tests/test_views.py::TestLicensePage::test_no_license`
+* `py.test src/olympia/addons/tests/test_views.py::TestLicensePage::test_no_license`
   to run this specific test
 
 For more, see the `Pytest usage documentation`_.

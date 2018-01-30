@@ -22,7 +22,7 @@ def generate_addon_preview(addon):
     color = random.choice(ImageColor.colormap.keys())
     im = Image.new('RGB', (320, 480), color)
     p = Preview.objects.create(addon=addon, caption='Screenshot 1', position=1)
-    f = tempfile.NamedTemporaryFile(dir=settings.TMP_PATH)
+    f = tempfile.NamedTemporaryFile()
     im.save(f, 'png')
     resize_preview(f.name, p)
 
