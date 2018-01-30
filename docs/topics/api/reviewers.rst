@@ -63,6 +63,35 @@ of its versions.
 
 .. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable/
 
+
+---------------------
+Disable Auto Approval
+---------------------
+
+This endpoint allows you to disable auto-approval for an add-on. When in this
+state, new versions for this add-on will make it appear in the regular reviewer
+queues instead of being auto-approved.
+
+    .. note::
+       Requires authentication and the current user to have ``Reviews:Admin``
+        permission.
+
+.. http:post::/api/v3/reviewers/addon/(int:addon_id)/disable-auto-approval/
+
+--------------------
+Enable Auto Approval
+--------------------
+
+This endpoint allows you to re-enable auto-approval for an add-on. Note that it
+won't force a non-webextension version to be auto-approved, it still needs to
+follow the normal conditions.
+
+    .. note::
+        Requires authentication and the current user to have ``Reviews:Admin``
+        permission.
+
+.. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable-auto-approval/
+
 -----------------------
 Clear Admin Review Flag
 -----------------------

@@ -1397,6 +1397,13 @@ class Addon(OnChangeMixin, ModelBase):
         except AddonReviewerFlags.DoesNotExist:
             return None
 
+    @property
+    def auto_approval_disabled(self):
+        try:
+            return self.addonreviewerflags.auto_approval_disabled
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1505,6 +1512,7 @@ class AddonReviewerFlags(ModelBase):
         Addon, primary_key=True, on_delete=models.CASCADE)
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
+    auto_approval_disabled = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):

@@ -13,7 +13,8 @@ from pyquery import PyQuery
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
+    Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
+    CompatOverrideRange)
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -554,6 +555,11 @@ class TestVersion(TestCase):
 
         version.channel = amo.RELEASE_CHANNEL_LISTED
         assert version.is_ready_for_auto_approval
+
+        # With the auto-approval disabled flag set, it's still considered
+        # "ready", even though the auto_approve code won't approve it.
+        AddonReviewerFlags.objects.create(
+            addon=addon, auto_approval_disabled=False)
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval

@@ -7,7 +7,7 @@ import mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonApprovalsCounter
+from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation
@@ -47,13 +47,24 @@ class TestAutoApproveCommand(TestCase):
         assert stats == expected_stats
 
     def test_fetch_candidates(self):
-        # Add nominated add-on: it should be considered.
+        # We already have an add-on with a version awaiting review that should
+        # be considered. Make sure its nomination date is in the past to test
+        # ordering.
         self.version.update(nomination=self.days_ago(1))
+        # Add reviewer flags disabling auto-approval for this add-on. It would
+        # still be fetched as a candidate, just rejected later on when
+        # calculating the verdict.
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled=True)
+
+        # Add nominated add-on: it should be considered.
         new_addon = addon_factory(status=amo.STATUS_NOMINATED, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW,
             'is_webextension': True})
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(nomination=self.days_ago(2))
+        # Even add an empty reviewer flags instance, that should not matter.
+        AddonReviewerFlags.objects.create(addon=new_addon)
 
         # Add langpack: it should also be considered.
         langpack = addon_factory(

@@ -1199,6 +1199,30 @@ class TestPendingQueue(QueueTest):
         self.expected_addons = [self.addons['Pending One']]
         self._test_results()
 
+    def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending Two'], auto_approval_disabled=False)
+
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
+
+    def test_webextension_with_auto_approval_disabled_does_show_up(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending One'], auto_approval_disabled=True)
+
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -1265,6 +1289,30 @@ class TestNominatedQueue(QueueTest):
 
         # Webextensions are filtered out from the queue since auto_approve is
         # taking care of them.
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+    def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated Two'], auto_approval_disabled=False)
+
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+    def test_webextension_with_auto_approval_disabled_does_show_up(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        version = self.addons['Nominated One'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated One'], auto_approval_disabled=True)
+
         self.expected_addons = [self.addons['Nominated One']]
         self._test_results()
 
@@ -2797,6 +2845,42 @@ class TestReview(ReviewBase):
         assert doc('#clear_admin_code_review').length == 0
         assert doc('#clear_admin_content_review').length == 1
 
+    def test_disable_auto_approvals_as_reviewer(self):
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval')
+        assert not doc('#enable_auto_approval')
+
+    def test_disable_auto_approvals_as_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval')
+        elem = doc('#disable_auto_approval')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        assert doc('#enable_auto_approval')
+        elem = doc('#enable_auto_approval')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+    def test_enable_auto_approvals_as_admin_auto_approvals_disabled(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval')
+        elem = doc('#disable_auto_approval')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        assert doc('#enable_auto_approval')
+        elem = doc('#enable_auto_approval')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
     def test_info_request_checkbox(self):
         self.login_as_reviewer()
         assert not self.version.has_info_request
@@ -4048,6 +4132,12 @@ class TestAddonReviewerViewSet(TestCase):
         self.clear_admin_review_flag_url = reverse(
             'reviewers-addon-clear-admin-review-flag',
             kwargs={'pk': self.addon.pk})
+        self.enable_auto_approval_url = reverse(
+            'reviewers-addon-enable-auto-approval',
+            kwargs={'pk': self.addon.pk})
+        self.disable_auto_approval_url = reverse(
+            'reviewers-addon-disable-auto-approval',
+            kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -4318,3 +4408,96 @@ class TestAddonReviewerViewSet(TestCase):
         reviewer_flags.reload()
         assert not reviewer_flags.needs_admin_code_review
         assert not reviewer_flags.needs_admin_content_review
+
+    def test_disable_auto_approval_not_logged_in(self):
+        response = self.client.post(self.disable_auto_approval_url)
+        assert response.status_code == 401
+
+    def test_disable_auto_approval_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.disable_auto_approval_url)
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.disable_auto_approval_url)
+        assert response.status_code == 403
+
+    def test_disable_auto_approval_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.disable_auto_approval_url = reverse(
+            'reviewers-addon-disable-auto-approval',
+            kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(
+            self.disable_auto_approval_url)
+        assert response.status_code == 404
+
+    def test_disable_auto_approval_no_reviewer_flags_yet(self):
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.disable_auto_approval_url)
+        assert response.status_code == 202
+        assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert reviewer_flags.auto_approval_disabled
+
+    def test_disable_auto_approval_reviewer_flags_already_exist(self):
+        reviewer_flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert not reviewer_flags.auto_approval_disabled
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.disable_auto_approval_url)
+        assert response.status_code == 202
+        reviewer_flags.reload()
+        assert reviewer_flags.auto_approval_disabled
+
+    def test_enable_auto_approval_not_logged_in(self):
+        response = self.client.post(self.enable_auto_approval_url)
+        assert response.status_code == 401
+
+    def test_enable_auto_approval_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.enable_auto_approval_url)
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.enable_auto_approval_url)
+        assert response.status_code == 403
+
+    def test_enable_auto_approval_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.enable_auto_approval_url = reverse(
+            'reviewers-addon-enable-auto-approval',
+            kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(
+            self.enable_auto_approval_url)
+        assert response.status_code == 404
+
+    def test_enable_auto_approval_no_reviewer_flags_yet(self):
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.enable_auto_approval_url)
+        assert response.status_code == 202
+        assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert not reviewer_flags.auto_approval_disabled
+
+    def test_enable_auto_approval_reviewer_flags_already_exist(self):
+        reviewer_flags = AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled=True)
+        assert reviewer_flags.auto_approval_disabled
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.enable_auto_approval_url)
+        assert response.status_code == 202
+        reviewer_flags.reload()
+        assert not reviewer_flags.auto_approval_disabled
