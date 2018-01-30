@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 08:50+0000\n"
+"PO-Revision-Date: 2018-01-30 08:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3659,14 +3659,12 @@ msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke. Mani
 msgid "Toolbar field area text"
 msgstr "Tekst arkbalkefjildgebied"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke"
+msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
 
 msgid "optional"
 msgstr "opsjoneel"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Browserfoarbyld"
 
@@ -3676,9 +3674,8 @@ msgstr "Tebek"
 msgid "Uploading Theme"
 msgstr "Tema oplade"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s-tema’s"
+msgstr "Tema foltôgje"
 
 msgid "API Credentials"
 msgstr "API-referinsjes"
@@ -6482,9 +6479,8 @@ msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôf
 msgid "Update whiteboards"
 msgstr "Notysjeboerden bywurkje"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Mear aksjes:"
+msgstr "Mear aksjes"
 
 msgid "Notify me about new listed versions"
 msgstr "My berjochtsje oer nije ferzjes yn de list"
@@ -6492,9 +6488,8 @@ msgstr "My berjochtsje oer nije ferzjes yn de list"
 msgid "Force-disable add-on"
 msgstr "Add-on twongen útskeakelje"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Ferzje opnij ynskeakelje"
+msgstr "Add-on forsearre ynskeakelje"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markearring foar koadebeoardieling troch behearder wiskje"
