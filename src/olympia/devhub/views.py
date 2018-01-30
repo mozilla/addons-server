@@ -244,12 +244,14 @@ def _get_activities(request, action):
 
 
 def _get_items(action, addons):
-    filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-                   status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
-                           amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
-                   collections=(amo.LOG.ADD_TO_COLLECTION,
-                                amo.LOG.REMOVE_FROM_COLLECTION,),
-                   reviews=(amo.LOG.ADD_RATING,))
+    filters = {
+        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
+        'status': (amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
+                   amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
+        'collections': (amo.LOG.ADD_TO_COLLECTION,
+                        amo.LOG.REMOVE_FROM_COLLECTION,),
+        'reviews': (amo.LOG.ADD_RATING,)
+    }
 
     filter_ = filters.get(action)
     items = (ActivityLog.objects.for_addons(addons)
@@ -406,8 +408,7 @@ def enable(request, addon_id, addon):
 def cancel(request, addon_id, addon):
     if addon.status == amo.STATUS_NOMINATED:
         addon.update(status=amo.STATUS_NULL)
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
-                           addon)
+        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
@@ -1701,8 +1702,7 @@ def request_review(request, addon_id, addon):
     else:
         messages.success(request, _(
             'You must provide further details to proceed.'))
-    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
-                       addon)
+    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     return redirect(addon.get_dev_url('versions'))
 
 

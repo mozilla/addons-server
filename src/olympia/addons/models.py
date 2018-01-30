@@ -971,8 +971,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.info('Changing add-on status [%s]: %s => %s (%s).'
                      % (self.id, self.status, status, reason))
             self.update(status=status)
-            activity.log_create(amo.LOG.CHANGE_STATUS,
-                                self.get_status_display(), self)
+            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status)
 
         self.update_version(ignore=ignore_version)
 
