@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 14:57+0000\n"
+"PO-Revision-Date: 2018-01-30 16:25+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3309,9 +3309,8 @@ msgstr "Ваш додаток буде випущений на умовах та
 msgid "Select a different license."
 msgstr "Виберіть іншу ліцензію."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Запитано більше інформації"
+msgstr "Більше інформації в ліцензіях Creative Commons"
 
 msgid "Tests"
 msgstr "Тести"
@@ -3633,9 +3632,8 @@ msgstr "Генерувати тему"
 msgid "Theme generator"
 msgstr "Генератор теми"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Виберіть верхнє зображення для вашої теми."
+msgstr "Оберіть зображення для заголовка вашої теми"
 
 msgid "required"
 msgstr "потрібно"
@@ -3652,62 +3650,48 @@ msgstr "Вирівняна по верхньому правому краю"
 msgid "Select a different header image"
 msgstr "Виберіть інше верхнє зображення"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Оберіть кольори для вашої теми."
+msgstr "Оберіть кольори для вашої теми"
 
-#, fuzzy
 msgid "Header area background"
-msgstr "Тло області заголовка (accentcolor)"
+msgstr "Тло області заголовка"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Колір тла області заголовка відображається в тій його частині, що не закрита або видима через зображення заголовка."
+msgstr "Колір тла області заголовка відображається в тій його частині, що не закрита або видима через зображення заголовка. Поле маніфесту:  "
 
-#, fuzzy
 msgid "Header area text"
-msgstr "Текст області заголовка (textcolor)"
+msgstr "Текст області заголовка"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "Колір тексту, що відображається в області заголовка."
+msgstr "Колір тексту, що відображається в області заголовка. Поле маніфесту:  textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Тло області панелі інструментів (toolbar)."
+msgstr "Тло області панелі інструментів"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки."
+msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки.  Поле маніфесту:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Текст області панелі інструментів (toolbar_text)."
+msgstr "Текст області панелі інструментів"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Колір тексту панелі інструментів."
+msgstr "Колір тексту панелі інструментів. Поле маніфесту:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Тло області поля панелі інструментів (toolbar_field)."
+msgstr "Тло області поля панелі інструментів"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Колір тла полів у панелі інструментів, таких як рядок URL-адреси."
+msgstr "Колір тла полів у панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Текст поля в області панелі інструментів (toolbar_field_text)."
+msgstr "Текст поля в області панелі інструментів"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Колір тексту в полі на панелі інструментів, таких як рядок URL-адреси"
+msgstr "Колір тексту в полях в панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field_text."
 
 msgid "optional"
 msgstr "необов’язково"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Перегляд в браузері"
 
@@ -3717,9 +3701,8 @@ msgstr "Назад"
 msgid "Uploading Theme"
 msgstr "Вивантаження теми"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Теми"
+msgstr "Завершити тему"
 
 msgid "API Credentials"
 msgstr "Облікові дані API"
@@ -6608,9 +6591,8 @@ msgstr "Особиста панель огляду використовуєть�
 msgid "Update whiteboards"
 msgstr "Оновити панелі огляду"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Додаткові дії:"
+msgstr "Додаткові дії"
 
 msgid "Notify me about new listed versions"
 msgstr "Сповіщати мене про нові опубліковані версії"
@@ -6618,9 +6600,8 @@ msgstr "Сповіщати мене про нові опубліковані в�
 msgid "Force-disable add-on"
 msgstr "Примусово вимкнути додаток"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Активувати версію знову"
+msgstr "Примусово увімкнути додаток"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Прибрати позначку перевірки коду адміном"
