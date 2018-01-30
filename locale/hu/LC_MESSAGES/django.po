@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 16:30+0000\n"
+"PO-Revision-Date: 2018-01-30 16:33+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3652,26 +3652,21 @@ msgstr "Az eszköztárterület szövege"
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "Az eszköztár szövegszíne. Leírófájl mező: toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Az eszköztár mezőterületének háttere (toolbar_field)."
+msgstr "Az eszköztár mezőterületének háttere"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere. Leírófájl mező: toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Az eszköztár mezőterületének betűszíne (toolbar_field_text)."
+msgstr "Az eszköztár mezőterületének szövege"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
 
 msgid "optional"
 msgstr "nem kötelező"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Böngésző előnézete"
 
@@ -3681,9 +3676,8 @@ msgstr "Vissza"
 msgid "Uploading Theme"
 msgstr "Téma feltöltése"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s témák"
+msgstr "Téma befejezése"
 
 msgid "API Credentials"
 msgstr "API hitelesítési adatok"
@@ -6578,9 +6572,8 @@ msgstr "A privát faliújságot az értékelők az egymás közti információcs
 msgid "Update whiteboards"
 msgstr "Faliújság frissítése"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "További műveletek:"
+msgstr "További műveletek"
 
 msgid "Notify me about new listed versions"
 msgstr "Értesítsen az új listázott verziókról"
@@ -6588,9 +6581,8 @@ msgstr "Értesítsen az új listázott verziókról"
 msgid "Force-disable add-on"
 msgstr "Kiegészítő erőltetett letiltása"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Verzió újra engedélyezése"
+msgstr "Kiegészítő erőltetett engedélyezése"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Adminisztrátori kódértékelés jelző törlése"
