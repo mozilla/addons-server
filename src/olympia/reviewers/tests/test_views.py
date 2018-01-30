@@ -1213,11 +1213,14 @@ class TestPendingQueue(QueueTest):
         version = self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.files.update(is_webextension=True)
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending Two'], auto_approval_disabled=True)
 
-        self.expected_addons = [
-            self.addons['Pending One'], self.addons['Pending Two']]
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending One'], auto_approval_disabled=True)
+
+        self.expected_addons = [self.addons['Pending One']]
         self._test_results()
 
 
@@ -1303,11 +1306,14 @@ class TestNominatedQueue(QueueTest):
         version = self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.files.update(is_webextension=True)
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated Two'], auto_approval_disabled=True)
 
-        self.expected_addons = [
-            self.addons['Nominated One'], self.addons['Nominated Two']]
+        version = self.addons['Nominated One'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated One'], auto_approval_disabled=True)
+
+        self.expected_addons = [self.addons['Nominated One']]
         self._test_results()
 
 
