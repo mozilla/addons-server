@@ -38,8 +38,12 @@ $(document).ready(function() {
         $wizard.find('input[type="file"]').trigger('change');
 
         $wizard.find('img.preview').on('load', function(e) {
-            var svg_img = $('#svg-header-img');
-            svg_img.attr('href', (svg_img.src = e.target.src));
+            var $svg_img = $('#svg-header-img'),
+                $svg = $('#svg');
+            $svg_img.attr('href', ($svg_img.src = e.target.src));
+            $svg_img.attr('height', e.target.naturalHeight);
+            var meetOrSlice = (e.target.naturalWidth < $svg.width())? 'meet' : 'slice';
+            $svg_img.attr('preserveAspectRatio', 'xMaxYMin '+ meetOrSlice);
         });
 
         function updateManifest() {

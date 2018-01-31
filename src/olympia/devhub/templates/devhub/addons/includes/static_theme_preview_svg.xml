@@ -1,5 +1,5 @@
 {% autoescape true %}
-<svg id="Svg1006" width="680" height="100" xmlns="http://www.w3.org/2000/svg"
+<svg id="svg" width="680" height="100" xmlns="http://www.w3.org/2000/svg"
      version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
      xmlns:svgjs="http://svgjs.com/svgjs" font-size="16px" font-family="Helvetica, Arial, sans-serif">
     <defs id="SvgDefs1007"></defs>
