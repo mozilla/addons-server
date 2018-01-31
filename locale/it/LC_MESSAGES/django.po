@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 20:26+0000\n"
+"PO-Revision-Date: 2018-01-30 20:33+0000\n"
 "Last-Translator: Sav22999 <savemore99.sm@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3686,25 +3686,22 @@ msgstr "Sfondo barra degli strumenti"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Il colore di sfondo per la barra di navigazione, la barra dei segnalibri e la scheda selezionata."
 
-#, fuzzy
 msgid "Toolbar area text"
-msgstr "Testo barra degli strumenti (toolbar_text)."
+msgstr "Testo barra degli strumenti"
 
 #, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
 msgstr "Colore del testo nella barra degli strumenti."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Sfondo campo barra degli strumenti (toolbar_field)."
+msgstr "Sfondo campo barra degli strumenti"
 
 #, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Testo barra degli strumenti (toolbar_field_text)."
+msgstr "Testo barra degli strumenti"
 
 #, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
@@ -3713,7 +3710,6 @@ msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra
 msgid "optional"
 msgstr "facoltativo"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Anteprima nel browser"
 
@@ -3723,9 +3719,8 @@ msgstr "Indietro"
 msgid "Uploading Theme"
 msgstr "Caricamento tema in corso…"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Temi"
+msgstr "Completa tema"
 
 msgid "API Credentials"
 msgstr "Credenziali API"
@@ -6654,19 +6649,17 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr "Aggiorna le bacheche"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Altre azioni:"
+msgstr "Altre azioni"
 
 msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Forza la disattivazione del componente aggiuntivo"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Riattiva versione"
+msgstr "Forza l'attivazione del componente aggiuntivo"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Rimuovi il flag per la revisione del codice da parte di un amministratore"
