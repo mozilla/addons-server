@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 20:33+0000\n"
-"Last-Translator: Sav22999 <savemore99.sm@gmail.com>\n"
+"PO-Revision-Date: 2018-01-31 09:38+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -3668,44 +3668,38 @@ msgstr "Scegli i colori per il tuo tema"
 msgid "Header area background"
 msgstr "Sfondo testata"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Il colore di sfondo della testata, visibile nelle aree non coperte dall’immagine o attraverso le trasparenze."
+msgstr "Il colore di sfondo della testata, visibile nelle aree non coperte dall’immagine o attraverso le trasparenze. Campo nel manifesto: accentcolor."
 
 msgid "Header area text"
 msgstr "Testo testata"
 
-#, fuzzy
 msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr "Il colore delle caselle di testo visualizzate nell’area della testata."
+msgstr "Il colore delle caselle di testo visualizzate nell’area della testata. Campo nel manifesto: textcolor"
 
 msgid "Toolbar area background"
 msgstr "Sfondo barra degli strumenti"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Il colore di sfondo per la barra di navigazione, la barra dei segnalibri e la scheda selezionata."
+msgstr "Il colore di sfondo per la barra di navigazione, la barra dei segnalibri e la scheda selezionata. Campo nel manifesto: toolbar"
 
 msgid "Toolbar area text"
 msgstr "Testo barra degli strumenti"
 
-#, fuzzy
 msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Colore del testo nella barra degli strumenti."
+msgstr "Colore del testo nella barra degli strumenti. Campo nel manifesto: toolbar_text"
 
 msgid "Toolbar field area background"
 msgstr "Sfondo campo barra degli strumenti"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi."
+msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi. Campo nel manifesto: toolbar_field"
 
 msgid "Toolbar field area text"
 msgstr "Testo barra degli strumenti"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra degli indirizzi"
+msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra degli indirizzi. Campo nel manifesto: toolbar_field_text"
 
 msgid "optional"
 msgstr "facoltativo"
@@ -6653,7 +6647,7 @@ msgid "More Actions"
 msgstr "Altre azioni"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Avvisami riguardo alle nuove versioni elencate"
 
 msgid "Force-disable add-on"
 msgstr "Forza la disattivazione del componente aggiuntivo"
