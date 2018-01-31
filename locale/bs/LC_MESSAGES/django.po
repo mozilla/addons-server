@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-31 14:30+0000\n"
+"PO-Revision-Date: 2018-01-31 14:37+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1558,7 +1558,7 @@ msgid "Recently Updated Extensions"
 msgstr "Nedavno ažurirana proširenja"
 
 msgid "Up & Coming Extensions"
-msgstr "Proširenja u toku"
+msgstr "Nova i nadolazeća proširenja"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1584,7 +1584,7 @@ msgid "Recently Updated Complete Themes"
 msgstr "Nedavno ažurirane kompletne teme"
 
 msgid "Up & Coming Complete Themes"
-msgstr "Kompletne teme u toku"
+msgstr "Nove i nadolazeće kompletne teme"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1635,10 +1635,10 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr ""
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Nove i nadolazeće teme"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Pogledajte sve novo i nadolazeće"
 
 msgid "No themes found"
 msgstr ""
