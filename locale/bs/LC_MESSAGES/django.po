@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-31 12:41+0000\n"
+"PO-Revision-Date: 2018-01-31 14:30+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1552,39 +1552,39 @@ msgid "Extensions by Name"
 msgstr ""
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Proširenja za preuzimanje sedmično"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Nedavno ažurirana proširenja"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Proširenja u toku"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Preporučene kompletne teme"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Najpopularnije kompletne teme"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Najbolje ocijenjene kompletne teme"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Najnovije kompletne teme"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Kompletne teme po nazivu"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Kompletne teme po broju sedmičnih preuzimanja"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Nedavno ažurirane kompletne teme"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Kompletne teme u toku"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1604,10 +1604,10 @@ msgid "View Profile"
 msgstr ""
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Napravite vlastitu temu"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Vaš browser, vaš stil! Sredite ga sa vlastitim dizajnom!"
 
 msgid "Learn more"
 msgstr ""
@@ -1623,10 +1623,10 @@ msgstr ""
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Preko 300,000 dizajna za personalizaciju vašeg browsera! Pomaknite vaš miš preko pozadine teme da je probate. <a href=\"%(url)s\" class=\"more-info\">Počnite istraživati</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Želite više personalizacije?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
