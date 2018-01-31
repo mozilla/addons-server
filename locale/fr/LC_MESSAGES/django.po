@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-30 20:01+0000\n"
+"PO-Revision-Date: 2018-01-30 20:10+0000\n"
 "Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6146,9 +6146,8 @@ msgstr "Quelqu’un d’autre est en train de vérifier ce thème."
 msgid "theme, reviewer, or comment"
 msgstr "thème, évaluateur ou commentaire"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Tableau blanc"
+msgstr "Tableau blanc privé"
 
 msgid "Keep review; remove flags"
 msgstr "Conserver la revue ; retirer les signalements"
@@ -6274,9 +6273,8 @@ msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le
 msgid "Approve Content"
 msgstr "Approuver le contenu"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Cela enregistre votre approbation du contenu de cette version sans en informer le développeur."
+msgstr "Cela enregistre votre approbation du contenu de la dernière version publique, sans en informer le développeur."
 
 msgid "Legacy Add-ons"
 msgstr "Modules obsolètes"
@@ -6293,7 +6291,6 @@ msgstr "Journal de revue du module"
 msgid "Signed Beta Files Log"
 msgstr "Journal pour les fichiers bêta signés"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "Guide de revue"
 
@@ -6624,6 +6621,7 @@ msgstr ""
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
+"Ce tableau blanc privé est utilisé au sein des relecteurs pour partager des informations qui sont indépendantes de la version. Veillez à rester objectif. Il n’est visible que par les relecteurs."
 
 #, fuzzy
 msgid "Update whiteboards"
@@ -6634,7 +6632,7 @@ msgid "More Actions"
 msgstr "Plus d’actions :"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "M’informer des nouvelles versions listées"
 
 msgid "Force-disable add-on"
 msgstr "Forcer la désactivation du module"
