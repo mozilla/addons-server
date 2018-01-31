@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-31 10:52+0000\n"
+"PO-Revision-Date: 2018-01-31 12:41+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1485,7 +1485,7 @@ msgid "Available in your locale"
 msgstr ""
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Lista jezičnih paketa i rječnika dostupnih na vašem jeziku."
 
 msgid "Language"
 msgstr ""
@@ -1500,7 +1500,7 @@ msgid "All locales"
 msgstr ""
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Lista jezičnih paketa i rječnika."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
@@ -1517,33 +1517,33 @@ msgid "Search Extensions"
 msgstr ""
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Dodajte funkciju povezanu sa pretragom u Firefox"
 
 msgid "Search Providers"
 msgstr ""
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Nađite nove pružaoce usluga za traku za pretrage"
 
 msgid "Additional Resources"
 msgstr ""
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr ""
+msgstr "Saznajte više o <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">traci za pretragu</a> u {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Pretražujte putem još više pružalaca pretrage na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sNapravite vlastiti%(amo_mdn_link_close)s alat za pretragu"
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Najpopularnija proširenja"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Najbolje ocijenjena proširenja"
 
 msgid "Newest Extensions"
 msgstr ""
