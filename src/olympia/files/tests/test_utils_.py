@@ -641,10 +641,8 @@ def test_extract_translations_simple(file_obj):
     extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
     with amo.tests.copy_file(extension, file_obj.file_path):
         messages = utils.extract_translations(file_obj)
-        # Make sure nb_NO is not in the list since we don't support
-        # it currently.
         assert list(sorted(messages.keys())) == [
-            'de', 'en-US', 'ja', 'nl', 'ru', 'sv-SE']
+            'de', 'en-US', 'ja', 'nb-NO', 'nl', 'ru', 'sv-SE']
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')

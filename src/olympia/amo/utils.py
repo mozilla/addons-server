@@ -585,6 +585,14 @@ def get_locale_from_lang(lang):
     if not lang or lang in ('dbg', 'dbr', 'dbl'):
         lang = 'en'
 
+    if lang == 'cak':
+        # 'cak' is not in http://cldr.unicode.org/ and therefore not supported
+        # by Babel. That breaks get_locale_from_lang() entirely, so this hack
+        # creates a fake Locale class for this locale.
+        locale = Locale('en')
+        locale.language = 'cak'
+        return locale
+
     return Locale.parse(translation.to_locale(lang))
 
 

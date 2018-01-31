@@ -183,7 +183,7 @@ def test_get_locale_from_lang(lang):
     locale = get_locale_from_lang(lang)
 
     debug_languages = ('dbg', 'dbr', 'dbl')
-    long_languages = ('hsb', 'dsb', 'kab')
+    long_languages = ('ast', 'cak', 'dsb', 'hsb', 'kab')
     expected_language = (
         lang[:3] if lang in long_languages else (
             lang[:2] if lang not in debug_languages else 'en'
