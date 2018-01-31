@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-01-31 11:20+0000\n"
+"PO-Revision-Date: 2018-01-31 14:54+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2684,7 +2684,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "תוספות מדור קודם אינן נתמכות ב־Firefox 57 ומעלה. יש להשתמש ב־maxVersion של *.56 ומטה."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה אינו הפיך. לאחר שהמשתמשים שלך יתקינו את WebExtension, לא תהיה להם אפשרות להתקין תוספת מדור קודם."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
