@@ -8,6 +8,7 @@ import zipfile
 from datetime import timedelta
 
 from django import forms
+from django.conf import settings
 
 import flufl.lock
 import lxml
@@ -165,7 +166,7 @@ class TestManifestJSONExtractor(TestCase):
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
         data = {'id': 'some-id'}
-        with tempfile.NamedTemporaryFile() as file_:
+        with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as file_:
             file_.write(json.dumps(data))
             file_.flush()
             mje = utils.ManifestJSONExtractor(file_.name)
@@ -675,7 +676,7 @@ def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
 
 
 def test_get_all_files():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -693,7 +694,7 @@ def test_get_all_files():
 
 
 def test_get_all_files_strip_prefix_no_prefix_silent():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -709,7 +710,7 @@ def test_get_all_files_strip_prefix_no_prefix_silent():
 
 
 def test_get_all_files_prefix():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -725,7 +726,7 @@ def test_get_all_files_prefix():
 
 
 def test_get_all_files_prefix_with_strip_prefix():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
