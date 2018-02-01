@@ -34,7 +34,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     absolutify, urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeUnzip, write_crx_as_xpi
+from olympia.files.utils import SafeZip, write_crx_as_xpi
 from olympia.translations.fields import TranslatedField
 
 
@@ -354,12 +354,12 @@ class File(OnChangeMixin, ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeUnzip(self.file_path)
+        zip = SafeZip(self.file_path)
         if not zip.is_valid(fatal=False):
             return ''
 
         try:
-            manifest = zip.extract_path('chrome.manifest')
+            manifest = zip.read('chrome.manifest')
         except KeyError, e:
             log.info('No file named: chrome.manifest in file: %s' % self.pk)
             return ''
