@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: 2018-01-20 16:45+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1790,8 +1790,9 @@ msgstr "{addon} отключено."
 msgid "{addon} enabled."
 msgstr "{addon} включено."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "стутус {addon} изменён на {0}."
 
 msgid "{version} added to {addon}."
@@ -2078,13 +2079,6 @@ msgstr "Скрытое"
 
 msgid "Developer"
 msgstr "Разработчик"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Наблюдатель"
-
-msgid "Support"
-msgstr "Поддержка"
 
 msgid "Extension"
 msgstr "Расширение"
@@ -3009,10 +3003,10 @@ msgstr "Авторы"
 msgid "About author roles"
 msgstr "О ролях автора"
 
+#, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Дополнения могут иметь любое количество авторов с 3 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
 "авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения дополнения, кроме добавления и удаления других авторов</li> <li><b>Просматривающий:</b> Может просматривать настройки "
@@ -3496,6 +3490,9 @@ msgstr "Пожалуйста, используйте в вашем URL толь�
 msgid "Summary:"
 msgstr "Сводка:"
 
+msgid "required"
+msgstr "требуется"
+
 msgid "This add-on is experimental"
 msgstr "Это дополнение экспериментальное"
 
@@ -3661,11 +3658,12 @@ msgid "Theme generator"
 msgstr "Генератор темы"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "имя темы"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Выберите верхнее изображение для вашей темы."
-
-msgid "required"
-msgstr "требуется"
 
 msgid "Image height should be 200 pixels"
 msgstr "Высота изображения должна быть 200 пикселей"
@@ -3692,11 +3690,11 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr "Цвет фона зоны заголовка, показанной в части заголовка, не накрытой или видимой через изображение заголовка."
 
 #, fuzzy
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr "Текст зоны заголовка (textcolor)"
 
 #, fuzzy
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "Цвет текста, показанного в зоне заголовка."
 
 #, fuzzy
@@ -3708,12 +3706,12 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "Цвет фона для панели навигации, панели закладок и выбранной вкладки."
 
 #, fuzzy
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr "Текст зоны в панели инструментов (toolbar_text)."
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Цвет текста панели инструментов."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка"
 
 #, fuzzy
 msgid "Toolbar field area background"
@@ -3954,6 +3952,9 @@ msgstr "Блог"
 
 msgid "Contact Us"
 msgstr "Связаться с нами"
+
+msgid "Support"
+msgstr "Поддержка"
 
 msgid "Policies"
 msgstr "Политики"
@@ -6221,6 +6222,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr "Заблокировано редактором."
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "Дублирующее представление"
 
@@ -6683,6 +6687,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Включить версию снова"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Автоматически одобрено"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Снять флаг проверки проверка кода админом"
@@ -7593,8 +7604,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Щелчок по \"удалить\" приведёт к <strong>полному удалению</strong> вашей учётной записи. Это означает, что:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Вы больше не сможете войти на %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваши отзывы и рейтинги не будут удалены, но они больше не будут связаны с вами."

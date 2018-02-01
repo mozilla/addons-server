@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1745,9 +1745,10 @@ msgstr ""
 msgid "{addon} enabled."
 msgstr ""
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr ""
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
+msgstr "{addon} در {0} ویژه شده است."
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -2049,13 +2050,6 @@ msgstr ""
 
 msgid "Developer"
 msgstr ""
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "مشاهده کننده"
-
-msgid "Support"
-msgstr "پشتیبانی"
 
 msgid "Extension"
 msgstr "ضمیمه"
@@ -2991,9 +2985,8 @@ msgid "About author roles"
 msgstr ""
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3439,6 +3432,9 @@ msgstr ""
 msgid "Summary:"
 msgstr ""
 
+msgid "required"
+msgstr ""
+
 msgid "This add-on is experimental"
 msgstr ""
 
@@ -3619,10 +3615,11 @@ msgstr ""
 msgid "Theme generator"
 msgstr ""
 
-msgid "Select a header image for your theme"
-msgstr ""
+#, fuzzy
+msgid "Theme name"
+msgstr "مضامین"
 
-msgid "required"
+msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "Image height should be 200 pixels"
@@ -3646,10 +3643,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3658,10 +3655,10 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr ""
 
 msgid "Toolbar field area background"
@@ -3895,6 +3892,9 @@ msgstr "وب‌نوشت"
 #, fuzzy
 msgid "Contact Us"
 msgstr "تماس‌ها"
+
+msgid "Support"
+msgstr "پشتیبانی"
 
 #, fuzzy
 msgid "Policies"
@@ -6015,6 +6015,9 @@ msgstr ""
 msgid "Is locked by a reviewer."
 msgstr ""
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr ""
 
@@ -6502,6 +6505,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "افزودنی‌های بیشتر"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "آخرین به‌هنگام‌سازی"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -7408,7 +7418,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
