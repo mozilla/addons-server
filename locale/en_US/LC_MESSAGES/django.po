@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1783,8 +1783,9 @@ msgstr "{addon} disabled."
 msgid "{addon} enabled."
 msgstr "{addon} enabled."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon} status changed to {0}."
 
 msgid "{version} added to {addon}."
@@ -2095,13 +2096,6 @@ msgstr "Unlisted"
 
 msgid "Developer"
 msgstr "Developer"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Viewer"
-
-msgid "Support"
-msgstr "Support"
 
 msgid "Extension"
 msgstr "Extension"
@@ -3071,9 +3065,8 @@ msgstr "About author roles"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
@@ -3555,6 +3548,9 @@ msgstr "Please use only letters, numbers, underscores, and dashes in your URL."
 msgid "Summary:"
 msgstr "Summary"
 
+msgid "required"
+msgstr "required"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "This add-on requires external software."
@@ -3759,11 +3755,12 @@ msgid "Theme generator"
 msgstr "Theme License"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "theme name"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Select a header image for your Theme."
-
-msgid "required"
-msgstr "required"
 
 msgid "Image height should be 200 pixels"
 msgstr "Image height should be 200 pixels"
@@ -3790,11 +3787,11 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 
 #, fuzzy
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr "Header area text (textcolor)"
 
 #, fuzzy
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "The color of the text displayed in the header area."
 
 #, fuzzy
@@ -3806,12 +3803,12 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "The background color for the navigation bar, the bookmarks bar, and the selected tab."
 
 #, fuzzy
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr "Toolbar area text (toolbar_text)."
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "This is the color of the tab text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "The color of text in fields in the toolbar, such as the URL bar"
 
 #, fuzzy
 msgid "Toolbar field area background"
@@ -4057,6 +4054,9 @@ msgstr "Blog"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Contacting Us"
+
+msgid "Support"
+msgstr "Support"
 
 #, fuzzy
 msgid "Policies"
@@ -6351,6 +6351,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr "my add-on is reviewed by an editor"
 
+msgid "Has auto-approval disabled flag set."
+msgstr "Has auto-approval disabled flag set."
+
 msgid "Duplicate Submission"
 msgstr "Duplicate Submission"
 
@@ -6852,6 +6855,13 @@ msgstr "Force-disable add-on"
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Re-enable Version"
+
+msgid "Disable Auto-Approval"
+msgstr "Disable Auto-Approval"
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Approval Status"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7771,8 +7781,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Your reviews and ratings will not be deleted, but they will no longer be associated with you."

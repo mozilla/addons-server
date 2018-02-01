@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1772,8 +1772,9 @@ msgstr "Το {addon} είναι απενεργοποιημένο."
 msgid "{addon} enabled."
 msgstr "Το {addon} είναι απενεργοποιημένο."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "Η κατάσταση του {addon} άλλαξε σε {0}."
 
 msgid "{version} added to {addon}."
@@ -2076,13 +2077,6 @@ msgstr "Δεν αναγράφεται"
 
 msgid "Developer"
 msgstr "Δημιουργός"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Θεατής"
-
-msgid "Support"
-msgstr "Υποστήριξη"
 
 msgid "Extension"
 msgstr "Επέκταση"
@@ -3009,9 +3003,8 @@ msgstr "Σχετικά με τους ρόλους των συντελεστών"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό συντακτών με 3 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων, συμπεριλαμβανομένων της "
 "πρόσθεσης και αφαίρεσης συντακτών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων του προσθέτου, εκτός της πρόσθεσης και αφαίρεσης συντακτών καθώς και των "
@@ -3464,6 +3457,9 @@ msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα,
 msgid "Summary:"
 msgstr "Σύνοψη:"
 
+msgid "required"
+msgstr "απαιτείται "
+
 msgid "This add-on is experimental"
 msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
@@ -3635,11 +3631,12 @@ msgid "Theme generator"
 msgstr "Άδεια θέματος"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "όνομα θέματος"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
-
-msgid "required"
-msgstr "απαιτείται "
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3663,10 +3660,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3675,11 +3672,11 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Αυτό είναι το χρώμα του κειμένου καρτέλας."
 
 msgid "Toolbar field area background"
@@ -3905,6 +3902,9 @@ msgstr "Ιστολόγιο"
 
 msgid "Contact Us"
 msgstr "Επικοινωνήστε μαζί μας"
+
+msgid "Support"
+msgstr "Υποστήριξη"
 
 msgid "Policies"
 msgstr "Πολιτικές"
@@ -6055,6 +6055,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr ""
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "Διπλή υποβολή"
 
@@ -6543,6 +6546,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Εκ νέου ενεργοποίηση έκδοσης"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7451,7 +7461,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."

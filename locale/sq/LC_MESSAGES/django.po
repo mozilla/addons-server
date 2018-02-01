@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: 2017-12-20 19:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1762,8 +1762,9 @@ msgstr "{addon} u çaktivizua."
 msgid "{addon} enabled."
 msgstr "{addon} u aktivizua."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "Gjendja për {addon} ndryshoi në {0}."
 
 msgid "{version} added to {addon}."
@@ -2052,13 +2053,6 @@ msgstr "E palistuar"
 
 msgid "Developer"
 msgstr "Zhvillues"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Parës"
-
-msgid "Support"
-msgstr "Asistencë"
 
 msgid "Extension"
 msgstr "Zgjerim"
@@ -2985,10 +2979,10 @@ msgstr "Autorë"
 msgid "About author roles"
 msgstr "Rreth rolit autor"
 
+#, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 3 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
 "autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li> <li><b>Parës:</b> Mund të shohë "
@@ -3451,6 +3445,9 @@ msgstr "Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija n
 msgid "Summary:"
 msgstr "Përmbledhje:"
 
+msgid "required"
+msgstr "e domosdoshme"
+
 msgid "This add-on is experimental"
 msgstr "Kjo shtesë është eksperimentale"
 
@@ -3619,11 +3616,12 @@ msgid "Theme generator"
 msgstr "Prodhues temash"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "emër teme"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
-
-msgid "required"
-msgstr "e domosdoshme"
 
 msgid "Image height should be 200 pixels"
 msgstr "Lartësi e figurës duhet të jetë 200 piksel"
@@ -3650,11 +3648,11 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes."
 
 #, fuzzy
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr "Tekst fushe kryesh (accentcolor)"
 
 #, fuzzy
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "Ngjyra e tekstit të shfaqur te fushë kryesh."
 
 #, fuzzy
@@ -3666,12 +3664,12 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "Ngjyra e sfondit  për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur."
 
 #, fuzzy
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr "Tekst fushe paneli (toolbar_text)."
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "Ngjyra e tekstit të panelit."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve"
 
 #, fuzzy
 msgid "Toolbar field area background"
@@ -3904,6 +3902,9 @@ msgstr "Blog"
 
 msgid "Contact Us"
 msgstr "Lidhuni Me Ne"
+
+msgid "Support"
+msgstr "Asistencë"
 
 msgid "Policies"
 msgstr "Rregulla"
@@ -6156,6 +6157,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr "Është bllokuar nga një shqyrtues."
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "Parashtrim Dy Herë"
 
@@ -6618,6 +6622,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Riaktivizoje Versionin"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "I është ripohuar vetëmiratimi"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
@@ -7523,8 +7534,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Duke klikuar mbi \"fshije\" llogaria juaj <strong>do të fshihet përgjithmonë</strong>. Kjo do të thotë:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "S’do të jeni më në gjendje të hyni te %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Shqyrtimet dhe vlerësimet tuaja s’do të fshihen, por s’do t’i përshoqërohen më llogarisë suaj."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1739,9 +1739,9 @@ msgstr ".pǝʅqɐsıp {addon}"
 msgid "{addon} enabled."
 msgstr ".pǝʅqɐuǝ {addon}"
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr ".{0} oʇ pǝƃuɐɥɔ snʇɐʇs {addon}"
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr ".{status} oʇ pǝƃuɐɥɔ snʇɐʇs {addon}"
 
 msgid "{version} added to {addon}."
 msgstr ".{addon} oʇ pǝppɐ {version}"
@@ -2027,12 +2027,6 @@ msgstr "pǝʇsıʅu∩"
 
 msgid "Developer"
 msgstr "ɹǝdoʅǝʌǝᗡ"
-
-msgid "Viewer"
-msgstr "ɹǝʍǝıɅ"
-
-msgid "Support"
-msgstr "ʇɹoddnS"
 
 msgid "Extension"
 msgstr "uoısuǝʇxƎ"
@@ -2953,13 +2947,11 @@ msgid "About author roles"
 msgstr "sǝʅoɹ ɹoɥʇnɐ ʇnoq∀"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>:sǝʅoɹ ǝʅqıssod 3 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
-"<li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ "
-"uɐↃ <b>:ɹǝʍǝıɅ</b></li> </ul>"
+"<p>:sǝʅoɹ ǝʅqıssod 2 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
+"<li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> </ul>"
 
 msgid "Basic Information"
 msgstr "uoıʇɐɯɹoɟuI ɔısɐԐ"
@@ -3414,6 +3406,9 @@ msgstr ".⅂ᴚ∩ ɹnoʎ uı sǝɥsɐp puɐ ´sǝɹoɔsɹǝpun ´sɹǝqɯnu ´s
 msgid "Summary:"
 msgstr ":ʎɹɐɯɯnS"
 
+msgid "required"
+msgstr "pǝɹınbǝɹ"
+
 msgid "This add-on is experimental"
 msgstr "ʅɐʇuǝɯıɹǝdxǝ sı uo-ppɐ sıɥ⊥"
 
@@ -3576,11 +3571,11 @@ msgstr "ǝʇɐɹǝuǝƃ ǝɯǝɥ⊥"
 msgid "Theme generator"
 msgstr "ɹoʇɐɹǝuǝƃ ǝɯǝɥ⊥"
 
+msgid "Theme name"
+msgstr "ǝɯɐu ǝɯǝɥ⊥"
+
 msgid "Select a header image for your theme"
 msgstr "ǝɯǝɥʇ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
-
-msgid "required"
-msgstr "pǝɹınbǝɹ"
 
 msgid "Image height should be 200 pixels"
 msgstr "sʅǝxıd 002 ǝq pʅnoɥs ʇɥƃıǝɥ ǝƃɐɯI"
@@ -3603,11 +3598,11 @@ msgstr "punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝH"
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ".ɹoʅoɔʇuǝɔɔɐ  :pʅǝıɟ ʇsǝɟıuɐW .ǝƃɐɯı ɹǝpɐǝɥ ǝɥʇ ɥƃnoɹɥʇ ǝʅqısıʌ ɹo pǝɹǝʌoɔ ʇou ɹǝpɐǝɥ ǝɥʇ ɟo ʇɹɐd ǝɥʇ uı pǝʎɐʅdsıp ´punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
-msgid "Header area text"
-msgstr "ʇxǝʇ ɐǝɹɐ ɹǝpɐǝH"
+msgid "Header area text and icons"
+msgstr "suoɔı puɐ ʇxǝʇ ɐǝɹɐ ɹǝpɐǝH"
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
-msgstr ".ɹoʅoɔʇxǝʇ  :pʅǝıɟ ʇsǝɟıuɐW .ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ uı pǝʎɐʅdsıp ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ".ɹoʅoɔʇxǝʇ  :pʅǝıɟ ʇsǝɟıuɐW .qɐʇ ǝʌıʇɔɐ ǝɥʇ ʇdǝɔxǝ ´ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ uı suoɔı puɐ ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
 msgid "Toolbar area background"
 msgstr "punoɹƃʞɔɐq ɐǝɹɐ ɹɐqʅoo⊥"
@@ -3615,11 +3610,11 @@ msgstr "punoɹƃʞɔɐq ɐǝɹɐ ɹɐqʅoo⊥"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ".ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW  .qɐʇ pǝʇɔǝʅǝs ǝɥʇ puɐ ´ɹɐq sʞɹɐɯʞooq ǝɥʇ ´ɹɐq uoıʇɐƃıʌɐu ǝɥʇ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
 
-msgid "Toolbar area text"
-msgstr "ʇxǝʇ ɐǝɹɐ ɹɐqʅoo⊥"
+msgid "Toolbar area text icons"
+msgstr "suoɔı ʇxǝʇ ɐǝɹɐ ɹɐqʅoo⊥"
 
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr ".ʇxǝʇ_ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW .ʇxǝʇ ɹɐqʅooʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ".ʇxǝʇ_ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW .qɐʇ ǝʌıʇɔɐ ǝɥʇ puɐ ɹɐqʅooʇ ǝɥʇ uı suoɔı puɐ ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
 msgid "Toolbar field area background"
 msgstr "punoɹƃʞɔɐq ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
@@ -3843,6 +3838,9 @@ msgstr "ƃoʅԐ"
 
 msgid "Contact Us"
 msgstr "s∩ ʇɔɐʇuoↃ"
+
+msgid "Support"
+msgstr "ʇɹoddnS"
 
 msgid "Policies"
 msgstr "sǝıɔıʅoԀ"
@@ -6054,6 +6052,9 @@ msgstr "uoısuǝʇxƎqǝＭ"
 msgid "Is locked by a reviewer."
 msgstr ".ɹǝʍǝıʌǝɹ ɐ ʎq pǝʞɔoʅ sI"
 
+msgid "Has auto-approval disabled flag set."
+msgstr ".ʇǝs ƃɐʅɟ pǝʅqɐsıp ʅɐʌoɹddɐ-oʇnɐ sɐH"
+
 msgid "Duplicate Submission"
 msgstr "uoıssıɯqnS ǝʇɐɔıʅdnᗡ"
 
@@ -6509,6 +6510,12 @@ msgstr "uo-ppɐ ǝʅqɐsıp-ǝɔɹoℲ"
 
 msgid "Force-enable add-on"
 msgstr "uo-ppɐ ǝʅqɐuǝ-ǝɔɹoℲ"
+
+msgid "Disable Auto-Approval"
+msgstr "ʅɐʌoɹdd∀-oʇn∀ ǝʅqɐsıᗡ"
+
+msgid "Enable Auto-Approval"
+msgstr "ʅɐʌoɹdd∀-oʇn∀ ǝʅqɐuƎ"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "ƃɐʅℲ ʍǝıʌǝᴚ ǝpoↃ uıɯp∀ ɹɐǝʅↃ"
@@ -7405,8 +7412,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ":suɐǝɯ ʇɐɥ⊥ .<strong>pǝʌoɯǝɹ ʎʅʇuǝuɐɯɹǝd</strong> ǝq oʇ ƃuıoƃ sı ʇunoɔɔɐ ɹnoʎ „ǝʇǝʅǝp„ ƃuıʞɔıʅɔ ʎԐ"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr ".ǝɹoɯʎuɐ %(site)s oʇuı ƃoʅ oʇ ǝʅqɐ ǝq ʇou ʅʅıʍ no⅄"
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ".ʇunoɔɔɐ sıɥʇ ɥʇıʍ pǝʇɐıɔossɐ ʎɐʍ ou uı sı ʇɐɥʇ ʇunoɔɔɐ ʍǝu ɐ ǝʇɐǝɹɔ ʅʅıʍ uıɐƃɐ %(site)s oʇuı ssǝɹppɐ ʅıɐɯǝ sıɥʇ ɥʇıʍ uı ƃuıƃƃo⅂"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ".noʎ ɥʇıʍ pǝʇɐıɔossɐ ǝq ɹǝƃuoʅ ou ʅʅıʍ ʎǝɥʇ ʇnq ´pǝʇǝʅǝp ǝq ʇou ʅʅıʍ sƃuıʇɐɹ puɐ sʍǝıʌǝɹ ɹno⅄"
