@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1765,8 +1765,9 @@ msgstr "{addon} desativado."
 msgid "{addon} enabled."
 msgstr "{addon} ativado."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "O estado de {addon} mudou para {0}."
 
 msgid "{version} added to {addon}."
@@ -2077,12 +2078,6 @@ msgstr "Não listada"
 
 msgid "Developer"
 msgstr "Programador"
-
-msgid "Viewer"
-msgstr "Visualizador"
-
-msgid "Support"
-msgstr "Apoio"
 
 msgid "Extension"
 msgstr "Extensão"
@@ -3041,9 +3036,8 @@ msgstr "Sobre os papeis do autor"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Os extras podem ter um qualquer número de autores com 3 possíveis papeis:</p> <ul> <li><b>Dono:</b> pode gerir todos os aspetos da listagem do extra, incluindo adicionar e remover outros "
 "autores</li> <li><b>Programador:</b> pode gerir todos os detalhes da listagem do extra, exceto adicionar ou remover outros autores e gerir pagamentos</li> <li><b>Visualizador:</b> pode ver as "
@@ -3526,6 +3520,9 @@ msgstr "Por favor, utilize apenas letras, números, underscores e hífenes  na s
 msgid "Summary:"
 msgstr "Resumo"
 
+msgid "required"
+msgstr "necessário"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Este extra necessita de software externo."
@@ -3729,11 +3726,12 @@ msgid "Theme generator"
 msgstr "Licença do tema"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "nome do tema"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Selecione uma imagem para o cabeçalho do seu tema."
-
-msgid "required"
-msgstr "necessário"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3757,10 +3755,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3769,11 +3767,11 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Esta é a cor do texto do separador."
 
 msgid "Toolbar field area background"
@@ -4016,6 +4014,9 @@ msgstr "Blogue"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Contacte-nos"
+
+msgid "Support"
+msgstr "Apoio"
 
 #, fuzzy
 msgid "Policies"
@@ -6302,6 +6303,9 @@ msgstr ""
 msgid "Is locked by a reviewer."
 msgstr "o meu extra é revisto por um editor"
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "Submissão duplicada"
 
@@ -6805,6 +6809,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Versão para impressão"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Estado da aprovação"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7715,8 +7726,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Ao clicar em \"eliminar\" a sua conta será <strong>permanentemente removida</strong>. Isto significa:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Deixará de poder iniciar sessão em %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Os seus comentários e classificações não serão eliminados, mas deixaram de estar associados a si."

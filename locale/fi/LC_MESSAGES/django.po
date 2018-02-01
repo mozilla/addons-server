@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1821,8 +1821,8 @@ msgstr "{addon} poistettu käytöstä."
 msgid "{addon} enabled."
 msgstr "{addon} otettu käyttöön."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
 msgstr ""
 
 msgid "{version} added to {addon}."
@@ -2123,13 +2123,6 @@ msgstr "Ei listattu"
 # 77%
 msgid "Developer"
 msgstr "Kehittäjä"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr ""
-
-msgid "Support"
-msgstr "Tuki"
 
 msgid "Extension"
 msgstr "Laajennus"
@@ -3090,9 +3083,8 @@ msgid "About author roles"
 msgstr ""
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3560,6 +3552,9 @@ msgstr ""
 msgid "Summary:"
 msgstr "Yhteenveto"
 
+msgid "required"
+msgstr "vaaditaan"
+
 msgid "This add-on is experimental"
 msgstr ""
 
@@ -3751,11 +3746,12 @@ msgstr "Teema poistettu."
 msgid "Theme generator"
 msgstr "Teema poistettu."
 
+#, fuzzy
+msgid "Theme name"
+msgstr "Teema poistettu."
+
 msgid "Select a header image for your theme"
 msgstr ""
-
-msgid "required"
-msgstr "vaaditaan"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3778,10 +3774,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3790,10 +3786,10 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr ""
 
 msgid "Toolbar field area background"
@@ -4031,6 +4027,9 @@ msgstr "Blogi"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Yhteystiedot"
+
+msgid "Support"
+msgstr "Tuki"
 
 # 80%
 # 100%
@@ -6210,6 +6209,9 @@ msgstr ""
 msgid "Is locked by a reviewer."
 msgstr ""
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr ""
 
@@ -6715,6 +6717,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Mobiilin lisäosat"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Viimeksi päivitetty"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -7647,7 +7656,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."

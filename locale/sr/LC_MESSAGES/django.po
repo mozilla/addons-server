@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1774,8 +1774,9 @@ msgstr "{addon} онемогућен."
 msgid "{addon} enabled."
 msgstr "{addon} омогућен."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon} статус измењен на {0}."
 
 msgid "{version} added to {addon}."
@@ -2086,13 +2087,6 @@ msgstr ""
 
 msgid "Developer"
 msgstr "Аутор"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Прегледач"
-
-msgid "Support"
-msgstr "Подршка"
 
 msgid "Extension"
 msgstr "Проширење"
@@ -3058,9 +3052,8 @@ msgstr "О улогама аутора"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Додаци могу имати било који број аутора са 3 могуће улоге:</p> <ul> <li><b>Власник:</b> Може управљати свим аспектима листинга додатка, укључујући и додавање и уклањање других аутора</li> "
 "<li><b>Програмер:</b> Може управљати свим аспектима листинга додатка, осим за додавање и уклањање других аутора и управљање плаћања</li> <li><b>Посматрач:</b> Може видети подешавања додатка и "
@@ -3524,6 +3517,9 @@ msgstr "Молимо Вас да користите само слова, бро�
 msgid "Summary:"
 msgstr "Резиме"
 
+msgid "required"
+msgstr "потребан"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Овај додатак захтева спољашњи софтвер."
@@ -3720,11 +3716,12 @@ msgid "Theme generator"
 msgstr "Лиценца теме"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "назив теме"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "Изаберите слику заглавља за Вашу тему."
-
-msgid "required"
-msgstr "потребан"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3748,10 +3745,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3760,11 +3757,11 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ово је боја текста на језичку."
 
 msgid "Toolbar field area background"
@@ -4004,6 +4001,9 @@ msgstr "Блог"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Контактирајте нас"
+
+msgid "Support"
+msgstr "Подршка"
 
 #, fuzzy
 msgid "Policies"
@@ -6195,6 +6195,9 @@ msgstr ""
 msgid "Is locked by a reviewer."
 msgstr "mој додатак је прегледан од стране уредника"
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "Диплирано подношење"
 
@@ -6695,6 +6698,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Верзија за штампање"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Статус дозволе"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7607,8 +7617,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Кликом на \"обриши\" Ваш налог ће бити <strong>трајно уклоњен</strong>. То значи:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Више нећете моћи да се улогујете на %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваше рецензије и оцене неће бити обрисане, али оне више неће бити повезане са Вама."

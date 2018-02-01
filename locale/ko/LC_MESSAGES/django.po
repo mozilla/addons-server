@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1749,8 +1749,9 @@ msgstr "{addon}이(가) 사용 정지됐습니다."
 msgid "{addon} enabled."
 msgstr "{addon}이(가) 사용 가능합니다."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon}의 상태가 {0}(으)로 변경되었습니다."
 
 msgid "{version} added to {addon}."
@@ -2055,13 +2056,6 @@ msgstr "목록에서 제거됨"
 
 msgid "Developer"
 msgstr "개발자"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "참관인"
-
-msgid "Support"
-msgstr "도움말"
 
 msgid "Extension"
 msgstr "확장 기능"
@@ -3004,9 +2998,8 @@ msgstr "제작자 역할 안내"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
 "기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
@@ -3469,6 +3462,9 @@ msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 msgid "Summary:"
 msgstr "요약 정보"
 
+msgid "required"
+msgstr "필수 입력"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
@@ -3665,13 +3661,14 @@ msgstr "테마가 삭제됐습니다."
 msgid "Theme generator"
 msgstr "테마 라이선스"
 
+#, fuzzy
+msgid "Theme name"
+msgstr "테마 이름"
+
 # 82%
 #, fuzzy
 msgid "Select a header image for your theme"
 msgstr "테마의 상단 이미지를 선택하세요."
-
-msgid "required"
-msgstr "필수 입력"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3695,10 +3692,10 @@ msgstr ""
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -3707,11 +3704,11 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "탭 부분의 글자색입니다."
 
 msgid "Toolbar field area background"
@@ -3954,6 +3951,9 @@ msgstr "블로그"
 #, fuzzy
 msgid "Contact Us"
 msgstr "연락처"
+
+msgid "Support"
+msgstr "도움말"
 
 #, fuzzy
 msgid "Policies"
@@ -6191,6 +6191,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr "부가 기능이 편집자의 심사를 거쳤습니다"
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "제출 양식 복사하기"
 
@@ -6690,6 +6693,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "인쇄용 버전"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "승인 상태"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7612,8 +7622,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "\"삭제\"를 클릭하면 당신의 계정은 <strong>영원히 삭제</strong>됩니다. 이는:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "더이상 %(site)s에 로그인 할 수 없게 됩니다."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "당신이 작성한 평가와 별점은 삭제되지는 않지만 권한을 잃게 됩니다."
