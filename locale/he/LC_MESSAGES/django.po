@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 10:16+0000\n"
+"PO-Revision-Date: 2018-02-01 13:52+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4402,7 +4402,7 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr ""
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "הקבצים הממתינים לסקירה ינוטרלו ויהיה עליך להעלות גרסאות חדשות."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "האם ברצונך להסתיר את התוספת שלך?"
