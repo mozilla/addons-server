@@ -161,9 +161,12 @@ LANGUAGE_CODE = 'en-US'
 AMO_LANGUAGES = (
     'af',  # Afrikaans
     'ar',  # Arabic
+    'ast',  # Asturian
     'bg',  # Bulgarian
     'bn-BD',  # Bengali (Bangladesh)
+    'bs',  # Bosnian
     'ca',  # Catalan
+    'cak',  # Kaqchikel
     'cs',  # Czech
     'da',  # Danish
     'de',  # German
@@ -176,7 +179,9 @@ AMO_LANGUAGES = (
     'fa',  # Persian
     'fi',  # Finnish
     'fr',  # French
+    'fy-NL',  # Frisian
     'ga-IE',  # Irish
+    'gu',  # Gujarati
     'he',  # Hebrew
     'hsb',  # Upper Sorbian
     'hu',  # Hungarian
@@ -188,6 +193,8 @@ AMO_LANGUAGES = (
     'ko',  # Korean
     'mk',  # Macedonian
     'mn',  # Mongolian
+    'ms',  # Malay
+    'nb-NO',  # Norwegian (Bokmål)
     'nl',  # Dutch
     'nn-NO',  # Norwegian (Nynorsk)
     'pl',  # Polish
@@ -199,6 +206,8 @@ AMO_LANGUAGES = (
     'sl',  # Slovenian
     'sq',  # Albanian
     'sv-SE',  # Swedish
+    'te',  # Telugu
+    'th',  # Thai
     'tr',  # Turkish
     'uk',  # Ukrainian
     'ur',  # Urdu
