@@ -1414,22 +1414,22 @@ class TestLanguagePack(LanguagePackBase):
 
     @mock.patch('olympia.files.utils.SafeZip.read')
     def test_no_locale_browser(self, read_mock):
-        read.return_value = 'some garbage'
+        read_mock.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 
     @mock.patch('olympia.files.utils.SafeZip.read')
     def test_corrupt_locale_browser_path(self, read_mock):
-        read.return_value = 'locale browser de woot?!'
+        read_mock.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
-        read.return_value = 'locale browser de woo:t?!as'
+        read_mock.return_value = 'locale browser de woo:t?!as'
         # Result should be 'locale browser de woo:t?!as', but we have caching.
         assert obj.get_localepicker() == ''
 
     @mock.patch('olympia.files.utils.SafeZip.read')
     def test_corrupt_locale_browser_data(self, read_mock):
-        read.return_value = 'locale browser de jar:install.rdf!foo'
+        read_mock.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 
