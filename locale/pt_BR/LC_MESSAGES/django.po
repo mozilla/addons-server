@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 10:52+0000\n"
+"PO-Revision-Date: 2018-02-01 16:39+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7631,7 +7631,7 @@ msgstr "Ao clicar em \"Excluir\" sua conta vai ser <strong>removida permanenteme
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Iniciar sessão com este endereço de e-mail em %(site)s novamente, irá criar uma nova conta que de forma alguma estará associada com essa conta."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Suas análises e avaliações não serão excluídas, mas deixarão de estar associados a você."
