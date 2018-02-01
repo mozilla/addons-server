@@ -16,7 +16,7 @@ env:
   - TOXENV=addons
   - TOXENV=devhub
   - TOXENV=reviewers
-  - TOXENV=amo
+  - TOXENV=amo-and-locales
   - TOXENV=users
   - TOXENV=main
 

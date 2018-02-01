@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils.encoding import smart_text
 
 import mock
+import pytest
 
 from pyquery import PyQuery as pq
 
@@ -94,6 +95,7 @@ class ThemeReviewTestMixin(object):
             assert ThemeLock.objects.filter(reviewer=reviewer).count() == (
                 len(expected))
 
+    @pytest.mark.needs_locales_compilation
     @mock.patch('olympia.amo.messages.success')
     @mock.patch('olympia.reviewers.tasks.reject_rereview')
     @mock.patch('olympia.reviewers.tasks.approve_rereview')

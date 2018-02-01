@@ -310,6 +310,7 @@ class TestOtherStuff(TestCase):
         self.assertCloseToNow(response['Expires'],
                               now=datetime.now() + timedelta(days=365))
 
+    @pytest.mark.needs_locales_compilation
     def test_jsi18n(self):
         """Test that the jsi18n library has an actual catalog of translations
         rather than just identity functions."""

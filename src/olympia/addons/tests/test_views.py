@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
 
+import pytest
 import waffle
 
 from elasticsearch import Elasticsearch
@@ -3229,6 +3230,7 @@ class TestStaticCategoryView(TestCase):
             u'slug': u'feeds-news-blogging'
         }
 
+    @pytest.mark.needs_locales_compilation
     def test_name_translated(self):
         with self.assertNumQueries(0):
             response = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='de')
