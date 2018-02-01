@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 14:47+0000\n"
+"PO-Revision-Date: 2018-02-01 14:56+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -367,8 +367,8 @@ msgstr "<b>{0}</b> משתמשים"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "משתמש יומי אחד"
+msgstr[1] "{0} משתמשים יומיים"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -3253,7 +3253,7 @@ msgid "64x64px"
 msgstr "64×64 פיקסלים"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "נעשה שימוש בעמודי הפירוט על תוספות."
 
 msgid "Upload a Custom Icon..."
 msgstr "העלאת צלמית מותאמת אישית..."
@@ -3506,7 +3506,7 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr "הערות אלו תופענה בעמוד הפרטים."
+msgstr "הערות אלו תופענה בעמוד הפירוט."
 
 msgid "How to Distribute this Version"
 msgstr "כיצד להפיץ גרסה זו"
@@ -7065,7 +7065,7 @@ msgid "Collections Created by Date"
 msgstr "אוספים שנוצרו לפי תאריך"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "הורדות לפי תאריך"
 
 msgid "How are downloads counted?"
 msgstr "איך הורדות נספרות?"
@@ -7088,7 +7088,7 @@ msgid "Loading..."
 msgstr "בטעינה..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> ממוצע משתמשים יומיים"
 
 msgid "Top Applications"
 msgstr "יישומים מובילים"
@@ -7118,7 +7118,7 @@ msgid "Download sources by Date"
 msgstr "מקורות הורדה לפי תאריך"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "על מעקב מקורות חיצוניים..."
 
 #, python-format
 msgid ""
