@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 10:31+0000\n"
+"PO-Revision-Date: 2018-02-01 10:35+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1920,10 +1920,10 @@ msgid "Source code uploaded"
 msgstr "已上傳原始碼"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "已確認自動批准 {addon} {version}。"
+msgstr "已確認自動通過 {addon} {version} 審核。"
 
 msgid "Auto-Approval confirmed"
-msgstr "已確認自動批准"
+msgstr "已確認自動通過審核"
 
 # 93%
 # 100%
@@ -2909,11 +2909,10 @@ msgstr "作者"
 msgid "About author roles"
 msgstr "關於作者"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
-msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li><li><b>檢視者:</b>只能看到附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
+msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li></ul>"
 
 msgid "Basic Information"
 msgstr "基本資訊"
@@ -6299,10 +6298,10 @@ msgid "Weight:"
 msgstr "權重:"
 
 msgid "Not Auto Approved Because"
-msgstr "未通過自動批准，由於"
+msgstr "未通過自動審核，由於"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr "尚未對此版本執行過自動批准指令碼。"
+msgstr "尚未對此版本執行過自動通過審核指令碼。"
 
 msgid "This version has not been reviewed."
 msgstr "此版本尚未審核。"
@@ -6347,7 +6346,7 @@ msgid "Disable Auto-Approval"
 msgstr "關閉自動通過審核"
 
 msgid "Enable Auto-Approval"
-msgstr "已開啟自動通過審核"
+msgstr "開啟自動通過審核"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "清除管理員程式碼審查旗標"
@@ -6571,7 +6570,7 @@ msgstr[0] "有問題的評論 ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "自動批准的附加元件（{0}）"
+msgstr[0] "自動通過審核的附加元件（{0}）"
 
 msgid "Flagged"
 msgstr "已加上旗標"
