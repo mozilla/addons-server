@@ -754,6 +754,7 @@ class TestEditThemeOwnerForm(TestCase):
 
 class TestDistributionChoiceForm(TestCase):
 
+    @pytest.mark.needs_locales_compilation
     def test_lazy_choice_labels(self):
         """Tests that the labels in `choices` are still lazy
 

@@ -252,6 +252,7 @@ class TestFileViewer(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('File size is')
 
+    @pytest.mark.needs_locales_compilation
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size_unicode(self):
         with self.activate(locale='he'):

@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
+import pytest
 from mock import Mock, patch
 
 from olympia import amo, core
@@ -1920,6 +1921,7 @@ class TestCategoryModel(TestCase):
             cat = Category(type=t, slug='omg')
             assert cat.get_url_path()
 
+    @pytest.mark.needs_locales_compilation
     def test_name_from_constants(self):
         category = Category(
             type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id,
