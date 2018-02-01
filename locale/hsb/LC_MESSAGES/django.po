@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 11:00+0000\n"
+"PO-Revision-Date: 2018-02-01 23:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1799,9 +1799,8 @@ msgid "{addon} enabled."
 msgstr "Přidatk {addon} je zmóžnjeny."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Status přidatka {addon} je so do {0} změnił."
+msgstr "Status přidatka {addon} je so do {status} změnił."
 
 msgid "{version} added to {addon}."
 msgstr "Wersija {version} je so přidatkej {addon} přidała."
@@ -3006,14 +3005,12 @@ msgstr "Awtorojo"
 msgid "About author roles"
 msgstr "Wo awtorowych rólach"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
-"awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> <li><b>Wobhladowar:</b> Móže sej nastajenja a statistiku "
-"přidatka wobhladać, ale njemóže změny přewjesć</li> </ul>"
+"<p>Přidatki móža kelkožkuli awtorow z 2 móžnymaj rólpmaj měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
+"awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Zakładne informacije"
@@ -3643,9 +3640,8 @@ msgstr "Drastu wutworić"
 msgid "Theme generator"
 msgstr "Generator drastow"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "mjeno drasty"
+msgstr "Mjeno drasty"
 
 msgid "Select a header image for your theme"
 msgstr "Wubjerće hłowowy wobraz za swoju drastu"
@@ -3671,13 +3667,11 @@ msgstr "Pozadk hłowoweho wobłuka"
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr "Barba pozadka hłowoweho wobłuka, kotraž so w tym dźělu hłowoweho wobłuka pokazuje, kotryž njeje pokryty abo widźomny přez wobraz hłowoweho wobłuka. Polo manifesta: accentcolor."
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "Tekst hłowoweho wobłuka"
+msgstr "Tekst a symbole hłowoweho wobłuka"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "Barba teksta, kotryž so we hłowowym wobłuku pokazuje. Polo manifesta: textcolor."
+msgstr "Barba teksta a symbole we hłowowym wobłuku, nimo aktiwneho rajtarka. Polo manifesta: textcolor."
 
 msgid "Toolbar area background"
 msgstr "Pozadk wobłuka symboloweje lajsty"
@@ -3685,13 +3679,11 @@ msgstr "Pozadk wobłuka symboloweje lajsty"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark. Polo manifesta: toolbar."
 
-#, fuzzy
 msgid "Toolbar area text icons"
-msgstr "Tekst wobłuka symboloweje lajsty"
+msgstr "Tekst a symbole wobłuka symboloweje lajsty"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Tekstowa barba w polach w symbolowej lajsće, na př. w adresowym polu. Polo manifesta: toolbar_field_text."
+msgstr "Tekstowa barba a symbole w symbolowej lajsće  a w aktiwnym rajtarku. Polo manifesta: toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr "Pozadk pólneho wobłuka symboloweje lajsty"
@@ -6640,9 +6632,8 @@ msgstr "Zmóžnjenje přidatka wunuzować"
 msgid "Disable Auto-Approval"
 msgstr "Awtomatiske schwalenje znjemóžnić"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Awtomatiske schwalenje je wokrućene"
+msgstr "Awtomatiske schwalenje zmóžnić"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
