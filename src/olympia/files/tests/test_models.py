@@ -428,7 +428,7 @@ class TestParseXpi(TestCase):
         kwargs = {}
 
         if minimal is not None:
-            kwargs = {'minimal': minmal}
+            kwargs = {'minimal': minimal}
 
         with open(xpi) as fobj:
             return parse_addon(fobj, addon, **kwargs)
@@ -1413,13 +1413,13 @@ class TestLanguagePack(LanguagePackBase):
         assert obj.get_localepicker() == ''
 
     @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_no_locale_browser(self, read):
+    def test_no_locale_browser(self, read_mock):
         read.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 
     @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_corrupt_locale_browser_path(self, read):
+    def test_corrupt_locale_browser_path(self, read_mock):
         read.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
@@ -1428,7 +1428,7 @@ class TestLanguagePack(LanguagePackBase):
         assert obj.get_localepicker() == ''
 
     @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_corrupt_locale_browser_data(self, read):
+    def test_corrupt_locale_browser_data(self, read_mock):
         read.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''

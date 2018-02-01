@@ -152,8 +152,8 @@ class TestManifestJSONExtractor(TestCase):
         data = {'id': 'some-id'}
         fake_zip = utils.make_xpi({'manifest.json': json.dumps(data)})
 
-        mje = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
-        assert mje.data == data
+        extractor = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
+        assert extractor.data == data
 
     def test_guid(self):
         """Use applications>gecko>id for the guid."""
