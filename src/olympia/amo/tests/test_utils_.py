@@ -122,7 +122,7 @@ def test_has_links():
 
 
 def test_walkfiles():
-    basedir = tempfile.mkdtemp()
+    basedir = tempfile.mkdtemp(dir=settings.TMP_PATH)
     subdir = tempfile.mkdtemp(dir=basedir)
     file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
     file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')

@@ -20,7 +20,7 @@ from mock import patch
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
-from olympia.amo.utils import rm_local_tmp_dir, chunked
+from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
@@ -1307,21 +1307,17 @@ class TestFileFromUpload(UploadTest):
 
 class TestZip(TestCase, amo.tests.AMOPaths):
 
-    def test_zip(self):
-        # This zip contains just one file chrome/ that we expect
-        # to be unzipped as a directory, not a file.
+    def test_zip_python_bug_4710(self):
+        """This zip contains just one file chrome/ that we expect
+        to be unzipped as a directory, not a file.
+        """
         xpi = self.xpi_path('directory-test')
 
-        # This is to work around: http://bugs.python.org/issue4710
-        # which was fixed in Python 2.6.2. If the required version
-        # of Python for zamboni goes to 2.6.2 or above, this can
-        # be removed.
-        try:
-            dest = tempfile.mkdtemp()
-            zipfile.ZipFile(xpi).extractall(dest)
-            assert os.path.isdir(os.path.join(dest, 'chrome'))
-        finally:
-            rm_local_tmp_dir(dest)
+        # This was to work around: http://bugs.python.org/issue4710
+        # which was fixed in Python 2.6.2.
+        dest = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        zipfile.ZipFile(xpi).extractall(dest)
+        assert os.path.isdir(os.path.join(dest, 'chrome'))
 
 
 class TestParseSearch(TestCase, amo.tests.AMOPaths):
@@ -1409,24 +1405,24 @@ class TestLanguagePack(LanguagePackBase):
         obj = self.file_create('search.xml')
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_no_locale_browser(self, extract_path):
-        extract_path.return_value = 'some garbage'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_no_locale_browser(self, read):
+        read.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_path(self, extract_path):
-        extract_path.return_value = 'locale browser de woot?!'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_corrupt_locale_browser_path(self, read):
+        read.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
-        extract_path.return_value = 'locale browser de woo:t?!as'
+        read.return_value = 'locale browser de woo:t?!as'
         # Result should be 'locale browser de woo:t?!as', but we have caching.
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_data(self, extract_path):
-        extract_path.return_value = 'locale browser de jar:install.rdf!foo'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_corrupt_locale_browser_data(self, read):
+        read.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 

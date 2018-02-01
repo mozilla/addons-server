@@ -1,4 +1,5 @@
 import json
+import io
 import os
 import shutil
 import tempfile
@@ -8,6 +9,7 @@ import zipfile
 from datetime import timedelta
 
 from django import forms
+from django.conf import settings
 
 import flufl.lock
 import lxml
@@ -86,62 +88,47 @@ def test_is_beta():
 
 class TestExtractor(TestCase):
 
-    def os_path_exists_for(self, path_to_accept):
-        """Helper function that returns a function for a mock.
-
-        The returned function will return True if the path passed as parameter
-        endswith the "path_to_accept".
-        """
-        return lambda path: path.endswith(path_to_accept)
-
     def test_no_manifest(self):
+        fake_zip = utils.make_xpi({'dummy': 'dummy'})
+
         with self.assertRaises(forms.ValidationError) as exc:
-            utils.Extractor.parse('foobar')
+            utils.Extractor.parse(fake_zip)
         assert exc.exception.message == (
             'No install.rdf or manifest.json found')
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
-    @mock.patch('olympia.files.utils.os.path.exists')
-    def test_parse_install_rdf(self, exists_mock, rdf_extractor,
-                               manifest_json_extractor):
-        exists_mock.side_effect = self.os_path_exists_for('install.rdf')
-        utils.Extractor.parse('foobar')
+    def test_parse_install_rdf(self, rdf_extractor, manifest_json_extractor):
+        fake_zip = utils.make_xpi({'install.rdf': ''})
+        utils.Extractor.parse(fake_zip)
         assert rdf_extractor.called
         assert not manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
-    @mock.patch('olympia.files.utils.os.path.exists')
-    def test_ignore_package_json(self, exists_mock, rdf_extractor,
-                                 manifest_json_extractor):
+    def test_ignore_package_json(self, rdf_extractor, manifest_json_extractor):
         # Previously we preferred `package.json` to `install.rdf` which
         # we don't anymore since
         # https://github.com/mozilla/addons-server/issues/2460
-        exists_mock.side_effect = self.os_path_exists_for(
-            ('install.rdf', 'package.json'))
-        utils.Extractor.parse('foobar')
+        fake_zip = utils.make_xpi({'install.rdf': '', 'package.json': ''})
+        utils.Extractor.parse(fake_zip)
         assert rdf_extractor.called
         assert not manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
-    @mock.patch('olympia.files.utils.os.path.exists')
-    def test_parse_manifest_json(self, exists_mock, rdf_extractor,
-                                 manifest_json_extractor):
-        exists_mock.side_effect = self.os_path_exists_for('manifest.json')
-        utils.Extractor.parse('foobar')
+    def test_parse_manifest_json(self, rdf_extractor, manifest_json_extractor):
+        fake_zip = utils.make_xpi({'manifest.json': ''})
+        utils.Extractor.parse(fake_zip)
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
-    @mock.patch('olympia.files.utils.os.path.exists')
-    def test_prefers_manifest_to_install_rdf(self, exists_mock, rdf_extractor,
+    def test_prefers_manifest_to_install_rdf(self, rdf_extractor,
                                              manifest_json_extractor):
-        exists_mock.side_effect = self.os_path_exists_for(
-            ('install.rdf', 'manifest.json'))
-        utils.Extractor.parse('foobar')
+        fake_zip = utils.make_xpi({'install.rdf': '', 'manifest.json': ''})
+        utils.Extractor.parse(fake_zip)
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
 
@@ -165,11 +152,10 @@ class TestManifestJSONExtractor(TestCase):
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
         data = {'id': 'some-id'}
-        with tempfile.NamedTemporaryFile() as file_:
-            file_.write(json.dumps(data))
-            file_.flush()
-            mje = utils.ManifestJSONExtractor(file_.name)
-            assert mje.data == data
+        fake_zip = utils.make_xpi({'manifest.json': json.dumps(data)})
+
+        mje = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
+        assert mje.data == data
 
     def test_guid(self):
         """Use applications>gecko>id for the guid."""
@@ -673,7 +659,7 @@ def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
 
 
 def test_get_all_files():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -691,7 +677,7 @@ def test_get_all_files():
 
 
 def test_get_all_files_strip_prefix_no_prefix_silent():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -707,7 +693,7 @@ def test_get_all_files_strip_prefix_no_prefix_silent():
 
 
 def test_get_all_files_prefix():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -723,7 +709,7 @@ def test_get_all_files_prefix():
 
 
 def test_get_all_files_prefix_with_strip_prefix():
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     os.mkdir(os.path.join(tempdir, 'dir1'))
 
@@ -888,9 +874,10 @@ class TestXMLVulnerabilities(TestCase):
             utils.extract_search(quadratic_xml)
 
     def test_general_entity_expansion_is_disabled(self):
-        install_rdf_dir = os.path.join(
+        zip_file = utils.SafeZip(os.path.join(
             os.path.dirname(__file__), '..', 'fixtures', 'files',
-            'xxe-example-install')
+            'xxe-example-install.zip'))
+        zip_file.is_valid()
 
         # This asserts that the malicious install.rdf blows up with
         # a parse error. If it gets as far as this specific parse error
@@ -901,7 +888,7 @@ class TestXMLVulnerabilities(TestCase):
         # from the test suite refusing to make an external HTTP request to
         # the entity ref.
         with pytest.raises(EntitiesForbidden):
-            utils.RDFExtractor(install_rdf_dir)
+            utils.RDFExtractor(zip_file)
 
     def test_lxml_XMLParser_no_resolve_entities(self):
         with pytest.raises(NotSupportedError):

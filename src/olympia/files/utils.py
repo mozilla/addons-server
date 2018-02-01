@@ -1,6 +1,5 @@
 import collections
 import contextlib
-import glob
 import hashlib
 import json
 import os
@@ -119,25 +118,25 @@ class Extractor(object):
     App = collections.namedtuple('App', 'appdata id min max')
 
     @classmethod
-    def parse(cls, path, minimal=False):
-        install_rdf = os.path.join(path, 'install.rdf')
-        manifest_json = os.path.join(path, 'manifest.json')
-        certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
+    def parse(cls, xpi_fobj, minimal=False):
+        zip_file = SafeZip(xpi_fobj)
+
+        certificate = os.path.join('META-INF', 'mozilla.rsa')
         certificate_info = None
 
-        if os.path.exists(certificate):
-            certificate_info = SigningCertificateInformation(certificate)
+        if zip_file.exists(certificate):
+            certificate_info = SigningCertificateInformation(
+                zip_file.read(certificate))
 
-        if os.path.exists(manifest_json):
+        if zip_file.exists('manifest.json'):
             data = ManifestJSONExtractor(
-                manifest_json,
-                certinfo=certificate_info).parse(minimal=minimal)
-        elif os.path.exists(install_rdf):
-            # Note that RDFExtractor is a misnomer, it receives the full path
-            # to the file because it might need to read other files than just
+                zip_file, certinfo=certificate_info).parse(minimal=minimal)
+        elif zip_file.exists('install.rdf'):
+            # Note that RDFExtractor is a misnomer, it receives the zip_file
+            # object because it might need to read other files than just
             # the rdf to deal with dictionaries, complete themes etc.
             data = RDFExtractor(
-                path, certinfo=certificate_info).parse(minimal=minimal)
+                zip_file, certinfo=certificate_info).parse(minimal=minimal)
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
@@ -188,11 +187,10 @@ class RDFExtractor(object):
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
-    def __init__(self, path, certinfo=None):
-        self.path = path
+    def __init__(self, zip_file, certinfo=None):
+        self.zip_file = zip_file
         self.certinfo = certinfo
-        install_rdf_path = os.path.join(path, 'install.rdf')
-        self.rdf = rdflib.Graph().parse(open(install_rdf_path))
+        self.rdf = rdflib.Graph().parse(data=zip_file.read('install.rdf'))
         self.package_type = None
         self.find_root()  # Will set self.package_type
 
@@ -259,13 +257,20 @@ class RDFExtractor(object):
             return self.TYPES[self.package_type]
 
         # Look for Complete Themes.
-        if self.path.endswith('.jar') or self.find('internalName'):
+        is_complete_theme = (
+            self.zip_file.source.name.endswith('.jar') or
+            self.find('internalName')
+        )
+        if is_complete_theme:
             return amo.ADDON_THEME
 
         # Look for dictionaries.
-        dic = os.path.join(self.path, 'dictionaries')
-        if os.path.exists(dic) and glob.glob('%s/*.dic' % dic):
-            return amo.ADDON_DICT
+        is_dictionary = (
+            self.zip_file.exists('dictionaries') and
+            any(fname.endswith('.dic') for fname in self.zip_file.namelist)
+        )
+        if is_dictionary:
+            return amo
 
         # Consult <em:type>.
         return self.TYPES.get(self.package_type, amo.ADDON_EXTENSION)
@@ -335,13 +340,12 @@ class RDFExtractor(object):
 
 class ManifestJSONExtractor(object):
 
-    def __init__(self, path, data='', certinfo=None):
-        self.path = path
+    def __init__(self, zip_file, data='', certinfo=None):
+        self.zip_file = zip_file
         self.certinfo = certinfo
 
         if not data:
-            with open(path) as fobj:
-                data = fobj.read()
+            data = zip_file.read('manifest.json')
 
         lexer = JsLexer()
 
@@ -502,14 +506,8 @@ class SigningCertificateInformation(object):
     extension, so is signed already with a special certificate.  We want to
     know this so we don't write over it later, and stop unauthorised people
     from submitting them to AMO."""
-    def __init__(self, path, data=''):
-        self.path = path
-
-        if not data:
-            with open(path) as fobj:
-                data = fobj.read()
-
-        pkcs7 = data
+    def __init__(self, certificate_data):
+        pkcs7 = certificate_data
         self.cert_ou = get_signer_organizational_unit_name(pkcs7)
 
     @property
@@ -556,11 +554,14 @@ def parse_search(fileorpath, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
-class SafeUnzip(object):
-    def __init__(self, source, mode='r'):
+class SafeZip(object):
+    def __init__(self, source, mode='r', validate=True):
         self.source = source
         self.info_list = None
         self.mode = mode
+
+        if validate:
+            self._is_valid = self.is_valid()
 
     def is_valid(self, fatal=True):
         """
@@ -568,6 +569,10 @@ class SafeUnzip(object):
         fatal: if the archive is not valid and fatal is True, it will raise
                an error, otherwise it will return False.
         """
+        # Shortcut to avoid expensive check over and over again
+        if getattr(self, '_is_valid', False):
+            return True
+
         try:
             zip_file = zipfile.ZipFile(self.source, self.mode)
         except (BadZipfile, IOError):
@@ -640,16 +645,14 @@ class SafeUnzip(object):
                     StringIO.StringIO(jar.zip_file.read(part)))
                 jar.is_valid(fatal=True)
             path = parts[-1]
-        return jar.extract_path(path[1:] if path.startswith('/') else path)
-
-    def extract_path(self, path):
-        """Given a path, extracts the content at path."""
-        return self.zip_file.read(path)
+        return jar.read(path[1:] if path.startswith('/') else path)
 
     def extract_info_to_dest(self, info, dest):
         """Extracts the given info to a directory and checks the file size."""
+        self.is_valid()
         self.zip_file.extract(info, dest)
         dest = os.path.join(dest, info.filename)
+
         if not os.path.isdir(dest):
             # Directories consistently report their size incorrectly.
             size = os.stat(dest)[stat.ST_SIZE]
@@ -670,15 +673,27 @@ class SafeUnzip(object):
     def filelist(self):
         return self.zip_file.filelist
 
-    def read(self, filename):
-        return self.zip_file.read(filename)
+    @property
+    def namelist(self):
+        return self.zip_file.namelist
+
+    def exists(self, path):
+        self.is_valid()
+        try:
+            return self.zip_file.getinfo(path)
+        except KeyError:
+            return False
+
+    def read(self, path):
+        self.is_valid()
+        return self.zip_file.read(path)
 
 
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
-    zip_file = SafeUnzip(source)
+    zip_file = SafeZip(source)
     try:
         if zip_file.is_valid(fatal):
             zip_file.extract_to_dest(tempdir)
@@ -698,6 +713,7 @@ def copy_over(source, dest):
     """
     if os.path.exists(dest) and os.path.isdir(dest):
         shutil.rmtree(dest)
+
     shutil.copytree(source, dest)
     # mkdtemp will set the directory permissions to 700
     # for the webserver to read them, we need 755
@@ -787,12 +803,9 @@ def parse_xpi(xpi, addon=None, minimal=False):
     only the minimal set of properties needed to decide what to do with the
     add-on: guid, version and is_webextension.
     """
-    # Extract to /tmp
-    path = tempfile.mkdtemp()
     try:
         xpi = get_file(xpi)
-        extract_xpi(xpi, path)
-        xpi_info = Extractor.parse(path, minimal=minimal)
+        xpi_info = Extractor.parse(xpi, minimal=minimal)
     except forms.ValidationError:
         raise
     except IOError as e:
@@ -807,8 +820,6 @@ def parse_xpi(xpi, addon=None, minimal=False):
         log.error('XPI parse error', exc_info=True)
         raise forms.ValidationError(ugettext(
             'Could not parse the manifest file.'))
-    finally:
-        rm_local_tmp_dir(path)
 
     if minimal:
         return xpi_info
@@ -978,17 +989,15 @@ def write_crx_as_xpi(chunks, storage, target):
     archive, then write it to `target`. Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx
     """
-    temp_crx_file = tempfile.mkstemp()[1]  # a temp file to store the CRX
-
     # First we open the uploaded CRX so we can see how much we need
     # to trim from the header of the file to make it a valid ZIP.
-    with storage.open(temp_crx_file, 'rwb+') as temp_file:
+    with tempfile.NamedTemporaryFile('rwb+', dir=settings.TMP_PATH) as tmp:
         for chunk in chunks:
-            temp_file.write(chunk)
+            tmp.write(chunk)
 
-        temp_file.seek(0)
+        tmp.seek(0)
 
-        header = temp_file.read(16)
+        header = tmp.read(16)
         header_info = struct.unpack('4cHxII', header)
         public_key_length = header_info[5]
         signature_length = header_info[6]
@@ -998,16 +1007,16 @@ def write_crx_as_xpi(chunks, storage, target):
         start_position = 16 + public_key_length + signature_length
 
         hash = hashlib.sha256()
-        temp_file.seek(start_position)
+        tmp.seek(start_position)
 
         # Now we open the Django storage and write our real XPI file.
         with storage.open(target, 'wb') as file_destination:
-            bytes = temp_file.read(65536)
+            bytes = tmp.read(65536)
             # Keep reading bytes and writing them to the XPI.
             while bytes:
                 hash.update(bytes)
                 file_destination.write(bytes)
-                bytes = temp_file.read(65536)
+                bytes = tmp.read(65536)
 
     return hash
 
