@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 18:53+0000\n"
+"PO-Revision-Date: 2018-02-01 18:55+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6142,7 +6142,7 @@ msgid "Is locked by a reviewer."
 msgstr "Wurde von einem Überprüfer gesperrt."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Markierung „automatische Freischaltung deaktiviert“ ist gesetzt."
 
 msgid "Duplicate Submission"
 msgstr "Doppelte Einreichung"
@@ -6603,11 +6603,10 @@ msgid "Force-enable add-on"
 msgstr "Add-on zwangsweise aktivieren"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Automatische Freischaltung deaktivieren"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Automatische Freischaltung bestätigt"
+msgstr "Automatische Freischaltung aktivieren"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markierung für Admin-Quelltext-Überprüfung löschen"
@@ -7514,7 +7513,7 @@ msgstr "Wenn Sie auf „Löschen“ klicken, wird Ihr Benutzerkonto <strong>daue
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Wenn Sie sich mit dieser E-Mail-Adresse erneut bei %(site)s anmelden, wird ein neues Konto erstellt, das mit diesem Konto in keinster Weise verknüpft ist."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ihre Bewertungen und Kommentare werden nicht gelöscht, aber nicht mehr mit Ihnen verknüpft."
