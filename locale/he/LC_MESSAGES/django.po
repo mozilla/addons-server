@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-01-29 12:20+0000\n"
-"PO-Revision-Date: 2018-02-01 08:50+0000\n"
+"PO-Revision-Date: 2018-02-01 09:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -162,7 +162,7 @@ msgid "Describe your Theme."
 msgstr "תארו את ערכת הנושא שלכם."
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "נא להקליד את כתובת הדוא״ל של היוצר החדש"
 
 # Column name in a table.
 msgid "Listed"
@@ -600,7 +600,7 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr "לתשומת לבך: תוספת זו משתמשת בטכנולוגיה מיושנת שמעניקה גישה לכל תכונות הדפדפן והנתונים מבלי לבקש את רשותך."
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "תוספת זו הוסרה על ידי היוצר שלה."
 
 msgid "This add-on has been disabled by an administrator."
 msgstr "תוספת זו נוטרלה ע״י מנהל מערכת."
@@ -747,7 +747,7 @@ msgid "Firefox Add-ons"
 msgstr "תוספות של Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "מצטערים, לא הצלחנו למצוא שום דבר בכתובת שהכנסת. אם לחצת על קישור לתוספת, כנראה שהתוספת הזו הוסרה על ידי היוצר שלה."
 
 msgid "Suggested Pages"
 msgstr "דפים מוצעים"
@@ -1930,10 +1930,10 @@ msgid "Application max version for {version} updated."
 msgstr "גרסת היישום המרבית עבור {version} עודכנה."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "נשלחה הודעה בדוא״ל ליוצרים בנוגע לתאימות של {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "נשלח דוא״ל ליוצר בנוגע לתאימות התוספת."
 
 msgid "Password changed."
 msgstr "הססמה שונתה."
@@ -2577,10 +2577,10 @@ msgid "Must have at least one owner."
 msgstr ""
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "לפחות אחד מבין היוצרים חייב להופיע."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "יוצר יכול להופיע רק פעם אחת."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -2747,13 +2747,13 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "שם הכתובת היה שגוי. התוספת לא נמחקה."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "נוסף יוצר לתוספת שלך"
 
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "התפקיד של אחד היוצרים השתנה בתוספת שלך"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "אחד היוצרים הוסר מהתוספת שלך"
 
 msgid "Validate Add-on"
 msgstr "אימות תוספת"
@@ -3003,13 +3003,13 @@ msgid "None"
 msgstr "ללא"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "ניהול יוצרים ורשיונות"
 
 msgid "Authors"
-msgstr ""
+msgstr "יוצרים"
 
 msgid "About author roles"
-msgstr ""
+msgstr "על אודות תפקידי יוצרים"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3726,7 +3726,7 @@ msgstr ""
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 msgid "You don't have any API credentials."
 msgstr ""
@@ -4955,15 +4955,19 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"חלק מהסמלים בהם נעשה שימוש הם חלק מ־<a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, המוגנים ברישיון <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"חלק מהדפים משתמשים ברכיבים של <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (הגרסה הלא מסחרית), המוגן ברישיון <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ""
+msgstr "למידע בנוגע להתנדבות, נא לבקר ב<a href=\"%(url)s\">עמוד הוויקי</a> שלנו."
 
 msgid "Developer FAQ"
 msgstr "שו״ת למפתחים"
@@ -5026,6 +5030,8 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"כדי להבטיח תאימות עם התכנה העדכנית של Mozilla, חשוב להוריד עדכונים ברגע שהם זמינים ולבחון את התוספת שלך כדי לוודא שהיא עדיין מתפקדת כראוי. מאחר שהמהדורות האלו לעתים כוללות שינויים ארכיטקטוניים "
+"העשויים להשפיע על תפקוד התוספת שלך, חשוב לגלות מעורבות מוגברת בתקופת הבטא כדי לוודא שמשתמשי התוספת שלך לא יושפעו לרעה לקראת המוצר המוגמר מבית Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "אזדקק לעצה בנוגע לבניית התוספת שלי. איפה ניתן לקבל עזרה?"
