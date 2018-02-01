@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-29 12:20+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2017-12-01 19:39+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1733,8 +1733,9 @@ msgstr "{addon} が無効化されました。"
 msgid "{addon} enabled."
 msgstr "{addon} が有効化されました。"
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon} のステータスが {0} へ変更されました。"
 
 msgid "{version} added to {addon}."
@@ -2021,13 +2022,6 @@ msgstr "リスト掲載中止"
 
 msgid "Developer"
 msgstr "開発者"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "閲覧者"
-
-msgid "Support"
-msgstr "サポート"
 
 msgid "Extension"
 msgstr "拡張機能"
@@ -2945,10 +2939,10 @@ msgstr "作者"
 msgid "About author roles"
 msgstr "作者の役割について"
 
+#, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作"
 "者の追加と削除を除く、アドオンのあらゆる情報を管理できます</li> <li><b>閲覧者:</b> アドオンの設定と統計情報を見ることができますが、変更は一切できません</li> </ul>"
@@ -3404,6 +3398,9 @@ msgstr "URL には、英数字、アンダーバー、ハイフンのみ使用�
 msgid "Summary:"
 msgstr "概要:"
 
+msgid "required"
+msgstr "必須"
+
 msgid "This add-on is experimental"
 msgstr "このアドオンは実験的です"
 
@@ -3571,11 +3568,12 @@ msgid "Theme generator"
 msgstr "テーマ作成ツール"
 
 #, fuzzy
+msgid "Theme name"
+msgstr "テーマの名前"
+
+#, fuzzy
 msgid "Select a header image for your theme"
 msgstr "テーマのヘッダー画像を選択してください。"
-
-msgid "required"
-msgstr "必須"
 
 msgid "Image height should be 200 pixels"
 msgstr "画像の高さは 200 ピクセルにしてください"
@@ -3602,11 +3600,11 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。"
 
 #, fuzzy
-msgid "Header area text"
+msgid "Header area text and icons"
 msgstr "ヘッダー領域の文字 (textcolor)"
 
 #, fuzzy
-msgid "The color of the text displayed in the header area. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "ヘッダー領域内に表示される文字色。"
 
 #, fuzzy
@@ -3618,12 +3616,12 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。"
 
 #, fuzzy
-msgid "Toolbar area text"
+msgid "Toolbar area text icons"
 msgstr "ツールバー領域の文字 (toolbar_text)"
 
 #, fuzzy
-msgid "The color of toolbar text. Manifest field:  toolbar_text."
-msgstr "これはツールバー上の文字色です。"
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "アドレスバーなどツールバー上の入力欄の文字色。"
 
 #, fuzzy
 msgid "Toolbar field area background"
@@ -3855,6 +3853,9 @@ msgstr "ブログ"
 
 msgid "Contact Us"
 msgstr "問い合わせ"
+
+msgid "Support"
+msgstr "サポート"
 
 msgid "Policies"
 msgstr "ポリシー"
@@ -5984,6 +5985,9 @@ msgstr "WebExtension"
 msgid "Is locked by a reviewer."
 msgstr "審査担当者によってロックされています。"
 
+msgid "Has auto-approval disabled flag set."
+msgstr ""
+
 msgid "Duplicate Submission"
 msgstr "重複登録"
 
@@ -6438,6 +6442,13 @@ msgstr ""
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "バージョンを再度有効化"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "自動承認が確認されました"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "管理者コード審査フラグをクリア"
@@ -7325,8 +7336,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "「削除」をクリックすることで、あなたのアカウントは <strong>永久に削除</strong> されます。つまり、"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "あなたは今後 %(site)s へログインできなくなります。"
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "あなたのレビューと評価は削除されませんが、あなたとの関連づけは失われます。"
