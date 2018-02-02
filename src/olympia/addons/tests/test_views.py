@@ -3309,7 +3309,6 @@ class TestLanguageToolsView(TestCase):
 
         response = self.client.get(self.url, {'app': 'firefox'})
         assert response.status_code == 200
-        print json.loads(response.content)['results']
         assert len(json.loads(response.content)['results']) == 3
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
