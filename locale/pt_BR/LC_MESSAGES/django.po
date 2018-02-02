@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 16:39+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2018-02-02 00:10+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1794,9 +1794,8 @@ msgid "{addon} enabled."
 msgstr "{addon} habilitado."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "O status de {addon} foi alterado para {0}."
+msgstr "O status de {addon} foi alterado para {status}."
 
 # 82%
 # 75%
@@ -3022,14 +3021,12 @@ msgstr "Autores"
 msgid "About author roles"
 msgstr "Sobre as funções do autor"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Extensões podem ter qualquer número de autores com 3 possíveis cargos:</p> <ul> <li><b>Proprietário:</b> pode gerenciar todos os detalhes da extensão, incluindo adicionar e remover outros "
-"autores</li> <li><b>desenvolvedor:</b> pode gerenciar todos os detalhes da extensão, exceto adicionar ou remover outros autores</li> <li><b>Visualizador:</b> pode ver as configurações e estatísticas"
-" da extensão, mas não pode fazer quaisquer alterações</li> </ul>"
+"<p>As extensões podem ter qualquer número de autores com 2 possíveis cargos:</p> <ul> <li><b>Proprietário:</b> pode gerenciar todos os detalhes da extensão, incluindo adicionar e remover outros "
+"autores</li> <li><b>Desenvolvedor:</b> pode gerenciar todos os detalhes da extensão, exceto adicionar ou remover outros autores</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Informações básicas"
@@ -3703,9 +3700,8 @@ msgstr "A cor da área de fundo do cabeçalho, apresentada na parte do cabeçalh
 msgid "Header area text and icons"
 msgstr "Área do cabeçalho de texto e ícones"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "A cor do texto apresentado na área do cabeçalho. Campo do manifesto:  textcolor."
+msgstr "A cor do texto e dos ícones na área do cabeçalho exceto a aba ativa. Campo do manifesto:  textcolor."
 
 msgid "Toolbar area background"
 msgstr "Área de fundo da barra de ferramentas"
@@ -3713,13 +3709,11 @@ msgstr "Área de fundo da barra de ferramentas"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada.  Campo do manifesto:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text icons"
-msgstr "Área de texto da barra de ferramentas"
+msgstr "Ícones de texto da área da barra de ferramentas"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "A cor do texto em campos da barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
+msgstr "A cor do texto e ícones na barra de ferramentas e da aba ativa. Campo do manifesto:  toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr "Área de fundo do campo da barra de ferramentas"
