@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 11:58+0000\n"
+"PO-Revision-Date: 2018-02-02 13:41+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -604,13 +604,11 @@ msgstr "Лиценз на изходния код за {addon}"
 msgid "Source Code License"
 msgstr "Лиценз на изходния код"
 
-#, fuzzy
 msgid "support section"
-msgstr "Поддръжка"
+msgstr "раздел за поддръжка"
 
-#, fuzzy
 msgid "support email"
-msgstr "Имейл за поддръжка:"
+msgstr "ел. поща за поддръжка"
 
 msgid "permalink"
 msgstr "постоянна връзка"
@@ -656,10 +654,10 @@ msgid "Review History"
 msgstr "История на рецензиите"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "За съжаление, тази тема очаква одобрение. Върнете се по-късно."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Темата очаква одобрение. Тя е невидима за всички освен вас."
 
 msgid "Collector's Note"
 msgstr "Бележки на събирача"
@@ -713,10 +711,10 @@ msgid "Admin Tools"
 msgstr "Администраторски инструменти"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Грешка, опитайте отново."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Грешка при проверяване на въведените данни, моля, опитайте отново."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Това трябва да е валиден шестнадесетичен код за цвят, например #000000."
@@ -951,9 +949,8 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Сътрудник"
+msgstr "Сътрудници"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1009,9 +1006,8 @@ msgstr "Въведете валидно име, състоящо се то бу�
 msgid "This slug cannot be used."
 msgstr "Това име не може да бъде използвано."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Това URL вече се използва от друг списък"
+msgstr "Добавката вече се принадлежи към този списък"
 
 msgid "Name"
 msgstr "Име"
@@ -7555,7 +7551,7 @@ msgstr "Не можахме да ви отпишем"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "За съжаление не можахме да отменим абонамента ви. Посетили сте невалидна препратка. Все пак, можете да се отпишете от <a href=\"%(edit_url)s\">страницата за редакция на профил</a>."
+msgstr "За съжаление, не можахме да отменим абонамента ви. Посетили сте невалидна препратка. Все пак, можете да се отпишете от <a href=\"%(edit_url)s\">страницата за редакция на профил</a>."
 
 msgid "Developer Information"
 msgstr "Информация за разработчика"
