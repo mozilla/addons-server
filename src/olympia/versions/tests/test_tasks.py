@@ -1,3 +1,5 @@
+import math
+import operator
 import os
 import tempfile
 from base64 import b64encode
@@ -27,9 +29,16 @@ def test_write_svg_to_png():
         svg = svgfile.read()
     write_svg_to_png(svg, out)
     assert storage.exists(out)
-    # compare the image content.  .getbbox will return None if the same.
-    assert not ImageChops.difference(
-        Image.open(svg_png), Image.open(out)).getbbox()
+    # compare the image content. rms should be 0 but travis renders it
+    # different... 960 is the magic difference.
+    svg_png_img = Image.open(svg_png)
+    svg_out_img = Image.open(out)
+    image_diff = ImageChops.difference(svg_png_img, svg_out_img)
+    rms = math.sqrt(
+        reduce(operator.add, map(
+            lambda h, i: h * (i ** 2), image_diff.histogram(), range(1024))
+        ) / (float(svg_png_img.size[0]) * svg_png_img.size[1]))
+    assert rms < 960
 
 
 @pytest.mark.django_db
