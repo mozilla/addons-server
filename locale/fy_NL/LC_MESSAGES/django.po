@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 12:11+0000\n"
+"PO-Revision-Date: 2018-02-02 12:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1760,9 +1760,8 @@ msgid "{addon} enabled."
 msgstr "{addon} ynskeakele."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Steat fan {addon} wizige yn {0}."
+msgstr "Steat fan {addon} wizige nei {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} oan {addon} tafoege."
@@ -2974,14 +2973,13 @@ msgstr "Skriuwers"
 msgid "About author roles"
 msgstr "Oer ûntwikkelersfunksjes"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Add-ons kinne mear skriuwers hawwe mei trije mooglike rollen:</p> <ul> <li><b>Eigener:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, ynklusyf tafoegjen en fuortsmiten fan oare "
+"<p>Add-ons kinne mear skriuwers hawwe mei twa mooglike rollen:</p> <ul> <li><b>Eigener:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, ynklusyf tafoegjen en fuortsmiten fan oare "
 "skriuwers</li> <li><b>Untwikkeler:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, mei útsûndering fan tafoegjen en fuortsmiten fan oare skriuwers en behearen fan betellingen</li> "
-"<li><b>Lêzer:</b> Kin de ynstellingen en statistiken fan de add-on besjen, mar kin gjin wizigingen oanbringe</li> </ul>"
+"</ul>"
 
 msgid "Basic Information"
 msgstr "Basisgegevens"
@@ -3602,9 +3600,8 @@ msgstr "Tema oanmeitsje"
 msgid "Theme generator"
 msgstr "Tema-generator"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "temanamme"
+msgstr "Temanamme"
 
 msgid "Select a header image for your theme"
 msgstr "Selektearje in headerôfbylding foar jo tema"
@@ -3630,13 +3627,11 @@ msgstr "Eftergrûn fan headergebied"
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding. Manifestfjild: ·  ·  · accentcolor."
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "Tekst fan headergebied"
+msgstr "Tekst en piktogrammen fan headergebied"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "De kleur fan de tekst dy't werjûn wurdt yn it headergebied. Manifestfjild: ·  ·  · textcolor."
+msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it aktive ljepblêd. Manifestfjild:   textcolor."
 
 msgid "Toolbar area background"
 msgstr "Eftergrûn fan arkbalkegebied"
@@ -3644,13 +3639,11 @@ msgstr "Eftergrûn fan arkbalkegebied"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd. Manifestfjild: ·  ·  · toolbar."
 
-#, fuzzy
 msgid "Toolbar area text icons"
-msgstr "Tekst fan arkbalkegebied"
+msgstr "Tekst en piktogrammen fan arkbalkegebied"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
+msgstr "De kleur fan tekst en piktogrammen yn de arkbalke en it aktive ljepblêd. Manifestfjild:  toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr "Eftergrûn fan arkbalkefjildgebied"
@@ -4953,7 +4946,7 @@ msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki 
 msgstr ""
 
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Faakstelde fragen foar ûntwikkelers"
 
 msgid "Sections"
 msgstr "Seksjes"
@@ -4966,26 +4959,26 @@ msgid "Support Resources"
 msgstr "Helpboarnen foar stipe"
 
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Jo add-on bydrage"
 
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Add-on-beoardielingsproses"
 
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Jo add-on beheare"
 
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Referinsjes foar opensourcelisinsjes"
 
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Faakstelde fragen foar add-on-ûntwikkelers"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr "<h3>Hoe bou ik in add-on?</h3> <p> Mozilla biedt dokumintaasje oer it bouwen fan in add-on fia it %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "Wat is in ‘.xpi’-bestân?"
 
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
 msgstr ""
@@ -5054,7 +5047,7 @@ msgid ""
 msgstr ""
 
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Kin ik myn eigen add-on hoste?"
 
 #, python-format
 msgid ""
@@ -5065,7 +5058,7 @@ msgstr ""
 "on mear oandacht troch it grutte oantal websitebesikers."
 
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Kin Mozilla myn add-on hoste?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
@@ -5154,7 +5147,7 @@ msgstr ""
 "wurde de yn de <a href=\"%(url)s\">Add-on-beoardielingsgids</a> neamde rjochtlinen brûkt."
 
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Wa beoardielet myn add-on?"
 
 #, python-format
 msgid ""
@@ -5167,7 +5160,7 @@ msgstr ""
 " rjochtlinen yn de <a href=\"%(url)s\">Add-on-beoardielingsgids</a> folget."
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Hokker rjochtlinen wurde brûkt by yt beoardielen fan myn add-on?"
 
 #, python-format
 msgid ""
@@ -5178,29 +5171,29 @@ msgstr ""
 "dat faaks foarkommende probleemgebieden oanpakt binne eardat harren add-on foar beoardieling yntsjinne wurdt. Hjirtroch wurde problemen mei beoardielingen tige fermindere."
 
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Hoe lang duorret it eardat myn add-on beoardiele is?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "Wy kinne gjin tiidsynskatting meitsje foar de beoardieling fan in add-on. Der binne in protte faktoaren dy't dit beynfloedzje, lykas:"
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "it oantal yntsjinne add-ons"
 
 #. part of a list (<li>)
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "de kompleksiteit fan de koade fan in add-on"
 
 #. part of a list (<li>)
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "it oantal ûntdekke probleemgebieden"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
 msgstr "Dêrom is it hiel wichtich dat jo de <a href=\"%(g_url)s\">Add-on-beoardielingsgids</a> lêze, om der wis fan te wêzen dat jo add-on lykas ferwacht ynsteld is."
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Hoe kin ik sjen hoe faak myn add-on download is?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
@@ -5232,31 +5225,31 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam of oare tekst dy't net in beoardieling is"
 
 #. part of a list (<li>)
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Unfoech taalgebrûk"
 
 #. part of a list (<li>)
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Mispleatst bugrapport of stipefersyk"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Oerich (fia in pop-upfinster wurdt om mear ynformaasje frege)"
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 msgstr "Op dit stuit hat AMO gjin meganisme om streekrjocht mei de skriuwer fan in brûkersbeoardieling te kommunisearjen."
 
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Kin ik freegje om in beoardieling fuort te smiten as dizze negatyf is?"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Nee. We smite gjin negative beoardielingen fan add-ons fuort, útsein se bewizen falsk binne."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Kin ik freegje om in beoardieling fuort te smiten as dizze net krekt is?"
 
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
 msgstr ""
@@ -6508,9 +6501,8 @@ msgstr "Add-on forsearre ynskeakelje"
 msgid "Disable Auto-Approval"
 msgstr "Automatysk goedkarre útskeakelje"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Automatyske goedkarring befêstige"
+msgstr "Automatyske goedkarring ynskeakelje"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markearring foar koadebeoardieling troch behearder wiskje"
