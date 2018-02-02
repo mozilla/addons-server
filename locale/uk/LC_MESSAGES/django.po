@@ -6607,9 +6607,8 @@ msgstr "Примусово увімкнути додаток"
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Автосхвалення підтверджено"
+msgstr "Увімкнути автоматичне схвалення"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Прибрати позначку перевірки коду адміном"
