@@ -3265,7 +3265,7 @@ class TestLanguageToolsView(TestCase):
         dictionary_spelling_variant = addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
             locale_disambiguation='For spelling reform')
-        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+        language_pack = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
 
         # These add-ons below should be ignored: they are either not public or
         # of the wrong type, not supporting the app we care about, or their
@@ -3296,6 +3296,37 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+
+    def test_memoize(self):
+        addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 3
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            assert self.client.get(self.url, {'app': 'firefox'}).content == (
+                response.content
+            )
+        # But different app is different
+        with self.assertNumQueries(12):
+            assert (
+                self.client.get(self.url, {'app': 'thunderbird'}).content !=
+                response.content
+            )
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            self.client.get(self.url, {'app': 'thunderbird'})
+        # But throw in a lang request and not cached:
+        with self.assertNumQueries(10):
+            self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
 
 
 class TestReplacementAddonView(TestCase):
