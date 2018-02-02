@@ -456,7 +456,9 @@ class TestReviewHelper(TestCase):
         assert self.version.has_info_request
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == self.preamble
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
 
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
