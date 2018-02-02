@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 08:30+0000\n"
+"PO-Revision-Date: 2018-02-02 08:31+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1826,7 +1826,7 @@ msgid "{addon} removed from {collection}."
 msgstr ""
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} za {addon} je napisana."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
