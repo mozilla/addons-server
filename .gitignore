@@ -28,7 +28,7 @@ build*.py
 *.styl.css
 .nose*
 tmp/*
-.pytest-cache/*
+.pytest_cache/*
 node_modules
 .npm/
 static/css/node_lib/*
