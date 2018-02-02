@@ -765,9 +765,13 @@ class ReviewBase(object):
         # of the add-on instead of one of the versions we rejected, it will be
         # used to generate a token allowing the developer to reply, and that
         # only works with the latest version.
-        template = u'reject_multiple_versions'
-        subject = (u"Mozilla Add-ons: One or more versions of %s%s didn't "
-                   u"pass review")
+        if self.addon.status != amo.STATUS_PUBLIC:
+            template = u'reject_multiple_versions_disabled_addon'
+            subject = (u'Mozilla Add-ons: %s%s has been disabled on '
+                       u'addons.mozilla.org')
+        else:
+            template = u'reject_multiple_versions'
+            subject = u'Mozilla Add-ons: Versions disabled for %s%s'
         self.notify_email(template, subject, version=latest_version)
 
         log.info(

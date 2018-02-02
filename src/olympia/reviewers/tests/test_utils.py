@@ -1114,9 +1114,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
@@ -1160,8 +1160,7 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
+            u'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
         assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.filter(
@@ -1203,9 +1202,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]

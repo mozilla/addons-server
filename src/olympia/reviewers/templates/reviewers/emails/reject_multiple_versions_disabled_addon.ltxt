@@ -1,0 +1,19 @@
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Due to issues discovered during the review process, your add-on {{ name }} has been disabled on addons.mozilla.org and no longer appears in the gallery. Users who have previously installed your add-on will be able to continue using it.
+
+Please see the user’s comments below for more information.
+
+********
+Details:
+{{ comments }}
+
+Reviewer:
+{{ reviewer }}
+
+********
+
+Please address the issues raised in the reviewer's notes and inquire about any unclear items. Afterwards, please upload a new version of your add-on at {{ dev_versions_url }}.
+
+Thank you for your attention.
+
+{% endblock %}
