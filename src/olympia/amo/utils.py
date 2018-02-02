@@ -581,18 +581,13 @@ def to_language(locale):
 def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
-    # Special fake language can just act like English for formatting and such
-    if not lang or lang in ('dbg', 'dbr', 'dbl'):
+    # Special fake language can just act like English for formatting and such.
+    # Do the same for 'cak' because it's not in http://cldr.unicode.org/ and
+    # therefore not supported by Babel - trying to fake the class leads to a
+    # rabbit hole of more errors because we need valid locale data on disk, to
+    # get decimal formatting, plural rules etc.
+    if not lang or lang in ('cak', 'dbg', 'dbr', 'dbl'):
         lang = 'en'
-
-    if lang == 'cak':
-        # 'cak' is not in http://cldr.unicode.org/ and therefore not supported
-        # by Babel. That breaks get_locale_from_lang() entirely, so this hack
-        # creates a fake Locale class for this locale.
-        locale = Locale('en')
-        locale.language = 'cak'
-        return locale
-
     return Locale.parse(translation.to_locale(lang))
 
 

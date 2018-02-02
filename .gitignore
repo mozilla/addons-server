@@ -35,6 +35,7 @@ static/css/node_lib/*
 static/js/node_lib/*
 *.signed.zip
 *.po~
+*.mo
 site-static/*
 user-media/*
 guarded-addons/*
