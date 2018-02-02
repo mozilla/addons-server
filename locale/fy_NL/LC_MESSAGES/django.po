@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 11:49+0000\n"
+"PO-Revision-Date: 2018-02-02 12:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4849,10 +4849,12 @@ msgstr "Ik haw in fraach"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"In goed plak om te starten is ús <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. As jo dêr gjin antwurd fine kinne jo it <a href=\"%(forum_url)s\">op ús foarums "
+"freegje</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "As jo echt kontakt opnimme wolle mei ien út it Mozilla-team, lês dan ús side mei <a href=\"%(url)s\">kontaktgegevens</a>."
 
 msgid "Who works on this website?"
 msgstr "Wa wurket oan dizze website?"
@@ -4862,6 +4864,8 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"ôfrûne jierren hawwe in protte minsken bydroegen oan dizze website, sawol frijwilligers út de mienskip as in tawijd AMO-team. In list mei wichtige meiwurkers kinne jo fine op ús side mei <a "
+"href=\"%(url)s\">Tanksizzingen</a>."
 
 msgid "Add-on Compatibility Reporter"
 msgstr "Add-on Compatibility Reporter"
@@ -4870,15 +4874,17 @@ msgid "Add-on Compatibility Reporter has been installed"
 msgstr "Add-on Compatibility Reporter is ynstallearre"
 
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ""
+msgstr "It is ienfâldich om ús te helpen derfoar te soargjen dat add-ons op tiid foar de útjefte fan de folgjende ferzje fan Firefox bywurke wurde."
 
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Sa starte jo mei rapportearjen fan komptabiliteit fan add-ons:"
 
 msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
+"Let wylst it surfen en brûken fan jo add-ons soarchfâldich op alles dat oars liket dan de lêste kear dat jo de útwreiding brûkt hawwe. It kin in flaterke yn de werjefte wêze, lykas in ûntbrekkend "
+"menu-item, of wat earnstigers, lykas in net-wurkende add-on of flatermeldingen."
 
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
@@ -7397,7 +7403,7 @@ msgstr ""
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "As jo jo mei dit e-mailadres opnij oanmelde by %(site)s, wurdt in nij account oanmakke dy't gjin ferbân hâldt mei dizze account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ""
