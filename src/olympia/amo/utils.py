@@ -807,6 +807,8 @@ def rm_local_tmp_dir(path):
     certain that your executing code is operating on a local temp dir, not a
     directory managed by the Django Storage API.
     """
+    assert path.startswith(settings.TMP_PATH)
+
     return shutil.rmtree(path)
 
 
