@@ -19,10 +19,9 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, rm_local_tmp_dir)
+from olympia.amo.utils import ImageCheck, LocalFileStorage, cache_ns_key
 from olympia.applications.models import AppVersion
-from olympia.files.utils import RDFExtractor, extract_zip
+from olympia.files.utils import RDFExtractor, get_file, SafeZip
 from olympia.lib.es.utils import index_objects
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
@@ -433,16 +432,14 @@ def add_firefox57_tag(ids, **kw):
 
 def extract_strict_compatibility_value_for_addon(addon):
     strict_compatibility = None  # We don't know yet.
-    extracted_dir = None
     try:
         # We take a shortcut here and only look at the first file we
         # find...
         # Note that we can't use parse_addon() wrapper because it no longer
         # exposes the real value of `strictCompatibility`...
         path = addon.current_version.all_files[0].file_path
-        with storage.open(path) as file_:
-            extracted_dir = extract_zip(file_)
-        parser = RDFExtractor(extracted_dir)
+        zip_file = SafeZip(get_file(path))
+        parser = RDFExtractor(zip_file)
         strict_compatibility = parser.find('strictCompatibility') == 'true'
     except Exception as exp:
         # A number of things can go wrong: missing file, path somehow not
@@ -450,9 +447,6 @@ def extract_strict_compatibility_value_for_addon(addon):
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
                       u'received %s when extracting.', addon.pk, unicode(exp))
-    finally:
-        if extracted_dir:
-            rm_local_tmp_dir(extracted_dir)
     return strict_compatibility
 
 
