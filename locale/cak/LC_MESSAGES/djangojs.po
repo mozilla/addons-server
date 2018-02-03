@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-03 20:43+0000\n"
+"PO-Revision-Date: 2018-02-03 21:06+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -406,25 +406,25 @@ msgid "Usage"
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
 msgstr ""
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -623,7 +623,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "Majun tzij wachel."
 
 msgid "Date"
 msgstr "Q'ijul"
@@ -646,7 +646,7 @@ msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "Ütz chuqa' Tiyak"
 
 msgid "Add to {0}"
 msgstr ""
