@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 00:10+0000\n"
-"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
+"PO-Revision-Date: 2018-02-03 18:23+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1373,7 +1373,7 @@ msgstr "Coleções são grupos de extensões relacionadas que qualquer pessoa po
 
 # 100%
 msgid "Subscribe"
-msgstr "Inscrever"
+msgstr "Assinar"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -2949,7 +2949,7 @@ msgid "Activity"
 msgstr "Atividade"
 
 msgid "Subscribe to this feed"
-msgstr "Inscrever neste feed"
+msgstr "Assinar este feed"
 
 #, python-format
 msgid ""
@@ -7789,10 +7789,10 @@ msgid "Report user {0}"
 msgstr "Denunciar usuário {0}"
 
 msgid "Unsubscribe"
-msgstr "Desinscrever-se"
+msgstr "Cancelar assinatura"
 
 msgid "You are successfully unsubscribed!"
-msgstr "Você cancelou a inscrição com sucesso!"
+msgstr "Você cancelou a assinatura com sucesso!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
