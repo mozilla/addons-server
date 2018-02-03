@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-03 18:32+0000\n"
+"PO-Revision-Date: 2018-02-03 18:38+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2007,10 +2007,10 @@ msgid "Source code uploaded"
 msgstr "Исходный код загружен"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version} автоматически одобрено."
+msgstr "Автоодобрение для {addon} {version} подтверждено."
 
 msgid "Auto-Approval confirmed"
-msgstr "Автоматически одобрено"
+msgstr "Автоодобрение подтверждено"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} включено снова."
@@ -6195,7 +6195,7 @@ msgid "Is locked by a reviewer."
 msgstr "Заблокировано редактором."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Установлен флаг отключения автоодобрения."
 
 msgid "Duplicate Submission"
 msgstr "Дублирующее представление"
@@ -6653,17 +6653,16 @@ msgid "Notify me about new listed versions"
 msgstr "Уведомлять меня о новых публикуемых версиях"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Принудительно отключить дополнение"
 
 msgid "Force-enable add-on"
 msgstr "Принудительно включить дополнение"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Отключить автоодобрение"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Автоматически одобрено"
+msgstr "Включить автоодобрение"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Снять флаг проверки проверка кода админом"
@@ -7575,7 +7574,7 @@ msgstr "Щелчок по \"удалить\" приведёт к <strong>пол�
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Повторный вход с этим адресом электронной почты на %(site)s создаст новую учетную запись, которая никак не будет связана с этой учетной записью."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваши отзывы и рейтинги не будут удалены, но они больше не будут связаны с вами."
