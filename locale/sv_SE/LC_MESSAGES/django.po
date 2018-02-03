@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-03 14:51+0000\n"
+"PO-Revision-Date: 2018-02-03 14:52+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6580,13 +6580,13 @@ msgid "Notify me about new listed versions"
 msgstr "Meddela mig om nya listade versioner"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Inaktivera tillägg med våld"
 
 msgid "Force-enable add-on"
 msgstr "Aktivera tillägg med våld"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Inaktivera automatisk godkännande"
 
 msgid "Enable Auto-Approval"
 msgstr "Aktivera automatisk godkännande"
@@ -7487,7 +7487,7 @@ msgstr "Genom att klicka på \"ta bort\" kommer ditt konto att <strong>tas bort 
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Inloggning med den här e-postadressen till %(site)s igen skapar ett nytt konto som inte är kopplat till det här kontot."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Dina recensioner och betyg tas inte bort, men de kommer inte längre att vara associerade med dig."
