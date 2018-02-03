@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-03 20:30+0000\n"
+"PO-Revision-Date: 2018-02-03 20:43+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -237,7 +237,7 @@ msgid "{0} installs"
 msgstr ""
 
 msgid "Downloads"
-msgstr ""
+msgstr "Taq qasanïk"
 
 msgid "Daily Users"
 msgstr ""
@@ -249,7 +249,7 @@ msgid "Number of Contributions"
 msgstr ""
 
 msgid "More Info..."
-msgstr ""
+msgstr "Ch'aqa' chik Etamab'äl..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -265,7 +265,7 @@ msgid "Add-ons Created"
 msgstr ""
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Taq Tz'aqat Eqasan"
 
 msgid "Add-ons Updated"
 msgstr ""
@@ -286,13 +286,13 @@ msgid "Sales"
 msgstr ""
 
 msgid "Installs"
-msgstr ""
+msgstr "Keyak"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Man etaman ta ruwäch"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Kinuk'samajel taq T'aqat"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -352,7 +352,7 @@ msgid "Version History"
 msgstr ""
 
 msgid "Sharing"
-msgstr ""
+msgstr "Nikomonïx"
 
 msgid "Category Pages"
 msgstr ""
