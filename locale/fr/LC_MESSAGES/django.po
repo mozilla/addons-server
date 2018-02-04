@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 21:31+0000\n"
+"PO-Revision-Date: 2018-02-04 21:47+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1033,9 +1033,8 @@ msgstr "Entrez une référence valide, composée de lettres, nombres, souligneme
 msgid "This slug cannot be used."
 msgstr "Cette référence ne peut être utilisée."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Cette adresse est déjà utilisée par une autre collection"
+msgstr "Ce module appartient déjà à la collection"
 
 msgid "Name"
 msgstr "Nom"
@@ -1771,9 +1770,8 @@ msgid "{addon} enabled."
 msgstr "{addon} activé."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "État de {addon} changé en {0}."
+msgstr "État de {addon} changé en {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} ajoutée pour {addon}."
@@ -2732,9 +2730,9 @@ msgstr "Vérifier la compatibilité du module"
 msgid "You cannot submit this type of add-on"
 msgstr "Vous ne pouvez pas envoyer ce type de module"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Vous ne pouvez pas proposer un module dont le GUID se termine par « @mozilla.org »"
+msgstr "Vous ne pouvez pas proposer un module dont le GUID se termine par %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
@@ -2985,14 +2983,12 @@ msgstr "Auteurs"
 msgid "About author roles"
 msgstr "À propos des rôles des auteurs"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Les modules peuvent avoir autant d’auteurs que souhaité avec trois rôles possibles :</p> <ul> <li><b>Propriétaire :</b> peut gérer tous les aspects du module, dont l’ajout et le retrait "
-"d’auteurs</li> <li><b>Développeur :</b> peut gérer tous les aspects du module, sauf l’ajout et le retrait d’auteurs ainsi que la gestion des paiements</li> <li><b>Observateur :</b> peut voir toutes "
-"les statistiques et paramètres du module, mais ne peut faire aucun changement</li> </ul>"
+"<p>Les modules peuvent avoir autant d’auteurs que souhaité avec deux rôles possibles :</p> <ul> <li><b>Propriétaire :</b> peut gérer tous les aspects du module, dont l’ajout et le retrait "
+"d’auteurs</li> <li><b>Développeur :</b> peut gérer tous les aspects du module, sauf l’ajout et le retrait d’auteurs ainsi que la gestion des paiements</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Informations de base"
@@ -3697,7 +3693,6 @@ msgstr ""
 msgid "optional"
 msgstr "facultatif"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Prévisualisation dans le navigateur"
 
@@ -3707,9 +3702,8 @@ msgstr "Retour"
 msgid "Uploading Theme"
 msgstr "Envoi du thème"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Thèmes"
+msgstr "Achever le thème"
 
 msgid "API Credentials"
 msgstr "Informations d’authentification pour l’API"
@@ -6286,10 +6280,10 @@ msgid "Add-on Updates ({0})"
 msgstr "Mises à jour du module ({0})"
 
 msgid "Add-on Review Log"
-msgstr "Journal de revue du module"
+msgstr "Historique de revue du module"
 
 msgid "Signed Beta Files Log"
-msgstr "Journal pour les fichiers bêta signés"
+msgstr "Historique des fichiers bêta signés"
 
 msgid "Review Guide"
 msgstr "Guide de revue"
@@ -6318,11 +6312,10 @@ msgid "Flagged Themes ({0})"
 msgstr "Thèmes signalés ({0})"
 
 msgid "Themes Review Log"
-msgstr "Journal des revues de thèmes"
+msgstr "Historique des revues de thèmes"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Journal des thèmes supprimés"
+msgstr "Historique des thèmes supprimés"
 
 msgid "User Ratings Moderation"
 msgstr "Modération des notes d’utilisateurs"
@@ -6331,7 +6324,7 @@ msgid "Ratings Awaiting Moderation ({0})"
 msgstr "Notes en attente de modération ({0})"
 
 msgid "Moderated Review Log"
-msgstr "Journal de revue modéré"
+msgstr "Historique de revue modéré"
 
 msgid "Moderation Guide"
 msgstr "Guide de modération"
@@ -6639,11 +6632,10 @@ msgid "Force-enable add-on"
 msgstr "Forcer l’activation du module"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Désactiver les approbations automatiques"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Approbation automatique confirmée"
+msgstr "Activer les approbations automatiques"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Enlever le signalement de revue de code par un administrateur"
