@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 22:29+0000\n"
+"PO-Revision-Date: 2018-02-04 22:47+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3528,9 +3528,8 @@ msgstr "C’est fait !"
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site."
+msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site, une fois la revue effectuée. Vous recevrez une notification lorsque ce sera le cas."
 
 msgid "Version Submitted"
 msgstr "Version soumise"
@@ -3628,9 +3627,8 @@ msgstr "Générateur de thème"
 msgid "Theme name"
 msgstr "Nom du thème"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Sélectionnez une image d’en-tête pour votre thème."
+msgstr "Sélectionnez une image d’en-tête pour votre thème"
 
 msgid "Image height should be 200 pixels"
 msgstr "La hauteur de l’image devrait être de 200 pixels"
@@ -3644,47 +3642,41 @@ msgstr "Aligné en haut à droite"
 msgid "Select a different header image"
 msgstr "Sélectionnez une image d’en-tête différente pour votre Persona."
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Sélectionnez les couleurs de votre thème."
+msgstr "Sélectionnez les couleurs de votre thème"
 
 msgid "Header area background"
-msgstr ""
+msgstr "Arrière-plan de l’en-tête"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "Texte de l’en-tête (textcolor)"
+msgstr "Texte et icônes de l’en-tête"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "La couleur du texte affiché dans la zone d’en-tête."
+msgstr "La couleur du texte affiché dans la zone d’en-tête, sauf pour l’onglet actif. Champ du manifeste : textcolor."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Arrière-plan de la barre d’outils"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-#, fuzzy
 msgid "Toolbar area text icons"
-msgstr "Texte de la barre d’outils (toolbar_text)."
+msgstr "Texte et icônes de la barre d’outils"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "La couleur du texte de la barre d’outils."
+msgstr "La couleur du texte et des icônes de la barre d’outils et pour l’onglet actif. Champ du manifeste : toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Arrière-plan des champs de la barre d’outils"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "La couleur d’arrière-plan pour les champs de la barre d’outils, comme la barre d’adresse. Champ du manifeste : toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Texte de la barre d’outils (toolbar_text)."
+msgstr "Texte des champs de la barre d’outils"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -5638,7 +5630,7 @@ msgstr ""
 "sa page des détails."
 
 msgid "Mobile Add-ons"
-msgstr "Modules mobile"
+msgstr "Modules mobiles"
 
 msgid "What are mobile add-ons?"
 msgstr "Que sont les modules mobiles ?"
@@ -6238,9 +6230,8 @@ msgstr "Cette action rejettera le module et le supprimera de la file d’attente
 msgid "Confirm Approval"
 msgstr "Confirmer l’approbation"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "La dernière version publique de ce module a été automatiquement approuvée. Ce message valide votre confirmation, sans en notifier le développeur."
+msgstr "La dernière version publique de ce module a été automatiquement approuvée. Ce message confirme votre approbation de cette version, sans en informer le développeur."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejeter plusieurs versions"
