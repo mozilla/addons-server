@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 22:03+0000\n"
+"PO-Revision-Date: 2018-02-04 22:29+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -627,7 +627,7 @@ msgstr "lien permanent"
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Voir toutes les critiques utilisateur"
-msgstr[1] "Voir les %(cnt)s commentaires utilisateur"
+msgstr[1] "Voir les %(cnt)s critiques utilisateur"
 
 msgid "This add-on has not yet been reviewed."
 msgstr "Ce module n’a pas encore été critiqué."
@@ -2870,7 +2870,7 @@ msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Veuillez noter que cet outil ne fonctionne uniquement qu’avec des modules complémentaires obsolètes. Les API WebExtension sont <a href=\"%(webext_doc_url)s\">documentées de façon précise ici</a>."
+msgstr "Veuillez noter que cet outil ne fonctionne qu’avec des modules complémentaires obsolètes. Les API WebExtension sont <a href=\"%(webext_doc_url)s\">documentées de façon précise ici</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Après un envoi, une série de tests de validation automatiques seront exécutés pour vérifier la compatibilité avec les versions des applications suivantes :"
@@ -3085,16 +3085,15 @@ msgstr "Détails du module {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Une explication plus détaillée des fonctionnalités et autres informations relatives à votre module. Ce champ est uniquement affiché sur la page dédiée à votre module. Ce champ est uniquement utile "
-"pour les modules répertoriés."
+"Une explication plus détaillée des fonctionnalités et autres informations relatives à votre module. Ce champ est uniquement affiché sur la page dédiée à votre module. Ce champ n’est utile que pour "
+"les modules répertoriés."
 
 msgid "Default Locale"
 msgstr "Langue par défaut"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
-"Des informations qui déterminent si votre module est affiché dans cette locale à moins que vous ne proposiez une traduction pour cette locale. Ce champ est uniquement utile pour les modules "
-"répertoriés."
+"Des informations qui déterminent si votre module est affiché dans cette langue à moins que vous ne proposiez une traduction pour cette langue. Ce champ n’est utile que pour les modules répertoriés."
 
 msgid "Homepage"
 msgstr "Page d’accueil"
@@ -3104,7 +3103,7 @@ msgid ""
 "ons."
 msgstr ""
 "Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce champ"
-" est uniquement utile pour les modules répertoriés."
+" n’est utile que pour les modules répertoriés."
 
 msgid "Images"
 msgstr "Images"
@@ -3314,7 +3313,7 @@ msgid "Extension Tests"
 msgstr "Tests des extensions"
 
 msgid "Localization Tests"
-msgstr "Tests de localisation"
+msgstr "Tests de langues"
 
 msgid "Compatibility Tests"
 msgstr "Tests de compatibilité"
@@ -3867,8 +3866,8 @@ msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Si vous module transmet des données depuis l’ordinateur de l’utilisateur, une politique de confidentialité est nécessaire pour expliquer les données qui sont envoyées et comment elles sont appelées."
-" Ce champ est uniquement pertinent pour les modules répertoriés."
+"Si vous module transmet des données depuis l’ordinateur de l’utilisateur, une politique de confidentialité est nécessaire pour expliquer les données qui sont envoyées et comment elles sont "
+"utilisées. Ce champ n’est pertinent que pour les modules répertoriés."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Si votre module contient des fichiers binaires ou du code compressé qui n’est pas celui de bibliothèques connues, veuillez envoyer les fichiers sources afin qu’ils soient revus."
@@ -3933,7 +3932,7 @@ msgid "Promote"
 msgstr "Promotion"
 
 msgid "Get Your Add-on Featured"
-msgstr "Affichez votre module en vedette"
+msgstr "Mettez votre module en avant"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Badge « Get The Add-on »"
@@ -3951,7 +3950,7 @@ msgid "Review Add-ons"
 msgstr "Passer des modules en revue"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Les vérificateurs volontaires nous aident à garder les extensions sûres et dignes de confiance. Ils profitent aussi de récompenses !"
+msgstr "Les vérificateurs volontaires nous aident à garder les modules sûrs et dignes de confiance. Ils profitent aussi de récompenses !"
 
 msgid "Join us!"
 msgstr "Rejoignez-nous !"
@@ -3960,7 +3959,7 @@ msgid "Write Some Code"
 msgstr "Écrire du code"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr "Aidez-nous à améliorer les modules en contribuant grâce à vos compétences de codage."
+msgstr "Aidez-nous à améliorer les modules en contribuant grâce à vos compétences en programmation."
 
 msgid "Get started"
 msgstr "Lancez-vous"
@@ -4133,7 +4132,7 @@ msgid "Upload New Design"
 msgstr "Envoyer un nouveau design"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Après envoi et validation du formulaire, l’équipe AMO validera votre design mis à jour. Vos designs actuels restent public en attendant cette validation."
+msgstr "Après envoi et validation du formulaire, l’équipe AMO validera votre design mis à jour. Vos designs actuels restent publics en attendant cette validation."
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Votre design précédemment renvoyé, qui attend une validation."
@@ -4210,7 +4209,7 @@ msgstr "Prochaines étapes :"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Fournissez plus de détails sur votre thème en <a href=\"%(edit_url)s\">éditant son listing</a>."
+msgstr "Fournissez plus de détails sur votre thème en <a href=\"%(edit_url)s\">modifiant son listing</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4275,7 +4274,7 @@ msgid "Notes for Reviewers"
 msgstr "Notes aux testeurs"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Saisissez éventuellement des informations qui peuvent être utiles au testeur qui vérifiera ce module, telles que des comptes de test."
+msgstr "Saisissez éventuellement des informations qui peuvent être utiles au testeur de ce module, telles que des comptes de test."
 
 msgid "Source code"
 msgstr "Code source"
@@ -5431,7 +5430,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Dictionnaires et packs de langue</a></strong> pour ajouter de nouvelles langues à %(app_name)s."
+msgstr "<strong><a href=\"%(browse_url)s\">Dictionnaires et paquetages de langue</a></strong> pour ajouter de nouvelles langues à %(app_name)s."
 
 msgid "How do I install, manage, or remove an add-on?"
 msgstr "Comment installer, gérer ou supprimer un module ?"
@@ -5462,8 +5461,8 @@ msgid ""
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Faites attention lorsque vous utilisez des modules complémentaires, ces derniers pourraient endommager votre ordinateur ou compromettre votre vie privée. Les modules disponibles sur ce site sont "
-"susceptibles d’être validés par l’équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
-"être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le process de validation%(link_close)s"
+"susceptibles d’être validés par l’équipe de testeurs Mozilla. Les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
+"être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le processus de validation%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -5613,9 +5612,9 @@ msgid ""
 "lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
 "like the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Le code source utilisé pour créer un module est sous le copyright exclusif de l’auteur, sauf mention contraire dans la licence du code source. De nombreux modules sur ce site ont une <a "
-"href=\"%(url)s\" lang=\"en\">licence libre</a> qui rend le code source publiquement disponible pour la copie et la réutilisation sous des conditions déterminées par l’auteur. La majorité des auteurs"
-" utilisent des licences libres connues telles que la GPL ou la BSD, plutôt que de créer la leur."
+"Le code source utilisé pour créer un module est sous le droit d’auteur exclusif de ce dernier, sauf mention contraire dans la licence. De nombreux modules sur ce site ont une <a href=\"%(url)s\" "
+"lang=\"en\">licence libre</a> qui rend le code source publiquement disponible pour la copie et la réutilisation sous des conditions déterminées par l’auteur. La majorité des auteurs utilisent des "
+"licences libres connues telles que la GPL ou la BSD, plutôt que de créer la leur."
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
@@ -5756,8 +5755,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Veuillez rapporter ou marquer tout commentaire douteux en cliquant sur « Signaler ce commentaire » et il sera présenté sur le site de la modération. Notre équipe de modération utilisera les "
-"directives pour les commentaires et évaluera s’il faut ou non supprimer le commentaire ou le rétablir sur le site."
+"Veuillez rapporter ou marquer tout commentaire douteux en cliquant sur « Signaler ce commentaire » et il sera présenté sur le site de modération. Notre équipe de modération utilisera les directives "
+"pour les commentaires et évaluera s’il faut ou non supprimer le commentaire ou le rétablir sur le site."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Je suis auteur de module, puis-je répondre aux commentaires ?"
