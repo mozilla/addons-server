@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 21:47+0000\n"
+"PO-Revision-Date: 2018-02-04 22:03+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -63,7 +63,7 @@ msgid "Need help?"
 msgstr "Besoin d’aide ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Les développeurs de modules ou de thèmes ne peuvent pas supprimer leur compte. Vous devez supprimer tous les modules et thèmes liés à ce compte, ou les transférer à d’autres utilisateurs."
+msgstr "Les développeurs de modules ou de thèmes ne peuvent pas supprimer leurs comptes. Vous devez supprimer tous les modules et thèmes liés à ce compte, ou les transférer à d’autres utilisateurs."
 
 msgid "Review"
 msgstr "Critique"
@@ -207,11 +207,11 @@ msgid "End-User License Agreement for {0}"
 msgstr "Contrat de Licence pour l’Utilisateur Final du module {0}"
 
 msgid "End-User License Agreement"
-msgstr "Contrat de Licence utilisateur Final"
+msgstr "Contrat de licence d’utilisateur final"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "Le module %(addon_name)s nécessite que vous acceptiez le Contrat de Licence pour l’Utilisateur Final suivant avant de procéder à l’installation :"
+msgstr "Le module %(addon_name)s nécessite que vous acceptiez le Contrat de licence d’utilisateur final suivant avant de procéder à l’installation :"
 
 msgid "Back to {0}…"
 msgstr "Revenir à {0}…"
@@ -440,13 +440,13 @@ msgid "by %(user)s on %(date)s"
 msgstr "par %(user)s le %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr "Afficher la réponse du développeur à cette revue"
+msgstr "Afficher la réponse du développeur à cette critique"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Voir tous les avis sur ce module"
-msgstr[1] "Voir tous les %(cnt)s avis sur ce module"
+msgstr[0] "Voir toutes les critiques de ce module"
+msgstr[1] "Voir les %(cnt)s critiques de ce module"
 
 msgid "Tags"
 msgstr "Étiquettes"
@@ -478,7 +478,7 @@ msgid "Average"
 msgstr "Moyenne"
 
 msgid "Write a review"
-msgstr "Écrire une revue"
+msgstr "Écrire une critique"
 
 msgid "Related Categories"
 msgstr "Catégories connexes"
@@ -505,7 +505,7 @@ msgid "Manage"
 msgstr "Gérer"
 
 msgid "Add-on Review"
-msgstr "Revue du module"
+msgstr "Critique du module"
 
 msgid "Admin Manage"
 msgstr "Page d’administration"
@@ -588,15 +588,15 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
-"Puisque vous avez le contrôle de votre navigateur Firefox, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra pas les performances ou la sécurité de "
-"votre navigateur, mais de rares risques du contraire existent."
+"Puisque vous avez le contrôle de votre navigateur Firefox, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra les performances ou la sécurité de "
+"votre navigateur que dans de rares cas."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ce module peut :"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Firefox, c’est vous qui choisissez ou non d’accorder ces permissions."
+msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Firefox, c’est vous qui accordez ou non ces permissions."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ce module complémentaire utilise une technologie obsolète ce qui lui donne accès à l’ensemble des fonctionnalités et des données de votre navigateur sans que cela nécessite votre permission."
@@ -626,7 +626,7 @@ msgstr "lien permanent"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Voir tous les commentaires utilisateur"
+msgstr[0] "Voir toutes les critiques utilisateur"
 msgstr[1] "Voir les %(cnt)s commentaires utilisateur"
 
 msgid "This add-on has not yet been reviewed."
@@ -733,7 +733,7 @@ msgid "Not allowed"
 msgstr "Non autorisé"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Désolé, c’est interdit.</h1> <p>Vous avez tenté d’accéder à une ressource pour laquelle vous n’avez pas les droits.</p>"
+msgstr "<h1>Désolé, c’est interdit.</h1> <p>Vous avez tenté d’accéder à une ressource à laquelle vous n’avez pas droit.</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>Essayez de revenir à la page précédente, recharger et d’essayer encore.</p>"
@@ -1687,7 +1687,7 @@ msgid "Reports for your Add-ons"
 msgstr "Rapports pour vos modules"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Entrer ci-dessous l’identifiant GUID d’un module pour voir les rapports que nous avons reçus."
+msgstr "Saisissez ci-dessous l’identifiant GUID d’un module pour voir les rapports que nous avons reçus."
 
 msgid "{addon} Compatibility Reports"
 msgstr "Rapports de compatibilité pour {addon}"
@@ -1892,7 +1892,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{user} a approuvé {rating} pour {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr "Revue {rating} pour {addon} supprimée."
+msgstr "Critique {rating} pour {addon} supprimée."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} a supprimé {rating} pour {addon}."
@@ -1901,7 +1901,7 @@ msgid "Application max version for {version} updated."
 msgstr "Version maximale d’application mise à jour en {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Auteurs notifiés par courriel à propos de la compatibilité de {version}."
+msgstr "Auteurs informés par courriel à propos de la compatibilité de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr "Courriel envoyé à l’auteur sur la compatibilité des modules complémentaires."
@@ -2070,7 +2070,7 @@ msgid "Search Engine"
 msgstr "Moteur de recherche"
 
 msgid "Language Pack (Application)"
-msgstr "Pack de langue (application)"
+msgstr "Paquetage de langue (application)"
 
 msgid "Language Pack (Add-on)"
 msgstr "Paquetage linguistique (module)"
@@ -2093,7 +2093,7 @@ msgstr "Dictionnaires"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
-msgstr "Packs de langues (application)"
+msgstr "Paquetages de langues (application)"
 
 msgid "Language Packs (Add-on)"
 msgstr "Paquetages linguistiques (module)"
@@ -2403,13 +2403,13 @@ msgid "Updated Dictionary Review"
 msgstr "Mise à jour de la revue du dictionnaire"
 
 msgid "New Language Pack Review"
-msgstr "Revue de nouveau pack de langue"
+msgstr "Revue de nouveau paquetage de langue"
 
 msgid "Preliminary Language Pack Review"
-msgstr "Revue préliminaire du pack de langue"
+msgstr "Revue préliminaire du paquetage de langue"
 
 msgid "Updated Language Pack Review"
-msgstr "Mise à jour de la revue du pack de langue"
+msgstr "Mise à jour de la revue du paquetage de langue"
 
 msgid "Theme Review"
 msgstr "Revue de thème"
@@ -2695,7 +2695,7 @@ msgid "Changes successfully saved."
 msgstr "Modifications enregistrées avec succès."
 
 msgid "Please check the form for errors."
-msgstr "Merci de vérifier les erreurs dans le formulaire."
+msgstr "Merci de vérifier le formulaire."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Le module ne peut pas être supprimé. Vous devez le désactiver."
@@ -2713,7 +2713,7 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Le nom de l’URL était incorrect. Le module n’a pas été supprimé."
 
 msgid "An author has been added to your add-on"
-msgstr "Un auteur a été ajouté à votre module complémentaire"
+msgstr "Un auteur a été ajouté à votre module"
 
 msgid "An author has a role changed on your add-on"
 msgstr "Le rôle d’un auteur a été modifié sur votre module"
