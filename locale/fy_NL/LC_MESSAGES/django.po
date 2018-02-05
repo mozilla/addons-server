@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 13:31+0000\n"
+"PO-Revision-Date: 2018-02-05 13:33+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5078,7 +5078,7 @@ msgstr "Kin Mozilla myn add-on hoste?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Ja. Jo kinne jo add-on hosten op de <a href=\"%(url)s\">add-onwebsite fan Mozilla</a>."
 
 msgid "What is AMO?"
 msgstr "Wat is AMO?"
@@ -5089,14 +5089,14 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Hâldt Mozilla myn accountgegevens privee?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Ja. Us <a href=\"%(url)s\">Privacybelied</a> beskriuwt hoe't troch Mozilla mei jo gegevens omgien wurdt."
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Wat binne de ‘Untwikkelershelpmiddelen’ op AMO?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
