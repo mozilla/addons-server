@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 10:23+0000\n"
+"PO-Revision-Date: 2018-02-05 11:31+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2387,25 +2387,25 @@ msgid "Theme Review"
 msgstr "Recenzija teme"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Nova recenzija pružaoca usluga pretrage"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Preliminarna recenzija pružaoca usluga pretrage"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Ažurirana recenzija pružaoca usluga pretrage"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Nova recenzija kompletne teme"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Preliminarna recenzija kompletne teme"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Ažurirana recenzija kompletne teme"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Moderirana recenzija dodatka"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
