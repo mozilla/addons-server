@@ -1717,7 +1717,7 @@ msgstr "{addon} ჩართულია."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr "{addon} მდგომარეობა გახდა {0}."
+msgstr "{addon} მდგომარეობა გახდა {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} დაემატა {addon}-ს."
