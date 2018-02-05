@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 06:31+0000\n"
+"PO-Revision-Date: 2018-02-05 06:07+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6141,7 +6141,7 @@ msgid "Is locked by a reviewer."
 msgstr "Заблокований рецензентом."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Встановлений прапорець вимкнення автосхвалення."
 
 msgid "Duplicate Submission"
 msgstr "Дублікат представлення"
@@ -6605,7 +6605,7 @@ msgid "Force-enable add-on"
 msgstr "Примусово увімкнути додаток"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Вимкнути автоматичне схвалення"
 
 msgid "Enable Auto-Approval"
 msgstr "Увімкнути автоматичне схвалення"
@@ -7512,7 +7512,7 @@ msgstr "Натиснувши \"видалити\", ваш обліковий з�
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Повторний вхід з цією адресою е-пошти на %(site)s створить новий обліковий запис, який ніяк не буде пов'язаний з цим обліковим записом."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваші відгуки й оцінки не будуть видалені, але вони більше не будуть пов'язані з вами."
