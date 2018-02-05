@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 11:31+0000\n"
+"PO-Revision-Date: 2018-02-05 11:50+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2408,10 +2408,10 @@ msgid "Moderated Add-on Review"
 msgstr "Moderirana recenzija dodatka"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija recenzije dodatka se vratila"
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "Recenzija sadržaja dodatka"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2426,37 +2426,37 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "Nivo 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Nivo 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Nivo 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Nivo 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Nivo 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Nivo 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Nivo 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Nivo 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Nivo 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Zahtjevaj više informacija"
 
 msgid "Flag"
-msgstr ""
+msgstr "Označeno zastavicom"
 
 msgid "Duplicate"
 msgstr ""
