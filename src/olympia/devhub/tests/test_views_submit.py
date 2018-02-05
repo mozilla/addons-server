@@ -1276,10 +1276,15 @@ class VersionSubmitUploadMixin(object):
             distribution_url + '?channel=' + channel_text)
 
     @override_switch('beta-versions', active=True)
-    def test_beta_field(self):
+    def test_beta_field_with_beta(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('.beta-status').length
+
+    def test_beta_field(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.beta-status')
 
     def test_no_beta_field_when_addon_not_approved(self):
         self.addon.update(status=amo.STATUS_NULL)

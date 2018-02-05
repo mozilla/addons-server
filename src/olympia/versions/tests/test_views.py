@@ -43,7 +43,7 @@ class TestViews(TestCase):
 
     @mock.patch.object(views, 'PER_PAGE', 1)
     @override_switch('beta-versions', active=True)
-    def test_version_detail(self):
+    def test_version_detail_with_beta(self):
         version = version_factory(addon=self.addon, version='2.0')
         version.update(created=self.days_ago(2))
         version = version_factory(addon=self.addon, version='2.1b',
@@ -71,6 +71,31 @@ class TestViews(TestCase):
         self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
 
         version, url = urls[3]
+        assert version == '1.0'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+
+    @mock.patch.object(views, 'PER_PAGE', 1)
+    def test_version_detail(self):
+        version = version_factory(addon=self.addon, version='2.0')
+        version.update(created=self.days_ago(2))
+        version = version_factory(addon=self.addon, version='2.1')
+        version.update(created=self.days_ago(1))
+        urls = [(v.version, reverse('addons.versions',
+                                    args=[self.addon.slug, v.version]))
+                for v in self.addon.versions.all()]
+
+        version, url = urls[0]
+        assert version == '2.1'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+
+        version, url = urls[1]
+        assert version == '2.0'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
+
+        version, url = urls[2]
         assert version == '1.0'
         r = self.client.get(url, follow=True)
         self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)

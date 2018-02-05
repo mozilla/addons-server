@@ -1504,8 +1504,7 @@ def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
-                             (version.is_beta and
-                              waffle.switch_is_active('beta-versions')) or
+                             version.is_beta or
                              (static_theme and addon.has_complete_metadata()))
         if skip_details_step:
             # Nothing to do here.
