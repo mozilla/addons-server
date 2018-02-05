@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-02 08:31+0000\n"
+"PO-Revision-Date: 2018-02-05 08:31+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1851,7 +1851,7 @@ msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} je sada licenciran pod {0}."
 
 msgid "{addon} policy changed."
 msgstr ""
@@ -1860,25 +1860,25 @@ msgid "{addon} icon changed."
 msgstr ""
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} za {addon} je odobrena."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} je odobrio {rating} za {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Pregled {rating} za {addon} je izbrisana."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user} je izbrisao {rating} za {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maksimalna verzija aplikacije za {version} je ažurirana."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Email poslan autorima o kompatibilnosti {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Autoru je poslan email o kompatibilnosti dodatka."
 
 msgid "Password changed."
 msgstr ""
@@ -1896,62 +1896,62 @@ msgid "Created: {0}."
 msgstr ""
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Uređeno polje: {2} postavljen za: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Izbrisano: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Korisnik {user} uredio, razlog: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Korisnik {user} anonimiran."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Korisnik {user} je ograničen."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Admin {0} je pregledao zapisnik aktivnosti za {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} za {addon} je ažurirana."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} pregledan."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je dodan u {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je uklonjen iz {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} sklonjen s liste."
 
 msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID dodatka {0} s GUID {1} je izbrisan"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} se premjestio iz preliminarnih."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Odgovor od programera za {addon} {version}."
 
 msgid "Developer Reply"
 msgstr ""
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Odgovor od pregledača za {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Odgovor pregledača"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Bilješke odobrenja su primijenjene za {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr ""
