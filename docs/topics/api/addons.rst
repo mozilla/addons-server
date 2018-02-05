@@ -515,7 +515,7 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json array results[].version_ranges: An array of affected versions of the add-on.
     :>json string results[].version_ranges[].addon_min_version: minimum version of the add-on to be disabled.
     :>json string results[].version_ranges[].addon_max_version: maximum version of the add-on to be disabled.
-    :>json array string results[].version_ranges[].applications: An array of affected applications for this range of versions.
+    :>json array results[].version_ranges[].applications: An array of affected applications for this range of versions.
     :>json string results[].version_ranges[].applications[].name: Application name (e.g. Firefox).
     :>json int results[].version_ranges[].applications[].id: Application id on AMO.
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
