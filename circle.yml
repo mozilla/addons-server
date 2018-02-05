@@ -47,22 +47,6 @@ jobs:
     working_directory: ~/addons-server
     machine: true
     steps:
-      - run:
-        name: Checkout git repository
-        command: |
-          git clone $CIRCLE_REPOSITORY_URL $CIRCLE_WORKING_DIRECTORY --depth=1
-
-          if [ -n "$CIRCLE_TAG" ]
-          then
-            git reset --hard "$CIRCLE_SHA1"
-            git checkout -q "$CIRCLE_TAG"
-          elif [ -n "$CIRCLE_BRANCH" ]
-          then
-            git reset --hard "$CIRCLE_SHA1"
-            git checkout -q -B "$CIRCLE_BRANCH"
-          fi
-
-          git reset --hard "$CIRCLE_SHA1"
       - restore_cache:
           keys:
             - uitest-cache-{{ checksum "requirements/docs.txt" }}
@@ -70,6 +54,22 @@ jobs:
             - uitest-cache-{{ checksum "requirements/dev.txt" }}
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
+      - run:
+          name: Checkout git repository
+          command: |
+            git clone $CIRCLE_REPOSITORY_URL $CIRCLE_WORKING_DIRECTORY --depth=1
+
+            if [ -n "$CIRCLE_TAG" ]
+            then
+              git reset --hard "$CIRCLE_SHA1"
+              git checkout -q "$CIRCLE_TAG"
+            elif [ -n "$CIRCLE_BRANCH" ]
+            then
+              git reset --hard "$CIRCLE_SHA1"
+              git checkout -q -B "$CIRCLE_BRANCH"
+            fi
+
+            git reset --hard "$CIRCLE_SHA1"
       - run:
           name: Install Docker Compose
           command: |
