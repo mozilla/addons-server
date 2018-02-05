@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 09:24+0000\n"
+"PO-Revision-Date: 2018-02-05 02:52+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4447,7 +4447,7 @@ msgstr "ფაილის შიგთავსი არაა მხარდ
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "შედეგი, შესაძლოა დაზიანებული აღმოჩნდეს, ამიტომ გთხოვთ ყურადღება გამოიჩინოთ და %(link_start)sმოგვახსენოთ ხარვეზის შესახებ%(link_end)s დაუყოვნებლივ!"
+msgstr "შედეგი, შესაძლოა დაზიანებული აღმოჩნდეს, ამიტომ გთხოვთ სიფრთხილე გამოიჩინოთ და %(link_start)sმოგვახსენოთ ხარვეზის შესახებ%(link_end)s დაუყოვნებლივ!"
 
 msgid "Add-on file being processed, please wait."
 msgstr "დამატების ფაილი მუშავდება, გთხოვთ მოითმინოთ."
@@ -7640,7 +7640,7 @@ msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> ვერსია"
 
 msgid "Be careful with old versions!"
-msgstr "ყურადღებით იყავით, ძველ ვერსიებთან!"
+msgstr "სიფრთხილე გამოიჩინეთ, ძველ ვერსიებთან!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
