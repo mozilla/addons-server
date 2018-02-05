@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 08:49+0000\n"
+"PO-Revision-Date: 2018-02-05 10:23+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2114,19 +2114,19 @@ msgid "Games & Entertainment"
 msgstr "Igre i zabava"
 
 msgid "Language Support"
-msgstr ""
+msgstr "Podrška za jezik"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Slike, muzika i video"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Privatnost i sigurnost"
 
 msgid "Shopping"
-msgstr ""
+msgstr "Kupovina"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Druženje i komunikacija"
 
 msgid "Tabs"
 msgstr ""
@@ -2297,7 +2297,7 @@ msgid "RSS, News and Blogging"
 msgstr ""
 
 msgid "Site-specific"
-msgstr ""
+msgstr "Specifično za web"
 
 msgid "Web and Developer Tools"
 msgstr ""
@@ -2306,85 +2306,85 @@ msgid "All Rights Reserved"
 msgstr ""
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Sve platforme"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "App"
-msgstr ""
+msgstr "Aplikacija"
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Ručni recenzent bodova"
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "Nova recenzija dodatka"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Preliminarna recenzija dodatka"
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Ažurirana recenzija dodatka"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Nova recenzija rječnika"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Preliminarna recenzija rječnika"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Ažurirana recenzija rječnika"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Nova recenzija jezičnog paketa"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Preliminarna recenzija jezičnog paketa"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Ažurirana recenzija jezičnog paketa"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Recenzija teme"
 
 msgid "New Search Provider Review"
 msgstr ""
