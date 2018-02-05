@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-04 22:47+0000\n"
+"PO-Revision-Date: 2018-02-05 05:09+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3296,9 +3296,8 @@ msgstr "Votre module sera mis à disposition sous la licence suivante :"
 msgid "Select a different license."
 msgstr "Sélectionnez une licence différente."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Plus d’informations demandées"
+msgstr "Plus d’informations sur les licences Creative Commons"
 
 msgid "Tests"
 msgstr "Tests"
@@ -3649,7 +3648,7 @@ msgid "Header area background"
 msgstr "Arrière-plan de l’en-tête"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
+msgstr "La couleur de l’arrière-plan de l’en-tête, affiché dans la partie de l’en-tête qui n’est pas couverte ou visible à travers l’image de l’en-tête. Champ du manifeste : accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Texte et icônes de l’en-tête"
@@ -3661,7 +3660,7 @@ msgid "Toolbar area background"
 msgstr "Arrière-plan de la barre d’outils"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "La couleur d’arrière-plan pour la barre de navigation, la barre personnelle et l’onglet sélectionné. Champ du manifeste : toolbar."
 
 msgid "Toolbar area text icons"
 msgstr "Texte et icônes de la barre d’outils"
@@ -3679,7 +3678,7 @@ msgid "Toolbar field area text"
 msgstr "Texte des champs de la barre d’outils"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "La couleur du texte des champs dans la barre d’outils, comme la barre d’adresse. Champ du manifeste : toolbar_field_text."
 
 msgid "optional"
 msgstr "facultatif"
@@ -7535,7 +7534,7 @@ msgstr "En cliquant sur « supprimer », votre compte sera <strong>supprimé d
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "La prochaine connexion via cette adresse électronique sur %(site)s créera un nouveau compte qui ne sera en aucun cas associé au compte actuel."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Vos revues et vos notes ne seront pas supprimées mais vous n’y serez plus associé·e."
