@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 11:50+0000\n"
+"PO-Revision-Date: 2018-02-05 13:08+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2459,31 +2459,31 @@ msgid "Flag"
 msgstr "Označeno zastavicom"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliciraj"
 
 msgid "Reject"
-msgstr ""
+msgstr "Odbij"
 
 msgid "Approve"
-msgstr ""
+msgstr "Odobri"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksualni i pornografski sadržaj"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Neprikladan ili uvredljiv sadržaj"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Nasilje, rat ili slike s oružjem"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nacistički ili drugi sadržaj mržnje"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Sadržaj s klevetama"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Kockanje na internetu"
 
 msgid "Spam content"
 msgstr ""
