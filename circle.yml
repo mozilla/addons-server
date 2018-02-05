@@ -50,14 +50,7 @@ jobs:
       - run:
           name: Checkout git repository
           command: |
-            git clone --depth=1 $CIRCLE_REPOSITORY_URL $CIRCLE_WORKING_DIRECTORY
-
-            if [ -n "$CIRCLE_TAG" ]
-            then
-              git fetch --force origin "refs/tags/${CIRCLE_TAG}"
-            else
-              git fetch --force origin "$CIRCLE_BRANCH:remotes/origin/$CIRCLE_BRANCH"
-            fi
+            git clone --single-branch --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
 
             if [ -n "$CIRCLE_TAG" ]
             then
@@ -68,8 +61,6 @@ jobs:
               git reset --hard "$CIRCLE_SHA1"
               git checkout -q -B "$CIRCLE_BRANCH"
             fi
-
-            git reset --hard "$CIRCLE_SHA1"
       - restore_cache:
           keys:
             - uitest-cache-{{ checksum "requirements/docs.txt" }}
