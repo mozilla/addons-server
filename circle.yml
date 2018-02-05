@@ -52,8 +52,6 @@ jobs:
           command: |
             git clone --depth=1 $CIRCLE_REPOSITORY_URL $CIRCLE_WORKING_DIRECTORY
 
-            cd $CIRCLE_WORKING_DIRECTORY
-
             if [ -n "$CIRCLE_TAG" ]
             then
               git fetch --force origin "refs/tags/${CIRCLE_TAG}"
