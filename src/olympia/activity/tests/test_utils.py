@@ -255,6 +255,8 @@ class TestLogAndNotify(TestCase):
         assert ('visit %s' % url) in body
         assert ('receiving this email because %s' % reason_text) in body
         assert 'If we do not hear from you within seven (7) days' in body
+        assert 'reviewing version %s of the add-on %s' % (
+            self.version.version, self.addon.name) in body
 
     def _check_email(self, call, url, reason_text):
         subject = call[0][0]
