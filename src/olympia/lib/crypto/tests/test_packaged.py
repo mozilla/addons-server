@@ -253,7 +253,7 @@ class TestPackagedTrunion(TestCase):
             # The multi-package itself isn't signed.
             assert not packaged.is_signed(self.file_.file_path)
             # The internal extensions aren't either.
-            folder = tempfile.mkdtemp()
+            folder = tempfile.mkdtemp(dir=settings.TMP_PATH)
             try:
                 extract_xpi(self.file_.file_path, folder)
                 # The extension isn't.

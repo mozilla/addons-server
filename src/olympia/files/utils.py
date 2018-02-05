@@ -652,6 +652,7 @@ class SafeZip(object):
         self.is_valid()
         self.zip_file.extract(info, dest)
         dest = os.path.join(dest, info.filename)
+
         if not os.path.isdir(dest):
             # Directories consistently report their size incorrectly.
             size = os.stat(dest)[stat.ST_SIZE]
@@ -690,7 +691,7 @@ class SafeZip(object):
 
 def extract_zip(source, remove=False, raise_on_failure=True):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp()
+    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     zip_file = SafeZip(source, raise_on_failure=raise_on_failure)
     try:
@@ -712,6 +713,7 @@ def copy_over(source, dest):
     """
     if os.path.exists(dest) and os.path.isdir(dest):
         shutil.rmtree(dest)
+
     shutil.copytree(source, dest)
     # mkdtemp will set the directory permissions to 700
     # for the webserver to read them, we need 755
@@ -989,17 +991,15 @@ def write_crx_as_xpi(chunks, storage, target):
     archive, then write it to `target`. Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx
     """
-    temp_crx_file = tempfile.mkstemp()[1]  # a temp file to store the CRX
-
     # First we open the uploaded CRX so we can see how much we need
     # to trim from the header of the file to make it a valid ZIP.
-    with storage.open(temp_crx_file, 'rwb+') as temp_file:
+    with tempfile.NamedTemporaryFile('rwb+', dir=settings.TMP_PATH) as tmp:
         for chunk in chunks:
-            temp_file.write(chunk)
+            tmp.write(chunk)
 
-        temp_file.seek(0)
+        tmp.seek(0)
 
-        header = temp_file.read(16)
+        header = tmp.read(16)
         header_info = struct.unpack('4cHxII', header)
         public_key_length = header_info[5]
         signature_length = header_info[6]
@@ -1009,16 +1009,16 @@ def write_crx_as_xpi(chunks, storage, target):
         start_position = 16 + public_key_length + signature_length
 
         hash = hashlib.sha256()
-        temp_file.seek(start_position)
+        tmp.seek(start_position)
 
         # Now we open the Django storage and write our real XPI file.
         with storage.open(target, 'wb') as file_destination:
-            bytes = temp_file.read(65536)
+            bytes = tmp.read(65536)
             # Keep reading bytes and writing them to the XPI.
             while bytes:
                 hash.update(bytes)
                 file_destination.write(bytes)
-                bytes = temp_file.read(65536)
+                bytes = tmp.read(65536)
 
     return hash
 
