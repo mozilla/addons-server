@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 08:31+0000\n"
+"PO-Revision-Date: 2018-02-05 08:49+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1954,19 +1954,19 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr "Bilješke odobrenja su primijenjene za {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Bilješke odobrenja su promijenjene"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Izvorni kod je prenesen za {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Izvorni kod je prenesen"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Automatsko odobravanje je potvrđeno za {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Automatsko odobravanje je potvrđeno"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -1978,13 +1978,13 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "Sadržaj odobren"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Sadržaj je odbijen"
 
 msgid "Firefox"
 msgstr ""
@@ -2014,25 +2014,25 @@ msgid "Incomplete"
 msgstr ""
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Onemogućeno od Mozille"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Izbrisano"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "Očekuje se odobravanje"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Obilježeno zastavicom za daljnji pregled"
 
 msgid "Beta"
 msgstr ""
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Sklonjeno s liste"
 
 msgid "Developer"
-msgstr ""
+msgstr "Programer"
 
 msgid "Extension"
 msgstr ""
@@ -2044,10 +2044,10 @@ msgid "Search Engine"
 msgstr ""
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Jezični paket (aplikacija)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Jezični paket (dodatak)"
 
 msgid "Plugin"
 msgstr ""
@@ -2056,19 +2056,19 @@ msgid "Theme"
 msgstr ""
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Tema (statička)"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Kompletne teme"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Rječnici"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Jezični paketi (aplikacija)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Jezični paketi (dodatak)"
 
 msgid "Plugins"
 msgstr ""
@@ -2078,40 +2078,40 @@ msgstr ""
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "Ostalo"
 
 msgid "Exception"
-msgstr ""
+msgstr "Izuzetak"
 
 msgid "Release"
-msgstr ""
+msgstr "Izdanje"
 
 msgid "Change"
-msgstr ""
+msgstr "Izmjena"
 
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibilno"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Nekompatibilno"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Upozorenja i ažuriranja"
 
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 msgid "Bookmarks"
 msgstr ""
 
 msgid "Download Management"
-msgstr ""
+msgstr "Menadžment preuzimanja"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Kanali, vijesti i blogiranje"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Igre i zabava"
 
 msgid "Language Support"
 msgstr ""
