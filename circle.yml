@@ -56,6 +56,13 @@ jobs:
 
             if [ -n "$CIRCLE_TAG" ]
             then
+              git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+            else
+              git fetch --force origin "$CIRCLE_BRANCH:remotes/origin/$CIRCLE_BRANCH"
+            fi
+
+            if [ -n "$CIRCLE_TAG" ]
+            then
               git reset --hard "$CIRCLE_SHA1"
               git checkout -q "$CIRCLE_TAG"
             elif [ -n "$CIRCLE_BRANCH" ]
