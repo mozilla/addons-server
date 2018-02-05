@@ -136,16 +136,24 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
 
-    def test_show_hide_statistics(self):
-        # Not disabled by user: show statistics.
+    def test_show_hide_statistics_and_new_version_for_disabled(self):
+        # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
+        assert 'New Version' in links, ('Unexpected: %r' % links)
 
-        # Disabled: hide statistics.
+        # Disabled (user): hide statistics and new version links.
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
+
+        # Disabled (admin): hide statistics and new version links.
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
+        links = self.get_action_links(self.addon.pk)
+        assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
         assert self.addon.status == amo.STATUS_PUBLIC
