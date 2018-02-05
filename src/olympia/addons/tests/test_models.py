@@ -602,7 +602,7 @@ class TestAddonModels(TestCase):
 
     def test_current_beta_version(self):
         addon = Addon.objects.get(pk=5299)
-        assert addon.current_beta_version == None
+        assert addon.current_beta_version is None
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)

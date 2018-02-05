@@ -368,14 +368,21 @@ class TestAddonIndexer(TestCase):
     def test_extract_version_and_files(self):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
+        current_beta_version = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_BETA,
+            })
 
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, file_kw={
+                'is_webextension': True,
+            })
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
-            file=version.all_files[0],
+            file=unlisted_version.all_files[0],
             permissions=['bookmarks', 'random permission']
         )
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         extracted = self._extract()
 
         assert extracted['current_version']
@@ -406,12 +413,12 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert (extracted_file['webext_permissions_list'] ==
-                    file_.webext_permissions_list ==
-                    ['bookmarks', 'random permission'])
+            assert extracted_file['webext_permissions_list'] == []
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
+        version = current_beta_version
+        assert extracted['current_beta_version'] is None
 
         version = unlisted_version
         assert extracted['latest_unlisted_version']
@@ -442,7 +449,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert extracted_file['webext_permissions_list'] == []
+            assert (extracted_file['webext_permissions_list'] ==
+                    file_.webext_permissions_list ==
+                    ['bookmarks', 'random permission'])
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version

@@ -3,7 +3,6 @@ from django.utils.translation import (
     pgettext_lazy, ugettext, ugettext_lazy as _)
 
 import jinja2
-import waffle
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams

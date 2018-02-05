@@ -88,17 +88,17 @@ class TestViews(TestCase):
         version, url = urls[0]
         assert version == '2.1'
         r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
 
         version, url = urls[1]
         assert version == '2.0'
         r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
+        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
 
         version, url = urls[2]
         assert version == '1.0'
         r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+        self.assert3xx(r, self.url_list + '?page=3#version-%s' % version)
 
     def test_version_detail_404(self):
         bad_pk = self.addon.current_version.pk + 42
