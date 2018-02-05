@@ -431,4 +431,4 @@ ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
     '@mozilla.com', '@mozilla.org')
 
 TAAR_ALLOWED_PARAMETERS = (
-    'telemetry-client-id', 'lang', 'platform', 'branch', 'study')
+    'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')

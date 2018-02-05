@@ -82,3 +82,66 @@ discopane_items = [
     DiscoItem(
         addon_id=21085, type=amo.ADDON_PERSONA, addon_name='Evil Robots'),
 ]
+
+"""
+China Edition Firefox shows a different selection of add-ons.
+See discopane_items comments above for more detail on format.
+"""
+discopane_items_china = [
+    # 'Vintage Fabric' theme.
+    DiscoItem(
+        addon_id=492244, type=amo.ADDON_PERSONA, addon_name=u'Vintage Fabric'),
+
+    # Video DownloadHelper
+    DiscoItem(
+        addon_id=3006,
+        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Works seamlessly with most popular video sites.'),
+            '</blockquote>')),
+
+    # New Tab Override
+    DiscoItem(
+        addon_id=626810,
+        addon_name=u'New Tab Override',
+        heading=_(u'Tab Customization {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Set the page you see every time you open a new tab.'),
+            '</blockquote>')),
+
+    # 'Abstract Splash' theme
+    DiscoItem(
+        addon_id=25725, type=amo.ADDON_PERSONA),
+
+    # Emoji Cheatsheet
+    DiscoItem(
+        addon_id=511962,
+        heading=_(u'Enhance your emoji game {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis for every occasion—always just one '
+              u'click away.'),
+            '</blockquote>')),
+
+    # Awesome Screenshot Plus.
+    DiscoItem(
+        addon_id=287841,
+        addon_name=u'Awesome Screenshot Plus',
+        heading=_(u'Take screenshots {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'More than just a basic screenshot tool, Awesome Screenshot '
+              u'Plus lets you annotate images with custom text and graphics, '
+              u'plus the ability to store and share your visuals.'),
+            '</blockquote>')),
+
+    # 'Evil Robots' theme.
+    DiscoItem(
+        addon_id=153659, type=amo.ADDON_PERSONA),
+]

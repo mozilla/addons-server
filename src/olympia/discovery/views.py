@@ -5,7 +5,7 @@ from waffle import switch_is_active
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.discovery.data import discopane_items
+from olympia.discovery.data import discopane_items, discopane_items_china
 from olympia.discovery.serializers import DiscoverySerializer
 from olympia.discovery.utils import get_recommendations, replace_extensions
 
@@ -28,8 +28,13 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     def get_discopane_items(self):
         if not getattr(self, 'discopane_items', None):
             params = self.get_params()
-            telemetry_id = params.pop('telemetry-client-id', None)
-            self.discopane_items = discopane_items
+            if params.pop('edition', None) == 'china':
+                self.discopane_items = discopane_items_china
+                # No TAAR for China Edition.
+                telemetry_id = None
+            else:
+                self.discopane_items = discopane_items
+                telemetry_id = params.pop('telemetry-client-id', None)
             if switch_is_active('disco-recommendations') and telemetry_id:
                 recommendations = get_recommendations(
                     telemetry_id, params)
