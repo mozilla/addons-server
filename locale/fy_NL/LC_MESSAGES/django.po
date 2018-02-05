@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 10:40+0000\n"
+"PO-Revision-Date: 2018-02-05 13:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5002,6 +5002,8 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language) is Mozilla’s op XML basearre taal wêrmei't jo crossplatfoarm-tapassingen fol funksjes bouwe kinne. It biedt brûkersynterfacewidgets as knoppen, menu’s, arkbalken, "
+"beammen ensfh. dy't jo brûke kinne om add-ons te meitsjen troch dielen fan de brûkersynterface fan de browser oan te passen."
 
 #, python-format
 msgid ""
@@ -5014,7 +5016,7 @@ msgstr ""
 "%(portlegacy_link_open)sIn ferâldere Firefox-add-on portearje%(link_close)s foar mear ynformaasje oer it migrearjen fan in ferâldere add-on."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Hoe test ik op komptabiliteit mei de lêste ferzje fan Mozilla-software?"
 
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
@@ -5026,15 +5028,15 @@ msgstr ""
 "by it bètaproses belutsen te wêzen om derfoar te soargjen dat jo brûkers gjin negative gefolgen ûnderfine by de definitive útjefte fan Mozilla-software."
 
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Ik haw wat advys nedich by it bouwen fan myn add-on. Wêr kin ik help fine?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (foar diskusjes oer add-on-ûntwikkeling)"
 
 #. #amo is the name of the IRC channel.  do not change.
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (foar stipe mei betrekking ta it hosten fan jo add-on op AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
@@ -5050,13 +5052,15 @@ msgid "No."
 msgstr "Nee."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "Binne der eksterne ûntwikkelers dy't ik ynhiere kin om myn add-on te bouwen?"
 
 #, python-format
 msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"Ja. Jo kinne eksterne ûntwikkelers fine fia it <a href=\"%(forum_url)s\">Add-onsfoarum</a>, <a href=\"%(list_url)s\">de mozilla.jobs-list</a>, <a href=\"%(mz_url)s\">mozillaZine-forums</a> of <a "
+"href=\"%(wiki_url)s\">de Mozilla-wiki</a>. Mozilla docht gjin oanrekommandaasjes foar ûntwikkelers."
 
 msgid "Can I host my own add-on?"
 msgstr "Kin ik myn eigen add-on hoste?"
