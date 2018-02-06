@@ -50,16 +50,26 @@ jobs:
       - run:
           name: Checkout git repository
           command: |
-            git clone --single-branch --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
+            if [ -n "$CIRCLE_PR_NUMBER" ]
+            then
+              git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
 
-            if [ -n "$CIRCLE_TAG" ]
-            then
-              git reset --hard "$CIRCLE_SHA1"
-              git checkout -q "$CIRCLE_TAG"
-            elif [ -n "$CIRCLE_BRANCH" ]
-            then
-              git reset --hard "$CIRCLE_SHA1"
-              git checkout -q -B "$CIRCLE_BRANCH"
+              git fetch origin "+refs/pull/$CIRCLE_PR_NUMBER/merge:"
+              git checkout -f FETCH_HEAD
+            else
+              git clone --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
+
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+              fi
+
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git checkout --force "$CIRCLE_TAG"
+              else
+                git checkout --force "$CIRCLE_SHA1"
+              fi
             fi
       - restore_cache:
           keys:
