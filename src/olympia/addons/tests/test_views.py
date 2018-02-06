@@ -2262,8 +2262,6 @@ class TestAddonSearchView(ESTestCase):
         # assertNumQueries() call later.
         waffle.switch_is_active('boost-webextensions-in-search')
 
-        request = APIRequestFactory().get('/')
-
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
@@ -2940,8 +2938,6 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
         waffle.switch_is_active('boost-webextensions-in-search')
-
-        request = APIRequestFactory().get('/')
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
