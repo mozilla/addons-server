@@ -2264,8 +2264,6 @@ class TestAddonSearchView(ESTestCase):
 
         request = APIRequestFactory().get('/')
 
-        waffle.flag_is_active(request, 'search-use-dfs-query-then-fetch')
-
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
@@ -2944,8 +2942,6 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         waffle.switch_is_active('boost-webextensions-in-search')
 
         request = APIRequestFactory().get('/')
-
-        waffle.flag_is_active(request, 'search-use-dfs-query-then-fetch')
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
