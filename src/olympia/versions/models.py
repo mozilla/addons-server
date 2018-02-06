@@ -215,7 +215,7 @@ class Version(OnChangeMixin, ModelBase):
                 version.all_files[0].file_path, theme_data, version_root)
             preview = Preview.objects.create(
                 addon=addon, caption=unicode(version.version))
-            generate_static_theme_preview(
+            generate_static_theme_preview.delay(
                 theme_data, version_root, preview)
 
         # Track the time it took from first upload through validation

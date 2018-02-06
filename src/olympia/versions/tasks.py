@@ -4,6 +4,7 @@ from base64 import b64encode
 from django.core.files.storage import default_storage as storage
 from django.template import loader
 
+from wand.exceptions import WandException
 from wand.image import Image as WandImage
 
 import olympia.core.logger
@@ -29,6 +30,8 @@ def write_svg_to_png(svg_content, out):
                     size = img.size
     except IOError as ioerror:
         log.debug(ioerror)
+    except WandException as wand_exception:
+        log.debug(wand_exception)
     finally:
         if os.path.exists(temp_svg_path):
             os.unlink(temp_svg_path)
@@ -58,8 +61,10 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
                 data_url = 'data:%s;base64,%s' % (
                     header_image.mimetype, b64encode(header_blob))
                 context.update(header_src=data_url)
-    except IOError as ioerror:
-        log.debug(ioerror)
+    except IOError as io_error:
+        log.debug(io_error)
+    except WandException as wand_exception:
+        log.debug(wand_exception)
 
     svg = tmpl.render(context).encode('utf-8')
     size = write_svg_to_png(svg, preview.image_path)
