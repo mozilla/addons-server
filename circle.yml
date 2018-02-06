@@ -62,8 +62,6 @@ jobs:
               if [ -n "$CIRCLE_TAG" ]
               then
                 git fetch --force origin "refs/tags/${CIRCLE_TAG}"
-              else
-                git fetch --force origin ":remotes/origin/"
               fi
 
               if [ -n "$CIRCLE_TAG" ]
