@@ -45,3 +45,4 @@ logs/*
 supervisord.pid
 .ipython
 docker*.yml
+.pytest_cache/
