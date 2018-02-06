@@ -55,11 +55,11 @@ jobs:
               git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
 
               git fetch origin "+refs/pull/$CIRCLE_PR_NUMBER/merge:"
-              git checkout -qf FETCH_HEAD
+              git checkout -f FETCH_HEAD
             else
               git clone --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
 
-              git checkout -qf "$CIRCLE_SHA1"
+              git checkout -f "$CIRCLE_SHA1"
             fi
       - restore_cache:
           keys:
