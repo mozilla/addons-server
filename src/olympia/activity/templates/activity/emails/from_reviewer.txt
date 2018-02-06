@@ -1,6 +1,6 @@
 Hello,
 
-{{ author }}, a reviewer at addons.mozilla.org, found an issue when reviewing version {{ version }} of the add-on {{ name }} and requests additional information. You are receiving this email because {{ email_reason }}.
+{{ author }}, a reviewer at addons.mozilla.org, found an issue when reviewing version {{ number }} of the add-on {{ name }} and requests additional information. You are receiving this email because {{ email_reason }}.
 
 *********
 {{ author }} wrote:
