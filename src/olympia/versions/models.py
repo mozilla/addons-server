@@ -430,6 +430,8 @@ class Version(OnChangeMixin, ModelBase):
         num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
             return num_files == 0
+        elif self.is_beta and not waffle.switch_is_active('beta-versions'):
+            return False
         elif num_files == 0:
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
