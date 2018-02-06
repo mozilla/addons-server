@@ -59,7 +59,19 @@ jobs:
             else
               git clone --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
 
-              git checkout -f "$CIRCLE_SHA1"
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+              else
+                git fetch --force origin ":remotes/origin/"
+              fi
+
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git checkout --force "$CIRCLE_TAG"
+              else
+                git checkout --force "$CIRCLE_SHA1"
+              fi
             fi
       - restore_cache:
           keys:
