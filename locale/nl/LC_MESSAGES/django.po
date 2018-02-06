@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-01 10:39+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2018-02-06 11:44+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -6573,7 +6573,7 @@ msgid "Notify me about new listed versions"
 msgstr "Mij berichten over nieuwe versies in de lijst"
 
 msgid "Force-disable add-on"
-msgstr "Add-on gedwongen uitschakelen"
+msgstr "Add-on geforceerd uitschakelen"
 
 msgid "Force-enable add-on"
 msgstr "Add-on geforceerd inschakelen"
@@ -7494,7 +7494,7 @@ msgstr "Door op ‘verwijderen’ te klikken, wordt uw account <strong>definitie
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "Indien u zich met dit e-mailadres opnieuw aanmeldt bij %(site)s wordt een nieuwe account aangemaakt die geen verband houdt met deze account."
+msgstr "Als u zich opnieuw bij %(site)s aanmeldt met dit e-mailadres, wordt een nieuwe account aangemaakt die geen verband houdt met deze account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Uw beoordelingen en waarderingen worden niet verwijderd, maar ze zijn niet meer met u geassocieerd."
