@@ -272,6 +272,25 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
+    @override_switch('beta-versions', active=True)
+    def test_version_is_allowed_upload_beta(self):
+        version = Version.objects.get(pk=81551)
+        version.files.all().delete()
+        amo.tests.file_factory(version=version,
+                               status=amo.STATUS_BETA,
+                               platform=amo.PLATFORM_MAC.id)
+        version = Version.objects.get(pk=81551)
+        assert version.is_allowed_upload()
+
+    def test_version_is_not_allowed_upload_beta(self):
+        version = Version.objects.get(pk=81551)
+        version.files.all().delete()
+        amo.tests.file_factory(version=version,
+                               status=amo.STATUS_BETA,
+                               platform=amo.PLATFORM_MAC.id)
+        version = Version.objects.get(pk=81551)
+        assert not version.is_allowed_upload()
+
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
