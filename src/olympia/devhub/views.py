@@ -1354,8 +1354,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         data = form.cleaned_data
 
         if version:
-            is_beta = (version.is_beta and
-                       waffle.switch_is_active('beta-versions'))
+            is_beta = version.is_beta
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],
