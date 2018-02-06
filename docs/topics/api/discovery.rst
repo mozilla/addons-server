@@ -18,6 +18,7 @@ Firefox (about:addons).
  .. http:get:: /api/v3/discovery/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string edition: Return content for a specific edition of Firefox.  Currently only ``china`` is supported.
     :>json int count: The number of results for this query.
     :>json array results: The array containing the results for this query.
     :>json string results[].heading: The heading for this item. May contain some HTML tags.
@@ -41,6 +42,10 @@ of results will be returned as a standard discovery response and only extensions
 E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
 Up to 4 extensions will be replaced with recommendations; the 3 themes will not
 be replaced. The API will still return a total of 7 items.
+
+.. note::
+    Specifying an ``edition`` parameter disables recommendations - the ``telemetry-client-id``
+    is ignored and standard discovery response returned.
 
 
  .. http:get:: /api/v3/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef

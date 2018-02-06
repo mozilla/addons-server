@@ -430,5 +430,5 @@ MOZILLA_TRADEMARK_SYMBOLS = (
 ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
     '@mozilla.com', '@mozilla.org')
 
-TAAR_ALLOWED_PARAMETERS = (
-    'telemetry-client-id', 'lang', 'platform', 'branch', 'study')
+DISCO_API_ALLOWED_PARAMETERS = (
+    'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
