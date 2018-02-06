@@ -235,7 +235,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         # Sense check to make sure we're testing all known params in this test
         # strip out 'edition' as providing it means no taar.
-        taar_allowed_params = [p for p in amo.TAAR_ALLOWED_PARAMETERS
+        taar_allowed_params = [p for p in amo.DISCO_API_ALLOWED_PARAMETERS
                                if p != 'edition']
         assert sorted(known_params.keys()) == sorted(taar_allowed_params)
 

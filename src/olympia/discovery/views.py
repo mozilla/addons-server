@@ -18,7 +18,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         params = dict(self.kwargs)
         params.update(self.request.GET.iteritems())
         params = {param: value for (param, value) in params.iteritems()
-                  if param in amo.TAAR_ALLOWED_PARAMETERS}
+                  if param in amo.DISCO_API_ALLOWED_PARAMETERS}
         lang = params.pop('lang', None)
         if lang:
             # Need to change key to what taar expects
