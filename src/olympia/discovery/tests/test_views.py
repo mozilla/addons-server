@@ -9,8 +9,7 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.discovery.data import (
-    DiscoItem, discopane_items, discopane_items_china)
+from olympia.discovery.data import DiscoItem, discopane_items as disco_data
 from olympia.discovery.utils import replace_extensions
 
 
@@ -92,6 +91,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['next'] is None
         assert response.data['previous'] is None
@@ -110,6 +110,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         response = self.client.get(self.url, {'lang': 'ru'})
         assert response.data
 
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['next'] is None
         assert response.data['previous'] is None
@@ -134,6 +135,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         assert response.data['previous'] is None
         assert response.data['results']
 
+        discopane_items = disco_data['default']
         results = response.data['results']
         assert results[0]['addon']['id'] == discopane_items[3].addon_id
         assert results[1]['addon']['id'] == discopane_items[4].addon_id
@@ -145,6 +147,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             self.url, {'lang': 'en-US', 'edition': 'china'})
         assert response.data
 
+        discopane_items_china = disco_data['china']
         assert response.data['count'] == len(discopane_items_china)
         assert response.data['next'] is None
         assert response.data['previous'] is None
@@ -156,6 +159,21 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 self._check_disco_theme(result, discopane_items_china[i])
             else:
                 self._check_disco_addon(result, discopane_items_china[i])
+
+    def test_invalid_edition_returns_default(self):
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'edition': 'platinum'})
+        assert response.data
+
+        discopane_items = disco_data['default']
+        assert response.data['count'] == len(discopane_items)
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items[i])
+            else:
+                self._check_disco_addon(result, discopane_items[i])
 
 
 @override_switch('disco-recommendations', active=True)
@@ -197,6 +215,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
             '666', {'locale': 'en-US', 'platform': 'WINNT'})
 
         # should still be the same number of results.
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']
 
@@ -265,7 +284,8 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         self.get_recommendations.assert_not_called()
 
         # should be normal results
-        assert response.data['count'] == len(discopane_items)
+        discopane_items_china = disco_data['china']
+        assert response.data['count'] == len(discopane_items_china)
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
             if 'theme_data' in result['addon']:
