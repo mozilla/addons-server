@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM python:2.7.14-slim-stretch
 
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
@@ -8,33 +8,42 @@ ENV SWIG_FEATURES="-D__x86_64__"
 ENV OLYMPIA_UID=9500
 RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 
-ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
-ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
+# Add nodesource repository and requirements
+ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
+RUN apt-get update && apt-get install -y \
+        gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
+# ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
+RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
+ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 
-ADD docker/epel.repo /etc/yum.repos.d/
-ADD docker/git.repo /etc/yum.repos.d/git.repo
-ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
-
-RUN yum install -y                                          \
-        gcc-c++                                             \
-        gettext                                             \
+RUN apt-get update && apt-get install -y \
+        # General (dev-) dependencies
+        bash-completion                  \
+        build-essential                  \
+        curl                             \
+        libjpeg-dev                      \
+        libsasl2-dev                     \
+        libxml2-dev                      \
+        libxslt-dev                      \
+        locales                          \
+        zlib1g-dev                       \
+        libffi-dev                       \
+        libssl-dev                       \
+        python-dev                       \
+        python-pip                       \
+        nodejs                           \
+        npm                              \
+        uwsgi                            \
+        uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
-        git                                                 \
-        libffi-devel                                        \
-        libxml2-devel                                       \
-        libxslt-devel                                       \
-        make                                                \
-        mariadb                                             \
-        mariadb-devel                                       \
-        nodejs                                              \
-        openssl-devel                                       \
-        python-devel                                        \
-        swig                                                \
-        uwsgi-2.0.13.1-2.el7                                \
-        uwsgi-plugin-python                                 \
-    && yum clean all                                        \
-    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+        git                              \
+        # Dependencies for mysql-python
+        mysql-client                     \
+        default-libmysqlclient-dev       \
+        swig                             \
+        gettext                          \
+    && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -55,7 +64,13 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/syste
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_without_hash.txt\
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
 
-RUN echo -e "from olympia.lib.settings_base import *\n\
+# Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
+RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+# Fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=783738
+RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
+
+RUN echo "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
 CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
