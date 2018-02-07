@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-06 14:57+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-02-07 10:48+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -3203,7 +3203,7 @@ msgid "No, this add-on will be upgraded manually."
 msgstr "לא, תוספת זו תשודרג ידנית."
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "מזהה ייחודי אוניברסלי"
 
 # 75%
 # 100%
@@ -4399,7 +4399,7 @@ msgid "Hide Add-on"
 msgstr "הסתרת תוספת"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "הסתרת התוספת שלך תמנע ממנה להופיע בגלריה שלנו ותמנע ממשתמשים להמשיך לקבל עבורה עדכונים אוטומטיים."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "הקבצים הממתינים לסקירה ינוטרלו ויהיה עליך להעלות גרסאות חדשות."
@@ -4907,12 +4907,12 @@ msgstr ""
 msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
-msgstr ""
+msgstr "בעת עדכון לגרסה חדשה של Firefox או עדכון של התוספות שלך, הדיווחים שלך על הגרסאות הישנות יוסתרו כדי לאפשר לך לבדוק את הגרסה החדשה. אם יש לך שאלות, ניתן לשאול ב<a href=\"%(url)s\">פורומים שלנו</a>."
 
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
-msgstr ""
+msgstr "אלפי תוספות נוצרות על ידי הקהילה שלנו מדי שנה והעזרה שלך בבדיקת תאימות מסייעת לנו לוודא שהתוספות האלו עדיין שימושיות כחלק מהמאמץ שלנו לספק חוויית משתמש מעולה."
 
 msgid "Thank you!"
 msgstr "תודה לך!"
