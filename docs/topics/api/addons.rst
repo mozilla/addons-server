@@ -325,7 +325,6 @@ This endpoint allows you to list all versions belonging to a specific add-on.
                           a user account listed as a developer of the add-on.
         all_with_deleted  Show all versions attached to this add-on, including
                           deleted ones. Requires admin permissions.
-               only_beta  Show beta versions only.
     ====================  =====================================================
 
 --------------

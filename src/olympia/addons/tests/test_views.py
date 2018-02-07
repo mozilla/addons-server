@@ -2135,6 +2135,13 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.old_version.files.update(status=amo.STATUS_BETA)
         self._test_url_only_contains_old_version(filter='only_beta')
 
+    def test_no_beta_version(self):
+        self.version.files.update(status=amo.STATUS_BETA)
+        response = self.client.get(self.url, data={'filter': 'only_beta'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == ['Invalid "filter" parameter specified.']
+
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
     client_class = APITestClient
