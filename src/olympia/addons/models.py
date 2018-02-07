@@ -1404,6 +1404,18 @@ class Addon(OnChangeMixin, ModelBase):
         except AddonReviewerFlags.DoesNotExist:
             return None
 
+    @property
+    def pending_info_request(self):
+        try:
+            return self.addonreviewerflags.pending_info_request
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def expired_info_request(self):
+        info_request = self.pending_info_request
+        return info_request and info_request < datetime.now()
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1480,20 +1492,6 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
             f.hide_disabled_file()
 
 
-@Addon.on_change
-def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
-                          sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    developer_comments_changed = (new_attr.get('_developer_comments_cache') and
-                                  old_attr.get('_developer_comments_cache') !=
-                                  new_attr.get('_developer_comments_cache'))
-    if developer_comments_changed:
-        instance.versions.update(has_info_request=False)
-
-
 def attach_translations(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Addon, addons)
@@ -1513,6 +1511,8 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
+    pending_info_request = models.DateTimeField(default=None, null=True)
+    notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):

@@ -534,7 +534,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 7  # All 7 sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All 8 sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -560,6 +560,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
+            reverse('reviewers.queue_expired_info_requests'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -573,7 +574,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 7  # All 7 sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All 7 sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -599,6 +600,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
+            reverse('reviewers.queue_expired_info_requests'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1688,6 +1690,53 @@ class TestAutoApprovedQueue(QueueTest):
         assert link.attr('href') == self.url
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1\u20131 of 4')
+
+
+class TestExpiredInfoRequestsQueue(QueueTest):
+
+    def setUp(self):
+        super(TestExpiredInfoRequestsQueue, self).setUp()
+        self.url = reverse('reviewers.queue_expired_info_requests')
+
+    def generate_files(self):
+        # Extra add-on with no pending info request.
+        addon_factory(name=u'Extra Addôn 1')
+
+        # Extra add-on with a non-expired pending info request.
+        extra_addon = addon_factory(name=u'Extra Addôn 2')
+        AddonReviewerFlags.objects.create(
+            addon=extra_addon,
+            pending_info_request=datetime.now() + timedelta(days=1))
+
+        # Addon with expired info request 1.
+        addon1 = addon_factory(name=u'Addön 1')
+        AddonReviewerFlags.objects.create(
+            addon=addon1,
+            pending_info_request=self.days_ago(2))
+
+        # Addon with expired info request 2.
+        addon2 = addon_factory(name=u'Addön 2')
+        AddonReviewerFlags.objects.create(
+            addon=addon2,
+            pending_info_request=self.days_ago(42))
+
+        self.expected_addons = [addon2, addon1]
+
+    def test_results_no_permission(self):
+        # Addon reviewer doesn't have access.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_results(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.generate_files()
+        self._test_results()
 
 
 class TestContentReviewQueue(QueueTest):
@@ -2792,13 +2841,18 @@ class TestReview(ReviewBase):
         token = doc('#extra-review-actions').attr('data-api-token')
         assert token == 'youdidntsaythemagicword'
 
-    def test_extra_actions_admin_disable_enable_not_for_reviewers(self):
+    def test_extra_actions_not_for_reviewers(self):
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#force_disable_addon')
         assert not doc('#force_enable_addon')
+        assert not doc('#clear_admin_code_review')
+        assert not doc('#clear_admin_content_review')
+        assert not doc('#disable_auto_approval')
+        assert not doc('#enable_auto_approval')
+        assert not doc('#clear_pending_info_request')
 
     def test_extra_actions_admin_disable_enable(self):
         self.login_as_admin()
@@ -2823,16 +2877,6 @@ class TestReview(ReviewBase):
         assert doc('#clear_admin_code_review').length == 1
         assert doc('#clear_admin_content_review').length == 0
 
-    def test_unflag_option_forflagged_as_reviewer(self):
-        self.login_as_reviewer()
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_admin_code_review').length == 0
-        assert doc('#clear_admin_content_review').length == 0
-
     def test_unflag_content_option_forflagged_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
@@ -2844,14 +2888,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#clear_admin_code_review').length == 0
         assert doc('#clear_admin_content_review').length == 1
-
-    def test_disable_auto_approvals_as_reviewer(self):
-        self.login_as_reviewer()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#disable_auto_approval')
-        assert not doc('#enable_auto_approval')
 
     def test_disable_auto_approvals_as_admin(self):
         self.login_as_admin()
@@ -2881,19 +2917,53 @@ class TestReview(ReviewBase):
         elem = doc('#enable_auto_approval')[0]
         assert 'hidden' not in elem.getparent().attrib.get('class', '')
 
+    def test_clear_pending_info_request_as_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#clear_pending_info_request')
+
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#clear_pending_info_request')
+
     def test_info_request_checkbox(self):
         self.login_as_reviewer()
-        assert not self.version.has_info_request
+        assert not self.addon.pending_info_request
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert 'checked' not in doc('#id_info_request')[0].attrib
+        elm = doc('#id_info_request_deadline')[0]
+        assert elm.attrib['readonly'] == 'readonly'
+        assert elm.attrib['min'] == '7'
+        assert elm.attrib['max'] == '7'
+        assert elm.attrib['value'] == '7'
 
-        self.version.update(has_info_request=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            pending_info_request=datetime.now() + timedelta(days=7))
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#id_info_request')[0].attrib['checked'] == 'checked'
+
+    def test_info_request_checkbox_admin(self):
+        self.login_as_admin()
+        assert not self.addon.pending_info_request
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'checked' not in doc('#id_info_request')[0].attrib
+        elm = doc('#id_info_request_deadline')[0]
+        assert 'readonly' not in elm.attrib
+        assert elm.attrib['min'] == '1'
+        assert elm.attrib['max'] == '99'
+        assert elm.attrib['value'] == '7'
 
     def test_no_public(self):
         has_public = self.version.files.filter(
@@ -3678,15 +3748,6 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
             'reply|')
 
-        # If we set info request checkbox should be available on comment too.
-        self.version.update(has_info_request=True)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert (
-            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
-            'reply|comment|')
-
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
@@ -4138,6 +4199,9 @@ class TestAddonReviewerViewSet(TestCase):
         self.disable_auto_approval_url = reverse(
             'reviewers-addon-disable-auto-approval',
             kwargs={'pk': self.addon.pk})
+        self.clear_pending_info_request_url = reverse(
+            'reviewers-addon-clear-pending-info-request',
+            kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -4501,3 +4565,47 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 202
         reviewer_flags.reload()
         assert not reviewer_flags.auto_approval_disabled
+
+    def test_clear_pending_info_request_not_logged_in(self):
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 401
+
+    def test_clear_pending_info_request_no_rights(self):
+        self.client.login_api(self.user)
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 403
+
+        # Being a reviewer is not enough.
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 403
+
+    def test_clear_pending_info_request_addon_does_not_exist(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.clear_pending_info_request_url = reverse(
+            'reviewers-addon-clear-pending-info-request',
+            kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 404
+
+    def test_clear_pending_info_request_no_flags_yet(self):
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 202
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
+    def test_clear_pending_info_request(self):
+        reviewer_flags = AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=True,
+            pending_info_request=self.days_ago(1))
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.clear_pending_info_request_url)
+        assert response.status_code == 202
+        reviewer_flags.reload()
+        assert reviewer_flags.pending_info_request is None
+        assert reviewer_flags.needs_admin_code_review  # Not touched.

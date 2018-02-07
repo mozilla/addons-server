@@ -199,8 +199,7 @@ function initExtraReviewActions() {
      */
     // Checkbox-style actions.
     $('#notify_new_listed_versions').click(_pd(function() {
-        var $input = $(this);
-        $input.prop('disabled', true);  // Prevent double-send.
+        var $input = $(this).prop('disabled', true);  // Prevent double-send.
         var checked = !$input.prop('checked');  // It's already changed.
         var apiUrl;
         if (checked) {
@@ -225,17 +224,20 @@ function initExtraReviewActions() {
     }));
 
     // One-off-style buttons
-    $('#clear_admin_code_review, #clear_admin_content_review').click(_pd(function() {
-        var $button = $(this);
-        $button.prop('disabled', true);  // Prevent double-send.
+    $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request').click(_pd(function() {
+        var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var token = $button.parents('form.more-actions').data('api-token');
         var flagType = $button.data('api-flag');
+        var data = null;
+        if (flagType) {
+            data = JSON.stringify({
+                flag_type: flagType,
+            });
+        }
         $.ajax({
             url: apiUrl,
-            data: JSON.stringify({
-                flag_type: flagType,
-            }),
+            data: data,
             type: 'post',
             beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
@@ -250,9 +252,8 @@ function initExtraReviewActions() {
 
     // Toggle-style buttons.
     $('#force_disable_addon, #force_enable_addon, #disable_auto_approval, #enable_auto_approval').click(_pd(function() {
-        var $button = $(this);
+        var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var $other_button = $($button.data('toggle-button-selector'));
-        $button.prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var token = $button.parents('form.more-actions').data('api-token');
         $.ajax({

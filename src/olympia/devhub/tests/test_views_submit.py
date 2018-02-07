@@ -13,7 +13,8 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, Category
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonReviewerFlags, Category)
 from olympia.amo.tests import (
     TestCase, addon_factory, formset, initial, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
@@ -1519,6 +1520,54 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.version.finish',
                               args=[self.addon.slug, self.version.pk]))
+
+    def test_show_request_for_information(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' in response.content
+
+    def test_dont_show_request_for_information_if_none_pending(self):
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' not in response.content
+
+    def test_clear_request_for_information(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        response = self.client.post(
+            self.url, {'clear_pending_info_request': True})
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request is None
+
+    def test_dont_clear_request_for_information(self):
+        past_date = self.days_ago(2)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=past_date)
+        response = self.client.post(self.url)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request == past_date
 
     def test_can_cancel_review(self):
         addon = self.get_addon()

@@ -45,9 +45,9 @@ from olympia.reviewers.models import (
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.utils import (
-    AutoApprovedTable, ContentReviewTable, ReviewHelper,
-    ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable,
-    is_limited_reviewer)
+    AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
+    ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
+    ViewUnlistedAllListTable, is_limited_reviewer)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -269,6 +269,12 @@ def dashboard(request):
         sections[ugettext('Announcement')] = [(
             ugettext('Update message of the day'),
             reverse('reviewers.motd')
+        )]
+    if view_all or acl.action_allowed(
+            request, amo.permissions.REVIEWS_ADMIN):
+        sections[ugettext('Admin Tools')] = [(
+            ugettext('Add-ons with expired information requests'),
+            reverse('reviewers.queue_expired_info_requests')
         )]
     return render(request, 'reviewers/dashboard.html', base_context(**{
         # base_context includes motd.
@@ -647,6 +653,16 @@ def queue_auto_approved(request):
                   qs=qs, SearchForm=None)
 
 
+@permission_required(amo.permissions.REVIEWS_ADMIN)
+def queue_expired_info_requests(request):
+    qs = (
+        Addon.objects.filter(
+            addonreviewerflags__pending_info_request__lt=datetime.now()
+        ).order_by('addonreviewerflags__pending_info_request'))
+    return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
+                  qs=qs, SearchForm=None)
+
+
 def _get_comments_for_hard_deleted_versions(addon):
     """Versions are soft-deleted now but we need to grab review history for
     older deleted versions that were hard-deleted so the only record we have
@@ -779,7 +795,7 @@ def review(request, addon, channel=None):
         return redirect(reverse('reviewers.queue'))
 
     # Get the current info request state to set as the default.
-    form_initial = {'info_request': version and version.has_info_request}
+    form_initial = {'info_request': addon.pending_info_request}
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
@@ -862,10 +878,6 @@ def review(request, addon, channel=None):
     # the comments form).
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
-    # The actions we should show the 'info request' checkbox for.
-    actions_info_request = [k for (k, a) in actions
-                            if a.get('info_request', False)]
-
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
                                   .exclude(files__status=amo.STATUS_BETA)
@@ -901,10 +913,7 @@ def review(request, addon, channel=None):
         verdict_info = summary.calculate_verdict(pretty=True)
         auto_approval_info[a_version.pk] = verdict_info
 
-    if version:
-        flags = get_flags(version)
-    else:
-        flags = []
+    flags = get_flags(addon, version) if version else []
 
     try:
         whiteboard = Whiteboard.objects.get(pk=addon.pk)
@@ -923,7 +932,6 @@ def review(request, addon, channel=None):
         addon=addon).order_by('id')
     ctx = context(
         request, actions=actions, actions_comments=actions_comments,
-        actions_info_request=actions_info_request,
         actions_minimal=actions_minimal, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
@@ -1192,5 +1200,18 @@ class AddonReviewerViewSet(GenericViewSet):
             reviewerflags.update(**flags_data)
         except AddonReviewerFlags.DoesNotExist:
             # If it does not exist, there is nothing to unflag.
+            pass
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def clear_pending_info_request(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        try:
+            reviewerflags = addon.addonreviewerflags
+            reviewerflags.update(pending_info_request=None)
+        except AddonReviewerFlags.DoesNotExist:
+            # If it does not exist, there is nothing to clear.
             pass
         return Response(status=status.HTTP_202_ACCEPTED)
