@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-07 10:48+0000\n"
+"PO-Revision-Date: 2018-02-07 11:00+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5144,13 +5144,13 @@ msgid "Can I specify a license agreement for using my add-on?"
 msgstr "אוכל לציין הסכם רישוי לשימוש בתוספת שלי?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "כן. באפשרותך לציין הסכם רישוי בעת הגשת התוספת שלך. ניתן גם להוסיף או לעדכן הסכם רישוי באמצעות לוח הבקרה של כלי הפיתוח לאחר הגשת התוספת שלך."
+msgstr "כן. באפשרותך לציין הסכם רישוי בעת הגשת התוספת שלך. ניתן גם להוסיף או לעדכן הסכם רישוי באמצעות לוח כלי הפיתוח לאחר הגשת התוספת שלך."
 
 msgid "Can I include a privacy policy for my add-on?"
 msgstr "אוכל לכלול מדיניות פרטיות בתוספת שלי?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "כן. ניתן לציין מדיניות פרטיות בעת הגשת התוספת שלך. ניתן גם להוסיף או לעדכן מדיניות פרטיות באמצעות לוח כלי הפיתוח לאחר הגשת התוספת שלך."
 
 msgid "Must my add-on be reviewed?"
 msgstr "האם התוספת שלי חייבת לעבור סקירה?"
@@ -5206,14 +5206,14 @@ msgid "How can I see how many times my add-on has been downloaded?"
 msgstr ""
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
+msgstr "לוח הסטטיסטיקה שניתן למצוא בלוח כלי הפיתוח מספק מידע שיכול לסייע לך להבין כמה פעמים הורידו את התוספת שלך מאז שהגשת אותה ל־AMO."
 
 msgid "How can I see how many active users are using my add-on?"
 msgstr ""
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
+msgstr "לוח הסטטיסטיקה שניתן למצוא בלוח כלי הפיתוח מספק מידע שיכול לסייע לך להבין כמה משתמשים עושים שימוש בתוספת שלך באופן פעיל מאז שהגשת אותה ל־AMO."
 
 msgid "How do I submit an update for my add-on?"
 msgstr "איך אוכל להגיש עדכון לתוספת שלי?"
@@ -5228,10 +5228,10 @@ msgid "Add-on updates may be subject to review just the same as new submissions.
 msgstr ""
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "איך ניתן להגיב למשתמש שפרסם סקירה שלילית על התוספת שלי?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
+msgstr "מפתח יכול להגיב לכל סקירה שפורסמה על התוספת שלו כל עוד הוא מחובר ל־AMO. בנוסף, כל משתמש יכול לסמן סקירה בתור:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
