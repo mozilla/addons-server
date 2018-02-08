@@ -1,6 +1,6 @@
 import math
-import operator
 import os
+import shutil
 import tempfile
 from base64 import b64encode
 
@@ -34,11 +34,13 @@ def test_write_svg_to_png():
     svg_png_img = Image.open(svg_png)
     svg_out_img = Image.open(out)
     image_diff = ImageChops.difference(svg_png_img, svg_out_img)
+    sum_of_squares = sum(
+        value * ((idx % 256) ** 2)
+        for idx, value in enumerate(image_diff.histogram()))
     rms = math.sqrt(
-        reduce(operator.add, map(
-            lambda h, i: h * (i ** 2), image_diff.histogram(), range(1024))
-        ) / (float(svg_png_img.size[0]) * svg_png_img.size[1]))
-    assert rms < 960
+        sum_of_squares / float(svg_png_img.size[0] * svg_png_img.size[1]))
+
+    assert rms == 0
 
 
 @pytest.mark.django_db

@@ -1,11 +1,14 @@
 import os
+import StringIO
+import subprocess
+import tempfile
 from base64 import b64encode
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.template import loader
 
-from wand.exceptions import WandException
-from wand.image import Image as WandImage
+from PIL import Image
 
 import olympia.core.logger
 from olympia import amo
@@ -17,24 +20,24 @@ log = olympia.core.logger.getLogger('z.files.utils')
 
 
 def write_svg_to_png(svg_content, out):
-    temp_svg_path = out + '.svg'
-    size = None
-    try:
-        with storage.open(temp_svg_path, 'wb') as svgout:
-            svgout.write(svg_content)
-        with storage.open(temp_svg_path, 'rb') as svgout:
-            with WandImage(file=svgout, format='svg') as img:
-                img.format = 'png'
-                with storage.open(out, 'wb') as out:
-                    img.save(file=out)
-                    size = img.size
-    except IOError as ioerror:
-        log.debug(ioerror)
-    except WandException as wand_exception:
-        log.debug(wand_exception)
-    finally:
-        if os.path.exists(temp_svg_path):
-            os.unlink(temp_svg_path)
+    tmp_args = {'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg'}
+    with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:
+        temporary_svg.write(svg_content)
+        temporary_svg.flush()
+
+        size = None
+        try:
+            command = [
+                settings.RSVG_CONVERT_BIN,
+                '-o', out,
+                temporary_svg.name
+            ]
+            subprocess.check_call(command)
+            size = amo.THEME_PREVIEW_SIZE
+        except IOError as io_error:
+            log.debug(io_error)
+        except subprocess.CalledProcessError as process_error:
+            log.debug(process_error)
     return size
 
 
@@ -51,20 +54,18 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
     try:
         with storage.open(header_path, 'rb') as header_file:
             header_blob = header_file.read()
-            with WandImage(blob=header_blob) as header_image:
+            with Image.open(StringIO.StringIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 context.update(header_src_height=height)
                 meetOrSlice = ('meet' if width < amo.THEME_PREVIEW_SIZE.width
                                else 'slice')
                 context.update(
                     preserve_aspect_ratio='xMaxYMin %s' % meetOrSlice)
-                data_url = 'data:%s;base64,%s' % (
-                    header_image.mimetype, b64encode(header_blob))
-                context.update(header_src=data_url)
+            data_url = 'data:image/%s;base64,%s' % (
+                header_image.format.lower(), b64encode(header_blob))
+            context.update(header_src=data_url)
     except IOError as io_error:
         log.debug(io_error)
-    except WandException as wand_exception:
-        log.debug(wand_exception)
 
     svg = tmpl.render(context).encode('utf-8')
     size = write_svg_to_png(svg, preview.image_path)

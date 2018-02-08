@@ -78,6 +78,9 @@ CLEANCSS_BIN = 'cleancss'
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
+# rsvg-convert is used to save our svg static theme previews to png
+RSVG_CONVERT_BIN = 'rsvg-convert'
+
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
