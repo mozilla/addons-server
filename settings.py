@@ -93,9 +93,9 @@ AES_KEYS = {
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
-        'client_id': 'cd5a21fafacc4744',
+        'client_id': 'f336377c014eacf0',
         'client_secret':
-            '4db6f78940c6653d5b0d2adced8caf6c6fd8fd4f2a3a448da927a54daba7d401',
+            '5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d',
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
