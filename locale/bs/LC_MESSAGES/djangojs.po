@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2017-12-04 13:12+0000\n"
-"Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
+"PO-Revision-Date: 2018-02-08 08:22+0000\n"
+"Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
@@ -98,25 +98,26 @@ msgstr[1] "Vaši dodaci jsu validirani bez grešaka i {0} poruka."
 msgstr[2] ""
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Vaš dodatak je validiran bez grešaka ili upozorenja."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Vaš dodatak je automatski potpisan."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension nadogradnja"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proces. Jednom kada vaši korisnici budu imali instaliran WebExtension, neće biti u mogućnosti instalirati dodatak naslijeđa."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Portanje naslijeđa Firefox dodataka na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Uključite detaljne bilješke verzije (ovo se može uraditi u sljedećem koraku)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Ako vaš dodatak zahtijeva korisnički račun na web stranici kako bi se potpuno testirao, dodajte testno korisničko ime i lozinku u bilješke za recenzenta (ovo se može uraditi u sljedećem koraku)."
 
 msgid "Add-on submission checklist"
 msgstr ""
