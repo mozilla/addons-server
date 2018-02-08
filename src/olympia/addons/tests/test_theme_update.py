@@ -119,11 +119,11 @@ class TestThemeUpdate(TestCase):
         assert self.get_update('en-US', 813).get_json() is None
 
     def test_get_json_good_ids(self):
-        self.addon = Addon.objects.get()
-        self.addon.summary = 'yolo'
-        self.addon._current_version = Version.objects.get()
-        self.addon.save()
-        self.addon.increment_theme_version_number()
+        addon = Addon.objects.get()
+        addon.summary = 'yolo'
+        addon._current_version = Version.objects.get()
+        addon.save()
+        addon.increment_theme_version_number()
 
         # Testing `addon_id` from AMO.
         self.check_good(
@@ -139,6 +139,14 @@ class TestThemeUpdate(TestCase):
 
         self.check_good(
             json.loads(self.get_update('en-US', 813, 'src=gp').get_json()))
+
+    def test_blank_footer_url(self):
+        addon = Addon.objects.get()
+        persona = addon.persona
+        persona.footer = ''
+        persona.save()
+        data = json.loads(self.get_update('en-US', addon.pk).get_json())
+        assert data['footerURL'] == ''
 
     def test_image_path(self):
         up = self.get_update('en-US', 15663)

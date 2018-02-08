@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 07:52+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-06 11:44+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,9 @@ msgstr "Vermeld"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Paden naar add-ons en collecties dienen met ‘/’ te eindigen"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Namen van add-ons mogen de Mozilla- of Firefox-handelsmerken niet bevatten."
 
 msgid "Abuse reported."
 msgstr "Misbruik gemeld."
@@ -1757,9 +1760,9 @@ msgstr "{addon} uitgeschakeld."
 msgid "{addon} enabled."
 msgstr "{addon} ingeschakeld."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Status van {addon} gewijzigd in {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Status van {addon} gewijzigd in {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} aan {addon} toegevoegd."
@@ -2049,13 +2052,6 @@ msgstr "Niet vermeld"
 
 msgid "Developer"
 msgstr "Ontwikkelaar"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Lezer"
-
-msgid "Support"
-msgstr "Ondersteuning"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -2588,12 +2584,6 @@ msgstr "Mislukte validatie negeren"
 msgid "Submit my add-on for manual review."
 msgstr "Mijn add-on voor beoordeling indienen."
 
-msgid "Do not list my add-on on this site"
-msgstr "Mijn add-on niet op deze website weergeven"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Vink deze optie aan als u uw add-on zelf wilt verspreiden en alleen door Mozilla wilt laten ondertekenen."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Een bestand met een versie die eindigt op a|alpha|b|beta|pre|rc en een optioneel cijfer wordt als bèta gedetecteerd."
 
@@ -2988,13 +2978,11 @@ msgid "About author roles"
 msgstr "Over ontwikkelaarsfuncties"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Add-ons kunnen meerdere schrijvers hebben met drie mogelijke rollen:</p> <ul> <li><b>Eigenaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, inclusief toevoegen en verwijderen"
-" van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers</li> <li><b>Lezer:</b> Kan "
-"de instellingen en statistieken van de add-on bekijken, maar kan geen wijzigingen aanbrengen</li> </ul>"
+"<p>Add-ons kunnen meerdere schrijvers hebben met twee mogelijke rollen:</p> <ul> <li><b>Eigenaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, inclusief toevoegen en verwijderen"
+" van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Basisgegevens"
@@ -3275,20 +3263,11 @@ msgstr "Een schermafbeelding toevoegen…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Mogen anderen uw add-on delen, zolang ze u bedanken?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "De licentiegever staat anderen alleen voor niet-commerciële doeleinden toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Mogen anderen uw add-on commercieel gebruiken?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Mogen anderen werk afleiden van uw add-on?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, en staat tevens toe werk ervan af te leiden."
 
 msgid "Yes, as long as they share alike"
 msgstr "Ja, zo lang ze dat ook delen"
@@ -3296,14 +3275,14 @@ msgstr "Ja, zo lang ze dat ook delen"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "De licentiegever staat anderen alleen toe afgeleid werk te verspreiden onder dezelfde licentie of een licentie die compatibel is met de licentie waaronder het werk van de licentiegever valt."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "De licentiegever staat anderen alleen toe ongewijzigde kopieën van het werk te kopiëren, verspreiden en verzenden &ndash; geen ervan afgeleide werken."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Uw add-on wordt uitgegeven onder de volgende licentie:"
 
 msgid "Select a different license."
 msgstr "Een andere licentie selecteren."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Meer informatie over Creative Commons-licenties"
 
 msgid "Tests"
 msgstr "Tests"
@@ -3459,6 +3438,9 @@ msgstr "Gebruik uitsluitend letters, cijfers, liggende streepjes en streepjes in
 
 msgid "Summary:"
 msgstr "Samenvatting:"
+
+msgid "required"
+msgstr "vereist"
 
 msgid "This add-on is experimental"
 msgstr "Deze add-on is experimenteel"
@@ -3624,11 +3606,11 @@ msgstr "Thema aanmaken"
 msgid "Theme generator"
 msgstr "Thema-generator"
 
-msgid "Select a header image for your Theme."
-msgstr "Selecteer een headerafbeelding voor uw thema."
+msgid "Theme name"
+msgstr "Themanaam"
 
-msgid "required"
-msgstr "vereist"
+msgid "Select a header image for your theme"
+msgstr "Selecteer een headerafbeelding voor uw thema"
 
 msgid "Image height should be 200 pixels"
 msgstr "Afbeeldingshoogte dient 200 pixels te zijn"
@@ -3642,49 +3624,49 @@ msgstr "Rechtsboven uitgelijnd"
 msgid "Select a different header image"
 msgstr "Andere headerafbeelding selecteren"
 
-msgid "Select colors for your Theme."
-msgstr "Selecteer kleuren voor uw thema."
+msgid "Select colors for your theme"
+msgstr "Selecteer kleuren voor uw thema"
 
-msgid "Header area background (accentcolor)"
-msgstr "Achtergrond van headergebied (accentkleur)"
+msgid "Header area background"
+msgstr "Achtergrond van headergebied"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "De kleur van de achtergrond van het headergebied, weergegeven in het deel van de header dat niet wordt afgedekt of zichtbaar is via de headerafbeelding."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "De kleur van de achtergrond van het headergebied, weergegeven in het deel van de header dat niet wordt afgedekt of zichtbaar is via de headerafbeelding. Manifestveld:   accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Tekst van headergebied (textcolor)"
+msgid "Header area text and icons"
+msgstr "Tekst en pictogrammen van headergebied"
 
-msgid "The color of the text displayed in the header area."
-msgstr "De kleur van de tekst die wordt weergegeven in het headergebied."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "De kleur van de tekst en de pictogrammen in het headergebied, behalve het actieve tabblad. Manifestveld:   textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Achtergrond van werkbalkgebied (toolbar)."
+msgid "Toolbar area background"
+msgstr "Achtergrond van werkbalkgebied"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad.  Manifestveld:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Tekst van werkbalkgebied (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Tekst en pictogrammen van werkbalkgebied"
 
-msgid "The color of toolbar text."
-msgstr "De kleur van werkbalktekst."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "De kleur van tekst en pictogrammen in de werkbalk en het actieve tabblad. Manifestveld:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Achtergrond van werkbalkveldgebied (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Achtergrond van werkbalkveldgebied"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "De achtergrondkleur voor velden in de werkbalk, zoals de URL-balk."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "De achtergrondkleur voor velden in de werkbalk, zoals de URL-balk. Manifestveld:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Tekst werkbalkveldgebied (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Tekst van werkbalkveldgebied"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk. Manifestveld:  toolbar_field_text."
 
 msgid "optional"
 msgstr "optioneel"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Browservoorbeeld"
 
 msgid "Back"
@@ -3693,8 +3675,8 @@ msgstr "Terug"
 msgid "Uploading Theme"
 msgstr "Thema uploaden"
 
-msgid "Upload Theme"
-msgstr "Thema uploaden"
+msgid "Finish Theme"
+msgstr "Thema voltooien"
 
 msgid "API Credentials"
 msgstr "API-referenties"
@@ -3897,6 +3879,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Contact opnemen"
 
+msgid "Support"
+msgstr "Ondersteuning"
+
 msgid "Policies"
 msgstr "Beleidsregels"
 
@@ -4089,11 +4074,23 @@ msgstr "Thema-licentie"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mogen andere uw thema delen, zolang ze u bedanken?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "De licentiegever staat anderen alleen voor niet-commerciële doeleinden toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Mogen anderen uw thema commercieel gebruiken?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Mogen anderen werk afleiden van uw thema?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, en staat tevens toe werk ervan af te leiden."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "De licentiegever staat anderen alleen toe ongewijzigde kopieën van het werk te kopiëren, verspreiden en verzenden &ndash; geen ervan afgeleide werken."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Uw thema wordt uitgegeven onder de volgende licentie:"
@@ -4127,6 +4124,9 @@ msgstr "Header"
 
 msgid "Footer"
 msgstr "Footer"
+
+msgid "Select colors for your Theme."
+msgstr "Selecteer kleuren voor uw thema."
 
 msgid "Foreground Text"
 msgstr "Voorgrondtekst"
@@ -4191,6 +4191,9 @@ msgstr "Bekijk en abonneer u op de <a href=\"%(feed_url)s\">activiteitenfeed</a>
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Discussieer mee op onze <a href=\"%(forum_url)s\">forums</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Selecteer een headerafbeelding voor uw thema."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
@@ -6064,15 +6067,6 @@ msgstr "Besturingssystemen:"
 msgid "Applications:"
 msgstr "Toepassingen:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Markering voor codebeoordeling door beheerder wissen"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Markering voor inhoudsbeoordeling door beheerder wissen"
-
 msgid "Is more info requested?"
 msgstr "Is er meer informatie gevraagd?"
 
@@ -6119,6 +6113,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Is vergrendeld door een beoordelaar."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld’."
 
 msgid "Duplicate Submission"
 msgstr "Dubbele inzending"
@@ -6568,6 +6565,30 @@ msgstr "Het privénotitiebord wordt gebruikt voor de uitwisseling van versieonaf
 
 msgid "Update whiteboards"
 msgstr "Notitieborden bijwerken"
+
+msgid "More Actions"
+msgstr "Meer acties"
+
+msgid "Notify me about new listed versions"
+msgstr "Mij berichten over nieuwe versies in de lijst"
+
+msgid "Force-disable add-on"
+msgstr "Add-on geforceerd uitschakelen"
+
+msgid "Force-enable add-on"
+msgstr "Add-on geforceerd inschakelen"
+
+msgid "Disable Auto-Approval"
+msgstr "Automatische goedkeuring uitschakelen"
+
+msgid "Enable Auto-Approval"
+msgstr "Automatische goedkeuring inschakelen"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Markering voor codebeoordeling door beheerder wissen"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Markering voor inhoudsbeoordeling door beheerder wissen"
 
 msgid "(admin)"
 msgstr "(beheer)"
@@ -7472,8 +7493,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Door op ‘verwijderen’ te klikken, wordt uw account <strong>definitief verwijderd</strong>. Dat betekent:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "U kunt zich niet meer aanmelden bij %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Als u zich opnieuw bij %(site)s aanmeldt met dit e-mailadres, wordt een nieuwe account aangemaakt die geen verband houdt met deze account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Uw beoordelingen en waarderingen worden niet verwijderd, maar ze zijn niet meer met u geassocieerd."

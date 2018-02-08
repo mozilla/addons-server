@@ -85,12 +85,12 @@ bleach==1.5.0 \
 celery==4.1.0 \
     --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
     --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
-botocore==1.8.34 \
-    --hash=sha256:628994a88d09a1fe7d96e0c4b786302463bdfaff9f829d4a72ebe8d02e8160ba \
-    --hash=sha256:b7c33d79fe4c6b8d15f4191aa6e60e3ac0f290b3ce3a8b4d831f79eddbca7115
-boto3==1.5.20 \
-    --hash=sha256:24f8f919126b8a55ef3be6729243f71ffe4b927408e4a1be4e64671cdb011409 \
-    --hash=sha256:06614d6111c0bcc7e76ef699e4caec0de87217180486e43ec2c353d6f01a409d
+botocore==1.8.38 \
+    --hash=sha256:1e82d18c23ba0c2251404aee33483e82729e5d4b1838c528206f2ed2ba4516cd \
+    --hash=sha256:aa0aa83766b1dbb23f67d807222d78ab5ba528c23be5e7ffca7d8643e6224272
+boto3==1.5.23 \
+    --hash=sha256:f2892b2ebd03d8a7be0f2d12ea02258cde54cd4ba48c57198d6967d58db50152 \
+    --hash=sha256:9f2b5551cea7b754a14fab7bdf037208b6be74d6e1200f37b30ca2fc4d439745
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -261,8 +261,8 @@ mozilla-logger==0.2 \
 natsort==5.1.1 \
     --hash=sha256:ee2f7715bf45a65cc1ab1d80360b00299102c7bf9d87757a27e14ddaafa57d0e \
     --hash=sha256:9ffbfb74bf3fc3905be1b9b052ed865675651e38fcd972ed1ed5c64a02f93cbd
-newrelic==2.100.0.84 \
-    --hash=sha256:b75123173ac5e8a20aa9d8120e20a7bf45c38a5aa5a4672fac6ce4c3e0c8046e
+newrelic==2.102.0.85 \
+    --hash=sha256:b01ecb7ca6cd2ae1fab1c462a29b8534a1ff896959d9950248f7a44164e69724
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
@@ -281,9 +281,9 @@ pyquery==1.4.0 \
     --hash=sha256:07987c2ed2aed5cba29ff18af95e56e9eb04a2249f42ce47bddfb37f487229a3 \
     --hash=sha256:4771db76bd14352eba006463656aef990a0147a0eeaf094725097acfa90442bf
 # pytest is required by amo-validator
-pytest==3.3.2 \
-    --hash=sha256:b84878865558194630c6147f44bdaef27222a9f153bbd4a08908b16bf285e0b1 \
-    --hash=sha256:53548280ede7818f4dc2ad96608b9f08ae2cc2ca3874f2ceb6f97e3583f25bc4
+pytest==3.4.0 \
+    --hash=sha256:95fa025cd6deb5d937e04e368a00552332b58cae23f63b76c8c540ff1733ab6d \
+    --hash=sha256:6074ea3b9c999bd6d0df5fa9d12dd95ccd23550df2a582f5f5b848331d2e82ca
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.1 \
     --hash=sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c \

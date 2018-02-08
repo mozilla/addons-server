@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 10:53+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-01 22:34+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -159,6 +159,9 @@ msgstr "Tersenarai"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Laluan add-on dan koleksi perlu berakhir dengan \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Nama add-on tidak boleh mengandungi tanda dagangan Mozilla atau Firefox."
 
 msgid "Abuse reported."
 msgstr "Salah guna dilapor."
@@ -1713,9 +1716,9 @@ msgstr "{addon} dinyahdayakan."
 msgid "{addon} enabled."
 msgstr "{addon} didayakan."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "{addon} ditukar status ke {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} ditukar status ke {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} ditambah ke {addon}."
@@ -2001,12 +2004,6 @@ msgstr "Tidak tersenarai"
 
 msgid "Developer"
 msgstr "Pembangun"
-
-msgid "Viewer"
-msgstr "Pemerhati"
-
-msgid "Support"
-msgstr "Sokongan"
 
 msgid "Extension"
 msgstr "Ekstensi"
@@ -2535,12 +2532,6 @@ msgstr "Pembatalan gagal pengesahan"
 msgid "Submit my add-on for manual review."
 msgstr "Kemukakan add-on saya untuk semakan manual."
 
-msgid "Do not list my add-on on this site"
-msgstr "Jangan senaraikan add-on saya dalam laman ini"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Tandakan pilihan ini jika anda berhasrat untuk mengedarkan sendiri add-on anda dan hanya perlukannya ditandatangan oleh Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Fail dengan versi yang berakhir dengan a|alpha|b|beta|pre|rc dan satu nombor pilihan akan dikesan sebagai beta."
 
@@ -2929,13 +2920,11 @@ msgid "About author roles"
 msgstr "Perihal peranan pengarang"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Add-ons boleh diuruskan oleh beberapa pengarang dengan 3 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
-"pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain</li> <li><b>Penyemak:</b> Boleh menyemak tetapan dan"
-" statistik add-on, tapi tidak boleh membuat apa-apa perubahan</li> </ul>"
+"<p>Add-ons boleh diuruskan oleh beberapa pengarang dengan 2 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
+"pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Maklumat Asas"
@@ -3209,20 +3198,11 @@ msgstr "Tambah Skrinsyot..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Bolehkah pihak lain kongsikan Add-on, selagi anda diberi penghargaan?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Bolehkah pihak lain menggunakan Add-on anda bagi tujuan komersial?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Add-on anda?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
 
 msgid "Yes, as long as they share alike"
 msgstr "Ya, selagi mereka berkongsi yang sama"
@@ -3230,14 +3210,14 @@ msgstr "Ya, selagi mereka berkongsi yang sama"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Pemberi lesen membenarkan pihak lain untuk mengedarkan kerja terbitan hanya di bawah lesen yang sama atau yang serasi dengan yang mengawal lesen kerja."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Add-on anda akan dikeluarkan di bawah lesen berikut:"
 
 msgid "Select a different license."
 msgstr "Pilih lesen yang lain."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Maklumat lanjut tentang lesen Creative Commons"
 
 msgid "Tests"
 msgstr "Ujian"
@@ -3392,6 +3372,9 @@ msgstr "Sila gunakan hanya huruf, nombor, garis bawah, dan sengkang dalam URL an
 
 msgid "Summary:"
 msgstr "Ringkasan:"
+
+msgid "required"
+msgstr "diperlukan"
 
 msgid "This add-on is experimental"
 msgstr "Add-on ini masih eksperimen"
@@ -3556,11 +3539,11 @@ msgstr "Jana tema"
 msgid "Theme generator"
 msgstr "Penjana tema"
 
-msgid "Select a header image for your Theme."
-msgstr "Pilih imej pengepala untuk Tema anda."
+msgid "Theme name"
+msgstr "Nama tema"
 
-msgid "required"
-msgstr "diperlukan"
+msgid "Select a header image for your theme"
+msgstr "Pilih imej pengepala untuk tema anda"
 
 msgid "Image height should be 200 pixels"
 msgstr "Tinggi imej hendaklah 200 piksel"
@@ -3574,50 +3557,50 @@ msgstr "Sejajar bahagian atas-kanan"
 msgid "Select a different header image"
 msgstr "Pilih imej pengepala yang lain"
 
-msgid "Select colors for your Theme."
-msgstr "Pilih warna untuk Tema anda."
+msgid "Select colors for your theme"
+msgstr "Pilih warna untuk tema anda"
 
-msgid "Header area background (accentcolor)"
-msgstr "Latar belakang kawasan pengepala (accentcolor)"
+msgid "Header area background"
+msgstr "Latar belakang kawasan pengepala"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Warna latar belakang kawasan pengepala, dipaparkan dengan sebahagian pengepala tidak dilindungi atau boleh dilihat menembusi imej pengepala."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Warna latar belakang kawasan pengepala, dipaparkan dengan sebahagian pengepala tidak dilindungi atau boleh dilihat menembusi imej pengepala. Medan manifes:  accentcolour."
 
-msgid "Header area text (textcolor)"
-msgstr "Teks kawasan pengepala (textcolor)"
+msgid "Header area text and icons"
+msgstr "Teks dan ikon kawasan pengepala"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Warna teks yang dipaparkan dalam kawasan pengepala."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Warna teks yang dipaparkan dalam kawasan pengepala kecuali tab yang aktif. Medan manifes:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Latar belakang kawasan bar alatan (toolbar)."
+msgid "Toolbar area background"
+msgstr "Latar belakang kawasan bar alatan"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih.  Medan manifes:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Teks kawasan bar alatan (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Teks dan ikon kawasan bar alatan"
 
-msgid "The color of toolbar text."
-msgstr "Warna untuk teks bar alatan."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Warna teks dan ikon dalam medan bar alatan dan tab yang aktif. Medan manifes:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Latar belakang kawasan medan bar alatan (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Latar belakang kawasan medan bar alatan"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Warna latar belakang untuk medan dalam bar alatan, seperti bar URL."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Warna latar belakang untuk medan dalam bar alatan, seperti bar URL. Medan manifes:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Teks kawasan medan bar alatan (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Teks kawasan medan bar alatan"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Warna teks dalam medan bar alatan, seperti bar URL"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Warna teks dalam medan bar alatan, seperti bar URL. Medan manifes:  toolbar_field_text."
 
 msgid "optional"
 msgstr "pilihan"
 
-msgid "Browser Preview"
-msgstr "Previu Pelayar"
+msgid "Browser preview"
+msgstr "Previu pelayar"
 
 msgid "Back"
 msgstr "Undur"
@@ -3625,8 +3608,8 @@ msgstr "Undur"
 msgid "Uploading Theme"
 msgstr "Memuat naik Tema"
 
-msgid "Upload Theme"
-msgstr "Muat naik Tema"
+msgid "Finish Theme"
+msgstr "Tema Siap"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
@@ -3826,6 +3809,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Hubungi Kami"
 
+msgid "Support"
+msgstr "Sokongan"
+
 msgid "Policies"
 msgstr "Polisi"
 
@@ -4016,11 +4002,23 @@ msgstr "Lesen Tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Bolehkah orang lain berkongsi tema anda, selagi anda diberi penghargaan?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Tema anda?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Tema anda akan dikeluarkan di bawah lesen berikut:"
@@ -4054,6 +4052,9 @@ msgstr "Pengepala"
 
 msgid "Footer"
 msgstr "Pembawah"
+
+msgid "Select colors for your Theme."
+msgstr "Pilih warna untuk Tema anda."
 
 msgid "Foreground Text"
 msgstr "Teks Latardepan"
@@ -4118,6 +4119,9 @@ msgstr "Tinjau dan langgan <a href=\"%(feed_url)s\">suapan aktiviti</a> tema and
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Sertai perbualan dalam <a href=\"%(forum_url)s\">forum</a> kami."
+
+msgid "Select a header image for your Theme."
+msgstr "Pilih imej pengepala untuk Tema anda."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
@@ -5983,15 +5987,6 @@ msgstr "Sistem pengoperasian:"
 msgid "Applications:"
 msgstr "Aplikasi:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Maklumkan saya apabila add-on ini dikemaskini. (Kemaskini seterusnya tidak akan menjana e-mel)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Buang Tanda Semakan Kod Pentadbir"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Buang Tanda Semakan Kandungan Pentadbir"
-
 msgid "Is more info requested?"
 msgstr "Perlu minta info selanjutnya?"
 
@@ -6038,6 +6033,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Dikunci oleh penyemak."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Ada tetapan auto-kelulusan nyahdaya."
 
 msgid "Duplicate Submission"
 msgstr "Duplikasi Serahan"
@@ -6478,6 +6476,30 @@ msgstr "Papan putih peribadi digunakan untuk penyemak bertukar maklumat bebas ve
 
 msgid "Update whiteboards"
 msgstr "Kemaskini papan putih"
+
+msgid "More Actions"
+msgstr "Tindakan Lanjutan"
+
+msgid "Notify me about new listed versions"
+msgstr "Maklumkan saya apabila ada versi baru yang disenaraikan"
+
+msgid "Force-disable add-on"
+msgstr "Add-on yang dipaksa-nyahdaya"
+
+msgid "Force-enable add-on"
+msgstr "Add-on yang dipaksa-daya"
+
+msgid "Disable Auto-Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
+
+msgid "Enable Auto-Approval"
+msgstr "Dayakan Auto-Kelulusan"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Buang Tanda Semakan Kod Pentadbir"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Buang Tanda Semakan Kandungan Pentadbir"
 
 msgid "(admin)"
 msgstr "(pentadbir)"
@@ -7363,8 +7385,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Dengan mengklik \"buang\" akaun anda akan <strong>dihapuskan secara kekal</strong>. Ini bermakna:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Anda tidak boleh lagi log masuk ke %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Log masuk ke dalam %(site)s sekali lagi dengan alamat e-mel ini akan mencipta akaun baru yang tiada kaitan dengan akaun ini."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan penarafan tidak akan dihapuskan, tapi tidak akan dikaitkan lagi dengan anda."

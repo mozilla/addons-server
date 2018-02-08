@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y \
         python-pip                       \
         nodejs                           \
         npm                              \
+        uwsgi                            \
+        uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
         git                              \
         # Dependencies for mysql-python
@@ -61,6 +63,12 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/syste
     && [ -f requirements/prod_without_hash.txt ]                                                   \
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_without_hash.txt\
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
+
+# Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
+RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+# Fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=783738
+RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
 
 RUN echo "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\

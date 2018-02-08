@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2018-01-14 08:23+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-01-29 17:53+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -182,7 +182,7 @@ msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"
 
 msgid "Flagged for review"
-msgstr "გადაცემულია განსახილველად"
+msgstr "მონიშნულია განსახილველად"
 
 msgid "Your input is required"
 msgstr "საჭიროა მონაცემების შეყვანა"
@@ -805,7 +805,7 @@ msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"
 
 msgid "Flagged"
-msgstr "ჩანიშნულია"
+msgstr "მონიშნულია"
 
 msgid "Duplicate"
 msgstr "დუბლირება"

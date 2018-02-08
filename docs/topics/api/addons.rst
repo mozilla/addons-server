@@ -459,7 +459,6 @@ on AMO.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json array results: An array of language tools.
     :>json int results[].id: The add-on id on AMO.
-    :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -516,7 +515,7 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json array results[].version_ranges: An array of affected versions of the add-on.
     :>json string results[].version_ranges[].addon_min_version: minimum version of the add-on to be disabled.
     :>json string results[].version_ranges[].addon_max_version: maximum version of the add-on to be disabled.
-    :>json array string results[].version_ranges[].applications: An array of affected applications for this range of versions.
+    :>json array results[].version_ranges[].applications: An array of affected applications for this range of versions.
     :>json string results[].version_ranges[].applications[].name: Application name (e.g. Firefox).
     :>json int results[].version_ranges[].applications[].id: Application id on AMO.
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.

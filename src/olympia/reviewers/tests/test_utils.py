@@ -456,7 +456,9 @@ class TestReviewHelper(TestCase):
         assert self.version.has_info_request
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == self.preamble
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
 
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
@@ -556,7 +558,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -584,7 +586,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -618,7 +620,7 @@ class TestReviewHelper(TestCase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -669,7 +671,7 @@ class TestReviewHelper(TestCase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -875,7 +877,7 @@ class TestReviewHelper(TestCase):
             '%s signed and ready to download' % self.preamble)
         assert 'our automatic tests and is now signed' in mail.outbox[0].body
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1114,9 +1116,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
@@ -1160,8 +1162,7 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
+            u'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
         assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.filter(
@@ -1203,9 +1204,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]

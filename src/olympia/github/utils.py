@@ -13,7 +13,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.files.utils import SafeUnzip
+from olympia.files.utils import SafeZip
 
 
 log = olympia.core.logger.getLogger('z.github')
@@ -133,7 +133,7 @@ def rezip_file(response, pk):
     new_filename = '{}_github_webhook.xpi'.format(pk)
     new_path = os.path.join(loc, new_filename)
 
-    old_zip = SafeUnzip(old_path)
+    old_zip = SafeZip(old_path)
     if not old_zip.is_valid():
         raise
 

@@ -9,29 +9,32 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.discovery.data import DiscoItem, discopane_items
+from olympia.discovery.data import DiscoItem, discopane_items as disco_data
 from olympia.discovery.utils import replace_extensions
 
 
-class TestDiscoveryViewList(TestCase):
-    def setUp(self):
-        super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse('discovery-list')
+# Represents a dummy version of `olympia.discovery.data`
+def get_dummy_addons():
+    return OrderedDict([
+        (676070, addon_factory(id=676070, type=amo.ADDON_PERSONA)),
+        (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+        (8542, addon_factory(id=8542, type=amo.ADDON_EXTENSION)),
+        (290486, addon_factory(id=290486, type=amo.ADDON_PERSONA)),
+        (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
+        (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+        (21085, addon_factory(id=21085, type=amo.ADDON_PERSONA)),
+        # And now the china edition addons
+        (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA)),
+        (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
+        (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
+        (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
+        # 511962 is in both
+        (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
+        (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA)),
+    ])
 
-        # Represents a dummy version of `olympia.discovery.data`
-        self.addons = OrderedDict([
-            (676070, addon_factory(id=676070, type=amo.ADDON_PERSONA)),
-            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
-            (8542, addon_factory(id=8542, type=amo.ADDON_EXTENSION)),
-            (290486, addon_factory(id=290486, type=amo.ADDON_PERSONA)),
-            (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
-            (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-            (21085, addon_factory(id=21085, type=amo.ADDON_PERSONA)),
-        ])
 
-    def test_reverse(self):
-        assert self.url == '/api/v3/discovery/'
-
+class DiscoveryTestMixin(object):
     def _check_disco_addon(self, result, item):
         addon = self.addons[item.addon_id]
         assert result['addon']['id'] == item.addon_id == addon.pk
@@ -73,10 +76,22 @@ class TestDiscoveryViewList(TestCase):
         assert not result['description']
         assert result['addon']['theme_data'] == addon.persona.theme_data
 
+
+class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
+    def setUp(self):
+        super(TestDiscoveryViewList, self).setUp()
+        self.url = reverse('discovery-list')
+
+        self.addons = get_dummy_addons()
+
+    def test_reverse(self):
+        assert self.url == '/api/v3/discovery/'
+
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['next'] is None
         assert response.data['previous'] is None
@@ -95,6 +110,7 @@ class TestDiscoveryViewList(TestCase):
         response = self.client.get(self.url, {'lang': 'ru'})
         assert response.data
 
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['next'] is None
         assert response.data['previous'] is None
@@ -119,17 +135,53 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['previous'] is None
         assert response.data['results']
 
+        discopane_items = disco_data['default']
         results = response.data['results']
         assert results[0]['addon']['id'] == discopane_items[3].addon_id
         assert results[1]['addon']['id'] == discopane_items[4].addon_id
         assert results[2]['addon']['id'] == discopane_items[5].addon_id
         assert results[3]['addon']['id'] == discopane_items[6].addon_id
 
+    def test_china_edition_list(self):
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'edition': 'china'})
+        assert response.data
+
+        discopane_items_china = disco_data['china']
+        assert response.data['count'] == len(discopane_items_china)
+        assert response.data['next'] is None
+        assert response.data['previous'] is None
+        assert response.data['results']
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items_china[i])
+            else:
+                self._check_disco_addon(result, discopane_items_china[i])
+
+    def test_invalid_edition_returns_default(self):
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'edition': 'platinum'})
+        assert response.data
+
+        discopane_items = disco_data['default']
+        assert response.data['count'] == len(discopane_items)
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items[i])
+            else:
+                self._check_disco_addon(result, discopane_items[i])
+
 
 @override_switch('disco-recommendations', active=True)
-class TestDiscoveryRecommendations(TestDiscoveryViewList):
+class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryRecommendations, self).setUp()
+        # Represents a dummy version of `olympia.discovery.data`
+        self.addons = get_dummy_addons()
         patcher = mock.patch(
             'olympia.discovery.views.get_recommendations')
         self.get_recommendations = patcher.start()
@@ -137,6 +189,7 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
+        self.url = reverse('discovery-list')
 
     def test_recommendations(self):
         author = user_factory()
@@ -162,6 +215,7 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
             '666', {'locale': 'en-US', 'platform': 'WINNT'})
 
         # should still be the same number of results.
+        discopane_items = disco_data['default']
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']
 
@@ -199,8 +253,10 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         assert response.data['results']
 
         # Sense check to make sure we're testing all known params in this test
-        assert (sorted(known_params.keys()) ==
-                sorted(amo.TAAR_ALLOWED_PARAMETERS))
+        # strip out 'edition' as providing it means no taar.
+        taar_allowed_params = [p for p in amo.DISCO_API_ALLOWED_PARAMETERS
+                               if p != 'edition']
+        assert sorted(known_params.keys()) == sorted(taar_allowed_params)
 
         # Send some extra unknown parameters to be ignored.
         with_unknown_params = {
@@ -210,3 +266,29 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         self.get_recommendations.assert_called_with(
             '666', {'locale': 'en-US', 'platform': 'WINNT'})
         assert response.data['results']
+
+    def test_no_recommendations_for_china_edition(self):
+        author = user_factory()
+        recommendations = {
+            101: addon_factory(id=101, guid='101@mozilla', users=[author]),
+        }
+        replacement_items = [
+            DiscoItem(addon_id=101, is_recommendation=True),
+        ]
+        self.addons.update(recommendations)
+        self.get_recommendations.return_value = replacement_items
+
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
+                       'platform': 'WINNT', 'edition': 'china'})
+        self.get_recommendations.assert_not_called()
+
+        # should be normal results
+        discopane_items_china = disco_data['china']
+        assert response.data['count'] == len(discopane_items_china)
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items_china[i])
+            else:
+                self._check_disco_addon(result, discopane_items_china[i])

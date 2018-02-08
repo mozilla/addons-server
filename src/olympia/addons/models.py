@@ -971,8 +971,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.info('Changing add-on status [%s]: %s => %s (%s).'
                      % (self.id, self.status, status, reason))
             self.update(status=status)
-            activity.log_create(amo.LOG.CHANGE_STATUS,
-                                self.get_status_display(), self)
+            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status)
 
         self.update_version(ignore=ignore_version)
 
@@ -1363,7 +1362,7 @@ class Addon(OnChangeMixin, ModelBase):
             ignore_disabled = True
             admin = False
         return acl.check_addon_ownership(request, self, admin=admin,
-                                         viewer=(not require_owner),
+                                         dev=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
     @property
@@ -1395,6 +1394,13 @@ class Addon(OnChangeMixin, ModelBase):
     def needs_admin_content_review(self):
         try:
             return self.addonreviewerflags.needs_admin_content_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def auto_approval_disabled(self):
+        try:
+            return self.addonreviewerflags.auto_approval_disabled
         except AddonReviewerFlags.DoesNotExist:
             return None
 
@@ -1506,6 +1512,7 @@ class AddonReviewerFlags(ModelBase):
         Addon, primary_key=True, on_delete=models.CASCADE)
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
+    auto_approval_disabled = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):

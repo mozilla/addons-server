@@ -97,16 +97,12 @@ CHANNEL_CHOICES_LOOKUP = {
 }
 
 # Add-on author roles.
-AUTHOR_ROLE_VIEWER = 1
 AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
-AUTHOR_ROLE_SUPPORT = 6
 
 AUTHOR_CHOICES = (
     (AUTHOR_ROLE_OWNER, _(u'Owner')),
     (AUTHOR_ROLE_DEV, _(u'Developer')),
-    (AUTHOR_ROLE_VIEWER, _(u'Viewer')),
-    (AUTHOR_ROLE_SUPPORT, _(u'Support')),
 )
 
 # Addon types
@@ -434,5 +430,5 @@ MOZILLA_TRADEMARK_SYMBOLS = (
 ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
     '@mozilla.com', '@mozilla.org')
 
-TAAR_ALLOWED_PARAMETERS = (
-    'telemetry-client-id', 'lang', 'platform', 'branch', 'study')
+DISCO_API_ALLOWED_PARAMETERS = (
+    'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -161,6 +161,9 @@ msgid "Listed"
 msgstr "나열됨"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1746,8 +1749,9 @@ msgstr "{addon}이(가) 사용 정지됐습니다."
 msgid "{addon} enabled."
 msgstr "{addon}이(가) 사용 가능합니다."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon}의 상태가 {0}(으)로 변경되었습니다."
 
 msgid "{version} added to {addon}."
@@ -2052,13 +2056,6 @@ msgstr "목록에서 제거됨"
 
 msgid "Developer"
 msgstr "개발자"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "참관인"
-
-msgid "Support"
-msgstr "도움말"
 
 msgid "Extension"
 msgstr "확장 기능"
@@ -2607,12 +2604,6 @@ msgstr "Override failed validation"
 msgid "Submit my add-on for manual review."
 msgstr "수동 심사를 위해 부가 기능을 제출합니다."
 
-msgid "Do not list my add-on on this site"
-msgstr "이 사이트에 내 부가 기능 올리지 않음"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "부가 기능을 자신이 직접 배포할 것이고, 모질라에 의한 서명만을 필요로 한다면 이 옵션을 선택하십시오."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "|alpha|b|beta|pre|rc 와 함께 추가적인 숫자로 끝나는 버전의 파일은 베타로 감지합니다."
 
@@ -3007,9 +2998,8 @@ msgstr "제작자 역할 안내"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
 "기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
@@ -3283,12 +3273,6 @@ msgstr "스크린샷 추가...."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 상업적 용도로 작품을 제작하는 것을 허용합니다."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "라이선스 보유자가 다른 사람의 복사, 배포, 전시, 비 상업적 용도일때에 한해 작품을 제작하는 것을 허용합니다."
-
 # 85%
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
@@ -3299,17 +3283,11 @@ msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있�
 msgid "Can others create derivative works from your Add-on?"
 msgstr "다른 사람이 당신의 테마를 사용해서 작품을 만들 수 있도록 허용할까요?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 페르소나를 바탕으로 한 파생 작품을 제작하는 것 까지도 허용합니다."
-
 msgid "Yes, as long as they share alike"
 msgstr "모두에게 동일한 자격을 부여한다는 전제하에 허락합니다"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "라이선스 보유자가 동일 라이선스 내지는 라이선스 보유자의 저작물을 관장하는 곳과 호환되는 라이선스가 적용될 때에 한해서 다른 사람이 파생 저작물을 배포할 수 있도록 허용합니다."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 변형되지 않은 저작물 사본을 전송하는 것을 허용합니다. 단, 저작물을 사용한 파생 작품은 제외합니다."
 
 # 87%
 #, fuzzy
@@ -3318,6 +3296,10 @@ msgstr "테마가 다음의 라이선스 하에 공개됩니다:"
 
 msgid "Select a different license."
 msgstr "다른 라이선스를 선택하세요."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "추가 정보 필요"
 
 msgid "Tests"
 msgstr "테스트"
@@ -3479,6 +3461,9 @@ msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 #, fuzzy
 msgid "Summary:"
 msgstr "요약 정보"
+
+msgid "required"
+msgstr "필수 입력"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3676,12 +3661,14 @@ msgstr "테마가 삭제됐습니다."
 msgid "Theme generator"
 msgstr "테마 라이선스"
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "테마의 상단 이미지를 선택하세요."
+#, fuzzy
+msgid "Theme name"
+msgstr "테마 이름"
 
-msgid "required"
-msgstr "필수 입력"
+# 82%
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "테마의 상단 이미지를 선택하세요."
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3695,44 +3682,45 @@ msgstr "Top-right 방향으로 정렬됨"
 msgid "Select a different header image"
 msgstr "다른 상단 이미지 선택"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "테마에 사용할 색을 설정하세요."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "탭 부분의 글자색입니다."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3740,7 +3728,7 @@ msgid "optional"
 msgstr "(선택사항)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "커서를 올려서 미리보기 확인"
 
 msgid "Back"
@@ -3751,8 +3739,8 @@ msgid "Uploading Theme"
 msgstr "인기 급상승 테마"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "다른 파일 업로드"
+msgid "Finish Theme"
+msgstr "%s 테마"
 
 msgid "API Credentials"
 msgstr ""
@@ -3963,6 +3951,9 @@ msgstr "블로그"
 #, fuzzy
 msgid "Contact Us"
 msgstr "연락처"
+
+msgid "Support"
+msgstr "도움말"
 
 #, fuzzy
 msgid "Policies"
@@ -4182,6 +4173,12 @@ msgstr "테마 라이선스"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 상업적 용도로 작품을 제작하는 것을 허용합니다."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "라이선스 보유자가 다른 사람의 복사, 배포, 전시, 비 상업적 용도일때에 한해 작품을 제작하는 것을 허용합니다."
+
 # 85%
 msgid "Can others make commercial use of your Theme?"
 msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있도록 허용할까요?"
@@ -4189,6 +4186,12 @@ msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있�
 # 86%
 msgid "Can others create derivative works from your Theme?"
 msgstr "다른 사람이 당신의 테마를 사용해서 작품을 만들 수 있도록 허용할까요?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 페르소나를 바탕으로 한 파생 작품을 제작하는 것 까지도 허용합니다."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 변형되지 않은 저작물 사본을 전송하는 것을 허용합니다. 단, 저작물을 사용한 파생 작품은 제외합니다."
 
 # 87%
 msgid "Your Theme will be released under the following license:"
@@ -4223,6 +4226,9 @@ msgstr "상단"
 
 msgid "Footer"
 msgstr "하단"
+
+msgid "Select colors for your Theme."
+msgstr "테마에 사용할 색을 설정하세요."
 
 msgid "Foreground Text"
 msgstr "글자 전경색"
@@ -4285,6 +4291,10 @@ msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "<a href=\"%(forum_url)s\">포럼</a>에 들어가서 대화를 나눠보세요."
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "테마의 상단 이미지를 선택하세요."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 픽셀"
@@ -6128,17 +6138,6 @@ msgstr "운영 체제:"
 msgid "Applications:"
 msgstr "애플리케이션:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "다음에 이 부가 기능이 업데이트 되면 알립니다. (이후 업데이트는 이메일을 생성하지 않을 것입니다)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "관리자 심사 플래그 지우기"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "관리자 심사 플래그 지우기"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "추가 정보 필요"
@@ -6191,6 +6190,9 @@ msgstr "WebExtension"
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "부가 기능이 편집자의 심사를 거쳤습니다"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "제출 양식 복사하기"
@@ -6677,6 +6679,35 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "화이트보드"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "다른 작업:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "인쇄용 버전"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "승인 상태"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "관리자 심사 플래그 지우기"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "관리자 심사 플래그 지우기"
 
 msgid "(admin)"
 msgstr "(관리자)"
@@ -7591,8 +7622,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "\"삭제\"를 클릭하면 당신의 계정은 <strong>영원히 삭제</strong>됩니다. 이는:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "더이상 %(site)s에 로그인 할 수 없게 됩니다."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "당신이 작성한 평가와 별점은 삭제되지는 않지만 권한을 잃게 됩니다."

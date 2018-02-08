@@ -16,8 +16,8 @@ env:
   - TOXENV=addons
   - TOXENV=devhub
   - TOXENV=reviewers
-  - TOXENV=amo
-  - TOXENV=users
+  - TOXENV=amo-locales-and-signing
+  - TOXENV=users-and-accounts
   - TOXENV=main
 
 cache:
@@ -53,10 +53,6 @@ install:
   - nvm install 6
   - nvm use 6
   - pip install --upgrade pip wheel setuptools tox==2.9.1
-  - curl -sL -o ./gimme https://raw.githubusercontent.com/travis-ci/gimme/v1.2.0/gimme
-  - chmod +x ./gimme
-  - eval "$(./gimme 1.8.5)"
-  - ./scripts/start-autograph.sh
 
 before_script:
   - mysql --version
@@ -67,6 +63,9 @@ before_script:
 script:
   - |
     if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
+      if [[ $TOXENV == "amo-locales-and-signing" ]]; then
+         ./scripts/start-autograph.sh
+      fi
       RUNNING_IN_CI=True tox -v
     fi
   - |

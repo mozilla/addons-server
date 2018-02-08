@@ -136,16 +136,24 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
 
-    def test_show_hide_statistics(self):
-        # Not disabled by user: show statistics.
+    def test_show_hide_statistics_and_new_version_for_disabled(self):
+        # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
+        assert 'New Version' in links, ('Unexpected: %r' % links)
 
-        # Disabled: hide statistics.
+        # Disabled (user): hide statistics and new version links.
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
+
+        # Disabled (admin): hide statistics and new version links.
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
+        links = self.get_action_links(self.addon.pk)
+        assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
         assert self.addon.status == amo.STATUS_PUBLIC
@@ -391,17 +399,6 @@ class TestDevRequired(TestCase):
 
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
-
-    def test_viewer_get(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.get(self.get_url).status_code == 200
-        assert self.client.get(self.edit_page_url).status_code == 200
-
-    def test_viewer_post(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.post(self.get_url).status_code == 403
 
     def test_disabled_post_dev(self):
         self.addon.update(status=amo.STATUS_DISABLED)

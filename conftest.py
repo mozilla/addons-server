@@ -4,11 +4,12 @@ from django.utils import translation
 
 import caching
 import pytest
+
 from multidb import pinning
 
 from olympia import amo, core
-from olympia.amo.tests import start_es_mocks, stop_es_mocks
 from olympia.access.models import Group, GroupUser
+from olympia.amo.tests import start_es_mocks, stop_es_mocks
 from olympia.translations.hold import clean_translations
 from olympia.users.models import UserProfile
 

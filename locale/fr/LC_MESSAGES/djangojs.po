@@ -2,13 +2,13 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:29+0000\n"
-"PO-Revision-Date: 2017-11-30 18:22+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2017-11-30 18:39+0000\n"
 "Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -756,8 +756,8 @@ msgstr[1] "{files} fichiers"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} revue utilisateur"
-msgstr[1] "{reviews} revues utilisateur"
+msgstr[0] "{reviews} critique utilisateur"
+msgstr[1] "{reviews} critiques utilisateur"
 
 msgid "Image changes being processed"
 msgstr "Changements d’images en cours"
@@ -811,10 +811,10 @@ msgid "Review notes found"
 msgstr "Notes de révision trouvées"
 
 msgid "Average Reviews"
-msgstr "Revues moyennes"
+msgstr "Critiques moyennes"
 
 msgid "Number of Reviews"
-msgstr "Nombre de revues"
+msgstr "Nombre de critiques"
 
 msgid "Requested Info"
 msgstr "Infos demandées"
@@ -844,7 +844,7 @@ msgid "Status"
 msgstr "Statut"
 
 msgid "All tests passed successfully."
-msgstr "Tous les tests ont été validés avec succès."
+msgstr "Tous les tests ont été réussis."
 
 msgid "These tests were not run."
 msgstr "Ces tests n’ont pas été exécutés."

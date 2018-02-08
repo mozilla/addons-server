@@ -11,7 +11,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import TestCase, formset, initial, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -326,15 +326,10 @@ class TestVersion(TestCase):
     def test_non_owner_cant_change_status(self):
         """A non-owner can't use the radio buttons."""
         self.addon.update(disabled_by_user=False)
-        addon_user = AddonUser.objects.get(addon=self.addon)
-        addon_user.role = amo.AUTHOR_ROLE_VIEWER
-        addon_user.save()
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
         response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.enable-addon').attr('checked') == 'checked'
-        assert doc('.enable-addon').attr('disabled') == 'disabled'
-        assert not doc('.disable-addon').attr('checked')
-        assert doc('.disable-addon').attr('disabled') == 'disabled'
+        assert response.status_code == 403
 
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 11:44+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-08 01:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -164,6 +164,9 @@ msgstr "Oppført"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Søkesti for utviding og samling må avsluttast med \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
 
 msgid "Abuse reported."
 msgstr "Misbruk rapportert."
@@ -1727,9 +1730,9 @@ msgstr "{addon} slått av."
 msgid "{addon} enabled."
 msgstr "{addon} slått på."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "{addon}-status endra til {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} status endra til {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} lagt til {addon}."
@@ -2015,12 +2018,6 @@ msgstr "Ikkje oppført"
 
 msgid "Developer"
 msgstr "Utviklar"
-
-msgid "Viewer"
-msgstr "Vurderar"
-
-msgid "Support"
-msgstr "Hjelp"
 
 msgid "Extension"
 msgstr "Udviding"
@@ -2549,12 +2546,6 @@ msgstr "Overkøyr mislykka validering"
 msgid "Submit my add-on for manual review."
 msgstr "Send inn utvidinga mi for manuell vurdering."
 
-msgid "Do not list my add-on on this site"
-msgstr "Ikkje før opp utvidinga mi på denne nettsida"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Kryss av for dette alternativet om du ønskjer å distribuere utvidinga di på eiga hand og berre treng det for at det skal signerast av Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Ei fil med ein versjon som sluttar med a|alpha|b|beta|pre|rc og eit valfritt nummer er detektert som beta."
 
@@ -2937,9 +2928,8 @@ msgid "About author roles"
 msgstr "Om roller for upphavsmenn"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3207,20 +3197,11 @@ msgstr "Legg til eit skjermbilde…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kan andre dele utvidinga di, så lenge du vert kreditert?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Kan andre bruke utvidinga di til kommersielle føremål?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Kan andre lage arbeid som er avleia frå utvidinga di?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
 
 msgid "Yes, as long as they share alike"
 msgstr "Ja, så lenge dei deler likt"
@@ -3228,14 +3209,15 @@ msgstr "Ja, så lenge dei deler likt"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Utvidinga di vert sleppt under følgjande lisens:"
 
 msgid "Select a different license."
 msgstr "Vel ein annan lisens."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Det er bedt om meir informasjon"
 
 msgid "Tests"
 msgstr "Testar"
@@ -3389,6 +3371,9 @@ msgstr ""
 
 msgid "Summary:"
 msgstr "Samandrag:"
+
+msgid "required"
+msgstr "påkravd"
 
 msgid "This add-on is experimental"
 msgstr "Denne utvidinga er eksperimentell"
@@ -3552,11 +3537,12 @@ msgstr "Generer tema"
 msgid "Theme generator"
 msgstr "Temagenerator"
 
-msgid "Select a header image for your Theme."
-msgstr "Vel eit bilde for temaet ditt til sidehovudet."
+msgid "Theme name"
+msgstr "Temanamn"
 
-msgid "required"
-msgstr "påkravd"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "Vel eit bilde for temaet ditt til sidehovudet."
 
 msgid "Image height should be 200 pixels"
 msgstr "Bildehøgde bør vere 200 pikslar"
@@ -3570,50 +3556,57 @@ msgstr "Justert ;vst til h;gre"
 msgid "Select a different header image"
 msgstr "Vel eit anna bilde for sidehovud"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Vel fargar for temaet ditt."
 
-msgid "Header area background (accentcolor)"
+#, fuzzy
+msgid "Header area background"
 msgstr "Bakgrunn sidehovud (accentcolor)"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+#, fuzzy
+msgid "Header area text and icons"
 msgstr "Tekst sidehovud (textcolor)"
 
-msgid "The color of the text displayed in the header area."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "Fargen på teksten som vert vist i overskriftsområdet."
 
-msgid "Toolbar area background (toolbar)."
+#, fuzzy
+msgid "Toolbar area background"
+msgstr "Bakgrunn sidehovud (accentcolor)"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+#, fuzzy
+msgid "Toolbar area text icons"
+msgstr "Bakgrunn sidehovud (accentcolor)"
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr ""
-
-msgid "The color of toolbar text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Verktøylinje-tekstfarge."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "optional"
 msgstr "valfri"
 
-msgid "Browser Preview"
-msgstr "Nettlesarførehandsvising"
+msgid "Browser preview"
+msgstr "Nettlesar-førehandsvising"
 
 msgid "Back"
 msgstr "Tilbake"
@@ -3621,8 +3614,8 @@ msgstr "Tilbake"
 msgid "Uploading Theme"
 msgstr "Lastar opp tema"
 
-msgid "Upload Theme"
-msgstr "Last opp tema"
+msgid "Finish Theme"
+msgstr "Avslutt tema"
 
 msgid "API Credentials"
 msgstr "API-inloggingsopplysningar"
@@ -3818,6 +3811,9 @@ msgstr "Blogg"
 msgid "Contact Us"
 msgstr "Kontakt oss"
 
+msgid "Support"
+msgstr "Hjelp"
+
 msgid "Policies"
 msgstr "Retningslinjer"
 
@@ -4008,10 +4004,22 @@ msgstr "Temalisens"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Kan andre dele temaet ditt så lenge dei krediterer deg?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Kan andre bruke temaet ditt kommersielt?"
 
 msgid "Can others create derivative works from your Theme?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
@@ -4046,6 +4054,9 @@ msgstr "Overskrift"
 
 msgid "Footer"
 msgstr "Botntekst"
+
+msgid "Select colors for your Theme."
+msgstr "Vel fargar for temaet ditt."
 
 msgid "Foreground Text"
 msgstr "Framgrunnstekst"
@@ -4108,6 +4119,9 @@ msgstr "Vis og abonner på <a href=\"%(feed_url)s\">aktivitetskjelda</a> til dit
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Delta i ordskiftet i <a href=\"%(forum_url)s\">foruma</a> våre."
+
+msgid "Select a header image for your Theme."
+msgstr "Vel eit bilde for temaet ditt til sidehovudet."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikslar"
@@ -5445,7 +5459,7 @@ msgid "Was it easy to use?"
 msgstr "Var det let å bruke?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Vil du fortsetje å bruke denne utvidinga?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
@@ -5836,15 +5850,6 @@ msgstr "Operativsystem:"
 msgid "Applications:"
 msgstr "Appar:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Fjern flagg for administrativ kodevurdering"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Fjern flagg for administrativ innhaldsvurdering"
-
 msgid "Is more info requested?"
 msgstr "Treng du meir informasjon?"
 
@@ -5891,6 +5896,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Er låst av ein vurderar."
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "Duplikat-innsending"
@@ -6335,6 +6343,30 @@ msgstr ""
 
 msgid "Update whiteboards"
 msgstr "Oppdater tavle"
+
+msgid "More Actions"
+msgstr "Fleire handlingar"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+msgid "Force-enable add-on"
+msgstr "Tvinga aktivering av utviding"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+msgid "Enable Auto-Approval"
+msgstr "Slå på auto-godkjenning"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Fjern flagg for administrativ kodevurdering"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Fjern flagg for administrativ innhaldsvurdering"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7210,8 +7242,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Du vil ikkje lenger kunne logge inn på %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ""

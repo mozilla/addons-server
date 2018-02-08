@@ -1,9 +1,50 @@
+import pytest
+from django.forms import ValidationError
+
 from olympia import amo
 from olympia.addons.models import Category
-from olympia.addons.utils import get_creatured_ids, get_featured_ids
-from olympia.amo.tests import TestCase, addon_factory, collection_factory
+from olympia.addons.utils import (
+    get_creatured_ids, get_featured_ids, verify_mozilla_trademark)
+from olympia.amo.tests import (
+    TestCase, addon_factory, collection_factory, user_factory)
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES_BY_ID
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('name, allowed, email', (
+    # Regular name, obviously always allowed
+    ('Fancy new Add-on', True, 'foo@bar.com'),
+    # We allow the 'for ...' postfix to be used
+    ('Fancy new Add-on for Firefox', True, 'foo@bar.com'),
+    ('Fancy new Add-on for Mozilla', True, 'foo@bar.com'),
+    # But only the postfix
+    ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com'),
+    ('For Firefox fancy new add-on', False, 'foo@bar.com'),
+    # But users with @mozilla.com or @mozilla.org email addresses
+    # are allowed
+    ('Firefox makes everything better', False, 'bar@baz.com'),
+    ('Firefox makes everything better', True, 'foo@mozilla.com'),
+    ('Firefox makes everything better', True, 'foo@mozilla.org'),
+    ('Mozilla makes everything better', True, 'foo@mozilla.com'),
+    ('Mozilla makes everything better', True, 'foo@mozilla.org'),
+    # A few more test-cases...
+    ('Firefox add-on for Firefox', False, 'foo@bar.com'),
+    ('Firefox add-on for Firefox', True, 'foo@mozilla.com'),
+    ('Foobarfor Firefox', False, 'foo@bar.com'),
+    ('Better Privacy for Firefox!', True, 'foo@bar.com'),
+))
+def test_verify_mozilla_trademark(name, allowed, email):
+    user = user_factory(email=email)
+
+    if not allowed:
+        with pytest.raises(ValidationError) as exc:
+            verify_mozilla_trademark(name, user)
+        assert exc.value.message == (
+            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+        )
+    else:
+        verify_mozilla_trademark(name, user)
 
 
 class TestGetFeaturedIds(TestCase):

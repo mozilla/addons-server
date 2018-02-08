@@ -83,8 +83,8 @@ def check_collection_ownership(request, collection, require_owner=False):
         return False
 
 
-def check_addon_ownership(request, addon, viewer=False, dev=False,
-                          support=False, admin=True, ignore_disabled=False):
+def check_addon_ownership(request, addon, dev=False, admin=True,
+                          ignore_disabled=False):
     """
     Check request.user's permissions for the addon.
 
@@ -92,8 +92,6 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     If the add-on is disabled only admins have permission.
     If they're an add-on owner they can do anything.
     dev=True checks that the user has an owner or developer role.
-    viewer=True checks that the user has an owner, developer, or viewer role.
-    support=True checks that the user has a support role.
     """
     if not request.user.is_authenticated():
         return False
@@ -110,13 +108,6 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     roles = (amo.AUTHOR_ROLE_OWNER,)
     if dev:
         roles += (amo.AUTHOR_ROLE_DEV,)
-    # Viewer privs are implied for devs.
-    elif viewer:
-        roles += (amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_VIEWER,
-                  amo.AUTHOR_ROLE_SUPPORT)
-    # Support can do support.
-    elif support:
-        roles += (amo.AUTHOR_ROLE_SUPPORT,)
     return addon.authors.filter(pk=request.user.pk,
                                 addonuser__role__in=roles).exists()
 
@@ -140,7 +131,7 @@ def is_reviewer(request, addon):
             (check_personas_reviewer(request) and addon.is_persona()))
 
 
-def is_any_kind_of_reviewer(request):
+def is_user_any_kind_of_reviewer(user):
     """More lax version of is_reviewer: does not check what kind of reviewer
     the user is, and accepts unlisted reviewers, post reviewers, content
     reviewers, or people with just revierwer tools view access.
@@ -152,10 +143,10 @@ def is_any_kind_of_reviewer(request):
     add-on but still need to be restricted to reviewers only.
     """
     allow_access = (
-        action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW) or
-        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED) or
-        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed(request, amo.permissions.THEMES_REVIEW))
+        action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_REVIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
+        action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
+        action_allowed_user(user, amo.permissions.THEMES_REVIEW))
     return allow_access

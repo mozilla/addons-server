@@ -1,5 +1,3 @@
-import re
-
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.html import strip_tags
@@ -10,7 +8,6 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, epoch, urlparams
-from olympia.tags.models import Tag
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
@@ -86,75 +83,6 @@ def addon_to_dict(addon, disco=False, src='api'):
         d['previews'] = [p.as_dict(src=src) for p in addon.all_previews]
 
     return d
-
-
-def extract_from_query(term, filter, regexp, end_of_word_boundary=True):
-    """
-    This pulls out a keyword filter from a search term and returns the value
-    for the filter and a new term with the filter removed.
-
-    E.g. term="yslow version:3", filter='version', regexp='\w+' will result in
-    a return value of: (yslow, 3).
-    """
-    re_string = r'\b%s:\s*(%s)' % (filter, regexp)
-
-    if end_of_word_boundary:
-        re_string += r'\b'
-
-    match = re.search(re_string, term)
-    if match:
-        term = term.replace(match.group(0), '').strip()
-        value = match.group(1)
-    else:
-        value = None
-
-    return (term, value)
-
-
-def extract_filters(term, opts=None):
-    """
-    Pulls all the filtering options out of the term and returns a cleaned term
-    and a dictionary of filter names and filter values. Term filters override
-    filters found in opts.
-    """
-
-    opts = opts or {}
-    filters = {}
-    params = {}
-
-    # Type filters.
-    term, addon_type = extract_from_query(term, 'type', '\w+')
-    addon_type = addon_type or opts.get('addon_type')
-    if addon_type:
-        try:
-            atype = int(addon_type)
-            if atype in amo.ADDON_SEARCH_TYPES:
-                filters['type'] = atype
-        except ValueError:
-            # `addon_type` is not a digit.
-            # Try to find it in `ADDON_SEARCH_SLUGS`.
-            atype = amo.ADDON_SEARCH_SLUGS.get(addon_type.lower())
-            if atype:
-                filters['type'] = atype
-
-    # Platform and version filters.
-    # We don't touch the filters dict for platform and version: that filtering
-    # is (sadly) done by the view after ES has returned results, using
-    # addon.compatible_version().
-    term, platform = extract_from_query(term, 'platform', '\w+')
-    params['platform'] = platform or opts.get('platform')
-    term, version = extract_from_query(term, 'version', '[0-9.]+')
-    params['version'] = version or opts.get('version')
-
-    # Tag filters.
-    term, tag = extract_from_query(term, 'tag', '\w+')
-    if tag:
-        tag = Tag.objects.filter(tag_text=tag).values_list('tag_text',
-                                                           flat=True)
-        if tag:
-            filters['tags__in'] = list(tag)
-
-    return (term, filters, params)
 
 
 def find_compatible_version(addon, app_id, app_version=None, platform=None,

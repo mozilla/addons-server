@@ -23,7 +23,7 @@ $(document).ready(function() {
             reader.onload = function(e) {
                 $preview_img.attr('src', e.target.result);
                 $preview_img.show().addClass('loaded');
-                $row.find('.reset').show();
+                $row.find('.reset').show().css('display', 'block');
                 updateManifest();
             };
             reader.readAsDataURL(file);
@@ -38,8 +38,12 @@ $(document).ready(function() {
         $wizard.find('input[type="file"]').trigger('change');
 
         $wizard.find('img.preview').on('load', function(e) {
-            var svg_img = $('#svg-header-img');
-            svg_img.attr('href', (svg_img.src = e.target.src));
+            var $svg_img = $('#svg-header-img'),
+                $svg = $('#preview-svg-root');
+            $svg_img.attr('href', ($svg_img.src = e.target.src));
+            $svg_img.attr('height', e.target.naturalHeight);
+            var meetOrSlice = (e.target.naturalWidth < $svg.width())? 'meet' : 'slice';
+            $svg_img.attr('preserveAspectRatio', 'xMaxYMin '+ meetOrSlice);
         });
 
         function updateManifest() {
@@ -117,6 +121,8 @@ $(document).ready(function() {
             }
         });
 
+        $wizard.on('change', '#theme-name', updateManifest);
+
         $wizard.on('click', 'button.upload', _pd(function(event) {
             var $button =  $(event.target);
             var zip = buildZip();
@@ -173,7 +179,8 @@ $(document).ready(function() {
         }
 
         function required_fields_present() {
-            return $wizard.find('#header-img')[0].files.length > 0 &&
+            return $wizard.find('#theme-name').val() !== "" &&
+                   $wizard.find('#header-img')[0].files.length > 0 &&
                    $wizard.find('#accentcolor').val() !== "" &&
                    $wizard.find('#textcolor').val() !== "";
         }

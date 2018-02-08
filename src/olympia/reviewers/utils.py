@@ -11,6 +11,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import django_tables2 as tables
 import jinja2
+import waffle
 
 import olympia.core.logger
 
@@ -611,8 +612,10 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
+        use_autograph = waffle.flag_is_active(
+            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_)
+            sign_file(file_, use_autograph=use_autograph)
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -762,9 +765,13 @@ class ReviewBase(object):
         # of the add-on instead of one of the versions we rejected, it will be
         # used to generate a token allowing the developer to reply, and that
         # only works with the latest version.
-        template = u'reject_multiple_versions'
-        subject = (u"Mozilla Add-ons: One or more versions of %s%s didn't "
-                   u"pass review")
+        if self.addon.status != amo.STATUS_PUBLIC:
+            template = u'reject_multiple_versions_disabled_addon'
+            subject = (u'Mozilla Add-ons: %s%s has been disabled on '
+                       u'addons.mozilla.org')
+        else:
+            template = u'reject_multiple_versions'
+            subject = u'Mozilla Add-ons: Versions disabled for %s%s'
         self.notify_email(template, subject, version=latest_version)
 
         log.info(
@@ -809,8 +816,10 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
+        use_autograph = waffle.flag_is_active(
+            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_)
+            sign_file(file_, use_autograph=use_autograph)
 
         self.set_files(amo.STATUS_PUBLIC, self.files)
 

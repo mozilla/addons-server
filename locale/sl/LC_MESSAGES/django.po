@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 12:09+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-01 10:57+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -174,6 +174,9 @@ msgstr "Na seznamu"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Pot dodatka in zbirke se morata končati s \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Imena dodatkov ne smejo vsebovati blagovnih znamk Mozilla ali Firefox."
 
 msgid "Abuse reported."
 msgstr "Zloraba sporočena."
@@ -1800,9 +1803,9 @@ msgstr "{addon} onemogočen."
 msgid "{addon} enabled."
 msgstr "{addon} omogočen."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Stanje {addon} spremenjeno na {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Stanje {addon} spremenjeno na {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} dodan {addon}."
@@ -2096,13 +2099,6 @@ msgstr "Nenaveden"
 
 msgid "Developer"
 msgstr "Razvijalec"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Prikazovalnik"
-
-msgid "Support"
-msgstr "Podpora"
 
 msgid "Extension"
 msgstr "Dodatek"
@@ -2635,12 +2631,6 @@ msgstr "Preglasi neuspešno preverjanje veljavnosti"
 msgid "Submit my add-on for manual review."
 msgstr "Pošlji moj dodatek za ročni pregled."
 
-msgid "Do not list my add-on on this site"
-msgstr "Mojega dodatka ne prikaži na tej strani"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Označite to možnost, če nameravate razširjati svoj dodatek po svoje in potrebujete samo Mozillin podpis."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Datoteka z različico, ki se konča z a|alpha|b|beta|pre|rc in izbirno številko je zaznana kot beta."
 
@@ -3028,13 +3018,11 @@ msgid "About author roles"
 msgstr "O vlogah avtorjev"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Dodatki imajo lahko poljubno število avtorjev z eno od naslednjih možnih vlog:</p> <ul> <li><b>Lastnik:</b> Lahko skrbi za vse zadeve glede dodatka, med drugim lahko dodaja ali odstranjuje druge "
-"avtorje</li> <li><b>Razvijalec:</b> Lahko skrbi za vse zadeve glede dodatka, ne more pa dodajati ali odstranjevati drugih avtorjev</li> <li><b>Opazovalec:</b> Ima dostop do prikazov in statistike, "
-"vendar ne more spreminjati ničesar</li> </ul>"
+"<p>Dodatki imajo lahko poljubno število avtorjev z eno od dveh možnih vlog:</p> <ul> <li><b>Lastnik:</b> Lahko upravlja vse zadeve glede dodatka, med drugim lahko dodaja ali odstranjuje druge "
+"avtorje</li> <li><b>Razvijalec:</b> Lahko skrbi za vse zadeve glede dodatka, ne more pa dodajati ali odstranjevati drugih avtorjev</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Osnovni podatki"
@@ -3321,12 +3309,6 @@ msgstr "Dodaj posnetek zaslona ..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Lahko drugi, v kolikor ste vas navedejo kot avtorja, vaš dodatek širijo dalje?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo, tudi v komercialne namene."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo samo za nekomercialne namene."
-
 # 85%
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Lahko drugi uporabljajo vaš dodatek v komercialne namene?"
@@ -3335,17 +3317,11 @@ msgstr "Lahko drugi uporabljajo vaš dodatek v komercialne namene?"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Lahko drugi ustvarjajo izpeljave na osnovi vašega dodatka?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati, prikazovati izdelek in opravljati delo, kot tudi ustvarjati izpeljanke na njeni osnovi."
-
 msgid "Yes, as long as they share alike"
 msgstr "Da, v kolikor razširjajo na en in isti način"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati izpeljanke samo pod isto licenco ali licenco, ki je skladna z licenco, s katero se njegovo delo daje na razpolago."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prenašati samo nespremenjene kopije svojega dela - in ne izpeljank, ki temeljijo na njem,"
 
 # 87%
 msgid "Your Add-on will be released under the following license:"
@@ -3353,6 +3329,9 @@ msgstr "Vaš dodatek bo objavljen pod naslednjo licenco:"
 
 msgid "Select a different license."
 msgstr "Izberite drugo licenco."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Več informacij o licencah Creative Commons"
 
 msgid "Tests"
 msgstr "Preizkusi"
@@ -3510,6 +3489,9 @@ msgstr "V spletnem naslovu uporabljajte le črke, številke, podčrtaje in vezaj
 
 msgid "Summary:"
 msgstr "Povzetek:"
+
+msgid "required"
+msgstr "potrebno"
 
 msgid "This add-on is experimental"
 msgstr "Ta dodatek je poskusen"
@@ -3677,12 +3659,12 @@ msgstr "Ustvari temo"
 msgid "Theme generator"
 msgstr "Ustvarjalnik tem"
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "Izberite sliko za glavo svoje teme."
+msgid "Theme name"
+msgstr "Ime teme"
 
-msgid "required"
-msgstr "potrebno"
+# 82%
+msgid "Select a header image for your theme"
+msgstr "Izberite sliko glave za svojo temo"
 
 msgid "Image height should be 200 pixels"
 msgstr "Višina slike mora biti 200 pik"
@@ -3696,49 +3678,49 @@ msgstr "Poravnano zgoraj desno"
 msgid "Select a different header image"
 msgstr "Izberite drugo sliko za glavo"
 
-msgid "Select colors for your Theme."
-msgstr "Izberite barve za svojo temo."
+msgid "Select colors for your theme"
+msgstr "Izberite barve za svojo temo"
 
-msgid "Header area background (accentcolor)"
-msgstr "Ozadje območja glave (accentcolor)"
+msgid "Header area background"
+msgstr "Ozadje območja glave"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Barva ozadja območja glave, s katero je zapolnjen del, ki ga ne prekriva slika glave."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Barva ozadja območja glave, s katero je zapolnjen del, ki ga ne prekriva slika glave. Polje manifesta:  accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Besedilo območja glave (textcolor)"
+msgid "Header area text and icons"
+msgstr "Besedilo in ikone območja glave"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Barva besedila, prikazanega v območju orodne vrstice."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Barva besedila in ikon v območju glave, razen na dejavnem zavihku. Polje manifesta:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Ozadje območja orodne vrstice (toolbar)."
+msgid "Toolbar area background"
+msgstr "Ozadje območja orodne vrstice"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek.  Polje manifesta:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Besedilo v območju orodne vrstice (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Besedilo in ikone območja orodne vrstice"
 
-msgid "The color of toolbar text."
-msgstr "Barva besedila orodne vrstice."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Barva besedila in ikon v orodni vrstici in na dejavnem zavihku. Polje manifesta:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Ozadje območja polja orodne vrstice (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Ozadje območja polja orodne vrstice"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Barva ozadja polj v orodni vrstici, kot je vrstica z naslovom."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Barva ozadja polj v orodni vrstici, kot je vrstica z naslovom. Polje manifesta:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Besedilo območja polja orodne vrstice (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Besedilo območja polja orodne vrstice"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom. Polje manifesta:  toolbar_field_text."
 
 msgid "optional"
 msgstr "neobvezno"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Predogled v brskalniku"
 
 msgid "Back"
@@ -3747,8 +3729,8 @@ msgstr "Nazaj"
 msgid "Uploading Theme"
 msgstr "Nalaganje teme"
 
-msgid "Upload Theme"
-msgstr "Naloži temo"
+msgid "Finish Theme"
+msgstr "Dokončaj temo"
 
 msgid "API Credentials"
 msgstr "Poverila API"
@@ -3957,6 +3939,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Pišite nam"
 
+msgid "Support"
+msgstr "Podpora"
+
 msgid "Policies"
 msgstr "Pravilniki"
 
@@ -4153,6 +4138,12 @@ msgstr "Licenca za temo"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Lahko drugi, v kolikor ste omenjeni kot avtor, vašo temo širijo dalje?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo, tudi v komercialne namene."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo samo za nekomercialne namene."
+
 # 85%
 msgid "Can others make commercial use of your Theme?"
 msgstr "Lahko drugi uporabljajo vašo temo v komercialne namene?"
@@ -4160,6 +4151,12 @@ msgstr "Lahko drugi uporabljajo vašo temo v komercialne namene?"
 # 86%
 msgid "Can others create derivative works from your Theme?"
 msgstr "Lahko drugi ustvarjajo izpeljanke na osnovi vaše teme?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati, prikazovati izdelek in opravljati delo, kot tudi ustvarjati izpeljanke na njeni osnovi."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prenašati samo nespremenjene kopije svojega dela - in ne izpeljank, ki temeljijo na njem,"
 
 # 87%
 msgid "Your Theme will be released under the following license:"
@@ -4194,6 +4191,9 @@ msgstr "Glava"
 
 msgid "Footer"
 msgstr "Noga"
+
+msgid "Select colors for your Theme."
+msgstr "Izberite barve za svojo temo."
 
 msgid "Foreground Text"
 msgstr "Besedilo v ospredju"
@@ -4258,6 +4258,10 @@ msgstr "Oglejte si in naročite se na <a href=\"%(feed_url)s\">spletna poročila
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Sodelujte v naših <a href=\"%(forum_url)s\">forumih</a> ."
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "Izberite sliko za glavo svoje teme."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pik"
@@ -6137,15 +6141,6 @@ msgstr "Operacijski sistemi:"
 msgid "Applications:"
 msgstr "Programi:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Obvesti me, ko bo ta dodatek naslednjič posodobljen. (Nadaljnje posodobitve ne bodo pošiljale e-pošte)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Izbriši zastavico za skrbnikov pregled kode"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
-
 msgid "Is more info requested?"
 msgstr "Je zahtevanih več podatkov?"
 
@@ -6192,6 +6187,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Zaklenil pregledovalec."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Samodejna odobritev je onemogočena."
 
 msgid "Duplicate Submission"
 msgstr "Podvojena oddaja"
@@ -6651,6 +6649,30 @@ msgstr "Zasebna bela tabla je namenjena izmenjevanju informacij med pregledovalc
 
 msgid "Update whiteboards"
 msgstr "Posodobi bele table"
+
+msgid "More Actions"
+msgstr "Več dejanj"
+
+msgid "Notify me about new listed versions"
+msgstr "Obvesti me o novih dodatkih na seznamu"
+
+msgid "Force-disable add-on"
+msgstr "Prisilno onemogoči dodatek"
+
+msgid "Force-enable add-on"
+msgstr "Prisilno omogoči dodatek"
+
+msgid "Disable Auto-Approval"
+msgstr "Onemogoči samodejno odobritev"
+
+msgid "Enable Auto-Approval"
+msgstr "Omogoči samodejno odobritev"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Izbriši zastavico za skrbnikov pregled kode"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7574,8 +7596,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Ko kliknete \"izbriši\", bo vaš račun <strong>trajno odstranjen</strong>. To pomeni:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Ne boste se več mogli prijaviti na %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "S ponovno prijavo s tem e-poštnim naslovom v %(site)s boste ustvarili nov račun, ki ne bo na nikakršen način povezan s tem računom."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Vaše ocene ne bodo izbrisane, vendar ne bodo več povezane z vami."

@@ -26,6 +26,12 @@ class Command(BaseCommand):
             help='The reason for the resign that we will send '
                  'the developer.')
 
+        parser.add_argument(
+            '--use-autograph',
+            action='store_true',
+            dest='use_autograph',
+            help='Use our new autograph signing.')
+
     def handle(self, *args, **options):
         if len(options['addon_id']) == 0:  # Sign all the addons?
             raise CommandError(
@@ -39,4 +45,5 @@ class Command(BaseCommand):
         with override_settings(
                 SIGNING_SERVER=full_server):
             sign_addons(
-                addon_ids, force=options['force'], reason=options['reason'])
+                addon_ids, force=options['force'], reason=options['reason'],
+                use_autograph=options['use_autograph'])

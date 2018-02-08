@@ -102,7 +102,7 @@ def setup_es_test_data(es):
                               es.indices.get_alias().keys())
 
     for key in aliases_and_indexes:
-        if key.startswith('test_amo'):
+        if key.startswith('test_'):
             es.indices.delete(key, ignore=[404])
 
     # Figure out the name of the indices we're going to create from the

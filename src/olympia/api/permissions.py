@@ -171,11 +171,11 @@ class AllowAnyKindOfReviewer(BasePermission):
     - Addons:PostReview
     - Personas:Review
 
-    Uses acl.is_any_kind_of_reviewer() behind the scenes.
+    Uses acl.is_user_any_kind_of_reviewer() behind the scenes.
     See also any_reviewer_required() decorator.
     """
     def has_permission(self, request, view):
-        return acl.is_any_kind_of_reviewer(request)
+        return acl.is_user_any_kind_of_reviewer(request.user)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)

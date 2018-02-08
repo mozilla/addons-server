@@ -140,7 +140,9 @@ class ThemeUpdate(object):
             # TODO: Change this to be `addons_users.user.display_name`.
             'username': row.get('username'),
             'headerURL': self.image_url(row['header']),
-            'footerURL': self.image_url(row['footer']),
+            'footerURL': (
+                # Footer can be blank, return '' if that's the case.
+                self.image_url(row['footer']) if row['footer'] else ''),
             'detailURL': self.locale_url(settings.SITE_URL,
                                          '/addon/%s/' % row['slug']),
             'previewURL': self.image_url('preview.png'),

@@ -38,29 +38,25 @@ def global_settings(request):
     is_reviewer = False
 
     if request.user.is_authenticated():
-        user = request.user
-
-        profile = request.user
-        is_reviewer = (acl.check_addons_reviewer(request) or
-                       acl.check_personas_reviewer(request))
+        is_reviewer = acl.is_user_any_kind_of_reviewer(request.user)
 
         account_links.append({'text': ugettext('My Profile'),
-                              'href': profile.get_url_path()})
-        if user.is_artist:
+                              'href': request.user.get_url_path()})
+        if request.user.is_artist:
             account_links.append({'text': ugettext('My Themes'),
-                                  'href': profile.get_themes_url_path()})
+                                  'href': request.user.get_themes_url_path()})
 
         account_links.append({'text': ugettext('Account Settings'),
                               'href': reverse('users.edit')})
         account_links.append({
             'text': ugettext('My Collections'),
-            'href': reverse('collections.user', args=[user.username])})
+            'href': reverse('collections.user', args=[request.user.username])})
 
-        if user.favorite_addons:
+        if request.user.favorite_addons:
             account_links.append(
                 {'text': ugettext('My Favorites'),
                  'href': reverse('collections.detail',
-                                 args=[user.username, 'favorites'])})
+                                 args=[request.user.username, 'favorites'])})
 
         account_links.append({
             'text': ugettext('Log out'),

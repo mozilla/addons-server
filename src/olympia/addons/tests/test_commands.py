@@ -49,12 +49,12 @@ def test_override_SIGNING_SERVER_setting(monkeypatch):
 
 def test_force_signing(monkeypatch):
     """You can force signing an addon even if it's already signed."""
-    def not_forced(ids, force, reason):
+    def not_forced(ids, force, reason, use_autograph):
         assert not force
     monkeypatch.setattr(SIGN_ADDONS, not_forced)
     call_command('sign_addons', '123')
 
-    def is_forced(ids, force, reason):
+    def is_forced(ids, force, reason, use_autograph):
         assert force
     monkeypatch.setattr(SIGN_ADDONS, is_forced)
     call_command('sign_addons', '123', force=True)
@@ -62,7 +62,7 @@ def test_force_signing(monkeypatch):
 
 def test_reason(monkeypatch):
     """You can pass a reason."""
-    def has_reason(ids, force, reason):
+    def has_reason(ids, force, reason, use_autograph):
         assert reason == 'expiry'
     monkeypatch.setattr(SIGN_ADDONS, has_reason)
     call_command('sign_addons', '123', reason='expiry')

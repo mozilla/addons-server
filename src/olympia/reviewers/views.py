@@ -486,9 +486,13 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                 qs = qs.having(
                     'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
 
-            # Hide webextensions from the listed queues so that human reviewers
-            # don't pick them up: auto-approve cron should take care of them.
-            qs = qs.filter(**{'files.is_webextension': False})
+            # WebExtensions are picked up by auto_approve cronjob, they don't
+            # need to appear in the queues, unless auto approvals have been
+            # disabled for them.
+            qs = qs.filter(
+                Q(**{'files.is_webextension': False}) |
+                Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
+            )
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -1132,8 +1136,8 @@ class AddonReviewerViewSet(GenericViewSet):
     def disable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_DISABLED)
-        self.log.info('Addon "%s" status changed to: %s' %
-                      (addon.slug, amo.STATUS_DISABLED))
+        self.log.info('Addon "%s" status changed to: %s',
+                      addon.slug, amo.STATUS_DISABLED)
         addon.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         return Response(status=status.HTTP_202_ACCEPTED)
@@ -1144,12 +1148,32 @@ class AddonReviewerViewSet(GenericViewSet):
     def enable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
-        self.log.info('Addon "%s" status changed to: %s' %
-                      (addon.slug, amo.STATUS_PUBLIC))
+        self.log.info('Addon "%s" status changed to: %s',
+                      addon.slug, amo.STATUS_PUBLIC)
         addon.update(status=amo.STATUS_PUBLIC)
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
         addon.update_status()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def enable_auto_approval(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        self.log.info('Addon "%s" Auto-Approval enabled', addon.slug)
+        AddonReviewerFlags.objects.update_or_create(
+            addon=addon, defaults={'auto_approval_disabled': False})
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def disable_auto_approval(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        self.log.info('Addon "%s" Auto-Approval disabled', addon.slug)
+        AddonReviewerFlags.objects.update_or_create(
+            addon=addon, defaults={'auto_approval_disabled': True})
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(

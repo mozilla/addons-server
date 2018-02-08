@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-13 10:11+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-01 10:44+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -172,6 +172,9 @@ msgstr "Felsorolva"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
 msgid "Abuse reported."
 msgstr "Visszaélést jelentettek."
@@ -1756,9 +1759,9 @@ msgstr "{addon} kiegészítő letiltva."
 msgid "{addon} enabled."
 msgstr "{addon} kiegészítő engedélyezve."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "{addon} állapota a következőre módosult: {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} állapota a következőre módosult: {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} hozzáadva a(z) {addon} kiegészítőhöz."
@@ -2046,13 +2049,6 @@ msgstr "Titkos"
 
 msgid "Developer"
 msgstr "Fejlesztő"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Szemlélő"
-
-msgid "Support"
-msgstr "Támogatás"
 
 msgid "Extension"
 msgstr "Bővítmény"
@@ -2583,12 +2579,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 msgid "Submit my add-on for manual review."
 msgstr "Kiegészítő kézi értékelésre benyújtása."
 
-msgid "Do not list my add-on on this site"
-msgstr "Ne listázza a kiegészítőt ezen az oldalon"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Jelölje be ezt a lehetőséget, ha a kiegészítőt terjeszteni kívánja, és csak a Mozilla aláírására van szüksége."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "A(z) a|alpha|b|beta|pre|rc és egy elhagyható számmal végződő verziójú fájlok béta verzióként értelmeződnek."
 
@@ -2981,13 +2971,11 @@ msgid "About author roles"
 msgstr "Szerző feladatai"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>A kiegészítőknek tetszőleges számú készítője lehet, akik 3 különböző csoportba sorolhatók:</p> <ul> <li><b>Tulajdonos:</b> kezelheti a kiegészítő megjelenésének tulajdonságait, beleértve a "
-"szerzők hozzáadását és eltávolítását.</li> <li><b>Fejlesztő:</b> kezelheti a kiegészítő minden tulajdonságát, kivéve a szerzők hozzáadását és eltávolítását.</li> <li><b>Megtekintő:</b> megtekintheti"
-" a kiegészítő beállításait és statisztikáit, de nem módosíthat semmit.</li> </ul>"
+"<p>A kiegészítőknek tetszőleges számú készítője lehet, akik 2 különböző csoportba sorolhatók:</p> <ul> <li><b>Tulajdonos:</b> kezelheti a kiegészítő megjelenésének tulajdonságait, beleértve a "
+"szerzők hozzáadását és eltávolítását.</li> <li><b>Fejlesztő:</b> kezelheti a kiegészítő minden tulajdonságát, kivéve a szerzők hozzáadását és eltávolítását.</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Alapinformációk"
@@ -3268,20 +3256,11 @@ msgstr "Képernyőkép hozzáadása…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Megoszthatják mások a kiegészítőjét, ha megjelölik Önt forrásként?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, akár kereskedelmi célokra is."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, de csak akkor ha felhasználásuk nem kereskedelmi jellegű."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Használhatják-e mások kereskedelmi célokra a kiegészítőjét?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Készíthetnek-e a mások származékos munkákat a kiegészítőjéből?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott, vagy az ebből származtatott munkát."
 
 msgid "Yes, as long as they share alike"
 msgstr "Igen, ha ugyanígy osztják meg"
@@ -3289,14 +3268,14 @@ msgstr "Igen, ha ugyanígy osztják meg"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "A licencadó lehetővé teszi másoknak, hogy a származtatott munkát terjesszék, amennyiben az ugyanazt a licencet használja vagy kompatibilis azzal, amely a licencadó munkáját szabályozza."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni és átadni az adott munkát, amíg az változatlan marad — nem engedélyezett ebből származtatott munka készítése."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "A kiegészítője a következő licenc alatt kerül kiadásra:"
 
 msgid "Select a different license."
 msgstr "Másik licenc kiválasztása."
+
+msgid "More information on Creative Commons licenses"
+msgstr "További információk a Creative Commons licencekről"
 
 msgid "Tests"
 msgstr "Tesztek"
@@ -3452,6 +3431,9 @@ msgstr "Csak betűket, számokat, aláhúzásokat és kötőjeleket használjon 
 
 msgid "Summary:"
 msgstr "Összegzés:"
+
+msgid "required"
+msgstr "szükséges"
 
 msgid "This add-on is experimental"
 msgstr "Ez a kiegészítő kísérleti"
@@ -3619,11 +3601,11 @@ msgstr "Téma generálás"
 msgid "Theme generator"
 msgstr "Téma generátor"
 
-msgid "Select a header image for your Theme."
-msgstr "Válasszon fejléc képet a témájához."
+msgid "Theme name"
+msgstr "Téma neve"
 
-msgid "required"
-msgstr "szükséges"
+msgid "Select a header image for your theme"
+msgstr "Válasszon fejlécképet a témájához"
 
 msgid "Image height should be 200 pixels"
 msgstr "A kép magassága 200 pixel kell legyen"
@@ -3637,49 +3619,49 @@ msgstr "Jobb felülre igazítva"
 msgid "Select a different header image"
 msgstr "Válasszon egy másik felső képet"
 
-msgid "Select colors for your Theme."
-msgstr "Válasszon színeket a témájához."
+msgid "Select colors for your theme"
+msgstr "Válasszon színeket a témájához"
 
-msgid "Header area background (accentcolor)"
-msgstr "A fejléc terület háttere (accentcolor)"
+msgid "Header area background"
+msgstr "A fejlécterület háttere"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "A fejléc terület háttere, amely a fejléc azon részét érinti, amelyet nem fed le a fejléckép, vagy átlátszó."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "A fejlécterület háttere, amely a fejléc azon részét érinti, amelyet nem fed le a fejléckép, vagy átlátszó. Leírófájl: accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "A fejléc terület betűszíne (textcolor)"
+msgid "Header area text and icons"
+msgstr "Fejlécterület szövege és ikonjai"
 
-msgid "The color of the text displayed in the header area."
-msgstr "A fejléc területen megjelenített szöveg színe."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "A fejlécterületen megjelenített szöveg színe és ikonja, kivéve az aktív lapot. Leírófájl: textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Az eszköztár terület háttere (toolbar)."
+msgid "Toolbar area background"
+msgstr "Az eszköztárterület háttere"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne. Leírófájl: toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Az eszköztár terület betűszíne (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Eszköztárterület szövegének ikonjai"
 
-msgid "The color of toolbar text."
-msgstr "Az eszköztár szövegszíne."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Az eszköztáron és aktív lapon található szöveg színe és ikonjai. Leírófájl mező: toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Az eszköztár mezőterületének háttere (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Az eszköztár mezőterületének háttere"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere. Leírófájl mező: toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Az eszköztár mezőterületének betűszíne (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Az eszköztár mezőterületének szövege"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne."
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
 
 msgid "optional"
 msgstr "nem kötelező"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Böngésző előnézete"
 
 msgid "Back"
@@ -3688,8 +3670,8 @@ msgstr "Vissza"
 msgid "Uploading Theme"
 msgstr "Téma feltöltése"
 
-msgid "Upload Theme"
-msgstr "Téma feltöltése"
+msgid "Finish Theme"
+msgstr "Téma befejezése"
 
 msgid "API Credentials"
 msgstr "API hitelesítési adatok"
@@ -3893,6 +3875,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kapcsolat"
 
+msgid "Support"
+msgstr "Támogatás"
+
 msgid "Policies"
 msgstr "Irányelvek"
 
@@ -4085,11 +4070,23 @@ msgstr "Téma licence"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Megoszthatják mások a témáját, ha megjelölik Önt forrásként?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, akár kereskedelmi célokra is."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, de csak akkor ha felhasználásuk nem kereskedelmi jellegű."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Használhatják-e mások kereskedelmi célokra a témáját?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Készíthetnek-e a mások származékos munkákat a témájából?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott, vagy az ebből származtatott munkát."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni és átadni az adott munkát, amíg az változatlan marad — nem engedélyezett ebből származtatott munka készítése."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "A témája a következő licenc alatt kerül kiadásra:"
@@ -4123,6 +4120,9 @@ msgstr "Fejléc"
 
 msgid "Footer"
 msgstr "Lábléc"
+
+msgid "Select colors for your Theme."
+msgstr "Válasszon színeket a témájához."
 
 msgid "Foreground Text"
 msgstr "Előtér felirat"
@@ -4187,6 +4187,9 @@ msgstr "Tekintse meg és iratkozzon fel a témája <a href=\"%(feed_url)s\">tev�
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Csatlakozzon a társalgáshoz a <a href=\"%(forum_url)s\">fórumokon</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Válasszon fejléc képet a témájához."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 képpont"
@@ -6069,15 +6072,6 @@ msgstr "Operációs rendszerek:"
 msgid "Applications:"
 msgstr "Alkalmazások:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Értesítsen a kiegészítő frissítésekor. (Kisebb frissítésekről nem érkezik levél)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Adminisztrátori kódértékelés jelző törlése"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Adminisztrátori tartalomértékelés jelző törlése"
-
 msgid "Is more info requested?"
 msgstr "Több információt kér?"
 
@@ -6124,6 +6118,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Egy szerkesztő zárolta."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Az automatikus jóváhagyás letiltottnak van jelölve."
 
 msgid "Duplicate Submission"
 msgstr "Ismételt beküldés"
@@ -6574,6 +6571,30 @@ msgstr "A privát faliújságot az értékelők az egymás közti információcs
 
 msgid "Update whiteboards"
 msgstr "Faliújság frissítése"
+
+msgid "More Actions"
+msgstr "További műveletek"
+
+msgid "Notify me about new listed versions"
+msgstr "Értesítsen az új listázott verziókról"
+
+msgid "Force-disable add-on"
+msgstr "Kiegészítő erőltetett letiltása"
+
+msgid "Force-enable add-on"
+msgstr "Kiegészítő erőltetett engedélyezése"
+
+msgid "Disable Auto-Approval"
+msgstr "Automatikus jóváhagyás letiltása"
+
+msgid "Enable Auto-Approval"
+msgstr "Automatikus jóváhagyás engedélyezése"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Adminisztrátori kódértékelés jelző törlése"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Adminisztrátori tartalomértékelés jelző törlése"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7472,8 +7493,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "A „törlésre” kattintva a fiókja <strong>véglegesen eltávolításra kerül</strong>. Tehát:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Többé nem fog tudni bejelentkezni a %(site)s oldalra."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Ha újra belép ezzel az e-mailcímmel a(z) %(site)s oldalon, akkor létrejön egy új fiók, amely ezzel a fiókkal semmilyen kapcsolatban nem áll."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Az értékelései és minősítési nem kerülnek törlésre, de többé nem fognak Önhöz kötődni."

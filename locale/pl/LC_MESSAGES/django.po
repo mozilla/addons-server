@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -171,6 +171,9 @@ msgid "Listed"
 msgstr "Wyświetlanie"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1782,8 +1785,9 @@ msgstr "Dodatek {addon} został wyłączony."
 msgid "{addon} enabled."
 msgstr "Dodatek {addon} został włączony."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "Zmieniono status dodatku {addon} na {0}."
 
 msgid "{version} added to {addon}."
@@ -2094,13 +2098,6 @@ msgstr "Niewyświetlany"
 
 msgid "Developer"
 msgstr "Autor"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Obserwator"
-
-msgid "Support"
-msgstr "Pomoc"
 
 msgid "Extension"
 msgstr "Rozszerzenie"
@@ -2647,12 +2644,6 @@ msgstr "Zastąp nieudane sprawdzenie"
 msgid "Submit my add-on for manual review."
 msgstr "Prześlij dodatek do ręcznego sprawdzenia."
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Zaznacz tę opcję, jeśli zamierzasz rozpowszechniać dodatek na własną rękę i wystarczy, by tylko został podpisany przez Mozillę."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Plik z wersją kończącą się na a|alpha|b|beta|pre|rc i opcjonalnym numerem jest wykrywany jako wersja beta."
 
@@ -3048,9 +3039,8 @@ msgstr "Informacje o rolach autora"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Dodatki mogą mieć wielu autorów z przypisaną im jedną z trzech możliwych ról:</p> <ul> <li><b>Właściciel</b> – może zarządzać wszystkimi aspektami dodatku włącznie z dodawaniem i usuwaniem "
 "innych autorów,</li> <li><b>Autor</b> – może zarządzać wszystkimi aspektami dodatku z wyjątkiem dodawania i usuwania innych autorów i zarządzania dotacjami,</li> <li><b>Obserwator</b> – może "
@@ -3344,12 +3334,6 @@ msgstr "Dodaj obrazek…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Czy inni mogą udostępniać twój motyw, o ile podadzą autorstwo?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, włącznie z zastosowaniem w celach komercyjnych."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian tylko w celach niekomercyjnych."
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Czy inni mogą używać komercyjnie twojego motywu?"
@@ -3358,17 +3342,11 @@ msgstr "Czy inni mogą używać komercyjnie twojego motywu?"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Czy inni mogą tworzyć dzieła zależne z twojego motywu?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, jak również tworzyć prace bazujące na minimotywie."
-
 msgid "Yes, as long as they share alike"
 msgstr "Tak, pod warunkiem, że na tych samych zasadach"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Licencjodawca zezwala rozpowszechniać prace pochodne na tej samej licencji lub innej z nią kompatybilnej."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać i odtwarzać prace tylko w niezmienionej postaci – nie prace pochodne bazujące na oryginale."
 
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
@@ -3376,6 +3354,10 @@ msgstr "Twój motyw zostanie opublikowany na następującej licencji:"
 
 msgid "Select a different license."
 msgstr "Wybierz inną licencję."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Poproszono o więcej informacji"
 
 msgid "Tests"
 msgstr "Testy"
@@ -3536,6 +3518,9 @@ msgstr "W adresie URL użyj tylko liter, cyfr, znaków podkreślenie i myślnik�
 #, fuzzy
 msgid "Summary:"
 msgstr "Podsumowanie"
+
+msgid "required"
+msgstr "wymagane"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3736,11 +3721,13 @@ msgstr "Usunięto motyw."
 msgid "Theme generator"
 msgstr "Licencja motywu"
 
-msgid "Select a header image for your Theme."
-msgstr "Wybierz obrazek nagłówka dla swojego motywu."
+#, fuzzy
+msgid "Theme name"
+msgstr "nazwa motywu"
 
-msgid "required"
-msgstr "wymagane"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "Wybierz obrazek nagłówka dla swojego motywu."
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3754,44 +3741,45 @@ msgstr "Wyrównany do prawego górnego narożnika"
 msgid "Select a different header image"
 msgstr "Wybierz inny obrazek nagłówka"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Wybierz kolory swojego motywu."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Kolor tekstu na etykietach kart."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3799,7 +3787,7 @@ msgid "optional"
 msgstr "(opcjonalne)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Wskaż, by zobaczyć podgląd"
 
 msgid "Back"
@@ -3810,8 +3798,8 @@ msgid "Uploading Theme"
 msgstr "Najczęściej używane motywy"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Prześlij kolejny plik"
+msgid "Finish Theme"
+msgstr "Motywy %s"
 
 msgid "API Credentials"
 msgstr ""
@@ -4022,6 +4010,9 @@ msgstr "Blog"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Kontakty"
+
+msgid "Support"
+msgstr "Pomoc"
 
 #, fuzzy
 msgid "Policies"
@@ -4237,11 +4228,23 @@ msgstr "Licencja motywu"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Czy inni mogą udostępniać twój motyw, o ile podadzą autorstwo?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, włącznie z zastosowaniem w celach komercyjnych."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian tylko w celach niekomercyjnych."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Czy inni mogą używać komercyjnie twojego motywu?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Czy inni mogą tworzyć dzieła zależne z twojego motywu?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, jak również tworzyć prace bazujące na minimotywie."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licencjodawca zezwala kopiować, rozpowszechniać i odtwarzać prace tylko w niezmienionej postaci – nie prace pochodne bazujące na oryginale."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Twój motyw zostanie opublikowany na następującej licencji:"
@@ -4275,6 +4278,9 @@ msgstr "Nagłówek"
 
 msgid "Footer"
 msgstr "Stopka"
+
+msgid "Select colors for your Theme."
+msgstr "Wybierz kolory swojego motywu."
 
 msgid "Foreground Text"
 msgstr "Tekst pierwszoplanowy"
@@ -4337,6 +4343,9 @@ msgstr "Zobacz i subskrybuj <a href=\"%(feed_url)s\">kanał aktywności</a> swoj
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Dołącz do rozmowy na naszych <a href=\"%(forum_url)s\">forach</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Wybierz obrazek nagłówka dla swojego motywu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikseli"
@@ -6234,17 +6243,6 @@ msgstr "Systemy operacyjne:"
 msgid "Applications:"
 msgstr "Programy:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Powiadom mnie, gdy ten dodatek zostanie zaktualizowany. (Kolejne aktualizacje nie będą generowały powiadomień."
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Usuń oznaczenie „Do sprawdzenia przez administratora”"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Usuń oznaczenie „Do sprawdzenia przez administratora”"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "Poproszono o więcej informacji"
@@ -6297,6 +6295,9 @@ msgstr ""
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "Mój dodatek został sprawdzony przez recenzenta"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "Zduplikowane zgłoszenia"
@@ -6784,6 +6785,35 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Zaktualizuj tablicę"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Więcej działań:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Wersja do druku"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Status akceptacji"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Usuń oznaczenie „Do sprawdzenia przez administratora”"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Usuń oznaczenie „Do sprawdzenia przez administratora”"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7694,8 +7724,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Poprzez kliknięcie „usuń” twoje konto zostanie <strong>usunięte na zawsze</strong>. Oznacza to, że:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Nie będziesz mieć więcej możliwości zalogowania się na %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Twoje opinie i oceny nie zostaną skasowane, nie będą jednak powiązane z tobą."

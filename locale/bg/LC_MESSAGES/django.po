@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
-"PO-Revision-Date: 2018-01-16 09:07+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"PO-Revision-Date: 2018-02-02 13:41+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -167,6 +167,9 @@ msgstr "В списъка"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Пътищата на добавките и списъците трябва да завършват с „/“"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Имената на добавките не могат да съдържат търговските марки Mozilla или Firefox."
 
 msgid "Abuse reported."
 msgstr "Злоупотребата докладвана."
@@ -601,13 +604,11 @@ msgstr "Лиценз на изходния код за {addon}"
 msgid "Source Code License"
 msgstr "Лиценз на изходния код"
 
-#, fuzzy
 msgid "support section"
-msgstr "Поддръжка"
+msgstr "раздел за поддръжка"
 
-#, fuzzy
 msgid "support email"
-msgstr "Имейл за поддръжка:"
+msgstr "ел. поща за поддръжка"
 
 msgid "permalink"
 msgstr "постоянна връзка"
@@ -653,10 +654,10 @@ msgid "Review History"
 msgstr "История на рецензиите"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "За съжаление, тази тема очаква одобрение. Върнете се по-късно."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Темата очаква одобрение. Тя е невидима за всички освен вас."
 
 msgid "Collector's Note"
 msgstr "Бележки на събирача"
@@ -710,10 +711,10 @@ msgid "Admin Tools"
 msgstr "Администраторски инструменти"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Грешка, опитайте отново."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Грешка при проверяване на въведените данни, моля, опитайте отново."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Това трябва да е валиден шестнадесетичен код за цвят, например #000000."
@@ -948,9 +949,8 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Сътрудник"
+msgstr "Сътрудници"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1006,9 +1006,8 @@ msgstr "Въведете валидно име, състоящо се то бу�
 msgid "This slug cannot be used."
 msgstr "Това име не може да бъде използвано."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Това URL вече се използва от друг списък"
+msgstr "Добавката вече се принадлежи към този списък"
 
 msgid "Name"
 msgstr "Име"
@@ -1731,8 +1730,9 @@ msgstr "{addon} деактивиран."
 msgid "{addon} enabled."
 msgstr "{addon} активиран."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "Състоянието на {addon} е променено на {0}."
 
 msgid "{version} added to {addon}."
@@ -2035,13 +2035,6 @@ msgstr "Махната от списъка"
 
 msgid "Developer"
 msgstr "Разработчик"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Наблюдател"
-
-msgid "Support"
-msgstr "Поддръжка"
 
 msgid "Extension"
 msgstr "Разширение"
@@ -2577,12 +2570,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "Do not list my add-on on this site"
-msgstr "Добавката да не бъде показвана на страницата"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Сложете отметка ако смятате да сами да разпространявате своята добавка и имате нужда само да бъде подписана от Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -2972,9 +2959,8 @@ msgstr "Роли на авторите на добавката"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Добавките могат да имат неограничен брой автори с четири възможни роли:</p>\n"
 "<ul>\n"
@@ -3249,12 +3235,6 @@ msgstr "Добавяне на снимка…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Променена е роля на автор на ваша добавка"
@@ -3263,16 +3243,10 @@ msgstr "Променена е роля на автор на ваша добав�
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Автор е премахнат от ваша добавка"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
 msgid "Yes, as long as they share alike"
 msgstr ""
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
@@ -3280,6 +3254,10 @@ msgstr ""
 
 msgid "Select a different license."
 msgstr "Изберете друг лиценз."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Поискана е повече информация"
 
 msgid "Tests"
 msgstr "Проверки"
@@ -3435,6 +3413,9 @@ msgstr "Моля, използвайте само букви, цифри, дол
 
 msgid "Summary:"
 msgstr "Обобщение:"
+
+msgid "required"
+msgstr "задължително"
 
 msgid "This add-on is experimental"
 msgstr "Добавката е изпитателна"
@@ -3606,11 +3587,12 @@ msgstr "Темата е изтрита."
 msgid "Theme generator"
 msgstr "Темата е изтрита."
 
-msgid "Select a header image for your Theme."
-msgstr ""
+#, fuzzy
+msgid "Theme name"
+msgstr "Темата е изтрита."
 
-msgid "required"
-msgstr "задължително"
+msgid "Select a header image for your theme"
+msgstr ""
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3624,44 +3606,45 @@ msgstr ""
 msgid "Select a different header image"
 msgstr ""
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
+msgstr "Изберете икона за добавката си:"
+
+msgid "Header area background"
 msgstr ""
 
-msgid "Header area background (accentcolor)"
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
-
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Това е цветът на текста в раздела."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3669,7 +3652,7 @@ msgid "optional"
 msgstr "(незадължително)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Сложи мишката отгоре за преглед"
 
 msgid "Back"
@@ -3680,8 +3663,8 @@ msgid "Uploading Theme"
 msgstr "Обещаващи теми"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Редактиране на темата"
+msgid "Finish Theme"
+msgstr "%s Теми"
 
 msgid "API Credentials"
 msgstr "Удостоверителни данни за ППИ"
@@ -3877,6 +3860,9 @@ msgstr "Блог"
 msgid "Contact Us"
 msgstr "Контакти"
 
+msgid "Support"
+msgstr "Поддръжка"
+
 msgid "Policies"
 msgstr "Политика"
 
@@ -4067,10 +4053,22 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
 
 msgid "Can others create derivative works from your Theme?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
@@ -4106,6 +4104,9 @@ msgid "Header"
 msgstr ""
 
 msgid "Footer"
+msgstr ""
+
+msgid "Select colors for your Theme."
 msgstr ""
 
 msgid "Foreground Text"
@@ -4168,6 +4169,9 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr ""
+
+msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
@@ -5917,17 +5921,6 @@ msgstr "Операционни системи:"
 msgid "Applications:"
 msgstr "Приложения:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Административна рецензия"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Изпращане на рецензия"
-
 msgid "Is more info requested?"
 msgstr "Поискана ли е повече информация?"
 
@@ -5975,6 +5968,9 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Has auto-approval disabled flag set."
 msgstr ""
 
 msgid "Duplicate Submission"
@@ -6451,6 +6447,33 @@ msgstr ""
 #, fuzzy
 msgid "Update whiteboards"
 msgstr "Табло"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Още действия:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+msgid "Force-enable add-on"
+msgstr ""
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+msgid "Enable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Административна рецензия"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Изпращане на рецензия"
 
 msgid "(admin)"
 msgstr ""
@@ -7344,7 +7367,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
@@ -7528,7 +7551,7 @@ msgstr "Не можахме да ви отпишем"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "За съжаление не можахме да отменим абонамента ви. Посетили сте невалидна препратка. Все пак, можете да се отпишете от <a href=\"%(edit_url)s\">страницата за редакция на профил</a>."
+msgstr "За съжаление, не можахме да отменим абонамента ви. Посетили сте невалидна препратка. Все пак, можете да се отпишете от <a href=\"%(edit_url)s\">страницата за редакция на профил</a>."
 
 msgid "Developer Information"
 msgstr "Информация за разработчика"

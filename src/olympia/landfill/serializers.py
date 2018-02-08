@@ -4,6 +4,7 @@ import random
 from django.conf import settings
 from django.utils.translation import activate
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 from rest_framework import serializers
 
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
@@ -274,9 +275,12 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # now, lets upload the file into the system
             from olympia.devhub.views import handle_upload
 
+            request = RequestFactory().get('/')
+            request.user = user
+
             upload = handle_upload(
                 filedata=filedata,
-                user=user,
+                request=request,
                 channel=amo.RELEASE_CHANNEL_LISTED,
                 addon=addon,
             )

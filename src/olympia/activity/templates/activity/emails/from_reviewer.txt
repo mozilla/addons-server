@@ -1,14 +1,19 @@
 Hello,
 
-A reviewer sent a message regarding the review of version {{ number }} of add-on {{ name }}.
+{{ author }}, a reviewer at addons.mozilla.org, found an issue when reviewing version {{ number }} of the add-on {{ name }} and requests additional information. You are receiving this email because {{ email_reason }}.
 
+*********
 {{ author }} wrote:
 
 {{ comments }}
 
-If you want to respond please reply to this email or visit {{ url }}
+*********
 
-You are receiving this email because {{ email_reason }}.
---
+To respond, please reply to this email or visit {{ url }}. {% if is_info_request %}If we do not hear from you within seven (7) days of this notification, this listing may be removed from addons.mozilla.org.{% endif %}
+
+
+Thank you for your attention.
+
+-- 
 Mozilla Add-ons
 {{ SITE_URL }}

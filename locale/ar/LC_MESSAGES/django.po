@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:30+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -194,6 +194,9 @@ msgid "Listed"
 msgstr "Listed"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1878,8 +1881,8 @@ msgstr ""
 msgid "{addon} enabled."
 msgstr ""
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
 msgstr ""
 
 msgid "{version} added to {addon}."
@@ -2174,14 +2177,6 @@ msgstr ""
 #, fuzzy
 msgid "Developer"
 msgstr "Developer"
-
-# <option> text in a <select> for Author role in an add-on.
-#, fuzzy
-msgid "Viewer"
-msgstr "Viewer"
-
-msgid "Support"
-msgstr "الدعم"
 
 msgid "Extension"
 msgstr "امتداد"
@@ -2735,12 +2730,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -3135,9 +3124,8 @@ msgid "About author roles"
 msgstr ""
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3418,19 +3406,10 @@ msgstr ""
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr ""
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
 
 msgid "Yes, as long as they share alike"
@@ -3439,13 +3418,13 @@ msgstr ""
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
+msgstr ""
+
+msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "Tests"
@@ -3610,6 +3589,9 @@ msgstr ""
 
 msgid "Summary:"
 msgstr ""
+
+msgid "required"
+msgstr "مطلوب"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3798,11 +3780,13 @@ msgstr "الإضافات التي أنشأتها"
 msgid "Theme generator"
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr ""
+#, fuzzy
+msgid "Theme name"
+msgstr "الإضافات التي أنشأتها"
 
-msgid "required"
-msgstr "مطلوب"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "اختر ترخيصًا"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3817,43 +3801,43 @@ msgid "Select a different header image"
 msgstr ""
 
 #, fuzzy
-msgid "Select colors for your Theme."
+msgid "Select colors for your theme"
 msgstr "اختر التصنيف الذي يصف السِمة أفضل وصف."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr ""
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3861,7 +3845,7 @@ msgid "optional"
 msgstr "(اختياري)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "قم بالحومان بالمؤشر للمعاينة"
 
 msgid "Back"
@@ -3872,8 +3856,8 @@ msgid "Uploading Theme"
 msgstr "السِمات القادمة"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "رفع إصدارة جديدة"
+msgid "Finish Theme"
+msgstr "سِمات %s"
 
 msgid "API Credentials"
 msgstr ""
@@ -4080,6 +4064,9 @@ msgstr "المدونة"
 #, fuzzy
 msgid "Contact Us"
 msgstr "المتواصلون"
+
+msgid "Support"
+msgstr "الدعم"
 
 #, fuzzy
 msgid "Policies"
@@ -4294,10 +4281,22 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
 
 msgid "Can others create derivative works from your Theme?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
@@ -4334,6 +4333,10 @@ msgstr ""
 
 msgid "Footer"
 msgstr ""
+
+#, fuzzy
+msgid "Select colors for your Theme."
+msgstr "اختر التصنيف الذي يصف السِمة أفضل وصف."
 
 msgid "Foreground Text"
 msgstr ""
@@ -4397,6 +4400,9 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr ""
+
+msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
@@ -6180,16 +6186,6 @@ msgstr "أنظمة التشغيل:"
 msgid "Applications:"
 msgstr "التطبيقات:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "نبّهني عند وجود تحديث لهذه الإضافة (التحديثات اللاحقة لن تتسبب بإرسال رسالة)."
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "غير مراجعة"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "التعليق"
@@ -6240,6 +6236,9 @@ msgstr ""
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "عندما تراجع إضافتي بواسطة محرّر"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr ""
@@ -6744,6 +6743,34 @@ msgstr ""
 
 msgid "Update whiteboards"
 msgstr ""
+
+#, fuzzy
+msgid "More Actions"
+msgstr "مزيد من الإجراءات:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "إضافات الهواتف الذكية"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "المحدّثة مؤخرًا"
+
+msgid "Clear Admin Code Review Flag"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "غير مراجعة"
 
 msgid "(admin)"
 msgstr ""
@@ -7663,7 +7690,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."

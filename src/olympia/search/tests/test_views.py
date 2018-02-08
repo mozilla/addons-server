@@ -18,7 +18,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import (
     format_date, locale_url, numberfmt, urlparams)
 from olympia.amo.tests import (
-    ESTestCase, ESTestCaseWithAddons, addon_factory, create_switch)
+    ESTestCaseWithAddons, addon_factory, create_switch)
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.tasks import unindex_collections
 from olympia.search import views
@@ -586,7 +586,7 @@ class TestESSearch(SearchBase):
             assert self.get_results(r) == (
                 sorted(self.addons.values_list('id', flat=True)))
 
-    def test_slug_indexed(self):
+    def test_slug_indexed_but_not_searched(self):
         a = self.addons[0]
 
         r = self.client.get(self.url, {'q': 'omgyes'})
@@ -595,7 +595,7 @@ class TestESSearch(SearchBase):
         a.update(slug='omgyes')
         self.refresh()
         r = self.client.get(self.url, {'q': 'omgyes'})
-        assert self.get_results(r) == [a.id]
+        assert self.get_results(r) == []
 
     def test_authors_indexed(self):
         a = self.addons[0]
@@ -712,120 +712,6 @@ class TestESSearch(SearchBase):
                 result = self.get_results(response, sort=False)
 
                 assert result[0] == addon.pk
-
-
-class TestSearchResultScoring(ESTestCase):
-    fixtures = ['base/category']
-
-    def setUp(self):
-        super(TestSearchResultScoring, self).setUp()
-        self.url = reverse('search.search')
-
-    def tearDown(self):
-        self.empty_index('default')
-        super(TestSearchResultScoring, self).tearDown()
-
-    def get_results(self, response):
-        """Return pks of add-ons shown on search results page."""
-        return [a.id for a in response.context['pager'].object_list]
-
-    def test_score_boost_name_match(self):
-        addons = [
-            amo.tests.addon_factory(
-                name='Merge Windows', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='Merge All Windows', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='All Downloader Professional', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-        ]
-
-        self.refresh()
-
-        response = self.client.get(self.url, {'q': 'merge windows'})
-        results = self.get_results(response)
-
-        # Doesn't match "All Downloader Professional"
-        assert addons[2].pk not in results
-
-        # Matches both "Merge Windows" and "Merge All Windows" but can't
-        # correctly predict their exact scoring since we don't have
-        # an exact match that would prefer 'merge windows'. Both should be
-        # the first two matches though.
-        assert addons[1].pk in results[:2]
-        assert addons[0].pk in results[:2]
-
-        response = self.client.get(self.url, {'q': 'merge all windows'})
-        results = self.get_results(response)
-
-        # Make sure we match 'All Downloader Professional' but it's
-        # term match frequency is much lower than the other two so it's
-        # last.
-        assert addons[2].pk == results[-1]
-
-        # Other two are first rank again.
-        assert addons[1].pk in results[:2]
-        assert addons[0].pk in results[:2]
-
-    def test_score_boost_name_match_slop(self):
-        addon = amo.tests.addon_factory(
-            name='Merge all Windows', type=amo.ADDON_EXTENSION,
-            average_daily_users=0, weekly_downloads=0)
-
-        self.refresh()
-
-        # direct match
-        response = self.client.get(self.url, {'q': 'merge windows'})
-        results = self.get_results(response)
-
-        assert results[0] == addon.pk
-
-    def test_score_boost_exact_match(self):
-        """Test that we rank exact matches at the top."""
-        addons = [
-            amo.tests.addon_factory(
-                name='test addon test11', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='test addon test21', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='test addon test31', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-        ]
-
-        self.refresh()
-
-        response = self.client.get(self.url, {'q': 'test addon test21'})
-        results = self.get_results(response)
-
-        assert results[0] == addons[1].pk
-
-    def test_score_boost_exact_match_description_hijack(self):
-        """Test that we rank exact matches at the top."""
-        addons = [
-            amo.tests.addon_factory(
-                name='1-Click YouTube Video Download',
-                type=amo.ADDON_EXTENSION,
-                average_daily_users=566337, weekly_downloads=150000,
-                description=(
-                    'button, click that button, 1-Click Youtube Video '
-                    'Downloader is a click click great tool')),
-            amo.tests.addon_factory(
-                name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
-                average_daily_users=50, weekly_downloads=0),
-        ]
-
-        self.refresh()
-
-        response = self.client.get(self.url, {
-            'q': 'Amazon 1-Click Lock'
-        })
-        results = self.get_results(response)
-
-        assert results[0] == addons[1].pk
 
 
 class TestPersonaSearch(SearchBase):
@@ -1125,11 +1011,15 @@ class TestCollectionSearch(SearchBase):
 
         self.refresh()
 
-        # These contain terms that are in every result - so return everything.
-        for term in ('collection',
-                     'seavan: a collection of cars at the beach'):
-            self.check_name_results(
-                {'q': term}, sorted(p.id for p in self.public_collections))
+        self.check_name_results(
+            {'q': 'collection'},
+            sorted(p.id for p in self.public_collections))
+
+        # This is a very specific search so we really just return precisely
+        # that.
+        self.check_name_results(
+            {'q': 'seavan: a collection of cars at the beach'},
+            [c1.id])
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):

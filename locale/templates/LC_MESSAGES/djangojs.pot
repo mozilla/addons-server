@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-01-12 18:29+0000\n"
+"POT-Creation-Date: 2018-02-01 09:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.5.3\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -828,7 +828,7 @@ msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1287
-#: static/js/zamboni/reviewers.js:326
+#: static/js/zamboni/reviewers.js:408
 msgid "Select an application first"
 msgstr ""
 
@@ -1014,51 +1014,51 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:130
+#: static/js/zamboni/reviewers.js:134
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:181
+#: static/js/zamboni/reviewers.js:185
 msgid "Receipt checked by app."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:183
+#: static/js/zamboni/reviewers.js:187
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:254
+#: static/js/zamboni/reviewers.js:336
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:265 static/js/zamboni/reviewers.js:287
+#: static/js/zamboni/reviewers.js:347 static/js/zamboni/reviewers.js:369
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:270
+#: static/js/zamboni/reviewers.js:352
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:275
+#: static/js/zamboni/reviewers.js:357
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:280
+#: static/js/zamboni/reviewers.js:362
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:292
+#: static/js/zamboni/reviewers.js:374
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:297
+#: static/js/zamboni/reviewers.js:379
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:361
+#: static/js/zamboni/reviewers.js:443
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:417
+#: static/js/zamboni/reviewers.js:499
 msgid "Number of Reviews"
 msgstr ""
 

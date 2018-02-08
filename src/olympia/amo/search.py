@@ -243,7 +243,7 @@ class ES(object):
                 hits = es.search(
                     body=build_body,
                     index=self.index,
-                    doc_type=self.type._meta.db_table
+                    doc_type=self.type._meta.db_table,
                 )
         except Exception:
             log.error(build_body)

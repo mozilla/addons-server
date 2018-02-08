@@ -15,6 +15,7 @@ import time
 import unicodedata
 import urllib
 import urlparse
+import string
 
 import django.core.mail
 
@@ -390,6 +391,21 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
+def normalize_string(value, strip_puncutation=False):
+    """Normalizes a unicode string.
+
+     * decomposes unicode characters
+     * strips whitespaces, newlines and tabs
+     * optionally removes puncutation
+    """
+    value = unicodedata.normalize('NFD', force_text(value))
+    value = value.encode('utf-8', 'ignore')
+
+    if strip_puncutation:
+        value = value.translate(None, string.punctuation)
+    return force_text(' '.join(value.split()))
+
+
 def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
                    message=validate_slug.message, code=validate_slug.code):
     """
@@ -565,10 +581,13 @@ def to_language(locale):
 def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
-    # Special fake language can just act like English for formatting and such
-    if not lang or lang in ('dbg', 'dbr', 'dbl'):
+    # Special fake language can just act like English for formatting and such.
+    # Do the same for 'cak' because it's not in http://cldr.unicode.org/ and
+    # therefore not supported by Babel - trying to fake the class leads to a
+    # rabbit hole of more errors because we need valid locale data on disk, to
+    # get decimal formatting, plural rules etc.
+    if not lang or lang in ('cak', 'dbg', 'dbr', 'dbl'):
         lang = 'en'
-
     return Locale.parse(translation.to_locale(lang))
 
 

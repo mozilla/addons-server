@@ -365,10 +365,17 @@ class TestReviewerSubscription(TestCase):
         self.user_one = UserProfile.objects.get(pk=55021)
         self.user_two = UserProfile.objects.get(pk=999)
         self.reviewer_group = Group.objects.create(
-            name='reviewers', rules='Addons:Review')
-        for user in [self.user_one, self.user_two]:
-            ReviewerSubscription.objects.create(addon=self.addon, user=user)
-            GroupUser.objects.create(group=self.reviewer_group, user=user)
+            name='Reviewers: Legacy', rules='Addons:Review')
+        GroupUser.objects.create(
+            group=self.reviewer_group, user=self.user_one)
+        self.post_reviewer_group = Group.objects.create(
+            name='Reviewers: Add-ons', rules='Addons:PostReview')
+        GroupUser.objects.create(
+            group=self.post_reviewer_group, user=self.user_two)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_one)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_two)
 
     def test_email(self):
         es = ReviewerSubscription.objects.get(user=self.user_one)
@@ -422,16 +429,16 @@ class TestReviewerSubscription(TestCase):
 
     def test_no_email_for_ex_reviewers(self):
         self.user_one.delete()
-        # Remove user_two from reviewers.
+        # Remove user_one from reviewers.
         GroupUser.objects.get(
-            group=self.reviewer_group, user=self.user_two).delete()
+            group=self.reviewer_group, user=self.user_one).delete()
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
     def test_no_email_address_for_reviewer(self):
         self.user_one.update(email=None)
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
 
 class TestReviewerScore(TestCase):
@@ -1421,6 +1428,18 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_uses_native_messaging(self.version)
             is True)
 
+    def test_check_has_auto_approval_disabled(self):
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags.update(auto_approval_disabled=True)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1476,6 +1495,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.is_locked is False
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
         }
 
@@ -1491,6 +1511,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1500,6 +1521,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1508,6 +1530,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1516,26 +1539,29 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
-    def test_calculate_verdict_post_review(self):
-        summary = AutoApprovalSummary.objects.create(version=self.version)
+    def test_calculate_verdict_has_auto_approval_disabled(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, has_auto_approval_disabled=True)
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': True,
         }
-        # Regardless of the many flags that are set, it's approved because we
-        # are in post-review mode.
-        assert summary.verdict == amo.AUTO_APPROVED
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'is_locked': True,
+            'has_auto_approval_disabled': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
+            u'Has auto-approval disabled flag set.',
             u'Is locked by a reviewer.',
         ]
 

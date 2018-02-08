@@ -9,12 +9,14 @@ from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
 
+import pytest
 import waffle
 
 from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -29,6 +31,7 @@ from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     user_factory, version_factory)
+
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -2222,7 +2225,9 @@ class TestAddonSearchView(ESTestCase):
                       weekly_downloads=555)
         self.refresh()
 
-        qset = AddonSearchView().get_queryset()
+        view = AddonSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
             ('*.raw', '*_sort', 'boost', 'hotness', 'name', 'description',
@@ -2984,7 +2989,9 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
                       type=amo.ADDON_PERSONA)
         self.refresh()
 
-        qset = AddonAutoCompleteSearchView().get_queryset()
+        view = AddonAutoCompleteSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'modified',
@@ -3215,6 +3222,7 @@ class TestStaticCategoryView(TestCase):
             u'slug': u'feeds-news-blogging'
         }
 
+    @pytest.mark.needs_locales_compilation
     def test_name_translated(self):
         with self.assertNumQueries(0):
             response = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='de')
@@ -3249,7 +3257,7 @@ class TestLanguageToolsView(TestCase):
         dictionary_spelling_variant = addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
             locale_disambiguation='For spelling reform')
-        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+        language_pack = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
 
         # These add-ons below should be ignored: they are either not public or
         # of the wrong type, not supporting the app we care about, or their
@@ -3280,6 +3288,37 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+
+    def test_memoize(self):
+        addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 3
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            assert self.client.get(self.url, {'app': 'firefox'}).content == (
+                response.content
+            )
+        # But different app is different
+        with self.assertNumQueries(12):
+            assert (
+                self.client.get(self.url, {'app': 'thunderbird'}).content !=
+                response.content
+            )
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            self.client.get(self.url, {'app': 'thunderbird'})
+        # But throw in a lang request and not cached:
+        with self.assertNumQueries(10):
+            self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
 
 
 class TestReplacementAddonView(TestCase):
