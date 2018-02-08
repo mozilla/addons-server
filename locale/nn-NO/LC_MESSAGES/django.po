@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-06 00:46+0000\n"
+"PO-Revision-Date: 2018-02-08 01:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1731,9 +1731,8 @@ msgid "{addon} enabled."
 msgstr "{addon} slått på."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon}-status endra til {0}."
+msgstr "{addon} status endra til {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} lagt til {addon}."
@@ -3606,9 +3605,8 @@ msgstr ""
 msgid "optional"
 msgstr "valfri"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Nettlesarførehandsvising"
+msgstr "Nettlesar-førehandsvising"
 
 msgid "Back"
 msgstr "Tilbake"
@@ -6355,16 +6353,14 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Aktiver versjonen på nytt"
+msgstr "Tvinga aktivering av utviding"
 
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Auto-godkjenning stadfesta"
+msgstr "Slå på auto-godkjenning"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Fjern flagg for administrativ kodevurdering"
