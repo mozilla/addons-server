@@ -564,8 +564,8 @@ def run_addons_linter(path, listed=True):
             .format(path))
 
     stdout, stderr = (
-        tempfile.TemporaryFile(dir=settings.TMP_PATH),
-        tempfile.TemporaryFile(dir=settings.TMP_PATH))
+        tempfile.TemporaryFile(),
+        tempfile.TemporaryFile())
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(
