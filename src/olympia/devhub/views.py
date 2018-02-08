@@ -1226,10 +1226,7 @@ def auto_sign_version(version, use_autograph=False, **kwargs):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    versions = addon.versions
-    if not waffle.switch_is_active('beta-versions'):
-        versions = versions.exclude(files__status=amo.STATUS_BETA)
-    qs = versions.order_by('-created').transform(Version.transformer)
+    qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
