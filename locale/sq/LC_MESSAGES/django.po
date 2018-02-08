@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-08 16:30+0000\n"
+"PO-Revision-Date: 2018-02-08 16:48+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -169,7 +169,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
 
 msgid "Abuse reported."
 msgstr "Shpërdorimi u njoftua."
@@ -2973,14 +2973,12 @@ msgstr "Autorë"
 msgid "About author roles"
 msgstr "Rreth rolit autor"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 3 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
-"autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li> <li><b>Parës:</b> Mund të shohë "
-"rregullimet dhe statistikat e shtesës, por s’mund të bëjë ndryshime</li> </ul>"
+"<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 2 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
+"autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li></ul>"
 
 msgid "Basic Information"
 msgstr "Të dhëna Bazë"
@@ -3520,9 +3518,8 @@ msgstr "Kaq qe! Ky version do të jetë i gatshëm në sajtin tuaj shumë shpejt
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Mbaruat! Ky version është parashtruar për shqyrtim. Do të njoftoheni kur shqyrtimi të jetë plotësuar, ose nëse shqyrtuesit tanë kanë ndonjë pyetje rreth parashtrimit tuaj."
 
-#, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm dhe foto ekrani. Bëjeni parashtrimin tuaj gati për publikim:"
+msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm. Bëjeni parashtrimin tuaj gati për publikim:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm dhe foto ekrani. Bëjeni parashtrimin tuaj gati për publikim:"
@@ -3608,9 +3605,8 @@ msgstr "Prodhues temash"
 msgid "Theme name"
 msgstr "Emër teme"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
+msgstr "Përzgjidhni një figurë kryeje për temën tuaj"
 
 msgid "Image height should be 200 pixels"
 msgstr "Lartësi e figurës duhet të jetë 200 piksel"
@@ -3631,53 +3627,43 @@ msgid "Header area background"
 msgstr "Sfond fushe kryesh"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes. Manifest field:  accentcolor."
+msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes. Fushë te manifesti:  accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Tekst dhe ikona fushe kryesh"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "Ngjyra e tekstit të shfaqur te fushë kryesh."
+msgstr "Ngjyra e tekstit dhe ikonave të shfaqura te fushë kryesh, hiq skedën aktive. Fushë te manifesti:  textcolor."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Sfond fushe paneli (toolbar)."
+msgstr "Sfond fushe paneli"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Ngjyra e sfondit  për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur."
+msgstr "Ngjyra e sfondit për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur.  Fushë manifesti:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text icons"
-msgstr "Tekst fushe paneli (toolbar_text)."
+msgstr "Ikona teksti fushe paneli"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve"
+msgstr "Ngjyra e tekstit dhe ikonave te paneli dhe skeda aktive. Fushë manifesti:  toolbar_text."
 
-#, fuzzy
 msgid "Toolbar field area background"
-msgstr "Sfond fushe zone paneli (toolbar_field)."
+msgstr "Sfond fushe zone paneli"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Ngjyra e sfondit për fusha në panel, të tilla si shtylla e URL-ve."
+msgstr "Ngjyra e sfondit për fusha në panel, të tilla si shtylla e URL-ve. Fushë manifesti:  toolbar_field."
 
-#, fuzzy
 msgid "Toolbar field area text"
-msgstr "Tekst fushe zone paneli (toolbar_field_text)."
+msgstr "Tekst fushe zone paneli"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve"
+msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve. Fushë manifesti:  toolbar_field_text."
 
 msgid "optional"
 msgstr "opsionale"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Paraparje Shfletuesi"
+msgstr "Paraparje shfletuesi"
 
 msgid "Back"
 msgstr "Mbrapsht"
@@ -3685,9 +3671,8 @@ msgstr "Mbrapsht"
 msgid "Uploading Theme"
 msgstr "Ngarkim Teme"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Tema %s"
+msgstr "Përfundojeni Temën"
 
 msgid "API Credentials"
 msgstr "Kredenciale API"
@@ -6108,9 +6093,8 @@ msgstr "Dikush tjetër po e shqyrton këtë temë."
 msgid "theme, reviewer, or comment"
 msgstr "temë, shqyrtues, ose koment"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Tabela"
+msgstr "Tabelë Private"
 
 msgid "Keep review; remove flags"
 msgstr "Mbaje shqyrtimin; hiq flamurkat"
@@ -6211,9 +6195,8 @@ msgstr "Kështu do të hidhet tej ky version dhe do të hiqet prej radhës së s
 msgid "Confirm Approval"
 msgstr "Ripohoni Miratimin"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit, pa u njoftuar zhvilluesi. "
+msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit të atij versioni, pa e njoftuar zhvilluesin."
 
 msgid "Reject Multiple Versions"
 msgstr "Hidhi tej Versionet e Shumëfishtë"
@@ -6239,9 +6222,8 @@ msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendj
 msgid "Approve Content"
 msgstr "Miratojeni Lëndën"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Kjo regjistron miratimin tuaj të lëndës së këtij versioni, pa e njoftuar zhvilluesin."
+msgstr "Kjo regjistron miratimin tuaj të lëndës së versionit më të ri publik, pa e njoftuar zhvilluesin."
 
 msgid "Legacy Add-ons"
 msgstr "Shtesa të Dikurshme"
@@ -6585,32 +6567,28 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Tabela është vendi i duhur për shkëmbim të dhënash me rëndësi për këtë shtesë (cilido qoftë versioni), mes zhvilluesit dhe shqyrtuesit. Atë e shohin dhe mund ta përpunojnë që të dy."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Tabela private përdoret për të shkëmbyer mes zhvilluesve informacion që është i pavarur nga versioni. Ju lutemi, ruani objektivitetin. Është e dukshme vetëm për shqyrtuesit."
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Përditësoni tabelën"
+msgstr "Përditësoni tabela"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Më Tepër Veprime:"
+msgstr "Më Tepër Veprime"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Njoftomë rreth versionesh të rinj të paraqitur"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Aktivizoje shtesën me detyrim"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Riaktivizoje Versionin"
+msgstr "Aktivizoje shtesën me detyrim"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Çaktivizo Vetëmiratimin"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "I është ripohuar vetëmiratimi"
+msgstr "Aktivizo Vetëmiratimin"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
@@ -7518,7 +7496,7 @@ msgstr "Duke klikuar mbi \"fshije\" llogaria juaj <strong>do të fshihet përgji
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Futja sërish me këtë adresë email te %(site)s do të sjellë krijimin e një llogarie të re që s’do të jetë në asnjë mënyrë e përshoqëruar me këtë llogari."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Shqyrtimet dhe vlerësimet tuaja s’do të fshihen, por s’do t’i përshoqërohen më llogarisë suaj."
