@@ -40,14 +40,14 @@ class HelpersTest(TestCase):
         assert pq(s)('strong').text() == '37 reviews'
 
         # without collection uuid
-        assert pq(s)('a').attr('href') == '/en-US/firefox/addon/xx/#reviews'
+        assert pq(s)('a').attr('href') == '/en-US/firefox/addon/xx/reviews/'
 
         # with collection uuid
         myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
         s = self.render('{{ reviews_link(myaddon, myuuid) }}',
                         {'myaddon': a, 'myuuid': myuuid})
         assert pq(s)('a').attr('href') == (
-            '/en-US/firefox/addon/xx/?collection_uuid=%s#reviews' % myuuid)
+            '/en-US/firefox/addon/xx/reviews/?collection_uuid=%s' % myuuid)
 
         z = Addon(average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
         s = self.render('{{ reviews_link(myaddon) }}', {'myaddon': z})
@@ -55,7 +55,7 @@ class HelpersTest(TestCase):
 
         # with link
         u = reverse('addons.ratings.list', args=['xx'])
-        s = self.render('{{ reviews_link(myaddon, link_to_list=True) }}',
+        s = self.render('{{ reviews_link(myaddon) }}',
                         {'myaddon': a})
         assert pq(s)('a').attr('href') == u
 
@@ -65,14 +65,14 @@ class HelpersTest(TestCase):
         assert pq(s)('a').text() == '(37)'
 
         # without collection uuid
-        assert pq(s)('a').attr('href') == '/en-US/firefox/addon/xx/#reviews'
+        assert pq(s)('a').attr('href') == '/en-US/firefox/addon/xx/reviews/'
 
         # with collection uuid
         myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
         s = self.render('{{ impala_reviews_link(myaddon, myuuid) }}',
                         {'myaddon': a, 'myuuid': myuuid})
         assert pq(s)('a').attr('href') == (
-            '/en-US/firefox/addon/xx/?collection_uuid=%s#reviews' % myuuid)
+            '/en-US/firefox/addon/xx/reviews/?collection_uuid=%s' % myuuid)
 
         z = Addon(average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
         s = self.render('{{ impala_reviews_link(myaddon) }}', {'myaddon': z})
@@ -81,7 +81,7 @@ class HelpersTest(TestCase):
         # with link
         u = reverse('addons.ratings.list', args=['xx'])
         s = self.render(
-            '{{ impala_reviews_link(myaddon, link_to_list=True) }}',
+            '{{ impala_reviews_link(myaddon) }}',
             {'myaddon': a})
         assert pq(s)('a').attr('href') == u
 

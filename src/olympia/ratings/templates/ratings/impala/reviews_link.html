@@ -1,10 +1,6 @@
-{% if link_to_list %}
-  {% set base = url('addons.ratings.list', addon.slug) %}
-{% else %}
-  {% set base = addon.get_url_path()|urlparams('reviews') %}
-  {% if collection_uuid %}
+{% set base = url('addons.ratings.list', addon.slug) %}
+{% if collection_uuid %}
     {% set base = base|urlparams(collection_uuid=collection_uuid) %}
-  {% endif %}
 {% endif %}
 
 <span class="rating">

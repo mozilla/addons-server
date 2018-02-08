@@ -11,7 +11,7 @@
         {% endif %}
       </span>
     {% elif type == 'rating' %}
-      {{ impala_reviews_link(addon, link_to_list=True) }}
+      {{ impala_reviews_link(addon) }}
     {% elif type in ('downloads', 'adu') %}
       {% if type == 'downloads' %}
         <span class="downloads adu">

@@ -26,18 +26,16 @@ def stars(num, large=False):
 
 
 @library.global_function
-def reviews_link(addon, collection_uuid=None, link_to_list=False):
+def reviews_link(addon, collection_uuid=None):
     t = get_template('ratings/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
-                                   'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
 
 
 @library.global_function
-def impala_reviews_link(addon, collection_uuid=None, link_to_list=False):
+def impala_reviews_link(addon, collection_uuid=None):
     t = get_template('ratings/impala/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
-                                   'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
 
 
