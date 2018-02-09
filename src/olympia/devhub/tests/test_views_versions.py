@@ -7,7 +7,6 @@ from django.core.files import temp
 import mock
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
