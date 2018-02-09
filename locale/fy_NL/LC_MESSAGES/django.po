@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-09 14:31+0000\n"
+"PO-Revision-Date: 2018-02-09 14:50+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5587,48 +5587,50 @@ msgid "Some tips for writing a great review"
 msgstr "In oantal tips foar in geweldige beoardieling"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Faakstelde fragen oer beoardielingen"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"Add-on-beoardielingen binne in manier om jo mieningen oer de troch jo ynstallearre en brûkte add-ons te jaan. Us evaluaasjeteam behâldt harren it rjocht foar om elke beoardieling dy't net konfoarm "
+"dizze rjochtlinen te wegerjen of fuort te smiten is."
 
 msgid "Do:"
 msgstr "Dwaan:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Skriuw as oft jo in freon oer jo ûnderfining mei de add-on fertelle."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Hâld beoardielingen koart en ienfâldich te begripen."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Jou spesifike en behelpsume details. Bygelyks:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Wurke de add-on lykas jo ferwachten?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Hokker funksjes fûne jo fijn of minder fijn?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Wie de add-on nuttich?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Wie de add-on ienfâldich te brûken?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Bliuwe jo dizze add-on brûke?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Nim in momint om jo beoardieling troch te lêzen eardat jo dy yntsjinje, om sa typflaters te minimalisearjen."
 
 msgid "Don’t:"
 msgstr "Net dwaan:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Ekstreem koarte beoardielingen as ‘Bjusterbaarlik!’, ‘prachtich’ of ‘slim’ yntsjinje."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
@@ -5659,7 +5661,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Hoe kin ik in problematyske beoardieling rapportearje?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -5667,14 +5669,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Ik bin in add-onskriuwer, kin ik reagearje op beoardielingen?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "Ja, add-onskriuwers kinne ien antwurd op in beoardieling jaan. Jo kinne in diskusje starte yn ús <a href=\"%(forum_url)s\">foarum</a> foar fierdere diskusje en opfolging."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Ik bin in add-onskriuwer, kin ik negative beoardielingen of wurdearringen fuortsmite?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -5775,7 +5777,7 @@ msgid "Brought to you by:"
 msgstr "Oanbean troch:"
 
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird is mei pensjoen"
 
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
@@ -5832,7 +5834,7 @@ msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Tank; dizze beoardieling is markearre foar goedkarring troch in beoardieler."
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "In beoardieling foar {0} tafoegje"
 
 #, python-format
 msgid ""
@@ -5851,7 +5853,7 @@ msgstr ""
 "beoardielingen troch brûkers.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Beoardieling troch {0} beäntwurdzje"
 
 msgid "Write a Reply"
 msgstr "Beäntwurdzje"
@@ -5873,42 +5875,42 @@ msgstr "troch %(user)s <b>(ûntwikkeler)</b> op %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Dizze beoardieling giet oer in eardere ferzje fan de add-on ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dizze brûker hat in <a href=\"%(user_review_url)s\">eardere beoardieling</a> fan dizze add-on."
+msgstr[1] "Dizze brûker hat <a href=\"%(user_review_url)s\">%(cnt)s eardere beoardielingen</a> fan dizze add-on."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Dizze brûker hat <a href=\"%(user_review_url)s\">oare beoardielingen</a> fan dizze add-on."
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Markearre foar beoardieling"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Dizze beoardieling rapportearje"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Beoardieling beäntwurdzje"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Antwurd bewurkje"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Beoardieling bewurkje"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Antwurd fuortsmite"
 
 msgid "Delete review"
 msgstr "Beoardieling fuortsmite"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Beoardielingen"
 
 msgid "Reviews for {0}"
 msgstr ""
