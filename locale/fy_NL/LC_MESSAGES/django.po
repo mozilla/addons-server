@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-09 12:39+0000\n"
+"PO-Revision-Date: 2018-02-09 13:59+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5480,15 +5480,17 @@ msgid "How much do add-ons cost to purchase?"
 msgstr "Hoe djoer binne add-ons yn oanskaf?"
 
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ""
+msgstr "Yn ús galerij hoste add-ons binne fergees, útsein dúdlik oars oanjûn."
 
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Wat betsjut it wannear in add-on freget om in bydrage?"
 
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Guon add-onskriuwers freegje tefreden brûkers fan in add-on om in jildlike bydrage oan de ûntwikkeling. Dizze bydragen gean streekrjocht nei de ûntwikkeler, útsein in tredde partij oanjûn wurdt, "
+"lykas de non-profit Mozilla Foundation."
 
 msgid "What are beta add-ons?"
 msgstr "Wat binne bèta-add-ons?"
@@ -5520,7 +5522,7 @@ msgstr ""
 
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "Besykje ús <a href=\"%(contact_url)s\">kontaktside</a>."
 
 msgid "What is a Source Code License?"
 msgstr "Wat is in boarnekoadelisinsje?"
@@ -5546,10 +5548,12 @@ msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
 
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Wat is de kolleksje Myn favoriten?"
 
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
+"Favorite add-ons binne add-ons dy't jo markearre hawwe om maklik letter werom te finen. Jo kinne in add-on oan jo favoritenkolleksje tafoegje troch op ‘Tafoegje oan favoriten’ op de detailside "
+"derfan te klikken."
 
 msgid "Mobile Add-ons"
 msgstr "Add-ons foar Mobyl"
