@@ -376,7 +376,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean files[].is_restart_required: Whether the file requires a browser restart to work once installed or not.
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
-    :>json string files[].url: The (absolute) URL to download a file. An optional ``src`` query parameter can be added to indicate the source page (See :ref:`download sources <download-sources>`).
+    :>json string files[].url: The (absolute) URL to download a file. Clients using this API can append an optional ``src`` query parameter to the url which would indicate the source of the request (See :ref:`download sources <download-sources>`).
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings.  Empty for non-webextensions.
     :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from search endpoint.
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
