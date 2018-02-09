@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-09 13:59+0000\n"
+"PO-Revision-Date: 2018-02-09 14:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5574,17 +5574,17 @@ msgstr "Untwikkelersûnderwerpen"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "Sjoch ús <a href=\"%(faq_url)s\">Faakstelde fragen foar ûntwikkelers</a> en <a href=\"%(hub_url)s\">Untwikkelershub</a> foar antwurden op fragen mei betrekking ta de ûntwikkeling fan add-ons."
 
 msgid "Still have questions?"
 msgstr "Noch hieltyd fragen?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
+msgstr "Besykje ús <a href=\"%(sumo_url)s\">stipewebsite</a> foar algemiene Firefox-stipe. Besykje ús <a href=\"%(forum_url)s\">foarum</a> foar algemiene fragen oer add-ons en de website."
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "In oantal tips foar in geweldige beoardieling"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
