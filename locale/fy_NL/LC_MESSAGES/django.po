@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-08 12:04+0000\n"
+"PO-Revision-Date: 2018-02-09 12:09+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5158,6 +5158,7 @@ msgstr "Kin ik in privacybelied foar myn add-on opnimme?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
+"Ja. Jo kinne in privacybelied opjaan wannear't jo jo add-on yntsjinje. Jo kinne ek fia it dashboerd Untwikkelershelpmiddelen in privacybelied tafoegje of bywurkje neidat jo add-on yntsjinne is."
 
 msgid "Must my add-on be reviewed?"
 msgstr "Moat myn add-on beoardiele wurde?"
@@ -5220,20 +5221,20 @@ msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Hoe kin ik sjen hoe faak myn add-on download is?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
+msgstr "It Statistikendashboerd yn it dashboerd Untwikkelershelpmiddelen biedt ynformaasje oer it oantal downloads fan jo add-on sûnt jo dizze by AMO yntsjinne hawwe."
 
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Hoe kin ik sjen hoe folle aktive brûkers myn add-on brûke?"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
+msgstr "It Statistikendashboerd yn it dashboerd Untwikkelershelpmiddelen biedt ynformaasje oer hoefolle brûkers jo add-on aktyf brûke sûnt jo dizze by AMO yntsjinne hawwe."
 
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Hoe tsjinje ik in fernijing foar myn add-on yn?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "Jo kinne in fernijing foar jo add-on yntsjinje fia it dashboerd Untwikkelershelpmiddelen troch de opsje ‘In nije ferzje oplade’ te kiezen en in nij .xpi-bestân foar jo add-on op te laden."
 
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Moat myn fernijing troch beoardielers beoardiele wurde?"
@@ -5242,10 +5243,10 @@ msgid "Add-on updates may be subject to review just the same as new submissions.
 msgstr "Fernijingen fan add-ons kinne net as nije ynstjoeringen oanhelle mei oan beoradieling."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Hoe beäntwurdzje ik in brûker dy't in negative beoardieling fan myn add-on pleatst hat?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
+msgstr "In ûntwikkeler mei op elke beoardieling fan syn/har add-on reagearje, as se mar oanmeld binne by AMO. Hjirneist kin elke brûker in beosrdieling rapportearje as:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
@@ -5276,7 +5277,7 @@ msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr "Kin ik freegje om in beoardieling fuort te smiten as dizze net krekt is?"
 
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ""
+msgstr "As in skriuwer kontakt mei jo opnimt en freget om in beoardieling mei foute of net folsleine ynformaasje fuort te smiten, beoardiele wy it berjocht en oerwaagje of wy dizze fuortsmite sille."
 
 msgid ""
 "Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
