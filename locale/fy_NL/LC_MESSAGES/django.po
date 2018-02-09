@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-09 12:17+0000\n"
+"PO-Revision-Date: 2018-02-09 12:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5345,11 +5345,11 @@ msgstr ""
 "mei hokker tapassingen en hokker ferzjes dizze wurket, lykas bygelyks Firefox 50.0 - 52.*. Foar Firefox-add-ons jouwe de ynstallaasjeknoppen oan oft de add-on kompatibel is of net."
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Wat binne de ferskate typen add-ons?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ""
+msgstr "Der binne diverske soarten add-ons dy't %(app_name)s op ferskate manieren oanpasse:"
 
 #, python-format
 msgid ""
@@ -5374,7 +5374,7 @@ msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></str
 msgstr ""
 
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Hoe ynstallearje, behear of smyt ik in add-on fuort?"
 
 #, python-format
 msgid ""
@@ -5384,13 +5384,13 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Hoe hâld ik add-ons aktueel?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr "Add-ons wurde ien kear op in dei automatysk op fernijingen kontrolearre. Yn Firefox wurde fernijingen standert automatysk ynstallearre. "
 
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Binne add-ons feilich om te ynstallearjen?"
 
 #, python-format
 msgid ""
@@ -5403,7 +5403,7 @@ msgstr ""
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Kinne add-ons %(app_name)s stadiger meitsje?"
 
 #, python-format
 msgid ""
@@ -5423,7 +5423,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Wat moat ik dwaan as ik problemen ûnderfyn mei in add-on?"
 
 #, python-format
 msgid ""
@@ -5436,7 +5436,7 @@ msgid "Add-on Gallery"
 msgstr "Add-ongalerij"
 
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Hoe kies ik tusken add-ons dy't itselde lykje te dwaan?"
 
 msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
@@ -5444,7 +5444,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Wat as ik de add-on dy't ik sykje net fine kin?"
 
 #, python-format
 msgid ""
@@ -5455,7 +5455,7 @@ msgstr ""
 "pleatse op ús <a href=\"%(forum_url)s\">Add-onsfoarum</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr ""
+msgstr "Wat hâldt it yn as in add-on ‘eksperiminteel’ is?"
 
 #, python-format
 msgid ""
@@ -5466,7 +5466,7 @@ msgstr ""
 "eksperimintele add-ons, en smyt de add-on daliks fuort as jo problemen tsjinkomme. %(learnmore_link_open)sMear ynfo oer ús beoardielingsproses%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Wat hâldt it yn as in add-on ‘net beoardiele’ is?"
 
 #, python-format
 msgid ""
@@ -5477,7 +5477,7 @@ msgstr ""
 " fan dizze add-ons, omdat se skea oan jo kompjûter tabringe kinne of jo privacy skeine kinne. %(learnmore_link_open)sMear ynfo oer ús beoardielingsproses%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Hoe djoer binne add-ons yn oanskaf?"
 
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
