@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-09 14:50+0000\n"
+"PO-Revision-Date: 2018-02-09 14:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5913,48 +5913,48 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: Beoardielingen"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Beoardielingen foar {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> beoardieling foar dizze add-on"
+msgstr[1] "<b>{0}</b> beoardielingen foar dizze add-on"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Untwikkelersantwurd troch {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Beoardieling foar %(addon)s troch %(user)s"
+msgstr[1] "Beoardielingen foar %(addon)s troch %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Gjin beoardielingen fûn."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Gemiddeld</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "In nije beoardieling skriuwe"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Skriuw as earste in beoardieling."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} beoardieling"
+msgstr[1] "{num} beoardielingen"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Wurdearring: {0} fan de 5 stjerren"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Wurdearring %(rating)s fan 5 stjerren"
 
 msgid "Approved reviews"
 msgstr "Goedkarre beoardielingen"
@@ -6056,13 +6056,13 @@ msgid "Jetpack Add-on"
 msgstr "Jetpack-add-on"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Mear ynformaasje frege"
 
 msgid "Contains Reviewer Comment"
 msgstr "Befettet beoardielersopmerking"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Boarnen levere"
 
 msgid "WebExtension"
 msgstr "WebExtension"
@@ -6074,13 +6074,13 @@ msgid "Has auto-approval disabled flag set."
 msgstr "Hat markearring ‘automatysk goedkarre útskeakelje’."
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Dûbele ynstjoering"
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Tank foar it yntsjinjen fan jo tema"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "In probleem mei de yntsjinning fan jo tema"
 
 msgid "Theme submission flagged for review"
 msgstr ""
