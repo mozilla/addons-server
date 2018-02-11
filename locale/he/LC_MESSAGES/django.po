@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-07 11:00+0000\n"
+"PO-Revision-Date: 2018-02-11 18:27+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3061,11 +3061,11 @@ msgstr "קטגוריות הן הדרך העיקרית שבאמצעותה משת�
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מומלצת עבור יישום זה. נא לשלוח דוא״ל אל <a href=\"mailto:%(email)s\">%(email)s</a> אם יש סיבה לשינוי הקטגוריות שלך."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מומלצת. נא לשלוח דוא״ל אל <a href=\"mailto:%(email)s\">%(email)s</a> אם יש סיבה לשינוי הקטגוריות שלך."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "תגים מסייעים למשתמשים למצוא את התוספת שלך ואמורים להיות תיאורים קצרים כגון: tabs‏, toolbar או twitter. מותר להשתמש ב־{0} תגים לכל היותר."
@@ -4201,7 +4201,7 @@ msgid "You're done!"
 msgstr "סיימת!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "ערכת הנושא שלך נשלחה לתור הסקירה. תישלח אליך הודעה בדוא״ל עם סיום הסקירה, בדרך כלל תוך 24 שעות."
 
 msgid "Next steps:"
 msgstr "הצעדים הבאים:"
