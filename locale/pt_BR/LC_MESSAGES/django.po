@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 14:19+0000\n"
+"PO-Revision-Date: 2018-02-12 15:25+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4517,16 +4517,14 @@ msgstr "Melhore seu uso de emoji {start_sub_heading}com {addon_name}{end_sub_hea
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dezenas de emojis incríveis—a um clique de distância."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Funciona perfeitamente com os sites de vídeo mais populares."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Defina a página que você verá toda vez que abrir uma nova aba."
@@ -4544,7 +4542,7 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gerenciar senhas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "Mais do que apenas capturar telas, o Awesome Screenshot Plus permite que você insira texto e gráficos nas imagens. além de armazenar e compartilhar suas capturas."
 
 msgid "Cannot diff a version against itself"
 msgstr "Não é possível comparar a mesma versão"
