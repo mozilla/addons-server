@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 12:07+0000\n"
+"PO-Revision-Date: 2018-02-12 12:43+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2028,7 +2028,7 @@ msgid "{addon} {version} re-enabled."
 msgstr ""
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "‏{addon} {version} הושבתה."
 
 msgid "{addon} {version} content approved."
 msgstr "התוכן של {addon} {version} אושר."
@@ -5547,10 +5547,10 @@ msgstr ""
 # 78%
 # 100%
 msgid "Mobile Add-ons"
-msgstr "תוספות עבור מכשירים ניידים"
+msgstr "תוספות לנייד"
 
 msgid "What are mobile add-ons?"
-msgstr "מה הן תוספות לניידים?"
+msgstr "מה הן תוספות לנייד?"
 
 #, python-format
 msgid ""
