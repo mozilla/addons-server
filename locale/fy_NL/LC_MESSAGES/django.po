@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 13:56+0000\n"
+"PO-Revision-Date: 2018-02-12 15:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6453,24 +6453,24 @@ msgid "Advanced Search"
 msgstr "Avansearre sykje"
 
 msgid "clear search"
-msgstr ""
+msgstr "sykopdracht wiskje"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Beoardielingen ferwurkje"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Evaluaasje-aksjes:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "troch %(user)s op %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markearre troch %(user)s op %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Alle beoardielingen binne ferwurke. Goed wurk!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
