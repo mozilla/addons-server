@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:25+0000\n"
+"PO-Revision-Date: 2018-02-12 16:24+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4529,17 +4529,14 @@ msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_hea
 msgid "Set the page you see every time you open a new tab."
 msgstr "Defina a página que você verá toda vez que abrir uma nova aba."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore seu uso de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dezenas de emojis incríveis—a um clique de distância."
+msgstr "Muitos emojis incríveis para todas as ocasiões — a um clique de distância."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gerenciar senhas {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr "Mais do que apenas capturar telas, o Awesome Screenshot Plus permite que você insira texto e gráficos nas imagens. além de armazenar e compartilhar suas capturas."
