@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-01 09:53+0000\n"
-"PO-Revision-Date: 2018-02-05 13:08+0000\n"
+"PO-Revision-Date: 2018-02-12 06:55+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2486,13 +2486,13 @@ msgid "Online gambling"
 msgstr "Kockanje na internetu"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Spam sadržaj"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Nizak kvalitet, razvučeno ili prazna slika"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problem poravnanja slike zaglavlja"
 
 msgid "Core"
 msgstr ""
@@ -2502,16 +2502,16 @@ msgid "Recent Changes for %s"
 msgstr ""
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Nedavne promjene za moje dodatke"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Mora imati barem jednog vlasnika."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Barem jedan autor mora biti naveden."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Autor može biti naveden samo jednom."
 
 msgid "Slug incorrect."
 msgstr ""
