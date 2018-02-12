@@ -27,6 +27,11 @@ The results are sorted by the most recently updated collection first.
     :>json array results: An array of :ref:`collections <collection-detail-object>`.
 
 
+If the ``with_addon`` parameter is passed then :ref:`addons in the collection<collection-addon-detail>` are returned along with the detail.
+Add-ons returned are limited to the first 25 in the collection, in the default sort (popularity, descending).
+Additional add-ons can be returned from the :ref:`Collection Add-on list endpoint<collection-addon-list>`.
+
+
 ------
 Detail
 ------
@@ -37,6 +42,8 @@ This endpoint allows you to fetch a single collection by its ``slug``.
 It returns any ``public`` collection by the specified user. You can access
 a non-``public`` collection only if it was authored by you, the authenticated user.
 If your account has the `Collections:Edit` permission then you can access any collection.
+
+
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
 
@@ -56,6 +63,11 @@ If your account has the `Collections:Edit` permission then you can access any co
     :>json string slug: The name used in the URL.
     :>json string url: The (absolute) collection detail URL.
     :>json string uuid: A unique identifier for this collection; primarily used to count addon installations that come via this collection.
+
+
+If the ``with_addon`` parameter is passed then :ref:`addons in the collection<collection-addon-detail>` are returned along with the detail.
+Add-ons returned are limited to the first 25 in the collection, in the default sort (popularity, descending).
+Additional add-ons can be returned from the :ref:`Collection Add-on list endpoint<collection-addon-list>`.
 
 
 ------

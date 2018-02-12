@@ -42,7 +42,9 @@ from .models import (
     SPECIAL_SLUGS, Collection, CollectionAddon, CollectionVote,
     CollectionWatcher)
 from .permissions import AllowCollectionAuthor, AllowCollectionContributor
-from .serializers import CollectionAddonSerializer, CollectionSerializer
+from .serializers import (
+    CollectionAddonSerializer, CollectionSerializer,
+    CollectionWithAddonsSerializer)
 
 
 log = olympia.core.logger.getLogger('z.collections')
@@ -664,7 +666,6 @@ class CollectionViewSet(ModelViewSet):
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),
     ]
-    serializer_class = CollectionSerializer
     lookup_field = 'slug'
 
     def get_account_viewset(self):
@@ -674,6 +675,11 @@ class CollectionViewSet(ModelViewSet):
                 permission_classes=[],  # We handled permissions already.
                 kwargs={'pk': self.kwargs['user_pk']})
         return self.account_viewset
+
+    def get_serializer_class(self):
+        with_addons = 'with_addons' in self.request.GET
+        return (CollectionSerializer if not with_addons
+                else CollectionWithAddonsSerializer)
 
     def get_queryset(self):
         return Collection.objects.filter(

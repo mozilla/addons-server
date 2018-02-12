@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+
 from olympia.amo.tests import (
     BaseTestCase, addon_factory, collection_factory, user_factory)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
-    CollectionAddonSerializer, CollectionSerializer)
+    CollectionAddonSerializer, CollectionSerializer,
+    CollectionWithAddonsSerializer)
 
 
 class TestCollectionSerializer(BaseTestCase):
     serializer = CollectionSerializer
 
     def setUp(self):
+        super(TestCollectionSerializer, self).setUp()
         self.user = user_factory()
         self.collection = collection_factory()
         self.collection.update(author=self.user)
@@ -52,3 +56,33 @@ class TestCollectionAddonSerializer(BaseTestCase):
         assert data['addon']['id'] == self.collection.addons.all()[0].id
         assert data['downloads'] == self.item.downloads
         assert data['notes'] == {'en-US': self.item.comments}
+
+
+class TestCollectionWithAddonsSerializer(TestCollectionSerializer):
+    serializer = CollectionWithAddonsSerializer
+
+    def setUp(self):
+        super(TestCollectionWithAddonsSerializer, self).setUp()
+        self.addon = addon_factory()
+        self.collection.add_addon(self.addon)
+
+    def test_basic(self):
+        super(TestCollectionWithAddonsSerializer, self).test_basic()
+        data = self.serialize()
+        collection_addon = CollectionAddon.objects.get(
+            addon=self.addon, collection=self.collection)
+        assert data['addons'] == [
+            CollectionAddonSerializer(collection_addon).data
+        ]
+        assert data['addons'][0]['addon']['id'] == self.addon.id
+
+    def test_page_size(self):
+        # Add 3 more addons to the collection.
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        data = self.serialize()
+        assert len(data['addons']) == 4
+        settings.REST_FRAMEWORK['PAGE_SIZE'] = 3
+        data = self.serialize()
+        assert len(data['addons']) == 3

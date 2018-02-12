@@ -1339,6 +1339,20 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['uuid'] == col_a.uuid
         assert response.data['results'][2]['uuid'] == col_c.uuid
 
+    def test_with_addons(self):
+        collection_factory(author=self.user)
+        coll_with_addons = collection_factory(author=self.user)
+        addon = addon_factory()
+        coll_with_addons.add_addon(addon)
+        coll_with_addons.update(modified=self.days_ago(3))
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200, response.data
+        assert response.data['results'][0]['addons'] == []
+        assert response.data['results'][1]['addons'][0]['addon']['id'] == (
+            addon.id)
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1416,6 +1430,14 @@ class TestCollectionViewSetDetail(TestCase):
             'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': 'hello'}))
         assert response.status_code == 404
+
+    def test_with_addons(self):
+        addon = addon_factory()
+        self.collection.add_addon(addon)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+        assert response.data['addons'][0]['addon']['id'] == addon.id
 
 
 class CollectionViewSetDataMixin(object):

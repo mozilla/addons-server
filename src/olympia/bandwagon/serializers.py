@@ -1,5 +1,7 @@
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+from django.conf import settings
+
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -109,3 +111,23 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
             # DRF normally ignores updates to read_only fields, so do the same.
             data.pop('addon')
         return super(CollectionAddonSerializer, self).validate(data)
+
+
+class CollectionWithAddonsSerializer(CollectionSerializer):
+    addons = serializers.SerializerMethodField()
+
+    class Meta(CollectionSerializer.Meta):
+        fields = CollectionSerializer.Meta.fields + ('addons',)
+        read_only_fields = tuple(
+            set(fields) - set(CollectionSerializer.Meta.writeable_fields))
+
+    def get_addons(self, obj):
+        limit = settings.REST_FRAMEWORK['PAGE_SIZE']
+        sort = '-addon__weekly_downloads'
+        iterable = CollectionAddon.objects.filter(
+            collection=obj).all().order_by(sort)[:limit]
+
+        return [
+            CollectionAddonSerializer(item).data
+            for item in iterable
+        ]
