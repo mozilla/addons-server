@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:10+0000\n"
+"PO-Revision-Date: 2018-02-12 15:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4460,31 +4460,26 @@ msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Sćehńće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funguje bjezposrědnje z najbóle woblubowanymi widejosydłami."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Postajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
+msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rjadujće hesła {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
