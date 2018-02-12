@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 16:50+0000\n"
+"PO-Revision-Date: 2018-02-12 16:54+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4437,34 +4437,29 @@ msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_headi
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Fungerar smidigt med de flesta populära videosajter."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Ange den sida du vill se varje gång du öppnar en ny flik."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
+msgstr "Dussintals fantastiska emojis för varje tillfälle—alltid ett klick bort."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hantera lösenord {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ta skärmbilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "Mer än bara ett grundläggande skärmbildsverktyg, Awesome Screenshot Plus låter dig kommentera bilder med anpassad text och grafik, plus möjligheten att lagra och dela dina bilder."
 
 msgid "Cannot diff a version against itself"
 msgstr "Kan inte jämföra en version mot sig själv"
