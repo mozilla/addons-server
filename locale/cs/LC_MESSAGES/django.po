@@ -4442,9 +4442,8 @@ msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tisíce úžasných emoji vždy po ruce."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -4460,9 +4459,8 @@ msgstr ""
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Tisíce úžasných emoji vždy po ruce."
+msgstr ""
 
 #, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
