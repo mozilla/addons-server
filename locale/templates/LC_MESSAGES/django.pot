@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,7 +236,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/views.py:380
+#: src/olympia/addons/views.py:381
 msgid "Abuse reported."
 msgstr ""
 
@@ -558,9 +558,9 @@ msgid "by {0} on {1}"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_preview.html:74
-#: src/olympia/ratings/templates/ratings/impala/reviews_link.html:16
+#: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12
 #: src/olympia/ratings/templates/ratings/review_list.html:57
-#: src/olympia/ratings/templates/ratings/reviews_link.html:21
+#: src/olympia/ratings/templates/ratings/reviews_link.html:17
 #: src/olympia/ratings/templatetags/jinja_helpers.py:20
 msgid "Not yet rated"
 msgstr ""
@@ -1019,7 +1019,7 @@ msgid "{0} users"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:14
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:56
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:58
 msgid "More"
 msgstr ""
 
@@ -3984,17 +3984,17 @@ msgid ""
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:699
+#: src/olympia/devhub/tasks.py:703
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:703
+#: src/olympia/devhub/tasks.py:707
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:705
+#: src/olympia/devhub/tasks.py:709
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
@@ -4453,7 +4453,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:59
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:61
 #: src/olympia/devhub/templates/devhub/addons/owner.html:4
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Authors & License"
@@ -5034,32 +5034,32 @@ msgstr ""
 msgid "Edit information about this add-on."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:36
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 msgid "Upload a new version of this add-on."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:38
 msgid "New Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:51
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53
 msgid "Daily statistics on downloads and users."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:52
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54
 msgid "Statistics"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:60
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:62
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:5
 msgid "Manage Status & Versions"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:69
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:71
 msgid "View Add-on Listing"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:71
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:73
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:50
 #: src/olympia/devhub/templates/devhub/personas/edit.html:61
@@ -6619,42 +6619,77 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/discovery/data.py:34
+#: src/olympia/discovery/data.py:36
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:38
+#: src/olympia/discovery/data.py:40
 msgid ""
 "A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
 "content filters without chewing up a bunch of memory."
 msgstr ""
 
-#: src/olympia/discovery/data.py:47
+#: src/olympia/discovery/data.py:49
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:51
+#: src/olympia/discovery/data.py:53
 msgid ""
 "Simplify and sync all your various website logins across devices with one "
 "password to rule them all."
 msgstr ""
 
-#: src/olympia/discovery/data.py:63
+#: src/olympia/discovery/data.py:65
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:67
+#: src/olympia/discovery/data.py:69
 msgid ""
 "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
 "play control, and more."
 msgstr ""
 
-#: src/olympia/discovery/data.py:74
+#: src/olympia/discovery/data.py:76
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:78
+#: src/olympia/discovery/data.py:80
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+#: src/olympia/discovery/data.py:98
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:102
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+#: src/olympia/discovery/data.py:109
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:113
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#: src/olympia/discovery/data.py:123
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:127
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+#: src/olympia/discovery/data.py:135
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:139
+msgid ""
+"More than just a basic screenshot tool, Awesome Screenshot Plus lets you "
+"annotate images with custom text and graphics, plus the ability to store and "
+"share your visuals."
 msgstr ""
 
 #: src/olympia/files/forms.py:115
@@ -6673,83 +6708,83 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:411
+#: src/olympia/files/utils.py:415
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:422
+#: src/olympia/files/utils.py:426
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:459
+#: src/olympia/files/utils.py:463
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:532
+#: src/olympia/files/utils.py:530
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:546
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:590
+#: src/olympia/files/utils.py:594
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:599
+#: src/olympia/files/utils.py:603
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:607
+#: src/olympia/files/utils.py:611
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:659
+#: src/olympia/files/utils.py:662
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:804 src/olympia/files/utils.py:808
+#: src/olympia/files/utils.py:818 src/olympia/files/utils.py:822
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:831
+#: src/olympia/files/utils.py:843
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:842
+#: src/olympia/files/utils.py:854
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:853
+#: src/olympia/files/utils.py:865
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:868
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:859
+#: src/olympia/files/utils.py:871
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:864
+#: src/olympia/files/utils.py:876
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:897
+#: src/olympia/files/utils.py:909
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -6888,26 +6923,26 @@ msgstr ""
 msgid "There was an error accessing file %s."
 msgstr ""
 
-#: src/olympia/files/templatetags/jinja_helpers.py:229
+#: src/olympia/files/templatetags/jinja_helpers.py:230
 msgid "That file no longer exists."
 msgstr ""
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: src/olympia/files/templatetags/jinja_helpers.py:238
+#: src/olympia/files/templatetags/jinja_helpers.py:239
 msgid "File size is over the limit of {0}."
 msgstr ""
 
-#: src/olympia/files/templatetags/jinja_helpers.py:252
+#: src/olympia/files/templatetags/jinja_helpers.py:253
 msgid "Problems decoding {0}."
 msgstr ""
 
-#: src/olympia/files/templatetags/jinja_helpers.py:262
+#: src/olympia/files/templatetags/jinja_helpers.py:263
 msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
 
-#: src/olympia/files/templatetags/jinja_helpers.py:270
+#: src/olympia/files/templatetags/jinja_helpers.py:271
 msgid "This file is a directory."
 msgstr ""
 
@@ -8825,7 +8860,7 @@ msgstr ""
 msgid "Be the first to write a review."
 msgstr ""
 
-#: src/olympia/ratings/templates/ratings/reviews_link.html:17
+#: src/olympia/ratings/templates/ratings/reviews_link.html:13
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""

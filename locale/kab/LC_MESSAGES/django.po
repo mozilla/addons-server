@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: 2017-12-13 21:44+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4392,6 +4392,34 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+#, fuzzy
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+#, fuzzy
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"

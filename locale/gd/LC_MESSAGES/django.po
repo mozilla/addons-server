@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4312,6 +4312,30 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
