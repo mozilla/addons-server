@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 12:43+0000\n"
+"PO-Revision-Date: 2018-02-12 12:32+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5245,7 +5245,7 @@ msgid "How do I submit an update for my add-on?"
 msgstr "איך אוכל להגיש עדכון לתוספת שלי?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "ניתן להגיש עדכון לתוספת שלך דרך לוח כלי הפיתוח ע״י בחירה באפשרות ״העלאת גרסה חדשה״ והעלאת קובץ ה־XPI עבור התוספת שלך."
 
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "האם העדכון שלי דורש סקירה מצד סוקרים?"
@@ -6267,7 +6267,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: דיווחים על שימוש לרעה"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "דיווחים על שימוש לרעה עבור התוספת {addon} והמפתחים שלה ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
