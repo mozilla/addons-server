@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 12:10+0000\n"
+"PO-Revision-Date: 2018-02-12 12:13+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4333,34 +4333,29 @@ msgstr "{addon_name} {start_sub_heading}表情符號大補包{end_sub_heading}"
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "好幾打超酷炫的表情符號，讓您點擊輸入。"
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}改善影片播放{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "與大部分知名的影音網站能夠無縫接軌。"
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}擋廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}表情符號大補包{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "好幾打超酷炫的表情符號，讓您點擊輸入。"
+msgstr "好幾打適用於任何情況的表情符號，讓您點一下即可輸入。"
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}管理密碼{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "不只是一般拍攝畫面擷圖的工具，Awesome Screenshot Plus 更可讓您在圖片上加註文字與圖片，並進行儲存或分享。"
 
 msgid "Cannot diff a version against itself"
 msgstr "無法判斷一個版本與其自身的差異"
