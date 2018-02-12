@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4380,6 +4380,30 @@ msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {add
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş—ȧŀẇȧẏş ȧ ƈŀīƈķ ȧẇȧẏ."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Ẇǿřķş şḗȧḿŀḗşşŀẏ ẇīŧħ ḿǿşŧ ƥǿƥŭŀȧř ṽīḓḗǿ şīŧḗş."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧȧƀ Ƈŭşŧǿḿīẑȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Şḗŧ ŧħḗ ƥȧɠḗ ẏǿŭ şḗḗ ḗṽḗřẏ ŧīḿḗ ẏǿŭ ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞħȧƞƈḗ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş ƒǿř ḗṽḗřẏ ǿƈƈȧşīǿƞ—ȧŀẇȧẏş ĵŭşŧ ǿƞḗ ƈŀīƈķ ȧẇȧẏ."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr "Ḿǿřḗ ŧħȧƞ ĵŭşŧ ȧ ƀȧşīƈ şƈřḗḗƞşħǿŧ ŧǿǿŀ, Aẇḗşǿḿḗ Şƈřḗḗƞşħǿŧ Ƥŀŭş ŀḗŧş ẏǿŭ ȧƞƞǿŧȧŧḗ īḿȧɠḗş ẇīŧħ ƈŭşŧǿḿ ŧḗẋŧ ȧƞḓ ɠřȧƥħīƈş, ƥŀŭş ŧħḗ ȧƀīŀīŧẏ ŧǿ şŧǿřḗ ȧƞḓ şħȧřḗ ẏǿŭř ṽīşŭȧŀş."
 
 msgid "Cannot diff a version against itself"
 msgstr "Ƈȧƞƞǿŧ ḓīƒƒ ȧ ṽḗřşīǿƞ ȧɠȧīƞşŧ īŧşḗŀƒ"

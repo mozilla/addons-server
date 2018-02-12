@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-01 09:53+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4381,6 +4381,30 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾo
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ".ʎɐʍɐ ʞɔıʅɔ ɐ sʎɐʍʅɐ—sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ".sǝʇıs oǝpıʌ ɹɐʅndod ʇsoɯ ɥʇıʍ ʎʅssǝʅɯɐǝs sʞɹoＭ"
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɐzıɯoʇsnↃ qɐ⊥"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ".qɐʇ ʍǝu ɐ uǝdo noʎ ǝɯıʇ ʎɹǝʌǝ ǝǝs noʎ ǝƃɐd ǝɥʇ ʇǝS"
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ ǝɔuɐɥuƎ"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ".ʎɐʍɐ ʞɔıʅɔ ǝuo ʇsnɾ sʎɐʍʅɐ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ".sʅɐnsıʌ ɹnoʎ ǝɹɐɥs puɐ ǝɹoʇs oʇ ʎʇıʅıqɐ ǝɥʇ snʅd ´sɔıɥdɐɹƃ puɐ ʇxǝʇ ɯoʇsnɔ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´ʅooʇ ʇoɥsuǝǝɹɔs ɔısɐq ɐ ʇsnɾ uɐɥʇ ǝɹoW"
 
 msgid "Cannot diff a version against itself"
 msgstr "ɟʅǝsʇı ʇsuıɐƃɐ uoısɹǝʌ ɐ ɟɟıp ʇouuɐↃ"
