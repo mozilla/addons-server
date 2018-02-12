@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 17:30+0000\n"
+"PO-Revision-Date: 2018-02-12 17:33+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4378,6 +4378,7 @@ msgstr "გადაიღეთ ეკრანის სურათები 
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
+"მეტი, ვიდრე უბრალოდ, ეკრანის სურათების გადამღები საშუალება, Awesome Screenshot Plus გაძლევთ შესაძლებლობას სურათზე გააკეთოთ წარწერა, დაამატოთ ნახატები და ამასთან, შეინახოთ, ან გააზიაროთ უმარტივესად."
 
 msgid "Cannot diff a version against itself"
 msgstr "diff ვერსიის საკუთარ თავთან შეპირისპირება შეუძლებელია"
