@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:59+0000\n"
-"Last-Translator: Elio <elio.gi@gmail.com>\n"
+"PO-Revision-Date: 2018-02-13 09:11+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4478,27 +4478,27 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Si integra senza problemi con i siti di streaming più popolari."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Imposta la pagina che viene mostrata quando apri una nuova scheda."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Decine di fantastiche emoji a portata di clic."
+msgstr "Tante, bellissime emoji per ogni occasione, sempre a portata di clic."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
+"Awesome Screenshot Plus è molto più di un semplice strumento per scattare istantanee: consente di aggiungere annotazioni e effetti decorativi all’immagine, archiviare sul Web e condividere i tuoi "
+"screenshot."
 
 msgid "Cannot diff a version against itself"
 msgstr "Non è possibile comparare una versione con se stessa"
