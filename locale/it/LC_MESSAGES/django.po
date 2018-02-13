@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:54+0000\n"
+"PO-Revision-Date: 2018-02-12 15:59+0000\n"
 "Last-Translator: Elio <elio.gi@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4494,9 +4494,8 @@ msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Decine di fantastiche emoji a portata di clic."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestisci le password {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
