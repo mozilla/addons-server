@@ -7,6 +7,8 @@ import zipfile
 
 from datetime import datetime
 
+from waffle.testutils import override_switch
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -1137,6 +1139,7 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         assert f.size == 675
 
+    @override_switch('beta-versions', active=True)
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)

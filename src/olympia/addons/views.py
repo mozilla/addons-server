@@ -613,8 +613,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             'all_with_deleted',
             'all_with_unlisted',
             'all_without_unlisted',
-            'only_beta'
         )
+        if waffle.switch_is_active('beta-versions'):
+            valid_filters = valid_filters + ('only_beta',)
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(

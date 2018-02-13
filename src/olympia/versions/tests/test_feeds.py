@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from waffle.testutils import override_switch
+
 import mock
 
 from pyquery import PyQuery
@@ -51,10 +53,12 @@ class TestFeeds(TestCase):
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 +0000'
 
+    @override_switch('beta-versions', active=True)
     def test_status_beta_without_beta_builds(self):
         doc = self.get_feed('a11730', beta=True)
         assert len(doc('rss channel item link')) == 0
 
+    @override_switch('beta-versions', active=True)
     def test_status_beta_with_beta_builds(self):
         addon = Addon.objects.get(id=11730)
         qs = File.objects.filter(version=addon.current_version)

@@ -3,6 +3,8 @@ import urlparse
 
 from django.conf import settings
 
+from waffle.testutils import override_switch
+
 import mock
 
 from olympia import amo
@@ -208,6 +210,7 @@ class TestLangpackFetcher(TestCase):
             addon.current_version.files.get(),
             use_autograph=False)
 
+    @override_switch('beta-versions', active=True)
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack_beta(self, mock_sign_file):
         versions = ('16.0', '16.0a2')
@@ -231,6 +234,7 @@ class TestLangpackFetcher(TestCase):
         mock_sign_file.assert_called_with(
             version.files.get(), use_autograph=False)
 
+    @override_switch('beta-versions', active=True)
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):
         self.fetch_langpacks('16.0a2')

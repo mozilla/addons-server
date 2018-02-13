@@ -5,6 +5,8 @@ import time
 
 from datetime import datetime, timedelta
 
+from waffle.testutils import override_switch
+
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -503,7 +505,8 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(
             None, exclude=(amo.STATUS_BETA,)).id == v2.id
 
-    def test_find_latest_verison_dont_exclude_anything(self):
+    @override_switch('beta-versions', active=True)
+    def test_find_latest_version_dont_exclude_anything_with_beta(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = version_factory(addon=addon, version='1.0')
@@ -521,7 +524,23 @@ class TestAddonModels(TestCase):
         # Should be v3 since we don't exclude anything.
         assert addon.find_latest_version(None, exclude=()).id == v3.id
 
-    def test_find_latest_verison_dont_exclude_anything_with_channel(self):
+    def test_find_latest_version_dont_exclude_anything(self):
+        addon = Addon.objects.get(pk=3615)
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(2))
+
+        assert addon.find_latest_version(None, exclude=()).id == v1.id
+
+        v2 = version_factory(addon=addon, version='2.0',
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
+
+        # Should be v2 since we don't exclude anything.
+        assert addon.find_latest_version(None, exclude=()).id == v2.id
+
+    @override_switch('beta-versions', active=True)
+    def test_find_latest_version_dont_exclude_anything_w_channel_w_beta(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = version_factory(addon=addon, version='1.0')
@@ -546,6 +565,27 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v3.id
 
+    def test_find_latest_version_dont_exclude_anything_with_channel(self):
+        addon = Addon.objects.get(pk=3615)
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(3))
+
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v1.id
+
+        v2 = version_factory(addon=addon, version='2.0',
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
+
+        version_factory(
+            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Should be v2 since we don't exclude anything, but do have a channel
+        # set to listed, and version 4.0 is unlisted.
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v2.id
+
     def test_current_version_unsaved(self):
         addon = Addon()
         addon._current_version = Version()
@@ -555,9 +595,14 @@ class TestAddonModels(TestCase):
         addon = Addon()
         assert addon.find_latest_version(None) is None
 
-    def test_current_beta_version(self):
+    @override_switch('beta-versions', active=True)
+    def test_current_beta_version_with_beta(self):
         addon = Addon.objects.get(pk=5299)
         assert addon.current_beta_version.id == 50000
+
+    def test_current_beta_version(self):
+        addon = Addon.objects.get(pk=5299)
+        assert addon.current_beta_version is None
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
@@ -1567,6 +1612,7 @@ class TestAddonNomination(TestCase):
         assert v.nomination == old_ver.nomination
         ver += 1
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         a.update(status=amo.STATUS_NULL)

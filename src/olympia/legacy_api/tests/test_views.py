@@ -7,6 +7,8 @@ from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
+from waffle.testutils import override_switch
+
 import jinja2
 import pytest
 
@@ -459,6 +461,7 @@ class APITest(TestCase):
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
 
+    @override_switch('beta-versions', active=True)
     def test_beta_channel(self):
         """
         This tests that addons with files in beta will have those files

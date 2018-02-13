@@ -283,6 +283,7 @@ class TestDashboard(HubTest):
         assert doc('.incomplete').text() == (
             "This add-on doesn't have any versions.")
 
+    @override_switch('beta-versions', active=True)
     def test_only_a_beta_version(self):
         beta_version = version_factory(
             addon=self.addon, version='2.0beta',

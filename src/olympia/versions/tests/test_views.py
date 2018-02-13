@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 
+from waffle.testutils import override_switch
+
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
@@ -40,7 +42,8 @@ class TestViews(TestCase):
             args=[self.addon.slug, self.addon.current_version.version])
 
     @mock.patch.object(views, 'PER_PAGE', 1)
-    def test_version_detail(self):
+    @override_switch('beta-versions', active=True)
+    def test_version_detail_with_beta(self):
         version = version_factory(addon=self.addon, version='2.0')
         version.update(created=self.days_ago(2))
         version = version_factory(addon=self.addon, version='2.1b',
@@ -71,6 +74,31 @@ class TestViews(TestCase):
         assert version == '1.0'
         r = self.client.get(url, follow=True)
         self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+
+    @mock.patch.object(views, 'PER_PAGE', 1)
+    def test_version_detail(self):
+        version = version_factory(addon=self.addon, version='2.0')
+        version.update(created=self.days_ago(2))
+        version = version_factory(addon=self.addon, version='2.1')
+        version.update(created=self.days_ago(1))
+        urls = [(v.version, reverse('addons.versions',
+                                    args=[self.addon.slug, v.version]))
+                for v in self.addon.versions.all()]
+
+        version, url = urls[0]
+        assert version == '2.1'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
+
+        version, url = urls[1]
+        assert version == '2.0'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+
+        version, url = urls[2]
+        assert version == '1.0'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list + '?page=3#version-%s' % version)
 
     def test_version_detail_404(self):
         bad_pk = self.addon.current_version.pk + 42
@@ -145,10 +173,12 @@ class TestViews(TestCase):
         assert len(doc('.version')) == 1
         assert doc('.version').attr('id') == 'version-%s' % version
 
+    @override_switch('beta-versions', active=True)
     def test_version_list_beta_without_any_beta_version(self):
         doc = self.get_content(beta=True)
         assert len(doc('.version')) == 0
 
+    @override_switch('beta-versions', active=True)
     def test_version_list_beta_shows_beta_version(self):
         version = version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_BETA},
@@ -311,11 +341,13 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_switch('beta-versions', active=True)
     def test_public_addon_beta_file(self):
         self.file.update(status=amo.STATUS_BETA)
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.assert_served_by_cdn(self.client.get(self.file_url))
 
+    @override_switch('beta-versions', active=True)
     def test_beta_addon_beta_file(self):
         self.addon.update(status=amo.STATUS_BETA)
         self.file.update(status=amo.STATUS_BETA)
@@ -413,6 +445,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert self.addon.current_version
         self.assert_served_by_cdn(self.client.get(self.latest_url))
 
+    @override_switch('beta-versions', active=True)
     def test_beta(self):
         self.assert_served_by_cdn(self.client.get(self.latest_beta_url),
                                   file_=self.beta_file)

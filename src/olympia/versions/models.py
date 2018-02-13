@@ -2,6 +2,8 @@
 import datetime
 import os
 
+import waffle
+
 import django.dispatch
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -193,7 +195,9 @@ class Version(OnChangeMixin, ModelBase):
 
         for platform in platforms:
             File.from_upload(upload, version, platform,
-                             parsed_data=parsed_data, is_beta=is_beta)
+                             parsed_data=parsed_data,
+                             is_beta=(is_beta and waffle.switch_is_active(
+                                      'beta-versions')))
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
@@ -426,6 +430,8 @@ class Version(OnChangeMixin, ModelBase):
         num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
             return num_files == 0
+        elif self.is_beta and not waffle.switch_is_active('beta-versions'):
+            return False
         elif num_files == 0:
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
