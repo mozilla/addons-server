@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
+import mock
 
 from olympia.amo.tests import (
     BaseTestCase, addon_factory, collection_factory, user_factory)
@@ -66,23 +66,20 @@ class TestCollectionWithAddonsSerializer(TestCollectionSerializer):
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
 
+    def serialize(self):
+        mock_viewset = mock.MagicMock()
+        collection_addons = CollectionAddon.objects.filter(
+            addon=self.addon, collection=self.collection)
+        mock_viewset.get_addons_queryset.return_value = collection_addons
+        return self.serializer(
+            self.collection, context={'view': mock_viewset}).data
+
     def test_basic(self):
         super(TestCollectionWithAddonsSerializer, self).test_basic()
-        data = self.serialize()
         collection_addon = CollectionAddon.objects.get(
             addon=self.addon, collection=self.collection)
+        data = self.serialize()
         assert data['addons'] == [
             CollectionAddonSerializer(collection_addon).data
         ]
         assert data['addons'][0]['addon']['id'] == self.addon.id
-
-    def test_page_size(self):
-        # Add 3 more addons to the collection.
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        data = self.serialize()
-        assert len(data['addons']) == 4
-        settings.REST_FRAMEWORK['PAGE_SIZE'] = 3
-        data = self.serialize()
-        assert len(data['addons']) == 3

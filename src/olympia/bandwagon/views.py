@@ -3,6 +3,7 @@ import hashlib
 import os
 
 from django import http
+from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
@@ -677,7 +678,8 @@ class CollectionViewSet(ModelViewSet):
         return self.account_viewset
 
     def get_serializer_class(self):
-        with_addons = 'with_addons' in self.request.GET
+        with_addons = ('with_addons' in self.request.GET and
+                       self.action == 'retrieve')
         return (CollectionSerializer if not with_addons
                 else CollectionWithAddonsSerializer)
 
@@ -685,6 +687,20 @@ class CollectionViewSet(ModelViewSet):
         return Collection.objects.filter(
             author=self.get_account_viewset().get_object()).order_by(
             '-modified')
+
+    def get_addons_queryset(self):
+        collection_addons_viewset = CollectionAddonViewSet(
+            request=self.request
+        )
+        # Set this to avoid a pointless lookup loop.
+        collection_addons_viewset.collection_viewset = self
+        # This needs to be list to make the filtering work.
+        collection_addons_viewset.action = 'list'
+        qs = collection_addons_viewset.get_queryset()
+        # Now limit and sort
+        limit = settings.REST_FRAMEWORK['PAGE_SIZE']
+        sort = collection_addons_viewset.ordering[0]
+        return qs.order_by(sort)[:limit]
 
 
 class CollectionAddonViewSet(ModelViewSet):

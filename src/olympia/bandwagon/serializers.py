@@ -1,7 +1,5 @@
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from django.conf import settings
-
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -122,12 +120,7 @@ class CollectionWithAddonsSerializer(CollectionSerializer):
             set(fields) - set(CollectionSerializer.Meta.writeable_fields))
 
     def get_addons(self, obj):
-        limit = settings.REST_FRAMEWORK['PAGE_SIZE']
-        sort = '-addon__weekly_downloads'
-        iterable = CollectionAddon.objects.filter(
-            collection=obj).all().order_by(sort)[:limit]
-
+        addons_qs = self.context['view'].get_addons_queryset()
         return [
-            CollectionAddonSerializer(item).data
-            for item in iterable
+            CollectionAddonSerializer(addon).data for addon in addons_qs
         ]
