@@ -109,3 +109,16 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
             # DRF normally ignores updates to read_only fields, so do the same.
             data.pop('addon')
         return super(CollectionAddonSerializer, self).validate(data)
+
+
+class CollectionWithAddonsSerializer(CollectionSerializer):
+    addons = serializers.SerializerMethodField()
+
+    class Meta(CollectionSerializer.Meta):
+        fields = CollectionSerializer.Meta.fields + ('addons',)
+        read_only_fields = tuple(
+            set(fields) - set(CollectionSerializer.Meta.writeable_fields))
+
+    def get_addons(self, obj):
+        addons_qs = self.context['view'].get_addons_queryset()
+        return CollectionAddonSerializer(addons_qs, many=True).data

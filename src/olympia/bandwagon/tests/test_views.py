@@ -6,6 +6,7 @@ import django.test
 from django.core.cache import cache
 from django.forms import ValidationError
 from django.utils.datastructures import MultiValueDict
+from django.conf import settings
 
 import pytest
 
@@ -1339,6 +1340,13 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['uuid'] == col_a.uuid
         assert response.data['results'][2]['uuid'] == col_c.uuid
 
+    def test_with_addons_is_ignored(self):
+        collection_factory(author=self.user)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200, response.data
+        assert 'addons' not in response.data['results'][0]
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1416,6 +1424,26 @@ class TestCollectionViewSetDetail(TestCase):
             'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': 'hello'}))
         assert response.status_code == 404
+
+    def test_with_addons(self):
+        addon = addon_factory()
+        self.collection.add_addon(addon)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+        assert response.data['addons'][0]['addon']['id'] == addon.id
+
+        # Now test the limit of addons returned
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        response = self.client.get(self.url + '?with_addons')
+        assert len(response.data['addons']) == 4
+        patched_drf_setting = settings.REST_FRAMEWORK
+        patched_drf_setting['PAGE_SIZE'] = 3
+        with django.test.override_settings(REST_FRAMEWORK=patched_drf_setting):
+            response = self.client.get(self.url + '?with_addons')
+            assert len(response.data['addons']) == 3
 
 
 class CollectionViewSetDataMixin(object):
