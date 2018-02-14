@@ -1,6 +1,5 @@
 import math
 import os
-import shutil
 import tempfile
 from base64 import b64encode
 
