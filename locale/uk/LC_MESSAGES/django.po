@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 07:30+0000\n"
+"PO-Revision-Date: 2018-02-14 07:32+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4457,17 +4457,14 @@ msgstr "Налаштування вкладки {start_sub_heading}за допо
 msgid "Set the page you see every time you open a new tab."
 msgstr "Встановіть сторінку, яку ви бачите, щоразу при відкритті нової вкладки."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Вдоскональте свої емоджі {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вдоскональте свою емоджі-гру {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Десятки чудових емоджі — на відстані одного натискання."
+msgstr "Десятки чудових емоджі на будь-який випадок — завжди на відстані одного натискання."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Керуйте паролями {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr "Більше, ніж звичайний засіб для знімків екрану. Awesome Screenshot Plus дозволяє вам анотувати зображення з власним текстом та графікою, а також надає можливість зберігання й поширення."
