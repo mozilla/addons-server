@@ -27,6 +27,8 @@ def write_svg_to_png(svg_content, out):
 
         size = None
         try:
+            if not os.path.exists(os.path.dirname(out)):
+                os.makedirs(out)
             command = [
                 settings.RSVG_CONVERT_BIN,
                 '-o', out,
