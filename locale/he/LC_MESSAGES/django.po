@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 13:47+0000\n"
+"PO-Revision-Date: 2018-02-12 12:33+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1820,7 +1820,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "הקובץ {0} נמחק מגרסה {version} של התוספת {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "‏{addon} {version} אושרה."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "לתוספת {addon} {version} ניתנה סקירה ראשונית."
@@ -1829,7 +1829,7 @@ msgid "Preliminarily approved"
 msgstr "לאחר אישור טרומי"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "‏{addon} {version} נדחתה."
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -1902,7 +1902,7 @@ msgstr "{0} {1} נוסף."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "התפקיד של {0.name} השתנה ל־{1} עבור {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "הרישיון של {addon} הוא {0} כעת."
@@ -4466,13 +4466,11 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr ""
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
+msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
@@ -5048,6 +5046,8 @@ msgid ""
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
+"<strong>הערה:</strong> XUL נחשבת לטכנולוגיה מיושנת ב־Firefox, ותוספות המשתמשות ב-XUL לא ייטענו יותר החל מ־Firefox 57. נא להשתמש ב־API של %(webext_link_open)sWebExtensions%(link_close)s לפיתוח תוספות"
+" חדשות. אם יש לך תוספת מדור קודם, מומלץ לשקול להסב אותה ל־WebExtensions. למידע נוסף על הסבת תוספת מדור קודם, נא לבקר במאמר על %(portlegacy_link_open)sהסבת תוספת מדור קודם של Firefox%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "איך ניתן לבדוק תאימות לגרסאות העדכניות ביותר של תוכנות Mozilla?"
