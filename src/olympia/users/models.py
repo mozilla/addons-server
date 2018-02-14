@@ -267,6 +267,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return os.path.join(self.picture_dir, str(self.id) + '.png')
 
     @property
+    def picture_path_original(self):
+        return os.path.join(self.picture_dir, str(self.id) + '_original.png')
+
+    @property
     def picture_url(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_url
         if not self.picture_type:

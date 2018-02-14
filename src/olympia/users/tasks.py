@@ -35,7 +35,7 @@ def resize_photo(src, dst, locally=False, **kw):
     task_log.debug('[1@None] Resizing photo: %s' % dst)
 
     try:
-        resize_image(src, dst, (200, 200), locally=locally)
+        resize_image(src, dst, (200, 200))
         return True
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)

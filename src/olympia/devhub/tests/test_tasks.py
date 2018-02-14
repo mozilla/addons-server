@@ -76,34 +76,33 @@ def _uploader(resize_size, final_size):
     src = tempfile.NamedTemporaryFile(
         mode='r+w+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
 
-    # resize_icon removes the original
-    shutil.copyfile(img, src.name)
+    if not isinstance(final_size, list):
+        final_size = [final_size]
+        resize_size = [resize_size]
+    uploadto = user_media_path('addon_icons')
+    try:
+        os.makedirs(uploadto)
+    except OSError:
+        pass
+    for rsize, fsize in zip(resize_size, final_size):
+        # resize_icon moves the original
+        shutil.copyfile(img, src.name)
+        src_image = Image.open(src.name)
+        assert src_image.size == original_size
+        dest_name = os.path.join(uploadto, '1234')
 
-    src_image = Image.open(src.name)
-    assert src_image.size == original_size
+        tasks.resize_icon(src.name, dest_name, [rsize])
+        dest_image = '%s-%s.png' % (dest_name, rsize)
+        assert Image.open(open(dest_image)).size == fsize
+        # original should have been moved to -original
+        orig_image = '%s-original.png' % dest_name
+        assert os.path.exists(orig_image)
 
-    if isinstance(final_size, list):
-        uploadto = user_media_path('addon_icons')
-        try:
-            os.makedirs(uploadto)
-        except OSError:
-            pass
-        for rsize, fsize in zip(resize_size, final_size):
-            dest_name = os.path.join(uploadto, '1234')
-
-            tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
-            dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
-            assert dest_image.size == fsize
-
-            if os.path.exists(dest_image.filename):
-                os.remove(dest_image.filename)
-            assert not os.path.exists(dest_image.filename)
-        shutil.rmtree(uploadto)
-    else:
-        dest = tempfile.mktemp(suffix='.png', dir=settings.TMP_PATH)
-        tasks.resize_icon(src.name, dest, resize_size, locally=True)
-        dest_image = Image.open(dest)
-        assert dest_image.size == final_size
+        os.remove(dest_image)
+        assert not os.path.exists(dest_image)
+        os.remove(orig_image)
+        assert not os.path.exists(orig_image)
+    shutil.rmtree(uploadto)
 
     assert not os.path.exists(src.name)
 

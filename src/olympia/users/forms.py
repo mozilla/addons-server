@@ -201,7 +201,7 @@ class UserEditForm(happyforms.ModelForm):
         photo = data['photo']
         if photo:
             u.picture_type = 'image/png'
-            tmp_destination = u.picture_path + '__unconverted'
+            tmp_destination = u.picture_path_original
 
             with storage.open(tmp_destination, 'wb') as fh:
                 for chunk in photo.chunks():

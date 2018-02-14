@@ -131,7 +131,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         photo = validated_data.get('picture_upload')
         if photo:
-            tmp_destination = instance.picture_path + '__unconverted'
+            tmp_destination = instance.picture_path_original
 
             with default_storage.open(tmp_destination, 'wb') as temp_file:
                 for chunk in photo.chunks():

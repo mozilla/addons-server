@@ -620,49 +620,42 @@ def track_validation_stats(json_result, addons_linter=False):
 
 @task
 @set_modified_on
-def resize_icon(src, dst, size, locally=False, **kw):
+def resize_icon(src, dest_folder, sizes, **kw):
     """Resizes addon icons."""
-    log.info('[1@None] Resizing icon: %s' % dst)
+    log.info('[1@None] Resizing icon: %s' % dest_folder)
     try:
-        if isinstance(size, list):
-            for s in size:
-                resize_image(src, '%s-%s.png' % (dst, s), (s, s),
-                             remove_src=False, locally=locally)
-            if locally:
-                os.remove(src)
-            else:
-                storage.delete(src)
-        else:
-            resize_image(src, dst, (size, size), remove_src=True,
-                         locally=locally)
+        dest_file = None
+        for s in sizes:
+            dest_file = '%s-%s.png' % (dest_folder, s)
+            resize_image(src, dest_file, (s, s))
+        dest_file = '%s-original.png' % dest_folder
+        os.rename(src, dest_file)
         return True
     except Exception, e:
-        log.error("Error saving addon icon: %s" % e)
+        log.error("Error saving addon icon (%s): %s" % (dest_file, e))
 
 
 @task
 @set_modified_on
 def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
-    thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
+    thumb_dst, full_dst, orig_dst = (
+        instance.thumbnail_path, instance.image_path, instance.original_path)
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
-        sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          amo.ADDON_PREVIEW_SIZES[0],
-                                          remove_src=False)
-        sizes['image'] = resize_image(src, full_dst,
-                                      amo.ADDON_PREVIEW_SIZES[1],
-                                      remove_src=False)
+        (sizes['thumbnail'], sizes['original']) = resize_image(
+            src, thumb_dst, amo.ADDON_PREVIEW_SIZES[0])
+        (sizes['image'], _) = resize_image(
+            src, full_dst, amo.ADDON_PREVIEW_SIZES[1])
+        if not os.path.exists(os.path.dirname(orig_dst)):
+            os.makedirs(os.path.dirname(orig_dst))
+        os.rename(src, orig_dst)
         instance.sizes = sizes
         instance.save()
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
-    finally:
-        # Finally delete the temporary now useless source file.
-        if os.path.exists(src):
-            os.unlink(src)
 
 
 @task

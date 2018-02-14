@@ -1975,6 +1975,16 @@ class Preview(ModelBase):
         return self._image_path(template)
 
     @property
+    def original_path(self):
+        template = os.path.join(
+            jinja_helpers.user_media_path('previews'),
+            'original',
+            '%s',
+            '%d.png'
+        )
+        return self._image_path(template)
+
+    @property
     def thumbnail_size(self):
         return self.sizes.get('thumbnail', []) if self.sizes else []
 
