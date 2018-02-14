@@ -20,7 +20,6 @@ from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, ReviewerScore, get_reviewing_cache)
-from olympia.users.models import UserProfile
 
 
 class TestAutoApproveCommand(TestCase):
