@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 12:46+0000\n"
+"PO-Revision-Date: 2018-02-14 13:09+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6522,19 +6522,19 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr "Script foar automatyske goedkarring is noch net op dizze ferzje útfierd."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Dizze ferzje is net beoardiele."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Selektearje ien of mear ferzjes yn de boppesteande list."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Jo kinne dit formulier noch hieltyd yntsjinje, mar doch dit allinnich as jo witte dat der gjin konflikten barre sille."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Yn it foar definiearre antwurd ynfoegje…"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Test op:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
