@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:27+0000\n"
+"PO-Revision-Date: 2018-02-14 12:46+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4425,34 +4425,29 @@ msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tsientallen geweldige emoji’s – altyd fia ien mûsklik."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Wurket floeiend mei de measte populêre fideowebsites."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Stel de side yn dy't jo hieltyd sjogge by it iepenjen fan in nij ljepblêd."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Tsientallen geweldige emoji’s – altyd fia ien mûsklik."
+msgstr "Tsientallen geweldige emoji’s foar elke gelegenheid – altyd fia ien mûsklik."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Behear wachtwurden {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "Mear as mar ien basisark foar skermôfbyldingen: mei Awesome Screenshot Plus kinne jo ôfbyldingen fan oanpaste tekst en grafiken foarsjen, en jo fisuele eleminten bewarje en diele."
 
 msgid "Cannot diff a version against itself"
 msgstr "Kin gjin diff fan in ferzje tsjin himsels meitsje"
@@ -6476,10 +6471,10 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Nuttige keppelingen:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Add-onbelied"
 
 msgid "Reviewer's Guide"
 msgstr "Beoardielingsrjochtlinen"
@@ -6490,32 +6485,32 @@ msgstr "Ynhâldsbeoardieling {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Beoardieling {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Wizigingsskiednis fan add-onbrûker"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Add-onskiednis"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Ferzje %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr "(Befêstige)"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Komptabiliteit:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Oanfoljende boarnen:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Bestannen downloade"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "De ûntwikkeler hat in boarnekoade opjûn."
 
 msgid "Weight:"
 msgstr "Gewicht:"
