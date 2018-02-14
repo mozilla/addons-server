@@ -24,7 +24,7 @@
     "less": "3.0.0",
     "source-map": "0.7.0",
     "stylus": "0.54.5",
-    "raven-js": "3.22.2",
+    "raven-js": "3.22.3",
     "timeago": "1.6.1",
     "uglify-js": "3.3.10",
     "underscore": "1.8.3"
