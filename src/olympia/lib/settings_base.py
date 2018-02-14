@@ -78,6 +78,9 @@ CLEANCSS_BIN = 'cleancss'
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
+# rsvg-convert is used to save our svg static theme previews to png
+RSVG_CONVERT_BIN = 'rsvg-convert'
+
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
@@ -1141,6 +1144,8 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
     'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
+    'olympia.versions.tasks.generate_static_theme_preview': {
+        'queue': 'priority'},
 
     # Other queues we prioritize below.
 

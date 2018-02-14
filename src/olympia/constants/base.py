@@ -1,4 +1,5 @@
 import re
+from collections import namedtuple
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -229,6 +230,8 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
+
+THEME_PREVIEW_SIZE = namedtuple('SizeTuple', 'width height')(680, 100)
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {

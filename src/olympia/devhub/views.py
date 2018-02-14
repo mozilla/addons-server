@@ -1380,9 +1380,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 platforms=data.get('supported_platforms', []),
                 source=data['source'],
                 channel=channel,
-                parsed_data=data['parsed_data'])
+                parsed_data=data['parsed_data'],
+                user=request.user)
             version = addon.find_latest_version(channel=channel)
-            AddonUser(addon=addon, user=request.user).save()
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)

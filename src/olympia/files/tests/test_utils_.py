@@ -9,6 +9,7 @@ from datetime import timedelta
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage
 
 import flufl.lock
 import lxml
@@ -448,7 +449,8 @@ class TestManifestJSONExtractor(TestCase):
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):
-        base_data.update(theme={})
+        if 'theme' not in base_data.keys():
+            base_data.update(theme={})
         return super(
             TestManifestJSONExtractorStaticTheme, self).parse(base_data)
 
@@ -534,6 +536,11 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             self.parse(data)['apps']
 
         assert exc.value.message.startswith('Cannot find min/max version.')
+
+    def test_theme_json_extracted(self):
+        # Check theme data is extracted from the manifest and returned.
+        data = {'theme': {'colors': {'textcolor': "#3deb60"}}}
+        assert self.parse(data)['theme'] == data['theme']
 
 
 def test_zip_folder_content():
@@ -898,3 +905,16 @@ class TestXMLVulnerabilities(TestCase):
 
         # Setting it explicitly to `False` is fine too.
         lxml.etree.XMLParser(resolve_entities=False)
+
+
+def test_extract_header_img():
+    file_obj = os.path.join(
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    data = {'images': {'headerURL': 'weta.png'}}
+    dest_path = tempfile.mkdtemp()
+    header_file = dest_path + '/weta.png'
+    assert not default_storage.exists(header_file)
+
+    utils.extract_header_img(file_obj, data, dest_path)
+    assert default_storage.exists(header_file)
+    assert default_storage.size(header_file) == 126447

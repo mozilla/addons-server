@@ -41,6 +41,7 @@ addons:
       - oracle-java8-set-default
       - elasticsearch
       - gettext
+      - librsvg2-bin
 
 before_install:
   - mysql -e 'create database olympia;'
