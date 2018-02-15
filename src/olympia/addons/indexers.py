@@ -152,6 +152,17 @@ class AddonIndexer(BaseSearchIndexer):
                             'raw': {'type': 'keyword'}
                         },
                     },
+                    'persona': {
+                        'type': 'object',
+                        'properties': {
+                            'accentcolor': {'type': 'keyword', 'index': False},
+                            'author': {'type': 'keyword', 'index': False},
+                            'header': {'type': 'keyword', 'index': False},
+                            'footer': {'type': 'keyword', 'index': False},
+                            'is_new': {'type': 'boolean', 'index': False},
+                            'textcolor': {'type': 'keyword', 'index': False},
+                        }
+                    },
                     'platforms': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
