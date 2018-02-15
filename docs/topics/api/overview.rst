@@ -108,7 +108,7 @@ The following properties will be available in paginated responses:
 .. _api-overview-translations:
 
 ~~~~~~~~~~~~~~~~~
-Translated fields
+Translated Fields
 ~~~~~~~~~~~~~~~~~
 
 Fields that can be translated by users (typically name, description) have a
@@ -125,8 +125,8 @@ as keys and translations as values:
         }
     }
 
-However, for performance, if you pass the `lang` parameter to a `GET` request,
-then only the most relevant translation (the specified language or the
+However, for performance, if you pass the ``lang`` parameter to a ``GET``
+request, then only the most relevant translation (the specified language or the
 fallback, depending on whether a translation is available in the requested
 language) will be returned as a string.
 
@@ -136,10 +136,22 @@ language) will be returned as a string.
         "name": "Games"
     }
 
-This behaviour also applies to `POST`, `PATCH` and `PUT` requests: you can
-either submit an object containing several translations, or just a string. If
-only a string is supplied, it will only be used to translate the field in the
-current language.
+This behaviour also applies to ``POST``, ``PATCH`` and ``PUT`` requests: you
+can either submit an object containing several translations, or just a string.
+If only a string is supplied, it will only be used to translate the field in
+the current language.
+
+.. _api-overview-outgoing:
+
+~~~~~~~~~~~~~~
+Outgoing Links
+~~~~~~~~~~~~~~
+
+If the ``wrap_outgoing_links`` query parameter is present, any external links
+returned for properties such as ``support_url`` or ``homepage`` will be wrapped
+through ``outgoing.prod.mozaws.net``. Fields supporting some HTML, such as
+add-on ``description``, always do this regardless of whether or not the query
+parameter is present.
 
 ~~~~~~~~~~~~
 Cross Origin
