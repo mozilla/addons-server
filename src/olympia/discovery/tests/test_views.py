@@ -16,19 +16,19 @@ from olympia.discovery.utils import replace_extensions
 # Represents a dummy version of `olympia.discovery.data`
 def get_dummy_addons():
     return OrderedDict([
-        (676070, addon_factory(id=676070, type=amo.ADDON_PERSONA)),
-        (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
-        (8542, addon_factory(id=8542, type=amo.ADDON_EXTENSION)),
-        (290486, addon_factory(id=290486, type=amo.ADDON_PERSONA)),
-        (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
+        (18705, addon_factory(id=18705, type=amo.ADDON_PERSONA)),
+        (445852, addon_factory(id=445852, type=amo.ADDON_EXTENSION)),
+        (824288, addon_factory(id=824288, type=amo.ADDON_EXTENSION)),
+        (294291, addon_factory(id=294291, type=amo.ADDON_PERSONA)),
+        (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-        (21085, addon_factory(id=21085, type=amo.ADDON_PERSONA)),
+        (571240, addon_factory(id=571240, type=amo.ADDON_PERSONA)),
         # And now the china edition addons
         (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA)),
-        (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
+        # (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
         (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
-        # 511962 is in both
+        # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
         (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA)),
     ])
