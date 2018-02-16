@@ -287,6 +287,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'previews',
             'public_stats',
             'ratings',
+            'ratings_url',
             'requires_payment',
             'review_url',
             'slug',

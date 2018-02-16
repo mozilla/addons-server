@@ -114,7 +114,7 @@
     {%- endif -%}
     <developer_comments>{{ addon.developer_comments }}</developer_comments>
     <reviews num="{{ addon.total_ratings }}">
-      {{ addon.reviews_url|absolutify|urlparams(src='api') }}
+      {{ addon.ratings_url|absolutify|urlparams(src='api') }}
     </reviews>
     <total_downloads>{{ addon.total_downloads }}</total_downloads>
     <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>

@@ -36,7 +36,7 @@
       {{ addon.average_rating|stars(large=True) }}
 
       <div>
-        <a id="reviews-link" href="{{ addon.reviews_url }}">
+        <a id="reviews-link" href="{{ addon.ratings_url }}">
           {% trans cnt=addon.total_ratings, num=addon.total_ratings|numberfmt %}
             <span itemprop="ratingCount">{{ num }}</span> user review
           {% pluralize %}
