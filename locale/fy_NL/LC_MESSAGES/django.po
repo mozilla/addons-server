@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 13:10+0000\n"
+"PO-Revision-Date: 2018-02-16 13:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5356,6 +5356,8 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
+"Add-ons binne lytse stikjes software dy't nije funksjes of funksjonaliteit oan jo ynstallaasje fan %(app_name)s tafoegje. Add-ons kinne %(app_name)s oanfolje mei nije funksjes, taalbiblioteken, of "
+"de ferskiningsfoarm wizigje. Mei add-ons kinne jo %(app_name)s oan jo behoeften en smaak oanpasse. <a href=\"%(learnmore_url)s\">Mear ynfo oer oanpassen</a>"
 
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Wurkje add-ons mei myn webbrowser of tapassing?"
@@ -5383,22 +5385,24 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Utwreidingen</a></strong> foegje nije funksjes ta oan %(app_name)s of passe besteande funksjonaliteit oan. Der binne útwreidingen wêrmei't jo advertinsjes "
+"blokkearje kinne, fideo’s fan websites downloade kinne, better mei sosjale websites yntegrearje kinne, en funksjes dy't jo yn oare tapassingen oantreffe tafoegje kinne."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Folsleine tema’s</a></strong> wizigje it oansjen fan %(app_name)s, trochgeans ynklusyf piktogrammen, kleuren, dialoochfinsters en oare fisuele stilen."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Tema’s</a></strong> binne ljochtgewicht tema’s dy't achtergrûnôfbyldingen brûke om de arkbalken fan jo %(app_name)s oan te passen."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Sykproviders</a> </strong> foegje oanfoljende karren ta oan de sykfjildkarlist. Mei dizze sykproviders kinne jo fluch elke website trochsykje."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Wurdboeken en taalpakketten</a></strong> foegje stipe foar oanfoljende talen ta oan %(app_name)s."
 
 msgid "How do I install, manage, or remove an add-on?"
 msgstr "Hoe ynstallearje, behear of smyt ik in add-on fuort?"
@@ -7326,7 +7330,7 @@ msgid "On the go?"
 msgstr "Underweis?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Sjoch ris op ús <a class=\"mobile-link\" href=\"#\">Mobyl-add-onswebsite</a>."
 
 msgid "Android Add-ons"
 msgstr "Android-add-ons"
@@ -7337,37 +7341,37 @@ msgstr "Ferplichte fjilden"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Lokalisearje foar: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Besteande talen"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Nije talen"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Jo hawwe net-bewarre wizigingen yn de taal <b>{0}</b>. Wolle jo jo wizigingen bewarje eardat jo fan taal wikselje?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Wizigingen ferwerpe"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit kin net ûngedien makke wurde."
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Taal fuortsmite"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mailadres moat {email} wêze."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Namme werjaan"
 
 msgid "Location"
 msgstr "Lokaasje"
@@ -7376,22 +7380,22 @@ msgid "Occupation"
 msgstr "Berop"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Brûkers fan Firefox Accounts kinne op dit stuit harren e-mailadres net wizigje."
 
 msgid "Profile Photo"
 msgstr "Profylfoto"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "Dizze URL hat in ûnjildige opmaak. Jildige URL’s lykje op http://example.com/myn_side."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Fier in reden foar de wiziging yn om te anonimisearjen, mar wizigje gjin fan de oare fjilden."
 
 msgid "Please enter at least one name to be denied."
 msgstr "Fier op syn minst ien namme yn dy't wegere wurdt."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Der is gjin brûker mei dat e-mailadres."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -7399,19 +7403,19 @@ msgid "Anonymous user {id}"
 msgstr "Anonime brûker {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Myn Mobyl-add-ons"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "in add-on-ûntwikkeler beäntwurdet myn beoardieling"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "der binne nije add-ons of Firefox-funksjes beskikber"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "de komptabiliteit fan myn add-on is mei sukses bywurke"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "myn sdk-basearre add-on is mei sukses bywurku"
 
 msgid "someone writes a review of my add-on"
 msgstr ""
