@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 13:09+0000\n"
+"PO-Revision-Date: 2018-02-16 07:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6602,17 +6602,17 @@ msgid "Hide Comments"
 msgstr "Opmerkingen ferstopje"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Gjin beoardielingen yn dizze perioade fûn."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] hat %(object)s rapportearre op %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Dizze oankundiging fuortsmite"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Bestannen yn dizze ferzje:"
 
 msgid "Contents"
 msgstr "Ynhâld"
