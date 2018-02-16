@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 09:40+0000\n"
+"PO-Revision-Date: 2018-02-16 10:06+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6468,7 +6468,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Alle beoardielingen binne ferwurke. Goed wurk!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Der binne op dit stuit gjin add-ons fan dit type te beoardielen."
 
 msgid "Helpful Links:"
 msgstr "Nuttige keppelingen:"
@@ -6537,7 +6537,7 @@ msgid "Tested on:"
 msgstr "Test op:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as jo besjoen."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -6640,33 +6640,33 @@ msgid "No points awarded yet."
 msgstr "Noch gjin punten tawezen."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Topbeoardielers (lêste 7 dagen)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Noch gjin topbeoardielers."
 
 msgid "All Time"
 msgstr "Altyd"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Jo hawwe <span>{0}</span> punten."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s op %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "Fuortsmytdatum"
 
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Gjin fuortsmiten tema’s fûn yn dizze perioade."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Tema-beoardielingsskiednis foar {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "Beoardielingsdatum"
 
 msgid "Action"
 msgstr "Aksje"
@@ -6675,13 +6675,13 @@ msgid "Reason"
 msgstr "Reden"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Der binne op dit stuit gjin beoardielingen."
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Markearre tema’s"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Tema-beoardielingswachtrige"
 
 msgid "Queues"
 msgstr "Wachtrigen"
@@ -6690,10 +6690,10 @@ msgid "Review Options"
 msgstr "Beoardielingsopsjes"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Automatysk trochsette nei beoardieling"
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Fluchtoetsen ynskeakelje"
 
 msgid "Keyboard Shortcuts"
 msgstr "Fluchtoetsen"
@@ -6705,13 +6705,13 @@ msgid "Previous Theme"
 msgstr "Foarige tema"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "Jo beoardielingsskiednis"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Beoardieling yntsjinje"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Beoardielingen yntsjinje"
 
 msgid "{0} out of {1} reviewed"
 msgstr ""
