@@ -24,7 +24,6 @@ class AddonIndexer(BaseSearchIndexer):
     or sorting."""
     hidden_fields = (
         '*.raw',
-        '*_sort',
         'boost',
         'hotness',
         # Translated content that is used for filtering purposes is stored
