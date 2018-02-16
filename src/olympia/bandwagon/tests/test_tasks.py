@@ -1,4 +1,3 @@
-import os
 import shutil
 import tempfile
 
@@ -28,12 +27,10 @@ def test_resize_icon():
 
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)
-    resize_icon(src.name, dest.name, locally=True)
+    resize_icon(src.name, dest.name)
 
     dest_image = Image.open(dest.name)
     assert dest_image.size == (32, 12)
-
-    assert not os.path.exists(src.name)
 
 
 def test_resize_icon_poorly():
@@ -45,7 +42,7 @@ def test_resize_icon_poorly():
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)
 
-    resize_icon(src.name, src.name, locally=True)
+    resize_icon(src.name, src.name)
 
     # assert nothing happened
     src_image = Image.open(src.name)

@@ -37,18 +37,15 @@ def test_resize_photo():
     dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                        dir=settings.TMP_PATH)
 
-    # resize_photo removes the original
     shutil.copyfile(somepic, src.name)
 
     src_image = Image.open(src.name)
     assert src_image.size == (64, 64)
-    resize_photo(src.name, dest.name, locally=True)
+    resize_photo(src.name, dest.name)
 
     # Image is smaller than 200x200 so it should stay the same.
     dest_image = Image.open(dest.name)
     assert dest_image.size == (64, 64)
-
-    assert not os.path.exists(src.name)
 
 
 def test_resize_photo_poorly():

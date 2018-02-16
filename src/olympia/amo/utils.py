@@ -477,32 +477,27 @@ def clean_nl(string):
     return serializer.render(stream)
 
 
-def resize_image(src, dst, size=None, remove_src=True, locally=False):
-    """Resizes and image from src, to dst. Returns width and height.
+def resize_image(source, destination, size=None):
+    """Resizes and image from src, to dst.
+    Returns a tuple of new width and height, original width and height.
 
-    When locally is True, src and dst are assumed to reside
-    on the local disk (not in the default storage). When dealing
-    with local files it's up to you to ensure that all directories
+    When dealing with local files it's up to you to ensure that all directories
     exist leading up to the dst filename.
     """
-    if src == dst:
-        raise Exception("src and dst can't be the same: %s" % src)
+    if source == destination:
+        raise Exception(
+            "source and destination can't be the same: %s" % source)
 
-    open_ = open if locally else storage.open
-    delete = os.unlink if locally else storage.delete
-
-    with open_(src, 'rb') as fp:
+    with storage.open(source, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
+        original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    with open_(dst, 'wb') as fp:
+    with storage.open(destination, 'wb') as fp:
         im.save(fp, 'png')
 
-    if remove_src:
-        delete(src)
-
-    return im.size
+    return (im.size, original_size)
 
 
 def remove_icons(destination):

@@ -42,12 +42,12 @@ def collection_votes(*ids, **kw):
 
 @task
 @set_modified_on
-def resize_icon(src, dst, locally=False, **kw):
+def resize_icon(src, dst, **kw):
     """Resizes collection icons to 32x32"""
     log.info('[1@None] Resizing icon: %s' % dst)
 
     try:
-        resize_image(src, dst, (32, 32), locally=locally)
+        resize_image(src, dst, (32, 32))
         return True
     except Exception, e:
         log.error("Error saving collection icon: %s" % e)
