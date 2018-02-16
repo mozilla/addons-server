@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 11:46+0000\n"
+"PO-Revision-Date: 2018-02-16 12:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6745,28 +6745,28 @@ msgid "More Info Requested: {0}"
 msgstr "Mear ynformaasje frege: {0}"
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Labele: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Tema goedkarre"
 
 msgid "Field required"
-msgstr ""
+msgstr "Fjild ferplicht"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Fier de ID of URL fan it duplikaat yn"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Selektearje in reden fan ôfwizing"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Beskriuw jo reden fan ôfwizing"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "In fraach oan de keunstner stelle"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Beskriuw jo reden foar it label"
 
 msgid "Rejected or Unreviewed"
 msgstr "Ofwezen of net beoardield"
@@ -6807,63 +6807,63 @@ msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
 
 msgid "Most popular this week"
-msgstr ""
+msgstr "Populêrst dizze wike"
 
 msgid "Most popular this month"
-msgstr ""
+msgstr "Populêrst dizze moanne"
 
 msgid "Most popular all time"
-msgstr ""
+msgstr "Populêrst alle tiden"
 
 msgid "Highest Rated"
 msgstr "Bêst wurdearre"
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "sykje nei add-ons"
 
 msgid "search for collections"
-msgstr ""
+msgstr "sykje nei kolleksjes"
 
 msgid "search for themes"
-msgstr ""
+msgstr "sykje nei tema’s"
 
 msgid "search for apps"
-msgstr ""
+msgstr "sykje nei apps"
 
 msgid "Sort By"
-msgstr ""
+msgstr "Sortearje op"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevânsje"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "Alle add-ons"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Alle {0}-ferzjes"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Alle systemen"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Alle labels"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Sykresultaten kolleksjes foar {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Sykresultaten kolleksjes"
 
 msgid "Search Results"
 msgstr "Sykresultaten"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Sykjen net beskikber"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "De sykmasine is tydlik net beskikber. Probearje it oer in pear minuten nochris."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -6890,11 +6890,11 @@ msgstr "Sykresultaten foar label ‘{0}’"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> resultaat fûn"
+msgstr[1] "<b>{0}</b> resultaten fûn"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Resultaten filterje"
 
 msgid "Category"
 msgstr "Kategory"
@@ -6907,38 +6907,38 @@ msgstr "Label"
 # {2} is a number
 # {3} is the word the person is searching for
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Werjûn: {0} - {1} fan {2} resultaten foar <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Werjûn: {0} - {1} fan {2} resultaten"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Koe gjin add-on mei id ‘{}’ fine."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Dizze add-on is net fan jo."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "‘oplaad’-kaai yn multipart-bestânsgegevens ûntbrekt."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Ferzje komt net oerien mei it manifest-bestân."
 
 msgid "Version already exists."
-msgstr ""
+msgstr "Ferzje bestiet al."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Allinnich WebExtensies meie de GUID weilitte"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr "Fier de GUID fan jo add-on yn it manifest as dizze langer is as 64 tekens."
@@ -6950,7 +6950,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr "Jo kinne gjin fermelde ferzje oan dizze add-on tafoegje fia de API fanwegen ûntbrekkende metagegevens. Tsjinje him yn fia de website"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Gjin opladen bestân foar dy add-on en ferzje."
 
 msgid "Overview"
 msgstr "Oersjoch"
@@ -7023,20 +7023,20 @@ msgstr "Eksportearje"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Statistikendashboerd :: Add-ons foar {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Statistikendashboerd"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Statistikendashboerd :: Add-ons foar {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistiken foar {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Statistikendashboerd"
 
 msgid "Controls:"
 msgstr "Bestjoering:"
@@ -7076,33 +7076,35 @@ msgstr "Oanpast…"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
+"It ferwurkjen fan statistiken is op dit stuit útskeakele, dus der binne gjin resinte gegevens beskikber. De statistiken wurde noch hieltyd sammele en dizze side wurdt ynkoarten bywurke mei de "
+"ûntbrekkende gegevens."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Lêste gegevens lade…"
 
 msgid "No data available."
-msgstr ""
+msgstr "Gjin gegevens beskikber."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Dit dashboerd is op dit stuit <b>publyklik</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Dit dashboerd is op dit stuit <b>privee</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Ynstellingen wizigje."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Makke add-ons op datum"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Downloade add-ons op datum"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Brûkte add-ons op datum"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Bywurke add-ons op datum"
 
 msgid "Application usage by Date"
 msgstr ""
