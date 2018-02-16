@@ -620,16 +620,16 @@ def track_validation_stats(json_result, addons_linter=False):
 
 @task
 @set_modified_on
-def resize_icon(src, dest_folder, sizes, **kw):
+def resize_icon(source, dest_folder, target_sizes, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dest_folder)
     try:
         dest_file = None
-        for s in sizes:
-            dest_file = '%s-%s.png' % (dest_folder, s)
-            resize_image(src, dest_file, (s, s))
+        for size in target_sizes:
+            dest_file = '%s-%s.png' % (dest_folder, size)
+            resize_image(source, dest_file, (size, size))
         dest_file = '%s-original.png' % dest_folder
-        os.rename(src, dest_file)
+        os.rename(source, dest_file)
         return True
     except Exception, e:
         log.error("Error saving addon icon (%s): %s" % (dest_file, e))

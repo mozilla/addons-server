@@ -84,7 +84,7 @@ def _uploader(resize_size, final_size):
         os.makedirs(uploadto)
     except OSError:
         pass
-    for rsize, fsize in zip(resize_size, final_size):
+    for rsize, expected_size in zip(resize_size, final_size):
         # resize_icon moves the original
         shutil.copyfile(img, src.name)
         src_image = Image.open(src.name)
@@ -93,7 +93,7 @@ def _uploader(resize_size, final_size):
 
         tasks.resize_icon(src.name, dest_name, [rsize])
         dest_image = '%s-%s.png' % (dest_name, rsize)
-        assert Image.open(open(dest_image)).size == fsize
+        assert Image.open(open(dest_image)).size == expected_size
         # original should have been moved to -original
         orig_image = '%s-original.png' % dest_name
         assert os.path.exists(orig_image)

@@ -477,23 +477,24 @@ def clean_nl(string):
     return serializer.render(stream)
 
 
-def resize_image(src, dst, size=None):
+def resize_image(source, destination, size=None):
     """Resizes and image from src, to dst.
     Returns a tuple of new width and height, original width and height.
 
     When dealing with local files it's up to you to ensure that all directories
     exist leading up to the dst filename.
     """
-    if src == dst:
-        raise Exception("src and dst can't be the same: %s" % src)
+    if source == destination:
+        raise Exception(
+            "source and destination can't be the same: %s" % source)
 
-    with storage.open(src, 'rb') as fp:
+    with storage.open(source, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
         original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    with storage.open(dst, 'wb') as fp:
+    with storage.open(destination, 'wb') as fp:
         im.save(fp, 'png')
 
     return (im.size, original_size)
