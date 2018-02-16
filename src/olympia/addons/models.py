@@ -645,13 +645,8 @@ class Addon(OnChangeMixin, ModelBase):
         return reverse('addons.meet', args=[self.slug])
 
     @property
-    def reviews_url(self):
-        return jinja_helpers.url('addons.ratings.list', self.slug)
-
-    def get_ratings_url(self, action='list', args=None, add_prefix=True):
-        return reverse('ratings.themes.%s' % action,
-                       args=[self.slug] + (args or []),
-                       add_prefix=add_prefix)
+    def ratings_url(self):
+        return reverse('addons.ratings.list', args=[self.slug])
 
     @classmethod
     def get_type_url(cls, type):

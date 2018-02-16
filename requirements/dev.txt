@@ -59,8 +59,8 @@ ipython==5.5.0 \
 # meld3 is required by supervisor
 meld3==1.0.2 \
     --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
-supervisor==3.3.3 \
-    --hash=sha256:96287ebfabf9a6923f74123b056c4da39c617fef367980f007cac02fba6527ad
+supervisor==3.3.4 \
+    --hash=sha256:212201a3fd1d35c150ef0c35bf0676fd1a6c195fb60bf0f2147fe7dbd317e672
 watchdog==0.8.3 \
     --hash=sha256:7e65882adb7746039b6f3876ee174952f8eaaa34491ba34333ddf1fe35de4162
 PyYAML==3.12 \

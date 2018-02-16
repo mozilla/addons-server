@@ -25,49 +25,47 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Owl First Snow' theme.
+        # 'Swirly Purple' theme.
         DiscoItem(
-            addon_id=676070, type=amo.ADDON_PERSONA,
-            addon_name='Owl First Snow'),
+            addon_id=18705, type=amo.ADDON_PERSONA),
 
-        # uBlock Origin
+        # To Google Translate
         DiscoItem(
-            addon_id=607454,
-            heading=_(u'Block ads {start_sub_heading}with {addon_name}'
+            addon_id=445852,
+            heading=_(u'Translate easily {start_sub_heading}with {addon_name}'
                       u'{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'A lightweight and effective ad blocker. uBlock Origin '
-                  u'enforces thousands of content filters without chewing up '
-                  u'a bunch of memory.'),
+                _(u'Highlight any text, right-click, and translate '
+                  u'instantly.'),
                 '</blockquote>')),
 
-        # LastPass
+        # Search by Image
         DiscoItem(
-            addon_id=8542,
-            addon_name='LastPass',
-            heading=_(u'Manage passwords {start_sub_heading}with {addon_name}'
+            addon_id=824288,
+            heading=_(u'Reverse image search '
+                      u'{start_sub_heading}with {addon_name}'
                       u'{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Simplify and sync all your various website logins across '
-                  u'devices with one password to rule them all.'),
+                _(u'See an interesting picture on the Web and want to learn '
+                  u'more about it? Try this image search tool.'),
                 '</blockquote>')),
 
-        # 'Tiffy01' theme (slug = color-to-color).
+        # 'Eco Theme' theme
         DiscoItem(
-            addon_id=290486,
+            addon_id=294291,
             type=amo.ADDON_PERSONA),
 
-        # Enhancer for YouTube
+        # Video DownloadHelper
         DiscoItem(
-            addon_id=700308,
-            heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
+            addon_id=3006,
+            heading=_(u'Download videos {start_sub_heading}with {addon_name}'
                       u'{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Enjoy a suite of new YouTube features, like cinema mode, '
-                  u'ad blocking, auto-play control, and more.'),
+                _(u'Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, '
+                  u'Periscope, and hundreds of other video sites.'),
                 '</blockquote>')),
 
         # Emoji Cheatsheet.
@@ -80,9 +78,9 @@ discopane_items = {
                 _(u'Dozens of amazing emojis—always a click away.'),
                 '</blockquote>')),
 
-        # 'Evil Robots' theme.
+        # 'Light Up the Morning' theme.
         DiscoItem(
-            addon_id=21085, type=amo.ADDON_PERSONA, addon_name='Evil Robots'),
+            addon_id=571240, type=amo.ADDON_PERSONA),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.

@@ -45,7 +45,7 @@ def addon_to_dict(addon, disco=False, src='api'):
         'description': strip_tags(unicode(addon.description)),
         'icon': addon.icon_url,
         'learnmore': learnmore,
-        'reviews': url(addon.reviews_url),
+        'reviews': url(addon.ratings_url),
         'total_dls': addon.total_downloads,
         'weekly_dls': addon.weekly_downloads,
         'adu': addon.average_daily_users,

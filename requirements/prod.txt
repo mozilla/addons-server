@@ -88,9 +88,9 @@ celery==4.1.0 \
 botocore==1.8.38 \
     --hash=sha256:1e82d18c23ba0c2251404aee33483e82729e5d4b1838c528206f2ed2ba4516cd \
     --hash=sha256:aa0aa83766b1dbb23f67d807222d78ab5ba528c23be5e7ffca7d8643e6224272
-boto3==1.5.28 \
-    --hash=sha256:e54a9cc540b63b1289b84952bab1dfd046a74ee2d3becfebec890d85bd14b729 \
-    --hash=sha256:fd09949576c5475e9398aa038ef8a3959decdc38966626d53fce2878b438ae10
+boto3==1.5.30 \
+    --hash=sha256:9312b3aa24888ab6436fcc41c56e2231dfdd1864879dabaac042256cbe292dbc \
+    --hash=sha256:f773243adc1d2264fe87b75fa2f5e696ab042ac7a9bf0cae8a2045e32e325044
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -258,9 +258,9 @@ mock==2.0.0 \
 mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 # natsort is required by amo-validator
-natsort==5.1.1 \
-    --hash=sha256:ee2f7715bf45a65cc1ab1d80360b00299102c7bf9d87757a27e14ddaafa57d0e \
-    --hash=sha256:9ffbfb74bf3fc3905be1b9b052ed865675651e38fcd972ed1ed5c64a02f93cbd
+natsort==5.2.0 \
+    --hash=sha256:a9156f61336a8d743f67a8c9f336b1287529f67a07fe6001c7d4b5673a42308e \
+    --hash=sha256:c960082d2145b04723041c4b85092546560538e29664dd197a1344d5b090bc91
 newrelic==2.102.0.85 \
     --hash=sha256:b01ecb7ca6cd2ae1fab1c462a29b8534a1ff896959d9950248f7a44164e69724
 nobot==0.4.1 \
