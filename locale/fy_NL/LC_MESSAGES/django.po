@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 14:07+0000\n"
+"PO-Revision-Date: 2018-02-16 14:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5696,21 +5696,23 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "Gebrûk fan laster, seksueel tinte taal of taal dy't as haatdragend bestimpele wurde kin."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "HTML, keppelingen, boarnekoade of koadefragminten opnimme. Beoardielingen binne allinnich bedoeld as tekst."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Ferkearde ferklearringen ôflizze, add-onskriuwers leechlizze of se persoanlik beledigje."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Jo eigen of in oar syn e-mailadres, telefoannûmer of oare persoanlike gegevens opnimme."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Beoardielingen yntsjinje foar in add-on dy't troch jo of jo organisaasje skreaun is of fertsjinwurdige wurdt."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel fan"
+" de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
 
 msgid "How can I report a problematic review?"
 msgstr "Hoe kin ik in problematyske beoardieling rapportearje?"
