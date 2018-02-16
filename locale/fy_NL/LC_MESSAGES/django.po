@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 12:18+0000\n"
+"PO-Revision-Date: 2018-02-16 13:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7178,43 +7178,53 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Folgjen fan eksterne boarnen</h2> <p> As jo fan in eksterne website ôf in keppeling jouwe nei de detailside fan jo add-on of streekrjocht nei it bestân, lykas jo blog of website, kinne jo dêroan"
+" in parameter tafoegje dy folge wurde kin as oanfoljende downloadboarne op dizze side. Sa wurde bygelyks de folgjende keppelingen werjûn as kommend fan jo blog: <dl> <dt>Add-on-detailside</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Streekrjochte bestânskeppeling</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Allinnich src-parameters dy't mei ‘external-’ begjinne wurde folge, oant 61 "
+"oanfoljende tekens. Jo kinne in tekst nei ‘external-’ brûke om de boarne te beskriuwen, lykas ‘external-blog’, ‘external-sidebalke’, ‘external-campagne225’, ensfh. De folgjende URL-feilige tekens "
+"binne tastien: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Add-onsteat op datum"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonnees op datum"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Deistige brûkers op datum"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Wat binne deistige brûkers?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Wat binne deistige brûkers?</h2> <p> Tema’s dy't fan dizze website ôf ynstallearre wurde kontrolearje deistich op fernijingen. It totale oantal fan dizze fernijings-pings stiet ek wol bekend as "
+"Aktive deistige brûkers, oftewol it totaal oantal persoanen per dei dat jo tema brûkt. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Wat binne deistige brûkers?</h2> <p> Fan dizze website downloade add-ons kontrolearje deistich op fernijingen. It totale oantal fan dizze fernijings-pings stiet bekend as Aktive deistige "
+"brûkers. Deistige brûkers kinne ûnderferdield wurde op add-onferzje, bestjoeringssysteem, add-onsteat, tapassing en lokale. </p>"
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Brûkersregistraasjes op datum"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Tapassingsferzjes op datum"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-add-ons"
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Add-ons foar oare tapassingen sykje"
 
 msgid "Other Applications"
-msgstr ""
+msgstr "Oare tapassingen"
 
 msgid "AMO is getting a new look. Would you like to see it?"
 msgstr "AMO krijt in nij úterlik. Wolle jo it sjen?"
@@ -7223,7 +7233,7 @@ msgid "Visit the new site"
 msgstr "De nije website besykje"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Om jo eigen kolleksjes oan te meitsjen moatte jo in Mozilla-add-ons-account hawwe."
 
 msgid "Footer logo"
 msgstr "Foettekstlogo"
@@ -7244,9 +7254,11 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Utsein oars <a href=\"https://www.mozilla.org/about/legal/\">fermeld</a>, is op de ynhâld fan dizze website de <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons "
+"Attribution Share-Alike License v3.0 </a> of lettere ferzje fan tapassing."
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "kom yn 'e kunde mei <b>add-ons</b>"
 
 msgid "Download Firefox"
 msgstr "Firefox downloade"
@@ -7293,22 +7305,22 @@ msgstr "Wolkom {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Registrearje</a> of <a href=\"%(login)s\">oanmelde</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Download <a href=\"%(url)s\">Mozilla Firefox</a>, in flugge, fergese manier om op it Web te surfen, om de tûzenen hjir beskikbere add-ons te probearjen!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Wolkom by {0} Add-ons."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Kies út tûzenen ekstra funksjes en stilen om Firefox fan jo te meitsjen."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Foegje ekstra funksjes en stilen ta om %(app)s hielendal fan jo te meitsjen."
 
 msgid "On the go?"
 msgstr "Underweis?"
