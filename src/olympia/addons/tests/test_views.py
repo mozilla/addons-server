@@ -2239,7 +2239,7 @@ class TestAddonSearchView(ESTestCase):
         qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
-            ('*.raw', '*_sort', 'boost', 'hotness', 'name', 'description',
+            ('*.raw', 'boost', 'hotness', 'name', 'description',
              'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
         )
 
@@ -2251,7 +2251,7 @@ class TestAddonSearchView(ESTestCase):
         # for some reason I don't yet understand... (cgrebs 0717)
         # maybe because they're used for boosting or filtering or so?
         assert not any(key in source_keys for key in (
-            'name_sort', 'boost',
+            'boost',
         ))
 
         assert not any(
