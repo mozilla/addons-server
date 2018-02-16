@@ -379,8 +379,4 @@ class AddonIndexer(BaseSearchIndexer):
             data['previews'][i].update(
                 cls.extract_field_raw_translations(preview, 'caption'))
 
-        # Finally, add the special sort field, coercing the current translation
-        # into an unicode object first.
-        data['name_sort'] = unicode(obj.name).lower()
-
         return data
