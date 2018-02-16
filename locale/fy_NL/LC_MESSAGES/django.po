@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 12:11+0000\n"
+"PO-Revision-Date: 2018-02-16 12:18+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7107,36 +7107,38 @@ msgid "Add-ons Updated by Date"
 msgstr "Bywurke add-ons op datum"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Tapassingsgebrûk op datum"
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Makke kolleksjes op datum"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Download op datum"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Hoe wurde downloads teld?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Hoe wurde downloads teld?</h2> <p> It oantal downloads wurdt elke jûn bywurke en omfettet allinnich inisjele add-on-downloads, gjin fernijingen. Downloads kinne opdield wurde nei de spesifike "
+"boarne fan de download. </p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Brûkerstalen op datum"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Platfoarmgebrûk op datum"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> downloads"
 
 msgid "Loading..."
 msgstr "Lade…"
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> gemiddelde deistige brûkers"
 
 msgid "Top Applications"
 msgstr "Toptapassingen"
@@ -7157,16 +7159,16 @@ msgid "See more platforms&hellip;"
 msgstr "Mear platfoarms…"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Wurdearringen op datum"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Skreaune beoardielingen op datum"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Downloadboarnen op datum"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Oer folgjen fan eksterne boarnen…"
 
 #, python-format
 msgid ""
