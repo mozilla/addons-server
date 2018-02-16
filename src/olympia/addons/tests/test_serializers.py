@@ -227,6 +227,10 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': get_outgoing_url(unicode(self.addon.homepage))
         }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64))
+        }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
         assert result['is_featured'] == self.addon.is_featured() is False
@@ -268,6 +272,9 @@ class AddonSerializerOutputTestMixin(object):
             'count': self.addon.total_ratings,
             'text_count': self.addon.text_ratings_count,
         }
+        assert result['ratings_url'] == self.addon.ratings_url == (
+            reverse('addons.ratings.list', args=[self.addon.slug])
+        )
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
@@ -368,6 +375,10 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['id'] == self.addon.pk
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64))
+        }
 
     def test_no_current_version(self):
         self.addon = addon_factory(name='lol')
@@ -516,6 +527,10 @@ class AddonSerializerOutputTestMixin(object):
         # icon url should just be a default icon instead of the Persona icon.
         assert result['icon_url'] == (
             'http://testserver/static/img/addon-icons/default-64.png')
+        assert result['icons'] == {
+            '32': 'http://testserver/static/img/addon-icons/default-32.png',
+            '64': 'http://testserver/static/img/addon-icons/default-64.png'
+        }
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
