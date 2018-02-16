@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 14:49+0000\n"
+"PO-Revision-Date: 2018-02-16 15:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5721,6 +5721,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Rapportearje of label twiveleftige beoardielingen troch op ‘Dizze beoardieling rapportearje’ te klikken, wêrnei dizze ta evaluaasje nei de website stjoerd wurde sil. Us evaluaasjeteam brûkt de "
+"Beoardielingsrjochtlinen om te evaluearjen oft de beoardieling al dan net fuortsmiten wurde of op de website werompleatst wurde moat."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Ik bin in add-onskriuwer, kin ik reagearje op beoardielingen?"
@@ -5837,10 +5839,12 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
+"De ûntwikkeling fan it Sunbird-projekt is stoppe en de lêste ferzje datearret fan 30 maart 2010. Wy binne der grutsk op dat wy op dizze website add-ons foar Sunbird hoste meie hawwe, mar omdat it "
+"projekt net mear ûnderhâlden wurdt, hawwe wy de stipe foar de add-ons útskeakele."
 
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ""
+msgstr "Wy riede jo oan te fernijen nei<a href=\"%(tb_url)s\">Thunderbird</a> en <a href=\"%(lightning_url)s\">Lightning</a>."
 
 msgid "Read more about Sunbird"
 msgstr "Lês mear oer Sunbird"
@@ -5858,7 +5862,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Wurdearring: %d fan de 5 stjerren"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "By it selektearjen fan ‘Oars’ as reden foar markearring moat in koarte útlis opjûn wurde."
 
 msgid "Other (please specify)"
 msgstr "Oars (spesifisearje dizze)"
@@ -6319,7 +6323,7 @@ msgstr[0] "{0} temabeoardeling mei sukses ferwurke (+{1} punten, {2} totaal)."
 msgstr[1] "{0} temabeoardielingen mei sukses ferwurke (+{1} punten, {2} totaal)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
+msgstr "Jo temablokkades binne mei sukses opheven. Oare beoardielers kinne no dy frijjûne tema’s beoardiele. Jo moatte mooglik de side fernije om de wizigingen yn ûndersteande tabel te sjen."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon}:: Misbrûkmeldingen"
@@ -7441,55 +7445,55 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr "myn sdk-basearre add-on is mei sukses bywurku"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "ien skriuwt in beoardieling oer myn add-on"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "bliuw by-de-tiid mei foar add-on-ûntwikkelers relevant nijs en eveneminten (wêrûnder de about:addons-nijsbrief)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "de komptabiliteit fan myn add-on kin net bywurke wurde"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "myn sdk-basearre add-on kin net bywurke wurde"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "myn add-on wurdt troch in beoardieler beoardiele"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla moat kontakt mei my opnimme oer myn yndividuele add-on"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Brûkersnotifikaasjes"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "In e-mailadres is ferplicht."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Der bestiet gjin brûker mei dat e-mailadres."
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profyl fuortsmiten"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto fuortsmiten"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profyl bywurke"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Flaters fûn"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Der binne flaters bard yn de troch jo oanbrochte wizigingen. Korrizjearje se en tsjinje it formulier opnij yn."
 
 msgid "User reported."
-msgstr ""
+msgstr "Brûker rapportearre."
 
 msgid "new"
 msgstr "nij"
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "Brûkersaccount fuortsmite"
 
 #, python-format
 msgid ""
