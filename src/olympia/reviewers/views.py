@@ -1211,6 +1211,7 @@ class AddonReviewerViewSet(GenericViewSet):
         try:
             reviewerflags = addon.addonreviewerflags
             reviewerflags.update(pending_info_request=None)
+            ActivityLog.create(amo.LOG.CLEAR_INFO_REQUEST, addon)
         except AddonReviewerFlags.DoesNotExist:
             # If it does not exist, there is nothing to clear.
             pass

@@ -4596,6 +4596,7 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.clear_pending_info_request_url)
         assert response.status_code == 202
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        assert ActivityLog.objects.count() == 0
 
     def test_clear_pending_info_request(self):
         reviewer_flags = AddonReviewerFlags.objects.create(
@@ -4609,3 +4610,7 @@ class TestAddonReviewerViewSet(TestCase):
         reviewer_flags.reload()
         assert reviewer_flags.pending_info_request is None
         assert reviewer_flags.needs_admin_code_review  # Not touched.
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.CLEAR_INFO_REQUEST.id
+        assert activity_log.arguments[0] == self.addon
