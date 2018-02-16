@@ -166,6 +166,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
     :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
+    :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32 and 64 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
     :>json boolean is_featured: The add-on appears in a featured collection.
