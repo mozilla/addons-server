@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 10:06+0000\n"
+"PO-Revision-Date: 2018-02-16 11:46+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6714,35 +6714,35 @@ msgid "Commit Reviews"
 msgstr "Beoardielingen yntsjinje"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} fan {1} beoardiele"
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Der binne op dit stuit gjin tema’s om te beoardielen."
 
 msgid "Clear Search"
-msgstr ""
+msgstr "Sykfjild leechmeitsje"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Myn temablokkades fuortsmite"
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Ynteraktive tema-wachtrige"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Beoardielingsrjochtlinen"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Tema-beoardieling foar {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Wierskynlik dûbeld yntsjinne)"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Eardere beoardielingsopmerkingen"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Mear ynformaasje frege: {0}"
 
 msgid "Flagged: {0}"
 msgstr ""
