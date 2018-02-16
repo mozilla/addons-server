@@ -27,7 +27,7 @@
     {% endfor %}
     {% if addon %}
       <p>
-        <a class="more-info" href="{{ addon.reviews_url }}">
+        <a class="more-info" href="{{ addon.ratings_url }}">
           {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
             See all user reviews
           {% pluralize %}

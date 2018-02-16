@@ -272,6 +272,9 @@ class AddonSerializerOutputTestMixin(object):
             'count': self.addon.total_ratings,
             'text_count': self.addon.text_ratings_count,
         }
+        assert result['ratings_url'] == self.addon.ratings_url == (
+            reverse('addons.ratings.list', args=[self.addon.slug])
+        )
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
