@@ -481,7 +481,7 @@ class SortingFilter(BaseFilterBackend):
         'created': '-created',
         'downloads': '-weekly_downloads',
         'hotness': '-hotness',
-        'name': 'name_sort',
+        'name': 'name.raw',
         'random': '_score',
         'rating': '-bayesian_rating',
         'relevance': '_score',

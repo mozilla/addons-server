@@ -55,7 +55,7 @@ class TestAddonIndexer(TestCase):
             'current_version', 'description', 'featured_for',
             'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
-            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
+            'listed_authors', 'name', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
         ]
 
