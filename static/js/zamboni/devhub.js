@@ -335,11 +335,11 @@ function addonFormSubmit() {
             parent_div.find(".item").removeClass("loaded").addClass("loading");
             var $document = $(document),
                 scrollBottom = $document.height() - $document.scrollTop(),
-                $form = $(this),
-                hasErrors = $form.find('.errorlist').length;
+                $form = $(this);
 
             $.post($form.attr('action'), $form.serialize(), function(d) {
                 parent_div.html(d).each(addonFormSubmit);
+                hasErrors = parent_div.find('.errorlist').length;
                 $('.tooltip').tooltip('#tooltip');
                 if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
                     document.location = baseurl();
