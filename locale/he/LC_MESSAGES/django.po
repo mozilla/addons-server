@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 12:33+0000\n"
+"PO-Revision-Date: 2018-02-18 21:08+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -703,10 +703,10 @@ msgid "Manage My Submissions"
 msgstr "ניהול ההגשות שלי"
 
 msgid "Submit a New Add-on"
-msgstr "שליחת תוספת חדשה"
+msgstr "הגשת תוספת חדשה"
 
 msgid "Submit a New Theme"
-msgstr "שליחת ערכת נושא חדשה"
+msgstr "הגשת ערכת נושא חדשה"
 
 msgid "Developer Hub"
 msgstr "מרכז המפתחים"
@@ -2622,7 +2622,7 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Submit my add-on for manual review."
-msgstr "שליחת התוספת שלי לסקירה ידנית."
+msgstr "הגשת התוספת שלי לסקירה ידנית."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
@@ -2756,7 +2756,7 @@ msgid "Check Add-on Compatibility"
 msgstr "בדיקת תאימות תוספת"
 
 msgid "You cannot submit this type of add-on"
-msgstr "לא ניתן לשלוח תוספת מסוג זה"
+msgstr "לא ניתן להגיש תוספת מסוג זה"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
@@ -3433,10 +3433,10 @@ msgstr[0] "משתמש פעיל <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
 msgid "Submit a New File"
-msgstr "שליחת קובץ חדש"
+msgstr "הגשת קובץ חדש"
 
 msgid "Submit a New Version"
-msgstr "שליחת גרסה חדשה"
+msgstr "הגשת גרסה חדשה"
 
 # 75%
 # 100%
@@ -3492,7 +3492,7 @@ msgid "Cancel and Disable Version"
 msgstr "ביטול והשבתת הגרסה"
 
 msgid "Submit Version"
-msgstr "שליחת גרסה"
+msgstr "הגשת גרסה"
 
 # 75%
 # 100%
@@ -3614,7 +3614,7 @@ msgid "Create a Theme"
 msgstr "יצירת ערכת נושא"
 
 msgid "Submit File"
-msgstr "שליחת קובץ"
+msgstr "הגשת קובץ"
 
 msgid "Sign Add-on"
 msgstr "חתימת תוספת"
@@ -4003,13 +4003,13 @@ msgid "View All Submissions"
 msgstr "צפייה בכל ההגשות"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "כאן ניתן לצפות ולנהל את התוספות וערכות הנושא שלך. כדי לפרסם את התוספת הראשונה שלך, יש ללחוץ על ״הגשת התוספת הראשונה שלך״ או על ״הגשת ערכת הנושא הראשונה שלך״."
 
 msgid "Submit Your First Add-on"
-msgstr "שליחת התוספת הראשונה שלך"
+msgstr "הגשת התוספת הראשונה שלך"
 
 msgid "Submit Your First Theme"
-msgstr "שליחת ערכת הנושא הראשונה שלך"
+msgstr "הגשת ערכת הנושא הראשונה שלך"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -4195,7 +4195,7 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr "שליחת ערכת נושא"
+msgstr "הגשת ערכת נושא"
 
 msgid "You're done!"
 msgstr "סיימת!"
@@ -5144,7 +5144,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I submit my add-on?"
-msgstr ""
+msgstr "איך ניתן להגיש את התוספת שלי?"
 
 #, python-format
 msgid ""
