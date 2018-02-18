@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-17 22:44+0000\n"
+"PO-Revision-Date: 2018-02-18 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -956,7 +956,7 @@ msgid "Application Versions"
 msgstr "Версии приложения"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr "Приёмлимые версии для всех приложений на AMO."
+msgstr "Приемлемые версии для всех приложений на AMO."
 
 msgid "Valid Application Versions"
 msgstr "Доступные версии приложений"
@@ -1852,7 +1852,7 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr "Ваше дополнение отмечено для проверки администратором.  Оно всё ещё в очереди на проверку, но нужно, чтобы его выбрал один из администраторов. Проверка может занять дольше, чем обычно."
 
 msgid "Comment on {addon} {version}."
-msgstr "Коментарий о {addon} {version}."
+msgstr "Комментарий о {addon} {version}."
 
 msgid "Commented"
 msgstr "Прокомментировано"
@@ -2274,7 +2274,7 @@ msgid "Video"
 msgstr "Видео"
 
 msgid "Device Features & Location"
-msgstr "Возможности устойства и местоположение"
+msgstr "Возможности устройства и местоположение"
 
 msgid "Experimental"
 msgstr "Экспериментальные"
@@ -2523,7 +2523,7 @@ msgid "Violence, war, or weaponry images"
 msgstr "Изображения насилия, войны или оружия"
 
 msgid "Nazi or other hate content"
-msgstr "Нацисткое или другое,  разжигающее ненависть, содержимое"
+msgstr "Нацистское или другое,  разжигающее ненависть, содержимое"
 
 msgid "Defamatory content"
 msgstr "Оскорбительное содержимое"
@@ -2685,7 +2685,7 @@ msgstr "Не удалось связаться с хостом на \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Валидайия сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений, вы сможете увидеть другие."
+msgstr "Валидация сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений вы сможете увидеть другие."
 
 msgid "All My Add-ons"
 msgstr "Все мои дополнения"
@@ -3099,7 +3099,7 @@ msgstr "Информация о дополнении для {0}"
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
 "Длинное описание возможностей,\n"
-"                          функциональности, и другой релеватной информации.\n"
+"                          функциональности, и другой релевантной информации.\n"
 "                          Это поле отображается только на странице деталей дополнения.\n"
 "                          Это относится только к опубликованным дополнениям."
 
@@ -3882,7 +3882,7 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Пользователям потребуется принять следующее Лицензионное Соглашение Конечного Пользователя (EULA) до установки вашего дополнения. Присутствие EULA существенно влият на количество загрузок "
+"Пользователям потребуется принять следующее Лицензионное Соглашение Конечного Пользователя (EULA) до установки вашего дополнения. Присутствие EULA существенно влияет на количество загрузок "
 "дополнения. Пожалуйста, заметьте, что EULA это не тоже самое, что и лицензия на код, такая как GPL или MPL. Это относится только к опубликованным дополнениям."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
@@ -4107,7 +4107,7 @@ msgid "Theme Details"
 msgstr "Информация об теме"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr "Указать красивый URL для вашей страницы со сведеними."
+msgstr "Указать красивый URL для вашей страницы со сведениями."
 
 msgid "Select the category that best describes your Theme."
 msgstr "Выберите категорию, которая лучше всего описывает вашу тему."
@@ -4349,7 +4349,7 @@ msgid "Loading Review History..."
 msgstr "Загрузка истории проверок..."
 
 msgid "We had a problem retrieving review notes"
-msgstr "Возникла проблема при запрашивании истории проверок"
+msgstr "Возникла проблема при запросе истории проверок"
 
 msgid "Load older..."
 msgstr "Загрузить старее..."
@@ -4471,7 +4471,7 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Управляйте паролями {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Упростите и синхронизуйте все ваши логины на разных веб-сайтах между устройствами с помощью одного ключевого пароля."
+msgstr "Упростите и синхронизируйте все ваши логины на разных веб-сайтах между устройствами с помощью одного ключевого пароля."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -4480,10 +4480,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr "Наслаждайтесь набором новых возможностей YouTube — режим кино, блокировка рекламы, управление автовоспроизведением и многое другое."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшите управление эмоджи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Улучшите управление эмодзи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr "Десятки удивительных эмоджи — всегда на расстоянии одного щелчка."
+msgstr "Десятки удивительных эмодзи — всегда на расстоянии одного щелчка."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -4743,7 +4743,7 @@ msgid "Get up and move!"
 msgstr "Вставайте и двигайтесь!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Установите эти дополнения для фитнесса, чтобы быть активным и здоровым"
+msgstr "Установите эти дополнения для фитнеса, чтобы быть активным и здоровым"
 
 msgid "New &amp; Now"
 msgstr "Новое и Нужное"
@@ -4961,7 +4961,7 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"При начале веб-серфинга с использованием своих дополнений обращайте внимание на все отличия, появившиеся с прошлого раза, когды вы использовали это расширение. Это может быть сбой при отображении, "
+"При начале веб-серфинга с использованием своих дополнений обращайте внимание на все отличия, появившиеся с прошлого раза, когда вы использовали это расширение. Это может быть сбой при отображении, "
 "например отсутствие пункта меню, или что-то более серьезное, как например полный отказ в работе или работа с ошибками."
 
 msgid ""
@@ -4985,7 +4985,7 @@ msgid ""
 "experience."
 msgstr ""
 "Наше сообщество создает каждый год тысячи дополнений, и ваша помощь в тестировании совместимости помогает нам удостовериться, что эти дополнения будут им полезны, так как мы стремимся обеспечить для"
-" пользователей максмимальный комфорт при работе."
+" пользователей максимальный комфорт при работе."
 
 msgid "Thank you!"
 msgstr "Спасибо!"
@@ -5379,7 +5379,7 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"Нужны дополнительные сведения о различных лицензиях для открытого исходного кода? Не знаете какую лицензию следуте выбрать? Хотите знать какие права предоставляет какая-либо лицензия? Хотя ничто не "
+"Нужны дополнительные сведения о различных лицензиях для открытого исходного кода? Не знаете, какую лицензию следует выбрать? Хотите знать, какие права предоставляет какая-либо лицензия? Хотя ничто не "
 "заменит чтения всех условий лицензии, ниже перечислены некоторые сайты, которые содержат сведения о некоторых из ключевых лицензий для открытого исходного кода, которые могут помочь вам разобраться "
 "в их различиях. Эти сайты предоставляются исключительно для вашего удобства в качестве рекомендации для вашего личного пользования. Данные ресурсы не являются юридической консультацией и не должны "
 "использоваться вместо подобных консультаций. Mozilla не гарантирует и не несет ответственность за содержание этих сайтов или за использованием вами этого содержания."
@@ -7046,17 +7046,17 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr "Не удалось найти дополнение с идентификатором \"{}\"."
 
 msgid "You do not own this addon."
-msgstr "Вы не владете этим дополнением."
+msgstr "Вы не владеете этим дополнением."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Отстуствует ключ \"upload\" при отправке файла."
+msgstr "Отсутствует ключ \"upload\" при отправке файла."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr "Вы не можете добавить к этому дополнению версии, которые имеют статус: %s."
 
 msgid "Version does not match the manifest file."
-msgstr "Версия не соответсвует манифесту."
+msgstr "Версия не соответствует манифесту."
 
 msgid "Version already exists."
 msgstr "Версия уже существует."
@@ -7756,7 +7756,7 @@ msgid "Report User"
 msgstr "Сообщить о пользователе"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Пожулуйста, опишите, почему вы сообщаете об этом пользователе, например за спам или за неуместную фотографию."
+msgstr "Пожалуйста, опишите, почему вы сообщаете об этом пользователе, например за спам или за неуместную фотографию."
 
 msgid "Report user {0}"
 msgstr "Пожаловаться на пользователя {0}"
