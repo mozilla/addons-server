@@ -965,10 +965,10 @@ msgid "Describe your collection (no links allowed)."
 msgstr ""
 
 msgid "Privacy:"
-msgstr ""
+msgstr "Ichinanem:"
 
 msgid "Icon"
-msgstr ""
+msgstr "Wachib'äl"
 
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
