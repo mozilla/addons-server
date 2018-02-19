@@ -1604,6 +1604,7 @@ def _submit_finish(request, addon, version, is_file=False):
         # We can use locale-prefixed URLs because the submitter probably
         # speaks the same language by the time he/she reads the email.
         context = {
+            'addon_name': unicode(addon.name),
             'app': unicode(request.APP.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),

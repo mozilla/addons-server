@@ -872,6 +872,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
     def test_welcome_email_for_newbies(self, send_welcome_email_mock):
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
@@ -888,6 +889,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
@@ -907,6 +909,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',

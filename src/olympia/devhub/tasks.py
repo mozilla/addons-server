@@ -730,8 +730,9 @@ def get_content_and_check_size(response, max_size, error_message):
 def send_welcome_email(addon_pk, emails, context, **kw):
     log.info(u'[1@None] Sending welcome email for %s to %s.' %
              (addon_pk, emails))
-    app = context.get('app', unicode(amo.FIREFOX.pretty))
-    subject = u'Mozilla Add-ons: Thanks for submitting a %s Add-on!' % app
+    subject = (
+        u'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!' %
+        context.get('addon_name', 'Your add-on'))
     html_template = 'devhub/email/submission.html'
     text_template = 'devhub/email/submission.txt'
     return send_html_mail_jinja(subject, html_template, text_template,
