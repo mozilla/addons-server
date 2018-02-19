@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 19:29+0000\n"
+"PO-Revision-Date: 2018-02-19 19:33+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3863,7 +3863,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם. אילוץ זה תקף על תוספות שמוצגות בלבד."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "אם התוספת שלך מכילה קוד בינרי או ממוסך למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "נא לציין הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
