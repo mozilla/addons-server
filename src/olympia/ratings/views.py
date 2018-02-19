@@ -43,7 +43,7 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 @non_atomic_requests
 def review_list(request, addon, review_id=None, user_id=None):
     qs = Rating.without_replies.all().filter(
-        addon=addon).exclude(body__isnull=True).order_by('-created')
+        addon=addon).order_by('-created')
 
     ctx = {'addon': addon,
            'grouped_ratings': GroupedRating.get(addon.id)}
