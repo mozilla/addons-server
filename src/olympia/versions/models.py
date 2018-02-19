@@ -96,7 +96,6 @@ class Version(OnChangeMixin, ModelBase):
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
 
-    has_info_request = models.BooleanField(default=False)
     has_reviewer_comment = models.BooleanField(
         db_column='has_editor_comment', default=False)
 
@@ -517,14 +516,6 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def sources_provided(self):
         return bool(self.source)
-
-    @property
-    def needs_admin_code_review(self):
-        return self.addon.needs_admin_code_review
-
-    @property
-    def needs_admin_content_review(self):
-        return self.addon.needs_admin_content_review
 
     @classmethod
     def _compat_map(cls, avs):

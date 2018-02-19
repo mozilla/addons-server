@@ -13,7 +13,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, file_factory, version_factory
 from olympia.amo.urlresolvers import reverse
@@ -198,7 +199,7 @@ class TestReviewHelper(TestCase):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
                 'action': 'public', 'operating_systems': 'osx',
                 'applications': 'Firefox',
-                'info_request': self.version.has_info_request}
+                'info_request': self.addon.pending_info_request}
 
     def get_helper(self, content_review_only=False):
         return ReviewHelper(
@@ -258,20 +259,6 @@ class TestReviewHelper(TestCase):
         self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
         assert len(mail.outbox) == 1
-
-    def test_comment_clear_has_info_request(self):
-        self.version.update(has_info_request=True)
-        self.helper.set_data({'action': 'comment', 'comments': 'foo',
-                              'info_request': False})
-        self.helper.process()
-        assert not self.version.has_info_request
-
-    def test_comment_cant_set_has_info_request(self):
-        self.version.update(has_info_request=False)
-        self.helper.set_data({'action': 'comment', 'comments': 'foo',
-                              'info_request': True})
-        self.helper.process()
-        assert not self.version.has_info_request
 
     def test_action_details(self):
         for status in Addon.STATUS_CHOICES:
@@ -345,23 +332,6 @@ class TestReviewHelper(TestCase):
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
-
-    def test_info_request_for_comments(self):
-        # Info request flag not set on the version
-        assert not self.version.has_info_request
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC)
-        assert actions['reply']['info_request']
-        assert not actions['comment']['info_request']
-
-        # Now set the info request flag
-        self.version.update(has_info_request=True)
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC)
-        assert actions['reply']['info_request']
-        assert actions['comment']['info_request']
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -437,11 +407,11 @@ class TestReviewHelper(TestCase):
         self.helper.set_data(data)
 
     def test_send_reviewer_reply(self):
-        assert not self.version.has_info_request
+        assert not self.addon.pending_info_request
         self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
         self.helper.handler.reviewer_reply()
 
-        assert not self.version.has_info_request
+        assert not self.addon.pending_info_request
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == self.preamble
@@ -453,7 +423,51 @@ class TestReviewHelper(TestCase):
         self.helper.handler.data['info_request'] = True
         self.helper.handler.reviewer_reply()
 
-        assert self.version.has_info_request
+        self.assertCloseToNow(
+            self.addon.pending_info_request,
+            now=datetime.now() + timedelta(days=7))
+
+        assert len(mail.outbox) == 1
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
+
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
+
+    def test_request_more_information_custom_deadline(self):
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.helper.handler.data['info_request'] = True
+        self.helper.handler.data['info_request_deadline'] = 42
+        self.helper.handler.reviewer_reply()
+
+        self.assertCloseToNow(
+            self.addon.pending_info_request,
+            now=datetime.now() + timedelta(days=42))
+
+        assert len(mail.outbox) == 1
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
+
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
+
+    def test_request_more_information_reset_notified_flag(self):
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+
+        flags = AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            pending_info_request=datetime.now() - timedelta(days=1),
+            notified_about_expiring_info_request=True)
+
+        self.helper.handler.data['info_request'] = True
+        self.helper.handler.reviewer_reply()
+
+        flags.reload()
+
+        self.assertCloseToNow(
+            flags.pending_info_request,
+            now=datetime.now() + timedelta(days=7))
+        assert not flags.notified_about_expiring_info_request
 
         assert len(mail.outbox) == 1
         assert (

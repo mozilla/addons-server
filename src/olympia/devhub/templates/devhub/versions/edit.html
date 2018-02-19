@@ -119,6 +119,9 @@
             <td>
               {{ field.errors }}
               {{ field }}
+              {% with reviewer_form = version_form %}
+                {% include "devhub/includes/clear_pending_info_request.html" %}
+              {% endwith %}
             </td>
           {% endwith %}
           </tr>

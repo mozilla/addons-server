@@ -1,9 +1,10 @@
-import datetime
 import re
 
+from datetime import datetime, timedelta
 from email.utils import formataddr
 
 from django.conf import settings
+from django.contrib.humanize.templatetags.humanize import apnumber
 from django.template import loader
 from django.utils import translation
 
@@ -16,6 +17,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import no_translation, send_mail
@@ -188,21 +190,17 @@ def template_from_user(user, version):
 
 def log_and_notify(action, comments, note_creator, version, perm_setting=None,
                    detail_kwargs=None):
+    """Record an action through ActivityLog and notify relevant users about it.
+    """
     log_kwargs = {
         'user': note_creator,
-        'created': datetime.datetime.now(),
+        'created': datetime.now(),
     }
     if detail_kwargs is None:
         detail_kwargs = {}
     if comments:
         detail_kwargs['version'] = version.version
         detail_kwargs['comments'] = comments
-    else:
-        # Just use the name of the action if no comments provided.  Alas we
-        # can't know the locale of recipient, and our templates are English
-        # only so prevent language jumble by forcing into en-US.
-        with no_translation():
-            comments = '%s' % action.short
     if detail_kwargs:
         log_kwargs['details'] = detail_kwargs
 
@@ -210,76 +208,119 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     if not note:
         return
 
-    # Collect reviewers involved with this version.
-    review_perm = (amo.permissions.ADDONS_REVIEW
-                   if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
-    log_users = {
-        alog.user for alog in ActivityLog.objects.for_version(version) if
-        acl.action_allowed_user(alog.user, review_perm)}
-    # Collect add-on authors (excl. the person who sent the email.)
-    addon_authors = set(version.addon.authors.all()) - {note_creator}
-    # Collect staff that want a copy of the email
-    staff = set(
-        UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
-    # If task_user doesn't exist that's no big issue (i.e. in tests)
-    try:
-        task_user = {get_task_user()}
-    except UserProfile.DoesNotExist:
-        task_user = set()
-    # Collect reviewers on the thread (excl. the email sender and task user for
-    # automated messages).
-    reviewers = log_users - addon_authors - task_user - {note_creator}
-    staff_cc = staff - reviewers - addon_authors - task_user - {note_creator}
+    notify_about_activity_log(
+        version.addon, version, note, perm_setting=perm_setting)
+
+    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
+        # When a developer repies by email, we automatically clear the
+        # corresponding info request.
+        AddonReviewerFlags.objects.update_or_create(
+            addon=version.addon, defaults={'pending_info_request': None}
+        )
+
+    return note
+
+
+def notify_about_activity_log(addon, version, note, perm_setting=None,
+                              send_to_reviewers=True, send_to_staff=True):
+    """Notify relevant users about an ActivityLog note."""
+    comments = (note.details or {}).get('comments')
+    if not comments:
+        # Just use the name of the action if no comments provided.  Alas we
+        # can't know the locale of recipient, and our templates are English
+        # only so prevent language jumble by forcing into en-US.
+        with no_translation():
+            comments = '%s' % amo.LOG_BY_ID[note.action].short
+
+    # Collect add-on authors (excl. the person who sent the email.) and build
+    # the context for them.
+    addon_authors = set(addon.authors.all()) - {note.user}
     author_context_dict = {
-        'name': version.addon.name,
+        'name': addon.name,
         'number': version.version,
-        'author': note_creator.name,
+        'author': note.user.name,
         'comments': comments,
-        'url': absolutify(version.addon.get_dev_url('versions')),
+        'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
         'email_reason': 'you are listed as an author of this add-on',
-        'is_info_request': action == amo.LOG.REQUEST_INFORMATION,
+        'is_info_request': note.action == amo.LOG.REQUEST_INFORMATION.id,
     }
-
-    reviewer_context_dict = author_context_dict.copy()
-    reviewer_context_dict['url'] = absolutify(
-        reverse('reviewers.review',
-                kwargs={'addon_id': version.addon.pk,
-                        'channel': amo.CHANNEL_CHOICES_API[version.channel]},
-                add_prefix=False))
-    reviewer_context_dict['email_reason'] = 'you reviewed this add-on'
-
-    staff_cc_context_dict = reviewer_context_dict.copy()
-    staff_cc_context_dict['email_reason'] = (
-        'you are member of the activity email cc group')
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        if action == amo.LOG.REQUEST_INFORMATION:
+        if note.action == amo.LOG.REQUEST_INFORMATION.id:
+            if addon.pending_info_request:
+                days_left = (
+                    # We pad the time left with an extra hour so that the email
+                    # does not end up saying "6 days left" because a few
+                    # seconds or minutes passed between the datetime was saved
+                    # and the email was sent.
+                    addon.pending_info_request + timedelta(hours=1) -
+                    datetime.now()
+                ).days
+                if days_left > 9:
+                    author_context_dict['number_of_days_left'] = (
+                        '%d days' % days_left)
+                elif days_left > 1:
+                    author_context_dict['number_of_days_left'] = (
+                        '%s (%d) days' % (apnumber(days_left), days_left))
+                else:
+                    author_context_dict['number_of_days_left'] = 'one (1) day'
             subject = u'Mozilla Add-ons: Action Required for %s %s' % (
-                version.addon.name, version.version)
+                addon.name, version.version)
         else:
             subject = u'Mozilla Add-ons: %s %s' % (
-                version.addon.name, version.version)
-    template = template_from_user(note_creator, version)
-    from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
+                addon.name, version.version)
+    # Build and send the mail for authors.
+    template = template_from_user(note.user, version)
+    from_email = formataddr((note.user.name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
         subject, template.render(author_context_dict),
         version, addon_authors, from_email, note.id, perm_setting)
 
-    send_activity_mail(
-        subject, template.render(reviewer_context_dict),
-        version, reviewers, from_email, note.id, perm_setting)
+    if send_to_reviewers or send_to_staff:
+        # If task_user doesn't exist that's no big issue (i.e. in tests)
+        try:
+            task_user = {get_task_user()}
+        except UserProfile.DoesNotExist:
+            task_user = set()
 
-    send_activity_mail(
-        subject, template.render(staff_cc_context_dict),
-        version, staff_cc, from_email, note.id, perm_setting)
+    if send_to_reviewers:
+        # Collect reviewers on the thread (excl. the email sender and task user
+        # for automated messages), build the context for them and send them
+        # their copy.
+        review_perm = (amo.permissions.ADDONS_REVIEW
+                       if version.channel == amo.RELEASE_CHANNEL_LISTED
+                       else amo.permissions.ADDONS_REVIEW_UNLISTED)
+        log_users = {
+            alog.user for alog in ActivityLog.objects.for_version(version) if
+            acl.action_allowed_user(alog.user, review_perm)}
+        reviewers = log_users - addon_authors - task_user - {note.user}
+        reviewer_context_dict = author_context_dict.copy()
+        reviewer_context_dict['url'] = absolutify(
+            reverse('reviewers.review',
+                    kwargs={
+                        'addon_id': version.addon.pk,
+                        'channel': amo.CHANNEL_CHOICES_API[version.channel]
+                    }, add_prefix=False))
+        reviewer_context_dict['email_reason'] = 'you reviewed this add-on'
+        send_activity_mail(
+            subject, template.render(reviewer_context_dict),
+            version, reviewers, from_email, note.id, perm_setting)
 
-    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
-        version.update(has_info_request=False)
-
-    return note
+    if send_to_staff:
+        # Collect staff that want a copy of the email, build the context for
+        # them and send them their copy.
+        staff = set(
+            UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
+        staff_cc = (
+            staff - reviewers - addon_authors - task_user - {note.user})
+        staff_cc_context_dict = reviewer_context_dict.copy()
+        staff_cc_context_dict['email_reason'] = (
+            'you are member of the activity email cc group')
+        send_activity_mail(
+            subject, template.render(staff_cc_context_dict),
+            version, staff_cc, from_email, note.id, perm_setting)
 
 
 def send_activity_mail(subject, message, version, recipients, from_email,

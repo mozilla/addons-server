@@ -586,6 +586,15 @@ class REJECT_CONTENT(_LOG):
     reviewer_review_action = True
 
 
+class CLEAR_INFO_REQUEST(_LOG):
+    id = 149
+    format = _(u'{addon} information request removed.')
+    short = _(u'Information request removed')
+    keep = True
+    reviewer_review_action = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

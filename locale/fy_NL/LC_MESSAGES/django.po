@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-16 15:13+0000\n"
+"PO-Revision-Date: 2018-02-19 09:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7511,31 +7511,31 @@ msgid "Logging in with this email address into %(site)s again will create a new 
 msgstr "As jo jo mei dit e-mailadres opnij oanmelde by %(site)s, wurdt in nij account oanmakke dy't gjin ferbân hâldt mei dizze account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Jo beoardielingen en wurdearringen wurde net fuortsmiten, mar se binne net mear mei jo assosjearre."
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Fuortsmiten fan account befêstigje"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Ik begryp dat dizze stap net ûngedien makke wurde kin."
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Myn brûkersaccount no fuortsmite"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Brûkersfoto fuortsmite"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Myn brûkersfoto no fuortsmite"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Stel jo skermnamme yn"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Stel jo skermnamme of brûkersnamme yn om it registraasjeproses te foltôgjen."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Firefox Accounts."
 
 msgid "Username"
 msgstr "Brûkersnamme"
@@ -7550,41 +7550,41 @@ msgid "Profile"
 msgstr "Profyl"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Jou ús wat mear ynformaasje oer josels. Al dizze fjilden binne opsjoneel, mar se helpe oare brûkers om jo wat better kennen te learen."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Dizze URL is allinnich sichtber as jo in ûntwikkeler binne."
 
 msgid "Choose Photo&hellip;"
 msgstr "Foto kieze…"
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "Aktuele foto fuortsmite"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Stel josels foar oan de mienskip as jo dat wolle! Dizze tekst ferskynt op jo publyklik tagonklike brûkersynformaasjeside."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "Tastiene HTML: %(html)s. Keppelingen binne net tastien."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Beslis hokker kolleksjes yn jo profyl werjûn wurde moatte."
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Troch my makke kolleksjes werjaan"
 
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Troch my folge kolleksjes werjaan"
 
 msgid "Notifications"
 msgstr "Notifikaasjes"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Mozilla kin jo sa no en dan in e-mailberjocht stjoere oer oankommende útjeftes en add-on-barrens. Selektearje de foar jo ynteressante ûnderwerpen."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla behâldt harren it rjocht foar om yndividueel kontakt mei jo op te nimmen oer spesifike oangelegenheden mei jo add-ons dy't host wurde."
 
 msgid "Admin"
 msgstr "Behear"
@@ -7602,7 +7602,7 @@ msgid "all"
 msgstr "alles"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Mozilla Add-ons is foar oanmelding oergien op Firefox Accounts. Gean troch om it ienfâldige oanmeldingsproses te foltôgjen."
 
 msgid "User Login"
 msgstr "Brûker oanmelde"
@@ -7611,105 +7611,105 @@ msgid "Log in with Firefox Accounts"
 msgstr "Oanmelde mei Firefox Accounts"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Wachtwurd opnij ynstelle"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Brûkersynformaasje foar {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Profyl bewurkje"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Brûker beheare"
 
 msgid "Report user"
-msgstr ""
+msgstr "Brûker rapportearje"
 
 # The title for a user if they are a developer
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Add-on-ûntwikkeler"
 
 msgid "Themes Artist"
-msgstr ""
+msgstr "Temakeunstner"
 
 msgid "About me"
 msgstr "Oer my"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Yn wat mear detail…"
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Troch my makke add-ons"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Myn meast populêre tema’s"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Troch my makke tema’s"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Troch my folge"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
-msgstr ""
+msgstr "Makke troch my"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr ""
+msgstr "Myn beoardielingen"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Noch gjin add-on-beoardielingen."
 
 msgid "Report User"
-msgstr ""
+msgstr "Brûker rapportearje"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Beskriuw wêrom't jo dizze brûker rapportearje, lykas bygelyks foar spam of in net paste ôfbylding."
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Brûker {0} rapportearje"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Abonnemint opsizze"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Jo abonnemint is mei sukses opsein!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "It e-mailadres <strong>%(email)s</strong> kriget gjin berjochten mear as:"
 
 msgid "More Actions:"
 msgstr "Mear aksjes:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "jo notifikaasje-ynstellingen bewurkje"
 
 msgid "edit your profile"
-msgstr ""
+msgstr "jo profyl bewurkje"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Wy kinne jo abonnemint net stopsette"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Wy kinne jo spitigernôch net ôfmelde. De troch jo oanklikte keppeling is net jildich. Jo kinne jo echter noch hieltyd ôfmelde op jo <a href=\"%(edit_url)s\">profylside</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Untwikkelersynformaasje"
 
 msgid "User since"
-msgstr ""
+msgstr "Brûker sûnt"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Tiid lêste oanmelding"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-adres by lêste oanmelding"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Oantal ûntwikkele add-ons"
 
 msgid "{0} add-ons"
 msgstr "{0} add-ons"
@@ -7727,7 +7727,7 @@ msgstr[0] "%(num)s add-on"
 msgstr[1] "%(num)s add-ons"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Gemiddelde wurdearring fan de add-ons fan de ûntwikkeler"
 
 msgctxt "user_list_others"
 msgid "others"
@@ -7738,42 +7738,42 @@ msgid "%s Version History"
 msgstr "%s-ferzjeskiednis"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Ferzjeskiednis mei oersjoch fan wizigingen"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} en heger"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Permaninte keppeling nei dizze ferzje"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Utjûn op {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Boarnekoade útjûn ûnder <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 # {0} is the add-on name
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0}-ferzjeskiednis"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> ferzje"
+msgstr[1] "<b>{0}</b> ferzjes"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Wês foarsichtich mei âlde ferzjes!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Dizze ferzjes wurde ta referinsje en foar testdoeleinen werjûn. Jo moatte altyd de <a href=\"%(url)s\">meast resinte ferzje</a> fan in add-on brûke."
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Fuortsmiten ferzjes kinne net wizige wurde."
 
 msgid "Binary"
 msgstr "Binêr"

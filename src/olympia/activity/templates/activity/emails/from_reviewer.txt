@@ -9,7 +9,7 @@ Hello,
 
 *********
 
-To respond, please reply to this email or visit {{ url }}. {% if is_info_request %}If we do not hear from you within seven (7) days of this notification, this listing may be removed from addons.mozilla.org.{% endif %}
+To respond, please reply to this email or visit {{ url }}. {% if is_info_request and number_of_days_left %}If we do not hear from you within {{ number_of_days_left }} of this notification, this listing may be removed from addons.mozilla.org.{% endif %}
 
 
 Thank you for your attention.

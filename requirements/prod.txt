@@ -88,9 +88,9 @@ celery==4.1.0 \
 botocore==1.8.45 \
     --hash=sha256:80ccf6d2145a19b2b0354df7522ab7f8ef4e2793b5e187ea10cb5c4d8cbbd6a3 \
     --hash=sha256:8f91b648a216dc945783d1539c013fc08a9e65ecc4fc5aae017bdd5961fd3468
-boto3==1.5.30 \
-    --hash=sha256:9312b3aa24888ab6436fcc41c56e2231dfdd1864879dabaac042256cbe292dbc \
-    --hash=sha256:f773243adc1d2264fe87b75fa2f5e696ab042ac7a9bf0cae8a2045e32e325044
+boto3==1.5.31 \
+    --hash=sha256:ae0ae1c11f4a78bd69a43c8b8a9bdb6569c3b497331f5892cc3cdb95f6f7f42b \
+    --hash=sha256:65d7b85d213b63f4540b259b5a9780db8b0cbdcb5d748545d1eb19992910587b
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -167,9 +167,9 @@ djangorestframework-jwt==1.11.0 \
 dockerflow==2017.11.0 \
     --hash=sha256:cf62fd1999d25c684b424f857e5869c4dfe4c04b76a93c9fd592e0bf41547853 \
     --hash=sha256:5ac2491d0571686eae56a2317e4c71ba955b48f6e2e36d48f30a05a9f95127be
-drf-nested-routers==0.90.0 \
-    --hash=sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476 \
-    --hash=sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f
+drf-nested-routers==0.90.2 \
+    --hash=sha256:a4d97de1be554f5db3fd11c881f578d10a3e1324b6e99be1749a11c7248d3360 \
+    --hash=sha256:52cbc4900e3ccd652bfb73017ff466d7b3e4d99838c912c250d75763b32669af
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl

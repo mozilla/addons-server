@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2017-11-17 20:37+0000\n"
-"Last-Translator: nikolaskorsman <nikolaskorsman@outlook.com>\n"
+"PO-Revision-Date: 2016-08-10 13:59+0000\n"
+"Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -673,9 +673,8 @@ msgstr "Näytä muut versiot"
 msgid "Works with {app} {min} - {max}"
 msgstr "Toimii {app} versioiden {min} - {max} kanssa"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Toimii {app} versioiden {min} - {max} kanssa"
+msgstr "Toimii sovelluksen {app} kanssa"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Vain Firefoxissa — Hanki Firefox nyt!"

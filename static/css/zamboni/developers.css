@@ -399,6 +399,23 @@ form .char-count b {
     margin-bottom: 1em;
 }
 
+.clear-info-request label {
+    font-weight: normal;
+}
+
+.clear-info-request blockquote {
+    font-style: italic;
+}
+
+.clear-info-request blockquote p {
+    margin-bottom: 0;
+}
+
+.clear-info-request input[type="checkbox"] {
+    margin-left: 0;
+
+}
+
 form.new-addon-file label,
 #edit-addon-basic .addon-app-cats label {
     display: block;

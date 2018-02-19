@@ -1512,6 +1512,37 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_content_review=True)
         assert addon.needs_admin_content_review is True
 
+    def test_pending_info_request_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.pending_info_request is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.pending_info_request is None
+        assert addon.pending_info_request is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(pending_info_request=in_the_past)
+        assert addon.pending_info_request == in_the_past
+
+    def test_expired_info_request_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.expired_info_request is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.pending_info_request is None
+        assert addon.expired_info_request is None
+        # Flag present, value is a date in the past.
+        in_the_past = self.days_ago(1)
+        flags.update(pending_info_request=in_the_past)
+        assert addon.expired_info_request
+
+        # Flag present, value is a date in the future.
+        in_the_future = datetime.now() + timedelta(days=2)
+        flags.update(pending_info_request=in_the_future)
+        assert not addon.expired_info_request
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
@@ -2592,68 +2623,6 @@ class TestAddonWatchDisabled(TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
-
-
-class TestAddonWatchDeveloperNotes(TestCase):
-
-    def make_addon(self, **kwargs):
-        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
-                      **kwargs)
-        addon.save()
-        addon.versions.create(has_info_request=True)
-        addon.versions.create(has_info_request=False)
-        addon.versions.create(has_info_request=True)
-        return addon
-
-    def assertHasInfoSet(self, addon):
-        assert any([v.has_info_request for v in addon.versions.all()])
-
-    def assertHasInfoNotSet(self, addon):
-        assert all([not v.has_info_request for v in addon.versions.all()])
-
-    def test_has_info_save(self):
-        """Test saving without a change doesn't clear has_info_request."""
-        addon = self.make_addon()
-        self.assertHasInfoSet(addon)
-        addon.save()
-        self.assertHasInfoSet(addon)
-
-    def test_has_info_update_developer_comments(self):
-        """Test saving with a change to developer_comments clears
-        has_info_request."""
-        addon = self.make_addon()
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoNotSet(addon)
-
-    def test_has_info_update_developer_comments_again(self):
-        """Test saving a change to developer_comments when developer_comments
-        was already set clears has_info_request (developer_comments is a
-        PurifiedField so it is really just an id)."""
-        addon = self.make_addon(developer_comments='Wat things like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoNotSet(addon)
-
-    def test_has_info_update_developer_comments_no_change(self):
-        """Test saving without a change to developer_comments doesn't clear
-        has_info_request."""
-        addon = self.make_addon(developer_comments='Things are thing-like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoSet(addon)
-
-    def test_has_info_remove_developer_comments(self):
-        """Test saving with an empty developer_comments doesn't clear
-        has_info_request."""
-        addon = self.make_addon(developer_comments='Things are thing-like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = ''
-        addon.save()
-        self.assertHasInfoSet(addon)
 
 
 class TestTrackAddonStatusChange(TestCase):

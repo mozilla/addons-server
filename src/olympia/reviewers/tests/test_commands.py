@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
@@ -7,7 +9,9 @@ import mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
+from olympia.activity.utils import ACTIVITY_MAIL_GROUP
+from olympia.addons.models import (
+    AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation
@@ -411,3 +415,65 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         summary.reload()
         assert summary.weight == 200  # Because of no validation results found.
         assert summary.modified != old_modified_date
+
+
+class TestSendInfoRequestLastWarningNotification(TestCase):
+    @mock.patch('olympia.reviewers.management.commands.'
+                'send_info_request_last_warning_notifications.'
+                'notify_about_activity_log')
+    def test_non_expired(self, notify_about_activity_log_mock):
+        addon_factory()  # Normal add-on, no pending info request.
+        addon_not_expired = addon_factory()
+        flags = AddonReviewerFlags.objects.create(
+            addon=addon_not_expired,
+            pending_info_request=datetime.now() + timedelta(days=1, hours=3))
+        call_command('send_info_request_last_warning_notifications')
+        assert notify_about_activity_log_mock.call_count == 0
+        assert flags.notified_about_expiring_info_request is False
+
+    @mock.patch('olympia.reviewers.management.commands.'
+                'send_info_request_last_warning_notifications.'
+                'notify_about_activity_log')
+    def test_already_notified(self, notify_about_activity_log_mock):
+        addon_factory()
+        addon_already_notified = addon_factory()
+        flags = AddonReviewerFlags.objects.create(
+            addon=addon_already_notified,
+            pending_info_request=datetime.now() + timedelta(hours=23),
+            notified_about_expiring_info_request=True)
+        call_command('send_info_request_last_warning_notifications')
+        assert notify_about_activity_log_mock.call_count == 0
+        assert flags.notified_about_expiring_info_request is True
+
+    def test_normal(self):
+        addon = addon_factory()
+        author = user_factory(name=u'Authør')
+        AddonUser.objects.create(addon=addon, user=author)
+        # Add a pending info request expiring soon.
+        flags = AddonReviewerFlags.objects.create(
+            addon=addon,
+            pending_info_request=datetime.now() + timedelta(hours=23),
+            notified_about_expiring_info_request=False)
+        # Create reviewer and staff users, and create the request for info
+        # activity. Neither the reviewer nor the staff user should be cc'ed.
+        reviewer = user_factory(name=u'Revièwer')
+        self.grant_permission(reviewer, 'Addons:Review')
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, addon, addon.current_version,
+            user=reviewer, details={'comments': u'Fly you fôöls!'})
+        staff = user_factory(name=u'Staff Ûser')
+        self.grant_permission(staff, 'Some:Perm', name=ACTIVITY_MAIL_GROUP)
+
+        # Fire the command.
+        call_command('send_info_request_last_warning_notifications')
+
+        assert len(mail.outbox) == 1
+        msg = mail.outbox[0]
+        assert msg.to == [author.email]
+        assert msg.subject == u'Mozilla Add-ons: Action Required for %s %s' % (
+            addon.name, addon.current_version.version)
+        assert 'an issue when reviewing ' in msg.body
+        assert 'within one (1) day' in msg.body
+
+        flags.reload()
+        assert flags.notified_about_expiring_info_request is True

@@ -1,7 +1,7 @@
-import datetime
 import random
 
 from collections import OrderedDict
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -28,7 +28,7 @@ from olympia.amo.utils import to_language
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
-    get_flags)
+    get_flags, get_flags_for_row)
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 
@@ -83,7 +83,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
-            record.flags = get_flags(record)
+            record.flags = get_flags_for_row(record)
         return ''.join(u'<div class="app-icon ed-sprite-%s" '
                        u'title="%s"></div>' % flag
                        for flag in record.flags)
@@ -187,7 +187,7 @@ class ViewFullReviewQueueTable(ReviewerQueueTable):
         model = ViewFullReviewQueue
 
 
-class AutoApprovedTable(ReviewerQueueTable):
+class ModernAddonQueueTable(ReviewerQueueTable):
     addon_name = tables.Column(verbose_name=_(u'Add-on'), accessor='name')
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
@@ -207,8 +207,9 @@ class AutoApprovedTable(ReviewerQueueTable):
         orderable = False
 
     def render_flags(self, record):
-        return super(AutoApprovedTable, self).render_flags(
-            record.current_version)
+        if not hasattr(record, 'flags'):
+            record.flags = get_flags(record, record.current_version)
+        return super(ModernAddonQueueTable, self).render_flags(record)
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=[record.slug])
@@ -235,6 +236,23 @@ class AutoApprovedTable(ReviewerQueueTable):
         return '<span class="risk-%s">%d</span>' % (classname, value)
 
     render_last_content_review = render_last_human_review
+
+
+class ExpiredInfoRequestsTable(ModernAddonQueueTable):
+    deadline = tables.Column(
+        verbose_name=_(u'Information Request Deadline'),
+        accessor='addonreviewerflags.pending_info_request')
+
+    class Meta(ModernAddonQueueTable.Meta):
+        fields = ('addon_name', 'flags', 'last_human_review', 'weight',
+                  'deadline')
+
+    def render_deadline(self, value):
+        return naturaltime(value) if value else ''
+
+
+class AutoApprovedTable(ModernAddonQueueTable):
+    pass
 
 
 class ContentReviewTable(AutoApprovedTable):
@@ -318,8 +336,8 @@ class ReviewHelper(object):
             not is_limited_reviewer(request) or
             (self.version and
                 self.version.nomination is not None and
-                (datetime.datetime.now() - self.version.nomination >=
-                    datetime.timedelta(hours=amo.REVIEW_LIMITED_DELAY_HOURS))))
+                (datetime.now() - self.version.nomination >=
+                    timedelta(hours=amo.REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = (
             self.version and
             len(self.version.is_unreviewed) > 0)
@@ -409,7 +427,6 @@ class ReviewHelper(object):
             'details': _('This will send a message to the developer. '
                          'You will be notified when they reply.'),
             'minimal': True,
-            'info_request': True,
             'available': self.version is not None,
         }
         actions['super'] = {
@@ -428,7 +445,6 @@ class ReviewHelper(object):
             'details': _('Make a comment on this version. The developer '
                          'won\'t be able to see this.'),
             'minimal': True,
-            'info_request': self.version and self.version.has_info_request,
             'available': True,
         }
 
@@ -473,7 +489,7 @@ class ReviewBase(object):
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
         self.addon.update(**kw)
-        self.version.update(reviewed=datetime.datetime.now())
+        self.version.update(reviewed=datetime.now())
 
     def set_data(self, data):
         self.data = data
@@ -483,8 +499,8 @@ class ReviewBase(object):
     def set_files(self, status, files, hide_disabled_file=False):
         """Change the files to be the new status."""
         for file in files:
-            file.datestatuschanged = datetime.datetime.now()
-            file.reviewed = datetime.datetime.now()
+            file.datestatuschanged = datetime.now()
+            file.reviewed = datetime.now()
             if hide_disabled_file:
                 file.hide_disabled_file()
             file.status = status
@@ -505,7 +521,7 @@ class ReviewBase(object):
         else:
             args = (self.addon,)
 
-        kwargs = {'user': self.user, 'created': datetime.datetime.now(),
+        kwargs = {'user': self.user, 'created': datetime.now(),
                   'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
@@ -570,20 +586,35 @@ class ReviewBase(object):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
         if self.version:
-            kw = {}
-            info_request = self.data.get('info_request')
-            if info_request is not None:
-                # Update info request flag.
-                kw['has_info_request'] = info_request
-                if info_request:
-                    # And change action to request info if set
-                    action = amo.LOG.REQUEST_INFORMATION
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
-                kw['reviewed'] = datetime.datetime.now()
-            self.version.update(**kw)
+                self.version.update(reviewed=datetime.now())
+            if self.data.get('info_request'):
+                # It's an information request and not just a simple reply.
+                # The ActivityLog will be different...
+                action = amo.LOG.REQUEST_INFORMATION
+                # And the deadline for the info request will be created or
+                # updated x days in the future.
+                info_request_deadline_days = int(
+                    self.data.get('info_request_deadline', 7))
+                info_request_deadline = (
+                    datetime.now() + timedelta(days=info_request_deadline_days)
+                )
+                # Update or create the reviewer flags, overwriting
+                # self.addon.addonreviewerflags with the one we
+                # create/update so that we don't use an older version of it
+                # later when notifying. Also, since this is a new request,
+                # clear out the notified_about_expiring_info_request field.
+                self.addon.addonreviewerflags = (
+                    AddonReviewerFlags.objects.update_or_create(
+                        addon=self.addon, defaults={
+                            'pending_info_request': info_request_deadline,
+                            'notified_about_expiring_info_request': False,
+                        }
+                    )[0]
+                )
 
-        log.info(u'Sending request for information for %s to authors and other'
+        log.info(u'Sending reviewer reply for %s to authors and other'
                  u'recipients' % self.addon)
         log_and_notify(action, self.data['comments'],
                        self.user, self.version,
@@ -593,11 +624,9 @@ class ReviewBase(object):
     def process_comment(self):
         if self.version:
             kw = {'has_reviewer_comment': True}
-            if not self.data.get('info_request'):
-                kw['has_info_request'] = False
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
-                kw['reviewed'] = datetime.datetime.now()
+                kw['reviewed'] = datetime.now()
             self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
