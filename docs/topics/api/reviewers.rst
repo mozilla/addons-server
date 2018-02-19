@@ -103,7 +103,20 @@ flag that reviewers can set on an add-on.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post::/api/v3/reviewers/addon/1/clear_admin_review_flag/
+.. http:post::/api/v3/reviewers/addon/(int:addon_id)/clear_admin_review_flag/
 
     :query string flag_type: The flag to clear. Can be either ``code`` or
         ``content``.
+
+----------------------------------
+Clear Information Request Deadline
+----------------------------------
+
+This endpoint allows you to clear the request for more information deadline
+that reviewers can set on an add-on.
+
+    .. note::
+        Requires authentication and the current user to have ``Reviews:Admin``
+        permission.
+
+.. http:post::/api/v3/reviewers/addon/(int:addon_id)/clear_pending_info_request/

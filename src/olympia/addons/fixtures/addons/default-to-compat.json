@@ -166,7 +166,6 @@
         "pk": 1268881,
         "model": "versions.version",
         "fields": {
-            "has_info_request": false,
             "license": null,
             "created": "2011-12-05 14:46:43",
             "has_reviewer_comment": false,
@@ -194,7 +193,6 @@
         "pk": 1268882,
         "model": "versions.version",
         "fields": {
-            "has_info_request": false,
             "license": null,
             "created": "2011-12-05 14:46:44",
             "has_reviewer_comment": false,
@@ -222,7 +220,6 @@
         "pk": 1268883,
         "model": "versions.version",
         "fields": {
-            "has_info_request": false,
             "license": null,
             "created": "2011-12-05 14:46:45",
             "has_reviewer_comment": false,
@@ -250,7 +247,6 @@
         "pk": 1268884,
         "model": "versions.version",
         "fields": {
-            "has_info_request": false,
             "license": null,
             "created": "2011-12-05 14:46:46",
             "has_reviewer_comment": false,

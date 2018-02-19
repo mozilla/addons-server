@@ -1110,10 +1110,14 @@ def version_edit(request, addon_id, addon, version_id):
                     _log_max_version_change(addon, version, form.instance)
 
         if 'version_form' in data:
+            # VersionForm.save() clear the pending info request if the
+            # developer specifically asked for it, but we've got additional
+            # things to do here that depend on it.
+            had_pending_info_request = bool(addon.pending_info_request)
             data['version_form'].save()
+
             if 'approvalnotes' in version_form.changed_data:
-                if version.has_info_request:
-                    version.update(has_info_request=False)
+                if had_pending_info_request:
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
                                    request.user, version)
                 else:
@@ -1124,8 +1128,7 @@ def version_edit(request, addon_id, addon, version_id):
                     version_form.cleaned_data['source']):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
-                if version.has_info_request:
-                    version.update(has_info_request=False)
+                if had_pending_info_request:
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
                                    request.user, version)
                 else:

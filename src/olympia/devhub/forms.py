@@ -16,7 +16,8 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonUser, Preview)
+    Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
+    Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
@@ -304,10 +305,34 @@ class VersionForm(WithSourceMixin, happyforms.ModelForm):
     approvalnotes = forms.CharField(
         widget=TranslationTextarea(attrs={'rows': 4}), required=False)
     source = forms.FileField(required=False, widget=SourceFileInput)
+    clear_pending_info_request = forms.BooleanField(required=False)
 
     class Meta:
         model = Version
-        fields = ('releasenotes', 'approvalnotes', 'source')
+        fields = ('releasenotes', 'clear_pending_info_request',
+                  'approvalnotes', 'source',)
+
+    def __init__(self, *args, **kwargs):
+        super(VersionForm, self).__init__(*args, **kwargs)
+        # Fetch latest reviewer comment if the addon has a pending info
+        # request,  so that the template in which the form is used can display
+        # that comment.
+        if self.instance and self.instance.addon.pending_info_request:
+            try:
+                self.pending_info_request_comment = (
+                    ActivityLog.objects.for_addons(self.instance.addon)
+                               .filter(action=amo.LOG.REQUEST_INFORMATION.id)
+                               .latest('pk')).details['comments']
+            except (ActivityLog.DoesNotExist, KeyError):
+                self.pending_info_request_comment = ''
+
+    def save(self, *args, **kwargs):
+        super(VersionForm, self).save(*args, **kwargs)
+        # Clear pending info request on the addon if requested.
+        if self.cleaned_data.get('clear_pending_info_request'):
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.instance.addon,
+                defaults={'pending_info_request': None})
 
 
 class AppVersionChoiceField(forms.ModelChoiceField):

@@ -23,7 +23,7 @@ from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
     ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, Whiteboard, send_notifications, set_reviewing_cache)
+    ViewUnlistedAllList, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -125,43 +125,44 @@ class TestPendingQueue(TestQueue):
         AddonReviewerFlags.objects.create(
             addon=self.new_addon(), needs_admin_code_review=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [
+        queue = self.Queue.objects.get()
+        assert queue.flags == [
             ('needs-admin-code-review', 'Needs Admin Code Review')]
 
     def test_flags_info_request(self):
-        self.new_addon().find_latest_version(self.channel).update(
-            has_info_request=True)
-        q = self.Queue.objects.get()
-        assert q.flags == [('info', 'More Information Requested')]
+        AddonReviewerFlags.objects.create(
+            addon=self.new_addon(),
+            pending_info_request=datetime.now() + timedelta(days=6))
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('info', 'More Information Requested')]
 
     def test_flags_reviewer_comment(self):
         self.new_addon().find_latest_version(self.channel).update(
             has_reviewer_comment=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('reviewer', 'Contains Reviewer Comment')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('reviewer', 'Contains Reviewer Comment')]
 
     def test_flags_jetpack(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             jetpack_version='1.8')
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('jetpack', 'Jetpack Add-on')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('jetpack', 'Jetpack Add-on')]
 
     def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             is_restart_required=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('is_restart_required', 'Requires Restart')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('is_restart_required', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
         self.new_addon().find_latest_version(self.channel).update(
             source='/some/source/file')
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('sources-provided', 'Sources provided')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('sources-provided', 'Sources provided')]
 
     def test_flags_webextension(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
@@ -173,8 +174,8 @@ class TestPendingQueue(TestQueue):
     def test_no_flags(self):
         self.new_addon()
 
-        q = self.Queue.objects.get()
-        assert q.flags == []
+        queue = self.Queue.objects.get()
+        assert queue.flags == []
 
 
 class TestFullReviewQueue(TestQueue):
@@ -1567,51 +1568,3 @@ class TestAutoApprovalSummary(TestCase):
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
-
-
-class TestWhiteboardWatchChange(TestCase):
-
-    def make_addon(self, whiteboard='', **kwargs):
-        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
-                      **kwargs)
-        addon.save()
-        addon.versions.create(has_info_request=True)
-        addon.versions.create(has_info_request=False)
-        addon.versions.create(has_info_request=True)
-
-        whiteboard = Whiteboard(pk=addon.pk, public=whiteboard)
-        whiteboard.save()
-
-        return addon
-
-    def assert_has_info_set(self, addon):
-        assert any([v.has_info_request for v in addon.versions.all()])
-
-    def assert_has_info_not_set(self, addon):
-        assert all([not v.has_info_request for v in addon.versions.all()])
-
-    def test_has_info_update_whiteboard(self):
-        """Test saving with a change to whiteboard clears has_info_request."""
-        addon = self.make_addon()
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = 'Info about things.'
-        addon.whiteboard.save()
-        self.assert_has_info_not_set(addon)
-
-    def test_has_info_update_whiteboard_no_change(self):
-        """Test saving without a change to whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = 'Info about things.'
-        addon.whiteboard.save()
-        self.assert_has_info_set(addon)
-
-    def test_has_info_whiteboard_removed(self):
-        """Test saving with an empty whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = ''
-        addon.whiteboard.save()
-        self.assert_has_info_set(addon)

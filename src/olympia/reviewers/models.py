@@ -19,8 +19,7 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
-from olympia.amo.models import (
-    ManagerBase, ModelBase, OnChangeMixin, skip_cache)
+from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -43,7 +42,8 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Content Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
-    ('has_info_request', 'info', _('More Information Requested')),
+    ('pending_info_request', 'info', _('More Information Requested')),
+    ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('has_reviewer_comment', 'reviewer', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
@@ -134,9 +134,16 @@ class EventLog(models.Model):
                     name__startswith='Reviewers: ').exists()]
 
 
-def get_flags(record):
+def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
+    return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
+            if getattr(version, prop, getattr(addon, prop, None))]
+
+
+def get_flags_for_row(record):
+    """Like get_flags(), but for the queue pages, using fields directly
+    returned by the queues SQL query."""
     return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
             if getattr(record, prop)]
 
@@ -154,7 +161,8 @@ class ViewQueue(RawSQLModel):
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
-    has_info_request = models.BooleanField()
+    pending_info_request = models.DateTimeField()
+    expired_info_request = models.NullBooleanField()
     has_reviewer_comment = models.BooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
@@ -174,7 +182,11 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('latest_version', 'versions.version'),
                 ('has_reviewer_comment', 'versions.has_editor_comment'),
-                ('has_info_request', 'versions.has_info_request'),
+                ('pending_info_request',
+                    'addons_addonreviewerflags.pending_info_request'),
+                ('expired_info_request', (
+                    'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
+                    'NOW()) < 0')),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
@@ -212,7 +224,7 @@ class ViewQueue(RawSQLModel):
 
     @property
     def flags(self):
-        return get_flags(self)
+        return get_flags_for_row(self)
 
 
 class ViewFullReviewQueue(ViewQueue):
@@ -1185,7 +1197,7 @@ class ThemeLock(ModelBase):
         db_table = 'theme_locks'
 
 
-class Whiteboard(OnChangeMixin, ModelBase):
+class Whiteboard(ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)
     private = models.TextField(blank=True)
@@ -1197,19 +1209,3 @@ class Whiteboard(OnChangeMixin, ModelBase):
     def __unicode__(self):
         return u'[%s] private: |%s| public: |%s|' % (
             self.addon.name, self.private, self.public)
-
-
-@Whiteboard.on_change
-def watch_public_whiteboard_changes(old_attr=None, new_attr=None,
-                                    instance=None, sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-
-    whiteboard_changed = (
-        new_attr.get('public') and
-        old_attr.get('public') != new_attr.get('public'))
-
-    if whiteboard_changed:
-        instance.addon.versions.update(has_info_request=False)
