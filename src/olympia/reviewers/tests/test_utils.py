@@ -358,8 +358,7 @@ class TestReviewHelper(TestCase):
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
         for template in ('nominated_to_sandbox', 'pending_to_public',
-                         'pending_to_sandbox', 'author_super_review',
-                         'unlisted_to_reviewed_auto'):
+                         'pending_to_sandbox', 'unlisted_to_reviewed_auto'):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1

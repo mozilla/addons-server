@@ -723,14 +723,6 @@ class ReviewBase(object):
         AddonReviewerFlags.objects.update_or_create(
             addon=self.addon, defaults={needs_admin_property: True})
 
-        if not self.version.was_auto_approved and not self.content_review_only:
-            # If it wasn't auto-approved, and we're not doing a content review,
-            # notify the developer, to explain to them why the review is taking
-            # longer.
-            self.notify_email(
-                'author_super_review',
-                u'Mozilla Add-ons: %s %s flagged for Admin Review')
-
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
 
