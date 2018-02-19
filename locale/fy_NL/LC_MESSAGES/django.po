@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 09:50+0000\n"
+"PO-Revision-Date: 2018-02-19 09:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7770,10 +7770,10 @@ msgstr "Wês foarsichtich mei âlde ferzjes!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Dizze ferzjes wurde ta referinsje en foar testdoeleinen werjûn. Jo moatte altyd de <a href=\"%(url)s\">meast resinte ferzje</a> fan in add-on brûke."
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Fuortsmiten ferzjes kinne net wizige wurde."
 
 msgid "Binary"
 msgstr "Binêr"
