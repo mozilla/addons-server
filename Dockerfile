@@ -62,7 +62,8 @@ ENV SWIG_FEATURES="-D__x86_64__"
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
-    make update_deps
+    make update_deps && \
+    rm -rf /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
