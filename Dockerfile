@@ -1,5 +1,7 @@
 FROM python:2.7.14-slim-stretch
 
+ENV PYTHONDONTWRITEBYTECODE=1
+
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
 
@@ -8,12 +10,8 @@ ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
         gnupg2 \
     && rm -rf /var/lib/apt/lists/*
-# ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
-
-# For git dependencies
-# ADD docker/git.repo /etc/yum.repos.d/git.repo
 
 # Upgrade git
 RUN apt-get update && apt-get install -y \
@@ -64,8 +62,7 @@ ENV SWIG_FEATURES="-D__x86_64__"
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
-    make update_deps && \
-    rm -r /deps/build/ /deps/cache/
+    make update_deps
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
