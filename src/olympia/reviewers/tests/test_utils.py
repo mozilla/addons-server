@@ -1000,11 +1000,6 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
-            ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-             'Admin Review'))
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_auto_approved_super_review(self):
@@ -1022,12 +1017,6 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
-            ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-             'Admin Review'))
-
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_operating_system_present(self):
@@ -1070,11 +1059,6 @@ class TestReviewHelper(TestCase):
             self.helper.handler.process_super_review()
 
             assert self.addon.needs_admin_code_review
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-                 'Admin Review'))
 
     def test_nominated_review_time_set_version(self):
         for process in ('process_sandbox', 'process_public'):
