@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 08:59+0000\n"
+"PO-Revision-Date: 2018-02-19 09:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7520,22 +7520,22 @@ msgid "I understand this step cannot be undone."
 msgstr "Ik begryp dat dizze stap net ûngedien makke wurde kin."
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Myn brûkersaccount no fuortsmite"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Brûkersfoto fuortsmite"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Myn brûkersfoto no fuortsmite"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Stel jo skermnamme yn"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Stel jo skermnamme of brûkersnamme yn om it registraasjeproses te foltôgjen."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Firefox Accounts."
 
 msgid "Username"
 msgstr "Brûkersnamme"
