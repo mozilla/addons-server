@@ -167,9 +167,9 @@ djangorestframework-jwt==1.11.0 \
 dockerflow==2017.11.0 \
     --hash=sha256:cf62fd1999d25c684b424f857e5869c4dfe4c04b76a93c9fd592e0bf41547853 \
     --hash=sha256:5ac2491d0571686eae56a2317e4c71ba955b48f6e2e36d48f30a05a9f95127be
-drf-nested-routers==0.90.0 \
-    --hash=sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476 \
-    --hash=sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f
+drf-nested-routers==0.90.2 \
+    --hash=sha256:a4d97de1be554f5db3fd11c881f578d10a3e1324b6e99be1749a11c7248d3360 \
+    --hash=sha256:52cbc4900e3ccd652bfb73017ff466d7b3e4d99838c912c250d75763b32669af
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl
