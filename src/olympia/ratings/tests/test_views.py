@@ -257,6 +257,17 @@ class TestFlag(ReviewTest):
         assert response.status_code == 400
         assert Rating.objects.filter(editorreview=True).count() == 0
 
+    def test_dont_flag_empty_rating(self):
+        user = user_factory()
+        review = Rating.objects.create(
+            user=user, addon=self.addon, rating=3)
+        flag_url = jinja_helpers.url(
+            'addons.ratings.flag', self.addon.slug, review.id)
+        response = self.client.post(flag_url, {'flag': RatingFlag.SPAM})
+        assert response.content == (
+            '{"msg": "This rating can\'t flagged because it has no review '
+            'text."}')
+
 
 class TestDelete(ReviewTest):
 
