@@ -1,15 +1,5 @@
-{% load waffle_tags %}
-Hello,
-
-Your add-on, {{ name }} {{ number }}, has been flagged for Admin Rating.
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Your add-on, {{ name }} {{ number }}, has been flagged for Admin Review.
 
 Your add-on is still in our review queue, but it will need to be checked by one of our admin reviewers. This means that your review will probably take longer than usual.
-
-If you want to respond please reply to this email or visit {{ dev_versions_url }} .
-
-You can also join us in #addon-reviewers on irc.mozilla.org.
-
-To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
---
-Mozilla Add-ons Team
-{{ SITE_URL }}
+{% endblock %}

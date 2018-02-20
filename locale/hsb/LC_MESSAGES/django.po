@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 19:09+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-12 15:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -174,6 +174,9 @@ msgstr "Nalistowane"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Šćežki přidatkow a zběrkow dyrbja so na \"/\" kónčić"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Mjena přidatkow njemóźa wikowanske znamjo Mozilla abo Firefox wobsahować."
 
 msgid "Abuse reported."
 msgstr "Znjewužiwanje zdźělene."
@@ -1039,6 +1042,9 @@ msgstr "Zapodajće płaćiwe adresowe mjeno, kotrež z pismikow, ličbow, podsmu
 msgid "This slug cannot be used."
 msgstr "Tute adresowe mjeno njeda so wužiwać."
 
+msgid "This add-on already belongs to the collection"
+msgstr "Tutón přidatk hižo k zběrce słuša"
+
 msgid "Name"
 msgstr "Mjeno"
 
@@ -1792,9 +1798,9 @@ msgstr "Přidatk {addon} je znjemóžnjeny."
 msgid "{addon} enabled."
 msgstr "Přidatk {addon} je zmóžnjeny."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Status přidatka {addon} je so do {0} změnił."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Status přidatka {addon} je so do {status} změnił."
 
 msgid "{version} added to {addon}."
 msgstr "Wersija {version} je so přidatkej {addon} přidała."
@@ -2082,12 +2088,6 @@ msgstr "W lisćinje njepodate"
 
 msgid "Developer"
 msgstr "Wuwiwar"
-
-msgid "Viewer"
-msgstr "Wobkedźbowar"
-
-msgid "Support"
-msgstr "Pomoc"
 
 msgid "Extension"
 msgstr "Rozšěrjenje"
@@ -2616,12 +2616,6 @@ msgstr "Njeporadźene přepruwowanje přepisać"
 msgid "Submit my add-on for manual review."
 msgstr "Mój přidatk za manuelne přepruwowanje zapodać."
 
-msgid "Do not list my add-on on this site"
-msgstr "Mój přidatk na tutym sydle njenalistować"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Kontrolujće tute nastajenje, jeli wy chceće swój přidatk sam rozšěrjeć a jenož signowanje wot Mozilla trjebaće."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Dataja z wersiju, kotraž so na a|alpha|b|beta|pre|rc a opcionalnu ličbu kónči, ma so za beta."
 
@@ -2756,8 +2750,9 @@ msgstr "Kompatibelnosć přidatka přepruwować"
 msgid "You cannot submit this type of add-on"
 msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na \"@mozilla.org\" kónči"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
@@ -3011,13 +3006,11 @@ msgid "About author roles"
 msgstr "Wo awtorowych rólach"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
-"awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> <li><b>Wobhladowar:</b> Móže sej nastajenja a statistiku "
-"přidatka wobhladać, ale njemóže změny přewjesć</li> </ul>"
+"<p>Přidatki móža kelkožkuli awtorow z 2 móžnymaj rólpmaj měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
+"awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Zakładne informacije"
@@ -3302,20 +3295,11 @@ msgstr "Foto wobrazowki přidać..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Smědźa druzy waš přidatk dźělić, jeli was jako awtora naspominaja?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Smědźa druzy waš přidatk komercielnje wužiwać?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Smědźa druzy z wašeho přidatka wotwodźene dźěła wutworić?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
 
 msgid "Yes, as long as they share alike"
 msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
@@ -3323,14 +3307,14 @@ msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka jenož pod samsnej licencu rozdźělować, abo pod tajkej, kotraž je kompatibelna z dźěłom licencydawarja."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Waš přidatk so pod slědowacej licencu wozjewi:"
 
 msgid "Select a different license."
 msgstr "Wubjerće hinašu licencu."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Dalše informacije wo licencach Creative Commons"
 
 msgid "Tests"
 msgstr "Testy"
@@ -3489,6 +3473,9 @@ msgstr "Prošu wužiwajće jenož pismiki, ličby, podsmužki a nakósne smužki
 msgid "Summary:"
 msgstr "Zjeće:"
 
+msgid "required"
+msgstr "trěbny"
+
 msgid "This add-on is experimental"
 msgstr "Tutón přidatk je eksperimentelny"
 
@@ -3554,17 +3541,23 @@ msgstr "Zapodaće dokónčene"
 msgid "You’re done!"
 msgstr "Sće hotowy!"
 
+msgid "Version Submitted for Review"
+msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Sće hotowy! Tuta wersija budźe k dispoziciji, po tym zo je so wuspěšnje přepruwowała. Dóstańće zdźělenku, hdyž je přepruwowana."
+
 msgid "Version Submitted"
 msgstr "Wersija je so zapodała"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Sće hotowy! Tuta wersija budźe bórze na našim sydle k dispoziciji."
 
-msgid "Version Submitted for Review"
-msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Hotowo! Tuta wersija je so za přepruwowanje zapodała. Dóstanjeće zdźělenku, hdyž přepruwowanje je so dokónčiło abo jeli naši přepruwowarjo maja prašenja wo wašim zapodaću."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje přidawaće. Přihotujće swój lisćinwoy zapisk za wozjewjenje:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje a fota wobrazowki přidawaće. Přihotujće swój lisćinwoy zapisk za wozjewjenje:"
@@ -3620,9 +3613,6 @@ msgstr "Wersiju nahrać"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał. Po nahraću so rjad awtomatiskich přepruwowanjow na wašej dataji přewjedźe."
 
-msgid "Create a Theme"
-msgstr "Drastu wutworić"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Z kotrymiž platformami je tuta dataja kompatibelna?"
 
@@ -3631,6 +3621,12 @@ msgstr "Tutu wersiju jenož na mojim betakanalu wozjewić."
 
 msgid "Administrative overrides"
 msgstr "Přepisanja wot administratorow"
+
+msgid "Create a Theme Version"
+msgstr "Wersiju drasty wutworić"
+
+msgid "Create a Theme"
+msgstr "Drastu wutworić"
 
 msgid "Submit File"
 msgstr "Dataju zapodać"
@@ -3644,11 +3640,11 @@ msgstr "Drastu wutworić"
 msgid "Theme generator"
 msgstr "Generator drastow"
 
-msgid "Select a header image for your Theme."
-msgstr "Wubjerće hłowowy wobraz za swoju drastu."
+msgid "Theme name"
+msgstr "Mjeno drasty"
 
-msgid "required"
-msgstr "trěbny"
+msgid "Select a header image for your theme"
+msgstr "Wubjerće hłowowy wobraz za swoju drastu"
 
 msgid "Image height should be 200 pixels"
 msgstr "Wpbrazowa wysokosć měła 200 pikselow być"
@@ -3662,49 +3658,49 @@ msgstr "Naprawo horjeka wusměrjeny"
 msgid "Select a different header image"
 msgstr "Wubjerće druhi hłowowy wobraz"
 
-msgid "Select colors for your Theme."
-msgstr "Wubjerće barby za swoju drastu."
+msgid "Select colors for your theme"
+msgstr "Wubjerće barby za swoju drastu"
 
-msgid "Header area background (accentcolor)"
-msgstr "Pozadk hłowoweho wobłuka (accentcolor)"
+msgid "Header area background"
+msgstr "Pozadk hłowoweho wobłuka"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Barba pozadka hłowoweho wobłuka, kotraž so w tym dźělu hłowoweho wobłuka pokazuje, kotryž njeje pokryty abo widźomny přez wobraz hłowoweho wobłuka."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Barba pozadka hłowoweho wobłuka, kotraž so w tym dźělu hłowoweho wobłuka pokazuje, kotryž njeje pokryty abo widźomny přez wobraz hłowoweho wobłuka. Polo manifesta: accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Tekst hłowoweho wobłuka (textcolor)"
+msgid "Header area text and icons"
+msgstr "Tekst a symbole hłowoweho wobłuka"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Barba teksta, kotryž so we hłowowym wobłuku pokazuje."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Barba teksta a symbole we hłowowym wobłuku, nimo aktiwneho rajtarka. Polo manifesta: textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Pozadk wobłuka symboloweje lajsty (toolbar)."
+msgid "Toolbar area background"
+msgstr "Pozadk wobłuka symboloweje lajsty"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark. Polo manifesta: toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Tekst wobłuka symboloweje lajsty (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Tekst a symbole wobłuka symboloweje lajsty"
 
-msgid "The color of toolbar text."
-msgstr "Barba teksta symboloweje lajsty."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Tekstowa barba a symbole w symbolowej lajsće  a w aktiwnym rajtarku. Polo manifesta: toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Pozadk pólneho wobłuka symboloweje lajsty (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Pozadk pólneho wobłuka symboloweje lajsty"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Pozadkowa barba za pola w symbolowej lajsće, kaž na př. adresowe polo."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Pozadkowa barba za pola w symbolowej lajsće, kaž na př. adresowe polo. Polo manifesta: toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Tekst pólneho wobłuka symboloweje lajsty (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Tekst pólneho wobłuka symboloweje lajsty"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Tekstowa barba w polach w symbolowej lajsće, na př. w adresowym polu"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Tekstowa barba w polach w symbolowej lajsće, na př. w adresowym polu. Polo manifesta: toolbar_field_text."
 
 msgid "optional"
 msgstr "opcionalny"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Přehlad we wobhladowaku"
 
 msgid "Back"
@@ -3713,8 +3709,8 @@ msgstr "Wróćo"
 msgid "Uploading Theme"
 msgstr "Drasta so nahrawa"
 
-msgid "Upload Theme"
-msgstr "Drastu nahrać"
+msgid "Finish Theme"
+msgstr "Drastu dokónčić"
 
 msgid "API Credentials"
 msgstr "API-daty"
@@ -3914,6 +3910,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Stajće so z nami do zwiska"
 
+msgid "Support"
+msgstr "Pomoc"
+
 msgid "Policies"
 msgstr "Zasady"
 
@@ -4104,11 +4103,23 @@ msgstr "Licenca drasty"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Smědźa druzy wašu drastu dźělić, jeli was jako awtora naspominaja?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Smědźa druzy wašu drastu komercielnje wužiwać?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Smědźa druzy z wašeje drasty wotwodźene dźěła wutworić?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Waša drasta so pod slědowacej licencu wozjewi:"
@@ -4142,6 +4153,9 @@ msgstr "Hłowa"
 
 msgid "Footer"
 msgstr "Noha"
+
+msgid "Select colors for your Theme."
+msgstr "Wubjerće barby za swoju drastu."
 
 msgid "Foreground Text"
 msgstr "Prědkowy tekst"
@@ -4206,6 +4220,9 @@ msgstr "Wobhladajće sej a abonujće <a href=\"%(feed_url)s\">aktiwnostny kanal<
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Přidružće so rozmołwam w našich <a href=\"%(forum_url)s\">forumach</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Wubjerće hłowowy wobraz za swoju drastu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikselow"
@@ -4442,6 +4459,31 @@ msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Funguje bjezposrědnje z najbóle woblubowanymi widejosydłami."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Postajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name} {end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+"Wjace hač jenož zakładny program za fota wobrazowki, z Awesome Screenshot Plus móžeće wobrazy ze swójskim tekstom a grafikami wuhotować, nimo toho móžeće swój nazorowy material składować a dźělić."
 
 msgid "Cannot diff a version against itself"
 msgstr "Wersija njeda so ze sobu přirunać"
@@ -6094,15 +6136,6 @@ msgstr "Dźěłowe systemy:"
 msgid "Applications:"
 msgstr "Nałoženja:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Informujće mje přichodny raz, hdyž so tutón přidatk aktualizuje. (Slědowace aktualizacije e-mejlku njepłodźa)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
-
 msgid "Is more info requested?"
 msgstr "Su so dalše informacije požadali?"
 
@@ -6119,6 +6152,9 @@ msgstr "Něchtó druhi tutu drastu přepruwuje."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "drasta, přepruwowar abo komentar"
+
+msgid "Private Whiteboard"
+msgstr "Priwatne pokazy"
 
 msgid "Keep review; remove flags"
 msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
@@ -6146,6 +6182,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Je wot přepruwowarja zawrjeny."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Je marku „awotmatiske schwalenje znjemóžnjene“ stajił."
 
 msgid "Duplicate Submission"
 msgstr "Dwójne zapodaće"
@@ -6222,8 +6261,8 @@ msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentar
 msgid "Confirm Approval"
 msgstr "Schwalenje wobkrućić"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so to wuwiwarjej zdźěliło."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so wuwiwar informował."
 
 msgid "Reject Multiple Versions"
 msgstr "Wjacore wersije wotpokazać"
@@ -6249,8 +6288,8 @@ msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
 msgid "Approve Content"
 msgstr "Wobsah schwalić"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
 msgid "Legacy Add-ons"
 msgstr "Zestarjene přidatki"
@@ -6597,8 +6636,35 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr ""
 "Informaciska tafla je městno, hdźež wuwiwar a přepruwowar móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać a wobdźěłać."
 
-msgid "Update the whiteboard"
-msgstr "Pokazki aktualizować"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Priwatne pokazy so za wuměnu informacijow mjez přepruwowarjemi wužiwaja, kotrež su njetwotwisne wot wersije. Prošu wostańće objektiwny. Jenož přepruwowarjo móžeja to widźeć."
+
+msgid "Update whiteboards"
+msgstr "Pokazy aktualizować"
+
+msgid "More Actions"
+msgstr "Dalše akcije"
+
+msgid "Notify me about new listed versions"
+msgstr "Wo nowych nalistowanych wersijach informować"
+
+msgid "Force-disable add-on"
+msgstr "Znjemóžnjenje přidatka wunuzować"
+
+msgid "Force-enable add-on"
+msgstr "Zmóžnjenje přidatka wunuzować"
+
+msgid "Disable Auto-Approval"
+msgstr "Awtomatiske schwalenje znjemóžnić"
+
+msgid "Enable Auto-Approval"
+msgstr "Awtomatiske schwalenje zmóžnić"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7500,8 +7566,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Klikńće na „zhašeć“, zo by so waše konto <strong>na přeco wotstroniło</strong>. To rěka:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Njemóžeće so hižo pola %(site)s přizjewić."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Hdyž so z tutej e-mejlowej adresu pola %(site)s zaso přizjewjeće, so nowe konto wutwori, kotrež z tutym kontom zwjazane njeje."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Waše pohódnoćenja so njezhašeja, ale njebudu hižo z wami zwjazane."

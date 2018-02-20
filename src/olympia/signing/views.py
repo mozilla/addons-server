@@ -199,8 +199,8 @@ class VersionView(APIView):
         # channel will be ignored for new addons.
         if addon is None:
             channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
-            addon = Addon.create_addon_from_upload_data(
-                data=pkg, user=request.user, upload=filedata, channel=channel)
+            addon = Addon.initialize_addon_from_upload(
+                data=pkg, upload=filedata, channel=channel, user=request.user)
             created = True
         else:
             created = False
@@ -224,7 +224,7 @@ class VersionView(APIView):
                     status.HTTP_400_BAD_REQUEST)
 
         file_upload = handle_upload(
-            filedata=filedata, user=request.user, addon=addon, submit=True,
+            filedata=filedata, request=request, addon=addon, submit=True,
             channel=channel)
 
         return file_upload, created

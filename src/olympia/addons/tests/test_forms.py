@@ -62,6 +62,45 @@ class FormsTest(TestCase):
         assert form.errors['slug'] == (
             [u'The slug cannot be "submit". Please choose another.'])
 
+    def test_name_trademark_mozilla(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic(
+            {'name': 'Delicious Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert not form.is_valid()
+        assert dict(form.errors['name'])['en-us'].startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_firefox(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic(
+            {'name': 'Delicious Firefox', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+        assert not form.is_valid()
+        assert dict(form.errors['name'])['en-us'].startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_allowed_for_prefix(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic(
+            {'name': 'Delicious for Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
+    def test_name_no_trademark(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
     def test_bogus_homepage(self):
         form = forms.AddonFormDetails(
             {'homepage': 'javascript://something.com'}, request=self.request)

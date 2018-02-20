@@ -7,6 +7,8 @@ import zipfile
 
 from datetime import datetime
 
+from waffle.testutils import override_switch
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -425,10 +427,13 @@ class TestParseXpi(TestCase):
     def parse(self, addon=None, filename='extension.xpi', minimal=None):
         path = 'src/olympia/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
-        if minimal is None:
-            return parse_addon(open(xpi), addon)
-        else:
-            return parse_addon(open(xpi), addon, minimal=minimal)
+        kwargs = {}
+
+        if minimal is not None:
+            kwargs = {'minimal': minimal}
+
+        with open(xpi) as fobj:
+            return parse_addon(fobj, addon, **kwargs)
 
     def test_parse_basics(self):
         # Basic test for key properties (more advanced testing is done in other
@@ -1134,6 +1139,7 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         assert f.size == 675
 
+    @override_switch('beta-versions', active=True)
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
@@ -1405,24 +1411,24 @@ class TestLanguagePack(LanguagePackBase):
         obj = self.file_create('search.xml')
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_no_locale_browser(self, extract_path):
-        extract_path.return_value = 'some garbage'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_no_locale_browser(self, read_mock):
+        read_mock.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_path(self, extract_path):
-        extract_path.return_value = 'locale browser de woot?!'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_corrupt_locale_browser_path(self, read_mock):
+        read_mock.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
-        extract_path.return_value = 'locale browser de woo:t?!as'
+        read_mock.return_value = 'locale browser de woo:t?!as'
         # Result should be 'locale browser de woo:t?!as', but we have caching.
         assert obj.get_localepicker() == ''
 
-    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_data(self, extract_path):
-        extract_path.return_value = 'locale browser de jar:install.rdf!foo'
+    @mock.patch('olympia.files.utils.SafeZip.read')
+    def test_corrupt_locale_browser_data(self, read_mock):
+        read_mock.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
         assert obj.get_localepicker() == ''
 

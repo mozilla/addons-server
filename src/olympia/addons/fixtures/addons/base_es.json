@@ -249,7 +249,6 @@
   "pk": 1,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:39:45",
     "has_reviewer_comment": false,
@@ -269,7 +268,6 @@
   "pk": 2,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:40:07",
     "has_reviewer_comment": false,
@@ -289,7 +287,6 @@
   "pk": 3,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:40:16",
     "has_reviewer_comment": false,
@@ -309,7 +306,6 @@
   "pk": 4,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:40:23",
     "has_reviewer_comment": false,
@@ -329,7 +325,6 @@
   "pk": 5,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:40:24",
     "has_reviewer_comment": false,
@@ -349,7 +344,6 @@
   "pk": 6,
   "model": "versions.version",
   "fields": {
-    "has_info_request": false,
     "license": null,
     "created": "2014-12-08T06:40:25",
     "has_reviewer_comment": false,

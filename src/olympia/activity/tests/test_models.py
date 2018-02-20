@@ -292,6 +292,35 @@ class TestActivityLog(TestCase):
             reverse('files.list', args=[file_.pk]), file_.filename)
         assert log == msg
 
+    def test_change_status(self):
+        addon = Addon.objects.get()
+        log = ActivityLog.create(
+            amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
+        expected = ('<a href="/en-US/firefox/addon/a3615/">'
+                    'Delicious Bookmarks</a> status changed to Approved.')
+        assert unicode(log) == expected
+
+        log.arguments = [amo.STATUS_DISABLED, addon]
+        expected = ('<a href="/en-US/firefox/addon/a3615/">'
+                    'Delicious Bookmarks</a> status changed to '
+                    'Disabled by Mozilla.')
+        assert unicode(log) == expected
+
+        log.arguments = [addon, amo.STATUS_REJECTED]
+        expected = ('<a href="/en-US/firefox/addon/a3615/">'
+                    'Delicious Bookmarks</a> status changed to Rejected.')
+        assert unicode(log) == expected
+
+        log.arguments = [addon, 666]
+        expected = ('<a href="/en-US/firefox/addon/a3615/">'
+                    'Delicious Bookmarks</a> status changed to 666.')
+        assert unicode(log) == expected
+
+        log.arguments = [addon, 'Some String']
+        expected = ('<a href="/en-US/firefox/addon/a3615/">'
+                    'Delicious Bookmarks</a> status changed to Some String.')
+        assert unicode(log) == expected
+
 
 class TestActivityLogCount(TestCase):
     fixtures = ['base/addon_3615']

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # The current directory is a mounted volume, and is owned by the
 # user running Docker on the host machine under linux (inc docker-machine).
 #

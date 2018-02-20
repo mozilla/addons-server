@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-04 08:45+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-18 14:43+0000\n"
+"Last-Translator: SagePtr <sageptr@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -175,6 +175,9 @@ msgstr "Опубликованное"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Имена дополнений не могут содержать товарных марок Mozilla или Firefox."
 
 msgid "Abuse reported."
 msgstr "О злоупотреблении сообщено."
@@ -953,7 +956,7 @@ msgid "Application Versions"
 msgstr "Версии приложения"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr "Приёмлимые версии для всех приложений на AMO."
+msgstr "Приемлемые версии для всех приложений на AMO."
 
 msgid "Valid Application Versions"
 msgstr "Доступные версии приложений"
@@ -1037,6 +1040,9 @@ msgstr "Введите корректное имя, состоящее из бу
 
 msgid "This slug cannot be used."
 msgstr "Этот slug не может быть использован."
+
+msgid "This add-on already belongs to the collection"
+msgstr "Это дополнение уже используется другой подборкой"
 
 msgid "Name"
 msgstr "Имя"
@@ -1783,9 +1789,9 @@ msgstr "{addon} отключено."
 msgid "{addon} enabled."
 msgstr "{addon} включено."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "стутус {addon} изменён на {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Статус {addon} изменён на {status}."
 
 msgid "{version} added to {addon}."
 msgstr "В {addon} добавлена версия {version}."
@@ -1846,7 +1852,7 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr "Ваше дополнение отмечено для проверки администратором.  Оно всё ещё в очереди на проверку, но нужно, чтобы его выбрал один из администраторов. Проверка может занять дольше, чем обычно."
 
 msgid "Comment on {addon} {version}."
-msgstr "Коментарий о {addon} {version}."
+msgstr "Комментарий о {addon} {version}."
 
 msgid "Commented"
 msgstr "Прокомментировано"
@@ -2001,10 +2007,10 @@ msgid "Source code uploaded"
 msgstr "Исходный код загружен"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version} автоматически одобрено."
+msgstr "Автоодобрение для {addon} {version} подтверждено."
 
 msgid "Auto-Approval confirmed"
-msgstr "Автоматически одобрено"
+msgstr "Автоодобрение подтверждено"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} включено снова."
@@ -2071,13 +2077,6 @@ msgstr "Скрытое"
 
 msgid "Developer"
 msgstr "Разработчик"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Наблюдатель"
-
-msgid "Support"
-msgstr "Поддержка"
 
 msgid "Extension"
 msgstr "Расширение"
@@ -2275,7 +2274,7 @@ msgid "Video"
 msgstr "Видео"
 
 msgid "Device Features & Location"
-msgstr "Возможности устойства и местоположение"
+msgstr "Возможности устройства и местоположение"
 
 msgid "Experimental"
 msgstr "Экспериментальные"
@@ -2524,7 +2523,7 @@ msgid "Violence, war, or weaponry images"
 msgstr "Изображения насилия, войны или оружия"
 
 msgid "Nazi or other hate content"
-msgstr "Нацисткое или другое,  разжигающее ненависть, содержимое"
+msgstr "Нацистское или другое, разжигающее ненависть, содержимое"
 
 msgid "Defamatory content"
 msgstr "Оскорбительное содержимое"
@@ -2608,12 +2607,6 @@ msgstr "Игнорировать неудавшуюся валидацию"
 msgid "Submit my add-on for manual review."
 msgstr "Представить моё дополнение на проверку вручную."
 
-msgid "Do not list my add-on on this site"
-msgstr "Не вносить в список моё дополнение на данном сайте"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Отметьте данную опцию, если намереваетесь самостоятельно распространять своё дополнение и вам необходимо только подписать его компанией Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Файл с версией, заканчивающейся на a|alpha|b|beta|pre|rc и необязательным числом, определяется как бета."
 
@@ -2692,7 +2685,7 @@ msgstr "Не удалось связаться с хостом на \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Валидайия сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений, вы сможете увидеть другие."
+msgstr "Валидация сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений вы сможете увидеть другие."
 
 msgid "All My Add-ons"
 msgstr "Все мои дополнения"
@@ -2751,8 +2744,9 @@ msgstr "Проверка совместимости дополнений"
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Вы не можете представить дополнение с guid, оканчивающимся на «@mozilla.org»"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Вы не можете представить дополнение с guid, оканчивающимся на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
@@ -3005,13 +2999,11 @@ msgid "About author roles"
 msgstr "О ролях автора"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Дополнения могут иметь любое количество авторов с 3 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
-"авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения дополнения, кроме добавления и удаления других авторов</li> <li><b>Просматривающий:</b> Может просматривать настройки "
-"и статистику дополнения, но не может вносить никаких изменений</li></ul>"
+"<p>Дополнения могут иметь любое количество авторов с 2 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
+"авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения дополнения, кроме добавления и удаления других авторов</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Основная информация"
@@ -3106,10 +3098,7 @@ msgstr "Информация о дополнении для {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Длинное описание возможностей,\n"
-"                          функциональности, и другой релеватной информации.\n"
-"                          Это поле отображается только на странице деталей дополнения.\n"
-"                          Это относится только к опубликованным дополнениям."
+"Длинное описание возможностей, функциональности, и другой релевантной информации. Это поле отображается только на странице деталей дополнения. Это относится только к опубликованным дополнениям."
 
 msgid "Default Locale"
 msgstr "Локаль по умолчанию"
@@ -3312,20 +3301,11 @@ msgstr "Добавить скриншот..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Могут ли другие делиться вашим дополнением, если вас указывают в качестве автора?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу, в том числе в коммерческих целях."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу только в некоммерческих целях."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Могут ли другие использовать ваше дополнение в коммерческих целях?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Могут ли другие создавать производные работы на основе вашего дополнения?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Лицензиар позволяет другим копировать, распространять, показывать и выполнять работу, а также создавать на его основе производные работы."
 
 msgid "Yes, as long as they share alike"
 msgstr "Да, если они так же делятся"
@@ -3333,14 +3313,14 @@ msgstr "Да, если они так же делятся"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Лицензиар позволяет другим распространять производные работы только по той же лицензии или лицензии совместимой с той, под которой распространяется работа лицензиара."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Лицензиар позволяет другим копировать, распространять и передавать только неизменённые копии работ — не производные работы на его основе."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Ваше дополнение будет выпущено на условиях следующей лицензии:"
 
 msgid "Select a different license."
 msgstr "Выберите другую лицензию."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Больше информации о лицензиях Creative Commons"
 
 msgid "Tests"
 msgstr "Тесты"
@@ -3498,6 +3478,9 @@ msgstr "Пожалуйста, используйте в вашем URL толь�
 msgid "Summary:"
 msgstr "Сводка:"
 
+msgid "required"
+msgstr "требуется"
+
 msgid "This add-on is experimental"
 msgstr "Это дополнение экспериментальное"
 
@@ -3563,17 +3546,23 @@ msgstr "Отправка завершена"
 msgid "You’re done!"
 msgstr "Вы сделали это!"
 
+msgid "Version Submitted for Review"
+msgstr "Версия, отправленная на проверку"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
+
 msgid "Version Submitted"
 msgstr "Версия представлена"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Готово! Эта версия скоро появится на нашем сайте."
 
-msgid "Version Submitted for Review"
-msgstr "Версия, отправленная на проверку"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Вы сделали это! Эта версия загружена для проверки. Вы будете оповещены, когда проверка будет завершена, или проверяющие зададут вопросы о вашем представлении."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание. Подготовьте вашу информацию для публикации:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание и скриншоты. Подготовьте вашу информацию для публикации:"
@@ -3629,9 +3618,6 @@ msgstr "Загрузить версию"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для загрузки своего пакета дополнения используйте расположенные ниже поля. После загрузки ваш файл будет проверен с использованием серии автоматических тестов валидации."
 
-msgid "Create a Theme"
-msgstr "Создать тему"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "С какими платформами совместим этот файл?"
 
@@ -3640,6 +3626,12 @@ msgstr "Опубликовать эту версию только на моём 
 
 msgid "Administrative overrides"
 msgstr "Административные действия"
+
+msgid "Create a Theme Version"
+msgstr "Создать версию темы"
+
+msgid "Create a Theme"
+msgstr "Создать тему"
 
 msgid "Submit File"
 msgstr "Отправить файл"
@@ -3653,11 +3645,11 @@ msgstr "Сгенерировать тему"
 msgid "Theme generator"
 msgstr "Генератор темы"
 
-msgid "Select a header image for your Theme."
-msgstr "Выберите верхнее изображение для вашей темы."
+msgid "Theme name"
+msgstr "Имя темы"
 
-msgid "required"
-msgstr "требуется"
+msgid "Select a header image for your theme"
+msgstr "Выберите верхнее изображение для вашей темы"
 
 msgid "Image height should be 200 pixels"
 msgstr "Высота изображения должна быть 200 пикселей"
@@ -3671,49 +3663,49 @@ msgstr "Выровнена по верхнему правому краю"
 msgid "Select a different header image"
 msgstr "Выберите другое верхнее изображение."
 
-msgid "Select colors for your Theme."
-msgstr "Выберите цвета для вашей темы."
+msgid "Select colors for your theme"
+msgstr "Выберите цвета для вашей темы"
 
-msgid "Header area background (accentcolor)"
-msgstr "Фон области заголовка (accentcolor)"
+msgid "Header area background"
+msgstr "Фон области заголовка"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Цвет фона зоны заголовка, показанной в части заголовка, не накрытой или видимой через изображение заголовка."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Цвет фона зоны заголовка, отображаемый в тех областях заголовка, где отсутствует фоновое изображение. Поле манифеста:  accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Текст зоны заголовка (textcolor)"
+msgid "Header area text and icons"
+msgstr "Текст и значки в зоне заголовка"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Цвет текста, показанного в зоне заголовка."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Цвет текста и значков в зоне заголовка, кроме активной вкладки. Поле манифеста:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Фон панели инструментов (toolbar)."
+msgid "Toolbar area background"
+msgstr "Фон панели инструментов"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Цвет фона для панели навигации, панели закладок и выбранной вкладки."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Текст зоны в панели инструментов (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Текст и значки в зоне панели инструментов"
 
-msgid "The color of toolbar text."
-msgstr "Цвет текста панели инструментов."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Цвет текста и значков в зоне панели инструментов и активной вкладки. Поле манифеста:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Фон зоны поля панели инструментов (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Фон зоны поля панели инструментов"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Цвет фона полей в панели инструментов, таких как адресная строка."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Цвет фона полей в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Текст поля в панели инструментов (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Текст зоны поля панели инструментов"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field_text."
 
 msgid "optional"
 msgstr "необязательно"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Предпросмотр в браузере"
 
 msgid "Back"
@@ -3722,8 +3714,8 @@ msgstr "Назад"
 msgid "Uploading Theme"
 msgstr "Загрузка темы"
 
-msgid "Upload Theme"
-msgstr "Загрузить тему"
+msgid "Finish Theme"
+msgstr "Завершить тему"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -3887,7 +3879,7 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Пользователям потребуется принять следующее Лицензионное Соглашение Конечного Пользователя (EULA) до установки вашего дополнения. Присутствие EULA существенно влият на количество загрузок "
+"Пользователям потребуется принять следующее Лицензионное Соглашение Конечного Пользователя (EULA) до установки вашего дополнения. Присутствие EULA существенно влияет на количество загрузок "
 "дополнения. Пожалуйста, заметьте, что EULA это не тоже самое, что и лицензия на код, такая как GPL или MPL. Это относится только к опубликованным дополнениям."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
@@ -3931,6 +3923,9 @@ msgstr "Блог"
 
 msgid "Contact Us"
 msgstr "Связаться с нами"
+
+msgid "Support"
+msgstr "Поддержка"
 
 msgid "Policies"
 msgstr "Политики"
@@ -4109,7 +4104,7 @@ msgid "Theme Details"
 msgstr "Информация об теме"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr "Указать красивый URL для вашей страницы со сведеними."
+msgstr "Указать красивый URL для вашей страницы со сведениями."
 
 msgid "Select the category that best describes your Theme."
 msgstr "Выберите категорию, которая лучше всего описывает вашу тему."
@@ -4126,11 +4121,23 @@ msgstr "Лицензия темы"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Могут ли другие делиться вашей темой, если вас указывают в качестве автора?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу, в том числе в коммерческих целях."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу только в некоммерческих целях."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Могут ли другие использовать вашу тему в коммерческих целях?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Могут ли другие создавать производные работы на основе вашей темы?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Лицензиар позволяет другим копировать, распространять, показывать и выполнять работу, а также создавать на его основе производные работы."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Лицензиар позволяет другим копировать, распространять и передавать только неизменённые копии работ — не производные работы на его основе."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Ваша тема будет выпущена на условиях следующей лицензии:"
@@ -4164,6 +4171,9 @@ msgstr "Верхнее изображение"
 
 msgid "Footer"
 msgstr "Нижнее изображение"
+
+msgid "Select colors for your Theme."
+msgstr "Выберите цвета для вашей темы."
 
 msgid "Foreground Text"
 msgstr "Текст переднего плана"
@@ -4228,6 +4238,9 @@ msgstr "Просмотрите и подпишитесь на <a href=\"%(feed_u
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Присоединяйтесь к разговору на наших <a href=\"%(forum_url)s\">форумах</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Выберите верхнее изображение для вашей темы."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 пикселей"
@@ -4455,7 +4468,7 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Управляйте паролями {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Упростите и синхронизуйте все ваши логины на разных веб-сайтах между устройствами с помощью одного ключевого пароля."
+msgstr "Упростите и синхронизируйте все ваши логины на разных веб-сайтах между устройствами с помощью одного ключевого пароля."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -4468,6 +4481,31 @@ msgstr "Улучшите управление эмоджи {start_sub_heading}с
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Десятки удивительных эмоджи — всегда на расстоянии одного щелчка."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Работает с многими популярными видео-хостингами."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Укажите страницу, которую вы будете видеть каждый раз, когда вы откроете новую вкладку."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Улучшите работу с эмодзи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Десятки удивительных эмодзи для каждого случая — всегда на расстоянии одного щелчка."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Делайте скриншоты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+"Больше, чем просто инструмент создания скриншотов, Awesome Screenshot Plus позволяет вам добавлять на ваши изображения текст и графику, а также предоставляет возможность хранить и делиться ими."
 
 msgid "Cannot diff a version against itself"
 msgstr "Нельзя сделать diff версии против самой себя"
@@ -4702,7 +4740,7 @@ msgid "Get up and move!"
 msgstr "Вставайте и двигайтесь!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Установите эти дополнения для фитнесса, чтобы быть активным и здоровым"
+msgstr "Установите эти дополнения для фитнеса, чтобы быть активным и здоровым."
 
 msgid "New &amp; Now"
 msgstr "Новое и Нужное"
@@ -4920,8 +4958,8 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"При начале веб-серфинга с использованием своих дополнений обращайте внимание на все отличия, появившиеся с прошлого раза, когды вы использовали это расширение. Это может быть сбой при отображении, "
-"например отсутствие пункта меню, или что-то более серьезное, как например полный отказ в работе или работа с ошибками."
+"При начале веб-серфинга с использованием своих дополнений обращайте внимание на все отличия, появившиеся с прошлого раза, когда вы использовали это расширение. Это может быть сбой при отображении, "
+"например, отсутствие пункта меню, или что-то более серьезное, как, например, полный отказ в работе или работа с ошибками."
 
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
@@ -4944,7 +4982,7 @@ msgid ""
 "experience."
 msgstr ""
 "Наше сообщество создает каждый год тысячи дополнений, и ваша помощь в тестировании совместимости помогает нам удостовериться, что эти дополнения будут им полезны, так как мы стремимся обеспечить для"
-" пользователей максмимальный комфорт при работе."
+" пользователей максимальный комфорт при работе."
 
 msgid "Thank you!"
 msgstr "Спасибо!"
@@ -5338,10 +5376,10 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"Нужны дополнительные сведения о различных лицензиях для открытого исходного кода? Не знаете какую лицензию следуте выбрать? Хотите знать какие права предоставляет какая-либо лицензия? Хотя ничто не "
-"заменит чтения всех условий лицензии, ниже перечислены некоторые сайты, которые содержат сведения о некоторых из ключевых лицензий для открытого исходного кода, которые могут помочь вам разобраться "
-"в их различиях. Эти сайты предоставляются исключительно для вашего удобства в качестве рекомендации для вашего личного пользования. Данные ресурсы не являются юридической консультацией и не должны "
-"использоваться вместо подобных консультаций. Mozilla не гарантирует и не несет ответственность за содержание этих сайтов или за использованием вами этого содержания."
+"Нужны дополнительные сведения о различных лицензиях для открытого исходного кода? Не знаете, какую лицензию следует выбрать? Хотите знать, какие права предоставляет какая-либо лицензия? Хотя ничто "
+"не заменит чтения всех условий лицензии, ниже перечислены некоторые сайты, которые содержат сведения о некоторых из ключевых лицензий для открытого исходного кода, которые могут помочь вам "
+"разобраться в их различиях. Эти сайты предоставляются исключительно для вашего удобства в качестве рекомендации для вашего личного пользования. Данные ресурсы не являются юридической консультацией и"
+" не должны использоваться вместо подобных консультаций. Mozilla не гарантирует и не несет ответственность за содержание этих сайтов или за использованием вами этого содержания."
 
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
@@ -6131,15 +6169,6 @@ msgstr "Операционные системы:"
 msgid "Applications:"
 msgstr "Приложения:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Уведомить меня при следующем обновлении этого дополнения. (Последующие обновления не приведут к отправке письма)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Снять флаг проверки проверка кода админом"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Снять флаг проверки содержимого админом"
-
 msgid "Is more info requested?"
 msgstr "Запрошено больше информации?"
 
@@ -6156,6 +6185,9 @@ msgstr "Кто-то ещё проверяет эту тему."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "тема, редактор или комментарий"
+
+msgid "Private Whiteboard"
+msgstr "Приватная белая доска"
 
 msgid "Keep review; remove flags"
 msgstr "Удержать рецензию; удалить флаги"
@@ -6183,6 +6215,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Заблокировано редактором."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Установлен флаг отключения автоодобрения."
 
 msgid "Duplicate Submission"
 msgstr "Дублирующее представление"
@@ -6256,8 +6291,8 @@ msgstr "Это действие отклонит эту версию и удал
 msgid "Confirm Approval"
 msgstr "Подтвердить одобрение"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения, без уведомления разработчика."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения этой версии, без уведомления разработчика."
 
 msgid "Reject Multiple Versions"
 msgstr "Отклонить несколько версий"
@@ -6283,8 +6318,8 @@ msgstr "Прокомментируйте эту версию. Разработч
 msgid "Approve Content"
 msgstr "Одобрить содержимое"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Это действие записывает ваше одобрение содержимого этой версии, без уведомления разработчика."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
 msgid "Legacy Add-ons"
 msgstr "Устаревшие дополнения"
@@ -6627,8 +6662,35 @@ msgstr "<strong>Предупреждение!</strong> До вас другой 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "Белая доска является местом для обмена информацией, относящейся к этому дополнению (независимо от версии), между разработчиком и проверяющим. Она видима и редактируема ими обоими."
 
-msgid "Update the whiteboard"
-msgstr "Обновить белую доску"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Приватная белая доска используется для обмена информацией между проверяющими, вне зависимости от версии. Пожалуйста, будьте конкретны. Доска видна только проверяющим."
+
+msgid "Update whiteboards"
+msgstr "Обновить белые доски"
+
+msgid "More Actions"
+msgstr "Другие действия"
+
+msgid "Notify me about new listed versions"
+msgstr "Уведомлять меня о новых публикуемых версиях"
+
+msgid "Force-disable add-on"
+msgstr "Принудительно отключить дополнение"
+
+msgid "Force-enable add-on"
+msgstr "Принудительно включить дополнение"
+
+msgid "Disable Auto-Approval"
+msgstr "Отключить автоодобрение"
+
+msgid "Enable Auto-Approval"
+msgstr "Включить автоодобрение"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Снять флаг проверки проверка кода админом"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Снять флаг проверки содержимого админом"
 
 msgid "(admin)"
 msgstr "(админ)"
@@ -6981,17 +7043,17 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr "Не удалось найти дополнение с идентификатором \"{}\"."
 
 msgid "You do not own this addon."
-msgstr "Вы не владете этим дополнением."
+msgstr "Вы не владеете этим дополнением."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Отстуствует ключ \"upload\" при отправке файла."
+msgstr "Отсутствует ключ \"upload\" при отправке файла."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr "Вы не можете добавить к этому дополнению версии, которые имеют статус: %s."
 
 msgid "Version does not match the manifest file."
-msgstr "Версия не соответсвует манифесту."
+msgstr "Версия не соответствует манифесту."
 
 msgid "Version already exists."
 msgstr "Версия уже существует."
@@ -7533,8 +7595,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Щелчок по \"удалить\" приведёт к <strong>полному удалению</strong> вашей учётной записи. Это означает, что:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Вы больше не сможете войти на %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Повторный вход с этим адресом электронной почты на %(site)s создаст новую учетную запись, которая никак не будет связана с этой учетной записью."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваши отзывы и рейтинги не будут удалены, но они больше не будут связаны с вами."
@@ -7691,7 +7753,7 @@ msgid "Report User"
 msgstr "Сообщить о пользователе"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Пожулуйста, опишите, почему вы сообщаете об этом пользователе, например за спам или за неуместную фотографию."
+msgstr "Пожалуйста, опишите, почему вы сообщаете об этом пользователе, например, за спам или за неуместную фотографию."
 
 msgid "Report user {0}"
 msgstr "Пожаловаться на пользователя {0}"

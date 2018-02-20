@@ -3,6 +3,7 @@ import json
 import os
 
 from datetime import datetime, timedelta
+from waffle.testutils import override_switch
 
 from django.conf import settings
 from django.forms import ValidationError
@@ -17,7 +18,7 @@ from rest_framework.response import Response
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, create_flag
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
@@ -122,7 +123,28 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False, use_autograph=False)
+
+    def test_addon_does_not_exist_use_autograph(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+
+        create_flag('activate-autograph-signing')
+
+        response = self.request('PUT', addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.guid == guid
+        assert addon.has_author(self.user)
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        self.auto_sign_version.assert_called_with(
+            latest_version, is_beta=False, use_autograph=True)
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -193,7 +215,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        self.auto_sign_version.assert_called_with(version, is_beta=False)
+        self.auto_sign_version.assert_called_with(
+            version, is_beta=False, use_autograph=False)
         assert not version.all_files[0].is_mozilla_signed_extension
 
     def test_version_already_uploaded(self):
@@ -241,7 +264,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False,
+            use_autograph=False)
 
     def test_version_added_is_experiment_reject_no_perm(self):
         guid = 'experiment@xpi'
@@ -276,7 +300,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False, use_autograph=False)
         assert latest_version.all_files[0].is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed_not_mozilla(self):
@@ -313,7 +337,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False, use_autograph=False)
 
     def test_system_addon_not_allowed_not_mozilla(self):
         guid = 'systemaddon@mozilla.org'
@@ -351,7 +375,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False, use_autograph=False)
 
     def test_version_is_beta_unlisted(self):
         addon = Addon.objects.get(guid=self.guid)
@@ -375,8 +399,10 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.status == amo.STATUS_NULL
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert not version.is_beta
-        self.auto_sign_version.assert_called_with(version, is_beta=False)
+        self.auto_sign_version.assert_called_with(
+            version, is_beta=False, use_autograph=False)
 
+    @override_switch('beta-versions', active=True)
     def test_version_is_beta(self):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         version_string = '4.0-beta1'
@@ -397,7 +423,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.status == amo.STATUS_PUBLIC
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert version.is_beta
-        self.auto_sign_version.assert_called_with(version, is_beta=True)
+        self.auto_sign_version.assert_called_with(
+            version, is_beta=True, use_autograph=False)
 
     def test_invalid_version_response_code(self):
         # This raises an error in parse_addon which is not covered by
@@ -533,7 +560,8 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False,
+            use_autograph=False)
 
     def test_addon_does_not_exist_webextension_with_guid_in_url(self):
         guid = '@custom-guid-provided'
@@ -560,7 +588,8 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            latest_version, is_beta=False)
+            latest_version, is_beta=False,
+            use_autograph=False)
 
     def test_addon_does_not_exist_webextension_with_invalid_guid_in_url(self):
         guid = 'custom-invalid-guid-provided'

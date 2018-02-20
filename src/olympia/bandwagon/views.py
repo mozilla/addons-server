@@ -3,6 +3,7 @@ import hashlib
 import os
 
 from django import http
+from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
@@ -11,8 +12,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext, ugettext_lazy as _lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-
-import caching.base as caching
 
 from django_statsd.clients import statsd
 from rest_framework.viewsets import ModelViewSet
@@ -44,7 +43,9 @@ from .models import (
     SPECIAL_SLUGS, Collection, CollectionAddon, CollectionVote,
     CollectionWatcher)
 from .permissions import AllowCollectionAuthor, AllowCollectionContributor
-from .serializers import CollectionAddonSerializer, CollectionSerializer
+from .serializers import (
+    CollectionAddonSerializer, CollectionSerializer,
+    CollectionWithAddonsSerializer)
 
 
 log = olympia.core.logger.getLogger('z.collections')
@@ -235,11 +236,6 @@ def collection_detail(request, username, slug):
             amo.VALID_ADDON_STATUSES, prefix='addon__'),
         collection=collection.id)
     addons = paginate(request, filter.qs, per_page=15, count=count.count())
-
-    # The add-on query is not related to the collection, so we need to manually
-    # hook them up for invalidation.  Bonus: count invalidation.
-    keys = [addons.object_list.flush_key(), count.flush_key()]
-    caching.invalidator.add_to_flush_list({collection.flush_key(): keys})
 
     if collection.author_id:
         qs = Collection.objects.listed().filter(author=collection.author)
@@ -479,29 +475,33 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
-    qs = (CollectionAddon.objects.no_cache().using('default')
+    qs = (CollectionAddon.objects.using('default')
           .filter(collection=collection))
-    meta = dict((c.addon_id, c) for c in qs)
-    addons = collection.addons.no_cache().all()
+    meta = {c.addon_id: c for c in qs}
+    addons = collection.addons.all()
     comments = get_notes(collection, raw=True).next()
 
     if is_admin:
-        initial = dict(type=collection.type,
-                       application=collection.application)
+        initial = {
+            'type': collection.type,
+            'application': collection.application
+        }
         admin_form = forms.AdminForm(initial=initial)
     else:
         admin_form = None
 
-    data = dict(collection=collection,
-                form=form,
-                username=username,
-                slug=slug,
-                meta=meta,
-                filter=get_filter(request),
-                is_admin=is_admin,
-                admin_form=admin_form,
-                addons=addons,
-                comments=comments)
+    data = {
+        'collection': collection,
+        'form': form,
+        'username': username,
+        'slug': slug,
+        'meta': meta,
+        'filter': get_filter(request),
+        'is_admin': is_admin,
+        'admin_form': admin_form,
+        'addons': addons,
+        'comments': comments
+    }
     return render_cat(request, 'bandwagon/edit.html', data)
 
 
@@ -614,13 +614,13 @@ def watch(request, username, slug):
     Otherwise, redirect to the collection page.
     """
     collection = get_collection(request, username, slug)
-    d = dict(user=request.user, collection=collection)
-    qs = CollectionWatcher.objects.no_cache().using('default').filter(**d)
+    params = {'user': request.user, 'collection': collection}
+    qs = CollectionWatcher.objects.using('default').filter(**params)
     watching = not qs  # Flip the bool since we're about to change it.
     if qs:
         qs.delete()
     else:
-        CollectionWatcher.objects.create(**d)
+        CollectionWatcher.objects.create(**params)
 
     if request.is_ajax():
         return {'watching': watching}
@@ -667,7 +667,6 @@ class CollectionViewSet(ModelViewSet):
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),
     ]
-    serializer_class = CollectionSerializer
     lookup_field = 'slug'
 
     def get_account_viewset(self):
@@ -678,10 +677,30 @@ class CollectionViewSet(ModelViewSet):
                 kwargs={'pk': self.kwargs['user_pk']})
         return self.account_viewset
 
+    def get_serializer_class(self):
+        with_addons = ('with_addons' in self.request.GET and
+                       self.action == 'retrieve')
+        return (CollectionSerializer if not with_addons
+                else CollectionWithAddonsSerializer)
+
     def get_queryset(self):
         return Collection.objects.filter(
             author=self.get_account_viewset().get_object()).order_by(
             '-modified')
+
+    def get_addons_queryset(self):
+        collection_addons_viewset = CollectionAddonViewSet(
+            request=self.request
+        )
+        # Set this to avoid a pointless lookup loop.
+        collection_addons_viewset.collection_viewset = self
+        # This needs to be list to make the filtering work.
+        collection_addons_viewset.action = 'list'
+        qs = collection_addons_viewset.get_queryset()
+        # Now limit and sort
+        limit = settings.REST_FRAMEWORK['PAGE_SIZE']
+        sort = collection_addons_viewset.ordering[0]
+        return qs.order_by(sort)[:limit]
 
 
 class CollectionAddonViewSet(ModelViewSet):

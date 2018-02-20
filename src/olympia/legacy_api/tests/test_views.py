@@ -7,6 +7,8 @@ from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
+from waffle.testutils import override_switch
+
 import jinja2
 import pytest
 
@@ -459,6 +461,7 @@ class APITest(TestCase):
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
 
+    @override_switch('beta-versions', active=True)
     def test_beta_channel(self):
         """
         This tests that addons with files in beta will have those files
@@ -925,10 +928,8 @@ class SearchTest(ESTestCase):
         """
         # The following URLs should yield zero results.
         zeros = (
-            'yslow category:alerts',
-            'jsonview version:1.0',
-            'firebug type:dictionary',
-            'grapple platform:linux',
+            'yslow',
+            'jsonview',
             'firebug/3',
             'grapple/all/10/Linux',
             'jsonview/all/10/Darwin/1.0',
@@ -954,11 +955,6 @@ class SearchTest(ESTestCase):
         """
         expect = {
             'delicious': 'Delicious Bookmarks',
-            'delicious category:feeds': 'Delicious Bookmarks',
-            'delicious version:3.6': 'Delicious Bookmarks',
-            'delicious type:extension': 'Delicious Bookmarks',
-            'delicious tag:ballin': 'Delicious Bookmarks',
-            'grapple platform:mac': 'GrApple',
             'delicious/1': 'Delicious Bookmarks',
             'grapple/all/10/Darwin': 'GrApple',
             'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',

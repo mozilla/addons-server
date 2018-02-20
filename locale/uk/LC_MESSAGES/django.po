@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-31 14:02+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-14 07:32+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -175,6 +175,9 @@ msgstr "У списку"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Адреси додатків і колекцій мають закінчуватися з \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
 
 msgid "Abuse reported."
 msgstr "Скаргу відправлено."
@@ -1031,6 +1034,9 @@ msgstr "Введіть дійсну адресу URL, що складаєтьс�
 msgid "This slug cannot be used."
 msgstr "ЦеяURL не може бути використана."
 
+msgid "This add-on already belongs to the collection"
+msgstr "Цей додаток вже належить до цієї збірки"
+
 msgid "Name"
 msgstr "Ім'я"
 
@@ -1772,9 +1778,9 @@ msgstr "{addon} відключено."
 msgid "{addon} enabled."
 msgstr "{addon} включено."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Статус {addon} змінено на {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Статус для {addon} змінено на {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} додано до {addon}."
@@ -2062,12 +2068,6 @@ msgstr "Не в списку"
 
 msgid "Developer"
 msgstr "Розробник"
-
-msgid "Viewer"
-msgstr "Оглядач"
-
-msgid "Support"
-msgstr "Підтримка"
 
 msgid "Extension"
 msgstr "Розширення"
@@ -2596,12 +2596,6 @@ msgstr "Ігнорувати невдалу валідацію"
 msgid "Submit my add-on for manual review."
 msgstr "Подати мій додаток на ручну перевірку."
 
-msgid "Do not list my add-on on this site"
-msgstr "Не показувати мій додаток на цьому сайті"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Відмітьте цю опцію, якщо ви збираєтесь розповсюджувати свій додаток власноруч і потребуєте лише підпис Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Файл з версією, що закінчується на a|alpha|b|beta|pre|rc і необов'язковим числом, визначається як бета."
 
@@ -2738,8 +2732,9 @@ msgstr "Перевірка сумісності додатку"
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Ви не можете подати додаток з інструкцією, що завершується на \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Ви не можете подати додаток з GUID, що завершується на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
@@ -2992,13 +2987,11 @@ msgid "About author roles"
 msgstr "Про ролі автора"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Додатки можуть мати будь-яку кількість авторів з трьома можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатків, включаючи додавання і вилучення інших "
-"авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатків, за винятком додавання і вилучення інших авторів</li> <li><b>Переглядач:</b> Може переглядати налаштування і "
-"статистику додатків, але не може вносити будь-які зміни</li> </ul>"
+"<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатку, включаючи додавання і вилучення інших "
+"авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатку, за винятком додавання і вилучення інших авторів</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Основна інформація"
@@ -3222,14 +3215,14 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "UUID вашого додатку зазначений у його маніфесті установки і є його унікальним ідентифікатором. Після його відправлення ви не зможете змінити UUID."
 
 msgid "Whiteboard"
-msgstr "Біла дошка"
+msgstr "Панель огляду"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Біла дошка є місцем для надання редактору інформації, яка має відношення до вашого додатку, незалежно від версії. Використовуйте її, щоб забезпечити способи тестування додатку, та для розміщення "
-"будь-якої додаткової інформації, яка може допомогти. Ця дошка також доступна для змін редакторам."
+"Панель огляду є місцем для надання редактору інформації стосовно вашого додатку, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатку, а також для розміщення будь-якої "
+"додаткової інформації, яка може допомогти. Ця панель також доступна для змін рецензентам."
 
 msgid "Remove this dependent add-on"
 msgstr "Видалити цей залежний додаток"
@@ -3290,20 +3283,11 @@ msgstr "Додати знімок екрана..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Чи можуть інші ділитися вашим додатком, якщо вас вказують як автора?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу, в тому числі в комерційних цілях."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу тільки в некомерційних цілях."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Чи можуть інші використовувати ваш додаток в комерційних цілях?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Чи можуть інші створювати похідні роботи на основі вашого додатку?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, показувати і виконувати роботу, а також створювати на його основі похідні роботи."
 
 msgid "Yes, as long as they share alike"
 msgstr "Так, якщо вони так само діляться"
@@ -3311,14 +3295,14 @@ msgstr "Так, якщо вони так само діляться"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж ліцензії або ліцензії сумісної з тією, під якою поширюється робота ліцензіара."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати і передавати тільки незмінені копії роботи — не похідні роботи на його основі."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Ваш додаток буде випущений на умовах такої ліцензії:"
 
 msgid "Select a different license."
 msgstr "Виберіть іншу ліцензію."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Більше інформації в ліцензіях Creative Commons"
 
 msgid "Tests"
 msgstr "Тести"
@@ -3476,6 +3460,9 @@ msgstr "Будь ласка, використовуйте в своїй URL ли
 msgid "Summary:"
 msgstr "Стисло:"
 
+msgid "required"
+msgstr "потрібно"
+
 msgid "This add-on is experimental"
 msgstr "Цей додаток є експериментальним"
 
@@ -3541,17 +3528,23 @@ msgstr "Відправлення завершене"
 msgid "You’re done!"
 msgstr "Все готово!"
 
+msgid "Version Submitted for Review"
+msgstr "Версія подана для перевірки"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Готово! Ця версія стане доступною після проходження перевірки. Ви отримаєте сповіщення про це."
+
 msgid "Version Submitted"
 msgstr "Версія надіслана"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Готово! Ця версія скоро з'явиться на нашому сайті."
 
-msgid "Version Submitted for Review"
-msgstr "Версія подана для перевірки"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Готово! Ця версія була подана для перевірки. Ви отримаєте сповіщення при завершенні перевірки, або при виникненні будь-яких запитань щодо вашого подання."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Сторінка вашого додатку буде більш успішною, якщо додати детальний опис. Зробіть її готовою до публікації:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Ваша публікація буде більш успішною, якщо додати детальний опис і знімки екрану. Зробіть її готовою до публікації:"
@@ -3607,9 +3600,6 @@ msgstr "Вивантажити версію"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для вивантаження пакунку свого додатку скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
-msgid "Create a Theme"
-msgstr "Створити тему"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
@@ -3618,6 +3608,12 @@ msgstr "Опублікувати цю версію тільки на моєму 
 
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
+
+msgid "Create a Theme Version"
+msgstr "Створити версію теми"
+
+msgid "Create a Theme"
+msgstr "Створити тему"
 
 msgid "Submit File"
 msgstr "Надіслати файл"
@@ -3631,11 +3627,11 @@ msgstr "Генерувати тему"
 msgid "Theme generator"
 msgstr "Генератор теми"
 
-msgid "Select a header image for your Theme."
-msgstr "Виберіть верхнє зображення для вашої теми."
+msgid "Theme name"
+msgstr "Назва теми"
 
-msgid "required"
-msgstr "потрібно"
+msgid "Select a header image for your theme"
+msgstr "Оберіть зображення для заголовка вашої теми"
 
 msgid "Image height should be 200 pixels"
 msgstr "Висота зображення повинна бути 200 пікселів"
@@ -3649,49 +3645,49 @@ msgstr "Вирівняна по верхньому правому краю"
 msgid "Select a different header image"
 msgstr "Виберіть інше верхнє зображення"
 
-msgid "Select colors for your Theme."
-msgstr "Оберіть кольори для вашої теми."
+msgid "Select colors for your theme"
+msgstr "Оберіть кольори для вашої теми"
 
-msgid "Header area background (accentcolor)"
-msgstr "Тло області заголовка (accentcolor)"
+msgid "Header area background"
+msgstr "Тло області заголовка"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Колір тла області заголовка відображається в тій його частині, що не закрита або видима через зображення заголовка."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Колір тла області заголовка відображається в тій його частині, що не закрита або видима через зображення заголовка. Поле маніфесту:  "
 
-msgid "Header area text (textcolor)"
-msgstr "Текст області заголовка (textcolor)"
+msgid "Header area text and icons"
+msgstr "Текст і піктограми області заголовка"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Колір тексту, що відображається в області заголовка."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Колір тексту і піктограм, що відображаються в області заголовка, за винятком активної вкладки. Поле маніфесту:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Тло області панелі інструментів (toolbar)."
+msgid "Toolbar area background"
+msgstr "Тло області панелі інструментів"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки.  Поле маніфесту:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Текст області панелі інструментів (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Піктограми текстової області панелі інструментів"
 
-msgid "The color of toolbar text."
-msgstr "Колір тексту панелі інструментів."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Колір тексту і піктограм в панелі інструментів та активній вкладці. Поле маніфесту:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Тло області поля панелі інструментів (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Тло області поля панелі інструментів"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Колір тла полів у панелі інструментів, таких як рядок URL-адреси."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Колір тла полів у панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Текст поля в області панелі інструментів (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Текст поля в області панелі інструментів"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Колір тексту в полі на панелі інструментів, таких як рядок URL-адреси"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Колір тексту в полях в панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field_text."
 
 msgid "optional"
 msgstr "необов’язково"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Перегляд в браузері"
 
 msgid "Back"
@@ -3700,8 +3696,8 @@ msgstr "Назад"
 msgid "Uploading Theme"
 msgstr "Вивантаження теми"
 
-msgid "Upload Theme"
-msgstr "Вивантажити тему"
+msgid "Finish Theme"
+msgstr "Завершити тему"
 
 msgid "API Credentials"
 msgstr "Облікові дані API"
@@ -3906,6 +3902,9 @@ msgstr "Блог"
 msgid "Contact Us"
 msgstr "Зв'язатися з нами"
 
+msgid "Support"
+msgstr "Підтримка"
+
 msgid "Policies"
 msgstr "Политіки"
 
@@ -4096,11 +4095,23 @@ msgstr "Ліцензія теми"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Чи можуть інші ділитися вашою темою, якщо вас вказують як автора?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу, в тому числі в комерційних цілях."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу тільки в некомерційних цілях."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Чи можуть інші використовувати вашу тему в комерційних цілях?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Чи можуть інші створювати похідні роботи на основі вашої теми?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, показувати і виконувати роботу, а також створювати на його основі похідні роботи."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати і передавати тільки незмінені копії роботи — не похідні роботи на його основі."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Ваша тема буде випущена на умовах такої ліцензії:"
@@ -4134,6 +4145,9 @@ msgstr "Верхнє зображення"
 
 msgid "Footer"
 msgstr "Нижнє зображення"
+
+msgid "Select colors for your Theme."
+msgstr "Оберіть кольори для вашої теми."
 
 msgid "Foreground Text"
 msgstr "Текст переднього тла"
@@ -4198,6 +4212,9 @@ msgstr "Перегляньте і підпишіться на <a href=\"%(feed_u
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Приєднуйтесь до розмови на наших <a href=\"%(forum_url)s\">форумах</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Виберіть верхнє зображення для вашої теми."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 пікселів"
@@ -4427,6 +4444,30 @@ msgstr "Вдоскональте свої емоджі {start_sub_heading}за �
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Десятки чудових емоджі — на відстані одного натискання."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Завантажуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Працює з більшістю популярних відео сайтів."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Встановіть сторінку, яку ви бачите, щоразу при відкритті нової вкладки."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Вдоскональте свою емоджі-гру {start_sub_heading}разом з {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Десятки чудових емоджі на будь-який випадок — завжди на відстані одного натискання."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr "Більше, ніж звичайний засіб для знімків екрану. Awesome Screenshot Plus дозволяє вам анотувати зображення з власним текстом та графікою, а також надає можливість зберігання й поширення."
 
 msgid "Cannot diff a version against itself"
 msgstr "Різниця версії проти самої себе неможлива"
@@ -6076,15 +6117,6 @@ msgstr "Операційні системи:"
 msgid "Applications:"
 msgstr "Програми:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Повідомити мене при наступному оновленні цього додатку. (Подальші оновлення не призведуть до відправлення електронного листа)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Прибрати позначку перевірки коду адміном"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Прибрати позначку перевірки вмісту адміном"
-
 msgid "Is more info requested?"
 msgstr "Запитано більше інформації?"
 
@@ -6101,6 +6133,9 @@ msgstr "Хтось ще перевіряє цю тему."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "тема, переглядач чи коментар"
+
+msgid "Private Whiteboard"
+msgstr "Особиста панель огляду"
 
 msgid "Keep review; remove flags"
 msgstr "Утримати рецензію; видалити мітки"
@@ -6128,6 +6163,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Заблокований рецензентом."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Встановлений прапорець вимкнення автосхвалення."
 
 msgid "Duplicate Submission"
 msgstr "Дублікат представлення"
@@ -6201,8 +6239,8 @@ msgstr "Ця дія відхилить цю версію і вилучить ї�
 msgid "Confirm Approval"
 msgstr "Підтвердити схвалення"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Остання публічна версія цього додатку була схвалена автоматично. Це записує ваше підтвердження про схвалення, без сповіщення розробника."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Остання публічна версія цього додатку була схвалена автоматично. Це записує ваше підтвердження про схвалення тієї версії, без сповіщення розробника."
 
 msgid "Reject Multiple Versions"
 msgstr "Відхилити кілька версій"
@@ -6228,8 +6266,8 @@ msgstr "Залиште коментар для цієї версії. Розро
 msgid "Approve Content"
 msgstr "Схвалити вміст"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Ця дія записує ваше схвалення вмісту цієї версії без сповіщення розробника."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ця дія записує ваше схвалення вмісту останньої публічної версії, без сповіщення розробника."
 
 msgid "Legacy Add-ons"
 msgstr "Застарілі додатки"
@@ -6570,10 +6608,37 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Увага!</strong> Інший користувач переглядав цю сторінку перед вами."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Ця дошка є місцем для обміну інформацією, яка стосується цього додатку (незалежно від версії), між розробником і редактором. Вона видима і доступна для редагування їм обом."
+msgstr "Ця панель огляду є місцем для обміну інформацією стосовно вашого додатку між розробником і рецензентом, незалежно від версії. Вона доступна для огляду та змін їм обом."
 
-msgid "Update the whiteboard"
-msgstr "Оновити дошку"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Особиста панель огляду використовується для обміну інформацією між рецензентами, які є незалежними для версії. Будь ласка, дотримуйтесь належного подання. Це можуть бачити лише рецензенти."
+
+msgid "Update whiteboards"
+msgstr "Оновити панелі огляду"
+
+msgid "More Actions"
+msgstr "Додаткові дії"
+
+msgid "Notify me about new listed versions"
+msgstr "Сповіщати мене про нові опубліковані версії"
+
+msgid "Force-disable add-on"
+msgstr "Примусово вимкнути додаток"
+
+msgid "Force-enable add-on"
+msgstr "Примусово увімкнути додаток"
+
+msgid "Disable Auto-Approval"
+msgstr "Вимкнути автоматичне схвалення"
+
+msgid "Enable Auto-Approval"
+msgstr "Увімкнути автоматичне схвалення"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Прибрати позначку перевірки коду адміном"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Прибрати позначку перевірки вмісту адміном"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7470,8 +7535,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Натиснувши \"видалити\", ваш обліковий запис буде <strong>остаточно видалено</strong>. Це означає що:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Ви більше не зможете увійти на %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Повторний вхід з цією адресою е-пошти на %(site)s створить новий обліковий запис, який ніяк не буде пов'язаний з цим обліковим записом."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ваші відгуки й оцінки не будуть видалені, але вони більше не будуть пов'язані з вами."

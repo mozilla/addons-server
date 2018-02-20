@@ -12,6 +12,7 @@ from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
 import mock
+import pytest
 import waffle
 
 from pyquery import PyQuery as pq
@@ -31,6 +32,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
+from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.ratings.models import Rating
@@ -134,16 +136,24 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
 
-    def test_show_hide_statistics(self):
-        # Not disabled by user: show statistics.
+    def test_show_hide_statistics_and_new_version_for_disabled(self):
+        # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
+        assert 'New Version' in links, ('Unexpected: %r' % links)
 
-        # Disabled: hide statistics.
+        # Disabled (user): hide statistics and new version links.
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
+
+        # Disabled (admin): hide statistics and new version links.
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
+        links = self.get_action_links(self.addon.pk)
+        assert 'Statistics' not in links, ('Unexpected: %r' % links)
+        assert 'New Version' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
         assert self.addon.status == amo.STATUS_PUBLIC
@@ -273,6 +283,7 @@ class TestDashboard(HubTest):
         assert doc('.incomplete').text() == (
             "This add-on doesn't have any versions.")
 
+    @override_switch('beta-versions', active=True)
     def test_only_a_beta_version(self):
         beta_version = version_factory(
             addon=self.addon, version='2.0beta',
@@ -389,17 +400,6 @@ class TestDevRequired(TestCase):
 
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
-
-    def test_viewer_get(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.get(self.get_url).status_code == 200
-        assert self.client.get(self.edit_page_url).status_code == 200
-
-    def test_viewer_post(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert self.client.post(self.get_url).status_code == 403
 
     def test_disabled_post_dev(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1559,3 +1559,22 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_devhub_version_list_page(self):
         url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+@pytest.mark.django_db
+def test_get_next_version_number():
+    addon = addon_factory(version_kw={'version': '1.0'})
+    # Easy case - 1.0 to 2.0
+    assert get_next_version_number(addon) == '2.0'
+    # We just iterate the major version number
+    addon.current_version.update(version='34.45.0a1pre', version_int=None)
+    addon.current_version.save()
+    assert get_next_version_number(addon) == '35.0'
+    # "Take" 35.0
+    version_factory(addon=addon, version='35.0',
+                    file_kw={'status': amo.STATUS_DISABLED})
+    assert get_next_version_number(addon) == '36.0'
+    # And 36.0, even though it's deleted.
+    version_factory(addon=addon, version='36.0').delete()
+    assert addon.current_version.version == '34.45.0a1pre'
+    assert get_next_version_number(addon) == '37.0'

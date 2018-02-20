@@ -47,7 +47,30 @@ jobs:
     working_directory: ~/addons-server
     machine: true
     steps:
-      - checkout
+      - run:
+          name: Checkout git repository
+          command: |
+            if [ -n "$CIRCLE_PR_NUMBER" ]
+            then
+              git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
+
+              git fetch origin "+refs/pull/$CIRCLE_PR_NUMBER/merge:"
+              git checkout -f FETCH_HEAD
+            else
+              git clone --depth 1 --branch $CIRCLE_BRANCH https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git ~/addons-server
+
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+              fi
+
+              if [ -n "$CIRCLE_TAG" ]
+              then
+                git checkout --force "$CIRCLE_TAG"
+              else
+                git checkout --force "$CIRCLE_SHA1"
+              fi
+            fi
       - restore_cache:
           keys:
             - uitest-cache-{{ checksum "requirements/docs.txt" }}
@@ -59,7 +82,8 @@ jobs:
           name: Install Docker Compose
           command: |
             set -x
-            sudo pip install docker-compose
+            pip install docker-compose>=1.18
+            docker-compose --version
       - run:
           name: Start container, verify it's running and start tests
           command: |
@@ -73,9 +97,10 @@ jobs:
             docker-compose exec worker supervisorctl restart all
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose exec web supervisorctl restart all
-            docker-compose exec web bash /code/scripts/ui-test.sh
+            # Start Test in Firefox docker container
+            docker-compose exec --user root selenium-firefox tox -e ui-tests
       - store_artifacts:
-          path: ui-test-results
+          path: ui-test.html
       - save_cache:
           key: uitest-cache-{{ checksum "requirements/docs.txt" }}
           paths:

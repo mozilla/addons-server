@@ -85,7 +85,7 @@ class ES(object):
         return new
 
     def count(self):
-        if self._results_cache:
+        if self._results_cache is not None:
             return self._results_cache.count
         else:
             return self[:0].raw()['hits']['total']
@@ -223,7 +223,7 @@ class ES(object):
         return query
 
     def _do_search(self):
-        if not self._results_cache:
+        if self._results_cache is None:
             hits = self.raw()
             if self.as_dict:
                 ResultClass = DictSearchResults
@@ -243,7 +243,7 @@ class ES(object):
                 hits = es.search(
                     body=build_body,
                     index=self.index,
-                    doc_type=self.type._meta.db_table
+                    doc_type=self.type._meta.db_table,
                 )
         except Exception:
             log.error(build_body)

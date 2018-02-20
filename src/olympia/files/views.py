@@ -31,8 +31,8 @@ def setup_viewer(request, file_obj):
             'validate_url': ''}
 
     if (acl.check_addons_reviewer(request) or
-        acl.check_addon_ownership(request, file_obj.version.addon,
-                                  viewer=True, ignore_disabled=True)):
+        acl.check_addon_ownership(request, file_obj.version.addon, dev=True,
+                                  ignore_disabled=True)):
 
         addon = file_obj.version.addon
 

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-17 11:15+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-12 12:13+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -159,6 +159,9 @@ msgstr "顯示"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
 
 msgid "Abuse reported."
 msgstr "已回報濫用。"
@@ -981,6 +984,9 @@ msgstr "請輸入有效的 slug，當中只能有字母、數字、底線或連�
 msgid "This slug cannot be used."
 msgstr "無法使用此 slug。"
 
+msgid "This add-on already belongs to the collection"
+msgstr "此附加元件屬於收藏集"
+
 msgid "Name"
 msgstr "名稱"
 
@@ -1693,9 +1699,9 @@ msgstr "已停用 {addon}。"
 msgid "{addon} enabled."
 msgstr "已啟用 {addon}。"
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "{addon} 已變更狀態為 {0}。"
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} 狀態已變更為 {status}。"
 
 msgid "{version} added to {addon}."
 msgstr "{addon} 已新增版本 {version}。"
@@ -1914,10 +1920,10 @@ msgid "Source code uploaded"
 msgstr "已上傳原始碼"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "已確認自動批准 {addon} {version}。"
+msgstr "已確認自動通過 {addon} {version} 審核。"
 
 msgid "Auto-Approval confirmed"
-msgstr "已確認自動批准"
+msgstr "已確認自動通過審核"
 
 # 93%
 # 100%
@@ -1989,13 +1995,6 @@ msgstr "未上架"
 
 msgid "Developer"
 msgstr "開發者"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "檢視者"
-
-msgid "Support"
-msgstr "支援"
 
 msgid "Extension"
 msgstr "擴充套件"
@@ -2532,12 +2531,6 @@ msgstr "無視驗證失敗"
 msgid "Submit my add-on for manual review."
 msgstr "送出我的附加元件進行手動審查。"
 
-msgid "Do not list my add-on on this site"
-msgstr "不要在此網站上陳列我的附加元件"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "若您想自行發布附加元件，僅需要 Mozilla 簽署的話請勾選此選項。"
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "檔案的版本若以 a|alpha|b|beta|pre|rc 與非必要的數字作為結尾則將偵測為 beta 測試版。"
 
@@ -2670,8 +2663,9 @@ msgstr "檢查附加元件的相容性"
 msgid "You cannot submit this type of add-on"
 msgstr "您無法送出此類型的附加元件。"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "您不得送出 GUID 結尾為「@mozilla.org」的附加元件"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "您不得送出 GUID 結尾為「%s」的附加元件"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
@@ -2916,10 +2910,9 @@ msgid "About author roles"
 msgstr "關於作者"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
-msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li><li><b>檢視者:</b>只能看到附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
+msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li></ul>"
 
 msgid "Basic Information"
 msgstr "基本資訊"
@@ -3185,12 +3178,6 @@ msgstr "新增螢幕擷圖…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "他人是否可以在有姓名標示的情況下分享您的附加元件？"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，但不得進行商業用途。"
-
 # 85%
 msgid "Can others make commercial use of your Add-on?"
 msgstr "他人是否可以將您的附加元件以商業用途使用？"
@@ -3199,17 +3186,11 @@ msgstr "他人是否可以將您的附加元件以商業用途使用？"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "他人是否可以根據您的附加元件創造衍生著作？"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以創造衍生著作。"
-
 msgid "Yes, as long as they share alike"
 msgstr "可以，只要他人以相同方式分享著作"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "此授權條款允許其他人在使用相同或相容的授權下，散佈其衍生作品。"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "授權人允許其他人重製、散佈或傳送未經改作之著作，但不得創造衍生著作。"
 
 # 87%
 msgid "Your Add-on will be released under the following license:"
@@ -3217,6 +3198,9 @@ msgstr "您的附加元件將以下列授權條款發佈:"
 
 msgid "Select a different license."
 msgstr "選擇一個授權條款。"
+
+msgid "More information on Creative Commons licenses"
+msgstr "關於創用 CC 的更多資訊"
 
 msgid "Tests"
 msgstr "測試"
@@ -3370,6 +3354,9 @@ msgstr "您的 URL 只能含有字母，數字，下劃線與破折號。"
 msgid "Summary:"
 msgstr "摘要:"
 
+msgid "required"
+msgstr "必填"
+
 msgid "This add-on is experimental"
 msgstr "這個附加元件仍在實驗中。"
 
@@ -3433,17 +3420,23 @@ msgstr "上傳完成"
 msgid "You’re done!"
 msgstr "完成了！"
 
+msgid "Version Submitted for Review"
+msgstr "已送出進行審查的版本"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "搞定！此版本通過審核後就會在網站上出現。您將會在套件接受審核後收到通知。"
+
 msgid "Version Submitted"
 msgstr "送出的版本"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "搞定！此版本很快就會在網站上出現。"
 
-msgid "Version Submitted for Review"
-msgstr "已送出進行審查的版本"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "搞定了！已將此版本送出審核。審核完成後，或審核者有任何問題時您會收到通知。"
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "加上詳細的描述可讓您的上架項目更加成功。準備好上架資訊後即可公開:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "加上詳細的描述與畫面擷圖可讓您的附加元件更成功。讓您的附加元件準備就緒後即可公開:"
@@ -3501,9 +3494,6 @@ msgstr "上傳版本"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下方欄位上傳您的附加元件封包。上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
 
-msgid "Create a Theme"
-msgstr "建立新的佈景主題"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "這個檔案與哪些平台相容？"
 
@@ -3512,6 +3502,12 @@ msgstr "僅發佈此版本到我的 Beta 頻道。"
 
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
+
+msgid "Create a Theme Version"
+msgstr "建立佈景主題版本"
+
+msgid "Create a Theme"
+msgstr "建立新的佈景主題"
 
 msgid "Submit File"
 msgstr "送出檔案"
@@ -3525,12 +3521,12 @@ msgstr "產生佈景主題"
 msgid "Theme generator"
 msgstr "佈景主題產生器"
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "為您的佈景主題選擇一個頂部圖案。"
+msgid "Theme name"
+msgstr "佈景主題名稱"
 
-msgid "required"
-msgstr "必填"
+# 82%
+msgid "Select a header image for your theme"
+msgstr "為您的佈景主題選擇一個頂部標題圖案"
 
 msgid "Image height should be 200 pixels"
 msgstr "圖片高度應為 200px"
@@ -3544,49 +3540,49 @@ msgstr "對齊右上方"
 msgid "Select a different header image"
 msgstr "選擇一個不同的頂部圖案"
 
-msgid "Select colors for your Theme."
-msgstr "選擇佈景主題的顏色。"
+msgid "Select colors for your theme"
+msgstr "選擇佈景主題的顏色"
 
-msgid "Header area background (accentcolor)"
-msgstr "標題區背景 (accentcolor)"
+msgid "Header area background"
+msgstr "標題區背景"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "標題區的背景色，會在標題圖片未覆蓋或不可見時顯示。"
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "標題區的背景色，會在標題圖片未覆蓋或不可見時顯示。安裝資訊欄位: accentcolor。"
 
-msgid "Header area text (textcolor)"
-msgstr "標題區文字 (textcolor)"
+msgid "Header area text and icons"
+msgstr "標題區文字與圖示"
 
-msgid "The color of the text displayed in the header area."
-msgstr "標題區文字顏色。"
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "標題區文字顏色與圖示，不含使用中的分頁。安裝資訊欄位: textcolor。"
 
-msgid "Toolbar area background (toolbar)."
-msgstr "工具列背景 (toolbar)。"
+msgid "Toolbar area background"
+msgstr "工具列背景"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "導航列、書籤列、被選擇分頁的背景色。"
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "導航列、書籤列、被選擇分頁的背景色。安裝資訊欄位: toolbar。"
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "工具列文字 (toolbar_text)。"
+msgid "Toolbar area text icons"
+msgstr "工具列文字圖示"
 
-msgid "The color of toolbar text."
-msgstr "工具列文字顏色"
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "工具列中的欄位（例如網址列）與使用中分頁的文字顏色與圖示。安裝資訊欄位: toolbar_text。"
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "工具列欄位區背景 (toolbar_field)。"
+msgid "Toolbar field area background"
+msgstr "工具列欄位區背景"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "工具列中的欄位（例如網址列）的背景色。"
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "工具列中的欄位（例如網址列）的背景色。安裝資訊欄位: toolbar_field。"
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "工具列欄位區文字 (toolbar_field_text)。"
+msgid "Toolbar field area text"
+msgstr "工具列欄位區文字"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "工具列中的欄位（例如網址列）的文字顏色"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "工具列中的欄位（例如網址列）的文字顏色。安裝資訊欄位: toolbar_field_text。"
 
 msgid "optional"
 msgstr "選填"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "瀏覽器預覽"
 
 msgid "Back"
@@ -3595,8 +3591,8 @@ msgstr "返回"
 msgid "Uploading Theme"
 msgstr "正在上傳佈景主題"
 
-msgid "Upload Theme"
-msgstr "上傳佈景主題"
+msgid "Finish Theme"
+msgstr "完成佈景主題"
 
 msgid "API Credentials"
 msgstr "API 帳號密碼"
@@ -3792,6 +3788,9 @@ msgstr "部落格"
 msgid "Contact Us"
 msgstr "聯絡我們"
 
+msgid "Support"
+msgstr "支援"
+
 msgid "Policies"
 msgstr "政策"
 
@@ -3982,6 +3981,12 @@ msgstr "佈景主題授權條款"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "他人是否可以在姓名標示的情況下分享您的佈景主題?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，但不得進行商業用途。"
+
 # 85%
 msgid "Can others make commercial use of your Theme?"
 msgstr "他人是否可以使用您的佈景主題進行商業用途?"
@@ -3989,6 +3994,12 @@ msgstr "他人是否可以使用您的佈景主題進行商業用途?"
 # 86%
 msgid "Can others create derivative works from your Theme?"
 msgstr "他人是否可以使用您的佈景主題創造衍生著作?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以創造衍生著作。"
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "授權人允許其他人重製、散佈或傳送未經改作之著作，但不得創造衍生著作。"
 
 # 87%
 msgid "Your Theme will be released under the following license:"
@@ -4023,6 +4034,9 @@ msgstr "頂部"
 
 msgid "Footer"
 msgstr "底部"
+
+msgid "Select colors for your Theme."
+msgstr "選擇佈景主題的顏色。"
 
 msgid "Foreground Text"
 msgstr "前景文字"
@@ -4085,6 +4099,10 @@ msgstr "檢視並且訂閱您佈景主題的<a href=\"%(feed_url)s\">活動摘�
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "前往<a href=\"%(forum_url)s\">討論區</a>與其他人交流。"
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "為您的佈景主題選擇一個頂部圖案。"
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 像素"
@@ -4314,6 +4332,30 @@ msgstr "{addon_name} {start_sub_heading}表情符號大補包{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "好幾打超酷炫的表情符號，讓您點擊輸入。"
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "與大部分知名的影音網站能夠無縫接軌。"
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "好幾打適用於任何情況的表情符號，讓您點一下即可輸入。"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr "不只是一般拍攝畫面擷圖的工具，Awesome Screenshot Plus 更可讓您在圖片上加註文字與圖片，並進行儲存或分享。"
 
 msgid "Cannot diff a version against itself"
 msgstr "無法判斷一個版本與其自身的差異"
@@ -5823,15 +5865,6 @@ msgstr "作業系統:"
 msgid "Applications:"
 msgstr "應用程式:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "在此附加元件下次更新的時候通知我。（隨後的更新將不會發送郵件通知）"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "清除管理員程式碼審查旗標"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "清除管理員內容審查旗標"
-
 msgid "Is more info requested?"
 msgstr "有要求更多資訊嗎？"
 
@@ -5848,6 +5881,9 @@ msgstr "他人正在審核此佈景主題。"
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "應用程式、審核者或評論"
+
+msgid "Private Whiteboard"
+msgstr "私人白板"
 
 msgid "Keep review; remove flags"
 msgstr "保留意見並移除旗標"
@@ -5875,6 +5911,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "已由審核者鎖定。"
+
+msgid "Has auto-approval disabled flag set."
+msgstr "設定了「關閉自動通過審核」旗標。"
 
 msgid "Duplicate Submission"
 msgstr "重複的提交"
@@ -5942,8 +5981,8 @@ msgstr "將會退回此版本並從佇列移除，將傳送留言給開發者。
 msgid "Confirm Approval"
 msgstr "確認批准"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "此附加元件的最新公開版本是系統自動審核通過的，這筆紀錄確認無須通知開發者，直接通過審核。"
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "此附加元件的最新公開版本是系統自動審核通過的，此紀錄確認您同意無須通知開發者，直接通過審核。"
 
 msgid "Reject Multiple Versions"
 msgstr "退回多個版本"
@@ -5969,8 +6008,8 @@ msgstr "為此版本加上留言，開發者不會看到。"
 msgid "Approve Content"
 msgstr "核准內容"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "將紀錄您對此版本內容的接受或拒絕，而不通知開發者。"
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
 
 msgid "Legacy Add-ons"
 msgstr "傳統附加元件"
@@ -6283,10 +6322,10 @@ msgid "Weight:"
 msgstr "權重:"
 
 msgid "Not Auto Approved Because"
-msgstr "未通過自動批准，由於"
+msgstr "未通過自動審核，由於"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr "尚未對此版本執行過自動批准指令碼。"
+msgstr "尚未對此版本執行過自動通過審核指令碼。"
 
 msgid "This version has not been reviewed."
 msgstr "此版本尚未審核。"
@@ -6309,8 +6348,35 @@ msgstr "<strong>警告！</strong> 有其他使用者在您之前檢視了此頁
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "白板（whiteboard）是一個能夠讓開發者與審核者交流附加元件相關資訊的地方（不論版本），雙方皆可檢視與編輯。"
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "審核者與開發者可使用在每個版本間均獨立的私人白板來交換資訊，請保持內容簡單、客觀。白板內容僅有審核者可以看到。"
+
+msgid "Update whiteboards"
 msgstr "更新白板"
+
+msgid "More Actions"
+msgstr "更多操作"
+
+msgid "Notify me about new listed versions"
+msgstr "有新版本上架時通知我"
+
+msgid "Force-disable add-on"
+msgstr "強制停用附加元件"
+
+msgid "Force-enable add-on"
+msgstr "強制啟用版本"
+
+msgid "Disable Auto-Approval"
+msgstr "關閉自動通過審核"
+
+msgid "Enable Auto-Approval"
+msgstr "開啟自動通過審核"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "清除管理員程式碼審查旗標"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "清除管理員內容審查旗標"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6528,7 +6594,7 @@ msgstr[0] "有問題的評論 ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "自動批准的附加元件（{0}）"
+msgstr[0] "自動通過審核的附加元件（{0}）"
 
 msgid "Flagged"
 msgstr "已加上旗標"
@@ -7195,8 +7261,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "您點選「刪除」後，您的帳號將會被<strong>永久刪除</strong>。這代表:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "您將無法再登入 %(site)s。"
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "再次使用此電子郵件地址登入 %(site)s，就會建立與目前帳號無關的新帳號。"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "您的評論與評分將不會被刪除，但將無法與您關聯。"

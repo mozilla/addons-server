@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2018-01-05 12:26+0000\n"
-"Last-Translator: mte90net <mte90net@gmail.com>\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-13 09:11+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -170,6 +170,9 @@ msgstr "Visualizzato"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "I percorsi di componenti aggiuntivi e raccolte devono terminare con il carattere “/”"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "I nomi dei componenti aggiuntivi non possono contenere i marchi registrati di Mozilla o Firefox."
 
 msgid "Abuse reported."
 msgstr "Abuso segnalato."
@@ -1028,6 +1031,9 @@ msgstr "Inserisci uno slug valido utilizzando lettere, cifre, trattini o trattin
 msgid "This slug cannot be used."
 msgstr "Impossibile utilizzare questo slug."
 
+msgid "This add-on already belongs to the collection"
+msgstr "Questo componente aggiuntivo appartiene già alla raccolta"
+
 msgid "Name"
 msgstr "Nome"
 
@@ -1764,9 +1770,9 @@ msgstr "{addon} disattivato."
 msgid "{addon} enabled."
 msgstr "{addon} attivato."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Stato di {addon} modificato a {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Stato di {addon} modificato a {status}"
 
 msgid "{version} added to {addon}."
 msgstr "{version} aggiunta a {addon}."
@@ -2054,13 +2060,6 @@ msgstr "Esterno"
 
 msgid "Developer"
 msgstr "Sviluppatore"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Ospite"
-
-msgid "Support"
-msgstr "Supporto"
 
 msgid "Extension"
 msgstr "estensioni"
@@ -2591,12 +2590,6 @@ msgstr "Il tentativo di sostituzione forzata è fallito"
 msgid "Submit my add-on for manual review."
 msgstr "Carica il componente aggiuntivo per sottoporlo a una revisione manuale."
 
-msgid "Do not list my add-on on this site"
-msgstr "Non distribuire il componente su questo sito"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Seleziona questa opzione se intendi distribuire il componente aggiuntivo attraverso canali propri e ti serve solo la firma digitale di Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "I file il cui numero di versione termina con a|alpha|b|beta|pre|rc più numero facoltativo vengono identificati come versione beta."
 
@@ -2740,8 +2733,9 @@ msgstr "Verifica compatibilità componente aggiuntivo"
 msgid "You cannot submit this type of add-on"
 msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Non è consentito caricare un componente il cui GUID termini in “@mozilla.org”"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
@@ -2995,13 +2989,12 @@ msgid "About author roles"
 msgstr "Informazioni sui ruoli degli autori"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>I componenti aggiuntivi possono avere un numero qualsiasi di autori con 3 possibili ruoli:</p><ul><li><b>Proprietario:</b> può gestire qualunque aspetto del componente aggiuntivo, compreso "
-"aggiungere o rimuovere altri autori</li><li><b>Sviluppatore:</b> può modificare qualunque aspetto del componente aggiuntivo, ma non aggiungere o rimuovere altri autori e modificare i "
-"pagamenti</li><li><b>Ospite:</b> può visualizzare le impostazioni e le statistiche ma non può fare alcuna modifica</li></ul>"
+"<p>I componenti aggiuntivi possono avere qualsiasi numero di autori con 2 possibili ruoli:</p><ul><li><b>Proprietario:</b> Può gestire tutti gli aspetti di visualizzazione del componente aggiuntivo,"
+" inclusa l'aggiunta e rimozione di altri autori</li><li><b>Sviluppatore:</b> Può gestire tutti gli aspetti di visualizzazione del componente aggiuntivo, fatta eccezione per l'aggiunta e la rimozione"
+" di altri autori</li></ul>"
 
 msgid "Basic Information"
 msgstr "Informazioni di base"
@@ -3297,20 +3290,11 @@ msgstr "Aggiungi un’anteprima…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Autorizzi altri a condividere il tuo componente aggiuntivo, a condizione di venire riconosciuto come autore?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera, anche a fini commerciali."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera solo per fini non commerciali."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Autorizzi altri a utilizzare il tuo componente aggiuntivo per fini commerciali?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Autorizzi altri a utilizzare il tuo componente aggiuntivo per creare opere derivate?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera, così come realizzare opere derivate basate su di essa."
 
 msgid "Yes, as long as they share alike"
 msgstr "Sì, a patto che vengano condivise allo stesso modo."
@@ -3318,14 +3302,14 @@ msgstr "Sì, a patto che vengano condivise allo stesso modo."
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Il Licenziante consente ad altri di distribuire opere derivate solo utilizzando la stessa licenza o una licenza compatibile con quella originale."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Il Licenziante consente ad altri di copiare, distribuire e trasmettere solo copie inalterate di quest’opera — non sono consentite opere derivate."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Il tuo componente aggiuntivo verrà distribuito con la seguente licenza:"
 
 msgid "Select a different license."
 msgstr "Scegli un’altra licenza."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Ulteriori informazioni sulle licenze Creative Commons"
 
 msgid "Tests"
 msgstr "Test"
@@ -3482,6 +3466,9 @@ msgstr "Per l’URL utilizzare solamente caratteri alfanumerici, trattini e trat
 msgid "Summary:"
 msgstr "Sommario:"
 
+msgid "required"
+msgstr "obbligatorio"
+
 msgid "This add-on is experimental"
 msgstr "Questo componente aggiuntivo è sperimentale"
 
@@ -3549,19 +3536,25 @@ msgstr "Invio completato"
 msgid "You’re done!"
 msgstr "Hai finito!"
 
+msgid "Version Submitted for Review"
+msgstr "La versione caricata è stata inclusa tra i componenti da revisionare"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Procedura completata. Questa versione sarà disponibile dopo aver superato la revisione. A revisione terminata riceverai una notifica."
+
 msgid "Version Submitted"
 msgstr "La versione è stata caricata"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Procedura terminata. La versione caricata del componente aggiuntivo sarà a breve disponibile sul sito."
 
-msgid "Version Submitted for Review"
-msgstr "La versione caricata è stata inclusa tra i componenti da revisionare"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
 "Operazione completata con successo. La versione che hai caricato è stata aggiunta alla lista dei componenti da revisionare. Riceverai una notifica quando la revisione sarà completata o nel caso i "
 "revisori abbiano delle domande da porti."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Il componente aggiuntivo avrà maggiori possibilità di farsi notare se aggiungi una descrizione dettagliata. Prepara la presentazione del componente aggiuntivo per la pubblicazione:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
@@ -3619,9 +3612,6 @@ msgstr "Carica versione"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilizza i seguenti campi per caricare il pacchetto del tuo componente aggiuntivo. Successivamente il file verrà sottoposto una serie di test automatici di validazione."
 
-msgid "Create a Theme"
-msgstr "Crea un nuovo tema"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Con quali piattaforme è compatibile il file?"
 
@@ -3630,6 +3620,12 @@ msgstr "Pubblica questa versione unicamente sul mio canale beta."
 
 msgid "Administrative overrides"
 msgstr "Sostituzioni amministrative"
+
+msgid "Create a Theme Version"
+msgstr "Crea una versione del tema"
+
+msgid "Create a Theme"
+msgstr "Crea un nuovo tema"
 
 msgid "Submit File"
 msgstr "Carica un nuovo file"
@@ -3643,11 +3639,11 @@ msgstr "Tema generato"
 msgid "Theme generator"
 msgstr "Strumento generazione temi"
 
-msgid "Select a header image for your Theme."
-msgstr "Seleziona un’immagine di testata per il tema."
+msgid "Theme name"
+msgstr "Nome del tema"
 
-msgid "required"
-msgstr "obbligatorio"
+msgid "Select a header image for your theme"
+msgstr "Seleziona un’immagine di testata per il tema"
 
 msgid "Image height should be 200 pixels"
 msgstr "L’altezza dell’immagine deve essere 200 pixel"
@@ -3661,49 +3657,49 @@ msgstr "Allinea in alto a destra"
 msgid "Select a different header image"
 msgstr "Scegli un’altra immagine per la testata"
 
-msgid "Select colors for your Theme."
-msgstr "Scegli i colori per il tuo tema."
+msgid "Select colors for your theme"
+msgstr "Scegli i colori per il tuo tema"
 
-msgid "Header area background (accentcolor)"
-msgstr "Sfondo testata (accentcolor)"
+msgid "Header area background"
+msgstr "Sfondo testata"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Il colore di sfondo della testata, visibile nelle aree non coperte dall’immagine o attraverso le trasparenze."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Il colore di sfondo della testata, visibile nelle aree non coperte dall’immagine o attraverso le trasparenze. Campo nel manifesto: accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Testo testata (textcolor)"
+msgid "Header area text and icons"
+msgstr "Testo e icone dell'intestazione"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Il colore delle caselle di testo visualizzate nell’area della testata."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Il colore del testo e delle icone nell'intestazione, eccetto per la scheda attiva. Campo del manifesto: textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Sfondo barra degli strumenti (toolbar)."
+msgid "Toolbar area background"
+msgstr "Sfondo barra degli strumenti"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Il colore di sfondo per la barra di navigazione, la barra dei segnalibri e la scheda selezionata."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Il colore di sfondo per la barra di navigazione, la barra dei segnalibri e la scheda selezionata. Campo nel manifesto: toolbar"
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Testo barra degli strumenti (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Icone della barra degli strumenti"
 
-msgid "The color of toolbar text."
-msgstr "Colore del testo nella barra degli strumenti."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Il colore del testo e delle icone nella barra degli strumenti e nella scheda attiva. Campo nel manifesto: toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Sfondo campo barra degli strumenti (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Sfondo campo barra degli strumenti"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Il colore di sfondo dei campi della barra degli strumenti, come la barra degli indirizzi. Campo nel manifesto: toolbar_field"
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Testo barra degli strumenti (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Testo barra degli strumenti"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra degli indirizzi"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Il colore del testo dei campi della barra degli strumenti, come la barra degli indirizzi. Campo nel manifesto: toolbar_field_text"
 
 msgid "optional"
 msgstr "facoltativo"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Anteprima nel browser"
 
 msgid "Back"
@@ -3712,8 +3708,8 @@ msgstr "Indietro"
 msgid "Uploading Theme"
 msgstr "Caricamento tema in corso…"
 
-msgid "Upload Theme"
-msgstr "Carica tema"
+msgid "Finish Theme"
+msgstr "Completa tema"
 
 msgid "API Credentials"
 msgstr "Credenziali API"
@@ -3920,6 +3916,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Contattaci"
 
+msgid "Support"
+msgstr "Supporto"
+
 msgid "Policies"
 msgstr "Linee guida"
 
@@ -4118,11 +4117,23 @@ msgstr "Licenza del tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Autorizzi altri a condividere il tuo tema, a condizione di venire riconosciuto come autore?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera, anche a fini commerciali."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera solo per fini non commerciali."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Autorizzi altri a utilizzare il tuo tema per fini commerciali?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Autorizzi altri a utilizzare il tuo tema per creare opere derivate?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Il Licenziante consente ad altri di copiare, distribuire, visualizzare e utilizzare quest’opera, così come realizzare opere derivate basate su di essa."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Il Licenziante consente ad altri di copiare, distribuire e trasmettere solo copie inalterate di quest’opera — non sono consentite opere derivate."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Il tuo tema verrà distribuito con la seguente licenza:"
@@ -4156,6 +4167,9 @@ msgstr "Immagine di testata"
 
 msgid "Footer"
 msgstr "Immagine di pié di pagina"
+
+msgid "Select colors for your Theme."
+msgstr "Scegli i colori per il tuo tema."
 
 msgid "Foreground Text"
 msgstr "Testo in primo piano"
@@ -4222,6 +4236,9 @@ msgstr "Visualizza e abbonati al <a href=\"%(feed_url)s\">feed attività</a> del
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Partecipa alla discussione sui nostri <a href=\"%(forum_url)s\">forum</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Seleziona un’immagine di testata per il tema."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixel"
@@ -4456,6 +4473,32 @@ msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Decine di fantastiche emoji a portata di clic."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Si integra senza problemi con i siti di streaming più popolari."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Imposta la pagina che viene mostrata quando apri una nuova scheda."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Tante, bellissime emoji per ogni occasione, sempre a portata di clic."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+"Awesome Screenshot Plus è molto più di un semplice strumento per scattare istantanee: consente di aggiungere annotazioni e effetti decorativi all’immagine, archiviare sul Web e condividere i tuoi "
+"screenshot."
 
 msgid "Cannot diff a version against itself"
 msgstr "Non è possibile comparare una versione con se stessa"
@@ -6123,15 +6166,6 @@ msgstr "Sistemi operativi:"
 msgid "Applications:"
 msgstr "Applicazioni:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Invia una notifica al prossimo aggiornamento del componente aggiuntivo (aggiornamenti successivi non genereranno alcuna email)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Rimuovi il flag per la revisione del codice da parte di un amministratore"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Rimuovi il flag per la revisione dei contenuti da parte di un amministratore"
-
 msgid "Is more info requested?"
 msgstr "Sono richieste informazioni aggiuntive?"
 
@@ -6148,6 +6182,9 @@ msgstr "Qualcuno sta già revisionando questo tema."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "tema, recensore o commento"
+
+msgid "Private Whiteboard"
+msgstr "Bacheca privata"
 
 msgid "Keep review; remove flags"
 msgstr "Mantieni revisioni; rimuovi flag"
@@ -6175,6 +6212,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Sotto l’osservazione di un revisore."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Ha la spunta di approvazione automatica disattivata."
 
 msgid "Duplicate Submission"
 msgstr "Invio duplicato"
@@ -6245,7 +6285,7 @@ msgstr "Questa azione rifiuterà l’attuale versione del componente aggiuntivo 
 msgid "Confirm Approval"
 msgstr "Conferma approvazione"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 "L’ultima versione pubblica di questo componente aggiuntivo è stata approvata automaticamente. Questo è un semplice promemoria dell’avvenuta approvazione. Nessuna notifica verrà inviata allo "
 "sviluppatore."
@@ -6276,7 +6316,7 @@ msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
 msgid "Approve Content"
 msgstr "Approva contenuti"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "Legacy Add-ons"
@@ -6622,8 +6662,37 @@ msgstr ""
 "La bacheca è un pannello in cui sviluppatore e revisore possono scambiarsi informazioni rilevanti su qualunque versione del componente aggiuntivo. I suoi contenuti possono essere visualizzati e "
 "modificati da entrambi."
 
-msgid "Update the whiteboard"
-msgstr "Aggiorna bacheca"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+"La bacheca privata è riservata allo scambio di informazioni tra i revisori del componente aggiuntivo, indipendentemente dalla versione. Solo i revisori possono visualizzarla. La bacheca va "
+"utilizzata solo per scambi di informazione obiettivi e rilevanti."
+
+msgid "Update whiteboards"
+msgstr "Aggiorna le bacheche"
+
+msgid "More Actions"
+msgstr "Altre azioni"
+
+msgid "Notify me about new listed versions"
+msgstr "Avvisami riguardo alle nuove versioni elencate"
+
+msgid "Force-disable add-on"
+msgstr "Forza la disattivazione del componente aggiuntivo"
+
+msgid "Force-enable add-on"
+msgstr "Forza l'attivazione del componente aggiuntivo"
+
+msgid "Disable Auto-Approval"
+msgstr "Disabilita l'approvazione automatica"
+
+msgid "Enable Auto-Approval"
+msgstr "Attiva l’approvazione automatica"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Rimuovi il flag per la revisione del codice da parte di un amministratore"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Rimuovi il flag per la revisione dei contenuti da parte di un amministratore"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7524,8 +7593,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Premendo “elimina” il tuo account verrà <strong>eliminato definitivamente</strong>. Ciò significa che:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Non ti sarà più possibile accedere a %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Accedendo con questo indirizzo email nuovamente all'interno di %(site)s creerà un nuovo account che non è in alcun modo associato a questo account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Le tue recensioni e le tue valutazioni non verranno cancellate, ma non saranno più riconducibili al tuo profilo utente."

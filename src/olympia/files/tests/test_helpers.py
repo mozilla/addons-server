@@ -21,7 +21,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.files.templatetags.jinja_helpers import (
     DiffHelper, FileViewer, extract_file)
-from olympia.files.utils import SafeUnzip, get_all_files
+from olympia.files.utils import SafeZip, get_all_files
 
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
@@ -252,6 +252,7 @@ class TestFileViewer(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('File size is')
 
+    @pytest.mark.needs_locales_compilation
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size_unicode(self):
         with self.activate(locale='he'):
@@ -487,49 +488,48 @@ class TestDiffHelper(TestCase):
         open(path, 'w').write(data)
 
 
-class TestSafeUnzipFile(TestCase, amo.tests.AMOPaths):
+class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
 
-    # TODO(andym): get full coverage for existing SafeUnzip methods, most
+    # TODO(andym): get full coverage for existing SafeZip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
-        zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
-        self.assertRaises(forms.ValidationError, zip_file.is_valid)
+        with pytest.raises(forms.ValidationError):
+            SafeZip(self.xpi_path('langpack-localepicker'))
 
     def test_unzip_fatal(self):
-        zip_file = SafeUnzip(self.xpi_path('search.xml'))
-        self.assertRaises(zipfile.BadZipfile, zip_file.is_valid)
+        with pytest.raises(zipfile.BadZipfile):
+            SafeZip(self.xpi_path('search.xml'))
 
     def test_unzip_not_fatal(self):
-        zip_file = SafeUnzip(self.xpi_path('search.xml'))
-        assert not zip_file.is_valid(fatal=False)
+        zip_file = SafeZip(self.xpi_path('search.xml'), raise_on_failure=False)
+        assert not zip_file.is_valid()
 
-    def test_extract_path(self):
-        zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
+    def test_read(self):
+        zip_file = SafeZip(self.xpi_path('langpack-localepicker'))
         assert zip_file.is_valid()
-        assert 'locale browser de' in zip_file.extract_path('chrome.manifest')
+        assert 'locale browser de' in zip_file.read('chrome.manifest')
 
     def test_invalid_zip_encoding(self):
-        zip_file = SafeUnzip(self.xpi_path('invalid-cp437-encoding.xpi'))
         with pytest.raises(forms.ValidationError) as exc:
-            zip_file.is_valid()
+            SafeZip(self.xpi_path('invalid-cp437-encoding.xpi'))
 
         assert isinstance(exc.value, forms.ValidationError)
         assert exc.value.message.endswith(
             'Please make sure all filenames are utf-8 or latin1 encoded.')
 
     def test_not_secure(self):
-        zip_file = SafeUnzip(self.xpi_path('extension'))
+        zip_file = SafeZip(self.xpi_path('extension'))
         zip_file.is_valid()
         assert not zip_file.is_signed()
 
     def test_is_secure(self):
-        zip_file = SafeUnzip(self.xpi_path('signed'))
+        zip_file = SafeZip(self.xpi_path('signed'))
         zip_file.is_valid()
         assert zip_file.is_signed()
 
     def test_is_broken(self):
-        zip_file = SafeUnzip(self.xpi_path('signed'))
+        zip_file = SafeZip(self.xpi_path('signed'))
         zip_file.is_valid()
         zip_file.info_list[2].filename = 'META-INF/foo.sf'
         assert not zip_file.is_signed()

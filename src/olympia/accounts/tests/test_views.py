@@ -501,6 +501,7 @@ class TestWithUser(TestCase):
         response.set_cookie.assert_called_with(
             views.API_TOKEN_COOKIE,
             'fake-api-token',
+            domain=settings.SESSION_COOKIE_DOMAIN,
             max_age=settings.SESSION_COOKIE_AGE,
             secure=settings.SESSION_COOKIE_SECURE,
             httponly=settings.SESSION_COOKIE_HTTPONLY)
@@ -643,7 +644,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
-        token = response.cookies['api_auth_token'].value
+        token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
 
@@ -696,7 +697,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'code', 'state': self.fxa_state})
         self.assertRedirects(response, reverse('home'))
-        token = response.cookies['api_auth_token'].value
+        token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
         self.login_user.assert_called_with(mock.ANY, user, identity)

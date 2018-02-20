@@ -4,7 +4,7 @@ import copy
 from django.test.client import RequestFactory
 
 from elasticsearch_dsl import Search
-from mock import Mock
+from mock import Mock, patch
 from rest_framework import serializers
 
 from olympia import amo
@@ -60,7 +60,8 @@ class TestQueryFilter(FilterTestsBase):
             'match': {
                 'name_l10n_english': {
                     'query': 'tea pot', 'boost': 2.5,
-                    'analyzer': 'english'
+                    'analyzer': 'english',
+                    'operator': 'and'
                 }
             }
         }
@@ -71,7 +72,7 @@ class TestQueryFilter(FilterTestsBase):
                 'description_l10n_english': {
                     'query': 'tea pot',
                     'boost': 0.6,
-                    'analyzer': 'english'
+                    'analyzer': 'english',
                 }
             }
         }
@@ -115,6 +116,32 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
         assert expected in should
+
+    def test_no_fuzzy_if_query_too_long(self):
+        def do_test():
+            qs = self._filter(data={'q': 'this search query is too long.'})
+            should = qs['query']['function_score']['query']['bool']['should']
+            return should
+
+        # Make sure there is no fuzzy clause (the search query is too long).
+        should = do_test()
+        expected = {
+            'match': {
+                'name': {
+                    'boost': 2, 'prefix_length': 4,
+                    'query': 'this search query is too long.',
+                    'fuzziness': 'AUTO',
+                }
+            }
+        }
+        assert expected not in should
+
+        # Re-do the same test but mocking the limit to a higher value, the
+        # fuzzy query should be present.
+        with patch.object(
+                SearchQueryFilter, 'MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH', 100):
+            should = do_test()
+            assert expected in should
 
     def test_webextension_boost(self):
         create_switch('boost-webextensions-in-search')
@@ -528,7 +555,8 @@ class TestCombinedFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 2.5, 'query': u'test'
+                    'analyzer': 'english', 'boost': 2.5, 'query': u'test',
+                    'operator': 'and'
                 }
             }
         }

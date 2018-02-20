@@ -57,6 +57,7 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
+from olympia.versions import compare
 from olympia.versions.models import Version
 from olympia.zadmin.models import ValidationResult, get_config
 
@@ -243,12 +244,14 @@ def _get_activities(request, action):
 
 
 def _get_items(action, addons):
-    filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-                   status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
-                           amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
-                   collections=(amo.LOG.ADD_TO_COLLECTION,
-                                amo.LOG.REMOVE_FROM_COLLECTION,),
-                   reviews=(amo.LOG.ADD_RATING,))
+    filters = {
+        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
+        'status': (amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
+                   amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
+        'collections': (amo.LOG.ADD_TO_COLLECTION,
+                        amo.LOG.REMOVE_FROM_COLLECTION,),
+        'reviews': (amo.LOG.ADD_RATING,)
+    }
 
     filter_ = filters.get(action)
     items = (ActivityLog.objects.for_addons(addons)
@@ -288,7 +291,7 @@ def feed(request, addon_id=None):
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
 
-            if not acl.check_addon_ownership(request, addons, viewer=True,
+            if not acl.check_addon_ownership(request, addons, dev=True,
                                              ignore_disabled=True):
                 raise PermissionDenied
         else:
@@ -405,8 +408,7 @@ def enable(request, addon_id, addon):
 def cancel(request, addon_id, addon):
     if addon.status == amo.STATUS_NOMINATED:
         addon.update(status=amo.STATUS_NULL)
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
-                           addon)
+        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
@@ -537,8 +539,7 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': ugettext('Validate Add-on'),
-                   'new_addon_form': forms.StandaloneValidationForm(
-                       None, None, request=request)})
+                   'new_addon_form': forms.DistributionChoiceForm()})
 
 
 @login_required
@@ -547,11 +548,10 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': ugettext('Check Add-on Compatibility'),
-                   'new_addon_form': forms.StandaloneValidationForm(
-                       None, None, request=request)})
+                   'new_addon_form': forms.DistributionChoiceForm()})
 
 
-def handle_upload(filedata, user, channel, app_id=None, version_id=None,
+def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
@@ -559,8 +559,8 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         filedata, filedata.name, filedata.size,
         automated_signing=automated_signing, addon=addon)
     log.info('FileUpload created: %s' % upload.uuid.hex)
-    if user.is_authenticated():
-        upload.user = user
+    if request.user.is_authenticated():
+        upload.user = request.user
         upload.save()
     if app_id and version_id:
         # If app_id and version_id are present, we are dealing with a
@@ -574,7 +574,10 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
+        tasks.validate_and_submit(
+            addon, upload, channel=channel,
+            use_autograph=waffle.flag_is_active(
+                request, 'activate-autograph-signing'))
     else:
         tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
@@ -589,7 +592,7 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
     app_id = request.POST.get('app_id')
     version_id = request.POST.get('version_id')
     upload = handle_upload(
-        filedata=filedata, user=request.user, app_id=app_id,
+        filedata=filedata, request=request, app_id=app_id,
         version_id=version_id, addon=addon, is_standalone=is_standalone,
         channel=channel)
     if addon:
@@ -769,7 +772,8 @@ def json_upload_detail(request, upload, addon_slug=None):
             plat_exclude = [str(p) for p in plat_exclude]
 
             # Does the version number look like it's beta?
-            result['beta'] = is_beta(pkg.get('version', ''))
+            result['beta'] = (is_beta(pkg.get('version', '')) and
+                              waffle.switch_is_active('beta-versions'))
             result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
@@ -1106,10 +1110,14 @@ def version_edit(request, addon_id, addon, version_id):
                     _log_max_version_change(addon, version, form.instance)
 
         if 'version_form' in data:
+            # VersionForm.save() clear the pending info request if the
+            # developer specifically asked for it, but we've got additional
+            # things to do here that depend on it.
+            had_pending_info_request = bool(addon.pending_info_request)
             data['version_form'].save()
+
             if 'approvalnotes' in version_form.changed_data:
-                if version.has_info_request:
-                    version.update(has_info_request=False)
+                if had_pending_info_request:
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
                                    request.user, version)
                 else:
@@ -1120,8 +1128,7 @@ def version_edit(request, addon_id, addon, version_id):
                     version_form.cleaned_data['source']):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
-                if version.has_info_request:
-                    version.update(has_info_request=False)
+                if had_pending_info_request:
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
                                    request.user, version)
                 else:
@@ -1191,18 +1198,18 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False):
+def auto_sign_file(file_, use_autograph=False, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
+        sign_file(file_, use_autograph=use_autograph)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_)
+        sign_file(file_, use_autograph=use_autograph)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1214,10 +1221,10 @@ def auto_sign_file(file_, is_beta=False):
         ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
 
 
-def auto_sign_version(version, **kwargs):
+def auto_sign_version(version, use_autograph=False, **kwargs):
     # Sign all the unapproved files submitted, one for each platform.
     for file_ in version.files.exclude(status=amo.STATUS_PUBLIC):
-        auto_sign_file(file_, **kwargs)
+        auto_sign_file(file_, use_autograph=use_autograph, **kwargs)
 
 
 @dev_required
@@ -1261,6 +1268,22 @@ def version_stats(request, addon_id, addon):
         data[id_]['files'] = file_count
         data[id_]['reviews'] = data[id_].pop('review_count')
     return data
+
+
+def get_next_version_number(addon):
+    if not addon:
+        return '1.0'
+    last_version = Version.unfiltered.filter(addon=addon).last()
+    version_int_parts = compare.dict_from_int(last_version.version_int)
+
+    version_counter = 1
+    while True:
+        next_version = '%s.0' % (version_int_parts['major'] + version_counter)
+        if not Version.unfiltered.filter(addon=addon,
+                                         version=next_version).exists():
+            return next_version
+        else:
+            version_counter += 1
 
 
 @login_required
@@ -1342,7 +1365,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug, version.id]
         elif addon:
             is_beta = (data.get('beta') and
-                       channel == amo.RELEASE_CHANNEL_LISTED)
+                       channel == amo.RELEASE_CHANNEL_LISTED and
+                       waffle.switch_is_active('beta-versions'))
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1359,9 +1383,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 platforms=data.get('supported_platforms', []),
                 source=data['source'],
                 channel=channel,
-                parsed_data=data['parsed_data'])
+                parsed_data=data['parsed_data'],
+                user=request.user)
             version = addon.find_latest_version(channel=channel)
-            AddonUser(addon=addon, user=request.user).save()
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
@@ -1382,7 +1406,12 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version, is_beta=is_beta)
+        use_autograph = waffle.flag_is_active(
+            request, 'activate-autograph-signing')
+        auto_sign_version(
+            version,
+            is_beta=is_beta,
+            use_autograph=use_autograph)
         next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
                     else next_finish)
@@ -1406,7 +1435,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                        get_config('submit_notification_warning'),
                    'submit_page': submit_page,
                    'channel': channel,
-                   'channel_choice_text': channel_choice_text})
+                   'channel_choice_text': channel_choice_text,
+                   'version_number':
+                       get_next_version_number(addon) if wizard else None})
 
 
 @login_required
@@ -1573,6 +1604,7 @@ def _submit_finish(request, addon, version, is_file=False):
         # We can use locale-prefixed URLs because the submitter probably
         # speaks the same language by the time he/she reads the email.
         context = {
+            'addon_name': unicode(addon.name),
             'app': unicode(request.APP.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
@@ -1676,8 +1708,7 @@ def request_review(request, addon_id, addon):
     else:
         messages.success(request, _(
             'You must provide further details to proceed.'))
-    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
-                       addon)
+    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     return redirect(addon.get_dev_url('versions'))
 
 

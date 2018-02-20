@@ -24,7 +24,6 @@ class AddonIndexer(BaseSearchIndexer):
     or sorting."""
     hidden_fields = (
         '*.raw',
-        '*_sort',
         'boost',
         'hotness',
         # Translated content that is used for filtering purposes is stored
@@ -152,8 +151,6 @@ class AddonIndexer(BaseSearchIndexer):
                             'raw': {'type': 'keyword'}
                         },
                     },
-                    # TODO: Can be removed once we have `name.raw` indexed
-                    'name_sort': {'type': 'keyword'},
                     'persona': {
                         'type': 'object',
                         'properties': {
@@ -381,9 +378,5 @@ class AddonIndexer(BaseSearchIndexer):
         for i, preview in enumerate(obj.all_previews):
             data['previews'][i].update(
                 cls.extract_field_raw_translations(preview, 'caption'))
-
-        # Finally, add the special sort field, coercing the current translation
-        # into an unicode object first.
-        data['name_sort'] = unicode(obj.name).lower()
 
         return data

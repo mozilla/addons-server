@@ -4,6 +4,8 @@ import sys
 
 from urlparse import urljoin
 
+import waffle
+
 from django.conf import settings
 from django.utils import translation
 
@@ -12,7 +14,7 @@ import requests
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
+from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -179,7 +181,8 @@ def fetch_langpack(url, xpi, **kw):
                       'it has no valid compatible apps.'.format(**data))
             return
 
-        is_beta = amo.VERSION_BETA.search(data['version'])
+        is_beta = (amo.VERSION_BETA.search(data['version']) and
+                   waffle.switch_is_active('beta-versions'))
         owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:
@@ -217,8 +220,7 @@ def fetch_langpack(url, xpi, **kw):
                             u'{name!r}.'.format(**data))
 
             addon = Addon.from_upload(
-                upload, [amo.PLATFORM_ALL.id], parsed_data=data)
-            AddonUser(addon=addon, user=owner).save()
+                upload, [amo.PLATFORM_ALL.id], parsed_data=data, user=owner)
             version = addon.versions.get()
 
             if addon.default_locale.lower() == lang.lower():
@@ -249,7 +251,8 @@ def fetch_langpack(url, xpi, **kw):
             # Not `version.files.update`, because we need to trigger save
             # hooks.
             file_.update(status=amo.STATUS_PUBLIC)
-        sign_file(file_)
+
+        sign_file(file_, use_autograph=False)
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC

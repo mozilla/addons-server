@@ -15,6 +15,7 @@ import time
 import unicodedata
 import urllib
 import urlparse
+import string
 
 import django.core.mail
 
@@ -390,6 +391,21 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
+def normalize_string(value, strip_puncutation=False):
+    """Normalizes a unicode string.
+
+     * decomposes unicode characters
+     * strips whitespaces, newlines and tabs
+     * optionally removes puncutation
+    """
+    value = unicodedata.normalize('NFD', force_text(value))
+    value = value.encode('utf-8', 'ignore')
+
+    if strip_puncutation:
+        value = value.translate(None, string.punctuation)
+    return force_text(' '.join(value.split()))
+
+
 def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
                    message=validate_slug.message, code=validate_slug.code):
     """
@@ -461,32 +477,27 @@ def clean_nl(string):
     return serializer.render(stream)
 
 
-def resize_image(src, dst, size=None, remove_src=True, locally=False):
-    """Resizes and image from src, to dst. Returns width and height.
+def resize_image(source, destination, size=None):
+    """Resizes and image from src, to dst.
+    Returns a tuple of new width and height, original width and height.
 
-    When locally is True, src and dst are assumed to reside
-    on the local disk (not in the default storage). When dealing
-    with local files it's up to you to ensure that all directories
+    When dealing with local files it's up to you to ensure that all directories
     exist leading up to the dst filename.
     """
-    if src == dst:
-        raise Exception("src and dst can't be the same: %s" % src)
+    if source == destination:
+        raise Exception(
+            "source and destination can't be the same: %s" % source)
 
-    open_ = open if locally else storage.open
-    delete = os.unlink if locally else storage.delete
-
-    with open_(src, 'rb') as fp:
+    with storage.open(source, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
+        original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    with open_(dst, 'wb') as fp:
+    with storage.open(destination, 'wb') as fp:
         im.save(fp, 'png')
 
-    if remove_src:
-        delete(src)
-
-    return im.size
+    return (im.size, original_size)
 
 
 def remove_icons(destination):
@@ -565,10 +576,13 @@ def to_language(locale):
 def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
-    # Special fake language can just act like English for formatting and such
-    if not lang or lang in ('dbg', 'dbr', 'dbl'):
+    # Special fake language can just act like English for formatting and such.
+    # Do the same for 'cak' because it's not in http://cldr.unicode.org/ and
+    # therefore not supported by Babel - trying to fake the class leads to a
+    # rabbit hole of more errors because we need valid locale data on disk, to
+    # get decimal formatting, plural rules etc.
+    if not lang or lang in ('cak', 'dbg', 'dbr', 'dbl'):
         lang = 'en'
-
     return Locale.parse(translation.to_locale(lang))
 
 

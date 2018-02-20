@@ -1,12 +1,17 @@
 import random
 import uuid
 
+from django import forms
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils.translation import ugettext
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
+from olympia.amo.utils import normalize_string
+# from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
@@ -92,3 +97,51 @@ def get_creatured_ids(category, lang=None):
     random.shuffle(others)
     random.shuffle(per_locale)
     return map(int, filter(None, per_locale + others))
+
+
+def verify_mozilla_trademark(name, user):
+    skip_trademark_check = (
+        user and user.is_authenticated() and user.email and
+        user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
+
+    def _check(name):
+        name = normalize_string(name, strip_puncutation=True).lower()
+
+        contains_trademark_symbol = any(
+            symbol in name for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
+
+        allowed_symbols = tuple(
+            ' for {}'.format(symbol)
+            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
+
+        violates_trademark = False
+
+        if contains_trademark_symbol:
+            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
+                violates_trademark = (
+                    name.count(symbol) > 1 or not
+                    name.endswith(allowed_symbols))
+
+                if violates_trademark:
+                    raise forms.ValidationError(ugettext(
+                        u'Add-on names cannot contain the Mozilla or '
+                        u'Firefox trademarks.'))
+
+    # TODO: Deactivated for now
+    if not skip_trademark_check:
+        pass
+    #     errors = LocaleList()
+
+    #     if not isinstance(name, dict):
+    #         _check(name)
+    #     else:
+    #         for locale, localized_name in name.items():
+    #             try:
+    #                 _check(localized_name)
+    #             except forms.ValidationError as exc:
+    #                 errors.extend(exc.messages, locale)
+
+    #     if errors:
+    #         raise LocaleValidationError(errors)
+
+    return name

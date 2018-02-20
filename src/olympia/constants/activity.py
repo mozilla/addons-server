@@ -76,8 +76,8 @@ class USER_ENABLE(_LOG):
 
 class CHANGE_STATUS(_LOG):
     id = 12
-    # L10n: {0} is the status
-    format = _(u'{addon} status changed to {0}.')
+    # L10n: {status} is the status
+    format = _(u'{addon} status changed to {status}.')
     keep = True
 
 
@@ -584,6 +584,15 @@ class REJECT_CONTENT(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
+
+
+class CLEAR_INFO_REQUEST(_LOG):
+    id = 149
+    format = _(u'{addon} information request removed.')
+    short = _(u'Information request removed')
+    keep = True
+    reviewer_review_action = True
+    review_queue = True
 
 
 LOGS = [x for x in vars().values()

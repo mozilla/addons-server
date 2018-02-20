@@ -5,6 +5,8 @@ import time
 
 from datetime import datetime, timedelta
 
+from waffle.testutils import override_switch
+
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -13,15 +15,17 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
+import pytest
 from mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
-    AddonFeatureCompatibility, AddonUser, AppSupport, Category, CompatOverride,
-    CompatOverrideRange, DeniedGuid, DeniedSlug, FrozenAddon,
-    IncompatibleVersions, Persona, Preview, track_addon_status_change)
+    AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
+    Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
+    FrozenAddon, IncompatibleVersions, Persona, Preview,
+    track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
@@ -501,7 +505,8 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(
             None, exclude=(amo.STATUS_BETA,)).id == v2.id
 
-    def test_find_latest_verison_dont_exclude_anything(self):
+    @override_switch('beta-versions', active=True)
+    def test_find_latest_version_dont_exclude_anything_with_beta(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = version_factory(addon=addon, version='1.0')
@@ -519,7 +524,23 @@ class TestAddonModels(TestCase):
         # Should be v3 since we don't exclude anything.
         assert addon.find_latest_version(None, exclude=()).id == v3.id
 
-    def test_find_latest_verison_dont_exclude_anything_with_channel(self):
+    def test_find_latest_version_dont_exclude_anything(self):
+        addon = Addon.objects.get(pk=3615)
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(2))
+
+        assert addon.find_latest_version(None, exclude=()).id == v1.id
+
+        v2 = version_factory(addon=addon, version='2.0',
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
+
+        # Should be v2 since we don't exclude anything.
+        assert addon.find_latest_version(None, exclude=()).id == v2.id
+
+    @override_switch('beta-versions', active=True)
+    def test_find_latest_version_dont_exclude_anything_w_channel_w_beta(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = version_factory(addon=addon, version='1.0')
@@ -544,6 +565,27 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v3.id
 
+    def test_find_latest_version_dont_exclude_anything_with_channel(self):
+        addon = Addon.objects.get(pk=3615)
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(3))
+
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v1.id
+
+        v2 = version_factory(addon=addon, version='2.0',
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
+
+        version_factory(
+            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Should be v2 since we don't exclude anything, but do have a channel
+        # set to listed, and version 4.0 is unlisted.
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v2.id
+
     def test_current_version_unsaved(self):
         addon = Addon()
         addon._current_version = Version()
@@ -553,9 +595,14 @@ class TestAddonModels(TestCase):
         addon = Addon()
         assert addon.find_latest_version(None) is None
 
-    def test_current_beta_version(self):
+    @override_switch('beta-versions', active=True)
+    def test_current_beta_version_with_beta(self):
         addon = Addon.objects.get(pk=5299)
         assert addon.current_beta_version.id == 50000
+
+    def test_current_beta_version(self):
+        addon = Addon.objects.get(pk=5299)
+        assert addon.current_beta_version is None
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
@@ -1429,6 +1476,73 @@ class TestAddonModels(TestCase):
         user = UserProfile.objects.get(pk=2519)
         assert not addon.has_author(user)
 
+    def test_auto_approval_disabled_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_disabled is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_disabled is False
+        assert addon.auto_approval_disabled is False
+        # Flag present, value is True: True.
+        flags.update(auto_approval_disabled=True)
+        assert addon.auto_approval_disabled is True
+
+    def test_needs_admin_code_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_code_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_code_review is False
+        assert addon.needs_admin_code_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_code_review=True)
+        assert addon.needs_admin_code_review is True
+
+    def test_needs_admin_content_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_content_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_content_review is False
+        assert addon.needs_admin_content_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_content_review=True)
+        assert addon.needs_admin_content_review is True
+
+    def test_pending_info_request_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.pending_info_request is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.pending_info_request is None
+        assert addon.pending_info_request is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(pending_info_request=in_the_past)
+        assert addon.pending_info_request == in_the_past
+
+    def test_expired_info_request_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.expired_info_request is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.pending_info_request is None
+        assert addon.expired_info_request is None
+        # Flag present, value is a date in the past.
+        in_the_past = self.days_ago(1)
+        flags.update(pending_info_request=in_the_past)
+        assert addon.expired_info_request
+
+        # Flag present, value is a date in the future.
+        in_the_future = datetime.now() + timedelta(days=2)
+        flags.update(pending_info_request=in_the_future)
+        assert not addon.expired_info_request
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
@@ -1529,6 +1643,7 @@ class TestAddonNomination(TestCase):
         assert v.nomination == old_ver.nomination
         ver += 1
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         a.update(status=amo.STATUS_NULL)
@@ -1883,6 +1998,7 @@ class TestCategoryModel(TestCase):
             cat = Category(type=t, slug='omg')
             assert cat.get_url_path()
 
+    @pytest.mark.needs_locales_compilation
     def test_name_from_constants(self):
         category = Category(
             type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id,
@@ -2507,68 +2623,6 @@ class TestAddonWatchDisabled(TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
-
-
-class TestAddonWatchDeveloperNotes(TestCase):
-
-    def make_addon(self, **kwargs):
-        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
-                      **kwargs)
-        addon.save()
-        addon.versions.create(has_info_request=True)
-        addon.versions.create(has_info_request=False)
-        addon.versions.create(has_info_request=True)
-        return addon
-
-    def assertHasInfoSet(self, addon):
-        assert any([v.has_info_request for v in addon.versions.all()])
-
-    def assertHasInfoNotSet(self, addon):
-        assert all([not v.has_info_request for v in addon.versions.all()])
-
-    def test_has_info_save(self):
-        """Test saving without a change doesn't clear has_info_request."""
-        addon = self.make_addon()
-        self.assertHasInfoSet(addon)
-        addon.save()
-        self.assertHasInfoSet(addon)
-
-    def test_has_info_update_developer_comments(self):
-        """Test saving with a change to developer_comments clears
-        has_info_request."""
-        addon = self.make_addon()
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoNotSet(addon)
-
-    def test_has_info_update_developer_comments_again(self):
-        """Test saving a change to developer_comments when developer_comments
-        was already set clears has_info_request (developer_comments is a
-        PurifiedField so it is really just an id)."""
-        addon = self.make_addon(developer_comments='Wat things like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoNotSet(addon)
-
-    def test_has_info_update_developer_comments_no_change(self):
-        """Test saving without a change to developer_comments doesn't clear
-        has_info_request."""
-        addon = self.make_addon(developer_comments='Things are thing-like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = 'Things are thing-like.'
-        addon.save()
-        self.assertHasInfoSet(addon)
-
-    def test_has_info_remove_developer_comments(self):
-        """Test saving with an empty developer_comments doesn't clear
-        has_info_request."""
-        addon = self.make_addon(developer_comments='Things are thing-like.')
-        self.assertHasInfoSet(addon)
-        addon.developer_comments = ''
-        addon.save()
-        self.assertHasInfoSet(addon)
 
 
 class TestTrackAddonStatusChange(TestCase):

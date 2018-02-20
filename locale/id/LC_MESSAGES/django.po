@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: 2017-11-16 07:48+0000\n"
 "Last-Translator: Romi Hardiyanto <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -162,6 +162,9 @@ msgid "Listed"
 msgstr "Terdaftar"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1009,6 +1012,10 @@ msgstr "Masukkan nama pengguna yang benar, terdiri dari huruf, angka, garis bawa
 msgid "This slug cannot be used."
 msgstr "Nama ini tidak dapat digunakan."
 
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "URL ini telah dipakai oleh koleksi lain"
+
 msgid "Name"
 msgstr "Nama"
 
@@ -1731,8 +1738,9 @@ msgstr "{addon} dinonaktifkan."
 msgid "{addon} enabled."
 msgstr "{addon} diaktifkan."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon} status diubah menjadi {0}."
 
 msgid "{version} added to {addon}."
@@ -2042,13 +2050,6 @@ msgstr "Tidak terdaftar"
 
 msgid "Developer"
 msgstr "Pengembang"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Pemirsa"
-
-msgid "Support"
-msgstr "Dukungan"
 
 msgid "Extension"
 msgstr "Ekstensi"
@@ -2589,12 +2590,6 @@ msgstr "Validasi gagal dikesampingkan"
 msgid "Submit my add-on for manual review."
 msgstr "Kirimkan pengaya saya untuk diulas manual."
 
-msgid "Do not list my add-on on this site"
-msgstr "Jangan tambahkan pengaya saya di situs ini"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Periksa pilihan ini jika anda bermaksud mendistribusikan pengaya anda sendiri dan hanya memerlukannya ditandatangani oleh Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
 
@@ -2732,7 +2727,8 @@ msgstr "Memeriksa Kompatibilitas Pengaya"
 msgid "You cannot submit this type of add-on"
 msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -2991,9 +2987,8 @@ msgstr "Tentang peran penulis"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Pengaya bisa memiliki sejumlah penulis dengan 3 peran yang memungkinkan:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola semua aspek pendaftaran pengaya, termasuk menambahkan dan menghapus penulis "
 "lainnya</li> <li><b>Pengembang:</b> Dapat mengelola semua aspek pendaftaran pengaya, kecuali menambahkan dan menghapus penulsi lain dan mengelola pembayaran</li> <li><b>Pengamat:</b> Dapat melihat "
@@ -3319,12 +3314,6 @@ msgstr "Tambahkan Tangkapan layar..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Dapatkah orang lain membagikan Tema anda, asalkan anda diberi kreditasi?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk untuk tujuan komersial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya untuk tujuan non-komersial saja."
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Bisakah orang lain menggunakan Tema anda secara komersial?"
@@ -3333,17 +3322,11 @@ msgstr "Bisakah orang lain menggunakan Tema anda secara komersial?"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Dapatkah orang lain membuat karya derivatif dari Tema anda?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk membuat karya turunan berdasarkan itu."
-
 msgid "Yes, as long as they share alike"
 msgstr "Iya, sepanjang yang mereka bagi mirip"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Pemberi lisensi mengizinkan orang lain untuk mendistribusikan karya turunan hanya di bawah lisensi yang sama atau yang cocok dengan yang mengatur karya pemberi lisensi."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan dan memancarkan hanya salinan yang belum diubah dari karya — bukan karya turunan berdasarkan itu."
 
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
@@ -3351,6 +3334,10 @@ msgstr "Tema anda akan dirilis di bawah lisensi berikut:"
 
 msgid "Select a different license."
 msgstr "Pilih lisensi yang berbeda."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Diperlukan lebih banyak informasi"
 
 msgid "Tests"
 msgstr "Tes"
@@ -3513,6 +3500,9 @@ msgstr "Harap hanya menggunakan huruf, angka, garis bawah, dan garis sambung dal
 msgid "Summary:"
 msgstr "Звіт"
 
+msgid "required"
+msgstr "wajib diisi"
+
 msgid "This add-on is experimental"
 msgstr "Pengaya ini merupakan percobaan"
 
@@ -3597,17 +3587,23 @@ msgid "You’re done!"
 msgstr "Selesai!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Catatan Versi / Catatan untuk Pengulas"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Catatan Versi"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Catatan Versi / Catatan untuk Pengulas"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3679,10 +3675,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 "Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas anda."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Membuat Tema Baru"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 
@@ -3691,6 +3683,14 @@ msgstr "Hanya publikasikan versi ini ke saluran beta saya."
 
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Membuat Tema Baru"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Membuat Tema Baru"
 
 #, fuzzy
 msgid "Submit File"
@@ -3708,11 +3708,13 @@ msgstr "Tema dihapus."
 msgid "Theme generator"
 msgstr "Lisensi Tema"
 
-msgid "Select a header image for your Theme."
-msgstr "Pilih gambar judul untuk Tema Anda."
+#, fuzzy
+msgid "Theme name"
+msgstr "nama tema"
 
-msgid "required"
-msgstr "wajib diisi"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "Pilih gambar judul untuk Tema Anda."
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3726,44 +3728,45 @@ msgstr "Diluruskan ke kanan atas"
 msgid "Select a different header image"
 msgstr "Pilih gambar judul yang berbeda"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Pilih warna untuk Tema anda."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ini adalah warna tab teks."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3771,7 +3774,7 @@ msgid "optional"
 msgstr "(opsional)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Layangkan untuk Pratinjau"
 
 msgid "Back"
@@ -3782,8 +3785,8 @@ msgid "Uploading Theme"
 msgstr "Tema Yang Akan Datang"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Unggah Berkas Lainnya"
+msgid "Finish Theme"
+msgstr "%s Tema"
 
 msgid "API Credentials"
 msgstr "Keterangan Pengenal API"
@@ -4011,6 +4014,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Buku Alamat & Kontak"
 
+msgid "Support"
+msgstr "Dukungan"
+
 #, fuzzy
 msgid "Policies"
 msgstr "Правила додатків"
@@ -4231,11 +4237,23 @@ msgstr "Lisensi Tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Dapatkah orang lain membagikan Tema anda, asalkan anda diberi kreditasi?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk untuk tujuan komersial."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya untuk tujuan non-komersial saja."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Bisakah orang lain menggunakan Tema anda secara komersial?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Dapatkah orang lain membuat karya derivatif dari Tema anda?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk membuat karya turunan berdasarkan itu."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan dan memancarkan hanya salinan yang belum diubah dari karya — bukan karya turunan berdasarkan itu."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Tema anda akan dirilis di bawah lisensi berikut:"
@@ -4269,6 +4287,9 @@ msgstr "Judul"
 
 msgid "Footer"
 msgstr "Catatan Kaki"
+
+msgid "Select colors for your Theme."
+msgstr "Pilih warna untuk Tema anda."
 
 msgid "Foreground Text"
 msgstr "Teks Latar depan"
@@ -4334,6 +4355,9 @@ msgstr "Lihat dan berlangganan <a href=\"%(feed_url)s\">umpan aktivitas</a> tema
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Bergabunglah dengan percakapan di <a href=\"%(forum_url)s\">forum</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Pilih gambar judul untuk Tema Anda."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixel"
@@ -4583,6 +4607,34 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+#, fuzzy
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+#, fuzzy
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
@@ -6250,17 +6302,6 @@ msgstr "Sistem operasi:"
 msgid "Applications:"
 msgstr "Aplikasi:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Beritahu saya jika lain kali pengaya ini diperbarui. (Pembaruan berikutnya tidak akan menghasilkan surel)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Bersihkan Penandaan Ulasan Admin"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Bersihkan Penandaan Ulasan Admin"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "Bersihkan tanda permintaan info lebih lanjut"
@@ -6278,6 +6319,10 @@ msgstr "Orang lain mengulas tema ini."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "tema, pengulas, atau komentar"
+
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Papan tulis"
 
 msgid "Keep review; remove flags"
 msgstr "Terus mengulas; hilangkan penanda"
@@ -6308,6 +6353,9 @@ msgstr "WebExtension"
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "pengaya saya diulas oleh seorang penyunting"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "Menggandakan Pendaftaran"
@@ -6378,7 +6426,7 @@ msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 msgid "Confirm Approval"
 msgstr "Penundaan persetujuan"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6414,7 +6462,7 @@ msgstr "Berikan komentar untuk versi ini.  Penulis tidak akan dapat melihatnya."
 msgid "Approve Content"
 msgstr "Setujui / Tolak"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6786,8 +6834,41 @@ msgstr ""
 "               pengaya ini (apapun versinya), antara para pengaya dan\n"
 "               penyunting. Ini dapat dilihat dan disunting oleh kedua belah pihak."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Perbarui papan tulis"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Tindakan Lainnya:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Versi yang dihidupkan kembali"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Status Persetujuan"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Bersihkan Penandaan Ulasan Admin"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Bersihkan Penandaan Ulasan Admin"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7692,8 +7773,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Dengan mengklik \"hapus\" akun anda akan <strong>dihapus secara permanen</strong>. Artinya:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Anda tidak akan dapat masuk ke %(site)s lagi."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan peringkat anda tidak akan dihapus, tapi semuanya tidak akan diasosiasikan dengan anda lagi."

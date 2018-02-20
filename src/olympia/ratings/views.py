@@ -81,8 +81,7 @@ def review_list(request, addon, review_id=None, user_id=None):
             'is_admin': is_admin,
             'is_reviewer': acl.action_allowed(
                 request, amo.permissions.RATINGS_MODERATE),
-            'is_author': acl.check_addon_ownership(request, addon, viewer=True,
-                                                   dev=True, support=True),
+            'is_author': acl.check_addon_ownership(request, addon, dev=True),
         }
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:

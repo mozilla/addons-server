@@ -31,6 +31,10 @@
         initReviewActions();
     }
 
+    if ($('#extra-review-actions').length) {
+        initExtraReviewActions();
+    }
+
     if($('#monthly.highcharts-container').length) {
         initPerformanceStats();
     }
@@ -187,6 +191,85 @@ function initReviewActions() {
         }
     }
     check_receipt();
+}
+
+function initExtraReviewActions() {
+    /* Inline actions that should trigger a XHR and modify the form element
+     * accordingly.
+     */
+    // Checkbox-style actions.
+    $('#notify_new_listed_versions').click(_pd(function() {
+        var $input = $(this).prop('disabled', true);  // Prevent double-send.
+        var checked = !$input.prop('checked');  // It's already changed.
+        var apiUrl;
+        if (checked) {
+            apiUrl = $input.data('api-url-unsubscribe');
+        } else {
+            apiUrl = $input.data('api-url-subscribe');
+        }
+        var token = $input.parents('form.more-actions').data('api-token');
+        $.ajax({
+            url: apiUrl,
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $input.prop('disabled', false);
+                $input.prop('checked', !checked)
+            },
+         });
+    }));
+
+    // One-off-style buttons
+    $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request').click(_pd(function() {
+        var $button = $(this).prop('disabled', true);  // Prevent double-send.
+        var apiUrl = $button.data('api-url');
+        var token = $button.parents('form.more-actions').data('api-token');
+        var flagType = $button.data('api-flag');
+        var data = null;
+        if (flagType) {
+            data = JSON.stringify({
+                flag_type: flagType,
+            });
+        }
+        $.ajax({
+            url: apiUrl,
+            data: data,
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $button.remove();
+            },
+         });
+    }));
+
+    // Toggle-style buttons.
+    $('#force_disable_addon, #force_enable_addon, #disable_auto_approval, #enable_auto_approval').click(_pd(function() {
+        var $button = $(this).prop('disabled', true);  // Prevent double-send.
+        var $other_button = $($button.data('toggle-button-selector'));
+        var apiUrl = $button.data('api-url');
+        var token = $button.parents('form.more-actions').data('api-token');
+        $.ajax({
+            url: apiUrl,
+            type: 'post',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
+            },
+            processData: false,
+            contentType: 'application/json',
+            success: function() {
+                $button.prop('disabled', false).parents('li').addClass('hidden').hide();
+                $other_button.parents('li').removeClass('hidden').show();
+            },
+         });
+    }));
 }
 
 function insertAtCursor(textarea, text) {

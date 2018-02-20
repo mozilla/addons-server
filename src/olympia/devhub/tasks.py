@@ -12,6 +12,8 @@ from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
 
+import waffle
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
@@ -74,26 +76,28 @@ def validate(file_, listed=None, subtask=None, synchronous=False):
         return result
 
 
-def validate_and_submit(addon, file_, channel):
+def validate_and_submit(addon, file_, channel, use_autograph=False):
     return validate(
         file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(addon.pk, file_.pk, channel))
+        subtask=submit_file.si(
+            addon.pk, file_.pk, channel, use_autograph=use_autograph))
 
 
 @task
 @write
-def submit_file(addon_pk, upload_pk, channel):
+def submit_file(addon_pk, upload_pk, channel, use_autograph=False):
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(addon, upload, channel)
+        create_version_for_upload(
+            addon, upload, channel, use_autograph=use_autograph)
     else:
         log.info('Skipping version creation for {upload_uuid} that failed '
                  'validation'.format(upload_uuid=upload.uuid))
 
 
 @atomic
-def create_version_for_upload(addon, upload, channel):
+def create_version_for_upload(addon, upload, channel, use_autograph=False):
     """Note this function is only used for API uploads."""
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
@@ -108,7 +112,8 @@ def create_version_for_upload(addon, upload, channel):
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
-        beta = bool(upload.version) and is_beta(upload.version)
+        beta = (bool(upload.version) and is_beta(upload.version) and
+                waffle.switch_is_active('beta-versions'))
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
             is_beta=beta)
@@ -118,7 +123,8 @@ def create_version_for_upload(addon, upload, channel):
         if (addon.status == amo.STATUS_NULL and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        auto_sign_version(version, is_beta=version.is_beta)
+        auto_sign_version(
+            version, is_beta=version.is_beta, use_autograph=use_autograph)
 
 
 # Override the validator's stock timeout exception so that it can
@@ -561,8 +567,8 @@ def run_addons_linter(path, listed=True):
             .format(path))
 
     stdout, stderr = (
-        tempfile.TemporaryFile(dir=settings.TMP_PATH),
-        tempfile.TemporaryFile(dir=settings.TMP_PATH))
+        tempfile.TemporaryFile(),
+        tempfile.TemporaryFile())
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(
@@ -614,49 +620,42 @@ def track_validation_stats(json_result, addons_linter=False):
 
 @task
 @set_modified_on
-def resize_icon(src, dst, size, locally=False, **kw):
+def resize_icon(source, dest_folder, target_sizes, **kw):
     """Resizes addon icons."""
-    log.info('[1@None] Resizing icon: %s' % dst)
+    log.info('[1@None] Resizing icon: %s' % dest_folder)
     try:
-        if isinstance(size, list):
-            for s in size:
-                resize_image(src, '%s-%s.png' % (dst, s), (s, s),
-                             remove_src=False, locally=locally)
-            if locally:
-                os.remove(src)
-            else:
-                storage.delete(src)
-        else:
-            resize_image(src, dst, (size, size), remove_src=True,
-                         locally=locally)
+        dest_file = None
+        for size in target_sizes:
+            dest_file = '%s-%s.png' % (dest_folder, size)
+            resize_image(source, dest_file, (size, size))
+        dest_file = '%s-original.png' % dest_folder
+        os.rename(source, dest_file)
         return True
     except Exception, e:
-        log.error("Error saving addon icon: %s" % e)
+        log.error("Error saving addon icon (%s): %s" % (dest_file, e))
 
 
 @task
 @set_modified_on
 def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
-    thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
+    thumb_dst, full_dst, orig_dst = (
+        instance.thumbnail_path, instance.image_path, instance.original_path)
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
-        sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          amo.ADDON_PREVIEW_SIZES[0],
-                                          remove_src=False)
-        sizes['image'] = resize_image(src, full_dst,
-                                      amo.ADDON_PREVIEW_SIZES[1],
-                                      remove_src=False)
+        (sizes['thumbnail'], sizes['original']) = resize_image(
+            src, thumb_dst, amo.ADDON_PREVIEW_SIZES[0])
+        (sizes['image'], _) = resize_image(
+            src, full_dst, amo.ADDON_PREVIEW_SIZES[1])
+        if not os.path.exists(os.path.dirname(orig_dst)):
+            os.makedirs(os.path.dirname(orig_dst))
+        os.rename(src, orig_dst)
         instance.sizes = sizes
         instance.save()
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
-    finally:
-        # Finally delete the temporary now useless source file.
-        if os.path.exists(src):
-            os.unlink(src)
 
 
 @task
@@ -731,8 +730,9 @@ def get_content_and_check_size(response, max_size, error_message):
 def send_welcome_email(addon_pk, emails, context, **kw):
     log.info(u'[1@None] Sending welcome email for %s to %s.' %
              (addon_pk, emails))
-    app = context.get('app', unicode(amo.FIREFOX.pretty))
-    subject = u'Mozilla Add-ons: Thanks for submitting a %s Add-on!' % app
+    subject = (
+        u'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!' %
+        context.get('addon_name', 'Your add-on'))
     html_template = 'devhub/email/submission.html'
     text_template = 'devhub/email/submission.txt'
     return send_html_mail_jinja(subject, html_template, text_template,

@@ -1,12 +1,20 @@
-{% load waffle_tags %}
 Hello,
 
 {% block content %}{% endblock %}
-If you want to respond please reply to this email or visit {{ dev_versions_url }} .
 
-You can also join us in #addon-reviewers on irc.mozilla.org.
+********
+Developer Resources
+********
 
-To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
---
+To respond, please reply to this email or visit: {{ dev_versions_url }}
+
+You can also get in touch with us using these channels:
+https://developer.mozilla.org/Add-ons#Contact_us
+
+For tips on how to attract more users by updating your add-on’s listing, please visit: https://developer.mozilla.org/Add-ons/Listing
+
+To learn more about the review process, please visit: https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
+
+-- 
 Mozilla Add-ons Team
 {{ SITE_URL }}

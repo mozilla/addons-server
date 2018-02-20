@@ -27,6 +27,8 @@ from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import activity, amo, core
@@ -50,7 +52,8 @@ from olympia.files.utils import (
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version, inherit_nomination
@@ -522,7 +525,7 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, channel):
+    def initialize_addon_from_upload(cls, data, upload, channel, user):
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
@@ -561,23 +564,20 @@ class Addon(OnChangeMixin, ModelBase):
         if old_guid_addon:
             old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
             old_guid_addon.save()
-        return addon
 
-    @classmethod
-    def create_addon_from_upload_data(cls, data, upload, channel, user=None,
-                                      **kwargs):
-        addon = cls.initialize_addon_from_upload(data, upload, channel,
-                                                 **kwargs)
-        AddonUser(addon=addon, user=user).save()
+        if user:
+            AddonUser(addon=addon, user=user).save()
         return addon
 
     @classmethod
     def from_upload(cls, upload, platforms, source=None,
-                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None):
+                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None,
+                    user=None):
         if not parsed_data:
             parsed_data = parse_addon(upload)
 
-        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
+        addon = cls.initialize_addon_from_upload(
+            parsed_data, upload, channel, user)
 
         if upload.validation_timeout:
             AddonReviewerFlags.objects.update_or_create(
@@ -648,13 +648,8 @@ class Addon(OnChangeMixin, ModelBase):
         return reverse('addons.meet', args=[self.slug])
 
     @property
-    def reviews_url(self):
-        return jinja_helpers.url('addons.ratings.list', self.slug)
-
-    def get_ratings_url(self, action='list', args=None, add_prefix=True):
-        return reverse('ratings.themes.%s' % action,
-                       args=[self.slug] + (args or []),
-                       add_prefix=add_prefix)
+    def ratings_url(self):
+        return reverse('addons.ratings.list', args=[self.slug])
 
     @classmethod
     def get_type_url(cls, type):
@@ -973,8 +968,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.info('Changing add-on status [%s]: %s => %s (%s).'
                      % (self.id, self.status, status, reason))
             self.update(status=status)
-            activity.log_create(amo.LOG.CHANGE_STATUS,
-                                self.get_status_display(), self)
+            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status)
 
         self.update_version(ignore=ignore_version)
 
@@ -1085,6 +1079,8 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
+        if not waffle.switch_is_active('beta-versions'):
+            return
         versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
 
         if versions:
@@ -1365,7 +1361,7 @@ class Addon(OnChangeMixin, ModelBase):
             ignore_disabled = True
             admin = False
         return acl.check_addon_ownership(request, self, admin=admin,
-                                         viewer=(not require_owner),
+                                         dev=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
     @property
@@ -1399,6 +1395,25 @@ class Addon(OnChangeMixin, ModelBase):
             return self.addonreviewerflags.needs_admin_content_review
         except AddonReviewerFlags.DoesNotExist:
             return None
+
+    @property
+    def auto_approval_disabled(self):
+        try:
+            return self.addonreviewerflags.auto_approval_disabled
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def pending_info_request(self):
+        try:
+            return self.addonreviewerflags.pending_info_request
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def expired_info_request(self):
+        info_request = self.pending_info_request
+        return info_request and info_request < datetime.now()
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
@@ -1476,20 +1491,6 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
             f.hide_disabled_file()
 
 
-@Addon.on_change
-def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
-                          sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    developer_comments_changed = (new_attr.get('_developer_comments_cache') and
-                                  old_attr.get('_developer_comments_cache') !=
-                                  new_attr.get('_developer_comments_cache'))
-    if developer_comments_changed:
-        instance.versions.update(has_info_request=False)
-
-
 def attach_translations(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Addon, addons)
@@ -1508,6 +1509,9 @@ class AddonReviewerFlags(ModelBase):
         Addon, primary_key=True, on_delete=models.CASCADE)
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
+    auto_approval_disabled = models.BooleanField(default=False)
+    pending_info_request = models.DateTimeField(default=None, null=True)
+    notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):
@@ -1961,6 +1965,16 @@ class Preview(ModelBase):
         template = os.path.join(
             jinja_helpers.user_media_path('previews'),
             'full',
+            '%s',
+            '%d.png'
+        )
+        return self._image_path(template)
+
+    @property
+    def original_path(self):
+        template = os.path.join(
+            jinja_helpers.user_media_path('previews'),
+            'original',
             '%s',
             '%d.png'
         )

@@ -1,6 +1,7 @@
 {% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Your add-on {{ name }} has been reviewed and one or more of of its versions have been disabled due to critical issues discovered.
+Due to issues discovered during the review process, one or more versions of your add-on {{ name }} have been disabled on addons.mozilla.org. Please see the reviewer’s comments below for more information.
 
+********
 Details:
 {{ comments }}
 
@@ -10,5 +11,11 @@ Version(s) affected and disabled:
 Reviewer:
 {{ reviewer }}
 
-You can resolve this by addressing the issues raised in the reviewer's notes and uploading a new version at {{ dev_versions_url }}
+********
+
+Please address the issues raised in the reviewer's notes and inquire about any unclear items. Afterwards, please upload a new version of your add-on at {{ dev_versions_url }}.
+
+If other versions of {{ name }} are enabled on addons.mozilla.org, it will continue to appear in the gallery. Users who had installed an enabled version will still be able to use the add-on.
+
+Thank you for your attention.
 {% endblock %}

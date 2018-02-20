@@ -1,7 +1,7 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 
-from olympia import amo
+from olympia.amo import permissions
 from olympia.access import acl
 
 
@@ -125,12 +125,13 @@ class AllowReviewer(BasePermission):
     'ReviewerTools:View' permission, or simply be a reviewer or admin.
 
     An add-on reviewer is someone who is in the group with the following
-    permission: 'Addons:Review'.
+    permission: 'Addons:Review'. Notably, that does not include people with
+    only Addons:PostReview.
     """
     def has_permission(self, request, view):
         return ((request.method in SAFE_METHODS and
                  acl.action_allowed(request,
-                                    amo.permissions.REVIEWER_TOOLS_VIEW)) or
+                                    permissions.REVIEWER_TOOLS_VIEW)) or
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):
@@ -147,7 +148,7 @@ class AllowReviewerUnlisted(AllowReviewer):
     The user logged in must an unlisted add-on reviewer or admin.
 
     An unlisted add-on reviewer is someone who is in the group with the
-    following permission: 'Addons:Review'.
+    following permission: 'Addons:ReviewUnlisted'.
     """
     def has_permission(self, request, view):
         return acl.check_unlisted_addons_reviewer(request)
@@ -156,6 +157,28 @@ class AllowReviewerUnlisted(AllowReviewer):
         return (
             (obj.has_unlisted_versions() or not obj.has_listed_versions()) and
             self.has_permission(request, view))
+
+
+class AllowAnyKindOfReviewer(BasePermission):
+    """Allow access to any kind of reviewer. Use only for views that don't
+    alter add-on data.
+
+    Allows access to users with any of those permissions:
+    - ReviewerTools:View
+    - Addons:Review
+    - Addons:ReviewUnlisted
+    - Addons:ContentReview
+    - Addons:PostReview
+    - Personas:Review
+
+    Uses acl.is_user_any_kind_of_reviewer() behind the scenes.
+    See also any_reviewer_required() decorator.
+    """
+    def has_permission(self, request, view):
+        return acl.is_user_any_kind_of_reviewer(request.user)
+
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request, view)
 
 
 class AllowIfPublic(BasePermission):

@@ -1,0 +1,8 @@
+{% if addon.pending_info_request %}
+<div class="addon-submission-field clear-info-request">
+  <strong>{{ _('Pending information request:') }}</strong>
+  <blockquote><p> {{ reviewer_form.pending_info_request_comment }} </p></blockquote>
+  {{ reviewer_form.clear_pending_info_request }} <label for="{{ reviewer_form.clear_pending_info_request.auto_id }}">
+  {{ _('This request for information has been resolved') }}</label>
+</div>
+{% endif %}

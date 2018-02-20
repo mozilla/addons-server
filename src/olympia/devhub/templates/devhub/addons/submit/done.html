@@ -18,7 +18,7 @@
         {{ _("You’re done! This version will be available after it passes review. "
              "You will be notified when it is reviewed.") }}
       </p>
-    {% elif uploaded_version.is_webextension %}
+    {% elif uploaded_version.is_webextension and not addon.auto_approval_disabled %}
       <h3>{{ _("Version Submitted") }}</h3>
       <p>
         {{ _("You’re done! This version will be available on our site shortly.") }}

@@ -24,6 +24,7 @@ from olympia import amo
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.amo import messages
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.forms import AbuseForm
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
@@ -37,18 +38,19 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
-    AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
-    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter)
+    AddonAppQueryParam, AddonCategoryQueryParam, AddonGuidQueryParam,
+    AddonTypeQueryParam, ReviewedContentFilter, SearchParameterFilter,
+    SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, FrozenAddon, Persona, ReplacementAddon
+from .models import (
+    Addon, CompatOverride, FrozenAddon, Persona, ReplacementAddon)
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData,
+    AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
@@ -609,8 +611,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             'all_with_deleted',
             'all_with_unlisted',
             'all_without_unlisted',
-            'only_beta'
         )
+        if waffle.switch_is_active('beta-versions'):
+            valid_filters = valid_filters + ('only_beta',)
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
@@ -656,11 +659,13 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(
+        qset = Search(
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
                 _source={'excludes': AddonIndexer.hidden_fields})
+
+        return qset
 
     @classmethod
     def as_view(cls, **kwargs):
@@ -688,11 +693,14 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'type',  # Needed to attach the Persona for icon_url (sadly).
         )
 
-        return Search(
-            using=amo.search.get_es(),
-            index=AddonIndexer.get_index_alias(),
-            doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'includes': included_fields})
+        qset = (
+            Search(
+                using=amo.search.get_es(),
+                index=AddonIndexer.get_index_alias(),
+                doc_type=AddonIndexer.get_doctype_name())
+            .extra(_source={'includes': included_fields}))
+
+        return qset
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (slice directly) but do wrap the data in a
@@ -796,27 +804,57 @@ class LanguageToolsView(ListAPIView):
     permission_classes = []
     serializer_class = LanguageToolsSerializer
 
-    def get_queryset(self):
-        try:
-            application_id = AddonAppQueryParam(self.request).get_value()
-        except ValueError:
-            raise exceptions.ParseError('Invalid app parameter.')
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(LanguageToolsView, cls).as_view(**initkwargs))
 
+    def get_application_id(self):
+        if not hasattr(self, 'application_id'):
+            try:
+                self.application_id = AddonAppQueryParam(
+                    self.request).get_value()
+            except ValueError:
+                raise exceptions.ParseError('Invalid app parameter.')
+        return self.application_id
+
+    def get_queryset(self):
         types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
         return Addon.objects.public().filter(
-            appsupport__app=application_id, type__in=types,
+            appsupport__app=self.get_application_id(), type__in=types,
             target_locale__isnull=False).exclude(target_locale='')
+
+    @memoize('API:language-tools', time=(60 * 60 * 24))
+    def get_data(self, app_id, lang):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return serializer.data
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (return everything) but do wrap the data in a
         # 'results' property to mimic what the default implementation of list()
         # does in DRF.
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response({'results': serializer.data})
+        return Response({'results': self.get_data(
+            self.get_application_id(), self.request.GET.get('lang'))})
 
 
 class ReplacementAddonView(ListAPIView):
     authentication_classes = []
     queryset = ReplacementAddon.objects.all()
     serializer_class = ReplacementAddonSerializer
+
+
+class CompatOverrideView(ListAPIView):
+    queryset = CompatOverride.objects.all()
+    serializer_class = CompatOverrideSerializer
+
+    def filter_queryset(self, queryset):
+        # Use the same Filter we use for AddonSearchView for consistency.
+        guid_filter = AddonGuidQueryParam(self.request)
+        guids = guid_filter.get_value()
+        if not guids:
+            raise exceptions.ParseError(
+                'Empty, or no, guid parameter provided.')
+        return queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer)

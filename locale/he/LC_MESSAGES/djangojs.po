@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-03 07:32+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-18 21:36+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -101,10 +101,10 @@ msgid "WebExtension upgrade"
 msgstr "שדרוג WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה אינו הפיך. לאחר שהמשתמשים שלך יתקינו את WebExtension, לא תהיה להם אפשרות להתקין תוספת מדור קודם."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "הסבת תוספת מדור קודם של Firefox ב־MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
@@ -321,19 +321,19 @@ msgid "Homepage Most Popular"
 msgstr ""
 
 msgid "Detail Page"
-msgstr ""
+msgstr "עמוד פירוט"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "עמוד פירוט (תחתית)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "עמוד פירוט (ערוץ פיתוח)"
 
 msgid "Often Used With"
 msgstr "לרוב בשימוש עם"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "אחרים מאותו היוצר"
 
 msgid "Dependencies"
 msgstr "תלויות"
@@ -662,7 +662,7 @@ msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "תוספת זו אינה תואמת לגרסת ה־{0} שלך."
 
 msgid "View other versions"
 msgstr "צפייה בגרסאות אחרות"
@@ -734,7 +734,7 @@ msgid "Changes Saved"
 msgstr "השינויים נשמרו"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "נא להקליד את כתובת הדוא״ל של היוצר החדש"
 
 msgid "There was an error uploading your file."
 msgstr "אירעה שגיאה בהעלאת הקובץ שלך."
@@ -810,7 +810,7 @@ msgid "Requested Info"
 msgstr ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "מסומן בדגל"
 
 msgid "Duplicate"
 msgstr ""

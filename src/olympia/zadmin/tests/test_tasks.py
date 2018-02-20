@@ -3,6 +3,8 @@ import urlparse
 
 from django.conf import settings
 
+from waffle.testutils import override_switch
+
 import mock
 
 from olympia import amo
@@ -134,7 +136,26 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_once_with(file_)
+        mock_sign_file.assert_called_once_with(file_, use_autograph=False)
+
+    @mock.patch('olympia.zadmin.tasks.sign_file')
+    def test_fetch_new_langpack_use_autograph(self, mock_sign_file):
+        assert self.get_langpacks().count() == 0
+
+        self.fetch_langpacks(amo.FIREFOX.latest_version)
+
+        langpacks = self.get_langpacks()
+        assert langpacks.count() == 1
+
+        addon = langpacks[0]
+        file_ = addon.current_version.files.get()
+
+        # has_complete_metadata checks license and categories were set.
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
+        assert file_.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_PUBLIC
+
+        mock_sign_file.assert_called_once_with(file_, use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
@@ -164,7 +185,7 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_with(file_)
+        mock_sign_file.assert_called_with(file_, use_autograph=False)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_duplicate_langpack(self, mock_sign_file):
@@ -186,8 +207,10 @@ class TestLangpackFetcher(TestCase):
                 amo.FIREFOX.latest_version)
 
         mock_sign_file.assert_called_once_with(
-            addon.current_version.files.get())
+            addon.current_version.files.get(),
+            use_autograph=False)
 
+    @override_switch('beta-versions', active=True)
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack_beta(self, mock_sign_file):
         versions = ('16.0', '16.0a2')
@@ -208,8 +231,10 @@ class TestLangpackFetcher(TestCase):
         version = addon.versions.get(version=versions[1])
         assert version.files.all()[0].status == amo.STATUS_BETA
 
-        mock_sign_file.assert_called_with(version.files.get())
+        mock_sign_file.assert_called_with(
+            version.files.get(), use_autograph=False)
 
+    @override_switch('beta-versions', active=True)
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):
         self.fetch_langpacks('16.0a2')

@@ -11,7 +11,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import TestCase, formset, initial, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -211,13 +211,13 @@ class TestVersion(TestCase):
         assert self.addon.versions.count() == 1
         assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
-    def test_version_delete_status_unreviewd(self):
-        self._extra_version_and_file(amo.STATUS_BETA)
+    def test_version_delete_status_unreviewed(self):
+        self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 302
         assert self.addon.versions.count() == 1
-        assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
+        assert Addon.objects.get(id=3615).status == amo.STATUS_NOMINATED
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon(self, hide_mock):
@@ -326,15 +326,10 @@ class TestVersion(TestCase):
     def test_non_owner_cant_change_status(self):
         """A non-owner can't use the radio buttons."""
         self.addon.update(disabled_by_user=False)
-        addon_user = AddonUser.objects.get(addon=self.addon)
-        addon_user.role = amo.AUTHOR_ROLE_VIEWER
-        addon_user.save()
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
         response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.enable-addon').attr('checked') == 'checked'
-        assert doc('.enable-addon').attr('disabled') == 'disabled'
-        assert not doc('.disable-addon').attr('checked')
-        assert doc('.disable-addon').attr('disabled') == 'disabled'
+        assert response.status_code == 403
 
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
@@ -740,34 +735,51 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert version.source
         assert not version.addon.needs_admin_code_review
 
-    def test_update_source_file_should_drop_info_request_flag(self):
-        version = Version.objects.get(pk=self.version.pk)
-        version.has_info_request = True
-        version.save()
-        tdir = temp.gettempdir()
-        tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix=".zip", dir=tdir) as source_file:
-            source_file.write('a' * (2 ** 21))
-            source_file.seek(0)
-            data = self.formset(source=source_file)
-            response = self.client.post(self.url, data)
-        version = Version.objects.get(pk=self.version.pk)
-        assert response.status_code == 302
-        assert not version.has_info_request
+    def test_show_request_for_information(self):
+        self.user = UserProfile.objects.latest('pk')
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' in response.content
 
-    def test_update_approvalnotes_should_drop_info_request_flag(self):
-        version = Version.objects.get(pk=self.version.pk)
-        version.has_info_request = True
-        version.save()
-        data = self.formset(approvalnotes=u'Néw nót€s.')
-        response = self.client.post(self.url, data)
-        version = Version.objects.get(pk=self.version.pk)
-        assert response.status_code == 302
-        assert not version.has_info_request
+    def test_dont_show_request_for_information_if_none_pending(self):
+        self.user = UserProfile.objects.latest('pk')
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' not in response.content
 
-        # Check that the corresponding automatic activity log has been created.
-        log = ActivityLog.objects.get(action=amo.LOG.APPROVAL_NOTES_CHANGED.id)
-        assert log
+    def test_clear_request_for_information(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        response = self.client.post(
+            self.url, self.formset(clear_pending_info_request=True))
+        assert response.status_code == 302
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request is None
+
+    def test_dont_clear_request_for_information(self):
+        past_date = self.days_ago(2)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=past_date)
+        response = self.client.post(self.url, self.formset())
+        assert response.status_code == 302
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request == past_date
 
 
 class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):

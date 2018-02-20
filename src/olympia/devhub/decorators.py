@@ -40,7 +40,7 @@ def dev_required(owner_for_post=False, allow_reviewers=False, theme=False,
                                              dev=not owner_for_post):
                     return fun()
             # Ignore disabled so they can view their add-on.
-            elif acl.check_addon_ownership(request, addon, viewer=True,
+            elif acl.check_addon_ownership(request, addon, dev=True,
                                            ignore_disabled=True):
                 # Redirect to the submit flow if they're not done.
                 if (not submitting and addon.should_redirect_to_submit_flow()):

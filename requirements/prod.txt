@@ -1,6 +1,6 @@
-Babel==2.5.1 \
-    --hash=sha256:f20b2acd44f587988ff185d8949c3e208b4b3d5d20fcab7d91fe481ffa435528 \
-    --hash=sha256:6007daf714d0cd5524bbe436e2d42b3c20e68da66289559341e48d2cd6d25811
+Babel==2.5.3 \
+    --hash=sha256:ad209a68d7162c4cff4b29cdebe3dec4cef75492df501b0049a9433c96ce6f80 \
+    --hash=sha256:8ce4cb6fdd4393edd323227cba3a077bceb2a6ce5201c902c65e730046f41f14
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
 Django==1.11.9 \
     --hash=sha256:90952c46d2b7b042db00e98b05f5dd97a5775822948d46fd82ff074d8ac75853 \
@@ -85,12 +85,12 @@ bleach==1.5.0 \
 celery==4.1.0 \
     --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
     --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
-boto3==1.5.9 \
-    --hash=sha256:dff49d08f42ed29ec6252598ca7f22ed9973d0411f53786a25f8d6b4e4207852 \
-    --hash=sha256:6d00cbff4f0ae4d5681235e10bc470cc34652c13e6778e00585eb9d6e5018de4
-botocore==1.8.23 \
-    --hash=sha256:051a2a194d969ef8388d457b610b4222dccd58cccf408f3ceac3e9b1d7dc8720 \
-    --hash=sha256:cc5df29da7c3f523edfc6086e082204b80945b5c73bf82a181018b7f1a5d6975
+botocore==1.8.38 \
+    --hash=sha256:1e82d18c23ba0c2251404aee33483e82729e5d4b1838c528206f2ed2ba4516cd \
+    --hash=sha256:aa0aa83766b1dbb23f67d807222d78ab5ba528c23be5e7ffca7d8643e6224272
+boto3==1.5.31 \
+    --hash=sha256:ae0ae1c11f4a78bd69a43c8b8a9bdb6569c3b497331f5892cc3cdb95f6f7f42b \
+    --hash=sha256:65d7b85d213b63f4540b259b5a9780db8b0cbdcb5d748545d1eb19992910587b
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -151,9 +151,9 @@ django-statsd-mozilla==0.4.0 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
 django-tables2==1.16.0 \
     --hash=sha256:367d79bbe0a7968ce2a8b8e8e3586f51027abde2954521c978baa57642737375 # pyup: ==1.16.0
-django-waffle==0.12.0 \
-    --hash=sha256:5825358d97cc327bc749cd3ce21ea70c958cd50ca91cb62e0c7b690eed83afc9 \
-    --hash=sha256:b37da3c26b9d44920e9f5bb35a1339a9f8320437423e733aa8b1f8e03c39cb74
+django-waffle==0.13.0 \
+    --hash=sha256:2dc8bf84ada5e77bc30de55cd4d0803ce0286cacbdf4f5b18c7f17186cc7499b \
+    --hash=sha256:aa0b313f9ca4eadc4f1c6d652f415500e96eaaec7f59acca15b8b50e8da49967
 # djangorestframework is required by drf-nested-routers
 djangorestframework==3.6.4 \
     --hash=sha256:0f9bfbac702f3376dfb2db4971ad8af4e066bfa35393b1b85e085f7e8b91189a \
@@ -164,15 +164,15 @@ djangorestframework-jwt==1.11.0 \
 dockerflow==2017.11.0 \
     --hash=sha256:cf62fd1999d25c684b424f857e5869c4dfe4c04b76a93c9fd592e0bf41547853 \
     --hash=sha256:5ac2491d0571686eae56a2317e4c71ba955b48f6e2e36d48f30a05a9f95127be
-drf-nested-routers==0.90.0 \
-    --hash=sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476 \
-    --hash=sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f
+drf-nested-routers==0.90.2 \
+    --hash=sha256:a4d97de1be554f5db3fd11c881f578d10a3e1324b6e99be1749a11c7248d3360 \
+    --hash=sha256:52cbc4900e3ccd652bfb73017ff466d7b3e4d99838c912c250d75763b32669af
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==5.5.1 \
-    --hash=sha256:d9dac18462375e06a5425730d8aaccb874cc748658b060c0536afb4e296ba9fe \
-    --hash=sha256:c4f1abf19e2e79ebc526e6f65838909123da07c2775e2c0660c69b01ebb2001a # pyup: <6
+elasticsearch==5.5.2 \
+    --hash=sha256:2e6dcdf9cb62377e0d6b82d2931ebc67b5a549081bbb531aa3be60ece33257b2 \
+    --hash=sha256:8539e30c33fa0ad09617893a458056a35a654c92226390c30a07a3776bb8a94f # pyup: <6
 elasticsearch-dsl==5.4.0 \
     --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
@@ -252,11 +252,11 @@ mock==2.0.0 \
 mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 # natsort is required by amo-validator
-natsort==5.1.1 \
-    --hash=sha256:ee2f7715bf45a65cc1ab1d80360b00299102c7bf9d87757a27e14ddaafa57d0e \
-    --hash=sha256:9ffbfb74bf3fc3905be1b9b052ed865675651e38fcd972ed1ed5c64a02f93cbd
-newrelic==2.98.0.81 \
-    --hash=sha256:965214625392d41b9620c6928a6b10036bf1e2a2b797cdb6682650e95e1f616e
+natsort==5.2.0 \
+    --hash=sha256:a9156f61336a8d743f67a8c9f336b1287529f67a07fe6001c7d4b5673a42308e \
+    --hash=sha256:c960082d2145b04723041c4b85092546560538e29664dd197a1344d5b090bc91
+newrelic==2.102.0.85 \
+    --hash=sha256:b01ecb7ca6cd2ae1fab1c462a29b8534a1ff896959d9950248f7a44164e69724
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
@@ -271,13 +271,13 @@ polib==1.1.0 \
 puente==0.5.0 \
     --hash=sha256:7ba1d07f9cee9657adf874bd94879b343fea81a783fdfa8e53885520477bf1ea \
     --hash=sha256:4a17958f7d6a83cb9ff92593c40f34911abafaec6ad959916b754aaa3869f11f
-pyquery==1.3.0 \
-    --hash=sha256:f340df9f2d0b8a19de9540f3cd051628998fde6e733c4dcf3ffdd942a3b0a78f \
-    --hash=sha256:5821ffd02301db701cb30f2483ab96774c2b6b70530f79a44645f49dc5053ab8
+pyquery==1.4.0 \
+    --hash=sha256:07987c2ed2aed5cba29ff18af95e56e9eb04a2249f42ce47bddfb37f487229a3 \
+    --hash=sha256:4771db76bd14352eba006463656aef990a0147a0eeaf094725097acfa90442bf
 # pytest is required by amo-validator
-pytest==3.3.2 \
-    --hash=sha256:b84878865558194630c6147f44bdaef27222a9f153bbd4a08908b16bf285e0b1 \
-    --hash=sha256:53548280ede7818f4dc2ad96608b9f08ae2cc2ca3874f2ceb6f97e3583f25bc4
+pytest==3.4.0 \
+    --hash=sha256:95fa025cd6deb5d937e04e368a00552332b58cae23f63b76c8c540ff1733ab6d \
+    --hash=sha256:6074ea3b9c999bd6d0df5fa9d12dd95ccd23550df2a582f5f5b848331d2e82ca
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.1 \
     --hash=sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c \
@@ -290,19 +290,19 @@ python-gflags==2.0 \
 python-memcached==1.53 \
     --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 # pyup: ==1.5.3
 # pytz is required by Babel, celery
-pytz==2017.3 \
-    --hash=sha256:80af0f3008046b9975242012a985f04c5df1f01eed4ec1633d56cc47a75a6a48 \
-    --hash=sha256:feb2365914948b8620347784b6b6da356f31c9d03560259070b2f30cff3d469d \
-    --hash=sha256:59707844a9825589878236ff2f4e0dc9958511b7ffaae94dc615da07d4a68d33 \
-    --hash=sha256:d0ef5ef55ed3d37854320d4926b04a4cb42a2e88f71da9ddfdacfde8e364f027 \
-    --hash=sha256:c41c62827ce9cafacd6f2f7018e4f83a6f1986e87bfd000b8cfbd4ab5da95f1a \
-    --hash=sha256:8cc90340159b5d7ced6f2ba77694d946fc975b09f1a51d93f3ce3bb399396f94 \
-    --hash=sha256:dd2e4ca6ce3785c8dd342d1853dd9052b19290d5bf66060846e5dc6b8d6667f7 \
-    --hash=sha256:699d18a2a56f19ee5698ab1123bbcc1d269d061996aeb1eda6d89248d3542b82 \
-    --hash=sha256:fae4cffc040921b8a2d60c6cf0b5d662c1190fe54d718271db4eb17d44a185b7
-raven==6.4.0 \
-    --hash=sha256:2c9cd4d8c267f57db625305aaa89e7dd852d6864c13c7b84f4d4500df07bebd9 \
-    --hash=sha256:b8edbb3335ed6c23cb168ced37fb523c1b91d9f3b0eddb90934249977841a902
+pytz==2018.3 \
+    --hash=sha256:ed6509d9af298b7995d69a440e2822288f2eca1681b8cce37673dbb10091e5fe \
+    --hash=sha256:f93ddcdd6342f94cea379c73cddb5724e0d6d0a1c91c9bdef364dc0368ba4fda \
+    --hash=sha256:61242a9abc626379574a166dc0e96a66cd7c3b27fc10868003fa210be4bff1c9 \
+    --hash=sha256:ba18e6a243b3625513d85239b3e49055a2f0318466e0b8a92b8fb8ca7ccdf55f \
+    --hash=sha256:07edfc3d4d2705a20a6e99d97f0c4b61c800b8232dc1c04d87e8554f130148dd \
+    --hash=sha256:3a47ff71597f821cd84a162e71593004286e5be07a340fd462f0d33a760782b5 \
+    --hash=sha256:5bd55c744e6feaa4d599a6cbd8228b4f8f9ba96de2c38d56f08e534b3c9edf0d \
+    --hash=sha256:887ab5e5b32e4d0c86efddd3d055c1f363cbaa583beb8da5e22d2fa2f64d51ef \
+    --hash=sha256:410bcd1d6409026fbaa65d9ed33bf6dd8b1e94a499e32168acfc7b332e4095c0
+raven==6.5.0 \
+    --hash=sha256:0adae40e004dfe2181d1f2883aa3d4ca1cf16dbe449ae4b445b011c6eb220a90 \
+    --hash=sha256:84da75114739191bdf2388f296ffd6177e83567a7fbaf2701e034ad6026e4f3b
 # rdflib is required by amo-validator
 rdflib==3.4.0 \
     --hash=sha256:78d5f11a7001661d7637f9e61554a5f8971e197f3f6d17ba5e4039b0668116cf # pyup: ==3.4.0

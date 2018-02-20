@@ -13,7 +13,7 @@
 .app-icon, .platform-icon {
     float: left;
     margin-right: 4px;
-    background: url(../../img/developers/reviewer-sprite.png?9) no-repeat top left;
+    background: url(../../img/developers/reviewer-sprite.png?10) no-repeat top left;
     width: 16px; height: 16px;
     position: relative;
     top: 4px;
@@ -33,6 +33,7 @@
 .ed-sprite-info { background-position: 0 -160px; }
 .ed-sprite-sources-provided { background-position: 0 -192px; }
 .ed-sprite-webextension { background-position: 0 -208px; }
+.ed-sprite-expired-info { background-position: 0 -272px; }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?8) no-repeat top left;
@@ -401,6 +402,8 @@ ul.tabnav a:hover {
 table.data-grid tr.comments td {
     border-top: none;
     background: #def;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .waiting_old, .waiting_med, .waiting_new {
@@ -904,13 +907,18 @@ form.review-form .data-toggle {
     text-align: right;
 }
 
-.review-actions-section label {
+.review-actions-section label,
+.more-actions label {
     font-weight: normal;
 }
 
 .review-actions-section ul {
     list-style: disc;
     padding-left: 20px;
+}
+
+#id_info_request_deadline {
+    width: 2.5em;
 }
 
 .history-comment {
@@ -1097,6 +1105,7 @@ gradient-two-color($color1, $color2) {
     border-radius: 7px;
     &.private {
       background-color: #FFE4E4;
+      margin: 1em 0 1em 0;
     }
     .whiteboard-inner {
         padding: 10px;
@@ -1107,5 +1116,32 @@ gradient-two-color($color1, $color2) {
         .whiteboard-actions {
             text-align: right;
         }
+    }
+}
+
+.more-actions {
+    border: 1px solid #ebebeb;
+    padding: 10px;
+
+    .more-actions-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .admin_only {
+        background-color: oldlace;
+        padding: 1em;
+    }
+
+    li {
+      margin: 0 0 1em 0;
+    }
+
+    #force_disable_addon, #force_enable_addon {
+        background-color: #bc2b1a;
+    }
+
+    #disable_auto_approval, #enable_auto_approval {
+        background-color: orange;
     }
 }

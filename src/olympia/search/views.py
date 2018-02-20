@@ -45,7 +45,7 @@ def _personas(request):
         'users': '-average_daily_users',
         'rating': '-bayesian_rating',
         'created': '-created',
-        'name': 'name_sort',
+        'name': 'name.raw',
         'updated': '-last_updated',
         'hotness': '-hotness'}
     results = _filter_search(request, qs, form.cleaned_data, filters,
@@ -416,7 +416,7 @@ def search(request, tag_name=None):
     mapping = {'users': '-average_daily_users',
                'rating': '-bayesian_rating',
                'created': '-created',
-               'name': 'name_sort',
+               'name': 'name.raw',
                'downloads': '-weekly_downloads',
                'updated': '-last_updated',
                'hotness': '-hotness'}

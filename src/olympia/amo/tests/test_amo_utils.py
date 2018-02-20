@@ -62,7 +62,7 @@ def test_resize_transparency():
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
-        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
+        resize_image(src, dest, (32, 32))
         with open(dest) as dfh:
             with open(expected) as efh:
                 assert dfh.read() == efh.read()
@@ -82,7 +82,7 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
-        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
+        resize_image(src, dest, (32, 32))
         with open(dest) as dfh:
             with open(expected) as efh:
                 assert dfh.read() == efh.read()

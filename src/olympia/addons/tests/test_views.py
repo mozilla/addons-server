@@ -9,17 +9,20 @@ from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
 
+import pytest
 import waffle
 
+from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Persona, ReplacementAddon)
+    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -28,6 +31,7 @@ from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     user_factory, version_factory)
+
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -105,13 +109,13 @@ class TestHomepage(TestCase):
         r = self.client.get('/en-US/firefox/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
-            'Welcome to Firefox Add-ons. Choose from thousands of extra '
+            'Welcome to Firefox Add-ons.\nChoose from thousands of extra '
             'features and styles to make Firefox your own.')
         r = self.client.get('/en-US/thunderbird/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
-            'Welcome to Thunderbird Add-ons. Add extra features and styles to '
-            'make Thunderbird your own.')
+            'Welcome to Thunderbird Add-ons.\nAdd extra features and styles '
+            'to make Thunderbird your own.')
 
     def test_try_new_frontend_banner_presence(self):
         self.url = '/en-US/firefox/'
@@ -414,6 +418,7 @@ class TestDetailPage(TestCase):
         assert doc('#more-about').length == 0
         assert doc('.article.userinput').length == 0
 
+    @override_switch('beta-versions', active=True)
     def test_beta(self):
         """Test add-on with a beta channel."""
         def get_pq_content():
@@ -584,8 +589,8 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data on the following websites: '
-            u'<script>alert("//")</script> '
+            u'Access your data on the following websites:\n'
+            u'<script>alert("//")</script>\n'
             u'<script>foo("https://")</script>')
         assert '<script>alert(' not in response.content
         assert '<script>foo(' not in response.content
@@ -2125,9 +2130,17 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
 
+    @override_switch('beta-versions', active=True)
     def test_beta_version(self):
         self.old_version.files.update(status=amo.STATUS_BETA)
         self._test_url_only_contains_old_version(filter='only_beta')
+
+    def test_no_beta_version(self):
+        self.version.files.update(status=amo.STATUS_BETA)
+        response = self.client.get(self.url, data={'filter': 'only_beta'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == ['Invalid "filter" parameter specified.']
 
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
@@ -2221,10 +2234,12 @@ class TestAddonSearchView(ESTestCase):
                       weekly_downloads=555)
         self.refresh()
 
-        qset = AddonSearchView().get_queryset()
+        view = AddonSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
-            ('*.raw', '*_sort', 'boost', 'hotness', 'name', 'description',
+            ('*.raw', 'boost', 'hotness', 'name', 'description',
              'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
         )
 
@@ -2236,7 +2251,7 @@ class TestAddonSearchView(ESTestCase):
         # for some reason I don't yet understand... (cgrebs 0717)
         # maybe because they're used for boosting or filtering or so?
         assert not any(key in source_keys for key in (
-            'name_sort', 'boost',
+            'boost',
         ))
 
         assert not any(
@@ -2295,6 +2310,29 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
+
+    def test_es_queries_made_no_results(self):
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(self.url, data={'q': 'foo'})
+            assert data['count'] == 0
+            assert len(data['results']) == 0
+            assert search_mock.call_count == 1
+
+    def test_es_queries_made_some_result(self):
+        addon_factory(slug='foormidable', name=u'foo')
+        addon_factory(slug='foobar', name=u'foo')
+        self.refresh()
+
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(
+                self.url, data={'q': 'foo', 'page_size': 1})
+            assert data['count'] == 2
+            assert len(data['results']) == 1
+            assert search_mock.call_count == 1
 
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
@@ -2873,6 +2911,23 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
+    def test_prevent_too_complex_to_determinize_exception(self):
+        # too_complex_to_determinize_exception happens in elasticsearch when
+        # we do a fuzzy query with a query string that is well, too complex,
+        # with specific unicode chars and too long. For this reason we
+        # deactivate fuzzy matching if the query is over 20 chars. This test
+        # contain a string that was causing such breakage before.
+        # Populate the index with a few add-ons first (enough to trigger the
+        # issue locally).
+        for i in range(0, 10):
+            addon_factory()
+        self.refresh()
+        query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
+                 u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
+        data = self.perform_search(self.url, {'q': query})
+        # No results, but no 500 either.
+        assert data['count'] == 0
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient
@@ -2943,7 +2998,9 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
                       type=amo.ADDON_PERSONA)
         self.refresh()
 
-        qset = AddonAutoCompleteSearchView().get_queryset()
+        view = AddonAutoCompleteSearchView()
+        view.request = APIRequestFactory().get('/')
+        qset = view.get_queryset()
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'modified',
@@ -3174,6 +3231,7 @@ class TestStaticCategoryView(TestCase):
             u'slug': u'feeds-news-blogging'
         }
 
+    @pytest.mark.needs_locales_compilation
     def test_name_translated(self):
         with self.assertNumQueries(0):
             response = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='de')
@@ -3208,7 +3266,7 @@ class TestLanguageToolsView(TestCase):
         dictionary_spelling_variant = addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
             locale_disambiguation='For spelling reform')
-        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+        language_pack = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
 
         # These add-ons below should be ignored: they are either not public or
         # of the wrong type, not supporting the app we care about, or their
@@ -3239,6 +3297,37 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+
+    def test_memoize(self):
+        addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 3
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            assert self.client.get(self.url, {'app': 'firefox'}).content == (
+                response.content
+            )
+        # But different app is different
+        with self.assertNumQueries(12):
+            assert (
+                self.client.get(self.url, {'app': 'thunderbird'}).content !=
+                response.content
+            )
+        # Same again, should be cached; no queries.
+        with self.assertNumQueries(0):
+            self.client.get(self.url, {'app': 'thunderbird'})
+        # But throw in a lang request and not cached:
+        with self.assertNumQueries(10):
+            self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
 
 
 class TestReplacementAddonView(TestCase):
@@ -3275,3 +3364,76 @@ class TestReplacementAddonView(TestCase):
                  'replacement': [rep_addon2.guid, rep_addon3.guid]} in results)
         assert ({'guid': 'notgonnawork@moz',
                  'replacement': []} in results)
+
+
+class TestCompatOverrideView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(guid='extrabad@thing')
+        self.override_addon = CompatOverride.objects.create(
+            name='override with addon', guid=self.addon.guid, addon=self.addon)
+        CompatOverrideRange.objects.create(
+            compat=self.override_addon, app=amo.FIREFOX.id)
+        self.override_without = CompatOverride.objects.create(
+            name='override no addon', guid='bad@thing')
+        CompatOverrideRange.objects.create(
+            compat=self.override_without, app=amo.FIREFOX.id)
+
+    def test_single_guid(self):
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': u'extrabad@thing'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 1
+        result = data['results'][0]
+        assert result['addon_guid'] == 'extrabad@thing'
+        assert result['addon_id'] == self.addon.id
+        assert result['name'] == 'override with addon'
+
+    def test_multiple_guid(self):
+        response = self.client.get(
+            reverse('addon-compat-override'),
+            data={'guid': u'extrabad@thing,bad@thing'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 2
+
+        assert results[0]['addon_guid'] == 'bad@thing'
+        assert results[0]['addon_id'] is None
+        assert results[0]['name'] == 'override no addon'
+        assert results[1]['addon_guid'] == 'extrabad@thing'
+        assert results[1]['addon_id'] == self.addon.id
+        assert results[1]['name'] == 'override with addon'
+
+        # Throw in some random invalid guids too that will be ignored.
+        response = self.client.get(
+            reverse('addon-compat-override'),
+            data={'guid': (
+                u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 2
+        assert results[0]['addon_guid'] == 'bad@thing'
+        assert results[1]['addon_guid'] == 'extrabad@thing'
+
+    def test_no_guid_param(self):
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': u'invalid@thing'})
+        # Searching for non-matching guids, it should be an empty 200 response.
+        assert response.status_code == 200
+        assert len(json.loads(response.content)['results']) == 0
+
+        response = self.client.get(
+            reverse('addon-compat-override'), data={'guid': ''})
+        # Empty query is a 400 because a guid is required for overrides.
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content
+
+        response = self.client.get(
+            reverse('addon-compat-override'))
+        # And no guid param should be a 400 too
+        assert response.status_code == 400
+        assert 'Empty, or no, guid parameter provided.' in response.content

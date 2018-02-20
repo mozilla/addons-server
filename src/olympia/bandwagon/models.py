@@ -13,7 +13,8 @@ from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
-from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
+from olympia.amo.models import (
+    BaseQuerySet, UncachedManagerBase, UncachedModelBase)
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
@@ -59,8 +60,7 @@ class CollectionQuerySet(BaseQuerySet):
             select_params=(addon_id,))
 
 
-class CollectionManager(ManagerBase):
-    queryset_class = CollectionQuerySet
+class CollectionManager(UncachedManagerBase):
 
     def get_queryset(self):
         qs = super(CollectionManager, self).get_queryset()
@@ -86,7 +86,7 @@ class CollectionManager(ManagerBase):
         return collections.distinct().order_by('name__localized_string')
 
 
-class Collection(ModelBase):
+class Collection(UncachedModelBase):
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     # TODO: Use models.UUIDField but it uses max_length=32 hex (no hyphen)
@@ -136,7 +136,7 @@ class Collection(ModelBase):
 
     top_tags = TopTags()
 
-    class Meta(ModelBase.Meta):
+    class Meta(UncachedModelBase.Meta):
         db_table = 'collections'
         unique_together = (('author', 'slug'),)
 
@@ -392,7 +392,7 @@ models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
                                    dispatch_uid='coll.post_delete')
 
 
-class CollectionAddon(ModelBase):
+class CollectionAddon(UncachedModelBase):
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
     # category (deprecated: for "Fashion Your Firefox")
@@ -405,7 +405,7 @@ class CollectionAddon(ModelBase):
         help_text='Add-ons are displayed in ascending order '
                   'based on this field.')
 
-    class Meta(ModelBase.Meta):
+    class Meta(UncachedModelBase.Meta):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
@@ -427,11 +427,11 @@ models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
                                    dispatch_uid='coll.post_save')
 
 
-class CollectionWatcher(ModelBase):
+class CollectionWatcher(UncachedModelBase):
     collection = models.ForeignKey(Collection, related_name='following')
     user = models.ForeignKey(UserProfile)
 
-    class Meta(ModelBase.Meta):
+    class Meta(UncachedModelBase.Meta):
         db_table = 'collection_subscriptions'
 
     @staticmethod
@@ -481,7 +481,7 @@ models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
                                    sender=CollectionVote)
 
 
-class FeaturedCollection(ModelBase):
+class FeaturedCollection(UncachedModelBase):
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     collection = models.ForeignKey(Collection)
@@ -506,7 +506,7 @@ models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
                                    sender=FeaturedCollection)
 
 
-class MonthlyPick(ModelBase):
+class MonthlyPick(UncachedModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()

@@ -6,8 +6,7 @@ from datetime import date, datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Q, Sum
-from django.db.models.functions import Coalesce, Func
+from django.db.models import Q, Sum, Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -19,8 +18,7 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
-from olympia.amo.models import (
-    ManagerBase, ModelBase, OnChangeMixin, skip_cache)
+from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -43,7 +41,8 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Content Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
-    ('has_info_request', 'info', _('More Information Requested')),
+    ('pending_info_request', 'info', _('More Information Requested')),
+    ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('has_reviewer_comment', 'reviewer', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
@@ -127,17 +126,23 @@ class EventLog(models.Model):
                             .filter(action=action.id)
                             .order_by('-created')[:5])
 
-        # We re-filter the results by calling is_reviewer(), to make sure to
-        # display only users that are still part of the reviewers groups we've
-        # looked at.
+        # We re-filter the results to make sure to display only users that are
+        # still part of the reviewers groups we've looked at.
         return [{'user': i.arguments[1], 'created': i.created}
                 for i in items if i.arguments[1].groups.filter(
                     name__startswith='Reviewers: ').exists()]
 
 
-def get_flags(record):
+def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
+    return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
+            if getattr(version, prop, getattr(addon, prop, None))]
+
+
+def get_flags_for_row(record):
+    """Like get_flags(), but for the queue pages, using fields directly
+    returned by the queues SQL query."""
     return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
             if getattr(record, prop)]
 
@@ -155,7 +160,8 @@ class ViewQueue(RawSQLModel):
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
-    has_info_request = models.BooleanField()
+    pending_info_request = models.DateTimeField()
+    expired_info_request = models.NullBooleanField()
     has_reviewer_comment = models.BooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
@@ -175,7 +181,11 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('latest_version', 'versions.version'),
                 ('has_reviewer_comment', 'versions.has_editor_comment'),
-                ('has_info_request', 'versions.has_info_request'),
+                ('pending_info_request',
+                    'addons_addonreviewerflags.pending_info_request'),
+                ('expired_info_request', (
+                    'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
+                    'NOW()) < 0')),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
@@ -213,7 +223,7 @@ class ViewQueue(RawSQLModel):
 
     @property
     def flags(self):
-        return get_flags(self)
+        return get_flags_for_row(self)
 
 
 class ViewFullReviewQueue(ViewQueue):
@@ -387,7 +397,7 @@ class ReviewerSubscription(ModelBase):
 
 
 def send_notifications(signal=None, sender=None, **kw):
-    if sender.is_beta:
+    if sender.is_beta or sender.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
     subscribers = sender.addon.reviewersubscription_set.all()
@@ -399,10 +409,9 @@ def send_notifications(signal=None, sender=None, **kw):
         user = subscriber.user
         is_reviewer = (
             user and not user.deleted and user.email and
-            acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
+            acl.is_user_any_kind_of_reviewer(user))
         if is_reviewer:
             subscriber.send_notification(sender)
-        subscriber.delete()
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
@@ -784,6 +793,7 @@ class AutoApprovalSummary(ModelBase):
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(default=False)
+    has_auto_approval_disabled = models.BooleanField(default=False)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -895,6 +905,18 @@ class AutoApprovalSummary(ModelBase):
             }
         return factors
 
+    def find_previous_confirmed_version(self):
+        """Return the most recent version in the add-on history that has been
+        confirmed, excluding the one this summary is about, or None if there
+        isn't one."""
+        addon = self.version.addon
+        try:
+            version = addon.versions.exclude(pk=self.version.pk).filter(
+                autoapprovalsummary__confirmed=True).latest()
+        except Version.DoesNotExist:
+            version = None
+        return version
+
     def calculate_size_of_code_changes(self):
         """Return the size of code changes between the version being
         approved and the previous public one."""
@@ -910,7 +932,7 @@ class AutoApprovalSummary(ModelBase):
             return total_code_size / number_of_files
 
         try:
-            old_version = self.version.addon.current_version
+            old_version = self.find_previous_confirmed_version()
             old_size = find_code_size(old_version) if old_version else 0
             new_size = find_code_size(self.version)
         except FileValidation.DoesNotExist:
@@ -934,10 +956,11 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # Currently the only thing that can prevent approval is a reviewer
-        # lock.
+        # Currently the only thing that can prevent approval are a reviewer
+        # lock and having auto-approval disabled flag set on the add-on.
         verdict_info = {
             'is_locked': self.is_locked,
+            'has_auto_approval_disabled': self.has_auto_approval_disabled,
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -955,6 +978,8 @@ class AutoApprovalSummary(ModelBase):
         (as computed by calculate_verdict()) in human-readable form."""
         mapping = {
             'is_locked': ugettext('Is locked by a reviewer.'),
+            'has_auto_approval_disabled': ugettext(
+                'Has auto-approval disabled flag set.')
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)
@@ -1026,6 +1051,10 @@ class AutoApprovalSummary(ModelBase):
         return bool(locked) and locked != settings.TASK_USER_ID
 
     @classmethod
+    def check_has_auto_approval_disabled(cls, version):
+        return bool(version.addon.auto_approval_disabled)
+
+    @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
@@ -1047,6 +1076,8 @@ class AutoApprovalSummary(ModelBase):
         data = {
             'version': version,
             'is_locked': cls.check_is_locked(version),
+            'has_auto_approval_disabled': cls.check_has_auto_approval_disabled(
+                version)
         }
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)
@@ -1068,19 +1099,9 @@ class AutoApprovalSummary(ModelBase):
         qs = (
             Addon.objects.public()
             .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict,
-                # Was auto-approved after the last human review, so its
-                # approval hasn't been confirmed yet.
-                _current_version__autoapprovalsummary__created__gt=(
-                    # MySQL straight up refuses to compare NULL values
-                    # (ignoring that row completely!) if we don't use
-                    # Coalesce(). This forces NULLs to be considered as being
-                    # an arbitrary old date, January 1st, 2000.
-                    Coalesce(
-                        'addonapprovalscounter__last_human_review',
-                        DateTimeCast(datetime(2000, 1, 1))
-                    ))
-            )
+                _current_version__autoapprovalsummary__verdict=success_verdict)
+            .exclude(
+                _current_version__autoapprovalsummary__confirmed=True)
         )
         if not admin_reviewer:
             qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
@@ -1178,7 +1199,7 @@ class ThemeLock(ModelBase):
         db_table = 'theme_locks'
 
 
-class Whiteboard(OnChangeMixin, ModelBase):
+class Whiteboard(ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)
     private = models.TextField(blank=True)
@@ -1190,19 +1211,3 @@ class Whiteboard(OnChangeMixin, ModelBase):
     def __unicode__(self):
         return u'[%s] private: |%s| public: |%s|' % (
             self.addon.name, self.private, self.public)
-
-
-@Whiteboard.on_change
-def watch_public_whiteboard_changes(old_attr=None, new_attr=None,
-                                    instance=None, sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-
-    whiteboard_changed = (
-        new_attr.get('public') and
-        old_attr.get('public') != new_attr.get('public'))
-
-    if whiteboard_changed:
-        instance.addon.versions.update(has_info_request=False)

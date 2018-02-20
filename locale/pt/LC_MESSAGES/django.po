@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,6 +161,9 @@ msgid "Listed"
 msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1021,6 +1024,10 @@ msgstr "Digite um nome de utilizador válido constituído por letras, números, 
 msgid "This slug cannot be used."
 msgstr "Este nome não pode ser utilizado."
 
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "Esta url já está a ser utilizada por outra coleção"
+
 msgid "Name"
 msgstr "Nome"
 
@@ -1758,8 +1765,9 @@ msgstr "{addon} desativado."
 msgid "{addon} enabled."
 msgstr "{addon} ativado."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "O estado de {addon} mudou para {0}."
 
 msgid "{version} added to {addon}."
@@ -2070,12 +2078,6 @@ msgstr "Não listada"
 
 msgid "Developer"
 msgstr "Programador"
-
-msgid "Viewer"
-msgstr "Visualizador"
-
-msgid "Support"
-msgstr "Apoio"
 
 msgid "Extension"
 msgstr "Extensão"
@@ -2639,12 +2641,6 @@ msgstr "Sobrepor validação falhada"
 msgid "Submit my add-on for manual review."
 msgstr "Enviar o meu extra para revisão manual."
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Marque esta opção se pretender distribuir o seu extra pelos seus próprios meios e apenas precisa que o mesmo esteja assinado pela Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Um ficheiro com uma versão terminada com a|alpha|b|beta|pre|rc e com um número (opcional), é detetada como beta."
 
@@ -2781,7 +2777,8 @@ msgstr "Verifique a compatibilidade do extra"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3039,9 +3036,8 @@ msgstr "Sobre os papeis do autor"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Os extras podem ter um qualquer número de autores com 3 possíveis papeis:</p> <ul> <li><b>Dono:</b> pode gerir todos os aspetos da listagem do extra, incluindo adicionar e remover outros "
 "autores</li> <li><b>Programador:</b> pode gerir todos os detalhes da listagem do extra, exceto adicionar ou remover outros autores e gerir pagamentos</li> <li><b>Visualizador:</b> pode ver as "
@@ -3339,12 +3335,6 @@ msgstr "Adicionar uma captura de ecrã..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe sejam atribuído créditos?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "O licenciante permite que outros possam copiar, distribuir, mostrar e destacar o trabalho, incluindo para fins comerciais."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "O licenciante permite que outros copiem, distribuam e efetuem o trabalho apenas para fins não comerciais."
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Outras pessoas podem utilizar comercialmente o seu tema?"
@@ -3353,17 +3343,11 @@ msgstr "Outras pessoas podem utilizar comercialmente o seu tema?"
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "O licenciante permite que outros copiem, distribuam, mostrem e executem o trabalho, bem como a criação de trabalhos derivados com base neste."
-
 msgid "Yes, as long as they share alike"
 msgstr "Sim, desde que o partilhem"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "O licenciante permite que outros distribuam trabalhos derivados apenas sob a mesma licença ou uma compatível com a que governa o trabalho do licenciante."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "O licenciante permite que outros copiem, distribuam e transmitam apenas cópias inalteradas do trabalho - não trabalhos derivados baseados no mesmo."
 
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
@@ -3371,6 +3355,10 @@ msgstr "O seu tema será lançado sob a seguinte licença:"
 
 msgid "Select a different license."
 msgstr "Selecione uma licença diferente."
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "Solicitada mais informação"
 
 msgid "Tests"
 msgstr "Testes"
@@ -3532,6 +3520,9 @@ msgstr "Por favor, utilize apenas letras, números, underscores e hífenes  na s
 msgid "Summary:"
 msgstr "Resumo"
 
+msgid "required"
+msgstr "necessário"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Este extra necessita de software externo."
@@ -3613,17 +3604,23 @@ msgid "You’re done!"
 msgstr "Está feito!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Notas da versão / Notas para o editor"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "Notas da versão"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "Notas da versão / Notas para o editor"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3695,10 +3692,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 "Utilize os campos abaixo para submeter o pacote do seu extra e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes automáticos irão ser executados no seu ficheiro."
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "Criar um novo tema"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
@@ -3707,6 +3700,14 @@ msgstr "Publicar esta versão apenas para o meu canal beta."
 
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "Criar um novo tema"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Criar um novo tema"
 
 #, fuzzy
 msgid "Submit File"
@@ -3724,11 +3725,13 @@ msgstr "Tema eliminado."
 msgid "Theme generator"
 msgstr "Licença do tema"
 
-msgid "Select a header image for your Theme."
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
+#, fuzzy
+msgid "Theme name"
+msgstr "nome do tema"
 
-msgid "required"
-msgstr "necessário"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "Selecione uma imagem para o cabeçalho do seu tema."
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3742,44 +3745,45 @@ msgstr "Alinhado ao topo direito"
 msgid "Select a different header image"
 msgstr "Selecione uma imagem de cabeçalho diferente"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "Selecione as cores para o seu tema."
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Esta é a cor do texto do separador."
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3787,7 +3791,7 @@ msgid "optional"
 msgstr "(opcional)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Passe para pré-visualizar"
 
 msgid "Back"
@@ -3798,8 +3802,8 @@ msgid "Uploading Theme"
 msgstr "Próximos temas"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "Carregar outro ficheiro"
+msgid "Finish Theme"
+msgstr "Temas de %s"
 
 msgid "API Credentials"
 msgstr "Credenciais da API"
@@ -4010,6 +4014,9 @@ msgstr "Blogue"
 #, fuzzy
 msgid "Contact Us"
 msgstr "Contacte-nos"
+
+msgid "Support"
+msgstr "Apoio"
 
 #, fuzzy
 msgid "Policies"
@@ -4226,11 +4233,23 @@ msgstr "Licença do tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe sejam atribuído créditos?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "O licenciante permite que outros possam copiar, distribuir, mostrar e destacar o trabalho, incluindo para fins comerciais."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "O licenciante permite que outros copiem, distribuam e efetuem o trabalho apenas para fins não comerciais."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Outras pessoas podem utilizar comercialmente o seu tema?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "O licenciante permite que outros copiem, distribuam, mostrem e executem o trabalho, bem como a criação de trabalhos derivados com base neste."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "O licenciante permite que outros copiem, distribuam e transmitam apenas cópias inalteradas do trabalho - não trabalhos derivados baseados no mesmo."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "O seu tema será lançado sob a seguinte licença:"
@@ -4264,6 +4283,9 @@ msgstr "Cabeçalho"
 
 msgid "Footer"
 msgstr "Rodapé"
+
+msgid "Select colors for your Theme."
+msgstr "Selecione as cores para o seu tema."
 
 msgid "Foreground Text"
 msgstr "Texto de primeiro plano"
@@ -4326,6 +4348,9 @@ msgstr "Veja e subscreva o <a href=\"%(feed_url)s\">registo de atividade</a> do 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Junte-se à conversa nos nossos <a href=\"%(forum_url)s\">fóruns</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Selecione uma imagem para o cabeçalho do seu tema."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixeis"
@@ -4568,6 +4593,30 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
@@ -6225,17 +6274,6 @@ msgstr "Sistemas operativos:"
 msgid "Applications:"
 msgstr "Aplicações:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Notificar-me da próxima vez que este extra for atualizado (as atualizações seguintes não vão criar uma mensagem de correio)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Limpar etiqueta de revisão de administração"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Limpar etiqueta de revisão de administração"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "Limpar a etiqueta de mais informação solicitada"
@@ -6254,6 +6292,10 @@ msgstr "Este tema está a ser revisto por outra pessoa."
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "aplicação, revisor ou comentário"
+
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "Quadro branco"
 
 msgid "Keep review; remove flags"
 msgstr "Manter análise; remover etiquetas"
@@ -6284,6 +6326,9 @@ msgstr ""
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "o meu extra é revisto por um editor"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "Submissão duplicada"
@@ -6357,7 +6402,7 @@ msgstr "Isto vai rejeitar o extra e removê-lo da fila de revisão."
 msgid "Confirm Approval"
 msgstr "A aguardar pela aprovação"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6395,7 +6440,7 @@ msgstr "Faça um comentário sobre esta versão. O autor não será capaz de o v
 msgid "Approve Content"
 msgstr "Aprovar / Rejeitar"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6768,8 +6813,41 @@ msgstr "<strong>Aviso!</strong> Outro utilizador estava a visualizar esta págin
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "O quadro branco é o sítio para trocar informação relevante para este extra (qualquer que seja a versão), entre o programador e o editor. Isto é visível e editável por ambos."
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "Atualizar o quadro branco"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "Mais ações:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "Versão para impressão"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "Estado da aprovação"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Limpar etiqueta de revisão de administração"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Limpar etiqueta de revisão de administração"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7672,8 +7750,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Ao clicar em \"eliminar\" a sua conta será <strong>permanentemente removida</strong>. Isto significa:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Deixará de poder iniciar sessão em %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Os seus comentários e classificações não serão eliminados, mas deixaram de estar associados a si."

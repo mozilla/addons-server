@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-20 19:50+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-12 15:35+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -167,6 +167,9 @@ msgstr "E pranishme"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
 
 msgid "Abuse reported."
 msgstr "Shpërdorimi u njoftua."
@@ -1019,6 +1022,9 @@ msgstr "Jepni një identifikues të vlefshëm, të përbërë nga shkronja, numr
 msgid "This slug cannot be used."
 msgstr "Ky identifikues s’përdoret dot."
 
+msgid "This add-on already belongs to the collection"
+msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
+
 msgid "Name"
 msgstr "Emër"
 
@@ -1754,9 +1760,9 @@ msgstr "{addon} u çaktivizua."
 msgid "{addon} enabled."
 msgstr "{addon} u aktivizua."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "Gjendja për {addon} ndryshoi në {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "Gjendja për {addon} ndryshoi në {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} u shtua te {addon}."
@@ -2044,13 +2050,6 @@ msgstr "E palistuar"
 
 msgid "Developer"
 msgstr "Zhvillues"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Viewer"
-msgstr "Parës"
-
-msgid "Support"
-msgstr "Asistencë"
 
 msgid "Extension"
 msgstr "Zgjerim"
@@ -2581,12 +2580,6 @@ msgstr "Anashkaloje vleftësimin e dështuar"
 msgid "Submit my add-on for manual review."
 msgstr "Parashtoje shtesën time për shqyrtim dorazi."
 
-msgid "Do not list my add-on on this site"
-msgstr "Mos e shfaqni shtesën time në këtë sajt"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "I vini shenjë kësaj mundësie nëse keni ndër mend ta shpërndani ju vetë shtesën tuaj dhe ju duhet vetëm që Mozilla ta nënshkruajë."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Një kartelë me version që përfundon si a|alpha|b|beta|pre|rc dhe një numër opsional merret si beta."
 
@@ -2726,8 +2719,9 @@ msgstr "Kontrolloni Përputhshmëri Shtese"
 msgid "You cannot submit this type of add-on"
 msgstr "S’mund të parashtroni këtë lloj shtojce"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
@@ -2980,13 +2974,11 @@ msgid "About author roles"
 msgstr "Rreth rolit autor"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 3 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
-"autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li> <li><b>Parës:</b> Mund të shohë "
-"rregullimet dhe statistikat e shtesës, por s’mund të bëjë ndryshime</li> </ul>"
+"<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 2 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
+"autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li></ul>"
 
 msgid "Basic Information"
 msgstr "Të dhëna Bazë"
@@ -3267,20 +3259,11 @@ msgstr "Shtoni një Foto Ekrani…"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "A mundet të tjerët të ndajnë me dikë Temën tuaj, për sa kohë që ju përmendin si autor?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin dhe ekzekutojnë veprën, përfshi rastet për qëllime komerciale."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin, dhe ekzekutojnë veprën vetëm për qëllime jokomerciale."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "A mund të përdoret Tema juaj në rrugë komerciale?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "A munden të tjerët të krijojnë vepra të rrjedhura nga Tema juaj?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin dhe ekzekutojnë veprën, si edhe të krijojnë vepra të rrjedhura bazuar në të."
 
 msgid "Yes, as long as they share alike"
 msgstr "Po, për sa kohë që e ndajnë me të tjerët po njësoj"
@@ -3288,14 +3271,14 @@ msgstr "Po, për sa kohë që e ndajnë me të tjerët po njësoj"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Licencuesi u lejon të tjerëve të shpërndajnë vepra të rrjedhura vetëm sipas të njëjtës licencë ose një të përputhshmeje me atë që qeveris veprën e licencuesit."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë dhe transmetojnë vetëm kopje të pandryshuara të veprës - jo vepra të rrjedhura bazuar në të."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Shtesa juaj do të hidhet në qarkullim sipas licencës vijuese:"
 
 msgid "Select a different license."
 msgstr "Përzgjidhni një licencë tjetër."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Më tepër të dhëna për licenca Creative Commons"
 
 msgid "Tests"
 msgstr "Prova"
@@ -3452,6 +3435,9 @@ msgstr "Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija n
 msgid "Summary:"
 msgstr "Përmbledhje:"
 
+msgid "required"
+msgstr "e domosdoshme"
+
 msgid "This add-on is experimental"
 msgstr "Kjo shtesë është eksperimentale"
 
@@ -3517,17 +3503,23 @@ msgstr "Parashtrim i Plotësuar"
 msgid "You’re done!"
 msgstr "Kaq qe!"
 
+msgid "Version Submitted for Review"
+msgstr "Version i Parashtruar për Shqyrtim"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Kaq qe! Ky version do të jetë i gatshëm pasi të kalojë etapën e shqyrtimit. Do të njoftoheni kur të jetë shqyrtuar."
+
 msgid "Version Submitted"
 msgstr "Versioni u Parashtrua"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Kaq qe! Ky version do të jetë i gatshëm në sajtin tuaj shumë shpejt."
 
-msgid "Version Submitted for Review"
-msgstr "Version i Parashtruar për Shqyrtim"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Mbaruat! Ky version është parashtruar për shqyrtim. Do të njoftoheni kur shqyrtimi të jetë plotësuar, ose nëse shqyrtuesit tanë kanë ndonjë pyetje rreth parashtrimit tuaj."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm. Bëjeni parashtrimin tuaj gati për publikim:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm dhe foto ekrani. Bëjeni parashtrimin tuaj gati për publikim:"
@@ -3583,9 +3575,6 @@ msgstr "Ngarkojeni Versionin"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Për ngarkimin e paketës së shtesës suaj përdorni fushat më poshtë. Pas ngarkimit, mbi kartelën tuaj do të xhirohen një varg provash të automatizuara vleftësimi."
 
-msgid "Create a Theme"
-msgstr "Krijoni një Temë"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
 
@@ -3594,6 +3583,12 @@ msgstr "Botoje këtë version vetëm te kanali im beta."
 
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
+
+msgid "Create a Theme Version"
+msgstr "Krijoni një Version Teme"
+
+msgid "Create a Theme"
+msgstr "Krijoni një Temë"
 
 msgid "Submit File"
 msgstr "Parashtroni një Kartelë"
@@ -3607,11 +3602,11 @@ msgstr "Prodhoje temën"
 msgid "Theme generator"
 msgstr "Prodhues temash"
 
-msgid "Select a header image for your Theme."
-msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
+msgid "Theme name"
+msgstr "Emër teme"
 
-msgid "required"
-msgstr "e domosdoshme"
+msgid "Select a header image for your theme"
+msgstr "Përzgjidhni një figurë kryeje për temën tuaj"
 
 msgid "Image height should be 200 pixels"
 msgstr "Lartësi e figurës duhet të jetë 200 piksel"
@@ -3625,50 +3620,50 @@ msgstr "Vendosur sipër djathtas"
 msgid "Select a different header image"
 msgstr "Përzgjidhni një tjetër figurë kryeje"
 
-msgid "Select colors for your Theme."
-msgstr "Përzgjidhni ngjyra për Temën tuaj."
+msgid "Select colors for your theme"
+msgstr "Përzgjidhni ngjyra për temën tuaj"
 
-msgid "Header area background (accentcolor)"
-msgstr "Sfond fushe kryesh (accentcolor)"
+msgid "Header area background"
+msgstr "Sfond fushe kryesh"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Ngjyra për sfondin e fushës së kryes, e shfaqur në pjesën e kryes që s’është e mbuluar ose që është e dukshme përtej figurës së kryes. Fushë te manifesti:  accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Tekst fushe kryesh (accentcolor)"
+msgid "Header area text and icons"
+msgstr "Tekst dhe ikona fushe kryesh"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Ngjyra e tekstit të shfaqur te fushë kryesh."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Ngjyra e tekstit dhe ikonave të shfaqura te fushë kryesh, hiq skedën aktive. Fushë te manifesti:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Sfond fushe paneli (toolbar)."
+msgid "Toolbar area background"
+msgstr "Sfond fushe paneli"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Ngjyra e sfondit  për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Ngjyra e sfondit për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur.  Fushë manifesti:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Tekst fushe paneli (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Ikona teksti fushe paneli"
 
-msgid "The color of toolbar text."
-msgstr "Ngjyra e tekstit të panelit."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Ngjyra e tekstit dhe ikonave te paneli dhe skeda aktive. Fushë manifesti:  toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Sfond fushe zone paneli (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Sfond fushe zone paneli"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Ngjyra e sfondit për fusha në panel, të tilla si shtylla e URL-ve."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Ngjyra e sfondit për fusha në panel, të tilla si shtylla e URL-ve. Fushë manifesti:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Tekst fushe zone paneli (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Tekst fushe zone paneli"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Ngjyra e tekstit në fusha te paneli, fjala vjen, shtylla e URL-ve. Fushë manifesti:  toolbar_field_text."
 
 msgid "optional"
 msgstr "opsionale"
 
-msgid "Browser Preview"
-msgstr "Paraparje Shfletuesi"
+msgid "Browser preview"
+msgstr "Paraparje shfletuesi"
 
 msgid "Back"
 msgstr "Mbrapsht"
@@ -3676,8 +3671,8 @@ msgstr "Mbrapsht"
 msgid "Uploading Theme"
 msgstr "Ngarkim Teme"
 
-msgid "Upload Theme"
-msgstr "Ngarkoni Temë"
+msgid "Finish Theme"
+msgstr "Përfundojeni Temën"
 
 msgid "API Credentials"
 msgstr "Kredenciale API"
@@ -3878,6 +3873,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Lidhuni Me Ne"
 
+msgid "Support"
+msgstr "Asistencë"
+
 msgid "Policies"
 msgstr "Rregulla"
 
@@ -4070,11 +4068,23 @@ msgstr "Licencë Teme"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "A mundet të tjerët të ndajnë me dikë Temën tuaj, për sa kohë që përmendeni si autori?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin dhe ekzekutojnë veprën, përfshi rastet për qëllime komerciale."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin, dhe ekzekutojnë veprën vetëm për qëllime jokomerciale."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "A mund të përdoret Tema juaj në rrugë komerciale?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "A munden të tjerët të krijojnë vepra të rrjedhura nga Tema juaj?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë, shfaqin dhe ekzekutojnë veprën, si edhe të krijojnë vepra të rrjedhura bazuar në të."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licencuesi u lejon të tjerëve të kopjojnë, shpërndajnë dhe transmetojnë vetëm kopje të pandryshuara të veprës - jo vepra të rrjedhura bazuar në të."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Tema juaj do të hidhet në qarkullim sipas licencës vijuese:"
@@ -4108,6 +4118,9 @@ msgstr "Krye"
 
 msgid "Footer"
 msgstr "Fundfaqe"
+
+msgid "Select colors for your Theme."
+msgstr "Përzgjidhni ngjyra për Temën tuaj."
 
 msgid "Foreground Text"
 msgstr "Tekst i Përparmë"
@@ -4172,6 +4185,9 @@ msgstr "Shihni dhe pajtohuni te <a href=\"%(feed_url)s\">prurja mbi veprimtarin�
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Merrni pjesë në bashkëbisedim te <a href=\"%(forum_url)s\">forumet</a> tanë."
+
+msgid "Select a header image for your Theme."
+msgstr "Përzgjidhni një figurë kryeje për Temën tuaj."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
@@ -4411,6 +4427,32 @@ msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{e
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dhjetra emoji mahnitës - vetëm një klik larg."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Punon vaj me shumicën e sajteve popullore të videove."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Caktoni faqen që shihni sa herë që hapni një skedë të re."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Dhjetra emoji mahnitës, për çfarëdo nevoje - vetëm një klik larg."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+"Më shumë se sa një thjesht një mjet foto, Awesome Screenshot Plus ju lejon të bëni shënime mbi figura, me tekst dhe elementë grafikë tuajt, plus aftësinë për të depozituar dhe ndarë me të tjerët "
+"gjëra tuajat pamore."
 
 msgid "Cannot diff a version against itself"
 msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
@@ -6060,15 +6102,6 @@ msgstr "Sisteme operativë:"
 msgid "Applications:"
 msgstr "Aplikacione:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet e njëpasnjëshme s’do të shoqërohen me email.)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Hiqja Shenjën për Shqyrtim Lënde Nga Përgjegjës"
-
 msgid "Is more info requested?"
 msgstr "A duhen më tepër të dhëna?"
 
@@ -6085,6 +6118,9 @@ msgstr "Dikush tjetër po e shqyrton këtë temë."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "temë, shqyrtues, ose koment"
+
+msgid "Private Whiteboard"
+msgstr "Tabelë Private"
 
 msgid "Keep review; remove flags"
 msgstr "Mbaje shqyrtimin; hiq flamurkat"
@@ -6112,6 +6148,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Është bllokuar nga një shqyrtues."
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "Parashtrim Dy Herë"
@@ -6182,8 +6221,8 @@ msgstr "Kështu do të hidhet tej ky version dhe do të hiqet prej radhës së s
 msgid "Confirm Approval"
 msgstr "Ripohoni Miratimin"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit, pa u njoftuar zhvilluesi. "
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit të atij versioni, pa e njoftuar zhvilluesin."
 
 msgid "Reject Multiple Versions"
 msgstr "Hidhi tej Versionet e Shumëfishtë"
@@ -6209,8 +6248,8 @@ msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendj
 msgid "Approve Content"
 msgstr "Miratojeni Lëndën"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Kjo regjistron miratimin tuaj të lëndës së këtij versioni, pa e njoftuar zhvilluesin."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Kjo regjistron miratimin tuaj të lëndës së versionit më të ri publik, pa e njoftuar zhvilluesin."
 
 msgid "Legacy Add-ons"
 msgstr "Shtesa të Dikurshme"
@@ -6553,8 +6592,35 @@ msgstr "<strong>Kujdes!</strong> Para jush, këtë faqe po e shihte një tjetër
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "Tabela është vendi i duhur për shkëmbim të dhënash me rëndësi për këtë shtesë (cilido qoftë versioni), mes zhvilluesit dhe shqyrtuesit. Atë e shohin dhe mund ta përpunojnë që të dy."
 
-msgid "Update the whiteboard"
-msgstr "Përditësoni tabelën"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Tabela private përdoret për të shkëmbyer mes zhvilluesve informacion që është i pavarur nga versioni. Ju lutemi, ruani objektivitetin. Është e dukshme vetëm për shqyrtuesit."
+
+msgid "Update whiteboards"
+msgstr "Përditësoni tabela"
+
+msgid "More Actions"
+msgstr "Më Tepër Veprime"
+
+msgid "Notify me about new listed versions"
+msgstr "Njoftomë rreth versionesh të rinj të paraqitur"
+
+msgid "Force-disable add-on"
+msgstr "Aktivizoje shtesën me detyrim"
+
+msgid "Force-enable add-on"
+msgstr "Aktivizoje shtesën me detyrim"
+
+msgid "Disable Auto-Approval"
+msgstr "Çaktivizo Vetëmiratimin"
+
+msgid "Enable Auto-Approval"
+msgstr "Aktivizo Vetëmiratimin"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Hiqja Shenjën për Shqyrtim Lënde Nga Përgjegjës"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7455,8 +7521,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Duke klikuar mbi \"fshije\" llogaria juaj <strong>do të fshihet përgjithmonë</strong>. Kjo do të thotë:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "S’do të jeni më në gjendje të hyni te %(site)s."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Futja sërish me këtë adresë email te %(site)s do të sjellë krijimin e një llogarie të re që s’do të jetë në asnjë mënyrë e përshoqëruar me këtë llogari."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Shqyrtimet dhe vlerësimet tuaja s’do të fshihen, por s’do t’i përshoqërohen më llogarisë suaj."

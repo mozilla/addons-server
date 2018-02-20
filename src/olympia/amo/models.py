@@ -381,10 +381,10 @@ class SaveUpdateMixin(object):
         return super(SaveUpdateMixin, self).save(**kwargs)
 
 
-class ModelBase(SearchMixin, caching.base.CachingMixin, SaveUpdateMixin,
-                models.Model):
+class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     """
-    Base class for AMO models to abstract some common features.
+    Base class for AMO models to abstract some common features
+    (without cache-machine).
 
     * Adds automatic created and modified fields to the model.
     * Fetches all translations in one subsequent query during initialization.
@@ -393,7 +393,7 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, SaveUpdateMixin,
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    objects = ManagerBase()
+    objects = UncachedManagerBase()
 
     class Meta:
         abstract = True
@@ -401,6 +401,19 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, SaveUpdateMixin,
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
+
+
+class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
+    """
+    Base class for AMO models to abstract some common features.
+
+    * Adds automatic created and modified fields to the model.
+    * Fetches all translations in one subsequent query during initialization.
+    """
+    objects = ManagerBase()
+
+    class Meta(UncachedModelBase.Meta):
+        abstract = True
 
     @classmethod
     def _cache_key(cls, pk, db):

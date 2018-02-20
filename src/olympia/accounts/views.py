@@ -68,7 +68,12 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
 }
 
-API_TOKEN_COOKIE = 'api_auth_token'
+# Name of the cookie that contains the auth token for the API. It used to be
+# "api_auth_token" but we had to change it because it wasn't set on the right
+# domain, and we couldn't clear both the old and new versions at the same time,
+# since sending multiple Set-Cookie headers with the same name is not allowed
+# by the spec, even if they have a distinct domain attribute.
+API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(url, action):
@@ -259,16 +264,12 @@ def add_api_token_to_response(response, user):
     response.set_cookie(
         API_TOKEN_COOKIE,
         token,
+        domain=settings.SESSION_COOKIE_DOMAIN,
         max_age=settings.SESSION_COOKIE_AGE,
         secure=settings.SESSION_COOKIE_SECURE,
         httponly=settings.SESSION_COOKIE_HTTPONLY)
 
     return response
-
-
-def remove_api_token_cookie(response):
-    """Delete the api token cookie."""
-    response.delete_cookie(API_TOKEN_COOKIE)
 
 
 class FxAConfigMixin(object):
@@ -329,7 +330,8 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
 def logout_user(request, response):
     logout(request)
-    remove_api_token_cookie(response)
+    response.delete_cookie(
+        API_TOKEN_COOKIE, domain=settings.SESSION_COOKIE_DOMAIN)
 
 
 class SessionView(APIView):

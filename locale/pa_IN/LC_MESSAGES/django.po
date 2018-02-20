@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,9 @@ msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1022,6 +1025,10 @@ msgstr "ਅੱਖਰਾਂ, ਨੰਬਰਾਂ, ਅੰਡਰਸਕੋਰਾਂ �
 msgid "This slug cannot be used."
 msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
+#, fuzzy
+msgid "This add-on already belongs to the collection"
+msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
+
 msgid "Name"
 msgstr "ਨਾਂ"
 
@@ -1752,8 +1759,9 @@ msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
 msgid "{addon} enabled."
 msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
 msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
 
 msgid "{version} added to {addon}."
@@ -2064,12 +2072,6 @@ msgstr "ਅਣਸੂਚੀਬੱਧ"
 
 msgid "Developer"
 msgstr "ਡਿਵੈਲਪਰ"
-
-msgid "Viewer"
-msgstr "ਦਰਸ਼ਕ"
-
-msgid "Support"
-msgstr "ਸਹਿਯੋਗ"
 
 msgid "Extension"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
@@ -2633,12 +2635,6 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 msgid "Submit my add-on for manual review."
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "ਇਸ ਚੋਣ ਤੇ ਨਿਸ਼ਾਨ ਲਗਾਓ ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਆਪ ਵੰਡਣਾ ਤੈਅ ਕੀਤਾ ਅਤੇ ਕੇਵਲ ਇਸ ਨੂੰ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਹਸਤਾਖਰਿਤ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
 
@@ -2775,7 +2771,8 @@ msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -3031,9 +3028,8 @@ msgstr "ਲੇਖਕ ਦੀਆਂ ਭੂਮਿਕਾਵਾਂ ਬਾਰੇ"
 
 #, fuzzy
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>ਐਡ-ਆਨਾਂ ਦੇ ਤਿੰਨ ਸੰਭਵ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਬਹੁਤ ਸਾਰੇ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣਾ ਵੀ ਸ਼ਾਮਲ ਹੈ</li> <li><b>ਡਿਵੈਲਪਰ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ "
 "ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣ ਅਤੇ ਭੁਗਤਾਨਾਂ ਦੈ ਪ੍ਰਬੰਧ ਨੂੰ ਛੱਡ ਕੇ</li><b>ਦਰਸ਼ਕ:</b> ਐਡ-ਆਨਾਂ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਅਤੇ ਅੰਕੜੇ ਵੇਖ ਸਕਦਾ, ਪਰ ਕੋਈ ਬਦਲਾਵ ਨਹੀਂ ਕਰ ਸਕਦਾ ਹੈ</li> </ul>"
@@ -3314,12 +3310,6 @@ msgstr "ਇੱਕ ਸਕਰੀਨਸ਼ਾੱਟ ਜੋੜੋ..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡਾ ਥੀਮ ਸਾਂਝਾ ਕਰ ਸਕਦਾ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਦਿੱਤਾ?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "ਲਾਇਸੰਸਰ ਵਪਾਰਕ ਮਕਸਦਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ, ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "ਲਾਇਸੰਸ ਦੂਜਿਆਂ ਨੂੰ ਗੈਰ-ਵਪਾਰਕ ਮਕਸਦਾਂ ਲਈ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
 #, fuzzy
 msgid "Can others make commercial use of your Add-on?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾਰਕ ਵਰਤੋਂ ਕਰ ਸਕਦਾ?"
@@ -3328,17 +3318,11 @@ msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾ
 msgid "Can others create derivative works from your Add-on?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਤੋਂ ਛਾਪ ਲੈ ਕੇ ਰਚਨਾ ਕਰ ਸਕਦਾ?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ, ਨਾਲ ਦੀ ਨਾਲ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਬਣਾਉਣਾ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
 msgid "Yes, as long as they share alike"
 msgstr "ਹਾਂ, ਜਦੋਂ ਤੱਕ ਉਹ ਵੀ ਇਸੇ ਤਰ੍ਹਾਂ ਸਾਂਝਾ ਕਰਨ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸੇ ਵਰਗੇ ਲਾਇਸੰਸ ਦੇ ਅਧੀਨ ਛਾਪ ਵੰਡਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦੇ ਸਕਦਾ ਜਾਂ ਜਿੜੜਾ ਲਾਇਸੰਸਰ ਦੇ ਕੰਮ ਅਨੁਸਾਰ ਅਨੁਕੂਲ ਹੋਵੇ।"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸਦੇ ਕੰਮ ਦੀਆਂ ਬਿਨਾਂ-ਬਦਲਾਅ ਵਾਲੀਆਂ ਨਕਲਾਂ ਦੀ ਕਾਪੀ, ਵੰਡਣ ਅਤੇ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ— ਨਾ ਕਿ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਦੀ।"
 
 #, fuzzy
 msgid "Your Add-on will be released under the following license:"
@@ -3346,6 +3330,10 @@ msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸ�
 
 msgid "Select a different license."
 msgstr "ਇੱਕ ਵੱਖ ਲਾਇਸੰਸ ਚੁਣੋ।"
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 msgid "Tests"
 msgstr "ਪਰਖ"
@@ -3507,6 +3495,9 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ URL ਵਿੱਚ ਕੇਵਲ 
 msgid "Summary:"
 msgstr "ਸੰਖੇਪ"
 
+msgid "required"
+msgstr "ਜ਼ਰੂਰਤ"
+
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
@@ -3585,17 +3576,23 @@ msgid "You’re done!"
 msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
 
 #, fuzzy
+msgid "Version Submitted for Review"
+msgstr "ਵਰਜਨ ਨੋਟ / ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
 msgid "Version Submitted"
 msgstr "ਵਰਜਨ ਨੋਟ"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
-msgid "Version Submitted for Review"
-msgstr "ਵਰਜਨ ਨੋਟ / ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3665,10 +3662,6 @@ msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
-#, fuzzy
-msgid "Create a Theme"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
 
@@ -3677,6 +3670,14 @@ msgstr "ਕੇਵਲ ਇਸ ਵਰਜਨ ਨੂੰ ਮੇਰੇ ਬੀਟਾ ਚ
 
 msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
+
+#, fuzzy
+msgid "Create a Theme"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
 
 #, fuzzy
 msgid "Submit File"
@@ -3694,11 +3695,13 @@ msgstr "ਥੀਮ ਹਟਾਇਆ।"
 msgid "Theme generator"
 msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 
-msgid "Select a header image for your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
+#, fuzzy
+msgid "Theme name"
+msgstr "ਥੀਮ ਨਾਂ"
 
-msgid "required"
-msgstr "ਜ਼ਰੂਰਤ"
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3712,44 +3715,45 @@ msgstr "ਉੱਪਰੀ-ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ"
 msgid "Select a different header image"
 msgstr "ਇੱਕ ਵੱਖ ਹੈਡਰ ਤਸਵੀਰ ਚੁਣੋ"
 
-msgid "Select colors for your Theme."
+#, fuzzy
+msgid "Select colors for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3757,7 +3761,7 @@ msgid "optional"
 msgstr "(ਵਿਕਲਪਿਕ)"
 
 #, fuzzy
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
 
 msgid "Back"
@@ -3768,8 +3772,8 @@ msgid "Uploading Theme"
 msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
 
 #, fuzzy
-msgid "Upload Theme"
-msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
+msgid "Finish Theme"
+msgstr "%s ਥੀਮ"
 
 msgid "API Credentials"
 msgstr ""
@@ -3975,6 +3979,9 @@ msgstr "ਬਲੌਗ"
 #, fuzzy
 msgid "Contact Us"
 msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
+
+msgid "Support"
+msgstr "ਸਹਿਯੋਗ"
 
 #, fuzzy
 msgid "Policies"
@@ -4190,11 +4197,23 @@ msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡਾ ਥੀਮ ਸਾਂਝਾ ਕਰ ਸਕਦਾ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਦਿੱਤਾ?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "ਲਾਇਸੰਸਰ ਵਪਾਰਕ ਮਕਸਦਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ, ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "ਲਾਇਸੰਸ ਦੂਜਿਆਂ ਨੂੰ ਗੈਰ-ਵਪਾਰਕ ਮਕਸਦਾਂ ਲਈ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾਰਕ ਵਰਤੋਂ ਕਰ ਸਕਦਾ?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਤੋਂ ਛਾਪ ਲੈ ਕੇ ਰਚਨਾ ਕਰ ਸਕਦਾ?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ, ਨਾਲ ਦੀ ਨਾਲ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਬਣਾਉਣਾ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸਦੇ ਕੰਮ ਦੀਆਂ ਬਿਨਾਂ-ਬਦਲਾਅ ਵਾਲੀਆਂ ਨਕਲਾਂ ਦੀ ਕਾਪੀ, ਵੰਡਣ ਅਤੇ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ— ਨਾ ਕਿ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਦੀ।"
 
 msgid "Your Theme will be released under the following license:"
 msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸੰਸ ਦੇ ਅਧੀਨ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇਗਾ:"
@@ -4228,6 +4247,9 @@ msgstr "ਸਿਰਲੇਖ"
 
 msgid "Footer"
 msgstr "ਪਦਲੇਖ"
+
+msgid "Select colors for your Theme."
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
 msgid "Foreground Text"
 msgstr "ਫ਼ੌਰਗਰਾਂਊਡ ਟੈਕਸਟ"
@@ -4290,6 +4312,9 @@ msgstr "ਸਮੀਖਿਆਵਾਂ, ਸੰਗ੍ਰਹਿਾਂ ਅਤੇ ਹ�
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "ਸਾਡੀਆਂ <a href=\"%(forum_url)s\">ਫ਼ੋਰਮਾਂ</a> ਵਿੱਚ ਗੱਲਬਾਤ ਦਾ ਹਿੱਸਾ ਬਣੋ।"
+
+msgid "Select a header image for your Theme."
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 ਪਿਕਸਲ"
@@ -4527,6 +4552,30 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
@@ -6137,17 +6186,6 @@ msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ:"
 msgid "Applications:"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "ਅਗਲੀ ਵਾਰ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਹੋਵੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ। (ਪਿਛਲੀਆਂ ਅੱਪਡੇਟਾਂ ਈਮੇਲ ਜਾਰੀ ਨਹੀਂ ਕਰਨਗੀਆਂ)"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
-
 #, fuzzy
 msgid "Is more info requested?"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
@@ -6166,6 +6204,10 @@ msgstr "ਇਸ ਥੀਮ ਦੀ ਸਮੀਖਿਆ ਕੋਈ ਹੋਰ ਕਰ �
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "ਐਪ, ਸਮੀਖਿਅਕ, ਜਾਂ ਟਿੱਪਣੀ"
+
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "ਵਾਇਟਬੋਰਡ"
 
 msgid "Keep review; remove flags"
 msgstr "ਸਮੀਖਿਆ ਰੱਖੋ; ਝੰਡੇ ਹਟਾਓ"
@@ -6196,6 +6238,9 @@ msgstr ""
 #, fuzzy
 msgid "Is locked by a reviewer."
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ""
 
 msgid "Duplicate Submission"
 msgstr "ਨਕਲ ਦਾਖਲ ਕੀਤੀ"
@@ -6269,7 +6314,7 @@ msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸ�
 msgid "Confirm Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਬਕਾਇਆ"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6303,7 +6348,7 @@ msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖ�
 msgid "Approve Content"
 msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -6673,8 +6718,41 @@ msgstr "<strong>ਚੇਤਾਵਨੀ!</strong> ਦੂਜਾ ਉਪਭੋਗੀ 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "ਵਾਇਟਬੋਰਡ ਡਿਵੈਲਪਰ ਅਤੇ ਸੰਪਾਦਕ ਵਿਚਾਲੇ, ਇਸ ਐਡ-ਆਨ ਨਾਲ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਵਟਾਉਣ ਦੀ ਥਾਂ ਹੈ (ਜੋ ਵੀ ਵਰਜਨ ਹੋਵੇ)। ਇਹ ਦੋਨਾਂ ਵੱਲੋਂ ਵਿਖਾਈ ਦੇਣ ਅਤੇ ਸੋਧ ਕਰਨਯੋਗ ਹੈ।"
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
 msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
 msgid "(admin)"
 msgstr "(ਪ੍ਰਬੰਧਕ)"
@@ -7573,8 +7651,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "ਆਪਣਾ ਖਾਤਾ \"ਹਟਾਓ\" ਤੇ ਕਲਿੱਕ ਕਰਨ ਤੇ <strong>ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾਇਆ</strong> ਜਾਵੇਗਾ। ਇਸ ਤੋਂ ਭਾਵ:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "ਤੁਸੀਂ %(site)s ਤੇ ਹੁਣ ਲਾਗਇਨ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਰਹੋਗੇ।"
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "ਤੁਹਾਡੀਆਂ ਸਮੀਖਿਆਵਾਂ ਅਤੇ ਰੇਟਿੰਗਾਂ ਹਟਾਈਆਂ ਨਹੀਂ ਜਾਣਗੀਆਂ, ਪਰ ਹੁਣ ਉਹ ਤੁਹਾਡੇ ਨਾਲ ਸੰਬੰਧਤ ਨਹੀਂ ਰਹਿਣਗੀਆਂ।"

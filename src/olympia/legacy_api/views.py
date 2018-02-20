@@ -29,8 +29,7 @@ from olympia.amo.decorators import allow_cross_site_request, json_view
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
 from olympia.amo.utils import AMOJSONEncoder
-from olympia.legacy_api.utils import (
-    addon_to_dict, extract_filters, find_compatible_version)
+from olympia.legacy_api.utils import addon_to_dict, find_compatible_version
 from olympia.search.views import AddonSuggestionsAjax, PersonaSuggestionsAjax
 from olympia.versions.compare import version_int
 
@@ -126,8 +125,8 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
     Shuffling will be applied to the add-ons supporting the locale and the
     others separately.
 
-    Doing this in the database takes too long, so we in code and wrap it in
-    generous caching.
+    Doing this in the database takes too long, so we do it in code and wrap
+    it in generous caching.
     """
     APP = app
 
@@ -351,16 +350,28 @@ class SearchView(APIView):
             'current_version__exists': True,
         }
 
-        # Opts may get overridden by query string filters.
-        opts = {
-            'addon_type': addon_type,
-            'version': version,
-        }
+        params = {'version': version, 'platform': None}
+
         # Specific case for Personas (bug 990768): if we search providing the
         # Persona addon type (9), don't filter on the platform as Personas
         # don't have compatible platforms to filter on.
         if addon_type != '9':
-            opts['platform'] = platform
+            params['platform'] = platform
+
+        # Type filters.
+        if addon_type:
+            try:
+                atype = int(addon_type)
+                if atype in amo.ADDON_SEARCH_TYPES:
+                    filters['type'] = atype
+            except ValueError:
+                atype = amo.ADDON_SEARCH_SLUGS.get(addon_type.lower())
+                if atype:
+                    filters['type'] = atype
+
+        if 'type' not in filters:
+            # Filter by ALL types, which is really all types except for apps.
+            filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
 
         if self.version < 1.5:
             # Fix doubly encoded query strings.
@@ -370,17 +381,12 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        query, qs_filters, params = extract_filters(query, opts)
+        qs = (
+            Addon.search()
+            .filter(**filters)
+            .filter_query_string(query)
+            [:limit])
 
-        qs = Addon.search().filter_query_string(query)
-
-        filters.update(qs_filters)
-        if 'type' not in filters:
-            # Filter by ALL types, which is really all types except for apps.
-            filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
-        qs = qs.filter(**filters)
-
-        qs = qs[:limit]
         total = qs.count()
 
         results = []

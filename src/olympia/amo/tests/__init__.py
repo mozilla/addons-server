@@ -103,7 +103,7 @@ def setup_es_test_data(es):
                               es.indices.get_alias().keys())
 
     for key in aliases_and_indexes:
-        if key.startswith('test_amo'):
+        if key.startswith('test_'):
             es.indices.delete(key, ignore=[404])
 
     # Figure out the name of the indices we're going to create from the
@@ -858,7 +858,7 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    if addon_type != amo.ADDON_PERSONA:
+    if addon_type != amo.ADDON_PERSONA and file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     return ver

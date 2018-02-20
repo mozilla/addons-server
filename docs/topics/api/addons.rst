@@ -166,6 +166,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
     :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
+    :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32 and 64 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
     :>json boolean is_featured: The add-on appears in a featured collection.
@@ -184,10 +185,11 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The total number of user ratings for the add-on.
     :>json int ratings.text_count: The number of user ratings with review text for the add-on.
+    :>json string ratings_url: The URL to the user ratings list page for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
-    :>json string review_url: The URL to the review page for the add-on.
+    :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
     :>json string|object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
@@ -325,7 +327,6 @@ This endpoint allows you to list all versions belonging to a specific add-on.
                           a user account listed as a developer of the add-on.
         all_with_deleted  Show all versions attached to this add-on, including
                           deleted ones. Requires admin permissions.
-               only_beta  Show beta versions only.
     ====================  =====================================================
 
 --------------
@@ -376,7 +377,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean files[].is_restart_required: Whether the file requires a browser restart to work once installed or not.
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
-    :>json string files[].url: The (absolute) URL to download a file. An optional ``src`` query parameter can be added to indicate the source page (See :ref:`download sources <download-sources>`).
+    :>json string files[].url: The (absolute) URL to download a file. Clients using this API can append an optional ``src`` query parameter to the url which would indicate the source of the request (See :ref:`download sources <download-sources>`).
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings.  Empty for non-webextensions.
     :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from search endpoint.
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
@@ -459,7 +460,6 @@ on AMO.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json array results: An array of language tools.
     :>json int results[].id: The add-on id on AMO.
-    :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -490,3 +490,35 @@ This endpoint returns a list of suggested replacements for legacy add-ons that a
     :>json array results: An array of replacements matches.
     :>json string results[].guid: The extension identifier of the legacy add-on.
     :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.
+
+
+---------------
+Compat Override
+---------------
+
+.. _addon-compat-override:
+
+This endpoint allows compatibility overrides specified by AMO admins to be searched.
+Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
+
+.. http:get:: /api/v3/addons/compat-override/
+
+    :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified.
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of compat overrides.
+    :>json int|null results[].addon_id: The add-on identifier on AMO, if specified.
+    :>json string results[].addon_guid: The add-on extension identifier.
+    :>json string results[].name: A description entered by AMO admins to describe the override.
+    :>json array results[].version_ranges: An array of affected versions of the add-on.
+    :>json string results[].version_ranges[].addon_min_version: minimum version of the add-on to be disabled.
+    :>json string results[].version_ranges[].addon_max_version: maximum version of the add-on to be disabled.
+    :>json array results[].version_ranges[].applications: An array of affected applications for this range of versions.
+    :>json string results[].version_ranges[].applications[].name: Application name (e.g. Firefox).
+    :>json int results[].version_ranges[].applications[].id: Application id on AMO.
+    :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
+    :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
+    :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.

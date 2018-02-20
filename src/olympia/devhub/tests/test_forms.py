@@ -246,8 +246,13 @@ class TestPreviewForm(TestCase):
             copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon)
-        assert addon.previews.all()[0].sizes == (
-            {u'image': [250, 297], u'thumbnail': [126, 150]})
+        preview = addon.previews.all()[0]
+        assert preview.sizes == (
+            {u'image': [250, 297], u'thumbnail': [126, 150],
+             u'original': [250, 297]})
+        assert os.path.exists(preview.image_path)
+        assert os.path.exists(preview.thumbnail_path)
+        assert os.path.exists(preview.original_path)
 
 
 class TestThemeForm(TestCase):
@@ -754,6 +759,7 @@ class TestEditThemeOwnerForm(TestCase):
 
 class TestDistributionChoiceForm(TestCase):
 
+    @pytest.mark.needs_locales_compilation
     def test_lazy_choice_labels(self):
         """Tests that the labels in `choices` are still lazy
 

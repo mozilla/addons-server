@@ -12,7 +12,7 @@ from olympia.users.models import UserProfile
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
     check_ownership, check_personas_reviewer, check_unlisted_addons_reviewer,
-    is_reviewer, match_rules)
+    is_reviewer, is_user_any_kind_of_reviewer, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -142,60 +142,12 @@ class TestHasPerm(TestCase):
         self.au.save()
         assert not check_addon_ownership(self.request, self.addon)
 
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
-
     def test_dev(self):
         assert check_addon_ownership(self.request, self.addon, dev=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, dev=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, dev=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, dev=True)
-
-    def test_viewer(self):
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-    def test_support(self):
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon,
-                                         support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon,
-                                         support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, support=True)
 
     def test_add_and_remove_group(self):
         group = Group.objects.create(name='A Test Group', rules='Test:Group')
@@ -224,41 +176,82 @@ class TestCheckReviewer(TestCase):
         self.addon = Addon.objects.get(pk=3615)
 
     def test_no_perm(self):
-        req = req_factory_factory('noop', user=self.user)
-        assert not check_addons_reviewer(req)
-        assert not check_unlisted_addons_reviewer(req)
-        assert not check_personas_reviewer(req)
+        request = req_factory_factory('noop', user=self.user)
+        assert not check_addons_reviewer(request)
+        assert not check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert not is_user_any_kind_of_reviewer(request.user)
+        assert not is_reviewer(request, self.addon)
+        assert not is_reviewer(request, self.persona)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert check_addons_reviewer(req)
-        assert not check_unlisted_addons_reviewer(req)
-        assert not check_personas_reviewer(req)
+        request = req_factory_factory('noop', user=self.user)
+        assert check_addons_reviewer(request)
+        assert not check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_themes(self):
         self.grant_permission(self.user, 'Personas:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert not check_addons_reviewer(req)
-        assert not check_unlisted_addons_reviewer(req)
-        assert check_personas_reviewer(req)
+        request = req_factory_factory('noop', user=self.user)
+        assert not check_addons_reviewer(request)
+        assert not check_unlisted_addons_reviewer(request)
+        assert check_personas_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_unlisted_addons(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        req = req_factory_factory('noop', user=self.user)
-        assert not check_addons_reviewer(req)
-        assert check_unlisted_addons_reviewer(req)
-        assert not check_personas_reviewer(req)
+        request = req_factory_factory('noop', user=self.user)
+        assert not check_addons_reviewer(request)
+        assert check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
         """An addon reviewer is also a persona reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(req, self.persona)
-        assert is_reviewer(req, self.addon)
+        request = req_factory_factory('noop', user=self.user)
+        assert is_reviewer(request, self.persona)
+        assert is_reviewer(request, self.addon)
+        assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_persona_reviewer(self):
         self.grant_permission(self.user, 'Personas:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(req, self.persona)
-        assert not is_reviewer(req, self.addon)
+        request = req_factory_factory('noop', user=self.user)
+        assert is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.addon)
+        assert is_user_any_kind_of_reviewer(request.user)
+
+    def test_perm_post_review(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        request = req_factory_factory('noop', user=self.user)
+        assert is_user_any_kind_of_reviewer(request.user)
+
+        assert not check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert not is_reviewer(request, self.persona)
+
+        # Technically, someone with PostReview has access to reviewer tools,
+        # and would be called a reviewer... but those 2 functions predates the
+        # introduction of PostReview, so at the moment they don't let you in
+        # if you only have that permission.
+        assert not check_addons_reviewer(request)
+        assert not is_reviewer(request, self.addon)
+
+    def test_perm_content_review(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        request = req_factory_factory('noop', user=self.user)
+        assert is_user_any_kind_of_reviewer(request.user)
+
+        assert not check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert not is_reviewer(request, self.persona)
+
+        # Technically, someone with ContentReview has access to (some of the)
+        # reviewer tools, and could be called a reviewer (though they are more
+        # limited than other kind of reviewers...) but those 2 functions
+        # predates the introduction of PostReview, so at the moment they don't
+        # let you in if you only have that permission.
+        assert not check_addons_reviewer(request)
+        assert not is_reviewer(request, self.addon)

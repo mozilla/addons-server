@@ -100,17 +100,19 @@
                 {% endif %}
               </div>
             </div>
-
             <span class="DevHub-MyAddons-item-modified">
-              {% if addon.last_updated %}
-                <span>{{ _('Last Updated:') }}</span>
-                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                <span>{{ addon.last_updated|date }}</span>
-              {% else %}
-                <span>{{ _('Created:') }}</span>
-                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                <span>{{ addon.created|date }}</span>
-              {% endif %}
+              {{ impala_reviews_link(addon) }}
+              <span>
+                {% if addon.last_updated %}
+                  <span>{{ _('Last Updated:') }}</span>
+                  {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                  <span>{{ addon.last_updated|date }}</span>
+                {% else %}
+                  <span>{{ _('Created:') }}</span>
+                  {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                  <span>{{ addon.created|date }}</span>
+                {% endif %}
+              </span>
             </span>
           </div>
         {% endfor %}

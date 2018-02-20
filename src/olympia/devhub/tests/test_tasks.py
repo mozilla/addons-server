@@ -7,6 +7,8 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from waffle.testutils import override_switch
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -74,34 +76,33 @@ def _uploader(resize_size, final_size):
     src = tempfile.NamedTemporaryFile(
         mode='r+w+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
 
-    # resize_icon removes the original
-    shutil.copyfile(img, src.name)
+    if not isinstance(final_size, list):
+        final_size = [final_size]
+        resize_size = [resize_size]
+    uploadto = user_media_path('addon_icons')
+    try:
+        os.makedirs(uploadto)
+    except OSError:
+        pass
+    for rsize, expected_size in zip(resize_size, final_size):
+        # resize_icon moves the original
+        shutil.copyfile(img, src.name)
+        src_image = Image.open(src.name)
+        assert src_image.size == original_size
+        dest_name = os.path.join(uploadto, '1234')
 
-    src_image = Image.open(src.name)
-    assert src_image.size == original_size
+        tasks.resize_icon(src.name, dest_name, [rsize])
+        dest_image = '%s-%s.png' % (dest_name, rsize)
+        assert Image.open(open(dest_image)).size == expected_size
+        # original should have been moved to -original
+        orig_image = '%s-original.png' % dest_name
+        assert os.path.exists(orig_image)
 
-    if isinstance(final_size, list):
-        uploadto = user_media_path('addon_icons')
-        try:
-            os.makedirs(uploadto)
-        except OSError:
-            pass
-        for rsize, fsize in zip(resize_size, final_size):
-            dest_name = os.path.join(uploadto, '1234')
-
-            tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
-            dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
-            assert dest_image.size == fsize
-
-            if os.path.exists(dest_image.filename):
-                os.remove(dest_image.filename)
-            assert not os.path.exists(dest_image.filename)
-        shutil.rmtree(uploadto)
-    else:
-        dest = tempfile.mktemp(suffix='.png', dir=settings.TMP_PATH)
-        tasks.resize_icon(src.name, dest, resize_size, locally=True)
-        dest_image = Image.open(dest)
-        assert dest_image.size == final_size
+        os.remove(dest_image)
+        assert not os.path.exists(dest_image)
+        os.remove(orig_image)
+        assert not os.path.exists(orig_image)
+    shutil.rmtree(uploadto)
 
     assert not os.path.exists(src.name)
 
@@ -984,7 +985,8 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
 def test_send_welcome_email(send_html_mail_jinja_mock):
     tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
     send_html_mail_jinja_mock.assert_called_with(
-        'Mozilla Add-ons: Thanks for submitting a Firefox Add-on!',
+        ('Mozilla Add-ons: Your add-on has been submitted to'
+         ' addons.mozilla.org!'),
         'devhub/email/submission.html',
         'devhub/email/submission.txt',
         {'omg': 'yes'},
@@ -1015,7 +1017,8 @@ class TestSubmitFile(TestCase):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED,
+            use_autograph=False)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)
@@ -1092,6 +1095,7 @@ class TestCreateVersionForUpload(TestCase):
             upload, self.addon, [amo.PLATFORM_ALL.id],
             amo.RELEASE_CHANNEL_LISTED, is_beta=False)
 
+    @override_switch('beta-versions', active=True)
     def test_file_passed_all_validations_beta(self):
         upload = self.create_upload(version='1.0-beta1')
         self.create_version_for_upload(self.addon, upload,
@@ -1099,6 +1103,15 @@ class TestCreateVersionForUpload(TestCase):
         self.version__from_upload.assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
             amo.RELEASE_CHANNEL_LISTED, is_beta=True)
+
+    @override_switch('beta-versions', active=False)
+    def test_file_passed_all_validations_beta_string(self):
+        upload = self.create_upload(version='1.0-beta1')
+        self.create_version_for_upload(self.addon, upload,
+                                       amo.RELEASE_CHANNEL_LISTED)
+        self.version__from_upload.assert_called_with(
+            upload, self.addon, [amo.PLATFORM_ALL.id],
+            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
 
     def test_file_passed_all_validations_no_version(self):
         upload = self.create_upload(version=None)

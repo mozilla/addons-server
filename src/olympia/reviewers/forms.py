@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 
 from datetime import timedelta
@@ -12,6 +13,7 @@ from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 import olympia.core.logger
 
 from olympia import amo, ratings
+from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Persona
 from olympia.amo.urlresolvers import reverse
@@ -285,6 +287,10 @@ class NonValidatingChoiceField(forms.ChoiceField):
         pass
 
 
+class NumberInput(widgets.Input):
+    input_type = 'number'
+
+
 class ReviewForm(forms.Form):
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_(u'Comments:'))
@@ -303,17 +309,11 @@ class ReviewForm(forms.Form):
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
                                    label=_(u'Applications:'))
-    notify = forms.BooleanField(required=False,
-                                label=_(u'Notify me the next time this '
-                                        u'add-on is updated. (Subsequent '
-                                        u'updates will not generate an '
-                                        u'email)'))
-    clear_admin_code_review = forms.BooleanField(
-        required=False, label=_(u'Clear Admin Code Review Flag'))
-    clear_admin_content_review = forms.BooleanField(
-        required=False, label=_(u'Clear Admin Content Review Flag'))
     info_request = forms.BooleanField(
-        required=False, label=_(u'Is more info requested?'))
+        required=False, label=_(u'Require developer to respond in less than…'))
+    info_request_deadline = forms.IntegerField(
+        required=False, widget=NumberInput, initial=7, label=_(u'days'),
+        min_value=1, max_value=99)
 
     def is_valid(self):
         # Some actions do not require comments.
@@ -332,6 +332,20 @@ class ReviewForm(forms.Form):
         self.helper = kw.pop('helper')
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
+
+        # Info request deadline needs to be readonly unless we're an admin.
+        user = self.helper.handler.user
+        deadline_widget_attributes = {}
+        info_request_deadline = self.fields['info_request_deadline']
+        if not acl.action_allowed_user(user, amo.permissions.REVIEWS_ADMIN):
+            info_request_deadline.min_value = info_request_deadline.initial
+            info_request_deadline.max_value = info_request_deadline.initial
+            deadline_widget_attributes['readonly'] = 'readonly'
+        deadline_widget_attributes.update({
+            'min': info_request_deadline.min_value,
+            'max': info_request_deadline.max_value,
+        })
+        info_request_deadline.widget.attrs.update(deadline_widget_attributes)
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this

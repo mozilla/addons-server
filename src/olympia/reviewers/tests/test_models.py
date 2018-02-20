@@ -23,7 +23,7 @@ from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
     ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, Whiteboard, send_notifications, set_reviewing_cache)
+    ViewUnlistedAllList, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -125,43 +125,44 @@ class TestPendingQueue(TestQueue):
         AddonReviewerFlags.objects.create(
             addon=self.new_addon(), needs_admin_code_review=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [
+        queue = self.Queue.objects.get()
+        assert queue.flags == [
             ('needs-admin-code-review', 'Needs Admin Code Review')]
 
     def test_flags_info_request(self):
-        self.new_addon().find_latest_version(self.channel).update(
-            has_info_request=True)
-        q = self.Queue.objects.get()
-        assert q.flags == [('info', 'More Information Requested')]
+        AddonReviewerFlags.objects.create(
+            addon=self.new_addon(),
+            pending_info_request=datetime.now() + timedelta(days=6))
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('info', 'More Information Requested')]
 
     def test_flags_reviewer_comment(self):
         self.new_addon().find_latest_version(self.channel).update(
             has_reviewer_comment=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('reviewer', 'Contains Reviewer Comment')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('reviewer', 'Contains Reviewer Comment')]
 
     def test_flags_jetpack(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             jetpack_version='1.8')
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('jetpack', 'Jetpack Add-on')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('jetpack', 'Jetpack Add-on')]
 
     def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             is_restart_required=True)
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('is_restart_required', 'Requires Restart')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('is_restart_required', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
         self.new_addon().find_latest_version(self.channel).update(
             source='/some/source/file')
 
-        q = self.Queue.objects.get()
-        assert q.flags == [('sources-provided', 'Sources provided')]
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('sources-provided', 'Sources provided')]
 
     def test_flags_webextension(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
@@ -173,8 +174,8 @@ class TestPendingQueue(TestQueue):
     def test_no_flags(self):
         self.new_addon()
 
-        q = self.Queue.objects.get()
-        assert q.flags == []
+        queue = self.Queue.objects.get()
+        assert queue.flags == []
 
 
 class TestFullReviewQueue(TestQueue):
@@ -365,10 +366,17 @@ class TestReviewerSubscription(TestCase):
         self.user_one = UserProfile.objects.get(pk=55021)
         self.user_two = UserProfile.objects.get(pk=999)
         self.reviewer_group = Group.objects.create(
-            name='reviewers', rules='Addons:Review')
-        for user in [self.user_one, self.user_two]:
-            ReviewerSubscription.objects.create(addon=self.addon, user=user)
-            GroupUser.objects.create(group=self.reviewer_group, user=user)
+            name='Reviewers: Legacy', rules='Addons:Review')
+        GroupUser.objects.create(
+            group=self.reviewer_group, user=self.user_one)
+        self.post_reviewer_group = Group.objects.create(
+            name='Reviewers: Add-ons', rules='Addons:PostReview')
+        GroupUser.objects.create(
+            group=self.post_reviewer_group, user=self.user_two)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_one)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_two)
 
     def test_email(self):
         es = ReviewerSubscription.objects.get(user=self.user_one)
@@ -384,15 +392,20 @@ class TestReviewerSubscription(TestCase):
         emails = sorted([o.to for o in mail.outbox])
         assert emails == [[u'del@icio.us'], [u'regular@mozilla.com']]
 
-    def test_notifications_clean(self):
+    def test_notifications_setting_persists(self):
         send_notifications(Version, self.version)
-        assert ReviewerSubscription.objects.count() == 0
+        assert ReviewerSubscription.objects.count() == 2
         mail.outbox = []
         send_notifications(Version, self.version)
+        assert len(mail.outbox) == 2
+
+    def test_dont_send_notifications_beta(self):
+        self.version.all_files[0].update(status=amo.STATUS_BETA)
+        version_uploaded.send(sender=self.version)
         assert len(mail.outbox) == 0
 
-    def test_notifications_beta(self):
-        self.version.all_files[0].update(status=amo.STATUS_BETA)
+    def test_dont_send_notifications_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_uploaded.send(sender=self.version)
         assert len(mail.outbox) == 0
 
@@ -413,20 +426,20 @@ class TestReviewerSubscription(TestCase):
         mail.outbox = []
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 2
 
     def test_no_email_for_ex_reviewers(self):
         self.user_one.delete()
-        # Remove user_two from reviewers.
+        # Remove user_one from reviewers.
         GroupUser.objects.get(
-            group=self.reviewer_group, user=self.user_two).delete()
+            group=self.reviewer_group, user=self.user_one).delete()
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
     def test_no_email_address_for_reviewer(self):
         self.user_one.update(email=None)
         send_notifications(sender=self.version)
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 1  # Only notification for user_two remains.
 
 
 class TestReviewerScore(TestCase):
@@ -804,6 +817,9 @@ class TestAutoApprovalSummary(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             average_daily_users=666, version_kw={'version': '1.0'})
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            confirmed=True)
         self.current_file_validation = FileValidation.objects.create(
             file=self.addon.current_version.all_files[0], validation=u'{}')
         self.version = version_factory(
@@ -1192,9 +1208,9 @@ class TestAutoApprovalSummary(TestCase):
         assert weight_info['uses_unknown_minified_code'] == 10
 
     def test_calculate_size_of_code_changes_no_current_validation(self):
-        # Delete the validation for the current version and reload the version
-        # we're testing (otherwise the file validation has already been loaded
-        # and is still attached to the instance...)
+        # Delete the validation for the previously confirmed version and reload
+        # the version we're testing (otherwise the file validation has already
+        # been loaded and is still attached to the instance...)
         self.current_file_validation.delete()
         self.version = Version.objects.get(pk=self.version.pk)
         summary = AutoApprovalSummary(version=self.version)
@@ -1220,7 +1236,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 0
         assert weight_info['size_of_code_changes'] == 0
 
-    def test_calculate_size_of_code_changes_no_current_version(self):
+    def test_calculate_size_of_code_changes_no_previous_version_size(self):
         validation_data = {
             'metadata': {
                 'totalScannedFileSize': 15000,
@@ -1249,6 +1265,48 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(
             validation=json.dumps(new_validation_data))
         summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 10000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 2
+        assert weight_info['size_of_code_changes'] == 2
+
+    def test_calculate_size_of_code_change_use_previously_confirmed(self):
+        old_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 5000,
+            }
+        }
+        self.current_file_validation.update(
+            validation=json.dumps(old_validation_data))
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 15000,
+            }
+        }
+        self.file_validation.update(
+            validation=json.dumps(new_validation_data))
+
+        # Add a new current_version, unconfirmed. This version will be ignored
+        # for the comparison as all we care about is the previous confirmed
+        # version.
+        self.addon.current_version.update(created=self.days_ago(2))
+        new_version = version_factory(addon=self.addon)
+        self.addon.reload()
+        assert self.addon.current_version == new_version
+        AutoApprovalSummary.objects.create(
+            version=new_version, verdict=amo.AUTO_APPROVED)
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 14999,
+            }
+        }
+        FileValidation.objects.create(
+            file=new_version.all_files[0],
+            validation=json.dumps(new_validation_data))
+
+        summary = AutoApprovalSummary(version=self.version)
+        # Size of code changes should be 10000 and not 1, proving that it
+        # compared with the old, confirmed version.
         assert summary.calculate_size_of_code_changes() == 10000
         weight_info = summary.calculate_weight()
         assert summary.weight == 2
@@ -1371,6 +1429,18 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_uses_native_messaging(self.version)
             is True)
 
+    def test_check_has_auto_approval_disabled(self):
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags.update(auto_approval_disabled=True)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1426,6 +1496,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.is_locked is False
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
         }
 
@@ -1441,6 +1512,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1450,6 +1522,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1458,6 +1531,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1466,76 +1540,31 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
-    def test_calculate_verdict_post_review(self):
-        summary = AutoApprovalSummary.objects.create(version=self.version)
+    def test_calculate_verdict_has_auto_approval_disabled(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, has_auto_approval_disabled=True)
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'has_auto_approval_disabled': True,
         }
-        # Regardless of the many flags that are set, it's approved because we
-        # are in post-review mode.
-        assert summary.verdict == amo.AUTO_APPROVED
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'is_locked': True,
+            'has_auto_approval_disabled': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
+            u'Has auto-approval disabled flag set.',
             u'Is locked by a reviewer.',
         ]
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
-
-
-class TestWhiteboardWatchChange(TestCase):
-
-    def make_addon(self, whiteboard='', **kwargs):
-        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
-                      **kwargs)
-        addon.save()
-        addon.versions.create(has_info_request=True)
-        addon.versions.create(has_info_request=False)
-        addon.versions.create(has_info_request=True)
-
-        whiteboard = Whiteboard(pk=addon.pk, public=whiteboard)
-        whiteboard.save()
-
-        return addon
-
-    def assert_has_info_set(self, addon):
-        assert any([v.has_info_request for v in addon.versions.all()])
-
-    def assert_has_info_not_set(self, addon):
-        assert all([not v.has_info_request for v in addon.versions.all()])
-
-    def test_has_info_update_whiteboard(self):
-        """Test saving with a change to whiteboard clears has_info_request."""
-        addon = self.make_addon()
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = 'Info about things.'
-        addon.whiteboard.save()
-        self.assert_has_info_not_set(addon)
-
-    def test_has_info_update_whiteboard_no_change(self):
-        """Test saving without a change to whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = 'Info about things.'
-        addon.whiteboard.save()
-        self.assert_has_info_set(addon)
-
-    def test_has_info_whiteboard_removed(self):
-        """Test saving with an empty whiteboard doesn't clear
-        has_info_request."""
-        addon = self.make_addon(whiteboard='Info about things.')
-        self.assert_has_info_set(addon)
-        addon.whiteboard.public = ''
-        addon.whiteboard.save()
-        self.assert_has_info_set(addon)

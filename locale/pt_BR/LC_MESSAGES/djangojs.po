@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2018-01-03 22:45+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-03 18:31+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -83,12 +83,12 @@ msgstr "A validação da sua extensão expirou, ela será analisada manualmente.
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Sua extensão foi validada sem nenhum erro e {0} avisos."
-msgstr[1] "Sua estensão passou na validação sem erros e {0} alertas."
+msgstr[0] "Sua extensão foi validada sem erros e com {0} aviso."
+msgstr[1] "Sua extensão foi validade sem erros e com {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Sua extensão foi validada sem erros e {0} mensagem."
+msgstr[0] "Sua extensão foi validada sem erros e com {0} mensagem."
 msgstr[1] "Sua extensão foi validada sem erros e com {0} mensagens."
 
 msgid "Your add-on was validated with no errors or warnings."
@@ -151,7 +151,7 @@ msgid "Follow this Collection"
 msgstr "Seguir esta coleção"
 
 msgid "Stop Following"
-msgstr "Deixar de seguir"
+msgstr "Parar de seguir"
 
 msgid "Following"
 msgstr "Seguindo"
@@ -251,7 +251,7 @@ msgid "Number of Contributions"
 msgstr "Número de contribuições"
 
 msgid "More Info..."
-msgstr "Mais informações..."
+msgstr "Mais info..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"

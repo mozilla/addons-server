@@ -3,6 +3,8 @@ import hashlib
 
 from datetime import datetime, timedelta
 
+from waffle.testutils import override_switch
+
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -13,7 +15,8 @@ from pyquery import PyQuery
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
+    Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
+    CompatOverrideRange)
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -269,6 +272,25 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
+    @override_switch('beta-versions', active=True)
+    def test_version_is_allowed_upload_beta(self):
+        version = Version.objects.get(pk=81551)
+        version.files.all().delete()
+        amo.tests.file_factory(version=version,
+                               status=amo.STATUS_BETA,
+                               platform=amo.PLATFORM_MAC.id)
+        version = Version.objects.get(pk=81551)
+        assert version.is_allowed_upload()
+
+    def test_version_is_not_allowed_upload_beta(self):
+        version = Version.objects.get(pk=81551)
+        version.files.all().delete()
+        amo.tests.file_factory(version=version,
+                               status=amo.STATUS_BETA,
+                               platform=amo.PLATFORM_MAC.id)
+        version = Version.objects.get(pk=81551)
+        assert not version.is_allowed_upload()
+
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
@@ -302,6 +324,7 @@ class TestVersion(TestCase):
         assert not hide_disabled_file_mock.called
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
+    @override_switch('beta-versions', active=True)
     def test_new_version_beta_dont_disable_old_unreviewed(
             self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
@@ -554,6 +577,11 @@ class TestVersion(TestCase):
 
         version.channel = amo.RELEASE_CHANNEL_LISTED
         assert version.is_ready_for_auto_approval
+
+        # With the auto-approval disabled flag set, it's still considered
+        # "ready", even though the auto_approve code won't approve it.
+        AddonReviewerFlags.objects.create(
+            addon=addon, auto_approval_disabled=False)
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
@@ -887,6 +915,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         assert File.objects.filter(version=self.current)[0].status == (
             amo.STATUS_DISABLED)
 
+    @override_switch('beta-versions', active=True)
     def test_status_beta(self):
         # Check that the add-on + files are in the public status.
         assert self.addon.status == amo.STATUS_PUBLIC

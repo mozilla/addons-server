@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -53,7 +55,7 @@ class TestAddonIndexer(TestCase):
             'current_version', 'description', 'featured_for',
             'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
-            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
+            'listed_authors', 'name', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
         ]
 
@@ -248,7 +250,8 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version'] is None
 
-    def test_extract_version_and_files(self):
+    @override_switch('beta-versions', active=True)
+    def test_extract_version_and_files_with_beta(self):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
@@ -361,6 +364,94 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert extracted_file['webext_permissions_list'] == []
+
+    def test_extract_version_and_files(self):
+        version = self.addon.current_version
+        file_factory(version=version, platform=PLATFORM_MAC.id)
+        current_beta_version = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_BETA,
+            })
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, file_kw={
+                'is_webextension': True,
+            })
+        # Give one of the versions some webext permissions to test that.
+        WebextPermission.objects.create(
+            file=unlisted_version.all_files[0],
+            permissions=['bookmarks', 'random permission']
+        )
+        extracted = self._extract()
+
+        assert extracted['current_version']
+        assert extracted['current_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
+        assert extracted['current_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 2000000200100L,
+                'max': 9999000000200100,
+                'max_human': '4.0',
+                'min_human': '2.0',
+            }
+        }
+        assert extracted['current_version']['reviewed'] == version.reviewed
+        assert extracted['current_version']['version'] == version.version
+        for index, file_ in enumerate(version.all_files):
+            extracted_file = extracted['current_version']['files'][index]
+            assert extracted_file['id'] == file_.pk
+            assert extracted_file['created'] == file_.created
+            assert extracted_file['filename'] == file_.filename
+            assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
+            assert extracted_file['platform'] == file_.platform
+            assert extracted_file['size'] == file_.size
+            assert extracted_file['status'] == file_.status
+            assert extracted_file['webext_permissions_list'] == []
+
+        assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
+                                                   PLATFORM_ALL.id])
+        version = current_beta_version
+        assert extracted['current_beta_version'] is None
+
+        version = unlisted_version
+        assert extracted['latest_unlisted_version']
+        assert extracted['latest_unlisted_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
+        assert extracted['latest_unlisted_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 4009900200100L,
+                'max': 9999000000200100,
+                'max_human': '5.0.99',
+                'min_human': '4.0.99',
+            }
+        }
+        assert (
+            extracted['latest_unlisted_version']['version'] == version.version)
+        for idx, file_ in enumerate(version.all_files):
+            extracted_file = extracted['latest_unlisted_version']['files'][idx]
+            assert extracted_file['id'] == file_.pk
+            assert extracted_file['created'] == file_.created
+            assert extracted_file['filename'] == file_.filename
+            assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
+            assert extracted_file['platform'] == file_.platform
+            assert extracted_file['size'] == file_.size
+            assert extracted_file['status'] == file_.status
+            assert (extracted_file['webext_permissions_list'] ==
+                    file_.webext_permissions_list ==
+                    ['bookmarks', 'random permission'])
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version

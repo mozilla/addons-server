@@ -18,6 +18,7 @@ from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
 from olympia.addons.widgets import CategoriesSelectMultiple
+from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
@@ -116,6 +117,13 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
+    def clean_name(self):
+        user = getattr(self.request, 'user', None)
+
+        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
+
+        return name
+
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
@@ -148,9 +156,6 @@ class AddonFormBasic(AddonFormBase):
         if self.fields.get('tags'):
             self.fields['tags'].initial = ', '.join(
                 self.get_tags(self.instance))
-
-    def clean_slug(self):
-        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_contributions(self):
         if self.cleaned_data['contributions']:

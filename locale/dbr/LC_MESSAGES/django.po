@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.5.3\n"
 
 msgid "No links are allowed."
 msgstr ".pǝʍoʅʅɐ ǝɹɐ sʞuıʅ oN"
@@ -162,6 +162,9 @@ msgstr "pǝʇsı⅂"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "„/„ ɥʇıʍ puǝ oʇ pǝǝu sɥʇɐd uoıʇɔǝʅʅoɔ puɐ uopp∀"
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ".sʞɹɐɯǝpɐɹʇ xoɟǝɹıℲ ɹo ɐʅʅızoW ǝɥʇ uıɐʇuoɔ ʇouuɐɔ sǝɯɐu uo-pp∀"
 
 msgid "Abuse reported."
 msgstr ".pǝʇɹodǝɹ ǝsnq∀"
@@ -1004,6 +1007,9 @@ msgstr ".suǝɥdʎɥ ɹo sǝɹoɔsɹǝpun ´sɹǝqɯnu ´sɹǝʇʇǝʅ ɟo ƃuı
 msgid "This slug cannot be used."
 msgstr ".pǝsn ǝq ʇouuɐɔ ƃnʅs sıɥ⊥"
 
+msgid "This add-on already belongs to the collection"
+msgstr "uoıʇɔǝʅʅoɔ ǝɥʇ oʇ sƃuoʅǝq ʎpɐǝɹʅɐ uo-ppɐ sıɥ⊥"
+
 msgid "Name"
 msgstr "ǝɯɐN"
 
@@ -1733,9 +1739,9 @@ msgstr ".pǝʅqɐsıp {addon}"
 msgid "{addon} enabled."
 msgstr ".pǝʅqɐuǝ {addon}"
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr ".{0} oʇ pǝƃuɐɥɔ snʇɐʇs {addon}"
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr ".{status} oʇ pǝƃuɐɥɔ snʇɐʇs {addon}"
 
 msgid "{version} added to {addon}."
 msgstr ".{addon} oʇ pǝppɐ {version}"
@@ -2021,12 +2027,6 @@ msgstr "pǝʇsıʅu∩"
 
 msgid "Developer"
 msgstr "ɹǝdoʅǝʌǝᗡ"
-
-msgid "Viewer"
-msgstr "ɹǝʍǝıɅ"
-
-msgid "Support"
-msgstr "ʇɹoddnS"
 
 msgid "Extension"
 msgstr "uoısuǝʇxƎ"
@@ -2555,12 +2555,6 @@ msgstr "uoıʇɐpıʅɐʌ pǝʅıɐɟ ǝpıɹɹǝʌO"
 msgid "Submit my add-on for manual review."
 msgstr ".ʍǝıʌǝɹ ʅɐnuɐɯ ɹoɟ uo-ppɐ ʎɯ ʇıɯqnS"
 
-msgid "Do not list my add-on on this site"
-msgstr "ǝʇıs sıɥʇ uo uo-ppɐ ʎɯ ʇsıʅ ʇou oᗡ"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ".ɐʅʅızoW ʎq pǝuƃıs ǝq oʇ ʇı pǝǝu ʎʅuo puɐ uʍo ɹnoʎ uo uo-ppɐ ɹnoʎ ǝʇnqıɹʇsıp oʇ puǝʇuı noʎ ɟı uoıʇdo sıɥʇ ʞɔǝɥↃ"
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ".ɐʇǝq sɐ pǝʇɔǝʇǝp sı ɹǝqɯnu ʅɐuoıʇdo uɐ puɐ ɔɹ|ǝɹd|ɐʇǝq|q|ɐɥdʅɐ|ɐ ɥʇıʍ ƃuıpuǝ uoısɹǝʌ ɐ ɥʇıʍ ǝʅıɟ ∀"
 
@@ -2697,8 +2691,9 @@ msgstr "ʎʇıʅıqıʇɐdɯoↃ uo-pp∀ ʞɔǝɥↃ"
 msgid "You cannot submit this type of add-on"
 msgstr "uo-ppɐ ɟo ǝdʎʇ sıɥʇ ʇıɯqns ʇouuɐɔ no⅄"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "„ƃɹo.ɐʅʅızoɯ@„ ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "%s ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "uoısuǝʇxƎ pǝuƃıS ɐʅʅızoW ɐ ʇıɯqns ʇouuɐɔ no⅄"
@@ -2952,13 +2947,11 @@ msgid "About author roles"
 msgstr "sǝʅoɹ ɹoɥʇnɐ ʇnoq∀"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>:sǝʅoɹ ǝʅqıssod 3 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
-"<li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ "
-"uɐↃ <b>:ɹǝʍǝıɅ</b></li> </ul>"
+"<p>:sǝʅoɹ ǝʅqıssod 2 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
+"<li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> </ul>"
 
 msgid "Basic Information"
 msgstr "uoıʇɐɯɹoɟuI ɔısɐԐ"
@@ -3237,20 +3230,11 @@ msgstr "...ʇoɥsuǝǝɹɔS ɐ pp∀"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "¿ʇıpǝɹɔ uǝʌıƃ ǝɹ,noʎ sɐ ƃuoʅ sɐ ´uo-pp∀ ɹnoʎ ǝɹɐɥs sɹǝɥʇo uɐↃ"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ".sǝsodɹnd ʅɐıɔɹǝɯɯoɔ ɹoɟ ƃuıpnʅɔuı ´ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ´ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ".ʎʅuo sǝsodɹnd ʅɐıɔɹǝɯɯoɔ-uou ɹoɟ ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ´ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "¿uo-pp∀ ɹnoʎ ɟo ǝsn ʅɐıɔɹǝɯɯoɔ ǝʞɐɯ sɹǝɥʇo uɐↃ"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "¿uo-pp∀ ɹnoʎ ɯoɹɟ sʞɹoʍ ǝʌıʇɐʌıɹǝp ǝʇɐǝɹɔ sɹǝɥʇo uɐↃ"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ".ʇı uo pǝsɐq sʞɹoʍ ǝʌıʇɐʌıɹǝp ǝʞɐɯ sɐ ʅʅǝʍ sɐ ´ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
 
 msgid "Yes, as long as they share alike"
 msgstr "ǝʞıʅɐ ǝɹɐɥs ʎǝɥʇ sɐ ƃuoʅ sɐ ´sǝ⅄"
@@ -3258,14 +3242,14 @@ msgstr "ǝʞıʅɐ ǝɹɐɥs ʎǝɥʇ sɐ ƃuoʅ sɐ ´sǝ⅄"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ".ʞɹoʍ s,ɹosuǝɔıʅ ǝɥʇ suɹǝʌoƃ ʇɐɥʇ ǝuo ǝɥʇ ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝuo ɹo ǝsuǝɔıʅ ǝɯɐs ǝɥʇ ɹǝpun ʎʅuo sʞɹoʍǝʌıʇɐʌıɹǝp ǝʇnqıɹʇsıp oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ".ʇı uo pǝsɐq sʞɹoʍ ǝʌıʇɐʌıɹǝp ʇou — ʞɹoʍ ǝɥʇ ɟo sǝıdoɔ pǝɹǝʇʅɐun ʎʅuo ʇıɯsuɐɹʇ puɐ ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
-
 msgid "Your Add-on will be released under the following license:"
 msgstr ":ǝsuǝɔıʅ ƃuıʍoʅʅoɟ ǝɥʇ ɹǝpun pǝsɐǝʅǝɹ ǝq ʅʅıʍ uo-pp∀ ɹno⅄"
 
 msgid "Select a different license."
 msgstr ".ǝsuǝɔıʅ ʇuǝɹǝɟɟıp ɐ ʇɔǝʅǝS"
+
+msgid "More information on Creative Commons licenses"
+msgstr "sǝsuǝɔıʅ suoɯɯoↃ ǝʌıʇɐǝɹↃ uo uoıʇɐɯɹoɟuı ǝɹoW"
 
 msgid "Tests"
 msgstr "sʇsǝ⊥"
@@ -3422,6 +3406,9 @@ msgstr ".⅂ᴚ∩ ɹnoʎ uı sǝɥsɐp puɐ ´sǝɹoɔsɹǝpun ´sɹǝqɯnu ´s
 msgid "Summary:"
 msgstr ":ʎɹɐɯɯnS"
 
+msgid "required"
+msgstr "pǝɹınbǝɹ"
+
 msgid "This add-on is experimental"
 msgstr "ʅɐʇuǝɯıɹǝdxǝ sı uo-ppɐ sıɥ⊥"
 
@@ -3485,17 +3472,23 @@ msgstr "ǝʇǝʅdɯoↃ uoıssıɯqnS"
 msgid "You’re done!"
 msgstr "¡ǝuop ǝɹ’no⅄"
 
+msgid "Version Submitted for Review"
+msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ".pǝʍǝıʌǝɹ sı ʇı uǝɥʍ pǝıɟıʇou ǝq ʅʅıʍ no⅄ .ʍǝıʌǝɹ sǝssɐd ʇı ɹǝʇɟɐ ǝʅqɐʅıɐʌɐ ǝq ʅʅıʍ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
+
 msgid "Version Submitted"
 msgstr "pǝʇʇıɯqnS uoısɹǝɅ"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ".ʎʅʇɹoɥs ǝʇıs ɹno uo ǝʅqɐʅıɐʌɐ ǝq ʅʅıʍ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
 
-msgid "Version Submitted for Review"
-msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ".uoıssıɯqns ɹnoʎ ʇnoqɐ suoıʇsǝnb ʎuɐ ǝʌɐɥ sɹǝʍǝıʌǝɹ ɹno ɟı ɹo ´pǝʇǝʅdɯoɔ uǝǝq sɐɥ ʍǝıʌǝɹ ǝɥʇ uǝɥʍ pǝıɟıʇou ǝq ʅʅıʍ no⅄ .ʍǝıʌǝɹ ɹoɟ pǝʇʇıɯqns uǝǝq sɐɥ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr ":uoıʇɐɔıʅqnd ɹoɟ ʎpɐǝɹ ƃuıʇsıʅ ɹnoʎ ʇǝ⅁ .uoıʇdıɹɔsǝp pǝʅıɐʇǝp ɐ ƃuıppɐ ʎq ʅnɟssǝɔɔns ǝɹoɯ ǝq ʅʅıʍ ƃuıʇsıʅ ɹno⅄"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ":uoıʇɐɔıʅqnd ɹoɟ ʎpɐǝɹ ƃuıʇsıʅ ɹnoʎ ʇǝ⅁ .sʇoɥsuǝǝɹɔs puɐ uoıʇdıɹɔsǝp pǝʅıɐʇǝp ɐ ƃuıppɐ ʎq ʅnɟssǝɔɔns ǝɹoɯ ǝq ʅʅıʍ ƃuıʇsıʅ ɹno⅄"
@@ -3551,9 +3544,6 @@ msgstr "uoısɹǝɅ pɐoʅd∩"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ".ǝʅıɟ ɹnoʎ uo unɹ ǝq ʅʅıʍ sʇsǝʇ uoıʇɐpıʅɐʌ pǝʇɐɯoʇnɐ ɟo sǝıɹǝs ɐ ´pɐoʅdn ɹǝʇɟ∀ .ǝƃɐʞɔɐd uo-ppɐ ɹnoʎ pɐoʅdn oʇ ʍoʅǝq spʅǝıɟ ǝɥʇ ǝs∩"
 
-msgid "Create a Theme"
-msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝʅıɟ sıɥʇ sı sɯɹoɟʇɐʅd ɥɔıɥＭ"
 
@@ -3562,6 +3552,12 @@ msgstr ".ʅǝuuɐɥɔ ɐʇǝq ʎɯ oʇ uoısɹǝʌ sıɥʇ ɥsıʅqnd ʎʅuO"
 
 msgid "Administrative overrides"
 msgstr "sǝpıɹɹǝʌo ǝʌıʇɐɹʇsıuıɯp∀"
+
+msgid "Create a Theme Version"
+msgstr "uoısɹǝɅ ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
+
+msgid "Create a Theme"
+msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
 
 msgid "Submit File"
 msgstr "ǝʅıℲ ʇıɯqnS"
@@ -3575,11 +3571,11 @@ msgstr "ǝʇɐɹǝuǝƃ ǝɯǝɥ⊥"
 msgid "Theme generator"
 msgstr "ɹoʇɐɹǝuǝƃ ǝɯǝɥ⊥"
 
-msgid "Select a header image for your Theme."
-msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
+msgid "Theme name"
+msgstr "ǝɯɐu ǝɯǝɥ⊥"
 
-msgid "required"
-msgstr "pǝɹınbǝɹ"
+msgid "Select a header image for your theme"
+msgstr "ǝɯǝɥʇ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
 
 msgid "Image height should be 200 pixels"
 msgstr "sʅǝxıd 002 ǝq pʅnoɥs ʇɥƃıǝɥ ǝƃɐɯI"
@@ -3593,50 +3589,50 @@ msgstr "ʇɥƃıɹ-doʇ oʇ pǝuƃıʅ∀"
 msgid "Select a different header image"
 msgstr "ǝƃɐɯı ɹǝpɐǝɥ ʇuǝɹǝɟɟıp ɐ ʇɔǝʅǝS"
 
-msgid "Select colors for your Theme."
-msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
+msgid "Select colors for your theme"
+msgstr "ǝɯǝɥʇ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
 
-msgid "Header area background (accentcolor)"
-msgstr "(ɹoʅoɔʇuǝɔɔɐ) punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝH"
+msgid "Header area background"
+msgstr "punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝH"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ".ǝƃɐɯı ɹǝpɐǝɥ ǝɥʇ ɥƃnoɹɥʇ ǝʅqısıʌ ɹo pǝɹǝʌoɔ ʇou ɹǝpɐǝɥ ǝɥʇ ɟo ʇɹɐd ǝɥʇ uı pǝʎɐʅdsıp ´punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ".ɹoʅoɔʇuǝɔɔɐ  :pʅǝıɟ ʇsǝɟıuɐW .ǝƃɐɯı ɹǝpɐǝɥ ǝɥʇ ɥƃnoɹɥʇ ǝʅqısıʌ ɹo pǝɹǝʌoɔ ʇou ɹǝpɐǝɥ ǝɥʇ ɟo ʇɹɐd ǝɥʇ uı pǝʎɐʅdsıp ´punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
-msgid "Header area text (textcolor)"
-msgstr "(ɹoʅoɔʇxǝʇ) ʇxǝʇ ɐǝɹɐ ɹǝpɐǝH"
+msgid "Header area text and icons"
+msgstr "suoɔı puɐ ʇxǝʇ ɐǝɹɐ ɹǝpɐǝH"
 
-msgid "The color of the text displayed in the header area."
-msgstr ".ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ uı pǝʎɐʅdsıp ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ".ɹoʅoɔʇxǝʇ  :pʅǝıɟ ʇsǝɟıuɐW .qɐʇ ǝʌıʇɔɐ ǝɥʇ ʇdǝɔxǝ ´ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ uı suoɔı puɐ ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
-msgid "Toolbar area background (toolbar)."
-msgstr ".(ɹɐqʅooʇ) punoɹƃʞɔɐq ɐǝɹɐ ɹɐqʅoo⊥"
+msgid "Toolbar area background"
+msgstr "punoɹƃʞɔɐq ɐǝɹɐ ɹɐqʅoo⊥"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ".qɐʇ pǝʇɔǝʅǝs ǝɥʇ puɐ ´ɹɐq sʞɹɐɯʞooq ǝɥʇ ´ɹɐq uoıʇɐƃıʌɐu ǝɥʇ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ".ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW  .qɐʇ pǝʇɔǝʅǝs ǝɥʇ puɐ ´ɹɐq sʞɹɐɯʞooq ǝɥʇ ´ɹɐq uoıʇɐƃıʌɐu ǝɥʇ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr ".(ʇxǝʇ_ɹɐqʅooʇ) ʇxǝʇ ɐǝɹɐ ɹɐqʅoo⊥"
+msgid "Toolbar area text icons"
+msgstr "suoɔı ʇxǝʇ ɐǝɹɐ ɹɐqʅoo⊥"
 
-msgid "The color of toolbar text."
-msgstr ".ʇxǝʇ ɹɐqʅooʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ".ʇxǝʇ_ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW .qɐʇ ǝʌıʇɔɐ ǝɥʇ puɐ ɹɐqʅooʇ ǝɥʇ uı suoɔı puɐ ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr ".(pʅǝıɟ_ɹɐqʅooʇ) punoɹƃʞɔɐq ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
+msgid "Toolbar field area background"
+msgstr "punoɹƃʞɔɐq ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ".ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ".pʅǝıɟ_ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW .ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ".(ʇxǝʇ_pʅǝıɟ_ɹɐqʅooʇ) ʇxǝʇ ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
+msgid "Toolbar field area text"
+msgstr "ʇxǝʇ ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ uı ʇxǝʇ ɟo ɹoʅoɔ ǝɥ⊥"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ".ʇxǝʇ_pʅǝıɟ_ɹɐqʅooʇ  :pʅǝıɟ ʇsǝɟıuɐW .ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ uı ʇxǝʇ ɟo ɹoʅoɔ ǝɥ⊥"
 
 msgid "optional"
 msgstr "ʅɐuoıʇdo"
 
-msgid "Browser Preview"
-msgstr "ʍǝıʌǝɹԀ ɹǝsʍoɹԐ"
+msgid "Browser preview"
+msgstr "ʍǝıʌǝɹd ɹǝsʍoɹԐ"
 
 msgid "Back"
 msgstr "ʞɔɐԐ"
@@ -3644,8 +3640,8 @@ msgstr "ʞɔɐԐ"
 msgid "Uploading Theme"
 msgstr "ǝɯǝɥ⊥ ƃuıpɐoʅd∩"
 
-msgid "Upload Theme"
-msgstr "ǝɯǝɥ⊥ pɐoʅd∩"
+msgid "Finish Theme"
+msgstr "ǝɯǝɥ⊥ ɥsıuıℲ"
 
 msgid "API Credentials"
 msgstr "sʅɐıʇuǝpǝɹↃ IԀ∀"
@@ -3843,6 +3839,9 @@ msgstr "ƃoʅԐ"
 msgid "Contact Us"
 msgstr "s∩ ʇɔɐʇuoↃ"
 
+msgid "Support"
+msgstr "ʇɹoddnS"
+
 msgid "Policies"
 msgstr "sǝıɔıʅoԀ"
 
@@ -4032,11 +4031,23 @@ msgstr "ǝsuǝɔı⅂ ǝɯǝɥ⊥"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "¿ʇıpǝɹɔ uǝʌıƃ ǝɹ,noʎ sɐ ƃuoʅ sɐ ´ǝɯǝɥ⊥ ɹnoʎ ǝɹɐɥs sɹǝɥʇo uɐↃ"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ".sǝsodɹnd ʅɐıɔɹǝɯɯoɔ ɹoɟ ƃuıpnʅɔuı ´ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ´ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ".ʎʅuo sǝsodɹnd ʅɐıɔɹǝɯɯoɔ-uou ɹoɟ ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ´ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "¿ǝɯǝɥ⊥ ɹnoʎ ɟo ǝsn ʅɐıɔɹǝɯɯoɔ ǝʞɐɯ sɹǝɥʇo uɐↃ"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "¿ǝɯǝɥ⊥ ɹnoʎ ɯoɹɟ sʞɹoʍ ǝʌıʇɐʌıɹǝp ǝʇɐǝɹɔ sɹǝɥʇo uɐↃ"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ".ʇı uo pǝsɐq sʞɹoʍ ǝʌıʇɐʌıɹǝp ǝʞɐɯ sɐ ʅʅǝʍ sɐ ´ʞɹoʍ ǝɥʇ ɯɹoɟɹǝd puɐ ʎɐʅdsıp ´ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ".ʇı uo pǝsɐq sʞɹoʍ ǝʌıʇɐʌıɹǝp ʇou — ʞɹoʍ ǝɥʇ ɟo sǝıdoɔ pǝɹǝʇʅɐun ʎʅuo ʇıɯsuɐɹʇ puɐ ǝʇnqıɹʇsıp ´ʎdoɔ oʇ sɹǝɥʇo sʇıɯɹǝd ɹosuǝɔıʅ ǝɥ⊥"
 
 msgid "Your Theme will be released under the following license:"
 msgstr ":ǝsuǝɔıʅ ƃuıʍoʅʅoɟ ǝɥʇ ɹǝpun pǝsɐǝʅǝɹ ǝq ʅʅıʍ ǝɯǝɥ⊥ ɹno⅄"
@@ -4070,6 +4081,9 @@ msgstr "ɹǝpɐǝH"
 
 msgid "Footer"
 msgstr "ɹǝʇooℲ"
+
+msgid "Select colors for your Theme."
+msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
 
 msgid "Foreground Text"
 msgstr "ʇxǝ⊥ punoɹƃǝɹoℲ"
@@ -4134,6 +4148,9 @@ msgstr ".ǝɹoɯ puɐ ´suoıʇɔǝʅʅoɔ ´sʍǝıʌǝɹ uo pǝʇɐpdn ʎɐʇs
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ".<a href=\"%(forum_url)s\">sɯnɹoɟ</a> ɹno uı uoıʇɐsɹǝʌuoɔ ǝɥʇ uıoſ"
+
+msgid "Select a header image for your Theme."
+msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
 
 msgid "3000 &times; 200 pixels"
 msgstr "sʅǝxıd 002 &times; 0003"
@@ -4364,6 +4381,30 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾo
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ".ʎɐʍɐ ʞɔıʅɔ ɐ sʎɐʍʅɐ—sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ".sǝʇıs oǝpıʌ ɹɐʅndod ʇsoɯ ɥʇıʍ ʎʅssǝʅɯɐǝs sʞɹoＭ"
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɐzıɯoʇsnↃ qɐ⊥"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ".qɐʇ ʍǝu ɐ uǝdo noʎ ǝɯıʇ ʎɹǝʌǝ ǝǝs noʎ ǝƃɐd ǝɥʇ ʇǝS"
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ ǝɔuɐɥuƎ"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ".ʎɐʍɐ ʞɔıʅɔ ǝuo ʇsnɾ sʎɐʍʅɐ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ".sʅɐnsıʌ ɹnoʎ ǝɹɐɥs puɐ ǝɹoʇs oʇ ʎʇıʅıqɐ ǝɥʇ snʅd ´sɔıɥdɐɹƃ puɐ ʇxǝʇ ɯoʇsnɔ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´ʅooʇ ʇoɥsuǝǝɹɔs ɔısɐq ɐ ʇsnɾ uɐɥʇ ǝɹoW"
 
 msgid "Cannot diff a version against itself"
 msgstr "ɟʅǝsʇı ʇsuıɐƃɐ uoısɹǝʌ ɐ ɟɟıp ʇouuɐↃ"
@@ -5988,15 +6029,6 @@ msgstr ":sɯǝʇsʎs ƃuıʇɐɹǝdO"
 msgid "Applications:"
 msgstr ":suoıʇɐɔıʅdd∀"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "(ʅıɐɯǝ uɐ ǝʇɐɹǝuǝƃ ʇou ʅʅıʍ sǝʇɐpdn ʇuǝnbǝsqnS) .pǝʇɐpdn sı uo-ppɐ sıɥʇ ǝɯıʇ ʇxǝu ǝɥʇ ǝɯ ʎɟıʇoN"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "ƃɐʅℲ ʍǝıʌǝᴚ ǝpoↃ uıɯp∀ ɹɐǝʅↃ"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "ƃɐʅℲ ʍǝıʌǝᴚ ʇuǝʇuoↃ uıɯp∀ ɹɐǝʅↃ"
-
 msgid "Is more info requested?"
 msgstr "¿pǝʇsǝnbǝɹ oɟuı ǝɹoɯ sI"
 
@@ -6013,6 +6045,9 @@ msgstr ".ǝɯǝɥʇ sıɥʇ ƃuıʍǝıʌǝɹ sı ǝsʅǝ ǝuoǝɯoS"
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "ʇuǝɯɯoɔ ɹo ´ɹǝʍǝıʌǝɹ ´ǝɯǝɥʇ"
+
+msgid "Private Whiteboard"
+msgstr "pɹɐoqǝʇıɥＭ ǝʇɐʌıɹԀ"
 
 msgid "Keep review; remove flags"
 msgstr "sƃɐʅɟ ǝʌoɯǝɹ ;ʍǝıʌǝɹ dǝǝӼ"
@@ -6040,6 +6075,9 @@ msgstr "uoısuǝʇxƎqǝＭ"
 
 msgid "Is locked by a reviewer."
 msgstr ".ɹǝʍǝıʌǝɹ ɐ ʎq pǝʞɔoʅ sI"
+
+msgid "Has auto-approval disabled flag set."
+msgstr ".ʇǝs ƃɐʅɟ pǝʅqɐsıp ʅɐʌoɹddɐ-oʇnɐ sɐH"
 
 msgid "Duplicate Submission"
 msgstr "uoıssıɯqnS ǝʇɐɔıʅdnᗡ"
@@ -6110,8 +6148,8 @@ msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʇuǝs ǝq ʅʅıʍ sʇuǝɯɯoɔ ǝɥ⊥ .�
 msgid "Confirm Approval"
 msgstr "ʅɐʌoɹdd∀ ɯɹıɟuoↃ"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´ʅɐʌoɹddɐ ǝɥʇ ɟo uoıʇɐɯɹıɟuoɔ ɹnoʎ spɹoɔǝɹ sıɥ⊥ .pǝʌoɹddɐ ʎʅʅɐɔıʇɐɯoʇnɐ sɐʍ uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥ⊥"
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ ʇɐɥʇ ɟo ʅɐʌoɹddɐ ǝɥʇ ɟo uoıʇɐɯɹıɟuoɔ ɹnoʎ spɹoɔǝɹ sıɥ⊥ .pǝʌoɹddɐ ʎʅʅɐɔıʇɐɯoʇnɐ sɐʍ uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥ⊥"
 
 msgid "Reject Multiple Versions"
 msgstr "suoısɹǝɅ ǝʅdıʇʅnW ʇɔǝɾǝᴚ"
@@ -6137,8 +6175,8 @@ msgstr ".sıɥʇ ǝǝs oʇ ǝʅqɐ ǝq ʇ,uoʍ ɹǝdoʅǝʌǝp ǝɥ⊥ .uoısɹ�
 msgid "Approve Content"
 msgstr "ʇuǝʇuoↃ ǝʌoɹdd∀"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ sıɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɟo uoıʇɐqoɹddɐ ɹnoʎ spɹoɔǝɹ sıɥ⊥"
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ ɔıʅqnd ʇsǝʇɐʅ ǝɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɟo uoıʇɐqoɹddɐ ɹnoʎ spɹoɔǝɹ sıɥ⊥"
 
 msgid "Legacy Add-ons"
 msgstr "suo-pp∀ ʎɔɐƃǝ⅂"
@@ -6479,8 +6517,35 @@ msgstr ".noʎ ǝɹoɟǝq ǝƃɐd sıɥʇ ƃuıʍǝıʌ sɐʍ ɹǝsn ɹǝɥʇou�
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ".ɥʇoq ʎq ǝʅqɐʇıpǝ puɐ ǝʅqısıʌ sı sıɥ⊥ .ɹǝʍǝıʌǝɹ ǝɥʇ puɐ ɹǝdoʅǝʌǝp ǝɥʇ uǝǝʍʇǝq ´(uoısɹǝʌ ǝɥʇ ɹǝʌǝʇɐɥʍ) uoppɐ sıɥʇ oʇ ʇuɐʌǝʅǝɹ uoıʇɐɯɹoɟuı ǝƃuɐɥɔxǝ oʇ ǝɔɐʅd ǝɥʇ sı pɹɐoqǝʇıɥʍ ǝɥ⊥"
 
-msgid "Update the whiteboard"
-msgstr "pɹɐoqǝʇıɥʍ ǝɥʇ ǝʇɐpd∩"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ".sɹǝʍǝıʌǝɹ oʇ ʎʅuo ǝʅqısıʌ sı ʇI .ǝʌıʇɔǝɾqo ǝƃɐnƃuɐʅ ǝɥʇ dǝǝʞ ǝsɐǝʅԀ .uoısɹǝʌ ǝɥʇ ɟo ʇuǝpuǝdǝpuı sı ʇɐɥʇ sɹǝʍǝıʌǝɹ uǝǝʍʇǝq uoıʇɐɯɹoɟuı ƃuıƃuɐɥɔxǝ ɹoɟ pǝsn sı pɹɐoqǝʇıɥʍ ǝʇɐʌıɹd ǝɥ⊥"
+
+msgid "Update whiteboards"
+msgstr "spɹɐoqǝʇıɥʍ ǝʇɐpd∩"
+
+msgid "More Actions"
+msgstr "suoıʇɔ∀ ǝɹoW"
+
+msgid "Notify me about new listed versions"
+msgstr "suoısɹǝʌ pǝʇsıʅ ʍǝu ʇnoqɐ ǝɯ ʎɟıʇoN"
+
+msgid "Force-disable add-on"
+msgstr "uo-ppɐ ǝʅqɐsıp-ǝɔɹoℲ"
+
+msgid "Force-enable add-on"
+msgstr "uo-ppɐ ǝʅqɐuǝ-ǝɔɹoℲ"
+
+msgid "Disable Auto-Approval"
+msgstr "ʅɐʌoɹdd∀-oʇn∀ ǝʅqɐsıᗡ"
+
+msgid "Enable Auto-Approval"
+msgstr "ʅɐʌoɹdd∀-oʇn∀ ǝʅqɐuƎ"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "ƃɐʅℲ ʍǝıʌǝᴚ ǝpoↃ uıɯp∀ ɹɐǝʅↃ"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "ƃɐʅℲ ʍǝıʌǝᴚ ʇuǝʇuoↃ uıɯp∀ ɹɐǝʅↃ"
 
 msgid "(admin)"
 msgstr "(uıɯpɐ)"
@@ -7371,8 +7436,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ":suɐǝɯ ʇɐɥ⊥ .<strong>pǝʌoɯǝɹ ʎʅʇuǝuɐɯɹǝd</strong> ǝq oʇ ƃuıoƃ sı ʇunoɔɔɐ ɹnoʎ „ǝʇǝʅǝp„ ƃuıʞɔıʅɔ ʎԐ"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr ".ǝɹoɯʎuɐ %(site)s oʇuı ƃoʅ oʇ ǝʅqɐ ǝq ʇou ʅʅıʍ no⅄"
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr ".ʇunoɔɔɐ sıɥʇ ɥʇıʍ pǝʇɐıɔossɐ ʎɐʍ ou uı sı ʇɐɥʇ ʇunoɔɔɐ ʍǝu ɐ ǝʇɐǝɹɔ ʅʅıʍ uıɐƃɐ %(site)s oʇuı ssǝɹppɐ ʅıɐɯǝ sıɥʇ ɥʇıʍ uı ƃuıƃƃo⅂"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ".noʎ ɥʇıʍ pǝʇɐıɔossɐ ǝq ɹǝƃuoʅ ou ʅʅıʍ ʎǝɥʇ ʇnq ´pǝʇǝʅǝp ǝq ʇou ʅʅıʍ sƃuıʇɐɹ puɐ sʍǝıʌǝɹ ɹno⅄"

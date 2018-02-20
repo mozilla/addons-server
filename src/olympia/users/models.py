@@ -238,11 +238,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
+    def get_addons_listed(self):
+        """Return queryset of public add-ons thi user is listed as author of.
+        """
+        return self.addons.public().filter(
+            addonuser__user=self, addonuser__listed=True)
+
     @property
     def num_addons_listed(self):
         """Number of public add-ons this user is listed as author of."""
-        return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True).count()
+        return self.get_addons_listed().count()
 
     def my_addons(self, n=8):
         """Returns n addons"""
@@ -260,6 +265,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def picture_path(self):
         return os.path.join(self.picture_dir, str(self.id) + '.png')
+
+    @property
+    def picture_path_original(self):
+        return os.path.join(self.picture_dir, str(self.id) + '_original.png')
 
     @property
     def picture_url(self):
@@ -369,6 +378,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.homepage = ""
             self.deleted = True
             self.picture_type = ""
+            self.auth_id = generate_auth_id()
             self.save()
 
     def set_unusable_password(self):
@@ -489,13 +499,22 @@ class UserHistory(ModelBase):
 
 
 @UserProfile.on_change
-def watch_email(old_attr=None, new_attr=None, instance=None,
-                sender=None, **kw):
+def watch_changes(old_attr=None, new_attr=None, instance=None,
+                  sender=None, **kw):
     if old_attr is None:
         old_attr = {}
     if new_attr is None:
         new_attr = {}
+    # Log email changes.
     new_email, old_email = new_attr.get('email'), old_attr.get('email')
     if old_email and new_email != old_email:
         log.debug('Creating user history for user: %s' % instance.pk)
         UserHistory.objects.create(email=old_email, user_id=instance.pk)
+    # If username or display_name changes, reindex the user add-ons, if there
+    # are any.
+    if (new_attr.get('username') != old_attr.get('username') or
+            new_attr.get('display_name') != old_attr.get('display_name')):
+        from olympia.addons.tasks import index_addons
+        ids = [addon.pk for addon in instance.get_addons_listed()]
+        if ids:
+            index_addons.delay(ids)

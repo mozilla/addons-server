@@ -13,7 +13,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, file_factory, version_factory
 from olympia.amo.urlresolvers import reverse
@@ -198,7 +199,7 @@ class TestReviewHelper(TestCase):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
                 'action': 'public', 'operating_systems': 'osx',
                 'applications': 'Firefox',
-                'info_request': self.version.has_info_request}
+                'info_request': self.addon.pending_info_request}
 
     def get_helper(self, content_review_only=False):
         return ReviewHelper(
@@ -258,20 +259,6 @@ class TestReviewHelper(TestCase):
         self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
         assert len(mail.outbox) == 1
-
-    def test_comment_clear_has_info_request(self):
-        self.version.update(has_info_request=True)
-        self.helper.set_data({'action': 'comment', 'comments': 'foo',
-                              'info_request': False})
-        self.helper.process()
-        assert not self.version.has_info_request
-
-    def test_comment_cant_set_has_info_request(self):
-        self.version.update(has_info_request=False)
-        self.helper.set_data({'action': 'comment', 'comments': 'foo',
-                              'info_request': True})
-        self.helper.process()
-        assert not self.version.has_info_request
 
     def test_action_details(self):
         for status in Addon.STATUS_CHOICES:
@@ -346,23 +333,6 @@ class TestReviewHelper(TestCase):
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
 
-    def test_info_request_for_comments(self):
-        # Info request flag not set on the version
-        assert not self.version.has_info_request
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC)
-        assert actions['reply']['info_request']
-        assert not actions['comment']['info_request']
-
-        # Now set the info request flag
-        self.version.update(has_info_request=True)
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC)
-        assert actions['reply']['info_request']
-        assert actions['comment']['info_request']
-
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
@@ -380,7 +350,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'If you want to respond please reply'
+        base_fragment = 'To respond, please reply to this email or visit'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
         uuid = self.version.token.get(user=user).uuid.hex
@@ -437,11 +407,11 @@ class TestReviewHelper(TestCase):
         self.helper.set_data(data)
 
     def test_send_reviewer_reply(self):
-        assert not self.version.has_info_request
+        assert not self.addon.pending_info_request
         self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
         self.helper.handler.reviewer_reply()
 
-        assert not self.version.has_info_request
+        assert not self.addon.pending_info_request
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == self.preamble
@@ -453,10 +423,56 @@ class TestReviewHelper(TestCase):
         self.helper.handler.data['info_request'] = True
         self.helper.handler.reviewer_reply()
 
-        assert self.version.has_info_request
+        self.assertCloseToNow(
+            self.addon.pending_info_request,
+            now=datetime.now() + timedelta(days=7))
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == self.preamble
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
+
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
+
+    def test_request_more_information_custom_deadline(self):
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.helper.handler.data['info_request'] = True
+        self.helper.handler.data['info_request_deadline'] = 42
+        self.helper.handler.reviewer_reply()
+
+        self.assertCloseToNow(
+            self.addon.pending_info_request,
+            now=datetime.now() + timedelta(days=42))
+
+        assert len(mail.outbox) == 1
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
+
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
+
+    def test_request_more_information_reset_notified_flag(self):
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+
+        flags = AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            pending_info_request=datetime.now() - timedelta(days=1),
+            notified_about_expiring_info_request=True)
+
+        self.helper.handler.data['info_request'] = True
+        self.helper.handler.reviewer_reply()
+
+        flags.reload()
+
+        self.assertCloseToNow(
+            flags.pending_info_request,
+            now=datetime.now() + timedelta(days=7))
+        assert not flags.notified_about_expiring_info_request
+
+        assert len(mail.outbox) == 1
+        assert (
+            mail.outbox[0].subject ==
+            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
 
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
@@ -556,7 +572,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -584,7 +600,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -618,7 +634,7 @@ class TestReviewHelper(TestCase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -659,8 +675,8 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            '%s Approved' % self.preamble)
-        assert 'has been approved' in mail.outbox[0].body
+            '%s Updated' % self.preamble)
+        assert 'has been updated' in mail.outbox[0].body
 
         # AddonApprovalsCounter counter is now at 2 for this addon since there
         # was another human review. The last human review date should have been
@@ -669,7 +685,7 @@ class TestReviewHelper(TestCase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -760,8 +776,9 @@ class TestReviewHelper(TestCase):
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
-        AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.current_version = self.version
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=152)
         self.version = version_factory(
             addon=self.addon, version='3.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -769,9 +786,60 @@ class TestReviewHelper(TestCase):
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
-        # Confirm approval action should not be available since the latest
-        # version is not public (#5604)
-        assert 'confirm_auto_approved' not in self.helper.actions
+        # Confirm approval action should be available even if the latest
+        # version is not public, what we care about is the current_version.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.current_version]
+        assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
+
+    def test_public_with_disabled_version_addon_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.current_version = self.version
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=153)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            file_kw={'status': amo.STATUS_DISABLED})
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # Confirm approval action should be available even if the latest
+        # version is not public, what we care about is the current_version.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.current_version]
+        assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
 
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
@@ -823,7 +891,7 @@ class TestReviewHelper(TestCase):
             '%s signed and ready to download' % self.preamble)
         assert 'our automatic tests and is now signed' in mail.outbox[0].body
 
-        sign_mock.assert_called_with(self.file)
+        sign_mock.assert_called_with(self.file, use_autograph=False)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1062,9 +1130,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
@@ -1108,8 +1176,7 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
+            u'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
         assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.filter(
@@ -1151,9 +1218,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
         assert mail.outbox[0].subject == (
-            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
-            u"didn't pass review")
-        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks has been disabled'
                 in mail.outbox[0].body)
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]

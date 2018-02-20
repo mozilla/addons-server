@@ -20,8 +20,8 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 from .models import (
-    Addon, AddonFeatureCompatibility, Persona, Preview, ReplacementAddon,
-    attach_tags)
+    Addon, AddonFeatureCompatibility, CompatOverride, Persona, Preview,
+    ReplacementAddon, attach_tags)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -242,6 +242,7 @@ class AddonSerializer(serializers.ModelSerializer):
     has_privacy_policy = serializers.SerializerMethodField()
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
+    icons = serializers.SerializerMethodField()
     is_source_public = serializers.BooleanField(source='view_source')
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
@@ -276,6 +277,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'has_privacy_policy',
             'homepage',
             'icon_url',
+            'icons',
             'is_disabled',
             'is_experimental',
             'is_featured',
@@ -285,6 +287,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'previews',
             'public_stats',
             'ratings',
+            'ratings_url',
             'requires_payment',
             'review_url',
             'slug',
@@ -370,6 +373,16 @@ class AddonSerializer(serializers.ModelSerializer):
         if self.is_broken_persona(obj):
             return absolutify(obj.get_default_icon_url(64))
         return absolutify(obj.get_icon_url(64))
+
+    def get_icons(self, obj):
+        # We're using only 32 and 64 for compatibility reasons with the
+        # old search API. https://github.com/mozilla/addons-server/issues/7514
+        if self.is_broken_persona(obj):
+            get_icon = obj.get_default_icon_url
+        else:
+            get_icon = obj.get_icon_url
+
+        return {str(size): absolutify(get_icon(size)) for size in (32, 64)}
 
     def get_ratings(self, obj):
         return {
@@ -620,7 +633,7 @@ class LanguageToolsSerializer(AddonSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'current_version', 'default_locale', 'guid',
+        fields = ('id', 'default_locale', 'guid',
                   'locale_disambiguation', 'name', 'slug', 'target_locale',
                   'type', 'url', )
 
@@ -669,3 +682,30 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             return self._get_collection_guids(
                 coll_match.group('user_id'), coll_match.group('coll_slug'))
         return []
+
+
+class CompatOverrideSerializer(serializers.ModelSerializer):
+
+    class VersionRangeSerializer(serializers.Serializer):
+        class ApplicationSerializer(serializers.Serializer):
+            name = serializers.CharField(source='app.pretty')
+            id = serializers.IntegerField(source='app.id')
+            min_version = serializers.CharField(source='min')
+            max_version = serializers.CharField(source='max')
+            guid = serializers.CharField(source='app.guid')
+
+        addon_min_version = serializers.CharField(source='min')
+        addon_max_version = serializers.CharField(source='max')
+        applications = ApplicationSerializer(source='apps', many=True)
+
+    addon_id = serializers.IntegerField()
+    addon_guid = serializers.CharField(source='guid')
+    version_ranges = VersionRangeSerializer(
+        source='collapsed_ranges', many=True)
+
+    class Meta:
+        model = CompatOverride
+        fields = ('addon_id', 'addon_guid', 'name', 'version_ranges')
+
+    def get_addon_id(self, obj):
+        return obj.addon_id

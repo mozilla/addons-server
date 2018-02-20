@@ -14,7 +14,7 @@ import olympia  # noqa
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, safe_exec
+from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.ratings.models import Rating
 from olympia.users.models import (
@@ -43,11 +43,15 @@ class TestUserProfile(TestCase):
         assert not user.is_developer
 
     def test_delete(self):
-        u = UserProfile.objects.get(id='4043307')
-        assert u.email == 'jbalogh@mozilla.com'
-        u.delete()
-        x = UserProfile.objects.get(id='4043307')
-        assert x.email is None
+        user = UserProfile.objects.get(pk=4043307)
+        assert user.email == 'jbalogh@mozilla.com'
+        assert user.auth_id is not None
+        old_auth_id = user.auth_id
+        user.delete()
+        user = UserProfile.objects.get(pk=4043307)
+        assert user.email is None
+        assert user.auth_id
+        assert user.auth_id != old_auth_id
 
     def test_groups_list(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -322,12 +326,8 @@ class TestUserProfile(TestCase):
         assert user.is_public
 
         # Only developer and owner roles make a profile public.
-        addon_user.update(role=amo.AUTHOR_ROLE_VIEWER)
-        assert not user.is_public
         addon_user.update(role=amo.AUTHOR_ROLE_DEV)
         assert user.is_public
-        addon_user.update(role=amo.AUTHOR_ROLE_SUPPORT)
-        assert not user.is_public
         addon_user.update(role=amo.AUTHOR_ROLE_OWNER)
         assert user.is_public
         # But only if they're listed
@@ -378,6 +378,53 @@ class TestUserEmailField(TestCase):
             UserEmailField().clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
+
+
+class TestOnChangeName(TestCase):
+    def setUp(self):
+        super(TestOnChangeName, self).setUp()
+
+        # We're in a regular TestCase class so index_addons should have been
+        # mocked.
+        from olympia.addons.tasks import index_addons
+        self.index_addons_mock = index_addons
+
+    def test_changes_display_name_not_a_listed_author(self):
+        user = user_factory()
+        addon = addon_factory()
+        AddonUser.objects.create(user=user, addon=addon, listed=False)
+        self.index_addons_mock.reset_mock()
+        user.update(display_name=u'bâr')
+        assert self.index_addons_mock.delay.call_count == 0
+
+    def test_changes_display_name(self):
+        user = user_factory()
+        addon = addon_factory()
+        AddonUser.objects.create(user=user, addon=addon, listed=True)
+        self.index_addons_mock.reset_mock()
+
+        user.update(display_name=u'bâr')
+        assert self.index_addons_mock.delay.call_count == 1
+        assert self.index_addons_mock.delay.call_args[0] == ([addon.pk],)
+
+    def test_changes_username(self):
+        user = user_factory()
+        addon = addon_factory()
+        AddonUser.objects.create(user=user, addon=addon, listed=True)
+        self.index_addons_mock.reset_mock()
+
+        user.update(username=u'föo')
+        assert self.index_addons_mock.delay.call_count == 1
+        assert self.index_addons_mock.delay.call_args[0] == ([addon.pk],)
+
+    def test_changes_something_else(self):
+        user = user_factory()
+        addon = addon_factory()
+        AddonUser.objects.create(user=user, addon=addon, listed=True)
+        self.index_addons_mock.reset_mock()
+
+        user.update(last_login=self.days_ago(0))
+        assert self.index_addons_mock.delay.call_count == 0
 
 
 class TestUserHistory(TestCase):

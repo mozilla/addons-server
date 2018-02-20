@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-02 11:16+0000\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-12 16:54+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -163,6 +163,9 @@ msgstr "Listad"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr "Tilläggsnamn kan inte innehålla varumärkena Mozilla eller Firefox."
 
 msgid "Abuse reported."
 msgstr "Missbruk rapporterad."
@@ -1006,6 +1009,9 @@ msgstr "Ange en giltig slugg som består av bokstäver, siffror, understreck ell
 msgid "This slug cannot be used."
 msgstr "Denna slugg kan inte användas."
 
+msgid "This add-on already belongs to the collection"
+msgstr "Denna tillägg hör redan till samlingen"
+
 msgid "Name"
 msgstr "Namn"
 
@@ -1735,9 +1741,9 @@ msgstr "{addon} inaktiverad."
 msgid "{addon} enabled."
 msgstr "{addon} aktiverad."
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr "{addon} status ändrad till {0}."
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} status ändrades till {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} lades till {addon}."
@@ -2025,12 +2031,6 @@ msgstr "Olistad"
 
 msgid "Developer"
 msgstr "Utvecklare"
-
-msgid "Viewer"
-msgstr "Granskare"
-
-msgid "Support"
-msgstr "Hjälp"
 
 msgid "Extension"
 msgstr "Utökning"
@@ -2559,12 +2559,6 @@ msgstr "Åsidosätt misslyckad validering"
 msgid "Submit my add-on for manual review."
 msgstr "Skicka in mitt tillägg för manuell granskning."
 
-msgid "Do not list my add-on on this site"
-msgstr "Lista inte mitt tillägg på denna webbplats"
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Markera det här alternativet om du tänker distribuera ditt tillägg på egen hand och bara behöver det för att signeras av Mozilla."
-
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "En fil med en version som slutar med a|alpha|b|beta|pre|rc och ett valfritt nummer detekteras som beta."
 
@@ -2701,8 +2695,9 @@ msgstr "Kontrollera tilläggets kompatibilitet"
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
@@ -2954,13 +2949,11 @@ msgid "About author roles"
 msgstr "Om roller för upphovsmän"
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Tillägg kan ha hur många upphovsmän, med 3 möjliga roller:</p> <ul> <li><b>Ägare:</b> Kan hantera alla aspekter av tilläggets listning, inklusive lägga till och ta bort andra upphovsmän</li> "
-"<li><b>Utvecklare:</b> Kan hantera alla aspekter av tilläggets listning, med undantag för att lägga till och ta bort andra upphovsmän</li> <li><b>Betraktare:</b> kan visa tilläggets inställningar "
-"och statistik, men kan inte göra några ändringar</li> </ul>"
+"<p>Tillägg kan ha många upphovsmän, med 2 möjliga roller:</p> <ul> <li><b>Ägare:</b> Kan hantera alla aspekter av tilläggets listning, inklusive lägga till och ta bort andra upphovsmän</li> "
+"<li><b>Utvecklare:</b> Kan hantera alla aspekter av tilläggets listning, med undantag för att lägga till och ta bort andra upphovsmän</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Grundläggande information"
@@ -3270,20 +3263,11 @@ msgstr "Lägg till en skärmdump..."
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kan andra dela ditt tillägg, så länge du omnämnes?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, även för kommersiella ändamål."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet endast för icke-kommersiella ändamål."
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Kan andra använda ditt tillägg i kommersiellt syfte?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr "Kan andra skapa utvecklingar från ditt tillägg?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, samt göra utvecklingar av tidigare arbete."
 
 msgid "Yes, as long as they share alike"
 msgstr "Ja, så länge de delar likadant"
@@ -3291,14 +3275,14 @@ msgstr "Ja, så länge de delar likadant"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Licensgivaren tillåter andra att distribuera utvecklingar endast under samma licens eller en kompatibel med den som reglerar licensgivarens arbete."
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera och överföra endast oförändrade kopior av arbetet — inte arbetet som bygger på den."
-
 msgid "Your Add-on will be released under the following license:"
 msgstr "Ditt tillägg kommer att släppas under följande licens:"
 
 msgid "Select a different license."
 msgstr "Välj en annan licens."
+
+msgid "More information on Creative Commons licenses"
+msgstr "Mer information om Creative Commons licenser"
 
 msgid "Tests"
 msgstr "Tester"
@@ -3455,6 +3439,9 @@ msgstr "Använd endast bokstäver, siffror, understreck och bindestreck i din we
 msgid "Summary:"
 msgstr "Sammanfattning:"
 
+msgid "required"
+msgstr "obligatorisk"
+
 msgid "This add-on is experimental"
 msgstr "Detta tillägg är experimentell"
 
@@ -3520,17 +3507,23 @@ msgstr "Inskickning komplett"
 msgid "You’re done!"
 msgstr "Du är klar!"
 
+msgid "Version Submitted for Review"
+msgstr "Version som skickats in för granskning"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "Du är klar! Den här versionen kommer att finnas tillgänglig efter det att den har gått igenom granskning. Du kommer bli underrättad när den har granskats."
+
 msgid "Version Submitted"
 msgstr "Version inskickad"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Du är klar! Denna version blir snart tillgänglig på vår hemsida."
 
-msgid "Version Submitted for Review"
-msgstr "Version som skickats in för granskning"
-
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Du är klar! Denna version har skickats in för granskning. Du kommer att meddelas när granskningen är klar eller om våra granskare har frågor om ditt bidrag."
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en detaljerad beskrivning. Gör din listning redo för publicering:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en detaljerad beskrivning och skärmdumpar. Få din listning redo för publicering:"
@@ -3586,9 +3579,6 @@ msgstr "Ladda upp version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
-msgid "Create a Theme"
-msgstr "Skapa ett tema"
-
 msgid "Which platforms is this file compatible with?"
 msgstr "Vilka plattformar är denna fil kompatibel med?"
 
@@ -3597,6 +3587,12 @@ msgstr "Publicera endast denna version till min beta kanal."
 
 msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
+
+msgid "Create a Theme Version"
+msgstr "Skapa ett temaversion"
+
+msgid "Create a Theme"
+msgstr "Skapa ett tema"
 
 msgid "Submit File"
 msgstr "Skicka in fil"
@@ -3610,11 +3606,11 @@ msgstr "Generera tema"
 msgid "Theme generator"
 msgstr "Temagenerator"
 
-msgid "Select a header image for your Theme."
-msgstr "Välj en bild för ditt tema till sidhuvudet."
+msgid "Theme name"
+msgstr "Temanamn"
 
-msgid "required"
-msgstr "obligatorisk"
+msgid "Select a header image for your theme"
+msgstr "Välj en bild till sidhuvudet för ditt tema"
 
 msgid "Image height should be 200 pixels"
 msgstr "Bildhöjd bör vara 200 pixlar"
@@ -3628,49 +3624,49 @@ msgstr "Justera överst till höger"
 msgid "Select a different header image"
 msgstr "Välj en annan bild för sidhuvud"
 
-msgid "Select colors for your Theme."
-msgstr "Välj färger för ditt tema."
+msgid "Select colors for your theme"
+msgstr "Välj färger för ditt tema"
 
-msgid "Header area background (accentcolor)"
-msgstr "Bakgrund sidhuvud (accentcolor)"
+msgid "Header area background"
+msgstr "Bakgrund sidhuvudområde"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr "Färgen på sidhuvudets bakgrund, som visas i den del av rubriken som inte är täckt eller synlig via huvudbilden."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Färgen på sidhuvudområdets bakgrund, som visas i den del av sidhuvudet som inte är täckt eller synligt via sidhuvudbilden. Manifest-fält:  accentcolor."
 
-msgid "Header area text (textcolor)"
-msgstr "Text sidhuvud (textcolor)"
+msgid "Header area text and icons"
+msgstr "Sidhuvudområdets text och ikoner"
 
-msgid "The color of the text displayed in the header area."
-msgstr "Färgen på texten som visas i sidhuvud."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Färgen på texten och ikoner i sidhuvudområdet, förutom den aktiva fliken. Manifest-fält:  textcolor."
 
-msgid "Toolbar area background (toolbar)."
-msgstr "Bakgrund verktygsfält (toolbar)."
+msgid "Toolbar area background"
+msgstr "Bakgrund verktygsfältområde"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr "Bakgrundsfärgen för navigeringsfältet, bokmärkesfältet och den valda fliken."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Bakgrundsfärgen för navigeringsfältet, bokmärkesfältet och den valda fliken. Manifest-fält:  toolbar."
 
-msgid "Toolbar area text (toolbar_text)."
-msgstr "Text verktygsfält (toolbar_text)."
+msgid "Toolbar area text icons"
+msgstr "Text på ikoner i verktygsfältområde"
 
-msgid "The color of toolbar text."
-msgstr "Färgen på verktygsfältets text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Färgen på texten och ikonerna i verktygsfältet och den aktiva fliken. Manifest-fält:   toolbar_text."
 
-msgid "Toolbar field area background (toolbar_field)."
-msgstr "Bakgrund verktygsfältets fältområde (toolbar_field)."
+msgid "Toolbar field area background"
+msgstr "Bakgrund verktygsfältets fältområde"
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr "Bakgrundsfärgen för fälten i verktygsfältet, till exempel URL-fältet."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Bakgrundsfärgen för fält i verktygsfältet, till exempel URL-fältet. Manifest-fält:  toolbar_field."
 
-msgid "Toolbar field area text (toolbar_field_text)."
-msgstr "Text verktygsfältets fältområde (toolbar_field_text)."
+msgid "Toolbar field area text"
+msgstr "Text på verktygsfältets fältområde"
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr "Färgen på text i fälten i verktygsfältet, till exempel URL-fältet"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Färgen på text i fält i verktygsfältet, till exempel URL-fältet. Manifest-fält:  toolbar_field_text."
 
 msgid "optional"
 msgstr "valfri"
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr "Webbläsarens förhandsgranskning"
 
 msgid "Back"
@@ -3679,8 +3675,8 @@ msgstr "Tillbaka"
 msgid "Uploading Theme"
 msgstr "Laddar upp tema"
 
-msgid "Upload Theme"
-msgstr "Ladda upp tema"
+msgid "Finish Theme"
+msgstr "Avsluta tema"
 
 msgid "API Credentials"
 msgstr "API-inloggningsuppgifter"
@@ -3889,6 +3885,9 @@ msgstr "Blogg"
 msgid "Contact Us"
 msgstr "Kontakta oss"
 
+msgid "Support"
+msgstr "Hjälp"
+
 msgid "Policies"
 msgstr "Policyer"
 
@@ -4083,11 +4082,23 @@ msgstr "Licens för tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Kan andra dela ditt tema, så länge du omnämnes?"
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, även för kommersiella ändamål."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet endast för icke-kommersiella ändamål."
+
 msgid "Can others make commercial use of your Theme?"
 msgstr "Kan andra använda ditt tema i kommersiellt syfte?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Kan andra skapa utvecklingar från ditt tema?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, samt göra utvecklingar av tidigare arbete."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licensgivaren tillåter andra att kopiera, distribuera och överföra endast oförändrade kopior av arbetet — inte arbetet som bygger på den."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Ditt tema kommer att släppas under följande licens:"
@@ -4121,6 +4132,9 @@ msgstr "Sidhuvud"
 
 msgid "Footer"
 msgstr "Sidfot"
+
+msgid "Select colors for your Theme."
+msgstr "Välj färger för ditt tema."
 
 msgid "Foreground Text"
 msgstr "Förgrundstext"
@@ -4185,6 +4199,9 @@ msgstr "Visa och prenumerera på ditt temas <a href=\"%(feed_url)s\">aktivitetsf
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Delta i konversationen i vårt <a href=\"%(forum_url)s\">forum</a>."
+
+msgid "Select a header image for your Theme."
+msgstr "Välj en bild för ditt tema till sidhuvudet."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixlar"
@@ -4419,6 +4436,30 @@ msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_headi
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Works seamlessly with most popular video sites."
+msgstr "Fungerar smidigt med de flesta populära videosajter."
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Ange den sida du vill se varje gång du öppnar en ny flik."
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Dussintals fantastiska emojis för varje tillfälle—alltid ett klick bort."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ta skärmbilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr "Mer än bara ett grundläggande skärmbildsverktyg, Awesome Screenshot Plus låter dig kommentera bilder med anpassad text och grafik, plus möjligheten att lagra och dela dina bilder."
 
 msgid "Cannot diff a version against itself"
 msgstr "Kan inte jämföra en version mot sig själv"
@@ -6062,15 +6103,6 @@ msgstr "Operativsystem:"
 msgid "Applications:"
 msgstr "Applikationer:"
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Meddela mig nästa gång detta tillägg uppdateras. (Senare uppdateringar kommer inte att generera ett e-postmeddelande)"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Rensa flagga för administrativ kodgranskning"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Rensa flagga för administrativ innehållsgranskning"
-
 msgid "Is more info requested?"
 msgstr "Behöver du mer information?"
 
@@ -6087,6 +6119,9 @@ msgstr "Någon annan granskar detta tema."
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "tema, granskare eller kommentar"
+
+msgid "Private Whiteboard"
+msgstr "Privat anslagstavla"
 
 msgid "Keep review; remove flags"
 msgstr "Behåll recension; ta bort flaggor"
@@ -6114,6 +6149,9 @@ msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr "Är låst av en granskare."
+
+msgid "Has auto-approval disabled flag set."
+msgstr "Har automatisk godkännande inaktiverad flagga satt."
 
 msgid "Duplicate Submission"
 msgstr "Duplicerade inskickningar"
@@ -6184,8 +6222,8 @@ msgstr "Detta kommer att avvisa tillägget och ta bort den från kön. Kommentar
 msgid "Confirm Approval"
 msgstr "Bekräfta godkännande"
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatiskt. Detta registrerar din bekräftelse av godkännande, utan att meddela utvecklaren."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatiskt. Detta registrerar din bekräftelse av godkännande av den versionen, utan att meddela utvecklaren."
 
 msgid "Reject Multiple Versions"
 msgstr "Avvisa flera versioner"
@@ -6211,8 +6249,8 @@ msgstr "Kommentera den här versionen. Utvecklaren kommer inte att kunna se dett
 msgid "Approve Content"
 msgstr "Godkänn innehåll"
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Detta registrerar ditt godkännande av innehållet i den här versionen utan att meddela utvecklaren."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
 
 msgid "Legacy Add-ons"
 msgstr "Äldre tillägg"
@@ -6553,8 +6591,35 @@ msgstr "<strong>Varning!</strong> En annan användare tittade på denna sida inn
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr "Anslagstavlan är platsen för att utbyta information som är relevant för detta tillägg (oavsett version), mellan utvecklaren och granskaren. Detta syns och redigeras av båda."
 
-msgid "Update the whiteboard"
-msgstr "Uppdatera anslagstavla"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Den privata anslagstavlan används för att utbyta information mellan granskare som är oberoende av versionen. Vänligen håll språkmålen. Den är bara synligt för granskare."
+
+msgid "Update whiteboards"
+msgstr "Uppdatera anslagstavlor"
+
+msgid "More Actions"
+msgstr "Fler åtgärder"
+
+msgid "Notify me about new listed versions"
+msgstr "Meddela mig om nya listade versioner"
+
+msgid "Force-disable add-on"
+msgstr "Inaktivera tillägg med våld"
+
+msgid "Force-enable add-on"
+msgstr "Aktivera tillägg med våld"
+
+msgid "Disable Auto-Approval"
+msgstr "Inaktivera automatisk godkännande"
+
+msgid "Enable Auto-Approval"
+msgstr "Aktivera automatisk godkännande"
+
+msgid "Clear Admin Code Review Flag"
+msgstr "Rensa flagga för administrativ kodgranskning"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Rensa flagga för administrativ innehållsgranskning"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -7445,8 +7510,8 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr "Genom att klicka på \"ta bort\" kommer ditt konto att <strong>tas bort permanent</strong>. Det innebär:"
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
-msgstr "Du kommer inte att kunna logga in på %(site)s längre."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Inloggning med den här e-postadressen till %(site)s igen skapar ett nytt konto som inte är kopplat till det här kontot."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Dina recensioner och betyg tas inte bort, men de kommer inte längre att vara associerade med dig."

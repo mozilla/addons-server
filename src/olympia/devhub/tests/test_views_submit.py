@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.files import temp
+from django.core.files.storage import default_storage as storage
 
 import mock
 
@@ -13,7 +14,8 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, Category
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonReviewerFlags, Category)
 from olympia.amo.tests import (
     TestCase, addon_factory, formset, initial, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
@@ -323,8 +325,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
-        mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False) for f in latest_version.all_files])
+        mock_auto_sign_file.assert_has_calls([
+            mock.call(f, is_beta=False, use_autograph=False)
+            for f in latest_version.all_files])
 
     def test_with_source(self):
         response = self.client.get(
@@ -389,6 +392,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
+        assert addon.previews.all().count() == 1
+        preview = addon.previews.last()
+        assert storage.exists(preview.image_path)
+        assert preview.caption == unicode(addon.current_version.version)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
@@ -408,6 +415,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
+        # Only listed submissions need a preview generated.
+        assert addon.previews.all().count() == 0
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_listed(self):
@@ -417,6 +426,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -435,6 +445,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
+        assert addon.previews.all().count() == 1
+        preview = addon.previews.last()
+        assert storage.exists(preview.image_path)
+        assert preview.caption == unicode(addon.current_version.version)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
@@ -444,6 +458,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -465,6 +480,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
+        # Only listed submissions need a preview generated.
+        assert addon.previews.all().count() == 0
 
 
 class DetailsPageMixin(object):
@@ -855,6 +872,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
     def test_welcome_email_for_newbies(self, send_welcome_email_mock):
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
@@ -871,6 +889,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
@@ -890,6 +909,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
+            'addon_name': 'Delicious Bookmarks',
             'app': unicode(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
@@ -1167,6 +1187,7 @@ class VersionSubmitUploadMixin(object):
         self.url = reverse('devhub.submit.version.upload',
                            args=[self.addon.slug, channel])
         assert self.addon.has_complete_metadata()
+        self.version.save()
 
     def post(self, supported_platforms=None,
              override_validation=False, expected_status=302, source=None,
@@ -1271,10 +1292,16 @@ class VersionSubmitUploadMixin(object):
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
 
-    def test_beta_field(self):
+    @override_switch('beta-versions', active=True)
+    def test_beta_field_with_beta(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('.beta-status').length
+
+    def test_beta_field(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.beta-status')
 
     def test_no_beta_field_when_addon_not_approved(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -1334,6 +1361,7 @@ class VersionSubmitUploadMixin(object):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '3.0'
 
         # And then check the upload works.
         path = os.path.join(
@@ -1350,6 +1378,13 @@ class VersionSubmitUploadMixin(object):
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
+        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+            assert self.addon.previews.all().count() == 1
+            preview = self.addon.previews.last()
+            assert storage.exists(preview.image_path)
+            assert preview.caption == unicode(version)
+        else:
+            assert self.addon.previews.all().count() == 0
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
@@ -1391,6 +1426,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
+    @override_switch('beta-versions', active=True)
     def test_force_beta(self):
         response = self.post(beta=True)
         # Need latest() rather than find_latest_version as Beta isn't returned.
@@ -1449,9 +1485,11 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
               self).test_one_xpi_for_multiple_platforms()
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False) for f in version.all_files])
+        mock_auto_sign_file.assert_has_calls([
+            mock.call(f, is_beta=False, use_autograph=False)
+            for f in version.all_files])
 
+    @override_switch('beta-versions', active=True)
     def test_no_force_beta_for_unlisted(self):
         """No beta version for unlisted addons."""
         self.post(beta=True)
@@ -1513,6 +1551,54 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.version.finish',
                               args=[self.addon.slug, self.version.pk]))
+
+    def test_show_request_for_information(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' in response.content
+
+    def test_dont_show_request_for_information_if_none_pending(self):
+        ActivityLog.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
+            user=self.user, details={'comments': 'this should not be shown'})
+        ActivityLog.create(
+            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
+            user=self.user, details={'comments': 'this is an info request'})
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'this should not be shown' not in response.content
+        assert 'this is an info request' not in response.content
+
+    def test_clear_request_for_information(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=self.days_ago(2))
+        response = self.client.post(
+            self.url, {'clear_pending_info_request': True})
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request is None
+
+    def test_dont_clear_request_for_information(self):
+        past_date = self.days_ago(2)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, pending_info_request=past_date)
+        response = self.client.post(self.url)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert flags.pending_info_request == past_date
 
     def test_can_cancel_review(self):
         addon = self.get_addon()
@@ -1728,6 +1814,7 @@ class TestFileSubmitUpload(UploadTest):
         assert pq(response.content)('ul.errorlist').text() == (
             "Version doesn't match")
 
+    @override_switch('beta-versions', active=True)
     def test_force_beta_is_ignored(self):
         """Files must have the same beta status as the existing version."""
         self.post(beta=True)
@@ -1735,6 +1822,7 @@ class TestFileSubmitUpload(UploadTest):
         version = self.addon.versions.latest()
         assert version.all_files[0].status != amo.STATUS_BETA
 
+    @override_switch('beta-versions', active=True)
     def test_beta_automatically_if_version_is_beta(self):
         """Files must have the same beta status as the existing version."""
         existing_file = self.version.all_files[0]

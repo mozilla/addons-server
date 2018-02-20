@@ -123,7 +123,8 @@ class AddonGuidQueryParam(AddonQueryParam):
     es_field = 'guid'
 
     def get_value(self):
-        return self.request.GET.get(self.query_param, '').split(',')
+        value = self.request.GET.get(self.query_param)
+        return value.split(',') if value else []
 
 
 class AddonPlatformQueryParam(AddonQueryParam):
@@ -253,6 +254,7 @@ class SearchQueryFilter(BaseFilterBackend):
     to what's in the `q` GET parameter.
     """
     MAX_QUERY_LENGTH = 100
+    MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH = 20
 
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
@@ -265,39 +267,47 @@ class SearchQueryFilter(BaseFilterBackend):
         * Prefer phrase matches that allows swapped terms (boost=4)
         * Then text matches, using the standard text analyzer (boost=3)
         * Then text matches, using a language specific analyzer (boost=2.5)
-        * Then try fuzzy matches ("fire bug" => firebug) (boost=2)
         * Then look for the query as a prefix of a name (boost=1.5)
         """
-        should = []
+        should = [
+            # Exact matches need to be queried against a non-analyzed field.
+            # Let's do a term query on `name.raw` for an exact match against
+            # the add-on name and boost it since this is likely what the user
+            # wants.
+            # Use a super-high boost to avoid `description` or `summary`
+            # getting in our way.
+            # Put the raw query first to give it a higher priority during
+            # Scoring, `boost` alone doesn't necessarily put it first.
+            query.Term(**{
+                'name.raw': {
+                    'value': search_query, 'boost': 100
+                }
+            })
+        ]
+
         rules = [
             (query.MatchPhrase, {
                 'query': search_query, 'boost': 4, 'slop': 1}),
             (query.Match, {
                 'query': search_query, 'boost': 3,
-                'analyzer': 'standard'}),
-            (query.Match, {
-                'query': search_query, 'boost': 2,
-                'prefix_length': 4, 'fuzziness': 'AUTO'}),
+                'analyzer': 'standard', 'operator': 'and'}),
             (query.Prefix, {
                 'value': search_query, 'boost': 1.5}),
         ]
 
+        # Add a rule for fuzzy matches ("fire bug" => firebug) (boost=2) for
+        # short query strings only (long strings, depending on what characters
+        # they contain and how many words are present, can be too costly).
+        if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
+            rules.append((query.Match, {
+                'query': search_query, 'boost': 2,
+                'prefix_length': 4, 'fuzziness': 'AUTO'}))
+
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for query_cls, opts in rules:
-            for field in ('name', 'slug', 'listed_authors.name'):
+            for field in ('name', 'listed_authors.name'):
                 should.append(query_cls(**{field: opts}))
-
-        # Exact matches need to be queried against a non-analyzed field. Let's
-        # do a term query on `name.raw` for an exact match against the add-on
-        # name and boost it since this is likely what the user wants.
-        # Use a super-high boost to avoid `description` or `summary`
-        # getting in our way.
-        should.append(query.Term(**{
-            'name.raw': {
-                'value': search_query, 'boost': 100
-            }
-        }))
 
         # For name, also search in translated field with the right language
         # and analyzer.
@@ -307,7 +317,8 @@ class SearchQueryFilter(BaseFilterBackend):
                     'name_l10n_%s' % analyzer: {
                         'query': search_query,
                         'boost': 2.5,
-                        'analyzer': analyzer
+                        'analyzer': analyzer,
+                        'operator': 'and'
                     }
                 })
             )
@@ -470,7 +481,7 @@ class SortingFilter(BaseFilterBackend):
         'created': '-created',
         'downloads': '-weekly_downloads',
         'hotness': '-hotness',
-        'name': 'name_sort',
+        'name': 'name.raw',
         'random': '_score',
         'rating': '-bayesian_rating',
         'relevance': '_score',

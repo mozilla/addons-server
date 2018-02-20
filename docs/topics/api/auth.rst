@@ -82,7 +82,10 @@ Take this JSON object and sign it with the **API secret** you generated on the
 algorithm (which is typically the default).
 The final JWT will be a blob of base64 encoded text, something like::
 
-    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11D
+
+.. note::
+    See `jwt.io debugger <https://jwt.io/?value=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11DM#debugger>`_ for more information about the token.
 
 Here is an example of creating a JWT in `NodeJS <https://nodejs.org/en/>`_
 using the `node-jsonwebtoken <https://github.com/auth0/node-jsonwebtoken>`_
@@ -111,7 +114,7 @@ Create an Authorization header
 When making each request, put your generated `JSON Web Token (JWT)`_
 into an HTTP Authorization header prefixed with ``JWT``, like this::
 
-    Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
+    Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11DM
 
 Example request
 ===============
@@ -121,7 +124,7 @@ here's what a JWT authenticated HTTP request would look like in
 `curl <http://curl.haxx.se/>`_::
 
     curl "https://addons.mozilla.org/api/v3/accounts/profile/" \
-         -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo"
+         -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11DM"
 
 
 Find a JWT library

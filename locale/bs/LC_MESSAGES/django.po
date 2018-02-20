@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-08 14:25+0000\n"
-"Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
+"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"PO-Revision-Date: 2018-02-14 11:18+0000\n"
+"Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,9 @@ msgid "Listed"
 msgstr ""
 
 msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
@@ -1004,6 +1007,9 @@ msgstr ""
 msgid "This slug cannot be used."
 msgstr ""
 
+msgid "This add-on already belongs to the collection"
+msgstr ""
+
 msgid "Name"
 msgstr ""
 
@@ -1381,10 +1387,10 @@ msgid "Add a positive vote for this collection"
 msgstr ""
 
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Dodajte negativan glas za ovu kolekciju"
 
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Ukloni moj glas za ovu kolekciju"
 
 msgid "Log in to vote for this collection"
 msgstr ""
@@ -1409,15 +1415,15 @@ msgstr ""
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Ovdje je nekoliko naših omiljenih dodataka da vam pomognu da započnete prilagođavanje %s."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Alati za pretragu povezani sa %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Alati za pretragu i proširenja povezana s pretragom"
 
 msgid "Search tools"
 msgstr ""
@@ -1453,7 +1459,7 @@ msgstr ""
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Ovdje je nekoliko naših omiljenih dodataka da vam pomognu da započnete prilagođavanje %(app)s."
 
 msgid "Install Dictionary"
 msgstr ""
@@ -1472,12 +1478,14 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Instaliranje dodatka rječnika će dodati nove jezične opcije za vaš %(app_name)s ispravljač pravopisa, koji provjerava vaš pravopis pri popunjavanju web obrazaca. Dodaci na jezičnom paketu mijenjaju "
+"jezik cijele aplikacije."
 
 msgid "Available in your locale"
 msgstr ""
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Lista jezičnih paketa i rječnika dostupnih na vašem jeziku."
 
 msgid "Language"
 msgstr ""
@@ -1492,7 +1500,7 @@ msgid "All locales"
 msgstr ""
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Lista jezičnih paketa i rječnika."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
@@ -1509,33 +1517,33 @@ msgid "Search Extensions"
 msgstr ""
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Dodajte funkciju povezanu sa pretragom u Firefox"
 
 msgid "Search Providers"
 msgstr ""
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Nađite nove pružaoce usluga za traku za pretrage"
 
 msgid "Additional Resources"
 msgstr ""
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr ""
+msgstr "Saznajte više o <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">traci za pretragu</a> u {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Pretražujte putem još više pružalaca pretrage na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sNapravite vlastiti%(amo_mdn_link_close)s alat za pretragu"
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Najpopularnija proširenja"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Najbolje ocijenjena proširenja"
 
 msgid "Newest Extensions"
 msgstr ""
@@ -1544,39 +1552,39 @@ msgid "Extensions by Name"
 msgstr ""
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Proširenja za preuzimanje sedmično"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Nedavno ažurirana proširenja"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Nova i nadolazeća proširenja"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Preporučene kompletne teme"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Najpopularnije kompletne teme"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Najbolje ocijenjene kompletne teme"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Najnovije kompletne teme"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Kompletne teme po nazivu"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Kompletne teme po broju sedmičnih preuzimanja"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Nedavno ažurirane kompletne teme"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Nove i nadolazeće kompletne teme"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1596,10 +1604,10 @@ msgid "View Profile"
 msgstr ""
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Napravite vlastitu temu"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Vaš browser, vaš stil! Sredite ga sa vlastitim dizajnom!"
 
 msgid "Learn more"
 msgstr ""
@@ -1615,22 +1623,22 @@ msgstr ""
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Preko 300,000 dizajna za personalizaciju vašeg browsera! Pomaknite vaš miš preko pozadine teme da je probate. <a href=\"%(url)s\" class=\"more-info\">Počnite istraživati</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Želite više personalizacije?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Kompletne teme mijenjaju izgled vašeg browsera uz stilove za okvir prozora, adresnu traku, dugmad, tabove i menije. <a href=\"%(url)s\" class=\"more-info\">Počnite istraživati</a>"
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Nove i nadolazeće teme"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Pogledajte sve novo i nadolazeće"
 
 msgid "No themes found"
 msgstr ""
@@ -1639,19 +1647,21 @@ msgid "All"
 msgstr ""
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Izvještaji o kompatibilnosti dodataka"
 
 #, python-format
 msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Izvještaji poslani nama putem <a href=\"%(url_)s\">Izvještaja o kompatibilnosti dodataka</a> su prokupljani ovdje za pregled od strane programera. Ovi izvještaji pomažu nam odrediti koji dodaci "
+"će trebati pomoć da podržavaju nadolazeću Firefox verziju. </p>"
 
 msgid "Reports for your Add-ons"
 msgstr ""
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Unesite GUID dodatka ispod da pregledate izvještaj koji smo dobili."
 
 msgid "{addon} Compatibility Reports"
 msgstr ""
@@ -1684,7 +1694,7 @@ msgid "Application Version"
 msgstr ""
 
 msgid "Application Build"
-msgstr ""
+msgstr "Izgradnja aplikacije"
 
 msgid "Platform"
 msgstr ""
@@ -1735,9 +1745,9 @@ msgstr ""
 msgid "{addon} enabled."
 msgstr ""
 
-#. L10n: {0} is the status
-msgid "{addon} status changed to {0}."
-msgstr ""
+#. L10n: {status} is the status
+msgid "{addon} status changed to {status}."
+msgstr "{addon} satus se promijenio u {status}."
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -1795,7 +1805,7 @@ msgid "{addon} {version} super review requested."
 msgstr ""
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "Dodatak je označen zastavicom za adminov pregled.  Još uvijek je u našem redu za čekanje, ali morat će biti provjeren od strane jednog od naših admina. Pregled može trajati duže nego inače."
 
 msgid "Comment on {addon} {version}."
 msgstr ""
@@ -1816,7 +1826,7 @@ msgid "{addon} removed from {collection}."
 msgstr ""
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} za {addon} je napisana."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1841,7 +1851,7 @@ msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} je sada licenciran pod {0}."
 
 msgid "{addon} policy changed."
 msgstr ""
@@ -1850,25 +1860,25 @@ msgid "{addon} icon changed."
 msgstr ""
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} za {addon} je odobrena."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} je odobrio {rating} za {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Pregled {rating} za {addon} je izbrisana."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user} je izbrisao {rating} za {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maksimalna verzija aplikacije za {version} je ažurirana."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Email poslan autorima o kompatibilnosti {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Autoru je poslan email o kompatibilnosti dodatka."
 
 msgid "Password changed."
 msgstr ""
@@ -1886,77 +1896,77 @@ msgid "Created: {0}."
 msgstr ""
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Uređeno polje: {2} postavljen za: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Izbrisano: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Korisnik {user} uredio, razlog: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Korisnik {user} anonimiran."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Korisnik {user} je ograničen."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Admin {0} je pregledao zapisnik aktivnosti za {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} za {addon} je ažurirana."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} pregledan."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je dodan u {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je uklonjen iz {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} sklonjen s liste."
 
 msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID dodatka {0} s GUID {1} je izbrisan"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} se premjestio iz preliminarnih."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Odgovor od programera za {addon} {version}."
 
 msgid "Developer Reply"
 msgstr ""
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Odgovor od pregledača za {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Odgovor pregledača"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Bilješke odobrenja su primijenjene za {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Bilješke odobrenja su promijenjene"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Izvorni kod je prenesen za {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Izvorni kod je prenesen"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Automatsko odobravanje je potvrđeno za {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Automatsko odobravanje je potvrđeno"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -1968,13 +1978,13 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "Sadržaj odobren"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Sadržaj je odbijen"
 
 msgid "Firefox"
 msgstr ""
@@ -2004,31 +2014,25 @@ msgid "Incomplete"
 msgstr ""
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Onemogućeno od Mozille"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Izbrisano"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "Očekuje se odobravanje"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Obilježeno zastavicom za daljnji pregled"
 
 msgid "Beta"
 msgstr ""
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Sklonjeno s liste"
 
 msgid "Developer"
-msgstr ""
-
-msgid "Viewer"
-msgstr ""
-
-msgid "Support"
-msgstr ""
+msgstr "Programer"
 
 msgid "Extension"
 msgstr ""
@@ -2040,10 +2044,10 @@ msgid "Search Engine"
 msgstr ""
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Jezični paket (aplikacija)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Jezični paket (dodatak)"
 
 msgid "Plugin"
 msgstr ""
@@ -2052,19 +2056,19 @@ msgid "Theme"
 msgstr ""
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Tema (statička)"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Kompletne teme"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Rječnici"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Jezični paketi (aplikacija)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Jezični paketi (dodatak)"
 
 msgid "Plugins"
 msgstr ""
@@ -2074,55 +2078,55 @@ msgstr ""
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "Ostalo"
 
 msgid "Exception"
-msgstr ""
+msgstr "Izuzetak"
 
 msgid "Release"
-msgstr ""
+msgstr "Izdanje"
 
 msgid "Change"
-msgstr ""
+msgstr "Izmjena"
 
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibilno"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Nekompatibilno"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Upozorenja i ažuriranja"
 
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 msgid "Bookmarks"
 msgstr ""
 
 msgid "Download Management"
-msgstr ""
+msgstr "Menadžment preuzimanja"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Kanali, vijesti i blogiranje"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Igre i zabava"
 
 msgid "Language Support"
-msgstr ""
+msgstr "Podrška za jezik"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Slike, muzika i video"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Privatnost i sigurnost"
 
 msgid "Shopping"
-msgstr ""
+msgstr "Kupovina"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Druženje i komunikacija"
 
 msgid "Tabs"
 msgstr ""
@@ -2293,7 +2297,7 @@ msgid "RSS, News and Blogging"
 msgstr ""
 
 msgid "Site-specific"
-msgstr ""
+msgstr "Specifično za web"
 
 msgid "Web and Developer Tools"
 msgstr ""
@@ -2302,112 +2306,112 @@ msgid "All Rights Reserved"
 msgstr ""
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Sve platforme"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "App"
-msgstr ""
+msgstr "Aplikacija"
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Ručni recenzent bodova"
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "Nova recenzija dodatka"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Preliminarna recenzija dodatka"
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Ažurirana recenzija dodatka"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Nova recenzija rječnika"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Preliminarna recenzija rječnika"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Ažurirana recenzija rječnika"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Nova recenzija jezičnog paketa"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Preliminarna recenzija jezičnog paketa"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Ažurirana recenzija jezičnog paketa"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Recenzija teme"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Nova recenzija pružaoca usluga pretrage"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Preliminarna recenzija pružaoca usluga pretrage"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Ažurirana recenzija pružaoca usluga pretrage"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Nova recenzija kompletne teme"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Preliminarna recenzija kompletne teme"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Ažurirana recenzija kompletne teme"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Moderirana recenzija dodatka"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija recenzije dodatka se vratila"
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "Recenzija sadržaja dodatka"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2422,73 +2426,73 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "Nivo 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Nivo 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Nivo 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Nivo 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Nivo 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Nivo 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Nivo 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Nivo 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Nivo 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Zahtjevaj više informacija"
 
 msgid "Flag"
-msgstr ""
+msgstr "Označeno zastavicom"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliciraj"
 
 msgid "Reject"
-msgstr ""
+msgstr "Odbij"
 
 msgid "Approve"
-msgstr ""
+msgstr "Odobri"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksualni i pornografski sadržaj"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Neprikladan ili uvredljiv sadržaj"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Nasilje, rat ili slike s oružjem"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nacistički ili drugi sadržaj mržnje"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Sadržaj s klevetama"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Kockanje na internetu"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Spam sadržaj"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Nizak kvalitet, razvučeno ili prazna slika"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problem poravnanja slike zaglavlja"
 
 msgid "Core"
 msgstr ""
@@ -2498,16 +2502,16 @@ msgid "Recent Changes for %s"
 msgstr ""
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Nedavne promjene za moje dodatke"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Mora imati barem jednog vlasnika."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Barem jedan autor mora biti naveden."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Autor može biti naveden samo jednom."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -2555,12 +2559,6 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Submit my add-on for manual review."
-msgstr ""
-
-msgid "Do not list my add-on on this site"
-msgstr ""
-
-msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
@@ -2695,7 +2693,8 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -2943,9 +2942,8 @@ msgid "About author roles"
 msgstr ""
 
 msgid ""
-"<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
-"make any changes</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3213,19 +3211,10 @@ msgstr ""
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Add-on?"
 msgstr ""
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
 
 msgid "Yes, as long as they share alike"
@@ -3234,32 +3223,32 @@ msgstr ""
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
 msgstr ""
 
-msgid "Tests"
+msgid "More information on Creative Commons licenses"
 msgstr ""
+
+msgid "Tests"
+msgstr "Testovi"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Generalni testovi"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Sigurnosni testovi"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Testovi proširenja"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Testovi lokalizacije"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testovi kompatibilnosti"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3271,10 +3260,10 @@ msgid "Top"
 msgstr ""
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Izbriši temu"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Izbriši dodatak"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3294,19 +3283,19 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "Akcije"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Nastavi"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Obriši ovaj dodatak."
 
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 msgid "Edit information about this add-on."
 msgstr ""
@@ -3397,6 +3386,9 @@ msgstr ""
 msgid "Summary:"
 msgstr ""
 
+msgid "required"
+msgstr ""
+
 msgid "This add-on is experimental"
 msgstr ""
 
@@ -3460,16 +3452,22 @@ msgstr ""
 msgid "You’re done!"
 msgstr ""
 
+msgid "Version Submitted for Review"
+msgstr ""
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
 msgid "Version Submitted"
 msgstr ""
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-msgid "Version Submitted for Review"
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
 
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -3526,9 +3524,6 @@ msgstr ""
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Create a Theme"
-msgstr ""
-
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3536,6 +3531,12 @@ msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
+msgstr ""
+
+msgid "Create a Theme Version"
+msgstr ""
+
+msgid "Create a Theme"
 msgstr ""
 
 msgid "Submit File"
@@ -3550,10 +3551,10 @@ msgstr ""
 msgid "Theme generator"
 msgstr ""
 
-msgid "Select a header image for your Theme."
+msgid "Theme name"
 msgstr ""
 
-msgid "required"
+msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "Image height should be 200 pixels"
@@ -3568,49 +3569,49 @@ msgstr ""
 msgid "Select a different header image"
 msgstr ""
 
-msgid "Select colors for your Theme."
+msgid "Select colors for your theme"
 msgstr ""
 
-msgid "Header area background (accentcolor)"
+msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-msgid "Header area text (textcolor)"
+msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text displayed in the header area."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
-msgid "Toolbar area background (toolbar)."
+msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text (toolbar_text)."
+msgid "Toolbar area text icons"
 msgstr ""
 
-msgid "The color of toolbar text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr ""
 
-msgid "Toolbar field area background (toolbar_field)."
+msgid "Toolbar field area background"
 msgstr ""
 
-msgid "The background color for fields in the toolbar, such as the URL bar."
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-msgid "Toolbar field area text (toolbar_field_text)."
+msgid "Toolbar field area text"
 msgstr ""
 
-msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "optional"
 msgstr ""
 
-msgid "Browser Preview"
+msgid "Browser preview"
 msgstr ""
 
 msgid "Back"
@@ -3619,7 +3620,7 @@ msgstr ""
 msgid "Uploading Theme"
 msgstr ""
 
-msgid "Upload Theme"
+msgid "Finish Theme"
 msgstr ""
 
 msgid "API Credentials"
@@ -3815,6 +3816,9 @@ msgstr ""
 msgid "Contact Us"
 msgstr ""
 
+msgid "Support"
+msgstr ""
+
 msgid "Policies"
 msgstr ""
 
@@ -4001,10 +4005,22 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
 
 msgid "Can others create derivative works from your Theme?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
@@ -4038,6 +4054,9 @@ msgid "Header"
 msgstr ""
 
 msgid "Footer"
+msgstr ""
+
+msgid "Select colors for your Theme."
 msgstr ""
 
 msgid "Foreground Text"
@@ -4100,6 +4119,9 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr ""
+
+msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
@@ -4328,6 +4350,30 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Works seamlessly with most popular video sites."
+msgstr ""
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
@@ -5831,15 +5877,6 @@ msgstr ""
 msgid "Applications:"
 msgstr ""
 
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-msgid "Clear Admin Content Review Flag"
-msgstr ""
-
 msgid "Is more info requested?"
 msgstr ""
 
@@ -5855,6 +5892,9 @@ msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
+msgstr ""
+
+msgid "Private Whiteboard"
 msgstr ""
 
 msgid "Keep review; remove flags"
@@ -5882,6 +5922,9 @@ msgid "WebExtension"
 msgstr ""
 
 msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Has auto-approval disabled flag set."
 msgstr ""
 
 msgid "Duplicate Submission"
@@ -5956,7 +5999,7 @@ msgstr ""
 msgid "Confirm Approval"
 msgstr ""
 
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5983,7 +6026,7 @@ msgstr ""
 msgid "Approve Content"
 msgstr ""
 
-msgid "This records your approbation of the content of this version, without notifying the developer."
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Legacy Add-ons"
@@ -6327,7 +6370,34 @@ msgstr ""
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
 
-msgid "Update the whiteboard"
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+msgid "Update whiteboards"
+msgstr ""
+
+msgid "More Actions"
+msgstr ""
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+msgid "Force-enable add-on"
+msgstr ""
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+msgid "Enable Auto-Approval"
+msgstr ""
+
+msgid "Clear Admin Code Review Flag"
+msgstr ""
+
+msgid "Clear Admin Content Review Flag"
 msgstr ""
 
 msgid "(admin)"
@@ -7209,7 +7279,7 @@ msgid "By clicking \"delete\" your account is going to be <strong>permanently re
 msgstr ""
 
 #, python-format
-msgid "You will not be able to log into %(site)s anymore."
+msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."

@@ -23,62 +23,125 @@ class DiscoItem(object):
 # which allows us to integrate in our translation workflow easily. Add-on ids
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
-discopane_items = [
-    # 'Owl First Snow' theme.
-    DiscoItem(
-        addon_id=676070, type=amo.ADDON_PERSONA, addon_name='Owl First Snow'),
+discopane_items = {
+    'default': [
+        # 'Swirly Purple' theme.
+        DiscoItem(
+            addon_id=18705, type=amo.ADDON_PERSONA),
 
-    # uBlock Origin
-    DiscoItem(
-        addon_id=607454,
-        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'A lightweight and effective ad blocker. uBlock Origin '
-              u'enforces thousands of content filters without chewing up a '
-              u'bunch of memory.'),
-            '</blockquote>')),
+        # To Google Translate
+        DiscoItem(
+            addon_id=445852,
+            heading=_(u'Translate easily {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Highlight any text, right-click, and translate '
+                  u'instantly.'),
+                '</blockquote>')),
 
-    # LastPass
-    DiscoItem(
-        addon_id=8542,
-        addon_name='LastPass',
-        heading=_(u'Manage passwords {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Simplify and sync all your various website logins across '
-              u'devices with one password to rule them all.'),
-            '</blockquote>')),
+        # Search by Image
+        DiscoItem(
+            addon_id=824288,
+            heading=_(u'Reverse image search '
+                      u'{start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'See an interesting picture on the Web and want to learn '
+                  u'more about it? Try this image search tool.'),
+                '</blockquote>')),
 
-    # 'Tiffy01' theme (slug = color-to-color).
-    DiscoItem(
-        addon_id=290486,
-        type=amo.ADDON_PERSONA),
+        # 'Eco Theme' theme
+        DiscoItem(
+            addon_id=294291,
+            type=amo.ADDON_PERSONA),
 
-    # Enhancer for YouTube
-    DiscoItem(
-        addon_id=700308,
-        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
-              u'ad blocking, auto-play control, and more.'),
-            '</blockquote>')),
+        # Video DownloadHelper
+        DiscoItem(
+            addon_id=3006,
+            heading=_(u'Download videos {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, '
+                  u'Periscope, and hundreds of other video sites.'),
+                '</blockquote>')),
 
-    # Emoji Cheatsheet.
-    DiscoItem(
-        addon_id=511962,
-        heading=_(u'Up your emoji game {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis—always a click away.'),
-            '</blockquote>')),
+        # Emoji Cheatsheet.
+        DiscoItem(
+            addon_id=511962,
+            heading=_(u'Up your emoji game {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Dozens of amazing emojis—always a click away.'),
+                '</blockquote>')),
 
-    # 'Evil Robots' theme.
-    DiscoItem(
-        addon_id=21085, type=amo.ADDON_PERSONA, addon_name='Evil Robots'),
-]
+        # 'Light Up the Morning' theme.
+        DiscoItem(
+            addon_id=571240, type=amo.ADDON_PERSONA),
+    ],
+    # China Edition Firefox shows a different selection of add-ons.
+    # See discopane_items comments above for more detail on format.
+    'china': [
+        # 'Vintage Fabric' theme.
+        DiscoItem(
+            addon_id=492244, type=amo.ADDON_PERSONA,
+            addon_name=u'Vintage Fabric'),
+
+        # Video DownloadHelper
+        DiscoItem(
+            addon_id=3006,
+            heading=_(u'Download videos {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Works seamlessly with most popular video sites.'),
+                '</blockquote>')),
+
+        # New Tab Override
+        DiscoItem(
+            addon_id=626810,
+            addon_name=u'New Tab Override',
+            heading=_(u'Tab Customization {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Set the page you see every time you open a new tab.'),
+                '</blockquote>')),
+
+        # 'Abstract Splash' theme
+        DiscoItem(
+            addon_id=25725, type=amo.ADDON_PERSONA),
+
+        # Emoji Cheatsheet
+        DiscoItem(
+            addon_id=511962,
+            heading=_(u'Enhance your emoji game {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Dozens of amazing emojis for every occasion—always just '
+                  u'one click away.'),
+                '</blockquote>')),
+
+        # Awesome Screenshot Plus.
+        DiscoItem(
+            addon_id=287841,
+            addon_name=u'Awesome Screenshot Plus',
+            heading=_(u'Take screenshots {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'More than just a basic screenshot tool, Awesome '
+                  u'Screenshot Plus lets you annotate images with custom text '
+                  u'and graphics, plus the ability to store and share your '
+                  u'visuals.'),
+                '</blockquote>')),
+
+        # 'Evil Robots' theme.
+        DiscoItem(
+            addon_id=153659, type=amo.ADDON_PERSONA),
+    ],
+}

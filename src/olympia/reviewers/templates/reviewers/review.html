@@ -226,38 +226,19 @@
         {{ form.operating_systems.errors }}
         {{ form.applications.errors }}
       </div>
-      <div class="review-actions-section">
-        {{ form.notify }}
-        <label for="id_notify">
-          {{ form.notify.label }}
-        </label>
-        {{ form.notify.errors }}
-      </div>
-      {% if is_admin %}
-        <div class="review-actions-section">
-          {% if addon.needs_admin_code_review %}
-            {{ form.clear_admin_code_review }}
-            <label for="{{ form.clear_admin_code_review.auto_id }}">
-              {{ form.clear_admin_code_review.label }}
-            </label>
-            {{ form.clear_admin_code_review.errors }}
-          {% endif %}
-          {% if addon.needs_admin_content_review %}
-            {{ form.clear_admin_content_review }}
-            <label for="{{ form.clear_admin_content_review.auto_id }}">
-              {{ form.clear_admin_content_review.label }}
-            </label>
-            {{ form.clear_admin_content_review.errors }}
-          {% endif %}
-        </div>
-      {% endif %}
       <div class="review-actions-section data-toggle review-info-request"
-           data-value="{{ actions_info_request|join("|") }}|">
+           data-value="reply|">
         {{ form.info_request }}
         <label for="{{ form.info_request.auto_id }}">
           {{ form.info_request.label }}
         </label>
         {{ form.info_request.errors }}
+
+        {{ form.info_request_deadline }}
+        <label for="{{ form.info_request_deadline.auto_id }}">
+          {{ form.info_request_deadline.label }}
+        </label>
+        {{ form.info_request_deadline.errors }}
       </div>
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
@@ -292,10 +273,71 @@
     </div>
   </div>
   <div class="whiteboard-actions">
-    {{ form.notify.errors }}
+    {{ whiteboard_form.errors }}
     <input type="submit" value="{{ _('Update whiteboards') }}" />
   </div>
 </form>
+
+{% if not addon.is_deleted %}
+<form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">
+  <p><strong>{{ _('More Actions') }}</strong></p>
+  <div class="more-actions-inner">
+    <ul>
+      <li>
+        <input type="checkbox" id="notify_new_listed_versions"
+               data-api-url-subscribe="{{ url('reviewers-addon-subscribe', addon.pk) }}"
+               data-api-url-unsubscribe="{{ url('reviewers-addon-unsubscribe', addon.pk) }}"
+               {% if subscribed %}checked="checked"{% endif %} autocomplete="off" />
+          <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
+      </li>
+    </ul>
+    {% if is_admin %}
+    <ul class="admin_only">
+        <li {% if addon.status == amo.STATUS_DISABLED %}class="hidden"{% endif %}>
+          <button data-api-url="{{ url('reviewers-addon-disable', addon.pk) }}"
+                  data-toggle-button-selector="#force_enable_addon"
+                  id="force_disable_addon" type="button">{{ _('Force-disable add-on') }}</button>
+        </li>
+        <li {% if addon.status != amo.STATUS_DISABLED %}class="hidden"{% endif %}>
+          <button data-api-url="{{ url('reviewers-addon-enable', addon.pk) }}"
+                  data-toggle-button-selector="#force_disable_addon"
+                  id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
+        </li>
+        <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
+          <button data-api-url="{{ url('reviewers-addon-disable-auto-approval', addon.pk) }}"
+                  data-toggle-button-selector="#enable_auto_approval"
+                  id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
+        </li>
+        <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
+          <button data-api-url="{{ url('reviewers-addon-enable-auto-approval', addon.pk) }}"
+                  data-toggle-button-selector="#disable_auto_approval"
+                  id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
+        </li>
+        {% if addon.pending_info_request %}
+          <li>
+              <button data-api-url="{{ url('reviewers-addon-clear-pending-info-request', addon.pk) }}"
+                      id="clear_pending_info_request" type="button">{{ _('Clear information request') }}</button>
+          </li>
+        {% endif %}
+        {% if addon.needs_admin_code_review %}
+          <li>
+            <button data-api-url="{{ url('reviewers-addon-clear-admin-review-flag', addon.pk) }}"
+                    data-api-flag="code"
+                    id="clear_admin_code_review"  type="button">{{ _('Clear Admin Code Review Flag') }}</button>
+          </li>
+        {% endif %}
+        {% if addon.needs_admin_content_review %}
+          <li>
+            <button data-api-url="{{ url('reviewers-addon-clear-admin-review-flag', addon.pk) }}"
+                    data-api-flag="content"
+                    id="clear_admin_content_review" type="button">{{ _('Clear Admin Content Review Flag') }}</button>
+          </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
 
 </div> {# /#primary #}
 

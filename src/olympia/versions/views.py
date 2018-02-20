@@ -1,7 +1,9 @@
 import os
+import waffle
 
 from django import http
 from django.db.transaction import non_atomic_requests
+from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
@@ -30,7 +32,10 @@ log = olympia.core.logger.getLogger('z.versions')
 def _version_list_qs(addon, beta=False):
     # We only show versions that have files with the right status.
     if beta:
-        status = amo.STATUS_BETA
+        if waffle.switch_is_active('beta-versions'):
+            status = amo.STATUS_BETA
+        else:
+            return QuerySet.object.none()
     elif addon.is_unreviewed():
         status = amo.STATUS_AWAITING_REVIEW
     else:
@@ -54,7 +59,8 @@ def version_list(request, addon, beta=False):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    beta = amo.VERSION_BETA.search(version_num)
+    beta = (amo.VERSION_BETA.search(version_num) and
+            waffle.switch_is_active('beta-versions'))
     qs = _version_list_qs(addon, beta=beta)
 
     # Use cached_with since values_list won't be cached.
@@ -65,7 +71,7 @@ def version_detail(request, addon, version_num):
 
 
 def _find_version_page(qs, addon, version_num, beta=False):
-    if beta:
+    if beta and waffle.switch_is_active('beta-versions'):
         url = reverse('addons.beta-versions', args=[addon.slug])
     else:
         url = reverse('addons.versions', args=[addon.slug])
@@ -116,7 +122,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
         if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, viewer=True, ignore_disabled=True):
+                request, addon, dev=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.guarded_file_path,
                 content_type='application/x-xpinstall')
@@ -129,7 +135,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
         if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, viewer=True, ignore_disabled=True):
+                request, addon, dev=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.file_path,
                 content_type='application/x-xpinstall')
@@ -184,8 +190,7 @@ def download_source(request, version_id):
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
         if not (version.source and
                 (acl.check_addon_ownership(
-                    request, version.addon,
-                    viewer=True, ignore_disabled=True))):
+                    request, version.addon, dev=True, ignore_disabled=True))):
             raise http.Http404()
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):

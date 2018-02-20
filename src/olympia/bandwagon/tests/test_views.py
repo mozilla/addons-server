@@ -6,6 +6,7 @@ import django.test
 from django.core.cache import cache
 from django.forms import ValidationError
 from django.utils.datastructures import MultiValueDict
+from django.conf import settings
 
 import pytest
 
@@ -286,7 +287,7 @@ class TestVotes(TestCase):
         self.assert3xx(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
-        c = Collection.objects.no_cache().get(slug='slug', author=9945)
+        c = Collection.objects.get(slug='slug', author=9945)
         assert c.upvotes == upvotes
         assert c.downvotes == downvotes
         assert CollectionVote.objects.filter(
@@ -1166,7 +1167,7 @@ class TestCollectionDetailFeed(TestCase):
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('olympia.amo.models.ModelBase.update')
+    @patch('olympia.amo.models.UncachedModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
@@ -1339,6 +1340,13 @@ class TestCollectionViewSetList(TestCase):
         assert response.data['results'][1]['uuid'] == col_a.uuid
         assert response.data['results'][2]['uuid'] == col_c.uuid
 
+    def test_with_addons_is_ignored(self):
+        collection_factory(author=self.user)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200, response.data
+        assert 'addons' not in response.data['results'][0]
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1416,6 +1424,26 @@ class TestCollectionViewSetDetail(TestCase):
             'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': 'hello'}))
         assert response.status_code == 404
+
+    def test_with_addons(self):
+        addon = addon_factory()
+        self.collection.add_addon(addon)
+        response = self.client.get(self.url + '?with_addons')
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+        assert response.data['addons'][0]['addon']['id'] == addon.id
+
+        # Now test the limit of addons returned
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        response = self.client.get(self.url + '?with_addons')
+        assert len(response.data['addons']) == 4
+        patched_drf_setting = settings.REST_FRAMEWORK
+        patched_drf_setting['PAGE_SIZE'] = 3
+        with django.test.override_settings(REST_FRAMEWORK=patched_drf_setting):
+            response = self.client.get(self.url + '?with_addons')
+            assert len(response.data['addons']) == 3
 
 
 class CollectionViewSetDataMixin(object):
@@ -1950,6 +1978,17 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         response = self.send(self.url, data={'addon': self.addon.slug})
         self.check_response(response)
+
+    def test_uniqueness_message(self):
+        CollectionAddon.objects.create(
+            collection=self.collection, addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'addon': self.addon.slug})
+        assert response.status_code == 400
+        assert response.data == {
+            u'non_field_errors':
+                [u'This add-on already belongs to the collection']
+        }
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):

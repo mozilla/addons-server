@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from waffle.testutils import override_switch
+
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -6,11 +8,11 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona, Preview,
-    ReplacementAddon)
+    Addon, AddonCategory, AddonUser, Category, CompatOverride,
+    CompatOverrideRange, Persona, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
-    ESAddonAutoCompleteSerializer, ESAddonSerializer,
+    CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
     LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
     VersionSerializer)
@@ -225,6 +227,10 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': get_outgoing_url(unicode(self.addon.homepage))
         }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64))
+        }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
         assert result['is_featured'] == self.addon.is_featured() is False
@@ -266,6 +272,9 @@ class AddonSerializerOutputTestMixin(object):
             'count': self.addon.total_ratings,
             'text_count': self.addon.text_ratings_count,
         }
+        assert result['ratings_url'] == self.addon.ratings_url == (
+            reverse('addons.ratings.list', args=[self.addon.slug])
+        )
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
@@ -314,6 +323,7 @@ class AddonSerializerOutputTestMixin(object):
             result['latest_unlisted_version'])
         assert result['latest_unlisted_version']['url'] == absolutify('')
 
+    @override_switch('beta-versions', active=True)
     def test_current_beta_version(self):
         self.addon = addon_factory()
 
@@ -365,6 +375,10 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['id'] == self.addon.pk
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64))
+        }
 
     def test_no_current_version(self):
         self.addon = addon_factory(name='lol')
@@ -513,6 +527,10 @@ class AddonSerializerOutputTestMixin(object):
         # icon url should just be a default icon instead of the Persona icon.
         assert result['icon_url'] == (
             'http://testserver/static/img/addon-icons/default-64.png')
+        assert result['icons'] == {
+            '32': 'http://testserver/static/img/addon-icons/default-32.png',
+            '64': 'http://testserver/static/img/addon-icons/default-64.png'
+        }
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
@@ -599,7 +617,10 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        qs = AddonSearchView().get_queryset()
+        view = AddonSearchView()
+        view.request = self.request
+        qs = view.get_queryset()
+
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
@@ -888,11 +909,6 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
-        addon_testcase = AddonSerializerOutputTestMixin()
-        addon_testcase.addon = self.addon
-        addon_testcase._test_version(
-            self.addon.current_version, result['current_version'])
-
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)
         result = self.serialize()
@@ -912,7 +928,9 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        qs = AddonAutoCompleteSearchView().get_queryset()
+        view = AddonAutoCompleteSearchView()
+        view.request = self.request
+        qs = view.get_queryset()
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
@@ -1101,3 +1119,144 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_PUBLIC)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
+
+
+class TestCompatOverrideSerializer(TestCase):
+
+    def serialize(self, override):
+        serializer = CompatOverrideSerializer()
+        return serializer.to_representation(override)
+
+    def test_linked_addon(self):
+        addon = addon_factory(guid='extrabad@thing')
+        override = CompatOverride.objects.create(
+            name='override with addon', guid=addon.guid, addon=addon)
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id)
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'extrabad@thing'
+        assert result['addon_id'] == addon.id
+        assert result['name'] == 'override with addon'
+        version_range = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert result['version_ranges'] == [version_range]
+
+    def test_no_addon(self):
+        override = CompatOverride.objects.create(
+            name='override', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id)
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override'
+        version_range = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert result['version_ranges'] == [version_range]
+
+    def test_multiple_ranges(self):
+        override = CompatOverride.objects.create(
+            name='override with multiple ranges', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id, min_version='23.4',
+            max_version='56.7.*')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.THUNDERBIRD.id, min_app_version='1.35',
+            max_app_version='90.*')
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override with multiple ranges'
+        assert len(result['version_ranges']) == 2
+        version_range_firefox = {
+            'addon_min_version': '23.4',
+            'addon_max_version': '56.7.*',
+            'applications': [{
+                'name': amo.FIREFOX.pretty,
+                'id': amo.FIREFOX.id,
+                'min_version': '0',
+                'max_version': '*',
+                'guid': amo.FIREFOX.guid
+            }]
+        }
+        assert version_range_firefox in result['version_ranges']
+        version_range_thunderbird = {
+            'addon_min_version': '0',
+            'addon_max_version': '*',
+            'applications': [{
+                'name': amo.THUNDERBIRD.pretty,
+                'id': amo.THUNDERBIRD.id,
+                'min_version': '1.35',
+                'max_version': '90.*',
+                'guid': amo.THUNDERBIRD.guid
+            }]
+        }
+        assert version_range_thunderbird in result['version_ranges']
+
+    def test_collapsed_ranges(self):
+        """Collapsed ranges are where there is a single version range of
+        affected addons, but multiple applications affected."""
+        override = CompatOverride.objects.create(
+            name='override with single version range', guid='foo@baa')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.FIREFOX.id,
+            min_version='23.4', max_version='56.7.*')
+        CompatOverrideRange.objects.create(
+            compat=override, app=amo.THUNDERBIRD.id,
+            min_version='23.4', max_version='56.7.*',
+            min_app_version='1.35', max_app_version='90.*')
+        result = self.serialize(override)
+
+        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
+            result.keys())
+        assert result['addon_guid'] == 'foo@baa'
+        assert result['addon_id'] is None
+        assert result['name'] == 'override with single version range'
+        assert len(result['version_ranges']) == 1
+        assert result['version_ranges'][0]['addon_min_version'] == '23.4'
+        assert result['version_ranges'][0]['addon_max_version'] == '56.7.*'
+        applications = result['version_ranges'][0]['applications']
+        assert len(applications) == 2
+        application_firefox = {
+            'name': amo.FIREFOX.pretty,
+            'id': amo.FIREFOX.id,
+            'min_version': '0',
+            'max_version': '*',
+            'guid': amo.FIREFOX.guid
+        }
+        assert application_firefox in applications
+        application_thunderbird = {
+            'name': amo.THUNDERBIRD.pretty,
+            'id': amo.THUNDERBIRD.id,
+            'min_version': '1.35',
+            'max_version': '90.*',
+            'guid': amo.THUNDERBIRD.guid
+        }
+        assert application_thunderbird in applications

@@ -1,83 +1,15 @@
 $(document).ready(function() {
-    function StaticThemeBrowserPreview() {
-        Object.defineProperty(this, 'accentcolor', {
-            set: function(color) {
-                if (!color) {
-                    color = '#ccc';
-                }
-                $('rect.accentcolor').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'textcolor', {
-            set: function(color) {
-                $('text.textcolor').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar', {
-            set: function(color) {
-                var attrs;
-                if (!color) {
-                    attrs = {'fill': '#fff', 'fill-opacity': "0.6"};
-                } else {
-                    attrs = {'fill': color, 'fill-opacity': "1"};
-                }
-                $('rect.toolbar').attr(attrs);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_text', {
-            set: function(color) {
-                $('text.toolbar_text').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_field', {
-            set: function(color) {
-                if (!color) {
-                    color = '#fff';
-                }
-                $('rect.toolbar_field').attr('fill', color);
-            }
-        });
-
-        Object.defineProperty(this, 'toolbar_field_text', {
-            set: function(color) {
-                $('text.toolbar_field_text').attr('fill', color);
-            }
-        });
-
-        this.updateHeaderURL = function(src, width) {
-            var header_img = $('#svg-header-img');
-
-            var img  = new window.Image();
-            $(img).on('load', function() {
-                header_img.attr({width: img.width, height: img.height});
-            });
-            header_img.attr('href', (img.src = header_img.src = src));
-
-            var div = header_img.parents('div')[0];
-            header_img.attr('x', div.clientWidth - width);
-        };
-    }
-
 
     $('#theme-wizard').each(initThemeWizard);
 
 
     function initThemeWizard() {
-        var $wizard = $(this),
-            browserPreview = new StaticThemeBrowserPreview();
+        var $wizard = $(this);
 
         $wizard.on('click', '.reset', _pd(function() {
             var $this = $(this),
             $row = $this.closest('.row');
-            $row.find('input[type="hidden"]').val('');
-            $row.find('input[type=file], .note').show();
-            var preview = $row.find('.preview');
-            preview.removeAttr('src').removeClass('loaded');
-            $this.hide();
+            $row.find('input[type="file"]').click();
         }));
 
         $wizard.on('change', 'input[type="file"]', function() {
@@ -91,7 +23,7 @@ $(document).ready(function() {
             reader.onload = function(e) {
                 $preview_img.attr('src', e.target.result);
                 $preview_img.show().addClass('loaded');
-                $row.find('.reset').show();
+                $row.find('.reset').show().css('display', 'block');
                 updateManifest();
             };
             reader.readAsDataURL(file);
@@ -106,8 +38,12 @@ $(document).ready(function() {
         $wizard.find('input[type="file"]').trigger('change');
 
         $wizard.find('img.preview').on('load', function(e) {
-            img = e.target;
-            browserPreview.updateHeaderURL(img.src, img.naturalWidth);
+            var $svg_img = $('#svg-header-img'),
+                $svg = $('#preview-svg-root');
+            $svg_img.attr('href', ($svg_img.src = e.target.src));
+            $svg_img.attr('height', e.target.naturalHeight);
+            var meetOrSlice = (e.target.naturalWidth < $svg.width())? 'meet' : 'slice';
+            $svg_img.attr('preserveAspectRatio', 'xMaxYMin '+ meetOrSlice);
         });
 
         function updateManifest() {
@@ -141,7 +77,7 @@ $(document).ready(function() {
             manifest = {
                 name: $wizard.find('#theme-name').val(),
                 manifest_version: 2,
-                version: generateVersionString(),
+                version: $wizard.data('version'),
                 theme: {
                     images: {
                         headerURL: headerURL
@@ -150,12 +86,6 @@ $(document).ready(function() {
                 }
             };
             return JSON.stringify(manifest, null, 4);
-        }
-
-        function generateVersionString() {
-            var dateNow = new Date();
-            return [dateNow.getFullYear(), dateNow.getMonth() + 1, dateNow.getDate(),
-                    dateNow.getHours() * 60 + dateNow.getMinutes()].join('.');
         }
 
         function buildZip() {
@@ -170,18 +100,28 @@ $(document).ready(function() {
 
         var $color = $wizard.find('input.color-picker');
         $color.change(function() {
-            var $this = $(this);
-            browserPreview[$this[0].id] = $this.val();
+            var $this = $(this),
+                $svg_element = $('.' + $this[0].id);
+            if (!$this.val()) {
+                $svg_element.attr('fill', $svg_element.data('fill'));
+            } else {
+                $svg_element.attr('fill', $this.val());
+            }
+
             updateManifest();
         }).trigger('change');
 
         $color.minicolors({
             dataUris: true,
+            opacity: true,
+            format: 'rgb',
             change: function() {
                 $color.trigger('change');
                 updateManifest();
             }
         });
+
+        $wizard.on('change', '#theme-name', updateManifest);
 
         $wizard.on('click', 'button.upload', _pd(function(event) {
             var $button =  $(event.target);
@@ -239,7 +179,8 @@ $(document).ready(function() {
         }
 
         function required_fields_present() {
-            return $wizard.find('#header-img')[0].files.length > 0 &&
+            return $wizard.find('#theme-name').val() !== "" &&
+                   $wizard.find('#header-img')[0].files.length > 0 &&
                    $wizard.find('#accentcolor').val() !== "" &&
                    $wizard.find('#textcolor').val() !== "";
         }

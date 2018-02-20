@@ -67,4 +67,4 @@ def test_that_clicking_see_all_collections_link_works(
     page = Home(selenium, base_url).open()
     collections = page.featured_collections.collections
     collections_page = page.featured_collections.see_all()
-    assert len(collections) == len(collections_page.collections)
+    assert len(collections_page.collections) >= len(collections)

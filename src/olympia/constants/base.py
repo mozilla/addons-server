@@ -1,4 +1,5 @@
 import re
+from collections import namedtuple
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -97,16 +98,12 @@ CHANNEL_CHOICES_LOOKUP = {
 }
 
 # Add-on author roles.
-AUTHOR_ROLE_VIEWER = 1
 AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
-AUTHOR_ROLE_SUPPORT = 6
 
 AUTHOR_CHOICES = (
     (AUTHOR_ROLE_OWNER, _(u'Owner')),
     (AUTHOR_ROLE_DEV, _(u'Developer')),
-    (AUTHOR_ROLE_VIEWER, _(u'Viewer')),
-    (AUTHOR_ROLE_SUPPORT, _(u'Support')),
 )
 
 # Addon types
@@ -233,6 +230,8 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
+
+THEME_PREVIEW_SIZE = namedtuple('SizeTuple', 'width height')(680, 100)
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
@@ -427,3 +426,12 @@ ADDON_GUID_PATTERN = re.compile(
 
 SYSTEM_ADDON_GUIDS = (
     u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org')
+
+MOZILLA_TRADEMARK_SYMBOLS = (
+    'mozilla', 'firefox')
+
+ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
+    '@mozilla.com', '@mozilla.org')
+
+DISCO_API_ALLOWED_PARAMETERS = (
+    'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
