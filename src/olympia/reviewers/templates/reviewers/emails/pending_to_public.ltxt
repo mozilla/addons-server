@@ -1,6 +1,4 @@
 {% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Hello,
-
 Your add-on {{ name }} has been updated on addons.mozilla.org (AMO). Version {{ number }} is now available for download in our gallery at {{ addon_url }} .
 
 This version has been screened and approved for the public. Keep in mind that other reviewers may look into this version in the future and determine that it requires changes or should be taken down. In that case, you will be notified again with details and next steps.
