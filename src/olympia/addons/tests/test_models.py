@@ -726,20 +726,25 @@ class TestAddonModels(TestCase):
     def test_icon_url(self):
         """
         Tests for various icons.
-        1. Test for an icon that exists.
-        2. Test for default THEME icon.
-        3. Test for default non-THEME icon.
+        1. Test for an icon that is set.
+        2. Test for an icon that is set, with an icon hash
+        3. Test for default THEME icon.
+        4. Test for default non-THEME icon.
         """
-        a = Addon.objects.get(pk=3615)
-        assert "/3/3615-32.png" in a.icon_url
-        a = Addon.objects.get(pk=6704)
-        a.icon_type = None
-        assert a.icon_url.endswith('/icons/default-theme.png'), (
-            'No match for %s' % a.icon_url)
-        a = Addon.objects.get(pk=3615)
-        a.icon_type = None
+        addon = Addon.objects.get(pk=3615)
+        assert addon.icon_url.endswith('/3/3615-32.png?modified=1275037317')
 
-        assert a.icon_url.endswith('icons/default-32.png')
+        addon.icon_hash = 'somehash'
+        assert addon.icon_url.endswith('/3/3615-32.png?modified=somehash')
+
+        addon = Addon.objects.get(pk=6704)
+        addon.icon_type = None
+        assert addon.icon_url.endswith('/icons/default-theme.png'), (
+            'No match for %s' % addon.icon_url)
+
+        addon = Addon.objects.get(pk=3615)
+        addon.icon_type = None
+        assert addon.icon_url.endswith('icons/default-32.png')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)

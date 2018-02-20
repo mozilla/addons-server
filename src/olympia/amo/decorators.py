@@ -151,9 +151,12 @@ def write(f):
 
 def set_modified_on(f):
     """
-    Will update the modified timestamp on the provided objects
-    when the wrapped function exits successfully (returns True).
-    Looks up objects defined in the set_modified_on kwarg.
+    Will update the modified timestamp on the objects provided through
+    the `set_modified_on` keyword argument, a short time after the wrapped
+    function exits successfully (returns a truthy value).
+
+    If that function returns a dict, it will also use that dict as additional
+    keyword arguments to update on the provided objects.
     """
     from olympia.amo.tasks import set_modified_on_object
 
@@ -163,10 +166,19 @@ def set_modified_on(f):
         result = f(*args, **kw)
         if objs and result:
             for obj in objs:
+                # If the function returned a dict, pass that dict down as
+                # kwargs to the set_modified_on_object task. Useful to set
+                # things like icon hashes.
+                kwargs_from_result = result if isinstance(result, dict) else {}
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
+                # Execute set_modified_on_object in NFS_LAG_DELAY seconds. This
+                # allows us to make sure any changes have been written to disk
+                # before changing modification date and/or image hashes stored
+                # on objects - otherwise we could end up caching an old version
+                # of an image on CDNs/clients for a very long time.
                 set_modified_on_object.apply_async(
-                    args=[obj], kwargs=None,
+                    args=[obj], kwargs=kwargs_from_result,
                     eta=(datetime.datetime.now() +
                          datetime.timedelta(seconds=settings.NFS_LAG_DELAY)))
         return result

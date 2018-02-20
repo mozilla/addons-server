@@ -131,6 +131,7 @@ class AddonSerializerOutputTestMixin(object):
             },
             guid=generate_addon_guid(),
             homepage=u'https://www.example.org/',
+            icon_hash='fakehash',
             icon_type='image/png',
             name=u'My Addôn',
             public_stats=True,
