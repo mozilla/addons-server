@@ -94,8 +94,6 @@ class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
 
 
 class UncachedManagerBase(models.Manager):
-    queryset_class = TransformQuerySet
-
     def get_queryset(self):
         qs = self._with_translations(
             TransformQuerySet(self.model, using=self._db))
@@ -125,6 +123,8 @@ class UncachedManagerBase(models.Manager):
         This is subjective, but I don't trust get_or_create until #13906
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
+
+        TODO: https://github.com/mozilla/addons-server/issues/7158
         """
         with transaction.atomic():
             try:
@@ -144,10 +144,8 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
-    queryset_class = BaseQuerySet
-
     def get_queryset(self):
-        qs = self.queryset_class(self.model, using=self._db)
+        qs = BaseQuerySet(self.model, using=self._db)
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)
