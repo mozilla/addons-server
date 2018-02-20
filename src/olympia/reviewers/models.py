@@ -49,13 +49,6 @@ VIEW_QUEUE_FLAGS = (
 )
 
 
-# Django 1.8 does not have Cast(), so this is a simple dumb implementation
-# that only handles Cast(..., DateTimeField())
-class DateTimeCast(Func):
-    function = 'CAST'
-    template = '%(function)s(%(expressions)s AS DATETIME(6))'
-
-
 def get_reviewing_cache_key(addon_id):
     return '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
 
