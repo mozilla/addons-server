@@ -6537,9 +6537,8 @@ msgstr ""
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "אומת אישור אוטומטי"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
