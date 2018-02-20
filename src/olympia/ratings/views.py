@@ -103,6 +103,9 @@ def flag(request, addon, review_id):
     review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     if review.user_id == request.user.id:
         raise PermissionDenied
+    if not review.body:
+        return {'msg': ugettext('This rating can\'t flagged because it has no '
+                                'review text.')}
     data = {'rating': review_id, 'user': request.user.id}
     try:
         instance = RatingFlag.objects.get(**data)
