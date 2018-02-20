@@ -595,6 +595,15 @@ class CLEAR_INFO_REQUEST(_LOG):
     review_queue = True
 
 
+class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
+    id = 150
+    format = _(u'Information request cleared by developer on '
+               u'{addon} {version}.')
+    short = _(u'Information request removed')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
