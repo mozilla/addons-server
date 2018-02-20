@@ -14,6 +14,7 @@ import jinja2
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
+from olympia.activity.utils import log_and_notify
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
@@ -313,6 +314,7 @@ class VersionForm(WithSourceMixin, happyforms.ModelForm):
                   'approvalnotes', 'source',)
 
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
         super(VersionForm, self).__init__(*args, **kwargs)
         # Fetch latest reviewer comment if the addon has a pending info
         # request,  so that the template in which the form is used can display
@@ -328,11 +330,15 @@ class VersionForm(WithSourceMixin, happyforms.ModelForm):
 
     def save(self, *args, **kwargs):
         super(VersionForm, self).save(*args, **kwargs)
-        # Clear pending info request on the addon if requested.
+        # Clear pending info request on the addon if requested, adding an entry
+        # in the Activity Log to indicate that.
         if self.cleaned_data.get('clear_pending_info_request'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.instance.addon,
                 defaults={'pending_info_request': None})
+            log_and_notify(
+                amo.LOG.DEVELOPER_CLEAR_INFO_REQUEST, None,
+                self.request.user, self.instance)
 
 
 class AppVersionChoiceField(forms.ModelChoiceField):

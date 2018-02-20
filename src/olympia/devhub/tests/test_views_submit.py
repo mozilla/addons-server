@@ -1588,6 +1588,10 @@ class TestVersionSubmitDetails(TestSubmitBase):
                               args=[self.addon.slug, self.version.pk]))
         flags = AddonReviewerFlags.objects.get(addon=self.addon)
         assert flags.pending_info_request is None
+        activity = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.DEVELOPER_CLEAR_INFO_REQUEST.id).get()
+        assert activity.user == self.user
+        assert activity.arguments == [self.addon, self.version]
 
     def test_dont_clear_request_for_information(self):
         past_date = self.days_ago(2)
@@ -1599,6 +1603,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
                               args=[self.addon.slug, self.version.pk]))
         flags = AddonReviewerFlags.objects.get(addon=self.addon)
         assert flags.pending_info_request == past_date
+        assert not ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.DEVELOPER_CLEAR_INFO_REQUEST.id).exists()
 
     def test_can_cancel_review(self):
         addon = self.get_addon()
