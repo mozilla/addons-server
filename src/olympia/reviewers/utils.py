@@ -673,7 +673,10 @@ class ReviewBase(object):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Approved'
+        if self.review_type == 'pending':
+            subject = u'Mozilla Add-ons: %s %s Updated'
+        else:
+            subject = u'Mozilla Add-ons: %s %s Approved'
         self.notify_email(template, subject)
 
         self.log_public_message()

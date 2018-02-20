@@ -350,7 +350,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'If you want to respond please reply'
+        base_fragment = 'To respond, please reply to this email or visit'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
         uuid = self.version.token.get(user=user).uuid.hex
@@ -674,8 +674,8 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            '%s Approved' % self.preamble)
-        assert 'has been approved' in mail.outbox[0].body
+            '%s Updated' % self.preamble)
+        assert 'has been updated' in mail.outbox[0].body
 
         # AddonApprovalsCounter counter is now at 2 for this addon since there
         # was another human review. The last human review date should have been
