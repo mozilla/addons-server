@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 13:04+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-02-19 19:33+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -2795,7 +2795,7 @@ msgid "Version %s re-enabled."
 msgstr "הגרסה %s אופשרה מחדש."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "הבדיקה של העלאה זו נכשלה ויתכן שתוצאות הבדיקה חלקיות בלבד. נא לסקור במשנה זהירות."
 
 msgid "Review requested."
 msgstr "נשלחה בקשה לסקירה."
@@ -2909,13 +2909,13 @@ msgstr "האם ברצונך שהתוספת שלך תופץ באתר זה?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "תוצאות הבדיקה עבור {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "תוצאות הבדיקה"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "מועד הבדיקה:"
 
 msgid "Tested for compatibility against:"
 msgstr "נבדקה תאימות מול:"
@@ -3283,7 +3283,7 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr "האם אנשים אחרים יכולים ליצור עבודות הנגזרות מהתוספת שלך?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "כן, כל עוד מדיניות השיתוף נשמרת"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "מעניק הרישיון מתיר לאחרים להפיץ יצירות נגזרות תחת אותו הרישיון או רישיון שתואם לזה שחל על היצירה של מעניק הרישיון."
@@ -3638,7 +3638,7 @@ msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG,‏ JPG,‏ APNG,‏ SVG או GIF (ללא הנפשה)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "מיושר לפינה הימנית העליונה"
 
 msgid "Select a different header image"
 msgstr "בחירת תמונת כותרת אחרת"
@@ -3863,7 +3863,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם. אילוץ זה תקף על תוספות שמוצגות בלבד."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "אם התוספת שלך מכילה קוד בינרי או ממוסך למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "נא לציין הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
@@ -4085,7 +4085,7 @@ msgid "Theme Details"
 msgstr "פרטי ערכת נושא"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "ספקו כתובת קישור יפה לעמוד הפירוט שלך."
 
 msgid "Select the category that best describes your Theme."
 msgstr "בחרו בקטגוריה שמתארת את ערכת הנושא שלכם בצורה הטובה ביותר."
@@ -4237,7 +4237,7 @@ msgid "3000 &times; 100 pixels"
 msgstr "3000 &times; 100 פיקסלים"
 
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "מיושר לפינה השמאלית התחתונה"
 
 msgid "Select a different footer image"
 msgstr "בחירת תמונת כותרת תחתונה אחרת"
@@ -4563,7 +4563,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr "מציג קבצים :: כלי סוקרים"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "הבדיקה נכשלה:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -4576,7 +4576,7 @@ msgid "Add-on file being processed, please wait."
 msgstr "קובץ התוספת בהליכי עיבוד, נא להמתין."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "תוצאות הבדיקה מתקבלות..."
 
 msgid "Files:"
 msgstr "קבצים:"
@@ -5962,13 +5962,13 @@ msgid "Filter by type/action"
 msgstr "סינון לפי סוג/פעולה"
 
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "הבדיקה האוטומטית עברה בהצלחה"
 
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "הבדיקה האוטומטית נכשלה"
 
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "סינון לפי בדיקה אוטומטית"
 
 msgid "containing"
 msgstr ""

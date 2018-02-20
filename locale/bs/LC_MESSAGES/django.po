@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 11:18+0000\n"
+"PO-Revision-Date: 2018-02-20 11:05+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2701,21 +2701,21 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Ikone ne mogu biti animirane."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Slike ne mogu biti animirane."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Slike ne mogu biti veće od %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Dogodila se greška pri učitavanju vašeg pregleda."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2867,16 +2867,16 @@ msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "Nema rezultata."
 
 msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "Aktivnost"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Pretplatite se na novosti"
 
 #, python-format
 msgid ""
@@ -2975,10 +2975,10 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Ovaj dodatak je eksperimentalan."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Ovaj dodatak je spreman za opću upotrebu."
 
 msgid "Requires Payment?"
 msgstr ""
@@ -3028,10 +3028,10 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "Detalji dodatka"
 
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Detalji dodatka za {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""

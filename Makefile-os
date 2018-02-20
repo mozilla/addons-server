@@ -40,8 +40,8 @@ test_failed:
 update_docker:
 	docker-compose exec worker make update_deps
 	docker-compose exec web make update
-	docker-compose exec web supervisorctl restart all
-	docker-compose exec worker supervisorctl restart all
+	docker-compose restart web
+	docker-compose restart worker
 
 initialize_docker:
 	docker-compose exec web make initialize
