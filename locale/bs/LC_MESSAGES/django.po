@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 11:18+0000\n"
+"PO-Revision-Date: 2018-02-20 10:28+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2701,21 +2701,21 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Ikone ne mogu biti animirane."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Slike ne mogu biti animirane."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Slike ne mogu biti veće od %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Dogodila se greška pri učitavanju vašeg pregleda."
 
 #, python-format
 msgid "Version %s disabled."
