@@ -94,9 +94,9 @@ jobs:
             docker-compose ps
             # Make sure dependencies get updated in worker and web container
             docker-compose exec worker make -f Makefile-docker update_deps
-            docker-compose exec worker supervisorctl restart all
+            docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
-            docker-compose exec web supervisorctl restart all
+            docker-compose restart web
             # Start Test in Firefox docker container
             docker-compose exec --user root selenium-firefox tox -e ui-tests
       - store_artifacts:
