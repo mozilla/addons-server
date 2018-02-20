@@ -366,6 +366,18 @@ class TestLogAndNotify(TestCase):
             'you are listed as an author of this add-on.',
             '21 days of this notification')
 
+    def test_post_reviewer_request_for_information(self):
+        GroupUser.objects.filter(user=self.reviewer).delete()
+        self.grant_permission(
+            self.reviewer, 'Addons:PostReview', 'Reviewers: Foo')
+        self.test_reviewer_request_for_information()
+
+    def test_content_reviewer_request_for_information(self):
+        GroupUser.objects.filter(user=self.reviewer).delete()
+        self.grant_permission(
+            self.reviewer, 'Addons:ContentReview', 'Reviewers: Bar')
+        self.test_reviewer_request_for_information()
+
     @mock.patch('olympia.activity.utils.send_mail')
     def test_developer_reply(self, send_mail_mock):
         # Set pending info request flag to make sure
