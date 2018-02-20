@@ -338,8 +338,10 @@ function addonFormSubmit() {
                 $form = $(this);
 
             $.post($form.attr('action'), $form.serialize(), function(d) {
+                // The HTML has changed after we posted the form, thus the need to retrieve the new HTML
                 parent_div.html(d).each(addonFormSubmit);
-                hasErrors = parent_div.find('.errorlist').length;
+                $form = parent_div.find('form');
+                var hasErrors = $form.find('.errorlist').length;
                 $('.tooltip').tooltip('#tooltip');
                 if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
                     document.location = baseurl();
