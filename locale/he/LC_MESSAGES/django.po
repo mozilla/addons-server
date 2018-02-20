@@ -1799,9 +1799,8 @@ msgid "{addon} enabled."
 msgstr "{addon} מופעל."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "המצב של {addon} השתנה ל־{0}."
+msgstr ""
 
 msgid "{version} added to {addon}."
 msgstr "הגרסה {version} נוספה אל {addon}."
@@ -1916,16 +1915,14 @@ msgstr "הצלמית של התוספת {addon} השתנתה."
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "התג {tag} הוסר מהתוספת {addon}."
+msgstr ""
 
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "הקובץ {0} נמחק מגרסה {version} של התוספת {addon}."
+msgstr ""
 
 msgid "Application max version for {version} updated."
 msgstr "גרסת היישום המרבית עבור {version} עודכנה."
@@ -3652,9 +3649,8 @@ msgstr "רקע אזור הכותרת"
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "טקסט אזור הכותרת"
+msgstr ""
 
 #, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
@@ -6535,9 +6531,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "הפעלת גרסה זו מחדש"
+msgstr ""
 
 msgid "Disable Auto-Approval"
 msgstr ""
