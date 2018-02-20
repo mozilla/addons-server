@@ -1,5 +1,0 @@
-{% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Your add-on, {{ name }} {{ number }}, has been flagged for Admin Review.
-
-Your add-on is still in our review queue, but it will need to be checked by one of our admin reviewers. This means that your review will probably take longer than usual.
-{% endblock %}
