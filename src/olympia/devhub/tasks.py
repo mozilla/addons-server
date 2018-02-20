@@ -632,7 +632,9 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
             resize_image(source, dest_file, (size, size))
 
         # Store the original hash, we'll return it to update the corresponding
-        # add-on.
+        # add-on. We only care about the first 8 chars of the md5, it's
+        # unlikely a new icon on the same add-on would get the same first 8
+        # chars, especially with icon changes being so rare in the first place.
         with open(source) as fd:
             icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
