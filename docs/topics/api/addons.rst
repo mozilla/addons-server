@@ -143,7 +143,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. _addon-detail-object:
 
-    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`Translated Fields <api-overview-translations>`)
+    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors for the add-on.
     :>json int authors[].id: The id for an author.

@@ -20,7 +20,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, collection_factory, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
 from olympia.bandwagon.models import (
@@ -1431,7 +1431,10 @@ class TestCollectionViewSetDetail(TestCase):
         response = self.client.get(self.url + '?with_addons')
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
-        assert response.data['addons'][0]['addon']['id'] == addon.id
+        addon_data = response.data['addons'][0]['addon']
+        assert addon_data['id'] == addon.id
+        assert isinstance(addon_data['name'], dict)
+        assert addon_data['name'] == {'en-US': unicode(addon.name)}
 
         # Now test the limit of addons returned
         self.collection.add_addon(addon_factory())
@@ -1444,6 +1447,26 @@ class TestCollectionViewSetDetail(TestCase):
         with django.test.override_settings(REST_FRAMEWORK=patched_drf_setting):
             response = self.client.get(self.url + '?with_addons')
             assert len(response.data['addons']) == 3
+
+    def test_with_addons_and_wrap_outgoing_links_and_lang(self):
+        addon = addon_factory(
+            support_url='http://support.example.com',
+            homepage='http://homepage.example.com')
+        self.collection.add_addon(addon)
+        response = self.client.get(
+            self.url + '?with_addons&lang=en-US&wrap_outgoing_links')
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+        addon_data = response.data['addons'][0]['addon']
+        assert addon_data['id'] == addon.id
+        assert isinstance(addon_data['name'], basestring)
+        assert addon_data['name'] == unicode(addon.name)
+        assert isinstance(addon_data['homepage'], basestring)
+        assert addon_data['homepage'] == get_outgoing_url(
+            unicode(addon.homepage))
+        assert isinstance(addon_data['support_url'], basestring)
+        assert addon_data['support_url'] == get_outgoing_url(
+            unicode(addon.support_url))
 
 
 class CollectionViewSetDataMixin(object):

@@ -121,4 +121,5 @@ class CollectionWithAddonsSerializer(CollectionSerializer):
 
     def get_addons(self, obj):
         addons_qs = self.context['view'].get_addons_queryset()
-        return CollectionAddonSerializer(addons_qs, many=True).data
+        return CollectionAddonSerializer(
+            addons_qs, context=self.context, many=True).data

@@ -225,7 +225,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
         assert result['homepage'] == {
-            'en-US': get_outgoing_url(unicode(self.addon.homepage))
+            'en-US': unicode(self.addon.homepage),
         }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
@@ -285,7 +285,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
         assert result['support_url'] == {
-            'en-US': get_outgoing_url(unicode(self.addon.support_url))
+            'en-US': unicode(self.addon.support_url),
         }
         assert 'theme_data' not in result
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
@@ -294,6 +294,35 @@ class AddonSerializerOutputTestMixin(object):
         assert result['weekly_downloads'] == self.addon.weekly_downloads
 
         return result
+
+    def test_wrap_outgoing_links(self):
+        self.addon = addon_factory(
+            contributions=u'https://paypal.me/fôobar',
+            homepage='http://support.example.com/',
+            support_url=u'https://support.example.org/support/my-âddon/')
+        self.request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
+        result = self.serialize()
+        assert result['contributions_url'] == (
+            get_outgoing_url(unicode(self.addon.contributions)))
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.homepage)),
+        }
+        assert result['support_url'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.support_url)),
+        }
+
+        # Try a single translation.
+        self.request = APIRequestFactory().get('/', {
+            'lang': 'en-US', 'wrap_outgoing_links': 1})
+        result = self.serialize()
+        assert result['contributions_url'] == (
+            get_outgoing_url(unicode(self.addon.contributions)))
+        assert result['homepage'] == (
+            get_outgoing_url(unicode(self.addon.homepage))
+        )
+        assert result['support_url'] == (
+            get_outgoing_url(unicode(self.addon.support_url))
+        )
 
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
@@ -456,11 +485,7 @@ class AddonSerializerOutputTestMixin(object):
 
         result = self.serialize()
         assert result['description'] == translated_descriptions
-        assert result['homepage'] != translated_homepages
-        assert result['homepage'] == {
-            'en-US': get_outgoing_url(translated_homepages['en-US']),
-            'fr': get_outgoing_url(translated_homepages['fr'])
-        }
+        assert result['homepage'] == translated_homepages
 
         # Try a single translation. The locale activation is normally done by
         # LocaleAndAppURLMiddleware, but since we're directly calling the
@@ -469,8 +494,7 @@ class AddonSerializerOutputTestMixin(object):
         with override('fr'):
             result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
-        assert result['homepage'] == get_outgoing_url(
-            translated_homepages['fr'])
+        assert result['homepage'] == translated_homepages['fr']
 
     def test_persona_with_persona_id(self):
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
