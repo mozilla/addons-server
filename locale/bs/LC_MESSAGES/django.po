@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-20 11:05+0000\n"
+"PO-Revision-Date: 2018-02-21 14:31+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3561,7 +3561,7 @@ msgid "Image height should be 200 pixels"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG ili GIF (neanimiran)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -3820,16 +3820,16 @@ msgid "Support"
 msgstr ""
 
 msgid "Policies"
-msgstr ""
+msgstr "Pravila"
 
 msgid "FAQ"
-msgstr ""
+msgstr "Često postavljena pitanja"
 
 msgid "Report Bug"
 msgstr ""
 
 msgid "Site Status"
-msgstr ""
+msgstr "Status stranice"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3847,22 +3847,22 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Pravno"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Prijavite zloupotrebu zaštitnog znaka"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Pravne napomene"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Pregledaj dodatke"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Pridružite nam se!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3871,16 +3871,16 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "Započnite"
 
 msgid "More Ways to Participate"
-msgstr ""
+msgstr "Više načina za sudjelovanje"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Pogledajte kako"
 
 msgid "Manage Your Add-on"
 msgstr ""
@@ -3895,10 +3895,10 @@ msgid "There is a new, cross-browser standard for developing extensions in Firef
 msgstr ""
 
 msgid "Learn How"
-msgstr ""
+msgstr "Saznajte kako"
 
 msgid "What's New"
-msgstr ""
+msgstr "Šta je novo"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
@@ -3923,10 +3923,10 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Docs"
-msgstr ""
+msgstr "Dokumenti"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Odjava"
 
 msgid "No Photo"
 msgstr ""
