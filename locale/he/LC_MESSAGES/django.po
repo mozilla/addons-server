@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-21 12:31+0000\n"
+"PO-Revision-Date: 2018-02-21 12:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5194,7 +5194,7 @@ msgid ""
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "מהם הקווים המנחים המשמשים לסקירת התוספת שלי?"
 
 #, python-format
 msgid ""
@@ -6229,7 +6229,7 @@ msgid "Moderated Review Log"
 msgstr ""
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "מדריך פיקוח"
 
 msgid "Unlisted Add-ons"
 msgstr ""
@@ -6351,16 +6351,16 @@ msgid "Review Text"
 msgstr "מלל הסקירה"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "הסקירה סומנה בדגל לפי המחיקה."
 
 msgid "Undelete"
 msgstr "ביטול מחיקה"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "לוח הסוקרים המובילים"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "לא הוענקו נקודות סקירה עדיין."
 
 msgid "Rank"
 msgstr "דירוג"
@@ -6426,7 +6426,7 @@ msgid "Process Reviews"
 msgstr ""
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "פעולות פיקוח:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
