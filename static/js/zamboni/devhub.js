@@ -338,8 +338,8 @@ function addonFormSubmit() {
                 $form = $(this);
 
             $.post($form.attr('action'), $form.serialize(), function(d) {
-                // The HTML has changed after we posted the form, thus the need to retrieve the new HTML
                 parent_div.html(d).each(addonFormSubmit);
+                // The HTML has changed after we posted the form, thus the need to retrieve the new HTML
                 $form = parent_div.find('form');
                 var hasErrors = $form.find('.errorlist').length;
                 $('.tooltip').tooltip('#tooltip');
