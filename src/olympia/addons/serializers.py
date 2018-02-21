@@ -500,6 +500,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 'has_eula',
                 'has_privacy_policy',
                 'hotness',
+                'icon_hash',
                 'icon_type',
                 'is_experimental',
                 'last_updated',

@@ -125,6 +125,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
                     'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
+                    'icon_hash': {'type': 'keyword', 'index': False},
                     'icon_type': {'type': 'keyword', 'index': False},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
@@ -273,7 +274,7 @@ class AddonIndexer(BaseSearchIndexer):
 
         attrs = ('id', 'average_daily_users', 'bayesian_rating',
                  'contributions', 'created',
-                 'default_locale', 'guid', 'hotness', 'icon_type',
+                 'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
                  'is_disabled', 'is_experimental', 'last_updated',
                  'modified', 'public_stats', 'requires_payment', 'slug',
                  'status', 'type', 'view_source', 'weekly_downloads')

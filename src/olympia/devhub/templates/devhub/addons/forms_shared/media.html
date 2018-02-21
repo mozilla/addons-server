@@ -92,7 +92,7 @@
             </label>
             {% endif %}
 
-            <div class="{{ 'edit-previews-submit' if context == 'submit' }}">
+            <div {{ 'class="edit-previews-submit"' if context == 'submit' else '' }}>
             {% if editable %}
               {% if preview_form %}
                 {{ preview_form.management_form }}
