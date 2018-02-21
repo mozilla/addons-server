@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 19:33+0000\n"
+"PO-Revision-Date: 2018-02-21 12:31+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5967,13 +5967,13 @@ msgid "Filter by automatic validation"
 msgstr "סינון לפי בדיקה אוטומטית"
 
 msgid "containing"
-msgstr ""
+msgstr "מכיל"
 
 msgid "start"
-msgstr ""
+msgstr "התחלה"
 
 msgid "end"
-msgstr ""
+msgstr "סיום"
 
 #. L10n: Description of what can be searched for
 # 100%
@@ -6083,7 +6083,7 @@ msgid "Waiting Time"
 msgstr "זמן המתנה"
 
 msgid "Flags"
-msgstr ""
+msgstr "דגלים"
 
 msgid "moments ago"
 msgstr "לפני מספר רגעים"
@@ -6145,16 +6145,16 @@ msgid "Reviewer reply"
 msgstr "תגובת הסוקר"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "פעולה זו תשלח הודעה למפתח. תישלח אליך הודעה כשמתקבלת תגובה."
 
 msgid "Request super-review"
 msgstr "בקשת סקירת על"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "אם עולות בך חששות בנוגע לתוספת זו שמצריכות סקירה מצד ההנהלה, יש לכתוב את ההערות שלך באיזור שלהלן. ההערות לא תישלחנה למפתח."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "שליחת הערה על הגרסה הזאת. למפתח לא תהיה אפשרות לראות אותה."
 
 msgid "Approve Content"
 msgstr "אישור תוכן"
@@ -6223,7 +6223,7 @@ msgid "User Ratings Moderation"
 msgstr ""
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "דירוגים שממתינים לפיקוח ({0})"
 
 msgid "Moderated Review Log"
 msgstr ""
@@ -6529,10 +6529,10 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "אילוץ נטרול התוספת"
 
 msgid "Force-enable add-on"
-msgstr ""
+msgstr "אילוץ הפעלת התוספת"
 
 msgid "Disable Auto-Approval"
 msgstr ""
