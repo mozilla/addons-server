@@ -39,7 +39,7 @@ $(document).ready(function () {
         $el = $("#existing_locales").empty();
         $("#all_locales li").show();
         $.each(_.without(locales, dl), function() {
-            var locale_row = $(format("#all_locales a[href$='{0}']",[this])).parent();
+            var locale_row = $(format("#all_locales a[href='#{0}']",[this])).parent();
             if (locale_row.length) {
                 $el.append(format("<li><a title='{msg}'class='remove' href='#'>x</a>{row}</li>",
                     {   msg: gettext('Remove this localization'),
@@ -93,7 +93,7 @@ $(document).ready(function () {
     if ($('#l10n-menu:visible').length) {
         initLocale = $.cookie('current_locale');
     }
-    $(format("#all_locales a[href$='{0}']",[initLocale])).trigger("switch");
+    $(format("#all_locales a[href='#{0}']",[initLocale])).trigger("switch");
 
     function switchLocale(e) {
         e.preventDefault();
@@ -220,7 +220,7 @@ $(document).ready(function () {
         if (!_.include(locales,lang)) {
             locales.push(lang);
         }
-        var current = $(format("#locale-popup [href$='{0}']", [lang])).first().clone();
+        var current = $(format("#locale-popup [href='#{0}']", [lang])).first().clone();
         current.find('em').remove();
         $("#change-locale").text(current.text());
         $(".trans").each(function () {
@@ -285,7 +285,7 @@ function annotateLocalizedErrors($el) {
     $el.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
         var err = $(this),
             t = err.text(),
-            l = $(format("#locale-popup [href$='{0}']", [err.attr('data-lang')])).first().text();
+            l = $(format("#locale-popup [href='#{0}']", [err.attr('data-lang')])).first().text();
         err.text(format("{0}: ",[l])+t).addClass("l10n");
     });
 }
