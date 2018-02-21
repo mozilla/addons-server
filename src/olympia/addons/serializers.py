@@ -309,7 +309,8 @@ class AddonSerializer(serializers.ModelSerializer):
         if ('request' in self.context and
                 'wrap_outgoing_links' in self.context['request'].GET):
             for key in ('homepage', 'support_url', 'contributions_url'):
-                data[key] = self.outgoingify(data[key])
+                if key in data:
+                    data[key] = self.outgoingify(data[key])
         if obj.type == amo.ADDON_PERSONA:
             if 'weekly_downloads' in data:
                 # weekly_downloads don't make sense for lightweight themes.
