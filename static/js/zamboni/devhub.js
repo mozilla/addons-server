@@ -364,6 +364,10 @@ function addonFormSubmit() {
                     var e = $(format('<b class="save-badge">{0}</b>',
                                      [gettext('Changes Saved')]))
                               .appendTo(parent_div.find('h3').first());
+                    // Fix bug 7504. If the basic information has been changed. Refresh the name of the addon
+                    if ($form.is('#addon-edit-basic')) {
+                        refreshAddonBasicInformation($form);
+                    }
                     setTimeout(function(){
                         e.css('opacity', 0);
                         setTimeout(function(){ e.remove(); }, 200);
@@ -374,6 +378,17 @@ function addonFormSubmit() {
         reorderPreviews();
         z.refreshL10n();
     })(parent_div);
+}
+
+function refreshAddonBasicInformation($form) {
+    // Retrieve the div containing the updated name and then its value
+    update_name_div = $form.find('[data-name=name]')
+    updated_name = update_name_div.text()
+    // Get the element to update in the top-left quadrant and update it with the new name
+    // TODO if possible change the H2 tag to have an id attribute. Need to identify where the H2 tag is generated
+    // For the time being we rely on the structure of the page
+    name_h2_tag = $('[id=l10n-menu]').next()
+    name_h2_tag.text(updated_name)
 }
 
 
