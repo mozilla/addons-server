@@ -169,22 +169,16 @@ def add_email_to_activity_log(parser):
 
 
 def action_from_user(user, version):
-    review_perm = (amo.permissions.ADDONS_REVIEW
-                   if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     if version.addon.authors.filter(pk=user.pk).exists():
         return amo.LOG.DEVELOPER_REPLY_VERSION
-    elif acl.action_allowed_user(user, review_perm):
+    elif acl.is_user_any_kind_of_reviewer(user):
         return amo.LOG.REVIEWER_REPLY_VERSION
 
 
 def template_from_user(user, version):
-    review_perm = (amo.permissions.ADDONS_REVIEW
-                   if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     template = 'activity/emails/developer.txt'
     if (not version.addon.authors.filter(pk=user.pk).exists() and
-            acl.action_allowed_user(user, review_perm)):
+            acl.is_user_any_kind_of_reviewer(user)):
         template = 'activity/emails/from_reviewer.txt'
     return loader.get_template(template)
 
@@ -236,6 +230,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
     # Collect add-on authors (excl. the person who sent the email.) and build
     # the context for them.
     addon_authors = set(addon.authors.all()) - {note.user}
+
     author_context_dict = {
         'name': addon.name,
         'number': version.version,
@@ -290,12 +285,9 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # Collect reviewers on the thread (excl. the email sender and task user
         # for automated messages), build the context for them and send them
         # their copy.
-        review_perm = (amo.permissions.ADDONS_REVIEW
-                       if version.channel == amo.RELEASE_CHANNEL_LISTED
-                       else amo.permissions.ADDONS_REVIEW_UNLISTED)
         log_users = {
             alog.user for alog in ActivityLog.objects.for_version(version) if
-            acl.action_allowed_user(alog.user, review_perm)}
+            acl.is_user_any_kind_of_reviewer(alog.user)}
         reviewers = log_users - addon_authors - task_user - {note.user}
         reviewer_context_dict = author_context_dict.copy()
         reviewer_context_dict['url'] = absolutify(

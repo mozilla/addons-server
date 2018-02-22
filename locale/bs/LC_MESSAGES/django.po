@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-20 11:05+0000\n"
+"PO-Revision-Date: 2018-02-21 14:38+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3561,7 +3561,7 @@ msgid "Image height should be 200 pixels"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG ili GIF (neanimiran)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -3820,16 +3820,16 @@ msgid "Support"
 msgstr ""
 
 msgid "Policies"
-msgstr ""
+msgstr "Pravila"
 
 msgid "FAQ"
-msgstr ""
+msgstr "Često postavljena pitanja"
 
 msgid "Report Bug"
 msgstr ""
 
 msgid "Site Status"
-msgstr ""
+msgstr "Status stranice"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3847,22 +3847,22 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Pravno"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Prijavite zloupotrebu zaštitnog znaka"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Pravne napomene"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Pregledaj dodatke"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Pridružite nam se!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3871,16 +3871,16 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "Započnite"
 
 msgid "More Ways to Participate"
-msgstr ""
+msgstr "Više načina za sudjelovanje"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Pogledajte kako"
 
 msgid "Manage Your Add-on"
 msgstr ""
@@ -3895,10 +3895,10 @@ msgid "There is a new, cross-browser standard for developing extensions in Firef
 msgstr ""
 
 msgid "Learn How"
-msgstr ""
+msgstr "Saznajte kako"
 
 msgid "What's New"
-msgstr ""
+msgstr "Šta je novo"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
@@ -3923,23 +3923,23 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Docs"
-msgstr ""
+msgstr "Dokumenti"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Odjava"
 
 msgid "No Photo"
-msgstr ""
+msgstr "Nema fotografije"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Fotografija korisnika"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">Registracija</a> ili <a href=\"%(login)s\">Prijava</a>"
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Prilagodi Firefox"
 
 #, python-format
 msgid ""
@@ -3964,10 +3964,10 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 msgid "Sign In"
-msgstr ""
+msgstr "Prijavi se"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4030,10 +4030,10 @@ msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
-msgstr ""
+msgstr "Dizajn teme"
 
 msgid "Upload New Design"
-msgstr ""
+msgstr "Učitaj novi dizajn"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
@@ -4125,19 +4125,19 @@ msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 piksela"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB najviše"
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG ili JPG"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Odaberite podnožje slike za vašu temu."
 
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 piksela"
 
 msgid "Aligned to bottom-left"
 msgstr ""
@@ -4245,34 +4245,34 @@ msgid ""
 msgstr ""
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Navedene verzije"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Trenutno na AMO"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Validation"
-msgstr ""
+msgstr "Provjera"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Izbriši/Onemogući"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Naredna verzija ovog dodatka"
 
 msgid "Other versions"
-msgstr ""
+msgstr "Druge verzije"
 
 msgid "All versions"
-msgstr ""
+msgstr "Sve verzije"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Učitaj novu verziju"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Izbriši verziju {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -4285,16 +4285,16 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Da li ste sigurni da želite izbrisati ovu verziju?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Izbriši verziju"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Onemogući verziju"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Sakrij dodatak"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4477,16 +4477,16 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Datoteke:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Izbrisane datoteke:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "Sakrij poznate datoteke"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "SDK verzija dodatka:"
 
 msgid "Tab stops:"
 msgstr ""

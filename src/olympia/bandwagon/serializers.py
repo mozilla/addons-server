@@ -31,7 +31,7 @@ class CollectionSerializer(serializers.ModelSerializer):
         validators = [
             UniqueTogetherValidator(
                 queryset=Collection.objects.all(),
-                message=_(u'This slug is already in use by another one '
+                message=_(u'This custom URL is already in use by another one '
                           u'of your collections.'),
                 fields=('slug', 'author')
             )
@@ -60,11 +60,11 @@ class CollectionSerializer(serializers.ModelSerializer):
     def validate_slug(self, value):
         slug_validator(
             value, lower=False,
-            message=ugettext(u'Enter a valid slug consisting of letters, '
+            message=ugettext(u'The custom URL must consist of letters, '
                              u'numbers, underscores or hyphens.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This slug cannot be used.'))
+                ugettext(u'This custom URL cannot be used.'))
 
         return value
 
@@ -121,4 +121,5 @@ class CollectionWithAddonsSerializer(CollectionSerializer):
 
     def get_addons(self, obj):
         addons_qs = self.context['view'].get_addons_queryset()
-        return CollectionAddonSerializer(addons_qs, many=True).data
+        return CollectionAddonSerializer(
+            addons_qs, context=self.context, many=True).data

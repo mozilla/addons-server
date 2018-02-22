@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-19 19:33+0000\n"
+"PO-Revision-Date: 2018-02-21 12:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1799,9 +1799,8 @@ msgid "{addon} enabled."
 msgstr "{addon} מופעל."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "המצב של {addon} השתנה ל־{0}."
+msgstr ""
 
 msgid "{version} added to {addon}."
 msgstr "הגרסה {version} נוספה אל {addon}."
@@ -1916,16 +1915,14 @@ msgstr "הצלמית של התוספת {addon} השתנתה."
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "התג {tag} הוסר מהתוספת {addon}."
+msgstr ""
 
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "הקובץ {0} נמחק מגרסה {version} של התוספת {addon}."
+msgstr ""
 
 msgid "Application max version for {version} updated."
 msgstr "גרסת היישום המרבית עבור {version} עודכנה."
@@ -3652,9 +3649,8 @@ msgstr "רקע אזור הכותרת"
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "טקסט אזור הכותרת"
+msgstr ""
 
 #, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
@@ -5198,7 +5194,7 @@ msgid ""
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "מהם הקווים המנחים המשמשים לסקירת התוספת שלי?"
 
 #, python-format
 msgid ""
@@ -5971,13 +5967,13 @@ msgid "Filter by automatic validation"
 msgstr "סינון לפי בדיקה אוטומטית"
 
 msgid "containing"
-msgstr ""
+msgstr "מכיל"
 
 msgid "start"
-msgstr ""
+msgstr "התחלה"
 
 msgid "end"
-msgstr ""
+msgstr "סיום"
 
 #. L10n: Description of what can be searched for
 # 100%
@@ -6087,7 +6083,7 @@ msgid "Waiting Time"
 msgstr "זמן המתנה"
 
 msgid "Flags"
-msgstr ""
+msgstr "דגלים"
 
 msgid "moments ago"
 msgstr "לפני מספר רגעים"
@@ -6149,16 +6145,16 @@ msgid "Reviewer reply"
 msgstr "תגובת הסוקר"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "פעולה זו תשלח הודעה למפתח. תישלח אליך הודעה כשמתקבלת תגובה."
 
 msgid "Request super-review"
 msgstr "בקשת סקירת על"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "אם עולות בך חששות בנוגע לתוספת זו שמצריכות סקירה מצד ההנהלה, יש לכתוב את ההערות שלך באיזור שלהלן. ההערות לא תישלחנה למפתח."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "שליחת הערה על הגרסה הזאת. למפתח לא תהיה אפשרות לראות אותה."
 
 msgid "Approve Content"
 msgstr "אישור תוכן"
@@ -6227,13 +6223,13 @@ msgid "User Ratings Moderation"
 msgstr ""
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "דירוגים שממתינים לפיקוח ({0})"
 
 msgid "Moderated Review Log"
 msgstr ""
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "מדריך פיקוח"
 
 msgid "Unlisted Add-ons"
 msgstr ""
@@ -6355,16 +6351,16 @@ msgid "Review Text"
 msgstr "מלל הסקירה"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "הסקירה סומנה בדגל לפי המחיקה."
 
 msgid "Undelete"
 msgstr "ביטול מחיקה"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "לוח הסוקרים המובילים"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "לא הוענקו נקודות סקירה עדיין."
 
 msgid "Rank"
 msgstr "דירוג"
@@ -6430,7 +6426,7 @@ msgid "Process Reviews"
 msgstr ""
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "פעולות פיקוח:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -6533,18 +6529,16 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "אילוץ נטרול התוספת"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "הפעלת גרסה זו מחדש"
+msgstr "אילוץ הפעלת התוספת"
 
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "אומת אישור אוטומטי"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""

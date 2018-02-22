@@ -289,6 +289,7 @@ class Addon(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
+    icon_hash = models.CharField(max_length=8, blank=True, null=True)
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
@@ -911,10 +912,13 @@ class Addon(OnChangeMixin, ModelBase):
         else:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            modified = int(time.mktime(self.modified.timetuple()))
+            # Use the icon hash if we have one as the cachebusting suffix,
+            # otherwise fall back to the add-on modification date.
+            suffix = self.icon_hash or str(
+                int(time.mktime(self.modified.timetuple())))
             path = '/'.join([
                 split_id.group(2) or '0',
-                '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
+                '{0}-{1}.png?modified={2}'.format(self.id, size, suffix),
             ])
             return jinja_helpers.user_media_url('addon_icons') + path
 

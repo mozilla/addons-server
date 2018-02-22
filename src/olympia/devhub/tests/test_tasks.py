@@ -91,12 +91,17 @@ def _uploader(resize_size, final_size):
         assert src_image.size == original_size
         dest_name = os.path.join(uploadto, '1234')
 
-        tasks.resize_icon(src.name, dest_name, [rsize])
+        return_value = tasks.resize_icon(src.name, dest_name, [rsize])
         dest_image = '%s-%s.png' % (dest_name, rsize)
         assert Image.open(open(dest_image)).size == expected_size
         # original should have been moved to -original
         orig_image = '%s-original.png' % dest_name
         assert os.path.exists(orig_image)
+
+        # Return value of the task should be a dict with an icon_hash key
+        # containing the 8 first chars of the md5 hash of the source file,
+        # which is bb362450b00f0461c6bddc6b97b3c30b.
+        assert return_value == {'icon_hash': 'bb362450'}
 
         os.remove(dest_image)
         assert not os.path.exists(dest_image)

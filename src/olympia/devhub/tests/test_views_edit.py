@@ -756,6 +756,9 @@ class TestEditMedia(BaseTestEdit):
 
         assert Image.open(storage.open(dest)).size == (32, 12)
 
+        assert addon.icon_type == 'image/png'
+        assert addon.icon_hash == 'bb362450'
+
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
         log = ActivityLog.objects.all()
@@ -798,6 +801,9 @@ class TestEditMedia(BaseTestEdit):
         assert storage.exists(dest)
 
         assert Image.open(storage.open(dest)).size == (48, 48)
+
+        assert addon.icon_type == 'image/png'
+        assert addon.icon_hash == 'f02063c9'
 
     def check_image_type(self, url, msg):
         img = 'static/js/zamboni/devhub.js'

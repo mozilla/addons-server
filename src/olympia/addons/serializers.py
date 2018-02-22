@@ -306,10 +306,11 @@ class AddonSerializer(serializers.ModelSerializer):
         data = super(AddonSerializer, self).to_representation(obj)
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
-        if 'homepage' in data:
-            data['homepage'] = self.outgoingify(data['homepage'])
-        if 'support_url' in data:
-            data['support_url'] = self.outgoingify(data['support_url'])
+        if ('request' in self.context and
+                'wrap_outgoing_links' in self.context['request'].GET):
+            for key in ('homepage', 'support_url', 'contributions_url'):
+                if key in data:
+                    data[key] = self.outgoingify(data[key])
         if obj.type == amo.ADDON_PERSONA:
             if 'weekly_downloads' in data:
                 # weekly_downloads don't make sense for lightweight themes.
@@ -500,6 +501,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 'has_eula',
                 'has_privacy_policy',
                 'hotness',
+                'icon_hash',
                 'icon_type',
                 'is_experimental',
                 'last_updated',
