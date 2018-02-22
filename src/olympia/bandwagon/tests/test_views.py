@@ -1534,8 +1534,8 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'slug': [u'Enter a valid slug consisting of letters, '
-                     u'numbers, underscores or hyphens.']}
+            'slug': [u'The custom URL must consist of letters, numbers, '
+                     u'underscores or hyphens.']}
 
     def test_slug_unique(self):
         collection_factory(author=self.user, slug='edam')
@@ -1544,7 +1544,7 @@ class CollectionViewSetDataMixin(object):
         data.update(slug=u'edam')
         response = self.send(data=data)
         assert response.status_code == 400
-        assert u'This slug is already in use' in (
+        assert u'This custom URL is already in use' in (
             ','.join(json.loads(response.content)['non_field_errors']))
 
 
