@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 20:08+0000\n"
+"PO-Revision-Date: 2018-02-23 22:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1957,17 +1957,14 @@ msgstr "{addon} {version} შიგთავსი უარყოფილი�
 msgid "Content rejected"
 msgstr "შიგთავსი უარყოფილია"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "{addon} მონაცემების მოთხოვნა გაუქმებულია."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "მონაცემების მოთხოვნა გაუქმებულია"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "შემმუშავებლის პასუხი {addon} {version}-ზე."
+msgstr "მონაცემების მოთხოვნა {addon} {version}-ზე წაშალა შემმუშავებელმა."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3755,13 +3752,11 @@ msgstr "დეველოპერის სიახლეები"
 msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "მონაცემების დაყოვნებული მოთხოვნა:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "ეს ვერსია, ჯერ არ განხილულა."
+msgstr "მონაცემების ეს მოთხოვნები დაკმაყოფილებულია"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
@@ -5843,7 +5838,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
 
 msgid "This rating can't flagged because it has no review text."
-msgstr ""
+msgstr "შეფასება შეუძლებელია, რადგან თან არ ახლავს მიმოხილვის ტექსტი."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
@@ -6035,7 +6030,7 @@ msgid "Applications:"
 msgstr "პროგრამები:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "შემმუშავებელმა მოთხოვნას უნდა უპასუხოს მოცემულ დროში…"
 
 msgid "days"
 msgstr "დღე"
@@ -6072,9 +6067,8 @@ msgstr "Jetpack დამატება"
 msgid "More Information Requested"
 msgstr "საჭიროა მეტი ინფორმაცია"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "საჭიროა მეტი ინფორმაცია"
+msgstr "მონაცემების ვადაგასული მოთხოვნა"
 
 msgid "Contains Reviewer Comment"
 msgstr "შეიცავს მიმომხილველის კომენტარს"
@@ -6145,9 +6139,8 @@ msgstr "მიმოხილვები არაა"
 msgid "Weight"
 msgstr "წონა"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "საჭიროა მეტი ინფორმაცია"
+msgstr "მონაცემების მოთხოვნის ვადა"
 
 msgid "Last Content Review"
 msgstr "შიგთავსის ბოლო განხილვა"
@@ -6261,9 +6254,8 @@ msgstr "გამოცხადება"
 msgid "Update message of the day"
 msgstr "დღის შეტყობინების განახლება"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "დამატებები მონაცემების ვადაგასული მოთხოვნებით"
 
 msgid "An unknown error occurred"
 msgstr "უცნობი შეცდომა"
@@ -6556,9 +6548,8 @@ msgstr "ავტომატური მიღების გამორთ�
 msgid "Enable Auto-Approval"
 msgstr "ავტომატური მიღების ჩართვა"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "მონაცემების მოთხოვნის წაშლა"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
