@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 20:32+0000\n"
+"PO-Revision-Date: 2018-02-23 20:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3850,13 +3850,11 @@ msgstr "Nowosći wuwijarjow"
 msgid "View the blog &#9658;"
 msgstr "Cytajśo blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Dalšne informacije trěbne"
+msgstr "Pšosba wó informacije hyšći felujo:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Toś ta wersija njejo pśeglědana."
+msgstr "Toś ta pšosba wó informacije jo se rozwězała"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Pšosym wubjeŕśo licencu, kótaryž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod. To jo jano za nalicone dodanki relewantne."
@@ -4453,16 +4451,14 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Pśełožćo lažko {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Wuzwigniśo tekst, klikniśo z pšaweju tastu a pśełožćo ned."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pólěpšćo wideo {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Nawopacne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Cośo se zajmawy wobraz w interneśe woglědaś a wěcej wó njom zgóniś? Wopytajśo toś ten rěd za pytanje wobrazow."
@@ -6159,9 +6155,8 @@ msgstr "Nałoženja:"
 msgid "Require developer to respond in less than…"
 msgstr "Wuwijarja napominás wótegroniś za wěcej ako…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dnjow"
+msgstr "dnjow"
 
 msgid "Choose a canned response..."
 msgstr "Wubjeŕśo pśigótowane wótegrono..."
@@ -6195,9 +6190,8 @@ msgstr "Dodank typa Jetpack"
 msgid "More Information Requested"
 msgstr "Dalšne informacije pominane"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Dalšne informacije pominane"
+msgstr "Pšosba wó Informacije jo spadnuła"
 
 msgid "Contains Reviewer Comment"
 msgstr "Wopśimujo komentar pśeglědowarja"
@@ -6277,9 +6271,8 @@ msgstr "Žedne pógódnośénja"
 msgid "Weight"
 msgstr "Wažnosć"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Dalšne informacije pominane"
+msgstr "Termin za pšosbu wó informacije"
 
 msgid "Last Content Review"
 msgstr "Slědne pśeglědanje wopśimjeśa"
@@ -6396,9 +6389,8 @@ msgstr "Pśipowěźeńka"
 msgid "Update message of the day"
 msgstr "Powěsć dnja aktualizěrowaś"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Dalšne informacije trěbne"
+msgstr "Dodanki ze spadnjonymi pšosbami wó informacije"
 
 msgid "An unknown error occurred"
 msgstr "Njeznata zmólka jo nastała"
@@ -6695,9 +6687,8 @@ msgstr "Awtomatiske pśizwólenje znjemóžniś"
 msgid "Enable Auto-Approval"
 msgstr "Awtomatiske pśizwólenje zmóžniś"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Dalšne informacije trěbne"
+msgstr "Pšosbu wó informacije wulašowaś"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Marku za pśeglědowanje žrědłowego teksta wót administratora wótpóraś"
