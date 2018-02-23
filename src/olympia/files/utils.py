@@ -860,7 +860,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
         if (not addon and
             # Non-deleted add-ons.
             (Addon.objects.filter(guid=guid).exists() or
-             # DeniedGuid objects for legacy deletions.
+             # DeniedGuid objects for deletions for Mozilla disabled add-ons
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):

@@ -15,7 +15,7 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
-from django.db import models, transaction
+from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils.functional import cached_property
@@ -491,6 +491,16 @@ class Addon(OnChangeMixin, ModelBase):
             """ % context
             log.debug('Sending delete email for %(atype)s %(id)s' % context)
             subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
+
+            # If the add-on was disabled by Mozilla, add the guid to
+            #  DeniedGuids to prevent resubmission after deletion.
+            if self.status == amo.STATUS_DISABLED:
+                try:
+                    with transaction.atomic():
+                        DeniedGuid.objects.create(guid=self.guid)
+                except IntegrityError:
+                    # If the guid is already in DeniedGuids, we are good.
+                    pass
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)

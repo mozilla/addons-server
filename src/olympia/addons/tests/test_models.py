@@ -699,6 +699,19 @@ class TestAddonModels(TestCase):
         a.delete('bye')
         assert len(mail.outbox) == 1
 
+    def test_delete_disabled_addon_is_added_to_deniedguids(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        self._delete(3615)
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
+
+    def test_delete_disabled_addon_when_guid_is_already_in_deniedguids(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        DeniedGuid.objects.create(guid=addon.guid)
+        addon.update(status=amo.STATUS_DISABLED)
+        self._delete(3615)
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []
@@ -2294,8 +2307,8 @@ class TestAddonFromUpload(UploadTest):
             basename)
 
     def test_denied_guid(self):
-        """New deletions won't be added to DeniedGuid but legacy support
-        should still be tested."""
+        """Add-ons that have been disabled by Mozilla are added toDeniedGuid
+        in order to prevent resubmission after deletion """
         DeniedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
             Addon.from_upload(self.get_upload('extension.xpi'),
