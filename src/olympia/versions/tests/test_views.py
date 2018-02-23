@@ -186,6 +186,13 @@ class TestViews(TestCase):
         doc = self.get_content(beta=True)
         assert doc('.version').attr('id') == 'version-%s' % version
 
+    def test_version_list_beta_shows_nothing(self):
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
+            version='2.1b')
+        doc = self.get_content(beta=True)
+        assert len(doc('.version')) == 0
+
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.make_addon_unlisted(self.addon)

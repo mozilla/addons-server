@@ -3,7 +3,6 @@ import waffle
 
 from django import http
 from django.db.transaction import non_atomic_requests
-from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
@@ -35,7 +34,7 @@ def _version_list_qs(addon, beta=False):
         if waffle.switch_is_active('beta-versions'):
             status = amo.STATUS_BETA
         else:
-            return QuerySet.object.none()
+            return Version.objects.none()
     elif addon.is_unreviewed():
         status = amo.STATUS_AWAITING_REVIEW
     else:
