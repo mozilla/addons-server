@@ -35,7 +35,7 @@ def _version_list_qs(addon, beta=False):
         if waffle.switch_is_active('beta-versions'):
             status = amo.STATUS_BETA
         else:
-            return QuerySet.object.none()
+            return Version.objects.none()
     elif addon.is_unreviewed():
         status = amo.STATUS_AWAITING_REVIEW
     else:
