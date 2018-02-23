@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1031,16 +1031,16 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Icons must be either PNG or JPG."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "This url is already in use by another collection"
 
 #, fuzzy
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 
 #, fuzzy
-msgid "This slug cannot be used."
-msgstr "This name cannot be used."
+msgid "This custom URL cannot be used."
+msgstr "This username cannot be used."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2048,6 +2048,18 @@ msgstr "{addon} {version} rejected."
 #, fuzzy
 msgid "Content rejected"
 msgstr "rejected"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "More information requested"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "More information requested"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Comment on {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3981,6 +3993,14 @@ msgstr "Developer News"
 msgid "View the blog &#9658;"
 msgstr "View the blog &#9658;"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "More information requested"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "This version has not been reviewed."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 
@@ -4623,25 +4643,25 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Highlight any text, right-click, and translate instantly."
 
 #, fuzzy
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 
 #, fuzzy
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4649,10 +4669,6 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dozens of amazing emojis—always a click away."
-
-#, fuzzy
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Works seamlessly with most popular video sites."
@@ -6132,6 +6148,9 @@ msgstr "someone writes a review of my add-on"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "You cannot upload any more files for this version."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "This rating can't flagged because it has no review text."
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Thanks; this review has been flagged for editor approval."
@@ -6327,9 +6346,12 @@ msgstr "Operating systems:"
 msgid "Applications:"
 msgstr "Applications:"
 
+msgid "Require developer to respond in less than…"
+msgstr "Require developer to respond in less than…"
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "Clear more info requested flag"
+msgid "days"
+msgstr "7 days"
 
 msgid "Choose a canned response..."
 msgstr "Choose a canned response..."
@@ -6364,6 +6386,10 @@ msgid "Jetpack Add-on"
 msgstr "Jetpack Add-on"
 
 msgid "More Information Requested"
+msgstr "More Information Requested"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "More Information Requested"
 
 #, fuzzy
@@ -6439,6 +6465,10 @@ msgstr "No Reviews"
 
 msgid "Weight"
 msgstr "Weight"
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "More Information Requested"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6581,6 +6611,10 @@ msgstr "Announcement"
 
 msgid "Update message of the day"
 msgstr "Update message of the day"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "More information requested"
 
 msgid "An unknown error occurred"
 msgstr "An unknown error occurred"
@@ -6891,6 +6925,10 @@ msgstr "Disable Auto-Approval"
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Approval Status"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "More information requested"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

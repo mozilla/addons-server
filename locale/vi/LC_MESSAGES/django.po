@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2017-12-06 10:11+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -990,14 +990,14 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Biểu tượng phải là PNG hoặc JPG."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "Url này đã được dùng bởi bộ sưu tập khác"
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
 #, fuzzy
-msgid "This slug cannot be used."
+msgid "This custom URL cannot be used."
 msgstr "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
 
 #, fuzzy
@@ -1985,6 +1985,18 @@ msgstr "{addon} {version} bị từ chối."
 #, fuzzy
 msgid "Content rejected"
 msgstr "bị từ chối"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "Đã yêu cầu thêm thông tin"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Đã yêu cầu thêm thông tin"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "{review} cho {addon} được viết."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3822,6 +3834,13 @@ msgstr ""
 msgid "View the blog &#9658;"
 msgstr ""
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "Đã yêu cầu thêm thông tin"
+
+msgid "This request for information has been resolved"
+msgstr ""
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4439,31 +4458,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5847,6 +5863,9 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Bạn không thể tải lên thêm tập tin cho phiên bản này."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Cảm ơn; đánh giá này được gán cờ để chờ chấp thuận của biên tập viên."
@@ -6033,9 +6052,12 @@ msgstr "Hệ điều hành:"
 msgid "Applications:"
 msgstr "Ứng dụng:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "Đã yêu cầu thêm thông tin"
+msgid "days"
+msgstr "7 ngày"
 
 msgid "Choose a canned response..."
 msgstr "Chọn một mẫu phản hồi sẵn..."
@@ -6069,6 +6091,10 @@ msgstr ""
 
 msgid "More Information Requested"
 msgstr ""
+
+#, fuzzy
+msgid "Expired Information Request"
+msgstr "Đã yêu cầu thêm thông tin"
 
 #, fuzzy
 msgid "Contains Reviewer Comment"
@@ -6139,6 +6165,10 @@ msgstr ""
 
 msgid "Weight"
 msgstr ""
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "Đã yêu cầu thêm thông tin"
 
 msgid "Last Content Review"
 msgstr ""
@@ -6281,6 +6311,10 @@ msgstr "Thông báo"
 
 msgid "Update message of the day"
 msgstr "Cập nhật thông điệp trong ngày"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "Đã yêu cầu thêm thông tin"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6584,6 +6618,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Trạng thái Chấp thuận"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "Đã yêu cầu thêm thông tin"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

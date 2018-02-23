@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1023,14 +1023,17 @@ msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη 
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
 
-msgid "This slug is already in use by another one of your collections."
+#, fuzzy
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+#, fuzzy
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
 
-msgid "This slug cannot be used."
-msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί."
+#, fuzzy
+msgid "This custom URL cannot be used."
+msgstr "Αυτό το όνομα χρήστη δεν μπορεί να χρησιμοποιηθεί."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2029,6 +2032,18 @@ msgstr "Το {addon} {version} απορίφθηκε."
 #, fuzzy
 msgid "Content rejected"
 msgstr "απορρίφθηκε"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3837,6 +3852,14 @@ msgstr "Ειδήσεις προγραμματιστών"
 msgid "View the blog &#9658;"
 msgstr "Προβολή ιστολογίου &#9658;"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "Αυτή η έκδοση δεν έχει αξιολογηθεί."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4428,23 +4451,24 @@ msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
 #, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
 #, fuzzy
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4452,10 +4476,6 @@ msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
-
-#, fuzzy
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -5844,6 +5864,9 @@ msgstr "Δεν μπορείτε να αφήσετε κριτική για το �
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ευχαριστούμε, η αξιολόγηση έχει σημειωθεί για να εγκριθεί από τους συντάκτες μας."
@@ -6034,8 +6057,12 @@ msgstr "Λειτουργικά συστήματα:"
 msgid "Applications:"
 msgstr "Εφαρμογές:"
 
-msgid "Is more info requested?"
-msgstr "Απαιτούνται περισσότερες πληροφορίες;"
+msgid "Require developer to respond in less than…"
+msgstr ""
+
+#, fuzzy
+msgid "days"
+msgstr "7 ημέρες"
 
 msgid "Choose a canned response..."
 msgstr "Επιλέξτε τυποποιημένη απάντηση..."
@@ -6069,6 +6096,10 @@ msgid "Jetpack Add-on"
 msgstr "Πρόσθετο Jetpack"
 
 msgid "More Information Requested"
+msgstr "Απαιτούνται περισσότερες πληροφορίες"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 msgid "Contains Reviewer Comment"
@@ -6142,6 +6173,10 @@ msgstr "Καμία κριτική"
 
 msgid "Weight"
 msgstr "Βάρος"
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6281,6 +6316,10 @@ msgstr "Ανακοίνωση"
 
 msgid "Update message of the day"
 msgstr "Ενημέρωση του μηνύματος της ημέρας"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -6581,6 +6620,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

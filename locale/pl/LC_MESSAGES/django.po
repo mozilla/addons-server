@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1032,16 +1032,16 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musi być w formacie PNG lub JPG."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ten adres url jest już używany przez inną kolekcję"
 
 #, fuzzy
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Podaj poprawną nazwę użytkownika składającą się z liter, cyfr, podkreślników lub myślników."
 
 #, fuzzy
-msgid "This slug cannot be used."
-msgstr "Nie można użyć tej nazwy"
+msgid "This custom URL cannot be used."
+msgstr "Ta nazwa użytkownika nie może być użyta."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2050,6 +2050,18 @@ msgstr "Dodatek {addon} {version} został odrzucony."
 #, fuzzy
 msgid "Content rejected"
 msgstr "odrzucony"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "Poproszono o więcej informacji"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Poproszono o więcej informacji"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Skomentuj dodatek {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3937,6 +3949,14 @@ msgstr "Aktualności"
 msgid "View the blog &#9658;"
 msgstr "Zobacz blog &#9658;"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "Poproszono o więcej informacji"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "Ta wersja nie została sprawdzona."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Wybierz licencję odpowiednią dla praw, których udzielasz do kodu źródłowego.Dotyczy tylko wyświetlanych dodatków."
 
@@ -4569,31 +4589,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -6077,6 +6094,9 @@ msgstr "Ktoś napisał opinię o moim dodatku"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nie możesz przesłać więcej plików dla tej wersji."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Dziękujemy. Opinia została oznaczona etykietą w celu zaakceptowania jej przez recenzenta."
@@ -6267,9 +6287,12 @@ msgstr "Systemy operacyjne:"
 msgid "Applications:"
 msgstr "Programy:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "Poproszono o więcej informacji"
+msgid "days"
+msgstr "7 dni"
 
 msgid "Choose a canned response..."
 msgstr "Wybierz gotową odpowiedź…"
@@ -6304,6 +6327,10 @@ msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
 
 msgid "More Information Requested"
+msgstr "Poproszono o więcej informacji"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "Poproszono o więcej informacji"
 
 #, fuzzy
@@ -6379,6 +6406,10 @@ msgstr ""
 
 msgid "Weight"
 msgstr ""
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "Poproszono o więcej informacji"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6520,6 +6551,10 @@ msgstr "Komunikaty"
 
 msgid "Update message of the day"
 msgstr "Aktualizuj wiadomość dnia"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "Poproszono o więcej informacji"
 
 msgid "An unknown error occurred"
 msgstr "Wystąpił nieznany błąd"
@@ -6830,6 +6865,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Status akceptacji"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "Poproszono o więcej informacji"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

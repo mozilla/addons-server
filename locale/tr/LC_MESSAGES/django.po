@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2018-01-02 14:05+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1012,14 +1012,17 @@ msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 msgid "Icons must be either PNG or JPG."
 msgstr "Simgeler PNG veya JPG olmalıdır."
 
-msgid "This slug is already in use by another one of your collections."
+#, fuzzy
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+#, fuzzy
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "Harfler, rakamlar, alt çizgiler veya tirelerden oluşan geçerli bir kullanıcı adı girin."
 
-msgid "This slug cannot be used."
-msgstr "Bu kısa ad kullanılamaz."
+#, fuzzy
+msgid "This custom URL cannot be used."
+msgstr "Bu kullanıcı adı kullanılamaz."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2022,6 +2025,17 @@ msgstr "{addon} {version} içeriği reddedildi."
 
 msgid "Content rejected"
 msgstr "İçerik reddedildi"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "Daha fazla bilgi istendi"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Daha fazla bilgi istendi"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3845,6 +3859,14 @@ msgstr "Geliştirici Haberleri"
 msgid "View the blog &#9658;"
 msgstr "Blogu görüntüle ►"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "Daha fazla bilgi istendi"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "Bu sürüm henüz incelenmemiş."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4436,31 +4458,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5831,6 +5850,9 @@ msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr ""
 
@@ -6036,9 +6058,12 @@ msgstr "İşletim sistemleri:"
 msgid "Applications:"
 msgstr "Uygulamalar:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "Daha fazla bilgi istendi"
+msgid "days"
+msgstr "7 gün"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6072,6 +6097,10 @@ msgid "Jetpack Add-on"
 msgstr "Jetpack eklentisi"
 
 msgid "More Information Requested"
+msgstr "Daha fazla bilgi istendi"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "Daha fazla bilgi istendi"
 
 #, fuzzy
@@ -6146,6 +6175,10 @@ msgstr "Hiç inceleme yok"
 
 msgid "Weight"
 msgstr ""
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "Daha fazla bilgi istendi"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6278,6 +6311,10 @@ msgstr "Duyuru"
 
 msgid "Update message of the day"
 msgstr "Günün iletisini güncelle"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "Daha fazla bilgi istendi"
 
 msgid "An unknown error occurred"
 msgstr "Bilinmeyen bir hata oluştu"
@@ -6591,6 +6628,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Otomatik onay doğrulandı"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "Daha fazla bilgi istendi"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

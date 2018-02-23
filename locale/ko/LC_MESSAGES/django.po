@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1008,16 +1008,16 @@ msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 
 #, fuzzy
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "문자, 숫자, 밑줄, 하이픈으로 이루어진 올바른 사용자 이름을 입력하세요."
 
 #, fuzzy
-msgid "This slug cannot be used."
-msgstr "이 이름은 사용할 수 없습니다."
+msgid "This custom URL cannot be used."
+msgstr "이 사용자 이름은 사용할 수 없습니다."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2008,6 +2008,18 @@ msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
 #, fuzzy
 msgid "Content rejected"
 msgstr "이(가) 심사 거부되었습니다"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "추가 정보 필요"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "추가 정보 필요"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3879,6 +3891,14 @@ msgstr "개발자 뉴스"
 msgid "View the blog &#9658;"
 msgstr "블로그 보기 &#9658;"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "추가 정보 필요"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "이 버전은 아직 심사를 거치지 않았습니다."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4514,31 +4534,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5976,6 +5993,9 @@ msgstr "누군가 부가 기능에 평가를 작성했습니다"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "감사합니다. 평가가 편집자에게 전달되었습니다."
@@ -6162,9 +6182,14 @@ msgstr "운영 체제:"
 msgid "Applications:"
 msgstr "애플리케이션:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
+# 83%
+# 100%
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "추가 정보 필요"
+msgid "days"
+msgstr "7일"
 
 msgid "Choose a canned response..."
 msgstr "자동 응답 메시지를 선택해 주세요..."
@@ -6199,6 +6224,10 @@ msgid "Jetpack Add-on"
 msgstr "Jetpack 부가 기능"
 
 msgid "More Information Requested"
+msgstr "추가 정보 필요"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "추가 정보 필요"
 
 #, fuzzy
@@ -6271,6 +6300,10 @@ msgstr "리뷰 없음"
 
 msgid "Weight"
 msgstr "무게"
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "추가 정보 필요"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6411,6 +6444,10 @@ msgstr "알림"
 
 msgid "Update message of the day"
 msgstr "오늘의 메시지 업데이트"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "추가 정보 필요"
 
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
@@ -6724,6 +6761,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "승인 상태"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "추가 정보 필요"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
