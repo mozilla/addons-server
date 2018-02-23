@@ -5932,7 +5932,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
 
 msgid "This rating can't flagged because it has no review text."
-msgstr ""
+msgstr "Esta avaliação não pode ser marcada porque não possui texto de análise."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Obrigado; esta análise foi marcada para aprovação do editor."
@@ -6129,7 +6129,7 @@ msgid "Applications:"
 msgstr "Aplicações:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Requerer ao programador responder em menos de…"
 
 msgid "days"
 msgstr "dias"
