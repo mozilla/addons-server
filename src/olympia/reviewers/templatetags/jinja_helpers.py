@@ -75,21 +75,28 @@ def queue_tabnav(context):
     listed = not context.get('unlisted')
 
     if listed:
-        tabnav = [('nominated', 'queue_nominated',
-                   (ungettext('New Add-on ({0})',
-                              'New Add-ons ({0})',
-                              counts['nominated'])
-                    .format(counts['nominated']))),
-                  ('pending', 'queue_pending',
-                   (ungettext('Update ({0})',
-                              'Updates ({0})',
-                              counts['pending'])
-                    .format(counts['pending']))),
-                  ('moderated', 'queue_moderated',
-                   (ungettext('Moderated Review ({0})',
-                              'Moderated Reviews ({0})',
-                              counts['moderated'])
-                    .format(counts['moderated'])))]
+        tabnav = []
+        if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+            tabnav.extend((
+                ('nominated', 'queue_nominated',
+                 (ungettext('New Add-on ({0})',
+                            'New Add-ons ({0})',
+                            counts['nominated'])
+                  .format(counts['nominated']))),
+                ('pending', 'queue_pending',
+                 (ungettext('Update ({0})',
+                            'Updates ({0})',
+                            counts['pending'])
+                  .format(counts['pending']))),
+            ))
+        if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+            tabnav.append(
+                ('moderated', 'queue_moderated',
+                 (ungettext('Moderated Review ({0})',
+                            'Moderated Reviews ({0})',
+                            counts['moderated'])
+                  .format(counts['moderated']))),
+            )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
@@ -99,6 +106,7 @@ def queue_tabnav(context):
                             counts['auto_approved'])
                   .format(counts['auto_approved']))),
             )
+
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
                 ('content_review', 'queue_content_review',

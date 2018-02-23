@@ -972,13 +972,21 @@ class QueueTest(ReviewerTest):
         for addon in self.expected_addons:
             self.get_queue(addon)
 
-    def _test_queue_count(self, position, name, count):
-        response = self.client.get(self.url)
+    def _test_queue_count(self, name, position, count, totalqueues,
+                          per_page=None):
+        args = {'per_page': per_page[0]} if per_page else {}
+        response = self.client.get(self.url, args)
         assert response.status_code == 200
         doc = pq(response.content)
-        a = doc('.tabnav li a').eq(position)
-        assert a.text() == '%s (%s)' % (name, count)
-        assert a.attr('href') == self.url
+        links = doc('.tabnav li a')
+        link = links.eq(position)
+
+        assert links.length == totalqueues
+        assert link.text() == '%s (%s)' % (name, count)
+        assert link.attr('href') == self.url
+        if per_page:
+            assert doc('.data-grid-top .num-results').text() == (
+                u'Results %s\u20131 of %s' % per_page)
 
     def _test_results(self):
         response = self.client.get(self.url)
@@ -1186,7 +1194,7 @@ class TestPendingQueue(QueueTest):
         self._test_results()
 
     def test_queue_count(self):
-        self._test_queue_count(1, 'Updates', 2)
+        self._test_queue_count('Updates', position=1, count=2, totalqueues=2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1279,7 +1287,8 @@ class TestNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_count(self):
-        self._test_queue_count(0, 'New Add-ons', 2)
+        self._test_queue_count('New Add-ons',
+                               position=0, count=2, totalqueues=2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1481,7 +1490,8 @@ class TestModeratedQueue(QueueTest):
             title='please', body='dont show me either', editorreview=True)
         RatingFlag.objects.create(rating=rating)
 
-        self._test_queue_count(2, 'Moderated Reviews', 2)
+        self._test_queue_count('Moderated Reviews',
+                               position=2, count=2, totalqueues=3)
 
     def test_no_reviews(self):
         Rating.objects.all().delete()
@@ -1682,14 +1692,9 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
 
-        response = self.client.get(self.url, {'per_page': 1})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Auto Approved Add-ons (4)'
-        assert link.attr('href') == self.url
-        assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1\u20131 of 4')
+        self._test_queue_count("Auto Approved Add-ons",
+                               position=2, count=4, totalqueues=3,
+                               per_page=(1, 4))
 
 
 class TestExpiredInfoRequestsQueue(QueueTest):
@@ -1858,25 +1863,18 @@ class TestContentReviewQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
 
-        response = self.client.get(self.url, {'per_page': 1})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Content Review (4)'
-        assert link.attr('href') == self.url
-        assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1\u20131 of 4')
+        self._test_queue_count('Content Review',
+                               position=2, count=4, totalqueues=3,
+                               per_page=(1, 4))
 
     def test_results_admin(self):
         # Admins should see the extra add-on that needs admin content review.
         user = self.login_with_permission()
         self.grant_permission(user, 'ReviewerAdminTools:View')
         self.generate_files()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Content Review (5)'
+
+        self._test_queue_count('Content Review',
+                               position=2, count=5, totalqueues=3)
 
 
 class TestPerformance(QueueTest):
