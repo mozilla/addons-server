@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 18:33+0000\n"
+"PO-Revision-Date: 2018-02-23 19:08+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4357,18 +4357,17 @@ msgstr "თარგმნეთ მარტივად {start_sub_heading}{ad
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით თარგმნეთ მყისიერად."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოიძიეთ სურათების წყაროები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "საინტერესო სურათი ნახეთ და გსურთ მეტი ინფორმაცია გაიგოთ მის შესახებ? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "მუშაობს ასობით ვიდეო-საიტებთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
