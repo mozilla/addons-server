@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2018-02-07 11:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1045,14 +1045,14 @@ msgid "Icons must be either PNG or JPG."
 msgstr "La icona ha de ser o bé PNG o bé JPG."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
 #, fuzzy
-msgid "This slug cannot be used."
+msgid "This custom URL cannot be used."
 msgstr "«{0}» és una etiqueta reservada i no es pot fer servir."
 
 #, fuzzy
@@ -2062,6 +2062,18 @@ msgstr "S'ha rebutjat la versió {addon} {version}"
 #, fuzzy
 msgid "Content rejected"
 msgstr "va ser rebutjada"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "S'ha sol·licitat més informació"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "S'ha sol·licitat més informació"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Comentari sobre {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3917,6 +3929,14 @@ msgstr ""
 msgid "View the blog &#9658;"
 msgstr ""
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "S'ha sol·licitat més informació"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "Encara no s'ha fet cap revisió d'aquesta versió."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4540,31 +4560,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avís"
 msgstr[1] "{0} avisos"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5946,6 +5963,9 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No podeu pujar més fitxers per a aquesta versió."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Gràcies, aquest comentari s'ha marcat amb un indicador per a què l'aprovi un editor."
@@ -6142,9 +6162,12 @@ msgstr "Sistemes operatius:"
 msgid "Applications:"
 msgstr "Aplicacions:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "S'ha sol·licitat més informació"
+msgid "days"
+msgstr "7 dies"
 
 msgid "Choose a canned response..."
 msgstr "Escolliu una resposta predefinida..."
@@ -6178,6 +6201,10 @@ msgstr ""
 
 msgid "More Information Requested"
 msgstr ""
+
+#, fuzzy
+msgid "Expired Information Request"
+msgstr "S'ha sol·licitat més informació"
 
 #, fuzzy
 msgid "Contains Reviewer Comment"
@@ -6251,6 +6278,10 @@ msgstr ""
 
 msgid "Weight"
 msgstr ""
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "S'ha sol·licitat més informació"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6401,6 +6432,10 @@ msgstr "Anunci"
 
 msgid "Update message of the day"
 msgstr "Actualitza el missatge del dia"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "S'ha sol·licitat més informació"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6709,6 +6744,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Estat de l'aprovació"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "S'ha sol·licitat més informació"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

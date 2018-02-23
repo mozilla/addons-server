@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -997,14 +997,14 @@ msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗ�
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Ŧħīş şŀŭɠ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ǿƞḗ ǿƒ ẏǿŭř ƈǿŀŀḗƈŧīǿƞş."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ǿƞḗ ǿƒ ẏǿŭř ƈǿŀŀḗƈŧīǿƞş."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Ḗƞŧḗř ȧ ṽȧŀīḓ şŀŭɠ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř ħẏƥħḗƞş."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "Ŧħḗ ƈŭşŧǿḿ ŬŘĿ ḿŭşŧ ƈǿƞşīşŧ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř ħẏƥħḗƞş."
 
-msgid "This slug cannot be used."
-msgstr "Ŧħīş şŀŭɠ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
+msgid "This custom URL cannot be used."
+msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ȧŀřḗȧḓẏ ƀḗŀǿƞɠş ŧǿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
@@ -1978,6 +1978,15 @@ msgstr "{addon} {version} ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ."
 
 msgid "Content rejected"
 msgstr "Ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ"
+
+msgid "{addon} information request removed."
+msgstr "{addon} īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ řḗḿǿṽḗḓ."
+
+msgid "Information request removed"
+msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ řḗḿǿṽḗḓ"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ ƈŀḗȧřḗḓ ƀẏ ḓḗṽḗŀǿƥḗř ǿƞ {addon} {version}."
 
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
@@ -3771,6 +3780,12 @@ msgstr "Ḓḗṽḗŀǿƥḗř Ƞḗẇş"
 msgid "View the blog &#9658;"
 msgstr "Ṽīḗẇ ŧħḗ ƀŀǿɠ &#9658;"
 
+msgid "Pending information request:"
+msgstr "Ƥḗƞḓīƞɠ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ:"
+
+msgid "This request for information has been resolved"
+msgstr "Ŧħīş řḗɋŭḗşŧ ƒǿř īƞƒǿřḿȧŧīǿƞ ħȧş ƀḗḗƞ řḗşǿŀṽḗḓ"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ ŀīƈḗƞşḗ ȧƥƥřǿƥřīȧŧḗ ƒǿř ŧħḗ řīɠħŧş ẏǿŭ ɠřȧƞŧ ǿƞ ẏǿŭř şǿŭřƈḗ ƈǿḓḗ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
 
@@ -4357,32 +4372,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƞşŀȧŧḗ ḗȧşīŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ, řīɠħŧ-ƈŀīƈķ, ȧƞḓ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḿȧƞȧɠḗ ƥȧşşẇǿřḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Şīḿƥŀīƒẏ ȧƞḓ şẏƞƈ ȧŀŀ ẏǿŭř ṽȧřīǿŭş ẇḗƀşīŧḗ ŀǿɠīƞş ȧƈřǿşş ḓḗṽīƈḗş ẇīŧħ ǿƞḗ ƥȧşşẇǿřḓ ŧǿ řŭŀḗ ŧħḗḿ ȧŀŀ."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Şḗḗ ȧƞ īƞŧḗřḗşŧīƞɠ ƥīƈŧŭřḗ ǿƞ ŧħḗ Ẇḗƀ ȧƞḓ ẇȧƞŧ ŧǿ ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ īŧ? Ŧřẏ ŧħīş īḿȧɠḗ şḗȧřƈħ ŧǿǿŀ."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ ƈǿƞŧřǿŀ, ȧƞḓ ḿǿřḗ."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Ẇǿřķş ẇīŧħ ẎǿŭŦŭƀḗ, Ƒȧƈḗƀǿǿķ, Ṽīḿḗǿ, Ŧẇīŧƈħ, Ḓȧīŀẏḿǿŧīǿƞ, Ƥḗřīşƈǿƥḗ, ȧƞḓ ħŭƞḓřḗḓş ǿƒ ǿŧħḗř ṽīḓḗǿ şīŧḗş."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş—ȧŀẇȧẏş ȧ ƈŀīƈķ ȧẇȧẏ."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Ẇǿřķş şḗȧḿŀḗşşŀẏ ẇīŧħ ḿǿşŧ ƥǿƥŭŀȧř ṽīḓḗǿ şīŧḗş."
@@ -5836,6 +5848,9 @@ msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Ŧħīş řȧŧīƞɠ ƈȧƞ'ŧ ƒŀȧɠɠḗḓ ƀḗƈȧŭşḗ īŧ ħȧş ƞǿ řḗṽīḗẇ ŧḗẋŧ."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇḗř ȧƥƥřǿṽȧŀ."
 
@@ -6029,8 +6044,11 @@ msgstr "Ǿƥḗřȧŧīƞɠ şẏşŧḗḿş:"
 msgid "Applications:"
 msgstr "Aƥƥŀīƈȧŧīǿƞş:"
 
-msgid "Is more info requested?"
-msgstr "Īş ḿǿřḗ īƞƒǿ řḗɋŭḗşŧḗḓ?"
+msgid "Require developer to respond in less than…"
+msgstr "Řḗɋŭīřḗ ḓḗṽḗŀǿƥḗř ŧǿ řḗşƥǿƞḓ īƞ ŀḗşş ŧħȧƞ…"
+
+msgid "days"
+msgstr "ḓȧẏş"
 
 msgid "Choose a canned response..."
 msgstr "Ƈħǿǿşḗ ȧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
@@ -6063,6 +6081,9 @@ msgstr "Ĵḗŧƥȧƈķ Aḓḓ-ǿƞ"
 
 msgid "More Information Requested"
 msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
+
+msgid "Expired Information Request"
+msgstr "Ḗẋƥīřḗḓ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧ"
 
 msgid "Contains Reviewer Comment"
 msgstr "Ƈǿƞŧȧīƞş Řḗṽīḗẇḗř Ƈǿḿḿḗƞŧ"
@@ -6135,6 +6156,9 @@ msgstr "Ƞǿ Řḗṽīḗẇş"
 
 msgid "Weight"
 msgstr "Ẇḗīɠħŧ"
+
+msgid "Information Request Deadline"
+msgstr "Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧ Ḓḗȧḓŀīƞḗ"
 
 msgid "Last Content Review"
 msgstr "Ŀȧşŧ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
@@ -6248,6 +6272,9 @@ msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
 
 msgid "Update message of the day"
 msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
+
+msgid "Add-ons with expired information requests"
+msgstr "Aḓḓ-ǿƞş ẇīŧħ ḗẋƥīřḗḓ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧş"
 
 msgid "An unknown error occurred"
 msgstr "Aƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
@@ -6540,6 +6567,9 @@ msgstr "Ḓīşȧƀŀḗ Aŭŧǿ-Aƥƥřǿṽȧŀ"
 
 msgid "Enable Auto-Approval"
 msgstr "Ḗƞȧƀŀḗ Aŭŧǿ-Aƥƥřǿṽȧŀ"
+
+msgid "Clear information request"
+msgstr "Ƈŀḗȧř īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Ƈŀḗȧř Aḓḿīƞ Ƈǿḓḗ Řḗṽīḗẇ Ƒŀȧɠ"
