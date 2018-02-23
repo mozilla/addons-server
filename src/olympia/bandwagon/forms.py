@@ -197,7 +197,7 @@ class CollectionForm(happyforms.ModelForm):
         if not icon:
             return
         icon_check = ImageCheck(icon)
-        if (icon.content_type not in ('image/png', 'image/jpeg') or
+        if (icon.content_type not in amo.IMG_TYPES or
                 not icon_check.is_image()):
             raise forms.ValidationError(
                 ugettext('Icons must be either PNG or JPG.'))

@@ -178,7 +178,7 @@ class UserEditForm(happyforms.ModelForm):
             return
 
         image_check = ImageCheck(photo)
-        if (photo.content_type not in ('image/png', 'image/jpeg') or
+        if (photo.content_type not in amo.IMG_TYPES or
                 not image_check.is_image()):
             raise forms.ValidationError(
                 ugettext('Images must be either PNG or JPG.'))
