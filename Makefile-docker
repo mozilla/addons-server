@@ -111,6 +111,8 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
 update_deps: install_python_dependencies install_node_dependencies
+    # Make sure we pull our latest mozilla-product-data.
+    # There were scenarios where this wouldn't happen automatically during our CircleCI ui-tests so we enforce it here as a workaround.
 	python manage.py update_product_details
 
 update_db:
@@ -121,8 +123,6 @@ update_assets:
 	python manage.py collectstatic --noinput
 
 update: update_deps update_db update_assets
-	# Make sure we pull our latest mozilla-product-data.
-	# There were scenarios where this wouldn't happen automatically during our CircleCI ui-tests so we enforce it here as a workaround.
 	python manage.py update_permissions_from_mc
 
 reindex:
