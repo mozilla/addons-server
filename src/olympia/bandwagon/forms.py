@@ -231,6 +231,8 @@ class CollectionForm(happyforms.ModelForm):
             destination = os.path.join(dirname, '%d.png' % collection.id)
             tmp_destination = os.path.join(
                 dirname, '%d.png__unconverted' % collection.id)
+            # Seek back to the beginning before reading the icon file since we
+            # went through ImageCheck() in clean_icon().
             icon.seek(0)
             with storage.open(tmp_destination, 'w') as fh:
                 for chunk in icon.chunks():
