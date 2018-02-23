@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 18:34+0000\n"
+"PO-Revision-Date: 2018-02-23 18:36+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6134,11 +6134,10 @@ msgid "Applications:"
 msgstr "Anwendungen:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Informationen durch Entwickler sollten vorliegen nach weniger als …"
 
-#, fuzzy
 msgid "days"
-msgstr "7 Tage"
+msgstr "Tagen"
 
 msgid "Choose a canned response..."
 msgstr "Eine fertige Antwort auswählen …"
@@ -6172,9 +6171,8 @@ msgstr "Jetpack-Add-on"
 msgid "More Information Requested"
 msgstr "Weitere Informationen benötigt"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Weitere Informationen benötigt"
+msgstr "Abgelaufene Informationsanforderung"
 
 msgid "Contains Reviewer Comment"
 msgstr "Enthält Kommentar vom Kontrolleur"
@@ -6248,9 +6246,8 @@ msgstr "Keine Bewertungen"
 msgid "Weight"
 msgstr "Gewicht"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Weitere Informationen benötigt"
+msgstr "Termin für Informationsanforderung"
 
 msgid "Last Content Review"
 msgstr "Letzte Inhaltsüberprüfung"
@@ -6365,9 +6362,8 @@ msgstr "Ankündigung"
 msgid "Update message of the day"
 msgstr "Nachricht des Tages aktualisieren"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Weitere Informationen angefordert"
+msgstr "Add-ons mit abgelaufenen Informationsanforderungen"
 
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
@@ -6663,9 +6659,8 @@ msgstr "Automatische Freischaltung deaktivieren"
 msgid "Enable Auto-Approval"
 msgstr "Automatische Freischaltung aktivieren"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Weitere Informationen angefordert"
+msgstr "Informationsanforderung löschen"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markierung für Admin-Quelltext-Überprüfung löschen"
