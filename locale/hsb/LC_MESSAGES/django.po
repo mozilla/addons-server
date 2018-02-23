@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 18:11+0000\n"
+"PO-Revision-Date: 2018-02-23 18:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1039,9 +1039,8 @@ msgstr "Tutón swójski URL so hižo wot druheje z wašich zběrkow wužiwa."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Swójski URL dyrbi z pismikow, ličbow, podsmužkow abo wjazawkow wobstać."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Tute wužiwarske mjeno njeda so wužiwać."
+msgstr "Tutón swójski URL njeda so wužiwać."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
@@ -2042,17 +2041,14 @@ msgstr "Wobsah {addon} {version} wotpokazany."
 msgid "Content rejected"
 msgstr "Wobsah wotpokazany"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "Dalše informacije požadane"
+msgstr "{addon} je próstwu wo informacije wotstronił."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Dalše informacije požadane"
+msgstr "Próstwa wo informacije je so wotstroniła"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Wotmołwa wot wuwiwarja wo {addon} {version}."
+msgstr "Próstwa wo informacije je so wot wuwiwarja w {addon} {version} zhašała."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3854,13 +3850,11 @@ msgstr "Nowinki wuwiwarjow"
 msgid "View the blog &#9658;"
 msgstr "Čitajće blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Dalše informacije požadane"
+msgstr "Próstwa wo informacije hišće wusteji:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Tuta wersija njeje so přepruwowała."
+msgstr "Tuta próstwa wo informacije je so rozrisała"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy kod daće. To je jenož za nalistowane přidatki relewantne."
@@ -4457,16 +4451,14 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Přełožće lochkoe {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Wuzběhńće tekst, klikńće z prawej tastu a přełožće hnydom."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Chceće sej zajimawy wobraz w interneće wobhladać a wjace wo nim zhonić? Wupruwujće tutón nastroj za pytanje wobrazow."
@@ -6162,9 +6154,8 @@ msgstr "Nałoženja:"
 msgid "Require developer to respond in less than…"
 msgstr "Wuwiwarjej kazać wotmołwić za mjenje hač…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dnjow"
+msgstr "dnjow"
 
 msgid "Choose a canned response..."
 msgstr "Wubjerće přihotowanu wotmołwu..."
@@ -6198,9 +6189,8 @@ msgstr "Přidatk typa Jetpack"
 msgid "More Information Requested"
 msgstr "Dalše informacije požadane"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Dalše informacije požadane"
+msgstr "Próstwa wo Informacije je spadnyła"
 
 msgid "Contains Reviewer Comment"
 msgstr "Wobsahuje komentar přepruwowarja"
@@ -6280,9 +6270,8 @@ msgstr "Žane pohódnoćenja"
 msgid "Weight"
 msgstr "Wažnosć"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Dalše informacije požadane"
+msgstr "Termin za próstwu wo informacije"
 
 msgid "Last Content Review"
 msgstr "Poslednje přepruwowanje wobsaha"
@@ -6399,9 +6388,8 @@ msgstr "Připowědźenje"
 msgid "Update message of the day"
 msgstr "Powěsć dnja aktualizować"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Dalše informacije požadane"
+msgstr "Přidatki ze spadnjenymi próstwami wo informacije"
 
 msgid "An unknown error occurred"
 msgstr "Njeznaty zmylk je wustupił"
@@ -6699,9 +6687,8 @@ msgstr "Awtomatiske schwalenje znjemóžnić"
 msgid "Enable Auto-Approval"
 msgstr "Awtomatiske schwalenje zmóžnić"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Dalše informacije požadane"
+msgstr "Próštwu wo informacije zhašeć"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
