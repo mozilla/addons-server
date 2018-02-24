@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 17:39+0000\n"
+"PO-Revision-Date: 2018-02-24 22:50+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2057,9 +2057,8 @@ msgstr "Zahteva za informacije za dodatek {addon} je odstranjena."
 msgid "Information request removed"
 msgstr "Zahteva za informacije odstranjena"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Razvijalčev odgovor o {addon} {version}."
+msgstr "Zahtevo za informacije o {addon} {version} je razvijalec odstranil."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3880,9 +3879,8 @@ msgstr "Glejte blog &#9658;"
 msgid "Pending information request:"
 msgstr "Potrebnih je več informacij"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Te različice se ni pregledalo."
+msgstr "Ta zahteva za informacije je bila razrešena"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Izberite ustrezno licenco za pravice, ki jih podeljujete za svojo izvorno kodo. Velja samo za dodatke na seznamu."
@@ -4496,16 +4494,14 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprosto prevedite strani {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Označite katerokoli besedilo, kliknite z desno miškino tipko in ga prevedite."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Obrnjeno slikovno iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
@@ -4514,7 +4510,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Deluje z YouTubom, Facebookom, Vimeom, Twitchem, Dailymotionom, Periscopom in stotinami drugih strani."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -6186,7 +6182,7 @@ msgid "Applications:"
 msgstr "Programi:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Zahtevaj razvijalčev odziv v manj kot …"
 
 # 83%
 # 100%
