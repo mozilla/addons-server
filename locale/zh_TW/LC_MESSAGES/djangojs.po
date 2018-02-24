@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2017-08-10 15:01+0000\n"
+"PO-Revision-Date: 2018-02-24 06:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -265,7 +265,7 @@ msgid "Add-ons Updated"
 msgstr "已更新的附加元件"
 
 msgid "Reviews Written"
-msgstr "寫過的意見"
+msgstr "寫過的評論"
 
 msgid "User Signups"
 msgstr "註冊過的使用者"
@@ -550,11 +550,11 @@ msgstr "有更新的附加元件，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "給出的留言，最近 {0} 天"
+msgstr "給出的評論，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "給出的留言，從 {0} 至 {1}"
+msgstr "給出的評論，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
