@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 22:50+0000\n"
+"PO-Revision-Date: 2018-02-24 22:51+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3875,9 +3875,8 @@ msgstr "Novice za razvijalce"
 msgid "View the blog &#9658;"
 msgstr "Glejte blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Potrebnih je več informacij"
+msgstr "Čakajoča zahteva za informacije:"
 
 msgid "This request for information has been resolved"
 msgstr "Ta zahteva za informacije je bila razrešena"
@@ -4504,7 +4503,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Obrnjeno slikovno iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Ste na spletu našli zanimivo sliko, o kateri želite izvedeti več? Preskusite to orodje za iskanje slik."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
