@@ -385,10 +385,9 @@ function refreshAddonBasicInformation($form) {
     update_name_div = $form.find('[data-name=name]')
     updated_name = update_name_div.text()
     // Get the element to update in the top-left quadrant and update it with the new name
-    // TODO if possible change the H2 tag to have an id attribute. Need to identify where the H2 tag is generated
-    // For the time being we rely on the structure of the page
-    name_h2_tag = $('[id=l10n-menu]').next()
-    name_h2_tag.text(updated_name)
+    // The element being defined in devhub/addons/edit.html file belongs to the class addon-name
+    addon_name_tag = $('.addon-name')
+    addon_name_tag.text(updated_name)
 }
 
 
