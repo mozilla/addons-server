@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 08:50+0000\n"
+"PO-Revision-Date: 2018-02-24 08:55+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3814,9 +3814,8 @@ msgstr "A blog megtekintése &#9658;"
 msgid "Pending information request:"
 msgstr "Függőben lévő információkérés:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Ezt a verziót még nem értékelte senki."
+msgstr "Ez az információkérés megoldódott"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -4417,16 +4416,14 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Fordítson egyszerűen {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Jelöljön ki tetszőleges szöveget, kattintson a jobb gombbal, és fordítsa le azonnal."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tegye jobbá a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Fordított képkeresés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Egy érdekes képet lát a weben, és szeretne többet megtudni róla? Próbálja ki ezt a képkereső eszközt."
@@ -6117,9 +6114,8 @@ msgstr "Alkalmazások:"
 msgid "Require developer to respond in less than…"
 msgstr "A fejlesztőnek ennyi ideje lesz reagálnia: kevesebb mint…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 nap"
+msgstr "nap"
 
 msgid "Choose a canned response..."
 msgstr "Válasszon egy konzervválaszt…"
@@ -6153,9 +6149,8 @@ msgstr "Jetpack kiegészítők"
 msgid "More Information Requested"
 msgstr "További információ szükséges"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "További információ szükséges"
+msgstr "Lejárt információkérés"
 
 msgid "Contains Reviewer Comment"
 msgstr "Értékelői hozzászólást tartalmaz"
@@ -6229,9 +6224,8 @@ msgstr "Nincsenek értékelések"
 msgid "Weight"
 msgstr "Súly"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "További információ szükséges"
+msgstr "Információkérés határideje"
 
 msgid "Last Content Review"
 msgstr "Legutóbbi tartalomértékelés"
@@ -6348,9 +6342,8 @@ msgstr "Bejelentés"
 msgid "Update message of the day"
 msgstr "A nap üzenetének frissítése"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "További információt kér"
+msgstr "Kiegészítők lejárt információkérésekkel"
 
 msgid "An unknown error occurred"
 msgstr "Ismeretlen hiba történt"
@@ -6648,9 +6641,8 @@ msgstr "Automatikus jóváhagyás letiltása"
 msgid "Enable Auto-Approval"
 msgstr "Automatikus jóváhagyás engedélyezése"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "További információt kér"
+msgstr "Információkérés teljesítése"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Adminisztrátori kódértékelés jelző törlése"
