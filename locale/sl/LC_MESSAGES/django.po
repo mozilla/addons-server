@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 16:50+0000\n"
+"PO-Revision-Date: 2018-02-24 17:39+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1038,17 +1038,14 @@ msgstr "Ta spletni naslov že uporablja druga zbirka"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikone morajo biti bodisi PNG ali JPG."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "To rekleto že uporablja druga vaša zbirka."
+msgstr "Ta spletni naslov po meri že uporablja druga vaša zbirka."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Vnesite veljavno rekleto, sestavljeno iz črk, števk, podčrtajev in vezajev."
+msgstr "Spletni naslov po meri mora biti sestavljen iz črk, števk, podčrtajev in vezajev."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Tega uporabniškega imena ni mogoče uporabiti."
+msgstr "Tega spletnega naslova po meri ni mogoče uporabiti."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ta dodatek že pripada zbirki"
@@ -2054,13 +2051,11 @@ msgstr "Vsebina dodatka {addon} {version} zavrnjena."
 msgid "Content rejected"
 msgstr "Vsebina zavrnjena"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "Potrebnih je več informacij"
+msgstr "Zahteva za informacije za dodatek {addon} je odstranjena."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Potrebnih je več informacij"
+msgstr "Zahteva za informacije odstranjena"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
@@ -5988,7 +5983,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Iste različice dodatka ne morete oceniti večkrat."
 
 msgid "This rating can't flagged because it has no review text."
-msgstr ""
+msgstr "Te ocene ni mogoče prijaviti, ker ne vsebuje besedila."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Hvala; ta ocena je bila označena za uredniški pregled."
@@ -6230,9 +6225,8 @@ msgstr "Dodatek Jetpack"
 msgid "More Information Requested"
 msgstr "Potrebnih je več informacij"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Potrebnih je več informacij"
+msgstr "Pretekla zahteva za informacije"
 
 msgid "Contains Reviewer Comment"
 msgstr "Vsebuje pregledovalčev komentar"
@@ -6312,9 +6306,8 @@ msgstr "Ni ocen"
 msgid "Weight"
 msgstr "Teža"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Potrebnih je več informacij"
+msgstr "Rok zahteve za informacije"
 
 msgid "Last Content Review"
 msgstr "Zadnji pregled vsebine"
@@ -6433,9 +6426,8 @@ msgstr "Objava"
 msgid "Update message of the day"
 msgstr "Posodobi sporočilo dneva"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Potrebnih je več informacij"
+msgstr "Dodatki s pretečenimi zahtevami za informacije"
 
 msgid "An unknown error occurred"
 msgstr "Prišlo je do neznane napake"
