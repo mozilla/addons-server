@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 19:24+0000\n"
+"PO-Revision-Date: 2018-02-24 13:01+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3886,13 +3886,11 @@ msgstr "Notícias para desenvolvedores"
 msgid "View the blog &#9658;"
 msgstr "Ver o blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Mais informações solicitadas"
+msgstr "Solicitação de informações em espera:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Esta versão não foi analisada."
+msgstr "Esta solicitação de informação já foi resolvida"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Por favor escolha uma licença apropriada para o seu código fonte. Isto é relevante apenas para complementos listados."
@@ -4510,16 +4508,14 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Traduza facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Selecione qualquer texto, clique com o botão direito e traduza instantaneamente."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pesquisa inversa de imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Viu uma imagem interessante na Web e deseja saber mais sobre ela? Experimente esta ferramenta de pesquisa de imagens."
@@ -6228,9 +6224,8 @@ msgstr "Aplicações:"
 msgid "Require developer to respond in less than…"
 msgstr "Solicitar ao programador responder em menos de…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dias"
+msgstr "dias"
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta..."
@@ -6264,9 +6259,8 @@ msgstr "Extensão Jetpack"
 msgid "More Information Requested"
 msgstr "Mais informações solicitadas"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Mais informações solicitadas"
+msgstr "Solicitação de informação expirada"
 
 msgid "Contains Reviewer Comment"
 msgstr "Contém o comentário do revisor"
@@ -6340,9 +6334,8 @@ msgstr "Sem revisões"
 msgid "Weight"
 msgstr "Peso"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Mais informações solicitadas"
+msgstr "Prazo para solicitação de informação"
 
 msgid "Last Content Review"
 msgstr "Última avaliação de conteúdo"
@@ -6461,9 +6454,8 @@ msgstr "Anúncio"
 msgid "Update message of the day"
 msgstr "Atualizar a mensagem do dia"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Mais informações solicitadas"
+msgstr "Extensões com solicitações de informação expirada"
 
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
@@ -6764,9 +6756,8 @@ msgstr "Desabilitar auto-aprovação"
 msgid "Enable Auto-Approval"
 msgstr "Habilitar auto-aprovação"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Mais informações solicitadas"
+msgstr "Limpar solicitação de informação"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpar a sinalização de revisão do código de administração"
