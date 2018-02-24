@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 07:32+0000\n"
+"PO-Revision-Date: 2018-02-24 07:40+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4432,20 +4432,19 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Översätt enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markera vilken text som helst, högerklicka och översätt direkt."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Omvänd bildsökning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Se en intressant bild på webben och du vill veta mer om den? Prova detta bildsökverktyg."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Fungerar med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope och hundratals andra videosidor."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
@@ -5924,7 +5923,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Du kan inte lämna mer än en recension för samma version av ett tillägg."
 
 msgid "This rating can't flagged because it has no review text."
-msgstr ""
+msgstr "Detta betyg kan inte flaggas eftersom den inte har någon granskningstext."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Tack; recensionen har märkts för granskning."
@@ -6120,11 +6119,10 @@ msgid "Applications:"
 msgstr "Applikationer:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Kräv utvecklare att svara på mindre än…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dagarna"
+msgstr "dagar"
 
 msgid "Choose a canned response..."
 msgstr "Välj ett standardsvar..."
@@ -6158,9 +6156,8 @@ msgstr "Jetpack-tillägg"
 msgid "More Information Requested"
 msgstr "Mer information begärd"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Mer information begärd"
+msgstr "Upphörd informationsbegäran"
 
 msgid "Contains Reviewer Comment"
 msgstr "Innehåller granskningskommentar"
@@ -6234,9 +6231,8 @@ msgstr "Inga recensioner"
 msgid "Weight"
 msgstr "Vikt"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Mer information begärd"
+msgstr "Informationsgäran deadline"
 
 msgid "Last Content Review"
 msgstr "Senaste innehållsgranskning"
@@ -6351,9 +6347,8 @@ msgstr "Meddelande"
 msgid "Update message of the day"
 msgstr "Uppdatera meddelande för dagen"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Mer information begärd"
+msgstr "Tillägg med upphörd informationsbegäran"
 
 msgid "An unknown error occurred"
 msgstr "Ett okänt fel uppstod"
@@ -6647,9 +6642,8 @@ msgstr "Inaktivera automatisk godkännande"
 msgid "Enable Auto-Approval"
 msgstr "Aktivera automatisk godkännande"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Mer information begärd"
+msgstr "Rensa informationsbegäran"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Rensa flagga för administrativ kodgranskning"
