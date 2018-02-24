@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 01:48+0000\n"
+"PO-Revision-Date: 2018-02-24 02:01+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4344,16 +4344,14 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Terjemahkan {start_sub_heading} secara mudah dengan {addon_name} {end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Serlahkan mana-mana teks, klik kanan, dan diterjemahkan serta-merta."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Nampak gambar yang menarik dalam Web dan mahu mengetahuinya lebih lanjut? Cuba alatan carian imej ini."
@@ -6031,9 +6029,8 @@ msgstr "Aplikasi:"
 msgid "Require developer to respond in less than…"
 msgstr "Menghendaki pembangun untuk respons dalam tempoh kurang daripada…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 hari"
+msgstr "hari"
 
 msgid "Choose a canned response..."
 msgstr "Pilih respons lazim..."
@@ -6067,9 +6064,8 @@ msgstr "Add-on Jetpack"
 msgid "More Information Requested"
 msgstr "Perlukan Maklumat Lanjut"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Perlukan Maklumat Lanjut"
+msgstr "Permintaan Maklumat Tamat Tempoh"
 
 msgid "Contains Reviewer Comment"
 msgstr "Ada Komen Penyemak"
@@ -6140,9 +6136,8 @@ msgstr "Tiada Semakan"
 msgid "Weight"
 msgstr "Pertimbangkan"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Perlukan Maklumat Lanjut"
+msgstr "Tarikh Akhir Permintaan Maklumat"
 
 msgid "Last Content Review"
 msgstr "Semakan Kandungan Terakhir"
@@ -6256,9 +6251,8 @@ msgstr "Pengumuman"
 msgid "Update message of the day"
 msgstr "Kemaskini mesej penting hari ini"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "Perlukan maklumat lanjut"
+msgstr "Add-ons dengan permintaan maklumat tamat tempoh"
 
 msgid "An unknown error occurred"
 msgstr "Ada ralat yang tidak diketahui"
@@ -6552,9 +6546,8 @@ msgstr "Nyahdaya Auto-Kelulusan"
 msgid "Enable Auto-Approval"
 msgstr "Dayakan Auto-Kelulusan"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Perlukan maklumat lanjut"
+msgstr "Buang permintaan maklumat"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Buang Tanda Semakan Kod Pentadbir"
