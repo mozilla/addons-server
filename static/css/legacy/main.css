@@ -2114,8 +2114,7 @@ ol.pagination + .num-results {
 
 .item {
     margin: 1.2em 0;
-    padding-top:10px;
-    width: 680px;
+    padding-top:1px;
 }
 .item blockquote,
 .version blockquote {
