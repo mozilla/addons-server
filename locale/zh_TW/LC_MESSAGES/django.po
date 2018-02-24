@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 06:31+0000\n"
+"PO-Revision-Date: 2018-02-24 06:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -975,17 +975,14 @@ msgstr "這個網址已被其他的收藏集使用"
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "這個 slug 已被您其他的收藏集使用。"
+msgstr "這個自訂網址已被您其他的收藏集使用。"
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "請輸入有效的 slug，當中只能有字母、數字、底線或連字號。"
+msgstr "請輸入有效的自訂網址，當中只能有字母、數字、底線或連字號。"
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "無法使用此使用者名稱。"
+msgstr "無法使用此自訂網址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
@@ -1951,17 +1948,14 @@ msgstr "已退回 {addon} {version} 內容。"
 msgid "Content rejected"
 msgstr "已退回內容"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "已要求提供更多資訊"
+msgstr "已移除對 {addon} 提供更多資訊的要求。"
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "已要求提供更多資訊"
+msgstr "已移除提供更多資訊的要求。"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "開發者對 {addon} {version} 的回覆。"
+msgstr "開發者已清除對 {addon} {version} 的資訊要求。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3736,13 +3730,11 @@ msgstr "開發者新聞"
 msgid "View the blog &#9658;"
 msgstr "瀏覽部落格 &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "已要求提供更多資訊"
+msgstr "尚待處理的資訊要求:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "此版本尚未審核。"
+msgstr "這筆資訊要求已經解決"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公開上架的附加元件有關。"
@@ -4332,16 +4324,14 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}擋廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}隨手翻譯{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "反白任何文字，按右鍵，即可即時翻譯。"
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}改善影片播放{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}以圖找圖{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "在網路上看到有趣的圖片，想了解更多資訊嗎？試試這套圖片搜尋工具。"
@@ -5893,9 +5883,8 @@ msgstr "應用程式:"
 msgid "Require developer to respond in less than…"
 msgstr "要求開發者在多少時間內回覆…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 天"
+msgstr "天"
 
 msgid "Choose a canned response..."
 msgstr "選擇一個制式回覆..."
@@ -5929,9 +5918,8 @@ msgstr "Jetpack 附加元件"
 msgid "More Information Requested"
 msgstr "被要求提供更多資訊"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "被要求提供更多資訊"
+msgstr "過期的資訊要求"
 
 msgid "Contains Reviewer Comment"
 msgstr "含有審核者的意見"
@@ -6002,9 +5990,8 @@ msgstr "無評論"
 msgid "Weight"
 msgstr "權重"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "被要求提供更多資訊"
+msgstr "資訊要求期限"
 
 msgid "Last Content Review"
 msgstr "上次內容審核"
@@ -6118,9 +6105,8 @@ msgstr "消息"
 msgid "Update message of the day"
 msgstr "每日更新訊息"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "已要求提供更多資訊"
+msgstr "有已過期的資訊要求的附加元件"
 
 msgid "An unknown error occurred"
 msgstr "發生了未知的錯誤"
@@ -6413,9 +6399,8 @@ msgstr "關閉自動通過審核"
 msgid "Enable Auto-Approval"
 msgstr "開啟自動通過審核"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "已要求提供更多資訊"
+msgstr "清除資訊要求"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "清除管理員程式碼審查旗標"
