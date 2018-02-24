@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 23:51+0000\n"
+"PO-Revision-Date: 2018-02-23 23:59+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1759,7 +1759,7 @@ msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} の詳細情報がリクエストされました。"
 
 msgid "More information requested"
-msgstr "詳細情報リクエスト済み"
+msgstr "詳細情報請求済み"
 
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} の上級審査が申請されました。"
@@ -1947,14 +1947,13 @@ msgid "Content rejected"
 msgstr "コンテンツが却下されました"
 
 msgid "{addon} information request removed."
-msgstr "{addon} の情報リクエストが削除されました。"
+msgstr "{addon} の情報請求が削除されました。"
 
 msgid "Information request removed"
-msgstr "情報リクエストが削除されました"
+msgstr "情報請求が削除されました"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version} に関する開発者の返信"
+msgstr "{addon} {version} に関する情報請求が開発者によって回答されました。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3714,13 +3713,11 @@ msgstr "開発者向けニュース"
 msgid "View the blog &#9658;"
 msgstr "ブログを見る &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "詳細情報リクエスト済み"
+msgstr "詳細情報請求済み"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "このバージョンはまだ審査を受けていません。"
+msgstr "この情報請求は解決しました"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "あなたのソースコードに付与する権利のための適切なライセンスを選んでください。これは、掲載中のアドオンにのみ関連付けられます。"
@@ -4304,16 +4301,14 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 簡単に翻訳"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 逆画像検索"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr ""
@@ -5871,9 +5866,8 @@ msgstr "アプリケーション:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 日"
+msgstr "日"
 
 msgid "Choose a canned response..."
 msgstr "返信の定型文を選んでください..."
@@ -5907,9 +5901,8 @@ msgstr "Jetpack アドオン"
 msgid "More Information Requested"
 msgstr "詳しい情報が求められています"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "詳しい情報が求められています"
+msgstr "期限切れとなった情報請求"
 
 msgid "Contains Reviewer Comment"
 msgstr "審査担当者のコメントがあります"
@@ -5980,9 +5973,8 @@ msgstr "レビューなし"
 msgid "Weight"
 msgstr "重み"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "詳しい情報が求められています"
+msgstr "情報請求期限"
 
 msgid "Last Content Review"
 msgstr "最後のコンテンツ審査"
@@ -6096,9 +6088,8 @@ msgstr "お知らせ"
 msgid "Update message of the day"
 msgstr "今日のメッセージを更新"
 
-#, fuzzy
 msgid "Add-ons with expired information requests"
-msgstr "詳細情報リクエスト済み"
+msgstr "期限切れの情報請求を伴ったアドオン"
 
 msgid "An unknown error occurred"
 msgstr "不明なエラーが発生しました"
@@ -6391,9 +6382,8 @@ msgstr ""
 msgid "Enable Auto-Approval"
 msgstr "自動承認を有効化"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "詳細情報リクエスト済み"
+msgstr "情報請求をクリア"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "管理者コード審査フラグをクリア"
@@ -6569,7 +6559,7 @@ msgstr "過去の審査メモ"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr "詳細情報リクエスト済み: {0}"
+msgstr "詳細情報請求済み: {0}"
 
 msgid "Flagged: {0}"
 msgstr "フラグ付き: {0}"
