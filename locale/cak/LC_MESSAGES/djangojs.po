@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-03 21:06+0000\n"
+"PO-Revision-Date: 2018-02-26 21:35+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -49,26 +49,26 @@ msgid "Error with {0}"
 msgstr "Sachoj rik'in {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Xqatzïj jun k'ak'a' samajib'äl richin nisamajïx ri Atz'aqat. We k'o jun atzijol tataqa' pa GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ri atz'aqat xsach rik'in ri rujikib'axik rik'in {0} sachoj."
+msgstr[1] "Ri atz'aqat xsach rik'in ri rujikib'axik kik'in {0} taq sachoj."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;chuqa'{0} ch'aqa' chik"
+msgstr[1] "&hellip;chuqa' {0} ch'aqa' chik"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Titz'et ri tz'aqät rutzijol jikib'anem"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Nijikib'äx {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ri atz'aqat xik'o chuwa ri nïm runimilem {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
