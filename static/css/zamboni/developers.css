@@ -85,11 +85,6 @@ ul.refinements:last-child {
     width: 370px;
 }
 
-form.border-width {
-    padding-top: 10px;
-    width: 680px;
-}
-
 /*#id_homepage, #id_support_url, #id_support_email {*/
 #trans-support_email input,
 #trans-homepage input,

@@ -65,7 +65,7 @@
     </div>
     <textarea id="manifest"></textarea>
 
-    <form method="post" id="submit-describe" class="item border-width">
+    <form method="post" id="submit-describe" class="item">
       {% csrf_token %}
       <div class="hidden">
         {{ new_addon_form.upload }}
