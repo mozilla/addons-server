@@ -265,7 +265,7 @@ class TestFlag(ReviewTest):
             'addons.ratings.flag', self.addon.slug, review.id)
         response = self.client.post(flag_url, {'flag': RatingFlag.SPAM})
         assert response.content == (
-            '{"msg": "This rating can\'t flagged because it has no review '
+            '{"msg": "This rating can\'t be flagged because it has no review '
             'text."}')
 
 
