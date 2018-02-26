@@ -272,8 +272,14 @@ def dashboard(request):
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.REVIEWS_ADMIN):
+        expired = (
+            Addon.objects.filter(
+                addonreviewerflags__pending_info_request__lt=datetime.now()
+            ).order_by('addonreviewerflags__pending_info_request'))
+
         sections[ugettext('Admin Tools')] = [(
-            ugettext('Add-ons with expired information requests'),
+            ugettext('Expired Information Requests ({0})'.format(
+                expired.count())),
             reverse('reviewers.queue_expired_info_requests')
         )]
     return render(request, 'reviewers/dashboard.html', base_context(**{
@@ -539,6 +545,11 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
                            amo.REVIEW_LIMITED_DELAY_HOURS)
         return qs.count
 
+    expired = (
+        Addon.objects.filter(
+            addonreviewerflags__pending_info_request__lt=datetime.now()
+        ).order_by('addonreviewerflags__pending_info_request'))
+
     counts = {
         'pending': construct_query_from_sql_model(ViewPendingQueue, **kw),
         'nominated': construct_query_from_sql_model(ViewFullReviewQueue, **kw),
@@ -549,6 +560,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         'content_review': (
             AutoApprovalSummary.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
+        'expired_info_requests': expired.count,
     }
     if unlisted:
         counts = {
