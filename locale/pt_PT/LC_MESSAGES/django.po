@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 13:26+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-23 17:11+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1008,14 +1008,14 @@ msgstr "Este url já está a ser utilizado por outra coleção"
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser PNG ou JPG."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Este identificador já está a ser utilizado por uma outra coleção sua."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Este URL personalizado já está a ser utilizado por uma outra coleção sua."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Digite um identificador válido constituído por letras, números, traços inferiores ou hífenes."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "O URL personalizado deve ser constituído por letras, números, traços inferiores ou hífenes."
 
-msgid "This slug cannot be used."
-msgstr "Este identificador não pode ser utilizado."
+msgid "This custom URL cannot be used."
+msgstr "Este URL personalizado não pode ser utilizado."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Este extra já pertence à coleção"
@@ -1996,6 +1996,15 @@ msgstr "{addon} {version} conteúdo rejeitado."
 
 msgid "Content rejected"
 msgstr "Conteúdo rejeitado"
+
+msgid "{addon} information request removed."
+msgstr "Solicitação de informação removida de {addon}."
+
+msgid "Information request removed"
+msgstr "Solicitação de informação removida"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Solicitação de informação limpa pelo programador em {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3803,6 +3812,12 @@ msgstr "Notícias do programador"
 msgid "View the blog &#9658;"
 msgstr "Ver o blogue &#9658;"
 
+msgid "Pending information request:"
+msgstr "Solicitação de informação em espera:"
+
+msgid "This request for information has been resolved"
+msgstr "Esta solicitação por informação já foi resolvida"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Por favor escolha uma licença apropriada para os direitos que concede ao seu código fonte. Isto apenas é relevante para extras listados."
 
@@ -4408,32 +4423,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Traduza facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin aplica milhares de filtros de conteúdo sem mastigar um monte de memória."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Destaque qualquer texto, clique com o lado direito, e traduza instantaneamente."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gira palavras-passe {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pesquisa inversa de imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Simplifique e sincronize todas as suas credenciais de vários websites entre dispositivos com uma palavra-passe para geri-los a todos."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Viu uma imagem interessante na Web e deseja saber mais acerca da mesma? Experimente esta ferramenta de pesquisa de imagens."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Desfrute de uma suíte de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, controlo de auto-reprodução, e mais."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de outros sites de vídeo."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funciona perfeitamente com os sites de vídeo mais populares."
@@ -5919,6 +5931,9 @@ msgstr "Não pode deixar uma análise no seu próprio extra."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Esta avaliação não pode ser marcada porque não possui texto de análise."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Obrigado; esta análise foi marcada para aprovação do editor."
 
@@ -6113,8 +6128,11 @@ msgstr "Sistemas operativos:"
 msgid "Applications:"
 msgstr "Aplicações:"
 
-msgid "Is more info requested?"
-msgstr "Mais informação solicitada?"
+msgid "Require developer to respond in less than…"
+msgstr "Requerer ao programador responder em menos de…"
+
+msgid "days"
+msgstr "dias"
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta ..."
@@ -6147,6 +6165,9 @@ msgstr "Extra Jetpack"
 
 msgid "More Information Requested"
 msgstr "Pedida mais informação"
+
+msgid "Expired Information Request"
+msgstr "Solicitação de informação expirada"
 
 msgid "Contains Reviewer Comment"
 msgstr "Contém comentário do revisor"
@@ -6219,6 +6240,9 @@ msgstr "Sem revisões"
 
 msgid "Weight"
 msgstr "Peso"
+
+msgid "Information Request Deadline"
+msgstr "Prazo de solicitação de informação"
 
 msgid "Last Content Review"
 msgstr "Última revisão de conteúdo"
@@ -6332,6 +6356,9 @@ msgstr "Anúncio"
 
 msgid "Update message of the day"
 msgstr "Atualizar mensagem do dia"
+
+msgid "Add-ons with expired information requests"
+msgstr "Extras com solicitações de informação expiradas"
 
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
@@ -6626,6 +6653,9 @@ msgstr "Desativar auto-aprovação"
 
 msgid "Enable Auto-Approval"
 msgstr "Ativar auto-aprovação"
+
+msgid "Clear information request"
+msgstr "Limpar solicitação de informação"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpar etiqueta de revisão de código de administrador"

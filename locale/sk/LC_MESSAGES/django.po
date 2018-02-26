@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
 "PO-Revision-Date: 2018-01-16 21:10+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1029,14 +1029,17 @@ msgstr "Táto adresa URL je už používaná inou kolekciou."
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikony musia byť vo formáte .png alebo .jpg."
 
-msgid "This slug is already in use by another one of your collections."
+#, fuzzy
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou kolekciou."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+#, fuzzy
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Zadajte platnú URL, ktorá obsahuje znaky abecedy, čísla, podčiarky alebo pomlčky."
 
-msgid "This slug cannot be used."
-msgstr "Táto URL nemôže byť použitá."
+#, fuzzy
+msgid "This custom URL cannot be used."
+msgstr "Toto používateľské meno nemôže byť použité."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -2045,6 +2048,18 @@ msgstr "Doplnok {addon} {version} zamietnutý."
 #, fuzzy
 msgid "Content rejected"
 msgstr "zamietnuté"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "Požadované dodatočné informácie"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Požadované dodatočné informácie"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Odpoveď od vývojára doplnku {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3882,6 +3897,14 @@ msgstr "Novinky od vývojárov"
 msgid "View the blog &#9658;"
 msgstr "Zobraziť blog &#9658;"
 
+#, fuzzy
+msgid "Pending information request:"
+msgstr "Požadované dodatočné informácie"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "Táto verzia nebola skontrolovaná."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4493,33 +4516,32 @@ msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Rýchly a efektívny blokovač reklamy. uBlock Origin upravuje stránku pomocou tisícov filtrov bez toho, aby plytval vašou pamäťou."
-
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spravujte heslá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Používajte sadu nových funkcií pre YouTube, napríklad režim kina, blokovanie reklám, ovládanie automatického prehrávania a ďalšie."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr ""
+
+#, fuzzy
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rozšírte svoju paletu smajlíkov {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tucty úžasných smajlíkov - vždy poruke."
-
-#, fuzzy
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -5973,6 +5995,9 @@ msgstr "niekto napíše recenziu na môj doplnok"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Pre rovnakú verziu doplnku nemôžete zanechať viac ako jednu recenziu."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr ""
+
 #, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ďakujeme; táto recenzia bola označená na schválenie editorom."
@@ -6168,9 +6193,12 @@ msgstr "Operačné systémy:"
 msgid "Applications:"
 msgstr "Aplikácie:"
 
+msgid "Require developer to respond in less than…"
+msgstr ""
+
 #, fuzzy
-msgid "Is more info requested?"
-msgstr "Zrušiť požiadavku na viac informácií"
+msgid "days"
+msgstr "7 dní"
 
 msgid "Choose a canned response..."
 msgstr "Zvoľte pripravenú odpoveď..."
@@ -6205,6 +6233,11 @@ msgstr "Doplnok typu Jetpack"
 
 # 92%
 msgid "More Information Requested"
+msgstr "Požadované doplňujúce informácie"
+
+# 92%
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "Požadované doplňujúce informácie"
 
 #, fuzzy
@@ -6284,6 +6317,11 @@ msgstr "Žiadne recenzie"
 
 msgid "Weight"
 msgstr ""
+
+# 92%
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "Požadované doplňujúce informácie"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6425,6 +6463,10 @@ msgstr "Oznámenie"
 
 msgid "Update message of the day"
 msgstr "Aktualizovať správu dňa"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "Požadované dodatočné informácie"
 
 msgid "An unknown error occurred"
 msgstr "Nastala neznáma chyba"
@@ -6736,6 +6778,10 @@ msgstr ""
 #, fuzzy
 msgid "Enable Auto-Approval"
 msgstr "Automatické schválenie potvrdené"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "Požadované dodatočné informácie"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"

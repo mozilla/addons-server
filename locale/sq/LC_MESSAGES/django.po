@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 15:35+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-24 09:06+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1013,14 +1013,14 @@ msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Ky identifikues përdoret tashmë nga një tjetër koleksion i juaji."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Kjo URL vetjake përdoret tashmë nga një tjetër koleksion i juaji."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Jepni një identifikues të vlefshëm, të përbërë nga shkronja, numra, nënvija ose vija ndarëse."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "URL-ja vetjake duhet të përbëhet nga shkronja, numra, nënvija ose vija ndarëse."
 
-msgid "This slug cannot be used."
-msgstr "Ky identifikues s’përdoret dot."
+msgid "This custom URL cannot be used."
+msgstr "Kjo URL vetjake s’përdoret dot."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
@@ -2002,6 +2002,15 @@ msgstr "Lënda për {addon} {version} u hodh tej."
 
 msgid "Content rejected"
 msgstr "Lënda u hodh tej"
+
+msgid "{addon} information request removed."
+msgstr "Është hequr kërkesë të dhënash mbi {addon}."
+
+msgid "Information request removed"
+msgstr "Është hequr kërkesë të dhënash"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Nga zhvilluesi për {addon} {version} është hequr kërkesë të dhënash."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3803,6 +3812,12 @@ msgstr "Lajme Zhvilluesish"
 msgid "View the blog &#9658;"
 msgstr "Shihni blogun &#9658;"
 
+msgid "Pending information request:"
+msgstr "Kërkesë të dhënash pezull:"
+
+msgid "This request for information has been resolved"
+msgstr "Kjo kërkesë për të dhëna është zgjidhur"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme me të drejtat që akordoni mbi kodin burim të shtesës suaj. Kjo vlen vetëm për shtesat e paraqitura."
 
@@ -4404,32 +4419,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Përktheni lehtë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Një bllokues i lehtë dhe i efektshëm reklamash. uBlock Origin përforcon mijëra filtra lënde pa ngrënë kujtesë kushedi."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Theksoni çfarëdo teksti, djathtasklikoni mbi të, dhe përktheheni në çast."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Administroni fjalëkalime {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kthejeni së prapthi kërkimin e figurës {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Thjeshtojini dhe njëkohësojini nëpër pajisje krejt kredencialet tuaj për sajte, përmes një fjalëkalimi që i zotëron të tërë."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Shihni një foto interesante në Web dhe doni të mësoni më tepër mbi të? Provoni këtë mjet kërkimi figurash."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përmirësoni videot {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Shijoni një suitë veçorish të reja për YouTube, të tilla si mënyra kinema, bllokim reklamash, kontroll vetëluajtjesh, etj."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Funksionon për YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dhe qindra sajte të tjerë videosh."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dhjetra emoji mahnitës - vetëm një klik larg."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Punon vaj me shumicën e sajteve popullore të videove."
@@ -5908,6 +5920,9 @@ msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Këtij vlerësimi s’mund t’i vihesh shenjë, ngaqë nuk ka tekst shqyrtimi."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim nga një shqyrtues."
 
@@ -6102,8 +6117,11 @@ msgstr "Sisteme operativë:"
 msgid "Applications:"
 msgstr "Aplikacione:"
 
-msgid "Is more info requested?"
-msgstr "A duhen më tepër të dhëna?"
+msgid "Require developer to respond in less than…"
+msgstr "Kërkoji zhvilluesit të përgjigjet në më pak se…"
+
+msgid "days"
+msgstr "ditë"
 
 msgid "Choose a canned response..."
 msgstr "Zgjidhni një përgjigje të gatshme…"
@@ -6137,6 +6155,9 @@ msgstr "Shtesë Jetpack"
 msgid "More Information Requested"
 msgstr "Lypsen Më Tepër të Dhëna"
 
+msgid "Expired Information Request"
+msgstr "Kërkesë e Skaduar të Dhënash"
+
 msgid "Contains Reviewer Comment"
 msgstr "Përmban Koment Shqyrtuesi"
 
@@ -6150,7 +6171,7 @@ msgid "Is locked by a reviewer."
 msgstr "Është bllokuar nga një shqyrtues."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "E ka të vendosur shenjën për çaktivizim vetëmiratimi."
 
 msgid "Duplicate Submission"
 msgstr "Parashtrim Dy Herë"
@@ -6208,6 +6229,9 @@ msgstr "Pa Shqyrtime"
 
 msgid "Weight"
 msgstr "Peshë"
+
+msgid "Information Request Deadline"
+msgstr "Afat Kërkese të Dhënash"
 
 msgid "Last Content Review"
 msgstr "Shqyrtimi Më i Ri i Lëndës"
@@ -6321,6 +6345,9 @@ msgstr "Njoftim"
 
 msgid "Update message of the day"
 msgstr "Mesazhi i sotëm i përditësimit"
+
+msgid "Add-ons with expired information requests"
+msgstr "Shtesa me kërkesa të skaduara të dhënash"
 
 msgid "An unknown error occurred"
 msgstr "Ndodhi një gabim i panjohur"
@@ -6615,6 +6642,9 @@ msgstr "Çaktivizo Vetëmiratimin"
 
 msgid "Enable Auto-Approval"
 msgstr "Aktivizo Vetëmiratimin"
+
+msgid "Clear information request"
+msgstr "Pastro kërkesë të dhënash"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"

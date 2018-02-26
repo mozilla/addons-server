@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 16:54+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-24 07:40+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1000,14 +1000,14 @@ msgstr "Denna URL används redan av en annan samling"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner måste vara antingen PNG eller JPG."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Denna slugg används redan av en av dina samlingar."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Denna anpassade URL används redan av en av dina samlingar."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Ange en giltig slugg som består av bokstäver, siffror, understreck eller bindestreck."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "Denna anpassade URL måste bestå av bokstäver, siffror, understreck eller bindestreck."
 
-msgid "This slug cannot be used."
-msgstr "Denna slugg kan inte användas."
+msgid "This custom URL cannot be used."
+msgstr "Denna anpassade URL kan inte användas."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
@@ -1983,6 +1983,15 @@ msgstr "{addon} {version} innehåll avvisat."
 
 msgid "Content rejected"
 msgstr "Innehåll avvisat"
+
+msgid "{addon} information request removed."
+msgstr "{addon} informationsbegäran borttagen."
+
+msgid "Information request removed"
+msgstr "Informationsbegäran borttagen"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3814,6 +3823,12 @@ msgstr "Utvecklarnyheter"
 msgid "View the blog &#9658;"
 msgstr "Visa bloggen &#9658;"
 
+msgid "Pending information request:"
+msgstr "Väntande informationsbegäran:"
+
+msgid "This request for information has been resolved"
+msgstr "Denna begäran om information har lösts"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 "Välj en licens som lämpar sig för de rättigheter du beviljar för din källkod.\n"
@@ -4413,32 +4428,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Översätt enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "En lätt och effektiv annonsblockerare. uBlock Origin använder tusentals filter utan att använda en massa minne."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Markera vilken text som helst, högerklicka och översätt direkt."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hantera lösenord {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Omvänd bildsökning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Förenkla och synkronisera alla dina olika webbplatsloggningar mellan enheter med ett lösenord för att styra dem alla."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Se en intressant bild på webben och du vill veta mer om den? Prova detta bildsökverktyg."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Njut av en serie av nya YouTube-funktioner, som biografläge, annonsblockering, automatisk spelkontroll och mycket mer."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Fungerar med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope och hundratals andra videosidor."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Fungerar smidigt med de flesta populära videosajter."
@@ -5910,6 +5922,9 @@ msgstr "Du kan inte lämna en recension för ditt egna tillägg."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Du kan inte lämna mer än en recension för samma version av ett tillägg."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Detta betyg kan inte flaggas eftersom den inte har någon granskningstext."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Tack; recensionen har märkts för granskning."
 
@@ -6103,8 +6118,11 @@ msgstr "Operativsystem:"
 msgid "Applications:"
 msgstr "Applikationer:"
 
-msgid "Is more info requested?"
-msgstr "Behöver du mer information?"
+msgid "Require developer to respond in less than…"
+msgstr "Kräv utvecklare att svara på mindre än…"
+
+msgid "days"
+msgstr "dagar"
 
 msgid "Choose a canned response..."
 msgstr "Välj ett standardsvar..."
@@ -6137,6 +6155,9 @@ msgstr "Jetpack-tillägg"
 
 msgid "More Information Requested"
 msgstr "Mer information begärd"
+
+msgid "Expired Information Request"
+msgstr "Upphörd informationsbegäran"
 
 msgid "Contains Reviewer Comment"
 msgstr "Innehåller granskningskommentar"
@@ -6209,6 +6230,9 @@ msgstr "Inga recensioner"
 
 msgid "Weight"
 msgstr "Vikt"
+
+msgid "Information Request Deadline"
+msgstr "Informationsgäran deadline"
 
 msgid "Last Content Review"
 msgstr "Senaste innehållsgranskning"
@@ -6322,6 +6346,9 @@ msgstr "Meddelande"
 
 msgid "Update message of the day"
 msgstr "Uppdatera meddelande för dagen"
+
+msgid "Add-ons with expired information requests"
+msgstr "Tillägg med upphörd informationsbegäran"
 
 msgid "An unknown error occurred"
 msgstr "Ett okänt fel uppstod"
@@ -6614,6 +6641,9 @@ msgstr "Inaktivera automatisk godkännande"
 
 msgid "Enable Auto-Approval"
 msgstr "Aktivera automatisk godkännande"
+
+msgid "Clear information request"
+msgstr "Rensa informationsbegäran"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Rensa flagga för administrativ kodgranskning"

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-14 14:50+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-23 18:37+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -977,14 +977,14 @@ msgstr "此网址已被其他收藏集使用"
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "此网址已被您的另一个收藏集使用。"
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "此自定义网址已被您的另一个收藏集使用。"
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "请输入一个有效的网址标识，只能由字母、数字、下划线及连字符构成。"
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "请输入一个有效的自定义网址，只能由字母、数字、下划线及连字符构成。"
 
-msgid "This slug cannot be used."
-msgstr "不能使用这个标识符。"
+msgid "This custom URL cannot be used."
+msgstr "不能使用此自定义网址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加组件已在收藏集中"
@@ -1938,6 +1938,15 @@ msgstr "{addon} {version} 内容被退回。"
 
 msgid "Content rejected"
 msgstr "内容被退回"
+
+msgid "{addon} information request removed."
+msgstr "{addon} 的信息请求已移除。"
+
+msgid "Information request removed"
+msgstr "信息请求已移除"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "开发者已清除在 {addon} {version} 的信息请求。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3697,6 +3706,12 @@ msgstr "开发者新闻"
 msgid "View the blog &#9658;"
 msgstr "查看博客 &#9658;"
 
+msgid "Pending information request:"
+msgstr "待定的信息请求："
+
+msgid "This request for information has been resolved"
+msgstr "此信息请求已解决"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "请选择一个许可协议，标明您对您的源代码授予的权利。此项只与上架的附加组件相关。"
 
@@ -4276,32 +4291,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "屏蔽广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "轻松翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "选中任何文本，右击，即刻翻译。"
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "管理密码 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "反搜图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "简化与跨设备同步您在各网站的登录信息，用一个密码搞定它们。"
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "如果在网上看到一张有趣的图片，如何了解有关它的更多信息？试试这个图片搜索工具。"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "适用于 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等数百个视频网站。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "无数的精美 emoji，只需一键。"
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "与大多数流行的视频网站无缝协作。"
@@ -5645,6 +5657,9 @@ msgstr "您不能评价自己的附加组件。"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "您不能为同一版本的附加组件留下两条评价。"
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "无法提交此评价，没有评价内容。"
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "谢谢，已将此评价标为批准。"
 
@@ -5831,8 +5846,11 @@ msgstr "操作系统："
 msgid "Applications:"
 msgstr "应用程序："
 
-msgid "Is more info requested?"
-msgstr "需要更多信息？"
+msgid "Require developer to respond in less than…"
+msgstr "要求开发者响应小于…"
+
+msgid "days"
+msgstr "天"
 
 msgid "Choose a canned response..."
 msgstr "选择一项预置的回复..."
@@ -5865,6 +5883,9 @@ msgstr "Jetpack 附加组件"
 
 msgid "More Information Requested"
 msgstr "要求更多信息"
+
+msgid "Expired Information Request"
+msgstr "过期的信息请求"
 
 msgid "Contains Reviewer Comment"
 msgstr "包含审核员意见"
@@ -5934,6 +5955,9 @@ msgstr "没有审核"
 
 msgid "Weight"
 msgstr "加权"
+
+msgid "Information Request Deadline"
+msgstr "信息请求截止时间"
 
 msgid "Last Content Review"
 msgstr "上次内容审核"
@@ -6046,6 +6070,9 @@ msgstr "公告"
 
 msgid "Update message of the day"
 msgstr "更新每日消息"
+
+msgid "Add-ons with expired information requests"
+msgstr "附加组件有过期的信息请求"
 
 msgid "An unknown error occurred"
 msgstr "发生未知错误"
@@ -6337,6 +6364,9 @@ msgstr "禁用自动批准"
 
 msgid "Enable Auto-Approval"
 msgstr "启用自动批准"
+
+msgid "Clear information request"
+msgstr "清除信息请求"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "清除管理员审核代码标记"

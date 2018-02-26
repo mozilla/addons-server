@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 10:47+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-24 08:55+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1014,14 +1014,14 @@ msgstr "Ezt az URL-t egy másik gyűjtemény használja"
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Ezt a SEO URL-t már használja egy másik gyűjteménye."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Adjon meg egy érvényes SEO URL-t, amely betűkből, számokból, aláhúzásokból vagy kötőjelekből áll."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "Az egyéni URL-nek betűkből, számokból, aláhúzásokból vagy kötőjelekből kell állnia."
 
-msgid "This slug cannot be used."
-msgstr "Ez a SEO URL nem használható."
+msgid "This custom URL cannot be used."
+msgstr "Ez az egyéni URL nem használható."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
@@ -2001,6 +2001,15 @@ msgstr "{addon} {version} tartalma elutasítva."
 
 msgid "Content rejected"
 msgstr "Tartalom elutasítva"
+
+msgid "{addon} information request removed."
+msgstr "{addon} információs kérés eltávolítva."
+
+msgid "Information request removed"
+msgstr "Információkérés eltávolítva"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Az információs kérést törölte a fejlesztő ennél: {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3802,6 +3811,12 @@ msgstr "Fejlesztői hírek"
 msgid "View the blog &#9658;"
 msgstr "A blog megtekintése &#9658;"
 
+msgid "Pending information request:"
+msgstr "Függőben lévő információkérés:"
+
+msgid "This request for information has been resolved"
+msgstr "Ez az információkérés megoldódott"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 "Kérjük válasszon egy licencet, amely megfelelő azokhoz a jogokhoz,\n"
@@ -4401,32 +4416,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Fordítson egyszerűen {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Jelöljön ki tetszőleges szöveget, kattintson a jobb gombbal, és fordítsa le azonnal."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kezelje a jelszavakat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Fordított képkeresés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Egyszerűsítse és szinkronizálja a különböző weboldalak bejelentkezéseit az eszközei között, egyetlen jelszóval mind fölött."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Egy érdekes képet lát a weben, és szeretne többet megtudni róla? Próbálja ki ezt a képkereső eszközt."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tegye jobbá a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Működik a YouTube-bal, a Facebookkal, a Vimeóval, a Twitchel, a Dailymotionnal, a Periscope-pal, és több száz más videós oldallal."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tucatnyi elképesztő emodzsi – egyetlen kattintásnyira."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Zökkenőmentesen működik a legnépszerűbb videós oldalakkal."
@@ -5903,6 +5915,9 @@ msgstr "Nem készíthet értékelést a saját kiegészítőjéhez."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nem készíthet több értékelést egy kiegészítő ugyanazon verziójához."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Ez az értékelés nem jelölhető meg, mert nincs értékelési szövege."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Köszönjük; ez az értékelés értékelői jóváhagyásra lett jelölve."
 
@@ -6096,8 +6111,11 @@ msgstr "Operációs rendszerek:"
 msgid "Applications:"
 msgstr "Alkalmazások:"
 
-msgid "Is more info requested?"
-msgstr "Több információt kér?"
+msgid "Require developer to respond in less than…"
+msgstr "A fejlesztőnek ennyi ideje lesz reagálnia: kevesebb mint…"
+
+msgid "days"
+msgstr "nap"
 
 msgid "Choose a canned response..."
 msgstr "Válasszon egy konzervválaszt…"
@@ -6130,6 +6148,9 @@ msgstr "Jetpack kiegészítők"
 
 msgid "More Information Requested"
 msgstr "További információ szükséges"
+
+msgid "Expired Information Request"
+msgstr "Lejárt információkérés"
 
 msgid "Contains Reviewer Comment"
 msgstr "Értékelői hozzászólást tartalmaz"
@@ -6202,6 +6223,9 @@ msgstr "Nincsenek értékelések"
 
 msgid "Weight"
 msgstr "Súly"
+
+msgid "Information Request Deadline"
+msgstr "Információkérés határideje"
 
 msgid "Last Content Review"
 msgstr "Legutóbbi tartalomértékelés"
@@ -6317,6 +6341,9 @@ msgstr "Bejelentés"
 
 msgid "Update message of the day"
 msgstr "A nap üzenetének frissítése"
+
+msgid "Add-ons with expired information requests"
+msgstr "Kiegészítők lejárt információkérésekkel"
 
 msgid "An unknown error occurred"
 msgstr "Ismeretlen hiba történt"
@@ -6613,6 +6640,9 @@ msgstr "Automatikus jóváhagyás letiltása"
 
 msgid "Enable Auto-Approval"
 msgstr "Automatikus jóváhagyás engedélyezése"
+
+msgid "Clear information request"
+msgstr "Információkérés teljesítése"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Adminisztrátori kódértékelés jelző törlése"

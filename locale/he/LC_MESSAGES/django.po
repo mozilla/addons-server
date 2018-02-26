@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-21 12:37+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-25 09:09+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -1017,15 +1017,16 @@ msgid "Icons must be either PNG or JPG."
 msgstr "צלמיות חייבות להיות בתבנית PNG או JPG."
 
 #, fuzzy
-msgid "This slug is already in use by another one of your collections."
+msgid "This custom URL is already in use by another one of your collections."
 msgstr "כתובת זו בשימוש ע״י אוסף אחר"
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+#, fuzzy
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "נא להכניס שם משתמש תקין המורכב מאותיות, מספרים, קווים תחתונים ומקפים."
 
 #, fuzzy
-msgid "This slug cannot be used."
-msgstr "לא ניתן להשתמש בשם זה."
+msgid "This custom URL cannot be used."
+msgstr "לא ניתן להשתמש בשם משתמש זה."
 
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
@@ -2038,6 +2039,18 @@ msgstr "התוכן של {addon} {version} נדחה."
 
 msgid "Content rejected"
 msgstr "התוכן נדחה"
+
+#, fuzzy
+msgid "{addon} information request removed."
+msgstr "התקבלה בקשה למידע נוסף"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "התקבלה בקשה למידע נוסף"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "תגובה לפי מפתח על {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3829,6 +3842,13 @@ msgstr "חדשות המפתחים"
 msgid "View the blog &#9658;"
 msgstr ""
 
+msgid "Pending information request:"
+msgstr "בקשת מידע ממתינה:"
+
+#, fuzzy
+msgid "This request for information has been resolved"
+msgstr "גרסה זו לא עברה סקירה."
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4426,32 +4446,30 @@ msgid_plural "{0} warnings"
 msgstr[0] "אזהרה אחת"
 msgstr[1] "{0} אזהרות"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "חוסם פרסומות קל ויעיל. uBlock Origin אוכף אלפי מסנני תוכן מבלי לזלול זיכרון."
-
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
-
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "הנאה ממגוון של תכונות חדשות ב־YouTube כגון מצב קולנוע, חסימת פרסומות, בקרת נגינה אוטומטית ועוד."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr ""
+
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -5161,6 +5179,8 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
 "\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
+"בחירת הקטגוריה תלויה בסוג קהל היעד ותכונות התוספת שלך. אם לא ברור לך לאיזו קטגוריה שייכת התוספת שלך, נא לבחור ב־„אחר”. הצוות של AMO עשוי להעביר את התוספת שלך לקטגוריה אחרת אם יתברר שלקטגוריה הזאת "
+"היא מתאימה יותר."
 
 msgid "Can I specify a license agreement for using my add-on?"
 msgstr "אוכל לציין הסכם רישוי לשימוש בתוספת שלי?"
@@ -5297,6 +5317,7 @@ msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
+"בנוסף לטקסט המלא של הרישיון הציבורי של Mozilla ‏(„MPL”), מקטע זה מספק גרסה עם פרשנות של ה־MPL ו<abbr title=\"שאלות ותשובות\">שו״ת</abbr> כדי לסייע לך אם ברצונך להשתמש או להפיץ קוד תחת הרישיון הזה."
 
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
 msgstr ""
@@ -5535,13 +5556,13 @@ msgid "What is a collection?"
 msgstr "מהו אוסף?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו, שנוצרו על ידי משתמשים לצורך שיתוף."
 
 msgid "What is the My Favorites collection?"
 msgstr "מהו האוסף ״המועדפים שלי״?"
 
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
+msgstr "תוספות מועדפות הן תוספות אותן הוספת כסימניה כדי לחזור אליהן בקלות בהמשך. ניתן להוסיף תוספת לאוסף המועדפים שלך על ידי לחיצה על „הוספה למועדפים” בעמוד הפירוט שלה."
 
 # 75%
 # 78%
@@ -5721,10 +5742,10 @@ msgid "Your privacy"
 msgstr "הפרטיות שלך"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "כל מחקרי Shield"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "כל מחקר Shield אוסף מידע על אירועי מחקר חשובים כגון: התקנה, הסרה, שימוש יומיומי וסיום המחקר. מחקרים גם כוללים סקר כרשות."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
@@ -5734,7 +5755,7 @@ msgid "This particular Study"
 msgstr "המחקר המסוים הזה"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "בנוסף לנתונים שנאספים על ידי מחקרי Shield, תאסוף Mozilla מידע על:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
 msgstr ""
@@ -5766,7 +5787,7 @@ msgstr "Sunbird יצאה לגמלאות"
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
-msgstr ""
+msgstr "הפיתוח של מיזם Sunbird הופסק והגרסה האחרונה שוחררה ב־30 במרץ, 2010. היה לנו הכבוד לארח את התוספות של Sunbird באתר הזה אך כיוון שהמיזם אינו מתוחזק יותר השבתנו את התמיכה בתוספות."
 
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
@@ -5789,7 +5810,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "מדורג %d מתוך 5 כוכבים"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "יש לספק הסבר קצר בעת בחירה ב־„אחר” כסיבה לסימון בדגל."
 
 msgid "Other (please specify)"
 msgstr "אחר (נא לפרט)"
@@ -5813,6 +5834,9 @@ msgid "You can't leave a review on your own add-on."
 msgstr "אין לך אפשרות לכתוב סקירה על התוספת של עצמך."
 
 msgid "You can't leave more than one review for the same version of an add-on."
+msgstr ""
+
+msgid "This rating can't flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -5867,7 +5891,7 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירות אחרות</a> של תוספת זו."
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "סומן בדגל לסקירה"
 
 msgid "Report this review"
 msgstr "דיווח על סקירה זו"
@@ -6010,8 +6034,11 @@ msgstr "מערכות הפעלה:"
 msgid "Applications:"
 msgstr "יישומים:"
 
-msgid "Is more info requested?"
-msgstr "האם נדרש מידע נוסף?"
+msgid "Require developer to respond in less than…"
+msgstr ""
+
+msgid "days"
+msgstr "ימים"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6043,6 +6070,10 @@ msgid "Jetpack Add-on"
 msgstr ""
 
 msgid "More Information Requested"
+msgstr "התקבלה בקשה למידע נוסף"
+
+#, fuzzy
+msgid "Expired Information Request"
 msgstr "התקבלה בקשה למידע נוסף"
 
 # 100%
@@ -6117,6 +6148,10 @@ msgstr "ללא סקירות"
 
 msgid "Weight"
 msgstr "משקל"
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "התקבלה בקשה למידע נוסף"
 
 msgid "Last Content Review"
 msgstr "סקירת התוכן האחרונה"
@@ -6242,6 +6277,10 @@ msgstr "הכרזה"
 
 msgid "Update message of the day"
 msgstr "עדכון ההודעה היומית"
+
+#, fuzzy
+msgid "Add-ons with expired information requests"
+msgstr "התקבלה בקשה למידע נוסף"
 
 msgid "An unknown error occurred"
 msgstr "אירעה שגיאה בלתי ידועה"
@@ -6540,6 +6579,9 @@ msgstr ""
 msgid "Enable Auto-Approval"
 msgstr ""
 
+msgid "Clear information request"
+msgstr "ניקוי בקשה למידע"
+
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
@@ -6695,10 +6737,10 @@ msgid "Clear Search"
 msgstr "ניקוי חיפוש"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "שחרור נעילות ערכת הנושא שלי"
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "תור ערכות נושא אינטראקטיבי"
 
 msgid "Reviewers' Guide"
 msgstr "מדריך לסוקרים"

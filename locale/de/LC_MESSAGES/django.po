@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 09:47+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-23 18:36+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1017,14 +1017,14 @@ msgstr "Diese Adresse (URL) wird bereits von einer anderen Sammlung verwendet."
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole (Icons) müssen im Format PNG oder JPG vorliegen."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "Dieser Adressname wird bereits von einer anderen Ihrer Sammlungen verwendet."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "Diese benutzerdefinierte Adresse wird bereits von einer anderen Ihrer Sammlungen verwendet."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Geben Sie einen gültigen Adressnamen ein, der aus Buchstaben, Zahlen, Unterstrichen oder Bindestrichen besteht."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "Die benutzerdefinierte Adresse muss aus Buchstaben, Zahlen, Unterstrichen oder Bindestrichen bestehen."
 
-msgid "This slug cannot be used."
-msgstr "Dieser Adressname kann nicht verwendet werden."
+msgid "This custom URL cannot be used."
+msgstr "Diese benutzerdefinierte Adresse kann nicht verwendet werden."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
@@ -2008,6 +2008,15 @@ msgstr "{addon} {version} Inhalt zurückgewiesen."
 
 msgid "Content rejected"
 msgstr "Inhalt zurückgewiesen"
+
+msgid "{addon} information request removed."
+msgstr "Informationsanforderung zu {addon} entfernt."
+
+msgid "Information request removed"
+msgstr "Informationsanforderung entfernt"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "Informationsanforderung von Entwickler von {addon} {version} entfernt."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3812,6 +3821,12 @@ msgstr "Entwicklernachrichten"
 msgid "View the blog &#9658;"
 msgstr "Lesen Sie den Blog ►"
 
+msgid "Pending information request:"
+msgstr "Ausstehende Informationsanforderung:"
+
+msgid "This request for information has been resolved"
+msgstr "Diese Informationsanforderung wurde erfolgreich bearbeitet"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Bitte wählen Sie eine Lizenz, die zu den Rechten passt, die Sie an Ihrem Quelltext einräumen wollen. Dies ist nur für gelistete Add-ons wichtig."
 
@@ -4411,32 +4426,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Einfach Übersetzen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Ein schlanker und effektiver Werbeblocker. uBlock Origin nutzt Tausende von Inhaltsfiltern und geht dabei sparsam mit dem Speicherplatz um."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Text hervorheben, rechtsklicken und direkt übersetzen."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verwalten Sie Passwörter {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Umgekehrte Bildersuche {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Vereinfachung und Synchronisation Ihrer diversen Website-Anmeldedaten zwischen Geräten durch ein gemeinsames Passwort."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "Haben Sie ein interessantes Bild im Internet gesehen, zu dem Sie mehr wissen möchten? Probieren Sie dieses Werkzeug zur Bildersuche aus."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbessern Sie Videos {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Nutzen Sie eine Reihe neuer YouTube-Funktionen wie Kinomodus, Werbeblocker, Autowiedergabesteuerung und mehr."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Funktioniert bei YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope und hunderten anderer Video-Seiten."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbessern Sie Ihr Emoji-Spiel {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dutzende toller Emojis – nur einen Klick entfernt."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funktioniert nahtlos bei den meisten beliebten Video-Websites."
@@ -5925,6 +5937,9 @@ msgstr "Sie können keine Bewertung für Ihr eigenes Add-on schreiben."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Sie können nicht mehr als eine Bewertung für dieselbe Version eines Add-ons abgeben."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "Diese Bewertung kann nicht gemeldet werden, weil sie keinen Bewertungstext enthält."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Danke; diese Bewertung wurde zur Moderation markiert."
 
@@ -6118,8 +6133,11 @@ msgstr "Betriebssysteme:"
 msgid "Applications:"
 msgstr "Anwendungen:"
 
-msgid "Is more info requested?"
-msgstr "Wurden weitere Informationen angefordert?"
+msgid "Require developer to respond in less than…"
+msgstr "Informationen durch Entwickler sollten vorliegen nach weniger als …"
+
+msgid "days"
+msgstr "Tagen"
 
 msgid "Choose a canned response..."
 msgstr "Eine fertige Antwort auswählen …"
@@ -6152,6 +6170,9 @@ msgstr "Jetpack-Add-on"
 
 msgid "More Information Requested"
 msgstr "Weitere Informationen benötigt"
+
+msgid "Expired Information Request"
+msgstr "Abgelaufene Informationsanforderung"
 
 msgid "Contains Reviewer Comment"
 msgstr "Enthält Kommentar vom Kontrolleur"
@@ -6224,6 +6245,9 @@ msgstr "Keine Bewertungen"
 
 msgid "Weight"
 msgstr "Gewicht"
+
+msgid "Information Request Deadline"
+msgstr "Termin für Informationsanforderung"
 
 msgid "Last Content Review"
 msgstr "Letzte Inhaltsüberprüfung"
@@ -6337,6 +6361,9 @@ msgstr "Ankündigung"
 
 msgid "Update message of the day"
 msgstr "Nachricht des Tages aktualisieren"
+
+msgid "Add-ons with expired information requests"
+msgstr "Add-ons mit abgelaufenen Informationsanforderungen"
 
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
@@ -6631,6 +6658,9 @@ msgstr "Automatische Freischaltung deaktivieren"
 
 msgid "Enable Auto-Approval"
 msgstr "Automatische Freischaltung aktivieren"
+
+msgid "Clear information request"
+msgstr "Informationsanforderung löschen"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markierung für Admin-Quelltext-Überprüfung löschen"

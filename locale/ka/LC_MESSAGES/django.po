@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 08:23+0000\n"
-"PO-Revision-Date: 2018-02-12 17:33+0000\n"
+"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"PO-Revision-Date: 2018-02-24 21:02+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -984,14 +984,14 @@ msgstr "ამ ბმულს სხვა კრებული უკვე �
 msgid "Icons must be either PNG or JPG."
 msgstr "ხატულები უნდა იყოს PNG ან JPG."
 
-msgid "This slug is already in use by another one of your collections."
-msgstr "მისამართის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "URL ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
 
-msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "შეიყვანეთ მისამართის მართებული დაბოლოება, რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr "შეიყვანეთ URL ბმულის მართებული დაბოლოება, რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
 
-msgid "This slug cannot be used."
-msgstr "მისამართის ამ დაბოლოების გამოყენება შეუძლებელია."
+msgid "This custom URL cannot be used."
+msgstr "ამ URL ბმულის გამოყენება შეუძლებელია."
 
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
@@ -1956,6 +1956,15 @@ msgstr "{addon} {version} შიგთავსი უარყოფილი�
 
 msgid "Content rejected"
 msgstr "შიგთავსი უარყოფილია"
+
+msgid "{addon} information request removed."
+msgstr "{addon} მონაცემების მოთხოვნა გაუქმებულია."
+
+msgid "Information request removed"
+msgstr "მონაცემების მოთხოვნა გაუქმებულია"
+
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "მონაცემების მოთხოვნა {addon} {version}-ზე წაშალა შემმუშავებელმა."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3743,6 +3752,12 @@ msgstr "დეველოპერის სიახლეები"
 msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
 
+msgid "Pending information request:"
+msgstr "მონაცემების დაყოვნებული მოთხოვნა:"
+
+msgid "This request for information has been resolved"
+msgstr "მონაცემების ეს მოთხოვნები დაკმაყოფილებულია"
+
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
@@ -4331,32 +4346,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "თარგმნეთ მარტივად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით თარგმნეთ მყისიერად."
 
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მართეთ პაროლები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "მოიძიეთ სურათების წყაროები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "მარტივად დაასინქრონეთ სხვადასხვა ვებსაიტის ანგარიშების მონაცემები ყველა თქვენს მოწყობილობაზე, ერთი მთავარი პაროლის გამოყენებით."
+msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgstr "საინტერესო სურათი ნახეთ და გსურთ მეტი ინფორმაცია გაიგოთ მის შესახებ? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატურ მართვას და ა.შ."
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "მუშაობს ასობით ვიდეო-საიტებთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "ასობით უნიკალური სიცილაკი—თქვენს თითებთან ახლოს."
-
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "მუშაობს შეუფერხებლად ვიდეოების ცნობილი საიტების უმეტესობაზე."
@@ -4833,8 +4845,8 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"გვერდების მონახულებისა და დამატებებით სარგებლობის დაწყების შემდეგ, ყურადღებით ჩაინიშნეთ ყველა საეჭვო ცვლილება, გაფართოების ბოლო გამოყენებიდან. ეს შესაძლოა იყოს ხარვეზები ჩვენებისას, მენიუს "
-"ელემენტების დაკარგვა, ან რამე უფრო სერიოზული, როცა საერთოდ არ ირთვება დამატება, ან შეცდომებს აგდებს."
+"გვერდების მონახულებისა და დამატებებით სარგებლობის დაწყების შემდეგ, ყურადღებით ჩაინიშნეთ ყველა საეჭვო ცვლილება, მისი ბოლო გამოყენების შემდგომ. ეს შესაძლოა იყოს ხარვეზები ჩვენებისას, მენიუს "
+"ელემენტების გაქრობა ან რამე უფრო სერიოზული, როგორიცაა დამატების მუშაობის შეჩერება ან შეცდომების ამოყრა."
 
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
@@ -5825,6 +5837,9 @@ msgstr "საკუთარ დამატებაზე მიმოხი�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
 
+msgid "This rating can't flagged because it has no review text."
+msgstr "შეფასება შეუძლებელია, რადგან თან არ ახლავს მიმოხილვის ტექსტი."
+
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
 
@@ -6014,8 +6029,11 @@ msgstr "საოპერაციო სისტემები:"
 msgid "Applications:"
 msgstr "პროგრამები:"
 
-msgid "Is more info requested?"
-msgstr "დამატებით მონაცემებს საჭიროებს?"
+msgid "Require developer to respond in less than…"
+msgstr "შემმუშავებელმა მოთხოვნას უნდა უპასუხოს მოცემულ დროში…"
+
+msgid "days"
+msgstr "დღე"
 
 msgid "Choose a canned response..."
 msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
@@ -6048,6 +6066,9 @@ msgstr "Jetpack დამატება"
 
 msgid "More Information Requested"
 msgstr "საჭიროა მეტი ინფორმაცია"
+
+msgid "Expired Information Request"
+msgstr "მონაცემების ვადაგასული მოთხოვნა"
 
 msgid "Contains Reviewer Comment"
 msgstr "შეიცავს მიმომხილველის კომენტარს"
@@ -6117,6 +6138,9 @@ msgstr "მიმოხილვები არაა"
 
 msgid "Weight"
 msgstr "წონა"
+
+msgid "Information Request Deadline"
+msgstr "მონაცემების მოთხოვნის ვადა"
 
 msgid "Last Content Review"
 msgstr "შიგთავსის ბოლო განხილვა"
@@ -6229,6 +6253,9 @@ msgstr "გამოცხადება"
 
 msgid "Update message of the day"
 msgstr "დღის შეტყობინების განახლება"
+
+msgid "Add-ons with expired information requests"
+msgstr "დამატებები მონაცემების ვადაგასული მოთხოვნებით"
 
 msgid "An unknown error occurred"
 msgstr "უცნობი შეცდომა"
@@ -6520,6 +6547,9 @@ msgstr "ავტომატური მიღების გამორთ�
 
 msgid "Enable Auto-Approval"
 msgstr "ავტომატური მიღების ჩართვა"
+
+msgid "Clear information request"
+msgstr "მონაცემების მოთხოვნის წაშლა"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
@@ -7050,7 +7080,7 @@ msgid "Collections Created by Date"
 msgstr "კრებულები შექმნის თარიღის მიხედვით"
 
 msgid "Downloaded by Date"
-msgstr "ჩამოტვირთვები თარირის მიხედვით"
+msgstr "ჩამოტვირთვები თარიღის მიხედვით"
 
 msgid "How are downloads counted?"
 msgstr "როგორ ითვლება ჩამოტვირთვები?"
