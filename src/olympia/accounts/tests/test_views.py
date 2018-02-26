@@ -982,7 +982,7 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.client.patch(picture_url)
         assert response.status_code == 405
 
-    def test_picture_upload_valid(self):
+    def test_picture_upload_wrong_format(self):
         self.client.login_api(self.user)
         gif = get_uploaded_file('animated.gif')
         data = {'picture_upload': gif}
@@ -991,6 +991,30 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'picture_upload': [u'Images must be either PNG or JPG.']}
+
+    def test_picture_upload_animated(self):
+        self.client.login_api(self.user)
+        gif = get_uploaded_file('animated.png')
+        data = {'picture_upload': gif}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'picture_upload': [u'Images cannot be animated.']}
+
+    def test_picture_upload_not_image(self):
+        self.client.login_api(self.user)
+        gif = get_uploaded_file('non-image.png')
+        data = {'picture_upload': gif}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'picture_upload': [
+                u'Upload a valid image. The file you uploaded was either not '
+                u'an image or a corrupted image.'
+            ]
+        }
 
 
 class TestAccountViewSetDelete(TestCase):

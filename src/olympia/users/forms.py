@@ -12,7 +12,8 @@ from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
-from olympia.amo.utils import clean_nl, has_links, slug_validator
+from olympia.amo.utils import (
+    clean_nl, has_links, ImageCheck, slug_validator)
 from olympia.lib import happyforms
 from olympia.users import notifications
 
@@ -176,9 +177,14 @@ class UserEditForm(happyforms.ModelForm):
         if not photo:
             return
 
-        if photo.content_type not in ('image/png', 'image/jpeg'):
+        image_check = ImageCheck(photo)
+        if (photo.content_type not in amo.IMG_TYPES or
+                not image_check.is_image()):
             raise forms.ValidationError(
                 ugettext('Images must be either PNG or JPG.'))
+
+        if image_check.is_animated():
+            raise forms.ValidationError(ugettext('Images cannot be animated.'))
 
         if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             msg = ugettext('Please use images smaller than %dMB.')

@@ -115,17 +115,52 @@ class TestUserEditForm(UserFormBase):
 
     @patch('olympia.amo.models.ModelBase.update')
     def test_photo_modified(self, update_mock):
-        dummy = Mock()
-        dummy.user = self.user
-
+        request = Mock()
+        request.user = self.user
         data = {'username': self.user_profile.username,
                 'email': self.user_profile.email}
         files = {'photo': get_uploaded_file('transparent.png')}
         form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=dummy)
+                            request=request)
         assert form.is_valid()
         form.save()
         assert update_mock.called
+
+    def test_photo_invalid_though_content_type_is_correct(self):
+        request = Mock()
+        request.user = self.user
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('non-image.png')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=request)
+
+        assert not form.is_valid()
+        assert form.errors == {'photo': [u'Images must be either PNG or JPG.']}
+
+    def test_photo_invalid_gif(self):
+        request = Mock()
+        request.user = self.user
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('animated.gif')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=request)
+
+        assert not form.is_valid()
+        assert form.errors == {'photo': [u'Images must be either PNG or JPG.']}
+
+    def test_photo_invalid_animated(self):
+        request = Mock()
+        request.user = self.user
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('animated.png')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=request)
+
+        assert not form.is_valid()
+        assert form.errors == {'photo': [u'Images cannot be animated.']}
 
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
