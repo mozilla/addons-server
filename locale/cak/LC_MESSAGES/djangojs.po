@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-26 23:31+0000\n"
+"PO-Revision-Date: 2018-02-26 23:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -102,27 +102,31 @@ msgid "WebExtension upgrade"
 msgstr "Ruk'exoj WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Tiq'axäx jun rutz'aqat choltz'ib'anem richin Firefox pa MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' tikirel"
+" nib'an pa ri jun chik xak)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Rucholb'al kijikib'anem kitaqik taq tz'aqat"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Tanik'oj re taq rupam re' chuwäch nak'isib'ej ri ataqoj. Re re' xtuch'utinisaj yokenïk o itzel taq na'oj toq ninik'öx:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Ri molon taq kach'akul, achi'el chuqa' ri taq skrip ech'utinisan o yesachon (man ye'ok ta ri taq wujb'äl etaman kiwäch) k'o chi yetaq chi kijujunal richin yenik'öx. Tajikib'a' chi nawokisaj ri "
+"k'ojlib'äl richin nijotob'äx ruxe'el b'itz'ib' richin chi man tixutüx pe ri ataqoj."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
@@ -134,7 +138,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ri ayakb'al xik'o chuwa ri nïm runimilem {0}."
 
 msgid "You cancelled the upload."
 msgstr ""
@@ -146,7 +150,7 @@ msgid "Videos must be in WebM."
 msgstr ""
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Tojqäx re Mol re'"
 
 msgid "Stop Following"
 msgstr "Man Tojqäx chik"
