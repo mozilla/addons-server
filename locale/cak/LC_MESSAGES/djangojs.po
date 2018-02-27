@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 22:00+0000\n"
+"PO-Revision-Date: 2018-02-27 22:31+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -401,13 +401,13 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr "Tikanöx Cholajem Cholajin Chi Yewachin Yan Pe"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Ronojel ri To'onïk"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Nik'aj To'onïk"
 
 msgid "Usage"
-msgstr ""
+msgstr "Okisaxïk"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -419,7 +419,7 @@ msgid "Thunderbird"
 msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
@@ -432,119 +432,119 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Taq Qasanïk chuqa' Q'ij chi Q'ij Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Taq Qasanïk chuqa' Q'ij chi Q'ij Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Taq Yakoj chuqa' Q'ij chi Q'ij Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Taq Yakoj chuqa' Q'ij chi Q'ij Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Taq qasanïk, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Taq qasanïk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Taq chokoy, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Taq chokoy pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Taq nuk'uche'el, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Taq nuk'uche'el pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Taq ch'ab'äl, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Taq ch'ab'äl pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Kiwäch Tz'aqat, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Kiwäch Tz'aqat pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Kib'anikil Tz'aqat, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Kib'anikil Tz'aqat pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Kiqasaxïk Taq Xe'el, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Kiqasaxik Xe'el pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Taq to'onïk, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Taq to'onïk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Kitz'etnuk'ulem Ruxaq K'amaya'l, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Kitz'etnuk'ulem Ruxaq K'amaya'l pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Taq Tz'aqat Xe'okisäx, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Taq Tz'aqat Xe'okisäx pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Taq Tz'aqat Xeqasäx, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Taq Tz'aqat Xeqasäx pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Taq Tz'aqat Xetz'uk, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
