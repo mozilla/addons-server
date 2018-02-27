@@ -19,7 +19,8 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import ImageCheck, LocalFileStorage, cache_ns_key
+from olympia.amo.utils import (
+    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image)
 from olympia.applications.models import AppVersion
 from olympia.files.utils import RDFExtractor, get_file, SafeZip
 from olympia.lib.es.utils import index_objects
@@ -162,6 +163,8 @@ def create_persona_preview_images(src, full_dst, **kw):
         i.load()
         with storage.open(full_dst[1], 'wb') as fp:
             i.save(fp, 'png')
+    pngcrush_image(full_dst[0])
+    pngcrush_image(full_dst[1])
     return True
 
 
@@ -177,6 +180,7 @@ def save_persona_image(src, full_dst, **kw):
         i = Image.open(fp)
         with storage.open(full_dst, 'wb') as fp:
             i.save(fp, 'png')
+    pngcrush_image(full_dst)
     return True
 
 

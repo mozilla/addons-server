@@ -13,7 +13,8 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, get_locale_from_lang, translations_for_field, walkfiles)
+    attach_trans_dict, get_locale_from_lang, pngcrush_image,
+    translations_for_field, walkfiles)
 from olympia.versions.models import Version
 
 
@@ -203,3 +204,24 @@ def test_get_locale_from_lang(lang):
 def test_bidi_language_in_amo_languages(lang):
     """Make sure all bidi marked locales are in AMO_LANGUAGES too."""
     assert lang in settings.AMO_LANGUAGES or lang in settings.DEBUG_LANGUAGES
+
+
+@mock.patch('olympia.amo.utils.subprocess')
+def test_pngcrush_image(subprocess_mock):
+    subprocess_mock.Popen.return_value.communicate.return_value = ('', '')
+    subprocess_mock.Popen.return_value.returncode = 0  # success
+    assert pngcrush_image('/tmp/some_file.png')
+    assert subprocess_mock.Popen.call_count == 1
+    assert subprocess_mock.Popen.call_args_list[0][0][0] == [
+        settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow',
+        '/tmp/some_file.png', '/tmp/some_file.crush.png',
+    ]
+    assert subprocess_mock.Popen.call_args_list[0][1] == {
+        'stdin': subprocess_mock.PIPE,
+        'stdout': subprocess_mock.PIPE,
+        'stderr': subprocess_mock.PIPE,
+    }
+
+    # Make sure that exceptions for this are silent.
+    subprocess_mock.Popen.side_effect = Exception
+    assert not pngcrush_image('/tmp/some_other_file.png')

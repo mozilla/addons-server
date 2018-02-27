@@ -16,6 +16,7 @@ import unicodedata
 import urllib
 import urlparse
 import string
+import subprocess
 
 import django.core.mail
 
@@ -475,6 +476,40 @@ def clean_nl(string):
     serializer = HTMLSerializer(quote_attr_values=True,
                                 omit_optional_tags=False)
     return serializer.render(stream)
+
+
+def pngcrush_image(src, **kw):
+    """
+    Optimizes a PNG image by running it through Pngcrush.
+    """
+    log.info('Optimizing image: %s' % src)
+    try:
+        # When -ow is used, the output file name (second argument after
+        # options) is used as a temporary filename (that must reside on the
+        # same filesystem as the original) to save the optimized file before
+        # overwriting the original. By default it's "pngout.png" but we want
+        # that to be unique in order to avoid clashes with multiple tasks
+        # processing different images in parallel.
+        tmp_path = '%s.crush.png' % os.path.splitext(src)[0]
+        # -brute is not recommended, and in general does not improve things a
+        # lot. -reduce is on by default for pngcrush above 1.8.0, but we're
+        # still on an older version.
+        cmd = [settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow', src, tmp_path]
+        process = subprocess.Popen(
+            cmd, stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+
+        if process.returncode != 0:
+            log.error('Error optimizing image: %s; %s' % (src, stderr.strip()))
+            return False
+
+        log.info('Image optimization completed for: %s' % src)
+        return True
+
+    except Exception, e:
+        log.error('Error optimizing image: %s; %s' % (src, e))
+    return False
 
 
 def resize_image(source, destination, size=None):

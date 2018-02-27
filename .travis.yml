@@ -42,6 +42,7 @@ addons:
       - elasticsearch
       - gettext
       - librsvg2-bin
+      - pngcrush
 
 before_install:
   - mysql -e 'create database olympia;'
