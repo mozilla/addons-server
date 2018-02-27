@@ -88,9 +88,9 @@ celery==4.1.0 \
 boto3==1.5.35 \
     --hash=sha256:68a5219f64790e663957e5ceb0162c3c3c6b0115ead68e50b7134c4d34b875c0 \
     --hash=sha256:74e38e9fd0d6450d8a95dae2158cb6f4c7279bb3249b486b4ebe00819db643b9
-botocore==1.8.46 \
-    --hash=sha256:52bc09d2f4439bb89ec9606ad652dedeb5bfe2c4db56f27417f4d2e5e50e4e79 \
-    --hash=sha256:d798b9aa32e070f6483a9723fb3296da546a2d9d09f17bb62adc57eb5771aaa6
+botocore==1.8.50 \
+    --hash=sha256:898f10e68a7a1c2be621caf046d29a8f782c0ea866d644d5be46472c00a3dee9 \
+    --hash=sha256:a80a23e080f4a93d11a1c067a69304dd407d18c358cba1e0df8c96f56c9e98b4
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -161,9 +161,9 @@ djangorestframework==3.6.4 \
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
-dockerflow==2018.2.0 \
-    --hash=sha256:e68f3cb314cb213b58314fc2aef4a68b54fa03ef10d0a609e8ab2aa901c64d9c \
-    --hash=sha256:5fecd2cce1a5fe5d1740487d6652637433c0fc7f8608527534add2bba91014c0
+dockerflow==2018.2.1 \
+    --hash=sha256:93799cbd5abaf1d16c86dc5cee1bf64aee4fefc05d7077bae20591c76a510edd \
+    --hash=sha256:6cd795a00b739d7fb62b1394e2d6f95294e0ccd4f9e233e5c456a34cca9f0c8a
 drf-nested-routers==0.90.2 \
     --hash=sha256:a4d97de1be554f5db3fd11c881f578d10a3e1324b6e99be1749a11c7248d3360 \
     --hash=sha256:52cbc4900e3ccd652bfb73017ff466d7b3e4d99838c912c250d75763b32669af

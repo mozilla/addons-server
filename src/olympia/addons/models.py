@@ -388,16 +388,6 @@ class Addon(OnChangeMixin, ModelBase):
             ['type', 'status', 'disabled_by_user'],
         ]
 
-    @staticmethod
-    def __new__(cls, *args, **kw):
-        try:
-            type_idx = Addon._meta._type_idx
-        except AttributeError:
-            type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
-                        if f.attname == 'type').next()
-            Addon._meta._type_idx = type_idx
-        return object.__new__(cls)
-
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
 

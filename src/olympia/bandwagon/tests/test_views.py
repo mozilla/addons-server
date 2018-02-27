@@ -1183,6 +1183,49 @@ class TestCollectionForm(TestCase):
         form.save()
         assert update_mock.called
 
+    def test_icon_invalid_though_content_type_is_correct(self):
+        collection = Collection.objects.get(pk=57181)
+        # This file is not an image at all, but we'll try to upload it with an
+        # image mime type. It should not work.
+        fake_image = get_uploaded_file('non-image.png')
+        assert fake_image.content_type == 'image/png'
+        form = forms.CollectionForm(
+            {'listed': collection.listed,
+             'slug': collection.slug,
+             'name': collection.name},
+            instance=collection,
+            files={'icon': fake_image},
+            initial={'author': collection.author,
+                     'application': collection.application})
+        assert not form.is_valid()
+        assert form.errors == {'icon': [u'Icons must be either PNG or JPG.']}
+
+    def test_icon_invalid_gif(self):
+        collection = Collection.objects.get(pk=57181)
+        form = forms.CollectionForm(
+            {'listed': collection.listed,
+             'slug': collection.slug,
+             'name': collection.name},
+            instance=collection,
+            files={'icon': get_uploaded_file('animated.gif')},
+            initial={'author': collection.author,
+                     'application': collection.application})
+        assert not form.is_valid()
+        assert form.errors == {'icon': [u'Icons must be either PNG or JPG.']}
+
+    def test_icon_invalid_animated(self):
+        collection = Collection.objects.get(pk=57181)
+        form = forms.CollectionForm(
+            {'listed': collection.listed,
+             'slug': collection.slug,
+             'name': collection.name},
+            instance=collection,
+            files={'icon': get_uploaded_file('animated.png')},
+            initial={'author': collection.author,
+                     'application': collection.application})
+        assert not form.is_valid()
+        assert form.errors == {'icon': [u'Icons cannot be animated.']}
+
     def test_denied_name(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6Fan'}

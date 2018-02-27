@@ -10,7 +10,8 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
+from olympia.amo.utils import (
+    clean_nl, has_links, ImageCheck, slug_validator, slugify)
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
 from olympia.users.models import DeniedName, UserProfile
@@ -194,9 +195,14 @@ class CollectionForm(forms.ModelForm):
         icon = self.cleaned_data['icon']
         if not icon:
             return
-        if icon.content_type not in ('image/png', 'image/jpeg'):
+        icon_check = ImageCheck(icon)
+        if (icon.content_type not in amo.IMG_TYPES or
+                not icon_check.is_image()):
             raise forms.ValidationError(
                 ugettext('Icons must be either PNG or JPG.'))
+
+        if icon_check.is_animated():
+            raise forms.ValidationError(ugettext('Icons cannot be animated.'))
 
         if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
             size_in_mb = settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1
@@ -205,32 +211,35 @@ class CollectionForm(forms.ModelForm):
         return icon
 
     def save(self, default_locale=None):
-        c = super(CollectionForm, self).save(commit=False)
-        c.author = self.initial['author']
-        c.application = self.initial['application']
+        collection = super(CollectionForm, self).save(commit=False)
+        collection.author = self.initial['author']
+        collection.application = self.initial['application']
         icon = self.cleaned_data.get('icon')
 
         if default_locale:
-            c.default_locale = default_locale
+            collection.default_locale = default_locale
 
         if icon:
-            c.icontype = 'image/png'
+            collection.icontype = 'image/png'
 
-        c.save()
+        collection.save()
 
         if icon:
-            dirname = c.get_img_dir()
+            dirname = collection.get_img_dir()
 
-            destination = os.path.join(dirname, '%d.png' % c.id)
-            tmp_destination = os.path.join(dirname,
-                                           '%d.png__unconverted' % c.id)
+            destination = os.path.join(dirname, '%d.png' % collection.id)
+            tmp_destination = os.path.join(
+                dirname, '%d.png__unconverted' % collection.id)
+            # Seek back to the beginning before reading the icon file since we
+            # went through ImageCheck() in clean_icon().
+            icon.seek(0)
             with storage.open(tmp_destination, 'w') as fh:
                 for chunk in icon.chunks():
                     fh.write(chunk)
             tasks.resize_icon.delay(tmp_destination, destination,
-                                    set_modified_on=[c])
+                                    set_modified_on=[collection])
 
-        return c
+        return collection
 
     class Meta:
         model = Collection

@@ -972,13 +972,21 @@ class QueueTest(ReviewerTest):
         for addon in self.expected_addons:
             self.get_queue(addon)
 
-    def _test_queue_count(self, position, name, count):
-        response = self.client.get(self.url)
+    def _test_queue_layout(self, name, tab_position, total_addons,
+                           total_queues, per_page=None):
+        args = {'per_page': per_page} if per_page else {}
+        response = self.client.get(self.url, args)
         assert response.status_code == 200
         doc = pq(response.content)
-        a = doc('.tabnav li a').eq(position)
-        assert a.text() == '%s (%s)' % (name, count)
-        assert a.attr('href') == self.url
+        links = doc('.tabnav li a')
+        link = links.eq(tab_position)
+
+        assert links.length == total_queues
+        assert link.text() == '%s (%s)' % (name, total_addons)
+        assert link.attr('href') == self.url
+        if per_page:
+            assert doc('.data-grid-top .num-results').text() == (
+                u'Results %s\u20131 of %s' % (per_page, total_addons))
 
     def _test_results(self):
         response = self.client.get(self.url)
@@ -1172,6 +1180,41 @@ class TestQueueBasics(QueueTest):
         assert rows.find('.ed-sprite-jetpack').length == 0
         assert rows.find('.ed-sprite-is_restart_required').length == 0
 
+    def test_tabnav_permissions(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+        ]
+        assert links == expected
+
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.append(reverse('reviewers.queue_moderated'))
+        assert links == expected
+
+        self.grant_permission(self.user, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.append(reverse('reviewers.queue_auto_approved'))
+        assert links == expected
+
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.append(reverse('reviewers.queue_content_review'))
+        assert links == expected
+
 
 class TestPendingQueue(QueueTest):
 
@@ -1185,8 +1228,9 @@ class TestPendingQueue(QueueTest):
     def test_results(self):
         self._test_results()
 
-    def test_queue_count(self):
-        self._test_queue_count(1, 'Updates', 2)
+    def test_queue_layout(self):
+        self._test_queue_layout('Updates',
+                                tab_position=1, total_addons=2, total_queues=2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1278,8 +1322,9 @@ class TestNominatedQueue(QueueTest):
             doc('#addon-queue tr.addon-row td a:not(.app-icon)'),
             verify=False)
 
-    def test_queue_count(self):
-        self._test_queue_count(0, 'New Add-ons', 2)
+    def test_queue_layout(self):
+        self._test_queue_layout('New Add-ons',
+                                tab_position=0, total_addons=2, total_queues=2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1456,7 +1501,7 @@ class TestModeratedQueue(QueueTest):
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
-    def test_queue_count(self):
+    def test_queue_layout(self):
         # From the fixtures we already have 2 reviews, one is flagged. We add
         # a bunch of reviews from different scenarios and make sure they don't
         # count towards the total.
@@ -1481,7 +1526,8 @@ class TestModeratedQueue(QueueTest):
             title='please', body='dont show me either', editorreview=True)
         RatingFlag.objects.create(rating=rating)
 
-        self._test_queue_count(2, 'Moderated Reviews', 2)
+        self._test_queue_layout('Moderated Reviews',
+                                tab_position=2, total_addons=2, total_queues=3)
 
     def test_no_reviews(self):
         Rating.objects.all().delete()
@@ -1678,18 +1724,13 @@ class TestAutoApprovedQueue(QueueTest):
             item.attrib['class'] for item in doc('.addon-row td:eq(4) span')]
         assert expected == classnames
 
-    def test_queue_count(self):
+    def test_queue_layout(self):
         self.login_with_permission()
         self.generate_files()
 
-        response = self.client.get(self.url, {'per_page': 1})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Auto Approved Add-ons (4)'
-        assert link.attr('href') == self.url
-        assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1\u20131 of 4')
+        self._test_queue_layout("Auto Approved Add-ons",
+                                tab_position=2, total_addons=4, total_queues=3,
+                                per_page=1)
 
 
 class TestExpiredInfoRequestsQueue(QueueTest):
@@ -1854,29 +1895,22 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
         self._test_results()
 
-    def test_queue_count(self):
+    def test_queue_layout(self):
         self.login_with_permission()
         self.generate_files()
 
-        response = self.client.get(self.url, {'per_page': 1})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Content Review (4)'
-        assert link.attr('href') == self.url
-        assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1\u20131 of 4')
+        self._test_queue_layout('Content Review',
+                                tab_position=2, total_addons=4, total_queues=3,
+                                per_page=1)
 
-    def test_results_admin(self):
+    def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
         user = self.login_with_permission()
         self.grant_permission(user, 'ReviewerAdminTools:View')
         self.generate_files()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Content Review (5)'
+
+        self._test_queue_layout('Content Review',
+                                tab_position=2, total_addons=5, total_queues=3)
 
 
 class TestPerformance(QueueTest):

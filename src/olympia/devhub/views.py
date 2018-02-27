@@ -1007,8 +1007,8 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         is_persona = upload_type.startswith('persona_')
 
         check = amo_utils.ImageCheck(upload_preview)
-        if (not check.is_image() or
-                upload_preview.content_type not in amo.IMG_TYPES):
+        if (upload_preview.content_type not in amo.IMG_TYPES or
+                not check.is_image()):
             if is_icon:
                 errors.append(ugettext('Icons must be either PNG or JPG.'))
             else:

@@ -10,7 +10,8 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import clean_nl, has_links, slug_validator
+from olympia.amo.utils import (
+    clean_nl, has_links, ImageCheck, slug_validator)
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
 
@@ -115,9 +116,16 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         return value
 
     def validate_picture_upload(self, value):
-        if value.content_type not in ('image/png', 'image/jpeg'):
+        image_check = ImageCheck(value)
+
+        if (value.content_type not in amo.IMG_TYPES or
+                not image_check.is_image()):
             raise serializers.ValidationError(
                 ugettext(u'Images must be either PNG or JPG.'))
+
+        if image_check.is_animated():
+            raise serializers.ValidationError(
+                ugettext(u'Images cannot be animated.'))
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
