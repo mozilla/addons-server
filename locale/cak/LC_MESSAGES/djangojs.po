@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 20:20+0000\n"
+"PO-Revision-Date: 2018-02-27 21:00+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -278,16 +278,16 @@ msgid "Reviews Written"
 msgstr "Taq Tzijoxïk Etz'ib'an"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Rutz'ib'axik Kib'i' Okisanela'"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Tz'ib'anela' b'i'aj"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Kejqalem"
 
 msgid "Sales"
-msgstr ""
+msgstr "Taq k'ayij"
 
 msgid "Installs"
 msgstr "Keyak"
@@ -299,13 +299,13 @@ msgid "Add-ons Manager"
 msgstr "Kinuk'samajel taq T'aqat"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Kitaluxik Kinuk'samajel taq Tz'aqat"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Ya'on Kiq'ij Kinuk'samajel taq Tz'aqat"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Tetamäx Ch'aqa' Chik Kinuk'samajel taq Tz'aqat"
 
 msgid "Search Suggestions"
 msgstr ""
