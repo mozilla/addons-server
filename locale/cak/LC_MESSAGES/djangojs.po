@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 20:07+0000\n"
+"PO-Revision-Date: 2018-02-27 20:20+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -235,47 +235,47 @@ msgid "{0} sales"
 msgstr "{0} taq k'ayij"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} tzolin taq pwäq"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} taq yakoj"
 
 msgid "Downloads"
 msgstr "Taq qasanïk"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela'"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Jaru'il, pa USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Kajilab'al taq To'ïk"
 
 msgid "More Info..."
 msgstr "Ch'aqa' chik Etamab'äl..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Kib'anikil {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Taq Mol Xetz'uk"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Taq Tz'aqat Ye'okisäx"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Taq Tz'aqat Xetz'uk"
 
 msgid "Add-ons Downloaded"
 msgstr "Taq Tz'aqat Eqasan"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Taq Tz'aqat Xek'ex"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Taq Tzijoxïk Etz'ib'an"
 
 msgid "User Signups"
 msgstr ""
