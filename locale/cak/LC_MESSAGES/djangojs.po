@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 21:00+0000\n"
+"PO-Revision-Date: 2018-02-27 21:27+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -308,31 +308,31 @@ msgid "Add-ons Manager Learn More"
 msgstr "Tetamäx Ch'aqa' Chik Kinuk'samajel taq Tz'aqat"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Kichilab'exik Kanoxïk"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Kiq'i'oj Kanoxïk"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Talunïk pa Tikirib'äl Ruxaq"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Ya'on Kiq'ij Tikirib'äl Ruxaq"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Nik'oje' yan pa Tikirib'äl Ruxaq"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "K'ïy Kiwinaq pa Tikirib'äl Ruxaq"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "B'anikil Ruxaq"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "B'anikil Ruxaq (pitz'b'äl)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "B'anikil Ruxaq (Ruq'asab'al B'anonem)"
 
 msgid "Often Used With"
 msgstr ""
