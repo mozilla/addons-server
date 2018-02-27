@@ -28,7 +28,7 @@ class TestPersonaImageFunctions(TestCase):
             full_dst=[expected_dst1.name, expected_dst2.name],
             set_modified_on=[addon],
         )
-        # pngcrush_image should not been called twice, once for each
+        # pngcrush_image should have been called twice, once for each
         # destination thumbnail.
         assert pngcrush_image_mock.call_count == 2
         assert pngcrush_image_mock.call_args_list[0][0][0] == (
@@ -52,7 +52,7 @@ class TestPersonaImageFunctions(TestCase):
             get_image_path('persona-header.jpg'),
             expected_dst.name
         )
-        # pngcrush_image should not been called once.
+        # pngcrush_image should have been called once.
         assert pngcrush_image_mock.call_count == 1
         assert pngcrush_image_mock.call_args_list[0][0][0] == expected_dst.name
 
