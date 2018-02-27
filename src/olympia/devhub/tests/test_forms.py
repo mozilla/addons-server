@@ -237,7 +237,8 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         assert update_mock.called
 
-    def test_preview_size(self):
+    @mock.patch('olympia.amo.utils.pngcrush_image')
+    def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'non-animated.gif'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
@@ -253,6 +254,12 @@ class TestPreviewForm(TestCase):
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)
         assert os.path.exists(preview.original_path)
+
+        assert pngcrush_image_mock.call_count == 2
+        assert pngcrush_image_mock.call_args_list[0][0][0] == (
+            preview.thumbnail_path)
+        assert pngcrush_image_mock.call_args_list[1][0][0] == (
+            preview.image_path)
 
 
 class TestThemeForm(TestCase):
