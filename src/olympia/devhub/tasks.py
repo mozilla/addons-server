@@ -26,7 +26,6 @@ import validator
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
-from PIL import Image
 
 import olympia.core.logger
 
@@ -35,7 +34,7 @@ from olympia.addons.models import Addon, Persona, Preview
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
-    pngcrush_image, resize_image, send_html_mail_jinja,
+    image_size, pngcrush_image, resize_image, send_html_mail_jinja,
     utc_millesecs_from_epoch)
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
@@ -753,9 +752,8 @@ def get_preview_sizes(ids, **kw):
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
                 sizes = {
-                    'thumbnail': Image.open(
-                        storage.open(preview.thumbnail_path)).size,
-                    'image': Image.open(storage.open(preview.image_path)).size,
+                    'thumbnail': image_size(preview.thumbnail_path),
+                    'image': image_size(preview.image_path),
                 }
                 preview.update(sizes=sizes)
             except Exception, err:

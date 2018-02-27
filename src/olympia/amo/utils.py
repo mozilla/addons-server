@@ -478,6 +478,15 @@ def clean_nl(string):
     return serializer.render(stream)
 
 
+def image_size(filename):
+    """
+    Return an image size tuple, as returned by PIL.
+    """
+    with Image.open(filename) as img:
+        size = img.size
+    return size
+
+
 def pngcrush_image(src, **kw):
     """
     Optimizes a PNG image by running it through Pngcrush.

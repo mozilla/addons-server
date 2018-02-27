@@ -22,7 +22,7 @@ from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
-from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
@@ -96,7 +96,7 @@ def _uploader(resize_size, final_size):
         dest_image = '%s-%s.png' % (dest_name, rsize)
         assert pngcrush_mock.call_count == 1
         assert pngcrush_mock.call_args_list[0][0][0] == dest_image
-        assert Image.open(open(dest_image)).size == expected_size
+        assert image_size(dest_image) == expected_size
         # original should have been moved to -original
         orig_image = '%s-original.png' % dest_name
         assert os.path.exists(orig_image)

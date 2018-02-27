@@ -4,12 +4,11 @@ import tempfile
 
 from django.conf import settings
 
-from PIL import Image
-
-from olympia.amo.tests import addon_factory, TestCase
-from olympia.amo.tests.test_helpers import get_image_path
 from olympia.addons.tasks import (
     create_persona_preview_images, save_persona_image)
+from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import image_size
 
 
 class TestPersonaImageFunctions(TestCase):
@@ -36,8 +35,8 @@ class TestPersonaImageFunctions(TestCase):
         assert pngcrush_image_mock.call_args_list[1][0][0] == (
             expected_dst2.name)
 
-        assert Image.open(open(expected_dst1.name)).size == (680, 100)
-        assert Image.open(open(expected_dst2.name)).size == (32, 32)
+        assert image_size(expected_dst1.name) == (680, 100)
+        assert image_size(expected_dst2.name) == (32, 32)
 
         addon.reload()
         self.assertCloseToNow(addon.modified)

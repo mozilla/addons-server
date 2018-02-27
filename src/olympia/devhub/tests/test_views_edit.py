@@ -20,6 +20,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, formset, initial, req_factory_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import image_size
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
@@ -754,7 +755,7 @@ class TestEditMedia(BaseTestEdit):
 
         assert storage.exists(dest)
 
-        assert Image.open(storage.open(dest)).size == (32, 12)
+        assert image_size(dest) == (32, 12)
 
         assert addon.icon_type == 'image/png'
         assert addon.icon_hash == 'bb362450'
@@ -800,7 +801,7 @@ class TestEditMedia(BaseTestEdit):
 
         assert storage.exists(dest)
 
-        assert Image.open(storage.open(dest)).size == (48, 48)
+        assert image_size(dest) == (48, 48)
 
         assert addon.icon_type == 'image/png'
         assert addon.icon_hash == 'f02063c9'
