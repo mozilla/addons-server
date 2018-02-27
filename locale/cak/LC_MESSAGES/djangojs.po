@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-26 23:59+0000\n"
+"PO-Revision-Date: 2018-02-27 18:04+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -160,58 +160,58 @@ msgstr "Tajin nojqäx"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Man nuk'äm ta ri' re wachinïk re' rik'in ri ruwäch {0}"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Rub'i' Awachinik"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ya'on retal richin ninik'öx"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "K'atzinel ri ato'ik"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Ya'on retal richin niyuj"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Yek'ex taq q'i'oj&hellip;"
 
 msgid "Category"
 msgstr "Ruwäch"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq wachinïk richin <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq chokoy richin <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq tz'aqat richin <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Tokisäx qitzij"
 
 msgid "Week of {0}"
 msgstr ""
