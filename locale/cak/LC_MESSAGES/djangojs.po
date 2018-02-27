@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 22:31+0000\n"
+"PO-Revision-Date: 2018-02-27 22:42+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -548,83 +548,83 @@ msgstr "Taq Tz'aqat Xetz'uk, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Taq Tz'aqat Xetz'uk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Taq Tz'aqat Xek'ex, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Taq Tz'aqat Xek'ex pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Taq Tzijoxïk Xetz'ib'äx, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Taq Tzijoxïk Xetz'ib'äx pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Kitz'ib'axik Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Kitz'ib'axik Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Taq Mol Xetz'uk, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Taq Mol Xetz'uk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Tz'ib'anela' b'i'aj, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Tz'ib'anela' b'i'aj pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Kejqalem, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Kejqalem pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Taq k'ayij, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Taq k'ayij pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Kiyakoj, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Kiyakoj pa {0} k'a {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> pa ruk'isib'äl {1} q'ij"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> pa {1} k'a {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> junamilil pa ruk'isib'äl {1} q'ij"
 
 msgid "No data available."
 msgstr "Majun tzij wachel."
@@ -636,7 +636,7 @@ msgid "Other"
 msgstr "Juley chik"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
