@@ -493,7 +493,9 @@ def pngcrush_image(src, **kw):
         tmp_path = '%s.crush.png' % os.path.splitext(src)[0]
         # -brute is not recommended, and in general does not improve things a
         # lot. -reduce is on by default for pngcrush above 1.8.0, but we're
-        # still on an older version.
+        # still on an older version (1.7.85 at the time of writing this
+        # comment, because that's what comes with Debian stretch that is used
+        # for our docker container).
         cmd = [settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow', src, tmp_path]
         process = subprocess.Popen(
             cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
