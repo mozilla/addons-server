@@ -276,8 +276,10 @@ class TestPackagedTrunion(TestCase):
             'Signature-Version: 1.0\n'
             'MD5-Digest-Manifest: 38vYqmQVrnRoU0Ac00upqw==\n'
             'SHA1-Digest-Manifest: 5zn5SCe3RDBgGhSCK8rFJi98JCw=\n'
-            'SHA256-Digest-Manifest: 4ZpVcLE00kZymr5C4M/'
-                'KYTat9tj5kncqtv84gvlbT5g=') in call.body
+            'SHA256-Digest-Manifest: ' (
+                '4ZpVcLE00kZymr5C4M/KYTat9tj5kncqtv84gvlbT5g='
+            )
+        ) in call.body
 
     @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
@@ -294,8 +296,10 @@ class TestPackagedTrunion(TestCase):
             'Signature-Version: 1.0\n'
             'MD5-Digest-Manifest: 38vYqmQVrnRoU0Ac00upqw==\n'
             'SHA1-Digest-Manifest: 5zn5SCe3RDBgGhSCK8rFJi98JCw=\n'
-            'SHA256-Digest-Manifest: 4ZpVcLE00kZymr5C4M/'
-                'KYTat9tj5kncqtv84gvlbT5g=') in call.body
+            'SHA256-Digest-Manifest: ' (
+                '4ZpVcLE00kZymr5C4M/KYTat9tj5kncqtv84gvlbT5g='
+            )
+        ) in call.body
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
