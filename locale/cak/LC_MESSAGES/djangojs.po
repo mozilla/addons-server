@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-26 23:50+0000\n"
+"PO-Revision-Date: 2018-02-26 23:59+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -129,25 +129,25 @@ msgstr ""
 "k'ojlib'äl richin nijotob'äx ruxe'el b'itz'ib' richin chi man tixutüx pe ri ataqoj."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Ri rusamajixik jikib'anem xrïl re taq k'ayewal re' ri yetikïr nikib'än chi xtixutüx pe:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Majun k'amonel nuk'uche'el xilitäj."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Man netamäx ta ruwäch ri ruwäch yakb'äl xajotob'a'."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Ri ayakb'al xik'o chuwa ri nïm runimilem {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Xaq'ät rujotob'axik."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Ri taq silowäch k'o chi e WebM kib'anikil."
 
 msgid "Follow this Collection"
 msgstr "Tojqäx re Mol re'"
