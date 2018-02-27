@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 21:42+0000\n"
+"PO-Revision-Date: 2018-02-27 22:00+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -365,40 +365,40 @@ msgid "Collections"
 msgstr "Taq mol"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Qajem Ruwäch Ya'on Ruq'ij Karusel"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Qajem Ruwäch Ütz Ya'on Kiq'ij"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Qajem Ruwäch K'ïy Kiwinaq"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Qajem Ruwäch K'a B'a' Tz'aqatisan"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi K'o Kiq'ij"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Okisanela'"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Kejqalem"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Etz'ukun"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi B'i'aj"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi K'ïy Kiwinaq"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Ek'exon"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Yewachin Yan Pe"
 
 msgid "Total Amount Contributed"
 msgstr ""
