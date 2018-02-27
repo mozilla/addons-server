@@ -217,7 +217,6 @@ def test_pngcrush_image(subprocess_mock):
         '/tmp/some_file.png', '/tmp/some_file.crush.png',
     ]
     assert subprocess_mock.Popen.call_args_list[0][1] == {
-        'stdin': subprocess_mock.PIPE,
         'stdout': subprocess_mock.PIPE,
         'stderr': subprocess_mock.PIPE,
     }
