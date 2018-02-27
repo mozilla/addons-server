@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 18:04+0000\n"
+"PO-Revision-Date: 2018-02-27 20:07+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -214,25 +214,25 @@ msgid "Use original"
 msgstr "Tokisäx qitzij"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Ruwuqq'ij {0}"
 
 msgid " downloads"
 msgstr " taq qasanïk"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} okisanela'"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} taq tz'aqat"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} taq mol"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} taq tzijoxïk"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} taq k'ayij"
 
 msgid "{0} refunds"
 msgstr ""
