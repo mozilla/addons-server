@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 22:42+0000\n"
+"PO-Revision-Date: 2018-02-27 23:05+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -640,20 +640,20 @@ msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tib'an runuk'ulem {0} tz'aqat rik'in jun nïm ruwäch {1} chuqa' titaq jun rutaqoya'l ri b'anel."
+msgstr[1] "Tib'an kinuk'ulem {0} taq tz'aqat rik'in jun nïm ruwäch {1} chuqa' titaq jun kitaqoya'l ri b'anel."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titaq taqoya'l chi re ri rub'anel {2} tz'aqat ri xsach rik'in ri jikib'anem."
+msgstr[1] "Titaq taqoya'l chi ke ri rub'anel {2} taq tz'aqat ri xesach rik'in ri jikib'anem."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Ütz chuqa' Tiyak"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Titz'aqatisäx chi re: {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -667,7 +667,7 @@ msgstr ""
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "Man nuk'äm ta ri' re tz'aqat re' rik'in ri ruwäch {0}."
 
 msgid "View other versions"
 msgstr ""
@@ -700,16 +700,16 @@ msgid "Pending"
 msgstr "Oyob'en"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Titz'aqatisäx jun tzijoxïk"
 
 msgid "Comment"
-msgstr ""
+msgstr "Tzijoxïk"
 
 msgid "Remove this add-on from the collection"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "Tiyuj"
 
 msgid "Remove this user as a contributor"
 msgstr ""
