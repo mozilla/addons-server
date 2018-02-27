@@ -91,11 +91,11 @@ def _uploader(resize_size, final_size):
         assert src_image.size == original_size
         dest_name = os.path.join(uploadto, '1234')
 
-        with mock.patch('olympia.devhub.tasks.pngcrush_image') as crush_mock:
+        with mock.patch('olympia.amo.utils.pngcrush_image') as pngcrush_mock:
             return_value = tasks.resize_icon(src.name, dest_name, [rsize])
         dest_image = '%s-%s.png' % (dest_name, rsize)
-        assert crush_mock.call_count == 1
-        assert crush_mock.call_args_list[0][0][0] == dest_image
+        assert pngcrush_mock.call_count == 1
+        assert pngcrush_mock.call_args_list[0][0][0] == dest_image
         assert Image.open(open(dest_image)).size == expected_size
         # original should have been moved to -original
         orig_image = '%s-original.png' % dest_name

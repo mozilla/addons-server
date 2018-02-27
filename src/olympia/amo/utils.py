@@ -531,7 +531,7 @@ def resize_image(source, destination, size=None):
             im = processors.scale_and_crop(im, size)
     with storage.open(destination, 'wb') as fp:
         im.save(fp, 'png')
-
+    pngcrush_image(destination)
     return (im.size, original_size)
 
 

@@ -237,7 +237,7 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         assert update_mock.called
 
-    @mock.patch('olympia.devhub.tasks.pngcrush_image')
+    @mock.patch('olympia.amo.utils.pngcrush_image')
     def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'non-animated.gif'

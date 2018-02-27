@@ -697,7 +697,6 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         for size in target_sizes:
             dest_file = '%s-%s.png' % (dest_folder, size)
             resize_image(source, dest_file, (size, size))
-            pngcrush_image(dest_file)
 
         # Store the original hash, we'll return it to update the corresponding
         # add-on. We only care about the first 8 chars of the md5, it's
@@ -728,10 +727,8 @@ def resize_preview(src, instance, **kw):
     try:
         (sizes['thumbnail'], sizes['original']) = resize_image(
             src, thumb_dst, amo.ADDON_PREVIEW_SIZES[0])
-        pngcrush_image(thumb_dst)
         (sizes['image'], _) = resize_image(
             src, full_dst, amo.ADDON_PREVIEW_SIZES[1])
-        pngcrush_image(full_dst)
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
