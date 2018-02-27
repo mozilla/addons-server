@@ -7,7 +7,6 @@ from django.db.models import Q
 
 import mock
 
-from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo
