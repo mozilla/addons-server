@@ -366,7 +366,11 @@ function addonFormSubmit() {
                               .appendTo(parent_div.find('h3').first());
                     // Fix bug 7504. If the basic information has been changed. Refresh the name of the addon
                     if ($form.is('#addon-edit-basic')) {
-                        refreshAddonBasicInformation($form);
+                        // Retrieve the div containing the updated name and then its value
+                        updated_name = $form.find('[data-name=name]').text()
+                        // Get the element to update in the top-left quadrant and update it with the new name
+                        // The element being defined in devhub/addons/edit.html file belongs to the class addon-name
+                        $('.addon-name').text(updated_name)
                     }
                     setTimeout(function(){
                         e.css('opacity', 0);
@@ -378,16 +382,6 @@ function addonFormSubmit() {
         reorderPreviews();
         z.refreshL10n();
     })(parent_div);
-}
-
-function refreshAddonBasicInformation($form) {
-    // Retrieve the div containing the updated name and then its value
-    update_name_div = $form.find('[data-name=name]')
-    updated_name = update_name_div.text()
-    // Get the element to update in the top-left quadrant and update it with the new name
-    // The element being defined in devhub/addons/edit.html file belongs to the class addon-name
-    addon_name_tag = $('.addon-name')
-    addon_name_tag.text(updated_name)
 }
 
 
