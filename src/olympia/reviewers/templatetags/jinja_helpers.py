@@ -92,8 +92,8 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
             tabnav.append(
                 ('moderated', 'queue_moderated',
-                 (ungettext('Moderated Review ({0})',
-                            'Moderated Reviews ({0})',
+                 (ungettext('Rating Review ({0})',
+                            'Rating Reviews ({0})',
                             counts['moderated'])
                   .format(counts['moderated']))),
             )
@@ -101,8 +101,8 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
-                 (ungettext('Auto Approved Add-on ({0})',
-                            'Auto Approved Add-ons ({0})',
+                 (ungettext('Auto Approved ({0})',
+                            'Auto Approved ({0})',
                             counts['auto_approved'])
                   .format(counts['auto_approved']))),
             )
@@ -114,6 +114,15 @@ def queue_tabnav(context):
                             'Content Review ({0})',
                             counts['content_review'])
                   .format(counts['content_review']))),
+            )
+
+        if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
+            tabnav.append(
+                ('expired_info_requests', 'queue_expired_info_requests',
+                 (ungettext('Expired Info Request ({0})',
+                            'Expired Info Requests ({0})',
+                            counts['expired_info_requests'])
+                  .format(counts['expired_info_requests']))),
             )
     else:
         tabnav = [

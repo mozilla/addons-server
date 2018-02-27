@@ -16,6 +16,7 @@ import unicodedata
 import urllib
 import urlparse
 import string
+import subprocess
 
 import django.core.mail
 
@@ -477,6 +478,50 @@ def clean_nl(string):
     return serializer.render(stream)
 
 
+def image_size(filename):
+    """
+    Return an image size tuple, as returned by PIL.
+    """
+    with Image.open(filename) as img:
+        size = img.size
+    return size
+
+
+def pngcrush_image(src, **kw):
+    """
+    Optimizes a PNG image by running it through Pngcrush.
+    """
+    log.info('Optimizing image: %s' % src)
+    try:
+        # When -ow is used, the output file name (second argument after
+        # options) is used as a temporary filename (that must reside on the
+        # same filesystem as the original) to save the optimized file before
+        # overwriting the original. By default it's "pngout.png" but we want
+        # that to be unique in order to avoid clashes with multiple tasks
+        # processing different images in parallel.
+        tmp_path = '%s.crush.png' % os.path.splitext(src)[0]
+        # -brute is not recommended, and in general does not improve things a
+        # lot. -reduce is on by default for pngcrush above 1.8.0, but we're
+        # still on an older version (1.7.85 at the time of writing this
+        # comment, because that's what comes with Debian stretch that is used
+        # for our docker container).
+        cmd = [settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow', src, tmp_path]
+        process = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+
+        if process.returncode != 0:
+            log.error('Error optimizing image: %s; %s' % (src, stderr.strip()))
+            return False
+
+        log.info('Image optimization completed for: %s' % src)
+        return True
+
+    except Exception, e:
+        log.error('Error optimizing image: %s; %s' % (src, e))
+    return False
+
+
 def resize_image(source, destination, size=None):
     """Resizes and image from src, to dst.
     Returns a tuple of new width and height, original width and height.
@@ -496,7 +541,7 @@ def resize_image(source, destination, size=None):
             im = processors.scale_and_crop(im, size)
     with storage.open(destination, 'wb') as fp:
         im.save(fp, 'png')
-
+    pngcrush_image(destination)
     return (im.size, original_size)
 
 

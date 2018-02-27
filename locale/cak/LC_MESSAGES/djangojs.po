@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-26 23:59+0000\n"
+"PO-Revision-Date: 2018-02-27 22:00+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -160,134 +160,134 @@ msgstr "Tajin nojqäx"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Man nuk'äm ta ri' re wachinïk re' rik'in ri ruwäch {0}"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Rub'i' Awachinik"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ya'on retal richin ninik'öx"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "K'atzinel ri ato'ik"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Ya'on retal richin niyuj"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Yek'ex taq q'i'oj&hellip;"
 
 msgid "Category"
 msgstr "Ruwäch"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq wachinïk richin <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq chokoy richin <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Kekanöx taq tz'aqat richin <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Tokisäx qitzij"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Ruwuqq'ij {0}"
 
 msgid " downloads"
 msgstr " taq qasanïk"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} okisanela'"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} taq tz'aqat"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} taq mol"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} taq tzijoxïk"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} taq k'ayij"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} tzolin taq pwäq"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} taq yakoj"
 
 msgid "Downloads"
 msgstr "Taq qasanïk"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela'"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Jaru'il, pa USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Kajilab'al taq To'ïk"
 
 msgid "More Info..."
 msgstr "Ch'aqa' chik Etamab'äl..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Kib'anikil {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Taq Mol Xetz'uk"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Taq Tz'aqat Ye'okisäx"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Taq Tz'aqat Xetz'uk"
 
 msgid "Add-ons Downloaded"
 msgstr "Taq Tz'aqat Eqasan"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Taq Tz'aqat Xek'ex"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Taq Tzijoxïk Etz'ib'an"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Rutz'ib'axik Kib'i' Okisanela'"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Tz'ib'anela' b'i'aj"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Kejqalem"
 
 msgid "Sales"
-msgstr ""
+msgstr "Taq k'ayij"
 
 msgid "Installs"
 msgstr "Keyak"
@@ -299,106 +299,106 @@ msgid "Add-ons Manager"
 msgstr "Kinuk'samajel taq T'aqat"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Kitaluxik Kinuk'samajel taq Tz'aqat"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Ya'on Kiq'ij Kinuk'samajel taq Tz'aqat"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Tetamäx Ch'aqa' Chik Kinuk'samajel taq Tz'aqat"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Kichilab'exik Kanoxïk"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Kiq'i'oj Kanoxïk"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Talunïk pa Tikirib'äl Ruxaq"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Ya'on Kiq'ij Tikirib'äl Ruxaq"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Nik'oje' yan pa Tikirib'äl Ruxaq"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "K'ïy Kiwinaq pa Tikirib'äl Ruxaq"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "B'anikil Ruxaq"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "B'anikil Ruxaq (pitz'b'äl)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "B'anikil Ruxaq (Ruq'asab'al B'anonem)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Jutaqil Nokisäx Rik'in"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Juley Chik Ruma B'anel"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Taq moloj"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Talunïk"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Tetamäx Ruwäch ri B'anonel"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Ruwäch Rub'i' Okisanel"
 
 msgid "Version History"
-msgstr ""
+msgstr "Runatab'al Ruwäch"
 
 msgid "Sharing"
 msgstr "Nikomonïx"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Kixaq Ruwäch"
 
 msgid "Collections"
-msgstr ""
+msgstr "Taq mol"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Qajem Ruwäch Ya'on Ruq'ij Karusel"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Qajem Ruwäch Ütz Ya'on Kiq'ij"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Qajem Ruwäch K'ïy Kiwinaq"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Qajem Ruwäch K'a B'a' Tz'aqatisan"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi K'o Kiq'ij"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Okisanela'"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Kejqalem"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Etz'ukun"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi B'i'aj"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi K'ïy Kiwinaq"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Ek'exon"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Tikanöx Cholajem Cholajin Chi Yewachin Yan Pe"
 
 msgid "Total Amount Contributed"
 msgstr ""

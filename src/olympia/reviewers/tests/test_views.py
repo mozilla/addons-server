@@ -531,6 +531,20 @@ class TestDashboard(TestCase):
             addon=under_code_review, needs_admin_code_review=True)
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
+
+        # Addon with expired info request
+        expired = addon_factory(name=u'Expired')
+        AddonReviewerFlags.objects.create(
+            addon=expired,
+            pending_info_request=self.days_ago(42))
+
+        # Rating
+        rating = Rating.objects.create(
+            addon=addon1, version=addon1.current_version, user=self.user,
+            flag=True, body=u'This âdd-on sucks!!111', rating=1,
+            editorreview=True)
+        rating.ratingflag_set.create()
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -568,6 +582,10 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
         assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         assert doc('.dashboard a')[10].text == 'Content Review (4)'
+        assert (doc('.dashboard a')[18].text ==
+                'Ratings Awaiting Moderation (1)')
+        assert (doc('.dashboard a')[24].text ==
+                'Expired Information Requests (1)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1215,6 +1233,14 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_content_review'))
         assert links == expected
 
+        self.grant_permission(self.user, 'Reviews:Admin')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.append(reverse('reviewers.queue_expired_info_requests'))
+        assert links == expected
+
 
 class TestPendingQueue(QueueTest):
 
@@ -1526,7 +1552,7 @@ class TestModeratedQueue(QueueTest):
             title='please', body='dont show me either', editorreview=True)
         RatingFlag.objects.create(rating=rating)
 
-        self._test_queue_layout('Moderated Reviews',
+        self._test_queue_layout('Rating Reviews',
                                 tab_position=2, total_addons=2, total_queues=3)
 
     def test_no_reviews(self):
@@ -1728,7 +1754,7 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
 
-        self._test_queue_layout("Auto Approved Add-ons",
+        self._test_queue_layout("Auto Approved",
                                 tab_position=2, total_addons=4, total_queues=3,
                                 per_page=1)
 

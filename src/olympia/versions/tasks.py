@@ -14,6 +14,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
+from olympia.amo.utils import pngcrush_image
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -72,4 +73,5 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
     svg = tmpl.render(context).encode('utf-8')
     size = write_svg_to_png(svg, preview.image_path)
     if size:
+        pngcrush_image(preview.image_path)
         preview.update(sizes={'image': size})
