@@ -274,8 +274,10 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
-            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
+            'MD5-Digest-Manifest: 38vYqmQVrnRoU0Ac00upqw==\n'
+            'SHA1-Digest-Manifest: 5zn5SCe3RDBgGhSCK8rFJi98JCw=\n'
+            'SHA256-Digest-Manifest: 4ZpVcLE00kZymr5C4M/'
+                'KYTat9tj5kncqtv84gvlbT5g=') in call.body
 
     @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
@@ -290,8 +292,10 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
-            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
+            'MD5-Digest-Manifest: 38vYqmQVrnRoU0Ac00upqw==\n'
+            'SHA1-Digest-Manifest: 5zn5SCe3RDBgGhSCK8rFJi98JCw=\n'
+            'SHA256-Digest-Manifest: 4ZpVcLE00kZymr5C4M/'
+                'KYTat9tj5kncqtv84gvlbT5g=') in call.body
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
@@ -326,12 +330,11 @@ class TestPackagedAutograph(TestPackagedTrunion):
     def _register_urls(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
-    def _get_signature_info(self):
+    def _get_signature_details(self):
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zobj:
-            with zobj.open('META-INF/mozilla.rsa', 'r') as fobj:
-                pkcs7 = fobj.read()
-
-        return SignatureInfo(pkcs7)
+            info = SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
+            manifest = zobj.read('META-INF/manifest.mf')
+            return info, manifest
 
     def _sign_file(self, file_):
         packaged.sign_file(file_, use_autograph=True)
@@ -357,10 +360,18 @@ class TestPackagedAutograph(TestPackagedTrunion):
     def test_call_signing(self):
         self._sign_file(self.file_)
 
-        signature_info = self._get_signature_info()
+        signature_info, manifest = self._get_signature_details()
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
+        assert manifest == (
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: MD5 SHA1 SHA256\n'
+            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+        )
 
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
@@ -368,10 +379,18 @@ class TestPackagedAutograph(TestPackagedTrunion):
         self.addon.update(guid=long_guid)
         self._sign_file(self.file_)
 
-        signature_info = self._get_signature_info()
+        signature_info, manifest = self._get_signature_details()
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
+        assert manifest == (
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: MD5 SHA1 SHA256\n'
+            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+        )
 
 
 class TestTasks(TestCase):
