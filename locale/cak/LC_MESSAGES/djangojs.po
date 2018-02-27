@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 21:27+0000\n"
+"PO-Revision-Date: 2018-02-27 21:42+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -335,34 +335,34 @@ msgid "Detail Page (Development Channel)"
 msgstr "B'anikil Ruxaq (Ruq'asab'al B'anonem)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Jutaqil Nokisäx Rik'in"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Juley Chik Ruma B'anel"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Taq moloj"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Talunïk"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Tetamäx Ruwäch ri B'anonel"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Ruwäch Rub'i' Okisanel"
 
 msgid "Version History"
-msgstr ""
+msgstr "Runatab'al Ruwäch"
 
 msgid "Sharing"
 msgstr "Nikomonïx"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Kixaq Ruwäch"
 
 msgid "Collections"
-msgstr ""
+msgstr "Taq mol"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
