@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 18:32+0000\n"
+"PO-Revision-Date: 2018-02-28 20:26+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -806,46 +806,46 @@ msgid "Review notes found"
 msgstr "Kenik'öx taq ch'utitzijol xe'ilitäj"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Nik'aj taq Nik'oxïk"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Kajlab'al taq Nik'oxïk"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "K'utun Etamab'äl"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Xya' retal"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Kamulun"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Xutun"
 
 msgid "Approved"
-msgstr ""
+msgstr "Juch'un"
 
 msgid "No results found"
-msgstr ""
+msgstr "Majun achike xilitäj"
 
 msgid "Theme"
 msgstr "Wachinïk"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Nik'onel"
 
 msgid "Status"
 msgstr "B'anikil"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Ütz xe'ik'owisäx ronojel ri taq tojtob'enïk."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Man xesamajib'ëx ta re taq tojtob'enïk re'."
 
 msgid "Tests"
-msgstr ""
+msgstr "Taq tojtob'enïk"
 
 msgid "Error"
 msgstr "Sachoj"
@@ -854,19 +854,19 @@ msgid "Warning"
 msgstr "Rutzijol k'ayewal"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} cholaj {1} tem {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} cholaj {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "K'amonel taq Tojtob'enïk"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Xsach rik'in ri jikib'anïk ri tz'aqat."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Xik'o rik'in ri jikib'anïk ri tz'aqat."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -884,7 +884,7 @@ msgstr[0] "{0} tzijol"
 msgstr[1] "{0} taq tzijol"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Max xtikïr ta xtz'aqär ri rujikib'axik samaj o xtz'aqatisäx rik'in sachoj"
 
 msgid "Internal server error"
 msgstr "Sachoj chupam ri ruk'u'x samaj"
