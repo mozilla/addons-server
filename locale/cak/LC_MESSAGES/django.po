@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 21:09+0000\n"
+"PO-Revision-Date: 2018-02-28 21:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -231,22 +231,22 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Wachinïk Ya'on Kiq'ij"
 
 msgid "Featured Collections"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Tichol chi:"
 
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "K'exon {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Tz'aqatisan {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -290,7 +290,7 @@ msgstr ""
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Ketz'et ronojel {0} taq Wachinïk"
 
 msgid "More by this Artist"
 msgstr ""
@@ -299,7 +299,7 @@ msgid "See all Themes by this Artist"
 msgstr ""
 
 msgid "Categories"
-msgstr ""
+msgstr "Taq ruwäch"
 
 msgid "Updated"
 msgstr "Xk'ex"
@@ -308,28 +308,28 @@ msgid "Artist"
 msgstr ""
 
 msgid "Rating"
-msgstr ""
+msgstr "Kejqalem"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela'"
 
 msgid "License"
-msgstr ""
+msgstr "Ya'oj q'ij"
 
 msgid "Awaiting Review"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "Xutun"
 
 msgid "Approved"
-msgstr ""
+msgstr "Juch'un"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> okisanel"
+msgstr[1] "<strong>{0}</strong> okisanela'"
 
 msgid "Hover to Preview"
 msgstr ""
