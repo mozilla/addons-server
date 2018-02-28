@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 17:29+0000\n"
+"PO-Revision-Date: 2018-02-28 17:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -691,10 +691,10 @@ msgid "Removing Favorite&hellip;"
 msgstr "Nisilöx Ajowab'äl&hellip;"
 
 msgid "Add to Favorites"
-msgstr "Ketz'aqatisäx taq Ajowab'äl"
+msgstr "Ketz'aqatisäx pa Ajowab'äl"
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Tisilöx el pa Taq Ajowab'äl"
 
 msgid "Pending"
 msgstr "Oyob'en"
@@ -706,52 +706,52 @@ msgid "Comment"
 msgstr "Tzijoxïk"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Tisilöx re tz'aqat re' pa ri mol"
 
 msgid "Remove"
 msgstr "Tiyuj"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Tisilöx re okisanel re' achi'el jun to'onel"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Rochochib'al jun taqoya'l najowäx."
 
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Man yatikïr ta natz'aqatisaj awi' achi'el jun to'onel."
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "Xatz'aqatisaj yan ri okisanel ri'."
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Ketz'aqatisäx pa ajowab'äl"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Tisilöx el pa taq ajowab'äl"
 
 msgid "Stop following"
-msgstr ""
+msgstr "Man tojqäx chik"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Man nuk'äm ta ri' ri awokik'amaya'l rik'in ri retal silowäch"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Xeyak taq Jaloj"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Titz'ib'äx jun k'ak'a' ochochib'al rutaqoya'l b'anel"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Xk'ulwachitäj jun sachoj toq nijotob'äx ayakb'al."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} yakb'äl"
+msgstr[1] "{files} taq yakb'äl"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} rejqalem okisanel"
 msgstr[1] ""
 
 msgid "Image changes being processed"
