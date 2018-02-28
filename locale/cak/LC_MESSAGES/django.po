@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 20:27+0000\n"
+"PO-Revision-Date: 2018-02-28 20:51+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -20,19 +20,19 @@ msgid "No links are allowed."
 msgstr "Majun ximonel ya'on q'ij chi re."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Man tikire ta xa xe taq ajilab'äl pa kib'i' ri okisanela'."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Tatz'ib'aj jun okel rub'i' okisanel ri ruk'wan taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re rub'i' okisanel re'."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "Nokisäx chik re rub'i' okisanel re'."
 
 msgid "Images must be either PNG or JPG."
 msgstr ""
