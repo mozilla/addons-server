@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 20:51+0000\n"
+"PO-Revision-Date: 2018-02-28 21:09+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -35,20 +35,20 @@ msgid "This username is already in use."
 msgstr "Nokisäx chik re rub'i' okisanel re'."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Ke'okisäx taq wachib'äl ko'öl chi re ri %dMB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Atokinäq chik."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Man xtikïr ta xnik'öx ri rutojtob'enik richin nitikirisäx molojri'ïl. Titojtob'ëx chik."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Man xojtikïr ta xqïl ri Rub'i' Ataqoya'l richin Firefox. Tatojtob'ej chik."
 
 msgid "You could not be logged in. Please try again."
 msgstr ""
@@ -157,7 +157,7 @@ msgid "Describe your Theme."
 msgstr ""
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Titz'ib'äx jun k'ak'a' ochochib'al rutaqoya'l b'anel"
 
 msgid "Listed"
 msgstr "Cholajin"
@@ -185,7 +185,7 @@ msgid "View privacy policy"
 msgstr ""
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -197,10 +197,10 @@ msgstr ""
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel ruma {0}"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Rutununa'oj Ya'öl Q'ij richin K'ixib'äl Okisanel"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
@@ -216,16 +216,16 @@ msgid "Featured Extensions"
 msgstr ""
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "K'ïy Kiwinaq taq K'amal"
 
 msgid "Most Popular"
-msgstr ""
+msgstr "K'ïy Ruwinaq"
 
 msgid "All »"
-msgstr ""
+msgstr "Ronojel »"
 
 msgid "See all »"
-msgstr ""
+msgstr "Titz'et ronojel »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
