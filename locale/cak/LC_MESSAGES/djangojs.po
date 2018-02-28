@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 18:10+0000\n"
+"PO-Revision-Date: 2018-02-28 18:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -770,34 +770,34 @@ msgstr[0] "<b>{0}</b> jun chik tz'ib'."
 msgstr[1] "<b>{0}</b> juley chik taq tz'ib'."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Chupül re b'anikil re' k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tatojtob'ej chik pa ka'i' oxi' ch'utiramaj."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Tiyuj re k'ojlemal re'"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} rutz'eton chik wi re ruxaq re'."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Xjikib'äx ri k'ulwuj ruma ri chokoy."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Man xjikib'äx ta ri k'ulwuj ruma ri chokoy."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} rutz'eton chik wi re tz'aqat re'."
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Nisamajib'ëx&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Kich'utitzijol Ruwäch"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Kich'utitzijol Nik'onela'"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Majun kich'utitzijol ruwäch xilitäj"
 
 msgid "Review Text"
 msgstr ""
