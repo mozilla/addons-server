@@ -321,9 +321,9 @@ requests==2.18.4 \
     --hash=sha256:9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
-signing-clients==1.4.1 \
-    --hash=sha256:820618f67f697f79c601bec8dea46727080a745d38aa8f959b45f4261653d0a8 \
-    --hash=sha256:fbdf2c19db4817f4b4485b8812aaa63e453b97f5ff5630c21accc2dce959c5d0 # pyup: ==1.4.1
+signing-clients==1.5.0 \
+    --hash=sha256:3411cab13d8a82ea294ed4523649d037ef8a97f5042f2e97b0a8898d617fd2f6 \
+    --hash=sha256:dd6a5810b97ec4a1aa8b35bed413750e89b5df0714bce2782bdf734231ca348b
 # simplejson is required by amo-validator
 simplejson==3.13.2 \
     --hash=sha256:194fa08e4047f16e7087f2a406abd15151a482a097e42d8babb1b8181b2232b1 \
