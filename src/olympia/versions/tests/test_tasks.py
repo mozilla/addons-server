@@ -13,7 +13,7 @@ from PIL import Image, ImageChops
 from olympia.addons.models import Preview
 from olympia.amo.tests import addon_factory
 from olympia.versions.tasks import (
-    generate_static_theme_preview, write_svg_to_png)
+    AdditionalBackground, generate_static_theme_preview, write_svg_to_png)
 
 
 def test_write_svg_to_png():
@@ -92,3 +92,94 @@ def test_generate_static_theme_preview(
     for (key, color) in theme_manifest['colors'].items():
         snippet = 'class="%s" fill="%s"' % (key, color)
         assert snippet in svg_content
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.write_svg_to_png')
+def test_generate_preview_with_additional_backgrounds(write_svg_to_png):
+    write_svg_to_png.return_value = (123, 456)
+    theme_manifest = {
+        "images": {
+            "headerURL": "empty.png",
+            "additional_backgrounds": ["weta_for_tiling.png"],
+        },
+        "colors": {
+            "accentcolor": "#918e43",
+            "textcolor": "#3deb60",
+        },
+        "properties": {
+            "additional_backgrounds_alignment": ["top"],
+            "additional_backgrounds_tiling": ["repeat-x"],
+        },
+    }
+    header_root = os.path.join(
+        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
+    addon = addon_factory()
+    preview = Preview.objects.create(addon=addon)
+    generate_static_theme_preview(theme_manifest, header_root, preview)
+    write_svg_to_png.assert_called()
+    ((svg_content, png_path), _) = write_svg_to_png.call_args
+    assert png_path == preview.image_path
+
+    # check additional background pattern is correct
+    image_width = 270
+    image_height = 200
+    pattern_x_offset = (680 - image_width) / 2
+    pattern_tag = (
+        '<pattern id="AdditionalBackground1"\n'
+        '                   width="%s" height="%s"\n'
+        '                   x="%s" y="%s" patternUnits="userSpaceOnUse">' % (
+            image_width, '100%', pattern_x_offset, 0))
+    assert pattern_tag in svg_content, svg_content
+    image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
+    assert image_tag in svg_content, svg_content
+    rect_tag = (
+        '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)">'
+        '</rect>')
+    assert rect_tag in svg_content, svg_content
+    # and image content is included and was encoded
+    additional = os.path.join(header_root, 'weta_for_tiling.png')
+    with storage.open(additional, 'rb') as header_file:
+        header_blob = header_file.read()
+    base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
+    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+
+
+@pytest.mark.parametrize(
+    'alignment, alignments_tuple', (
+        ('center bottom', ('center', 'bottom')),
+        ('top', ('center', 'top')),
+        ('center', ('center', 'center')),
+        ('left', ('left', 'center')),
+        ('', ('', ''))
+    )
+)
+def test_additional_background_split_alignment(alignment, alignments_tuple):
+    assert AdditionalBackground.split_alignment(alignment) == alignments_tuple
+
+
+@mock.patch('olympia.versions.tasks.encode_header_image')
+@pytest.mark.parametrize(
+    'alignment, tiling,'  # inputs
+    'pattern_width, pattern_height, pattern_x, pattern_y', (
+        ('center bottom', 'no-repeat', '100%', '100%', 280, -350),
+        ('top', 'repeat-x', 120, '100%', 280, 0),
+        ('center', 'repeat-y', '100%', 450, 280, -175),
+        ('left top', 'repeat', 120, 450, 0, 0),
+    )
+)
+def test_additional_background(encode_header_image, alignment, tiling,
+                               pattern_width, pattern_height, pattern_x,
+                               pattern_y):
+    encode_header_image.return_value = ('foobaa', 120, 450)
+    path = 'empty.png'
+    header_root = os.path.join(
+        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
+    background = AdditionalBackground(path, alignment, tiling, header_root)
+    assert background.src == 'foobaa'
+    assert background.width == 120
+    assert background.height == 450
+    assert background.pattern_width == pattern_width
+    assert background.pattern_height == pattern_height
+    assert background.pattern_x == pattern_x
+    assert background.pattern_y == pattern_y

@@ -2,9 +2,21 @@
 <svg id="preview-svg-root" width="{{ amo.THEME_PREVIEW_SIZE.width }}" height="{{amo.THEME_PREVIEW_SIZE.height }}" xmlns="http://www.w3.org/2000/svg"
      version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
      xmlns:svgjs="http://svgjs.com/svgjs" font-size="16px" font-family="Helvetica, Arial, sans-serif">
-    <defs id="SvgDefs1007"></defs>
+    <defs>
+        {% for background in additional_backgrounds %}
+          <pattern id="AdditionalBackground{{ loop.index }}"
+                   width="{{ background.pattern_width }}" height="{{ background.pattern_height }}"
+                   x="{{ background.pattern_x }}" y="{{ background.pattern_y }}" patternUnits="userSpaceOnUse">
+            <image width="{{ background.width }}" height="{{ background.height }}"
+                   xlink:href="{{ background.src }}"></image>
+          </pattern>
+        {% endfor %}
+    </defs>
     <rect id="SvgRect1008" width="{{ amo.THEME_PREVIEW_SIZE.width }}" height="{{ amo.THEME_PREVIEW_SIZE.height }}"
           class="accentcolor" fill="{{ accentcolor|d('rgba(229,230,232,1)') }}" data-fill="rgba(229,230,232,1)"></rect>
+    {% for background in additional_backgrounds %}
+        <rect width="100%" height="100%" fill="url(#AdditionalBackground{{ loop.revindex }})"></rect>
+    {% endfor %}
     <image id="svg-header-img" width="{{ amo.THEME_PREVIEW_SIZE.width }}" height="{{ header_src_height|d(amo.THEME_PREVIEW_SIZE.height) }}" preserveAspectRatio="{{ preserve_aspect_ratio|d('xMaxYMin slice') }}"
            xlink:href="{{ header_src|d }}"></image>
     <text id="SvgText1012" x="200" y="25" class="textcolor" fill="{{ textcolor|d }}">

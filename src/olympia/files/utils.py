@@ -1155,10 +1155,14 @@ def extract_header_img(file_obj, theme_data, dest_path):
     # Get the reference in the manifest.  theme_frame is the Chrome variant.
     header_url = images_dict.get(
         'headerURL', images_dict.get('theme_frame'))
+    # And any additional backgrounds too.
+    additional_urls = images_dict.get('additional_backgrounds', [])
 
     try:
         with zipfile.ZipFile(xpi, 'r') as source:
             source.extract(header_url, dest_path)
+            for additional in additional_urls:
+                source.extract(additional, dest_path)
     except IOError as ioerror:
         log.debug(ioerror)
 
