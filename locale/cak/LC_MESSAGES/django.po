@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 21:30+0000\n"
+"PO-Revision-Date: 2018-02-28 21:38+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -349,7 +349,7 @@ msgid "Not yet rated"
 msgstr ""
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> okisanela'"
 
 #. {0} is the number of users.
 msgid "{0} Daily User"
@@ -400,7 +400,7 @@ msgid "Rating:"
 msgstr ""
 
 msgid "Submit review"
-msgstr ""
+msgstr "Titaq tzijoxïk"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
@@ -412,10 +412,10 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Kib'eyal Yesamajïx taq Nik'oxïk"
 
 msgid "Reviews"
-msgstr ""
+msgstr "Taq tzijoxïk"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
@@ -459,7 +459,7 @@ msgid "Average"
 msgstr "Tunamilil"
 
 msgid "Write a review"
-msgstr ""
+msgstr "Tatz'ib'aj jun tzijoxïk"
 
 msgid "Related Categories"
 msgstr ""
@@ -483,7 +483,7 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Tisamajïx"
 
 msgid "Add-on Review"
 msgstr ""
@@ -512,10 +512,10 @@ msgid "Add-on home page"
 msgstr ""
 
 msgid "Support site"
-msgstr ""
+msgstr "Ruxaq kik'amaya'l to'ïk"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "Rutaqoya'l To'ïk"
 
 msgid "Info"
 msgstr "Etamab'äl"
@@ -532,7 +532,7 @@ msgid "Custom License"
 msgstr ""
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "Chi rij re Tz'aqat re'"
 
 msgid "Developer’s Comments"
 msgstr ""
@@ -613,7 +613,7 @@ msgid "Be the first!"
 msgstr ""
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} okisanela'"
 
 msgid "More"
 msgstr "Ch'aqa' chik"
@@ -674,13 +674,13 @@ msgid "My Favorites"
 msgstr ""
 
 msgid "Log out"
-msgstr ""
+msgstr "Titz'apïx molojri'ïl"
 
 msgid "Manage My Submissions"
 msgstr ""
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Titaq jun K'ak'a' Tz'aqat"
 
 msgid "Submit a New Theme"
 msgstr ""
@@ -689,10 +689,10 @@ msgid "Developer Hub"
 msgstr ""
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Kenuk'samajïx API Kik'u'x Tzij"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Taq Rusamajib'al Nik'onel"
 
 msgid "Admin Tools"
 msgstr ""
