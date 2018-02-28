@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-27 23:05+0000\n"
+"PO-Revision-Date: 2018-02-28 17:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -657,41 +657,41 @@ msgstr "Titz'aqatisäx chi re: {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Tiyak pa {0} chuqa'"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Tiqasäx pa {0} chuqa'"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Man wachel ta pa ri anuk'uche'el"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Man nuk'äm ta ri' re tz'aqat re' rik'in ri ruwäch {0}."
 
 msgid "View other versions"
-msgstr ""
+msgstr "Ketz'et ch'aqa' chik ruwäch"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Nisamäj rik'in {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "Nisamäj rik'in {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Xa xe rik'in Firefox — ¡Tik'ul Firefox Wakami!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Nawajo' jun okik'amaya'l k'o ruxe'el pan Mozilla (achi'el Firefox) richin nayäk jun runak'ab'al kanoxïk."
 
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Nitz'aqatisäx pa Taq Ajowab'äl&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Nisilöx Ajowab'äl&hellip;"
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Ketz'aqatisäx taq Ajowab'äl"
 
 msgid "Remove from Favorites"
 msgstr ""
