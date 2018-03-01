@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 19:50+0000\n"
+"PO-Revision-Date: 2018-03-01 20:08+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2046,17 +2046,14 @@ msgstr "התוכן של {addon} {version} נדחה."
 msgid "Content rejected"
 msgstr "התוכן נדחה"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "התקבלה בקשה למידע נוסף"
+msgstr "הוסרה בקשה למידע מ־{addon}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "התקבלה בקשה למידע נוסף"
+msgstr "הוסרה בקשה למידע"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "תגובה לפי מפתח על {addon} {version}."
+msgstr "בקשה למידע נמחקה ע״י מפתח ב־{addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4463,7 +4460,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "עובד עם YouTube, ‏Facebook, ‏Vimeo, ‏Twitch, ‏Dailymotion, ‏Periscope ועוד מאות אתרי וידאו אחרים."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4472,7 +4469,7 @@ msgid "Dozens of amazing emojis—always a click away."
 msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "עובד בצורה חלקה עם רוב אתרי הוידאו הפופולריים."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
