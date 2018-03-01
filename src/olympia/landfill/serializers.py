@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import mimetypes
 import random
 import waffle
@@ -61,7 +63,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=STATUS_PUBLIC,
                 users=[UserProfile.objects.get(username=author)],
                 name=u'{}'.format(name),
-                slug='{}'.format(name),
+                slug=u'{}'.format(name),
             )
             addon.save()
         else:
@@ -69,7 +71,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=STATUS_PUBLIC,
                 users=[UserProfile.objects.get(username=author.username)],
                 name=u'{}'.format(name),
-                slug='{}'.format(name),
+                slug=u'{}'.format(name),
             )
             addon.save()
         return addon

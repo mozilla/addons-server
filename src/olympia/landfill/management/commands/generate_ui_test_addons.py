@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.core.cache import cache
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
@@ -9,31 +11,40 @@ from olympia.landfill.serializers import GenerateAddonsSerializer
 #  Featured collections on the homepage.
 #  Needs to be updated as the homepage is updated
 featured_collections = [
-    'dynamic-media-downloaders',
+    u'privacy-matters',
+    u're-imagine-search',
+    u'dynamic-media-downloaders',
 ]
 
 #  Featured collections on the homepage.
 base_collections = [
-    'bookmark-managers',
-    'password-managers',
-    'ad-blockers',
-    'smarter-shopping',
-    'be-more-productive',
-    'watching-videos',
+    u'bookmark-managers',
+    u'password-managers',
+    u'ad-blockers',
+    u'smarter-shopping',
+    u'be-more-productive',
+    u'watching-videos',
 ]
 
 #  Addons that exist in the carousel.
 #  Needs to be updated as the homepage is updated
-carousel_addons = [
-    'wikipedia-context-menu-search',
-    'momentumdash',
-    'undo-close-tab-button',
-    'grammarly-1',
-    'facebook-filter',
-    'gesturefy',
-    'multi-account-containers',
-    'tree-style-tab',
-    'lastpass-password-manager',
+hero_addons = [
+    u'wikiwand-wikipedia-modernized',
+    u'onetab',
+    u'kindle-it',
+    u'search-site-we',
+    u'youtube-dark-purple',
+    u'temporary-containers',
+    u'momentumdash',
+    u'kimetrak',
+    u'mailvelope',
+    u'翻译侠-translate-man',
+    u'ublock-origin',
+    u'ghostery',
+    u'multi-account-containers',
+    u'searchpreview',
+    u'forget_me_not',
+    u'zoom',
 ]
 
 
@@ -66,7 +77,7 @@ class Command(BaseCommand):
             for addon in base_collections:
                 serializer.create_a_named_collection_and_addon(
                     addon, author='mozilla')
-            for addon in carousel_addons:
+            for addon in hero_addons:
                 serializer.create_named_addon_with_author(addon)
             serializer.create_installable_addon()
         cache.clear()
