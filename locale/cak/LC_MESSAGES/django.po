@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 23:27+0000\n"
+"PO-Revision-Date: 2018-03-01 23:48+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -129,8 +129,8 @@ msgstr "Ronojel ri taq etal k'o chi kik'wan %s taq tz'ib' o qajinäq toq xeyuj r
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ronojel etal k'o chi nik'o chi re {0} tz'ib'."
+msgstr[1] "Konojel taq etal k'o chi ye'ik'o chi re {0} taq tz'ib'."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
