@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:08+0000\n"
+"PO-Revision-Date: 2018-03-01 20:28+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2074,7 +2074,7 @@ msgid "Firefox for Android"
 msgstr "Firefox for Android"
 
 msgid "Mozilla"
-msgstr "מוזילה"
+msgstr "Mozilla"
 
 msgid "Unknown"
 msgstr "לא ידוע"
@@ -5131,7 +5131,7 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr "האם Mozilla שומר על פרטיות נתוני החשבון שלי?"
+msgstr "האם Mozilla שומרת על פרטיות נתוני החשבון שלי?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
@@ -7568,10 +7568,10 @@ msgid "Notifications"
 msgstr "הודעות"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "מפעם לפעם, Mozilla ישלח לך דוא״ל לגבי גרסאות חדשות ואירועי תוספות. נא לבחור את הנושאים המעניינים אותך."
+msgstr "מפעם לפעם, Mozilla תשלח לך דוא״ל לגבי גרסאות חדשות ואירועי תוספות. נא לבחור את הנושאים המעניינים אותך."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "מוזילה שומרת על הזכות ליצור אתך קשר אישי על דאגות מסוימות בנוגע לתוספות שמתארחות אצלנו."
+msgstr "‏Mozilla שומרת על הזכות ליצור עמך קשר באופן אישי לגבי עניינים ספציפיים בנוגע לתוספות שמתארחות אצלנו."
 
 msgid "Admin"
 msgstr "מנהל"
