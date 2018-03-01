@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:58+0000\n"
+"PO-Revision-Date: 2018-03-01 22:26+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4447,14 +4447,13 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "סמנו כל טקסט, לחצו על כפתור העכבר הימני ותרגמו באופן מיידי."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "ראיתם תמונה מעניינת ברשת ורוצים ללמוד עוד עליה? נסו את כלי חיפוש התמונות הזה."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
