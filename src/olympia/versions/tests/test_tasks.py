@@ -43,6 +43,7 @@ def test_write_svg_to_png():
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 @pytest.mark.parametrize(
     'header_url, header_height, preserve_aspect_ratio, mimetype', (
@@ -52,8 +53,8 @@ def test_write_svg_to_png():
     )
 )
 def test_generate_static_theme_preview(
-        write_svg_to_png, header_url, header_height, preserve_aspect_ratio,
-        mimetype):
+        write_svg_to_png, pngcrush_image_mock, header_url, header_height,
+        preserve_aspect_ratio, mimetype):
     write_svg_to_png.return_value = (123, 456)
     theme_manifest = {
         "images": {
@@ -72,7 +73,9 @@ def test_generate_static_theme_preview(
     addon = addon_factory()
     preview = Preview.objects.create(addon=addon)
     generate_static_theme_preview(theme_manifest, header_root, preview)
-    write_svg_to_png.assert_called()
+    write_svg_to_png.call_count == 1
+    assert pngcrush_image_mock.call_count == 1
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
     ((svg_content, png_path), _) = write_svg_to_png.call_args
     assert png_path == preview.image_path
     # check header is there.

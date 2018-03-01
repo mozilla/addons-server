@@ -76,6 +76,10 @@ LOGGING = {
     'loggers': {}
 }
 
+# To speed tests up, crushing uploaded images is disabled in tests except
+# where we explicitly want to test pngcrush.
+PNGCRUSH_BIN = '/bin/true'
+
 
 ###############################################################################
 # Only if running on a CI server.

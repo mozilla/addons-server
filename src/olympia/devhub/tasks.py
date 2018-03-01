@@ -26,16 +26,16 @@ import validator
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
-from PIL import Image
 
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, Persona, Preview
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
-    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch)
+    image_size, pngcrush_image, resize_image, send_html_mail_jinja,
+    utc_millesecs_from_epoch)
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
@@ -620,6 +620,72 @@ def track_validation_stats(json_result, addons_linter=False):
 
 
 @task
+@write
+@set_modified_on
+def pngcrush_existing_icons(addon_id):
+    """
+    Call pngcrush_image() on the icons of a given add-on.
+    """
+    log.info('Crushing icons for add-on %s', addon_id)
+    addon = Addon.objects.get(pk=addon_id)
+    if addon.icon_type != 'image/png':
+        log.info('Aborting icon crush for add-on %s, icon type is not a PNG.',
+                 addon_id)
+        return
+    icon_dir = addon.get_icon_dir()
+    pngcrush_image(os.path.join(icon_dir, '%s-64.png' % addon_id))
+    pngcrush_image(os.path.join(icon_dir, '%s-32.png' % addon_id))
+    # Return an icon hash that set_modified_on decorator will set on the add-on
+    # after a small delay. This is normally done with the true md5 hash of the
+    # original icon, but we don't necessarily have it here. We could read one
+    # of the icons we modified but it does not matter just fake a hash to
+    # indicate it was "manually" crushed.
+    return {
+        'icon_hash': 'mcrushed'
+    }
+
+
+@task
+@write
+@set_modified_on
+def pngcrush_existing_preview(preview_id):
+    """
+    Call pngcrush_image() on the images of a given add-on Preview object.
+    """
+    log.info('Crushing images for Preview %s', preview_id)
+    preview = Preview.objects.get(pk=preview_id)
+    pngcrush_image(preview.thumbnail_path)
+    pngcrush_image(preview.image_path)
+    # We don't need a hash, previews are cachebusted with their modified date,
+    # which does not change often. @set_modified_on will do that for us
+    # automatically if the task was called with set_modified_on_obj=[preview].
+
+
+@task
+@write
+@set_modified_on
+def pngcrush_existing_theme(persona_id):
+    """
+    Call pngcrush_image() on the images of a given Persona object.
+    """
+    log.info('Crushing images for Persona %s', persona_id)
+    persona = Persona.objects.get(pk=persona_id)
+    # Only do this on "new" Personas with persona_id = 0, the older ones (with
+    # a persona_id) have jpeg and not pngs.
+    if not persona.is_new():
+        log.info('Aborting images crush for Persona %s (too old).', persona_id)
+        return
+    pngcrush_image(persona.preview_path)
+    # No need to crush thumb_path, it's the same as preview_path for "new"
+    # Personas.
+    pngcrush_image(persona.icon_path)
+    if persona.header:
+        pngcrush_image(persona.header_path)
+    if persona.footer:
+        pngcrush_image(persona.footer_path)
+
+
+@task
 @set_modified_on
 def resize_icon(source, dest_folder, target_sizes, **kw):
     """Resizes addon icons."""
@@ -686,9 +752,8 @@ def get_preview_sizes(ids, **kw):
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
                 sizes = {
-                    'thumbnail': Image.open(
-                        storage.open(preview.thumbnail_path)).size,
-                    'image': Image.open(storage.open(preview.image_path)).size,
+                    'thumbnail': image_size(preview.thumbnail_path),
+                    'image': image_size(preview.image_path),
                 }
                 preview.update(sizes=sizes)
             except Exception, err:

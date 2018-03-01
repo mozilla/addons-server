@@ -355,5 +355,5 @@ class TestThemeForm(TestCase):
             'license': 1}, request=request)
         assert form.is_valid()
         # Make sure there's no database issue, like too long data for the
-        # author or display_sername fields.
+        # author or display_username fields.
         form.save()

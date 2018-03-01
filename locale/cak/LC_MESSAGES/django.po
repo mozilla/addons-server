@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-25 16:55+0000\n"
+"PO-Revision-Date: 2018-02-28 22:08+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -17,47 +17,49 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Majun ximonel ya'on q'ij chi re."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Man tikire ta xa xe taq ajilab'äl pa kib'i' ri okisanela'."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Tatz'ib'aj jun okel rub'i' okisanel ri ruk'wan taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re rub'i' okisanel re'."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "Nokisäx chik re rub'i' okisanel re'."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Ke'okisäx taq wachib'äl ko'öl chi re ri %dMB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Atokinäq chik."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Man xtikïr ta xnik'öx ri rutojtob'enik richin nitikirisäx molojri'ïl. Titojtob'ëx chik."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Man xojtikïr ta xqïl ri Rub'i' Ataqoya'l richin Firefox. Tatojtob'ej chik."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Man xatikïr ta xatok. Tatojtob'ej chik."
 
 msgid "Need help?"
 msgstr "¿La nawajo' ato'ik?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
+"Man yetikïr ta nikiyüj ri rub'i' ataqoya'l ri rub'anonela' tz'aqat o wachinel. K'o chi ye'ayüj ronojel ri taq tz'aqat chuqa' ximon taq wachinel rik'in re rub'i' taqoya'l re' o ye'aq'axaj chi ke "
+"ch'aqa' chik okisanela'."
 
 msgid "Review"
 msgstr "Tzijoxïk"
@@ -66,13 +68,13 @@ msgid "Version {0}"
 msgstr "Ruwäch {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "Ruch'utitzijol nik'oxïk"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch tz'aqat."
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Tz'aqat man wachel ta pa AMO -"
 
 msgid "Download Now"
 msgstr "Tiqasäx Wakami"
@@ -81,11 +83,11 @@ msgid "Download"
 msgstr "Tiqasäx"
 
 msgid "Featured"
-msgstr ""
+msgstr "Ya'on kiq'ij"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Man Nik'on ta"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -95,28 +97,28 @@ msgid "Add to {0}"
 msgstr "Titz'aqatisäx chi re: {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Nokisäx re slug re'. Tacha' jun chik."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "Re slug re' man tikirel ta nok \"%(slug)s\". Tacha' jun chik."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Man okel ta ri etal: {0}"
+msgstr[1] "Man e okel ta ri taq etal: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" jun q'atapun etal chuqa' man tikirel ta nokisäx."
+msgstr[1] "\"{0}\" eq'atapun taq etal chuqa' man tikirel ta ye'okisäx."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "E k'o {0} taq etal ruwi'."
+msgstr[1] "E k'o {0} taq etal ruwi'."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -157,7 +159,7 @@ msgid "Describe your Theme."
 msgstr ""
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Titz'ib'äx jun k'ak'a' ochochib'al rutaqoya'l b'anel"
 
 msgid "Listed"
 msgstr "Cholajin"
@@ -185,7 +187,7 @@ msgid "View privacy policy"
 msgstr ""
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -197,10 +199,10 @@ msgstr ""
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel ruma {0}"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Rutununa'oj Ya'öl Q'ij richin K'ixib'äl Okisanel"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
@@ -216,37 +218,37 @@ msgid "Featured Extensions"
 msgstr ""
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "K'ïy Kiwinaq taq K'amal"
 
 msgid "Most Popular"
-msgstr ""
+msgstr "K'ïy Ruwinaq"
 
 msgid "All »"
-msgstr ""
+msgstr "Ronojel »"
 
 msgid "See all »"
-msgstr ""
+msgstr "Titz'et ronojel »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Wachinïk Ya'on Kiq'ij"
 
 msgid "Featured Collections"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Tichol chi:"
 
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "K'exon {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Tz'aqatisan {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -290,7 +292,7 @@ msgstr ""
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Ketz'et ronojel {0} taq Wachinïk"
 
 msgid "More by this Artist"
 msgstr ""
@@ -299,7 +301,7 @@ msgid "See all Themes by this Artist"
 msgstr ""
 
 msgid "Categories"
-msgstr ""
+msgstr "Taq ruwäch"
 
 msgid "Updated"
 msgstr "Xk'ex"
@@ -308,28 +310,28 @@ msgid "Artist"
 msgstr ""
 
 msgid "Rating"
-msgstr ""
+msgstr "Kejqalem"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Q'ij chi Q'ij Okisanela'"
 
 msgid "License"
-msgstr ""
+msgstr "Ya'oj q'ij"
 
 msgid "Awaiting Review"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "Xutun"
 
 msgid "Approved"
-msgstr ""
+msgstr "Juch'un"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> okisanel"
+msgstr[1] "<strong>{0}</strong> okisanela'"
 
 msgid "Hover to Preview"
 msgstr ""
@@ -349,7 +351,7 @@ msgid "Not yet rated"
 msgstr ""
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> okisanela'"
 
 #. {0} is the number of users.
 msgid "{0} Daily User"
@@ -400,7 +402,7 @@ msgid "Rating:"
 msgstr ""
 
 msgid "Submit review"
-msgstr ""
+msgstr "Titaq tzijoxïk"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
@@ -412,10 +414,10 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Kib'eyal Yesamajïx taq Nik'oxïk"
 
 msgid "Reviews"
-msgstr ""
+msgstr "Taq tzijoxïk"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
@@ -459,7 +461,7 @@ msgid "Average"
 msgstr "Tunamilil"
 
 msgid "Write a review"
-msgstr ""
+msgstr "Tatz'ib'aj jun tzijoxïk"
 
 msgid "Related Categories"
 msgstr ""
@@ -483,7 +485,7 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Tisamajïx"
 
 msgid "Add-on Review"
 msgstr ""
@@ -512,10 +514,10 @@ msgid "Add-on home page"
 msgstr ""
 
 msgid "Support site"
-msgstr ""
+msgstr "Ruxaq kik'amaya'l to'ïk"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "Rutaqoya'l To'ïk"
 
 msgid "Info"
 msgstr "Etamab'äl"
@@ -532,7 +534,7 @@ msgid "Custom License"
 msgstr ""
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "Chi rij re Tz'aqat re'"
 
 msgid "Developer’s Comments"
 msgstr ""
@@ -613,7 +615,7 @@ msgid "Be the first!"
 msgstr ""
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} okisanela'"
 
 msgid "More"
 msgstr "Ch'aqa' chik"
@@ -674,13 +676,13 @@ msgid "My Favorites"
 msgstr ""
 
 msgid "Log out"
-msgstr ""
+msgstr "Titz'apïx molojri'ïl"
 
 msgid "Manage My Submissions"
 msgstr ""
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Titaq jun K'ak'a' Tz'aqat"
 
 msgid "Submit a New Theme"
 msgstr ""
@@ -689,10 +691,10 @@ msgid "Developer Hub"
 msgstr ""
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Kenuk'samajïx API Kik'u'x Tzij"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Taq Rusamajib'al Nik'onel"
 
 msgid "Admin Tools"
 msgstr ""

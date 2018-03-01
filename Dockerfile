@@ -40,6 +40,8 @@ RUN apt-get update && apt-get install -y \
         gettext \
         # Use rsvg-convert to render our static theme previews
         librsvg2-bin \
+        # Use pngcrush to optimize the PNGs uploaded by developers
+        pngcrush \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale

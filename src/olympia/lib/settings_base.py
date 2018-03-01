@@ -81,6 +81,9 @@ UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = 'rsvg-convert'
 
+# Path to pngcrush (to optimize the PNGs uploaded by developers).
+PNGCRUSH_BIN = 'pngcrush'
+
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
@@ -1276,6 +1279,13 @@ CELERY_TASK_ROUTES = {
     # Github API
     'olympia.github.tasks.process_results': {'queue': 'devhub'},
     'olympia.github.tasks.process_webhook': {'queue': 'devhub'},
+
+    # Temporary tasks to crush existing images.
+    # Go in the addons queue to leave the 'devhub' queue free to process
+    # validations etc.
+    'olympia.devhub.tasks.pngcrush_existing_theme': {'queue': 'addons'},
+    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
+    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
 
 
