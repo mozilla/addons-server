@@ -97,16 +97,14 @@ class ThemeReviewTestMixin(object):
 
     @pytest.mark.needs_locales_compilation
     @mock.patch('olympia.amo.messages.success')
-    @mock.patch('olympia.reviewers.tasks.reject_rereview')
-    @mock.patch('olympia.reviewers.tasks.approve_rereview')
+    @mock.patch('olympia.reviewers.tasks.theme_checksum')
     @mock.patch('olympia.addons.tasks.version_changed')
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_mock, create_preview_mock,
                     send_mail_jinja_mock, version_changed_mock,
-                    approve_rereview_mock, reject_rereview_mock,
-                    message_mock):
+                    theme_checksum_mock, message_mock):
         if self.flagged:
             # Feels redundant to test this for flagged queue.
             return
@@ -161,11 +159,13 @@ class ThemeReviewTestMixin(object):
                 assert themes[i].header == 'header'
                 assert themes[i].footer == 'footer'
 
+            assert copy_mock.call_count == 2
             assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
             assert copy_mock.call_args_list[0][0][1].endswith('header')
             assert copy_mock.call_args_list[1][0][0].endswith('pending_footer')
             assert copy_mock.call_args_list[1][0][1].endswith('footer')
 
+            assert create_preview_mock.call_count == 1
             create_preview_args = create_preview_mock.call_args_list[0][1]
             assert create_preview_args['src'].endswith('header')
             assert create_preview_args['full_dst'][0].endswith('preview.png')
@@ -179,11 +179,17 @@ class ThemeReviewTestMixin(object):
             # Test version incremented.
             assert themes[4].addon.reload().current_version.version == (
                 str(float(old_version) + 1))
+
+            # Checksum was recalculated for that theme.
+            assert theme_checksum_mock.call_count == 1
+            assert theme_checksum_mock.call_args_list[0][0][0] == themes[4]
         else:
             assert themes[0].addon.reload().status == amo.STATUS_REVIEW_PENDING
             assert themes[1].addon.reload().status == amo.STATUS_REVIEW_PENDING
             assert themes[2].addon.reload().status == amo.STATUS_REJECTED
             assert themes[3].addon.reload().status == amo.STATUS_REJECTED
+
+            assert theme_checksum_mock.call_count == 0
         assert themes[4].addon.reload().status == amo.STATUS_PUBLIC
         assert ActivityLog.objects.count() == 4 if self.rereview else 5
 
@@ -241,13 +247,13 @@ class ThemeReviewTestMixin(object):
                 recipient_list=set([]))
         ]
         if self.rereview:
+            assert send_mail_jinja_mock.call_count == 4
             assert send_mail_jinja_mock.call_args_list[0] == expected_calls[0]
             assert send_mail_jinja_mock.call_args_list[1] == expected_calls[2]
             assert send_mail_jinja_mock.call_args_list[2] == expected_calls[3]
             assert send_mail_jinja_mock.call_args_list[3] == expected_calls[4]
         else:
-            assert not approve_rereview_mock.called
-            assert not reject_rereview_mock.called
+            assert send_mail_jinja_mock.call_count == 5
             assert send_mail_jinja_mock.call_args_list[0] == expected_calls[0]
             assert send_mail_jinja_mock.call_args_list[1] == expected_calls[1]
             assert send_mail_jinja_mock.call_args_list[2] == expected_calls[2]
@@ -539,11 +545,17 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         assert pq(response.content)('.theme').length == 0
 
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
+    @mock.patch('olympia.reviewers.tasks.theme_checksum')
     @mock.patch('olympia.reviewers.tasks.copy_stored_file')
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
-    def test_update_legacy_theme(self, copy_mock, prev_mock, copy_mock2,
-                                 noop3):
+    def test_update_legacy_theme(
+            self,
+            amo_copy_stored_file_mock,
+            create_persona_preview_mock,
+            copy_stored_filed_mock,
+            theme_checksum_mock,
+            send_mail_jinja_mock):
         """
         Test updating themes that were submitted from GetPersonas.
         STR the bug this test fixes:
@@ -586,25 +598,30 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         theme.preview_path.endswith('preview_large.jpg')
 
         # Test calling create_persona_preview_images.
-        assert (prev_mock.call_args_list[0][1]['full_dst'][0]
+        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][0]
                 .endswith('preview.jpg'))
-        assert (prev_mock.call_args_list[0][1]['full_dst'][1]
+        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][1]
                 .endswith('preview_small.jpg'))
 
         # pending_header should be mv'ed to Legacy-header3H.png.
-        assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
-        assert (copy_mock.call_args_list[0][0][1]
+        assert (amo_copy_stored_file_mock.call_args_list[0][0][0]
+                .endswith('pending_header'))
+        assert (amo_copy_stored_file_mock.call_args_list[0][0][1]
                 .endswith('Legacy-header3H.png'))
         # pending_footer should be mv'ed to Legacy-footer-Copy3H.png.
-        assert (copy_mock.call_args_list[1][0][0]
+        assert (amo_copy_stored_file_mock.call_args_list[1][0][0]
                 .endswith('pending_footer'))
-        assert (copy_mock.call_args_list[1][0][1]
+        assert (amo_copy_stored_file_mock.call_args_list[1][0][1]
                 .endswith('Legacy-footer3H-Copy.jpg'))
 
-        assert (copy_mock2.call_args_list[0][0][0]
+        assert (copy_stored_filed_mock.call_args_list[0][0][0]
                 .endswith('preview.jpg'))
-        assert (copy_mock2.call_args_list[0][0][1]
+        assert (copy_stored_filed_mock.call_args_list[0][0][1]
                 .endswith('preview_large.jpg'))
+
+        # We re-calculated the theme checksum from the newest data.
+        assert theme_checksum_mock.call_count == 1
+        assert theme_checksum_mock.call_args_list[0][0][0] == theme
 
     def test_single_rejected_reason_9_bug_1140346(self):
         """Can rereview an updated theme that was rejected for reason 9."""

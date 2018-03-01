@@ -74,18 +74,18 @@ class TestThemeUpdate(TestCase):
             'description': 'yolo',
             'detailURL': '/en-US/addon/a15663/',
             'accentcolor': '#8d8d97',
-            'iconURL': '/15663/preview_small.jpg',
-            'previewURL': '/15663/preview.jpg',
+            'iconURL': '/15663/preview_small.jpg?modified=fakehash',
+            'previewURL': '/15663/preview.jpg?modified=fakehash',
             'textcolor': '#ffffff',
             'id': '15663',
-            'headerURL': '/15663/BCBG_Persona_header2.png',
+            'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
             'dataurl': '',
             'name': 'My Persona',
             'author': 'persona_author',
             'updateURL': (settings.VAMO_URL +
                           '/en-US/themes/update-check/15663'),
             'version': '0',
-            'footerURL': '/15663/BCBG_Persona_footer2.png'
+            'footerURL': '/15663/BCBG_Persona_footer2.png?modified=fakehash'
         }
 
     def check_good(self, data):
@@ -95,19 +95,9 @@ class TestThemeUpdate(TestCase):
                 if k in ('detailURL', 'updateURL'):
                     assert got.startswith('http'), (
                         'Expected absolute URL for "%s": %s' % (k, got))
-                    assert got.endswith(v), (
-                        'Expected "%s" to end with "%s". Got "%s".' % (
-                            k, v, got))
-                else:
-                    assert got.find('?') > -1, (
-                        '"%s" must contain "?" for modified timestamp' % k)
-
-                    # Strip `?<modified>` timestamps.
-                    got = got.rsplit('?')[0]
-
-                    assert got.endswith(v), (
-                        'Expected "%s" to end with "%s". Got "%s".' % (
-                            k, v, got))
+                assert got.endswith(v), (
+                    'Expected "%s" to end with "%s". Got "%s".' % (
+                        k, v, got))
 
     def get_update(self, *args):
         update = theme_update.ThemeUpdate(*args)
@@ -123,6 +113,8 @@ class TestThemeUpdate(TestCase):
         addon.summary = 'yolo'
         addon._current_version = Version.objects.get()
         addon.save()
+        addon.persona.checksum = 'fakehash'
+        addon.persona.save()
         addon.increment_theme_version_number()
 
         # Testing `addon_id` from AMO.
@@ -159,3 +151,5 @@ class TestThemeUpdate(TestCase):
         up.get_update()
         image_url = up.image_url('foo.png')
         assert user_media_url('addons') in image_url
+        # Persona has no checksum, add-on modified date is used.
+        assert image_url.endswith('addons/15663/foo.png?modified=1238455060')

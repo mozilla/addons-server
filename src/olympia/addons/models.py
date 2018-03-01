@@ -1544,12 +1544,13 @@ class Persona(caching.CachingMixin, models.Model):
     def _image_url(self, filename):
         host = jinja_helpers.user_media_url('addons')
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
-        # TODO: Bust the cache on the hash of the image contents or something.
-        if self.addon.modified is not None:
+        if self.checksum:
+            modified = self.checksum[:8]
+        elif self.addon.modified is not None:
             modified = int(time.mktime(self.addon.modified.timetuple()))
         else:
             modified = 0
-        return '%s?%s' % (image_url, modified)
+        return '%s?modified=%s' % (image_url, modified)
 
     def _image_path(self, filename):
         return os.path.join(jinja_helpers.user_media_path('addons'),

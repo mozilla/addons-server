@@ -2033,25 +2033,55 @@ class TestPersonaModel(TestCase):
         self.persona.footer = 'footer.png'
         self.persona.popularity = 12345
         self.persona.save()
-        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
-        self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
+
+    def _expected_url(self, img_name, modified_suffix):
+        return '/15663/%s?modified=%s' % (img_name, modified_suffix)
 
     def test_image_urls(self):
+        self.persona.persona_id = 0
+        self.persona.checksum = 'fakehash'
+        self.persona.save()
+        modified = 'fakehash'
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('icon.png', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
+
+    def test_image_urls_no_checksum(self):
         # AMO-uploaded themes have `persona_id=0`.
         self.persona.persona_id = 0
         self.persona.save()
-        assert self.persona.thumb_url.endswith(self.p('preview.png'))
-        assert self.persona.icon_url.endswith(self.p('icon.png'))
-        assert self.persona.preview_url.endswith(self.p('preview.png'))
-        assert self.persona.header_url.endswith(self.p('header.png'))
-        assert self.persona.footer_url.endswith(self.p('footer.png'))
+        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('icon.png', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
 
     def test_old_image_urls(self):
-        assert self.persona.thumb_url.endswith(self.p('preview.jpg'))
-        assert self.persona.icon_url.endswith(self.p('preview_small.jpg'))
-        assert self.persona.preview_url.endswith(self.p('preview_large.jpg'))
-        assert self.persona.header_url.endswith(self.p('header.png'))
-        assert self.persona.footer_url.endswith(self.p('footer.png'))
+        self.persona.addon.modified = None
+        modified = 0
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.jpg', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('preview_small.jpg', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview_large.jpg', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
 
     def test_update_url(self):
         with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):

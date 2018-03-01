@@ -8,7 +8,8 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.addons.models import Addon
-from olympia.addons.tasks import create_persona_preview_images
+from olympia.addons.tasks import (
+    create_persona_preview_images, theme_checksum)
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
@@ -145,7 +146,7 @@ def approve_rereview(theme):
         move_stored_file(
             reupload.footer_path, footer_path, storage=storage)
     rereview.delete()
-
+    theme_checksum(theme)
     theme.addon.increment_theme_version_number()
 
 
