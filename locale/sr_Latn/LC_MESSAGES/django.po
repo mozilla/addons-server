@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -38,6 +38,9 @@ msgstr "Ovo korisničko ime je već u upotrebi."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Slike moraju biti ili PNG ili JPG formata."
+
+msgid "Images cannot be animated."
+msgstr "Slike ne mogu biti pokretne."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1147,6 +1150,9 @@ msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonice moraju biti ili PNG ili JPG formata."
+
+msgid "Icons cannot be animated."
+msgstr "Ikonice ne mogu biti pokretne."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -3040,12 +3046,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Ikonice ne mogu biti pokretne."
-
-msgid "Images cannot be animated."
-msgstr "Slike ne mogu biti pokretne."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6976,7 +6976,7 @@ msgstr "neko piše recenziju na moj dodatak"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ne možete više datoteka otpremiti za ovu verziju."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -7476,7 +7476,7 @@ msgid "Update message of the day"
 msgstr "Ažuriraj poruku dana"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Zahtevane dodatne informacije"
 
 msgid "An unknown error occurred"
@@ -8043,16 +8043,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Ažurirano {0}"
 msgstr[1] "Ažurirano {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Kontorlisan pregled ({0})"
 msgstr[1] "Kontorlisana pregleda ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Svi moji dodaci"
 msgstr[1] "Svi moji dodaci"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Više traženih informacija: {0}"
+msgstr[1] "Više traženih informacija: {0}"
 
 msgid "Flagged"
 msgstr "Označeno"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -41,6 +41,9 @@ msgstr "Ta nazwa użytkownika jest już używana."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrazki muszą być w formacie PNG lub JPG."
+
+msgid "Images cannot be animated."
+msgstr "Nie można używać animowanych obrazków."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1030,6 +1033,9 @@ msgstr "Ten adres url jest już używany przez inną kolekcję"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musi być w formacie PNG lub JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Nie można używać animowanych ikon."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2798,12 +2804,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Nie można używać animowanych ikon."
-
-msgid "Images cannot be animated."
-msgstr "Nie można używać animowanych obrazków."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6094,7 +6094,7 @@ msgstr "Ktoś napisał opinię o moim dodatku"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nie możesz przesłać więcej plików dla tej wersji."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6553,7 +6553,7 @@ msgid "Update message of the day"
 msgstr "Aktualizuj wiadomość dnia"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Poproszono o więcej informacji"
 
 msgid "An unknown error occurred"
@@ -7092,16 +7092,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Zaktualizowano {0}"
 msgstr[1] "Zaktualizowano {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Opinie do moderacji ({0})"
 msgstr[1] "Opinie do moderacji ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Moje dodatki"
 msgstr[1] "Moje dodatki"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Poproszono o więcej informacji: {0}"
+msgstr[1] "Poproszono o więcej informacji: {0}"
 
 msgid "Flagged"
 msgstr "Oznaczone"

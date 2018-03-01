@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-13 09:11+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -39,6 +39,9 @@ msgstr "Questo nome utente è già in uso."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Le immagini devono essere in formato PNG o JPG."
+
+msgid "Images cannot be animated."
+msgstr "Le immagini non possono essere animate."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1021,6 +1024,9 @@ msgstr "Questo indirizzo è già utilizzato da un’altra raccolta"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Le icone devono essere in formato PNG o JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Le icone non possono essere animate."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2755,12 +2761,6 @@ msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina 
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
-
-msgid "Icons cannot be animated."
-msgstr "Le icone non possono essere animate."
-
-msgid "Images cannot be animated."
-msgstr "Le immagini non possono essere animate."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6002,7 +6002,7 @@ msgstr "Non è consentito recensire i propri componenti aggiuntivi."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Non è consentito inserire più di una recensione per la stessa versione del componente aggiuntivo."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6436,8 +6436,8 @@ msgid "Update message of the day"
 msgstr "Aggiorna messaggio del giorno"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "Richieste ulteriori informazioni"
+msgid "Expired Information Requests ({0})"
+msgstr "Ulteriori informazioni richieste"
 
 msgid "An unknown error occurred"
 msgstr "Si è verificato un errore sconosciuto"
@@ -6958,15 +6958,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Aggiornato ({0})"
 msgstr[1] "Aggiornati ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Revisione moderata ({0})"
-msgstr[1] "Revisioni moderate ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Revisione contenuti ({0})"
+msgstr[1] "Revisione contenuti ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Componente aggiuntivo approvato automaticamente ({0})"
 msgstr[1] "Componenti aggiuntivi approvati automaticamente ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Richiesta di ulteriori informazioni: {0}"
+msgstr[1] "Richiesta di ulteriori informazioni: {0}"
 
 msgid "Flagged"
 msgstr "Segnalato"

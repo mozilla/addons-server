@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-18 14:43+0000\n"
 "Last-Translator: SagePtr <sageptr@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -41,6 +41,9 @@ msgstr "Это имя пользователя уже используется."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
+
+msgid "Images cannot be animated."
+msgstr "Изображения не могут быть анимированы."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1031,6 +1034,9 @@ msgstr "Эта ссылка уже используется другой под�
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Значки могут быть либо в PNG либо в JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Иконки не могут быть анимированы."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2767,12 +2773,6 @@ msgstr "Вы не можете представить дополнение с gu
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
-
-msgid "Icons cannot be animated."
-msgstr "Иконки не могут быть анимированы."
-
-msgid "Images cannot be animated."
-msgstr "Изображения не могут быть анимированы."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6000,7 +6000,7 @@ msgstr "Нельзя оставить отзыв на свое дополнен�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6438,7 +6438,7 @@ msgid "Update message of the day"
 msgstr "Обновить послание дня"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Запрошено больше информации"
 
 msgid "An unknown error occurred"
@@ -6957,17 +6957,26 @@ msgstr[0] "Обновление ({0})"
 msgstr[1] "Обновления ({0})"
 msgstr[2] "Обновления ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Модерируемая проверка ({0})"
-msgstr[1] "Модерируемые проверки ({0})"
-msgstr[2] "Модерируемых проверок ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Проверка содержимого ({0})"
+msgstr[1] "Проверка содержимого ({0})"
+msgstr[2] "Проверка содержимого ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Автоматически утверждённые дополнения ({0})"
 msgstr[1] "Автоматически утверждённые дополнения ({0})"
 msgstr[2] "Автоматически утверждённые дополнения ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Запрошено больше информации: {0}"
+msgstr[1] "Запрошено больше информации: {0}"
+msgstr[2] "Запрошено больше информации: {0}"
 
 msgid "Flagged"
 msgstr "Отмечено"

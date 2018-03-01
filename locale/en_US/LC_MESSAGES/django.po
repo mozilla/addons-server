@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -37,6 +37,9 @@ msgstr "This username is already in use."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Images must be either PNG or JPG."
+
+msgid "Images cannot be animated."
+msgstr "Images cannot be animated."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1029,6 +1032,9 @@ msgstr "This url is already in use by another collection"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Icons must be either PNG or JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Icons cannot be animated."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2823,12 +2829,6 @@ msgstr "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
-
-msgid "Icons cannot be animated."
-msgstr "Icons cannot be animated."
-
-msgid "Images cannot be animated."
-msgstr "Images cannot be animated."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6148,7 +6148,8 @@ msgstr "someone writes a review of my add-on"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "You cannot upload any more files for this version."
 
-msgid "This rating can't flagged because it has no review text."
+#, fuzzy
+msgid "This rating can't be flagged because it has no review text."
 msgstr "This rating can't flagged because it has no review text."
 
 #, fuzzy
@@ -6613,8 +6614,8 @@ msgid "Update message of the day"
 msgstr "Update message of the day"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "More information requested"
+msgid "Expired Information Requests ({0})"
+msgstr "More Information Requested"
 
 msgid "An unknown error occurred"
 msgstr "An unknown error occurred"
@@ -7152,16 +7153,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Updated {0}"
 msgstr[1] "Updated {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Moderated Review ({0})"
 msgstr[1] "Moderated Reviews ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "All Unlisted Add-ons ({0})"
 msgstr[1] "All Unlisted Add-ons ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "More Info Requested: {0}"
+msgstr[1] "More Info Requested: {0}"
 
 msgid "Flagged"
 msgstr "Flagged"

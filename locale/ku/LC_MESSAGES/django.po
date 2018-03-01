@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,9 @@ msgid "This username is already in use."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
+msgstr ""
+
+msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -976,6 +979,9 @@ msgid "This url is already in use by another collection"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+msgid "Icons cannot be animated."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -2672,12 +2678,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -5661,7 +5661,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6080,7 +6080,7 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr ""
 
 msgid "An unknown error occurred"
@@ -6595,13 +6595,18 @@ msgid_plural "Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
 msgstr[0] ""
 msgstr[1] ""
 

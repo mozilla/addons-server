@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-14 07:32+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -42,6 +42,9 @@ msgstr "Це ім’я користувача вже використовуєт�
 
 msgid "Images must be either PNG or JPG."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
+
+msgid "Images cannot be animated."
+msgstr "Зображення не можуть бути з анімацією."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1024,6 +1027,9 @@ msgstr "Ця адреса URL вже використовується в інш�
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Іконки повинні мати формат PNG або JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Іконки не можуть бути з анімацією."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2754,12 +2760,6 @@ msgstr "Ви не можете подати додаток з GUID, що зав�
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
-
-msgid "Icons cannot be animated."
-msgstr "Іконки не можуть бути з анімацією."
-
-msgid "Images cannot be animated."
-msgstr "Зображення не можуть бути з анімацією."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5948,7 +5948,7 @@ msgstr "Ви не можете залишати відгук для власно
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ви не можете залишати більше одного відгуку для однієї версії додатку."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6385,8 +6385,8 @@ msgid "Update message of the day"
 msgstr "Оновити повідомлення дня"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "Запитано більше інформації"
+msgid "Expired Information Requests ({0})"
+msgstr "Запитано додаткову інформацію"
 
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
@@ -6904,17 +6904,26 @@ msgstr[0] "({0}) оновлення"
 msgstr[1] "({0}) оновлення"
 msgstr[2] "({0}) оновлень"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Модерований розгляд ({0})"
-msgstr[1] "Модеровані розгляди ({0})"
-msgstr[2] "Модерованих розглядів ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Перевірка вмісту ({0})"
+msgstr[1] "Перевірка вмісту ({0})"
+msgstr[2] "Перевірка вмісту ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Автоматично схвалений додаток ({0})"
 msgstr[1] "Автоматично схвалені додатки ({0})"
 msgstr[2] "Автоматично схвалених додатків ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Запитано більше інформації: {0}"
+msgstr[1] "Запитано більше інформації: {0}"
+msgstr[2] "Запитано більше інформації: {0}"
 
 msgid "Flagged"
 msgstr "Відмічено"

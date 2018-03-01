@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-09 23:25+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -34,6 +34,9 @@ msgid "This username is already in use."
 msgstr "Acest nume de utilizator este deja folosit."
 
 msgid "Images must be either PNG or JPG."
+msgstr ""
+
+msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -1021,6 +1024,9 @@ msgid "This url is already in use by another collection"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+msgid "Icons cannot be animated."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -2758,12 +2764,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -5805,7 +5805,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6256,8 +6256,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "Developer Information"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6792,21 +6793,29 @@ msgstr[0] "Actualizat"
 msgstr[1] "Actualizat"
 msgstr[2] "Actualizat"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Review"
+msgstr[1] "Review"
+msgstr[2] "Review"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Suplimente pentru {0}"
 msgstr[1] "Suplimente pentru {0}"
 msgstr[2] "Suplimente pentru {0}"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Developer Information"
+msgstr[1] "Developer Information"
+msgstr[2] "Developer Information"
 
 msgid "Flagged"
 msgstr ""

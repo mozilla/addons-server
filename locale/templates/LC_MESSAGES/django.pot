@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,38 +13,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.3\n"
 
-#: src/olympia/accounts/serializers.py:84 src/olympia/bandwagon/forms.py:178
-#: src/olympia/bandwagon/serializers.py:57 src/olympia/users/forms.py:195
+#: src/olympia/accounts/serializers.py:85 src/olympia/bandwagon/forms.py:179
+#: src/olympia/bandwagon/serializers.py:57 src/olympia/users/forms.py:201
 msgid "No links are allowed."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:90 src/olympia/users/forms.py:166
+#: src/olympia/accounts/serializers.py:91 src/olympia/users/forms.py:167
 msgid "This display name cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:98 src/olympia/users/forms.py:142
+#: src/olympia/accounts/serializers.py:99 src/olympia/users/forms.py:143
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:102 src/olympia/users/forms.py:146
+#: src/olympia/accounts/serializers.py:103 src/olympia/users/forms.py:147
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:106 src/olympia/users/forms.py:151
+#: src/olympia/accounts/serializers.py:107 src/olympia/users/forms.py:152
 msgid "This username cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:113 src/olympia/users/forms.py:158
+#: src/olympia/accounts/serializers.py:114 src/olympia/users/forms.py:159
 msgid "This username is already in use."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:120 src/olympia/devhub/views.py:1015
-#: src/olympia/users/forms.py:181
+#: src/olympia/accounts/serializers.py:124 src/olympia/devhub/views.py:1015
+#: src/olympia/users/forms.py:184
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:125 src/olympia/bandwagon/forms.py:205
-#: src/olympia/devhub/views.py:1032 src/olympia/users/forms.py:184
+#: src/olympia/accounts/serializers.py:128 src/olympia/devhub/views.py:1021
+#: src/olympia/users/forms.py:187
+msgid "Images cannot be animated."
+msgstr ""
+
+#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/forms.py:211
+#: src/olympia/devhub/views.py:1032 src/olympia/users/forms.py:190
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
@@ -224,11 +229,11 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: src/olympia/addons/models.py:1724 src/olympia/constants/base.py:87
+#: src/olympia/addons/models.py:1725 src/olympia/constants/base.py:87
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2205
+#: src/olympia/addons/models.py:2206
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -709,7 +714,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:26
 #: src/olympia/addons/templates/addons/review_list_box.html:5
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:200
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:217
 msgid "Reviews"
 msgstr ""
 
@@ -1161,7 +1166,7 @@ msgstr ""
 msgid "Reviewer Tools"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:86 src/olympia/reviewers/views.py:275
+#: src/olympia/amo/context_processors.py:86 src/olympia/reviewers/views.py:280
 msgid "Admin Tools"
 msgstr ""
 
@@ -1609,48 +1614,52 @@ msgstr ""
 msgid "{0} :: Collections :: {1}"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:24
+#: src/olympia/bandwagon/forms.py:25
 msgid "Only I can view this collection."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:25
+#: src/olympia/bandwagon/forms.py:26
 msgid "Anybody can view this collection."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:126
+#: src/olympia/bandwagon/forms.py:127
 msgid "Give your collection a name."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:128
+#: src/olympia/bandwagon/forms.py:129
 msgid "URL:"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:130
+#: src/olympia/bandwagon/forms.py:131
 msgid "Describe your collection (no links allowed)."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:135
+#: src/olympia/bandwagon/forms.py:136
 msgid "Privacy:"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:140
+#: src/olympia/bandwagon/forms.py:141
 msgid "Icon"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:146
+#: src/olympia/bandwagon/forms.py:147
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:170 src/olympia/bandwagon/serializers.py:50
+#: src/olympia/bandwagon/forms.py:171 src/olympia/bandwagon/serializers.py:50
 msgid "This name cannot be used."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:190
+#: src/olympia/bandwagon/forms.py:191
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:200 src/olympia/devhub/views.py:1013
+#: src/olympia/bandwagon/forms.py:203 src/olympia/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+#: src/olympia/bandwagon/forms.py:206 src/olympia/devhub/views.py:1019
+msgid "Icons cannot be animated."
 msgstr ""
 
 #: src/olympia/bandwagon/serializers.py:34
@@ -2245,8 +2254,8 @@ msgid "Add to Collection"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:212
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:230
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:229
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:247
 msgid "Pending"
 msgstr ""
 
@@ -3142,7 +3151,7 @@ msgstr ""
 #: src/olympia/constants/base.py:27 src/olympia/reviewers/forms.py:203
 #: src/olympia/reviewers/templates/reviewers/themes/history_table.html:34
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:50
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:201
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:218
 msgid "Deleted"
 msgstr ""
 
@@ -3996,17 +4005,17 @@ msgid ""
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:713
+#: src/olympia/devhub/tasks.py:778
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:717
+#: src/olympia/devhub/tasks.py:782
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:719
+#: src/olympia/devhub/tasks.py:784
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
@@ -4104,14 +4113,6 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:743 src/olympia/signing/views.py:151
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-#: src/olympia/devhub/views.py:1019
-msgid "Icons cannot be animated."
-msgstr ""
-
-#: src/olympia/devhub/views.py:1021
-msgid "Images cannot be animated."
 msgstr ""
 
 #: src/olympia/devhub/views.py:1036
@@ -4655,7 +4656,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:65
-#: src/olympia/users/forms.py:65 src/olympia/users/templates/users/edit.html:85
+#: src/olympia/users/forms.py:66 src/olympia/users/templates/users/edit.html:85
 #: src/olympia/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr ""
@@ -8723,7 +8724,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
 #: src/olympia/ratings/views.py:107
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #: src/olympia/ratings/views.py:119
@@ -9059,23 +9060,23 @@ msgstr ""
 msgid "Has auto-approval disabled flag set."
 msgstr ""
 
-#: src/olympia/reviewers/tasks.py:71
+#: src/olympia/reviewers/tasks.py:72
 msgid "Duplicate Submission"
 msgstr ""
 
-#: src/olympia/reviewers/tasks.py:83
+#: src/olympia/reviewers/tasks.py:84
 msgid "Thanks for submitting your Theme"
 msgstr ""
 
-#: src/olympia/reviewers/tasks.py:87
+#: src/olympia/reviewers/tasks.py:88
 msgid "A problem with your Theme submission"
 msgstr ""
 
-#: src/olympia/reviewers/tasks.py:91
+#: src/olympia/reviewers/tasks.py:92
 msgid "Theme submission flagged for review"
 msgstr ""
 
-#: src/olympia/reviewers/tasks.py:98
+#: src/olympia/reviewers/tasks.py:99
 msgid "A question about your Theme submission"
 msgstr ""
 
@@ -9248,7 +9249,7 @@ msgstr ""
 msgid "Content Review"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:105
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:113
 #: src/olympia/reviewers/views.py:211
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
@@ -9296,7 +9297,7 @@ msgstr ""
 msgid "Unlisted Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:112
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:129
 #: src/olympia/reviewers/views.py:261
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -9311,23 +9312,23 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:276
-msgid "Add-ons with expired information requests"
+#: src/olympia/reviewers/views.py:282
+msgid "Expired Information Requests ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:601
+#: src/olympia/reviewers/views.py:613
 msgid "An unknown error occurred"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:794
+#: src/olympia/reviewers/views.py:806
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:840
+#: src/olympia/reviewers/views.py:852
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:986
+#: src/olympia/reviewers/views.py:998
 msgid "Review lock limit reached"
 msgstr ""
 
@@ -10026,37 +10027,43 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:79
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:82
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:84
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:87
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:89
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:95
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:97
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:104
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:214
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:232
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:122
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:231
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:249
 msgid "Flagged"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:216
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:234
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:233
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:251
 msgid "Updates"
 msgstr ""
 
@@ -10807,43 +10814,43 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#: src/olympia/users/forms.py:45
+#: src/olympia/users/forms.py:46
 msgid "Email must be {email}."
 msgstr ""
 
-#: src/olympia/users/forms.py:59 src/olympia/users/templates/users/edit.html:70
+#: src/olympia/users/forms.py:60 src/olympia/users/templates/users/edit.html:70
 msgid "Display Name"
 msgstr ""
 
-#: src/olympia/users/forms.py:61 src/olympia/users/templates/users/edit.html:75
+#: src/olympia/users/forms.py:62 src/olympia/users/templates/users/edit.html:75
 #: src/olympia/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr ""
 
-#: src/olympia/users/forms.py:63 src/olympia/users/templates/users/edit.html:80
+#: src/olympia/users/forms.py:64 src/olympia/users/templates/users/edit.html:80
 #: src/olympia/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr ""
 
-#: src/olympia/users/forms.py:69
+#: src/olympia/users/forms.py:70
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
 
-#: src/olympia/users/forms.py:72 src/olympia/users/templates/users/edit.html:91
+#: src/olympia/users/forms.py:73 src/olympia/users/templates/users/edit.html:91
 msgid "Profile Photo"
 msgstr ""
 
-#: src/olympia/users/forms.py:92
+#: src/olympia/users/forms.py:93
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
 
-#: src/olympia/users/forms.py:253
+#: src/olympia/users/forms.py:259
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
 
-#: src/olympia/users/forms.py:285
+#: src/olympia/users/forms.py:291
 msgid "Please enter at least one name to be denied."
 msgstr ""
 

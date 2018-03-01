@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-09 00:14+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -38,6 +38,9 @@ msgstr "Dette brugernavn er allerede i brug."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Billeder skal være enten PNG eller JPG."
+
+msgid "Images cannot be animated."
+msgstr "Billeder kan ikke være animerede."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1007,6 +1010,9 @@ msgstr "Denne url anvendes allerede af en anden samling"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner skal være enten PNG eller JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Ikoner kan ikke være animerede."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2727,12 +2733,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Ikoner kan ikke være animerede."
-
-msgid "Images cannot be animated."
-msgstr "Billeder kan ikke være animerede."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5837,7 +5837,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6289,8 +6289,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "Rediger information"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6814,18 +6815,26 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Opdatering ({0})"
 msgstr[1] "Opdateringer ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Anmeld {0}"
+msgstr[1] "Anmeld {0}"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Ny tilføjelse ({0})"
+msgstr[1] "Ny tilføjelse ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Rediger information"
+msgstr[1] "Rediger information"
 
 msgid "Flagged"
 msgstr ""

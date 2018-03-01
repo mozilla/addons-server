@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-01-02 14:05+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -38,6 +38,9 @@ msgstr "Bu kullanıcı adını başkası kullanıyor."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Resimler PNG veya JPG olmalıdır."
+
+msgid "Images cannot be animated."
+msgstr "Resimler hareketli olamaz."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1011,6 +1014,9 @@ msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Simgeler PNG veya JPG olmalıdır."
+
+msgid "Icons cannot be animated."
+msgstr "Simgeler hareketli olamaz."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2766,12 +2772,6 @@ msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Simgeler hareketli olamaz."
-
-msgid "Images cannot be animated."
-msgstr "Resimler hareketli olamaz."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5850,7 +5850,7 @@ msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6313,7 +6313,7 @@ msgid "Update message of the day"
 msgstr "Günün iletisini güncelle"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Daha fazla bilgi istendi"
 
 msgid "An unknown error occurred"
@@ -6860,14 +6860,20 @@ msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Güncellemeler ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "İnceleme:"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Daha Fazla Bilgi İstendi: {0}"
 
 msgid "Flagged"
 msgstr "İşaretli"

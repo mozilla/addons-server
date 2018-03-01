@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,9 @@ msgid "This username is already in use."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
+msgstr ""
+
+msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -1011,6 +1014,9 @@ msgid "This url is already in use by another collection"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+msgid "Icons cannot be animated."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -2739,12 +2745,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -5790,7 +5790,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6235,8 +6235,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr " Priedo {0} indormacija"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6765,18 +6766,26 @@ msgstr[0] "Atnaujinta {0}"
 msgstr[1] "Atnaujinta {0}"
 msgstr[2] "Atnaujinta {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Neperžiūrėtas"
+msgstr[1] "Neperžiūrėtas"
+msgstr[2] "Neperžiūrėtas"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Priedai, skirti {0}"
 msgstr[1] "Priedai, skirti {0}"
 msgstr[2] "Priedai, skirti {0}"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] " Priedo {0} indormacija"
+msgstr[1] " Priedo {0} indormacija"
+msgstr[2] " Priedo {0} indormacija"
 
 msgid "Flagged"
 msgstr ""

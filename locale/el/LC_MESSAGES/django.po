@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgstr "Αυτό το όνομα χρήστη χρησιμοποιείται ή�
 
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+
+msgid "Images cannot be animated."
+msgstr "Οι εικόνες δεν επιτρέπεται να έχουν εφέ κίνησης."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1022,6 +1025,9 @@ msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη 
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2766,12 +2772,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
-
-msgid "Images cannot be animated."
-msgstr "Οι εικόνες δεν επιτρέπεται να έχουν εφέ κίνησης."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5864,7 +5864,7 @@ msgstr "Δεν μπορείτε να αφήσετε κριτική για το �
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6318,8 +6318,8 @@ msgid "Update message of the day"
 msgstr "Ενημέρωση του μηνύματος της ημέρας"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgid "Expired Information Requests ({0})"
+msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -6847,18 +6847,26 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Ενημέρωση ({0})"
 msgstr[1] "Ενημερώσεις ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
 msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
 msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Ζητήθηκαν περισσότερες πληροφορίες: {0}"
+msgstr[1] "Ζητήθηκαν περισσότερες πληροφορίες: {0}"
 
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
