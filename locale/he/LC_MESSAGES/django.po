@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:41+0000\n"
+"PO-Revision-Date: 2018-03-01 20:58+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1865,7 +1865,7 @@ msgid "{addon} {version} super review requested."
 msgstr "נשלחה בקשה לסקירת־על עבור {addon} {version}."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "התוספת סומנה בדגל לסקירת מנהל.  היא עדיין נמצאת בתור שלנו לסקירה, אבל תצטרך להיבדק ע״י אחד מהסוקרים המנהלים. הסקירה עשויה לקחת יותר זמן מהרגיל."
 
 msgid "Comment on {addon} {version}."
 msgstr "תגובה על {addon} {version}."
@@ -4146,7 +4146,7 @@ msgid "Upload New Design"
 msgstr "העלאת עיצוב חדש"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "לאחר ההעלאה ושליחת הטופס, הצוות של AMO יסקור את העיצוב העדכני שלך. העיצוב הנוכחי עדיין יהיה זמין לציבור בינתיים."
+msgstr "לאחר ההעלאה והגשת הטופס, הצוות של AMO יסקור את העיצוב העדכני שלך. העיצוב הנוכחי עדיין יהיה זמין לציבור בינתיים."
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr ""
@@ -6470,7 +6470,7 @@ msgstr "מאת %(user)s בתאריך %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">סומן בדגל ע״י %(user)s בתאריך %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "כל הסקירות עברו ביקורת. כל הכבוד!"
@@ -6756,7 +6756,7 @@ msgid "More Info Requested: {0}"
 msgstr ""
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "סומן בדגל: {0}"
 
 msgid "Approve Theme"
 msgstr "אישור ערכת נושא"
