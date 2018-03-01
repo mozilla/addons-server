@@ -10,7 +10,6 @@ from decimal import Decimal
 from waffle.testutils import override_switch
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 import mock
 import pytest
@@ -229,7 +228,6 @@ class TestValidator(ValidatorTestCase):
         assert 'WebExtension' in validation['messages'][0]['message']
         assert not self.upload.valid
 
-    @override_settings(SIGNING_SERVER='http://full')
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
@@ -238,16 +236,6 @@ class TestValidator(ValidatorTestCase):
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
-
-    @override_settings(SIGNING_SERVER='')
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_validation_no_signing_warning(self, _mock):
-        """If we're not signing addon don't warn on signed addon submission."""
-        _mock.return_value = self.mock_sign_addon_warning
-        tasks.validate(self.upload, listed=True)
-        validation = json.loads(self.get_upload().validation)
-        assert validation['warnings'] == 0
-        assert len(validation['messages']) == 0
 
     @mock.patch('validator.validate.validate')
     @mock.patch('olympia.devhub.tasks.track_validation_stats')
@@ -1025,8 +1013,7 @@ class TestSubmitFile(TestCase):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED,
-            use_autograph=False)
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)

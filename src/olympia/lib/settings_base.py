@@ -1572,11 +1572,9 @@ CELERY_WORKER_DISABLE_RATE_LIMITS = True
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-# This is the signing server for signing files.
-SIGNING_SERVER = ''
-
-# And how long we'll give the server to respond.
-SIGNING_SERVER_TIMEOUT = 10
+# And how long we'll give the server to respond for monitoring.
+# We currently do not have any actual timeouts during the signing-process.
+SIGNING_SERVER_MONITORING_TIMEOUT = 10
 
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
 HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
@@ -1601,10 +1599,8 @@ AUTOGRAPH_CONFIG = {
         default='webextensions-rsa')
 }
 
-# Enable addon signing. This setting is primarily be thought to be used
-# for Autograph based signing. Trunion based signing also listens to
-# `SIGNING_SERVER` being empty. We are trying to have Autograph
-# being configured to something locally running by default though.
+# Enable addon signing. Autograph is configured to something reasonable
+# when running locally so there aren't many reasons to deactivate that.
 ENABLE_ADDON_SIGNING = True
 
 # True when the Django app is running from the test suite.

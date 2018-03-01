@@ -571,7 +571,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -599,7 +599,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -633,7 +633,7 @@ class TestReviewHelper(TestCase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -684,7 +684,7 @@ class TestReviewHelper(TestCase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -890,7 +890,7 @@ class TestReviewHelper(TestCase):
             '%s signed and ready to download' % self.preamble)
         assert 'our automatic tests and is now signed' in mail.outbox[0].body
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1

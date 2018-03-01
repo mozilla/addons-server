@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.test.utils import override_settings
 
 import responses
@@ -87,13 +88,9 @@ class TestMonitor(TestCase):
         assert status == ''
         assert redis_results == {'master': mocked_redis_info}
 
-    @override_settings(SIGNING_SERVER='http://localhost')
     @responses.activate
     def test_signer(self):
-        responses.add(
-            responses.GET,
-            'http://localhost/status',
-            status=200
-        )
+        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
         status, signer_result = monitors.signer()
         assert status == ''

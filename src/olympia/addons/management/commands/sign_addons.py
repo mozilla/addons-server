@@ -12,10 +12,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument('addon_id', nargs='*')
-        parser.add_argument(
-            '--signing-server', action='store', type=str,
-            dest='signing_server',
-            help='The signing server to use for full reviews.')
 
         parser.add_argument(
             '--force', action='store_true', dest='force',
@@ -27,10 +23,24 @@ class Command(BaseCommand):
                  'the developer.')
 
         parser.add_argument(
-            '--use-autograph',
-            action='store_true',
-            dest='use_autograph',
-            help='Use our new autograph signing.')
+            '--autograph-server-url', action='store', type=str,
+            dest='autograph_server_url',
+            help='The optional server URL for the autograph signing server.')
+
+        parser.add_argument(
+            '--autograph-user-id', action='store', type=str,
+            dest='autograph_user_id',
+            help='The optional user id for the autograph signing server.')
+
+        parser.add_argument(
+            '--autograph-key', action='store', type=str,
+            dest='autograph_key',
+            help='The optional key for the autograph signing server.')
+
+        parser.add_argument(
+            '--autograph-signer', action='store', type=str,
+            dest='autograph_signer',
+            help='The optional signer for the autograph signing server.')
 
     def handle(self, *args, **options):
         if len(options['addon_id']) == 0:  # Sign all the addons?
@@ -39,11 +49,18 @@ class Command(BaseCommand):
                 'sign them all, use the "process_addons --task sign_addons" '
                 'management command.')
 
-        full_server = options.get('signing_server') or settings.SIGNING_SERVER
+        defaults = settings.AUTOGRAPH_CONFIG
 
-        addon_ids = [int(addon_id) for addon_id in options['addon_id']]
-        with override_settings(
-                SIGNING_SERVER=full_server):
+        def _get_option_or_default(key):
+            return options.get('autograph_{}'.format(key), defaults[key])
+
+        autograph_config = {
+            'server_url': _get_option_or_default('server_url'),
+            'user_id': _get_option_or_default('user_id'),
+            'key': _get_option_or_default('key'),
+            'signer': _get_option_or_default('signer')}
+
+        with override_settings(AUTOGRAPH_CONFIG=autograph_config):
+            addon_ids = [int(addon_id) for addon_id in options['addon_id']]
             sign_addons(
-                addon_ids, force=options['force'], reason=options['reason'],
-                use_autograph=options['use_autograph'])
+                addon_ids, force=options['force'], reason=options['reason'])

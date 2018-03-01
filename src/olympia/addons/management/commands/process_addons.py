@@ -29,8 +29,7 @@ tasks = {
         ]},
     'sign_addons': {
         'method': sign_addons,
-        'qs': [],
-        'allowed_kwargs': ('use_autograph',)},
+        'qs': []},
     'add_firefox57_tag_to_webextensions': {
         'method': add_firefox57_tag,
         'qs': [
@@ -82,12 +81,6 @@ class Command(BaseCommand):
             dest='with_deleted',
             help='Include deleted add-ons when determining which '
                  'add-ons to process.')
-
-        parser.add_argument(
-            '--use-autograph',
-            action='store_true',
-            dest='use_autograph',
-            help='Use our new autograph signing.')
 
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
