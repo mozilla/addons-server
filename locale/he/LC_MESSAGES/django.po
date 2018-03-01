@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-03-01 12:00+0000\n"
+"PO-Revision-Date: 2018-03-01 12:29+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1841,22 +1841,22 @@ msgid "{addon} {version} escalated."
 msgstr ""
 
 msgid "Super review requested"
-msgstr ""
+msgstr "נשלחה בקשה לסקירת־על"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
 
 msgid "Review requested"
-msgstr ""
+msgstr "נשלחה בקשה לסקירה"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "נשלחה בקשה למידע נוסף עבור {addon} {version}."
 
 msgid "More information requested"
-msgstr ""
+msgstr "נשלחה בקשה למידע נוסף"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "נשלחה בקשה לסקירת־על עבור {addon} {version}."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -3168,7 +3168,7 @@ msgid "Limit 3"
 msgstr ""
 
 msgid "Add-on Flags"
-msgstr ""
+msgstr "דגלי תוספות"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
@@ -6070,7 +6070,7 @@ msgid "Jetpack Add-on"
 msgstr ""
 
 msgid "More Information Requested"
-msgstr "התקבלה בקשה למידע נוסף"
+msgstr "נשלחה בקשה למידע נוסף"
 
 #, fuzzy
 msgid "Expired Information Request"
