@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-25 09:09+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-03-01 12:00+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -784,7 +784,7 @@ msgstr "אוי"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>אופס!  קרתה איזו תקלה.</h1> <p>אנו כבר נתפנה לטפל בה.</p> <p> אפשר לנסות לרענן את העמוד, או לחזור אל <a href=\"%(home)s\">דף הבית של התוספות</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "חלק מהזכויות שמורות"
@@ -952,7 +952,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "נא לשים לב כי ב־WebExtensions לא יתקבל ״*״ תחת %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "מזהה GUID"
@@ -1688,7 +1688,7 @@ msgstr "מעוניינים בעוד התאמה אישית?"
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "ערכות נושא שלמות משדרגות את המראה של הדפדפן שלך עם עיצובים עבור מסגרת החלון, סרגל הכתובת, כפתורים, לשוניות ותפריטים. <a href=\"%(url)s\" class=\"more-info\">תחילת עבודה</a>"
 
 msgid "Up & Coming Themes"
 msgstr ""
@@ -2235,7 +2235,7 @@ msgid "Abstract"
 msgstr "מופשט"
 
 msgid "Causes"
-msgstr ""
+msgstr "גורמים"
 
 msgid "Fashion"
 msgstr "אופנה"
@@ -2638,7 +2638,7 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr ""
 
 msgid "You cannot upload any more files for this version."
-msgstr "אי אפשר להעלות קבצים נוספים לגרסה זו."
+msgstr "לא ניתן להעלות קבצים נוספים לגרסה זו."
 
 msgid "Version doesn't match"
 msgstr "הגרסה אינה תואמת"
