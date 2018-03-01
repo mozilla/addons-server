@@ -82,4 +82,21 @@ services:
       - "5900"
     shm_size: 2g
     links:
+      - "addons-frontend:olympia-frontend.test"
+      - "nginx:olympia.test"
+
+  addons-frontend:
+    <<: *env
+    environment:
+      - NODE_APP_INSTANCE=amo
+      - NODE_ENV=development
+      - API_HOST=http://olympia.test
+      - HOSTNAME=functional.test
+    ports:
+      - "4000:4000"
+    expose:
+      - "4000"
+    image: addons/addons-frontend
+    command: yarn build && yarn start
+    links:
       - "nginx:olympia.test"

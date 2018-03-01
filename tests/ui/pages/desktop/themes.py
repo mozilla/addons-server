@@ -1,33 +1,20 @@
-from pypom import Region
 from selenium.webdriver.common.by import By
 
-from base import Base
+from pages.desktop.base import Base
 
 
 class Themes(Base):
-    """Themes page."""
+
+    URL_TEMPLATE = 'themes/'
+
+    _browse_all_locator = (By.CSS_SELECTOR, '.Card-footer-link > a')
+    _title_locator = (By.CLASS_NAME, 'LandingPage-addonType-name')
+
     def wait_for_page_to_load(self):
-        self.wait.until(lambda _: self.featured.themes[0].name)
-        return self
+        self.wait.until(
+            lambda _: self.is_element_displayed(*self._title_locator))
+        return self.find_element(*self._title_locator)
 
     @property
-    def featured(self):
-        return self.Featured(self)
-
-    class Featured(Region):
-        """Represents the Featured region on the themes page."""
-        _root_locator = (By.CLASS_NAME, 'personas-featured')
-        _theme_locator = (By.CSS_SELECTOR, '.persona')
-
-        @property
-        def themes(self):
-            theme = self.find_elements(*self._theme_locator)
-            return [Themes.Theme(self.page, el) for el in theme]
-
-    class Theme(Region):
-        """Represents an individual theme."""
-        _name_locator = (By.CSS_SELECTOR, 'h3')
-
-        @property
-        def name(self):
-            return self.find_element(*self._name_locator).text
+    def browse_all(self):
+        self.find_element(*self._browse_all_locator).click()

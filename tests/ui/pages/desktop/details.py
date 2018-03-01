@@ -1,29 +1,24 @@
-from pypom import Region
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as expected
 
-from base import Base
+from pages.desktop.base import Base
 
 
-class Details(Base):
-    """Details page."""
+class Detail(Base):
+
+    _root_locator = (By.CLASS_NAME, 'Addon-extension')
+    _addon_name_locator = (By.CLASS_NAME, 'Addon-title')
+    _install_button_locator = (By.CLASS_NAME, 'InstallButton-button')
+
     def wait_for_page_to_load(self):
-        self.wait.until(lambda _: self.description_header.name)
+        self.wait.until(
+            expected.invisibility_of_element_located(
+                (By.CLASS_NAME, 'LoadingText')))
         return self
 
     @property
-    def description_header(self):
-        return self.DescriptionHeader(self)
+    def name(self):
+        return self.find_element(*self._addon_name_locator).text
 
-    class DescriptionHeader(Region):
-        """Represents the header of the detail page."""
-        _root_locator = (By.CLASS_NAME, 'addon-description-header')
-        _install_button_locator = (By.CLASS_NAME, 'add')
-        _name_locator = (By.TAG_NAME, 'h1')
-
-        @property
-        def name(self):
-            return self.find_element(*self._name_locator).text
-
-        @property
-        def install_button(self):
-            return self.find_element(*self._install_button_locator)
+    def install(self):
+        self.find_element(*self._install_button_locator).click()
