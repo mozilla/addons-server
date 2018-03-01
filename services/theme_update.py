@@ -81,7 +81,8 @@ class ThemeUpdate(object):
             t_desc.localized_string AS description,
             p.display_username, p.header,
             p.footer, p.accentcolor, p.textcolor,
-            UNIX_TIMESTAMP(a.modified) AS modified
+            UNIX_TIMESTAMP(a.modified) AS modified,
+            p.checksum
         FROM addons AS a
         LEFT JOIN personas AS p ON p.addon_id=a.id
         LEFT JOIN versions AS v ON a.current_version=v.id
@@ -100,7 +101,7 @@ class ThemeUpdate(object):
             return dict(zip((
                 'persona_id', 'addon_id', 'slug', 'current_version', 'name',
                 'description', 'username', 'header', 'footer', 'accentcolor',
-                'textcolor', 'modified'),
+                'textcolor', 'modified', 'checksum'),
                 list(row)))
 
         if row:
@@ -188,8 +189,13 @@ class ThemeUpdate(object):
 
         image_url = posixpath.join(user_media_url('addons'),
                                    str(row['addon_id']), filename or '')
-        modified = int(row['modified']) if row['modified'] else 0
-        return '%s?%s' % (image_url, modified)
+        if row['checksum']:
+            modified = row['checksum'][:8]
+        elif row['modified']:
+            modified = int(row['modified'])
+        else:
+            modified = 0
+        return '%s?modified=%s' % (image_url, modified)
 
     def locale_url(self, domain, url):
         return '%s/%s%s' % (domain, self.data.get('locale', 'en-US'), url)
