@@ -324,6 +324,14 @@ class AddonSerializerOutputTestMixin(object):
             get_outgoing_url(unicode(self.addon.support_url))
         )
 
+        # Try with empty strings/None. Annoyingly, contribution model field
+        # does not let us set it to None, so use a translated field for that
+        # part of the test.
+        self.addon.update(contributions='', homepage=None)
+        result = self.serialize()
+        assert result['contributions_url'] == ''
+        assert result['homepage'] is None
+
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
         version_factory(
