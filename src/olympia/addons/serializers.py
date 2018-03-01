@@ -248,6 +248,7 @@ class AddonSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='all_previews')
     ratings = serializers.SerializerMethodField()
+    ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
     summary = TranslationSerializerField()
@@ -366,6 +367,9 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())
+
+    def get_ratings_url(self, obj):
+        return absolutify(obj.ratings_url)
 
     def get_review_url(self, obj):
         return absolutify(reverse('reviewers.review', args=[obj.pk]))
