@@ -325,12 +325,13 @@ class AddonSerializer(serializers.ModelSerializer):
         return data
 
     def outgoingify(self, data):
-        if isinstance(data, basestring):
-            return get_outgoing_url(data)
-        elif isinstance(data, dict):
-            return {key: get_outgoing_url(value) if value else None
-                    for key, value in data.items()}
-        # Probably None... don't bother.
+        if data:
+            if isinstance(data, basestring):
+                return get_outgoing_url(data)
+            elif isinstance(data, dict):
+                return {key: get_outgoing_url(value) if value else None
+                        for key, value in data.items()}
+        # None or empty string... don't bother.
         return data
 
     def get_categories(self, obj):
