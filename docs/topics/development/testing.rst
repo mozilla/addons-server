@@ -82,7 +82,7 @@ To run the selenium based tests outside of the docker container use the followin
 WARNING: This will WIPE the database as the test will create specific data for itself to look for.
 If you have anything you don't want to be deleted, please do not run these tests.
 
-For more detailed information on the integration tests, please see the Readme within the ```tests/ui``` directory.
+For more detailed information on the integration tests, please see the Readme within the ``tests/ui`` directory.
 
 Database Setup
 ~~~~~~~~~~~~~~

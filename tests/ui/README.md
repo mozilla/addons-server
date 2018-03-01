@@ -56,6 +56,7 @@ docker-compose ps
 0.0.0.0:32771->5900/tcp
 ```
 Note: Your port may not match what is seen here.
+
 You will want to copy what ever port is before the ```->5900/tcp```.
 
 3. Open your favorite VNC viewer and type in, or paste that address.
@@ -66,7 +67,7 @@ You will want to copy what ever port is before the ```->5900/tcp```.
 
 The preferences used to setup firefox are here:
 ```sh
-firefox_options.set_preference(
+    firefox_options.set_preference(
         'extensions.install.requireBuiltInCerts', False)
     firefox_options.set_preference('xpinstall.signatures.required', False)
     firefox_options.set_preference('extensions.webapi.testing', True)
@@ -82,6 +83,11 @@ disabling the autohide function and setting the firefox browser to run headless.
 
 If you would like to add or edit tests please consider that these are run on both a mobile resolution and a desktop resolution. The mobile resolution is ```738x414 (iPhone 7+)```, the desktop resolution is: ```1920x1080```. Your tests should be able to work on both.
 
+
+### Debugging a failure
+
+Whether a test passes or fails will result in a HTML report being created. This report will have detailed information of the test run and if a test does fail, it will provide geckodriver logs, terminal logs, as well as a screenshot of the browser when the test failed. We use a pytest plugin called [pytest-html][pytest-html] to create this report. The report can be found within the root directory of the project and is named ```ui-test.html```. It should be viewed within a browser.
+
 [amo]: https://addons.mozilla.org
 [addons-frontend]: https://github.com/mozilla/addons-frontend/
 [addons-server-docs]: https://addons-server.readthedocs.io/en/latest/topics/install/docker.html
@@ -91,6 +97,7 @@ If you would like to add or edit tests please consider that these are run on bot
 [geckodriver]: https://github.com/mozilla/geckodriver/releases/tag/v0.19.1
 [pypom]: http://pypom.readthedocs.io/en/latest/
 [pytest]: https://docs.pytest.org/en/latest/
+[pytest-html]: https://github.com/pytest-dev/pytest-html
 [pytest-selenium]: http://pytest-selenium.readthedocs.org/
 [Selenium]: http://selenium-python.readthedocs.io/index.html
 [selenium-api]: http://selenium-python.readthedocs.io/locating-elements.html
