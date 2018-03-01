@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 18:04+0000\n"
+"PO-Revision-Date: 2018-03-01 18:32+0000\n"
 "Last-Translator: Mirzet Omerović <mirzet.omerovic.1992@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1005,10 +1005,10 @@ msgid "Icons cannot be animated."
 msgstr "Ikone ne mogu biti animirane."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Ovaj prilagođeni URL već koristi druga vaša kolekcija."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Priloženi URL mora se sastojati od slova, brojeva, donjih crtica ili crtica."
 
 msgid "This custom URL cannot be used."
 msgstr "Ovaj prilagođeni URL se ne može koristiti."
@@ -1993,10 +1993,10 @@ msgid "Content rejected"
 msgstr "Sadržaj je odbijen"
 
 msgid "{addon} information request removed."
-msgstr ""
+msgstr "{addon} uklonjen zahtev za informacije."
 
 msgid "Information request removed"
-msgstr ""
+msgstr "Zahtev za informaciju je uklonjen"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Zahtjev za informacije o {addon} {version} je uklonio programer."
@@ -2429,16 +2429,16 @@ msgid "Add-on Content Review"
 msgstr "Recenzija sadržaja dodatka"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Pregled dodatka za odobrenje nakon odobrenja (najveći rizik)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Pregled dodatka za odobrenje nakon odobrenja (visok rizik)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Pregled dodatka za odobrenje nakon odobrenja (srednji rizik)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Pregled dodatka za odobrenje nakon odobrenja (mali rizik)"
 
 msgid "Level 1"
 msgstr "Nivo 1"
@@ -2529,28 +2529,28 @@ msgid "An author can only be listed once."
 msgstr "Autor može biti naveden samo jednom."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug netačan."
 
 msgid "Details"
 msgstr ""
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Koje je ime vaše licence?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Pružite tekst vaše dozvole."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Tekst licence je potreban pri izboru Ostalo."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Ovaj dodatak ima ugovor o licenciranju krajnjeg korisnika"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Molimo navedite Vaš ugovor o licenciranju krajnjeg korisnika:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Ovaj dodatak ima politiku privatnosti"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
