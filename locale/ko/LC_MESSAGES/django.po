@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -38,6 +38,9 @@ msgstr "이 사용자 이름은 이미 사용되고 있습니다."
 
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
+
+msgid "Images cannot be animated."
+msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1006,6 +1009,9 @@ msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
+
+msgid "Icons cannot be animated."
+msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2761,12 +2767,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "움직이는 아이콘은 사용할 수 없습니다."
-
-msgid "Images cannot be animated."
-msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5993,7 +5993,7 @@ msgstr "누군가 부가 기능에 평가를 작성했습니다"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6446,7 +6446,7 @@ msgid "Update message of the day"
 msgstr "오늘의 메시지 업데이트"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "추가 정보 필요"
 
 msgid "An unknown error occurred"
@@ -6984,14 +6984,20 @@ msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "업데이트 ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "심사 조정 ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "내가 제작한 모든 부가 기능"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "추가 정보 제공 요청: {0}"
 
 msgid "Flagged"
 msgstr "표시됨"

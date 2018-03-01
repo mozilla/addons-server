@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgstr "این نام کاربری قبلا استفاده شده."
 
 msgid "Images must be either PNG or JPG."
 msgstr "تصاویر باید PNG یا JPG باشند."
+
+msgid "Images cannot be animated."
+msgstr ""
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1002,6 +1005,9 @@ msgid "This url is already in use by another collection"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+msgid "Icons cannot be animated."
 msgstr ""
 
 #, fuzzy
@@ -2749,12 +2755,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -5816,7 +5816,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6260,8 +6260,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "اطّلاعات نسخه"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6794,17 +6795,23 @@ msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "به‌هنگام شده"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "بازبینی نشده"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "افزودنی‌های {0}"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "اطّلاعات نسخه"
 
 msgid "Flagged"
 msgstr ""

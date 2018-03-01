@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,9 @@ msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
+
+msgid "Images cannot be animated."
+msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -996,6 +999,9 @@ msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗ�
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
+
+msgid "Icons cannot be animated."
+msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ǿƞḗ ǿƒ ẏǿŭř ƈǿŀŀḗƈŧīǿƞş."
@@ -2705,12 +2711,6 @@ msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ ẇīŧħ ȧ ɠŭ�
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧ Ḿǿẑīŀŀȧ Şīɠƞḗḓ Ḗẋŧḗƞşīǿƞ"
-
-msgid "Icons cannot be animated."
-msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
-
-msgid "Images cannot be animated."
-msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5848,8 +5848,8 @@ msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
 
-msgid "This rating can't flagged because it has no review text."
-msgstr "Ŧħīş řȧŧīƞɠ ƈȧƞ'ŧ ƒŀȧɠɠḗḓ ƀḗƈȧŭşḗ īŧ ħȧş ƞǿ řḗṽīḗẇ ŧḗẋŧ."
+msgid "This rating can't be flagged because it has no review text."
+msgstr "Ŧħīş řȧŧīƞɠ ƈȧƞ'ŧ ƀḗ ƒŀȧɠɠḗḓ ƀḗƈȧŭşḗ īŧ ħȧş ƞǿ řḗṽīḗẇ ŧḗẋŧ."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇḗř ȧƥƥřǿṽȧŀ."
@@ -6273,8 +6273,8 @@ msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
 msgid "Update message of the day"
 msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
 
-msgid "Add-ons with expired information requests"
-msgstr "Aḓḓ-ǿƞş ẇīŧħ ḗẋƥīřḗḓ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧş"
+msgid "Expired Information Requests ({0})"
+msgstr "Ḗẋƥīřḗḓ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧş ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Aƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
@@ -6788,15 +6788,20 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Ŭƥḓȧŧḗ ({0})"
 msgstr[1] "Ŭƥḓȧŧḗş ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ ({0})"
-msgstr[1] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Řȧŧīƞɠ Řḗṽīḗẇ ({0})"
+msgstr[1] "Řȧŧīƞɠ Řḗṽīḗẇş ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞ ({0})"
-msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ ({0})"
+msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Ḗẋƥīřḗḓ Īƞƒǿ Řḗɋŭḗşŧ ({0})"
+msgstr[1] "Ḗẋƥīřḗḓ Īƞƒǿ Řḗɋŭḗşŧş ({0})"
 
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"

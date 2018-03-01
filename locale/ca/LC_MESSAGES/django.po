@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-07 11:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -42,6 +42,9 @@ msgstr ""
 
 msgid "Images must be either PNG or JPG."
 msgstr "Les imatges han de ser o bé PNG o bé JPG."
+
+msgid "Images cannot be animated."
+msgstr "Les imatges no poden ser animades."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1043,6 +1046,9 @@ msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "La icona ha de ser o bé PNG o bé JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Les icones no poden ser animades."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2803,12 +2809,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Les icones no poden ser animades."
-
-msgid "Images cannot be animated."
-msgstr "Les imatges no poden ser animades."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5963,7 +5963,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No podeu pujar més fitxers per a aquesta versió."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6434,7 +6434,7 @@ msgid "Update message of the day"
 msgstr "Actualitza el missatge del dia"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "S'ha sol·licitat més informació"
 
 msgid "An unknown error occurred"
@@ -6973,18 +6973,25 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Actualitzat {0}"
 msgstr[1] "Actualitzat {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Revisió moderada ({0})"
 msgstr[1] "Revisions moderades ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Complements del {0} "
 msgstr[1] "Complements del {0} "
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "S'ha sol·licitat més informació"
+msgstr[1] "S'ha sol·licitat més informació"
 
 msgid "Flagged"
 msgstr ""

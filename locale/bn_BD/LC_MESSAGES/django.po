@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-12-16 02:26+0000\n"
 "Last-Translator: Ashikur Rahman <ashikurrahman068@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgstr ""
 
 msgid "Images must be either PNG or JPG."
 msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
+
+msgid "Images cannot be animated."
+msgstr "ছবি এনিমেটেড হতে পারবে না।"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -990,6 +993,9 @@ msgstr "এই ইউআরএলটি অন্য একটি সংগ্�
 
 msgid "Icons must be either PNG or JPG."
 msgstr "আইকন অবশ্যই PNG অথবা JPG তে হতে হবে।"
+
+msgid "Icons cannot be animated."
+msgstr "আইকন এনিমেটেড হতে পারবে না।"
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2723,12 +2729,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "আইকন এনিমেটেড হতে পারবে না।"
-
-msgid "Images cannot be animated."
-msgstr "ছবি এনিমেটেড হতে পারবে না।"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5771,7 +5771,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6218,7 +6218,7 @@ msgid "Update message of the day"
 msgstr ""
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 msgid "An unknown error occurred"
@@ -6750,16 +6750,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "হালনাগাদ ({0})"
 msgstr[1] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "পর্যালোচনার জন্য অপেক্ষা করছে"
+msgstr[1] "পর্যালোচনার জন্য অপেক্ষা করছে"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "{0} জন্য অ্যাড-অন"
 msgstr[1] "{0} জন্য অ্যাড-অন"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "আরও তথ্য জানতে চাওয়া হয়েছে"
+msgstr[1] "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 msgid "Flagged"
 msgstr "ফ্ল্যাগকৃত"

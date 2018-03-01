@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -43,6 +43,9 @@ msgstr ""
 
 msgid "Images must be either PNG or JPG."
 msgstr "الصور يجب أن تكون PNG أو JPG."
+
+msgid "Images cannot be animated."
+msgstr "الصور لا يمكن أن تكون متحركة."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1084,6 +1087,9 @@ msgstr "هذا الرابط مستخدم بالفعل من مجموعة أخرى
 
 msgid "Icons must be either PNG or JPG."
 msgstr "صيغة الأيقونات يجب أن تكون إما PNG أو JPG."
+
+msgid "Icons cannot be animated."
+msgstr "الأيقونات لا يمكن أن تكون متحركة."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2881,12 +2887,6 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "الأيقونات لا يمكن أن تكون متحركة."
-
-msgid "Images cannot be animated."
-msgstr "الصور لا يمكن أن تكون متحركة."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -6018,7 +6018,7 @@ msgstr "عندما يكتب شخصا ما تعليقا على إضافتي"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6506,8 +6506,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "معلومات أساسية"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -7055,10 +7056,11 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "التعليق على {0}"
+msgstr[1] "التعليق على {0}"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -7067,14 +7069,24 @@ msgstr[5] ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "إضافات {0}"
 msgstr[1] "إضافات {0}"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "معلومات أساسية"
+msgstr[1] "معلومات أساسية"
+msgstr[2] "معلومات أساسية"
+msgstr[3] "معلومات أساسية"
+msgstr[4] "معلومات أساسية"
+msgstr[5] "معلومات أساسية"
 
 msgid "Flagged"
 msgstr ""

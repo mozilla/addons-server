@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-01-16 21:10+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -37,6 +37,9 @@ msgstr "Toto používateľské meno sa už používa."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musia byť vo formáte PNG alebo JPG."
+
+msgid "Images cannot be animated."
+msgstr "Obrázky nesmú byť animované."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1028,6 +1031,9 @@ msgstr "Táto adresa URL je už používaná inou kolekciou."
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikony musia byť vo formáte .png alebo .jpg."
+
+msgid "Icons cannot be animated."
+msgstr "Ikony nesmú byť animované."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2781,12 +2787,6 @@ msgstr "Nemôžete nahrať doplnok s GUID končiacim na \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
-
-msgid "Icons cannot be animated."
-msgstr "Ikony nesmú byť animované."
-
-msgid "Images cannot be animated."
-msgstr "Obrázky nesmú byť animované."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5995,7 +5995,7 @@ msgstr "niekto napíše recenziu na môj doplnok"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Pre rovnakú verziu doplnku nemôžete zanechať viac ako jednu recenziu."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6464,9 +6464,10 @@ msgstr "Oznámenie"
 msgid "Update message of the day"
 msgstr "Aktualizovať správu dňa"
 
+# 92%
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "Požadované dodatočné informácie"
+msgid "Expired Information Requests ({0})"
+msgstr "Požadované doplňujúce informácie"
 
 msgid "An unknown error occurred"
 msgstr "Nastala neznáma chyba"
@@ -7006,18 +7007,27 @@ msgstr[0] "Aktualizácia ( {0} )"
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Moderovaná recenzia ({0})"
 msgstr[1] "Moderované recenzie ({0})"
 msgstr[2] ""
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Nový doplnok ({0})"
 msgstr[1] "Nové doplnky ({0})"
 msgstr[2] "Nové doplnky ({0})"
+
+# 92%
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Požadované doplňujúce informácie"
+msgstr[1] "Požadované doplňujúce informácie"
+msgstr[2] "Požadované doplňujúce informácie"
 
 msgid "Flagged"
 msgstr "Označené"

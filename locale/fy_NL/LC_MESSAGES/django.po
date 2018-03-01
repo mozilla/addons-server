@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2018-02-19 09:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,9 @@ msgstr "Dizze brûkersnamme is al yn gebrûk."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
+
+msgid "Images cannot be animated."
+msgstr "Ofbyldingen meie net bewegend wêze."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1013,6 +1016,9 @@ msgstr "Dizze URL wurdt al troch in oare kolleksje brûkt"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
+
+msgid "Icons cannot be animated."
+msgstr "Piktogrammen meie net bewegend wêze."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -2742,12 +2748,6 @@ msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
-
-msgid "Icons cannot be animated."
-msgstr "Piktogrammen meie net bewegend wêze."
-
-msgid "Images cannot be animated."
-msgstr "Ofbyldingen meie net bewegend wêze."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -5917,7 +5917,7 @@ msgstr "Jo kinne gjin beoardieling foar jo eigen add-on skriuwe."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriuwe."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6350,7 +6350,7 @@ msgid "Update message of the day"
 msgstr "Berjocht fan de dei bywurkje"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Mear ynformaasje frege"
 
 msgid "An unknown error occurred"
@@ -6870,15 +6870,23 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Fernijing ({0})"
 msgstr[1] "Fernijingen ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Oanpaste beoardieling ({0})"
-msgstr[1] "Oanpaste beoardielingen ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Ynhâldsbeoardieling ({0})"
+msgstr[1] "Ynhâldsbeoardieling ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Automatysk goedkarre add-on ({0})"
 msgstr[1] "Automatysk goedkarre add-ons ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Mear ynformaasje frege: {0}"
+msgstr[1] "Mear ynformaasje frege: {0}"
 
 msgid "Flagged"
 msgstr "Markearre"

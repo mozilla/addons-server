@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-03-01 18:15+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -40,6 +40,9 @@ msgstr ""
 # 100%
 msgid "Images must be either PNG or JPG."
 msgstr "Slike moraju biti ili PNG ili JPG."
+
+msgid "Images cannot be animated."
+msgstr ""
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1032,6 +1035,9 @@ msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonica mora biti ili PNG ili JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Ikonice ne smiju biti animirane."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
@@ -2795,12 +2801,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Ikonice ne smiju biti animirane."
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -5892,7 +5892,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6351,7 +6351,7 @@ msgid "Update message of the day"
 msgstr "Ažuriraj poruku dana"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Traženo više informacija"
 
 msgid "An unknown error occurred"
@@ -6887,18 +6887,26 @@ msgstr[0] "Čeka na ažuriranje ({0})"
 msgstr[1] "Čekaju na ažuriranje ({0})"
 msgstr[2] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Moderirana revizija ({0})"
 msgstr[1] "Moderirane revizije ({0})"
 msgstr[2] "Moderiranih revizija ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Dodaci za {0}"
 msgstr[1] "Dodaci za {0}"
 msgstr[2] ""
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Traženo više informacija"
+msgstr[1] "Traženo više informacija"
+msgstr[2] "Traženo više informacija"
 
 msgid "Flagged"
 msgstr ""
