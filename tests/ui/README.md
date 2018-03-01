@@ -51,13 +51,13 @@ firefox_options.add_argument('-headless')
 docker-compose ps
 ```
 
-2. Copy the port that is forwarded for the selenium-firefox image:
+2. Copy the port that is forwarded for the ```selenium-firefox``` image:
 ```sh
 0.0.0.0:32771->5900/tcp
 ```
 Note: Your port may not match what is seen here.
 
-You will want to copy what ever port is before the ```->5900/tcp```.
+You will want to copy what ever IP address and port is before the ```->5900/tcp```.
 
 3. Open your favorite VNC viewer and type in, or paste that address.
 4. The password is ```secret```.
