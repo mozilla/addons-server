@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-03-01 12:29+0000\n"
+"PO-Revision-Date: 2018-03-01 12:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5594,7 +5594,7 @@ msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support w
 msgstr ""
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "מספר עצות לכתיבת סקירה מוצלחת"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "שאלות נפוצות על סקירות"
@@ -7237,7 +7237,7 @@ msgid "Other Applications"
 msgstr "יישומים אחרים"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "ל־AMO יש עיצוב חדש. מעניין אותך?"
 
 msgid "Visit the new site"
 msgstr "ביקור באתר החדש"
@@ -7361,14 +7361,14 @@ msgstr "שפות חדשות"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "ישנם שינויים שלא נשמרו בשפה <b>{0}</b>. האם ברצונך לשמור את השינויים שלך בטרם מעבר לשפה אחרת?"
 
 msgid "Discard Changes"
 msgstr "ביטול שינויים"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "להסיר את כל התרגומים ל<b>{0}</b>? פעולה זו אינה הפיכה."
 
 msgid "Delete Locale"
 msgstr "מחיקת שפה"
