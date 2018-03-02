@@ -6626,10 +6626,9 @@ msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
 msgstr[0] "自動通過審核（{0}）"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "更多訊息： {0}"
+msgstr[0] "過期的資訊要求（{0}）"
 
 msgid "Flagged"
 msgstr "已加上旗標"
