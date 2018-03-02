@@ -113,9 +113,9 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
 
     header_src, header_width, header_height = encode_header_image(
         os.path.join(header_root, header_url))
-    meetOrSlice = ('meet' if header_width < amo.THEME_PREVIEW_SIZE.width
-                   else 'slice')
-    preserve_aspect_ratio = '%s %s' % ('xMaxYMin', meetOrSlice)
+    meet_or_slice = ('meet' if header_width < amo.THEME_PREVIEW_SIZE.width
+                     else 'slice')
+    preserve_aspect_ratio = '%s %s' % ('xMaxYMin', meet_or_slice)
     context.update(
         header_src=header_src,
         header_src_height=header_height,

@@ -926,16 +926,20 @@ def test_extract_header_with_additional_imgs():
         'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
     data = {'images': {
         'headerURL': 'empty.png',
-        'additional_backgrounds': ['weta_for_tiling.png']
+        'additional_backgrounds': ['transparent.gif', 'weta_for_tiling.png']
     }}
     dest_path = tempfile.mkdtemp()
     header_file = dest_path + '/empty.png'
-    additional_file = dest_path + '/weta_for_tiling.png'
+    additional_file_1 = dest_path + '/transparent.gif'
+    additional_file_2 = dest_path + '/weta_for_tiling.png'
     assert not default_storage.exists(header_file)
-    assert not default_storage.exists(additional_file)
+    assert not default_storage.exists(additional_file_1)
+    assert not default_storage.exists(additional_file_2)
 
     utils.extract_header_img(file_obj, data, dest_path)
     assert default_storage.exists(header_file)
     assert default_storage.size(header_file) == 332
-    assert default_storage.exists(additional_file)
-    assert default_storage.size(additional_file) == 93371
+    assert default_storage.exists(additional_file_1)
+    assert default_storage.size(additional_file_1) == 42
+    assert default_storage.exists(additional_file_2)
+    assert default_storage.size(additional_file_2) == 93371
