@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:34+0000\n"
+"PO-Revision-Date: 2018-03-02 18:45+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6862,23 +6862,20 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Uppdatering ({0})"
 msgstr[1] "Uppdateringar ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Innehållsgranskning ({0})"
-msgstr[1] "Innehållsgranskningar ({0})"
+msgstr[0] "Betygsgranskning ({0})"
+msgstr[1] "Betygsgranskningar ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Automatiskt godkänt tillägg ({0})"
-msgstr[1] "Automatiskt godkända tillägg ({0})"
+msgstr[0] "Automatiskt godkänt ({0})"
+msgstr[1] "Automatiskt godkända ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Mer info begärd: {0}"
-msgstr[1] "Mer info begärd: {0}"
+msgstr[0] "Upphörd informationsbegäran ({0})"
+msgstr[1] "Upphörd informationsbegäran ({0})"
 
 msgid "Flagged"
 msgstr "Flaggad"
