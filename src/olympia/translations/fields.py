@@ -161,11 +161,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             if not isinstance(value, self.field.related_model):
                 value = switch(value, self.field.related_model)
             super(TranslationDescriptor, self).__set__(instance, value)
-        # We ran into a `DoesNotExist` with `self.field.attname`
-        # when it resolves to a `_id` column, somehow, this is deep deep
-        # django magic so let's query the actual column name instead and hope
-        # that works for now
-        elif getattr(instance, self.field.column, None) is None:
+        elif getattr(instance, self.field.get_attname(), None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
