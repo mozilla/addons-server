@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 00:00+0000\n"
+"PO-Revision-Date: 2018-03-02 21:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -153,13 +153,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'utitzijol chuqa' jun rucholaxik pa ri ch'ab'äl ri'. Nrajo' na %s."
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "K'o chi nicha' jun ya'öl q'ij."
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Taya' jun Rub'i' ri Awachinel."
 
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Tatzijoj rij ri Awachinel."
 
 msgid "Enter a new author's email address"
 msgstr "Titz'ib'äx jun k'ak'a' ochochib'al rutaqoya'l b'anel"
@@ -168,26 +168,26 @@ msgid "Listed"
 msgstr "Cholajin"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Ri kib'i' tz'aqat chuqa' mol k'o chi nikik'isb'ej rik'in \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firefox."
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "Tz'ilanem xya' rutzijol."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Ri nutz'aqat man nuk'äm ta ri pa majun ruwäch"
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "Majun k'amonel taq ruwäch"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
-msgstr ""
+msgstr "richin {0}"
 
 msgid "View privacy policy"
-msgstr ""
+msgstr "Titz'et runa'ojil ichinanem"
 
 msgid "View End-User License Agreement"
 msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
