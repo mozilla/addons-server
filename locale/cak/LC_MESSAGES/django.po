@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 21:30+0000\n"
+"PO-Revision-Date: 2018-03-02 21:40+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -194,10 +194,10 @@ msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Man nik'on ta re tz'aqat re' ruma ri Mozilla. <a href=\"%(url)s\">Tetamäx ch'aqa' chik</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Re tz'aqat re' xya' retal achi'el tojtob'enel kuma ri b'anonela'."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -209,16 +209,16 @@ msgstr "Rutununa'oj Ya'öl Q'ij richin K'ixib'äl Okisanel"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s narajo' chi ütz kacha' chi re ri kiya'öl q'ij okisanela' chuwäch xtib'an ri yakoj:"
 
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Titzolin pa {0}…"
 
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Kitz'aqat {0}"
 
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Talun taq K'amal"
 
 msgid "Popular Extensions"
 msgstr "K'ïy Kiwinaq taq K'amal"
