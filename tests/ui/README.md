@@ -17,17 +17,19 @@ Follow the instructions found [here][addons-server-docs].
 
 ### Run the tests
 
-Included in the docker-compose file is an image containing firefox nightly. [tox][Tox]
+Included in the docker-compose file is an image containing Firefox Nightly. [tox][Tox]
 is our test environment manager and [pytest][pytest] is the test runner.
 
 To run the tests, execute the command below:
 ```sh
 docker-compose exec --user root selenium-firefox tox -e ui-tests
 ```
+WARNING: This will WIPE the database as the test will create specific data for itself to look for.
+If you have anything you don't want to be deleted, please do not run these tests.
 
 ### Adding a test
 
-The tests are written in python using a POM, or Page Object Model. The plugin we use for this is called [pypom][pypom]. Please read the documentation there for good examples
+The tests are written in Python using a POM, or Page Object Model. The plugin we use for this is called [pypom][pypom]. Please read the documentation there for good examples
 on how to use the Page Object Model when writing tests.
 
 The pytest plugin that we use for running tests has a number of advanced command
@@ -35,20 +37,24 @@ line options available too. The full documentation for the plugin can be found [
 
 ## Additional Information
 
-The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```localhost:4000```.
+The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```olympia.test:4000```.
 
 ### Watching a test run
 
-The tests are run on a live version of firefox, but they are run headless. To access the container where the tests are run to view them follow these steps:
+The tests are run on a live version of Firefox, but they are run headless. To access the container where the tests are run to view them follow these steps:
 
 IMPORTANT: Please comment out this line within the ```tests/ui/conftest.py``` file if you would like to view or debug the tests.
 ```sh
 firefox_options.add_argument('-headless')
 ```
 
-1. Make sure the container is running:
+1. Make sure all of the containers are running:
 ```sh
 docker-compose ps
+```
+If not start them detached:
+```sh
+docker-compose up -d
 ```
 
 2. Copy the port that is forwarded for the ```selenium-firefox``` image:
@@ -61,11 +67,11 @@ You will want to copy what ever IP address and port is before the ```->5900/tcp`
 
 3. Open your favorite VNC viewer and type in, or paste that address.
 4. The password is ```secret```.
-5. The viewer should open a window with a Ubuntu logo. If that happens you are connected to the ```selenium-firefox``` image and if you start the test, you should see a firefox window open and the tests running.
+5. The viewer should open a window with a Ubuntu logo. If that happens you are connected to the ```selenium-firefox``` image and if you start the test, you should see a Firefox window open and the tests running.
 
 ### Firefox setup
 
-The preferences used to setup firefox are here:
+The preferences used to setup Firefox are here:
 ```sh
     firefox_options.set_preference(
         'extensions.install.requireBuiltInCerts', False)
@@ -77,7 +83,9 @@ The preferences used to setup firefox are here:
     firefox_options.log.level = 'trace'
 ```
 These shouldn't need to be touched as they allow for unsigned addon installation as well as
-disabling the autohide function and setting the firefox browser to run headless.
+disabling the autohide function and setting the Firefox browser to run headless.
+
+If you do need to edit these settings, as mentioned above please visit the file ```conftest.py``` within this directory.
 
 ### Mobile and Desktop testing
 
