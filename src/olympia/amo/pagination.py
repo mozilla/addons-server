@@ -79,7 +79,8 @@ class ESPaginator(Paginator):
 
             # Overwrite `object_list` with the list of ES results.
             page = Page(result.hits, number, self)
-            # Update the `_count`.
+
+            # Overwrite the `count` with the total received from ES results.
             self.count = page.object_list.total
         else:
             page = Page(self.object_list[bottom:top], number, self)
