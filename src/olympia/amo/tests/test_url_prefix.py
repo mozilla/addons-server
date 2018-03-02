@@ -216,7 +216,7 @@ class TestPrefixer(BaseTestCase):
 
         # Now check reverse.
         urlresolvers.set_url_prefix(prefixer)
-        set_script_prefix('/oremj')
+
         assert urlresolvers.reverse('home') == '/oremj/en-US/firefox/'
 
 
