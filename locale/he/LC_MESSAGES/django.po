@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 11:49+0000\n"
+"PO-Revision-Date: 2018-03-03 17:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4757,7 +4757,7 @@ msgstr "מהן תוספות?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
+msgstr "תוספות הן יישומים המאפשרים לך להתאים אישית את %(app)s עם סגנון או פונקציונליות נוספים. ניתן לנסות סרגל־צד חוסך זמן, מדווח מזג אוויר, או מראה שונה כדי להפוך את %(app)s לשלך."
 
 msgid "Learn More"
 msgstr "מידע נוסף"
