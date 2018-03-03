@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 21:29+0000\n"
+"PO-Revision-Date: 2018-03-03 21:35+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -535,10 +535,10 @@ msgstr "Ruk'isib'äl k'exoj:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Xeltzijob'ëx rik'in <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
-msgstr ""
+msgstr "Ichinan Ya'oj Q'ij"
 
 msgid "About this Add-on"
 msgstr "Chi rij re Tz'aqat re'"
