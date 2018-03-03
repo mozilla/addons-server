@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 20:50+0000\n"
+"PO-Revision-Date: 2018-03-03 21:05+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -337,7 +337,7 @@ msgstr[0] "<strong>{0}</strong> okisanel"
 msgstr[1] "<strong>{0}</strong> okisanela'"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Tiq'axäx choy pa ruwi' richin Nab'ey Tzub'al"
 
 msgid "Add"
 msgstr "Titz'aqatisäx"
@@ -348,10 +348,10 @@ msgstr "Tinuk'"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "ruma {0} pa {1}"
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "K'a man ya'on ta rejqalem"
 
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> okisanela'"
@@ -359,28 +359,30 @@ msgstr "<b>{0}</b> okisanela'"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} Q'ij chi Q'ij Okisanel"
+msgstr[1] "{0} Q'ij chi Qij Okisanela'"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Runa'ojil Richinanem {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Ichinan na'oj"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "Tiya' Rutzijol Tz'ilanem"
 
 #, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
+"We natz'ët chi re tz'aqat re' yerutz'ila' %(amo_policy_link_open)sqana'ojil%(link_close)s o k'o k'ayewal pa ruwi' jikomal chuqa' ichinanem, tawokisaj ri nojwuj richin naya' rutzijol chi qe. Majun "
+"chik achike rokisaxik tab'än re nojwuj re'."
 
 msgid "Send Report"
-msgstr ""
+msgstr "Titaq Rutzijol"
 
 msgid "or"
 msgstr "o"
@@ -389,26 +391,26 @@ msgid "Cancel"
 msgstr "Tiq'at"
 
 msgid "What do you think?"
-msgstr ""
+msgstr "¿Achike nana'ojij?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Tab'ana' utzil <a href=\"%(login)s\">tatikirisaj molojri'ïl</a> richin natäq jun tzijoxïk"
 
 msgid "Title:"
 msgstr "B'i'aj:"
 
 msgid "Review:"
-msgstr ""
+msgstr "Tzijoxïk:"
 
 msgid "Rating:"
-msgstr ""
+msgstr "Rejqalem:"
 
 msgid "Submit review"
 msgstr "Titaq tzijoxïk"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
+msgstr "Man tataluj kitzjol k'ayewal wawe'. Ruma man wachel ta ri ataqoya'l chi kiwa ri kib'anonela' tz'aqat, man xketikïr ta xketzijon awik'in richin nikisöl ri k'ayewal."
 
 #, python-format
 msgid ""
