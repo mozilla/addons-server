@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 21:35+0000\n"
+"PO-Revision-Date: 2018-03-03 23:28+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -544,33 +544,35 @@ msgid "About this Add-on"
 msgstr "Chi rij re Tz'aqat re'"
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Kitzijoxik B'anonela'"
 
 msgid "Version Information"
-msgstr ""
+msgstr "Retamab'al Ruwäch"
 
 msgid "See complete version history"
-msgstr ""
+msgstr "Titz'et runatab'al tz'aqät ruwäch"
 
 msgid "Development Channel"
-msgstr ""
+msgstr "Rub'ey B'anonem"
 
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Ri Rub'ey B'anonem nuya' q'ij chawe natojtob'ej jun tojtob'enel k'ak'a' ruwäch re tz'aqat re' chuwäch nelesäx pe chi kiwa ri winaqi'. Toq nayäk ri b'anonem ruwäch, xke'ak'ulula' k'exoj pa re b'ey "
+"re'. Richin man ye'ak'ül ta chik taq ruk'exoj b'anonem, tayaka' chik ri ruwäch k'o wi pa ri jun kan ximonel."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Q'ilanem:</strong> Man enik'on ta b'anonem ruwäch re tz'aqat re' ruma ri Mozilla."
 
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Titz'et tz'aqät runatab'al ri rub'ey b'anonem"
 
 msgid "close"
 msgstr "titz'apïx"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Jujun taq tz'aqat nikik'utuj q'ij richin nikib'än jujun taq samaj (achi'el jun kitz'aqat kisamajixik ruwi' xtuk'utuj q'ij richin nok pa kiq'inoj ruwi' okik'amaya'l)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
