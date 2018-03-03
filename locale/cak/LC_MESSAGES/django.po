@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 21:40+0000\n"
+"PO-Revision-Date: 2018-03-03 20:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -233,13 +233,13 @@ msgid "See all »"
 msgstr "Titz'et ronojel »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Ajsik' &amp; Yewachin yan taq K'amal"
 
 msgid "Featured Themes"
 msgstr "Wachinïk Ya'on Kiq'ij"
 
 msgid "Featured Collections"
-msgstr ""
+msgstr "Talun taq Mol"
 
 msgid "Sort by:"
 msgstr "Tichol chi:"
@@ -256,52 +256,52 @@ msgstr "Tz'aqatisan {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s wuqq'ijul taq qasanïk"
+msgstr[1] "%(num)s wuqq'ijul taq qasanïk"
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s okisanel"
+msgstr[1] "%(num)s okisanela'"
 
 msgid "Requires Restart"
-msgstr ""
+msgstr "Nrajo' chi Nitikirisäx chik"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Re tz'aqat re' nuk'un rik'in k'ak'a' na'ob'äl k'amonel rik'in ri Firefox 57 chuqa' taq ruwäch yepe."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Ruk'amon ri' rik'in ri Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} wuqq'ij qasanïk"
+msgstr[1] "{0} wuqq'ij taq qasanïk"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} okisanel"
+msgstr[1] "{0} okisanela'"
 
 msgid "by"
-msgstr ""
+msgstr "ruma"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Ch'aqa' chik {0} Wachinïk"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
 msgstr "Ketz'et ronojel {0} taq Wachinïk"
 
 msgid "More by this Artist"
-msgstr ""
+msgstr "Ch'aqa' chik richin re B'anöl re'"
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Ketz'et ronojel Ruwachinik re B'anöl re'"
 
 msgid "Categories"
 msgstr "Taq ruwäch"
@@ -310,7 +310,7 @@ msgid "Updated"
 msgstr "Xk'ex"
 
 msgid "Artist"
-msgstr ""
+msgstr "B'anöl"
 
 msgid "Rating"
 msgstr "Kejqalem"
@@ -322,7 +322,7 @@ msgid "License"
 msgstr "Ya'oj q'ij"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Noyob'ëx Nik'oxïk"
 
 msgid "Rejected"
 msgstr "Xutun"
