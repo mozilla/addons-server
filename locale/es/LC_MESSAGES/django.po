@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 18:24+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2018-03-01 01:41+0000\n"
+"Last-Translator: Jordi Cuevas <jordicuevas@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -4498,9 +4498,8 @@ msgstr "Traduce fácilmente {start_sub_heading}con {addon_name}{end_sub_heading}
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Resalta cualquier texto, haz clic con el botón derecho y traduce al instante."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mejora los vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Búsqueda relacionada de imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "¿Has visto una imagen interesante en la Web y quieres saber más sobre ella? Prueba esta herramienta de búsqueda de imágenes."
