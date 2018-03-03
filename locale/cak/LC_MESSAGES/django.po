@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 21:05+0000\n"
+"PO-Revision-Date: 2018-03-03 21:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -417,6 +417,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Tatz'eta' <a href=\"%(support)s\">tanaj rutob'al</a> re tz'aqat re' richin natz'ët we wachel jun to'ïk. Yatikïr chuqa' nak'utuj pa <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">tz'aqat tinamït</a> richin ato'ik."
 
 msgid "Review Guidelines"
 msgstr "Kib'eyal Yesamajïx taq Nik'oxïk"
@@ -426,41 +428,41 @@ msgstr "Taq tzijoxïk"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "ruma %(user)s pa %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Kek'ut pe rutzolixik kitzij b'anonela' richin re tzijoxïk re'"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titz'et ronojel kitzijoxik re tz'aqat re'"
+msgstr[1] "Ketz'et ronojel %(cnt)s kitzijoxik re tz'aqat re'"
 
 msgid "Tags"
 msgstr "Taq etal"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ruwachib'al {0}"
 
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "kuma %(users)s"
 
 msgid "Download Anyway"
-msgstr ""
+msgstr "Estape' Tiqasäx"
 
 msgid "[Warning]"
-msgstr ""
+msgstr "[Rutzijol k'ayewal]"
 
 msgid "Permissions"
 msgstr "Taq ya'oj q'ij"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Re tz'aqat re' xya' retal achi'el tojtob'enel kuma ri b'anonela'"
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Re tz'aqat re' yerajo' re taq tz'aqat re' richin ütz nisamäj:"
 
 msgid "Average"
 msgstr "Tunamilil"
@@ -469,54 +471,54 @@ msgid "Write a review"
 msgstr "Tatz'ib'aj jun tzijoxïk"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "Taq Ruwäch Kiximon Ki'"
 
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Taq ruperaj re taq Mol re'"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Juley chik taq tz'aqat richin %(author)s"
+msgstr[1] "Juley chik taq tz'aqat kichin b'anöl"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> rutzijoxik okisanel"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> kitzijoxik okisanel"
 
 msgid "View statistics"
-msgstr ""
+msgstr "Ketz'et molajilab'äl"
 
 msgid "Manage"
 msgstr "Tisamajïx"
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "Runik'oxik Tz'aqat"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "Runuk'samajixik Nuk'samajel"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Ruwachib'al {0}"
 
 msgid "Contribute"
 msgstr "Kato'on"
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "¿La niqa chawäch re tz'aqat re'?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "Ri rub'anonel re tz'aqat re', nuk'utuj chi tato' richin jutaqil nib'anon, rik'in naya' jun ko'öl ato'ik."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Chapoj ruwäch #{0} tz'aqat"
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "Rutikirib'al Ruxaq Tz'aqat"
 
 msgid "Support site"
 msgstr "Ruxaq kik'amaya'l to'ïk"
