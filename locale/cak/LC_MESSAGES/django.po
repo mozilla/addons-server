@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 20:30+0000\n"
+"PO-Revision-Date: 2018-03-04 20:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1112,49 +1112,49 @@ msgid "Make this Collection Private"
 msgstr "Ti'ichinäx re Mol re'"
 
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Tib'an Saqil re Mol re'"
 
 msgid "Learn about collections"
-msgstr ""
+msgstr "Tetamäx kij ri taq mol"
 
 msgid "More Options:"
-msgstr ""
+msgstr "Ch'aqa' chik taq Cha'oj:"
 
 msgid "Edit Collection"
-msgstr ""
+msgstr "Tinuk' ri Mol"
 
 msgid "Delete Collection"
-msgstr ""
+msgstr "Tiyuj ri Mol"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s Wachinel pa re Mol re'"
+msgstr[1] "%(num)s Taq Wachinel pa re Mol re'"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s Tz'aqat pa re Mol re'"
+msgstr[1] "%(num)s Taq Tz'aqat pa re Mol re'"
 
 msgid "Go"
-msgstr ""
+msgstr "Jo'"
 
 msgid "What are Collections?"
-msgstr ""
+msgstr "¿E achike ri taq Mol?"
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "Kekanöx taq Mol"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "Relik taq Etal"
 
 msgid "More by this User"
-msgstr ""
+msgstr "Ch'aqa' chik richin re Okisanel re'"
 
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Ketz'et ronojel taq rumol re okisanel re'"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1167,13 +1167,13 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Taq tz'aqat ewajowan"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> tz'aqat"
+msgstr[1] "<span>%(addons)s</span> taq tz'aqat"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
