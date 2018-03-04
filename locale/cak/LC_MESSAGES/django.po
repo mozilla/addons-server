@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 21:50+0000\n"
+"PO-Revision-Date: 2018-03-04 22:10+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1556,67 +1556,67 @@ msgid "Recently Updated Extensions"
 msgstr "Taq K'amal K'ak'a' Ek'exon"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Ajsik' & Yewachin yan taq K'amal"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel Ya'on Kejqalem"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel Yalan K'ïy Kiwinaq"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel K'ïy-Kejqalem"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel e K'ak'a'"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel chi B'i'aj"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel chi Wuqq'ijul Eqasan"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel K'ak'a' Ek'exon"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel Ajsik' & Yewachin yan"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titz'et ri %(cnt)s k'amal pa %(name)s &raquo;"
+msgstr[1] "Ketz'et ronojel %(cnt)s taq k'amal pa %(name)s"
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Taq wachinel"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0}'s Ruwachinel"
 
 msgid "View Profile"
-msgstr ""
+msgstr "Titz'et Ruwäch B'i'aj"
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Tatz'uk'u' Awachinel"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Tetamäx ch'aqa' chik"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Titz'et Ronojel K'ak'a' Titz'aqatisäx"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Ketz'et Ronojel Yalan K'ïy Kiwinaq"
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Ketz'et Ronojel K'ïy Kejqalem"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
@@ -1632,16 +1632,16 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr ""
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Ajsik' & Yewachin yan taq Wachinel"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Ketz'et Ronojel Ajsik & Yewachin yan"
 
 msgid "No themes found"
-msgstr ""
+msgstr "Majun taq wachinel xe'ilitäj"
 
 msgid "All"
-msgstr ""
+msgstr "Ronojel"
 
 msgid "Add-on Compatibility Reports"
 msgstr ""
@@ -1653,7 +1653,7 @@ msgid ""
 msgstr ""
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Kitzijol taq Atz'aqat"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
@@ -1672,7 +1672,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View all"
-msgstr ""
+msgstr "Titz'et ronojel"
 
 msgid "Filter by Application"
 msgstr ""
