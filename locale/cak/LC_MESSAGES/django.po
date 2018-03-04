@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 21:27+0000\n"
+"PO-Revision-Date: 2018-03-04 21:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1445,34 +1445,34 @@ msgid "Created"
 msgstr "Xtz'uk"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Taq qasanïk"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Etalun Tz'aqat"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Man etalun ta taq tz'aqat pa {0}."
 
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Etalun Tz'aqat"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
 msgstr ""
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Tiyak Soltzij"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Tiyak Tanaj Ch'ab'äl"
 
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Tiqasäx Soltzij"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Tiqasäx Tanaj Ch'ab'äl"
 
 #, python-format
 msgid ""
@@ -1481,54 +1481,54 @@ msgid ""
 msgstr ""
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "Wachel pan ach'ab'äl"
 
 msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Ch'ab'äl"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Soltzij"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Tanaj Ch'ab'äl"
 
 msgid "All locales"
-msgstr ""
+msgstr "Ronojel ch'ab'äl"
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Kicholajem tanaj ch'ab'äl chuqa' taq soltzij."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Kisamajib'al Kanoxïk"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tz'aqat"
+msgstr[1] "<b>{0}</b> taq tz'aqat"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Kekanöx taq K'amal"
 
 msgid "Add search-related functionality to Firefox"
 msgstr ""
 
 msgid "Search Providers"
-msgstr ""
+msgstr "Kekanöx Ajya'öl"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Kekanöx k'ak'a' ajya'öl richin ri rukajtz'ik akanob'al"
 
 msgid "Additional Resources"
-msgstr ""
+msgstr "Ruwi' taq Tob'äl"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr ""
+msgstr "Tetamäx ch'aqa' chik chi rij ri <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">rukajtz'ik kanoxïk</a> pa {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
@@ -1538,22 +1538,22 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Yalan K'ïy Kiwinaq taq K'amal"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "K'ïy-Kejqalem Taq k'amal"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "K'ak'a' taq k'amal"
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Taq K'amal chi B'i'aj"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Taq K'amal chi Wuqq'ijul Eqasan"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Taq K'amal K'ak'a' Ek'exon"
 
 msgid "Up & Coming Extensions"
 msgstr ""
