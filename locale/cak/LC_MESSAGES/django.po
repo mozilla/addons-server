@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 22:10+0000\n"
+"PO-Revision-Date: 2018-03-04 22:31+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1675,109 +1675,109 @@ msgid "View all"
 msgstr "Titz'et ronojel"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "Tichayüx chi Chokoy"
 
 msgid "Report Type"
 msgstr ""
 
 msgid "Version"
-msgstr ""
+msgstr "Ruwäch"
 
 msgid "Application Version"
-msgstr ""
+msgstr "Ruwäch Chokoy"
 
 msgid "Application Build"
-msgstr ""
+msgstr "Tinuk' Chokoy"
 
 msgid "Platform"
-msgstr ""
+msgstr "Nuk'uche'el"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s Tzijon"
 
 msgid "e10s Compatible"
-msgstr ""
+msgstr "e10s K'amonel"
 
 msgid "Submitted"
-msgstr ""
+msgstr "Taqon"
 
 msgid "Success"
 msgstr ""
 
 msgid "Problem"
-msgstr ""
+msgstr "K'ayewal"
 
 msgid "No reports found."
-msgstr ""
+msgstr "Majun rutzijol xe'ilitäj."
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} xtz'uk."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} taq richinil xenuk'."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} rutzijoxkil xnuk'."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Xenuk' taq ruwäch {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) xtz'aqatisäx pa {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) xyuj el pa {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Taq ruto'ik {addon}."
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} chupun."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} tzijon."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "{addon} b'anikil xjal rik'in {status}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} xtz'aqatisäx pa {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} xnuk' richin {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Ruwäch {0} xyuj pa {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Yakb'äl {0.name} xtz'aqatisäx pa {version} richin {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Yakb'äl {0} xyuj pa {version} richin {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} ya'on q'ij."
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} xuk'ül jun nab'ey runik'oxik."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Nab'ey ya'on q'ij"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} xxutüx."
 
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} xk'am."
 
 msgid "Retained"
-msgstr ""
+msgstr "Xk'am"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} xtaq ruma k'o xk'ulwachitäj."
 
 msgid "Super review requested"
 msgstr ""
@@ -1789,10 +1789,10 @@ msgid "Review requested"
 msgstr ""
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} ch'aqa' chik etamab'äl xk'utüx."
 
 msgid "More information requested"
-msgstr ""
+msgstr "Ch'aqa' chik etamab'äl xk'utüx"
 
 msgid "{addon} {version} super review requested."
 msgstr ""
@@ -1804,30 +1804,30 @@ msgid "Comment on {addon} {version}."
 msgstr ""
 
 msgid "Commented"
-msgstr ""
+msgstr "Xtz'ijöx"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} xtz'aqatisäx pa {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} xyul pa {addon}."
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} xtz'aqatisäx pa {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} xyuj pa {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} richin {addon} tz'ib'an."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} ya'on ruq'ij pa {0}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} man q'aläj ta chik chi ya'on ruq'ij pa {0}."
 
 msgid "{addon} is now featured."
 msgstr ""
