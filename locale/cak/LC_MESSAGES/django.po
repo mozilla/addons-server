@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 23:33+0000\n"
+"PO-Revision-Date: 2018-03-04 00:10+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -586,44 +586,44 @@ msgid "This add-on can:"
 msgstr "Re tz'aqat re' nitikïr:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "Jujun taq tz'aqat nikik'utuj q'ij richin nikib'än jujun taq samaj. Rat yasamajin ri Firefox, xa xe rat ri yana'ojin."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Tanataj chi re tz'aqt re nrokisaj ichinan na'ob'äl, akuchi' nuya' q'ij chi nok pa ronojel ri taq rusamaj okik'amaya'l chuqa' etamab'äl, man xtuk'utuj ta q'ij."
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Xusiloj el re tz'aqat re' ri b'anel."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Xchup re tz'aqat re' ruma jun nuk'samajel."
 
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Ya'oj Ruq'ij Jaqäl B'itz'ib' richin {addon}"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr ""
+msgstr "Ya'oj Ruq'ij Ajxe'el B'itz'ib'"
 
 msgid "support section"
-msgstr ""
+msgstr "rutanaj to'ïk"
 
 msgid "support email"
-msgstr ""
+msgstr "rutaqoya'l to'ïk"
 
 msgid "permalink"
-msgstr ""
+msgstr "jutaqil ximonel"
 
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ketz'et ronojel kitzijoxik okisanela'"
+msgstr[1] "Ketz'et ronojel %(cnt)s kitzijoxik okisanela'"
 
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "K'a man tzijon ta rij re tz'aqat re'."
 
 msgid "Be the first!"
-msgstr ""
+msgstr "¡Kanab'eyin!"
 
 msgid "{0} users"
 msgstr "{0} okisanela'"
@@ -642,64 +642,64 @@ msgstr "Taq Nuwachinel"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Retamab'al Tz'aqat richin {0}"
 
 msgid "Edit Theme"
 msgstr "Tinuk' Wachinel"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Tiya' q'ij / Tixutüx"
 
 msgid "Review History"
-msgstr ""
+msgstr "Runatab'al Tzijoxïk"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Kojakuyu', k'a k'o na chi rij re wachinïk re'. Katzolin pe jub'a' chik na."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "K'a k'o na nrajo' chi rij re wachinïk re'. Man wachel ta man ke ta ri' chawäch rat."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "Ruch'utitzijol Molonel"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> wuqq'ijul qasanïk"
+msgstr[1] "<strong>{0}</strong> wuqq'ijul taq qasanïk"
 
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Man Tzijon ta"
 
 msgid "Tools"
 msgstr "Taq samajib'äl"
 
 msgid "My Profile"
-msgstr ""
+msgstr "Ruwäch Nub'i'"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "Kinuk'ulem Rub'i' Taqoya'l"
 
 msgid "My Collections"
-msgstr ""
+msgstr "Taq Numol"
 
 msgid "My Favorites"
-msgstr ""
+msgstr "Taq Wajowab'al"
 
 msgid "Log out"
 msgstr "Titz'apïx molojri'ïl"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Kenuk'samajïx Taq Nutaqoj"
 
 msgid "Submit a New Add-on"
 msgstr "Titaq jun K'ak'a' Tz'aqat"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Titaq jun K'ak'a' Wachinïk"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "B'anonela' Jay"
 
 msgid "Manage API Keys"
 msgstr "Kenuk'samajïx API Kik'u'x Tzij"
@@ -708,7 +708,7 @@ msgid "Reviewer Tools"
 msgstr "Taq Rusamajib'al Nik'onel"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Kisamajib'al Nuk'samajel"
 
 msgid "Incorrect, please try again."
 msgstr ""
