@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 22:31+0000\n"
+"PO-Revision-Date: 2018-03-04 22:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1830,14 +1830,14 @@ msgid "{addon} no longer featured in {0}."
 msgstr "{addon} man q'aläj ta chik chi ya'on ruq'ij pa {0}."
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} wakami ya'on ruq'ij."
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} wakami man ya'on ta chik ruq'ij."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} xtz'aqatisäx."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -1847,22 +1847,22 @@ msgid "{addon} is now licensed under {0}."
 msgstr ""
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} runa'ojil xjal."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} wachib'äl xjal."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} richin {addon} xya' q'ij chi re."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} xya' q'ij {rating} richin {addon}."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user} xyuj {rating} richin {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -1883,16 +1883,16 @@ msgid "Approved but waiting"
 msgstr ""
 
 msgid "Account updated."
-msgstr ""
+msgstr "Xk'ex rub'i' taqoya'l."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "Xtz'uk: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Xyuj: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -1907,7 +1907,7 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} richin {addon} xk'ex."
 
 msgid "{addon} reviewed."
 msgstr ""
@@ -1989,37 +1989,37 @@ msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Oyonib'äl"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox richin Android"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Man etaman ta ruwäch"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "Man tz'aqät ta"
 
 msgid "Disabled by Mozilla"
 msgstr ""
 
 msgid "Deleted"
-msgstr ""
+msgstr "Xyuj"
 
 msgid "Pending approval"
 msgstr ""
@@ -2028,83 +2028,83 @@ msgid "Flagged for further review"
 msgstr ""
 
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Man cholajin ta"
 
 msgid "Developer"
-msgstr ""
+msgstr "B'anonel"
 
 msgid "Extension"
-msgstr ""
+msgstr "K'amal"
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "Tz'aqät Wachinel"
 
 msgid "Search Engine"
-msgstr ""
+msgstr "Rusamajel kanob'äl"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Tanaj ch'ab'äl (Chokoy)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Tanaj Ch'ab'äl (Tz'aqat)"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Nak'ab'äl"
 
 msgid "Theme"
-msgstr ""
+msgstr "Wachinel"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Wachinel (Molob'a')"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Tz'aqät taq Wachinel"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Taq soltzij"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Taq Tanaj Ch'ab'äl (Chokoy)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Taq Tanaj Ch'ab'äl (Tz'aqat)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "Taq nak'ab'äl"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Taq Wachinel (Molob'a')"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "Juley chik"
 
 msgid "Exception"
-msgstr ""
+msgstr "Man relik ta"
 
 msgid "Release"
-msgstr ""
+msgstr "Elesanem"
 
 msgid "Change"
-msgstr ""
+msgstr "Tijalwachïx"
 
 msgid "Compatible"
-msgstr ""
+msgstr "K'amonel"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Man k'amonel ta"
 
 msgid "Alerts & Updates"
 msgstr ""
 
 msgid "Appearance"
-msgstr ""
+msgstr "Rutzub'al"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Taq yaketal"
 
 msgid "Download Management"
 msgstr ""
@@ -2122,10 +2122,10 @@ msgid "Photos, Music & Videos"
 msgstr ""
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Ichinanem & Jikomal"
 
 msgid "Shopping"
-msgstr ""
+msgstr "Loq'oj"
 
 msgid "Social & Communication"
 msgstr ""
