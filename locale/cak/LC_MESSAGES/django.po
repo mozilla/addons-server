@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 20:11+0000\n"
+"PO-Revision-Date: 2018-03-04 20:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1035,81 +1035,81 @@ msgid "Popularity"
 msgstr "K'ïy winaqilal"
 
 msgid "Collection created!"
-msgstr ""
+msgstr "¡Xtz'uk ri mol!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Q'aläj ikim ri k'ak'a' amol. Yatikïr <a href=\"%(url)s\">ye'anük' ri taq runuk'ulem</a> we nawajo'."
 
 msgid "Collection updated!"
-msgstr ""
+msgstr "¡Xk'ex ri mol!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Tatz'eta' ri amol</a> richin ye'atzu' ri taq jaloj."
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Xyuj Wachib'äl"
 
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Titz'uk jun K'ak'a' Mol"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Achi'el niq'alajisäx pa ri <a href=\"%(legal)s\">Rutzijol Ruchojmil Tzij</a>, ri ruyon mol rojqan jun Creative Commons Attribution Share-Alike Ya'oj Q'ij"
 
 msgid "Create Collection"
-msgstr ""
+msgstr "Titz'uk Mol"
 
 msgid "View this collection"
-msgstr ""
+msgstr "Titz'et re mol re'"
 
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Titikirisäx jun k'ak'a' mol..."
 
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Titikirisäx jun K'ak'a' Mol"
 
 msgid "Name:"
-msgstr ""
+msgstr "B'i'aj:"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(cha'el)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Tiq'at</a>"
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Richin niya' kejqalem taq mol, k'o chi k'o jun add-on rub'i' ataqoya'l."
 
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Titz'uk jun Add-on Rub'i' Taqoya'l"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "o <a href=\"%(login)s\">katok pa rub'i' ataqoya'l k'o wakami</a>"
 
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Taq mol"
 
 msgid "private"
-msgstr ""
+msgstr "ichinan"
 
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> ojqanel"
+msgstr[1] "<span>%(num)s</span> ojqanela'"
 
 msgid "About this Collection"
-msgstr ""
+msgstr "Chi rij re Mol re'"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Taq tz'aqat eximon pa woyonib'al Firefox"
 
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Ti'ichinäx re Mol re'"
 
 msgid "Make this Collection Public"
 msgstr ""
