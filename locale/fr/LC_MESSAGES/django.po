@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 01:30+0000\n"
+"PO-Revision-Date: 2018-03-04 01:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1030,17 +1030,14 @@ msgstr "Les icônes doivent être en PNG ou JPG."
 msgid "Icons cannot be animated."
 msgstr "Les icônes ne peuvent pas être animées."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Cette adresse est déjà utilisée par une autre collection."
+msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Entrez une référence valide, composée de lettres, nombres, soulignements ou traits d’union."
+msgstr "L’adresse personnalisée doit être composée de lettres, nombres, soulignements ou traits d’union."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Ce nom d’utilisateur ne peut pas être utilisé."
+msgstr "Cette adresse personnalisée ne peut pas être utilisée."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
@@ -2021,17 +2018,14 @@ msgstr "Contenu rejeté pour {addon} {version}."
 msgid "Content rejected"
 msgstr "Contenu rejeté"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "Plus d’informations demandées"
+msgstr "La demande d’informations pour {addon} a été supprimée."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Plus d’informations demandées"
+msgstr "Demande d’informations supprimée"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Réponse par un développeur de {addon} {version}."
+msgstr "Le développeur a répondu à cette demande d’informations pour {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3842,13 +3836,11 @@ msgstr "Nouvelles développeur"
 msgid "View the blog &#9658;"
 msgstr "Voir le blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Plus d’informations demandées"
+msgstr "Demande d’informations en attente :"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Cette version n’a pas été revue."
+msgstr "Cette demande d’informations a été résolue"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhaitez appliquer à votre code source. Ce champ n’est pertinent que pour les modules répertoriés."
@@ -5964,7 +5956,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Vous ne pouvez pas laisser plus d’une critique de la même version d’une extension."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Cette critique ne peut pas être signalée, car elle ne contient aucun texte."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Merci. Cette critique est maintenant en attente d’approbation par un modérateur."
@@ -6160,7 +6152,7 @@ msgid "Applications:"
 msgstr "Applications :"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Demander une réponse du développeur sous…"
 
 msgid "days"
 msgstr "jours"
@@ -6197,9 +6189,8 @@ msgstr "Module Jetpack"
 msgid "More Information Requested"
 msgstr "Plus d’information nécessaire"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Plus d’information nécessaire"
+msgstr "Demande d’informations expirée"
 
 msgid "Contains Reviewer Comment"
 msgstr "Contient des commentaires de l’évaluateur"
@@ -6273,9 +6264,8 @@ msgstr "Aucune revue"
 msgid "Weight"
 msgstr "Poids"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Plus d’information nécessaire"
+msgstr "Date limite de la demande d’informations"
 
 msgid "Last Content Review"
 msgstr "Dernière validation du contenu"
@@ -6909,11 +6899,10 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Mise à jour ({0})"
 msgstr[1] "Mises à jour ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Revue du contenu ({0})"
-msgstr[1] "Revues du contenu ({0})"
+msgstr[0] "Revue de la note ({0})"
+msgstr[1] "Revues des notes ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
