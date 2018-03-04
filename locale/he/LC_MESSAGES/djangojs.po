@@ -79,7 +79,7 @@ msgid "Finished validating {0}"
 msgstr "בדיקת האימות של {0} הסתיימה"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "בדיקת התוספת שלך התעכבה זמן רב מדי, התוספת תעבור סקירה ידנית."
+msgstr ""
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
