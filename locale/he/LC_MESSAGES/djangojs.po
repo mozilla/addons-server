@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 17:27+0000\n"
+"PO-Revision-Date: 2018-03-04 17:32+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -36,7 +36,7 @@ msgstr "{0}% הושלמו"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr "{0} מתוך {1}"
+msgstr "‎{0} מתוך ‎{1}"
 
 msgid "Cancel"
 msgstr "ביטול"
