@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 23:11+0000\n"
+"PO-Revision-Date: 2018-03-04 23:22+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2383,10 +2383,10 @@ msgid "Preliminary Language Pack Review"
 msgstr "Nab'ey Rutzijoxik Tanaj Ch'ab'äl"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Xk'ex Rutzijoxik Tanaj Ch'ab'äl"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Rutzijoxik Wachinel"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2428,46 +2428,46 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "Chojwi' 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Chojwi' 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Chojwi' 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Chojwi' 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Chojwi' 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Chojwi' 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Chojwi' 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Chojwi' 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Chojwi' 9"
 
 msgid "Request More Info"
 msgstr ""
 
 msgid "Flag"
-msgstr ""
+msgstr "Tiya' retal"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Kamulun"
 
 msgid "Reject"
 msgstr ""
 
 msgid "Approve"
-msgstr ""
+msgstr "Xjuch'"
 
 msgid "Sexual or pornographic content"
 msgstr ""
@@ -2519,7 +2519,7 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Kib'anikil"
 
 msgid "What is your license's name?"
 msgstr ""
@@ -2591,10 +2591,10 @@ msgid "Reputation"
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "Chokoy"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
@@ -2639,7 +2639,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Ronojel Taq Nutz'aqat"
 
 msgid "All Activity"
 msgstr ""
@@ -2761,10 +2761,10 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Tik'ul"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "o <a href=\"{0}\">Tiq'at</a>"
 
 msgid "Back to Add-ons"
 msgstr ""
@@ -2784,7 +2784,7 @@ msgid "more add-ons..."
 msgstr ""
 
 msgid "Documentation"
-msgstr ""
+msgstr "Yaköl wuj"
 
 msgid "Extension Development"
 msgstr ""
@@ -2820,7 +2820,7 @@ msgid "Search Developer Docs"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Tikanöx"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2860,16 +2860,16 @@ msgstr ""
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ruma %(user)s"
 
 msgid "No results found."
-msgstr ""
+msgstr "Majun achike xilitäj."
 
 msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "Samaj"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -2903,14 +2903,14 @@ msgid "Add Another Application&hellip;"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Titz'apïx"
 
 msgid "Recent Activity"
 msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s ruma %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -2918,20 +2918,20 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> wachinel"
+msgstr[1] "<b>{0}</b> taq wachinel"
 
 msgid "Edit Information"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Majun"
 
 msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "Taq b'anel"
 
 msgid "About author roles"
 msgstr ""
@@ -2942,14 +2942,14 @@ msgid ""
 msgstr ""
 
 msgid "Basic Information"
-msgstr ""
+msgstr "Ruk'u'x Etamab'äl"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
 msgstr ""
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "Tz'aqat URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -2958,7 +2958,7 @@ msgid "View Listing"
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Ch'utitzijol"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3036,7 +3036,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Ruxaq tikirib'äl"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -3044,7 +3044,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Taq wachib'äl"
 
 msgid "Support Information"
 msgstr ""
@@ -3059,7 +3059,7 @@ msgid ""
 msgstr ""
 
 msgid "Website"
-msgstr ""
+msgstr "Ajk'amaya'l ruxaq"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
