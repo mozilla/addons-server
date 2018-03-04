@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 16:45+0000\n"
+"PO-Revision-Date: 2018-03-04 17:09+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -924,23 +924,23 @@ msgstr "Man okel ta ri rub'itz'ib' {lang_code} ch'ab'äl."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Man okel ta pk o slug \"%s\" - man k'o ta ri wachinäq."
 
 msgid "Application Versions"
-msgstr ""
+msgstr "Taq Ruwäch Chokoy"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Ek'ulun taq ruwäch pa ronojel taq ruchokoy AMO."
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Okel taq Ruwäch Chokoy"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "Ri taq tz'aqat xetaq chi re ri Mozilla Add-ons k'o chi kik'an jun tzijoxïk yakb'äl rik'in jun chi ke ri k'amonel taq chokoy. Xa xe yek'ul ri taq ruwäch echolajin qa richin re taq chokoy re'."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Tanataj chi ri WebExtensions man nuk'ül ta taq etal jun \"*\" pa %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -953,6 +953,8 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol "
+"%(amo_manifests_mdn_link_open)swawe%(amo_manifests_mdn_link_close)s."
 
 msgid "Contributors"
 msgstr "To'onela'"
@@ -960,17 +962,17 @@ msgstr "To'onela'"
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Taq mol :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Ri taq mol e rumolaj taq tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük chuqa' yerukomonij."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Taq mol :: {1}"
 
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Xa xe yitikïr nintz'ët re mol re'."
 
 msgid "Anybody can view this collection."
 msgstr ""
