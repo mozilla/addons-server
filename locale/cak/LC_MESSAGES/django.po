@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 17:09+0000\n"
+"PO-Revision-Date: 2018-03-04 17:25+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -975,16 +975,16 @@ msgid "Only I can view this collection."
 msgstr "Xa xe yitikïr nintz'ët re mol re'."
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Xab'achike nitikïr nutz'ët re mol re'."
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Taya' jun rub'i' ri amol."
 
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Tacholo' rij ri amol (man ya'on ta q'ij chi ke ximonel)."
 
 msgid "Privacy:"
 msgstr "Ichinanem:"
@@ -993,10 +993,10 @@ msgid "Icon"
 msgstr "Wachib'äl"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Man tatz'aqatisaj re k'ojlib'äl re', tawokisaj richin ye'achäp ta wot"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re b'i'aj re'."
 
 msgid "This url is already in use by another collection"
 msgstr ""
@@ -1020,10 +1020,10 @@ msgid "This add-on already belongs to the collection"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "B'i'aj"
 
 msgid "Recently Updated"
-msgstr ""
+msgstr "Nimakol k'exon"
 
 msgid "Recently Popular"
 msgstr ""
