@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 14:28+0000\n"
+"PO-Revision-Date: 2018-03-04 14:31+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -751,7 +751,7 @@ msgstr "Kitikirib'al Ruxaq Tz'aqat"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "We xawojqaj jun ximonel pa jun chik ruxaq, %(open_bug_link)stiyak jun k'ayewal%(close_bug_link)s. Tatzijoj chi qe akuchi' xawïl chuqa' achike nakanoj richin niqatïj qaq'ij niqab'än ruk'ojlem."
 
 msgid "Not Found"
 msgstr "Man Xilitäj ta"
