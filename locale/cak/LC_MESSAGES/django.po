@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 16:29+0000\n"
+"PO-Revision-Date: 2018-03-04 16:45+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -905,22 +905,22 @@ msgid "Invalid Authorization header. No credentials provided."
 msgstr "Man okel ta ya'oj ruq'ij jub'i'aj. Man xek'ut ta wujil."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Man okel ta Ya'oj ruq'ij jub'i'aj. K'atzinel chi man jun kikojol ri kicholajem wujil."
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Xik'o ruq'ijul juch'."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Xsach toq xumecholajisaj ri' ri juch'."
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Me'okel JWT Token."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Ri k'ojlib'äl k'o chi ruk'wan jotöl chi re ri {num} tz'ib'."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Man okel ta ri rub'itz'ib' {lang_code} ch'ab'äl."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
