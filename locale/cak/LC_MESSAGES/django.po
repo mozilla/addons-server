@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 14:31+0000\n"
+"PO-Revision-Date: 2018-03-04 15:27+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -764,45 +764,50 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Kojakuyu', man xqïl ta ri nakanoj.</h1> <p> Ri ruxaq o Yakb'äl xak'utuj man k'o ta pa ruxaq qak'amaya'l. Rik'in jub'a' xapïtz' pa ruwi' jun ojer ximonel o man ütz ta xatz'ib'aj ri ochochib'äl. "
+"</p> <ul> <li>We xatz'ib'aj ri ochochib'äl tanik'oj chik.</li> <li> We xawojqaj jun ximonel pa jun ruxaq k'amaya'l <a href=\"https://github.com/mozilla/addons-server/issues/new/\">tayaka' jun "
+"k'ayewal</a>. Tatz'ijoj chi qe akuchi' atpetenäq chuqa' achike nakanoj, richin niqatïj qaq'ij richin niqab'än ruk'ojlem. </li> </ul> <p>O yatikïr yab'e pa ri ruxaq k'ïy kiwinaq.</p> <ul> <li>¿La "
+"nawajo' jun <a href=\"%(rec)s\">kicholajem taq tz'aqat ya'on kejqalem</a>?</li> <li> ¿La nawajo' <a href=\"%(search)s\">ye'akanoj taq tz'aqat</a>? Yatikïr natz'ët ri <a href=\"%(search)s\">ruxaq "
+"kanob'äl</a> o xa xe nawokisaj ri ruk'ojlem kanoxïk ajsik. </li> <li> We nawajo' natikirisaj rik'in majun, jät pa ri <a href=\"%(home)s\">kitikirib'al ruxaq taq tz'aqat</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Uy"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>¡Uuy!  Xqapalb'ej jun sachoj.</h1> <p>Xtiqatïj qaq'ij richin niqasöl.</p> <p> Tatojtob'ej rik'in nak'ëx ri ruxaq o yatolin pa <a href=\"%(home)s\">Kitikirib'al ruxaq tz'aqat</a>. </p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Jujun q'atapun taq ch'ojib'äl"
 
 msgid "No results found"
-msgstr ""
+msgstr "Majun achike xilitäj"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Chuwa"
 
 msgid "Next"
 msgstr "Jun chik"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Q'i'oj <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> richin <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Nib'an ruk'ojlem"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Chupül re b'anikil re' k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tawokisaj ri pitz'b'äl Chi rij awokik'amaya'l k'a ri' tatojtob'ej chik pa jun ti ramaj."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "E chupül jujun taq b'anikil k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tatojtob'ej chik pa jun ti mej."
 
 msgid "Are you human?"
-msgstr ""
+msgstr "¿La at winäq?"
 
 msgid "What's this?"
-msgstr ""
+msgstr "¿Achike re'?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
