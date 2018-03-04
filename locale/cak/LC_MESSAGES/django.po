@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 15:27+0000\n"
+"PO-Revision-Date: 2018-03-04 15:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -813,15 +813,17 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Tatz'ib'aj <strong>ronojel taq tzij</strong> ikim, <strong>ejachon rik'in kikojol we k'atzinel</strong>. </p> <p> We man wachel ta, yatikïr <a href=\"#\" id=\"recaptcha_different\">natojtob'ej "
+"kik'in ch'aqa' chik taq tzij</a> o <a href=\"#\" id=\"recaptcha_audio\">natojtob'ej juley chik taq samaj</a> pa ruk'exel. </p>"
 
 msgid "Top Rated"
-msgstr ""
+msgstr "Ya'on Kejqalem"
 
 msgid "Newest"
-msgstr ""
+msgstr "K'ak'a'"
 
 msgid "Explore"
-msgstr ""
+msgstr "Tikanöx"
 
 msgid "Extensions"
 msgstr "Taq k'amal"
@@ -831,22 +833,22 @@ msgid "Themes"
 msgstr "Taq wachinel"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "¿La nawajo' nawichinaj ch'aqa' chik? Ke'atojtob'ej <b>Chijun taq Wachinel</b>"
 
 msgid "Most Followers"
-msgstr ""
+msgstr "K'ïy Kojqanela'"
 
 msgid "Collections"
-msgstr ""
+msgstr "Taq mol"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Taq Mol Enutz'ukun"
 
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Taq Mol Ewojqan"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Taq Tz'aqat Ewajowan"
 
 msgid "More&hellip;"
 msgstr ""
