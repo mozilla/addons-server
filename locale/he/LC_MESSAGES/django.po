@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 11:37+0000\n"
+"PO-Revision-Date: 2018-02-18 21:05+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -137,7 +137,7 @@ msgstr[1] "כל התגים חייבים להכיל לפחות {0} תווים."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "כתובת המתחם חייבת להיות אחת מבין [%s], או כל תת שם מתחם שלהן."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מופיעה כמובילה עבור יישום זה."
@@ -548,7 +548,7 @@ msgstr "עודכנה לאחרונה:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "מופץ בכפוף לתנאי <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "רישיון מותאם אישית"
@@ -667,10 +667,10 @@ msgid "Review History"
 msgstr "היסטורית סקירה"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "ערכת נושא זו ממתינה. נא לחזור במועד מאוחר יותר, עמך הסליחה."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "ערכת הנושא הזאת ממתינה. היא אינה גלויה לאף אחד מלבדך."
 
 msgid "Collector's Note"
 msgstr "הערת האספן"
@@ -848,7 +848,7 @@ msgid "Themes"
 msgstr "ערכות נושא"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "התאמה יותר אישית? כדאי לנסות את <b>ערכות הנושא המלאות</b>"
 
 msgid "Most Followers"
 msgstr "כמות עוקבים"
@@ -917,10 +917,10 @@ msgid "Another Body"
 msgstr "גוף נוסף"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "כותרת אימות שגויה. לא סופקו פרטי גישה."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "כותרת אימות שגויה. מחרוזת פרטי הגישה לא אמורה להכיל רווחים."
 
 msgid "Signature has expired."
 msgstr "החתימה פגה."
@@ -2682,7 +2682,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
+msgstr "אי אפשר להעביר בין קטגוריות כשהתוסף שלך מופיע במומלצים."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
@@ -2736,7 +2736,7 @@ msgid "Changes successfully saved."
 msgstr "השינויים נשמרו בהצלחה."
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "נא לבדוק את השגיאות בטופס."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "לא ניתן למחוק את התוספת. ניתן לנטרל אותה במקום."
@@ -2776,7 +2776,7 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr "לא ניתן להגיש תוספת עם guid שמסתיים ב־%s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "לא ניתן להגיש הרחבות שנחתמו על ידי Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -2814,7 +2814,7 @@ msgid "Your old credentials were revoked and are no longer valid. Be sure to upd
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "פרטי הזיהוי הישנים שלך נשללו ואינם תקפים עוד."
 
 msgid "New API key created"
 msgstr "נוצר מפתח API חדש"
@@ -3221,7 +3221,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr ""
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "לוח לבן"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
@@ -3253,7 +3253,7 @@ msgid "32x32px"
 msgstr "32×32 פיקסלים"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "נעשה שימוש ברשימות של תוספים כמו תוצאות חיפוש ותוספות מומלצות."
 
 #. The size of the icon
 msgid "64x64px"
@@ -3388,13 +3388,13 @@ msgid "Manage Status & Versions"
 msgstr "ניהול סטטוס וגרסאות"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "הצגת רשומת התוספת"
 
 msgid "View Recent Changes"
 msgstr "הצגת שינויים אחרונים"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "עריכת פרטים על רשומת ערכת העיצוב הזו."
 
 msgid "Edit Listing"
 msgstr "עריכת רשומה"
@@ -3863,8 +3863,8 @@ msgstr "הסרת יישום זה"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "נא לבחור <b>עד קטגוריה {0}</b> {1} לתוספת זו:"
+msgstr[1] "נא לבחור <b>עד {0}</b> {1} קטגוריות לתוספת זו:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -4687,7 +4687,7 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr ""
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "תצוגה מהירה להשוואת מחירים בעת קניות מקוונות או בחיפוש אחר טיסות."
 
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "ערכות נושא ליום פטריק הקדוש"
@@ -4702,7 +4702,7 @@ msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "תוספות למורים, להורים ולתלמידים שחוזרים לבית הספר."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "האם ברצונך לדעת על אילו אתרים ניתן לסמוך?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "‏Xmarks היא התוספת המובילה לניהול סימניות."
@@ -4726,7 +4726,7 @@ msgid "New &amp; Now"
 msgstr "חדש ועכשווי"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "הורדת התוספות העדכניות והחמות נכון לעכשיו."
 
 msgid "Worry-free browsing"
 msgstr "גלישה ללא דאגות"
@@ -4865,7 +4865,7 @@ msgid "This sounds great! How can I get involved?"
 msgstr "נשמע נהדר! איך אוכל להשתתף?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "ישנן מגוון דרכים לקחת חלק. אם יש לך נגיעה טכנית:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -4885,11 +4885,11 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr "אם תוספות מעניינות אותך אבל חסרה לך הנגיעה הטכנית, עדיין יש דרכים לסייע:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "ניתן לספר לחברים! ממליצים לשתף אילו תוספות משמשות אותך."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "השתתפות ב<a href=\"%(url)s\">פורומים</a> שלנו."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
@@ -5460,7 +5460,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "מה אם תוספת שמעניינת אותי לא נמצאת?"
 
 #, python-format
 msgid ""
@@ -5469,7 +5469,7 @@ msgid ""
 msgstr ""
 
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr ""
+msgstr "מה הכוונה בכך שתוספת היא „ניסיונית”?"
 
 #, python-format
 msgid ""
@@ -5514,7 +5514,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "איך ניתן לדווח על סקירת משתמש בלתי ראויה או מיותרת?"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
@@ -5603,7 +5603,7 @@ msgid "Do:"
 msgstr "כן לעשות:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "כדאי לכתוב כאילו זאת הייתה הודעה לחבר בנוגע לחוויה שחווית עם התוספת."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "כדאי להשאיר את הסקירה מתומצתת וקלה להבנה."
@@ -5627,13 +5627,13 @@ msgid "Will you continue to use this add-on?"
 msgstr "האם תוספת זו תמשיך לשמש אותך?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "מומלץ לקרוא את הסקירה לפני שליחתה למניעת טעויות כתיב."
 
 msgid "Don’t:"
 msgstr "לא לעשות:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "לפרסם ביקורות כגון: „מעולה!”, „נפלא,” או „זוועה.”"
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
