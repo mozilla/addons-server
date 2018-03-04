@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-03 17:07+0000\n"
+"PO-Revision-Date: 2018-03-04 11:27+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3528,13 +3528,13 @@ msgid "You’re done!"
 msgstr "סיימת!"
 
 msgid "Version Submitted for Review"
-msgstr "הוגשה גרסה לסקירה"
+msgstr "הגרסה הוגשה לסקירה"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "סיימת! גרסה זו תהיה זמינה לאחר שתעבור סקירה. תישלח אליך הודעה לאחר הסקירה."
 
 msgid "Version Submitted"
-msgstr "הגרסה נשלחה"
+msgstr "הגרסה הוגשה"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "סיימת! גרסה זו תהיה זמינה באתר שלנו בעוד זמן קצר."
@@ -3561,13 +3561,13 @@ msgid "File Signed"
 msgstr "קובץ חתום"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "סיימת! הקובץ חתום ומוכן להפצה עצמית. ניתן להוריד אותו על ידי לחיצה על הכפתור שלהלן."
+msgstr "סיימת! הקובץ הזה חתום ומוכן להפצה עצמית. ניתן להוריד אותו על ידי לחיצה על הכפתור שלהלן."
 
 msgid "Version Signed"
-msgstr "גרסה חתומה"
+msgstr "הגרסה נחתמה"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "סיימת! הגרסה חתומה ומוכנה להפצה עצמית. ניתן להוריד אותה על ידי לחיצה על הכפתור שלהלן."
+msgstr "סיימת! גרסה זו חתומה ומוכנה להפצה עצמית. ניתן להוריד אותה על ידי לחיצה על הכפתור שלהלן."
 
 msgid "Download {0}"
 msgstr "הורדת {0}"
@@ -3760,7 +3760,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "התוספת שלך הושבתה על ידי מנהל האתר ואינה מופיעה עוד בגלריה שלנו. אם יש לך שאלות, נא לשלוח דוא״ל אל amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "התוספת שלך לא תופיע בתוצאות החיפוש ועמוד הרשומה יציין שביטלת אותה. לא תתקבלנה הגשות של גרסאות חדשות לרשומה זו במצב הזה."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -4005,7 +4005,7 @@ msgid "What's New"
 msgstr "מה חדש"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "התוספת שלך מוכנה להגשה? ניתן לקרוא את המדריך שלנו שמסביר שלב אחרי שלב על תהליך ההגשה."
 
 msgid "See Tutorial"
 msgstr "הצגת מדריך"
