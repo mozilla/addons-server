@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 11:44+0000\n"
+"PO-Revision-Date: 2018-03-04 17:27+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -61,7 +61,7 @@ msgstr[0] "&hellip;ועוד אחד"
 msgstr[1] "&hellip;ועוד {0}"
 
 msgid "See full validation report"
-msgstr "הצגת דוח הבדיקה המלא"
+msgstr "הצגת דוח בדיקת האימות המלא"
 
 msgid "Validating {0}"
 msgstr "‏{0} בהליכי בדיקה"
@@ -107,10 +107,10 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "הסבת תוספת מדור קודם של Firefox ב־MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "יש להוסיף הערות גרסה מפורטות (ניתן לביצוע בשלב הבא)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "אם התוספת שלך דורשת חשבון לאתר לטובת בדיקה מלאה, יש לכלול שם משתמש וססמה לניסיון בהערות לסוקר (ניתן לביצוע בשלב הבא)."
 
 msgid "Add-on submission checklist"
 msgstr ""
@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "תהליך הבדיקה מצא את התקלות הבאות שעלולות להוביל לסירובים:"
+msgstr "תהליך בדיקת האימות מצא את התקלות הבאות שעלולות להוביל לסירובים:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "מצטערים, לא נמצאה פלטפורמה נתמכת."
@@ -861,7 +861,7 @@ msgid "Add-on failed validation."
 msgstr "התוספת נכשלה בבדיקת האימות."
 
 msgid "Add-on passed validation."
-msgstr "התוספת עברה את הבדיקה."
+msgstr "התוספת עברה את בדיקת האימות."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -879,7 +879,7 @@ msgstr[0] "הודעה אחת"
 msgstr[1] "{0} הודעות"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "משימת הבדיקה לא הושלמה או הושלמה עם שגיאות"
+msgstr "משימת בדיקת האימות לא הושלמה או הושלמה עם שגיאות"
 
 msgid "Internal server error"
 msgstr "שגיאה פנימית בשרת"

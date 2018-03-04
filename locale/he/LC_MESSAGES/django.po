@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2017-11-21 05:37+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-03-04 17:18+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -2916,10 +2916,10 @@ msgstr "האם ברצונך שהתוספת שלך תופץ באתר זה?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr "תוצאות הבדיקה עבור {0}"
+msgstr "תוצאות בדיקת האימות עבור {0}"
 
 msgid "Validation Results"
-msgstr "תוצאות הבדיקה"
+msgstr "תוצאות בדיקת האימות"
 
 msgid "Validated at:"
 msgstr "מועד הבדיקה:"
@@ -3037,7 +3037,7 @@ msgid "Summary"
 msgstr "תקציר"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "סיכום זה אמור להסביר בצורה מדויקת מה התוספת שלך עושה. הסיכום יופיע ברשומות ובחיפושים וייעשה בו שימוש גם על ידי סוקרים לבדיקת התוספת שלך."
 
 msgid "Experimental?"
 msgstr "ניסיונית?"
@@ -4572,7 +4572,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr "מציג קבצים :: כלי סוקרים"
 
 msgid "Validation failed:"
-msgstr "הבדיקה נכשלה:"
+msgstr "בדיקת האימות נכשלה:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -5977,13 +5977,13 @@ msgid "Filter by type/action"
 msgstr "סינון לפי סוג/פעולה"
 
 msgid "Passed automatic validation"
-msgstr "הבדיקה האוטומטית עברה בהצלחה"
+msgstr "בדיקת האימות האוטומטית עברה בהצלחה"
 
 msgid "Failed automatic validation"
-msgstr "הבדיקה האוטומטית נכשלה"
+msgstr "בדיקת האימות האוטומטית נכשלה"
 
 msgid "Filter by automatic validation"
-msgstr "סינון לפי בדיקה אוטומטית"
+msgstr "סינון לפי בדיקת אימות אוטומטית"
 
 msgid "containing"
 msgstr "מכיל"
