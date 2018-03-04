@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 21:06+0000\n"
+"PO-Revision-Date: 2018-03-04 21:27+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1323,33 +1323,33 @@ msgid "Recently Updated Collections"
 msgstr "Taq Mol K'ak'a' Ek'exon"
 
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Taq Mol K'ak'a' K'ïy Kiwinaq"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Titz'ib'äx b'i'aj"
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr ""
+msgstr "ruma %(author_link)s"
 
 msgid "Following"
-msgstr ""
+msgstr "Nojqäx"
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "Titz'uk jun Mol"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "Ruwachib'al Mol"
 
 msgid "Reset"
-msgstr ""
+msgstr "Titikirisäx chik"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
@@ -1358,60 +1358,60 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Taq Tz'aqat pan Amol"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "Tz'aqat"
 
 msgid "Comment"
-msgstr ""
+msgstr "Tzijoxïk"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Titz'ib'äx rub'i' tz'aqat xtitz'aqatisäx"
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "Titz'aqatisäx pa Mol"
 
 msgid "Pending"
-msgstr ""
+msgstr "Oyob'en"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Titz'aqatisäx jun tzijoxïk"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Tisilöx re tz'aqat re' pa ri mol"
 
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Titz'aqatisäx jun ütz k'aqwäch richin re mol re'"
 
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Titz'aqatisäx jun itzel k'aqwäch richin re mol re'"
 
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Tiyuj nuk'aqwäch chi rij re mol re'"
 
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Tatikirisaj molojri'ïl richin nak'äq ruwäch re mol re'"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Ajowab'äl"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s Taq tz'aqat"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s Taq wachinel"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Talun taq Tz'aqat :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1427,22 +1427,22 @@ msgid "Search tools and search-related extensions"
 msgstr ""
 
 msgid "Search tools"
-msgstr ""
+msgstr "Kekanöx samajib'äl"
 
 msgid "Most Users"
-msgstr ""
+msgstr "Ch'aqa' Okisanela'"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Wuqq'ijul taq Qasanïk"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "Yewachin yan"
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Nimakol Titz'aqatisäx"
 
 msgid "Created"
-msgstr ""
+msgstr "Xtz'uk"
 
 msgid "Downloads"
 msgstr ""
