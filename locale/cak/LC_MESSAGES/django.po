@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 00:10+0000\n"
+"PO-Revision-Date: 2018-03-04 00:44+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -711,16 +711,16 @@ msgid "Admin Tools"
 msgstr "Kisamajib'al Nuk'samajel"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Man ütz ta, tatojtob'ej chik."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Xsach toq yerujikib'a' taq tzij, tatojtob'ej chik."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Man ya'on ta q'ij chi re"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
 msgstr ""
