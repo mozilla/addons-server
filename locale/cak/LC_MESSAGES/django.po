@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 00:44+0000\n"
+"PO-Revision-Date: 2018-03-04 14:28+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -717,16 +717,16 @@ msgid "Error verifying input, please try again."
 msgstr "Xsach toq yerujikib'a' taq tzij, tatojtob'ej chik."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Re re' k'o chi jun b'itz'ib' okel waqlajuj rub'onil, achi'el #000000."
 
 msgid "Not allowed"
 msgstr "Man ya'on ta q'ij chi re"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>¡Uuy! Man ya'on ta q'ij chi re.</h1> <p>K'o xatojtob'ej xab'än xa xe chi man ya'on ta q'ij chawe.</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Tatojtob'ej yatzolin pa ri ruxaq xik'o, titzolïx k'a ri' tatojtob'ej chik.</p>"
 
 msgid "Page Not Found"
 msgstr "Man Xilitäj ta Ruxaq"
@@ -735,19 +735,19 @@ msgid "Firefox Add-ons"
 msgstr "Taq Rutz'aqat Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Kojakuyu', majun achike xqïl pa ri ochochib'äl xatz'ib'aj. We xawojqaj ruximonel jun tz'aqat, rik'in jub'a' ri b'anel xuyüj el ri tz'aqat."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Chilab'en taq Ruxaq"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "Kekanöx ronojel ri taq k'amal"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "Kekanöx ronojel ri taq wachinel"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "Kitikirib'al Ruxaq Tz'aqat"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
