@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 17:25+0000\n"
+"PO-Revision-Date: 2018-03-04 20:11+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -999,25 +999,25 @@ msgid "This name cannot be used."
 msgstr "Man tikirel ta nokisäx re b'i'aj re'."
 
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Re url re nokisäx chik ruma jun chik mol"
 
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Man tikirel ta e silonel ri taq wachib'äl."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Ri ichinan URL k'o chi yeruk'waj taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
 
 msgid "This custom URL cannot be used."
-msgstr ""
+msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
 msgid "Name"
 msgstr "B'i'aj"
@@ -1026,13 +1026,13 @@ msgid "Recently Updated"
 msgstr "Nimakol k'exon"
 
 msgid "Recently Popular"
-msgstr ""
+msgstr "K'ak'a' K'ïy Kiwinaq"
 
 msgid "Added"
-msgstr ""
+msgstr "Tz'aqatisan"
 
 msgid "Popularity"
-msgstr ""
+msgstr "K'ïy winaqilal"
 
 msgid "Collection created!"
 msgstr ""
