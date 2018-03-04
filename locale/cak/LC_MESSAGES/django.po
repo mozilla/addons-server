@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 15:51+0000\n"
+"PO-Revision-Date: 2018-03-04 16:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -854,40 +854,40 @@ msgid "More&hellip;"
 msgstr "Ch'aqa' chik&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Kitz'aqat Oyonib'äl"
 
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Taq Soltzij & Tanaj taq Ch'ab'äl"
 
 msgid "Search Tools"
-msgstr ""
+msgstr "Kekanöx Samajib'äl"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Ruxaq <a href=\"%(current_pg_url)s\">%(current_pg)s</a> richin <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Tib'iyin pa nab'ey ruxaq"
 
 msgid "Previous"
 msgstr "Chuwäch"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Tib'iyin pa ruk'isib'äl ruxaq"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Nik'ut <b>%(begin)s</b>&ndash;<b>%(end)s</b> richin <b>%(count)s</b>"
 
 msgid "Add-ons"
 msgstr "Taq tz'aqat"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} kan"
 
 msgid "Title"
 msgstr "B'i'aj"
@@ -896,13 +896,13 @@ msgid "Body"
 msgstr "Ch'akulal"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Jun Chik B'i'aj"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Jun chik Ch'akulaj"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Man okel ta ya'oj ruq'ij jub'i'aj. Man xek'ut ta wujil."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
