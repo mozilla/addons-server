@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 22:50+0000\n"
+"PO-Revision-Date: 2018-03-04 23:11+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2128,31 +2128,31 @@ msgid "Shopping"
 msgstr "Loq'oj"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Winaqilal & Tzijob'äl"
 
 msgid "Tabs"
-msgstr ""
+msgstr "Taq ruwi'"
 
 msgid "Web Development"
-msgstr ""
+msgstr "Ajk'amaya'l Nuk'unem"
 
 msgid "Animals"
-msgstr ""
+msgstr "Chikopi'"
 
 msgid "Compact"
-msgstr ""
+msgstr "Tz'aqatz'öj"
 
 msgid "Large"
-msgstr ""
+msgstr "Nïm"
 
 msgid "Miscellaneous"
 msgstr ""
 
 msgid "Modern"
-msgstr ""
+msgstr "K'ak'a'"
 
 msgid "Nature"
-msgstr ""
+msgstr "Ruwach'ulew"
 
 msgid "OS Integration"
 msgstr ""
@@ -2164,10 +2164,10 @@ msgid "Sports"
 msgstr ""
 
 msgid "Abstract"
-msgstr ""
+msgstr "Ch'utinisan na'oj"
 
 msgid "Causes"
-msgstr ""
+msgstr "Taq aruma"
 
 msgid "Fashion"
 msgstr ""
@@ -2176,37 +2176,37 @@ msgid "Film and TV"
 msgstr ""
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
 msgstr ""
 
 msgid "Music"
-msgstr ""
+msgstr "Q'ojom"
 
 msgid "Scenery"
-msgstr ""
+msgstr "Wachaj"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "Kajtz'ukalil"
 
 msgid "Solid"
-msgstr ""
+msgstr "Köw"
 
 msgid "Websites"
-msgstr ""
+msgstr "Ajk'amaya'l ruxaq"
 
 msgid "General"
-msgstr ""
+msgstr "Chijun"
 
 msgid "Business"
-msgstr ""
+msgstr "Taq loq'k'ayij"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Taq Soltzij & Solob'äl taq Tzij"
 
 msgid "Kids"
-msgstr ""
+msgstr "Ak'wala'"
 
 msgid "Multiple Search"
 msgstr ""
@@ -2221,31 +2221,31 @@ msgid "Shopping & E-Commerce"
 msgstr ""
 
 msgid "Social & People"
-msgstr ""
+msgstr "Winaqilal & Winäq"
 
 msgid "Travel"
-msgstr ""
+msgstr "B'eyajnem"
 
 msgid "Video"
-msgstr ""
+msgstr "Silowäch"
 
 msgid "Device Features & Location"
 msgstr ""
 
 msgid "Experimental"
-msgstr ""
+msgstr "Soltojtob'enel"
 
 msgid "Feeds, News, & Blogging"
 msgstr ""
 
 msgid "Performance"
-msgstr ""
+msgstr "Rub'eyal nisamaj"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "Taq Wachib'äl & K'oxom"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Jikomal & Ichinanem"
 
 msgid "Social Networking"
 msgstr ""
@@ -2269,7 +2269,7 @@ msgid "Message Composition"
 msgstr ""
 
 msgid "Contacts"
-msgstr ""
+msgstr "Kib'i' achib'il"
 
 msgid "Folders and Filters"
 msgstr ""
@@ -2281,7 +2281,7 @@ msgid "Message and News Reading"
 msgstr ""
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Ichinanem chuqa' Jikomal"
 
 msgid "Downloading and File Management"
 msgstr ""
@@ -2293,7 +2293,7 @@ msgid "Language Support and Translation"
 msgstr ""
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "Taq Wachib'äl chuqa' K'oxom"
 
 msgid "RSS, News and Blogging"
 msgstr ""
@@ -2305,82 +2305,82 @@ msgid "Web and Developer Tools"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "Xab'achike"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Ronojel Nuk'uche'el"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "App"
-msgstr ""
+msgstr "Chokoy"
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "Manual Reviewer Points"
 msgstr ""
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "K'ak'a' Rutzijoxik Tz'aqat"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Nab'ey Rutzijoxik Tz'aqat"
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Xk'ex Rutzijoxik Tz'aqat"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "K'ak'a' Rutzijoxik Sotzij"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Nab'ey Rutzijoxik Soltzij"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Xk'ex Rutzijoxik Soltzij"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "K'ak'a' Rutzijoxik Tanaj Ch'ab'äl"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Nab'ey Rutzijoxik Tanaj Ch'ab'äl"
 
 msgid "Updated Language Pack Review"
 msgstr ""
