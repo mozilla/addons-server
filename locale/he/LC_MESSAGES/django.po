@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 11:27+0000\n"
+"PO-Revision-Date: 2018-03-04 11:48+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2802,7 +2802,7 @@ msgid "Version %s re-enabled."
 msgstr "הגרסה %s אופשרה מחדש."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "הבדיקה של העלאה זו נכשלה ויתכן שתוצאות הבדיקה חלקיות בלבד. נא לסקור במשנה זהירות."
+msgstr "בדיקת האימות של העלאה זו נכשלה ויתכן שתוצאות הבדיקה חלקיות בלבד. נא לסקור במשנה זהירות."
 
 msgid "Review requested."
 msgstr "נשלחה בקשה לסקירה."
@@ -2872,7 +2872,7 @@ msgid "Add-on Policies"
 msgstr "מדיניות תוספות"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "מאמת התוספות"
 
 msgid "Add-on Compatibility Checker"
 msgstr "בודק התאימות של תוספות"
@@ -3878,7 +3878,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr "אם התוספת שלך מכילה קוד בינרי או ממוסך למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "נא לציין הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
+msgstr "נא לכלול הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
 
 msgid "Read more about the source code review policy."
 msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
@@ -4321,7 +4321,7 @@ msgid "Close Review History"
 msgstr "סגירת היסטורית סקירה"
 
 msgid "Not validated."
-msgstr "ללא בדיקה."
+msgstr "ללא בדיקת אימות."
 
 msgid "Validate now."
 msgstr "לבדוק כעת."

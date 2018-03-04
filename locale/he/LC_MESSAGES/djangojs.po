@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:29+0000\n"
+"PO-Revision-Date: 2018-03-04 11:44+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -52,8 +52,8 @@ msgstr "הפעלנו מערכת lint חדשה לעיבוד התוספת שלך. 
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "התוספת שלך נכשלה בבדיקה עם שגיאה אחת."
-msgstr[1] "התוספת שלך נכשלה בבדיקה עם {0} שגיאות."
+msgstr[0] "התוספת שלך נכשלה בבדיקת האימות עם שגיאה אחת."
+msgstr[1] "התוספת שלך נכשלה בבדיקת האימות עם {0} שגיאות."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -73,10 +73,10 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "התקבלה תגובה ריקה מהשרת; סטטוס: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקה."
+msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקת האימות."
 
 msgid "Finished validating {0}"
-msgstr "בדיקת {0} הסתיימה"
+msgstr "בדיקת האימות של {0} הסתיימה"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "בדיקת התוספת שלך התעכבה זמן רב מדי, התוספת תעבור סקירה ידנית."
@@ -88,8 +88,8 @@ msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} אז
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "התוספת שלך אומתה ללא שגיאות ועם הודעה אחת."
-msgstr[1] "התוספת שלך אומתה ללא שגיאות ועם {0} הודעות."
+msgstr[0] "התוספת שלך אומתה ללא שגיאות אך עם הודעה אחת."
+msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} הודעות."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "התוספת שלך אומתה ללא כל שגיאות או אזהרות."
@@ -858,7 +858,7 @@ msgid "Compatibility Tests"
 msgstr "בדיקות תאימות"
 
 msgid "Add-on failed validation."
-msgstr "התוספת נכשלה בבדיקה."
+msgstr "התוספת נכשלה בבדיקת האימות."
 
 msgid "Add-on passed validation."
 msgstr "התוספת עברה את הבדיקה."
