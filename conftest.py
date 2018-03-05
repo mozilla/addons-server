@@ -1,5 +1,5 @@
 from django import http, test
-from django.core.cache import cache
+from django.core.cache import caches
 from django.utils import translation
 
 import caching
@@ -86,7 +86,8 @@ def default_prefixer(settings):
 
 @pytest.yield_fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
-    cache.clear()
+    caches['default'].clear()
+    caches['filesystem'].clear()
     # Override django-cache-machine caching.base.TIMEOUT because it's
     # computed too early, before settings_test.py is imported.
     caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT

@@ -19,6 +19,8 @@ INSTALLED_APPS += (
     'olympia.landfill',
 )
 
+FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
+
 # Using locmem deadlocks in certain scenarios. This should all be fixed,
 # hopefully, in Django1.7. At that point, we may try again, and remove this to
 # not require memcache installation for newcomers.
@@ -35,6 +37,10 @@ CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
+    },
+    'filesystem': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': FILESYSTEM_CACHE_ROOT,
     }
 }
 

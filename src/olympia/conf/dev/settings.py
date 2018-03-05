@@ -64,6 +64,24 @@ MOZLOG_NAME = SYSLOG_TAG
 SYSLOG_TAG2 = "http_app_addons_dev_timer"
 SYSLOG_CSP = "http_app_addons_dev_csp"
 
+NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
+
+ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
+
+# Must be forced in settings because name => path can't be dyncamically
+# computed: reviewer_attachmentS VS reviewer_attachment.
+# TODO: rename folder on file system.
+# (One can also just rename the setting, but this will not be consistent
+# with the naming scheme.)
+REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
+
+FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
+
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
@@ -85,7 +103,12 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {}
+CACHES = {
+    'filesystem': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': FILESYSTEM_CACHE_ROOT,
+    }
+}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
@@ -102,22 +125,6 @@ CELERY_TASK_IGNORE_RESULT = True
 CELERY_WORKER_DISABLE_RATE_LIMITS = True
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
-
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
-
-# Must be forced in settings because name => path can't be dyncamically
-# computed: reviewer_attachmentS VS reviewer_attachment.
-# TODO: rename folder on file system.
-# (One can also just rename the setting, but this will not be consistent
-# with the naming scheme.)
-REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},

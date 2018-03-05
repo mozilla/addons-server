@@ -1,9 +1,11 @@
 from django import http
+from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.cache import patch_cache_control
+from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext
-from django.views.decorators.cache import cache_control
+from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
@@ -25,7 +27,6 @@ from olympia import amo
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.amo import messages
-from olympia.amo.cache_nuggets import memoize
 from olympia.amo.forms import AbuseForm
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
@@ -39,9 +40,9 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
-    AddonAppQueryParam, AddonCategoryQueryParam, AddonGuidQueryParam,
-    AddonTypeQueryParam, ReviewedContentFilter, SearchParameterFilter,
-    SearchQueryFilter, SortingFilter)
+    AddonAppQueryParam, AddonAppVersionQueryParam, AddonCategoryQueryParam,
+    AddonGuidQueryParam, AddonTypeQueryParam, ReviewedContentFilter,
+    SearchParameterFilter, SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
@@ -812,33 +813,127 @@ class LanguageToolsView(ListAPIView):
         return non_atomic_requests(
             super(LanguageToolsView, cls).as_view(**initkwargs))
 
-    def get_application_id(self):
-        if not hasattr(self, 'application_id'):
+    def get_query_params(self):
+        """
+        Parse query parameters that this API supports:
+        - app (mandatory)
+        - type (optional)
+        - appversion (optional, makes type mandatory)
+
+        Can raise ParseError() in case a mandatory parameter is missing or a
+        parameter is invalid.
+
+        Returns a tuple with application, addon_types tuple (or None), and
+        appversions dict (or None) ready to be consumed by the get_queryset_*()
+        methods.
+        """
+        # app parameter is mandatory when calling this API.
+        try:
+            application = AddonAppQueryParam(self.request).get_value()
+        except ValueError:
+            raise exceptions.ParseError('Invalid or missing app parameter.')
+
+        # appversion parameter is optional.
+        if AddonAppVersionQueryParam.query_param in self.request.GET:
             try:
-                self.application_id = AddonAppQueryParam(
-                    self.request).get_value()
+                value = AddonAppVersionQueryParam(self.request).get_values()
+                appversions = {
+                    'min': value[1],
+                    'max': value[2]
+                }
             except ValueError:
-                raise exceptions.ParseError('Invalid app parameter.')
-        return self.application_id
+                raise exceptions.ParseError('Invalid appversion parameter.')
+        else:
+            appversions = None
+
+        # type is optional, unless appversion is set. That's because the way
+        # dicts and language packs have their compatibility info set in the
+        # database differs, so to make things simpler for us we force clients
+        # to filter by type if they want appversion filtering.
+        if AddonTypeQueryParam.query_param in self.request.GET or appversions:
+            try:
+                addon_types = (AddonTypeQueryParam(self.request).get_value(),)
+            except ValueError:
+                raise exceptions.ParseError(
+                    'Invalid or missing type parameter while appversion '
+                    'parameter is set.')
+        else:
+            addon_types = (amo.ADDON_LPAPP, amo.ADDON_DICT)
+        return application, addon_types, appversions
 
     def get_queryset(self):
-        types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
-        return Addon.objects.public().filter(
-            appsupport__app=self.get_application_id(), type__in=types,
-            target_locale__isnull=False).exclude(target_locale='')
+        application, addon_types, appversions = self.get_query_params()
+        if addon_types == (amo.ADDON_LPAPP,) and appversions:
+            return self.get_language_packs_queryset_with_appversions(
+                application, appversions)
+        else:
+            # appversions filtering only makes sense for language packs only,
+            # so it's ignored here.
+            return self.get_queryset_base(application, addon_types)
 
-    @memoize('API:language-tools', time=(60 * 60 * 24))
-    def get_data(self, app_id, lang):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return serializer.data
+    def get_queryset_base(self, application, addon_types):
+        return (
+            Addon.objects.public()
+                 .no_cache()
+                 .filter(appsupport__app=application, type__in=addon_types,
+                         target_locale__isnull=False)
+                 .exclude(target_locale='')
+            # Deactivate default transforms which fetch a ton of stuff we
+            # don't need here like authors, previews or current version.
+            # It would be nice to avoid translations entirely, because the
+            # translations transformer is going to fetch a lot of translations
+            # we don't need, but some language packs or dictionaries have
+            # custom names, so we can't use a generic one for them...
+                 .only_translations()
+            # Since we're fetching everything with no pagination, might as well
+            # not order it.
+                 .order_by()
+        )
+
+    def get_language_packs_queryset_with_appversions(
+            self, application, appversions):
+        """
+        Return queryset to use specifically when requesting language packs
+        compatible with a given app + versions.
+
+        application is an application id, and appversions is a dict with min
+        and max keys pointing to application versions expressed as ints.
+        """
+        # Version queryset we'll prefetch once for all results. We need to
+        # find the ones compatible with the app+appversion requested, and we
+        # can avoid loading translations by removing transforms and then
+        # re-applying the default one that takes care of the files and compat
+        # info.
+        versions_qs = Version.objects.no_cache().filter(
+            apps__application=application,
+            apps__min__version_int__lte=appversions['min'],
+            apps__max__version_int__gte=appversions['max'],
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            files__status=amo.STATUS_PUBLIC,
+        ).no_transforms().transform(Version.transformer)
+        qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
+        return (
+            qs.prefetch_related(Prefetch('versions',
+                                         to_attr='compatible_versions',
+                                         queryset=versions_qs))
+              .filter(versions__apps__application=application,
+                      versions__apps__min__version_int__lte=appversions['min'],
+                      versions__apps__max__version_int__gte=appversions['max'],
+                      versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                      versions__files__status=amo.STATUS_PUBLIC)
+        )
+
+    @method_decorator(cache_page(60 * 60 * 24, cache='filesystem'))
+    def dispatch(self, *args, **kwargs):
+        return super(LanguageToolsView, self).dispatch(*args, **kwargs)
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (return everything) but do wrap the data in a
         # 'results' property to mimic what the default implementation of list()
         # does in DRF.
-        return Response({'results': self.get_data(
-            self.get_application_id(), self.request.GET.get('lang'))})
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
 
 class ReplacementAddonView(ListAPIView):

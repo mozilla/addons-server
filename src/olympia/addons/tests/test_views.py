@@ -3254,19 +3254,26 @@ class TestLanguageToolsView(TestCase):
         super(TestLanguageToolsView, self).setUp()
         self.url = reverse('addon-language-tools')
 
-    def test_wrong_app(self):
+    def test_wrong_app_or_no_app(self):
         response = self.client.get(self.url)
         assert response.status_code == 400
+        assert response.data == {
+            'detail': u'Invalid or missing app parameter.'}
 
         response = self.client.get(self.url, {'app': 'foo'})
         assert response.status_code == 400
+        assert response.data == {
+            'detail': u'Invalid or missing app parameter.'}
 
     def test_basic(self):
         dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         dictionary_spelling_variant = addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
             locale_disambiguation='For spelling reform')
-        language_pack = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        language_pack = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
 
         # These add-ons below should be ignored: they are either not public or
         # of the wrong type, not supporting the app we care about, or their
@@ -3297,6 +3304,136 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+        # We were not filtering by appversion, so we do not get the
+        # current_compatible_version property.
+        assert 'current_compatible_version' not in data['results'][0]
+
+    def test_with_appversion_but_no_type(self):
+        response = self.client.get(
+            self.url, {'app': 'firefox', 'appversion': '57.0'})
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'Invalid or missing type parameter while appversion '
+                      'parameter is set.'}
+
+    def test_with_invalid_appversion(self):
+        response = self.client.get(
+            self.url,
+            {'app': 'firefox', 'type': 'language', 'appversion': u'foôbar'})
+        assert response.status_code == 400
+        assert response.data == {'detail': 'Invalid appversion parameter.'}
+
+    def test_with_appversion_filtering(self):
+        # Add compatible add-ons. We're going to request language packs
+        # compatible with 58.0.
+        compatible_pack1 = addon_factory(
+            name='Spanish Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        compatible_pack1.current_version.update(created=self.days_ago(2))
+        compatible_version1 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        compatible_version1.update(created=self.days_ago(1))
+        compatible_pack2 = addon_factory(
+            name='French Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'})
+        compatible_version2 = compatible_pack2.current_version
+        compatible_version2.update(created=self.days_ago(1))
+        version_factory(
+            addon=compatible_pack2, file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # Add a more recent version for both add-ons, that would be compatible
+        # with 58.0, but is not public/listed so should not be returned.
+        version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(
+            addon=compatible_pack2,
+            file_kw={'strict_compatibility': True,
+                     'status': amo.STATUS_DISABLED},
+            min_app_version='58.0', max_app_version='58.*')
+
+        # Add a few of incompatible add-ons.
+        incompatible_pack1 = addon_factory(
+            name='German Language Pack (incompatible with 58.0)',
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '56.0', 'max_app_version': '56.*'})
+        version_factory(
+            addon=incompatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        addon_factory(
+            name='Italian Language Pack (incompatible with 58.0)',
+            type=amo.ADDON_LPAPP, target_locale='it',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
+        addon_factory(
+            name='Thunderbird Polish Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='pl',
+            file_kw={'strict_compatibility': True},
+            version_kw={
+                'application': amo.THUNDERBIRD.id,
+                'min_app_version': '58.0', 'max_app_version': '58.*'})
+        # Even add a pack with a compatible version... not public. And another
+        # one with a compatible version... not listed.
+        incompatible_pack2 = addon_factory(
+            name='Japanese Language Pack (public, but 58.0 version is not)',
+            type=amo.ADDON_LPAPP, target_locale='ja',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        version_factory(
+            addon=incompatible_pack2,
+            min_app_version='58.0', max_app_version='58.*',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
+                     'strict_compatibility': True})
+        incompatible_pack3 = addon_factory(
+            name='Nederlands Language Pack (58.0 version is unlisted)',
+            type=amo.ADDON_LPAPP, target_locale='ja',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        version_factory(
+            addon=incompatible_pack3,
+            min_app_version='58.0', max_app_version='58.*',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'strict_compatibility': True})
+
+        # Test it.
+        with self.assertNumQueries(5):
+            # 5 queries, regardless of how many add-ons are returned:
+            # - 1 for the add-ons
+            # - 1 for the add-ons translations (name)
+            # - 1 for the compatible versions (through prefetch_related)
+            # - 1 for the applications versions for those versions
+            #     (we don't need it, but we're using the default Version
+            #      transformer to get the files... this could be improved.)
+            # - 1 for the files for those versions
+            response = self.client.get(
+                self.url,
+                {'app': 'firefox', 'appversion': '58.0', 'type': 'language',
+                 'lang': 'en-US'})
+        assert response.status_code == 200, response.content
+        results = response.data['results']
+        assert len(results) == 2
+
+        # Ordering is not guaranteed by this API, but do check that the
+        # current_compatible_version returned makes sense.
+        assert results[0]['current_compatible_version']
+        assert results[1]['current_compatible_version']
+
+        expected_versions = set((
+            (compatible_pack1.pk, compatible_version1.pk),
+            (compatible_pack2.pk, compatible_version2.pk),
+        ))
+        returned_versions = set((
+            (results[0]['id'], results[0]['current_compatible_version']['id']),
+            (results[1]['id'], results[1]['current_compatible_version']['id']),
+        ))
+        assert expected_versions == returned_versions
 
     def test_memoize(self):
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
@@ -3308,26 +3445,31 @@ class TestLanguageToolsView(TestCase):
             type=amo.ADDON_LPAPP, target_locale='de',
             version_kw={'application': amo.THUNDERBIRD.id})
 
-        response = self.client.get(self.url, {'app': 'firefox'})
+        with self.assertNumQueries(2):
+            response = self.client.get(
+                self.url, {'app': 'firefox', 'lang': 'fr'})
         assert response.status_code == 200
         assert len(json.loads(response.content)['results']) == 3
+
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
-            assert self.client.get(self.url, {'app': 'firefox'}).content == (
-                response.content
+            assert self.client.get(
+                self.url, {'app': 'firefox', 'lang': 'fr'}).content == (
+                    response.content
             )
-        # But different app is different
-        with self.assertNumQueries(12):
+
+        with self.assertNumQueries(2):
             assert (
-                self.client.get(self.url, {'app': 'thunderbird'}).content !=
+                self.client.get(
+                    self.url, {'app': 'thunderbird', 'lang': 'fr'}).content !=
                 response.content
             )
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
-            self.client.get(self.url, {'app': 'thunderbird'})
-        # But throw in a lang request and not cached:
-        with self.assertNumQueries(10):
-            self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
+            self.client.get(self.url, {'app': 'thunderbird', 'lang': 'fr'})
+        # Change the lang, we should get queries again.
+        with self.assertNumQueries(2):
+            self.client.get(self.url, {'app': 'firefox', 'lang': 'de'})
 
 
 class TestReplacementAddonView(TestCase):
