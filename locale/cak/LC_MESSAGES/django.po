@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-05 20:24+0000\n"
+"PO-Revision-Date: 2018-03-05 20:49+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1535,7 +1535,7 @@ msgstr ""
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sTab'ana'%(amo_mdn_link_close)s asamajib'al kanoxïk"
 
 msgid "Most Popular Extensions"
 msgstr "Yalan K'ïy Kiwinaq taq K'amal"
@@ -1604,7 +1604,7 @@ msgid "Create Your Own Theme"
 msgstr "Tatz'uk'u' Awachinel"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "¡Awokik'amaya'l, ab'anikil! ¡Tajala' rik'in ri wachib'enïk nawajo'!"
 
 msgid "Learn more"
 msgstr "Tetamäx ch'aqa' chik"
@@ -1623,7 +1623,7 @@ msgid "Over 300,000 designs to personalize your browser! Move your mouse over a 
 msgstr ""
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "¿La nawajo' ch'aqa' chik ichinanem?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1644,7 +1644,7 @@ msgid "All"
 msgstr "Ronojel"
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Rutzijol K'amonel Tz'aqat"
 
 #, python-format
 msgid ""
@@ -1656,19 +1656,19 @@ msgid "Reports for your Add-ons"
 msgstr "Kitzijol taq Atz'aqat"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Tatz'ib'aj ri GUID richin jun tz'aqat ikim richin natz'ët ri taq tzijol eqak'ulun."
 
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} K'amonel taq Rutzijol"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ütz rutzijol"
+msgstr[1] "{0} ütz taq rutzijol"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} kitzijol k'ayewal"
 msgstr[1] ""
 
 msgid "View all"
