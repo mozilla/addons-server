@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-04 23:22+0000\n"
+"PO-Revision-Date: 2018-03-05 20:24+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1352,16 +1352,16 @@ msgid "Reset"
 msgstr "Titikirisäx chik"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG chuqa' JPG yeruk'ül.  Ri wachib'äl xtrojqaj ri runimilem 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "E k'o sachoj pa ri nojwuj.  Ikim ke'achojmirisaj."
 
 msgid "Add-ons in Your Collection"
 msgstr "Taq Tz'aqat pan Amol"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Richin natz'aqatisaj jun tz'aqat pa re mol re', tatz'ib'aj ri rub'i' k'a ri' tapitz'a' enter."
 
 msgid "Add-on"
 msgstr "Tz'aqat"
@@ -1416,15 +1416,15 @@ msgstr "Talun taq Tz'aqat :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Wawe' e k'o jujun ajowab'äl taq qatz'aqat, ri yatkito' richin natikirisaj nab'än runuk'ulem %s."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Kekanöx taq samajib'äl kiximon ki' rik'in %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Kekanöx taq samajib'äl chuqa' taq k'amal kiximon ki'"
 
 msgid "Search tools"
 msgstr "Kekanöx samajib'äl"
@@ -1460,7 +1460,7 @@ msgstr "Etalun Tz'aqat"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Wawe' e k'o jujun ajowab'äl taq qatz'aqat, ri yatkito' richin natikirisaj nab'än runuk'ulem %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Tiyak Soltzij"
@@ -1484,7 +1484,7 @@ msgid "Available in your locale"
 msgstr "Wachel pan ach'ab'äl"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Kicholajem tanaj ch'ab'äl chuqa' taq soltzij e wachel pan ach'ab'äl."
 
 msgid "Language"
 msgstr "Ch'ab'äl"
@@ -1515,7 +1515,7 @@ msgid "Search Extensions"
 msgstr "Kekanöx taq K'amal"
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Titz'aqatisäx samaj richin kanoxïk pa Firefox"
 
 msgid "Search Providers"
 msgstr "Kekanöx Ajya'öl"
@@ -1874,13 +1874,13 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr ""
+msgstr "Xjal ewan taq tzij."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} juch'un chik xa xe nrajo' na nitalüx chi kiwäch winaqi'."
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Juch'un chik xa xe noyob'en"
 
 msgid "Account updated."
 msgstr "Xk'ex rub'i' taqoya'l."
