@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-05 20:49+0000\n"
+"PO-Revision-Date: 2018-03-05 21:07+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1669,7 +1669,7 @@ msgstr[1] "{0} ütz taq rutzijol"
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} kitzijol k'ayewal"
-msgstr[1] ""
+msgstr[1] "{0} taq kitzijol k'ayewal"
 
 msgid "View all"
 msgstr "Titz'et ronojel"
@@ -1678,7 +1678,7 @@ msgid "Filter by Application"
 msgstr "Tichayüx chi Chokoy"
 
 msgid "Report Type"
-msgstr ""
+msgstr "Ruwäch Rutzijol"
 
 msgid "Version"
 msgstr "Ruwäch"
@@ -1702,7 +1702,7 @@ msgid "Submitted"
 msgstr "Taqon"
 
 msgid "Success"
-msgstr ""
+msgstr "Xojtikïr"
 
 msgid "Problem"
 msgstr "K'ayewal"
@@ -1780,13 +1780,13 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} xtaq ruma k'o xk'ulwachitäj."
 
 msgid "Super review requested"
-msgstr ""
+msgstr "Xk'utüx Nik'onïk"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} xk'utüx runik'oxik."
 
 msgid "Review requested"
-msgstr ""
+msgstr "Xk'utüx nik'oxïk"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} ch'aqa' chik etamab'äl xk'utüx."
@@ -1795,13 +1795,13 @@ msgid "More information requested"
 msgstr "Ch'aqa' chik etamab'äl xk'utüx"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} xk'utüx runik'oxik."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Tzijoxïk pa {addon} {version}."
 
 msgid "Commented"
 msgstr "Xtz'ijöx"
@@ -1841,10 +1841,10 @@ msgstr "{0} {1} xtz'aqatisäx."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} xjal rik'in {1} richin {addon}."
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} ya'on ruya'öl q'ij richin {0}."
 
 msgid "{addon} policy changed."
 msgstr "{addon} runa'ojil xjal."
@@ -1859,7 +1859,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{user} xya' q'ij {rating} richin {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Tzijoxïk {rating} richin {addon} xyuj."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} xyuj {rating} richin {addon}."
