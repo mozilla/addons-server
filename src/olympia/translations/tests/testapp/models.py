@@ -1,11 +1,11 @@
 from django.db import models
 
-from olympia.amo.models import ModelBase
+from olympia.amo.models import ModelBase, UncachedModelBase
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 
-class TranslatedModel(ModelBase):
+class TranslatedModel(UncachedModelBase):
     name = TranslatedField()
     description = TranslatedField()
     default_locale = models.CharField(max_length=10)

@@ -45,7 +45,7 @@ def skip_cache():
         _locals.skip_cache = old
 
 
-class TransformQuerySet(queryset_transform.TransformQuerySet):
+class TransformQuerySetMixin(queryset_transform.TransformQuerySetMixin):
 
     def pop_transforms(self):
         qs = self._clone()
@@ -66,10 +66,14 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
     def transform(self, fn):
         from . import decorators
         f = decorators.skip_cache(fn)
-        return super(TransformQuerySet, self).transform(f)
+        return super(TransformQuerySetMixin, self).transform(f)
 
 
-class BaseQuerySet(TransformQuerySet, caching.base.CachingQuerySet):
+class BaseQuerySet(TransformQuerySetMixin, caching.base.CachingQuerySet):
+    pass
+
+
+class UncachedBaseQuerySet(TransformQuerySetMixin, models.QuerySet):
     pass
 
 
@@ -94,9 +98,11 @@ class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
 
 
 class UncachedManagerBase(models.Manager):
+    _queryset_class = UncachedBaseQuerySet
+
     def get_queryset(self):
         qs = self._with_translations(
-            TransformQuerySet(self.model, using=self._db))
+            self._queryset_class(self.model, using=self._db))
         return qs
 
     def _with_translations(self, qs):
@@ -109,6 +115,7 @@ class UncachedManagerBase(models.Manager):
             lang = translation.get_language() or '0'
             qs = qs.transform(transformer.get_trans)
             qs = qs.extra(where=['%s=%s'], params=[lang, lang])
+            print('AAATTACH EXTRA TO QUERY')
         return qs
 
     def transform(self, fn):
@@ -144,8 +151,10 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
+    _queryset_class = BaseQuerySet
+
     def get_queryset(self):
-        qs = BaseQuerySet(self.model, using=self._db)
+        qs = self._queryset_class(self.model, using=self._db)
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)
