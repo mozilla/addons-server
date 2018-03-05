@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2017-11-23 19:24+0000\n"
+"PO-Revision-Date: 2018-03-05 23:20+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -342,7 +342,7 @@ msgid "Rejected"
 msgstr ""
 
 msgid "Approved"
-msgstr ""
+msgstr "Aprobat"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -774,9 +774,8 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Suplimente pentru {0}"
+msgstr "Pagina de start a suplimentelor"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -1097,7 +1096,7 @@ msgid "Name:"
 msgstr "Nume:"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(opțional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1923,7 +1922,7 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Aprobat, însă în așteptare"
 
 msgid "Account updated."
 msgstr ""
@@ -2017,7 +2016,7 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "Conţinut aprobat"
 
 msgid "{addon} {version} content rejected."
 msgstr ""
@@ -2732,7 +2731,7 @@ msgid "Theme deleted."
 msgstr ""
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Supliment șters."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -2870,7 +2869,7 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunitate și suport"
 
 msgid "Add-ons Blog"
 msgstr ""
@@ -2917,11 +2916,11 @@ msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Activitate recentă pentru suplimentele mele"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Activitate recentă pentru {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2937,7 +2936,7 @@ msgid "Activity"
 msgstr ""
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Abonează-te la acest flux"
 
 #, python-format
 msgid ""
@@ -2987,15 +2986,14 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "Developer Information"
+msgstr "Editează informaţille"
 
 msgid "None"
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Gestionează autorii și licența"
 
 msgid "Authors"
 msgstr "Autori"
@@ -3327,7 +3325,7 @@ msgid "Delete Theme"
 msgstr ""
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Șterge suplimentul"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3338,16 +3336,16 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Introdu următorul text pentru a confirma decizia: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr ""
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Te rugăm să ne spui de ce îți ștergi suplimentul:"
 
 msgid "Actions"
-msgstr ""
+msgstr "Acțiuni"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3365,7 +3363,7 @@ msgid "Edit information about this add-on."
 msgstr "Editează informațiile despre acest supliment."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Încarcă o versiune nouă a acestui supliment."
 
 msgid "New Version"
 msgstr "Versiune nouă"
@@ -3378,13 +3376,13 @@ msgid "Statistics"
 msgstr "Statistics"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Gestionează starea și versiunile"
 
 msgid "View Add-on Listing"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vezi schimbările recente"
 
 msgid "Edit details about this theme's listing."
 msgstr ""
@@ -3411,7 +3409,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Acest supliment nu are nicio versiune."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3692,7 +3690,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "optional"
-msgstr ""
+msgstr "opțional"
 
 #, fuzzy
 msgid "Browser preview"
@@ -3802,7 +3800,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Ultima versiune:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3896,7 +3894,7 @@ msgid "Porting"
 msgstr ""
 
 msgid "Community"
-msgstr ""
+msgstr "Comunitate"
 
 msgid "About"
 msgstr ""
@@ -4087,7 +4085,7 @@ msgid "Transfer ownership"
 msgstr ""
 
 msgid "Theme Details"
-msgstr ""
+msgstr "Detaliile temei"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4375,7 +4373,7 @@ msgid "All versions"
 msgstr "Toate versiunile"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Încarcă o versiune nouă"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -5928,7 +5926,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Evaluată cu %(rating)s din 5 stele"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Recenzii aprobate"
 
 msgid "Deleted reviews"
 msgstr ""
@@ -6440,7 +6438,7 @@ msgid "Process Reviews"
 msgstr ""
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Acțiuni de moderare:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -6537,9 +6535,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Mai multe acțiuni:"
+msgstr "Mai multe acțiuni"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -7585,7 +7582,7 @@ msgid "User Info for {0}"
 msgstr "Informații privind utilizatorul {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Editează profilul"
 
 msgid "Manage user"
 msgstr ""
