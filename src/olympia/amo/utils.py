@@ -17,6 +17,7 @@ import urllib
 import urlparse
 import string
 import subprocess
+import scandir
 
 import django.core.mail
 
@@ -920,7 +921,7 @@ def has_links(html):
 def walkfiles(folder, suffix=''):
     """Iterator over files in folder, recursively."""
     return (os.path.join(basename, filename)
-            for basename, dirnames, filenames in os.walk(folder)
+            for basename, dirnames, filenames in scandir.walk(folder)
             for filename in filenames
             if filename.endswith(suffix))
 
