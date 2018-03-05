@@ -10,12 +10,12 @@ import StringIO
 import struct
 import tempfile
 import zipfile
+import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
-from scandir import walk as scandir_walk
 
 from django import forms
 from django.conf import settings
@@ -777,7 +777,7 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     if expand:
         for x in xrange(0, 10):
             flag = False
-            for root, dirs, files in scandir_walk(tempdir):
+            for root, dirs, files in scandir.walk(tempdir):
                 for name in files:
                     if os.path.splitext(name)[1] in expand_allow_list:
                         src = os.path.join(root, name)
@@ -936,7 +936,7 @@ def zip_folder_content(folder, filename):
     """Compress the _content_ of a folder."""
     with zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED) as dest:
         # Add each file/folder from the folder to the zip file.
-        for root, dirs, files in scandir_walk(folder):
+        for root, dirs, files in scandir.walk(folder):
             relative_dir = os.path.relpath(root, folder)
             for file_ in files:
                 dest.write(os.path.join(root, file_),
