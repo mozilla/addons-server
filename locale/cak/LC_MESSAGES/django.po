@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-05 21:07+0000\n"
+"PO-Revision-Date: 2018-03-05 21:27+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1868,7 +1868,7 @@ msgid "Application max version for {version} updated."
 msgstr ""
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Xtaq jun rutzijol taqoya'l chi ke ri ajb'anöl pa ruwi' ri ruk'amonel {version}."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
@@ -3159,7 +3159,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Ruwachib'al tz'aqat"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3288,7 +3288,7 @@ msgid "Delete this add-on."
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "Tiyuj"
 
 msgid "Edit information about this add-on."
 msgstr ""
@@ -3345,10 +3345,10 @@ msgid "This add-on doesn't have any approved versions, so its public pages (incl
 msgstr ""
 
 msgid "Status:"
-msgstr ""
+msgstr "B'anikil:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Chupül"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
