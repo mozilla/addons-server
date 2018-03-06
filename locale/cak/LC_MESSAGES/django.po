@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 21:37+0000\n"
+"PO-Revision-Date: 2018-03-06 22:10+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2263,40 +2263,40 @@ msgid "Calendar and Date/Time"
 msgstr "Cholb'äl Q'ij chuqa' Q'ijul/Time"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "Chat chuqa' IM"
 
 msgid "Message Composition"
-msgstr ""
+msgstr "Runuk'ulem Tzijol"
 
 msgid "Contacts"
 msgstr "Kib'i' achib'il"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Taq Yakwuj chuqa' Taq Chayub'äl"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "Tijik'/Export"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Rutzijol chuqa' Kisik'inem taq Tzijol"
 
 msgid "Privacy and Security"
 msgstr "Ichinanem chuqa' Jikomal"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Kinuk'samajel Qasanïk chuqa' Yakb'äl"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Kichinanem K'amal"
 
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Rutob'al Ch'ab'äl chuqa' Tzalq'omanïk"
 
 msgid "Photos and Media"
 msgstr "Taq Wachib'äl chuqa' K'oxom"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, taq Tzijol chuqa' Ichinya'l"
 
 msgid "Site-specific"
 msgstr ""
