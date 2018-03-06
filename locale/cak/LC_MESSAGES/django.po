@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 20:50+0000\n"
+"PO-Revision-Date: 2018-03-06 21:02+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1929,64 +1929,64 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Ri tz'aqat id {0} rik'in GUID {1} xyuj el"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} xb'e pa jun nab'ey ruwäch."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Tzolin rutzij b'anonel chi re {addon} {version}."
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "Tzolin Rutzij B'anonel"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Tzolin rutzij nik'onel chi re {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Tzolin Rutzij Nik'onel"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Xejal ruch'utitzijol juch'uj richin {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Xejal ri ta juch'un ch'utitzijol"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Xk'ex ri ruxe'el b'itz'ib' richin {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Xk'ex ri ruxe'el b'itz'ib'"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Yoni-juch'uj xjikib'äx richin {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Yoni-juch'uj xjikib'äx"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} xtzij-chik."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} xchup."
 
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "{addon} {version} rupam xjuch'."
 
 msgid "Content approved"
-msgstr ""
+msgstr "Rupam xjuch'"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "{addon} {version} rupam xxutüx."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Rupam xxutüx"
 
 msgid "{addon} information request removed."
-msgstr ""
+msgstr "{addon} xyuj ri etamab'äl xk'utüx."
 
 msgid "Information request removed"
-msgstr ""
+msgstr "Xyuj ri etamab'äl xk'utüx"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "Etamab'äl xk'utüx xsol ruma ri b'anonel pa {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2016,7 +2016,7 @@ msgid "Incomplete"
 msgstr "Man tz'aqät ta"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Xchup ruma Mozilla"
 
 msgid "Deleted"
 msgstr "Xyuj"
