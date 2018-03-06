@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 21:02+0000\n"
+"PO-Revision-Date: 2018-03-06 21:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2022,10 +2022,10 @@ msgid "Deleted"
 msgstr "Xyuj"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "Royob'en nijuch'"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Ya'on retal richin ninik'öx na"
 
 msgid "Beta"
 msgstr "Beta"
@@ -2098,7 +2098,7 @@ msgid "Incompatible"
 msgstr "Man k'amonel ta"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Kitzijol K'ayewal & Taq K'exoj"
 
 msgid "Appearance"
 msgstr "Rutzub'al"
@@ -2107,19 +2107,19 @@ msgid "Bookmarks"
 msgstr "Taq yaketal"
 
 msgid "Download Management"
-msgstr ""
+msgstr "Kinuk'samejel Qasanïk"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Taq b'ey, Taq Tzijol & Taq Ichinya'l"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Taq Etz'anem & K'astanib'alil"
 
 msgid "Language Support"
-msgstr ""
+msgstr "Rutob'al Ch'ab'äl"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Taq Wachib'äl, Q'ojom & taq Silowäch"
 
 msgid "Privacy & Security"
 msgstr "Ichinanem & Jikomal"
@@ -2146,7 +2146,7 @@ msgid "Large"
 msgstr "Nïm"
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "K'ib'anob'äl"
 
 msgid "Modern"
 msgstr "K'ak'a'"
@@ -2155,13 +2155,13 @@ msgid "Nature"
 msgstr "Ruwach'ulew"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "OS Tunuj"
 
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 msgid "Sports"
-msgstr ""
+msgstr "Taq etz'asilonem"
 
 msgid "Abstract"
 msgstr "Ch'utinisan na'oj"
@@ -2170,16 +2170,16 @@ msgid "Causes"
 msgstr "Taq aruma"
 
 msgid "Fashion"
-msgstr ""
+msgstr "Wiqob'äl"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Silowachil chuqa' TV"
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Holiday"
-msgstr ""
+msgstr "Uxlanem"
 
 msgid "Music"
 msgstr "Q'ojom"
@@ -2209,10 +2209,10 @@ msgid "Kids"
 msgstr "Ak'wala'"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "Jalajöj Kanoxïk"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "Taq Tzijoj & Taq Ichinya'l"
 
 msgid "Photos & Images"
 msgstr ""
