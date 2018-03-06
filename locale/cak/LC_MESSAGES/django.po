@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 21:30+0000\n"
+"PO-Revision-Date: 2018-03-06 21:37+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2215,10 +2215,10 @@ msgid "News & Blogs"
 msgstr "Taq Tzijoj & Taq Ichinya'l"
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "Taq Wachiwäch & Taq Wachib'äl"
 
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Loq'oj & E-K'ayinïk"
 
 msgid "Social & People"
 msgstr "Winaqilal & Winäq"
@@ -2230,13 +2230,13 @@ msgid "Video"
 msgstr "Silowäch"
 
 msgid "Device Features & Location"
-msgstr ""
+msgstr "Kisamaj Okisaxel & K'ojlem"
 
 msgid "Experimental"
 msgstr "Soltojtob'enel"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Taq b'ey, Taq Tzijol, & Taq Ichinya'l"
 
 msgid "Performance"
 msgstr "Rub'eyal nisamaj"
@@ -2248,19 +2248,19 @@ msgid "Security & Privacy"
 msgstr "Jikomal & Ichinanem"
 
 msgid "Social Networking"
-msgstr ""
+msgstr "K'amawinaqil"
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "Taq Etz'asilonem & Taq Etz'anem"
 
 msgid "User Interface"
-msgstr ""
+msgstr "Ruk'amal Okisanel"
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Wachinïk chuqa' Ichinanem"
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Cholb'äl Q'ij chuqa' Q'ijul/Time"
 
 msgid "Chat and IM"
 msgstr ""
