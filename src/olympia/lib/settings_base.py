@@ -5,7 +5,7 @@ import logging
 import os
 import socket
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.functional import lazy
 
 import environ
@@ -127,8 +127,10 @@ DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
 }
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+DATABASES['default']['TEST'] = {
+    'CHARSET': 'utf8',
+    'COLLATION': 'utf8_general_ci'
+}
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 # Pool our database connections up for 300 seconds
@@ -386,7 +388,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
 
@@ -426,7 +427,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
             ),
@@ -473,7 +473,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
     # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
@@ -490,6 +490,8 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
+    'olympia.translations',
+
     'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
@@ -515,7 +517,6 @@ INSTALLED_APPS = (
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
-    'olympia.translations',
     'olympia.users',
     'olympia.versions',
     'olympia.zadmin',
@@ -528,7 +529,6 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'rest_framework',
     'waffle',
-    'jingo_minify',
     'django_jinja',
     'puente',
 
@@ -1423,7 +1423,7 @@ def read_only_mode(env):
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'session_csrf.CsrfMiddleware'
+    before = 'django.middleware.csrf.CsrfViewMiddleware'
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
@@ -1565,6 +1565,7 @@ LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
+CSRF_USE_SESSIONS = True
 
 # Testing responsiveness without rate limits.
 CELERY_WORKER_DISABLE_RATE_LIMITS = True

@@ -14,7 +14,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
     def render(self, name, value, attrs=None):
         str_values = [int(v) for v in value] or []
-        final_attrs = self.build_attrs(attrs, name=name)
+        final_attrs = self.build_attrs(attrs, {'name': name})
         groups = {}
 
         # Mark the mandatory fields.

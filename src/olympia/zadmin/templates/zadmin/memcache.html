@@ -19,7 +19,7 @@
   {% endfor %}
   <h3>Clear</h3>
   <form method="post" class="featured-inner object-lead user-input">
-    {% csrf_token %}
+    {{ csrf_input }}
     <fieldset>
     <p class="instruct">Are you sure you want to clear memcache?</p>
     {{ form }}

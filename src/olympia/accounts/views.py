@@ -5,9 +5,9 @@ import os
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.core import signing
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.html import format_html
 from django.utils.http import is_safe_url

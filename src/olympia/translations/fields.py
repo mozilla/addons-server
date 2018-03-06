@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 from django import forms
 from django.conf import settings
 from django.db import models
@@ -6,10 +8,10 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
-from .models import (
-    LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
-    PurifiedTranslation, Translation)
 from .widgets import TransInput, TransTextarea
+
+
+LocaleErrorMessage = namedtuple('LocaleErrorMessage', 'message locale')
 
 
 class TranslatedField(models.ForeignKey):
@@ -20,15 +22,20 @@ class TranslatedField(models.ForeignKey):
     we will look for 1) a translation in the current locale and 2) fallback
     with any translation matching the foreign key.
     """
-    to = Translation
+    to = 'translations.Translation'
     requires_unique_target = False
 
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
-        options = dict(null=True, to_field='id', unique=True, blank=True,
-                       on_delete=models.SET_NULL)
-        kwargs.update(options)
+        kwargs.update({
+            'null': True,
+            'to_field': 'id',
+            'unique': True,
+            'blank': True,
+            'on_delete': models.SET_NULL
+        })
+
         self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)
 
@@ -86,24 +93,26 @@ class TranslatedField(models.ForeignKey):
 
 
 class PurifiedField(TranslatedField):
-    to = PurifiedTranslation
+    to = 'translations.PurifiedTranslation'
 
 
 class LinkifiedField(TranslatedField):
-    to = LinkifiedTranslation
+    to = 'translations.LinkifiedTranslation'
 
 
 class NoLinksField(TranslatedField):
-    to = NoLinksTranslation
+    to = 'translations.NoLinksTranslation'
 
 
 class NoLinksNoMarkupField(TranslatedField):
-    to = NoLinksNoMarkupTranslation
+    to = 'translations.NoLinksNoMarkupTranslation'
 
 
 def switch(obj, new_model):
     """Switch between Translation and Purified/Linkified Translations."""
-    fields = [(f.name, getattr(obj, f.name)) for f in new_model._meta.fields]
+    fields = [
+        (f.name, getattr(obj, f.name, None))
+        for f in new_model._meta.fields]
     return new_model(**dict(fields))
 
 
@@ -119,15 +128,10 @@ def save_on_signal(obj, trans):
     signal.connect(cb, sender=obj.__class__, weak=False)
 
 
-class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
+class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
-
-    def __init__(self, field):
-        super(TranslationDescriptor, self).__init__(field)
-        self.model = field.rel.to
-
     def __get__(self, instance, instance_type=None):
         if instance is None:
             return self
@@ -154,31 +158,34 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             # We always get these back from the database as Translations, but
             # we may want them to be a more specific Purified/Linkified child
             # class.
-            if not isinstance(value, self.model):
-                value = switch(value, self.model)
+            if not isinstance(value, self.field.related_model):
+                value = switch(value, self.field.related_model)
             super(TranslationDescriptor, self).__set__(instance, value)
-        elif getattr(instance, self.field.attname, None) is None:
+        elif getattr(instance, self.field.get_attname(), None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
-        try:
-            trans = getattr(instance, self.field.name)
-            trans_id = getattr(instance, self.field.attname)
-            if trans is None and trans_id is not None:
-                # This locale doesn't have a translation set, but there are
-                # translations in another locale, so we have an id already.
-                translation = self.model.new(string, lang, id=trans_id)
-            elif to_language(trans.locale) == lang.lower():
+        trans_id = instance.__dict__.get(self.field.attname)
+        if trans_id is None:
+            # We don't have a translation for this field in any language,
+            # create a brand new one.
+            translation = self.field.related_model.new(string, lang)
+        else:
+            try:
+                trans = getattr(instance, self.field.name)
+            except AttributeError, instance.DoesNotExist:
+                trans = None
+            if trans is not None and to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
                 trans.localized_string = string
                 translation = trans
             else:
-                # We already have a translation in a different language.
-                translation = self.model.new(string, lang, id=trans.id)
-        except AttributeError:
-            # Create a brand new translation.
-            translation = self.model.new(string, lang)
+                # We either could not find a translation (but know that one
+                # already exist, because trans_id is set) or are looking to
+                # create one in a different language anyway.
+                translation = self.field.related_model.new(
+                    string, lang, id=trans_id)
 
         # A new translation has been created and it might need to be saved.
         # This adds the translation to the queue of translation that need
@@ -228,9 +235,13 @@ class _TransField(object):
         kwargs.pop('limit_choices_to', None)
         super(_TransField, self).__init__(*args, **kwargs)
 
-    def clean(self, value):
-        errors = LocaleList()
+    def set_default_values(self, field_name, parent_form, default_locale):
+        self.parent_form = parent_form
+        self.default_locale = default_locale
+        self.widget.default_locale = default_locale
+        self._field_name = field_name
 
+    def clean(self, value):
         value = dict((k, v.strip() if v else v) for (k, v) in value.items())
 
         # Raise an exception if the default locale is required and not present
@@ -246,27 +257,16 @@ class _TransField(object):
                     super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
             except forms.ValidationError, e:
-                errors.extend(e.messages, locale)
-
-        if errors:
-            raise LocaleValidationError(errors)
-
+                for message in e.messages:
+                    self.parent_form.add_error(
+                        self._field_name,
+                        LocaleErrorMessage(message=message, locale=locale))
         return value
 
-    def _has_changed(self, initial, data):
+    def has_changed(self, initial, data):
         # This used to be called on the field's widget and always returned
         # False!
         return False
-
-
-class LocaleValidationError(forms.ValidationError):
-
-    def __init__(self, messages, code=None, params=None):
-        self.msgs = messages
-
-    @property
-    def messages(self):
-        return self.msgs
 
 
 class TransField(_TransField, forms.CharField):
@@ -284,42 +284,6 @@ class TransField(_TransField, forms.CharField):
         if opts is None:
             opts = {}
         return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
-
-
-# Subclass list so that isinstance(list) in Django works.
-class LocaleList(dict):
-    """
-    List-like objects that maps list elements to a locale.
-
-    >>> LocaleList([1, 2], 'en')
-    [1, 2]
-    ['en', 'en']
-
-    This is useful for validation error lists where we want to associate an
-    error with a locale.
-    """
-
-    def __init__(self, seq=None, locale=None):
-        self.seq, self.locales = [], []
-        if seq:
-            assert seq and locale
-            self.extend(seq, locale)
-
-    def __iter__(self):
-        return iter(self.zip())
-
-    def extend(self, seq, locale):
-        self.seq.extend(seq)
-        self.locales.extend([locale] * len(seq))
-
-    def __nonzero__(self):
-        return bool(self.seq)
-
-    def __contains__(self, item):
-        return item in self.seq
-
-    def zip(self):
-        return zip(self.locales, self.seq)
 
 
 def save_signal(sender, instance, **kw):

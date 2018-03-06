@@ -6,8 +6,8 @@ import urllib
 
 from threading import local
 
+from django import urls
 from django.conf import settings
-from django.core import urlresolvers
 from django.utils.encoding import force_bytes
 from django.utils.http import _urlparse as urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -23,8 +23,8 @@ from olympia import amo
 # As we're using a url prefixer to automatically add the locale and the app to
 # URLs, we're not compatible with Django's default reverse and resolve, and
 # thus need to monkeypatch them.
-django_reverse = urlresolvers.reverse
-django_resolve = urlresolvers.resolve
+django_reverse = urls.reverse
+django_resolve = urls.resolve
 
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
@@ -47,15 +47,11 @@ def clean_url_prefixes():
         delattr(_local, 'prefix')
 
 
-def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
+def reverse(viewname, urlconf=None, args=None, kwargs=None,
             current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
-    # Blank out the script prefix since we add that in prefixer.fix().
-    if prefixer:
-        prefix = prefix or '/'
-
-    url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+    url = django_reverse(viewname, urlconf, args, kwargs, current_app)
     if prefixer and add_prefix:
         return prefixer.fix(url)
     else:
@@ -63,7 +59,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
 
 
 # Replace Django's reverse with our own.
-urlresolvers.reverse = reverse
+urls.reverse = reverse
 
 
 def resolve(path, urlconf=None):
@@ -76,7 +72,7 @@ def resolve(path, urlconf=None):
 
 
 # Replace Django's resolve with our own.
-urlresolvers.resolve = resolve
+urls.resolve = resolve
 
 
 class Prefixer(object):

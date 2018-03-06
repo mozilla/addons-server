@@ -45,7 +45,7 @@ def skip_cache():
         _locals.skip_cache = old
 
 
-class TransformQuerySet(queryset_transform.TransformQuerySet):
+class TransformQuerySetMixin(queryset_transform.TransformQuerySetMixin):
 
     def pop_transforms(self):
         qs = self._clone()
@@ -66,7 +66,15 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
     def transform(self, fn):
         from . import decorators
         f = decorators.skip_cache(fn)
-        return super(TransformQuerySet, self).transform(f)
+        return super(TransformQuerySetMixin, self).transform(f)
+
+
+class BaseQuerySet(TransformQuerySetMixin, caching.base.CachingQuerySet):
+    pass
+
+
+class UncachedBaseQuerySet(TransformQuerySetMixin, models.QuerySet):
+    pass
 
 
 class RawQuerySet(models.query.RawQuerySet):
@@ -89,16 +97,12 @@ class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
     """A RawQuerySet with __len__ and caching."""
 
 
-# Make TransformQuerySet one of CachingQuerySet's parents so that we can do
-# transforms on objects and then get them cached.
-CachingQuerySet = caching.base.CachingQuerySet
-CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
-
-
 class UncachedManagerBase(models.Manager):
+    _queryset_class = UncachedBaseQuerySet
 
     def get_queryset(self):
-        qs = self._with_translations(TransformQuerySet(self.model))
+        qs = self._with_translations(
+            self._queryset_class(self.model, using=self._db))
         return qs
 
     def _with_translations(self, qs):
@@ -111,6 +115,7 @@ class UncachedManagerBase(models.Manager):
             lang = translation.get_language() or '0'
             qs = qs.transform(transformer.get_trans)
             qs = qs.extra(where=['%s=%s'], params=[lang, lang])
+            print('AAATTACH EXTRA TO QUERY')
         return qs
 
     def transform(self, fn):
@@ -125,6 +130,8 @@ class UncachedManagerBase(models.Manager):
         This is subjective, but I don't trust get_or_create until #13906
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
+
+        TODO: https://github.com/mozilla/addons-server/issues/7158
         """
         with transaction.atomic():
             try:
@@ -144,9 +151,10 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
+    _queryset_class = BaseQuerySet
 
     def get_queryset(self):
-        qs = super(ManagerBase, self).get_queryset()
+        qs = self._queryset_class(self.model, using=self._db)
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)

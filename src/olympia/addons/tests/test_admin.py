@@ -71,6 +71,7 @@ class TestReplacementAddonList(TestCase):
         request = RequestFactory().get(
             '/en-US/admin/models/addons/replacementaddon/')
         request.user = UserProfile.objects.get(email='admin@mozilla.com')
+        request.session = {}
         adminview = ReplacementAddonAdmin(
             ReplacementAddon, StaffAdminSite(name='staffadmin'))
         view = adminview.changelist_view(request)

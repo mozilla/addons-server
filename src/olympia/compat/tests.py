@@ -4,6 +4,7 @@ from datetime import datetime
 
 import mock
 
+from django_extensions.db.fields.json import JSONList
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -94,9 +95,13 @@ class TestIncoming(TestCase):
             self.data['multiprocessCompatible'])
 
         # Check that the other_addons field is stored as json.
+        # This is a dummy check and relies on implementation details of
+        # django-extensions but more recent versions of django apply
+        # to_python to .values and even raw queries more properly so we'll
+        # have to live with it.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
-        assert vals[0]['other_addons'] == (
-            json.dumps(self.data['otherAddons']))
+        assert isinstance(vals[0]['other_addons'], JSONList)
+        assert vals[0]['other_addons'] == self.data['otherAddons']
 
     def test_e10s_status_unknown(self):
         del self.data['multiprocessCompatible']
@@ -461,4 +466,4 @@ class TestCompatibilityReportCron(
         self.run_compatibility_report()
 
         assert CompatTotals.objects.count() == 1
-        assert CompatTotals.objects.get().total == 70
+        assert CompatTotals.objects.no_cache().get().total == 70

@@ -23,7 +23,7 @@
 
   <div class="island hero prettyform" id="submit-persona">
     <form method="post">
-      {% csrf_token %}
+      {{ csrf_input }}
       {{ form.unsaved_data }}
       <fieldset>
         <legend>{{ _('Theme Details') }}</legend>

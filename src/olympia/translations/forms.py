@@ -3,9 +3,11 @@ from django.db import models
 from django.forms import ValidationError
 from django.forms.utils import ErrorList
 from django.utils.encoding import force_text
-from django.utils.html import conditional_escape
+from django.utils.html import conditional_escape, format_html, format_html_join
 from django.utils.safestring import mark_safe
 from django.utils.translation.trans_real import to_language
+
+from .fields import LocaleErrorMessage, _TransField
 
 
 def default_locale(obj):
@@ -25,56 +27,67 @@ class TranslationFormMixin(object):
     default locale.
     """
 
-    def __init__(self, *args, **kw):
-        super(TranslationFormMixin, self).__init__(*args, **kw)
-        self.error_class = self.error_class_
-        self.set_default_locale()
+    def __init__(self, *args, **kwargs):
+        kwargs['error_class'] = LocaleErrorList
+        super(TranslationFormMixin, self).__init__(*args, **kwargs)
+        self.set_locale_field_defaults()
 
-    def set_default_locale(self):
+    def set_locale_field_defaults(self):
         locale = to_language(default_locale(self.instance))
-        for field in self.fields.values():
-            field.default_locale = locale
-            field.widget.default_locale = locale
+        for field_name, field in self.fields.items():
+            if isinstance(field, _TransField):
+                field.set_default_values(
+                    field_name=field_name,
+                    parent_form=self,
+                    default_locale=locale,
+                )
+
+    def add_error(self, field, error):
+        if isinstance(error, LocaleErrorMessage):
+            self._errors.setdefault(field, self.error_class())
+            self._errors[field].append(error)
+
+            if field in self.cleaned_data:
+                del self.cleaned_data[field]
+        else:
+            # Didn't come from a translation field, forward
+            # to original implementation.
+            super(TranslationFormMixin, self).add_error(field, error)
 
     def full_clean(self):
-        self.set_default_locale()
+        self.set_locale_field_defaults()
         return super(TranslationFormMixin, self).full_clean()
-
-    def error_class_(self, *a, **k):
-        return LocaleErrorList(*a, **k)
 
 
 class LocaleErrorList(ErrorList):
 
-    def _errors(self):
-        # Pull error messages out of (locale, error) pairs.
-        return (e[1] if isinstance(e, tuple) else e
-                for e in self)
-
-    def __contains__(self, value):
-        return value in self._errors()
-
     def as_ul(self):
-        if not self:
+        if not self.data:
             return u''
+
         li = []
-        for item in self:
-            if isinstance(item, tuple):
-                locale, e = item
+        for item in self.data:
+            if isinstance(item, LocaleErrorMessage):
+                locale, message = item.locale, item.message
                 extra = ' data-lang="%s"' % locale
             else:
-                e, extra = item, ''
-            li.append((extra, conditional_escape(force_text(e))))
-        return mark_safe('<ul class="errorlist">%s</ul>' %
-                         ''.join(u'<li%s>%s</li>' % x for x in li))
+                message, extra = item, ''
+            li.append((extra, conditional_escape(force_text(message))))
 
-    # Override Django 1.7's `__getitem__` which wraps the error with
-    # `force_text` converting our tuples to strings.
+        return mark_safe(format_html(
+            '<ul class="{}">{}</ul>',
+            self.error_class,
+            format_html_join(
+                '',
+                '<li{}>{}</li>',
+                ((extra, elem) for extra, elem in li)
+            )
+        ))
+
     def __getitem__(self, i):
         error = self.data[i]
+        if isinstance(error, LocaleErrorMessage):
+            return error.message
         if isinstance(error, ValidationError):
             return list(error)[0]
-        elif isinstance(error, tuple):
-            return error
-        else:
-            return force_text(error)
+        return force_text(error)

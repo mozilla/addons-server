@@ -1,5 +1,5 @@
 <form method="post" action="{{ url('addons.abuse', addon.slug) }}" data-no-csrf="anon-only">
-  {% csrf_token %}
+  {{ csrf_input }}
   <fieldset class="abuse">
     {% if hide %}
     <legend><a href="{{ url('devhub.docs', 'policies/contact') }}"

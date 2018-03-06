@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 from django.core import validators
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext
 

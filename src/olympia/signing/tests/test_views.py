@@ -6,9 +6,9 @@ from datetime import datetime, timedelta
 from waffle.testutils import override_switch
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils import translation
 
 import mock

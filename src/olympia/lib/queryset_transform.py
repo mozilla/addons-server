@@ -1,4 +1,8 @@
+from django.db import connection
 from django.db import models
+from django.db.models.query import ModelIterable
+
+from caching.base import CachingModelIterable
 
 
 """
@@ -32,26 +36,50 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 
-class TransformQuerySet(models.query.QuerySet):
+class TransformQuerySetMixin(object):
     def __init__(self, *args, **kwargs):
-        super(TransformQuerySet, self).__init__(*args, **kwargs)
+        super(TransformQuerySetMixin, self).__init__(*args, **kwargs)
+        print('Initializing TransformQuerySetMixin (calling __init__)')
         self._transform_fns = []
 
-    def _clone(self, klass=None, setup=False, **kw):
-        c = super(TransformQuerySet, self)._clone(klass, setup, **kw)
-        c._transform_fns = self._transform_fns[:]
-        return c
+    def _clone(self, **kwargs):
+        clone = super(TransformQuerySetMixin, self)._clone(**kwargs)
+        clone._transform_fns = self._transform_fns[:]
+        return clone
 
     def transform(self, fn):
-        c = self._clone()
-        c._transform_fns.append(fn)
-        return c
+        clone = self._clone()
 
-    def iterator(self):
-        result_iter = super(TransformQuerySet, self).iterator()
-        if self._transform_fns:
-            results = list(result_iter)
+        print('append transform', fn)
+        if fn not in clone._transform_fns:
+            clone._transform_fns.append(fn)
+        return clone
+
+    def _fetch_all(self):
+        print('calling TransformQuerySetMixin._fetch_all', 'result cache is None', self._result_cache is None)
+
+        transform_results = (
+            self._iterable_class in (ModelIterable, CachingModelIterable) and
+            self._transform_fns and
+            self._result_cache is None
+        )
+
+        print('calling super() _fetch_all inside TransformQuerySetMixin._fetch_all')
+
+        if self._result_cache is None:
+            self._result_cache = list(self._iterable_class(self))
+
+        if self._prefetch_related_lookups and not self._prefetch_done:
+            self._prefetch_related_objects()
+
+        print('called super() _fetch_all inside TransformQuerySetMixin._fetch_all')
+
+        print('Should we transform results?', transform_results, '(based on iterable_class, and if there are transform_fns)')
+
+        if transform_results:
+            print('iterate through _transform_fns')
             for fn in self._transform_fns:
-                fn(results)
-            return iter(results)
-        return result_iter
+                print('query count (before):', len(connection.queries))
+                print('calling', fn)
+                fn(self._result_cache)
+                print('query count (after):', len(connection.queries))

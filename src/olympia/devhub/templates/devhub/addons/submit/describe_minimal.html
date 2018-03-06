@@ -6,7 +6,7 @@
 {% block primary %}
   <h3>{{ _('Describe Version') }}</h3>
   <form method="post" id="submit-describe" class="item">
-    {% csrf_token %}
+    {{ csrf_input }}
     <div class="addon-submission-field">
       <label for="{{ reviewer_form.approvalnotes.auto_id }}">
       {{ _('Release Notes:') }}

@@ -107,13 +107,14 @@ class Version(OnChangeMixin, ModelBase):
     channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
-    # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
 
     def __init__(self, *args, **kwargs):

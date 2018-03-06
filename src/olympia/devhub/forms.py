@@ -5,8 +5,6 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.functional import cached_property
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
@@ -27,7 +25,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib import happyforms
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
@@ -39,7 +36,7 @@ from olympia.versions.models import (
 from . import tasks
 
 
-class AuthorForm(happyforms.ModelForm):
+class AuthorForm(forms.ModelForm):
     class Meta:
         model = AddonUser
         exclude = ('addon',)
@@ -81,7 +78,7 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
 
 
-class DeleteForm(happyforms.Form):
+class DeleteForm(forms.Form):
     slug = forms.CharField()
     reason = forms.CharField(required=False)
 
@@ -95,28 +92,8 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(ugettext('Slug incorrect.'))
 
 
-class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
-
-    def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioChoiceInput, self).__init__(
-            name, value, attrs, choice, index)
-        license = choice[1]  # Choice is a tuple (object.id, object).
-        link = (u'<a class="xx extra" href="%s" target="_blank" '
-                u'rel="noopener noreferrer">%s</a>')
-        if hasattr(license, 'url') and license.url:
-            details = link % (license.url, ugettext('Details'))
-            self.choice_label = mark_safe(self.choice_label + ' ' + details)
-        if hasattr(license, 'icons'):
-            self.attrs['data-cc'] = license.icons
-        self.attrs['data-name'] = unicode(license)
-
-
-class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
-    choice_input_class = LicenseRadioChoiceInput
-
-
 class LicenseRadioSelect(forms.RadioSelect):
-    renderer = LicenseRadioFieldRenderer
+    pass
 
 
 class LicenseForm(AMOModelForm):
@@ -300,7 +277,7 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
         return output
 
 
-class VersionForm(WithSourceMixin, happyforms.ModelForm):
+class VersionForm(WithSourceMixin, forms.ModelForm):
     releasenotes = TransField(
         widget=TransTextarea(), required=False)
     approvalnotes = forms.CharField(
@@ -347,7 +324,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
         return obj.version
 
 
-class CompatForm(happyforms.ModelForm):
+class CompatForm(forms.ModelForm):
     application = forms.TypedChoiceField(choices=amo.APPS_CHOICES,
                                          coerce=int,
                                          widget=forms.HiddenInput)
@@ -394,9 +371,6 @@ class CompatForm(happyforms.ModelForm):
 class BaseCompatFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
-        # form_kwargs is only present in Django 1.9 and newer, so we
-        # re-implement it.
-        self.form_kwargs = kwargs.pop('form_kwargs', {})
         super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
@@ -428,34 +402,13 @@ class BaseCompatFormSet(BaseModelFormSet):
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
 
-    # The 2 methods below, forms() and get_form_kwargs(), are lifted from
-    # Django 1.9, because we need form_kwargs to work.
-    @cached_property
-    def forms(self):
-        """
-        Instantiate forms at first property access.
-        """
-        # DoS protection is included in total_form_count()
-        forms = [self._construct_form(i, **self.get_form_kwargs(i))
-                 for i in range(self.total_form_count())]
-        return forms
-
-    def get_form_kwargs(self, index):
-        """
-        Return additional keyword arguments for each individual formset form.
-
-        index will be None if the form being constructed is a new empty
-        form.
-        """
-        return self.form_kwargs.copy()
-
 
 CompatFormSet = modelformset_factory(
     ApplicationsVersions, formset=BaseCompatFormSet,
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonUploadForm(WithSourceMixin, happyforms.Form):
+class AddonUploadForm(WithSourceMixin, forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -563,7 +516,7 @@ class NewUploadForm(AddonUploadForm):
         return self.cleaned_data
 
 
-class FileForm(happyforms.ModelForm):
+class FileForm(forms.ModelForm):
     platform = File._meta.get_field('platform').formfield()
 
     class Meta:
@@ -647,7 +600,7 @@ class DescribeForm(AddonFormBase):
         return obj
 
 
-class PreviewForm(happyforms.ModelForm):
+class PreviewForm(forms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
@@ -687,7 +640,7 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class AdminForm(happyforms.ModelForm):
+class AdminForm(forms.ModelForm):
     reputation = forms.ChoiceField(
         label=_(u'Reputation'),
         choices=(
@@ -708,7 +661,7 @@ class AdminForm(happyforms.ModelForm):
         )
 
 
-class CheckCompatibilityForm(happyforms.Form):
+class CheckCompatibilityForm(forms.Form):
     application = forms.ChoiceField(
         label=_(u'Application'),
         choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
@@ -747,7 +700,7 @@ def DependencyFormSet(*args, **kw):
     qs = (Addon.objects.public().exclude(id=addon_parent.id).
           exclude(type__in=[amo.ADDON_PERSONA]))
 
-    class _Form(happyforms.ModelForm):
+    class _Form(forms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
         dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
 
@@ -774,7 +727,7 @@ def DependencyFormSet(*args, **kw):
     return FormSet(*args, **kw)
 
 
-class DistributionChoiceForm(happyforms.Form):
+class DistributionChoiceForm(forms.Form):
     LISTED_LABEL = _(
         u'On this site. <span class="helptext">'
         u'Your submission will be listed on this site and the Firefox '
@@ -797,12 +750,12 @@ class DistributionChoiceForm(happyforms.Form):
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
 
 
-class AgreementForm(happyforms.Form):
+class AgreementForm(forms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
 
 
-class SingleCategoryForm(happyforms.Form):
+class SingleCategoryForm(forms.Form):
     category = forms.ChoiceField(widget=forms.RadioSelect)
 
     def __init__(self, *args, **kw):

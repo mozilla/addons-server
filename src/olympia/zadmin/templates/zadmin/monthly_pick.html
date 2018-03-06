@@ -46,7 +46,7 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
 {% block content %}
 <h2>{{ title }}</h2>
 <form method="post">
-  {% csrf_token %}
+  {{ csrf_input }}
   {{ form.non_form_errors() }}
   {{ form.management_form }}
   <table>

@@ -8,6 +8,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
+from importlib import import_module
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
@@ -23,7 +24,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.importlib import import_module
+from django.utils.encoding import force_str
 
 import mock
 import pytest
@@ -1040,7 +1041,7 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     """
     locals_ = locals_ or {}
     try:
-        exec(string, globals_ or globals(), locals_)
+        exec(force_str(string), globals_ or globals(), locals_)
     except Exception as e:
         if value:
             raise AssertionError(

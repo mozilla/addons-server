@@ -11,7 +11,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
-from olympia.translations.fields import LocaleList, LocaleValidationError
+# from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
@@ -127,19 +127,21 @@ def verify_mozilla_trademark(name, user):
                         u'Add-on names cannot contain the Mozilla or '
                         u'Firefox trademarks.'))
 
+    # TODO: Deactivated for now
     if not skip_trademark_check:
-        errors = LocaleList()
+        pass
+    #     errors = LocaleList()
 
-        if not isinstance(name, dict):
-            _check(name)
-        else:
-            for locale, localized_name in name.items():
-                try:
-                    _check(localized_name)
-                except forms.ValidationError as exc:
-                    errors.extend(exc.messages, locale)
+    #     if not isinstance(name, dict):
+    #         _check(name)
+    #     else:
+    #         for locale, localized_name in name.items():
+    #             try:
+    #                 _check(localized_name)
+    #             except forms.ValidationError as exc:
+    #                 errors.extend(exc.messages, locale)
 
-        if errors:
-            raise LocaleValidationError(errors)
+    #     if errors:
+    #         raise LocaleValidationError(errors)
 
     return name
