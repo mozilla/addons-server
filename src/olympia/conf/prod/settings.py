@@ -62,11 +62,6 @@ PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
-# Must be forced in settings because name => path can't be dyncamically
-# computed: reviewer_attachmentS VS reviewer_attachment.
-# TODO: rename folder on file system.
-# (One can also just rename the setting, but this will not be consistent
-# with the naming scheme.)
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
