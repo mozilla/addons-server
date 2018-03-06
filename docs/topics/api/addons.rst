@@ -463,7 +463,7 @@ on AMO.
     :query string app: Mandatory. Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when both the ``app`` and ``type`` parameters are also present, and only makes sense for Language Packs, since Dictionaries are always compatible with every application version.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string type: Filter by :ref:`add-on type <addon-detail-type>`. The default is to return both Language Packs or Dictionaries.
+    :query string type: Mandatory when ``appversion`` is present. Filter by :ref:`add-on type <addon-detail-type>`. The default is to return both Language Packs or Dictionaries.
     :>json array results: An array of language tools.
     :>json int results[].id: The add-on id on AMO.
     :>json object results[].current_compatible_version: Object holding the latest publicly available :ref:`version <version-detail-object>` of the add-on compatible with the ``appversion`` parameter used. Only present when ``appversion`` is passed and valid. For performance reasons, only the following version properties are returned on the object: ``id``, ``files``, ``reviewed``, and ``version``.
