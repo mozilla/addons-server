@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 22:29+0000\n"
+"PO-Revision-Date: 2018-03-06 22:47+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2416,16 +2416,16 @@ msgid "Add-on Content Review"
 msgstr "Runik'oxik Rupam Tz'aqat"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Nïm Retal Ruk'ayewal)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Nïm Ruk'ayewal)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Loman Ruk'ayewal)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Ko'öl Ruk'ayewal)"
 
 msgid "Level 1"
 msgstr "Chojwi' 1"
@@ -2455,7 +2455,7 @@ msgid "Level 9"
 msgstr "Chojwi' 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Tik'utüx Ch'aqa' Etamab'äl"
 
 msgid "Flag"
 msgstr "Tiya' retal"
@@ -2464,25 +2464,25 @@ msgid "Duplicate"
 msgstr "Kamulun"
 
 msgid "Reject"
-msgstr ""
+msgstr "Tixutüx"
 
 msgid "Approve"
 msgstr "Xjuch'"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Jisil o jisowäch rupam"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Tz'ilonel o mek'amonel rupam"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Oyowal, lab'al, o q'aq' taq wachib'äl"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nasi o itzelanïk rupam"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Q'ab'an tzij rupam"
 
 msgid "Online gambling"
 msgstr ""
