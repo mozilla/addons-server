@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 20:31+0000\n"
+"PO-Revision-Date: 2018-03-06 20:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1889,44 +1889,44 @@ msgid "Created: {0}."
 msgstr "Xtz'uk: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Xnuk' k'ojlib'äl: {2} jikib'an chi re: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Xyuj: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Okisaxel {user} xnuk', ruma: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Okisaxel {user} xmeb'ina'äx."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Okisanel {user} xq'at."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Ri nuk'samajel {0} xuq'alajisaj ri rutz'ib'axik rusamaj {user}."
 
 msgid "{rating} for {addon} updated."
 msgstr "{rating} richin {addon} xk'ex."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} xnik'öx."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Okisanel {0.name} xtz'aqatisäx pa {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Okisanel {0.name} xyuj pa {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} man xcholajïx ta."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} xjuch'."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Ri tz'aqat id {0} rik'in GUID {1} xyuj el"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
