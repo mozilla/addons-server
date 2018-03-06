@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-05 13:19+0000\n"
+"PO-Revision-Date: 2018-03-06 14:51+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1031,17 +1031,14 @@ msgstr "Іконки повинні мати формат PNG або JPG."
 msgid "Icons cannot be animated."
 msgstr "Іконки не можуть бути з анімацією."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ця адреса URL вже використовується в одній з ваших збірок."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Введіть дійсну адресу URL, що складається з літер, цифр, підкреслень або дефісів."
+msgstr "Власна URL-адреса повинна складатися з літер, цифр, підкреслювань чи дефісів."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Це ім'я користувача не може використовуватися."
+msgstr "Цю URL-адресу не можна використати."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Цей додаток вже належить до цієї збірки"
@@ -2030,17 +2027,14 @@ msgstr "{addon} {version} вміст відхилено."
 msgid "Content rejected"
 msgstr "Вміст відхилено"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "Запитано більше інформації"
+msgstr "Запит інформації для {addon} вилучено."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Запитано більше інформації"
+msgstr "Запит інформації вилучено"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Відповісти розробнику щодо {addon} {version}."
+msgstr "Запит інформації очищено розробником для {addon} {version}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3845,13 +3839,11 @@ msgstr "Новини розробників"
 msgid "View the blog &#9658;"
 msgstr "Прочитати блог &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Запитано більше інформації"
+msgstr "Запити інформації на черзі:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Ця версія не була розглянута."
+msgstr "Цей запит інформації був оброблений"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -4444,16 +4436,14 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Легко перекладайте {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Підсвітіть будь-який текст, натисніть праву кнопку миші й миттєво перекладайте."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Реверсивний пошук зображень {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Бачите цікаве зображення в інтернеті й хочете дізнатися більше про нього? Спробуйте цей засіб пошуку зображень."
@@ -6145,9 +6135,8 @@ msgstr "Програми:"
 msgid "Require developer to respond in less than…"
 msgstr "Вимагає відповіді розробника протягом щонайбільше…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 днів"
+msgstr "днів"
 
 msgid "Choose a canned response..."
 msgstr "Оберіть стандартну відповідь..."
@@ -6181,9 +6170,8 @@ msgstr "Jetpack-додаток"
 msgid "More Information Requested"
 msgstr "Запитано додаткову інформацію"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Запитано додаткову інформацію"
+msgstr "Протермінований запит інформації"
 
 msgid "Contains Reviewer Comment"
 msgstr "Містить коментар редактора"
@@ -6260,9 +6248,8 @@ msgstr "Немає відгуків"
 msgid "Weight"
 msgstr "Вага"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Запитано додаткову інформацію"
+msgstr "Кінцевий термін запиту інформації"
 
 msgid "Last Content Review"
 msgstr "Остання перевірка вмісту"
@@ -6378,9 +6365,8 @@ msgstr "Оголошення"
 msgid "Update message of the day"
 msgstr "Оновити повідомлення дня"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Запитано додаткову інформацію"
+msgstr "Протермінований запит інформації ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
@@ -6675,9 +6661,8 @@ msgstr "Вимкнути автоматичне схвалення"
 msgid "Enable Auto-Approval"
 msgstr "Увімкнути автоматичне схвалення"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Запитано більше інформації"
+msgstr "Очистити запит інформації"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Прибрати позначку перевірки коду адміном"
@@ -6898,26 +6883,23 @@ msgstr[0] "({0}) оновлення"
 msgstr[1] "({0}) оновлення"
 msgstr[2] "({0}) оновлень"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Перевірка вмісту ({0})"
-msgstr[1] "Перевірка вмісту ({0})"
-msgstr[2] "Перевірка вмісту ({0})"
+msgstr[0] "Перевірка оцінки ({0})"
+msgstr[1] "Перевірки оцінки ({0})"
+msgstr[2] "Перевірок оцінки ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Автоматично схвалений додаток ({0})"
-msgstr[1] "Автоматично схвалені додатки ({0})"
-msgstr[2] "Автоматично схвалених додатків ({0})"
+msgstr[0] "Автоматично схвалений ({0})"
+msgstr[1] "Автоматично схвалені ({0})"
+msgstr[2] "Автоматично схвалених ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Запитано більше інформації: {0}"
-msgstr[1] "Запитано більше інформації: {0}"
-msgstr[2] "Запитано більше інформації: {0}"
+msgstr[0] "Протермінований запит інформації ({0})"
+msgstr[1] "Протерміновані запити інформації ({0})"
+msgstr[2] "Протермінованих запитів інформації ({0})"
 
 msgid "Flagged"
 msgstr "Відмічено"
