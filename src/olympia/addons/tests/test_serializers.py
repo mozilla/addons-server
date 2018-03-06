@@ -941,11 +941,43 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['target_locale'] == self.addon.target_locale
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
+        assert 'current_compatible_version' not in result
 
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)
         result = self.serialize()
         assert result['type'] == 'dictionary'
+        assert 'current_compatible_version' not in result
+
+    def test_current_compatible_version(self):
+        self.addon = addon_factory(type=amo.ADDON_LPAPP)
+        # compatible_versions is set by the view through prefetch, it
+        # looks like a list.
+        self.addon.compatible_versions = [self.addon.current_version]
+        self.addon.compatible_versions[0].update(created=self.days_ago(1))
+        # Create a new current version, just to prove that
+        # current_compatible_version does not use that.
+        version_factory(addon=self.addon)
+        self.addon.reload
+        assert (
+            self.addon.compatible_versions[0] !=
+            self.addon.current_version)
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=57.0')
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is not None
+        assert set(result['current_compatible_version'].keys()) == set(
+            ['id', 'files', 'reviewed', 'version'])
+
+        self.addon.compatible_versions = None
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is None
+
+        self.addon.compatible_versions = []
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is None
 
 
 class TestESAddonAutoCompleteSerializer(ESTestCase):

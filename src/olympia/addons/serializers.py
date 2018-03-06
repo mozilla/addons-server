@@ -16,6 +16,7 @@ from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
+from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
@@ -144,11 +145,18 @@ class CompactLicenseSerializer(LicenseSerializer):
         fields = ('id', 'name', 'url')
 
 
-class SimpleVersionSerializer(serializers.ModelSerializer):
-    compatibility = serializers.SerializerMethodField()
-    is_strict_compatibility_enabled = serializers.SerializerMethodField()
-    edit_url = serializers.SerializerMethodField()
+class MinimalVersionSerializer(serializers.ModelSerializer):
     files = FileSerializer(source='all_files', many=True)
+
+    class Meta:
+        model = Version
+        fields = ('id', 'files', 'reviewed', 'version')
+
+
+class SimpleVersionSerializer(MinimalVersionSerializer):
+    compatibility = serializers.SerializerMethodField()
+    edit_url = serializers.SerializerMethodField()
+    is_strict_compatibility_enabled = serializers.SerializerMethodField()
     license = CompactLicenseSerializer()
     release_notes = TranslationSerializerField(source='releasenotes')
     url = serializers.SerializerMethodField()
@@ -166,13 +174,6 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             instance.license.version_instance = instance
         return super(SimpleVersionSerializer, self).to_representation(instance)
 
-    def get_url(self, obj):
-        return absolutify(obj.get_url_path())
-
-    def get_edit_url(self, obj):
-        return absolutify(obj.addon.get_dev_url(
-            'versions.edit', args=[obj.pk], prefix_only=True))
-
     def get_compatibility(self, obj):
         return {
             app.short: {
@@ -182,8 +183,15 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             } for app, compat in obj.compatible_apps.items()
         }
 
+    def get_edit_url(self, obj):
+        return absolutify(obj.addon.get_dev_url(
+            'versions.edit', args=[obj.pk], prefix_only=True))
+
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
+
+    def get_url(self, obj):
+        return absolutify(obj.get_url_path())
 
 
 class SimpleESVersionSerializer(SimpleVersionSerializer):
@@ -364,7 +372,10 @@ class AddonSerializer(serializers.ModelSerializer):
         return getattr(obj, 'tag_list', [])
 
     def get_url(self, obj):
-        return absolutify(obj.get_url_path())
+        # Use get_detail_url(), get_url_path() does an extra check on
+        # current_version that is annoying in subclasses which don't want to
+        # load that version.
+        return absolutify(obj.get_detail_url())
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())
@@ -637,12 +648,39 @@ class StaticCategorySerializer(serializers.Serializer):
 class LanguageToolsSerializer(AddonSerializer):
     target_locale = serializers.CharField()
     locale_disambiguation = serializers.CharField()
+    current_compatible_version = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
-        fields = ('id', 'default_locale', 'guid',
+        fields = ('id', 'current_compatible_version', 'default_locale', 'guid',
                   'locale_disambiguation', 'name', 'slug', 'target_locale',
                   'type', 'url', )
+
+    def get_current_compatible_version(self, obj):
+        compatible_versions = getattr(obj, 'compatible_versions', None)
+        if compatible_versions is not None:
+            data = MinimalVersionSerializer(
+                compatible_versions, many=True).data
+            try:
+                # 99% of the cases there will only be one result, since most
+                # language packs are automatically uploaded for a given app
+                # version. If there are more, pick the most recent one.
+                return data[0]
+            except IndexError:
+                # This should not happen, because the queryset in the view is
+                # supposed to filter results to only return add-ons that do
+                # have at least one compatible version, but let's not fail
+                # too loudly if the unthinkable happens...
+                pass
+        return None
+
+    def to_representation(self, obj):
+        data = super(LanguageToolsSerializer, self).to_representation(obj)
+        request = self.context['request']
+        if (AddonAppVersionQueryParam.query_param not in request.GET and
+                'current_compatible_version' in data):
+            data.pop('current_compatible_version')
+        return data
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):

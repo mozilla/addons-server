@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
-from django.utils.functional import lazy
-
 # Make sure the app needed to test translations is present.
 INSTALLED_APPS += TEST_INSTALLED_APPS
 
@@ -39,6 +37,10 @@ CACHES = {
     'default': {
         'BACKEND': 'caching.backends.locmem.LocMemCache',
         'LOCATION': 'olympia',
+    },
+    'filesystem': {  # In real settings it's a filesystem cache, not here.
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'LOCATION': 'olympia-filesystem',
     }
 }
 
