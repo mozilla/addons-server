@@ -54,19 +54,19 @@ validation and you will be able to check its status.
     :param version: The version of the add-on. A version ending with
         ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
         detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
-    :param channel: (optional) The version channel this version should uploaded
-        to, which determines its visibility on the site. Can be either
-        ``unlisted`` or ``listed``.  See note below.
     :form upload: The add-on file being uploaded.
+    :form channel: (optional) The channel this version should be uploaded to,
+        which determines its visibility on the site. It can be either
+        ``unlisted`` or ``listed``.  See the note below.
     :reqheader Content-Type: multipart/form-data
 
     .. note::
-        ``channel`` is only valid for new versions on existing add-ons -
-        if the add-on is new the version will be created as ``unlisted``.  If
-        the parameter isn't supplied then the channel of the most recent
-        version (submitted either via this API or the website) will assumed.
-        (e.g. if you submit a version as ``listed`` then the next version will
-        be ``listed``, if you don't specify the channel).
+        ``channel`` is only valid for new versions on existing add-ons.
+        If the add-on is new then the version will be created as ``unlisted``.
+        If the parameter isn't supplied then the channel of the most recent
+        version (submitted either via this API or the website) will be assumed.
+        For example, if you submit a version as ``listed`` then the next version
+        will be ``listed`` if you don't specify the channel.
 
     **Response:**
 
