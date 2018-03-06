@@ -11,7 +11,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import django_tables2 as tables
 import jinja2
-import waffle
 
 import olympia.core.logger
 
@@ -641,10 +640,8 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(
-            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_, use_autograph=use_autograph)
+            sign_file(file_)
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -840,10 +837,8 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(
-            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_, use_autograph=use_autograph)
+            sign_file(file_)
 
         self.set_files(amo.STATUS_PUBLIC, self.files)
 

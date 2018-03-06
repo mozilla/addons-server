@@ -326,7 +326,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
         mock_auto_sign_file.assert_has_calls([
-            mock.call(f, is_beta=False, use_autograph=False)
+            mock.call(f, is_beta=False)
             for f in latest_version.all_files])
 
     def test_with_source(self):
@@ -1486,7 +1486,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         mock_auto_sign_file.assert_has_calls([
-            mock.call(f, is_beta=False, use_autograph=False)
+            mock.call(f, is_beta=False)
             for f in version.all_files])
 
     @override_switch('beta-versions', active=True)

@@ -172,9 +172,6 @@ GEOIP_URL = 'https://geo.services.mozilla.com'
 
 AES_KEYS = env.dict('AES_KEYS')
 
-# Signing
-SIGNING_SERVER = env('SIGNING_SERVER')
-
 SENTRY_DSN = env('SENTRY_DSN')
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
