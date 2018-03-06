@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 22:10+0000\n"
+"PO-Revision-Date: 2018-03-06 22:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2299,10 +2299,10 @@ msgid "RSS, News and Blogging"
 msgstr "RSS, taq Tzijol chuqa' Ichinya'l"
 
 msgid "Site-specific"
-msgstr ""
+msgstr "Jikïl-ruxaq"
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Ajk'amaya'l chuqa' Taq Rusamajib'al Nuk'unel"
 
 msgid "All Rights Reserved"
 msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
@@ -2356,7 +2356,7 @@ msgid "Persona"
 msgstr "Persona"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Ketal Ajq'ab'aj Nik'onela'"
 
 msgid "New Add-on Review"
 msgstr "K'ak'a' Rutzijoxik Tz'aqat"
@@ -2389,31 +2389,31 @@ msgid "Theme Review"
 msgstr "Rutzijoxik Wachinel"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "K'ak'a' Rejqalem Ajya'öl richin Kanoxïk"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Nab'ey Rejqalem Ajya'öl richin Kanoxïk"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Xk'ex Rejqalem Ajya'öl richin Kanoxïk"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "K'ak'a' Rejqalem Tz'aqät Wachinel"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Nab'ey Rejqalem Tz'aqät Wachinel"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Xk'ex Rejqalem Tz'aqät Wachinel"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Xwetch'owïx Rutzijoxik Tz'aqat"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Xchojmirisäx ri retch'owik Runik'oxik Tz'aqat"
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "Runik'oxik Rupam Tz'aqat"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
