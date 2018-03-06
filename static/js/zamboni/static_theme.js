@@ -120,6 +120,8 @@ $(document).ready(function() {
                 updateManifest();
             }
         });
+        /* force the pop-up panel ltr or the images end up in the wrong position. */
+        $wizard.find('div.minicolors-panel').attr('dir', 'ltr');
 
         $wizard.on('change', '#theme-name', updateManifest);
 
