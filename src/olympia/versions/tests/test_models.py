@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import hashlib
+import os.path
 
 from datetime import datetime, timedelta
 
 from waffle.testutils import override_switch
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -941,6 +943,39 @@ class TestStatusFromUpload(TestVersionFromUpload):
         # Check that the previously uploaded version is still pending.
         assert File.objects.filter(version=new_version)[0].status == (
             amo.STATUS_PENDING)
+
+
+@override_switch('allow-static-theme-uploads', active=True)
+class TestStaticThemeFromUpload(UploadTest):
+
+    def setUp(self):
+        path = 'src/olympia/devhub/tests/addons/static_theme.zip'
+        self.upload = self.get_upload(
+            abspath=os.path.join(settings.ROOT, path))
+
+    @mock.patch('olympia.versions.models.generate_static_theme_preview')
+    def test_new_version_while_nominated(
+            self, generate_static_theme_preview_mock):
+        self.addon = addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            status=amo.STATUS_NOMINATED,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW
+            }
+        )
+        version = Version.from_upload(
+            self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED)
+        assert len(version.all_files) == 1
+        assert generate_static_theme_preview_mock.delay.call_count == 1
+
+    @mock.patch('olympia.versions.models.generate_static_theme_preview')
+    def test_new_version_while_public(
+            self, generate_static_theme_preview_mock):
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        version = Version.from_upload(
+            self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED)
+        assert len(version.all_files) == 1
+        assert generate_static_theme_preview_mock.delay.call_count == 1
 
 
 class TestApplicationsVersions(TestCase):
