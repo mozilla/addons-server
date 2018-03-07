@@ -193,11 +193,14 @@ class Version(OnChangeMixin, ModelBase):
         else:
             platforms = cls._make_safe_platform_files(platforms)
 
-        for platform in platforms:
-            File.from_upload(upload, version, platform,
-                             parsed_data=parsed_data,
-                             is_beta=(is_beta and waffle.switch_is_active(
-                                      'beta-versions')))
+        # Create as many files as we have platforms. Update the all_files
+        # cached property on the Version while we're at it, because we might
+        # need it afterwards.
+        version.all_files = [
+            File.from_upload(
+                upload, version, platform, parsed_data=parsed_data,
+                is_beta=(is_beta and waffle.switch_is_active('beta-versions')))
+            for platform in platforms]
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
