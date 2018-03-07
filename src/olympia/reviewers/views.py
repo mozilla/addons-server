@@ -41,7 +41,7 @@ from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
-    ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList, Whiteboard,
+    ViewFullReviewQueue, ViewPendingQueue, Whiteboard,
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.utils import (
@@ -529,17 +529,12 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                           motd_editable=motd_editable))
 
 
-def queue_counts(type=None, unlisted=False, admin_reviewer=False,
-                 limited_reviewer=False, **kw):
-    def construct_query_from_sql_model(sqlmodel, days_min=None, days_max=None):
+def queue_counts(admin_reviewer=False, limited_reviewer=False):
+    def construct_query_from_sql_model(sqlmodel):
         qs = sqlmodel.objects
 
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
-        if days_min:
-            qs = qs.having('waiting_time_days >=', days_min)
-        if days_max:
-            qs = qs.having('waiting_time_days <=', days_max)
         if limited_reviewer:
             qs = qs.having('waiting_time_hours >=',
                            amo.REVIEW_LIMITED_DELAY_HOURS)
@@ -551,8 +546,8 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         ).order_by('addonreviewerflags__pending_info_request'))
 
     counts = {
-        'pending': construct_query_from_sql_model(ViewPendingQueue, **kw),
-        'nominated': construct_query_from_sql_model(ViewFullReviewQueue, **kw),
+        'pending': construct_query_from_sql_model(ViewPendingQueue),
+        'nominated': construct_query_from_sql_model(ViewFullReviewQueue),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue(
@@ -562,17 +557,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
-    if unlisted:
-        counts = {
-            'all': construct_query_from_sql_model(ViewUnlistedAllList)
-        }
-    rv = {}
-    if isinstance(type, basestring):
-        return counts[type]()
-    for k, v in counts.items():
-        if not isinstance(type, list) or k in type:
-            rv[k] = v()
-    return rv
+    return {queue: count() for (queue, count) in counts.iteritems()}
 
 
 @addons_reviewer_required
