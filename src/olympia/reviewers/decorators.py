@@ -35,6 +35,27 @@ def addons_reviewer_required(f):
     return wrapper
 
 
+def addons_or_themes_reviewer_required(f):
+    """Require an addons or static themes reviewer user.
+
+    The user logged in must be an addons reviewer or admin, or have the
+    'ReviewerTools:View' permission for GET requests.
+
+    An addons reviewer is someone who is in the group with the following
+    permission: 'Addons:Review';
+    a static themes reviewer is someone who is in the group with the following
+    permission: 'Addons:ThemeReview'
+    """
+    @login_required
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        if (_view_on_get(request) or acl.check_addons_reviewer(request) or
+                acl.check_static_theme_reviewer(request)):
+            return f(request, *args, **kw)
+        raise PermissionDenied
+    return wrapper
+
+
 def unlisted_addons_reviewer_required(f):
     """Require an "unlisted addons" reviewer user.
 
@@ -103,6 +124,7 @@ def any_reviewer_required(f):
     - Addons:ContentReview
     - Addons:PostReview
     - Personas:Review
+    - Addons:ThemeReview
     """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):

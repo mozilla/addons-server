@@ -76,7 +76,11 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = []
-        if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        got_extension_review = acl.action_allowed(
+            request, amo.permissions.ADDONS_REVIEW)
+        got_theme_review = acl.action_allowed(
+            request, amo.permissions.STATIC_THEMES_REVIEW)
+        if got_extension_review or got_theme_review:
             tabnav.extend((
                 ('nominated', 'queue_nominated',
                  (ungettext('New Add-on ({0})',
