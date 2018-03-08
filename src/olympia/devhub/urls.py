@@ -16,7 +16,7 @@ theme_detail_patterns = [
     url('^delete$', views.delete, name='devhub.themes.delete'),
     # Upload url here to satisfy CSRF.
     url('^edit/upload/'
-        '(?P<upload_type>persona_header|persona_footer)$',
+        '(?P<upload_type>persona_header)$',
         views.ajax_upload_image, name='devhub.personas.reupload_persona'),
     url('^edit$', views.edit_theme, name='devhub.themes.edit'),
     url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
@@ -209,7 +209,7 @@ urlpatterns = decorate(write, [
     url('^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
         name='devhub.themes.submit.done'),
     url('^theme/submit/upload/'
-        '(?P<upload_type>persona_header|persona_footer)$',
+        '(?P<upload_type>persona_header)$',
         views.ajax_upload_image, name='devhub.personas.upload_persona'),
     url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 

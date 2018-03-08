@@ -248,7 +248,6 @@
             // TODO(cvan): We need to link to the CDN-served Persona images since
             //             Personas cannot reference moz-filedata URIs.
             data.header = data.headerURL = $d.find('#persona-header .preview').attr('src');
-            data.footer = data.footerURL = $d.find('#persona-footer .preview').attr('src');
             $preview.attr('data-browsertheme', JSON.stringify(data));
             var accentcolor = $d.find('#id_accentcolor').attr('data-rgb'),
                 textcolor = $d.find('#id_textcolor').val();
