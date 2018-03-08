@@ -41,7 +41,7 @@ class AddonSerializerOutputTestMixin(object):
         assert data == {
             'id': author.pk,
             'name': author.name,
-            'picture_url': absolutify(author.picture_url),
+            'picture_url': None,
             'url': absolutify(author.get_url_path()),
             'username': author.username,
         }
@@ -1049,7 +1049,7 @@ class TestAddonDeveloperSerializer(TestBaseUserSerializer):
 
     def test_picture(self):
         serialized = self.serialize()
-        assert ('anon_user.png' in serialized['picture_url'])
+        assert serialized['picture_url'] is None
 
         self.user.update(picture_type='image/jpeg')
         serialized = self.serialize()
