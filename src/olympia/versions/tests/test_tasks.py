@@ -169,6 +169,11 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
         ('top', 'repeat-x', 120, '100%', 280, 0),
         ('center', 'repeat-y', '100%', 450, 280, -175),
         ('left top', 'repeat', 120, 450, 0, 0),
+        # alignment=None is 'left top'
+        (None, 'repeat', 120, 450, 0, 0),
+        # tiling=None is 'no-repeat'
+        ('center', None, '100%', '100%', 280, -175),
+        (None, None, '100%', '100%', 0, 0),
     )
 )
 def test_additional_background(encode_header_image, alignment, tiling,
