@@ -295,6 +295,27 @@ class TestPackaged(TestCase):
         assert len(packaged.get_id(self.addon)) <= 64
         assert packaged.get_id(self.addon) == hashed
 
+    @responses.activate
+    def test_sign_addon_with_unicode_guid(self):
+        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
+
+        packaged.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+
+        assert (
+            subject_info['common_name'] ==
+            u'NavratnePeniaze@NávratnéPeniaze')
+        assert manifest == (
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: MD5 SHA1 SHA256\n'
+            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
+
 
 class TestTasks(TestCase):
     fixtures = ['base/users']
