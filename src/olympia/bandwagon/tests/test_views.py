@@ -1486,7 +1486,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
-        patched_drf_setting = settings.REST_FRAMEWORK
+        patched_drf_setting = dict(settings.REST_FRAMEWORK)
         patched_drf_setting['PAGE_SIZE'] = 3
         with django.test.override_settings(REST_FRAMEWORK=patched_drf_setting):
             response = self.client.get(self.url + '?with_addons')
