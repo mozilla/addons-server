@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-06 12:09+0000\n"
+"PO-Revision-Date: 2018-03-08 08:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1020,17 +1020,14 @@ msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
 msgid "Icons cannot be animated."
 msgstr "Piktogrammen meie net bewegend wêze."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Dizze identifikator wurdt al troch ien fan jo oare kolleksje brûkt."
+msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Fier in jildige identifikator yn dy't út letters, sifers, lizzende streepkes of ôfbrektekens bestiet."
+msgstr "Fier in oanpaste URL yn dy't út letters, sifers, lizzende streepkes of ôfbrektekens bestiet."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Dizze brûkersnamme kin net brûkt wurde."
+msgstr "Dizze oanpaste URL kin net brûkt wurde."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dizze add-on heart al by de kolleksje"
@@ -2011,17 +2008,14 @@ msgstr "Ynhâld {addon} {version} ôfwêzen."
 msgid "Content rejected"
 msgstr "Ynhâld ôfwêzen"
 
-#, fuzzy
 msgid "{addon} information request removed."
-msgstr "Mear ynformaasje frege"
+msgstr "Fersyk om ynformaasje foar {addon} fuortsmiten."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Mear ynformaasje frege"
+msgstr "Fersyk om ynformaasje fuortsmiten"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Antwurd fan ûntwikkeler oer {addon} {version}."
+msgstr "Fersyk om ynformaasje foar {addon} {version} wiske troch ûntwikkeler."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3818,13 +3812,11 @@ msgstr "Untwikkelersnijs"
 msgid "View the blog &#9658;"
 msgstr "Lês de blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Mear ynformaasje frege"
+msgstr "Utsteand fersyk om ynformaasje:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Dizze ferzje is net beoardiele."
+msgstr "Dit fersyk om ynformaasje is ferwurke"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Kies in lisinsje dy't tapaslik is foar de rjochten dy't jo op jo boarnekoade jaan wolle. Allinnich relevant foar fermelde add-ons."
@@ -4424,16 +4416,14 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
 msgstr[1] "{0} warskôgingen"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Set ienfâldich {start_sub_heading}oer mei {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Markearje tekst, klik mei de rjochtermûsknop, en set daliks oer."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sykje ôfbyldingen werom {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
 msgstr "Sjogge jo in ynteressante ôfbylding op it web en wolle jo hjir mear oer witte? Probearje dit sykhelpmiddel foar ôfbyldingen."
@@ -6109,9 +6099,8 @@ msgstr "Tapassingen:"
 msgid "Require developer to respond in less than…"
 msgstr "Antwurd fan ûntwikkeler freegje binnen …"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dagen"
+msgstr "dagen"
 
 msgid "Choose a canned response..."
 msgstr "Kies in yn it foar definiearre antwurd…"
@@ -6145,9 +6134,8 @@ msgstr "Jetpack-add-on"
 msgid "More Information Requested"
 msgstr "Mear ynformaasje frege"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Mear ynformaasje frege"
+msgstr "Ferrûn fersyk om ynformaasje"
 
 msgid "Contains Reviewer Comment"
 msgstr "Befettet beoardielersopmerking"
@@ -6221,9 +6209,8 @@ msgstr "Gjin beoardielingen"
 msgid "Weight"
 msgstr "Gewicht"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Mear ynformaasje frege"
+msgstr "Deadline foar fersyk om ynformaasje"
 
 msgid "Last Content Review"
 msgstr "Lêste ynhâldsbeoardieling"
@@ -6342,9 +6329,8 @@ msgstr "Meidieling"
 msgid "Update message of the day"
 msgstr "Berjocht fan de dei bywurkje"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Mear ynformaasje frege"
+msgstr "Ferrûne fersiken om ynformaasje ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Der is in ûnbekende flater bard"
@@ -6640,9 +6626,8 @@ msgstr "Automatysk goedkarre útskeakelje"
 msgid "Enable Auto-Approval"
 msgstr "Automatyske goedkarring ynskeakelje"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Mear ynformaasje frege"
+msgstr "Fersyk om ynformaasje te wiskjen"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Markearring foar koadebeoardieling troch behearder wiskje"
@@ -6863,23 +6848,20 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Fernijing ({0})"
 msgstr[1] "Fernijingen ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ynhâldsbeoardieling ({0})"
-msgstr[1] "Ynhâldsbeoardieling ({0})"
+msgstr[0] "Wurdearringsbeoardieling ({0})"
+msgstr[1] "Wurdearringsbeoardieling ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Automatysk goedkarre add-on ({0})"
-msgstr[1] "Automatysk goedkarre add-ons ({0})"
+msgstr[0] "Automatysk goedkard ({0})"
+msgstr[1] "Automatysk goedkard ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Mear ynformaasje frege: {0}"
-msgstr[1] "Mear ynformaasje frege: {0}"
+msgstr[0] "Ferrûn fersyk om ynformaasje ({0})"
+msgstr[1] "Ferrûne fersiken om ynformaasje ({0})"
 
 msgid "Flagged"
 msgstr "Markearre"
