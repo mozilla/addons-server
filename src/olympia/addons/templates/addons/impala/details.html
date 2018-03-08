@@ -145,14 +145,19 @@
 
 {% if addon.type != amo.ADDON_PERSONA %}
   {% set version = addon.current_version %}
+  {% if addon.type == amo.ADDON_STATICTHEME %}
+    {% set previews = list(version.previews) %}
+  {% else %}
+    {% set previews = addon.all_previews %}
+  {% endif %}
 
-  {% if addon.all_previews|length > 0 %}
+  {% if previews|length > 0 %}
     <section class="previews">
       <div class="carousel">
         <a href="#" class="control prev">&laquo;</a>
         <a href="#" class="control next">&raquo;</a>
         <ul id="preview" class="slider">
-          {%- for preview in addon.all_previews -%}
+          {%- for preview in previews -%}
             <li class="panel">
               <a class="screenshot thumbnail" rel="jquery-lightbox"
                  href="{{ preview.image_url }}" title="{{ preview.caption }}">

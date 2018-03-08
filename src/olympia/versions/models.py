@@ -9,20 +9,22 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, signals as dbsignals
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import caching.base
 import jinja2
 
+from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import activity, amo
 from olympia.amo.decorators import use_master
-from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.models import (
+    BasePreview, ManagerBase, ModelBase, OnChangeMixin)
 from olympia.amo.templatetags.jinja_helpers import id_to_path, user_media_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
@@ -212,15 +214,13 @@ class Version(OnChangeMixin, ModelBase):
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            from olympia.addons.models import Preview  # Avoid circular ref.
             dst_root = os.path.join(user_media_path('addons'), str(addon.id))
             theme_data = parsed_data.get('theme', {})
             version_root = os.path.join(dst_root, unicode(version.id))
 
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
-            preview = Preview.objects.create(
-                addon=addon, caption=unicode(version.version))
+            preview = VersionPreview.objects.create(version=version)
             generate_static_theme_preview.delay(
                 theme_data, version_root, preview)
 
@@ -643,6 +643,21 @@ class Version(OnChangeMixin, ModelBase):
         except AutoApprovalSummary.DoesNotExist:
             pass
         return False
+
+
+class VersionPreview(BasePreview, ModelBase):
+    version = models.ForeignKey(Version, related_name='previews')
+    position = models.IntegerField(default=0)
+    sizes = JSONField(max_length=25, default={})
+    media_folder = 'version-previews'
+
+    class Meta:
+        db_table = 'version_previews'
+        ordering = ('-version', 'position', 'created')
+
+
+dbsignals.pre_save.connect(save_signal, sender=VersionPreview,
+                           dispatch_uid='version_preview_translations')
 
 
 @use_master

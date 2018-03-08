@@ -392,10 +392,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
-        assert addon.previews.all().count() == 1
-        preview = addon.previews.last()
+        assert addon.current_version.previews.all().count() == 1
+        preview = addon.current_version.previews.last()
         assert storage.exists(preview.image_path)
-        assert preview.caption == unicode(addon.current_version.version)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
@@ -416,7 +415,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
-        assert addon.previews.all().count() == 0
+        assert latest_version.previews.all().count() == 0
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_listed(self):
@@ -445,10 +444,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
-        assert addon.previews.all().count() == 1
-        preview = addon.previews.last()
+        assert addon.current_version.previews.all().count() == 1
+        preview = addon.current_version.previews.last()
         assert storage.exists(preview.image_path)
-        assert preview.caption == unicode(addon.current_version.version)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
@@ -481,7 +479,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
-        assert addon.previews.all().count() == 0
+        assert latest_version.previews.all().count() == 0
 
 
 class DetailsPageMixin(object):
@@ -1379,12 +1377,11 @@ class VersionSubmitUploadMixin(object):
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
-            assert self.addon.previews.all().count() == 1
-            preview = self.addon.previews.last()
+            assert version.previews.all().count() == 1
+            preview = version.previews.last()
             assert storage.exists(preview.image_path)
-            assert preview.caption == unicode(version)
         else:
-            assert self.addon.previews.all().count() == 0
+            assert version.previews.all().count() == 0
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):

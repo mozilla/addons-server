@@ -80,7 +80,13 @@ def addon_to_dict(addon, disco=False, src='api'):
     if addon.type == amo.ADDON_PERSONA:
         d['previews'] = [addon.persona.preview_url]
     else:
-        d['previews'] = [p.as_dict(src=src) for p in addon.all_previews]
+        def preview_as_dict(preview, src):
+            d = {'full': urlparams(preview.image_url, src=src),
+                 'thumbnail': urlparams(preview.thumbnail_url, src=src),
+                 'caption': unicode(preview.caption)}
+            return d
+
+        d['previews'] = [preview_as_dict(p, src) for p in addon.all_previews]
 
     return d
 

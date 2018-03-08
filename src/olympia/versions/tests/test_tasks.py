@@ -11,8 +11,8 @@ import pytest
 from PIL import Image, ImageChops
 
 from olympia import amo
-from olympia.addons.models import Preview
 from olympia.amo.tests import addon_factory
+from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
     AdditionalBackground, generate_static_theme_preview, write_svg_to_png)
 
@@ -74,7 +74,7 @@ def test_generate_static_theme_preview(
     header_root = os.path.join(
         settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
-    preview = Preview.objects.create(addon=addon)
+    preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, header_root, preview)
 
     write_svg_to_png_mock.call_count == 1
@@ -137,7 +137,7 @@ def test_generate_preview_with_additional_backgrounds(
     header_root = os.path.join(
         settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
-    preview = Preview.objects.create(addon=addon)
+    preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, header_root, preview)
 
     write_svg_to_png_mock.call_count == 1
