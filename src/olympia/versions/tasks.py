@@ -15,7 +15,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.amo.utils import pngcrush_image
+from olympia.amo.utils import pngcrush_image, resize_image
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -138,7 +138,16 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
     context.update(additional_backgrounds=additional_backgrounds)
 
     svg = tmpl.render(context).encode('utf-8')
-    size = write_svg_to_png(svg, preview.image_path)
-    if size:
+    image_size = write_svg_to_png(svg, preview.image_path)
+    if image_size:
         pngcrush_image(preview.image_path)
-        preview.update(sizes={'image': size})
+        sizes = {
+            # We mimic what resize_preview() does, but in our case, 'image'
+            # dimensions are not amo.ADDON_PREVIEW_SIZES[1] but something
+            # specific to static themes automatic preview.
+            'image': image_size,
+            'thumbnail': resize_image(
+                preview.image_path, preview.thumbnail_path,
+                amo.ADDON_PREVIEW_SIZES[0])[0]
+        }
+        preview.update(sizes=sizes)

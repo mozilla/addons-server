@@ -10,6 +10,7 @@ import mock
 import pytest
 from PIL import Image, ImageChops
 
+from olympia import amo
 from olympia.addons.models import Preview
 from olympia.amo.tests import addon_factory
 from olympia.versions.tasks import (
@@ -43,6 +44,7 @@ def test_write_svg_to_png():
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 @pytest.mark.parametrize(
@@ -53,9 +55,10 @@ def test_write_svg_to_png():
     )
 )
 def test_generate_static_theme_preview(
-        write_svg_to_png, pngcrush_image_mock, header_url, header_height,
-        preserve_aspect_ratio, mimetype):
-    write_svg_to_png.return_value = (123, 456)
+        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,
+        header_url, header_height, preserve_aspect_ratio, mimetype):
+    write_svg_to_png_mock.return_value = (789, 101112)
+    resize_image_mock.return_value = (123, 456), (789, 101112)
     theme_manifest = {
         "images": {
             "headerURL": header_url
@@ -73,11 +76,22 @@ def test_generate_static_theme_preview(
     addon = addon_factory()
     preview = Preview.objects.create(addon=addon)
     generate_static_theme_preview(theme_manifest, header_root, preview)
-    write_svg_to_png.call_count == 1
+
+    write_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 1
     assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    ((svg_content, png_path), _) = write_svg_to_png.call_args
+    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
     assert png_path == preview.image_path
+    assert resize_image_mock.call_count == 1
+    assert resize_image_mock.call_args_list[0][0] == (
+        png_path,
+        preview.thumbnail_path,
+        amo.ADDON_PREVIEW_SIZES[0],
+    )
+
+    preview.reload()
+    assert preview.sizes == {'image': [789, 101112], 'thumbnail': [123, 456]}
+
     # check header is there.
     assert 'width="680" height="100" xmlns="http://www.w3.org/2000/' in (
         svg_content)
@@ -98,9 +112,14 @@ def test_generate_static_theme_preview(
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.resize_image')
+@mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
-def test_generate_preview_with_additional_backgrounds(write_svg_to_png):
-    write_svg_to_png.return_value = (123, 456)
+def test_generate_preview_with_additional_backgrounds(
+        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,):
+    write_svg_to_png_mock.return_value = (789, 101112)
+    resize_image_mock.return_value = (123, 456), (789, 101112)
+
     theme_manifest = {
         "images": {
             "headerURL": "empty.png",
@@ -120,9 +139,21 @@ def test_generate_preview_with_additional_backgrounds(write_svg_to_png):
     addon = addon_factory()
     preview = Preview.objects.create(addon=addon)
     generate_static_theme_preview(theme_manifest, header_root, preview)
-    write_svg_to_png.assert_called()
-    ((svg_content, png_path), _) = write_svg_to_png.call_args
+
+    write_svg_to_png_mock.call_count == 1
+    assert pngcrush_image_mock.call_count == 1
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
+    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
     assert png_path == preview.image_path
+    assert resize_image_mock.call_count == 1
+    assert resize_image_mock.call_args_list[0][0] == (
+        png_path,
+        preview.thumbnail_path,
+        amo.ADDON_PREVIEW_SIZES[0],
+    )
+
+    preview.reload()
+    assert preview.sizes == {'image': [789, 101112], 'thumbnail': [123, 456]}
 
     # check additional background pattern is correct
     image_width = 270
