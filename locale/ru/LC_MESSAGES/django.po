@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-08 20:34+0000\n"
+"PO-Revision-Date: 2018-03-08 22:18+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3865,9 +3865,8 @@ msgstr "Прочесть блог &#9658;"
 msgid "Pending information request:"
 msgstr "Ожидающие запросы информации:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Эта версия не была проверена."
+msgstr "Это запрос информации был обработан"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код. Это относится только к опубликованным дополнениям."
@@ -5985,7 +5984,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Этот рейтинг невозможно отметить, потому что у него нет текста отзыва."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Спасибо; этот отзыв помечен и будет рассмотрен проверяющим."
@@ -6301,9 +6300,8 @@ msgstr "Нет отзывов"
 msgid "Weight"
 msgstr "Вес"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Запрошено больше информации"
+msgstr "Срок запроса информации"
 
 msgid "Last Content Review"
 msgstr "Последняя проверка содержимого"
@@ -6419,9 +6417,8 @@ msgstr "Объявление"
 msgid "Update message of the day"
 msgstr "Обновить послание дня"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Запрошено больше информации"
+msgstr "Запросы информации с истёкшим сроком ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Произошла неизвестная ошибка"
@@ -6938,26 +6935,23 @@ msgstr[0] "Обновление ({0})"
 msgstr[1] "Обновления ({0})"
 msgstr[2] "Обновления ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Проверка содержимого ({0})"
-msgstr[1] "Проверка содержимого ({0})"
-msgstr[2] "Проверка содержимого ({0})"
+msgstr[0] "Проверка рейтинга ({0})"
+msgstr[1] "Проверка рейтинга ({0})"
+msgstr[2] "Проверка рейтинга ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Автоматически утверждённые дополнения ({0})"
-msgstr[1] "Автоматически утверждённые дополнения ({0})"
-msgstr[2] "Автоматически утверждённые дополнения ({0})"
+msgstr[0] "Автоматически одобренные ({0})"
+msgstr[1] "Автоматически одобренные ({0})"
+msgstr[2] "Автоматически одобренные ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Запрошено больше информации: {0}"
-msgstr[1] "Запрошено больше информации: {0}"
-msgstr[2] "Запрошено больше информации: {0}"
+msgstr[0] "Запросы информации с истёкшим сроком ({0})"
+msgstr[1] "Запросы информации с истёкшим сроком ({0})"
+msgstr[2] "Запросы информации с истёкшим сроком ({0})"
 
 msgid "Flagged"
 msgstr "Отмечено"
