@@ -558,9 +558,10 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                 qs, acl.action_allowed(request, amo.permissions.ADDONS_REVIEW),
                 acl.action_allowed(
                     request, amo.permissions.STATIC_THEMES_REVIEW))
-            # WebExtensions are picked up by auto_approve cronjob, they don't
-            # need to appear in the queues, unless auto approvals have been
-            # disabled for them.
+            # Most WebExtensions are picked up by auto_approve cronjob, they
+            # don't need to appear in the queues, unless auto approvals have
+            # been disabled for them.  Webextension static themes aren't auto
+            # approved.
             qs = qs.filter(
                 Q(addon_type_id=amo.ADDON_STATICTHEME) |
                 Q(**{'files.is_webextension': False}) |
