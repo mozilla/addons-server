@@ -11,9 +11,9 @@ from olympia.landfill.serializers import GenerateAddonsSerializer
 #  Featured collections on the homepage.
 #  Needs to be updated as the homepage is updated
 featured_collections = [
-    u'privacy-matters',
-    u're-imagine-search',
-    u'dynamic-media-downloaders',
+    u'good-time-tabs',
+    u'wikipedia-boosters',
+    u'trending-add-ons',
 ]
 
 #  Featured collections on the homepage.
@@ -33,18 +33,18 @@ hero_addons = [
     u'onetab',
     u'kindle-it',
     u'search-site-we',
-    u'youtube-dark-purple',
-    u'temporary-containers',
-    u'momentumdash',
-    u'kimetrak',
-    u'mailvelope',
-    u'翻译侠-translate-man',
     u'ublock-origin',
     u'ghostery',
     u'multi-account-containers',
-    u'searchpreview',
-    u'forget_me_not',
-    u'zoom',
+    u'facebook-video-downloader-hd',
+    u'autoformer',
+    u'myki-password-manager',
+    u'notebook_web_clipper',
+    u'flagfox',
+    u'ali-tools',
+    u'snake-game',
+    u'tab-invaders',
+    u'leechblock-ng',
 ]
 
 
