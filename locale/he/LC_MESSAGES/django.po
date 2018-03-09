@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-09 13:30+0000\n"
+"PO-Revision-Date: 2018-03-09 13:33+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5602,14 +5602,14 @@ msgstr "נושאים למפתחים"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "נא לעיין ב<a href=\"%(faq_url)s\">שו״ת למפתחים</a> וב<a href=\"%(hub_url)s\">מרכז המפתחים</a> שלנו לקבלת תשובות לשאלות בנושאי פיתוח תוספות."
 
 msgid "Still have questions?"
 msgstr "עדיין יש לך שאלות?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
+msgstr "לתמיכה כללית ב־Firefox, ניתן לבקר ב<a href=\"%(sumo_url)s\">אתר התמיכה</a> שלנו. לשאלות כלליות על התוספות והאתר, ניתן לבקר ב<a href=\"%(forum_url)s\">פורום</a> שלנו."
 
 msgid "Some tips for writing a great review"
 msgstr "מספר עצות לכתיבת סקירה מוצלחת"
@@ -5620,7 +5620,7 @@ msgstr "שאלות נפוצות על סקירות"
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
-msgstr ""
+msgstr "סקירות של תוספות הן דרך לשתף את הדעות שלך על התוספות שהתקנת והשתמשת בהן. צוות פיקוח הסקירות שלנו שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
 
 msgid "Do:"
 msgstr "כן לעשות:"
@@ -5838,7 +5838,7 @@ msgid "This field is required."
 msgstr "שדה זה נדרש."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "לא ניתן לשנות את תוספת הסקירה לאחר שהיא נוצרה."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr "לא ניתן להגיב לסקירה שהיא עצמה תגובה."
@@ -6092,7 +6092,7 @@ msgid "More Information Requested"
 msgstr "נשלחה בקשה למידע נוסף"
 
 msgid "Expired Information Request"
-msgstr ""
+msgstr "בקשת מידע שפג תוקפה"
 
 # 100%
 msgid "Contains Reviewer Comment"
@@ -6295,9 +6295,8 @@ msgstr "הכרזה"
 msgid "Update message of the day"
 msgstr "עדכון ההודעה היומית"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "התקבלה בקשה למידע נוסף"
+msgstr "בקשות מידע שפג תוקפן ({0})"
 
 msgid "An unknown error occurred"
 msgstr "אירעה שגיאה בלתי ידועה"
@@ -6832,11 +6831,10 @@ msgid_plural "Auto Approved ({0})"
 msgstr[0] "אושר אוטומטית ({0})"
 msgstr[1] "אושרו אוטומטית ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "התקבלה בקשה למידע נוסף"
-msgstr[1] "התקבלה בקשה למידע נוסף"
+msgstr[0] "בקשת מידע שפג תוקפה ({0})"
+msgstr[1] "בקשות מידע שפג תוקפן ({0})"
 
 msgid "Flagged"
 msgstr "מסומן בדגל"
