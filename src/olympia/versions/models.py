@@ -9,7 +9,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.db.models import Q, signals as dbsignals
+from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
@@ -648,16 +648,12 @@ class Version(OnChangeMixin, ModelBase):
 class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
     position = models.IntegerField(default=0)
-    sizes = JSONField(max_length=25, default={})
+    sizes = JSONField(default={})
     media_folder = 'version-previews'
 
     class Meta:
         db_table = 'version_previews'
         ordering = ('-version', 'position', 'created')
-
-
-dbsignals.pre_save.connect(save_signal, sender=VersionPreview,
-                           dispatch_uid='version_preview_translations')
 
 
 @use_master
