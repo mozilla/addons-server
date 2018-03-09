@@ -80,8 +80,8 @@ class AdditionalBackground(object):
     def __init__(self, path, alignment, tiling, header_root):
         # If there an unequal number of alignments or tiling to srcs the value
         # will be None so use defaults.
-        alignment = alignment.lower() or 'left top'
-        tiling = tiling.lower() or 'no-repeat'
+        alignment = (alignment or 'left top').lower()
+        tiling = (tiling or 'no-repeat').lower()
         self.src, self.width, self.height = encode_header_image(
             os.path.join(header_root, path))
         self.pattern_width = (self.width if tiling in ['repeat', 'repeat-x']
