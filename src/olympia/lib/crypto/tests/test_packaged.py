@@ -89,7 +89,6 @@ class TestPackaged(TestCase):
         assert self.file_.hash
         assert packaged.is_signed(self.file_.file_path)
 
-    @responses.activate
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -100,7 +99,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_supports_firefox_android_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -112,7 +110,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -123,7 +120,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_supports_firefox_android_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -135,7 +131,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_supports_firefox_recent_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -146,7 +141,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_supports_firefox_android_recent_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -158,7 +152,6 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_signed()
 
-    @responses.activate
     def test_sign_file(self):
         self.assert_not_signed()
         packaged.sign_file(self.file_)
@@ -169,7 +162,6 @@ class TestPackaged(TestCase):
             with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
                 assert mozillasf.read().endswith('\n\n')
 
-    @responses.activate
     def test_sign_file_non_ascii_filename(self):
         src = self.file_.file_path
         self.file_.update(filename=u'jétpack.xpi')
@@ -202,13 +194,11 @@ class TestPackaged(TestCase):
         packaged.sign_file(self.file_)
         self.assert_not_signed()
 
-    @responses.activate
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
         packaged.sign_file(self.file_)
         assert packaged.is_signed(self.file_.file_path)
 
-    @responses.activate
     def test_size_updated(self):
         unsigned_size = storage.size(self.file_.file_path)
         packaged.sign_file(self.file_)
@@ -216,7 +206,6 @@ class TestPackaged(TestCase):
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
 
-    @responses.activate
     def test_sign_file_multi_package(self):
         fpath = 'src/olympia/files/fixtures/files/multi-package.xpi'
         with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
@@ -240,7 +229,6 @@ class TestPackaged(TestCase):
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
 
-    @responses.activate
     def test_call_signing(self):
         packaged.sign_file(self.file_)
 
@@ -257,7 +245,6 @@ class TestPackaged(TestCase):
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
         )
 
-    @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
@@ -294,6 +281,26 @@ class TestPackaged(TestCase):
         assert len(self.addon.guid) > 64
         assert len(packaged.get_id(self.addon)) <= 64
         assert packaged.get_id(self.addon) == hashed
+
+    def test_sign_addon_with_unicode_guid(self):
+        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
+
+        packaged.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+
+        assert (
+            subject_info['common_name'] ==
+            u'NavratnePeniaze@NávratnéPeniaze')
+        assert manifest == (
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: MD5 SHA1 SHA256\n'
+            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
 
 
 class TestTasks(TestCase):
