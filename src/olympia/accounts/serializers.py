@@ -45,8 +45,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     # Used in subclasses.
     def get_picture_url(self, obj):
-        if obj.picture_url and \
-                not obj.picture_url.endswith('/img/zamboni/anon_user.png'):
+        if obj.picture_type:
             return absolutify(obj.picture_url)
         return None
 
