@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-08 13:10+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-03-09 13:30+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -1025,17 +1025,14 @@ msgstr "צלמיות חייבות להיות בתבנית PNG או JPG."
 msgid "Icons cannot be animated."
 msgstr "אי אפשר להנפיש סמלים."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "כתובת זו בשימוש ע״י אוסף אחר"
+msgstr ""
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "נא להכניס שם משתמש תקין המורכב מאותיות, מספרים, קווים תחתונים ומקפים."
+msgstr ""
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "לא ניתן להשתמש בשם משתמש זה."
+msgstr ""
 
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
@@ -4917,7 +4914,7 @@ msgstr "מי עובד באתר הזה?"
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
-msgstr ""
+msgstr "במהלך השנים, אנשים רבים תרמו לאתר הזה, לרבות מתנדבים מהקהילה וצוות ייעודי עבור AMO. ניתן למצוא את רשימת התורמים המשמעותיים שלנו בעמוד <a href=\"%(url)s\">תודות האתר</a>."
 
 msgid "Add-on Compatibility Reporter"
 msgstr "מדווח התאימות של תוספות"
@@ -4926,7 +4923,7 @@ msgid "Add-on Compatibility Reporter has been installed"
 msgstr "הותקן מדווח התאימות של תוספות"
 
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ""
+msgstr "פשוט וקל לסייע לנו לוודא שתוספות מתעדכנות בזמן המתאים למועד ההוצאה לאור של הגרסה הבאה של Firefox."
 
 msgid "Here’s how to get started reporting add-on compatibility:"
 msgstr "להלן הסבר למתחילים בנושא תאימות תוספות:"
@@ -5208,7 +5205,7 @@ msgstr "האם התוספת שלי חייבת לעבור סקירה?"
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
-msgstr ""
+msgstr "תוספות חדשות ומעודכנות עשויות להיות כפופות לסקירה כדי לוודא שלמשתמשי Mozilla תהיה חוויה יציבה ובטוחה. הכללים שמופיעים ב<a href=\"%(url)s\">מדריך סקירת התוספות</a> משמשים לסקירת תוספות שהוגשו."
 
 msgid "Who reviews my add-on?"
 msgstr "מי דואג לסקירת התוספת שלי?"
@@ -5396,7 +5393,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">ערכות נושא שלמות</a></s
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">ערכות נושא</a></strong> הן עיצובים קלילים המשתמשים בתמונות רקע כדי להתאים אישית את סרגלי הכלים ב־%(app_name)s שלך."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -5597,6 +5594,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
+"תוספות לנייד עובדות עם <a href=\"%(mobile_url)s\">Firefox עבור Android</a> והן מוסיפות או משנות תכונות מסוימות בדיוק כמו תוספות לשולחן העבודה. ניתן למצוא תוספות שעובדות עם Firefox עבור Android ב<a "
+"href=\"%(gallery_url)s\">גלריה</a> שלנו."
 
 msgid "Developer Topics"
 msgstr "נושאים למפתחים"
@@ -6092,9 +6091,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr "נשלחה בקשה למידע נוסף"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "התקבלה בקשה למידע נוסף"
+msgstr ""
 
 # 100%
 msgid "Contains Reviewer Comment"
