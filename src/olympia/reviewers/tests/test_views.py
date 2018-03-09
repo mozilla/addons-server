@@ -482,6 +482,7 @@ class TestDashboard(TestCase):
         # Nominated and pending.
         addon_factory(
             status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version_factory(
             addon=addon_factory(),
@@ -548,7 +549,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All 8 sections are present.
+        assert len(doc('.dashboard h3')) == 9  # All 9 sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -556,6 +557,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -580,11 +586,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'New Add-ons (2)'
         assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
-        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
-        assert doc('.dashboard a')[10].text == 'Content Review (4)'
-        assert (doc('.dashboard a')[18].text ==
+        assert doc('.dashboard a')[11].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[15].text == 'Content Review (4)'
+        assert (doc('.dashboard a')[23].text ==
                 'Ratings Awaiting Moderation (1)')
-        assert (doc('.dashboard a')[24].text ==
+        assert (doc('.dashboard a')[29].text ==
                 'Expired Information Requests (1)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -592,7 +598,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All 7 sections are present.
+        assert len(doc('.dashboard h3')) == 9  # All 9 sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -600,6 +606,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -645,6 +656,11 @@ class TestDashboard(TestCase):
             addon=under_admin_review_and_pending, needs_admin_code_review=True)
         version_factory(
             addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # This is a static theme so won't be shown
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
 
         # Grant user the permission to see only the legacy add-ons section.
@@ -814,6 +830,58 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
+
+    def test_static_theme_reviewer(self):
+        # Create some static themes to test the queue counts.
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(type=amo.ADDON_STATICTHEME,),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # These two are under admin review and will be ignored.
+        under_admin_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review, needs_admin_code_review=True)
+        under_admin_review_and_pending = addon_factory(
+            type=amo.ADDON_STATICTHEME)
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+        version_factory(
+            addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # This is an extension so won't be shown
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_EXTENSION,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Grant user the permission to see only the legacy add-ons section.
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Add-ons (1)'
+        assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
 
     def test_post_reviewer_and_content_reviewer(self):
         # Create add-ons to test the queue count. The first add-on has its
@@ -1027,8 +1095,8 @@ class QueueTest(ReviewerTest):
             expected.append((name, url))
         doc = pq(response.content)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
-        check_links(expected, links, verify=False)
         assert len(links) == len(self.expected_addons)
+        check_links(expected, links, verify=False)
         return doc
 
 
@@ -1295,6 +1363,55 @@ class TestPendingQueue(QueueTest):
         self.expected_addons = [self.addons['Pending One']]
         self._test_results()
 
+    def test_static_theme_filtered_out(self):
+        self.addons['Pending Two'].update(type=amo.ADDON_STATICTHEME)
+
+        # Static Theme shouldn't be shown
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
+
+        # Unless you have that permission also
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.expected_addons = [
+            self.addons['Pending One'], self.addons['Pending Two']]
+        self._test_results()
+
+
+class TestStaticThemePendingQueue(QueueTest):
+
+    def setUp(self):
+        super(TestStaticThemePendingQueue, self).setUp()
+        # These should be the only ones present.
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two'])
+        Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
+        self.url = reverse('reviewers.queue_pending')
+        GroupUser.objects.filter(user=self.user).delete()
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+
+    def test_results(self):
+        self._test_results()
+
+    def test_queue_layout(self):
+        self._test_queue_layout('Updates',
+                                tab_position=1, total_addons=2, total_queues=2)
+
+    def test_get_queue(self):
+        self._test_get_queue()
+
+    def test_extensions_filtered_out(self):
+        self.addons['Pending Two'].update(type=amo.ADDON_EXTENSION)
+
+        # Extensions shouldn't be shown
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
+
+        # Unless you have that permission also
+        self.grant_permission(self.user, 'Addons:Review')
+        self.expected_addons = [
+            self.addons['Pending One'], self.addons['Pending Two']]
+        self._test_results()
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -1387,6 +1504,95 @@ class TestNominatedQueue(QueueTest):
             addon=self.addons['Nominated One'], auto_approval_disabled=True)
 
         self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+    def test_static_theme_filtered_out(self):
+        self.addons['Nominated Two'].update(type=amo.ADDON_STATICTHEME)
+
+        # Static Theme shouldn't be shown
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+        # Unless you have that permission also
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Nominated Two']]
+        self._test_results()
+
+
+class TestStaticThemeNominatedQueue(QueueTest):
+
+    def setUp(self):
+        super(TestStaticThemeNominatedQueue, self).setUp()
+        # These should be the only ones present.
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Nominated One', 'Nominated Two'])
+        self.url = reverse('reviewers.queue_nominated')
+        Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
+        GroupUser.objects.filter(user=self.user).delete()
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+
+    def test_results(self):
+        self._test_results()
+
+    def test_results_two_versions(self):
+        version1 = self.addons['Nominated One'].versions.all()[0]
+        version2 = self.addons['Nominated Two'].versions.all()[0]
+        file_ = version2.files.get()
+
+        # Versions are ordered by creation date, so make sure they're set.
+        past = self.days_ago(1)
+        version2.update(created=past, nomination=past)
+
+        # Create another version, v0.2, by "cloning" v0.1.
+        version2.pk = None
+        version2.version = '0.2'
+        version2.save()
+
+        # Reset creation date once it has been saved.
+        future = datetime.now() - timedelta(seconds=1)
+        version2.update(created=future, nomination=future)
+
+        # Associate v0.2 it with a file.
+        file_.pk = None
+        file_.version = version2
+        file_.save()
+
+        # disable old files like Version.from_upload() would.
+        version2.disable_old_files()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected = [
+            ('Nominated One 0.1', reverse('reviewers.review',
+                                          args=[version1.addon.slug])),
+            ('Nominated Two 0.2', reverse('reviewers.review',
+                                          args=[version2.addon.slug])),
+        ]
+        doc = pq(response.content)
+        check_links(
+            expected,
+            doc('#addon-queue tr.addon-row td a:not(.app-icon)'),
+            verify=False)
+
+    def test_queue_layout(self):
+        self._test_queue_layout('New Add-ons',
+                                tab_position=0, total_addons=2, total_queues=2)
+
+    def test_get_queue(self):
+        self._test_get_queue()
+
+    def test_static_theme_filtered_out(self):
+        self.addons['Nominated Two'].update(type=amo.ADDON_EXTENSION)
+
+        # Static Theme shouldn't be shown
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+        # Unless you have that permission also
+        self.grant_permission(self.user, 'Addons:Review')
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Nominated Two']]
         self._test_results()
 
 

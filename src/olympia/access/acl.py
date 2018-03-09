@@ -124,11 +124,20 @@ def check_personas_reviewer(request):
     return action_allowed(request, amo.permissions.THEMES_REVIEW)
 
 
+def check_static_theme_reviewer(request):
+    return action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW)
+
+
 def is_reviewer(request, addon):
     """Return True if the user is an addons reviewer, or a personas reviewer
     and the addon is a persona."""
-    return (check_addons_reviewer(request) or
-            (check_personas_reviewer(request) and addon.is_persona()))
+    return (
+        (check_addons_reviewer(request) and
+         addon.type != amo.ADDON_STATICTHEME) or
+        (check_static_theme_reviewer(request) and
+         addon.type == amo.ADDON_STATICTHEME) or
+        (check_personas_reviewer(request) and addon.is_persona())
+    )
 
 
 def is_user_any_kind_of_reviewer(user):
@@ -148,5 +157,6 @@ def is_user_any_kind_of_reviewer(user):
         action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
         action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
         action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed_user(user, amo.permissions.THEMES_REVIEW))
+        action_allowed_user(user, amo.permissions.THEMES_REVIEW) or
+        action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW))
     return allow_access

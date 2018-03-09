@@ -37,6 +37,8 @@ ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 # Can review a background theme (persona).
 THEMES_REVIEW = AclPermission('Personas', 'Review')
+# Can review a static theme.
+STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
