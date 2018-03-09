@@ -44,12 +44,14 @@
         <li class="row">
           <label class="row" for="{{ property }}">
             {{ label }}
-            {% if val_default %}
+            <span>
+              {% if val_default %}
                 <span class="req" title="{{ _('required') }}">*</span>
-            {% else %}
+              {% else %}
                 <span class="optional">{{ _('optional') }}</span>
-            {% endif %}
-            <span class="tip tooltip" title="{{ tip }}" data-oldtitle="">?</span>
+              {% endif %}
+              <span class="tip tooltip" title="{{ tip }}" data-oldtitle="">?</span>
+            </span>
           </label>
           <input class="color-picker" id="{{ property }}" name="{{ property }}"
                  type="text"{{ ('value=' + val_default + '') if val_default else '' }}>
