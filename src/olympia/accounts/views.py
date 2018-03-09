@@ -43,7 +43,7 @@ from . import verify
 from .serializers import (
     AccountSuperCreateSerializer, PublicUserProfileSerializer,
     UserNotificationSerializer, UserProfileSerializer)
-from .utils import fxa_login_url
+from .utils import fxa_login_url, generate_fxa_state
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -205,6 +205,16 @@ def with_user(format, config=None):
                 log.info('No code provided.')
                 return render_error(
                     request, ERROR_NO_CODE, next_path=next_path, format=format)
+            elif (not request.session.get('fxa_state') or
+                    request.session['fxa_state'] != state):
+                log.info(
+                    'State mismatch. URL: {url} Session: {session}'.format(
+                        url=data.get('state'),
+                        session=request.session.get('fxa_state'),
+                    ))
+                return render_error(
+                    request, ERROR_STATE_MISMATCH, next_path=next_path,
+                    format=format)
             elif request.user.is_authenticated():
                 response = render_error(
                     request, ERROR_AUTHENTICATED, next_path=next_path,
@@ -282,9 +292,11 @@ class FxAConfigMixin(object):
 class LoginStartBaseView(FxAConfigMixin, APIView):
 
     def get(self, request):
+        request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
             fxa_login_url(
                 config=self.get_fxa_config(request),
+                state=request.session['fxa_state'],
                 next_path=request.GET.get('to'),
                 action=request.GET.get('action', 'signin')))
 
