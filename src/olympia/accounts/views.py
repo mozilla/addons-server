@@ -425,7 +425,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
     def picture(self, request, pk=None):
         user = self.get_object()
-        user.update(picture_type='')
+        user.update(picture_type=None)
         log.debug(u'User (%s) deleted photo' % user)
         tasks.delete_photo.delay(user.picture_path)
         return self.retrieve(request)

@@ -134,7 +134,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     notifyevents = models.BooleanField(default=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
-    picture_type = models.CharField(max_length=75, default='', blank=True)
+    picture_type = models.CharField(max_length=75, default=None, null=True,
+                                    blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
@@ -377,7 +378,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.display_name = None
             self.homepage = ""
             self.deleted = True
-            self.picture_type = ""
+            self.picture_type = None
             self.auth_id = generate_auth_id()
             self.save()
 
