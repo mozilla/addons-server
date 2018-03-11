@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-10 23:47+0000\n"
+"PO-Revision-Date: 2018-03-11 01:04+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2494,14 +2494,14 @@ msgid "Low-quality, stretched, or blank image"
 msgstr "B'achab'ïk, yuqun o pa saqil wachib'äl"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Ruk'ayewal rucholajem wachib'äl pa ri jub'i'aj"
 
 msgid "Core"
-msgstr ""
+msgstr "K'uxaj"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "K'ak'a' taq Jaloj pa %s"
 
 msgid "Recent Changes for My Add-ons"
 msgstr ""
