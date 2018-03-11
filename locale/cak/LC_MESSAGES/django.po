@@ -2513,7 +2513,7 @@ msgid "At least one author must be listed."
 msgstr "K'o chi nicholajïx jun b'anel."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Jun b'anel xa xe tikirel nicholajïx jumul."
 
 msgid "Slug incorrect."
 msgstr ""
