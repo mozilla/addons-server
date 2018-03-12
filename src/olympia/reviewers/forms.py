@@ -331,7 +331,6 @@ class ReviewForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
-        self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
 
         # Info request deadline needs to be readonly unless we're an admin.
@@ -363,7 +362,11 @@ class ReviewForm(happyforms.Form):
         canned_choices = [
             ['', [('', ugettext('Choose a canned response...'))]]]
 
-        responses = CannedResponse.objects.filter(type=self.type)
+        canned_type = (
+            amo.CANNED_RESPONSE_THEME
+            if self.helper.addon.type == amo.ADDON_STATICTHEME
+            else amo.CANNED_RESPONSE_ADDON)
+        responses = CannedResponse.objects.filter(type=canned_type)
 
         # Loop through the actions (public, etc).
         for k, action in self.helper.actions.iteritems():

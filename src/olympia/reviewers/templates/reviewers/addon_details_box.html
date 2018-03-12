@@ -1,8 +1,45 @@
   <div class="featured">
     <div class="featured-inner object-lead inverse">
 
+      {% if addon.type == amo.ADDON_STATICTHEME %}
+      <div id="addon-theme-previews-wrapper">
+        <div>
+          {% for preview in version.previews.all() %}
+            <a class="" rel="jquery-lightbox"
+              href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
+                <img alt="" src="{{ preview.image_url }}" />
+            </a>
+          {% endfor %}
+        </div>
+        <div class="all-backgrounds">
+          {% for background in backgrounds %}
+            {% with filename=background.rsplit('/', 1)[1] %}
+            <a class="thumbnail" rel="jquery-lightbox"
+              href="{{ background }}" title="{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}">
+                <img alt="" src="{{ background }}" />
+            </a>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      </div>
+      {% else %}
+      <div class="secondary">
+        {% if addon.all_previews %}
+          {% with preview=addon.all_previews[0] %}
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+              href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <img alt="" src="{{ preview.thumbnail_url }}" />
+            </a>
+          {% endwith %}
+        {% else %}
+          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+            alt="" width="200" height="150" />
+        {% endif %}
+      </div>{# /secondary #}
+      {% endif %}
+
       <div id="addon-summary-wrapper">
-        <div id="addon-summary" class="primary">
+        <div id="addon-summary" class="primary{{ ' theme' if addon.type == amo.ADDON_STATICTHEME else '' }}">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
           {% if version and version.is_restart_required %}
             <div>
@@ -149,21 +186,6 @@
         </div>{# /addon-summary #}
       </div>{# /addon-summary-wrapper #}
 
-      <div class="secondary">
-        {% if addon.all_previews %}
-          {% with preview=addon.all_previews[0] %}
-            <a class="screenshot thumbnail" rel="jquery-lightbox"
-              href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <img alt="" src="{{ preview.thumbnail_url }}" />
-            </a>
-          {% endwith %}
-        {% else %}
-          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
-            alt="" width="200" height="150" />
-        {% endif %}
-
-      </div>{# /secondary #}
-
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
@@ -204,7 +226,7 @@
       {% endif %}
 
     </div>{# /article #}
-  {% else %}
+  {% elif addon.type != amo.ADDON_STATICTHEME %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article">
       <em>

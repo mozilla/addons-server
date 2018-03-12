@@ -41,7 +41,7 @@ from olympia.reviewers.forms import (
     QueueSearchForm, RatingFlagFormSet, ReviewForm, ReviewLogForm,
     WhiteboardForm)
 from olympia.reviewers.models import (
-    AddonCannedResponse, AutoApprovalSummary, PerformanceGraph,
+    AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     ViewFullReviewQueue, ViewPendingQueue, Whiteboard,
     clear_reviewing_cache, get_flags, get_reviewing_cache,
@@ -843,6 +843,7 @@ def review(request, addon, channel=None):
     was_auto_approved = (
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
+    is_static_theme = addon.type == amo.ADDON_STATICTHEME
 
     # If we're just looking (GET) we can bypass the specific permissions checks
     # if we have ReviewerTools:View.
@@ -918,7 +919,6 @@ def review(request, addon, channel=None):
             if not file_.has_been_validated:
                 devhub_tasks.validate(file_)
 
-    canned = AddonCannedResponse.objects.all()
     actions = form.helper.actions.items()
 
     try:
@@ -938,8 +938,9 @@ def review(request, addon, channel=None):
     except Version.DoesNotExist:
         show_diff = None
 
-    # The actions we should show a minimal form for.
-    actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
+    # The actions we shouldn't show a minimal form for.
+    actions_full = [
+        k for (k, a) in actions if not (is_static_theme or a.get('minimal'))]
 
     # The actions we should show the comments form for (contrary to minimal
     # form above, it defaults to True, because most actions do need to have
@@ -983,12 +984,18 @@ def review(request, addon, channel=None):
 
     flags = get_flags(addon, version) if version else []
 
-    try:
-        whiteboard = Whiteboard.objects.get(pk=addon.pk)
-    except Whiteboard.DoesNotExist:
-        whiteboard = Whiteboard(pk=addon.pk)
+    if not is_static_theme:
+        try:
+            whiteboard = Whiteboard.objects.get(pk=addon.pk)
+        except Whiteboard.DoesNotExist:
+            whiteboard = Whiteboard(pk=addon.pk)
 
-    whiteboard_form = WhiteboardForm(instance=whiteboard, prefix='whiteboard')
+        whiteboard_form = WhiteboardForm(
+            instance=whiteboard, prefix='whiteboard')
+    else:
+        whiteboard_form = None
+
+    backgrounds = version.get_background_image_urls() if version else []
 
     user_changes_actions = [
         amo.LOG.ADD_USER_WITH_ROLE.id,
@@ -999,12 +1006,12 @@ def review(request, addon, channel=None):
         addon=addon).order_by('id')
     ctx = context(
         request, actions=actions, actions_comments=actions_comments,
-        actions_minimal=actions_minimal, addon=addon,
+        actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        canned=canned, content_review_only=content_review_only, count=count,
-        flags=flags, form=form, is_admin=is_admin, num_pages=num_pages,
-        pager=pager, reports=reports, show_diff=show_diff,
+        backgrounds=backgrounds, content_review_only=content_review_only,
+        count=count, flags=flags, form=form, is_admin=is_admin,
+        num_pages=num_pages, pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

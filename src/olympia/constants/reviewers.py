@@ -7,12 +7,12 @@ REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_APP = 2  # Unused, should be removed
+CANNED_RESPONSE_THEME = 2
 CANNED_RESPONSE_PERSONA = 3
 
 CANNED_RESPONSE_CHOICES = {
     CANNED_RESPONSE_ADDON: _('Add-on'),
-    CANNED_RESPONSE_APP: _('App'),
+    CANNED_RESPONSE_THEME: _('Static Theme'),
     CANNED_RESPONSE_PERSONA: _('Persona'),
 }
 

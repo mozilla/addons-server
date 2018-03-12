@@ -78,7 +78,6 @@ def set_reviewing_cache(addon_id, user_id):
 
 
 class CannedResponse(ModelBase):
-
     name = models.CharField(max_length=255)
     response = models.TextField()
     sort_group = models.CharField(max_length=255)
@@ -90,19 +89,6 @@ class CannedResponse(ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-
-class AddonCannedResponseManager(ManagerBase):
-    def get_queryset(self):
-        qs = super(AddonCannedResponseManager, self).get_queryset()
-        return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
-
-
-class AddonCannedResponse(CannedResponse):
-    objects = AddonCannedResponseManager()
-
-    class Meta:
-        proxy = True
 
 
 class EventLog(models.Model):
