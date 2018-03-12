@@ -4453,18 +4453,8 @@ class TestAddonReviewerViewSet(TestCase):
             'reviewers-addon-enable', kwargs={'pk': self.addon.pk})
         self.disable_url = reverse(
             'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
-        self.clear_admin_review_flag_url = reverse(
-            'reviewers-addon-clear-admin-review-flag',
-            kwargs={'pk': self.addon.pk})
-        self.enable_auto_approval_url = reverse(
-            'reviewers-addon-enable-auto-approval',
-            kwargs={'pk': self.addon.pk})
-        self.disable_auto_approval_url = reverse(
-            'reviewers-addon-disable-auto-approval',
-            kwargs={'pk': self.addon.pk})
-        self.clear_pending_info_request_url = reverse(
-            'reviewers-addon-clear-pending-info-request',
-            kwargs={'pk': self.addon.pk})
+        self.flags_url = reverse(
+            'reviewers-addon-flags', kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -4662,218 +4652,66 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.action == amo.LOG.CHANGE_STATUS.id
         assert activity_log.arguments[0] == self.addon
 
-    def test_clear_admin_review_flag_not_logged_in(self):
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+    def test_patch_flags_not_logged_in(self):
+        response = self.client.patch(
+            self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 401
 
-    def test_clear_admin_review_flag_no_rights(self):
+    def test_patch_flags_no_permissions(self):
         self.client.login_api(self.user)
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        response = self.client.patch(
+            self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 403
 
         # Being a reviewer is not enough.
         self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        response = self.client.patch(
+            self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 403
 
-    def test_clear_admin_review_flag_addon_does_not_exist(self):
+    def test_patch_flags_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        self.clear_admin_review_flag_url = reverse(
-            'reviewers-addon-clear-admin-review-flag',
-            kwargs={'pk': self.addon.pk + 42})
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
+        self.flags_url = reverse(
+            'reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.patch(
+            self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 404
 
-    def test_clear_admin_review_flag_wrong_flag_type(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'lol'})
-        assert response.status_code == 400
-        assert response.data == {
-            'detail': 'Invalid or missing flag_type parameter.'}
-
-    def test_clear_admin_review_flag_no_flag_type(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(self.clear_admin_review_flag_url)
-        assert response.status_code == 400
-        assert response.data == {
-            'detail': 'Invalid or missing flag_type parameter.'}
-
-    def test_clear_admin_review_flag_no_flags_yet(self):
+    def test_patch_flags_no_flags_yet_still_works_transparently(self):
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
-        assert response.status_code == 202
-        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-
-    def test_clear_admin_review_flag(self):
-        reviewer_flags = AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            needs_admin_code_review=True,
-            needs_admin_content_review=True)
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'code'})
-        assert response.status_code == 202
-        reviewer_flags.reload()
-        assert not reviewer_flags.needs_admin_code_review
-        assert reviewer_flags.needs_admin_content_review  # Not touched.
-
-        response = self.client.post(
-            self.clear_admin_review_flag_url, {'flag_type': 'content'})
-        assert response.status_code == 202
-        reviewer_flags.reload()
-        assert not reviewer_flags.needs_admin_code_review
-        assert not reviewer_flags.needs_admin_content_review
-
-    def test_disable_auto_approval_not_logged_in(self):
-        response = self.client.post(self.disable_auto_approval_url)
-        assert response.status_code == 401
-
-    def test_disable_auto_approval_no_rights(self):
-        self.client.login_api(self.user)
-        response = self.client.post(self.disable_auto_approval_url)
-        assert response.status_code == 403
-
-        # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(self.disable_auto_approval_url)
-        assert response.status_code == 403
-
-    def test_disable_auto_approval_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.disable_auto_approval_url = reverse(
-            'reviewers-addon-disable-auto-approval',
-            kwargs={'pk': self.addon.pk + 42})
-        response = self.client.post(
-            self.disable_auto_approval_url)
-        assert response.status_code == 404
-
-    def test_disable_auto_approval_no_reviewer_flags_yet(self):
-        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.disable_auto_approval_url)
-        assert response.status_code == 202
+        response = self.client.patch(
+            self.flags_url, {'auto_approval_disabled': True})
+        assert response.status_code == 200
         assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
         assert reviewer_flags.auto_approval_disabled
-
-    def test_disable_auto_approval_reviewer_flags_already_exist(self):
-        reviewer_flags = AddonReviewerFlags.objects.create(addon=self.addon)
-        assert not reviewer_flags.auto_approval_disabled
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.disable_auto_approval_url)
-        assert response.status_code == 202
-        reviewer_flags.reload()
-        assert reviewer_flags.auto_approval_disabled
-
-    def test_enable_auto_approval_not_logged_in(self):
-        response = self.client.post(self.enable_auto_approval_url)
-        assert response.status_code == 401
-
-    def test_enable_auto_approval_no_rights(self):
-        self.client.login_api(self.user)
-        response = self.client.post(self.enable_auto_approval_url)
-        assert response.status_code == 403
-
-        # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(self.enable_auto_approval_url)
-        assert response.status_code == 403
-
-    def test_enable_auto_approval_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.enable_auto_approval_url = reverse(
-            'reviewers-addon-enable-auto-approval',
-            kwargs={'pk': self.addon.pk + 42})
-        response = self.client.post(
-            self.enable_auto_approval_url)
-        assert response.status_code == 404
-
-    def test_enable_auto_approval_no_reviewer_flags_yet(self):
-        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.enable_auto_approval_url)
-        assert response.status_code == 202
-        assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
-        assert not reviewer_flags.auto_approval_disabled
-
-    def test_enable_auto_approval_reviewer_flags_already_exist(self):
-        reviewer_flags = AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled=True)
-        assert reviewer_flags.auto_approval_disabled
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(
-            self.enable_auto_approval_url)
-        assert response.status_code == 202
-        reviewer_flags.reload()
-        assert not reviewer_flags.auto_approval_disabled
-
-    def test_clear_pending_info_request_not_logged_in(self):
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 401
-
-    def test_clear_pending_info_request_no_rights(self):
-        self.client.login_api(self.user)
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 403
-
-        # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 403
-
-    def test_clear_pending_info_request_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.clear_pending_info_request_url = reverse(
-            'reviewers-addon-clear-pending-info-request',
-            kwargs={'pk': self.addon.pk + 42})
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 404
-
-    def test_clear_pending_info_request_no_flags_yet(self):
-        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 202
-        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         assert ActivityLog.objects.count() == 0
 
-    def test_clear_pending_info_request(self):
-        reviewer_flags = AddonReviewerFlags.objects.create(
+    def test_patch_flags_change_everything(self):
+        AddonReviewerFlags.objects.create(
             addon=self.addon,
-            needs_admin_code_review=True,
-            pending_info_request=self.days_ago(1))
+            pending_info_request=self.days_ago(1),
+            auto_approval_disabled=True)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        response = self.client.post(self.clear_pending_info_request_url)
-        assert response.status_code == 202
-        reviewer_flags.reload()
+        data = {
+            'auto_approval_disabled': False,
+            'needs_admin_code_review': True,
+            'needs_admin_content_review': True,
+            'pending_info_request': None,
+        }
+        response = self.client.patch(self.flags_url, data)
+        assert response.status_code == 200
+        assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        assert reviewer_flags.auto_approval_disabled is False
+        assert reviewer_flags.needs_admin_code_review is True
+        assert reviewer_flags.needs_admin_content_review is True
         assert reviewer_flags.pending_info_request is None
-        assert reviewer_flags.needs_admin_code_review  # Not touched.
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CLEAR_INFO_REQUEST.id
+        assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
         assert activity_log.arguments[0] == self.addon

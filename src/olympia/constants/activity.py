@@ -586,10 +586,10 @@ class REJECT_CONTENT(_LOG):
     reviewer_review_action = True
 
 
-class CLEAR_INFO_REQUEST(_LOG):
+class ADMIN_ALTER_INFO_REQUEST(_LOG):
     id = 149
-    format = _(u'{addon} information request removed.')
-    short = _(u'Information request removed')
+    format = _(u'{addon} information request altered or removed by admin.')
+    short = _(u'Information request altered')
     keep = True
     reviewer_review_action = True
     review_queue = True
