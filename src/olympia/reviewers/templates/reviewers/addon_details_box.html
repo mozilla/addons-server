@@ -212,17 +212,3 @@
       </em>
     </div>
   {% endif %}
-
-  {% if reviews is defined %}
-    {{ review_list_box(addon=addon, reviews=reviews) }}
-  {% endif %}
-
-  {% if review_form: %}
-    {% if request.user.is_authenticated() %}
-      {{ review_add_box(addon=addon) }}
-    {% endif %}
-  {% endif %}
-
-  {% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=addon) }}
-  {% endif %}
