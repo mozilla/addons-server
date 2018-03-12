@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-11 15:11+0000\n"
+"PO-Revision-Date: 2018-03-12 20:20+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2516,16 +2516,16 @@ msgid "An author can only be listed once."
 msgstr "Jun b'anel xa xe tikirel nicholajïx jumul."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Man ütz ta ri Slug."
 
 msgid "Details"
 msgstr "Kib'anikil"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "¿Achike rub'i' ri aya'öl q'ij?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Taya' ri cholan rutzij aya'öl q'ij."
 
 msgid "License text is required when choosing Other."
 msgstr ""
