@@ -784,6 +784,7 @@ def perform_review_permission_checks(
     was_auto_approved = (
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
+    static_theme = addon.type == amo.ADDON_STATICTHEME
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
@@ -795,6 +796,10 @@ def perform_review_permission_checks(
     if content_review_only:
         if not acl.action_allowed(
                 request, amo.permissions.ADDONS_CONTENT_REVIEW):
+            raise PermissionDenied
+    elif static_theme:
+        if not acl.action_allowed(
+                request, amo.permissions.STATIC_THEMES_REVIEW):
             raise PermissionDenied
     else:
         # Was the add-on auto-approved?
