@@ -1256,7 +1256,6 @@ CELERY_TASK_ROUTES = {
         'queue': 'stats'},
     'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
-    'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1620,12 +1619,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# Credentials for accessing Google Analytics stats.
-GOOGLE_ANALYTICS_CREDENTIALS = {}
-
-# Which domain to access GA stats for. If not set, defaults to DOMAIN.
-GOOGLE_ANALYTICS_DOMAIN = None
-
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
 LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
@@ -1794,7 +1787,6 @@ CRON_JOBS = {
     'update_addons_collections_downloads': 'olympia.stats.cron',
     'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
-    'update_google_analytics': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',

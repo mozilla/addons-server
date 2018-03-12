@@ -1,4 +1,3 @@
-import datetime
 import logging
 import os
 
@@ -166,17 +165,11 @@ LESS_PREPROCESS = True
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
-GOOGLE_ANALYTICS_CREDENTIALS = env.dict('GOOGLE_ANALYTICS_CREDENTIALS')
-GOOGLE_ANALYTICS_CREDENTIALS['user_agent'] = None
-GOOGLE_ANALYTICS_CREDENTIALS['token_expiry'] = datetime.datetime(2013, 1, 3, 1, 20, 16, 45465)  # noqa
-
 GEOIP_URL = 'https://geo.services.mozilla.com'
 
 AES_KEYS = env.dict('AES_KEYS')
 
 SENTRY_DSN = env('SENTRY_DSN')
-
-GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 

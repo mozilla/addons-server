@@ -5,11 +5,7 @@ from django.conf import settings
 from django.db import connection
 from django.db.models import Max, Sum
 
-import httplib2
-
-from apiclient.discovery import build
 from elasticsearch.helpers import bulk as bulk_index
-from oauth2client.client import OAuth2Credentials
 
 import olympia.core.logger
 
@@ -54,81 +50,6 @@ def update_collections_total(data, **kw):
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
          .update(downloads=var['sum']))
-
-
-def get_profile_id(service, domain):
-    """
-    Fetch the profile ID for the given domain.
-    """
-    accounts = service.management().accounts().list().execute()
-    account_ids = [a['id'] for a in accounts.get('items', ())]
-    for account_id in account_ids:
-        webproperties = service.management().webproperties().list(
-            accountId=account_id).execute()
-        webproperty_ids = [p['id'] for p in webproperties.get('items', ())]
-        for webproperty_id in webproperty_ids:
-            profiles = service.management().profiles().list(
-                accountId=account_id,
-                webPropertyId=webproperty_id).execute()
-            for p in profiles.get('items', ()):
-                # sometimes GA includes "http://", sometimes it doesn't.
-                if '://' in p['websiteUrl']:
-                    name = p['websiteUrl'].partition('://')[-1]
-                else:
-                    name = p['websiteUrl']
-
-                if name == domain:
-                    return p['id']
-
-
-@task
-def update_google_analytics(date, **kw):
-    creds_data = getattr(settings, 'GOOGLE_ANALYTICS_CREDENTIALS', None)
-    if not creds_data:
-        log.critical('Failed to update global stats: '
-                     'GOOGLE_ANALYTICS_CREDENTIALS not set')
-        return
-
-    creds = OAuth2Credentials(
-        *[creds_data[k] for k in
-          ('access_token', 'client_id', 'client_secret',
-           'refresh_token', 'token_expiry', 'token_uri',
-           'user_agent')])
-    h = httplib2.Http()
-    creds.authorize(h)
-    service = build('analytics', 'v3', http=h)
-    domain = getattr(settings,
-                     'GOOGLE_ANALYTICS_DOMAIN', None) or settings.DOMAIN
-    profile_id = get_profile_id(service, domain)
-    if profile_id is None:
-        log.critical('Failed to update global stats: could not access a Google'
-                     ' Analytics profile for ' + domain)
-        return
-    datestr = date.strftime('%Y-%m-%d')
-    try:
-        data = service.data().ga().get(ids='ga:' + profile_id,
-                                       start_date=datestr,
-                                       end_date=datestr,
-                                       metrics='ga:visits').execute()
-        # Storing this under the webtrends stat name so it goes on the
-        # same graph as the old webtrends data.
-        p = ['webtrends_DailyVisitors', data['rows'][0][0], date]
-    except Exception, e:
-        log.critical(
-            'Fetching stats data for %s from Google Analytics failed: %s' % e)
-        return
-
-    try:
-        cursor = connection.cursor()
-        cursor.execute('REPLACE INTO global_stats (name, count, date) '
-                       'values (%s, %s, %s)', p)
-    except Exception, e:
-        log.critical('Failed to update global stats: (%s): %s' % (p, e))
-    else:
-        log.debug('Committed global stats details: (%s) has (%s) for (%s)'
-                  % tuple(p))
-    finally:
-        cursor.close()
 
 
 @task
