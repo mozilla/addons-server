@@ -2196,11 +2196,6 @@ class TestPersonaModel(TestCase):
 class TestPreviewModel(TestCase):
     fixtures = ['base/previews']
 
-    def test_as_dict(self):
-        expect = ['caption', 'full', 'thumbnail']
-        reality = sorted(Preview.objects.all()[0].as_dict().keys())
-        assert expect == reality
-
     def test_filename(self):
         preview = Preview.objects.get(pk=24)
         assert 'png' in preview.thumbnail_path
