@@ -1,3 +1,4 @@
+-- Note: if the migration fails for you locally, remove the 'unsigned' next to version_id below.
 CREATE TABLE `version_previews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` datetime(6) NOT NULL,
