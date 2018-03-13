@@ -51,11 +51,14 @@ class DiscoverySerializer(serializers.Serializer):
                 '{end_sub_heading}', '</span>').replace(
                 '{addon_name}', addon_link)
 
-        should_generate_description = (
-            data['description'] is None and
-            instance.addon.type == amo.ADDON_EXTENSION and
-            instance.addon.summary)
-        if should_generate_description:
-            data['description'] = (
-                u'<blockquote>%s</blockquote>' % instance.addon.summary)
+        if data['description'] is None:
+            if (instance.addon.type == amo.ADDON_EXTENSION and
+                    instance.addon.summary):
+                data['description'] = (
+                    u'<blockquote>%s</blockquote>' % instance.addon.summary)
+            elif (instance.addon.type == amo.ADDON_PERSONA and
+                    instance.addon.description):
+                data['description'] = (
+                    u'<blockquote>%s</blockquote>' %
+                    instance.addon.description)
         return data
