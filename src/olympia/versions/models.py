@@ -647,13 +647,25 @@ class Version(OnChangeMixin, ModelBase):
 
 class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
-    position = models.IntegerField(default=0)
     sizes = JSONField(default={})
     media_folder = 'version-previews'
 
     class Meta:
         db_table = 'version_previews'
-        ordering = ('-version', 'position', 'created')
+
+    @property
+    def position(self):
+        """We only don't support defining a position for previews because
+        they're auto-generated.  This is for compatibility with Addon Preview
+        objects."""
+        return 0
+
+    @property
+    def caption(self):
+        """We only don't support defining a caption for previews because
+        they're auto-generated.  This is for compatibility with Addon Preview
+        objects."""
+        return None
 
 
 @use_master
