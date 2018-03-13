@@ -51,7 +51,7 @@ class Header(Region):
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
     _user_locator = (By.CSS_SELECTOR, '')
-    _search_textbox_locator = (By.CLASS_NAME, 'SearchForm-query')
+    _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
     def click_explore(self):
         self.find_element(*self._firefox_logo_locator).click()

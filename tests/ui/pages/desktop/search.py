@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as expected
 
 class Search(Page):
 
-    _search_box_locator = (By.CLASS_NAME, 'SearchForm-query')
-    _submit_button_locator = (By.CLASS_NAME, 'SearchForm-submit-button')
+    _search_box_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
+    _submit_button_locator = (By.CLASS_NAME, 'AutoSearchInput-submit-button')
     _search_filters_sort_locator = (By.ID, 'SearchFilters-Sort')
     _search_filters_type_locator = (By.ID, 'SearchFilters-AddonType')
     _search_filters_os_locator = (By.ID, 'SearchFilters-OperatingSystem')
