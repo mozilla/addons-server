@@ -16,21 +16,25 @@ from olympia.discovery.utils import replace_extensions
 # Represents a dummy version of `olympia.discovery.data`
 def get_dummy_addons():
     return OrderedDict([
-        (18705, addon_factory(id=18705, type=amo.ADDON_PERSONA)),
+        (18705, addon_factory(id=18705, type=amo.ADDON_PERSONA,
+                              description=u'18705')),
         (445852, addon_factory(id=445852, type=amo.ADDON_EXTENSION)),
         (824288, addon_factory(id=824288, type=amo.ADDON_EXTENSION)),
         (294291, addon_factory(id=294291, type=amo.ADDON_PERSONA)),
         (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-        (571240, addon_factory(id=571240, type=amo.ADDON_PERSONA)),
+        (571240, addon_factory(id=571240, type=amo.ADDON_PERSONA,
+                               description=u'571240')),
         # And now the china edition addons
-        (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA)),
+        (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA,
+                               description=u'492244')),
         # (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
         (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
         # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
-        (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA)),
+        (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA,
+                               description=u'153659')),
     ])
 
 
@@ -73,7 +77,10 @@ class DiscoveryTestMixin(object):
             unicode(item.addon_name or addon.name),
             u', '.join(author.name for author in addon.listed_authors)
         ) == result['heading']
-        assert not result['description']
+        description_output = (
+            (u'<blockquote>%s</blockquote>' % addon.description)
+            if addon.description else None)
+        assert result['description'] == description_output
         assert result['addon']['theme_data'] == addon.persona.theme_data
 
 
