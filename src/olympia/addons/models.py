@@ -37,14 +37,13 @@ from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
 from olympia.amo.decorators import use_master, write
 from olympia.amo.models import (
-    ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin, SlugField,
-    manual_order)
+    BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
+    SaveUpdateMixin, SlugField)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
-    no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
-    urlparams)
+    no_translation, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
@@ -1308,11 +1307,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_previews(self):
-        return list(self.get_previews())
-
-    def get_previews(self):
         """Exclude promo graphics."""
-        return self.previews.exclude(position=-1)
+        return list(self.previews.exclude(position=-1))
 
     @property
     def app_categories(self):
@@ -1908,86 +1904,15 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')
 
 
-class Preview(ModelBase):
+class Preview(BasePreview, ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews')
     caption = TranslatedField()
-
     position = models.IntegerField(default=0)
-    sizes = JSONField(max_length=25, default={})
+    sizes = JSONField(default={})
 
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
-
-    def _image_url(self, url_template):
-        if self.modified is not None:
-            modified = int(time.mktime(self.modified.timetuple()))
-        else:
-            modified = 0
-        args = [self.id / 1000, self.id, modified]
-        return url_template % tuple(args)
-
-    def _image_path(self, url_template):
-        args = [self.id / 1000, self.id]
-        return url_template % tuple(args)
-
-    def as_dict(self, src=None):
-        d = {'full': urlparams(self.image_url, src=src),
-             'thumbnail': urlparams(self.thumbnail_url, src=src),
-             'caption': unicode(self.caption)}
-        return d
-
-    @property
-    def thumbnail_url(self):
-        template = (
-            jinja_helpers.user_media_url('previews') +
-            'thumbs/%s/%d.png?modified=%s')
-        return self._image_url(template)
-
-    @property
-    def image_url(self):
-        template = (
-            jinja_helpers.user_media_url('previews') +
-            'full/%s/%d.png?modified=%s')
-        return self._image_url(template)
-
-    @property
-    def thumbnail_path(self):
-        template = os.path.join(
-            jinja_helpers.user_media_path('previews'),
-            'thumbs',
-            '%s',
-            '%d.png'
-        )
-        return self._image_path(template)
-
-    @property
-    def image_path(self):
-        template = os.path.join(
-            jinja_helpers.user_media_path('previews'),
-            'full',
-            '%s',
-            '%d.png'
-        )
-        return self._image_path(template)
-
-    @property
-    def original_path(self):
-        template = os.path.join(
-            jinja_helpers.user_media_path('previews'),
-            'original',
-            '%s',
-            '%d.png'
-        )
-        return self._image_path(template)
-
-    @property
-    def thumbnail_size(self):
-        return self.sizes.get('thumbnail', []) if self.sizes else []
-
-    @property
-    def image_size(self):
-        return self.sizes.get('image', []) if self.sizes else []
 
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,

@@ -39,9 +39,6 @@ HOME=/tmp
 45 7 * * * %(django)s dump_apps
 0 8 * * * %(django)s update_product_details
 
-# Collect visitor stats from Google Analytics once per day.
-50 10 * * * %(z_cron)s update_google_analytics
-
 # Once per day after metrics import is done
 00 17 * * * %(z_cron)s update_addon_download_totals
 05 17 * * * %(z_cron)s weekly_downloads

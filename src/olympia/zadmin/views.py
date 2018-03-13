@@ -72,13 +72,6 @@ def langpacks(request):
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
-
-    # Retain this so that GOOGLE_ANALYTICS_CREDENTIALS variables in local
-    # settings are not exposed.
-    google_cred = 'GOOGLE_ANALYTICS_CREDENTIALS'
-    settings_dict[google_cred] = debug.cleanse_setting(
-        google_cred, getattr(settings, google_cred, {}))
-
     return render(request, 'zadmin/settings.html',
                   {'settings_dict': settings_dict, 'title': 'Settings!'})
 

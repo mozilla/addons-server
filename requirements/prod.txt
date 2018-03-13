@@ -90,9 +90,9 @@ celery==4.1.0 \
 boto3==1.6.7 \
     --hash=sha256:15688d60dcc764f6fbd32975696deb48e64dff185db58bba45df02f2230860a8 \
     --hash=sha256:3a74aa62eb9c0a6e1c9eace4ab93b2c3de43ab9f116dbc2e60a8cee584532584
-botocore==1.9.6 \
-    --hash=sha256:f7e0b48003558086f46895cd22f860046c0a6b939f771d1acc97fa8d18cb4ff4 \
-    --hash=sha256:c43d16a60089b09696e5094a74204740dfcf306e644b8267342e3afdd181537c
+botocore==1.9.7 \
+    --hash=sha256:bded64bf74314a2ebe9535d2ac151ecf6d1188afc5d1869911080d12c23233dc \
+    --hash=sha256:0794994bf5a50d1b7df0b43c319d4a2ecd3fe26b55c0313e7427c0910fc977c1
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -196,16 +196,10 @@ flufl.lock==2.4.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-google-api-python-client==1.2 \
-    --hash=sha256:3cb3f39c4a634950aee34f52e2a160b9a064b15210f7196ba364f670780aa675 \
-    --hash=sha256:f6506e837a7401ecd97cad45900716eb12fb480f303d0dee5c61e8a4b16ff5ec # pyup: ==1.2
 # html5lib is required by bleach, rdflib
 # see setup.py of bleach for supported and required versions
 html5lib==0.9999999 \
     --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868 # pyup: <=0.9999999
-# httplib2 is required by google-api-python-client
-httplib2==0.10.3 \
-    --hash=sha256:e404d3b7bd86c1bc931906098e7c1305d6a3a6dcef141b8bb1059903abb3ceeb
 # isodate is required by rdflib
 isodate==0.6.0 \
     --hash=sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81 \

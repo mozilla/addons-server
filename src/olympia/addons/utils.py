@@ -107,25 +107,16 @@ def verify_mozilla_trademark(name, user):
     def _check(name):
         name = normalize_string(name, strip_puncutation=True).lower()
 
-        contains_trademark_symbol = any(
-            symbol in name for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
+        for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
+            violates_trademark = (
+                name.count(symbol) > 1 or (
+                    name.count(symbol) >= 1 and not
+                    name.endswith(' for {}'.format(symbol))))
 
-        allowed_symbols = tuple(
-            ' for {}'.format(symbol)
-            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
-
-        violates_trademark = False
-
-        if contains_trademark_symbol:
-            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-                violates_trademark = (
-                    name.count(symbol) > 1 or not
-                    name.endswith(allowed_symbols))
-
-                if violates_trademark:
-                    raise forms.ValidationError(ugettext(
-                        u'Add-on names cannot contain the Mozilla or '
-                        u'Firefox trademarks.'))
+            if violates_trademark:
+                raise forms.ValidationError(ugettext(
+                    u'Add-on names cannot contain the Mozilla or '
+                    u'Firefox trademarks.'))
 
     if not skip_trademark_check:
         errors = LocaleList()
