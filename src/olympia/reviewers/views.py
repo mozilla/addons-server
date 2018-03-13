@@ -15,7 +15,6 @@ from django.views.decorators.cache import never_cache
 
 from rest_framework import status
 from rest_framework.decorators import detail_route
-from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -37,13 +36,17 @@ from olympia.api.permissions import AllowAnyKindOfReviewer, GroupPermission
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.reviewers import forms
+from olympia.reviewers.forms import (
+    AllAddonSearchForm, BetaSignedLogForm, EventLogForm, MOTDForm,
+    QueueSearchForm, RatingFlagFormSet, ReviewForm, ReviewLogForm,
+    WhiteboardForm)
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     ViewFullReviewQueue, ViewPendingQueue, Whiteboard,
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
+from olympia.reviewers.serializers import AddonReviewerFlagsSerializer
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
@@ -83,7 +86,7 @@ def context(request, **kw):
 
 @ratings_moderator_required
 def eventlog(request):
-    form = forms.EventLogForm(request.GET)
+    form = EventLogForm(request.GET)
     eventlog = ActivityLog.objects.reviewer_events()
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -138,7 +141,7 @@ def eventlog_detail(request, id):
 @addons_reviewer_required
 def beta_signed_log(request):
     """Log of all the beta files that got signed."""
-    form = forms.BetaSignedLogForm(request.GET)
+    form = BetaSignedLogForm(request.GET)
     beta_signed_log = ActivityLog.objects.beta_signed_events()
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -487,8 +490,7 @@ def motd(request):
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
     if motd_editable:
-        form = forms.MOTDForm(
-            initial={'motd': get_config('reviewers_review_motd')})
+        form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
     data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'reviewers/motd.html', data)
 
@@ -499,7 +501,7 @@ def save_motd(request):
     if not acl.action_allowed(
             request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
         raise PermissionDenied
-    form = forms.MOTDForm(request.POST)
+    form = MOTDForm(request.POST)
     if form.is_valid():
         set_config('reviewers_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('reviewers.motd'))
@@ -527,7 +529,7 @@ def filter_static_themes(qs, extension_reviewer, theme_reviewer):
 
 
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
-           SearchForm=forms.QueueSearchForm):
+           SearchForm=QueueSearchForm):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
 
@@ -648,9 +650,9 @@ def queue_moderated(request):
 
     flags = dict(RatingFlag.FLAGS)
 
-    reviews_formset = forms.RatingFlagFormSet(request.POST or None,
-                                              queryset=page.object_list,
-                                              request=request)
+    reviews_formset = RatingFlagFormSet(request.POST or None,
+                                        queryset=page.object_list,
+                                        request=request)
 
     if request.method == 'POST':
         if reviews_formset.is_valid():
@@ -681,8 +683,8 @@ def unlisted_queue(request):
 @json_view
 def application_versions_json(request):
     app_id = request.POST['application_id']
-    f = forms.QueueSearchForm()
-    return {'choices': f.version_choices_for_app_id(app_id)}
+    form = QueueSearchForm()
+    return {'choices': form.version_choices_for_app_id(app_id)}
 
 
 @permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
@@ -861,8 +863,8 @@ def review(request, addon, channel=None):
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
         content_review_only=content_review_only)
-    form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
-                            helper=form_helper, initial=form_initial)
+    form = ReviewForm(request.POST if request.method == 'POST' else None,
+                      helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
@@ -981,8 +983,7 @@ def review(request, addon, channel=None):
     except Whiteboard.DoesNotExist:
         whiteboard = Whiteboard(pk=addon.pk)
 
-    whiteboard_form = forms.WhiteboardForm(instance=whiteboard,
-                                           prefix='whiteboard')
+    whiteboard_form = WhiteboardForm(instance=whiteboard, prefix='whiteboard')
 
     user_changes_actions = [
         amo.LOG.ADD_USER_WITH_ROLE.id,
@@ -1102,7 +1103,7 @@ def reviewlog(request):
         today = date.today()
         data['start'] = date(today.year, today.month, 1)
 
-    form = forms.ReviewLogForm(data)
+    form = ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_log()
     if not acl.check_unlisted_addons_reviewer(request):
@@ -1159,9 +1160,8 @@ def whiteboard(request, addon, channel):
         request, addon, channel, content_review_only=content_review_only)
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
-    form = forms.WhiteboardForm(request.POST or None,
-                                instance=whiteboard,
-                                prefix='whiteboard')
+    form = WhiteboardForm(request.POST or None, instance=whiteboard,
+                          prefix='whiteboard')
 
     if form.is_valid():
         if whiteboard.private or whiteboard.public:
@@ -1177,7 +1177,7 @@ def whiteboard(request, addon, channel):
 @unlisted_addons_reviewer_required
 def unlisted_list(request):
     return _queue(request, ViewUnlistedAllListTable, 'all',
-                  unlisted=True, SearchForm=forms.AllAddonSearchForm)
+                  unlisted=True, SearchForm=AllAddonSearchForm)
 
 
 class AddonReviewerViewSet(GenericViewSet):
@@ -1226,54 +1226,16 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(
-        methods=['post'],
+        methods=['patch'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
-    def enable_auto_approval(self, request, **kwargs):
+    def flags(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        self.log.info('Addon "%s" Auto-Approval enabled', addon.slug)
-        AddonReviewerFlags.objects.update_or_create(
-            addon=addon, defaults={'auto_approval_disabled': False})
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-    @detail_route(
-        methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
-    def disable_auto_approval(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        self.log.info('Addon "%s" Auto-Approval disabled', addon.slug)
-        AddonReviewerFlags.objects.update_or_create(
-            addon=addon, defaults={'auto_approval_disabled': True})
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-    @detail_route(
-        methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
-    def clear_admin_review_flag(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        flag_type = request.data.get('flag_type', None)
-        if flag_type not in ('code', 'content'):
-            raise ParseError('Invalid or missing flag_type parameter.')
-        flags_data = {
-            'needs_admin_%s_review' % flag_type: False
-        }
-        try:
-            reviewerflags = addon.addonreviewerflags
-            reviewerflags.update(**flags_data)
-        except AddonReviewerFlags.DoesNotExist:
-            # If it does not exist, there is nothing to unflag.
-            pass
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-    @detail_route(
-        methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
-    def clear_pending_info_request(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        try:
-            reviewerflags = addon.addonreviewerflags
-            reviewerflags.update(pending_info_request=None)
-            ActivityLog.create(amo.LOG.CLEAR_INFO_REQUEST, addon)
-        except AddonReviewerFlags.DoesNotExist:
-            # If it does not exist, there is nothing to clear.
-            pass
-        return Response(status=status.HTTP_202_ACCEPTED)
+        instance, _ = AddonReviewerFlags.objects.get_or_create(addon=addon)
+        serializer = AddonReviewerFlagsSerializer(
+            instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        # If pending info request was modified, log it.
+        if 'pending_info_request' in serializer.initial_data:
+            ActivityLog.create(amo.LOG.ADMIN_ALTER_INFO_REQUEST, addon)
+        serializer.save()
+        return Response(serializer.data)
