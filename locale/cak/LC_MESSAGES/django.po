@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-14 22:40+0000\n"
+"PO-Revision-Date: 2018-03-14 23:04+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2617,22 +2617,23 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Ri taq tz'aqat e'ichinan kan man e k'amonel ta rik'in ri Firefox 57 o jotöl. Tokisäx jun maxVersion richin 56.* o qajinäq."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
+"Man yatikïr ta nak'ëx jun WebExtensions tz'aqat rik'in legacy tz'aqat. Man xketikïr xtikokisaj ri k'ak'a' ruwäch ri okisanela' ruma chi ri Firefox man nuya' ta q'ij chi ke re kiwäch k'exoj re'."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s xutzolij tzij rik'in %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Ri okem pa \"%s\" xk'is ruq'ijul."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Man rilon ta ri k'uxasamaj pa \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2642,19 +2643,19 @@ msgid "All My Add-ons"
 msgstr "Ronojel Taq Nutz'aqat"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Ronojel Samaj"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Kik'exoj Tz'aqat"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Kib'anikilTz'aqat"
 
 msgid "User Collections"
-msgstr ""
+msgstr "Kimol Okisanel"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Kitzijoxik Okisanel"
 
 msgid "Changes successfully saved."
 msgstr ""
