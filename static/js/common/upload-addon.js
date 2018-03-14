@@ -130,6 +130,10 @@
                 $('#id_is_manual_review').prop('checked', false);
 
                 /* Don't allow submitting */
+                // The create theme wizard button is actually a link,
+                // so it's pointless to set the disabled property on it,
+                // instead add the special "concealed" class.
+                $('.addon-create-theme-section .button').addClass('concealed');
                 $('.addon-upload-dependant').prop('disabled', true);
                 $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                            'checked': false});
@@ -187,6 +191,7 @@
                                                                'checked': false});
                 }
 
+                $('.addon-create-theme-section .button').removeClass('concealed');
                 $upload_field.val("").prop('disabled', false);
                 $upload_field.trigger("reenable_uploader");
 
