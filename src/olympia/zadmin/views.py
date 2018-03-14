@@ -109,7 +109,7 @@ def application_versions_json(request):
 
 
 @any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
+                          amo.permissions.REVIEWS_ADMIN])
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -328,7 +328,7 @@ def email_devs(request):
 
 @any_permission_required([amo.permissions.ADMIN,
                           amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
+                          amo.permissions.REVIEWS_ADMIN])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})

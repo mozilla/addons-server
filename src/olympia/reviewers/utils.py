@@ -319,7 +319,7 @@ class ReviewHelper(object):
         is_content_reviewer = acl.action_allowed(
             request, amo.permissions.ADDONS_CONTENT_REVIEW)
         is_admin_tools_viewer = acl.action_allowed(
-            request, amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
+            request, amo.permissions.REVIEWS_ADMIN)
         reviewable_because_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_not_reserved_for_admins_or_user_is_admin = (

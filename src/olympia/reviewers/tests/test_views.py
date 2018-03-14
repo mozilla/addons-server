@@ -2138,11 +2138,11 @@ class TestContentReviewQueue(QueueTest):
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
         user = self.login_with_permission()
-        self.grant_permission(user, 'ReviewerAdminTools:View')
+        self.grant_permission(user, 'Reviews:Admin')
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=5, total_queues=3)
+                                tab_position=2, total_addons=5, total_queues=4)
 
 
 class TestPerformance(QueueTest):
@@ -3744,7 +3744,7 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        self.grant_permission(self.reviewer, 'ReviewerAdminTools:View')
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
