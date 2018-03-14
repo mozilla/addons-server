@@ -40,7 +40,8 @@ from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import users_list
-from olympia.versions.models import ApplicationsVersions, AppVersion, Version
+from olympia.versions.models import (
+    ApplicationsVersions, AppVersion, Version, VersionPreview)
 
 
 def norm(s):
@@ -1030,6 +1031,18 @@ class TestDetailPage(TestCase):
                     for c in self.addon.categories.filter(
                         application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
+
+    def test_static_theme_detail(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        version_preview = VersionPreview.objects.create(
+            version=self.addon.current_version)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.previews')
+        assert len(doc('.previews li.panel')) == 1
+        img = doc('.previews li.panel img')[0]
+        assert img.attrib['src'] == version_preview.thumbnail_url
 
 
 class TestPersonas(object):
