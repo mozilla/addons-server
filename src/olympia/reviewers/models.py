@@ -484,10 +484,12 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
             elif addon.type == amo.ADDON_PERSONA:
                 reviewed_score_name = 'REVIEWED_PERSONA'
+            elif addon.type == amo.ADDON_STATICTHEME:
+                reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
             elif addon.type == amo.ADDON_THEME and queue:
-                reviewed_score_name = 'REVIEWED_THEME_%s' % queue
+                reviewed_score_name = 'REVIEWED_XUL_THEME_%s' % queue
 
         if reviewed_score_name:
             return getattr(amo, reviewed_score_name)
