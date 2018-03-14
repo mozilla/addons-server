@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-12 20:20+0000\n"
+"PO-Revision-Date: 2018-03-14 21:48+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2528,40 +2528,40 @@ msgid "Provide the text of your license."
 msgstr "Taya' ri cholan rutzij aya'öl q'ij."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Toq nicha' Jun chik, k'atzinel ri rucholan tzij ya'öl q'ij."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Re tz'aqat re' k'o jun Ruya'öl Ruq'ij Ruk'isib'äl-Okisanel"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Tajikib'a' ri Ruya'öl Ruq'ij Ruk'isib'äl-Okisanel richin ri atz'aqat:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Re tz'aqat re' k'o jun Runa'ojil Ichinanem"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Tajikib'a' ri Runa'ojil Ichinanem ri atz'aqat:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil {extensions}."
 
 msgid "View current"
-msgstr ""
+msgstr "Titz'et ri wakami"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Rajilab'al man okel ta ruwäch."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "K'atzinel jun k'amonel chokoy."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "K'o jun sachoj rik'in ri ataqoj. Tatojtob'ej chik."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Tirepüx rusachoj jikib'anem"
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Titaq ri nutz'aqat richin ninik'öx chi q'ab'aj."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
