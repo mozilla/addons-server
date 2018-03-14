@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-14 21:48+0000\n"
+"PO-Revision-Date: 2018-03-14 21:56+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2564,19 +2564,19 @@ msgid "Submit my add-on for manual review."
 msgstr "Titaq ri nutz'aqat richin ninik'öx chi q'ab'aj."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Ri taq yakb'äl rik'in jun ruwäch nikik'isib'ej rik'in a|alpha|b|beta|pre|rc chuqa' jun cha'el ajilab'äl yetz'et achi'el beta."
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Man yatikïr ta ye'ajotob'a' ch'aqa' chik taq yakb'äl richin re ruwäch re'."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Man nuxïm ta ri' ri ruwäch"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Ri ruwäch {version} xjotob'äx chuqa' xyuj el."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Ri ruwäch {version} k'o chik."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
