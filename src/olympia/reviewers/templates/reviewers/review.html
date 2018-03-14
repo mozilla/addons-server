@@ -104,13 +104,12 @@
               {% endif %}
             {% else %}
               <ul>
-                {% set file_from_latest_version_in_channel=addon.find_latest_version(channel=version.channel).all_files[0] %}
                 <li class="file-info">
                   <span class="light">
-                    <strong><a href="{{ file_from_latest_version_in_channel.get_url_path('reviewer') }}" class="reviewers-install"
+                    <strong><a href="{{ version.all_files[0].get_url_path('reviewer') }}" class="reviewers-install"
                       data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
                     <div>
-                      {{ file_review_status(addon, file_from_latest_version_in_channel) }}
+                      {{ file_review_status(addon, version.all_files[0]) }}
                     </div>
                   </span>
                 </li>

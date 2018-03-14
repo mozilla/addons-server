@@ -4,12 +4,14 @@
       {% if addon.type == amo.ADDON_STATICTHEME %}
       <div id="addon-theme-previews-wrapper">
         <div>
-          {% for preview in version.previews.all() %}
+          {% with previews = version.previews.all() if version else [] %}
+          {% for preview in previews %}
             <a class="" rel="jquery-lightbox"
               href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
                 <img alt="" src="{{ preview.image_url }}" />
             </a>
           {% endfor %}
+          {% endwith %}
         </div>
         <div class="all-backgrounds">
           {% for background in backgrounds %}
