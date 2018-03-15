@@ -1,5 +1,8 @@
+-- type = 2 was previously used for webapp canned responses.
+DELETE FROM `cannedresponses` WHERE type = 2;
+
 -- sort_group is one of the `actions[]` keys from ReviewHelper
--- type is CANNED_RESPONSE_THEME = 2
+-- type is now CANNED_RESPONSE_THEME = 2
 
 INSERT INTO `cannedresponses` (name, response, sort_group, type, created, modified)
 VALUES
