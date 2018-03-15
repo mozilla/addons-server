@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-15 22:31+0000\n"
+"PO-Revision-Date: 2018-03-15 22:38+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2691,17 +2691,17 @@ msgid "Validate Add-on"
 msgstr "Tijikib'äx ri Tz'aqat"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Tinik'öx ruk'amonel Tz'aqat"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Man tikirel ta natäq re ruwäch tz'aqat re'"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
