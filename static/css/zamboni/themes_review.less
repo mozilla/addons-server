@@ -1,6 +1,84 @@
-@import 'themes_lib';
+// Colors
+@bg: #eff1f3;
+@bg-gray: #f8f8f8;
+@black: #000;
+@blue: #258;
+@border-black: rgba(0,0,0,.2);
+@border-blue: #C9DDF2;
+@border-gray: #ddd;
+@dark-gray: #333;
+@dumpy-brown: #A49460;
+@error-red: #C00000;
+@faint-blue: #ECF5FE;
+@faint-gray: #eee;
+@gray: #888;
+@green: #093;
+@inset-blue: rgba(152,178,201,.3);
+@light-gray: #ccc;
+@light-green: #4b0;
+@link: #447BC4;
+@maroon: #800;
+@medium-gray: #666;
+@mobileborder: #d7d2c3;
+@note-gray: #999;
+@notice-yellow: #FAF2BD;
+@orange: #e60;
+@reviewer-header-purple: #563C4B;
+@red: #C63717;
+@shadow-blue: #98B2C9;
+@tab-stripe: #f7f5f3;
+@tab-taupe: #efede8;
+@taupe: rgb(215,210,195);
+@teal: #5875A0;
+@text: #424f5a;
+@white: #fff;
 
-$inset-blue = rgba(152, 178, 201, 0.3);
+@faded-blue: rgba(201,221,242,.1);
+// Button Colors
+@button-green-light: #81bc2e;
+@button-green-dark: #659324;
+@button-red-light: #da5132;
+@button-red-dark: #a91300;
+
+
+// Font Stacks
+@open-stack: "Feura Sans", FeuraSansWeb, "Open Sans", "Helvetica Neue", Arial, sans-serif;
+
+
+.transform(@tform) {
+    -webkit-transform: @tform;
+    -moz-transform: @tform;
+    -ms-transform: @tform;
+    transform: @tform;
+}
+
+.transition(@property) {
+    -moz-transition: @property;
+    -webkit-transition: @property;
+    transition: @property;
+}
+
+.border-box() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gradient-two-color(@color1, @color2) {
+    background-color: @color2;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
+    background-image: linear-gradient(@color1, @color2);
+    background-image: -webkit-linear-gradient(@color1, @color2);
+}
+
+
+@inset-blue = rgba(152, 178, 201, 0.3);
 
 ul {
     margin-bottom: 0;
@@ -10,14 +88,13 @@ ul {
 .sidebar {
     a.button, button {
         // Bluish.
-        gradient-two-color(#4cb1ff, #1793e5);
-        btn-shadow();
+        .gradient-two-color(#4cb1ff, #1793e5);
         background-repeat: repeat-x;
         border: none;
         border-radius: 1px;
-        color: $white;
+        color: white;
         display: inline-block;
-        font: 400 14px/48px $open-stack;
+        font: 400 14px/48px @open-stack;
         height: 48px;
         min-width: 100px;
         white-space: nowrap;
@@ -26,23 +103,22 @@ ul {
         text-decoration: none;
 
         &:hover, &:focus {
-            gradient-two-color(darken(#4cb1ff, 10%), darken(#1793e5, 10%));
+            .gradient-two-color(#2ba3ff, #1584ce);
             text-decoration: none;
         }
         &:hover, &:focus, &:active {
-            color: darken($white, 10%);
+            color: darken(white, 10%);
         }
         &:active {
-            btn-shadow-active();
-            border: 1px solid darken(#1793e5, 10%);
+            border: 1px solid #1584ce;
         }
     }
 }
 
 .island {
-    gradient-two-color(#FCFDFE, #F4F8FC);
+    .gradient-two-color(#FCFDFE, #F4F8FC);
     background: #FCFDFE;
-    border: 1px solid $border-blue;
+    border: 1px solid @border-blue;
     border-radius: 5px;
     display: block;
     margin-bottom: 15px;
@@ -50,8 +126,8 @@ ul {
 }
 
 h2.theme-queue-header {
-    color: #EE6600
-    font: normal 28px $open-stack normal;
+    color: #EE6600;
+    font: normal 28px @open-stack normal;
     font-weight: normal;
     float: left;
 }
@@ -74,7 +150,7 @@ nav.theme-review {
             content: "|";
         }
         &.active a {
-            color: $orange;
+            color: @orange;
             cursor: default;
 
             &:hover {
@@ -85,7 +161,7 @@ nav.theme-review {
 }
 
 h2 a:last-child {
-    color: $link;
+    color: @link;
 }
 
 .zoombox {
@@ -115,13 +191,13 @@ h2 a:last-child {
         font-weight: normal;
     }
     .box {
-        border: 1px solid $light-gray;
+        border: 1px solid @light-gray;
         border-radius: 2px;
         margin-bottom: 15px;
         padding: 0 13px 13px;
 
         h2 {
-            color: $dark-gray;
+            color: @dark-gray;
             font: 18px Georgia, serif;
             margin-bottom: 0;
         }
@@ -141,7 +217,7 @@ h2 a:last-child {
     }
     .options, .shortcuts {
         background: #fff;
-        border-color: $light-gray;
+        border-color: @light-gray;
     }
     fieldset {
         margin-top: 7px;
@@ -160,7 +236,7 @@ h2 a:last-child {
                 margin-left: 20px;
             }
             &:nth-child(2) {
-                border-bottom: 1px dotted $shadow-blue;
+                border-bottom: 1px dotted @shadow-blue;
                 margin: 2px 0;
                 padding-bottom: 7px;
             }
@@ -173,11 +249,11 @@ h2 a:last-child {
         width: 100%;
     }
     button#commit {
-        background: darken($button-green-dark, 15%);
+        background: #567d1f;
         position: relative;
 
         &:hover {
-            background: darken($button-green-light, 15%);
+            background: #6ea027;
         }
         &:before {
             background-image: url('../../img/sprites/mkt-reviewer-icons/page_white_edit.png');
@@ -225,7 +301,7 @@ h2 a:last-child {
     &.single {
         .theme {
             opacity: .30;
-            transition(opacity .4s);
+            .transition(opacity .4s);
             &:hover, &.active {
                 opacity: 1;
             }
@@ -235,20 +311,20 @@ h2 a:last-child {
 
 .theme {
     background: #fff;
-    border: 1px solid $border-blue;
+    border: 1px solid @border-blue;
     border-radius: 3px;
     margin-bottom: 25px;
     padding: 0 13px 13px 13px;
     position: relative;
 
     h2 {
-        font: 20px $open-stack normal;
+        font: 20px @open-stack normal;
         margin: 10px 0 5px;
     }
     .preview, .header, .footer {
         margin: 13px 0;
-        border: 2px solid $border-blue;
-        background: $faded-blue;
+        border: 2px solid @border-blue;
+        background: @faded-blue;
     }
     .preview {
         position: relative;
@@ -278,10 +354,10 @@ h2 a:last-child {
         top: 0;
 
         &.red {
-            background: $button-red-dark;
+            background: @button-red-dark;
         }
         &.green {
-            background: $button-green-dark;
+            background: @button-green-dark;
         }
         &.reviewed {
             display: block;
@@ -318,7 +394,7 @@ h2 a:last-child {
             font-weight: bold;
 
             &:before {
-                color: $note-gray;
+                color: @note-gray;
                 content: "/";
                 margin: 0 7px 0 4px;
             }
@@ -355,17 +431,17 @@ h2 a:last-child {
             font-size: inherit;
 
             &.approve {
-                background: $button-green-dark;
+                background: @button-green-dark;
 
                 &:hover {
-                    background: $button-green-light;
+                    background: @button-green-light;
                 }
             }
             &.reject, &.duplicate, &.flag {
-                background: $button-red-dark;
+                background: @button-red-dark;
 
                 &:hover {
-                    background: $button-red-light;
+                    background: @button-red-light;
                 }
             }
         }
@@ -380,13 +456,13 @@ h2 a:last-child {
     }
 }
 .theme.active {
-    box-shadow: 0 0 1px 1px $light-gray;
+    box-shadow: 0 0 1px 1px @light-gray;
 }
 
 .rq-dropdown {
     background: #fff;
-    border: 1px solid $border-blue;
-    box-shadow: 0 1px 2px $light-gray;
+    border: 1px solid @border-blue;
+    box-shadow: 0 1px 2px @light-gray;
     display: none;
     float: right;
     margin-top: 7px;
@@ -397,17 +473,17 @@ h2 a:last-child {
 
     &:before {
         background: #fff;
-        box-shadow: 1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 $border-blue;
+        box-shadow: 1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 @border-blue;
         content: "";
         height: 14px;
         position: absolute;
         top: -7px;
-        transform(rotate(45deg));
+        .transform(rotate(45deg));
         width: 14px;
         z-index: 0;
     }
     label:first-child {
-        color: $dark-gray;
+        color: @dark-gray;
         display: block;
         font-weight: bold;
         margin: 3px 0 6px;
@@ -425,7 +501,7 @@ h2 a:last-child {
         .req {
             display: inline;
         }
-        color: $red;
+        color: @red;
         display: none;
         float: left;
         font-weight: bold;
@@ -456,13 +532,13 @@ h2 a:last-child {
             float: left;
         }
         span {
-            color: $link;
+            color: @link;
             display: block;
             margin-left: 20px;
         }
     }
     li:hover {
-        background: $inset-blue;
+        background: @inset-blue;
         cursor: pointer;
     }
 }
@@ -487,7 +563,7 @@ h2 a:last-child {
         margin-bottom: 12px;
 
         span {
-            color: $link;
+            color: @link;
             display: inline;
             margin-bottom: 0;
         }
@@ -505,14 +581,14 @@ h2 a:last-child {
     width: 100%;
 
     tr {
-        color: $dark-gray;
+        color: @dark-gray;
         line-height: 39px;
     }
     tr:nth-child(even) {
-        background: $inset-blue;
+        background: @inset-blue;
     }
     thead {
-        background: $border-blue;
+        background: @border-blue;
     }
     th {
         font-weight: bold;
@@ -619,7 +695,7 @@ p.total {
     margin-bottom: 0;
 }
 div.featured {
-    border: 1px solid $light-gray;
+    border: 1px solid @light-gray;
 }
 #reviewers-stats-charts .listing-header {
     padding: 15px 10px;
@@ -633,8 +709,8 @@ div.featured-inner {
 tr.listing-header,
 div.listing-header,
 #reviewers-score-bar {
-    gradient-two-color(#fff, darken(#fff, 3%));
-    border: 1px solid $light-gray;
+    .gradient-two-color(#fff, darken(#fff, 3%));
+    border: 1px solid @light-gray;
 }
 
 #search-island {
@@ -644,7 +720,7 @@ div.listing-header,
     }
     .addon-id {
         background: #fff;
-        border: 1px solid $light-gray;
+        border: 1px solid @light-gray;
         border-radius: 5px;
         margin-right: 5px;
         padding: 3px;

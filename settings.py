@@ -59,8 +59,7 @@ CELERY_TASK_ALWAYS_EAGER = False
 ALLOW_SELF_REVIEWS = True
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to, this
-# will be the path to the `stylus` and `lessc` executables.
-STYLUS_BIN = os.getenv('STYLUS_BIN', path('node_modules/stylus/bin/stylus'))
+# will be the path to the `lessc` executable.
 LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
 CLEANCSS_BIN = os.getenv(
     'CLEANCSS_BIN',
