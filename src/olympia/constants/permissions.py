@@ -11,8 +11,6 @@ ADMIN = AclPermission('Admin', '%')
 
 # Can view admin tools.
 ADMIN_TOOLS_VIEW = AclPermission('AdminTools', 'View')
-# Can view add-on reviewer admin tools.
-REVIEWER_ADMIN_TOOLS_VIEW = AclPermission('ReviewerAdminTools', 'View')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can configure some settings of an add-on.
