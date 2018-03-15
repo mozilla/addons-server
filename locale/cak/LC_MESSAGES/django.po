@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-14 21:48+0000\n"
+"PO-Revision-Date: 2018-03-14 23:04+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2564,31 +2564,31 @@ msgid "Submit my add-on for manual review."
 msgstr "Titaq ri nutz'aqat richin ninik'öx chi q'ab'aj."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Ri taq yakb'äl rik'in jun ruwäch nikik'isib'ej rik'in a|alpha|b|beta|pre|rc chuqa' jun cha'el ajilab'äl yetz'et achi'el beta."
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Man yatikïr ta ye'ajotob'a' ch'aqa' chik taq yakb'äl richin re ruwäch re'."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Man nuxïm ta ri' ri ruwäch"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Ri ruwäch {version} xjotob'äx chuqa' xyuj el."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Ri ruwäch {version} k'o chik."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "¿La k'a nasamajij ri rujotob'axik k'o?"
 
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Ri nuk'uche'el Ronojel man tikirel ta nitun kik'in jikïl taq nuk'uche'el."
 
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Jun nuk'uche'el xa xe tikirel nicha' jumul."
 
 msgid "Reputation"
-msgstr ""
+msgstr "Ejqalem"
 
 msgid "Application"
 msgstr "Chokoy"
@@ -2597,7 +2597,7 @@ msgid "Select an application first"
 msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Man tikirel ta nik'o chi re ri 3 rajowaxik taq tz'aqat."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2608,31 +2608,32 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
+msgstr "Man tikirel ta yejal ri taq ruwäch toq ri atz'aqat ya'on ruq'ij."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Nitikirisäx rik'in ri Firefox 53, ri k'ak'a' taq rutz'aqat ruxaq, e ütz we e WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Ri taq tz'aqat e'ichinan kan man e k'amonel ta rik'in ri Firefox 57 o jotöl. Tokisäx jun maxVersion richin 56.* o qajinäq."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
+"Man yatikïr ta nak'ëx jun WebExtensions tz'aqat rik'in legacy tz'aqat. Man xketikïr xtikokisaj ri k'ak'a' ruwäch ri okisanela' ruma chi ri Firefox man nuya' ta q'ij chi ke re kiwäch k'exoj re'."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s xutzolij tzij rik'in %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Ri okem pa \"%s\" xk'is ruq'ijul."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Man rilon ta ri k'uxasamaj pa \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2642,19 +2643,19 @@ msgid "All My Add-ons"
 msgstr "Ronojel Taq Nutz'aqat"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Ronojel Samaj"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Kik'exoj Tz'aqat"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Kib'anikilTz'aqat"
 
 msgid "User Collections"
-msgstr ""
+msgstr "Kimol Okisanel"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Kitzijoxik Okisanel"
 
 msgid "Changes successfully saved."
 msgstr ""
