@@ -845,7 +845,8 @@ class ReviewUnlisted(ReviewBase):
         template = u'unlisted_to_reviewed_auto'
         subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.log_action(amo.LOG.APPROVE_VERSION)
-        self.notify_email(template, subject)
+
+        self.notify_email(template, subject, perm_setting=None)
 
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))
