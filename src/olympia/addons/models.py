@@ -14,7 +14,6 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
@@ -54,7 +53,7 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal)
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import Version, inherit_nomination
+from olympia.versions.models import inherit_nomination, Version, VersionPreview
 
 from . import signals
 
@@ -429,6 +428,7 @@ class Addon(OnChangeMixin, ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import
         from . import tasks
+        from olympia.versions import tasks as version_tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
         soft_deletion = self.is_soft_deleteable()
@@ -443,6 +443,9 @@ class Addon(OnChangeMixin, ModelBase):
         # after the addon is deleted.
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
+        version_previews = list(
+            VersionPreview.objects.filter(version__addon__id=id)
+            .values_list('id', flat=True))
 
         if soft_deletion:
             # /!\ If we ever stop using soft deletion, and remove this code, we
@@ -518,6 +521,8 @@ class Addon(OnChangeMixin, ModelBase):
 
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
+        for preview in version_previews:
+            version_tasks.delete_preview_files.delay(preview)
 
         return True
 
@@ -1919,17 +1924,7 @@ dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
 
 
-def delete_preview_files(sender, instance, **kw):
-    """On delete of the Preview object from the database, unlink the image
-    and thumb on the file system """
-    for filename in [instance.image_path, instance.thumbnail_path]:
-        if storage.exists(filename):
-            log.info('Removing filename: %s for preview: %s'
-                     % (filename, instance.pk))
-            storage.delete(filename)
-
-
-models.signals.post_delete.connect(delete_preview_files,
+models.signals.post_delete.connect(Preview.delete_preview_files,
                                    sender=Preview,
                                    dispatch_uid='delete_preview_files')
 

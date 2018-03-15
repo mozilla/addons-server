@@ -36,7 +36,6 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 from .compare import version_dict, version_int
-from .tasks import generate_static_theme_preview
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -214,6 +213,9 @@ class Version(OnChangeMixin, ModelBase):
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
                 channel == amo.RELEASE_CHANNEL_LISTED):
+            # To avoid a circular import
+            from .tasks import generate_static_theme_preview
+
             dst_root = os.path.join(user_media_path('addons'), str(addon.id))
             theme_data = parsed_data.get('theme', {})
             version_root = os.path.join(dst_root, unicode(version.id))
@@ -285,9 +287,19 @@ class Version(OnChangeMixin, ModelBase):
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self, hard=False):
+        # To avoid a circular import
+        from .tasks import delete_preview_files
+
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon,
                             str(self.version))
+
+        # Fetch previews before deleting the version instance, so that we can
+        # pass the list of files to delete to the delete_preview_files task
+        # after the version is deleted.
+        previews = list(VersionPreview.objects.filter(version__id=self.id)
+                        .values_list('id', flat=True))
+
         if hard:
             super(Version, self).delete()
         else:
@@ -296,6 +308,9 @@ class Version(OnChangeMixin, ModelBase):
             self.files.update(status=amo.STATUS_DISABLED)
             self.deleted = True
             self.save()
+
+        for preview in previews:
+            delete_preview_files.delay(preview)
 
     @property
     def is_user_disabled(self):
@@ -666,6 +681,11 @@ class VersionPreview(BasePreview, ModelBase):
         they're auto-generated.  This is for compatibility with Addon Preview
         objects."""
         return None
+
+
+models.signals.post_delete.connect(VersionPreview.delete_preview_files,
+                                   sender=VersionPreview,
+                                   dispatch_uid='delete_preview_files')
 
 
 @use_master

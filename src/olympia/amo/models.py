@@ -4,6 +4,7 @@ import threading
 import time
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.utils import translation
 from django.utils.encoding import force_text
@@ -14,6 +15,7 @@ import multidb.pinning
 
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 import olympia.lib.queryset_transform as queryset_transform
 
 from olympia.translations.hold import save_translations
@@ -23,6 +25,8 @@ from . import search
 
 _locals = threading.local()
 _locals.skip_cache = False
+
+log = olympia.core.logger.getLogger('z.addons')
 
 
 @contextlib.contextmanager
@@ -504,3 +508,16 @@ class BasePreview(object):
     @property
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
+
+    @classmethod
+    def delete_preview_files(cls, sender, instance, **kw):
+        """On delete of the Preview object from the database, unlink the image
+        and thumb on the file system """
+        for filename in [instance.image_path, instance.thumbnail_path]:
+            try:
+                log.info('Removing filename: %s for preview: %s'
+                         % (filename, instance.pk))
+                storage.delete(filename)
+            except Exception, e:
+                log.error(
+                    'Error deleting preview file (%s): %s' % (filename, e))

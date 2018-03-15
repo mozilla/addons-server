@@ -93,14 +93,7 @@ def update_appsupport(ids):
 
 @task
 def delete_preview_files(id, **kw):
-    log.info('[1@None] Removing preview with id of %s.' % id)
-
-    p = Preview(id=id)
-    for f in (p.thumbnail_path, p.image_path):
-        try:
-            storage.delete(f)
-        except Exception, e:
-            log.error('Error deleting preview file (%s): %s' % (f, e))
+    Preview.delete_preview_files(sender=None, instance=Preview(id=id))
 
 
 @task(acks_late=True)
