@@ -1,7 +1,6 @@
   <div class="featured">
     <div class="featured-inner object-lead inverse">
 
-      {% if addon.type == amo.ADDON_STATICTHEME %}
       <div id="addon-theme-previews-wrapper">
         <div>
           {% with previews = version.previews.all() if version else [] %}
@@ -24,7 +23,6 @@
           {% endfor %}
         </div>
       </div>
-      {% else %}
       <div class="secondary">
         {% if addon.all_previews %}
           {% with preview=addon.all_previews[0] %}
@@ -38,10 +36,9 @@
             alt="" width="200" height="150" />
         {% endif %}
       </div>{# /secondary #}
-      {% endif %}
 
       <div id="addon-summary-wrapper">
-        <div id="addon-summary" class="primary{{ ' theme' if addon.type == amo.ADDON_STATICTHEME else '' }}">
+        <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
           {% if version and version.is_restart_required %}
             <div>
@@ -205,8 +202,8 @@
 
   {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
         addon.show_beta  %}
-    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
-    <div class="article userinput">
+    <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article userinput more-about">
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
       {% if addon.all_previews|length > 1 %}
@@ -228,9 +225,9 @@
       {% endif %}
 
     </div>{# /article #}
-  {% elif addon.type != amo.ADDON_STATICTHEME %}
-    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
-    <div class="article">
+  {% else %}
+    <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article more-about">
       <em>
         {{ _('Nothing to see here!  The developer did not include any details.') }}
       </em>
