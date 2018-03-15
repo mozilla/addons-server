@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-15 22:38+0000\n"
+"PO-Revision-Date: 2018-03-15 23:05+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2705,11 +2705,11 @@ msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi man ye'ik'o ta chi re ri %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Ri wachib'äl k'o chi {0} piksel ruwa chuqa' {1} taq piksel rujotolem."
 
 msgid "There was an error uploading your preview."
 msgstr ""
@@ -2730,7 +2730,7 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "Xk'utüx nik'oxïk."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2772,7 +2772,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} Taq tz'aqat"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
