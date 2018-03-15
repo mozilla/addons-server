@@ -653,18 +653,18 @@ class VersionPreview(BasePreview, ModelBase):
     class Meta:
         db_table = 'version_previews'
 
-    @property
+    @cached_property
     def position(self):
         """We only don't support defining a position for previews because
         they're auto-generated.  This is for compatibility with Addon Preview
-        objects."""
+        objects. (it's a cached_property so it can be set transparently)"""
         return 0
 
-    @property
+    @cached_property
     def caption(self):
         """We only don't support defining a caption for previews because
         they're auto-generated.  This is for compatibility with Addon Preview
-        objects."""
+        objects. (it's a cached_property so it can be set transparently)"""
         return None
 
 
