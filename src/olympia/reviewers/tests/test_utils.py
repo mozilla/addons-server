@@ -358,12 +358,22 @@ class TestReviewHelper(TestCase):
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
         for template in ('nominated_to_sandbox', 'pending_to_public',
-                         'pending_to_sandbox', 'unlisted_to_reviewed_auto'):
+                         'pending_to_sandbox',):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
             assert base_fragment in mail.outbox[0].body
             assert mail.outbox[0].reply_to == [reply_email]
+
+        mail.outbox = []
+        # This one does not inherit from base.txt because it's for unlisted
+        # signing notification, which is not really something that necessitates
+        # reviewer interaction, so it's simpler.
+        template = 'unlisted_to_reviewed_auto'
+        self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+        assert len(mail.outbox) == 1
+        assert base_fragment not in mail.outbox[0].body
+        assert mail.outbox[0].reply_to == [reply_email]
 
     def test_email_links(self):
         expected = {
@@ -888,7 +898,9 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             '%s signed and ready to download' % self.preamble)
-        assert 'our automatic tests and is now signed' in mail.outbox[0].body
+        assert ('%s is now signed and ready for you to download' %
+                self.version.version in mail.outbox[0].body)
+        assert 'You received this email because' not in mail.outbox[0].body
 
         sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
