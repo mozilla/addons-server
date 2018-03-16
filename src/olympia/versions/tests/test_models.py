@@ -997,7 +997,7 @@ class TestStaticThemeFromUpload(UploadTest):
         version = Version.from_upload(
             upload, addon, [], amo.RELEASE_CHANNEL_LISTED)
         assert len(version.all_files) == 1
-        assert generate_static_theme_preview_mock.delay.call_count == 1
+        assert generate_static_theme_preview_mock.call_count == 1
         image_url_folder = u'%s/%s/%s/' % (
             user_media_url('addons'), addon.id, version.id)
 
