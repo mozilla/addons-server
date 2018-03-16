@@ -464,7 +464,7 @@ class TestReviewerScore(TestCase):
         types = {
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
-            amo.ADDON_THEME: 'THEME',
+            amo.ADDON_THEME: 'XUL_THEME',
             amo.ADDON_DICT: 'DICT',
             amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',
@@ -472,6 +472,7 @@ class TestReviewerScore(TestCase):
             amo.ADDON_PLUGIN: 'ADDON',
             amo.ADDON_API: 'ADDON',
             amo.ADDON_PERSONA: 'PERSONA',
+            amo.ADDON_STATICTHEME: 'STATICTHEME',
         }
         statuses = {
             amo.STATUS_NULL: None,

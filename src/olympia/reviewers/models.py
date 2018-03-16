@@ -78,7 +78,6 @@ def set_reviewing_cache(addon_id, user_id):
 
 
 class CannedResponse(ModelBase):
-
     name = models.CharField(max_length=255)
     response = models.TextField()
     sort_group = models.CharField(max_length=255)
@@ -90,19 +89,6 @@ class CannedResponse(ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-
-class AddonCannedResponseManager(ManagerBase):
-    def get_queryset(self):
-        qs = super(AddonCannedResponseManager, self).get_queryset()
-        return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
-
-
-class AddonCannedResponse(CannedResponse):
-    objects = AddonCannedResponseManager()
-
-    class Meta:
-        proxy = True
 
 
 class EventLog(models.Model):
@@ -498,10 +484,12 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
             elif addon.type == amo.ADDON_PERSONA:
                 reviewed_score_name = 'REVIEWED_PERSONA'
+            elif addon.type == amo.ADDON_STATICTHEME:
+                reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
             elif addon.type == amo.ADDON_THEME and queue:
-                reviewed_score_name = 'REVIEWED_THEME_%s' % queue
+                reviewed_score_name = 'REVIEWED_XUL_THEME_%s' % queue
 
         if reviewed_score_name:
             return getattr(amo, reviewed_score_name)

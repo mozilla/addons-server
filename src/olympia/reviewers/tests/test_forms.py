@@ -86,10 +86,13 @@ class TestReviewForm(TestCase):
             file_status=amo.STATUS_AWAITING_REVIEW)
         assert 'public' not in actions.keys()
 
-    def test_canned_responses_no_app(self):
+    def test_canned_responses(self):
         self.cr_addon = CannedResponse.objects.create(
             name=u'addon reason', response=u'addon reason body',
             sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
+        self.cr_theme = CannedResponse.objects.create(
+            name=u'theme reason', response=u'theme reason body',
+            sort_group=u'public', type=amo.CANNED_RESPONSE_THEME)
         self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW)
@@ -100,8 +103,15 @@ class TestReviewForm(TestCase):
         # Within that, it's paired by [group, [[response, name],...]].
         # So above, choices[1][1] gets the first real group's list of
         # responses.
-        assert len(choices) == 1
+        assert len(choices) == 1  # No theme response
         assert self.cr_addon.response in choices[0]
+
+        # Check we get different canned responses for static themes.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        form = self.get_form()
+        choices = form.fields['canned_response'].choices[1][1]
+        assert self.cr_theme.response in choices[0]
+        assert len(choices) == 1  # No addon response
 
     def test_comments_and_action_required_by_default(self):
         form = self.get_form()
