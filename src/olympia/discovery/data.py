@@ -25,9 +25,48 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Swirly Purple' theme.
+        # 'The universe of ancient times.' theme.
         DiscoItem(
-            addon_id=18705, type=amo.ADDON_PERSONA),
+            addon_id=317972, type=amo.ADDON_PERSONA,
+            addon_name=u'The Universe of Ancient Times'),
+
+        # Firefox Multi-Account Containers
+        DiscoItem(
+            addon_id=782160,
+            heading=_(u'Separate your online lives {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Privately distinguish your various online '
+                  u'identities—work, personal, etc.—through color-coded tabs '
+                  u'that split your digital cookie trail.'),
+                '</blockquote>')),
+
+        # Forecastfox
+        DiscoItem(
+            addon_id=583250,
+            heading=_(u'Instant weather updates {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Get instant global weather information right in Firefox.'),
+                '</blockquote>')),
+
+        # 'square red' theme
+        DiscoItem(
+            addon_id=450148, type=amo.ADDON_PERSONA,
+            addon_name=u'Square Red'),
+
+        # New Tab Override (WebExtension)
+        DiscoItem(
+            addon_id=626810,
+            addon_name=u'New Tab Override',
+            heading=_(u'Tab Customization {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Choose the page you see every time you open a new tab.'),
+                '</blockquote>')),
 
         # To Google Translate
         DiscoItem(
@@ -40,47 +79,10 @@ discopane_items = {
                   u'instantly.'),
                 '</blockquote>')),
 
-        # Search by Image
+        # 'dreams beach' theme.
         DiscoItem(
-            addon_id=824288,
-            heading=_(u'Reverse image search '
-                      u'{start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'See an interesting picture on the Web and want to learn '
-                  u'more about it? Try this image search tool.'),
-                '</blockquote>')),
-
-        # 'Eco Theme' theme
-        DiscoItem(
-            addon_id=294291,
-            type=amo.ADDON_PERSONA),
-
-        # Video DownloadHelper
-        DiscoItem(
-            addon_id=3006,
-            heading=_(u'Download videos {start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, '
-                  u'Periscope, and hundreds of other video sites.'),
-                '</blockquote>')),
-
-        # Emoji Cheatsheet.
-        DiscoItem(
-            addon_id=511962,
-            heading=_(u'Up your emoji game {start_sub_heading}with '
-                      u'{addon_name}{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Dozens of amazing emojis—always a click away.'),
-                '</blockquote>')),
-
-        # 'Light Up the Morning' theme.
-        DiscoItem(
-            addon_id=571240, type=amo.ADDON_PERSONA),
+            addon_id=521204, type=amo.ADDON_PERSONA,
+            addon_name=u'Dreams Beach'),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.

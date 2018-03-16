@@ -42,7 +42,7 @@
         <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
-      {% if action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}
+      {% if action_allowed(amo.permissions.REVIEWS_ADMIN) %}
         <li><a href="{{ url('zadmin.addon_manage', addon.slug) }}">
           {{ _('Admin Manage') }}</a></li>
       {% endif %}

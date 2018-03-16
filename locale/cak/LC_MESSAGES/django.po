@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-14 23:04+0000\n"
+"PO-Revision-Date: 2018-03-15 23:05+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2658,58 +2658,58 @@ msgid "User Reviews"
 msgstr "Kitzijoxik Okisanel"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Ütz xeyak ri jaloj."
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Tanik'oj ri kinojwuj sachoj."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Man tikirel ta niyuj ri tz'aqat. Tichup re tz'aqat re'."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Wachinel yujun."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Tz'aqat yujun."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Man ütz ta ri rub'i' URL. Man xyuj ta ri wachinel."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Man ütz ta ri rub'i' URL. Man xyuj ta ri tz'aqat."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Jun b'anel xutz'aqatisaj ri atz'aqat"
 
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Jun b'anel xujäl jun samaj pan atz'aqat"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Jun b'anel xuyüj el pa ri atz'aqat"
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Tijikib'äx ri Tz'aqat"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Tinik'öx ruk'amonel Tz'aqat"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Man tikirel ta natäq re ruwäch tz'aqat re'"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Ri taq wachib'äl k'o chi man ye'ik'o ta chi re ri %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Ri wachib'äl k'o chi {0} piksel ruwa chuqa' {1} taq piksel rujotolem."
 
 msgid "There was an error uploading your preview."
 msgstr ""
@@ -2730,7 +2730,7 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "Xk'utüx nik'oxïk."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2772,7 +2772,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} Taq tz'aqat"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
