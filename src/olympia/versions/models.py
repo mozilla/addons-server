@@ -213,9 +213,6 @@ class Version(OnChangeMixin, ModelBase):
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            # To avoid a circular import
-            from .tasks import generate_static_theme_preview
-
             dst_root = os.path.join(user_media_path('addons'), str(addon.id))
             theme_data = parsed_data.get('theme', {})
             version_root = os.path.join(dst_root, unicode(version.id))
@@ -223,7 +220,7 @@ class Version(OnChangeMixin, ModelBase):
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
             preview = VersionPreview.objects.create(version=version)
-            generate_static_theme_preview.delay(
+            generate_static_theme_preview(
                 theme_data, version_root, preview)
 
         # Track the time it took from first upload through validation
@@ -658,6 +655,15 @@ class Version(OnChangeMixin, ModelBase):
         except AutoApprovalSummary.DoesNotExist:
             pass
         return False
+
+
+def generate_static_theme_preview(theme_data, version_root, preview):
+    """This redirection is so we can mock generate_static_theme_preview, where
+    needed, in tests."""
+    # To avoid a circular import
+    from . import tasks
+    tasks.generate_static_theme_preview.delay(
+        theme_data, version_root, preview)
 
 
 class VersionPreview(BasePreview, ModelBase):

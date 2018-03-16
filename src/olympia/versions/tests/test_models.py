@@ -20,6 +20,7 @@ from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
     CompatOverrideRange)
 from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -29,7 +30,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
-    ApplicationsVersions, Version, source_upload_path)
+    ApplicationsVersions, source_upload_path, Version, VersionPreview)
 
 
 pytestmark = pytest.mark.django_db
@@ -139,33 +140,33 @@ class TestVersion(TestCase):
         assert self._get_version(amo.STATUS_PENDING).is_unreviewed
         assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
 
-    def test_version_delete(self):
+    @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
+    def test_version_delete(self, delete_preview_files_mock):
         version = Version.objects.get(pk=81551)
+        version_preview = VersionPreview.objects.create(version=version)
+        assert version.files.count() == 1
         version.delete()
 
         addon = Addon.objects.no_cache().get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert Version.unfiltered.filter(addon=addon).exists()
-
-    def test_version_delete_files(self):
-        version = Version.objects.get(pk=81551)
         assert version.files.count() == 1
-        version.delete()
-        assert version.files.count() == 1
+        delete_preview_files_mock.assert_called_with(
+            sender=None, instance=version_preview)
 
-    def test_version_hard_delete(self):
+    @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
+    def test_version_hard_delete(self, delete_preview_files_mock):
         version = Version.objects.get(pk=81551)
+        version_preview = VersionPreview.objects.create(version=version)
+        assert version.files.count() == 1
         version.delete(hard=True)
 
         addon = Addon.objects.no_cache().get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.unfiltered.filter(addon=addon).exists()
-
-    def test_version_hard_delete_files(self):
-        version = Version.objects.get(pk=81551)
-        assert version.files.count() == 1
-        version.delete(hard=True)
         assert version.files.count() == 0
+        delete_preview_files_mock.assert_called_with(
+            sender=None, instance=version_preview)
 
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)
@@ -966,7 +967,7 @@ class TestStaticThemeFromUpload(UploadTest):
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED)
         assert len(version.all_files) == 1
-        assert generate_static_theme_preview_mock.delay.call_count == 1
+        assert generate_static_theme_preview_mock.call_count == 1
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(
@@ -975,7 +976,7 @@ class TestStaticThemeFromUpload(UploadTest):
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED)
         assert len(version.all_files) == 1
-        assert generate_static_theme_preview_mock.delay.call_count == 1
+        assert generate_static_theme_preview_mock.call_count == 1
 
 
 class TestApplicationsVersions(TestCase):
@@ -1021,3 +1022,10 @@ class TestApplicationsVersions(TestCase):
                                               max_app_version=u'ك'))
         version = addon.current_version
         assert unicode(version.apps.all()[0]) == u'Firefox ك - ك'
+
+
+class TestVersionPreview(BasePreviewMixin, TestCase):
+    def get_object(self):
+        version_preview = VersionPreview.objects.create(
+            version=addon_factory().current_version)
+        return version_preview
