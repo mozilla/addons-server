@@ -35,7 +35,7 @@
 
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
-  <div id="addon" class="primary" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+  <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
 
   {% include 'reviewers/addon_details_box.html' %}
 
@@ -76,30 +76,44 @@
         </tr>
         <tr class="listing-body">
           <td class="files">
-            {{ all_distinct_files(version) }}
-            {% if version.compatible_apps_ordered %}
-              <div><strong>{{ _('Compatibility:') }}</strong></div>
+            {% if addon.type != amo.ADDON_STATICTHEME %}
+              {{ all_distinct_files(version) }}
+              {% if version.compatible_apps_ordered %}
+                <div><strong>{{ _('Compatibility:') }}</strong></div>
+                <ul>
+                  {% for app, compat in version.compatible_apps_ordered %}
+                  <li>
+                    <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
+                    {{ compat }}
+                  </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if version.source %}
+                  <div><strong>{{ _('Additional sources:') }}</strong></div>
+                  <div>
+                      {% if is_admin %}
+                          <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
+                      {% else %}
+                          {{ _('The developer has provided source code.')}}
+                      {% endif %}
+                  </div>
+              {% endif %}
+              {% if version.autoapprovalsummary %}
+                <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
+              {% endif %}
+            {% else %}
               <ul>
-                {% for app, compat in version.compatible_apps_ordered %}
-                <li>
-                  <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
-                  {{ compat }}
+                <li class="file-info">
+                  <span class="light">
+                    <strong><a href="{{ version.all_files[0].get_url_path('reviewer') }}" class="reviewers-install"
+                      data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
+                    <div>
+                      {{ file_review_status(addon, version.all_files[0]) }}
+                    </div>
+                  </span>
                 </li>
-                {% endfor %}
               </ul>
-            {% endif %}
-            {% if version.source %}
-                <div><strong>{{ _('Additional sources:') }}</strong></div>
-                <div>
-                    {% if is_admin %}
-                        <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
-                    {% else %}
-                        {{ _('The developer has provided source code.')}}
-                    {% endif %}
-                </div>
-            {% endif %}
-            {% if version.autoapprovalsummary %}
-              <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
             {% endif %}
           </td>
           <td>
@@ -199,7 +213,7 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_minimal|join("|") }}|">
+           data-value="{{ actions_full|join("|") }}|">
         <label><strong>{{ _('Files:') }}</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
@@ -213,7 +227,7 @@
       </div>
 
       <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_minimal|join("|") }}|">
+           data-value="{{ actions_full|join("|") }}|">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}
@@ -252,6 +266,7 @@
   </div>
 </form>
 
+{% if whiteboard_form %}
 <form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
   {% csrf_token %}
   <div class="whiteboard">
@@ -277,6 +292,7 @@
     <input type="submit" value="{{ _('Update whiteboards') }}" />
   </div>
 </form>
+{% endif %}
 
 {% if not addon.is_deleted %}
 <form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">

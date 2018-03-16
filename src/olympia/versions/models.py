@@ -25,9 +25,11 @@ from olympia import activity, amo
 from olympia.amo.decorators import use_master
 from olympia.amo.models import (
     BasePreview, ManagerBase, ModelBase, OnChangeMixin)
-from olympia.amo.templatetags.jinja_helpers import id_to_path, user_media_path
+from olympia.amo.templatetags.jinja_helpers import (
+    id_to_path, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
+from olympia.amo.utils import (
+    sorted_groupby, utc_millesecs_from_epoch, walkfiles)
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
@@ -643,6 +645,18 @@ class Version(OnChangeMixin, ModelBase):
         except AutoApprovalSummary.DoesNotExist:
             pass
         return False
+
+    def get_background_image_urls(self):
+        if self.addon.type != amo.ADDON_STATICTHEME:
+            return []
+        background_images_folder = os.path.join(
+            user_media_path('addons'), str(self.addon.id), unicode(self.id))
+        background_images_url = '/'.join(
+            (user_media_url('addons'), str(self.addon.id), unicode(self.id)))
+        out = [
+            background.replace(background_images_folder, background_images_url)
+            for background in walkfiles(background_images_folder)]
+        return out
 
 
 class VersionPreview(BasePreview, ModelBase):
