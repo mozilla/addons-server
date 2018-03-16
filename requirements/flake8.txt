@@ -1,3 +1,4 @@
+-r system.txt
 
 # configparser is required by flake8
 configparser==3.5.0 \
