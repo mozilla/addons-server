@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-16 21:12+0000\n"
+"PO-Revision-Date: 2018-03-16 22:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2720,11 +2720,11 @@ msgstr "Ruwäch %s chupun."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Ruwäch %s xyuj."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Ruwäch %s xtzij chik."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
