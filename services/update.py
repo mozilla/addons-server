@@ -172,12 +172,8 @@ class Update(object):
             WHERE
                 versions.deleted = 0 AND
                 versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
-                -- Note that the WHEN clauses here will evaluate to the same
-                -- thing for each row we examine. The JOINs above narrow the
-                -- rows matched by the WHERE clause to versions of a specific
-                -- add-on, and the ORDER BY and LIMIT 1 clauses below make it
-                -- unlikely that we'll be examining a large number of rows,
-                -- so this is fairly cheap.
+                -- We always return a public file since
+                -- listed beta files are no longer supported.
                 files.status = %(STATUS_PUBLIC)s
         """)
 
