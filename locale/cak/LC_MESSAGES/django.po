@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 20:50+0000\n"
+"PO-Revision-Date: 2018-03-17 21:11+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2753,13 +2753,13 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Ruch'ob'otzij Kijachik Rutz'aqat Firefox"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Kib'eyal chuqa' Kina'ojil Nik'onem"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Xinsik'ij chuqa' ütz yentz'ët ri Ch'ob'otzij chuqa' taq ri B'eyal chuqa' ri taq Na'ojil"
 
 msgid "Accept"
 msgstr "Tik'ul"
@@ -2768,54 +2768,54 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Tiq'at</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Titzolin pa Taq Tz'aqat"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Taq tz'aqat"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Titzolin pa ri DevHub tikirib'äl ruxaq"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Tz'aqat</small> B'anonel Jay"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "ch'aqa' chik tz'aqat..."
 
 msgid "Documentation"
 msgstr "Yaköl wuj"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Kib'anik K'amal"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Anin taq Wachinel"
 
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Kina'ojil Tz'aqat"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Rujikib'anel Tz'aqat"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Runik'onel K'amonel Tz'aqat"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Kitz'aqat B'anonem"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Tinamït & Tob'äl"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Kichinya'l Tz'aqat"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Kich'ob'omoloj Tz'aqat"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Ch'aqa' chik Tob'äl"
 
 msgid "Search Developer Docs"
 msgstr ""
