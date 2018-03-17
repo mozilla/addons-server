@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 21:11+0000\n"
+"PO-Revision-Date: 2018-03-17 21:29+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2818,13 +2818,13 @@ msgid "More Resources"
 msgstr "Ch'aqa' chik Tob'äl"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Kekanöx Kiwujil B'anonel"
 
 msgid "Search"
 msgstr "Tikanöx"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Tawokisaj ri k'ojlib'äl ikim richin najotob'a' tz'aqat pisaj."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
@@ -2837,27 +2837,27 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr ""
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "¿La nawajo' chi nitalüx ri atz'aqat pa re ruxaq re'?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Kiq'i'oj Jikib'anem richin {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Kiq'i'oj Jikib'anem"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Jikib'an pa:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Xnik'öx ri ruk'amonik rik'in:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "K'ak'a' Samaj pa Taq Nutz'aqat"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "K'ak'a' Samaj richin {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2867,13 +2867,13 @@ msgid "No results found."
 msgstr "Majun achike xilitäj."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Tutziläx Samaj"
 
 msgid "Activity"
 msgstr "Samaj"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Tatz'ib'aj ab'i' pa re b'ätz' re'"
 
 #, python-format
 msgid ""
@@ -2886,28 +2886,28 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Ketz'et chuqa' kek'ex ri kajilab'al kik'amonik chokoy."
 
 msgid "Compatibility"
-msgstr ""
+msgstr "K'amonïk"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Tik'ex K'amonïk"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "K'amonel taq Ruwäch"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Titz'aqatisäx Jun Chik Chokoy&hellip;"
 
 msgid "Close"
 msgstr "Titz'apïx"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "K'ak'a' Samaj"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
