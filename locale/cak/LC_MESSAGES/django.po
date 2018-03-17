@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 21:29+0000\n"
+"PO-Revision-Date: 2018-03-17 21:42+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2914,7 +2914,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s ruma %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Ojer rusamaj ri Nutz'aqat"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2923,13 +2923,13 @@ msgstr[0] "<b>{0}</b> wachinel"
 msgstr[1] "<b>{0}</b> taq wachinel"
 
 msgid "Edit Information"
-msgstr ""
+msgstr "Tinuk' Etamab'äl"
 
 msgid "None"
 msgstr "Majun"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Kenuk'samajïx B'anel & Ya'öl Q'ij"
 
 msgid "Authors"
 msgstr "Taq b'anel"
