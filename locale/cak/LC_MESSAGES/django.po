@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 21:42+0000\n"
+"PO-Revision-Date: 2018-03-17 21:58+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2935,7 +2935,7 @@ msgid "Authors"
 msgstr "Taq b'anel"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Chi rij kisamaj b'anel"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2947,7 +2947,7 @@ msgstr "Ruk'u'x Etamab'äl"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Ruxe'el Etamab'äl richin {0}"
 
 msgid "Add-on URL"
 msgstr "Tz'aqat URL"
