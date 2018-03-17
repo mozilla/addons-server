@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 22:47+0000\n"
+"PO-Revision-Date: 2018-03-17 23:26+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3285,37 +3285,37 @@ msgid "Resume the submission process for this add-on."
 msgstr "Tisamajïx chik el ri rub'eyal nitaq re tz'aqat re'."
 
 msgid "Resume"
-msgstr ""
+msgstr "Titikïr chik el"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Tiyuj re tz'aqat re'."
 
 msgid "Delete"
 msgstr "Tiyuj"
 
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Tinuk' etamab'äl chi rij re tz'aqat re'."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'."
 
 msgid "New Version"
-msgstr ""
+msgstr "K'ak'a' Ruwäch"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel."
 
 msgid "Statistics"
-msgstr ""
+msgstr "Kimolob'a'"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Kenuk'samajïx B'anikil & Ruwäch"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Titz'e Kicholajem Tz'aqat"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Ketz'et K'ak'a' taq Jaloj"
 
 msgid "Edit details about this theme's listing."
 msgstr ""
