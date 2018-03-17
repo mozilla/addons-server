@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-16 22:29+0000\n"
+"PO-Revision-Date: 2018-03-17 20:50+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2733,19 +2733,19 @@ msgid "Review requested."
 msgstr "Xk'utüx nik'oxïk."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "K'o chi naya' ch'aqa' chik rub'anikil richin nisamajïx chik el."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik. Tajikib'a' chi ye'ak'ëx ronojel ri taq API winäq kik'in ri k'ak'a' taq wujil."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik."
 
 msgid "New API key created"
-msgstr ""
+msgstr "K'ak'a' API k'uxatzij xtz'uk"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API k'uxatzij xxutüx"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
