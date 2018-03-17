@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 21:58+0000\n"
+"PO-Revision-Date: 2018-03-17 22:25+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3227,37 +3227,37 @@ msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "Taq tojtob'enïk"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Chijun Tojtob'enïk"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Jikomal Tojtob'enïk"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "K'amal Tojtob'enïk"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "K'ojlem Tojtob'enïk"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "K'amonel Tojtob'enïk"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Tewäch rutzijol man najowäx ta richin ri yonil juch'uj"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Ke'ewäx rutzijol e k'o erepun pa ri ruk'isib'äl ruwäch"
 
 msgid "Top"
-msgstr ""
+msgstr "Ajsik"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Tiyuj Wachinel"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Tiyuj Tz'aqat"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
