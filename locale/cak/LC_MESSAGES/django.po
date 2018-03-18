@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 16:06+0000\n"
+"PO-Revision-Date: 2018-03-18 16:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3175,26 +3175,26 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Okisan pa kicholajem tz'aqat, achi'el ri xe'ilitäj richin xekanöx chuqa' eto'on tz'aqat."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Okisan pa ruxaq kib'anikil chokoy."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Tijotob'äx jun Ichinan Wachib'äl..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG chuqa' JPG yek'ul. Xke'etäx ri taq wachib'äl pa 64x64 taq piksel we e nïm."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Chapoj kiwäch"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Taya' estape' xa xe jun chapoj ruwäch ri atz'aqat:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr ""
