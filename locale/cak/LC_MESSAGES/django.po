@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 16:30+0000\n"
+"PO-Revision-Date: 2018-03-18 16:58+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3197,34 +3197,34 @@ msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Taya' estape' xa xe jun chapoj ruwäch ri atz'aqat:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Taya' rub'i' re chapoj ruwa' re':"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Titz'aqatisäx jun Chapoj Ruwäch..."
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "¿La yetikïr nikikomonij ri atz'aqat ri winaqi', toq ketaman chi ja rat xab'anon richin?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "¿La yetikïr ch'aqa' chik yetzijok'ayin rik'in ri Atz'aqat?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "¿La yetikïr ch'aqa' chik nikokisaj ri Atz'aqat richin yekitz'ük taq samaj?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ja', xa k'o chi nukomonij chuqa'"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Ri Atz'aqat xtitalüx rutzijol rik'in re ya'öl q'ij re':"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Ticha' jun chik ya'öl q'ij."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
 
 msgid "Tests"
 msgstr "Taq tojtob'enïk"
