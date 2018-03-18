@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 20:47+0000\n"
+"PO-Revision-Date: 2018-03-18 21:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -430,7 +430,7 @@ msgid ""
 "support\">add-on community</a> for help."
 msgstr ""
 "מומלץ לעיין ב<a href=\"%(support)s\">אגף התמיכה</a> של התוסף הזה ולברר אם קיים סיוע. ניתן גם לנסות לבקש עזרה מ<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">קהילת "
-"התוספים</a>."
+"התוספות</a>."
 
 msgid "Review Guidelines"
 msgstr "כללי סקירה"
@@ -2710,7 +2710,7 @@ msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "האימות ייצר יותר מדי שגיאות/אזהרות כך שהודעות מסוג %s נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
+msgstr ""
 
 msgid "All My Add-ons"
 msgstr "כל התוספות שלי"
@@ -5779,7 +5779,7 @@ msgid "Websites you visit that try to use plugins, and what content on the site 
 msgstr ""
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "אופן האינטראקציה עם תוכן התוסף באתרים האלה, לרבות מה הבחירה שלך בנוגע לאישור הפעלת התוסף."
+msgstr "אופן האינטראקציה עם תוכן התוסף החיצוני באתרים האלה, לרבות מה הבחירה שלך בנוגע לאישור הפעלת התוסף החיצוני."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 msgstr "Mozilla תשמור על פרטיות המידע הזה, הנתונים שייחשפו יהיו בתצורת קיבוץ או בעילום שם."
@@ -5844,7 +5844,7 @@ msgid "You can't reply to a review that is already a reply."
 msgstr "לא ניתן להגיב לסקירה שהיא עצמה תגובה."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "אין לך אפשרות לשנות את גרסה התוספת שבסקירה לאחר שנוצר תהליך סקירה."
+msgstr "לא ניתן לשנות את גרסה התוספת שבסקירה לאחר שהסקירה נוצרה."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "גרסה זו של התוספת אינה קיימת או שאינה ציבורית."
@@ -7155,7 +7155,7 @@ msgid "Downloaded by Date"
 msgstr "הורדות לפי תאריך"
 
 msgid "How are downloads counted?"
-msgstr "איך הורדות נספרות?"
+msgstr "כיצד ההורדות מחושבות?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7273,7 +7273,7 @@ msgid "Choose a category"
 msgstr "בחר קטגוריה"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "האתר החדש תומך בלקוחות ניידים ולשולחן העבודה"
+msgstr ""
 
 msgid "View the new site"
 msgstr "הצגת האתר החדש"
