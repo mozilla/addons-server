@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 21:07+0000\n"
+"PO-Revision-Date: 2018-03-18 21:30+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3094,7 +3094,7 @@ msgid "Contributions URL"
 msgstr "כתובת תרומות"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "אם ברצונך לבקש סיוע כספי מהמשתמשים שלך, ניתן להקים את העמוד הזה בו הם יוכלו לתרום."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "פרטי תוספת"
@@ -3103,7 +3103,7 @@ msgid "Add-on Details for {0}"
 msgstr "פרטי תוספת עבור {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "הסבר ארוך יותר על התכונות, יכולות השימוש ומידע רלוונטי נוסף. שדה זה מוצג אך ורק בעמוד הפרטים של התוספת. הוא תקף אך ורק לתוספות שמוצגות."
+msgstr "הסבר ארוך יותר על התכונות, יכולות השימוש ומידע רלוונטי נוסף. שדה זה מוצג אך ורק בעמוד הפירוט של התוספת. הוא תקף אך ורק לתוספות מוצגות."
 
 msgid "Default Locale"
 msgstr "מיקום לפי ברירת המחדל"
@@ -3735,19 +3735,19 @@ msgid ""
 msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 msgid "You don't have any API credentials."
-msgstr "אין לך פרטי זיהוי כלשהם ל־API."
+msgstr "אין לך פרטי גישה כלשהם ל־API."
 
 msgid "Revoke"
 msgstr "שלילה"
 
 msgid "Revoke and regenerate credentials"
-msgstr "שלילה ויצירת פרטי זיהוי חדשים"
+msgstr "שלילה ויצירת פרטי גישה חדשים"
 
 msgid "Generate new credentials"
-msgstr "יצירת פרטי זיהוי חדשים"
+msgstr "יצירת פרטי גישה חדשים"
 
 msgid "Invisible"
-msgstr "בלתי נראה"
+msgstr "מוסתרת"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "נא להשלים את התוספת שלך על ידי הוספת גרסה או פרטי על חסרים."
@@ -4108,7 +4108,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "הוסיפו מספר תגים כדי לתאר את ערכת הנושא שלכם."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש העמוד הפירוט על ערכת הנושא שלך."
+msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש עמוד הפירוט של ערכת הנושא שלך."
 
 msgid "Theme License"
 msgstr "רישיון ערכת נושא"
@@ -4117,10 +4117,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "האם אנשים אחרים יכולים לשתף את ערכת הנושא שלך, כל עוד יינתן לך קרדיט על כך?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה, לרבות למטרות מסחריות."
+msgstr ""
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה למטרות שאינן מסחריות בלבד."
+msgstr ""
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "האם אנשים אחרים יכולים לעשות שימוש מסחרי בערכת הנושא שלך?"
@@ -4129,7 +4129,7 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "האם אנשים אחרים יכולים ליצור עבודות הנגזרות מערכת הנושא שלך?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה, כמו גם ליצור עבודות שנגזרות ממנה."
+msgstr ""
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "מעניק הרישיון מתיר לאחרים להעתיק, להפיץ ולהעביר גרסאות ללא שינוי של היצירה — לא נגזרות שמבוססות עליה."
@@ -4871,7 +4871,7 @@ msgstr "ישנן מגוון דרכים לקחת חלק. אם יש לך נגיע�
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">לפתח תוספת משלך</a>. אנו מספקים אירוח ושירותי עדכונים בחינם לרבות סיוע בפנייה לקהל יעד רחב של משתמשים."
+msgstr "<a href=\"%(url)s\">פיתוח תוספות משלך</a>. אנו מספקים אירוח ושירותי עדכונים בחינם ומאפשרים לך להגיע לקהל יעד רחב של משתמשים."
 
 #, python-format
 msgid ""
