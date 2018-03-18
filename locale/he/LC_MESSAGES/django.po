@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 21:30+0000\n"
+"PO-Revision-Date: 2018-03-18 21:46+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2710,7 +2710,7 @@ msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
 
 msgid "All My Add-ons"
 msgstr "כל התוספות שלי"
@@ -4905,7 +4905,7 @@ msgstr "מקום טוב להתחיל בו הוא ה<a href=\"%(faq_url)s\"><abbr
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "אם עלה בך צורך עז ליצור קשר עם מישהו בצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a>."
+msgstr "אם עולה בך צורך עז ליצור קשר עם מישהו מצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a> שלנו."
 
 msgid "Who works on this website?"
 msgstr "מי עובד באתר הזה?"
@@ -5149,8 +5149,7 @@ msgstr "מה הם „כלי הפיתוח” שרשומים ב־AMO?"
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
-msgstr ""
-"לוח המחוונים „כלי הפיתוח” הוא האזור שמספק לך את הכלים כדי לנהל את התוספות שלך בהצלחה מרובה. הלוח מספק את התכונות הנדרשות לטובת הגשת התוספות שלך ל־AMO, לנהל פרטים על התוספות ולסקור את הסטטיסטיקה."
+msgstr "לוח „כלי הפיתוח” הוא האזור שמספק לך את הכלים כדי לנהל את התוספות שלך בהצלחה מרובה. הלוח מספק את התכונות הנדרשות לטובת הגשת התוספות שלך ל־AMO, ניהול מידע על התוספות וסקירת סטטיסטיקה."
 
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "האם ל־Mozilla יש מדיניות שקובעת מה נחשבת להגשה מקובלת?"
@@ -5293,10 +5292,10 @@ msgstr "דיווח באג או בקשת תמיכה במקום הלא־נכון"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr "אחר (הקפצת חלונית עם מידע נוסף)"
+msgstr ""
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "נכון לעכשיו, אין ב־AMO אפשרות ליצור קשר עם היוצר באופן ישיר לטובת סקירת משתמש."
+msgstr "נכון לעכשיו, אין ב־AMO אפשרות ליצור קשר באופן ישיר עם יוצר של סקירת משתמש."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם היא שלילית?"
@@ -7125,10 +7124,10 @@ msgid "No data available."
 msgstr "אין נתונים זמינים."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "לוח הבקרה גלוי באופן <b>ציבורי</b>."
+msgstr ""
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr "לוח הבקרה מוסתר באופן <b>פרטי</b>."
+msgstr ""
 
 msgid "Change settings."
 msgstr "שינוי הגדרות."
