@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 20:22+0000\n"
+"PO-Revision-Date: 2018-03-18 20:47+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3333,19 +3333,19 @@ msgid "Change the owner of this theme."
 msgstr "Tijal ri rajaw re wachinel re'."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Tijal Ichinil"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Tiyuj re wachinel re'."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Re tz'aqat re nrajo' jujun taq etamab'äl chuwäch tikirel nitaq richin nitaläx rutzijol."
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Re tz'aqat re' majun ruwäch."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Re tz'aqat re' majun ruwäch jikib'an, ruma ri' toq xe'ewäx qa ri aj winäq (chuqa' ri beta taq ruwäch) taq ruxaq."
 
 msgid "Status:"
 msgstr "B'anikil:"
