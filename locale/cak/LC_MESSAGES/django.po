@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-17 23:26+0000\n"
+"PO-Revision-Date: 2018-03-18 16:06+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3151,13 +3151,13 @@ msgid ""
 msgstr ""
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Tiyuj re tzeqelel tz'aqat re'"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Titz'ib'äx rub'i' jun tz'aqat"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Tz'aqat Ruk'oxom {0}"
 
 msgid "Add-on icon"
 msgstr "Ruwachib'al tz'aqat"
@@ -3168,11 +3168,11 @@ msgid ""
 msgstr ""
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Tacha' jun ruwachib'al ri atz'aqat:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
