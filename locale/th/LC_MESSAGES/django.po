@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 08:05+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2018-03-14 15:38+0000\n"
+"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 
 msgid "Review"
-msgstr ""
+msgstr "บทวิจารณ์"
 
 msgid "Version {0}"
 msgstr "รุ่น {0}"
@@ -79,7 +79,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- ส่วนเสริมไม่ได้อยู่บน AMO -"
 
 msgid "Download Now"
 msgstr "ดาวน์โหลดตอนนี้"
@@ -270,7 +270,7 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "เข้ากันได้กับ Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -318,7 +318,7 @@ msgid "License"
 msgstr "ใบอนุญาต"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "รอการตรวจทาน"
 
 msgid "Rejected"
 msgstr "ถูกปฏิเสธ"
@@ -332,7 +332,7 @@ msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> ผู้ใช้"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "วางเมาส์เพื่อแสดงตัวอย่าง"
 
 msgid "Add"
 msgstr "เพิ่ม"
@@ -352,10 +352,9 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ผู้ใช้"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "ผู้ใช้ต่อวัน"
+msgstr[0] "{0} ผู้ใช้ต่อวัน"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -391,7 +390,7 @@ msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "โปรด<a href=\"%(login)s\">เข้าสู่ระบบ</a>เพื่อส่งบทวิจารณ์"
 
 msgid "Title:"
-msgstr ""
+msgstr "ชื่อเรื่อง:"
 
 msgid "Review:"
 msgstr "บทวิจารณ์:"
@@ -434,14 +433,14 @@ msgid "Tags"
 msgstr "ป้ายกำกับ"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "ไอคอนสำหรับ {0}"
 
 #, python-format
 msgid "by %(users)s"
 msgstr "โดย %(users)s"
 
 msgid "Download Anyway"
-msgstr ""
+msgstr "ดาวน์โหลดต่อไป"
 
 #, fuzzy
 msgid "[Warning]"
@@ -486,9 +485,8 @@ msgstr "ดูสถิติ"
 msgid "Manage"
 msgstr "จัดการ"
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "บทวิจารณ์ส่วนเสริม"
 
 #, fuzzy
 msgid "Admin Manage"
@@ -496,7 +494,7 @@ msgstr "หน้าผู้ดูแล"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "ไอคอนของ {0}"
 
 msgid "Contribute"
 msgstr "บริจาค"
@@ -509,7 +507,7 @@ msgstr "นักพัฒนาส่วนเสริมนี้ขอให
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "ภาพหน้าจอส่วนเสริม #{0}"
 
 msgid "Add-on home page"
 msgstr "หน้าแรกของส่วนเสริม"
@@ -574,9 +572,8 @@ msgid ""
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
-#, fuzzy
 msgid "This add-on can:"
-msgstr "ส่วนเสริมนี้ถูกเอาออกโดยผู้สร้างส่วนเสริม"
+msgstr "ส่วนเสริมนี้สามารถ:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -721,13 +718,11 @@ msgstr "<h1>อุ๊ปส์! ไม่อนุญาต</h1> <p>คุณพ
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>ลองกลับไปยังหน้าก่อนหน้านี้ เรียกหน้าใหม่และลองใหม่อีกครั้ง</p>"
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "ไม่พบ"
+msgstr "ไม่พบหน้า"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "ส่วนเสริมเพิ่มเติม"
+msgstr "ส่วนเสริม Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -735,13 +730,11 @@ msgstr ""
 msgid "Suggested Pages"
 msgstr ""
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "ส่วนขยายที่ได้รับความนิยมมากที่สุด"
+msgstr "เรียกดูส่วนขยายทั้งหมด"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "ดูชุดตกแต่ง {0} ทั้งหมด"
+msgstr "เรียกดูชุดตกแต่งทั้งหมด"
 
 #, fuzzy
 msgid "Add-ons Home Page"
