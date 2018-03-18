@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 17:09+0000\n"
+"PO-Revision-Date: 2018-03-18 17:31+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5620,10 +5620,10 @@ msgstr "שאלות נפוצות על סקירות"
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
-msgstr "סקירות של תוספות הן דרך לשתף את הדעות שלך על התוספות שהתקנת והשתמשת בהן. צוות פיקוח הסקירות שלנו שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
+msgstr "סקירות של תוספות הן הדרך שלך לשתף את דעתך בנוגע לתוספות שהתקנת והשתמשת בהן. צוות פיקוח הסירות שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
 
 msgid "Do:"
-msgstr "כן לעשות:"
+msgstr "לעשות:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "כדאי לכתוב כאילו זאת הייתה הודעה לחבר בנוגע לחוויה שחווית עם התוספת."
@@ -5656,15 +5656,15 @@ msgid "Don’t:"
 msgstr "לא לעשות:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "לפרסם ביקורות כגון: „מעולה!”, „נפלא,” או „זוועה.”"
+msgstr "לפרסם סקירות באורך של מילה בודדה כמו „מצוין!”, „מעולה” או „גרוע”."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
-msgstr "לפרסם נושאים טכניים, בקשות לתמיכה או הצעות לתכונות חדשות. יש להשתמש באפשרויות התכונות הזמינות לכל תוספת ותוספת. ניתן למצוא אותן בעמודה הצדית ליד הסעיף על אודות התוספת."
+msgstr "לפרסם נושאים טכניים, בקשות לתמיכה או הצעות לתכונות חדשות. יש להשתמש באפשרויות התמיכה הזמינות לכל תוספת. ניתן למצוא אותן בעמודה הצדדית ליד הסעיף על אודות התוספת."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "לכתוב ביקורות על תוספות שלא השתמשת בהן באופן אישי."
+msgstr "לכתוב סקירות לתוספות שלא השתמשת בהן באופן אישי."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "להשתמש בשפה בוטה, מינית או בשפה שעשויה להתפרש כפוגענית."
@@ -5673,13 +5673,13 @@ msgid "Include HTML, links, source code or code snippets. Reviews are meant to b
 msgstr "לכלול HTML, קישורים, קוד מקור או קטעי קוד. ביקורות מיועדות לטקסט בלבד."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "לפרסם הצהרות שווא, לפגוע ביוצרי תוספות או להעליב אותם באופן אישי."
+msgstr "לפרסם הצהרות שווא, לזלזל ביוצרי תוספות או להעליב אותם באופן אישי."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "לכלול פרטי זיהוי אישיים שלך או של כל אדם אחר כגון: דוא״ל, טלפון או כל פרט אישי אחר."
+msgstr "לכלול פרטי זיהוי אישיים שלך או של כל אדם אחר כמו כתובת דוא״ל, מספר טלפון או כל פרט אישי אחר."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "לפרסם ביקורות על תוספת שלך או של ארגון אליו יש לך קשר עסקי או ייצוג."
+msgstr "לפרסם סקירות לתוספת שלך או של ארגון אליו יש לך קשר עסקי או ייצוג."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
