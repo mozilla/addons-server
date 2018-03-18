@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-14 15:38+0000\n"
-"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
+"PO-Revision-Date: 2018-03-18 10:41+0000\n"
+"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -1320,9 +1320,9 @@ msgstr ""
 msgid "Subscribe"
 msgstr "บอกรับ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "โดย %(users)s"
+msgstr "โดย %(author_link)s"
 
 msgid "Following"
 msgstr "กำลังติดตาม"
@@ -3552,9 +3552,8 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 # 75%
-#, fuzzy
 msgid "Download {0}"
-msgstr "ดาวน์โหลดเดี๋ยวนี้"
+msgstr "ดาวน์โหลด {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
@@ -3568,9 +3567,8 @@ msgstr ""
 msgid "Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "อัพโหลดส่วนเสริมของคุณ"
+msgstr "อัปโหลดส่วนเสริม"
 
 #, fuzzy
 msgid "Where to Host File"
@@ -3993,9 +3991,8 @@ msgstr ""
 msgid "Learn How"
 msgstr "เรียนรู้วิธี"
 
-#, fuzzy
 msgid "What's New"
-msgstr "รุ่นล่าสุด:"
+msgstr "มีอะไรใหม่"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
@@ -4026,9 +4023,8 @@ msgstr "ศูนย์กลางนักพัฒนา"
 msgid "Docs"
 msgstr ""
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "ส่วนเสริม"
+msgstr "ลงชื่อออก"
 
 msgid "No Photo"
 msgstr "ไม่มีรูปภาพ"
@@ -4070,9 +4066,8 @@ msgstr "เผยแพร่ส่วนเสริมของคุณ!"
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
 
-#, fuzzy
 msgid "Sign In"
-msgstr "ส่วนเสริม"
+msgstr "ลงชื่อเข้า"
 
 msgid "Web-Ext"
 msgstr ""
@@ -6814,7 +6809,6 @@ msgid "Relevance"
 msgstr ""
 
 # 81%
-#, fuzzy
 msgid "All Add-ons"
 msgstr "ส่วนเสริมทั้งหมด"
 
@@ -7204,9 +7198,8 @@ msgstr ""
 msgid "View the new site"
 msgstr ""
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "รายงานการละเมิด"
+msgstr "รายงานข้อบกพร่อง"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -7216,13 +7209,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr ""
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "ดาวน์โหลดตอนนี้"
+msgstr "ดาวน์โหลด Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "ส่วนเสริมสำหรับระบบ Android"
+msgstr "เบราว์เซอร์ Android"
 
 msgid "iOS Browser"
 msgstr ""
