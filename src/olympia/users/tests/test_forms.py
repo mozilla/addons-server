@@ -179,8 +179,9 @@ class TestUserEditForm(UserFormBase):
         form = UserEditForm(data, files=files, instance=self.user_profile,
                             request=request)
 
-        # Creating the mock object instead of the uploaded file, with a specific size over the limit
-        upload_mock = MagicMock(spec=SimpleUploadedFile) # , name='FileMock'
+        # Creating the mock object instead of the uploaded file,
+        # with a specific size over the limit
+        upload_mock = MagicMock(spec=SimpleUploadedFile)
         upload_mock._name = 'transparent.png'
         upload_mock.size = 4 * 1024 * 1024 + 1
         upload_mock.content_type = 'image/png'
@@ -191,7 +192,9 @@ class TestUserEditForm(UserFormBase):
         assert not form.is_valid()
         mock_is_image_check.assert_called()
         mock_is_animated_check.assert_called()
-        assert form.errors == {'photo': [u'Please use images smaller than 4MB.']}
+        assert form.errors == {
+            'photo': [u'Please use images smaller than 4MB.']
+        }
 
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
