@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-09 13:06+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-03-18 22:01+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -430,7 +430,7 @@ msgid ""
 "support\">add-on community</a> for help."
 msgstr ""
 "מומלץ לעיין ב<a href=\"%(support)s\">אגף התמיכה</a> של התוסף הזה ולברר אם קיים סיוע. ניתן גם לנסות לבקש עזרה מ<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">קהילת "
-"התוספים</a>."
+"התוספות</a>."
 
 msgid "Review Guidelines"
 msgstr "כללי סקירה"
@@ -670,7 +670,7 @@ msgid "Review History"
 msgstr "היסטורית סקירה"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "ערכת נושא זו ממתינה. נא לחזור במועד מאוחר יותר, עמך הסליחה."
+msgstr "מצטערים, ערכת נושא זו ממתינה. נא לחזור במועד מאוחר יותר."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ערכת הנושא הזאת ממתינה. היא אינה גלויה לאף אחד מלבדך."
@@ -2682,7 +2682,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "אי אפשר להעביר בין קטגוריות כשהתוסף שלך מופיע במומלצים."
+msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מופיעה במומלצים."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
@@ -2710,7 +2710,7 @@ msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "האימות ייצר יותר מדי שגיאות/אזהרות כך שהודעות מסוג %s נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
+msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
 
 msgid "All My Add-ons"
 msgstr "כל התוספות שלי"
@@ -2736,7 +2736,7 @@ msgid "Changes successfully saved."
 msgstr "השינויים נשמרו בהצלחה."
 
 msgid "Please check the form for errors."
-msgstr "נא לבדוק את השגיאות בטופס."
+msgstr ""
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "לא ניתן למחוק את התוספת. ניתן לנטרל אותה במקום."
@@ -3094,7 +3094,7 @@ msgid "Contributions URL"
 msgstr "כתובת תרומות"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "אם ברצונך לבקש סיוע כספי מהמשתמשים שלך, ניתן להקים את העמוד הזה בו הם יוכלו לתרום."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "פרטי תוספת"
@@ -3103,7 +3103,7 @@ msgid "Add-on Details for {0}"
 msgstr "פרטי תוספת עבור {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "הסבר ארוך יותר על התכונות, יכולות השימוש ומידע רלוונטי נוסף. שדה זה מוצג אך ורק בעמוד הפרטים של התוספת. הוא תקף אך ורק לתוספות שמוצגות."
+msgstr "הסבר ארוך יותר על התכונות, יכולות השימוש ומידע רלוונטי נוסף. שדה זה מוצג אך ורק בעמוד הפירוט של התוספת. הוא תקף אך ורק לתוספות מוצגות."
 
 msgid "Default Locale"
 msgstr "מיקום לפי ברירת המחדל"
@@ -3396,7 +3396,7 @@ msgid "View Recent Changes"
 msgstr "הצגת שינויים אחרונים"
 
 msgid "Edit details about this theme's listing."
-msgstr "עריכת פרטים על רשומת ערכת העיצוב הזו."
+msgstr "עריכת פרטים על רשומת ערכת הנושא הזו."
 
 msgid "Edit Listing"
 msgstr "עריכת רשומה"
@@ -3735,19 +3735,19 @@ msgid ""
 msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 msgid "You don't have any API credentials."
-msgstr "אין לך פרטי זיהוי כלשהם ל־API."
+msgstr "אין לך פרטי גישה כלשהם ל־API."
 
 msgid "Revoke"
 msgstr "שלילה"
 
 msgid "Revoke and regenerate credentials"
-msgstr "שלילה ויצירת פרטי זיהוי חדשים"
+msgstr "שלילה ויצירת פרטי גישה חדשים"
 
 msgid "Generate new credentials"
-msgstr "יצירת פרטי זיהוי חדשים"
+msgstr "יצירת פרטי גישה חדשים"
 
 msgid "Invisible"
-msgstr "בלתי נראה"
+msgstr "מוסתרת"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "נא להשלים את התוספת שלך על ידי הוספת גרסה או פרטי על חסרים."
@@ -3865,8 +3865,8 @@ msgstr "הסרת יישום זה"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "נא לבחור <b>עד קטגוריה {0}</b> {1} לתוספת זו:"
-msgstr[1] "נא לבחור <b>עד {0}</b> {1} קטגוריות לתוספת זו:"
+msgstr[0] "נא לבחור <b>עד קטגורית {1} אחת</b> לתוספת זו:"
+msgstr[1] "נא לבחור <b>עד {0} קטגוריות {1}</b> לתוספת זו:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -3877,7 +3877,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם. אילוץ זה תקף על תוספות שמוצגות בלבד."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr "אם התוספת שלך מכילה קוד בינרי או ממוסך למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
+msgstr "אם התוספת שלך מכילה קוד בינרי או מעורפל למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "נא לכלול הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
@@ -4108,7 +4108,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "הוסיפו מספר תגים כדי לתאר את ערכת הנושא שלכם."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש העמוד הפירוט על ערכת הנושא שלך."
+msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש עמוד הפירוט של ערכת הנושא שלך."
 
 msgid "Theme License"
 msgstr "רישיון ערכת נושא"
@@ -4117,10 +4117,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "האם אנשים אחרים יכולים לשתף את ערכת הנושא שלך, כל עוד יינתן לך קרדיט על כך?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה, לרבות למטרות מסחריות."
+msgstr ""
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה למטרות שאינן מסחריות בלבד."
+msgstr ""
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "האם אנשים אחרים יכולים לעשות שימוש מסחרי בערכת הנושא שלך?"
@@ -4129,7 +4129,7 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "האם אנשים אחרים יכולים ליצור עבודות הנגזרות מערכת הנושא שלך?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "מנפיק הרישיון מאשר לאחרים להעתיק, להפיץ, להציג ולהעלות הצגות על העבודה, כמו גם ליצור עבודות שנגזרות ממנה."
+msgstr ""
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "מעניק הרישיון מתיר לאחרים להעתיק, להפיץ ולהעביר גרסאות ללא שינוי של היצירה — לא נגזרות שמבוססות עליה."
@@ -4871,7 +4871,7 @@ msgstr "ישנן מגוון דרכים לקחת חלק. אם יש לך נגיע�
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">לפתח תוספת משלך</a>. אנו מספקים אירוח ושירותי עדכונים בחינם לרבות סיוע בפנייה לקהל יעד רחב של משתמשים."
+msgstr "<a href=\"%(url)s\">פיתוח תוספות משלך</a>. אנו מספקים אירוח ושירותי עדכונים בחינם ומאפשרים לך להגיע לקהל יעד רחב של משתמשים."
 
 #, python-format
 msgid ""
@@ -4905,7 +4905,7 @@ msgstr "מקום טוב להתחיל בו הוא ה<a href=\"%(faq_url)s\"><abbr
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "אם עלה בך צורך עז ליצור קשר עם מישהו בצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a>."
+msgstr "אם עולה בך צורך עז ליצור קשר עם מישהו מצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a> שלנו."
 
 msgid "Who works on this website?"
 msgstr "מי עובד באתר הזה?"
@@ -5149,8 +5149,7 @@ msgstr "מה הם „כלי הפיתוח” שרשומים ב־AMO?"
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
-msgstr ""
-"לוח המחוונים „כלי הפיתוח” הוא האזור שמספק לך את הכלים כדי לנהל את התוספות שלך בהצלחה מרובה. הלוח מספק את התכונות הנדרשות לטובת הגשת התוספות שלך ל־AMO, לנהל פרטים על התוספות ולסקור את הסטטיסטיקה."
+msgstr "לוח „כלי הפיתוח” הוא האזור שמספק לך את הכלים כדי לנהל את התוספות שלך בהצלחה מרובה. הלוח מספק את התכונות הנדרשות לטובת הגשת התוספות שלך ל־AMO, ניהול מידע על התוספות וסקירת סטטיסטיקה."
 
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "האם ל־Mozilla יש מדיניות שקובעת מה נחשבת להגשה מקובלת?"
@@ -5293,10 +5292,10 @@ msgstr "דיווח באג או בקשת תמיכה במקום הלא־נכון"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr "אחר (הקפצת חלונית עם מידע נוסף)"
+msgstr ""
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "נכון לעכשיו, אין ב־AMO אפשרות ליצור קשר עם היוצר באופן ישיר לטובת סקירת משתמש."
+msgstr "נכון לעכשיו, אין ב־AMO אפשרות ליצור קשר באופן ישיר עם יוצר של סקירת משתמש."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "האם אוכל לבקש שסקירה תוסר אם היא שלילית?"
@@ -5620,19 +5619,19 @@ msgstr "שאלות נפוצות על סקירות"
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
-msgstr "סקירות של תוספות הן דרך לשתף את הדעות שלך על התוספות שהתקנת והשתמשת בהן. צוות פיקוח הסקירות שלנו שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
+msgstr "סקירות של תוספות הן הדרך שלך לשתף את דעתך בנוגע לתוספות שהתקנת והשתמשת בהן. צוות פיקוח הסקירות שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
 
 msgid "Do:"
-msgstr "כן לעשות:"
+msgstr "לעשות:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "כדאי לכתוב כאילו זאת הייתה הודעה לחבר בנוגע לחוויה שחווית עם התוספת."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "כדאי להשאיר את הסקירה מתומצתת וקלה להבנה."
+msgstr "לשמור על הסקירות מתומצתות וקלות להבנה."
 
 msgid "Give specific and helpful details. For example:"
-msgstr "כדאי לספק פרטים ספציפיים ומועילים. למשל:"
+msgstr "לספק פרטים ספציפיים ומועילים. למשל:"
 
 msgid "Did the add-on work as you expected it to?"
 msgstr "האם התוספת עבדה כפי שציפית?"
@@ -5650,36 +5649,36 @@ msgid "Will you continue to use this add-on?"
 msgstr "האם תוספת זו תמשיך לשמש אותך?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "מומלץ לקרוא את הסקירה לפני שליחתה למניעת טעויות כתיב."
+msgstr "לקרוא את הסקירה לפני שליחתה למניעת טעויות כתיב."
 
 msgid "Don’t:"
 msgstr "לא לעשות:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "לפרסם ביקורות כגון: „מעולה!”, „נפלא,” או „זוועה.”"
+msgstr "לפרסם סקירות באורך של מילה בודדה כמו „מצוין!”, „מעולה” או „גרוע”."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
-msgstr "לפרסם נושאים טכניים, בקשות לתמיכה או הצעות לתכונות חדשות. יש להשתמש באפשרויות התכונות הזמינות לכל תוספת ותוספת. ניתן למצוא אותן בעמודה הצדית ליד הסעיף על אודות התוספת."
+msgstr "לפרסם נושאים טכניים, בקשות לתמיכה או הצעות לתכונות חדשות. יש להשתמש באפשרויות התמיכה הזמינות לכל תוספת. ניתן למצוא אותן בעמודה הצדדית ליד הסעיף על אודות התוספת."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "לכתוב ביקורות על תוספות שלא השתמשת בהן באופן אישי."
+msgstr "לכתוב סקירות לתוספות שלא השתמשת בהן באופן אישי."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "להשתמש בשפה בוטה, מינית או בשפה שעשויה להתפרש כפוגענית."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "לכלול HTML, קישורים, קוד מקור או קטעי קוד. ביקורות מיועדות לטקסט בלבד."
+msgstr "לכלול HTML, קישורים, קוד מקור או קטעי קוד. סקירות אמורות להיות טקסט בלבד."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "לפרסם הצהרות שווא, לפגוע ביוצרי תוספות או להעליב אותם באופן אישי."
+msgstr "לפרסם הצהרות שווא, לזלזל ביוצרי תוספות או להעליב אותם באופן אישי."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "לכלול פרטי זיהוי אישיים שלך או של כל אדם אחר כגון: דוא״ל, טלפון או כל פרט אישי אחר."
+msgstr "לכלול פרטי זיהוי אישיים שלך או של כל אדם אחר כמו כתובת דוא״ל, מספר טלפון או כל פרט אישי אחר."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "לפרסם ביקורות על תוספת שלך או של ארגון אליו יש לך קשר עסקי או ייצוג."
+msgstr "לפרסם סקירות לתוספת שלך או של ארגון אליו יש לך קשר עסקי או ייצוג."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -5692,7 +5691,7 @@ msgstr "איך ניתן לדווח על סקירה בעייתית?"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
+msgstr "נא לדווח או לסמן בדגל סקירות מפוקפקות כלשהן על ידי לחיצה על „דיווח על סקירה זו” והיא תישלח לאתר לפיקוח. צוות הפיקוח שלנו ישתמש בכללי הסקירה כדי להעריך אם למחוק את הסקירה או לשחזר אותה לאתר."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "אני יוצר תוספות, אוכל להגיב לסקירות?"
@@ -5708,8 +5707,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"באופן כללי, לא. אבל אם הסקירה אינה עומדת בקווים המנחים שמופיעים לעיל, ניתן ללחוץ על „דיווח על סקירה זו” כדי שתיבדק. אם סקירה כוללת תלונה שאינה תקפה עוד בזכות מהדורה חדשה של התוספת שלך, אנו עשויים "
-"לשקול להסיר את הסקירה."
+"באופן כללי, לא. אבל אם הסקירה אינה עומדת בקווים המנחים שמופיעים לעיל, ניתן ללחוץ על „דיווח על סקירה זו” כדי שתיבדק. אם סקירה כוללת תלונה שאינה תקפה עוד עקב מהדורה חדשה של התוספת שלך, אנו נשקול להסיר"
+" את הסקירה."
 
 msgid "Start Now"
 msgstr "להתחיל כעת"
@@ -5779,7 +5778,7 @@ msgid "Websites you visit that try to use plugins, and what content on the site 
 msgstr ""
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "אופן האינטראקציה עם תוכן התוסף באתרים האלה, לרבות מה הבחירה שלך בנוגע לאישור הפעלת התוסף."
+msgstr "אופן האינטראקציה עם תוכן התוסף החיצוני באתרים האלה, לרבות מה הבחירה שלך בנוגע לאישור הפעלת התוסף החיצוני."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 msgstr "Mozilla תשמור על פרטיות המידע הזה, הנתונים שייחשפו יהיו בתצורת קיבוץ או בעילום שם."
@@ -5844,7 +5843,7 @@ msgid "You can't reply to a review that is already a reply."
 msgstr "לא ניתן להגיב לסקירה שהיא עצמה תגובה."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "אין לך אפשרות לשנות את גרסה התוספת שבסקירה לאחר שנוצר תהליך סקירה."
+msgstr "לא ניתן לשנות את גרסה התוספת שבסקירה לאחר שהסקירה נוצרה."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "גרסה זו של התוספת אינה קיימת או שאינה ציבורית."
@@ -7125,10 +7124,10 @@ msgid "No data available."
 msgstr "אין נתונים זמינים."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "לוח הבקרה גלוי באופן <b>ציבורי</b>."
+msgstr ""
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr "לוח הבקרה מוסתר באופן <b>פרטי</b>."
+msgstr ""
 
 msgid "Change settings."
 msgstr "שינוי הגדרות."
@@ -7155,7 +7154,7 @@ msgid "Downloaded by Date"
 msgstr "הורדות לפי תאריך"
 
 msgid "How are downloads counted?"
-msgstr "איך הורדות נספרות?"
+msgstr "כיצד ההורדות מחושבות?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7273,7 +7272,7 @@ msgid "Choose a category"
 msgstr "בחר קטגוריה"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "האתר החדש תומך בלקוחות ניידים ולשולחן העבודה"
+msgstr ""
 
 msgid "View the new site"
 msgstr "הצגת האתר החדש"

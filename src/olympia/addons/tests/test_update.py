@@ -238,14 +238,38 @@ class TestLookup(VersionCheckMixin, TestCase):
                                  self.app, self.platform)
         assert version == self.version_1_2_1
 
-    def test_public_beta(self):
+    def test_installed_beta_no_newer_stable(self):
         """
-        If the addon status is public, you are in beta and the file is
-        beta, the you get a beta.
+        If the addon status is public, you are in beta and there is no
+        newer public version, you get the latest public version (no update).
+        """
+        self.change_version(self.version_1_2_2, '1.2beta')
+        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_1
+
+    def test_beta_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version
         """
         self.change_version(self.version_1_2_0, '1.2beta')
         self.change_status(self.version_1_2_0, amo.STATUS_BETA)
-        self.change_status(self.version_1_2_1, amo.STATUS_BETA)
+
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_2
+
+    def test_beta_updates_to_stable(self):
+        """
+        If the addon status is public, you are in beta, then you will be
+        migrated to the stable version, even if there are newer betas
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
@@ -649,7 +673,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         up = self.get(data)
         up.is_valid()
         up.get_update()
-        assert up.data['row']['file_id'] == file.pk
+        assert 'file_id' not in up.data['row']
 
     def test_no_app_version(self):
         data = self.good_data.copy()
@@ -727,8 +751,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         self.addon_one.status = amo.STATUS_PUBLIC
         self.addon_one.save()
         up.get_rdf()
-        assert up.data['row']['file_id'] == file.pk
-        assert up.data['row']['url'] == self.get_file_url()
+        assert 'file_id' not in up.data['row']
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()

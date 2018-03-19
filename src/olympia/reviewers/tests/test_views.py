@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 import time
 import urlparse
 
@@ -29,6 +30,8 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
     AddonUser)
+from olympia.amo.templatetags.jinja_helpers import (
+    user_media_path, user_media_url)
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, user_factory, version_factory)
@@ -2691,6 +2694,14 @@ class TestReview(ReviewBase):
             doc('#whiteboard_form').attr('action') ==
             '/en-US/reviewers/whiteboard/listed/%d' % self.addon.pk)
 
+    def test_no_whiteboards_for_static_themes(self):
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#whiteboard_form')
+
     def test_comment(self):
         response = self.client.post(self.url, {'action': 'comment',
                                                'comments': 'hello sailor'})
@@ -3520,6 +3531,19 @@ class TestReview(ReviewBase):
         assert info.length == 1
         assert info.find('a.compare').length == 0
 
+    def test_file_info_for_static_themes(self):
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        info = doc('#review-files .file-info')
+        assert info.length == 1
+        # Only the download/install link
+        assert info.find('a').length == 1
+        assert info.find('a')[0].text == u'Download'
+        assert 'Compatibility' not in response.content
+
     def test_compare_link(self):
         first_file = self.addon.current_version.files.all()[0]
         first_file.update(status=amo.STATUS_PUBLIC)
@@ -4038,6 +4062,35 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
             'public|reject|')
 
+    def test_data_value_attributes_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'public|', 'reject|', 'reply|', 'super|', 'comment|']
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
+
+        assert (
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'public|reject|reply|super|comment|')
+        # we don't show files and tested with for any static theme actions
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] ==
+            '|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
+            '|')
+
     def test_post_review_ignore_disabled_or_beta(self):
         # Though the latest version will be disabled, the add-on is public and
         # was auto-approved so the confirmation action is available.
@@ -4075,6 +4128,40 @@ class TestReview(ReviewBase):
         assert (
             [action[0] for action in response.context['actions']] ==
             expected_actions)
+
+    @mock.patch('olympia.versions.models.walkfiles')
+    def test_static_theme_backgrounds(self, walkfiles_mock):
+        background_files = ['a.png', 'b.png', 'c.png']
+        walkfiles_folder = os.path.join(
+            user_media_path('addons'), str(self.addon.id),
+            unicode(self.addon.current_version.id))
+        walkfiles_mock.return_value = [
+            os.path.join(walkfiles_folder, filename)
+            for filename in background_files]
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        backgrounds_div = doc('div.all-backgrounds')
+        assert backgrounds_div.length == 1
+        images = doc('div.all-backgrounds a.thumbnail')
+        assert images.length == len(walkfiles_mock.return_value)
+        background_file_folder = '/'.join([
+            user_media_url('addons'), str(self.addon.id),
+            unicode(self.addon.current_version.id)])
+        background_file_urls = [
+            background_file_folder + '/' + filename
+            for filename in background_files]
+        loop_ct = 0
+        for a_tag in images:
+            assert a_tag.attrib['href'] in background_file_urls
+            assert a_tag.attrib['title'] == (
+                'Background file {0} of {1} - {2}'.format(
+                    loop_ct + 1, len(background_files),
+                    background_files[loop_ct]))
+            loop_ct += 1
 
 
 class TestReviewPending(ReviewBase):

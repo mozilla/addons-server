@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-05 23:20+0000\n"
+"PO-Revision-Date: 2018-03-18 01:24+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4434,26 +4434,23 @@ msgstr[0] "{0} avertisment"
 msgstr[1] "{0} avertismente"
 msgstr[2] "{0} de avertismente"
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Tradu într-un mod facil {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Evidențiază orice text, dă clic-dreapta și tradu instantaneu."
 
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește videoclipurile {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Vezi o imagine interesantă pe web și vrei să afli mai multe despre ea? Încearcă acest instrument de căutare pentru imagini."
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește videoclipurile {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
@@ -4464,14 +4461,12 @@ msgstr "Zeci de emojiuri uimitoare—mereu la un clic distanță."
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
@@ -4479,9 +4474,8 @@ msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Zeci de emojiuri uimitoare—mereu la un clic distanță."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Realizează capturi de ecran {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""

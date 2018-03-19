@@ -1,6 +1,42 @@
   <div class="featured">
     <div class="featured-inner object-lead inverse">
 
+      <div id="addon-theme-previews-wrapper">
+        <div>
+          {% with previews = version.previews.all() if version else [] %}
+          {% for preview in previews %}
+            <a class="" rel="jquery-lightbox"
+              href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
+                <img alt="" src="{{ preview.image_url }}" />
+            </a>
+          {% endfor %}
+          {% endwith %}
+        </div>
+        <div class="all-backgrounds">
+          {% for background in backgrounds %}
+            {% with filename=background.rsplit('/', 1)[1] %}
+            <a class="thumbnail" rel="jquery-lightbox"
+              href="{{ background }}" title="{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}">
+                <img alt="" src="{{ background }}" />
+            </a>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="secondary">
+        {% if addon.all_previews %}
+          {% with preview=addon.all_previews[0] %}
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+              href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <img alt="" src="{{ preview.thumbnail_url }}" />
+            </a>
+          {% endwith %}
+        {% else %}
+          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+            alt="" width="200" height="150" />
+        {% endif %}
+      </div>{# /secondary #}
+
       <div id="addon-summary-wrapper">
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
@@ -149,21 +185,6 @@
         </div>{# /addon-summary #}
       </div>{# /addon-summary-wrapper #}
 
-      <div class="secondary">
-        {% if addon.all_previews %}
-          {% with preview=addon.all_previews[0] %}
-            <a class="screenshot thumbnail" rel="jquery-lightbox"
-              href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <img alt="" src="{{ preview.thumbnail_url }}" />
-            </a>
-          {% endwith %}
-        {% else %}
-          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
-            alt="" width="200" height="150" />
-        {% endif %}
-
-      </div>{# /secondary #}
-
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
@@ -181,8 +202,8 @@
 
   {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
         addon.show_beta  %}
-    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
-    <div class="article userinput">
+    <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article userinput more-about">
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
       {% if addon.all_previews|length > 1 %}
@@ -205,24 +226,10 @@
 
     </div>{# /article #}
   {% else %}
-    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
-    <div class="article">
+    <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article more-about">
       <em>
         {{ _('Nothing to see here!  The developer did not include any details.') }}
       </em>
     </div>
-  {% endif %}
-
-  {% if reviews is defined %}
-    {{ review_list_box(addon=addon, reviews=reviews) }}
-  {% endif %}
-
-  {% if review_form: %}
-    {% if request.user.is_authenticated() %}
-      {{ review_add_box(addon=addon) }}
-    {% endif %}
-  {% endif %}
-
-  {% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=addon) }}
   {% endif %}

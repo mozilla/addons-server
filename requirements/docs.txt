@@ -1,3 +1,5 @@
+-r system.txt
+
 # Jinja2 is required by Sphinx
 Jinja2==2.10 \
     --hash=sha256:74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd \
