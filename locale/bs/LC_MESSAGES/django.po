@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-19 10:33+0000\n"
+"PO-Revision-Date: 2018-03-19 10:42+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2631,29 +2631,29 @@ msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensi
 msgstr "Počevši sa Firefox 53, novi dodaci na ovoj stranici mogu biti samo WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Naslijeđeni dodaci nisu kompatibilni sa Firefox 57 ili novijom verzijom. Koristite maxVersion od 56.* ili starije."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proces. Jednom kada vaši korisnici budu imali instaliran WebExtension, neće biti u mogućnosti instalirati dodatak naslijeđa."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Ne možete ažurirati WebExtensions dodatak sa naslijeđenim dodatkom. Vaši korisnici ne bi bili u mogućnosti koristiti vašu novu verziju jer Firefox ne podržava ove vrste ažuriranja."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s je odgovorio sa %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Povezivanje na \"%s\" je isteklo."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Ne mogu kontaktirati host na \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Validacija je generirala previše grešaka/upozorenja tako da su poruke %s bile skraćene. Nakon adresiranja vidljivih poruka, bićete u mogućnosti da vidite ostale."
 
 msgid "All My Add-ons"
 msgstr ""
@@ -2701,7 +2701,7 @@ msgid "An author has a role changed on your add-on"
 msgstr ""
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Autor je uklonjen s vašeg dodatka"
 
 msgid "Validate Add-on"
 msgstr ""
@@ -2714,10 +2714,10 @@ msgstr ""
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Ne možete poslati dodatak sa završnom vezom %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Ne možete poslati Mozilla potpisana proširenja"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
