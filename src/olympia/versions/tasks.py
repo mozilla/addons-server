@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.utils import pngcrush_image, resize_image
+from olympia.versions.models import VersionPreview
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -151,3 +152,9 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
                 amo.ADDON_PREVIEW_SIZES[0])[0]
         }
         preview.update(sizes=sizes)
+
+
+@task
+def delete_preview_files(id, **kw):
+    VersionPreview.delete_preview_files(
+        sender=None, instance=VersionPreview(id=id))

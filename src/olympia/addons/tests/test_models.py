@@ -11,7 +11,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.files.storage import default_storage as storage
+
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -29,6 +29,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
+from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
@@ -40,7 +41,8 @@ from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import (
+    ApplicationsVersions, Version, VersionPreview)
 
 
 class TestCleanSlug(TestCase):
@@ -645,6 +647,20 @@ class TestAddonModels(TestCase):
         addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
         assert addon.guid is None  # Personas don't have GUIDs.
         self._delete(addon.pk)
+
+    @patch('olympia.addons.tasks.Preview.delete_preview_files')
+    @patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
+    def test_delete_deletes_preview_files(self, dpf_vesions_mock,
+                                          dpf_addons_mock):
+        addon = addon_factory()
+        addon_preview = Preview.objects.create(addon=addon)
+        version_preview = VersionPreview.objects.create(
+            version=addon.current_version)
+        addon.delete()
+        dpf_addons_mock.assert_called_with(
+            sender=None, instance=addon_preview)
+        dpf_vesions_mock.assert_called_with(
+            sender=None, instance=version_preview)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
@@ -2193,41 +2209,11 @@ class TestPersonaModel(TestCase):
         assert addon.persona.theme_data['description'] is None
 
 
-class TestPreviewModel(TestCase):
+class TestPreviewModel(BasePreviewMixin, TestCase):
     fixtures = ['base/previews']
 
-    def test_filename(self):
-        preview = Preview.objects.get(pk=24)
-        assert 'png' in preview.thumbnail_path
-        assert 'png' in preview.image_path
-
-    def test_filename_in_url(self):
-        preview = Preview.objects.get(pk=24)
-        assert 'png' in preview.thumbnail_url
-        assert 'png' in preview.image_url
-
-    def check_delete(self, preview, filename):
-        """
-        Test that when the Preview object is deleted, its image and thumb
-        are deleted from the filesystem.
-        """
-        try:
-            with storage.open(filename, 'w') as f:
-                f.write('sample data\n')
-            assert storage.exists(filename)
-            preview.delete()
-            assert not storage.exists(filename)
-        finally:
-            if storage.exists(filename):
-                storage.delete(filename)
-
-    def test_delete_image(self):
-        preview = Preview.objects.get(pk=24)
-        self.check_delete(preview, preview.image_path)
-
-    def test_delete_thumbnail(self):
-        preview = Preview.objects.get(pk=24)
-        self.check_delete(preview, preview.thumbnail_path)
+    def get_object(self):
+        return Preview.objects.get(pk=24)
 
 
 class TestAddonDependencies(TestCase):

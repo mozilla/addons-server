@@ -1189,6 +1189,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
     'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
+    'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},

@@ -38,7 +38,6 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 from .compare import version_dict, version_int
-from .tasks import generate_static_theme_preview
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -223,7 +222,7 @@ class Version(OnChangeMixin, ModelBase):
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
             preview = VersionPreview.objects.create(version=version)
-            generate_static_theme_preview.delay(
+            generate_static_theme_preview(
                 theme_data, version_root, preview)
 
         # Track the time it took from first upload through validation
@@ -287,9 +286,19 @@ class Version(OnChangeMixin, ModelBase):
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self, hard=False):
+        # To avoid a circular import
+        from .tasks import delete_preview_files
+
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon,
                             str(self.version))
+
+        # Fetch previews before deleting the version instance, so that we can
+        # pass the list of files to delete to the delete_preview_files task
+        # after the version is deleted.
+        previews = list(VersionPreview.objects.filter(version__id=self.id)
+                        .values_list('id', flat=True))
+
         if hard:
             super(Version, self).delete()
         else:
@@ -298,6 +307,9 @@ class Version(OnChangeMixin, ModelBase):
             self.files.update(status=amo.STATUS_DISABLED)
             self.deleted = True
             self.save()
+
+        for preview in previews:
+            delete_preview_files.delay(preview)
 
     @property
     def is_user_disabled(self):
@@ -659,6 +671,15 @@ class Version(OnChangeMixin, ModelBase):
         return out
 
 
+def generate_static_theme_preview(theme_data, version_root, preview):
+    """This redirection is so we can mock generate_static_theme_preview, where
+    needed, in tests."""
+    # To avoid a circular import
+    from . import tasks
+    tasks.generate_static_theme_preview.delay(
+        theme_data, version_root, preview)
+
+
 class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
     sizes = JSONField(default={})
@@ -680,6 +701,11 @@ class VersionPreview(BasePreview, ModelBase):
         they're auto-generated.  This is for compatibility with Addon Preview
         objects. (it's a cached_property so it can be set transparently)"""
         return None
+
+
+models.signals.post_delete.connect(VersionPreview.delete_preview_files,
+                                   sender=VersionPreview,
+                                   dispatch_uid='delete_preview_files')
 
 
 @use_master
