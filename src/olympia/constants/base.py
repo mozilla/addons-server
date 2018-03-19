@@ -222,7 +222,7 @@ MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 VALID_CONTRIBUTION_DOMAINS = (
     'donate.mozilla.org', 'micropayment.de', 'patreon.com', 'paypal.com',
-    'paypal.me',
+    'paypal.me', 'opencollective.com'
 )
 
 # Icon upload sizes
