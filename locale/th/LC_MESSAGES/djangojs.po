@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2016-10-17 14:02+0000\n"
-"Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
+"PO-Revision-Date: 2018-03-14 10:57+0000\n"
+"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -666,9 +666,8 @@ msgstr "ดูรุ่นอื่น"
 msgid "Works with {app} {min} - {max}"
 msgstr "ทำงานได้กับ {app} {min} - {max}"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "ทำงานได้กับ {app} {min} - {max}"
+msgstr "ทำงานได้กับ {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
@@ -843,11 +842,10 @@ msgid "Warning"
 msgstr "คำเตือน"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} บรรทัด {1} คอลัมน์ {2}"
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} จาก {1}"
+msgstr "{0} บรรทัด {1}"
 
 msgid "Compatibility Tests"
 msgstr "การทดสอบความเข้ากันได้"

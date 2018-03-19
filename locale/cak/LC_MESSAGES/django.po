@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-16 21:12+0000\n"
+"PO-Revision-Date: 2018-03-18 21:01+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2720,11 +2720,11 @@ msgstr "Ruwäch %s chupun."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Ruwäch %s xyuj."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Ruwäch %s xtzij chik."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -2733,19 +2733,19 @@ msgid "Review requested."
 msgstr "Xk'utüx nik'oxïk."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "K'o chi naya' ch'aqa' chik rub'anikil richin nisamajïx chik el."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik. Tajikib'a' chi ye'ak'ëx ronojel ri taq API winäq kik'in ri k'ak'a' taq wujil."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik."
 
 msgid "New API key created"
-msgstr ""
+msgstr "K'ak'a' API k'uxatzij xtz'uk"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API k'uxatzij xxutüx"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -2753,13 +2753,13 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Ruch'ob'otzij Kijachik Rutz'aqat Firefox"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Kib'eyal chuqa' Kina'ojil Nik'onem"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Xinsik'ij chuqa' ütz yentz'ët ri Ch'ob'otzij chuqa' taq ri B'eyal chuqa' ri taq Na'ojil"
 
 msgid "Accept"
 msgstr "Tik'ul"
@@ -2768,63 +2768,63 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Tiq'at</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Titzolin pa Taq Tz'aqat"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Taq tz'aqat"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Titzolin pa ri DevHub tikirib'äl ruxaq"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Tz'aqat</small> B'anonel Jay"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "ch'aqa' chik tz'aqat..."
 
 msgid "Documentation"
 msgstr "Yaköl wuj"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Kib'anik K'amal"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Anin taq Wachinel"
 
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Kina'ojil Tz'aqat"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Rujikib'anel Tz'aqat"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Runik'onel K'amonel Tz'aqat"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Kitz'aqat B'anonem"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Tinamït & Tob'äl"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Kichinya'l Tz'aqat"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Kich'ob'omoloj Tz'aqat"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Ch'aqa' chik Tob'äl"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Kekanöx Kiwujil B'anonel"
 
 msgid "Search"
 msgstr "Tikanöx"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Tawokisaj ri k'ojlib'äl ikim richin najotob'a' tz'aqat pisaj."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
@@ -2837,27 +2837,27 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr ""
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "¿La nawajo' chi nitalüx ri atz'aqat pa re ruxaq re'?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Kiq'i'oj Jikib'anem richin {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Kiq'i'oj Jikib'anem"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Jikib'an pa:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Xnik'öx ri ruk'amonik rik'in:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "K'ak'a' Samaj pa Taq Nutz'aqat"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "K'ak'a' Samaj richin {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2867,13 +2867,13 @@ msgid "No results found."
 msgstr "Majun achike xilitäj."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Tutziläx Samaj"
 
 msgid "Activity"
 msgstr "Samaj"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Tatz'ib'aj ab'i' pa re b'ätz' re'"
 
 #, python-format
 msgid ""
@@ -2886,35 +2886,35 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Ketz'et chuqa' kek'ex ri kajilab'al kik'amonik chokoy."
 
 msgid "Compatibility"
-msgstr ""
+msgstr "K'amonïk"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Tik'ex K'amonïk"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "K'amonel taq Ruwäch"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Titz'aqatisäx Jun Chik Chokoy&hellip;"
 
 msgid "Close"
 msgstr "Titz'apïx"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "K'ak'a' Samaj"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s ruma %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Ojer rusamaj ri Nutz'aqat"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2923,19 +2923,19 @@ msgstr[0] "<b>{0}</b> wachinel"
 msgstr[1] "<b>{0}</b> taq wachinel"
 
 msgid "Edit Information"
-msgstr ""
+msgstr "Tinuk' Etamab'äl"
 
 msgid "None"
 msgstr "Majun"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Kenuk'samajïx B'anel & Ya'öl Q'ij"
 
 msgid "Authors"
 msgstr "Taq b'anel"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Chi rij kisamaj b'anel"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2947,7 +2947,7 @@ msgstr "Ruk'u'x Etamab'äl"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Ruxe'el Etamab'äl richin {0}"
 
 msgid "Add-on URL"
 msgstr "Tz'aqat URL"
@@ -3151,13 +3151,13 @@ msgid ""
 msgstr ""
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Tiyuj re tzeqelel tz'aqat re'"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Titz'ib'äx rub'i' jun tz'aqat"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Tz'aqat Ruk'oxom {0}"
 
 msgid "Add-on icon"
 msgstr "Ruwachib'al tz'aqat"
@@ -3168,182 +3168,184 @@ msgid ""
 msgstr ""
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Tacha' jun ruwachib'al ri atz'aqat:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Okisan pa kicholajem tz'aqat, achi'el ri xe'ilitäj richin xekanöx chuqa' eto'on tz'aqat."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Okisan pa ruxaq kib'anikil chokoy."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Tijotob'äx jun Ichinan Wachib'äl..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG chuqa' JPG yek'ul. Xke'etäx ri taq wachib'äl pa 64x64 taq piksel we e nïm."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Chapoj kiwäch"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Taya' estape' xa xe jun chapoj ruwäch ri atz'aqat:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Taya' rub'i' re chapoj ruwa' re':"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Titz'aqatisäx jun Chapoj Ruwäch..."
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "¿La yetikïr nikikomonij ri atz'aqat ri winaqi', toq ketaman chi ja rat xab'anon richin?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "¿La yetikïr ch'aqa' chik yetzijok'ayin rik'in ri Atz'aqat?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "¿La yetikïr ch'aqa' chik nikokisaj ri Atz'aqat richin yekitz'ük taq samaj?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ja', xa k'o chi nukomonij chuqa'"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Ri Atz'aqat xtitalüx rutzijol rik'in re ya'öl q'ij re':"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Ticha' jun chik ya'öl q'ij."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
 
 msgid "Tests"
-msgstr ""
+msgstr "Taq tojtob'enïk"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Chijun Tojtob'enïk"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Jikomal Tojtob'enïk"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "K'amal Tojtob'enïk"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "K'ojlem Tojtob'enïk"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "K'amonel Tojtob'enïk"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Tewäch rutzijol man najowäx ta richin ri yonil juch'uj"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Ke'ewäx rutzijol e k'o erepun pa ri ruk'isib'äl ruwäch"
 
 msgid "Top"
-msgstr ""
+msgstr "Ajsik"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Tiyuj Wachinel"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Tiyuj Tz'aqat"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Toq niyuj ri awachinel, jumul xtiyuj el chupam ri ruxaq."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Toq nayüj ri tz'aqat xkeyuj el konojel ri taq ruwäch chuqa' taq yakb'äl xe'atäq richin re tz'aqat re', echolajin o manäq. Ri tz'aqat ID k'a xtixim na rik'in ri rub'i' ataqoya'l, richin chi ri "
+"ch'aqa' chik man yetikïr ta yekitäq taq ruwäch rik'in rokisaxik ri junam ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Tajikib'a' ri ana'ojib'al rik'in natz'ib'aj re cholan tzij re': {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Taya' jun ch'utitzijol chi qe achike ruma nayüj el ri awichinel:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Taya' jun ch'utitzijol chi qe achike ruma nayüj el ri atz'aqat:"
 
 msgid "Actions"
-msgstr ""
+msgstr "Taq b'anoj"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Tisamajïx chik el ri rub'eyal nitaq re tz'aqat re'."
 
 msgid "Resume"
-msgstr ""
+msgstr "Titikïr chik el"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Tiyuj re tz'aqat re'."
 
 msgid "Delete"
 msgstr "Tiyuj"
 
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Tinuk' etamab'äl chi rij re tz'aqat re'."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'."
 
 msgid "New Version"
-msgstr ""
+msgstr "K'ak'a' Ruwäch"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel."
 
 msgid "Statistics"
-msgstr ""
+msgstr "Kimolob'a'"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Kenuk'samajïx B'anikil & Ruwäch"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Titz'e Kicholajem Tz'aqat"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Ketz'et K'ak'a' taq Jaloj"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Kenuk' kib'anikil re rucholajil wachinel re'."
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "Tinuk' Rucholajil"
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Titz'et k'ïy ruwinaqil re wachinel re chijun ri q'ijul."
 
 msgid "View Statistics"
-msgstr ""
+msgstr "Kek'ut pe ri taq Molob'a'"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Tijal ri rajaw re wachinel re'."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Tijal Ichinil"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Tiyuj re wachinel re'."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Re tz'aqat re nrajo' jujun taq etamab'äl chuwäch tikirel nitaq richin nitaläx rutzijol."
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Re tz'aqat re' majun ruwäch."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Re tz'aqat re' majun ruwäch jikib'an, ruma ri' toq xe'ewäx qa ri aj winäq (chuqa' ri beta taq ruwäch) taq ruxaq."
 
 msgid "Status:"
 msgstr "B'anikil:"
@@ -3353,13 +3355,13 @@ msgstr "Chupül"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Ruk'ojlem pa cholaj:</b> %(pos)s richin %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> titzij okisanel"
+msgstr[1] "<strong>{0}</strong> ketzij okisanela'"
 
 msgid "Submit a New File"
 msgstr ""

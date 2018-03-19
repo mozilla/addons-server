@@ -59,9 +59,9 @@ Pillow==5.0.0 \
     --hash=sha256:931030d1d6282b7900e6b0a7ff9ecdb503b5e1e6781800dab2b71a9f39405bff \
     --hash=sha256:5cd36804f9f06a914a883fe682df5711d16d7b4f44d43189c5f013e7cd91e149
 # PyJWT is required by djangorestframework-jwt
-PyJWT==1.6.0 \
-    --hash=sha256:b752500cafd4df9f0dc6efe9063603e36a4e1a5c24fee48234d2949b6606aa59 \
-    --hash=sha256:9c3016e4a292151c5396e25cc0c28c4e1cdf13fa19118eb84f500f9670e3f628
+PyJWT==1.6.1 \
+    --hash=sha256:bca523ef95586d3a8a5be2da766fe6f82754acba27689c984e28e77a12174593 \
+    --hash=sha256:dacba5786fe3bf1a0ae8673874e29f9ac497860955c501289c63b15d3daae63a
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
 amo-validator==1.10.75 \
@@ -84,15 +84,15 @@ billiard==3.5.0.3 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-celery==4.1.0 \
-    --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
-    --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
-botocore==1.9.10 \
-    --hash=sha256:9d3af6f282fe61b2a4a5d5d7d46fa14572d6a8a7617d8fbe77ae1ce0dbef1a7c \
-    --hash=sha256:aacbb728198d5482014e5bca93aead8e3cf6db501a3ee70d6576f8839b4a0d32
 boto3==1.6.11 \
     --hash=sha256:8cac0e97b9c7bf78a933644f2c801f049c5acce8f2a0105104811fab3829712e \
     --hash=sha256:474e1333f17bb2e361555c9f98c5db57581de32f68713bfb1f8bbbb647580ecc
+celery==4.1.0 \
+    --hash=sha256:81a67f0d53a688ec2bc8557bd5d6d7218f925a6f2e6df80e01560de9e28997ec \
+    --hash=sha256:77ff3730198d6a17b3c1f05579ebe570b579efb35f6d7e13dba3b1368d068b35
+botocore==1.9.11 \
+    --hash=sha256:38471b40c32eb20cbac8ac13b85d82d2a313f06a6a89e26fbe72160d81cb3d66 \
+    --hash=sha256:5a79b44c6fa1f3befae37519add0b02307cd3425308ff8fd6793fe7a349f0c54
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
