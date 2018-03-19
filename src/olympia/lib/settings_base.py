@@ -69,9 +69,6 @@ LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
 
-# Path to stylus (to compile .styl files).
-STYLUS_BIN = 'stylus'
-
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = 'cleancss'
 
@@ -705,14 +702,14 @@ MINIFY_BUNDLES = {
             'css/impala/devhub-api.less',
         ),
         'zamboni/reviewers': (
-            'css/zamboni/reviewers.styl',
+            'css/zamboni/reviewers.less',
             'css/zamboni/unlisted.less',
             'css/zamboni/reviewers.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
-            'css/zamboni/reviewers.styl',
-            'css/zamboni/themes_review.styl',
+            'css/zamboni/reviewers.less',
+            'css/zamboni/themes_review.less',
         ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',

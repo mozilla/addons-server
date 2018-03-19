@@ -74,7 +74,6 @@ RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
 
 RUN echo "from olympia.lib.settings_base import *\n\
-STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
 CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
 UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\

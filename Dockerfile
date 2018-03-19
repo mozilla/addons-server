@@ -81,6 +81,5 @@ ENV HISTCONTROL erasedups
 
 ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
 ENV LESS_BIN /deps/node_modules/.bin/lessc
-ENV STYLUS_BIN /deps/node_modules/.bin/stylus
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
