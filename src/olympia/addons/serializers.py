@@ -18,7 +18,8 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import (
+    ApplicationsVersions, License, Version, VersionPreview)
 
 from .models import (
     Addon, AddonFeatureCompatibility, CompatOverride, Persona, Preview,
@@ -61,6 +62,7 @@ class PreviewSerializer(serializers.ModelSerializer):
     thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
+        # Note: this serializer can also be used for VersionPreview.
         model = Preview
         fields = ('id', 'caption', 'image_size', 'image_url', 'thumbnail_size',
                   'thumbnail_url')
@@ -73,24 +75,17 @@ class PreviewSerializer(serializers.ModelSerializer):
 
 
 class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
-    # We could do this in ESAddonSerializer, but having a specific serializer
-    # that inherits from BaseESSerializer for previews allows us to handle
-    # translations more easily.
+    # Because we have translated fields and dates coming from ES, we can't use
+    # a regular PreviewSerializer to handle previews for ESAddonSerializer.
+    # Unfortunately we also need to get the class right (it can be either
+    # Preview or VersionPreview) so fake_object() implementation in this class
+    # does nothing, the instance has already been created by a parent
+    # serializer.
     datetime_fields = ('modified',)
     translated_fields = ('caption',)
 
     def fake_object(self, data):
-        """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
-
-        # Attach base attributes that have the same name/format in ES and in
-        # the model.
-        self._attach_fields(obj, data, ('modified',))
-
-        # Attach translations.
-        self._attach_translations(obj, data, self.translated_fields)
-
-        return obj
+        return data
 
 
 class LicenseSerializer(serializers.ModelSerializer):
@@ -254,7 +249,7 @@ class AddonSerializer(serializers.ModelSerializer):
     is_source_public = serializers.BooleanField(source='view_source')
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
-    previews = PreviewSerializer(many=True, source='all_previews')
+    previews = PreviewSerializer(many=True, source='current_previews')
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -455,11 +450,28 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     authors = BaseUserSerializer(many=True, source='listed_authors')
     current_beta_version = SimpleESVersionSerializer()
     current_version = SimpleESVersionSerializer()
-    previews = ESPreviewSerializer(many=True, source='all_previews')
+    previews = ESPreviewSerializer(many=True, source='current_previews')
 
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'developer_comments',
                          'homepage', 'summary', 'support_email', 'support_url')
+
+    def fake_preview_object(self, obj, data, model_class=Preview):
+        # This is what ESPreviewSerializer.fake_object() would do, but we do
+        # it here and make that fake_object() method a no-op in order to have
+        # access to the right model_class to use - VersionPreview for static
+        # themes, Preview for the rest.
+        preview = model_class(id=data['id'], sizes=data.get('sizes', {}))
+        preview.addon = obj
+        preview.version = obj.current_version
+        preview_serializer = self.fields['previews'].child
+        # Attach base attributes that have the same name/format in ES and in
+        # the model.
+        preview_serializer._attach_fields(preview, data, ('modified',))
+        # Attach translations.
+        preview_serializer._attach_translations(
+            preview, data, preview_serializer.translated_fields)
+        return preview
 
     def fake_file_object(self, obj, data):
         file_ = File(
@@ -565,10 +577,13 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for data_author in data_authors
         ]
 
-        # We set obj.all_previews to the raw preview data because
-        # ESPreviewSerializer will handle creating the fake Preview object
-        # for us when its to_representation() method is called.
-        obj.all_previews = data.get('previews', [])
+        is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
+        preview_model_class = VersionPreview if is_static_theme else Preview
+        obj.current_previews = [
+            self.fake_preview_object(
+                obj, preview_data, model_class=preview_model_class)
+            for preview_data in data.get('previews', [])
+        ]
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')

@@ -1306,6 +1306,17 @@ class Addon(OnChangeMixin, ModelBase):
             None, [cat.to_static_category() for cat in self.categories.all()])
 
     @cached_property
+    def current_previews(self):
+        """Previews for the current version, or all of them if not a
+        static theme."""
+        if self.type == amo.ADDON_STATICTHEME:
+            if self.current_version:
+                return self.current_version.previews.all()
+            return []
+        else:
+            return self.all_previews
+
+    @cached_property
     def all_previews(self):
         """Exclude promo graphics."""
         return list(self.previews.exclude(position=-1))

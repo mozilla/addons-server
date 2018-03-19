@@ -27,7 +27,8 @@ from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission
-from olympia.versions.models import ApplicationsVersions, AppVersion, License
+from olympia.versions.models import (
+    ApplicationsVersions, AppVersion, License, VersionPreview)
 
 
 class AddonSerializerOutputTestMixin(object):
@@ -624,6 +625,47 @@ class AddonSerializerOutputTestMixin(object):
             # fake compatibility data for NO_COMPAT add-ons we do obey that.
         }
         assert result_version['is_strict_compatibility_enabled'] is False
+
+    def test_static_theme_preview(self):
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        # Attach some Preview instances do the add-on, they should be ignored
+        # since it's a static theme.
+        Preview.objects.create(
+            addon=self.addon, position=1,
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            sizes={'thumbnail': [123, 45], 'image': [678, 910]})
+        result = self.serialize()
+        assert result['previews'] == []
+
+        # Add a second version, attach VersionPreview to both, make sure we
+        # take the right one.
+        first_version = self.addon.current_version
+        VersionPreview.objects.create(
+            version=first_version,
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]})
+        second_version = version_factory(addon=self.addon)
+        current_preview = VersionPreview.objects.create(
+            version=second_version,
+            sizes={'thumbnail': [56, 78], 'image': [91, 234]})
+        assert self.addon.reload().current_version == second_version
+        result = self.serialize()
+        assert len(result['previews']) == 1
+        assert result['previews'][0]['id'] == current_preview.pk
+        assert result['previews'][0]['caption'] is None
+        assert result['previews'][0]['image_url'] == absolutify(
+            current_preview.image_url)
+        assert result['previews'][0]['thumbnail_url'] == absolutify(
+            current_preview.thumbnail_url)
+        assert result['previews'][0]['image_size'] == (
+            current_preview.image_size)
+        assert result['previews'][0]['thumbnail_size'] == (
+            current_preview.thumbnail_size)
+
+        # Make sure we don't fail if somehow there is no current version.
+        self.addon.update(_current_version=None)
+        result = self.serialize()
+        assert result['current_version'] is None
+        assert result['previews'] == []
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):

@@ -16,6 +16,7 @@ from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 from olympia.files.models import WebextPermission
+from olympia.versions.models import VersionPreview
 
 
 class TestAddonIndexer(TestCase):
@@ -632,6 +633,20 @@ class TestAddonIndexer(TestCase):
         # to search against preview captions.
         assert 'caption' not in extracted['previews'][0]
         assert 'caption' not in extracted['previews'][1]
+
+    def test_extract_previews_statictheme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        current_preview = VersionPreview.objects.create(
+            version=self.addon.current_version,
+            sizes={'thumbnail': [56, 78], 'image': [91, 234]})
+        extracted = self._extract()
+        assert extracted['previews']
+        assert len(extracted['previews']) == 1
+        assert 'caption_translations' not in extracted['previews'][0]
+        assert extracted['previews'][0]['id'] == current_preview.pk
+        assert extracted['previews'][0]['modified'] == current_preview.modified
+        assert extracted['previews'][0]['sizes'] == current_preview.sizes == {
+            'thumbnail': [56, 78], 'image': [91, 234]}
 
 
 class TestAddonIndexerWithES(ESTestCase):
