@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-19 20:26+0000\n"
+"PO-Revision-Date: 2018-03-20 11:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4370,7 +4370,7 @@ msgstr "מצב"
 
 # Header for a column in a table
 msgid "Validation"
-msgstr "בדיקה"
+msgstr "בדיקת אימות"
 
 msgid "Delete/Disable"
 msgstr "מחיקה/נטרול"
