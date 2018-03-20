@@ -1806,9 +1806,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar untuk {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "dikomentari"
+msgstr "Dikomentari"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} ditambahkan ke {addon}."
@@ -7905,7 +7904,6 @@ msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanju
 msgid "User Login"
 msgstr "Masuk"
 
-#, fuzzy
 msgid "Log in with Firefox Accounts"
 msgstr "Masuk dengan Firefox Accounts"
 
