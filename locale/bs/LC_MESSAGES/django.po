@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-19 10:42+0000\n"
+"PO-Revision-Date: 2018-03-20 08:46+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2743,19 +2743,19 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Ovaj prijenos nije prošao validaciju i možda nema potpune rezultate validacije. Molimo budite pažljivi kad ga pregledavate."
 
 msgid "Review requested."
 msgstr ""
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Morate dati dodatne detalje da biste nastavili."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Vaši stariji akreditivi su poništeni i nisu više važeći. Obavezno ažurirajte sve API klijente novim akreditivima."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Vaši stariji akreditivi su poništeni i nisu više važeći."
 
 msgid "New API key created"
 msgstr ""
@@ -2767,15 +2767,17 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Prije nego počnete, molimo pročitajte i prihvatite naš Firefox sporazum o distribuciji dodataka kao i naše politike i pravila pregledanja. Firefox sporazum o distribuciji dodataka je povezan sa "
+"našim napomenama o privatnosti koje objašnjavaju kako mi čuvamo vaše informacije."
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox sporazum o distribuciji dodataka"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Politika i pravila pregledanja"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Pročitao/la sam i prihvatam ovaj sporazum, pravila i politike"
 
 msgid "Accept"
 msgstr ""
@@ -2795,7 +2797,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Razvojni centar <small>dodataka</small>"
 
 msgid "more add-ons..."
 msgstr ""
@@ -2850,17 +2852,17 @@ msgid "After upload, a series of automated validation tests will run to check co
 msgstr ""
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Nakon prijenosa, serije automatskih testova validacije će biti pokrenute za vašu datoteku."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Želite li da vaš dodatak bude distribuiran na ovoj stranici?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Rezultati validacije za {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Rezultati validacije"
 
 msgid "Validated at:"
 msgstr ""
