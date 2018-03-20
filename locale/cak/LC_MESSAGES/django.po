@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-20 20:36+0000\n"
+"PO-Revision-Date: 2018-03-20 21:01+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1539,7 +1539,7 @@ msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-
 msgstr "Tetamäx ch'aqa' chik chi rij ri <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">rukajtz'ik kanoxïk</a> pa {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Ke'akanoj ch'aqa' chik ajya'öl kanoxïk pa <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
@@ -1629,6 +1629,8 @@ msgstr "Ketz'et Ronojel K'ïy Kejqalem"
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
+"¡Jotöl chi re ri 300,000 taq wachib'enïk richin nawichinaj ri awokik'amaya'l! Tasiloj ri retal ach'oy pa ruwi' jun ruwachinel rupam richin natojtob'ej. <a href=\"%(url)s\" class=\"more-"
+"info\">Tachapa' rukanoxik</a>"
 
 msgid "Want more personalization?"
 msgstr "¿La nawajo' ch'aqa' chik ichinanem?"
