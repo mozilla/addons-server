@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-08 08:05+0000\n"
+"PO-Revision-Date: 2018-03-20 12:33+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5406,7 +5406,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Folsleine tema’s</a></strong> wizig
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Tema’s</a></strong> binne ljochtgewicht tema’s dy't achtergrûnôfbyldingen brûke om de arkbalken fan jo %(app_name)s oan te passen."
+msgstr "<strong><a href=\"%(browse_url)s\">Tema’s</a></strong> binne ljochtgewicht tema’s dy't eftergrûnôfbyldingen brûke om de arkbalken fan jo %(app_name)s oan te passen."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
