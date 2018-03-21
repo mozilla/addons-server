@@ -27,13 +27,6 @@ $(document).ready(function() {
                 updateManifest();
             };
             reader.readAsDataURL(file);
-
-            var filename = file.name.replace(/\.[^/.]+$/, "");
-            $wizard.find('a.download').attr('download', filename + ".zip");
-            var name_input = $wizard.find('#theme-name');
-            if (!name_input.val()) {
-                name_input.val(filename);
-            }
         });
         $wizard.find('input[type="file"]').trigger('change');
 
