@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-20 08:46+0000\n"
+"PO-Revision-Date: 2018-03-21 08:32+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2868,10 +2868,10 @@ msgid "Validated at:"
 msgstr ""
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testirano za kompatibilnost protiv:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Nedavne aktivnosti za moje dodatke"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
