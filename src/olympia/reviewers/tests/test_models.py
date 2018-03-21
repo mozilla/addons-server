@@ -779,29 +779,15 @@ class TestRereviewQueueTheme(TestCase):
         """Test manager excludes soft delete add-ons."""
         # Normal RQT object.
         RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='')
 
         # Deleted add-on RQT object.
         addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(
-            theme=addon.persona, header='', footer='')
+        RereviewQueueTheme.objects.create(theme=addon.persona, header='')
         addon.delete()
 
         assert RereviewQueueTheme.objects.count() == 1
         assert RereviewQueueTheme.unfiltered.count() == 2
-
-    def test_footer_path_without_footer(self):
-        rqt = RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-        assert rqt.footer_path == ''
-
-    def test_footer_url_without_footer(self):
-        rqt = RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-        assert rqt.footer_url == ''
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.

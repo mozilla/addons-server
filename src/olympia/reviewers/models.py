@@ -1136,7 +1136,6 @@ class RereviewQueueThemeManager(ManagerBase):
 class RereviewQueueTheme(ModelBase):
     theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
-    footer = models.CharField(max_length=72, blank=True, default='')
 
     # Holds whether this reuploaded theme is a duplicate.
     dupe_persona = models.ForeignKey(Persona, null=True,

@@ -49,13 +49,10 @@ def create_theme_images(theme, placement, hash_):
 
 
 def generate_theme_images(theme):
-    """Generate both header and footer images for a given `theme`."""
+    """Generate header images for a given `theme`."""
     header_hash = uuid.uuid4().hex
-    footer_hash = uuid.uuid4().hex
     create_theme_images(theme, 'header', header_hash)
-    create_theme_images(theme, 'footer', footer_hash)
     persona = theme.persona
     persona.header = header_hash
-    persona.footer = footer_hash
     persona.save()
-    save_theme(header_hash, footer_hash, theme)
+    save_theme(header_hash, theme)

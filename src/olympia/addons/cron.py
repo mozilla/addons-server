@@ -281,14 +281,14 @@ def reindex_addons(index=None, addon_type=None):
 
 def cleanup_image_files():
     """
-    Clean up all header and footer images files for themes.
+    Clean up all header images files for themes.
 
     We use these images to asynchronuously generate thumbnails with
     tasks, here we delete images that are older than one day.
 
     """
     log.info('Removing one day old temporary image files for themes.')
-    for folder in ('persona_footer', 'persona_header'):
+    for folder in ('persona_header', ):
         root = os.path.join(settings.TMP_PATH, folder)
         if not os.path.exists(root):
             continue

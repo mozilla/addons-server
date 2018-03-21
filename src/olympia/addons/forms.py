@@ -434,7 +434,7 @@ class ThemeFormBase(AddonFormBase):
         cats = sorted(cats, key=lambda x: x.name)
         self.fields['category'].choices = [(c.id, c.name) for c in cats]
 
-        for field in ('header', 'footer'):
+        for field in ('header', ):
             self.fields[field].widget.attrs = {
                 'data-upload-url': reverse('devhub.personas.upload_persona',
                                            args=['persona_%s' % field]),
@@ -457,8 +457,6 @@ class ThemeForm(ThemeFormBase):
         error_messages={'required': _(u'A license must be selected.')})
     header = forms.FileField(required=False)
     header_hash = forms.CharField(widget=forms.HiddenInput)
-    footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
     # Native color picker doesn't allow real time tracking of user input
     # and empty values, thus force the JavaScript color picker for now.
     # See bugs 1005206 and 1003575.
@@ -496,8 +494,6 @@ class ThemeForm(ThemeFormBase):
         p.persona_id = 0
         p.addon = addon
         p.header = 'header.png'
-        if data['footer_hash']:
-            p.footer = 'footer.png'
         if data['accentcolor']:
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:
@@ -509,8 +505,8 @@ class ThemeForm(ThemeFormBase):
         p.display_username = user.name
         p.save()
 
-        # Save header, footer, and preview images.
-        save_theme.delay(data['header_hash'], data['footer_hash'], addon)
+        # Save header and preview images.
+        save_theme.delay(data['header_hash'], addon)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -550,8 +546,6 @@ class EditThemeForm(AddonFormBase):
     # Theme re-upload.
     header = forms.FileField(required=False)
     header_hash = forms.CharField(widget=forms.HiddenInput, required=False)
-    footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
 
     class Meta:
         model = Addon
@@ -590,7 +584,7 @@ class EditThemeForm(AddonFormBase):
         except IndexError:
             pass
 
-        for field in ('header', 'footer'):
+        for field in ('header', ):
             self.fields[field].widget.attrs = {
                 'data-upload-url': reverse('devhub.personas.reupload_persona',
                                            args=[addon.slug,
@@ -654,9 +648,8 @@ class EditThemeForm(AddonFormBase):
 
         # Theme reupload.
         if not addon.is_pending():
-            if data['header_hash'] or data['footer_hash']:
-                save_theme_reupload.delay(
-                    data['header_hash'], data['footer_hash'], addon)
+            if data['header_hash']:
+                save_theme_reupload.delay(data['header_hash'], addon)
 
         return data
 

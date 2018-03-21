@@ -46,20 +46,18 @@ class TestSubmitPersona(TestCase):
     def get_img_urls(self):
         return (
             reverse('devhub.personas.upload_persona', args=['persona_header']),
-            reverse('devhub.personas.upload_persona', args=['persona_footer'])
         )
 
     def test_img_urls(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        header_url, footer_url = self.get_img_urls()
+        header_url = self.get_img_urls()[0]
         assert doc('#id_header').attr('data-upload-url') == header_url
-        assert doc('#id_footer').attr('data-upload-url') == footer_url
 
     def test_img_size(self):
         img = get_image_path('mozilla.png')
-        for url, img_type in zip(self.get_img_urls(), ('header', 'footer')):
+        for url, img_type in zip(self.get_img_urls(), ('header', )):
             r_ajax = self.client.post(url, {'upload_image': open(img, 'rb')})
             r_json = json.loads(r_ajax.content)
             w, h = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
