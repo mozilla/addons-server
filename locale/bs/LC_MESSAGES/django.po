@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-21 08:32+0000\n"
+"PO-Revision-Date: 2018-03-21 08:36+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -2879,13 +2879,13 @@ msgstr ""
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> od korisnika %(user)s"
 
 msgid "No results found."
 msgstr "Nema rezultata."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Poboljšajte aktivnost"
 
 msgid "Activity"
 msgstr "Aktivnost"
@@ -2898,13 +2898,17 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Ovaj dodatak je nekompatibilan sa <b>%(app_name)s %(app_version)s</b>, najnovijeg izdanja %(app_name)s. Molimo razmotrite ažuriranje vaših informacija kompatibilnosti dodatka ili učitajte noviju "
+"verziju ovog dodatka."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Ažurirajte kompatibilnosti</a> <a href=\"%(version_url)s\" class=\"button\">Učitajte noviju verziju</a> ili <a "
+"href=\"#\" class=\"close\">Ignorišite</a>"
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Pregledajte i ažurirajte opsege kompatibilnosti aplikacije."
 
 msgid "Compatibility"
 msgstr ""
