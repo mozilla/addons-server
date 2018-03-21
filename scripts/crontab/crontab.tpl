@@ -40,20 +40,19 @@ HOME=/tmp
 0 8 * * * %(django)s update_product_details
 
 # Once per day after metrics import is done
-00 17 * * * %(z_cron)s update_addon_download_totals
-05 17 * * * %(z_cron)s weekly_downloads
-55 17 * * * %(z_cron)s update_global_totals
-00 18 * * * %(z_cron)s update_addon_average_daily_users
-30 18 * * * %(z_cron)s index_latest_stats
-45 18 * * * %(z_cron)s update_addons_collections_downloads
+00 9 * * * %(z_cron)s update_addon_download_totals
+05 9 * * * %(z_cron)s weekly_downloads
+55 9 * * * %(z_cron)s update_global_totals
+00 10 * * * %(z_cron)s update_addon_average_daily_users
+30 10 * * * %(z_cron)s index_latest_stats
+45 10 * * * %(z_cron)s update_addons_collections_downloads
 
-# Update ADI metrics from HIVE.
-# Once per day after 1000 UTC (after hive queries + transfer is done)
-NETAPP_STORAGE_ROOT='/var/tmp'
-00 16 * * * %(django)s update_counts_from_file
-30 16 * * * %(django)s download_counts_from_file
-00 17 * * * %(django)s theme_update_counts_from_file
-00 18 * * * %(django)s update_theme_popularity_movers
+# Update ADI metrics from S3.
+# Once per day after 0800 UTC
+00 8 * * * %(django)s update_counts_from_file
+30 8 * * * %(django)s download_counts_from_file
+45 8 * * * %(django)s theme_update_counts_from_file
+00 9 * * * %(django)s update_theme_popularity_movers
 
 # Do not put crons below this line
 
