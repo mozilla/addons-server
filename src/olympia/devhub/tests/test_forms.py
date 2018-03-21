@@ -649,7 +649,7 @@ class TestEditThemeForm(TestCase):
         - It run move_stored_file('footer.png', 'leg.png').
         - But footer.png does not exist. BAM BUG.
 
-        Footer has been removed in issue Issue #5379
+        Footer has been removed in Issue #5379
         https://github.com/mozilla/addons-server/issues/5379
         """
         make_checksum_mock.return_value = 'comechecksome'
