@@ -1,4 +1,4 @@
-from collections import namedtuple
+from collections import defaultdict, namedtuple
 
 
 AclPermission = namedtuple('AclPermission', 'app, action')
@@ -38,6 +38,9 @@ THEMES_REVIEW = AclPermission('Personas', 'Review')
 # Can review a static theme.
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 
+# Can modify editorial content on the site.
+CONTENT_CURATE = AclPermission('Content', 'Curate')
+
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 
@@ -68,3 +71,16 @@ REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
+
+# Mapping between django-style object permissions and our own. By default,
+# require full admin (which also have all other permissions anyway) to do
+# something, and then add some custom ones.
+DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: ADMIN)
+# Curators can do anything to ReplacementAddon. In addition, the modeladmin
+# will also check for addons:edit and give them read-only access to the
+# changelist (obj=None passed to the has_change_permission() method)
+DJANGO_PERMISSIONS_MAPPING.update({
+    'addons.change_replacementaddon': CONTENT_CURATE,
+    'addons.add_replacementaddon': CONTENT_CURATE,
+    'addons.delete_replacementaddon': CONTENT_CURATE
+})

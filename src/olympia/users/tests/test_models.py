@@ -138,7 +138,7 @@ class TestUserProfile(TestCase):
 
         GroupUser.objects.create(group=Group.objects.get(name='API'),
                                  user=u)
-        assert not u.is_staff
+        assert u.is_staff  # Part of a group, any group.
         assert not u.is_superuser
 
     def test_remove_admin_powers(self):
@@ -147,7 +147,7 @@ class TestUserProfile(TestCase):
         g = GroupUser.objects.create(
             group=Group.objects.filter(name='Admins')[0], user=u)
         g.delete()
-        assert not u.is_staff
+        assert not u.is_staff  # Not part of a group anymore.
         assert not u.is_superuser
 
     def test_picture_url(self):

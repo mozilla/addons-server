@@ -7,7 +7,6 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.addons.urls import ADDON_ID
 
 from . import views
-from .admin import staff_admin_site
 
 
 # Hijack the admin's login to use our pages.
@@ -22,7 +21,6 @@ def login(request):
 
 admin.site.site_header = admin.site.index_title = 'AMO Administration'
 admin.site.login = login
-staff_admin_site.login = login
 
 
 urlpatterns = [
@@ -77,6 +75,4 @@ urlpatterns = [
     url('^models/', include(admin.site.urls)),
     url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
-
-    url('^staff-models/', include(staff_admin_site.urls)),
 ]

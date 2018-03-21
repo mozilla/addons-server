@@ -8,8 +8,9 @@ from django.core.urlresolvers import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext
 
+from olympia import amo
+from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
-from olympia.zadmin.admin import StaffModelAdmin, staff_admin_site
 
 from . import models
 
@@ -81,7 +82,7 @@ class CompatOverrideAdmin(admin.ModelAdmin):
 
 
 class ReplacementAddonForm(forms.ModelForm):
-    def clean(self):
+    def clean_path(self):
         path = None
         try:
             path = self.data.get('path')
@@ -103,7 +104,7 @@ class ReplacementAddonForm(forms.ModelForm):
         return super(ReplacementAddonForm, self).clean()
 
 
-class ReplacementAddonAdmin(StaffModelAdmin):
+class ReplacementAddonAdmin(admin.ModelAdmin):
     list_display = ('guid', 'path', 'guid_slug', '_url')
     form = ReplacementAddonForm
 
@@ -120,10 +121,23 @@ class ReplacementAddonAdmin(StaffModelAdmin):
             slug = ugettext(u'- Add-on not on AMO -')
         return slug
 
+    def has_change_permission(self, request, obj=None):
+        # If an obj is passed, then we're looking at the individual change page
+        # for a replacement addon, otherwise we're looking at the list. When
+        # looking at the list, we also allow users with Addons:Edit - they
+        # won't be able to make any changes but they can see the list.
+        if obj is not None:
+            return super(ReplacementAddonAdmin, self).has_change_permission(
+                request, obj=obj)
+        else:
+            return (
+                acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or
+                super(ReplacementAddonAdmin, self).has_change_permission(
+                    request, obj=obj))
+
 
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)
 admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)
-staff_admin_site.register(models.ReplacementAddon, ReplacementAddonAdmin)
