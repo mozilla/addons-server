@@ -1158,12 +1158,14 @@ def extract_header_img(file_obj, theme_data, dest_path):
         'headerURL', images_dict.get('theme_frame'))
     # And any additional backgrounds too.
     additional_urls = images_dict.get('additional_backgrounds', [])
-
+    image_urls = [header_url] + additional_urls
     try:
         with zipfile.ZipFile(xpi, 'r') as source:
-            source.extract(header_url, dest_path)
-            for additional in additional_urls:
-                source.extract(additional, dest_path)
+            for url in image_urls:
+                try:
+                    source.extract(url, dest_path)
+                except KeyError:
+                    pass
     except IOError as ioerror:
         log.debug(ioerror)
 

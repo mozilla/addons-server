@@ -48,20 +48,22 @@ def test_write_svg_to_png():
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 @pytest.mark.parametrize(
-    'header_url, header_height, preserve_aspect_ratio, mimetype', (
-        ('transparent.gif', 1, 'xMaxYMin meet', 'image/gif'),
-        ('weta.png', 200, 'xMaxYMin meet', 'image/png'),
-        ('wetalong.png', 200, 'xMaxYMin slice', 'image/png'),
+    'header_url, header_height, preserve_aspect_ratio, mimetype, valid_img', (
+        ('transparent.gif', 1, 'xMaxYMin meet', 'image/gif', True),
+        ('weta.png', 200, 'xMaxYMin meet', 'image/png', True),
+        ('wetalong.png', 200, 'xMaxYMin slice', 'image/png', True),
+        ('missing_file.png', 0, 'xMaxYMin meet', '', False),
+        ('empty-no-ext', 10, 'xMaxYMin meet', 'image/png', True),
+        (None, 0, 'xMaxYMin meet', '', False),  # i.e. no headerURL entry
     )
 )
 def test_generate_static_theme_preview(
         write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,
-        header_url, header_height, preserve_aspect_ratio, mimetype):
+        header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
     write_svg_to_png_mock.return_value = (789, 101112)
     resize_image_mock.return_value = (123, 456), (789, 101112)
     theme_manifest = {
         "images": {
-            "headerURL": header_url
         },
         "colors": {
             "accentcolor": "#918e43",
@@ -71,6 +73,8 @@ def test_generate_static_theme_preview(
             "toolbar_field_text": "#17747d"
         }
     }
+    if header_url is not None:
+        theme_manifest['images']['headerURL'] = header_url
     header_root = os.path.join(
         settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
@@ -101,10 +105,14 @@ def test_generate_static_theme_preview(
         'preserveAspectRatio="%s"' % (header_height, preserve_aspect_ratio))
     assert image_tag in svg_content, svg_content
     # and image content is included and was encoded
-    with storage.open(header_root + header_url, 'rb') as header_file:
-        header_blob = header_file.read()
-    base_64_uri = 'data:%s;base64,%s' % (mimetype, b64encode(header_blob))
-    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    if valid_img:
+        with storage.open(header_root + header_url, 'rb') as header_file:
+            header_blob = header_file.read()
+            base_64_uri = 'data:%s;base64,%s' % (
+                mimetype, b64encode(header_blob))
+    else:
+        base_64_uri = ''
+    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content, svg_content
     # check each of our colors above was included
     for (key, color) in theme_manifest['colors'].items():
         snippet = 'class="%s" fill="%s"' % (key, color)
