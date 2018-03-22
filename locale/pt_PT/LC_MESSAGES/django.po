@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-02 01:07+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2018-03-22 01:50+0000\n"
+"Last-Translator: Gonçalo Matos <goncalo.matos@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -77,10 +77,10 @@ msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
 
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 msgid "Download"
-msgstr "Transferir"
+msgstr "Descarregar"
 
 msgid "Featured"
 msgstr "Em destaque"
@@ -257,8 +257,8 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s transferência semanal"
-msgstr[1] "%(num)s transferências semanais"
+msgstr[0] "%(num)s descarga semanal"
+msgstr[1] "%(num)s descargas semanais"
 
 #, python-format
 msgid "%(num)s user"
@@ -278,8 +278,8 @@ msgstr "Compatível com o Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} transferência semanal"
-msgstr[1] "{0} descargas semanais"
+msgstr[0] "{0} descarga semanal"
+msgstr[1] ""
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -453,7 +453,7 @@ msgid "by %(users)s"
 msgstr "por %(users)s"
 
 msgid "Download Anyway"
-msgstr "Transferir mesmo assim"
+msgstr "Descarregar mesmo assim"
 
 msgid "[Warning]"
 msgstr "[Aviso]"
@@ -668,7 +668,7 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> transferência semanal"
+msgstr[0] "<strong>{0}</strong> descarga semanal"
 msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 msgid "Not Reviewed"
@@ -1448,7 +1448,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Transferências semanais"
+msgstr "Descargas semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1460,7 +1460,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Transferências"
+msgstr "Descargas"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1484,10 +1484,10 @@ msgid "Install Language Pack"
 msgstr "Instalar pacote de idioma"
 
 msgid "Download Dictionary"
-msgstr "Transferir dicionário"
+msgstr "Descarregar dicionário"
 
 msgid "Download Language Pack"
-msgstr "Transferir pacote de idioma"
+msgstr "Descarregar pacote de idioma"
 
 #, python-format
 msgid ""
@@ -1567,7 +1567,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por transferências semanais"
+msgstr "Extensões por descargas semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1593,7 +1593,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por transferências semanais"
+msgstr "Temas completos por descargas semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -2134,7 +2134,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de transferências"
+msgstr "Gestão de descargas"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2311,7 +2311,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Gestão de transferências e de ficheiros"
+msgstr "Descargas e gestão de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -3163,7 +3163,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de transferências e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3363,7 +3363,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre transferências e utilizadores."
+msgstr "Estatísticas diárias sobre descargas e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3393,7 +3393,7 @@ msgid "Change the owner of this theme."
 msgstr "Alterar o proprietário deste tema."
 
 msgid "Transfer Ownership"
-msgstr "Transferir propriedade"
+msgstr ""
 
 msgid "Delete this theme."
 msgstr "Eliminar este tema."
@@ -3541,7 +3541,7 @@ msgid "File Signed"
 msgstr "Ficheiro assinado"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode transferi-lo clicando no botão abaixo."
+msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
 
 msgid "Version Signed"
 msgstr "Versão assinada"
@@ -3550,7 +3550,7 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode transferi-la clicando no botão abaixo."
 
 msgid "Download {0}"
-msgstr "Transferir {0}"
+msgstr "Descarregar {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Selecionou apenas algumas das plataformas disponíveis para esta submissão.Pode carregar mais ficheiros, indicados outras plataformas:"
@@ -4436,7 +4436,7 @@ msgid "See an interesting picture on the Web and want to learn more about it? Tr
 msgstr "Viu uma imagem interessante na Web e deseja saber mais acerca da mesma? Experimente esta ferramenta de pesquisa de imagens."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Descarregar vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de outros sites de vídeo."
@@ -4637,7 +4637,7 @@ msgid "Problems decoding {0}."
 msgstr "Problemas ao decodificar {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Este ficheiro não é visível online. Por favor, transfira o ficheiro para ver o conteúdo."
+msgstr "Este ficheiro não é visível online. Por favor, descarregue o ficheiro para ver o conteúdo."
 
 msgid "This file is a directory."
 msgstr "Este ficheiro é uma directoria."
@@ -4777,7 +4777,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Obrigado por usar o %(app)s e ajudar a <a href=\"%(url)s\">missão da Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Extras transferidos:"
+msgstr "Extras descarregados:"
 
 msgid "View Privacy Policy"
 msgstr "Ver Política de privacidade"
@@ -5076,9 +5076,9 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir compatibilidade com o software da Mozilla mais recente, é importante transferir atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda funciona"
-" como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no "
-"processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
+"Para garantir compatibilidade com o software da Mozilla mais recente, é importante descarregar atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda "
+"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente "
+"no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu extra. Onde eu posso encontrar ajuda?"
