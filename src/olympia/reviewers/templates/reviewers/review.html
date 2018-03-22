@@ -319,20 +319,22 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-        <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
-                  data-api-method="patch"
-                  data-api-data="{&quot;auto_approval_disabled&quot;: true}"
-                  data-toggle-button-selector="#enable_auto_approval"
-                  id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
-        </li>
-        <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
-                  data-api-method="patch"
-                  data-api-data="{&quot;auto_approval_disabled&quot;: false}"
-                  data-toggle-button-selector="#disable_auto_approval"
-                  id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
-        </li>
+        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) %}
+          <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval"
+                    id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval"
+                    id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
+          </li>
+        {% endif %}
         {% if addon.pending_info_request %}
           <li>
               <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
