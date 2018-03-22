@@ -59,7 +59,7 @@ This endpoint allows you to search through public add-ons.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.
 
 .. _addon-search-sort:
 
@@ -156,8 +156,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
-    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
-    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on.
+    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
+    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
@@ -380,11 +380,11 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file. Clients using this API can append an optional ``src`` query parameter to the url which would indicate the source of the request (See :ref:`download sources <download-sources>`).
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings.  Empty for non-webextensions.
-    :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from search endpoint.
+    :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from add-on search endpoint.
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on detail endpoint.
     :>json string|null license.url: The URL of the full text of license.
-    :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on search endpoint.
     :>json string reviewed: The date the version was reviewed at.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string version: The version number string for the version.
