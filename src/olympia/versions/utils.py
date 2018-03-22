@@ -96,3 +96,18 @@ class AdditionalBackground(object):
             self.pattern_y = (amo.THEME_PREVIEW_SIZE.height - self.height) / 2
         else:
             self.pattern_y = 0
+
+
+CHROME_COLOR_TO_CSS = {
+    'bookmark_text': 'toolbar_text',
+    'frame': 'accentcolor',
+    'frame_inactive': 'accentcolor',
+    'tab_background_text': 'textcolor',
+}
+
+
+def process_color_value(prop, value):
+    prop = CHROME_COLOR_TO_CSS.get(prop, prop)
+    if isinstance(value, list) and len(value) == 3:
+        return prop, u'rgb(%s, %s, %s)' % tuple(value)
+    return prop, unicode(value)

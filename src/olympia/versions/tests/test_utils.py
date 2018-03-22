@@ -9,7 +9,8 @@ import mock
 import pytest
 from PIL import Image, ImageChops
 
-from olympia.versions.utils import AdditionalBackground, write_svg_to_png
+from olympia.versions.utils import (
+    AdditionalBackground, process_color_value, write_svg_to_png)
 
 
 def test_write_svg_to_png():
@@ -81,3 +82,17 @@ def test_additional_background(encode_header_image, alignment, tiling,
     assert background.pattern_height == pattern_height
     assert background.pattern_x == pattern_x
     assert background.pattern_y == pattern_y
+
+
+@pytest.mark.parametrize(
+    'chrome_prop, chrome_color, firefox_prop, css_color', (
+        ('bookmark_text', [2, 3, 4], 'toolbar_text', u'rgb(2, 3, 4)'),
+        ('frame', [2, 3, 4], 'accentcolor', u'rgb(12, 13, 14)'),
+        ('frame_inactive', [2, 3, 4], 'accentcolor', u'rgb(22, 23, 24)'),
+        ('tab_background_text', [2, 3, 4], 'textcolor', u'rgb(32, 33, 34)'),
+    )
+)
+def test_process_color_value(chrome_prop, chrome_color, firefox_prop,
+                             css_color):
+    assert (firefox_prop, css_color) == (
+        process_color_value(chrome_prop, chrome_color))
