@@ -111,7 +111,9 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = {'amo': amo}
     context.update(theme_manifest.get('colors', {}))
-    header_url = theme_manifest.get('images', {}).get('headerURL')
+    images_dict = theme_manifest.get('images', {})
+    header_url = images_dict.get(
+        'headerURL', images_dict.get('theme_frame', ''))
 
     header_src, header_width, header_height = encode_header_image(
         os.path.join(header_root, header_url))
@@ -125,8 +127,7 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
 
     # Limit the srcs rendered to 15 to ameliorate DOSing somewhat.
     # https://bugzilla.mozilla.org/show_bug.cgi?id=1435191 for background.
-    additional_srcs = (theme_manifest.get('images', {})
-                       .get('additional_backgrounds', []))[:15]
+    additional_srcs = images_dict.get('additional_backgrounds', [])[:15]
     additional_alignments = (theme_manifest.get('properties', {})
                              .get('additional_backgrounds_alignment', []))
     additional_tiling = (theme_manifest.get('properties', {})
