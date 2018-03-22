@@ -97,7 +97,7 @@ class TestPublicUserProfileSerializer(TestCase):
         addon_factory(status=amo.STATUS_NULL, users=[self.user])
         data = self.serialize()
         assert data['num_addons_listed'] == 2  # only public addons.
-        assert data['average_addon_rating'] == 3.6
+        assert data['average_addon_rating'] == '3.6'
 
     def test_url_for_non_developers(self):
         result = self.serialize()

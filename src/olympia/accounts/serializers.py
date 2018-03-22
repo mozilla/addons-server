@@ -52,7 +52,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
 class PublicUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
-    average_addon_rating = serializers.FloatField(source='averagerating')
+    average_addon_rating = serializers.CharField(source='averagerating')
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (
