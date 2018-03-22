@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-21 16:20+0000\n"
+"PO-Revision-Date: 2018-03-22 16:46+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4896,7 +4896,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "השתתפות ב<a href=\"%(url)s\">פורומים</a> שלנו."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "כדאי לכתוב סקירה באתר. יש סיכוי די טוב שיוצרי התוספות ישפרו את התוספות שלהם וייצרו חדשות מתוך ידיעה שעבודתם מוערכת."
 
 msgid "I have a question"
 msgstr "יש לי שאלה"
@@ -4907,7 +4907,7 @@ msgstr "מקום טוב להתחיל בו הוא ה<a href=\"%(faq_url)s\"><abbr
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "אם עולה בך צורך עז ליצור קשר עם מישהו מצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a> שלנו."
+msgstr "אם יש לך צורך ליצור קשר עם מישהו מצוות Mozilla, נא לעיין בעמוד <a href=\"%(url)s\">פרטי הקשר</a> שלנו."
 
 msgid "Who works on this website?"
 msgstr "מי עובד באתר הזה?"
@@ -6059,7 +6059,7 @@ msgid "Applications:"
 msgstr "יישומים:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "לדרוש מהמפתח להגיב תוך…"
 
 msgid "days"
 msgstr "ימים"
