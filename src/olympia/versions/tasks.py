@@ -9,7 +9,9 @@ from olympia.amo.decorators import write
 from olympia.amo.utils import pngcrush_image, resize_image
 from olympia.versions.models import VersionPreview
 
-from .utils import AdditionalBackground, encode_header_image, write_svg_to_png
+from .utils import (
+    AdditionalBackground, process_color_value,
+    encode_header_image, write_svg_to_png)
 
 
 @task
@@ -18,8 +20,12 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = {'amo': amo}
-    context.update(theme_manifest.get('colors', {}))
-    header_url = theme_manifest.get('images', {}).get('headerURL')
+    context.update(
+        {process_color_value(prop, color)
+         for prop, color in theme_manifest.get('colors', {}).items()})
+    images_dict = theme_manifest.get('images', {})
+    header_url = images_dict.get(
+        'headerURL', images_dict.get('theme_frame', ''))
 
     header_src, header_width, header_height = encode_header_image(
         os.path.join(header_root, header_url))
