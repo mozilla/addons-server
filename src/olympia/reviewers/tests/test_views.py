@@ -3363,7 +3363,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        deps = doc('#addon-summary .addon-dependencies')
+        deps = doc('.addon-info .addon-dependencies')
         assert deps.length == 1
         assert deps.find('li').length == 1
         assert deps.find('a').attr('href') == self.addon.get_url_path()

@@ -1140,13 +1140,25 @@ h2.addon {
     }
 }
 
-#addon-theme-previews-wrapper .all-backgrounds{
-  display: none;
+.addon-info-and-previews {
+    display: flex;
+    flex-flow: row wrap;
 }
-.addon-type-static-themes {
-  #addon-summary {
-    margin-left: 0px;
+
+.screenshot.thumbnail {
+    /* we don't want the float from the legacy css, so we need to apply display
+       block ourselves. */
+    display: block;
+    float: none;
+}
+
+#addon-theme-previews-wrapper {
+  .all-backgrounds {
+    display: none;
   }
+}
+
+.addon-type-static-themes {
   .more-about {
     display: none;
   }
