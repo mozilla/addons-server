@@ -920,13 +920,26 @@ def test_extract_header_img():
     assert default_storage.size(header_file) == 126447
 
 
+def test_extract_header_img_missing():
+    file_obj = os.path.join(
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    data = {'images': {'headerURL': 'missing_file.png'}}
+    dest_path = tempfile.mkdtemp()
+    header_file = dest_path + '/missing_file.png'
+    assert not default_storage.exists(header_file)
+
+    utils.extract_header_img(file_obj, data, dest_path)
+    assert not default_storage.exists(header_file)
+
+
 def test_extract_header_with_additional_imgs():
     file_obj = os.path.join(
         settings.ROOT,
         'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
     data = {'images': {
         'headerURL': 'empty.png',
-        'additional_backgrounds': ['transparent.gif', 'weta_for_tiling.png']
+        'additional_backgrounds': [
+            'transparent.gif', 'missing_&_ignored.png', 'weta_for_tiling.png']
     }}
     dest_path = tempfile.mkdtemp()
     header_file = dest_path + '/empty.png'

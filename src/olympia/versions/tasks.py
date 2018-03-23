@@ -39,8 +39,7 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
 
     # Limit the srcs rendered to 15 to ameliorate DOSing somewhat.
     # https://bugzilla.mozilla.org/show_bug.cgi?id=1435191 for background.
-    additional_srcs = (theme_manifest.get('images', {})
-                       .get('additional_backgrounds', []))[:15]
+    additional_srcs = images_dict.get('additional_backgrounds', [])[:15]
     additional_alignments = (theme_manifest.get('properties', {})
                              .get('additional_backgrounds_alignment', []))
     additional_tiling = (theme_manifest.get('properties', {})
