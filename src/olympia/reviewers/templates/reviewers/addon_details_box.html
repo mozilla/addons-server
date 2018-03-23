@@ -1,192 +1,186 @@
-  <div class="featured">
-    <div class="featured-inner object-lead inverse">
-
-      <div id="addon-theme-previews-wrapper">
-        <div>
-          {% with previews = version.previews.all() if version else [] %}
-          {% for preview in previews %}
-            <a class="" rel="jquery-lightbox"
-              href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
-                <img alt="" src="{{ preview.image_url }}" />
-            </a>
-          {% endfor %}
-          {% endwith %}
-        </div>
-        <div class="all-backgrounds">
-          {% for background in backgrounds %}
-            {% with filename=background.rsplit('/', 1)[1] %}
-            <a class="thumbnail" rel="jquery-lightbox"
-              href="{{ background }}" title="{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}">
-                <img alt="" src="{{ background }}" />
-            </a>
-            {% endwith %}
-          {% endfor %}
-        </div>
+  <div class="addon-info-and-previews">
+    <div id="addon-theme-previews-wrapper">
+      <div>
+        {% with previews = version.previews.all() if version else [] %}
+        {% for preview in previews %}
+          <a class="" rel="jquery-lightbox"
+            href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
+              <img alt="" src="{{ preview.image_url }}" />
+          </a>
+        {% endfor %}
+        {% endwith %}
       </div>
-      <div class="secondary">
-        {% if addon.all_previews %}
-          {% with preview=addon.all_previews[0] %}
-            <a class="screenshot thumbnail" rel="jquery-lightbox"
-              href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <img alt="" src="{{ preview.thumbnail_url }}" />
-            </a>
+      <div class="all-backgrounds">
+        {% for background in backgrounds %}
+          {% with filename=background.rsplit('/', 1)[1] %}
+          <a class="thumbnail" rel="jquery-lightbox"
+            href="{{ background }}" title="{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}">
+              <img alt="" src="{{ background }}" />
+          </a>
           {% endwith %}
-        {% else %}
-          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
-            alt="" width="200" height="150" />
-        {% endif %}
-      </div>{# /secondary #}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="addon-previews">
+      {% if addon.all_previews %}
+        {% with preview=addon.all_previews[0] %}
+          <a class="screenshot thumbnail" rel="jquery-lightbox"
+            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+              <img alt="" src="{{ preview.thumbnail_url }}" />
+          </a>
+        {% endwith %}
+      {% else %}
+        <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+          alt="" width="200" height="150" />
+      {% endif %}
+    </div>{# /secondary #}
 
-      <div id="addon-summary-wrapper">
-        <div id="addon-summary" class="primary">
-          <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-          {% if version and version.is_restart_required %}
-            <div>
-              <span>{{ _('Requires Restart') }}</span>
-            </div>
+    <div class="addon-info">
+      <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+      {% if version and version.is_restart_required %}
+        <div>
+          <span>{{ _('Requires Restart') }}</span>
+        </div>
+      {% endif %}
+
+      <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+        {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
+          {# L10n: This is a caption for a table. {0} is an add-on name. #}
+          <caption>{{ _('Add-on Information for {0}')|format_html(addon_name) }}</caption>
+        {% endwith %}
+        <tbody>
+          {% if addon.is_deleted %}
+          <tr class="addon-status">
+            <th>{{ _('Status') }}</th>
+            <td>
+                <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong>
+            </td>
+          </tr>
           {% endif %}
+          <tr class="addon-updated">
+            <th>{{ _('Updated') }}</th>
+            <td>
+              <time datetime="{{ addon.last_updated|isotime }}">{{
+                addon.last_updated|date }}</time>
+            </td>
+          </tr>
+          {% if addon.homepage %}
+            <tr>
+              <th>{{ _('Website') }}</th>
+              <td>
+                <strong><a href="{{ addon.homepage|external_url }}">{{
+                  addon.homepage }}</a></strong>
+              </td>
+            </tr>
+          {% endif %}
+          {% if version and version.compatible_apps[APP] %}
+            <tr class="addon-compatible">
+              <th>{{ _('Works with') }}</th>
+              <td>{{ version.compatible_apps[APP] }}</td>
+            </tr>
+          {% endif %}
+          {% if addon.has_listed_versions() %}
+          <tr>
+            <th>{{ _('Visibility') }}</th>
+            <td>
+              {% if not addon.is_disabled %}
+                {{ _('Visible') }}
+              {% elif addon.is_disabled %}
+                {{ _('Invisible') }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+          {% set deps = addon.all_dependencies %}
+          {% if deps %}
+            <tr class="addon-dependencies">
+              <th>
+                {{ _('Required Add-ons') }}
+              </th>
+              <td>
+                <ul>
+                  {% for d in deps %}
+                    <li><a href="{{ d.get_url_path() }}">
+                      {{ d.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endif %}
+          {# XXX future feature: 'Localizations' ... #}
+          <tr>
+            <th>{{ _('Rating') }}</th>
+            <td>{{ reviews_link(addon) }}</td>
+          </tr>
+          <tr class="meta-stats">
+            <th>{{ _('Downloads') }}</th>
+            <td>
+              <strong class="downloads">{{
+                addon.total_downloads|numberfmt }}</strong>
+              {% if addon.public_stats %}
+                <a href="{{ url('stats.overview', addon.slug) }}">
+                  {{ _('View Statistics') }}</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% if addon.average_daily_users %}
+            <tr class="meta-stats">
+              <th>{{ _('Average Daily Users') }}</th>
+              <td>
+                <strong class="downloads">{{
+                  addon.average_daily_users|numberfmt }}</strong>
+                {% if addon.public_stats %}
+                  <a href="{{ url('stats.overview', addon.slug) }}">
+                    {{ _('View Statistics') }}</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endif %}
+          {% if reports %}
+          <tr class="meta-abuse">
+            <th>{{ _('Abuse Reports') }}</th>
+            <td>
+                <a href="{{ url('reviewers.abuse_reports', addon.slug) }}">
+                  <strong>{{ reports.paginator.count|numberfmt }}</strong>
+                </a>
+            </td>
+          </tr>
+          {% endif %}
+          {% if addon.privacy_policy %}
+            <tr>
+              <th>{{ _('Privacy Policy') }}</th>
+              <td>
+                <a href="{{ addon.get_detail_url('privacy') }}">
+                  {{ _('View Privacy Policy') }}</a>
+              </td>
+            </tr>
+          {% endif %}
+          <tr class="requires-payment">
+            <th>{{ _('Requires Payment') }}</th>
+            <td>
+                {{ _('Yes') if addon.requires_payment else _('No') }}
+            </td>
+          </tr>
+          {% if addon.eula %}
+            <tr>
+              <th>{{ _('EULA') }}</th>
+              <td>
+                <a href="{{ url('addons.eula', addon.slug) }}">
+                  {{ _('View End-User License Agreement') }}</a>
+              </td>
+            </tr>
+          {% endif %}
+          {% if approvals_info %}
+            <tr class="last-approval-date">
+              <th> {{ _('Last Approval Date') }} </th>
+              <td> {{ approvals_info.last_human_review|date }}
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
 
-          <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
-            {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
-              {# L10n: This is a caption for a table. {0} is an add-on name. #}
-              <caption>{{ _('Add-on Information for {0}')|format_html(addon_name) }}</caption>
-            {% endwith %}
-            <tbody>
-              {% if addon.is_deleted %}
-              <tr class="addon-status">
-                <th>{{ _('Status') }}</th>
-                <td>
-                    <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong>
-                </td>
-              </tr>
-              {% endif %}
-              <tr class="addon-updated">
-                <th>{{ _('Updated') }}</th>
-                <td>
-                  <time datetime="{{ addon.last_updated|isotime }}">{{
-                    addon.last_updated|date }}</time>
-                </td>
-              </tr>
-              {% if addon.homepage %}
-                <tr>
-                  <th>{{ _('Website') }}</th>
-                  <td>
-                    <strong><a href="{{ addon.homepage|external_url }}">{{
-                      addon.homepage }}</a></strong>
-                  </td>
-                </tr>
-              {% endif %}
-              {% if version and version.compatible_apps[APP] %}
-                <tr class="addon-compatible">
-                  <th>{{ _('Works with') }}</th>
-                  <td>{{ version.compatible_apps[APP] }}</td>
-                </tr>
-              {% endif %}
-              {% if addon.has_listed_versions() %}
-              <tr>
-                <th>{{ _('Visibility') }}</th>
-                <td>
-                  {% if not addon.is_disabled %}
-                    {{ _('Visible') }}
-                  {% elif addon.is_disabled %}
-                    {{ _('Invisible') }}
-                  {% endif %}
-                </td>
-              </tr>
-              {% endif %}
-              {% set deps = addon.all_dependencies %}
-              {% if deps %}
-                <tr class="addon-dependencies">
-                  <th>
-                    {{ _('Required Add-ons') }}
-                  </th>
-                  <td>
-                    <ul>
-                      {% for d in deps %}
-                        <li><a href="{{ d.get_url_path() }}">
-                          {{ d.name }}</a></li>
-                      {% endfor %}
-                    </ul>
-                  </td>
-                </tr>
-              {% endif %}
-              {# XXX future feature: 'Localizations' ... #}
-              <tr>
-                <th>{{ _('Rating') }}</th>
-                <td>{{ reviews_link(addon) }}</td>
-              </tr>
-              <tr class="meta-stats">
-                <th>{{ _('Downloads') }}</th>
-                <td>
-                  <strong class="downloads">{{
-                    addon.total_downloads|numberfmt }}</strong>
-                  {% if addon.public_stats %}
-                    <a href="{{ url('stats.overview', addon.slug) }}">
-                      {{ _('View Statistics') }}</a>
-                  {% endif %}
-                </td>
-              </tr>
-              {% if addon.average_daily_users %}
-                <tr class="meta-stats">
-                  <th>{{ _('Average Daily Users') }}</th>
-                  <td>
-                    <strong class="downloads">{{
-                      addon.average_daily_users|numberfmt }}</strong>
-                    {% if addon.public_stats %}
-                      <a href="{{ url('stats.overview', addon.slug) }}">
-                        {{ _('View Statistics') }}</a>
-                    {% endif %}
-                  </td>
-                </tr>
-              {% endif %}
-              {% if reports %}
-              <tr class="meta-abuse">
-                <th>{{ _('Abuse Reports') }}</th>
-                <td>
-                    <a href="{{ url('reviewers.abuse_reports', addon.slug) }}">
-                      <strong>{{ reports.paginator.count|numberfmt }}</strong>
-                    </a>
-                </td>
-              </tr>
-              {% endif %}
-              {% if addon.privacy_policy %}
-                <tr>
-                  <th>{{ _('Privacy Policy') }}</th>
-                  <td>
-                    <a href="{{ addon.get_detail_url('privacy') }}">
-                      {{ _('View Privacy Policy') }}</a>
-                  </td>
-                </tr>
-              {% endif %}
-              <tr class="requires-payment">
-                <th>{{ _('Requires Payment') }}</th>
-                <td>
-                    {{ _('Yes') if addon.requires_payment else _('No') }}
-                </td>
-              </tr>
-              {% if addon.eula %}
-                <tr>
-                  <th>{{ _('EULA') }}</th>
-                  <td>
-                    <a href="{{ url('addons.eula', addon.slug) }}">
-                      {{ _('View End-User License Agreement') }}</a>
-                  </td>
-                </tr>
-              {% endif %}
-              {% if approvals_info %}
-                <tr class="last-approval-date">
-                  <th> {{ _('Last Approval Date') }} </th>
-                  <td> {{ approvals_info.last_human_review|date }}
-                </tr>
-              {% endif %}
-            </tbody>
-          </table>
-
-        </div>{# /addon-summary #}
-      </div>{# /addon-summary-wrapper #}
-
-    </div>{# /featured-inner #}
-  </div>{# /featured #}
+    </div>{# /addon-info #}
+  </div>{# /addon-info-and-previews #}
 
   {% if was_auto_approved %}
     {% if reports %}
