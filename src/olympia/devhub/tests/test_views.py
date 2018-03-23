@@ -39,7 +39,7 @@ from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
-from olympia.zadmin.models import get_config, set_config
+from olympia.zadmin.models import set_config
 
 
 class HubTest(TestCase):
