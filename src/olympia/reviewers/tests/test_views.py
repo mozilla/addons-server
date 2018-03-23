@@ -3176,6 +3176,15 @@ class TestReview(ReviewBase):
         elem = doc('#enable_auto_approval')[0]
         assert 'hidden' in elem.getparent().attrib.get('class', '')
 
+        # Both of them should be absent on static themes, which are not
+        # auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval')
+        assert not doc('#enable_auto_approval')
+
     def test_enable_auto_approvals_as_admin_auto_approvals_disabled(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
@@ -3190,6 +3199,15 @@ class TestReview(ReviewBase):
         assert doc('#enable_auto_approval')
         elem = doc('#enable_auto_approval')[0]
         assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # Both of them should be absent on static themes, which are not
+        # auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval')
+        assert not doc('#enable_auto_approval')
 
     def test_clear_pending_info_request_as_admin(self):
         self.login_as_admin()
