@@ -27,6 +27,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
+from olympia.zadmin.models import get_config
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -160,11 +161,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
-    # Date that the developer agreement last changed (currently, the last
-    # changed happened when we updated the review policies). It's used to show
-    # the developer agreement to developers again when it changes.
-    last_developer_agreement_change = datetime(2018, 4, 1, 12, 0)
-
     class Meta:
         db_table = 'users'
 
@@ -194,7 +190,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_read_developer_agreement(self):
         if self.read_dev_agreement is None:
             return False
-        return self.read_dev_agreement > self.last_developer_agreement_change
+        return self.read_dev_agreement > datetime(
+            get_config('reviewers_review_motd'))
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
