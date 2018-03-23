@@ -39,6 +39,7 @@ from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
+from olympia.zadmin.models import get_config, set_config
 
 
 class HubTest(TestCase):
@@ -714,8 +715,9 @@ class TestAPIAgreement(TestCase):
         assert 'agreement_form' in response.context
 
     def test_agreement_read_but_too_long_ago(self):
-        before_agreement_last_changed = (
-            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
+        before_agreement_last_changed = (datetime(2018, 1, 1, 12, 0) -
+                                         timedelta(days=1))
         self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.get(reverse('devhub.api_key_agreement'))
         assert response.status_code == 200
