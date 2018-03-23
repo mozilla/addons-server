@@ -120,7 +120,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 
-    averagerating = models.CharField(max_length=255, blank=True, null=True)
+    averagerating = models.FloatField(null=True)
     # biography can (and does) contains html and other unsanitized content.
     # It must be cleaned before display.
     biography = models.TextField(blank=True, null=True)
