@@ -325,6 +325,50 @@ class TestManifestJSONExtractor(TestCase):
             assert parsed['strict_compatibility']
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_long_localized_name(self, resolve_message):
+        def resolve(message, messages, locale, default_locale):
+            if message == '__MSG_extensionName__':
+                return '0' * 51
+            return message
+
+        resolve_message.side_effect = resolve
+
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        fixture = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            expected_match = (
+                r'u\'Localized name \(.*\) should '
+                'have fewer than 50 characters\.\'')
+            with pytest.raises(forms.ValidationError, match=expected_match):
+                utils.parse_xpi(file_obj.file_path,
+                                needs_validate_translations=True)
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_long_localized_summary(self, resolve_message):
+        def too_long_summary(message, messages, locale, default_locale):
+            if message == '__MSG_extensionDescription__':
+                return '0' * 501
+            return message
+
+        resolve_message.side_effect = too_long_summary
+
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        fixture = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            expected_match = (
+                r'u\'Localized summary \(.*\) should '
+                'have fewer than 500 characters\.\'')
+            with pytest.raises(forms.ValidationError, match=expected_match):
+                utils.parse_xpi(file_obj.file_path,
+                                needs_validate_translations=True)
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_mozilla_trademark_disallowed(self, resolve_message):
         resolve_message.return_value = 'Notify Mozilla'
 

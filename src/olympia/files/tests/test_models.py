@@ -1363,13 +1363,15 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
 @mock.patch('olympia.files.utils.parse_search')
 def test_parse_addon(search_mock, xpi_mock):
     parse_addon('file.xpi', None)
-    xpi_mock.assert_called_with('file.xpi', None, minimal=False)
+    xpi_mock.assert_called_with('file.xpi', None, minimal=False,
+                                needs_validate_translations=False)
 
     parse_addon('file.xml', None)
     search_mock.assert_called_with('file.xml', None)
 
     parse_addon('file.jar', None)
-    xpi_mock.assert_called_with('file.jar', None, minimal=False)
+    xpi_mock.assert_called_with('file.jar', None, minimal=False,
+                                needs_validate_translations=False)
 
 
 def test_parse_xpi():
