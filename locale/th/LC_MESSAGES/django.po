@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 10:51+0000\n"
+"PO-Revision-Date: 2018-03-24 11:10+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -733,9 +733,8 @@ msgstr "เรียกดูส่วนขยายทั้งหมด"
 msgid "Browse all themes"
 msgstr "เรียกดูชุดตกแต่งทั้งหมด"
 
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "หน้าแรกของส่วนเสริม"
+msgstr "หน้าแรกส่วนเสริม"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -2787,7 +2786,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "หรือ <a href=\"{0}\">ยกเลิก</a>"
 
 msgid "Back to Add-ons"
-msgstr "กลับไปยังส่วนเสริม"
+msgstr "กลับไปที่ส่วนเสริม"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -4510,11 +4509,10 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "กลับไปที่บทวิจารณ์"
 
-#, fuzzy
 msgid "Back to add-on"
-msgstr "กลับไปยังส่วนเสริม"
+msgstr "กลับไปที่ส่วนเสริม"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4705,7 +4703,7 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "ค้นพบส่วนเสริม"
 
 msgid "What are Add-ons?"
 msgstr "อะไรคือส่วนเสริม?"
@@ -7217,7 +7215,7 @@ msgstr ""
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "ยินดีต้อนรับสู่ส่วนเสริม {0}"
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
@@ -7233,7 +7231,7 @@ msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>
 msgstr ""
 
 msgid "Android Add-ons"
-msgstr "ส่วนเสริมสำหรับระบบ Android"
+msgstr "ส่วนเสริม Android"
 
 msgid "Required fields"
 msgstr "ช่องที่ต้องการ"
