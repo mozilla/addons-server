@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 05:11+0000\n"
+"PO-Revision-Date: 2018-03-24 05:23+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1577,7 +1577,7 @@ msgstr "ชุดตกแต่งแบบสมบูรณ์ที่กำ
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "ดู %(cnt)s ส่วนขยายทั้งหมดใน %(name)s &raquo;"
 
 msgid "{0} Themes"
 msgstr "ชุดตกแต่ง {0}"
@@ -1829,7 +1829,7 @@ msgstr "{addon} ไม่ถูกแนะนำอีกต่อไป"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "เพิ่ม {0} {1} แล้ว"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -2108,7 +2108,7 @@ msgid "Change"
 msgstr "เปลี่ยน"
 
 msgid "Compatible"
-msgstr ""
+msgstr "เข้ากันได้"
 
 #, fuzzy
 msgid "Incompatible"
@@ -2119,7 +2119,7 @@ msgid "Alerts & Updates"
 msgstr "ปรับปรุงส่วนเสริม"
 
 msgid "Appearance"
-msgstr ""
+msgstr "ลักษณะที่ปรากฏ"
 
 msgid "Bookmarks"
 msgstr "ที่คั่นหน้า"
@@ -2172,7 +2172,7 @@ msgid "Miscellaneous"
 msgstr "เบ็ดเตล็ด"
 
 msgid "Modern"
-msgstr ""
+msgstr "สมัยใหม่"
 
 msgid "Nature"
 msgstr "ธรรมชาติ"
@@ -2249,7 +2249,7 @@ msgid "Shopping & E-Commerce"
 msgstr ""
 
 msgid "Social & People"
-msgstr ""
+msgstr "สังคมและผู้คน"
 
 msgid "Travel"
 msgstr "การท่องเที่ยว"
