@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 08:10+0000\n"
+"PO-Revision-Date: 2018-03-24 10:51+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -4599,7 +4599,7 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "ไม่มีไฟล์นั้นอีกต่อไป"
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
@@ -7190,16 +7190,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "กลับไปยังหน้าแรกของส่วนเสริม {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "ส่วนเสริม <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "ส่วนเสริม <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "ส่วนเสริม <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "ส่วนเสริม <img alt=\"\" src=\"{0}\">"
 
 msgid "My Account"
 msgstr ""
@@ -7580,7 +7580,7 @@ msgid "Number of add-ons developed"
 msgstr ""
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} ส่วนเสริม"
 
 #, python-format
 msgid "%(num)s theme"
@@ -7590,7 +7590,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s ส่วนเสริม"
 
 msgid "Average rating of developer's add-ons"
 msgstr ""
