@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 05:23+0000\n"
+"PO-Revision-Date: 2018-03-24 05:51+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -71,9 +71,8 @@ msgstr "บทวิจารณ์"
 msgid "Version {0}"
 msgstr "รุ่น {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "บทวิจารณ์:"
+msgstr "หมายเหตุบทวิจารณ์"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -424,10 +423,10 @@ msgstr "โดย %(user)s เมื่อ %(date)s"
 msgid "Show the developer's reply to this review"
 msgstr "แสดงการตอบกลับของนักพัฒนาในบทวิจารณ์นี้"
 
-#, fuzzy, python-format
+#, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "ดูบทวิจารณ์ทั้งหมดของส่วนเสริมนี้"
+msgstr[0] "ดู %(cnt)s บทวิจารณ์ทั้งหมดของส่วนเสริมนี้"
 
 msgid "Tags"
 msgstr "ป้ายกำกับ"
@@ -442,9 +441,8 @@ msgstr "โดย %(users)s"
 msgid "Download Anyway"
 msgstr "ดาวน์โหลดต่อไป"
 
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} คำเตือน"
+msgstr "[คำเตือน]"
 
 #, fuzzy
 msgid "Permissions"
@@ -594,9 +592,8 @@ msgstr "ใบอนุญาตซอร์สโค้ดของ {addon}"
 msgid "Source Code License"
 msgstr "ใบอนุญาตซอร์สโค้ด"
 
-#, fuzzy
 msgid "support section"
-msgstr "เว็บไซต์การสนับสนุน"
+msgstr "ส่วนสนับสนุน"
 
 msgid "support email"
 msgstr "อีเมลสนับสนุน"
@@ -604,10 +601,10 @@ msgstr "อีเมลสนับสนุน"
 msgid "permalink"
 msgstr "ลิงก์ถาวร"
 
-#, fuzzy, python-format
+#, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "ดูบทวิจารณ์ของผู้ใช้ทั้งหมด"
+msgstr[0] "ดู %(cnt)s บทวิจารณ์ของผู้ใช้ทั้งหมด"
 
 msgid "This add-on has not yet been reviewed."
 msgstr "ส่วนเสริมนี้ยังไม่ถูกตรวจสอบ"
@@ -1014,16 +1011,16 @@ msgid "Name"
 msgstr "ชื่อ"
 
 msgid "Recently Updated"
-msgstr "ถูกปรับปรุงเมื่อเร็ว ๆ นี้"
+msgstr "อัปเดตล่าสุด"
 
 msgid "Recently Popular"
-msgstr "ที่นิยมเร็ว ๆ นี้"
+msgstr "ยอดนิยมล่าสุด"
 
 msgid "Added"
 msgstr "เพิ่มแล้ว"
 
 msgid "Popularity"
-msgstr "ที่นิยม"
+msgstr "ความนิยม"
 
 msgid "Collection created!"
 msgstr "สร้างชุดสะสมแล้ว!"
@@ -2262,7 +2259,7 @@ msgid "Device Features & Location"
 msgstr "ชุดสะสมที่แนะนำ"
 
 msgid "Experimental"
-msgstr ""
+msgstr "การทดลอง"
 
 msgid "Feeds, News, & Blogging"
 msgstr "ฟีด, ข่าว และบล็อก"
@@ -2286,7 +2283,7 @@ msgid "User Interface"
 msgstr "ส่วนติดต่อผู้ใช้"
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "ลักษณะที่ปรากฏและการปรับแต่ง"
 
 msgid "Calendar and Date/Time"
 msgstr ""
@@ -2315,7 +2312,7 @@ msgid "Privacy and Security"
 msgstr "ความเป็นส่วนตัวและความปลอดภัย"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "การดาวน์โหลดและการจัดการไฟล์"
 
 msgid "Interface Customizations"
 msgstr ""
@@ -2327,7 +2324,7 @@ msgid "Photos and Media"
 msgstr "รูปภาพและสื่อ"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, ข่าว และบล็อก"
 
 msgid "Site-specific"
 msgstr ""
