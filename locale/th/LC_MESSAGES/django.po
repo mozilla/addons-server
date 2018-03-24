@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 07:10+0000\n"
+"PO-Revision-Date: 2018-03-24 07:45+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2201,7 +2201,7 @@ msgid "Seasonal"
 msgstr "ฤดูกาล"
 
 msgid "Solid"
-msgstr ""
+msgstr "สีทึบ"
 
 msgid "Websites"
 msgstr "เว็บไซต์"
@@ -2835,7 +2835,7 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "ทรัพยากรเพิ่มเติม"
 
 msgid "Search Developer Docs"
 msgstr "ค้นหาเอกสารนักพัฒนา"
@@ -3042,7 +3042,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "รายละเอียดส่วนเสริม"
 
 msgid "Add-on Details for {0}"
 msgstr ""
