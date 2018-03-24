@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 06:10+0000\n"
+"PO-Revision-Date: 2018-03-24 06:30+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -245,7 +245,7 @@ msgstr "เรียงลำดับตาม:"
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr "ปรับปรุงเมื่อ {0}"
+msgstr "อัปเดตเมื่อ {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
@@ -302,7 +302,7 @@ msgid "Categories"
 msgstr "หมวดหมู่"
 
 msgid "Updated"
-msgstr "ปรับปรุง"
+msgstr "อัปเดตแล้ว"
 
 msgid "Artist"
 msgstr "ศิลปิน"
@@ -1030,7 +1030,7 @@ msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit addi
 msgstr ""
 
 msgid "Collection updated!"
-msgstr "ปรับปรุงชุดสะสมแล้ว!"
+msgstr "อัปเดตชุดสะสมแล้ว!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
@@ -1305,7 +1305,7 @@ msgid "Collections by Name"
 msgstr "ชุดสะสมเรียงตามชื่อ"
 
 msgid "Recently Updated Collections"
-msgstr "ชุดตกแต่งที่ปรับปรุงไปเมื่อเร็ว ๆ นี้"
+msgstr "ชุดสะสมที่อัปเดตล่าสุด"
 
 msgid "Recently Popular Collections"
 msgstr "ชุดตกแต่งที่ได้รับความนิยมเมื่อเร็ว ๆ นี้"
@@ -1540,7 +1540,7 @@ msgid "Extensions by Weekly Downloads"
 msgstr "ส่วนขยายตามการดาวน์โหลดต่อสัปดาห์"
 
 msgid "Recently Updated Extensions"
-msgstr "ส่วนขยายที่ถูกปรับปรุงไปเมื่อเร็ว ๆ นี้"
+msgstr "ส่วนขยายที่อัปเดตล่าสุด"
 
 msgid "Up & Coming Extensions"
 msgstr "ส่วนขยายที่กำลังจะมา"
@@ -1566,7 +1566,7 @@ msgid "Complete Themes by Weekly Downloads"
 msgstr "ชุดตกแต่งแบบสมบูรณ์ตามการดาวน์โหลดต่อสัปดาห์"
 
 msgid "Recently Updated Complete Themes"
-msgstr "ชุดตกแต่งแบบสมบูรณ์ที่ถูกปรับปรุงไปเมื่อเร็ว ๆ นี้"
+msgstr "ชุดตกแต่งแบบสมบูรณ์ที่อัปเดตล่าสุด"
 
 msgid "Up & Coming Complete Themes"
 msgstr "ชุดตกแต่งแบบสมบูรณ์ที่กำลังจะมา"
@@ -1876,7 +1876,7 @@ msgid "Approved but waiting"
 msgstr ""
 
 msgid "Account updated."
-msgstr "ปรับปรุงบัญชีแล้ว"
+msgstr "อัปเดตบัญชีแล้ว"
 
 msgid "Created: {0}."
 msgstr ""
@@ -2166,9 +2166,8 @@ msgstr "สมัยใหม่"
 msgid "Nature"
 msgstr "ธรรมชาติ"
 
-#, fuzzy
 msgid "OS Integration"
-msgstr "ข้อมูลเพิ่มเติม"
+msgstr "การผนวกรวม OS"
 
 msgid "Retro"
 msgstr "ย้อนยุค"
@@ -2243,9 +2242,8 @@ msgstr "การท่องเที่ยว"
 msgid "Video"
 msgstr "วิดีโอ"
 
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "ชุดสะสมที่แนะนำ"
+msgstr "คุณลักษณะและตำแหน่งที่ตั้งของอุปกรณ์"
 
 msgid "Experimental"
 msgstr "การทดลอง"
@@ -2275,14 +2273,13 @@ msgid "Appearance and Customization"
 msgstr "ลักษณะที่ปรากฏและการปรับแต่ง"
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "ปฏิทินและวันที่/เวลา"
 
 msgid "Chat and IM"
 msgstr ""
 
-#, fuzzy
 msgid "Message Composition"
-msgstr "บริจาค"
+msgstr "การเขียนข้อความ"
 
 msgid "Contacts"
 msgstr "รายชื่อ"
@@ -2342,10 +2339,10 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Any"
-msgstr ""
+msgstr "ใด ๆ"
 
 msgid "All Platforms"
-msgstr "ทุกแพลตฟอร์ม"
+msgstr "แพลตฟอร์มทั้งหมด"
 
 msgid "Linux"
 msgstr "Linux"
@@ -2457,7 +2454,7 @@ msgid "Level 2"
 msgstr "ระดับ 2"
 
 msgid "Level 3"
-msgstr "ระดับ 3                "
+msgstr "ระดับ 3"
 
 msgid "Level 4"
 msgstr "ระดับ 4"
@@ -2469,13 +2466,13 @@ msgid "Level 6"
 msgstr "ระดับ 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "ระดับ 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "ระดับ 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "ระดับ 9"
 
 msgid "Request More Info"
 msgstr ""
@@ -2664,13 +2661,13 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr "ส่วนเสริมทั้งหมดของฉัน"
+msgstr "ส่วนเสริมของฉันทั้งหมด"
 
 msgid "All Activity"
 msgstr "กิจกรรมทั้งหมด"
 
 msgid "Add-on Updates"
-msgstr "ปรับปรุงส่วนเสริม"
+msgstr "การอัปเดตส่วนเสริม"
 
 msgid "Add-on Status"
 msgstr "สถานะส่วนเสริม"
@@ -2788,17 +2785,17 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "ยอมรับ"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "หรือ <a href=\"{0}\">ยกเลิก</a>"
 
 msgid "Back to Add-ons"
 msgstr "กลับไปยังส่วนเสริม"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr "ส่วนเสริมของ {0}"
+msgstr "ส่วนเสริม {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -2811,10 +2808,10 @@ msgid "more add-ons..."
 msgstr "ส่วนเสริมเพิ่มเติม..."
 
 msgid "Documentation"
-msgstr ""
+msgstr "เอกสารประกอบ"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "การพัฒนาส่วนขยาย"
 
 msgid "Lightweight Themes"
 msgstr ""
@@ -2832,7 +2829,7 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "ชุมชนและการสนับสนุน"
 
 msgid "Add-ons Blog"
 msgstr ""
@@ -2899,7 +2896,7 @@ msgid "Activity"
 msgstr "กิจกรรม"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "บอกรับฟีดนี้"
 
 #, python-format
 msgid ""
@@ -2937,7 +2934,7 @@ msgstr "กิจกรรมล่าสุด"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s โดย %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -2945,11 +2942,10 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> ชุดตกแต่ง"
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "ข้อมูลพื้นฐาน"
+msgstr "แก้ไขข้อมูล"
 
 msgid "None"
 msgstr "ไม่มี"
@@ -2958,7 +2954,7 @@ msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "ผู้สร้าง"
 
 msgid "About author roles"
 msgstr ""
@@ -6135,9 +6131,8 @@ msgstr "ส่วนเสริมของฉัน"
 msgid "New Add-ons ({0})"
 msgstr "ส่วนเสริมสำหรับ {0}"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "ปรับปรุงส่วนเสริม"
+msgstr "การอัปเดตส่วนเสริม ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -6169,9 +6164,8 @@ msgstr[0] ""
 msgid "New Themes ({0})"
 msgstr "ส่วนเสริมสำหรับ {0}"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "ปรับปรุงเมื่อ {0}"
+msgstr "การอัปเดตชุดตกแต่ง ({0})"
 
 #, fuzzy
 msgid "Flagged Themes ({0})"
@@ -6733,10 +6727,9 @@ msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] "ส่วนเสริมสำหรับ {0}"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "ปรับปรุงเมื่อ {0}"
+msgstr[0] "การอัปเดต ({0})"
 
 #, fuzzy
 msgid "Rating Review ({0})"
