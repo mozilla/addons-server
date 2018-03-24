@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 06:45+0000\n"
+"PO-Revision-Date: 2018-03-24 08:13+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -30,9 +30,9 @@ msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "เสร็จสิ้น {0}%"
+msgstr "เสร็จสมบูรณ์ {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -300,7 +300,7 @@ msgid "Add-ons Manager Learn More"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับตัวจัดการส่วนเสริม"
 
 msgid "Search Suggestions"
-msgstr "คำแนะนำการค้นหา"
+msgstr "ข้อเสนอแนะการค้นหา"
 
 msgid "Search Results"
 msgstr "ผลการค้นหา"
