@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 06:24+0000\n"
+"PO-Revision-Date: 2018-03-24 06:45+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -544,11 +544,11 @@ msgstr "ส่วนเสริมที่สร้างจาก {0} ถึ�
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "ส่วนเสริมที่ปรับปรุงใน {0} วันล่าสุด"
+msgstr "ส่วนเสริมที่อัปเดตใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "ส่วนเสริมที่ปรับปรุงจาก {0} ถึง {1}"
+msgstr "ส่วนเสริมที่อัปเดตจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"

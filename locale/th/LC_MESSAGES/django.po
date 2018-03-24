@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 06:30+0000\n"
+"PO-Revision-Date: 2018-03-24 06:44+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2915,7 +2915,7 @@ msgid "Compatibility"
 msgstr "ความเข้ากันได้"
 
 msgid "Update Compatibility"
-msgstr "ปรับปรุงความเข้ากันได้"
+msgstr "อัปเดตความเข้ากันได้"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
@@ -3068,7 +3068,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "ภาพ"
 
 msgid "Support Information"
 msgstr ""
@@ -3091,7 +3091,7 @@ msgid ""
 msgstr ""
 
 msgid "Technical Details"
-msgstr ""
+msgstr "รายละเอียดทางเทคนิค"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
@@ -4210,13 +4210,13 @@ msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 พิกเซล"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "สูงสุด 300 KB"
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG หรือ JPG"
 
 msgid "Select a footer image for your Theme."
 msgstr ""
@@ -4231,17 +4231,17 @@ msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "จัดการรุ่น {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "จัดการ {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "ไฟล์"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "อัปโหลดไฟล์อื่น"
 
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
@@ -4267,7 +4267,7 @@ msgid "If your add-on contain binary or obfuscated code, make the source availab
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "ไฟล์ {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4278,13 +4278,13 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "สถานะและรุ่น"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "แก้ไขรุ่นนี้"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 ไฟล์"
 
 msgid "Re-enable Version"
 msgstr ""
@@ -4318,7 +4318,7 @@ msgid "Leave a reply"
 msgstr ""
 
 msgid "Reply"
-msgstr ""
+msgstr "ตอบกลับ"
 
 #, fuzzy
 msgid "Listing visibility"
@@ -4345,24 +4345,22 @@ msgid "Validation"
 msgstr ""
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "ลบ/ปิดใช้งาน"
 
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "ดูรุ่นอื่น"
+msgstr "รุ่นอื่น ๆ"
 
-#, fuzzy
 msgid "All versions"
-msgstr "ดูรุ่นทั้งหมด"
+msgstr "รุ่นทั้งหมด"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "อัปโหลดรุ่นใหม่"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "ลบรุ่น {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
