@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 07:45+0000\n"
+"PO-Revision-Date: 2018-03-24 08:10+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2605,9 +2605,8 @@ msgstr ""
 msgid "A platform can only be chosen once."
 msgstr "แพลตฟอร์มถูกเลือกได้เพียงครั้งเดียวเท่านั้น"
 
-#, fuzzy
 msgid "Reputation"
-msgstr "ความละเอียด"
+msgstr "ชื่อเสียง"
 
 msgid "Application"
 msgstr "แอปพลิเคชัน"
@@ -3382,17 +3381,14 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "ส่งชุดตกแต่งใหม่"
+msgstr "ส่งไฟล์ใหม่"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "ส่งส่วนเสริมใหม่"
+msgstr "ส่งรุ่นใหม่"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "อธิบายส่วนเสริมของคุณ"
+msgstr "อธิบายส่วนเสริม"
 
 #, fuzzy
 msgid "Add-on URL:"
@@ -3848,9 +3844,8 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-#, fuzzy
 msgid "Latest News"
-msgstr "รุ่นล่าสุด:"
+msgstr "ข่าวล่าสุด"
 
 msgid "Read more in our Blog"
 msgstr "อ่านเพิ่มเติมในบล็อกของเรา"
@@ -3862,9 +3857,8 @@ msgstr "ทรัพยากร"
 msgid "Porting"
 msgstr "การจัดอันดับ"
 
-#, fuzzy
 msgid "Community"
-msgstr "ความคิดเห็น"
+msgstr "ชุมชน"
 
 msgid "About"
 msgstr "เกี่ยวกับ"
@@ -3875,23 +3869,20 @@ msgstr "กระดานสนทนา"
 msgid "Blog"
 msgstr "บล็อก"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "เนื้อหา"
+msgstr "ติดต่อเรา"
 
 msgid "Support"
 msgstr ""
 
-#, fuzzy
 msgid "Policies"
-msgstr "นโยบายส่วนเสริม"
+msgstr "นโยบาย"
 
 msgid "FAQ"
 msgstr "คำถามที่พบบ่อย"
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "รายงานการละเมิด"
+msgstr "รายงานข้อบกพร่อง"
 
 msgid "Site Status"
 msgstr ""
@@ -3899,9 +3890,8 @@ msgstr ""
 msgid "Web-Ext: build & test extensions"
 msgstr ""
 
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "เครื่องมือตรวจสอบความเข้ากันได้ของส่วนเสริม"
+msgstr "ตัวตรวจสอบความเข้ากันได้"
 
 msgid "Promote"
 msgstr ""
@@ -3951,9 +3941,8 @@ msgstr ""
 msgid "See how"
 msgstr "ดูวิธี"
 
-#, fuzzy
 msgid "Manage Your Add-on"
-msgstr "ส่วนเสริมเพิ่มเติม"
+msgstr "จัดการส่วนเสริมของคุณ"
 
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
@@ -4010,13 +3999,12 @@ msgstr "ไม่มีรูปภาพ"
 msgid "User Photo"
 msgstr "ไม่มีรูปภาพ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "หน้า <a href=\"%(current_pg_url)s\">%(current_pg)s</a> จาก <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(register)s\">ลงทะเบียน</a> หรือ <a href=\"%(login)s\">ลงชื่อเข้า</a>"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "ชุดตกแต่งที่ใช้งานง่ายสำหรับ Firefox"
+msgstr "ปรับแต่ง Firefox"
 
 #, python-format
 msgid ""
@@ -4036,9 +4024,8 @@ msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "เผยแพร่ส่วนเสริมของคุณ!"
+msgstr "เผยแพร่ส่วนเสริมของคุณ"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -6122,9 +6109,8 @@ msgstr ""
 msgid "Legacy Add-ons"
 msgstr "ส่วนเสริมของฉัน"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "ส่วนเสริมสำหรับ {0}"
+msgstr "ส่วนเสริมใหม่ ({0})"
 
 msgid "Add-on Updates ({0})"
 msgstr "การอัปเดตส่วนเสริม ({0})"
@@ -6135,9 +6121,8 @@ msgstr ""
 msgid "Signed Beta Files Log"
 msgstr ""
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "แนวทางการวิจารณ์"
+msgstr "คู่มือบทวิจารณ์"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6717,10 +6702,9 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "สถานะ:"
 
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "ส่วนเสริมสำหรับ {0}"
+msgstr[0] "ส่วนเสริมใหม่ ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
