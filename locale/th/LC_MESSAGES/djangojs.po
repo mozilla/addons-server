@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 05:21+0000\n"
+"PO-Revision-Date: 2018-03-24 06:05+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -196,7 +196,7 @@ msgid "Search themes for <b>{0}</b>"
 msgstr "ค้นหาชุดตกแต่งสำหรับ <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
+msgstr "ค้นหาแอปสำหรับ <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
@@ -456,11 +456,11 @@ msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "แอพพลิเคชั่นใน {0} วันล่าสุด"
+msgstr "แอปพลิเคชันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "แอพพลิเคชั่นจาก {0} ถึง {1}"
+msgstr "แอปพลิเคชันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -628,7 +628,7 @@ msgid "Other"
 msgstr "อื่น ๆ"
 
 msgid "Select an application first"
-msgstr "เลือกแอพพลิเคชั่นก่อน"
+msgstr "เลือกแอปพลิเคชันก่อน"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -673,7 +673,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
+msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งปลั๊กอินการค้นหา"
 
 msgid "Adding to Favorites&hellip;"
 msgstr "เพิ่มเข้ารายการโปรด&hellip;"
@@ -767,10 +767,10 @@ msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
 msgid "Receipt checked by app."
-msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
+msgstr "ใบเสร็จถูกตรวจสอบโดยแอป"
 
 msgid "Receipt was not checked by app."
-msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
+msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอป"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"

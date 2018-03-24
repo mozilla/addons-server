@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 05:51+0000\n"
+"PO-Revision-Date: 2018-03-24 06:10+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -913,13 +913,13 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
-msgstr "รุ่นแอพพลิเคชัน"
+msgstr "รุ่นแอปพลิเคชัน"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr ""
 
 msgid "Valid Application Versions"
-msgstr "รุ่นแอพพลิเคชันที่ถูกต้อง"
+msgstr "รุ่นแอปพลิเคชันที่ถูกต้อง"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
@@ -1415,7 +1415,7 @@ msgid "Search tools"
 msgstr "เครื่องมือค้นหา"
 
 msgid "Most Users"
-msgstr "ผู้ใช้ส่วนใหญ่"
+msgstr "ผู้ใช้มากที่สุด"
 
 msgid "Weekly Downloads"
 msgstr "การดาวน์โหลดต่อสัปดาห์"
@@ -1424,7 +1424,7 @@ msgid "Up & Coming"
 msgstr "กำลังจะมา"
 
 msgid "Recently Added"
-msgstr "ถูกเพิ่มเมื่อเร็ว ๆ นี้"
+msgstr "เพิ่มล่าสุด"
 
 msgid "Created"
 msgstr "สร้างเมื่อ"
@@ -1659,7 +1659,7 @@ msgid "View all"
 msgstr "ดูทั้งหมด"
 
 msgid "Filter by Application"
-msgstr "กรองโดยแอพพลิเคชัน"
+msgstr "กรองโดยแอปพลิเคชัน"
 
 msgid "Report Type"
 msgstr "ประเภทของรายงาน"
@@ -1667,12 +1667,11 @@ msgstr "ประเภทของรายงาน"
 msgid "Version"
 msgstr "รุ่น"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "รุ่นแอพพลิเคชัน"
+msgstr "รุ่นแอปพลิเคชัน"
 
 msgid "Application Build"
-msgstr "การสร้างของแอพพลิเคชัน"
+msgstr "การสร้างแอปพลิเคชัน"
 
 msgid "Platform"
 msgstr "แพลตฟอร์ม"
@@ -1685,7 +1684,7 @@ msgid "e10s Compatible"
 msgstr "ไม่สมบูรณ์"
 
 msgid "Submitted"
-msgstr ""
+msgstr "ส่งแล้ว"
 
 msgid "Success"
 msgstr "สำเร็จ"
@@ -2059,19 +2058,19 @@ msgid "Search Engine"
 msgstr "เครื่องมือค้นหา"
 
 msgid "Language Pack (Application)"
-msgstr "ชุดภาษา (แอพพลิเคชัน)"
+msgstr "ชุดภาษา (แอปพลิเคชัน)"
 
 msgid "Language Pack (Add-on)"
 msgstr "ชุดภาษา (ส่วนเสริม)"
 
 msgid "Plugin"
-msgstr "โปรแกรมเสริม"
+msgstr "ปลั๊กอิน"
 
 msgid "Theme"
 msgstr "ชุดตกแต่ง"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "ชุดตกแต่ง (คงที่)"
 
 msgid "Complete Themes"
 msgstr "ชุดตกแต่งแบบสมบูรณ์"
@@ -2080,16 +2079,16 @@ msgid "Dictionaries"
 msgstr "พจนานุกรม"
 
 msgid "Language Packs (Application)"
-msgstr "ชุดภาษา (แอพพลิเคชัน)"
+msgstr "ชุดภาษา (แอปพลิเคชัน)"
 
 msgid "Language Packs (Add-on)"
 msgstr "ชุดภาษา (ส่วนเสริม)"
 
 msgid "Plugins"
-msgstr "โปรแกรมเสริม"
+msgstr "ปลั๊กอิน"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "ชุดตกแต่ง (คงที่)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2107,13 +2106,11 @@ msgstr "เปลี่ยน"
 msgid "Compatible"
 msgstr "เข้ากันได้"
 
-#, fuzzy
 msgid "Incompatible"
-msgstr "ไม่สมบูรณ์"
+msgstr "เข้ากันไม่ได้"
 
-#, fuzzy
 msgid "Alerts & Updates"
-msgstr "ปรับปรุงส่วนเสริม"
+msgstr "การเตือนและการอัปเดต"
 
 msgid "Appearance"
 msgstr "ลักษณะที่ปรากฏ"
@@ -2121,9 +2118,8 @@ msgstr "ลักษณะที่ปรากฏ"
 msgid "Bookmarks"
 msgstr "ที่คั่นหน้า"
 
-#, fuzzy
 msgid "Download Management"
-msgstr "ดาวน์โหลดชุดภาษา"
+msgstr "การจัดการการดาวน์โหลด"
 
 msgid "Feeds, News & Blogging"
 msgstr "ฟีด, ข่าว และบล็อก"
@@ -2131,16 +2127,14 @@ msgstr "ฟีด, ข่าว และบล็อก"
 msgid "Games & Entertainment"
 msgstr "เกมและความบันเทิง"
 
-#, fuzzy
 msgid "Language Support"
-msgstr "ภาษา"
+msgstr "การรองรับภาษา"
 
 msgid "Photos, Music & Videos"
 msgstr "รูปภาพ, เพลง และวิดีโอ"
 
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "นโยบายความเป็นส่วนตัว"
+msgstr "ความเป็นส่วนตัวและความปลอดภัย"
 
 msgid "Shopping"
 msgstr "การซื้อของ"
@@ -2151,19 +2145,17 @@ msgstr "สังคมและการสื่อสาร"
 msgid "Tabs"
 msgstr "แท็บ"
 
-#, fuzzy
 msgid "Web Development"
-msgstr "ดูรุ่นพัฒนา"
+msgstr "การพัฒนาเว็บ"
 
 msgid "Animals"
 msgstr "สัตว์"
 
-#, fuzzy
 msgid "Compact"
-msgstr "เปรียบเทียบ"
+msgstr "กะทัดรัด"
 
 msgid "Large"
-msgstr ""
+msgstr "ใหญ่"
 
 msgid "Miscellaneous"
 msgstr "เบ็ดเตล็ด"
@@ -2181,9 +2173,8 @@ msgstr "ข้อมูลเพิ่มเติม"
 msgid "Retro"
 msgstr "ย้อนยุค"
 
-#, fuzzy
 msgid "Sports"
-msgstr "เว็บไซต์การสนับสนุน"
+msgstr "กีฬา"
 
 msgid "Abstract"
 msgstr "นามธรรม"
@@ -2198,7 +2189,7 @@ msgid "Film and TV"
 msgstr "ภาพยนตร์และโทรทัศน์"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
 msgstr "วันหยุด"
@@ -2215,7 +2206,6 @@ msgstr "ฤดูกาล"
 msgid "Solid"
 msgstr ""
 
-#, fuzzy
 msgid "Websites"
 msgstr "เว็บไซต์"
 
@@ -2225,9 +2215,8 @@ msgstr "ทั่วไป"
 msgid "Business"
 msgstr "ธุรกิจ"
 
-#, fuzzy
 msgid "Dictionaries & Encyclopedias"
-msgstr "พจนานุกรมและชุดภาษา"
+msgstr "พจนานุกรมและสารานุกรม"
 
 msgid "Kids"
 msgstr "เด็ก"
@@ -2295,9 +2284,8 @@ msgstr ""
 msgid "Message Composition"
 msgstr "บริจาค"
 
-#, fuzzy
 msgid "Contacts"
-msgstr "เนื้อหา"
+msgstr "รายชื่อ"
 
 msgid "Folders and Filters"
 msgstr "โฟลเดอร์และตัวกรอง"
@@ -2329,9 +2317,8 @@ msgstr "RSS, ข่าว และบล็อก"
 msgid "Site-specific"
 msgstr ""
 
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "ค้นหาเอกสารนักพัฒนา"
+msgstr "เว็บและเครื่องมือนักพัฒนา"
 
 msgid "All Rights Reserved"
 msgstr "สงวนลิขสิทธิ์"
@@ -2379,7 +2366,7 @@ msgid "Android"
 msgstr "Android"
 
 msgid "App"
-msgstr "แอพ"
+msgstr "แอป"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2629,10 +2616,10 @@ msgid "Reputation"
 msgstr "ความละเอียด"
 
 msgid "Application"
-msgstr "แอพพลิเคชัน"
+msgstr "แอปพลิเคชัน"
 
 msgid "Select an application first"
-msgstr "เลือกแอพพลิเคชันก่อน"
+msgstr "เลือกแอปพลิเคชันก่อน"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
@@ -2940,7 +2927,7 @@ msgid "Supported Versions"
 msgstr "รุ่นที่รองรับ"
 
 msgid "Add Another Application&hellip;"
-msgstr "เพิ่มแอพพลิเคชันอื่น&hellip;"
+msgstr "เพิ่มแอปพลิเคชันอื่น&hellip;"
 
 msgid "Close"
 msgstr "ปิด"
