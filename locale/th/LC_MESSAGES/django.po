@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 06:44+0000\n"
+"PO-Revision-Date: 2018-03-24 07:10+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1849,9 +1849,8 @@ msgstr "{review} สำหรับ {addon} ได้รับการอนุ
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user} อนุมัติ {review} สำหรับ {addon}"
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "ปรับปรุง {review} สำหรับ {addon} แล้ว"
+msgstr "ลบบทวิจารณ์ {rating} สำหรับ {addon} แล้ว"
 
 #, fuzzy
 msgid "{user} deleted {rating} for {addon}."
@@ -1899,9 +1898,8 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "ปรับปรุง {review} สำหรับ {addon} แล้ว"
+msgstr "อัปเดต {rating} สำหรับ {addon} แล้ว"
 
 msgid "{addon} reviewed."
 msgstr "วิจารณ์ {addon} แล้ว"
@@ -2031,7 +2029,7 @@ msgid "Disabled by Mozilla"
 msgstr "ถูกปิดการใช้งานโดย Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "ลบแล้ว"
 
 msgid "Pending approval"
 msgstr "กำลังรอการอนุมัติ"
@@ -2179,7 +2177,7 @@ msgid "Abstract"
 msgstr "นามธรรม"
 
 msgid "Causes"
-msgstr ""
+msgstr "เจตจำนง"
 
 msgid "Fashion"
 msgstr "แฟชั่น"
@@ -2371,15 +2369,14 @@ msgstr "Persona"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "บทวิจารณ์ส่วนเสริมใหม่"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
 msgid "Updated Add-on Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "อัปเดตบทวิจารณ์ส่วนเสริมแล้ว"
 
 #, fuzzy
 msgid "New Dictionary Review"
@@ -2906,7 +2903,7 @@ msgstr "ส่วนเสริมนี้ไม่สามารถเข้
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">ปรับปรุงความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close\">ไม่สนใจ</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close\">ไม่สนใจ</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr ""
