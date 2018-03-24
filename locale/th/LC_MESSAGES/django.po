@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 10:41+0000\n"
+"PO-Revision-Date: 2018-03-24 05:11+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2129,37 +2129,37 @@ msgid "Download Management"
 msgstr "ดาวน์โหลดชุดภาษา"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "ฟีด, ข่าว และบล็อก"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "เกมและความบันเทิง"
 
 #, fuzzy
 msgid "Language Support"
 msgstr "ภาษา"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "รูปภาพ, เพลง และวิดีโอ"
 
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "นโยบายความเป็นส่วนตัว"
 
 msgid "Shopping"
-msgstr ""
+msgstr "การซื้อของ"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "สังคมและการสื่อสาร"
 
 msgid "Tabs"
-msgstr ""
+msgstr "แท็บ"
 
 #, fuzzy
 msgid "Web Development"
 msgstr "ดูรุ่นพัฒนา"
 
 msgid "Animals"
-msgstr ""
+msgstr "สัตว์"
 
 #, fuzzy
 msgid "Compact"
@@ -2169,7 +2169,7 @@ msgid "Large"
 msgstr ""
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "เบ็ดเตล็ด"
 
 msgid "Modern"
 msgstr ""
@@ -2182,7 +2182,7 @@ msgid "OS Integration"
 msgstr "ข้อมูลเพิ่มเติม"
 
 msgid "Retro"
-msgstr ""
+msgstr "ย้อนยุค"
 
 #, fuzzy
 msgid "Sports"
@@ -2195,7 +2195,7 @@ msgid "Causes"
 msgstr ""
 
 msgid "Fashion"
-msgstr ""
+msgstr "แฟชั่น"
 
 msgid "Film and TV"
 msgstr "ภาพยนตร์และโทรทัศน์"
@@ -2204,7 +2204,7 @@ msgid "Foxkeh"
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "วันหยุด"
 
 msgid "Music"
 msgstr "เพลง"
@@ -2223,27 +2223,27 @@ msgid "Websites"
 msgstr "เว็บไซต์"
 
 msgid "General"
-msgstr ""
+msgstr "ทั่วไป"
 
 msgid "Business"
-msgstr ""
+msgstr "ธุรกิจ"
 
 #, fuzzy
 msgid "Dictionaries & Encyclopedias"
 msgstr "พจนานุกรมและชุดภาษา"
 
 msgid "Kids"
-msgstr ""
+msgstr "เด็ก"
 
 #, fuzzy
 msgid "Multiple Search"
 msgstr "ล้างการค้นหา"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "ข่าวและบล็อก"
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "รูปภาพและภาพ"
 
 msgid "Shopping & E-Commerce"
 msgstr ""
@@ -2252,10 +2252,10 @@ msgid "Social & People"
 msgstr ""
 
 msgid "Travel"
-msgstr ""
+msgstr "การท่องเที่ยว"
 
 msgid "Video"
-msgstr ""
+msgstr "วิดีโอ"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -2265,25 +2265,25 @@ msgid "Experimental"
 msgstr ""
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "ฟีด, ข่าว และบล็อก"
 
 msgid "Performance"
-msgstr ""
+msgstr "ประสิทธิภาพ"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "รูปภาพและสื่อ"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "ความปลอดภัยและความเป็นส่วนตัว"
 
 msgid "Social Networking"
-msgstr ""
+msgstr "เครือข่ายสังคม"
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "กีฬาและเกม"
 
 msgid "User Interface"
-msgstr ""
+msgstr "ส่วนติดต่อผู้ใช้"
 
 msgid "Appearance and Customization"
 msgstr ""
@@ -2303,16 +2303,16 @@ msgid "Contacts"
 msgstr "เนื้อหา"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "โฟลเดอร์และตัวกรอง"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "นำเข้า/ส่งออก"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "ข้อความและการอ่านข่าว"
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "ความเป็นส่วนตัวและความปลอดภัย"
 
 msgid "Downloading and File Management"
 msgstr ""
@@ -2324,7 +2324,7 @@ msgid "Language Support and Translation"
 msgstr ""
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "รูปภาพและสื่อ"
 
 msgid "RSS, News and Blogging"
 msgstr ""
