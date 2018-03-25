@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-25 14:50+0000\n"
+"PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4429,7 +4429,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4438,29 +4438,25 @@ msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dozens of amazing emojis—always a click away."
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Works seamlessly with most popular video sites."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tab Customisation {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Set the page you see every time you open a new tab."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dozens of amazing emojis—always a click away."
+msgstr "Dozens of amazing emojis for every occasion—always just one click away."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 
 msgid "Cannot diff a version against itself"
 msgstr "Cannot diff a version against itself"
@@ -5905,7 +5901,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "You can't leave more than one review for the same version of an add-on."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "This rating can't be flagged because it has no review text."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Thanks; this review has been flagged for reviewer approval."
@@ -6101,11 +6097,10 @@ msgid "Applications:"
 msgstr "Applications:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Require developer to respond in less than…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 days"
+msgstr "days"
 
 msgid "Choose a canned response..."
 msgstr "Choose a canned response..."
@@ -6121,9 +6116,8 @@ msgstr "Someone else is reviewing this theme."
 msgid "theme, reviewer, or comment"
 msgstr "theme, reviewer, or comment"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Whiteboard"
+msgstr "Private Whiteboard"
 
 msgid "Keep review; remove flags"
 msgstr "Keep review; remove flags"
@@ -6140,9 +6134,8 @@ msgstr "Jetpack Add-on"
 msgid "More Information Requested"
 msgstr "More Information Requested"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "More Information Requested"
+msgstr "Expired Information Request"
 
 msgid "Contains Reviewer Comment"
 msgstr "Contains Reviewer Comment"
@@ -6157,7 +6150,7 @@ msgid "Is locked by a reviewer."
 msgstr "Is locked by a reviewer."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Has auto-approval disabled flag set."
 
 msgid "Duplicate Submission"
 msgstr "Duplicate Submission"
@@ -6216,9 +6209,8 @@ msgstr "No Reviews"
 msgid "Weight"
 msgstr "Weight"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "More Information Requested"
+msgstr "Information Request Deadline"
 
 msgid "Last Content Review"
 msgstr "Last Content Review"
@@ -6232,9 +6224,8 @@ msgstr "This will reject this version and remove it from the queue. The comments
 msgid "Confirm Approval"
 msgstr "Confirm Approval"
 
-#, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 
 msgid "Reject Multiple Versions"
 msgstr "Reject Multiple Versions"
@@ -6260,9 +6251,8 @@ msgstr "Make a comment on this version. The developer won't be able to see this.
 msgid "Approve Content"
 msgstr "Approve Content"
 
-#, fuzzy
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "This records your approbation of the content of this version, without notifying the developer."
+msgstr "This records your approbation of the content of the latest public version, without notifying the developer."
 
 msgid "Legacy Add-ons"
 msgstr "Legacy Add-ons"
@@ -6335,9 +6325,8 @@ msgstr "Announcement"
 msgid "Update message of the day"
 msgstr "Update message of the day"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "More Information Requested"
+msgstr "Expired Information Requests ({0})"
 
 msgid "An unknown error occurred"
 msgstr "An unknown error occurred"
@@ -6608,36 +6597,31 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Update the whiteboard"
+msgstr "Update whiteboards"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "More Actions:"
+msgstr "More Actions"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Notify me about new listed versions"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Force-disable add-on"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Re-enable Version"
+msgstr "Force-enable add-on"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Disable Auto-Approval"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Auto-Approval confirmed"
+msgstr "Enable Auto-Approval"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "More information requested"
+msgstr "Clear information request"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Clear Admin Code Review Flag"
@@ -6856,23 +6840,20 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Update ({0})"
 msgstr[1] "Updates ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Content Review ({0})"
-msgstr[1] "Content Review ({0})"
+msgstr[0] "Rating Review ({0})"
+msgstr[1] "Rating Reviews ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Auto Approved Add-on ({0})"
-msgstr[1] "Auto Approved Add-ons ({0})"
+msgstr[0] "Auto Approved ({0})"
+msgstr[1] "Auto Approved ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "More Info Requested: {0}"
-msgstr[1] "More Info Requested: {0}"
+msgstr[0] "Expired Info Request ({0})"
+msgstr[1] "Expired Info Requests ({0})"
 
 msgid "Flagged"
 msgstr "Flagged"
@@ -7543,7 +7524,7 @@ msgstr "By clicking \"delete\" your account is going to be <strong>permanently r
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
