@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-24 11:10+0000\n"
+"PO-Revision-Date: 2018-03-25 17:27+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1386,7 +1386,7 @@ msgstr "รายการโปรด"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "%s ส่วนเสริม"
+msgstr "ส่วนเสริม %s"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -4716,7 +4716,7 @@ msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับส่วนเสริม"
 
 msgid "See all"
 msgstr ""
@@ -4725,7 +4725,7 @@ msgid "More ways to customize"
 msgstr ""
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "เรียกดูส่วนเสริมทั้งหมด"
 
 msgid "See all complete themes"
 msgstr ""
@@ -6103,9 +6103,8 @@ msgstr "อนุมัติ / ปฏิเสธ"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "ส่วนเสริมของฉัน"
+msgstr "ส่วนเสริมแบบเก่า"
 
 msgid "New Add-ons ({0})"
 msgstr "ส่วนเสริมใหม่ ({0})"
@@ -7185,19 +7184,19 @@ msgid "Other languages"
 msgstr ""
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr "กลับไปยังหน้าแรกของส่วนเสริม {0}"
+msgstr "กลับไปที่หน้าแรกของส่วนเสริม {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "ส่วนเสริม <img alt=\"Firefox\" src=\"{0}\">"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> ส่วนเสริม"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "ส่วนเสริม <img alt=\"Thunderbird\" src=\"{0}\">"
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> ส่วนเสริม"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "ส่วนเสริม <img alt=\"SeaMonkey\" src=\"{0}\">"
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> ส่วนเสริม"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "ส่วนเสริม <img alt=\"\" src=\"{0}\">"
+msgstr "<img alt=\"\" src=\"{0}\"> ส่วนเสริม"
 
 msgid "My Account"
 msgstr ""
@@ -7578,7 +7577,7 @@ msgid "Number of add-ons developed"
 msgstr ""
 
 msgid "{0} add-ons"
-msgstr "{0} ส่วนเสริม"
+msgstr "ส่วนเสริม {0}"
 
 #, python-format
 msgid "%(num)s theme"
