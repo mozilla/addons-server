@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-25 17:27+0000\n"
+"PO-Revision-Date: 2018-03-25 17:43+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -3884,7 +3884,7 @@ msgid "Report Bug"
 msgstr "รายงานข้อบกพร่อง"
 
 msgid "Site Status"
-msgstr ""
+msgstr "สถานะไซต์"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3909,7 +3909,7 @@ msgid "Report Trademark Abuse"
 msgstr "รายงานการละเมิดเครื่องหมายการค้า"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "ข้อกฎหมาย"
 
 #, fuzzy
 msgid "Review Add-ons"
@@ -7149,7 +7149,7 @@ msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "ดูไซต์แบบใหม่"
 
 msgid "Report a bug"
 msgstr "รายงานข้อบกพร่อง"
@@ -7169,19 +7169,19 @@ msgid "Android Browser"
 msgstr "เบราว์เซอร์ Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "เบราว์เซอร์ iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "เบราว์เซอร์ Focus"
 
 msgid "Desktop Browser"
 msgstr "เบราว์เซอร์สำหรับเดสก์ท็อป"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, รุ่นนักพัฒนา"
 
 msgid "Other languages"
-msgstr ""
+msgstr "ภาษาอื่น ๆ"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "กลับไปที่หน้าแรกของส่วนเสริม {0}"
@@ -7206,7 +7206,7 @@ msgstr "ยินดีต้อนรับ {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">ลงทะเบียน</a> หรือ <a href=\"%(login)s\">เข้าสู่ระบบ</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
