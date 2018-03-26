@@ -26,6 +26,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.views import edit_theme
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
+from olympia.versions.models import VersionPreview
 
 
 class BaseTestEdit(TestCase):
@@ -1475,6 +1476,7 @@ class StaticMixin(object):
             cache.clear()
             Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
             Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
+            VersionPreview.objects.create(version=addon.current_version)
 
 
 class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
@@ -1558,6 +1560,13 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         self.client.post(self.basic_edit_url, data)
         assert unicode(self.get_addon().name) == data['name']
 
+    def test_theme_preview_shown(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'Preview' in doc('h3').text()
+        assert doc('img')[0].attrib['src'] == (
+            self.addon.current_version.previews.first().image_url)
+
 
 class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
     def get_dict(self, **kw):
@@ -1565,6 +1574,11 @@ class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
                   'summary': 'new summary'}
         result.update(**kw)
         return result
+
+    def test_theme_preview_not_shown(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'Preview' not in doc('h3').text()
 
 
 class TestEditDetailsStaticThemeListed(StaticMixin, TestEditDetailsListed):

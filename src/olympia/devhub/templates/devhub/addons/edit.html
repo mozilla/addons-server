@@ -25,6 +25,17 @@
 
 <section class="primary" role="main">
 <div id="edit-addon" class="devhub-form">
+  {% if addon.current_version and addon.current_version.previews %}
+    <h3>
+      {{ _('Preview') }}
+    </h3>
+    <div class="edit-addon-section">
+      {% for preview in addon.current_version.previews.all() %}
+        <img src="{{ preview.image_url }}" title="{{ _('Preview of listed version') }}"
+            alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
+      {% endfor %}
+    </div>
+  {% endif %}
 
   <div class="edit-addon-section" id="edit-addon-basic">
     {% include 'devhub/addons/edit/basic.html' %}

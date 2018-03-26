@@ -26,7 +26,7 @@ from olympia.devhub import views
 from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
-from olympia.versions.models import License
+from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config
 
 
@@ -1050,6 +1050,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
+        VersionPreview.objects.create(version=version)
         assert version.supported_platforms == ([amo.PLATFORM_ALL])
 
         response = self.client.get(self.url)
@@ -1067,6 +1068,9 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # Text is static theme specific.
         assert "This version will be available after it passes review." in (
             response.content)
+        # Show the preview we started generating just after the upload step.
+        assert content('img')[0].attrib['src'] == (
+            version.previews.first().image_url)
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
