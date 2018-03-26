@@ -1145,11 +1145,8 @@ h2.addon {
     flex-flow: row wrap;
 }
 
-.screenshot.thumbnail {
-    /* we don't want the float from the legacy css, so we need to apply display
-       block ourselves. */
-    display: block;
-    float: none;
+.addon-info {
+    flex: 1;  /* try to take up "one" space regardless of content */
 }
 
 #addon-theme-previews-wrapper {
