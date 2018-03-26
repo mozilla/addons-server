@@ -7,7 +7,7 @@ fxapom==1.10.1 \
 hawkauthlib==2.0.0 \
     --hash=sha256:935878d3a75832aa76f78ddee13491f1466cbd69a8e7e4248902763cf9953ba9 \
     --hash=sha256:effd64a2572e3c0d9090b55ad2180b36ad50e7760bea225cb6ce2248f421510d
-more-itertool==4.1.0 \
+more-itertools==4.1.0 \
     --hash=sha256:11a625025954c20145b37ff6309cd54e39ca94f72f6bb9576d1195db6fa2442e
 PyBrowserID==0.14.0 \
     --hash=sha256:8e237d6a2bc9ead849a4472a84d3e6a9309bec99cf8e10d36213710dda8df8ca \
