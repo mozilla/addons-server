@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-22 16:46+0000\n"
+"PO-Revision-Date: 2018-03-26 15:23+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5235,7 +5235,7 @@ msgstr "אין לנו אפשרות להעריך את הזמן שיידרש בט�
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
-msgstr "מספר הגשות התוספות"
+msgstr "מספר הגשות התוספת"
 
 #. part of a list (<li>)
 msgid "complexity of an add-on’s code"
@@ -5247,7 +5247,7 @@ msgstr "מספר אזורי הבעיות שהתגלו"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "לכן חשוב מאוד לקרוא את <a href=\"%(g_url)s\">מדריך סקירת התוספות</a> כדי לוודא שהתוספת שלך מוגדרת כראוי."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "איך ניתן לראות את מספר ההורדות של התוספת שלי?"
