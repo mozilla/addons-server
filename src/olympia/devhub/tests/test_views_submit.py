@@ -125,6 +125,20 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
+    def test_read_dev_agreement_set_to_future(self):
+        set_config('last_dev_agreement_change_date', '2099-31-12 00:00')
+        read_dev_date = datetime(2018, 1, 1)
+        self.user.update(read_dev_agreement=read_dev_date)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
+
+    def test_read_dev_agreement_set_to_future_not_agreed_yet(self):
+        set_config('last_dev_agreement_change_date', '2099-31-12 00:00')
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
 
 class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']

@@ -194,12 +194,18 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         try:
             last_agreement_change_config = get_config(
                 'last_dev_agreement_change_date')
-            return self.read_dev_agreement > datetime.strptime(
+            change_config_date = datetime.strptime(
                 last_agreement_change_config, '%Y-%m-%d %H:%M')
+            now = datetime.now()
+
+            # If the config date is in the future, instead check against the
+            # current date
+            return self.read_dev_agreement > min(now, change_config_date)
         except (ValueError, TypeError):
             # Fall back to the date when we enabled post-review if it's not set
-            log.exception('last_developer_agreement_change misconfigured, "%s"'
-                          ' is not a datetime' % last_agreement_change_config)
+            log.exception('last_developer_agreement_change misconfigured, '
+                          '"%s" is not a '
+                          'datetime' % last_agreement_change_config)
             return self.read_dev_agreement > datetime(2017, 9, 22, 17, 36)
 
     backend = 'django.contrib.auth.backends.ModelBackend'
