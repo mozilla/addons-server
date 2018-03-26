@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-22 11:39+0000\n"
+"PO-Revision-Date: 2018-03-26 10:05+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3014,18 +3014,21 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "Ovaj dodatak ne zahtijeva nikakva dodatna plaćanja, plaćene usluge ili softvere ili dodatni hardver."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Kategorije su primarni način na koji korisnici pretražuju dodatke. Odaberite neku koja odgovara funkcijama vašeg dodatka za veću izloženost."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Kategorije ne mogu biti promijenjene dok je vaš dodatak prikazan za ovu aplikaciju. Molimo pošaljite email <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji neki razlog zbog kojeg trebate "
+"promijeniti kategorije."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Kategorije ne mogu biti promijenjene dok je vaš dodatak prikazan. Molimo pošaljite email <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji neki razlog zbog kojeg trebate promijeniti kategorije."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Oznake pomažu korisnicima da pronađu vaš dodatak i trebaju imati katak opise kao što su tabovi, alatne trake ili twitter. Možete imati najviše {0} oznaka."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3034,7 +3037,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Primjer: tamno, kino, noir. Ograničenje 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
