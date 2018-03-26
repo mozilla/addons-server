@@ -6,7 +6,7 @@
             "occupation": "",
             "location": "",
             "picture_type": "",
-            "averagerating": "",
+            "averagerating": null,
             "homepage": "",
             "email": "regular@mozilla.com",
             "notifycompat": 1,

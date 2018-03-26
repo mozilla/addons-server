@@ -87,7 +87,7 @@
             "occupation": "",
             "location": "",
             "picture_type": "",
-            "averagerating": "4.70",
+            "averagerating": 4.70,
             "homepage": "http://adblockplus.org/",
             "email": "trev@adblockplus.org",
             "notifycompat": true,

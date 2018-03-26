@@ -85,7 +85,7 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "averagerating": "3.11",
+            "averagerating": 3.11,
             "notifycompat": true,
             "picture_type": "",
             "occupation": "",

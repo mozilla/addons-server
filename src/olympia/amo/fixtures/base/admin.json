@@ -8,7 +8,7 @@
             "occupation": "",
             "location": "",
             "picture_type": "",
-            "averagerating": "",
+            "averagerating": null,
             "homepage": "http://jeffbalogh.org",
             "email": "jbalogh@mozilla.com",
             "notifycompat": 1,
