@@ -1,6 +1,4 @@
-import math
 import os
-import tempfile
 from base64 import b64encode
 
 from django.conf import settings
@@ -8,39 +6,11 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
-from PIL import Image, ImageChops
 
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
-from olympia.versions.tasks import (
-    AdditionalBackground, generate_static_theme_preview, write_svg_to_png)
-
-
-def test_write_svg_to_png():
-    out = tempfile.mktemp()
-    svg_xml = os.path.join(
-        settings.ROOT,
-        'src/olympia/versions/tests/static_themes/weta_theme.svg')
-    svg_png = os.path.join(
-        settings.ROOT,
-        'src/olympia/versions/tests/static_themes/weta_theme.png')
-    with storage.open(svg_xml, 'rb') as svgfile:
-        svg = svgfile.read()
-    write_svg_to_png(svg, out)
-    assert storage.exists(out)
-    # compare the image content. rms should be 0 but travis renders it
-    # different... 19 is the magic difference.
-    svg_png_img = Image.open(svg_png)
-    svg_out_img = Image.open(out)
-    image_diff = ImageChops.difference(svg_png_img, svg_out_img)
-    sum_of_squares = sum(
-        value * ((idx % 256) ** 2)
-        for idx, value in enumerate(image_diff.histogram()))
-    rms = math.sqrt(
-        sum_of_squares / float(svg_png_img.size[0] * svg_png_img.size[1]))
-
-    assert rms < 19
+from olympia.versions.tasks import generate_static_theme_preview
 
 
 @pytest.mark.django_db
@@ -123,6 +93,65 @@ def test_generate_static_theme_preview(
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
+def test_generate_static_theme_preview_with_chrome_properties(
+        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock):
+    write_svg_to_png_mock.return_value = (789, 101112)
+    resize_image_mock.return_value = (123, 456), (789, 101112)
+    theme_manifest = {
+        "images": {
+            "theme_frame": "transparent.gif"
+        },
+        "colors": {
+            "frame": [123, 45, 67],  # 'accentcolor'
+            "tab_background_text": [9, 87, 65],  # 'textcolor'
+            "bookmark_text": [0, 0, 0],  # 'toolbar_text'
+        }
+    }
+    header_root = os.path.join(
+        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
+    addon = addon_factory()
+    preview = VersionPreview.objects.create(version=addon.current_version)
+    generate_static_theme_preview(theme_manifest, header_root, preview)
+
+    write_svg_to_png_mock.call_count == 1
+    assert pngcrush_image_mock.call_count == 1
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
+    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
+    assert png_path == preview.image_path
+    assert resize_image_mock.call_count == 1
+    assert resize_image_mock.call_args_list[0][0] == (
+        png_path,
+        preview.thumbnail_path,
+        amo.ADDON_PREVIEW_SIZES[0],
+    )
+
+    # check image xml is correct
+    image_tag = (
+        '<image id="svg-header-img" width="680" height="%s" '
+        'preserveAspectRatio="%s"' % (1, 'xMaxYMin meet'))
+    assert image_tag in svg_content, svg_content
+    # and image content is included and was encoded
+    with storage.open(header_root + 'transparent.gif', 'rb') as header_file:
+        header_blob = header_file.read()
+    base_64_uri = 'data:%s;base64,%s' % ('image/gif', b64encode(header_blob))
+    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    # check each of our colors above was converted to css codes
+    chrome_colors = {
+        'bookmark_text': 'toolbar_text',
+        'frame': 'accentcolor',
+        'tab_background_text': 'textcolor',
+    }
+    for (chrome_prop, firefox_prop) in chrome_colors.items():
+        color_list = theme_manifest['colors'][chrome_prop]
+        color = 'rgb(%s, %s, %s)' % tuple(color_list)
+        snippet = 'class="%s" fill="%s"' % (firefox_prop, color)
+        assert snippet in svg_content
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.resize_image')
+@mock.patch('olympia.versions.tasks.pngcrush_image')
+@mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
         write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,):
     write_svg_to_png_mock.return_value = (789, 101112)
@@ -185,48 +214,3 @@ def test_generate_preview_with_additional_backgrounds(
         header_blob = header_file.read()
     base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
-
-
-@pytest.mark.parametrize(
-    'alignment, alignments_tuple', (
-        ('center bottom', ('center', 'bottom')),
-        ('top', ('center', 'top')),
-        ('center', ('center', 'center')),
-        ('left', ('left', 'center')),
-        ('', ('', ''))
-    )
-)
-def test_additional_background_split_alignment(alignment, alignments_tuple):
-    assert AdditionalBackground.split_alignment(alignment) == alignments_tuple
-
-
-@mock.patch('olympia.versions.tasks.encode_header_image')
-@pytest.mark.parametrize(
-    'alignment, tiling,'  # inputs
-    'pattern_width, pattern_height, pattern_x, pattern_y', (
-        ('center bottom', 'no-repeat', '100%', '100%', 280, -350),
-        ('top', 'repeat-x', 120, '100%', 280, 0),
-        ('center', 'repeat-y', '100%', 450, 280, -175),
-        ('left top', 'repeat', 120, 450, 0, 0),
-        # alignment=None is 'left top'
-        (None, 'repeat', 120, 450, 0, 0),
-        # tiling=None is 'no-repeat'
-        ('center', None, '100%', '100%', 280, -175),
-        (None, None, '100%', '100%', 0, 0),
-    )
-)
-def test_additional_background(encode_header_image, alignment, tiling,
-                               pattern_width, pattern_height, pattern_x,
-                               pattern_y):
-    encode_header_image.return_value = ('foobaa', 120, 450)
-    path = 'empty.png'
-    header_root = os.path.join(
-        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
-    background = AdditionalBackground(path, alignment, tiling, header_root)
-    assert background.src == 'foobaa'
-    assert background.width == 120
-    assert background.height == 450
-    assert background.pattern_width == pattern_width
-    assert background.pattern_height == pattern_height
-    assert background.pattern_x == pattern_x
-    assert background.pattern_y == pattern_y
