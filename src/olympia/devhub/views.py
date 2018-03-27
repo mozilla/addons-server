@@ -89,8 +89,8 @@ class AddonFilter(BaseFilter):
 
 
 class ThemeFilter(BaseFilter):
-    opts = (('name', _(u'Name')),
-            ('created', _(u'Created')),
+    opts = (('created', _(u'Created')),
+            ('name', _(u'Name')),
             ('popular', _(u'Downloads')),
             ('rating', _(u'Rating')))
 
@@ -101,7 +101,7 @@ def addon_listing(request, theme=False):
         qs = request.user.addons.filter(
             type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
         filter_cls = ThemeFilter
-        default = 'name'
+        default = 'created'
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
             type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
@@ -132,7 +132,6 @@ def dashboard(request, theme=False):
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
                 theme=theme, addon_items=addon_items)
-
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
         # We know the dashboard is going to want to display feature
