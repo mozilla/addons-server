@@ -126,14 +126,39 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
     def test_read_dev_agreement_set_to_future(self):
-        set_config('last_dev_agreement_change_date', '2099-31-12 00:00')
+        set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2018, 1, 1)
         self.user.update(read_dev_agreement=read_dev_date)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
     def test_read_dev_agreement_set_to_future_not_agreed_yet(self):
-        set_config('last_dev_agreement_change_date', '2099-31-12 00:00')
+        set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
+    def test_read_dev_agreement_invalid_date_agreed_post_fallback(self):
+        set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
+        read_dev_date = datetime(2018, 1, 1)
+        self.user.update(read_dev_agreement=read_dev_date)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
+
+    def test_read_dev_agreement_invalid_date_not_agreed_post_fallback(self):
+        set_config('last_dev_agreement_change_date', '2099,31,12,0,0')
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assertRaises(ValueError)
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
+    def test_read_dev_agreement_no_date_configured_agreed_post_fallback(self):
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
+
+    def test_read_dev_agreement_no_date_configured_not_agreed_post_fallb(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
