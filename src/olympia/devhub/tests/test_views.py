@@ -231,11 +231,11 @@ class TestDashboard(HubTest):
         addon.addonuser_set.create(user=self.user_profile)
 
         # There's no "updated" sort filter, so order by the default: "Created".
-        response = self.client.get(self.themes_url)
+        response = self.client.get(self.themes_url + '?sort=updated')
         doc = pq(response.content)
         assert doc('#sorter li.selected').text() == 'Created'
         sorts = doc('#sorter li a.opt')
-        assert not any('?sort=created' in a.attrib['href'] for a in sorts)
+        assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
 
         # No "updated" in details.
         assert doc('.item-details .date-updated') == []
