@@ -35,7 +35,7 @@
       {% endif %}
     </div>{# /secondary #}
 
-    <div class="addon-info">
+    <div class="addon-info object-lead">
       <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
       {% if version and version.is_restart_required %}
         <div>
