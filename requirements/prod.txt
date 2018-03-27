@@ -281,9 +281,9 @@ pytest==3.5.0 \
     --hash=sha256:6266f87ab64692112e5477eba395cfedda53b1933ccd29478e671e73b420c19c \
     --hash=sha256:fae491d1874f199537fd5872b5e1f0e74a009b979df9d53d1553fd03da1703e1
 # python-dateutil is required by elasticsearch-dsl
-python-dateutil==2.7.1 \
-    --hash=sha256:6c0e72580272b561d8594362ab0e6b5b2191c703982150fc06ed45f7fae725be \
-    --hash=sha256:14eb44faa298942c6385636bfd76bd5c21361632cf8ebc9c20d63fd00f6a069f
+python-dateutil==2.7.2 \
+    --hash=sha256:3220490fb9741e2342e1cf29a503394fdac874bc39568288717ee67047ff29df \
+    --hash=sha256:9d8074be4c993fbe4947878ce593052f71dac82932a677d49194d8ce9778002e
 python-gflags==2.0 \
     --hash=sha256:0dff6360423f3ec08cbe3bfaf37b339461a54a21d13be0dd5d9c9999ce531078 # pyup: ==2.0
 # There are known unicode issues with python-memcached beyond 1.53.
