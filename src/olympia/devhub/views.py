@@ -1368,6 +1368,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             is_beta = (data.get('beta') and
                        channel == amo.RELEASE_CHANNEL_LISTED and
                        waffle.switch_is_active('beta-versions'))
+            needs_import_metadata = waffle.flag_is_active(
+                request, 'import-metadata-from-package')
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1375,7 +1377,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel=channel,
                 source=data['source'],
                 is_beta=is_beta,
-                parsed_data=data['parsed_data'])
+                parsed_data=data['parsed_data'],
+                needs_import_metadata=needs_import_metadata)
             url_args = [addon.slug, version.id]
         else:
             is_beta = False

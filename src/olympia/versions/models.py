@@ -143,15 +143,26 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, channel, send_signal=True,
-                    source=None, is_beta=False, parsed_data=None):
-        from olympia.addons.models import AddonFeatureCompatibility
+                    source=None, is_beta=False, parsed_data=None,
+                    needs_import_metadata=False):
+        from olympia.addons.models import Addon, AddonFeatureCompatibility
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
                 'Addon is Mozilla Disabled; no new versions are allowed.')
 
         if parsed_data is None:
-            parsed_data = utils.parse_addon(upload, addon)
+            parsed_data = utils.parse_addon(
+                upload, addon,
+                needs_validate_translations=needs_import_metadata)
+
+        # Import localized names and summaries
+        if needs_import_metadata:
+            parsed_data = Addon.resolve_webext_translations(
+                parsed_data, upload)
+            addon.name = parsed_data['name']
+            addon.summary = parsed_data['summary']
+
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(
