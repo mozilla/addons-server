@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 import django  # noqa
 
@@ -20,6 +20,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
+from olympia.zadmin.models import set_config
 
 
 class TestUserProfile(TestCase):
@@ -300,10 +301,11 @@ class TestUserProfile(TestCase):
         assert hash1 != hash2
 
     def test_has_read_developer_agreement(self):
+        set_config('last_dev_agreement_change_date', '2018-01-01 00:00')
         after_change = (
-            UserProfile.last_developer_agreement_change + timedelta(days=1))
+            datetime(2018, 1, 1) + timedelta(days=1))
         before_change = (
-            UserProfile.last_developer_agreement_change - timedelta(days=42))
+            datetime(2018, 1, 1) - timedelta(days=42))
 
         assert not UserProfile().has_read_developer_agreement()
         assert not UserProfile(

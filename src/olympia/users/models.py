@@ -160,11 +160,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
-    # Date that the developer agreement last changed (currently, the last
-    # changed happened when we switched to post-review). Used to show the
-    # developer agreement to developers again when it changes.
-    last_developer_agreement_change = datetime(2017, 9, 22, 17, 36)
-
     class Meta:
         db_table = 'users'
 
@@ -192,9 +187,31 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.is_superuser
 
     def has_read_developer_agreement(self):
+        from olympia.zadmin.models import get_config
+
+        # Fallback date in case the config date value is invalid or set to the
+        # future. The current fallback date is when we enabled post-review.
+        dev_agreement_change_fallback = datetime(2017, 9, 22, 17, 36)
+
         if self.read_dev_agreement is None:
             return False
-        return self.read_dev_agreement > self.last_developer_agreement_change
+        try:
+            last_agreement_change_config = get_config(
+                'last_dev_agreement_change_date')
+            change_config_date = datetime.strptime(
+                last_agreement_change_config, '%Y-%m-%d %H:%M')
+
+            # If the config date is in the future, instead check against the
+            # fallback date
+            if change_config_date > datetime.now():
+                return self.read_dev_agreement > dev_agreement_change_fallback
+
+            return self.read_dev_agreement > change_config_date
+        except (ValueError, TypeError):
+            log.exception('last_developer_agreement_change misconfigured, '
+                          '"%s" is not a '
+                          'datetime' % last_agreement_change_config)
+            return self.read_dev_agreement > dev_agreement_change_fallback
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
