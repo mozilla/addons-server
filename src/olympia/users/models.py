@@ -178,17 +178,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def is_staff(self):
         """Property indicating whether the user should be able to log in to
-        the django admin tools. Do not use for anything else.
-
-        Checks for whether the user has any permission needed for something
-        inside the django admin (doesn't matter which one).
-
-        Having access to the tools themselves does not guarantee anything,
-        users still need to pass permission checks to view specific models and
-        modify them. In addition, everything in /admin/ is only supposed to be
-        accessible to users with VPN."""
-        return any(self.has_perm(key)
-                   for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING)
+        the django admin tools. Does not guarantee that the user will then
+        be able to do anything, as each module can have its own permission
+        checks. (see has_module_perms() and has_perm())"""
+        from olympia.access import acl
+        return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
 
     def has_perm(self, perm, obj=None):
         """Determine what the user can do in the django admin tools.

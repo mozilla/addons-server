@@ -67,19 +67,21 @@ class TestReplacementAddonList(TestCase):
         ReplacementAddon.objects.create(
             guid='@bar', path='/addon/bar-replacement/')
         user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert '/addon/bar-replacement/' in response.content
 
-    def test_can_not_edit_with_only_addons_edit_permission(self):
+    def test_can_not_edit_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@bar', path='/addon/bar-replacement/')
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
         user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -89,13 +91,14 @@ class TestReplacementAddonList(TestCase):
             follow=True)
         assert response.status_code == 403
 
-    def test_can_not_delete_with_only_addons_edit_permission(self):
+    def test_can_not_delete_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@foo', path='/addon/foo-replacement/')
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
         user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -112,7 +115,7 @@ class TestReplacementAddonList(TestCase):
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
         user = user_factory()
-        self.grant_permission(user, 'Content:Curate')
+        self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -132,7 +135,7 @@ class TestReplacementAddonList(TestCase):
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
         user = user_factory()
-        self.grant_permission(user, 'Content:Curate')
+        self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
@@ -143,7 +146,7 @@ class TestReplacementAddonList(TestCase):
 
     def test_can_list_with_content_curate_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Content:Curate')
+        self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
         ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')

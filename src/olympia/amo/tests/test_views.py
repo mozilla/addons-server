@@ -115,7 +115,7 @@ class TestCommon(TestCase):
         user = self.login('regular', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        group = Group.objects.create(name='Staff', rules='AdminTools:View')
+        group = Group.objects.create(name='Staff', rules='Admin:Tools')
         GroupUser.objects.create(group=group, user=user)
 
         r = self.client.get(self.url, follow=True)
@@ -171,12 +171,13 @@ class TestCommon(TestCase):
 
     def test_tools_admin(self):
         self.login('admin')
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
+        response = self.client.get(self.url, follow=True)
+        assert response.status_code == 200
+        request = response.context['request']
         assert not request.user.is_developer
         assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
         assert acl.action_allowed(request, amo.permissions.LOCALIZER)
-        assert acl.action_allowed(request, amo.permissions.ADMIN)
+        assert acl.action_allowed(request, amo.permissions.ANY_ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -187,19 +188,21 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
         user = self.login('admin', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
+        response = self.client.get(self.url, follow=True)
+        assert response.status_code == 200
+        request = response.context['request']
         assert request.user.is_developer
         assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
         assert acl.action_allowed(request, amo.permissions.LOCALIZER)
-        assert acl.action_allowed(request, amo.permissions.ADMIN)
+        assert acl.action_allowed(request, amo.permissions.ANY_ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -211,7 +214,8 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
 
 class TestOtherStuff(TestCase):

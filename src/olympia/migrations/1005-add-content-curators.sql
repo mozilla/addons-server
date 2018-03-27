@@ -1,2 +1,2 @@
 INSERT INTO groups (name, rules, created, modified)
-VALUES ('Content Curators', 'Content:Curate', NOW(), NOW());
+VALUES ('Content Curators', 'Admin:Curation', NOW(), NOW());

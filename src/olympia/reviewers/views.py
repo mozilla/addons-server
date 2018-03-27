@@ -343,9 +343,7 @@ def performance(request, user_id=False):
     user = request.user
     reviewers = _recent_reviewers()
 
-    is_admin = (acl.action_allowed(request, amo.permissions.ADMIN) or
-                acl.action_allowed(request,
-                                   amo.permissions.REVIEWS_ADMIN))
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     if is_admin and user_id:
         try:

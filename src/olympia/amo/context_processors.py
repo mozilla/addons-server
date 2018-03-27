@@ -81,8 +81,7 @@ def global_settings(request):
         if is_reviewer:
             tools_links.append({'text': ugettext('Reviewer Tools'),
                                 'href': reverse('reviewers.dashboard')})
-        if (acl.action_allowed(request, amo.permissions.ADMIN) or
-                acl.action_allowed(request, amo.permissions.ADMIN_TOOLS_VIEW)):
+        if acl.action_allowed(request, amo.permissions.ANY_ADMIN):
             tools_links.append({'text': ugettext('Admin Tools'),
                                 'href': reverse('zadmin.index')})
 

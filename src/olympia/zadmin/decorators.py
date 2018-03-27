@@ -14,9 +14,7 @@ def admin_required(f):
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        admin = (action_allowed(request, amo.permissions.ADMIN) or
-                 action_allowed(request, amo.permissions.ADMIN_TOOLS_VIEW))
-        if admin:
+        if action_allowed(request, amo.permissions.ADMIN_TOOLS):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper

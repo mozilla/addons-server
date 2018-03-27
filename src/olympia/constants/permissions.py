@@ -6,11 +6,19 @@ AclPermission = namedtuple('AclPermission', 'app, action')
 # Null rule.  Only useful in tests really as no access group should have this.
 NONE = AclPermission('None', 'None')
 
-# Admin super powers.  Very few users will have this permission (2-3)
-ADMIN = AclPermission('Admin', '%')
+# A special wildcard permission to use when checking if someone has access to
+# any admin, or if an admin is accessible by someone with any Admin:<something>
+# permission.
+ANY_ADMIN = AclPermission('Admin', '%')
 
-# Can view admin tools.
-ADMIN_TOOLS_VIEW = AclPermission('AdminTools', 'View')
+# Another special permission, that only few (2-3) admins have. This grants
+# access to anything.
+SUPERPOWERS = AclPermission('*', '*')
+
+# Can access admin-specific tools.
+ADMIN_TOOLS = AclPermission('Admin', 'Tools')
+# Can modify editorial content on the site.
+ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can configure some settings of an add-on.
@@ -37,9 +45,6 @@ ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 THEMES_REVIEW = AclPermission('Personas', 'Review')
 # Can review a static theme.
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
-
-# Can modify editorial content on the site.
-CONTENT_CURATE = AclPermission('Content', 'Curate')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
@@ -73,14 +78,14 @@ PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
 
 # Mapping between django-style object permissions and our own. By default,
-# require full admin (which also have all other permissions anyway) to do
+# require superuser admins (which also have all other permissions anyway) to do
 # something, and then add some custom ones.
-DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: ADMIN)
+DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 # Curators can do anything to ReplacementAddon. In addition, the modeladmin
 # will also check for addons:edit and give them read-only access to the
 # changelist (obj=None passed to the has_change_permission() method)
 DJANGO_PERMISSIONS_MAPPING.update({
-    'addons.change_replacementaddon': CONTENT_CURATE,
-    'addons.add_replacementaddon': CONTENT_CURATE,
-    'addons.delete_replacementaddon': CONTENT_CURATE
+    'addons.change_replacementaddon': ADMIN_CURATION,
+    'addons.add_replacementaddon': ADMIN_CURATION,
+    'addons.delete_replacementaddon': ADMIN_CURATION
 })

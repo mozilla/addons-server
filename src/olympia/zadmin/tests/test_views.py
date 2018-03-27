@@ -88,8 +88,8 @@ class TestHomeAndIndex(TestCase):
         self.assert3xx(response, '/admin/models/login/?'
                                  'next=/en-US/admin/models/')
 
-        # Can access with a "staff" user.
-        self.grant_permission(user, 'Addons:Edit')
+        # Can access with a "is_staff" user.
+        self.grant_permission(user, 'Admin:Something')
         response = self.client.get(url)
         assert response.status_code == 200
 
@@ -872,7 +872,7 @@ class TestPerms(TestCase):
     def test_staff_user(self):
         # Staff users have some privileges.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='AdminTools:View')
+        group = Group.objects.create(name='Staff', rules='Admin:Tools')
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
