@@ -173,20 +173,22 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_superuser(self):
-        from olympia.access import acl
-        return acl.action_allowed_user(self, amo.permissions.ADMIN)
+        return self.groups.filter(rules='*:*').exists()
 
     @property
     def is_staff(self):
         """Property indicating whether the user should be able to log in to
         the django admin tools. Do not use for anything else.
 
-        It only checks for whether the user is part of *any* group and that's
-        it. Having access to the tools themselves does not guarantee anything,
+        Checks for whether the user has any permission needed for something
+        inside the django admin (doesn't matter which one).
+
+        Having access to the tools themselves does not guarantee anything,
         users still need to pass permission checks to view specific models and
         modify them. In addition, everything in /admin/ is only supposed to be
         accessible to users with VPN."""
-        return len(self.groups_list) > 0
+        return any(self.has_perm(key)
+                   for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING)
 
     def has_perm(self, perm, obj=None):
         """Determine what the user can do in the django admin tools.
@@ -201,13 +203,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """Determine whether the user can see a particular app in the django
         admin tools. """
         # If the user has permission for any action available for any of the
-        # models of the app, or is a superuser, they can see the app in the
-        # django admin.
-        return (
-            self.is_superuser or
-            any([self.has_perm(key)
-                 for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
-                 if key.startswith('%s.' % app_label)]))
+        # models of the app, they can see the app in the django admin.
+        return any(self.has_perm(key)
+                   for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+                   if key.startswith('%s.' % app_label))
 
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
