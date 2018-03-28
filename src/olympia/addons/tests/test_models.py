@@ -36,6 +36,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
+from olympia.files.utils import parse_addon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -2574,6 +2575,13 @@ class TestAddonFromUpload(UploadTest):
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
+
+    @patch('olympia.files.utils.parse_addon', wraps=parse_addon)
+    def test_parse_addon_is_called_only_once(self, parse_addon):
+        Addon.from_upload(self.get_upload('webextension.xpi'), [self.platform])
+
+        # utils.parse_addon in Version.from_upload() should not be called.
+        parse_addon.assert_not_called()
 
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
