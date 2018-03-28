@@ -25,7 +25,7 @@
 
 <section class="primary" role="main">
 <div id="edit-addon" class="devhub-form">
-  {% if addon.current_version and addon.current_version.previews.all() %}
+  {% if addon.current_version and addon.current_version.previews.exists() %}
     <h3>
       {{ _('Preview') }}
     </h3>
