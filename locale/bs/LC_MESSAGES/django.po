@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-28 09:42+0000\n"
+"PO-Revision-Date: 2018-03-28 10:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3181,12 +3181,14 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Bijela tabla je mjesto za pružanje informacija relevantnih za vaš dodatak, bez obzira na verziju, recenzentima. Koristite je za pružanje načina za testiranje dodatka i bilo koju dodatnu informaciju "
+"koja može pomoći. Ovu ploču mogu uređivati i recenzenti."
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Uklonite ovaj zavisni dodatak"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Unesite ime dodatka"
 
 msgid "Add-on Media for {0}"
 msgstr ""
@@ -3198,35 +3200,37 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Učitajte ikonu za vaš dodatak ili izaberite jednu od naših. Ikona je prikazana u blizini vašeg dodatka gdje god se nalazio. Učitana slika mora biti u jednom od navedenih tipova: .png, .jpg. Ovo je "
+"relevantno samo za navedene dodatke."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Odaberite ikonu za vaš dodatak:"
 
 #. The size of the icon
 msgid "32x32px"
 msgstr ""
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Koristi se u listama dodataka, kao što su rezultati pretrage i funkcije dodataka."
 
 #. The size of the icon
 msgid "64x64px"
 msgstr ""
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Koristi se na detaljnim stranicama dodatka."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Učitajte prilagođenu ikonu..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG i JPG su podržani. Ikone se smanjuju na 64x64 piksela ako je veća."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Snimci ekrana"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Molimo pružite barem jedan snimak ekrana vašeg dodatka:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr ""
