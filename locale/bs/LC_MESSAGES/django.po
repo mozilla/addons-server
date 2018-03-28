@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-27 10:37+0000\n"
+"PO-Revision-Date: 2018-03-28 09:25+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3115,22 +3115,22 @@ msgid ""
 msgstr ""
 
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Potrebni dodaci"
 
 msgid "Limit 3"
 msgstr ""
 
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Zastavice dodatka"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ove zastavice su korištene za klasifikaciju dodataka. Ovo je relevantno samo za navedene dodatke."
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Ovaj dodatak zahtijeva eksterne softvere."
 
 msgid "View Source?"
-msgstr ""
+msgstr "Prikazati izvor?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
