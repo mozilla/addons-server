@@ -585,7 +585,7 @@ class Addon(OnChangeMixin, ModelBase):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True})
         Version.from_upload(upload, addon, platforms, source=source,
-                            channel=channel)
+                            channel=channel, parsed_data=parsed_data)
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))

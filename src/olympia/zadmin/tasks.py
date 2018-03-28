@@ -199,7 +199,8 @@ def fetch_langpack(url, xpi, **kw):
 
             version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id],
                                           amo.RELEASE_CHANNEL_LISTED,
-                                          is_beta=is_beta)
+                                          is_beta=is_beta,
+                                          parsed_data=data)
 
             log.info('[@None] Updated language pack "{0}" to version {1}'
                      .format(xpi, data['version']))
