@@ -114,7 +114,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
     # Don't allow self-reviews.
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, amo.permissions.ADMIN)):
+            not acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)):
         if rereview:
             themes = themes.exclude(theme__addon__addonuser__user=reviewer)
         else:
@@ -326,7 +326,7 @@ def themes_single(request, slug):
         reviewable = False
 
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, amo.permissions.ADMIN) and
+            not acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN) and
             theme.addon.has_author(request.user)):
         reviewable = False
     else:

@@ -177,14 +177,30 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_staff(self):
+        """Property indicating whether the user should be able to log in to
+        the django admin tools. Does not guarantee that the user will then
+        be able to do anything, as each module can have its own permission
+        checks. (see has_module_perms() and has_perm())"""
         from olympia.access import acl
-        return acl.action_allowed_user(self, amo.permissions.ADMIN)
+        return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
 
     def has_perm(self, perm, obj=None):
-        return self.is_superuser
+        """Determine what the user can do in the django admin tools.
+
+        perm is in the form "<app>.<action>_<model>".
+        """
+        from olympia.access import acl
+        return acl.action_allowed_user(
+            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm])
 
     def has_module_perms(self, app_label):
-        return self.is_superuser
+        """Determine whether the user can see a particular app in the django
+        admin tools. """
+        # If the user has permission for any action available for any of the
+        # models of the app, they can see the app in the django admin.
+        return any(self.has_perm(key)
+                   for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+                   if key.startswith('%s.' % app_label))
 
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
