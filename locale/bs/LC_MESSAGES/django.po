@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-28 10:04+0000\n"
+"PO-Revision-Date: 2018-03-28 10:22+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3230,25 +3230,25 @@ msgid "Screenshots"
 msgstr "Snimci ekrana"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Molimo pružite barem jedan snimak ekrana vašeg dodatka:"
+msgstr "Molimo pružite barem jedan snimak vašeg dodatka:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Molimo navedite naslov za ovaj snimak:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Dodaj snimak..."
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Mogu li ostali dijeliti vaš dodatak, dok god ste vi autor?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Mogu li ostali koristiti vaš dodatak u komercijalne svrhe?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Mogu li drugi da kreiraju derivativne radove iz vašeg dodatka?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Da, ukoliko šire na isti način"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
