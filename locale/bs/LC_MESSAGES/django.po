@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-28 10:22+0000\n"
+"PO-Revision-Date: 2018-03-28 11:06+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3251,16 +3251,16 @@ msgid "Yes, as long as they share alike"
 msgstr "Da, ukoliko šire na isti način"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Davatelj licence dopušta drugima distribuciju derivata samo pod istom licencom ili jednom od kompatibilnih koja reguliše rad davaoca licence."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Vaš dodatak će biti objavljen pod sljedećom licencom:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Odaberite drugačiju licencu."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Više informacija o Creative Commons licencama"
 
 msgid "Tests"
 msgstr "Testovi"
@@ -3281,10 +3281,10 @@ msgid "Compatibility Tests"
 msgstr "Testovi kompatibilnosti"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Sakrijte poruke za koje nije potrebno automatsko potpisivanje"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Sakrijte poruke koje su prisutne u prethodnim verzijama i koje su ignorisane"
 
 msgid "Top"
 msgstr ""
@@ -3296,27 +3296,29 @@ msgid "Delete Add-on"
 msgstr "Izbriši dodatak"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Brisanje vaše teme će je automatski ukloniti sa stranice."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Brisanje vašeg dodatka će zauvijek izbrisati sve verzije i datoteke koje ste poslali za ovaj dodatak, navedene ili ne. ID dodatka će i dalje biti povezan sa vašim računom, tako da drugi neće biti u "
+"mogućnosti poslati verzije koristeći isti ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Unesite sljedeći tekst da potvrdite vašu odluku: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Molimo recite nam zašto brišete svoju temu:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Molimo recite nam zašto brišete vaš dodatak:"
 
 msgid "Actions"
 msgstr "Akcije"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Nastavite sa podnošenjem procesa za ovaj dodatak."
 
 msgid "Resume"
 msgstr "Nastavi"
@@ -3328,22 +3330,22 @@ msgid "Delete"
 msgstr "Izbriši"
 
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Uredite informacije o ovom dodatku."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Učitajte novu verziju ovog dodatka."
 
 msgid "New Version"
 msgstr ""
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Dnevna statistika o preuzimanjima i korisnicima."
 
 msgid "Statistics"
 msgstr ""
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Upravljanje statusima i verzijama"
 
 msgid "View Add-on Listing"
 msgstr ""
