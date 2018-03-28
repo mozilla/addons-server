@@ -121,6 +121,10 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
             slug = ugettext(u'- Add-on not on AMO -')
         return slug
 
+    def has_module_permission(self, request):
+        # If one can see the changelist, then they have access to the module.
+        return self.has_change_permission(request)
+
     def has_change_permission(self, request, obj=None):
         # If an obj is passed, then we're looking at the individual change page
         # for a replacement addon, otherwise we're looking at the list. When
