@@ -1638,6 +1638,13 @@ def submit_file_finish(request, addon_id, addon, version_id):
 
 @login_required
 def submit_theme(request):
+    if waffle.switch_is_active('disable-lwt-uploads'):
+        return redirect('devhub.submit.agreement')
+    else:
+        return submit_lwt_theme(request)
+
+
+def submit_lwt_theme(request):
     data = {}
     if request.method == 'POST':
         data = request.POST.dict()

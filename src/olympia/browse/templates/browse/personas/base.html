@@ -47,7 +47,12 @@
           Your browser, your style! Dress it up with a design of your own!
         {% endtrans %}
       </p>
-      <p><a href="{{ url('devhub.themes.submit') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
+
+      {% if waffle.switch('disable-lwt-uploads') %}
+          <p><a href="{{ url('devhub.submit.agreement') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
+      {% else %}
+          <p><a href="{{ url('devhub.themes.submit') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
+      {% endif %}
       <p><a href="{{ url('devhub.docs', 'themes') }}" class="learn-more">{{ _('Learn more') }}</a></p>
     </div>
   {% endif %}
