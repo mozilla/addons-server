@@ -415,6 +415,7 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
+                self.addon.type != amo.ADDON_STATICTHEME and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (is_public_and_listed_and_user_can_post_review or
                  is_public_and_listed_and_user_can_content_review)
