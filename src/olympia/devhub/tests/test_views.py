@@ -231,10 +231,10 @@ class TestDashboard(HubTest):
         addon = addon_factory(type=amo.ADDON_PERSONA)
         addon.addonuser_set.create(user=self.user_profile)
 
-        # There's no "updated" sort filter, so order by the default: "Name".
+        # There's no "updated" sort filter, so order by the default: "Created".
         response = self.client.get(self.themes_url + '?sort=updated')
         doc = pq(response.content)
-        assert doc('#sorter li.selected').text() == 'Name'
+        assert doc('#sorter li.selected').text() == 'Created'
         sorts = doc('#sorter li a.opt')
         assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
 
