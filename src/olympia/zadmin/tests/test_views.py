@@ -93,6 +93,11 @@ class TestHomeAndIndex(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
 
+    def test_django_admin_logout(self):
+        url = reverse('admin:logout')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
 
 class TestSiteEvents(TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
