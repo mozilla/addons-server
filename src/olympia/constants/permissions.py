@@ -87,5 +87,11 @@ DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 DJANGO_PERMISSIONS_MAPPING.update({
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
-    'addons.delete_replacementaddon': ADMIN_CURATION
+    'addons.delete_replacementaddon': ADMIN_CURATION,
+
+    # We also want ADDONS_EDIT users to see the addons replacementaddon module.
+    # All they need for this is a permission in this mapping that begins with
+    # "addons." to get basic access to the module, and then the rest is handled
+    # by ReplacementAddonAdmin.has_change_permission().
+    'addons.not_a_real_permission': ADDONS_EDIT,
 })

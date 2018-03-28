@@ -4,7 +4,7 @@ from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory)
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import django_reverse, reverse
 
 
 class TestReplacementAddonForm(TestCase):
@@ -63,6 +63,35 @@ class TestReplacementAddonList(TestCase):
             list(model_admin.get_list_display(None)),
             ['guid', 'path', 'guid_slug', '_url'])
 
+    def test_can_see_replacementaddon_module_in_admin_with_addons_edit(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(
+            'admin:addons_replacementaddon_changelist')
+        assert self.list_url in response.content.decode('utf-8')
+
+    def test_can_see_replacementaddon_module_in_admin_with_admin_curate(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(
+            'admin:addons_replacementaddon_changelist')
+        assert self.list_url in response.content.decode('utf-8')
+
     def test_can_list_with_addons_edit_permission(self):
         ReplacementAddon.objects.create(
             guid='@bar', path='/addon/bar-replacement/')
@@ -108,7 +137,7 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 403
         assert ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
-    def test_can_edit_with_content_curate_permission(self):
+    def test_can_edit_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@foo', path='/addon/foo-replacement/')
         self.detail_url = reverse(
@@ -128,7 +157,7 @@ class TestReplacementAddonList(TestCase):
         replacement.reload()
         assert replacement.guid == '@bar'
 
-    def test_can_delete_with_content_curate_permission(self):
+    def test_can_delete_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@foo', path='/addon/foo-replacement/')
         self.delete_url = reverse(
@@ -144,7 +173,7 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 200
         assert not ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
-    def test_can_list_with_content_curate_permission(self):
+    def test_can_list_with_admin_curation_permission(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
