@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-28 09:25+0000\n"
+"PO-Revision-Date: 2018-03-28 09:42+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3136,10 +3136,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr ""
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Ovaj izvorni kod dodatka je javno vidljiv."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Ne, ovaj izvorni kod dodatka nije javno vidljiv."
 
 msgid "Public Stats?"
 msgstr ""
@@ -3148,31 +3148,31 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Ova statistika dodatka je javno vidljiva."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Ne, ova statistika dodatka nije javno vidljiva."
 
 msgid "Upgrade SDK?"
 msgstr ""
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ako je odabrano, možemo pokušati automatski nadograditi vaš dodatak kada se objavi nova SDK verzija. Ovo je relevantno samo za navedene dodatke."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Ovaj dodatak će biti automatski nadograđen na novu verziju SDK dodatka."
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Ne, ovaj dodatak će biti nadograđen ručno."
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Univerzalni jedinstveni identifikator"
 
 msgid "UUID"
 msgstr ""
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "UUID vašeg dodatka je naveden u svom instalacionom manifestu i jedinstveno ga identifikuje. Kada pošaljete dodatak, više ne možete mijenjati UUID."
 
 msgid "Whiteboard"
 msgstr ""
