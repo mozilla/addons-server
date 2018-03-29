@@ -324,6 +324,17 @@ class TestReviewHelper(TestCase):
             file_status=amo.STATUS_PUBLIC,
             content_review_only=True).keys() == expected
 
+    def test_actions_public_static_theme(self):
+        # Having Addons:PostReview and dealing with a public add-on would
+        # normally be enough to give you access to reject multiple versions
+        # action, but it should not be available for static themes.
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
+
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
         version set."""
