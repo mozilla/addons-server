@@ -389,7 +389,7 @@ class TestThemeForm(TestCase):
 
         self.post()
         assert self.form.fields['header'].widget.attrs == (
-            {'data-allowed-types': 'image/jpeg|image/png',
+            {'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES,
              'data-upload-url': header_url})
 
     @mock.patch('olympia.addons.tasks.make_checksum')

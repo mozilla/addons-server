@@ -328,6 +328,7 @@ def edit(request, addon_id, addon):
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
         'previews': addon.previews.all(),
+        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
     if acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
@@ -949,18 +950,21 @@ def addons_section(request, addon_id, addon, section, editable=False):
     else:
         form = False
 
-    data = {'addon': addon,
-            'whiteboard': whiteboard,
-            'show_listed_fields': show_listed,
-            'form': form,
-            'editable': editable,
-            'tags': tags,
-            'restricted_tags': restricted_tags,
-            'cat_form': cat_form,
-            'preview_form': previews,
-            'dependency_form': dependency_form,
-            'whiteboard_form': whiteboard_form,
-            'valid_slug': valid_slug}
+    data = {
+        'addon': addon,
+        'whiteboard': whiteboard,
+        'show_listed_fields': show_listed,
+        'form': form,
+        'editable': editable,
+        'tags': tags,
+        'restricted_tags': restricted_tags,
+        'cat_form': cat_form,
+        'preview_form': previews,
+        'dependency_form': dependency_form,
+        'whiteboard_form': whiteboard_form,
+        'valid_slug': valid_slug,
+        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+    }
 
     return render(request, 'devhub/addons/edit/%s.html' % section, data)
 
