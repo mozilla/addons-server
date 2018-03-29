@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-21 14:59+0000\n"
+"PO-Revision-Date: 2018-02-21 15:03+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -37,16 +37,16 @@ msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} ના {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "રદ કરો"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "અપલોડ કરી રહ્યું છે {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "ભૂલ સાથે {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
