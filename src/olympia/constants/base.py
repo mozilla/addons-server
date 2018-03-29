@@ -245,7 +245,7 @@ PERSONA_IMAGE_SIZES = {
 }
 
 # Accepted image MIME-types
-IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
+IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
