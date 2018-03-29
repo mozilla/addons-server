@@ -51,10 +51,10 @@ def selenium(selenium, request):
     return selenium
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def fxa_account(base_url):
     """Account used to login to the AMO site."""
-    url = DEV_URL if 'dev' or 'localhost' in base_url else PROD_URL
+    url = DEV_URL if 'olympia' or 'localhost' in base_url else PROD_URL
     return FxATestAccount(url)
 
 

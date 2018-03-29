@@ -46,11 +46,13 @@ class Header(Region):
     _firefox_logo_locator = (By.CLASS_NAME, 'Header-title')
     _extensions_locator = (By.CSS_SELECTOR, '.SectionLinks \
                            > li:nth-child(2) > a:nth-child(1)')
-    _login_locator = (By.CSS_SELECTOR, '.Header-auth-button')
-    _logout_locator = (By.CSS_SELECTOR, '')
+    _login_locator = (By.CSS_SELECTOR,
+                      '.Button--action .Header-authenticate-button')
+    _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
-    _user_locator = (By.CSS_SELECTOR, '')
+    _user_locator = (By.CSS_SELECTOR,
+                     '.Header-user-and-external-links .DropdownMenu-button')
     _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
     def click_explore(self):
