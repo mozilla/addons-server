@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-29 03:29+0000\n"
+"PO-Revision-Date: 2018-03-29 04:05+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6978,11 +6978,10 @@ msgstr[0] "Atualização ({0})"
 msgstr[1] "Atualizações ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Análise de conteúdo ({0})"
-msgstr[1] "Análises de conteúdo ({0})"
+msgstr[0] "Avaliação de análise ({0})"
+msgstr[1] "Avaliações de análises ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
