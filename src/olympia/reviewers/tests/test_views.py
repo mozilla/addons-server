@@ -4254,17 +4254,13 @@ class TestReviewerMOTD(ReviewerTest):
 
     def test_require_admin_to_change_motd(self):
         self.login_as_reviewer()
-        r = self.client.post(reverse('reviewers.save_motd'),
-                             {'motd': "I'm a sneaky reviewer"})
-        assert r.status_code == 403
 
-    def test_reviewer_can_view_not_edit(self):
-        motd = 'Some announcement'
-        set_config('reviewers_review_motd', motd)
-        self.login_as_reviewer()
-        r = self.client.get(self.get_url())
-        assert pq(r.content)('.daily-message p').text() == motd
-        assert r.context['form'] is None
+        response = self.client.get(self.get_url())
+        assert response.status_code == 403
+
+        response = self.client.post(reverse('reviewers.save_motd'),
+                                    {'motd': "I'm a sneaky reviewer"})
+        assert response.status_code == 403
 
     def test_motd_edit_group(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
@@ -4272,15 +4268,15 @@ class TestReviewerMOTD(ReviewerTest):
                                      rules='AddonReviewerMOTD:Edit')
         GroupUser.objects.create(user=user, group=group)
         self.login_as_reviewer()
-        r = self.client.post(reverse('reviewers.save_motd'),
-                             {'motd': 'I am the keymaster.'})
-        assert r.status_code == 302
+        response = self.client.post(reverse('reviewers.save_motd'),
+                                    {'motd': 'I am the keymaster.'})
+        assert response.status_code == 302
         assert get_config('reviewers_review_motd') == 'I am the keymaster.'
 
     def test_form_errors(self):
         self.login_as_admin()
-        r = self.client.post(self.get_url(save=True))
-        doc = pq(r.content)
+        response = self.client.post(self.get_url(save=True))
+        doc = pq(response.content)
         assert doc('#reviewer-motd .errorlist').text() == (
             'This field is required.')
 
