@@ -1,4 +1,3 @@
-import codecs
 import json
 import re
 
@@ -14,10 +13,10 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.stats.models import UpdateCount, update_inc
 
-from . import get_date_from_file, save_stats_to_file
+from . import get_date, get_stats_data, save_stats_to_file
 
 
-log = olympia.core.logger.getLogger('adi.updatecountsfromfile')
+log = olympia.core.logger.getLogger('adi.updatecounts')
 
 # Validate a locale: must be like 'fr', 'en-us', 'zap-MX-diiste', ...
 LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
@@ -39,18 +38,35 @@ class Command(BaseCommand):
     """Process hive results stored in different files and store them in the db.
 
     Usage:
-    ./manage.py update_counts_from_file <folder> --date=YYYY-MM-DD
+    ./manage.py update_counts_from_file \
+        <folder> --date=YYYY-MM-DD --stats_source={s3,file}
 
     If no date is specified, the default is the day before.
-    If not folder is specified, the default is `hive_results/<YYYY-MM-DD>/`.
-    This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
 
-    Five files are processed:
-    - update_counts_by_version.hive
-    - update_counts_by_status.hive
-    - update_counts_by_app.hive
-    - update_counts_by_os.hive
-    - update_counts_by_locale.hive
+    If no stats_source is specified, the default is set to s3.
+
+    If stats_source is file:
+        If not folder is specified, the default is
+            `hive_results/<YYYY-MM-DD>/`.
+        This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
+
+        Five files are processed:
+        - update_counts_by_version.hive
+        - update_counts_by_status.hive
+        - update_counts_by_app.hive
+        - update_counts_by_os.hive
+        - update_counts_by_locale.hive
+
+    If stats_source is s3:
+        This file will be located in
+            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
+
+        Five files are processed:
+        - update_counts_by_version/YYYY-MM-DD/000000_0
+        - update_counts_by_status/YYYY-MM-DD/000000_0
+        - update_counts_by_app/YYYY-MM-DD/000000_0
+        - update_counts_by_os/YYYY-MM-DD/000000_0
+        - update_counts_by_locale/YYYY-MM-DD/000000_0
 
     Each file has the following cols:
     - date
@@ -69,6 +85,10 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument('folder_name', default='hive_results', nargs='?')
         parser.add_argument(
+            '--stats_source', default='s3',
+            choices=['s3', 'file'],
+            help='Source of stats data')
+        parser.add_argument(
             '--date', action='store', type=str,
             dest='date', help='Date in the YYYY-MM-DD format.')
         parser.add_argument(
@@ -76,22 +96,34 @@ class Command(BaseCommand):
             dest='separator', help='Field separator in file.')
 
     def handle(self, *args, **options):
+        sep = options['separator']
+
         start = datetime.now()  # Measure the time it takes to run the script.
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        folder = options['folder_name']
-        folder = path.join(settings.TMP_PATH, folder, day)
-        sep = options['separator']
-        groups = ('version', 'status', 'app', 'os', 'locale')
+
+        groups = ('app', 'locale', 'os', 'status', 'version')
         group_filepaths = []
         # Make sure we're not trying to update with mismatched data.
         for group in groups:
-            filepath = path.join(folder, 'update_counts_by_%s.hive' % group)
-            if get_date_from_file(filepath, sep) != day:
+            if options['stats_source'] == 's3':
+                filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
+                                               'amo_stats',
+                                               'update_counts_by_%s' % group,
+                                               day, '000000_0'])
+
+            elif options['stats_source'] == 'file':
+                folder = options['folder_name']
+                folder = path.join(settings.TMP_PATH, folder, day)
+                filepath = path.join(folder,
+                                     'update_counts_by_%s.hive' % group)
+
+            if get_date(filepath, sep) != day:
                 raise CommandError('%s file contains data for another day' %
                                    filepath)
             group_filepaths.append((group, filepath))
+
         # First, make sure we don't have any existing counts for the same day,
         # or it would just increment again the same data.
         UpdateCount.objects.filter(date=day).delete()
@@ -106,85 +138,83 @@ class Command(BaseCommand):
                                             .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
-        index = -1
         for group, filepath in group_filepaths:
-            with codecs.open(filepath, encoding='utf8') as results_file:
-                for line in results_file:
-                    index += 1
-                    if index and (index % 1000000) == 0:
-                        log.info('Processed %s lines' % index)
+            count_file = get_stats_data(filepath)
+            for index, line in enumerate(count_file):
+                if index and (index % 1000000) == 0:
+                    log.info('Processed %s lines' % index)
 
-                    splitted = line[:-1].split(sep)
+                splitted = line[:-1].split(sep)
 
-                    if ((group == 'app' and len(splitted) != 6) or
-                            (group != 'app' and len(splitted) != 5)):
-                        log.debug('Badly formatted row: %s' % line)
-                        continue
+                if ((group == 'app' and len(splitted) != 6) or
+                        (group != 'app' and len(splitted) != 5)):
+                    log.debug('Badly formatted row: %s' % line)
+                    continue
 
-                    if group == 'app':
-                        day, addon_guid, app_id, app_ver, count, \
-                            update_type = splitted
-                    else:
-                        day, addon_guid, data, count, update_type = splitted
+                if group == 'app':
+                    day, addon_guid, app_id, app_ver, count, \
+                        update_type = splitted
+                else:
+                    day, addon_guid, data, count, update_type = splitted
 
-                    addon_guid = addon_guid.strip()
+                addon_guid = addon_guid.strip()
+                if update_type:
+                    update_type.strip()
+
+                # Old versions of Firefox don't provide the update type.
+                # All the following are "empty-like" values.
+                if update_type in ['0', 'NULL', 'None', '', '\N',
+                                   '%UPDATE_TYPE%']:
+                    update_type = None
+
+                try:
+                    count = int(count)
                     if update_type:
-                        update_type.strip()
+                        update_type = int(update_type)
+                except ValueError:  # Badly formatted? Drop.
+                    continue
 
-                    # Old versions of Firefox don't provide the update type.
-                    # All the following are "empty-like" values.
-                    if update_type in ['0', 'NULL', 'None', '', '\N',
-                                       '%UPDATE_TYPE%']:
-                        update_type = None
+                # The following is magic that I don't understand. I've just
+                # been told that this is the way we can make sure a request
+                # is valid:
+                # > the lower bits for updateType (eg 112) should add to
+                # > 16, if not, ignore the request.
+                # > udpateType & 31 == 16 == valid request.
+                if update_type and update_type & 31 != 16:
+                    log.debug("Update type doesn't add to 16: %s" %
+                              update_type)
+                    continue
 
-                    try:
-                        count = int(count)
-                        if update_type:
-                            update_type = int(update_type)
-                    except ValueError:  # Badly formatted? Drop.
-                        continue
+                # Does this addon exist?
+                if addon_guid and addon_guid in guids_to_addon:
+                    addon_id = guids_to_addon[addon_guid]
+                else:
+                    log.debug(u"Addon {guid} doesn't exist."
+                              .format(guid=addon_guid.strip()))
+                    continue
 
-                    # The following is magic that I don't understand. I've just
-                    # been told that this is the way we can make sure a request
-                    # is valid:
-                    # > the lower bits for updateType (eg 112) should add to
-                    # > 16, if not, ignore the request.
-                    # > udpateType & 31 == 16 == valid request.
-                    if update_type and update_type & 31 != 16:
-                        log.debug("Update type doesn't add to 16: %s" %
-                                  update_type)
-                        continue
+                # Memoize the UpdateCount.
+                if addon_guid in update_counts:
+                    uc = update_counts[addon_guid]
+                else:
+                    uc = UpdateCount(date=day, addon_id=addon_id, count=0)
+                    update_counts[addon_guid] = uc
 
-                    # Does this addon exist?
-                    if addon_guid and addon_guid in guids_to_addon:
-                        addon_id = guids_to_addon[addon_guid]
-                    else:
-                        log.debug(u"Addon {guid} doesn't exist."
-                                  .format(guid=addon_guid.strip()))
-                        continue
-
-                    # Memoize the UpdateCount.
-                    if addon_guid in update_counts:
-                        uc = update_counts[addon_guid]
-                    else:
-                        uc = UpdateCount(date=day, addon_id=addon_id, count=0)
-                        update_counts[addon_guid] = uc
-
-                    # We can now fill the UpdateCount object.
-                    if group == 'version':
-                        self.update_version(uc, data, count)
-                    elif group == 'status':
-                        self.update_status(uc, data, count)
-                        if data == UPDATE_COUNT_TRIGGER:
-                            # Use this count to compute the global number
-                            # of daily users for this addon.
-                            uc.count += count
-                    elif group == 'app':
-                        self.update_app(uc, app_id, app_ver, count)
-                    elif group == 'os':
-                        self.update_os(uc, data, count)
-                    elif group == 'locale':
-                        self.update_locale(uc, data, count)
+                # We can now fill the UpdateCount object.
+                if group == 'version':
+                    self.update_version(uc, data, count)
+                elif group == 'status':
+                    self.update_status(uc, data, count)
+                    if data == UPDATE_COUNT_TRIGGER:
+                        # Use this count to compute the global number
+                        # of daily users for this addon.
+                        uc.count += count
+                elif group == 'app':
+                    self.update_app(uc, app_id, app_ver, count)
+                elif group == 'os':
+                    self.update_os(uc, data, count)
+                elif group == 'locale':
+                    self.update_locale(uc, data, count)
 
         # Make sure the locales and versions fields aren't too big to fit in
         # the database. Those two fields are the only ones that are not fully
@@ -208,9 +238,10 @@ class Command(BaseCommand):
         log.debug('Total processing time: %s' % (datetime.now() - start))
 
         # Clean up files.
-        for _, filepath in group_filepaths:
-            log.debug('Deleting {path}'.format(path=filepath))
-            unlink(filepath)
+        if options['stats_source'] == 'file':
+            for _, filepath in group_filepaths:
+                log.debug('Deleting {path}'.format(path=filepath))
+                unlink(filepath)
 
     def update_version(self, update_count, version, count):
         """Update the versions on the update_count with the given version."""
