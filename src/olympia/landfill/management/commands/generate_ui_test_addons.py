@@ -14,6 +14,7 @@ featured_collections = [
     u'good-time-tabs',
     u'wikipedia-boosters',
     u'trending-add-ons',
+    u'social-media-customization',
 ]
 
 #  Featured collections on the homepage.
@@ -30,9 +31,6 @@ base_collections = [
 #  Needs to be updated as the homepage is updated
 hero_addons = [
     u'wikiwand-wikipedia-modernized',
-    u'onetab',
-    u'kindle-it',
-    u'search-site-we',
     u'ublock-origin',
     u'ghostery',
     u'multi-account-containers',
@@ -45,6 +43,10 @@ hero_addons = [
     u'snake-game',
     u'tab-invaders',
     u'leechblock-ng',
+    u'black-menu-google',
+    u'honey',
+    u'shine-reddit',
+
 ]
 
 
