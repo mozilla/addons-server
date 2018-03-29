@@ -37,9 +37,8 @@ from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm, BetaSignedLogForm, EventLogForm, MOTDForm,
-    QueueSearchForm, RatingFlagFormSet, ReviewForm, ReviewLogForm,
-    WhiteboardForm)
+    AllAddonSearchForm, EventLogForm, MOTDForm, QueueSearchForm,
+    RatingFlagFormSet, ReviewForm, ReviewLogForm, WhiteboardForm)
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
@@ -138,26 +137,6 @@ def eventlog_detail(request, id):
     return render(request, 'reviewers/eventlog_detail.html', data)
 
 
-@addons_reviewer_required
-def beta_signed_log(request):
-    """Log of all the beta files that got signed."""
-    form = BetaSignedLogForm(request.GET)
-    beta_signed_log = ActivityLog.objects.beta_signed_events()
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-
-    if form.is_valid():
-        if form.cleaned_data['filter']:
-            beta_signed_log = beta_signed_log.filter(
-                action=form.cleaned_data['filter'])
-
-    pager = amo.utils.paginate(request, beta_signed_log, 50)
-
-    data = context(request, form=form, pager=pager,
-                   motd_editable=motd_editable)
-    return render(request, 'reviewers/beta_signed_log.html', data)
-
-
 @any_reviewer_or_moderator_required
 def dashboard(request):
     # The dashboard is divided into sections that depend on what the reviewer
@@ -199,9 +178,6 @@ def dashboard(request):
         ), (
             ugettext('Add-on Review Log'),
             reverse('reviewers.reviewlog')
-        ), (
-            ugettext('Signed Beta Files Log'),
-            reverse('reviewers.beta_signed_log')
         ), (
             ugettext('Review Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'

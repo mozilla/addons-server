@@ -58,17 +58,6 @@ class EventLogForm(happyforms.Form):
         return data
 
 
-class BetaSignedLogForm(happyforms.Form):
-    VALIDATION_CHOICES = (
-        ('', ''),
-        (amo.LOG.BETA_SIGNED.id,
-         _(u'Passed automatic validation')),
-        (amo.LOG.BETA_SIGNED.id,
-         _(u'Failed automatic validation')))
-    filter = forms.ChoiceField(required=False, choices=VALIDATION_CHOICES,
-                               label=_(u'Filter by automatic validation'))
-
-
 class ReviewLogForm(happyforms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
