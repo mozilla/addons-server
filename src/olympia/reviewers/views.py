@@ -55,9 +55,9 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
-    addons_or_themes_reviewer_required, addons_reviewer_required,
-    any_reviewer_or_moderator_required, any_reviewer_required,
-    ratings_moderator_required, unlisted_addons_reviewer_required)
+    addons_or_themes_reviewer_required, any_reviewer_or_moderator_required,
+    any_reviewer_required, ratings_moderator_required,
+    unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -453,18 +453,15 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     return monthly_data
 
 
-@addons_reviewer_required
+@permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 def motd(request):
     form = None
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-    if motd_editable:
-        form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
-    data = context(request, form=form, motd_editable=motd_editable)
+    form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
+    data = context(request, form=form)
     return render(request, 'reviewers/motd.html', data)
 
 
-@addons_reviewer_required
+@permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 @post_required
 def save_motd(request):
     form = MOTDForm(request.POST)
@@ -638,7 +635,7 @@ def unlisted_queue(request):
     return redirect(reverse('reviewers.unlisted_queue_all'))
 
 
-@addons_reviewer_required
+@any_reviewer_required
 @post_required
 @json_view
 def application_versions_json(request):
