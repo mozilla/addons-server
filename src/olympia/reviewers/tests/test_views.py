@@ -43,7 +43,7 @@ from olympia.reviewers.models import (
     ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
-from olympia.zadmin.models import get_config, set_config
+from olympia.zadmin.models import get_config
 
 
 class TestRedirectsOldPaths(TestCase):

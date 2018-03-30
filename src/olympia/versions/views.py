@@ -107,8 +107,8 @@ def update_info_redirect(request, version_id):
 # Should accept junk at the end for filename goodness.
 @non_atomic_requests
 def download_file(request, file_id, type=None, file_=None, addon=None):
-    def is_reviewer(channel):
-        return (acl.check_addons_reviewer(request)
+    def is_appropriate_reviewer(addon, channel):
+        return (acl.is_reviewer(request, addon)
                 if channel == amo.RELEASE_CHANNEL_LISTED
                 else acl.check_unlisted_addons_reviewer(request))
 
@@ -120,8 +120,9 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
     channel = file_.version.channel
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
-        if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, ignore_disabled=True):
+        if (is_appropriate_reviewer(addon, channel) or
+                acl.check_addon_ownership(
+                    request, addon, dev=True, ignore_disabled=True)):
             return HttpResponseSendFile(
                 request, file_.guarded_file_path,
                 content_type='application/x-xpinstall')
@@ -133,8 +134,9 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
             raise http.Http404()  # Not owner or admin.
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
-        if is_reviewer(channel) or acl.check_addon_ownership(
-                request, addon, dev=True, ignore_disabled=True):
+        if (acl.check_unlisted_addons_reviewer(request) or
+                acl.check_addon_ownership(
+                    request, addon, dev=True, ignore_disabled=True)):
             return HttpResponseSendFile(
                 request, file_.file_path,
                 content_type='application/x-xpinstall')

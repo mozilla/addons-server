@@ -55,8 +55,8 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
-    addons_or_themes_reviewer_required, any_reviewer_or_moderator_required,
-    any_reviewer_required, ratings_moderator_required,
+    any_reviewer_or_moderator_required, any_reviewer_required,
+    legacy_addons_or_themes_reviewer_required, ratings_moderator_required,
     unlisted_addons_reviewer_required)
 
 
@@ -586,17 +586,17 @@ def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
     return {queue: count() for (queue, count) in counts.iteritems()}
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue(request):
     return redirect(reverse('reviewers.queue_pending'))
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue_nominated(request):
     return _queue(request, ViewFullReviewQueueTable, 'nominated')
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 

@@ -268,7 +268,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         # Remove the beta version or it's going to confuse things
         self.addon.versions.filter(files__status=amo.STATUS_BETA)[0].delete()
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -277,7 +277,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: True)
@@ -286,7 +286,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         self.assert_served_internally(self.client.get(self.file_url), False)
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -295,7 +295,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -580,7 +580,7 @@ class TestDownloadSource(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -589,7 +589,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: True)
@@ -598,7 +598,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -607,7 +607,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)

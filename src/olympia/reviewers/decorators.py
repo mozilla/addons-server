@@ -17,13 +17,13 @@ def _view_on_get(request):
             acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW))
 
 
-def addons_or_themes_reviewer_required(f):
-    """Require an addons or static themes reviewer user.
+def legacy_addons_or_themes_reviewer_required(f):
+    """Require a legacy reviewer or static themes reviewer user.
 
     The user logged in must be an addons reviewer or admin, or have the
     'ReviewerTools:View' permission for GET requests.
 
-    An addons reviewer is someone who is in the group with the following
+    A legacy addons reviewer is someone who is in the group with the following
     permission: 'Addons:Review';
     a static themes reviewer is someone who is in the group with the following
     permission: 'Addons:ThemeReview'
@@ -31,7 +31,8 @@ def addons_or_themes_reviewer_required(f):
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if (_view_on_get(request) or acl.check_addons_reviewer(request) or
+        if (_view_on_get(request) or
+                acl.action_allowed(request, permissions.ADDONS_REVIEW) or
                 acl.check_static_theme_reviewer(request)):
             return f(request, *args, **kw)
         raise PermissionDenied

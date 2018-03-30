@@ -33,7 +33,7 @@ def allowed(request, file):
         # issues, we're working on a fix but for now, let's not do this.
         # (cgrebs, 06042017)
         is_owner = acl.check_addon_ownership(request, addon, dev=True)
-        if (acl.check_addons_reviewer(request) or is_owner):
+        if (acl.is_reviewer(request, addon) or is_owner):
             return True  # Public and sources are visible, or reviewer.
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.

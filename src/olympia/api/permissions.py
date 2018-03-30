@@ -121,18 +121,24 @@ class AllowReviewer(BasePermission):
     The user logged in must either be making a read-only request and have the
     'ReviewerTools:View' permission, or simply be a reviewer or admin.
 
-    An add-on reviewer is someone who is in the group with the following
-    permission: 'Addons:Review'. Notably, that does not include people with
-    only Addons:PostReview.
+    The definition of an add-on reviewer depends on the object:
+    - For static themes, it's someone with 'Addons:ThemeReview'
+    - For personas, it's someone with 'Personas:Review'
+    - For the rest of the add-ons, is someone who has either
+      'Addons:Review', 'Addons:PostReview' or 'Addons:ContentReview'
+      permission.
     """
     def has_permission(self, request, view):
-        return ((request.method in SAFE_METHODS and
-                 acl.action_allowed(request,
-                                    permissions.REVIEWER_TOOLS_VIEW)) or
-                acl.check_addons_reviewer(request))
+        return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        return obj.has_listed_versions() and self.has_permission(request, view)
+        can_access_because_viewer = (
+            request.method in SAFE_METHODS and
+            acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW))
+        can_access_because_listed_reviewer = (
+            obj.has_listed_versions() and acl.is_reviewer(request, obj))
+
+        return can_access_because_viewer or can_access_because_listed_reviewer
 
 
 class AllowReviewerUnlisted(AllowReviewer):

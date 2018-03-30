@@ -206,6 +206,7 @@ class TestAllowReviewer(TestCase):
         request = self.request_factory.get('/')
         request.user = AnonymousUser()
         obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda: True
 
         assert not self.permission.has_permission(request, myview)
@@ -216,8 +217,9 @@ class TestAllowReviewer(TestCase):
         request = self.request_factory.get('/')
         request.user = user_factory()
         obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda: True
-        assert not self.permission.has_permission(request, myview)
+        assert self.permission.has_permission(request, myview)
         assert not self.permission.has_object_permission(
             request, myview, obj)
 
@@ -229,6 +231,7 @@ class TestAllowReviewer(TestCase):
             request = getattr(self.request_factory, method)('/')
             request.user = user
             obj = Mock(spec=[])
+            obj.type = amo.ADDON_EXTENSION
             obj.has_listed_versions = lambda: True
             assert self.permission.has_permission(request, myview)
             assert self.permission.has_object_permission(
@@ -238,6 +241,7 @@ class TestAllowReviewer(TestCase):
         user = user_factory()
         self.grant_permission(user, 'ReviewerTools:View')
         obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda: True
 
         for method in self.safe_methods:
@@ -250,14 +254,17 @@ class TestAllowReviewer(TestCase):
         for method in self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
             request.user = user
-            assert not self.permission.has_permission(request, myview)
+            # When not checking the object, we have permission because we're
+            # authenticated.
+            assert self.permission.has_permission(request, myview)
             assert not self.permission.has_object_permission(
                 request, myview, obj)
 
-    def test_actual_reviewer(self):
+    def test_legacy_reviewer(self):
         user = user_factory()
         self.grant_permission(user, 'Addons:Review')
         obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda: True
 
         for method in self.safe_methods + self.unsafe_methods:
@@ -267,18 +274,80 @@ class TestAllowReviewer(TestCase):
             assert self.permission.has_object_permission(
                 request, myview, obj)
 
+        # Does not have access to static themes.
+        obj.type = amo.ADDON_STATICTHEME
+        for method in self.safe_methods + self.unsafe_methods:
+            request = getattr(self.request_factory, method)('/')
+            request.user = user
+            # When not checking the object, we have permission because we're
+            # authenticated.
+            assert self.permission.has_permission(request, myview)
+            assert not self.permission.has_object_permission(
+                request, myview, obj)
+
+    def test_post_reviewer(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:PostReview')
+        obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
+        obj.has_listed_versions = lambda: True
+
+        for method in self.safe_methods + self.unsafe_methods:
+            request = getattr(self.request_factory, method)('/')
+            request.user = user
+            assert self.permission.has_permission(request, myview)
+            assert self.permission.has_object_permission(
+                request, myview, obj)
+
+        # Does not have access to static themes.
+        obj.type = amo.ADDON_STATICTHEME
+        for method in self.safe_methods + self.unsafe_methods:
+            request = getattr(self.request_factory, method)('/')
+            request.user = user
+            # When not checking the object, we have permission because we're
+            # authenticated.
+            assert self.permission.has_permission(request, myview)
+            assert not self.permission.has_object_permission(
+                request, myview, obj)
+
+    def test_theme_reviewer(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:ThemeReview')
+        obj = Mock(spec=[])
+        obj.type = amo.ADDON_STATICTHEME
+        obj.has_listed_versions = lambda: True
+
+        for method in self.safe_methods + self.unsafe_methods:
+            request = getattr(self.request_factory, method)('/')
+            request.user = user
+            assert self.permission.has_permission(request, myview)
+            assert self.permission.has_object_permission(
+                request, myview, obj)
+
+        # Does not have access to other extensions.
+        obj.type = amo.ADDON_EXTENSION
+        for method in self.safe_methods + self.unsafe_methods:
+            request = getattr(self.request_factory, method)('/')
+            request.user = user
+            # When not checking the object, we have permission because we're
+            # authenticated.
+            assert self.permission.has_permission(request, myview)
+            assert not self.permission.has_object_permission(
+                request, myview, obj)
+
     def test_no_listed_version_reviewer(self):
         user = user_factory()
         self.grant_permission(user, 'Addons:Review')
         obj = Mock(spec=[])
+        obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda: False
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
             request.user = user
 
-            # When not checking the object, we have permission because it's
-            # a safe HTTP method.
+            # When not checking the object, we have permission because we're
+            # authenticated.
             assert self.permission.has_permission(request, myview)
 
             # It doesn't work with the object though, since
@@ -291,8 +360,8 @@ class TestAllowReviewer(TestCase):
             request = getattr(self.request_factory, method)('/')
             request.user = user
 
-            # When not checking the object, we have permission because we're a
-            # reviewer.
+            # When not checking the object, we have permission because we're
+            # authenticated.
             assert self.permission.has_permission(request, myview)
 
             # As above it doesn't work with the object though.

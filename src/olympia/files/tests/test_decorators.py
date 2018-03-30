@@ -25,18 +25,18 @@ class AllowedTest(TestCase):
             version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
         self.file = self.addon.versions.get().files.get()
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_owner_allowed(self):
         assert allowed(self.request, self.file)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     def test_reviewer_allowed(self):
         assert allowed(self.request, self.file)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_viewer_unallowed(self):
@@ -57,7 +57,7 @@ class AllowedTest(TestCase):
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         return addon, addon.versions.get().files.get()
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_unlisted_viewer_unallowed(self):
@@ -65,7 +65,7 @@ class AllowedTest(TestCase):
         with pytest.raises(http.Http404):
             allowed(self.request, file_)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_unlisted_reviewer_unallowed(self):
@@ -73,20 +73,20 @@ class AllowedTest(TestCase):
         with pytest.raises(http.Http404):
             allowed(self.request, file_)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     def test_unlisted_admin_reviewer_allowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         assert allowed(self.request, file_)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_unlisted_owner_allowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         assert allowed(self.request, file_)
 
-    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     def test_listed_public_disallowed(self):
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
