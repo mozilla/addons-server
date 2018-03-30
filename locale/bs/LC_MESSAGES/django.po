@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-30 09:26+0000\n"
+"PO-Revision-Date: 2018-03-30 09:41+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3360,28 +3360,28 @@ msgid "Edit Listing"
 msgstr ""
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Prikaži popularnost ove teme tokom vremena."
 
 msgid "View Statistics"
-msgstr ""
+msgstr "Prikaži statistiku"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Promijeni vlasnika ove teme."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Prijenos vlasništva"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Izbriši ovu temu."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Ovom dodatku nedostaju neki podaci prije nego se može podnijeti za objavljivanje."
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Ovaj dodatak nema nikakvu verziju."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Ovaj dodatak nema nikakve odobrene verzije, tako da su njegove javne stranice (uključujući beta verzije) skrivene."
 
 msgid "Status:"
 msgstr ""
