@@ -245,8 +245,11 @@ PERSONA_IMAGE_SIZES = {
 }
 
 # Accepted image MIME-types
-IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
+IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
+
+# The string concatinating all accepted image MIME-types with '|'
+SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.

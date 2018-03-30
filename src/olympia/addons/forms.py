@@ -438,7 +438,7 @@ class ThemeFormBase(AddonFormBase):
             self.fields[field].widget.attrs = {
                 'data-upload-url': reverse('devhub.personas.upload_persona',
                                            args=['persona_%s' % field]),
-                'data-allowed-types': 'image/jpeg|image/png'
+                'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES
             }
 
 
@@ -589,7 +589,7 @@ class EditThemeForm(AddonFormBase):
                 'data-upload-url': reverse('devhub.personas.reupload_persona',
                                            args=[addon.slug,
                                                  'persona_%s' % field]),
-                'data-allowed-types': 'image/jpeg|image/png'
+                'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES
             }
 
     def clean_slug(self):

@@ -55,7 +55,7 @@
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
                 <input type="file" id="id_icon_upload" name="icon_upload"
-                       data-allowed-types="image/jpeg|image/png"
+                       data-allowed-types="{{ supported_image_types }}"
                        data-upload-url="{{ url('devhub.addons.upload_icon', addon.slug) }}">
               </div>
               <div class="js-hidden">
@@ -129,7 +129,7 @@
                 <div class="invisible-upload">
                   <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
                   <input type="file" id="screenshot_upload" name="uploads" multiple
-                         data-allowed-types="image/jpeg|image/png"
+                         data-allowed-types="{{ supported_image_types }}"
                          data-upload-url="{{ url('devhub.addons.upload_preview', addon.slug) }}">
                 </div>
               {% endif %}
