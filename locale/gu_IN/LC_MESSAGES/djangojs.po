@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-04-01 14:10+0000\n"
+"PO-Revision-Date: 2018-04-01 14:19+0000\n"
 "Last-Translator: Drashti <drashtipandya37@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -28,12 +28,12 @@ msgid "Select a file..."
 msgstr "ફાઇલ પસંદ કરો..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "તમારુ એડ-ઓન .zip, .xpi, .crx, .jar અથવા .xml થી સમાપ્ત થવું જોઈએ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% પૂર્ણ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -59,10 +59,10 @@ msgstr[1] ""
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&hellip;અને વધુ {0}"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "સંપૂર્ણ માન્યતા અહેવાલ જુઓ"
 
 msgid "Validating {0}"
 msgstr ""
