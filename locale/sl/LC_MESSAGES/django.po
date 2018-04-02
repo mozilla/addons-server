@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-02 13:03+0000\n"
+"PO-Revision-Date: 2018-04-02 13:13+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -7808,10 +7808,10 @@ msgstr "Ki sem jih jaz ustvaril"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr "Moji pregledi"
+msgstr "Moje ocene"
 
 msgid "No add-on reviews yet."
-msgstr "Pregledov dodatkov še ni"
+msgstr "Ocen dodatkov še ni."
 
 msgid "Report User"
 msgstr "Prijavi uporabnika"
