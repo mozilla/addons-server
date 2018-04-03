@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-03 09:28+0000\n"
+"PO-Revision-Date: 2018-04-03 11:41+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3480,25 +3480,25 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr "Više informacija o distribuciji i potpisivanju dodataka"
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Slanje završeno"
 
 msgid "You’re done!"
 msgstr ""
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Verzija poslana za pregled"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Završili ste! Ova verzija će biti dostupna nakon što prođe pregled. Bićete obaviješteni kada se pregleda."
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "Verzija poslana"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Završili ste! Ova verzija će biti dostupna na našoj stranici uskoro."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Završili ste! Ova verzija je poslana za pregled. Bićete obaviješteni kada pregled bude gotov ili ako naši recenzenti imaju neko pitanje o vašoj prijavi."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
