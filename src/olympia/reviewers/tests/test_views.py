@@ -3567,7 +3567,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert response.context['show_diff']
         links = doc('#review-files .file-info .compare')
-        # Comparison should be betweeen the last version and the first,
+        # Comparison should be between the last version and the first,
         # ignoring the interim version because it was auto-approved and not
         # manually confirmed by a human.
         expected = [
@@ -3603,7 +3603,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert response.context['show_diff']
         links = doc('#review-files .file-info .compare')
-        # Comparison should be betweeen the last version and the second,
+        # Comparison should be between the last version and the second,
         # ignoring the third version because it was auto-approved and not
         # manually confirmed by a human (the second was auto-approved but
         # was manually confirmed).
@@ -3635,7 +3635,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert response.context['show_diff']
         links = doc('#review-files .file-info .compare')
-        # Comparison should be betweeen the last version and the second,
+        # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
         expected = [
             reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
