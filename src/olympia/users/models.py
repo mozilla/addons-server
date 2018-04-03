@@ -196,11 +196,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_module_perms(self, app_label):
         """Determine whether the user can see a particular app in the django
         admin tools. """
-        # If the user has permission for any action available for any of the
-        # models of the app, they can see the app in the django admin.
-        return any(self.has_perm(key)
-                   for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
-                   if key.startswith('%s.' % app_label))
+        # If the user is a superuser or has permission for any action available
+        # for any of the models of the app, they can see the app in the django
+        # admin. The is_superuser check is needed to allow superuser to access
+        # modules that are not in the mapping at all (i.e. things only they
+        # can access).
+        return (self.is_superuser or
+                any(self.has_perm(key)
+                    for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+                    if key.startswith('%s.' % app_label)))
 
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
