@@ -223,10 +223,10 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
-        """An addon reviewer is also a persona reviewer."""
+        """An addon reviewer is not necessarily a persona reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
         request = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.persona)
         assert is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
@@ -257,12 +257,8 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
-        # Technically, someone with PostReview has access to reviewer tools,
-        # and would be called a reviewer... but those 2 functions predates the
-        # introduction of PostReview, so at the moment they don't let you in
-        # if you only have that permission.
-        assert not check_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
+        assert check_addons_reviewer(request)
+        assert is_reviewer(request, self.addon)
 
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -274,10 +270,5 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
-        # Technically, someone with ContentReview has access to (some of the)
-        # reviewer tools, and could be called a reviewer (though they are more
-        # limited than other kind of reviewers...) but those 2 functions
-        # predates the introduction of PostReview, so at the moment they don't
-        # let you in if you only have that permission.
-        assert not check_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
+        assert check_addons_reviewer(request)
+        assert is_reviewer(request, self.addon)

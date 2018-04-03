@@ -43,7 +43,7 @@ from olympia.reviewers.models import (
     ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
-from olympia.zadmin.models import get_config, set_config
+from olympia.zadmin.models import get_config
 
 
 class TestRedirectsOldPaths(TestCase):
@@ -133,38 +133,6 @@ class TestEventLog(ReviewerTest):
         response = self.client.get(
             reverse('reviewers.eventlog.detail', args=[id_]))
         assert response.status_code == 200
-
-
-class TestBetaSignedLog(ReviewerTest):
-
-    def setUp(self):
-        super(TestBetaSignedLog, self).setUp()
-        self.login_as_reviewer()
-        self.url = reverse('reviewers.beta_signed_log')
-        core.set_user(UserProfile.objects.get(username='reviewer'))
-        addon = amo.tests.addon_factory()
-        version = addon.versions.get()
-        self.file1 = version.files.get()
-        self.file2 = amo.tests.file_factory(version=version)
-        self.file1_url = reverse('files.list', args=[self.file1.pk])
-        self.file2_url = reverse('files.list', args=[self.file2.pk])
-
-        self.log1 = ActivityLog.create(amo.LOG.BETA_SIGNED, self.file1)
-        self.log2 = ActivityLog.create(amo.LOG.BETA_SIGNED, self.file2)
-
-    def test_action_no_filter(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        results = pq(response.content)('tbody tr')
-        assert results.length == 2
-        assert self.file1_url in unicode(results)
-        assert self.file2_url in unicode(results)
-
-    def test_no_results(self):
-        ActivityLog.objects.all().delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert '"no-results"' in response.content
 
 
 class TestReviewLog(ReviewerTest):
@@ -558,7 +526,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
-            reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -589,11 +556,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'New Add-ons (2)'
         assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
-        assert doc('.dashboard a')[11].text == 'Auto Approved Add-ons (4)'
-        assert doc('.dashboard a')[15].text == 'Content Review (4)'
-        assert (doc('.dashboard a')[23].text ==
+        assert doc('.dashboard a')[10].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[14].text == 'Content Review (4)'
+        assert (doc('.dashboard a')[22].text ==
                 'Ratings Awaiting Moderation (1)')
-        assert (doc('.dashboard a')[29].text ==
+        assert (doc('.dashboard a')[28].text ==
                 'Expired Information Requests (1)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -607,7 +574,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
-            reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -679,7 +645,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
-            reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -945,7 +910,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
-            reverse('reviewers.beta_signed_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
@@ -956,11 +920,11 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'New Add-ons (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
         assert doc('.dashboard a')[1].text == 'Add-on Updates (0)'
-        assert doc('.dashboard a')[6].text == 'Ratings Awaiting Moderation (0)'
+        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
         assert 'target' not in doc('.dashboard a')[6].attrib
-        assert doc('.dashboard a')[8].text == 'Moderation Guide'
-        assert doc('.dashboard a')[8].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[8].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[7].text == 'Moderation Guide'
+        assert doc('.dashboard a')[7].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[7].attrib['rel'] == 'noopener noreferrer'
 
 
 class QueueTest(ReviewerTest):
@@ -4290,17 +4254,13 @@ class TestReviewerMOTD(ReviewerTest):
 
     def test_require_admin_to_change_motd(self):
         self.login_as_reviewer()
-        r = self.client.post(reverse('reviewers.save_motd'),
-                             {'motd': "I'm a sneaky reviewer"})
-        assert r.status_code == 403
 
-    def test_reviewer_can_view_not_edit(self):
-        motd = 'Some announcement'
-        set_config('reviewers_review_motd', motd)
-        self.login_as_reviewer()
-        r = self.client.get(self.get_url())
-        assert pq(r.content)('.daily-message p').text() == motd
-        assert r.context['form'] is None
+        response = self.client.get(self.get_url())
+        assert response.status_code == 403
+
+        response = self.client.post(reverse('reviewers.save_motd'),
+                                    {'motd': "I'm a sneaky reviewer"})
+        assert response.status_code == 403
 
     def test_motd_edit_group(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
@@ -4308,15 +4268,15 @@ class TestReviewerMOTD(ReviewerTest):
                                      rules='AddonReviewerMOTD:Edit')
         GroupUser.objects.create(user=user, group=group)
         self.login_as_reviewer()
-        r = self.client.post(reverse('reviewers.save_motd'),
-                             {'motd': 'I am the keymaster.'})
-        assert r.status_code == 302
+        response = self.client.post(reverse('reviewers.save_motd'),
+                                    {'motd': 'I am the keymaster.'})
+        assert response.status_code == 302
         assert get_config('reviewers_review_motd') == 'I am the keymaster.'
 
     def test_form_errors(self):
         self.login_as_admin()
-        r = self.client.post(self.get_url(save=True))
-        doc = pq(r.content)
+        response = self.client.post(self.get_url(save=True))
+        doc = pq(response.content)
         assert doc('#reviewer-motd .errorlist').text() == (
             'This field is required.')
 

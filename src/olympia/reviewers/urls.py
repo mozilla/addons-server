@@ -33,8 +33,6 @@ urlpatterns = (
     url(r'^log/(\d+)$', views.eventlog_detail,
         name='reviewers.eventlog.detail'),
     url(r'^reviewlog$', views.reviewlog, name='reviewers.reviewlog'),
-    url(r'^beta_signed_log$', views.beta_signed_log,
-        name='reviewers.beta_signed_log'),
     url(r'^queue_version_notes/%s?$' % ADDON_ID, views.queue_version_notes,
         name='reviewers.queue_version_notes'),
     url(r'^queue_review_text/(\d+)?$', views.queue_review_text,

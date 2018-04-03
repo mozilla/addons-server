@@ -111,7 +111,10 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
 
 
 def check_addons_reviewer(request):
-    return action_allowed(request, amo.permissions.ADDONS_REVIEW)
+    return (
+        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
+        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
+        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW))
 
 
 def check_unlisted_addons_reviewer(request):
@@ -129,13 +132,11 @@ def check_static_theme_reviewer(request):
 def is_reviewer(request, addon):
     """Return True if the user is an addons reviewer, or a personas reviewer
     and the addon is a persona."""
-    return (
-        (check_addons_reviewer(request) and
-         addon.type != amo.ADDON_STATICTHEME) or
-        (check_static_theme_reviewer(request) and
-         addon.type == amo.ADDON_STATICTHEME) or
-        (check_personas_reviewer(request) and addon.is_persona())
-    )
+    if addon.type == amo.ADDON_PERSONA:
+        return check_personas_reviewer(request)
+    elif addon.type == amo.ADDON_STATICTHEME:
+        return check_static_theme_reviewer(request)
+    return check_addons_reviewer(request)
 
 
 def is_user_any_kind_of_reviewer(user):

@@ -37,9 +37,8 @@ from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm, BetaSignedLogForm, EventLogForm, MOTDForm,
-    QueueSearchForm, RatingFlagFormSet, ReviewForm, ReviewLogForm,
-    WhiteboardForm)
+    AllAddonSearchForm, EventLogForm, MOTDForm, QueueSearchForm,
+    RatingFlagFormSet, ReviewForm, ReviewLogForm, WhiteboardForm)
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
@@ -56,9 +55,9 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
-    addons_or_themes_reviewer_required, addons_reviewer_required,
     any_reviewer_or_moderator_required, any_reviewer_required,
-    ratings_moderator_required, unlisted_addons_reviewer_required)
+    legacy_addons_or_themes_reviewer_required, ratings_moderator_required,
+    unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -88,8 +87,6 @@ def context(request, **kw):
 def eventlog(request):
     form = EventLogForm(request.GET)
     eventlog = ActivityLog.objects.reviewer_events()
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if form.is_valid():
         if form.cleaned_data['start']:
@@ -101,8 +98,7 @@ def eventlog(request):
 
     pager = amo.utils.paginate(request, eventlog, 50)
 
-    data = context(request, form=form, pager=pager,
-                   motd_editable=motd_editable)
+    data = context(request, form=form, pager=pager)
 
     return render(request, 'reviewers/eventlog.html', data)
 
@@ -136,26 +132,6 @@ def eventlog_detail(request, id):
 
     data = context(request, log=log, can_undelete=can_undelete)
     return render(request, 'reviewers/eventlog_detail.html', data)
-
-
-@addons_reviewer_required
-def beta_signed_log(request):
-    """Log of all the beta files that got signed."""
-    form = BetaSignedLogForm(request.GET)
-    beta_signed_log = ActivityLog.objects.beta_signed_events()
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-
-    if form.is_valid():
-        if form.cleaned_data['filter']:
-            beta_signed_log = beta_signed_log.filter(
-                action=form.cleaned_data['filter'])
-
-    pager = amo.utils.paginate(request, beta_signed_log, 50)
-
-    data = context(request, form=form, pager=pager,
-                   motd_editable=motd_editable)
-    return render(request, 'reviewers/beta_signed_log.html', data)
 
 
 @any_reviewer_or_moderator_required
@@ -199,9 +175,6 @@ def dashboard(request):
         ), (
             ugettext('Add-on Review Log'),
             reverse('reviewers.reviewlog')
-        ), (
-            ugettext('Signed Beta Files Log'),
-            reverse('reviewers.beta_signed_log')
         ), (
             ugettext('Review Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
@@ -351,9 +324,6 @@ def performance(request, user_id=False):
         except UserProfile.DoesNotExist:
             pass  # Use request.user from above.
 
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
 
@@ -401,8 +371,7 @@ def performance(request, user_id=False):
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
                    reviewers=reviewers, current_user=user, is_admin=is_admin,
-                   is_user=(request.user.id == user.id),
-                   motd_editable=motd_editable)
+                   is_user=(request.user.id == user.id))
 
     return render(request, 'reviewers/performance.html', data)
 
@@ -482,23 +451,17 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     return monthly_data
 
 
-@addons_reviewer_required
+@permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 def motd(request):
     form = None
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-    if motd_editable:
-        form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
-    data = context(request, form=form, motd_editable=motd_editable)
+    form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
+    data = context(request, form=form)
     return render(request, 'reviewers/motd.html', data)
 
 
-@addons_reviewer_required
+@permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 @post_required
 def save_motd(request):
-    if not acl.action_allowed(
-            request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
-        raise PermissionDenied
     form = MOTDForm(request.POST)
     if form.is_valid():
         set_config('reviewers_review_motd', form.cleaned_data['motd'])
@@ -568,8 +531,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                 Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
             )
 
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
     order_by = request.GET.get('sort', TableObj.default_order_by())
     if hasattr(TableObj, 'translate_sort_cols'):
         order_by = TableObj.translate_sort_cols(order_by)
@@ -587,8 +548,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                   context(request, table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
-                          unlisted=unlisted,
-                          motd_editable=motd_editable))
+                          unlisted=unlisted))
 
 
 def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
@@ -624,17 +584,17 @@ def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
     return {queue: count() for (queue, count) in counts.iteritems()}
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue(request):
     return redirect(reverse('reviewers.queue_pending'))
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue_nominated(request):
     return _queue(request, ViewFullReviewQueueTable, 'nominated')
 
 
-@addons_or_themes_reviewer_required
+@legacy_addons_or_themes_reviewer_required
 def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 
@@ -643,8 +603,6 @@ def queue_pending(request):
 def queue_moderated(request):
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     flags = dict(RatingFlag.FLAGS)
 
@@ -667,8 +625,7 @@ def queue_moderated(request):
                   context(request, reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
-                          point_types=amo.REVIEWED_AMO,
-                          motd_editable=motd_editable))
+                          point_types=amo.REVIEWED_AMO))
 
 
 @unlisted_addons_reviewer_required
@@ -676,7 +633,7 @@ def unlisted_queue(request):
     return redirect(reverse('reviewers.unlisted_queue_all'))
 
 
-@addons_reviewer_required
+@any_reviewer_required
 @post_required
 @json_view
 def application_versions_json(request):
@@ -1106,9 +1063,6 @@ def queue_review_text(request, log_id):
 def reviewlog(request):
     data = request.GET.copy()
 
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-
     if not data.get('start') and not data.get('end'):
         today = date.today()
         data['start'] = date(today.year, today.month, 1)
@@ -1137,8 +1091,7 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    data = context(request, form=form, pager=pager,
-                   motd_editable=motd_editable)
+    data = context(request, form=form, pager=pager)
     return render(request, 'reviewers/reviewlog.html', data)
 
 
