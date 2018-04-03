@@ -3409,8 +3409,8 @@ class TestReview(ReviewBase):
         confirmed_version.update(created=self.days_ago(2))
         confirmed_file = confirmed_version.files.all()[0]
         AutoApprovalSummary.objects.create(
-            verdict=amo.NOT_AUTO_APPROVED, version=confirmed_version,
-            confirmed=True)
+            verdict=amo.NOT_AUTO_APPROVED, version=confirmed_version
+        )
 
         new_version = version_factory(addon=self.addon, version='0.3')
         new_file = new_version.files.all()[0]
