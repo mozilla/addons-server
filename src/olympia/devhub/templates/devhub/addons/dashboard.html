@@ -24,8 +24,13 @@
        class="button prominent">{{ _('Submit a New Add-on') }}</a>
   </p>
   <p class="submit-theme submit-cta">
-    <a href="{{ url('devhub.themes.submit') }}"
+    {% if waffle.switch('disable-lwt-uploads') %}
+    <a href="{{ url('devhub.submit.agreement') }}"
        class="button prominent">{{ _('Submit a New Theme') }}</a>
+    {% else %}
+        <a href="{{ url('devhub.themes.submit') }}"
+       class="button prominent">{{ _('Submit a New Theme') }}</a>
+    {% endif %}
   </p>
   <div class="item recent-activity">
     <h3>

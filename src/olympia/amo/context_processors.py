@@ -3,6 +3,8 @@ from django.contrib.auth.models import AnonymousUser
 from django.utils.http import urlquote
 from django.utils.translation import get_language, get_language_bidi, ugettext
 
+import waffle
+
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
@@ -66,18 +68,22 @@ def global_settings(request):
         if request.user.is_developer:
             tools_links.append({'text': ugettext('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
-        links = [
+        tools_links.append(
             {'text': ugettext('Submit a New Add-on'),
-             'href': reverse('devhub.submit.agreement')},
+             'href': reverse('devhub.submit.agreement')})
+        no_more_lwt = waffle.switch_is_active('disable-lwt-uploads')
+        tools_links.append(
             {'text': ugettext('Submit a New Theme'),
-             'href': reverse('devhub.themes.submit')},
+             'href': reverse('devhub.submit.agreement' if no_more_lwt
+                             else 'devhub.themes.submit')})
+        tools_links.append(
             {'text': ugettext('Developer Hub'),
-             'href': reverse('devhub.index')},
-        ]
-        links.append({'text': ugettext('Manage API Keys'),
-                      'href': reverse('devhub.api_key')})
+             'href': reverse('devhub.index')})
+        tools_links.append(
+            {'text': ugettext('Manage API Keys'),
+             'href': reverse('devhub.api_key')}
+        )
 
-        tools_links += links
         if is_reviewer:
             tools_links.append({'text': ugettext('Reviewer Tools'),
                                 'href': reverse('reviewers.dashboard')})

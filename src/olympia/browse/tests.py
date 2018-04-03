@@ -1176,6 +1176,22 @@ class TestPersonas(TestCase):
         r = self.client.get(self.created_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
 
+    @override_switch('disable-lwt-uploads', active=False)
+    def test_submit_theme_link_lwt_enabled(self):
+        response = self.client.get(self.created_url)
+        doc = pq(response.content)
+        assert doc('div.submit-theme p a').attr('href') == (
+            reverse('devhub.themes.submit')
+        )
+
+    @override_switch('disable-lwt-uploads', active=True)
+    def test_submit_theme_link_lwt_disabled(self):
+        response = self.client.get(self.created_url)
+        doc = pq(response.content)
+        assert doc('div.submit-theme p a').attr('href') == (
+            reverse('devhub.submit.agreement')
+        )
+
 
 class TestStaticThemeRedirects(TestCase):
     fixtures = ['base/category']

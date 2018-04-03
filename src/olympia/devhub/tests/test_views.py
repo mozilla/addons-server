@@ -137,6 +137,22 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
 
+    @override_switch('disable-lwt-uploads', active=False)
+    def test_disable_lwt_uploads_waffle_disabled(self):
+        response = self.client.get(self.themes_url)
+        doc = pq(response.content)
+        assert doc('.submit-theme.submit-cta a').attr('href') == (
+            reverse('devhub.themes.submit')
+        )
+
+    @override_switch('disable-lwt-uploads', active=True)
+    def test_disable_lwt_uploads_waffle_enabled(self):
+        response = self.client.get(self.themes_url)
+        doc = pq(response.content)
+        assert doc('.submit-theme.submit-cta a').attr('href') == (
+            reverse('devhub.submit.agreement')
+        )
+
     def test_show_hide_statistics_and_new_version_for_disabled(self):
         # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
@@ -1422,6 +1438,19 @@ class TestRedirects(TestCase):
         response = self.client.get(url, follow=True)
         self.assert3xx(
             response, reverse('devhub.addons.versions', args=['a3615']), 301)
+
+    @override_switch('disable-lwt-uploads', active=True)
+    def test_lwt_submit_redirects_to_addon_submit(self):
+        url = reverse('devhub.themes.submit')
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.submit.distribution'), 301)
+
+    @override_switch('disable-lwt-uploads', active=False)
+    def test_lwt_submit_no_redirect_when_waffle_offf(self):
+        url = reverse('devhub.themes.submit')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
 
 
 class TestHasCompleteMetadataRedirects(TestCase):
