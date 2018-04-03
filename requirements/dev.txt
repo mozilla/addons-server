@@ -53,9 +53,10 @@ responses==0.8.1 \
 # https://github.com/mozilla/addons-server/issues/5380
 ipdb==0.11 \
     --hash=sha256:7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a
-ipython==5.5.0 \
-    --hash=sha256:578e2f3d779ed130a3cfefc09b2eb965a81457f6a31a25cd38e0bab622d4777d \
-    --hash=sha256:66469e894d1f09d14a1f23b971a410af131daa9ad2a19922082e02e0ddfd150f # pyup: <6.0
+ipython==5.6.0 \
+    --hash=sha256:c3efde0784b422538959a048d63a283f6a73d9cf5ec51b80600a8d382db0d59e \
+    --hash=sha256:d778329d0a12d084e08661ac147df99df8a64ab4400632a886449a9c444f2b6e \
+    --hash=sha256:8ba332d1ac80261e176e737e934fade9b252fc3adb32afc7252ccc9cb249e601 # pyup: <6.0
 # meld3 is required by supervisor
 meld3==1.0.2 \
     --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
