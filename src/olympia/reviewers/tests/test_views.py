@@ -3612,6 +3612,36 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, links, verify=False)
 
+    def test_compare_link_not_auto_approved_but_confirmed(self):
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(3))
+
+        confirmed_version = version_factory(addon=self.addon, version='0.2')
+        confirmed_version.update(created=self.days_ago(2))
+        confirmed_file = confirmed_version.files.all()[0]
+        AutoApprovalSummary.objects.create(
+            verdict=amo.NOT_AUTO_APPROVED, version=confirmed_version
+        )
+
+        new_version = version_factory(addon=self.addon, version='0.3')
+        new_file = new_version.files.all()[0]
+
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert response.context['show_diff']
+        links = doc('#review-files .file-info .compare')
+        # Comparison should be betweeen the last version and the second,
+        # because second was approved by human before auto-approval ran on it
+        expected = [
+            reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
+        ]
+        check_links(expected, links, verify=False)
+
     def test_download_sources_link(self):
         version = self.addon.current_version
         tdir = temp.gettempdir()

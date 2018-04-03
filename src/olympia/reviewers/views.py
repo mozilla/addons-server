@@ -881,8 +881,12 @@ def review(request, addon, channel=None):
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
                 # We're looking for a version that was either manually approved
-                # or auto-approved but then confirmed.
+                # (either it has no auto approval summary, or it has one but
+                # with a negative verdict because it was locked by a reviewer
+                # who then approved it themselves), or auto-approved but then
+                # confirmed.
                 Q(autoapprovalsummary__isnull=True) |
+                Q(autoapprovalsummary__verdict=amo.NOT_AUTO_APPROVED) |
                 Q(autoapprovalsummary__verdict=amo.AUTO_APPROVED,
                   autoapprovalsummary__confirmed=True)
             ).filter(
