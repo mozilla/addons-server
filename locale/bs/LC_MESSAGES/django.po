@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-03 11:41+0000\n"
+"PO-Revision-Date: 2018-04-03 12:11+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3348,7 +3348,7 @@ msgid "Manage Status & Versions"
 msgstr "Upravljanje statusima i verzijama"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Prikaži oglas dodatka"
 
 msgid "View Recent Changes"
 msgstr "Prikaži nedavne promjene"
@@ -3501,13 +3501,13 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "Završili ste! Ova verzija je poslana za pregled. Bićete obaviješteni kada pregled bude gotov ili ako naši recenzenti imaju neko pitanje o vašoj prijavi."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Vaš oglas će biti uspješniji dodavanjem detaljnog opisa. Spremite svoj oglas za objavljivanje:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Vaš oglas će biti uspješniji dodavanjem detaljnog opisa i snimke. Spremite svoj oglas za objavljivanje:"
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Upravljanje oglasima"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
