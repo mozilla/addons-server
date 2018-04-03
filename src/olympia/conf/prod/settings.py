@@ -234,3 +234,7 @@ GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.prod.mozaws.net/api/recommendations/')
+
+FXA_SQS_AWS_QUEUE_URL = (
+    'https://sqs.us-west-2.amazonaws.com/361527076523/'
+    'amo-account-change-prod')

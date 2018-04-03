@@ -136,8 +136,7 @@ class TestProcessSqsQueue(TestCase):
 
         with self.assertRaises(StopIteration):
             utils.process_sqs_queue(
-                queue_url='https://nowh.ere/', aws_region='NARNIA_1',
-                queue_wait_time=20)
+                queue_url='https://nowh.ere/')
 
         client.assert_called()
         process_fxa_event.assert_called()

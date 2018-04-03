@@ -1797,13 +1797,12 @@ RECOMMENDATION_ENGINE_URL = env(
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 
-FXA_SQS_CONFIG = {
-    'aws_region': 'us-east-1',
-    'aws_queue_url': ('https://sqs.us-east-1.amazonaws.com/'
-                      '927034868273/amo-account-change-dev'),
-    'wait_time': 20,
-}
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=None)
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)
+# This is the queue used for addons-dev, so it'll consume events (i.e. process
+# then delete) before you can locally.  If you really need to test get ops to
+# stop the 'monitor_fxa_sqs` command.
+FXA_SQS_AWS_QUEUE_URL = (
+    'https://sqs.us-east-1.amazonaws.com/927034868273/'
+    'amo-account-change-dev')
+FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
