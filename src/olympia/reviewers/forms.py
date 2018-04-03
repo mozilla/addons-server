@@ -344,7 +344,8 @@ class ReviewForm(happyforms.Form):
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
                     channel=amo.RELEASE_CHANNEL_LISTED,
-                    files__status=amo.STATUS_PUBLIC).order_by('created'))
+                    files__status__in=(amo.STATUS_PUBLIC, amo.STATUS_PENDING)).
+                order_by('created'))
 
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
