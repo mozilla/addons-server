@@ -250,3 +250,7 @@ RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
 GITHUB_API_USER = env('GITHUB_API_USER')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
+
+FXA_SQS_AWS_QUEUE_URL = (
+    'https://sqs.us-east-1.amazonaws.com/142069644989/'
+    'amo-account-change-stage')

@@ -109,19 +109,20 @@ def process_fxa_event(raw_body, **kwargs):
             log.debug('Dropping unknown event type %r', event_type)
 
 
-def process_sqs_queue(queue_url, aws_region, queue_wait_time):
+def process_sqs_queue(queue_url):
     log = getLogger('accounts.sqs')
     log.info('Processing account events from %s', queue_url)
     try:
         # Connect to the SQS queue.
-        sqs = boto3.client(
-            'sqs', aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
-            region_name=aws_region)
+        # Credentials are specified in EC2 as an IAM role on prod/stage/dev.
+        # If you're testing locally see boto3 docs for how to specify:
+        # http://boto3.readthedocs.io/en/latest/guide/configuration.html
+        sqs = boto3.client('sqs')
         # Poll for messages indefinitely.
         while True:
             response = sqs.receive_message(
-                QueueUrl=queue_url, WaitTimeSeconds=queue_wait_time,
+                QueueUrl=queue_url,
+                WaitTimeSeconds=settings.FXA_SQS_AWS_WAIT_TIME,
                 MaxNumberOfMessages=10)
             msgs = response.get('Messages', []) if response else []
             for message in msgs:
