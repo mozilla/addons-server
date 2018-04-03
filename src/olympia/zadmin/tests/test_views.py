@@ -74,6 +74,9 @@ class TestHomeAndIndex(TestCase):
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        assert len(modules) == 15  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()
@@ -92,6 +95,11 @@ class TestHomeAndIndex(TestCase):
         self.grant_permission(user, 'Admin:Something')
         response = self.client.get(url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        # Admin:Something doesn't give access to anything, so they can log in
+        # but they don't see any modules.
+        assert len(modules) == 0
 
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
