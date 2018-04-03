@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-30 09:52+0000\n"
+"PO-Revision-Date: 2018-04-03 07:05+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3413,7 +3413,7 @@ msgid "Add-on URL:"
 msgstr "URL dodatka:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Molimo koristite samo slova, brojeve, donje crte i srednje crte u vašem URL-u."
 
 msgid "Summary:"
 msgstr ""
@@ -3422,49 +3422,50 @@ msgid "required"
 msgstr ""
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Ovaj dodatak je eksperimentalan"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Označite ovu opciju ako je vaš dodatak eksperimentalan ili inače nije spreman za opću upotrebu.  Dodatak će biti na listi, ali će imati manju vidljivost.  Možete promijeniti ovu postavku kasnije."
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "Odaberite kategoriju za ovaj dodatak:"
 
 msgid "Support email:"
-msgstr ""
+msgstr "Email podrške:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "Stranica podrške:"
 
 msgid "License:"
 msgstr ""
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Molimo vas da odaberete licencu koja odgovara pravima koja dodjeljujete."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Ako vaš dodatak prenosi bilo kakve podatke s računara korisnika, potrebna je politika privatnosti koja objašnjava koji podaci su poslani i kako se koriste."
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Napomene za recenzenta:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Postoji li nešto što bi naši recenzenti trebali imati na umu kada pregledaju ovaj dodatak?"
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Ove napomene će biti vidljive samo vama i našim recenzentima."
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Otkažite i onemogućite verziju"
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Pošaljite verziju"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "Opišite verziju"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Napomene o izdanju:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
