@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-03 11:06+0000\n"
+"PO-Revision-Date: 2018-04-03 11:22+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2876,7 +2876,7 @@ msgid "Activity"
 msgstr "Aktivitet"
 
 msgid "Subscribe to this feed"
-msgstr "Abonner på denne kanalen"
+msgstr "Abonner på denne RSS-kjelda"
 
 #, python-format
 msgid ""
