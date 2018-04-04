@@ -113,11 +113,12 @@ def process_sqs_queue(queue_url):
     log = getLogger('accounts.sqs')
     log.info('Processing account events from %s', queue_url)
     try:
+        region = queue_url.split('.')[1]
         # Connect to the SQS queue.
         # Credentials are specified in EC2 as an IAM role on prod/stage/dev.
         # If you're testing locally see boto3 docs for how to specify:
         # http://boto3.readthedocs.io/en/latest/guide/configuration.html
-        sqs = boto3.client('sqs')
+        sqs = boto3.client('sqs', region_name=region)
         # Poll for messages indefinitely.
         while True:
             response = sqs.receive_message(

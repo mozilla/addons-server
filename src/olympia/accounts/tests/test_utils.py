@@ -136,9 +136,12 @@ class TestProcessSqsQueue(TestCase):
 
         with self.assertRaises(StopIteration):
             utils.process_sqs_queue(
-                queue_url='https://nowh.ere/')
+                queue_url='https://sqs.nowh-ere.aws.com/123456789/')
 
         client.assert_called()
+        client.assert_called_with(
+            'sqs', region_name='nowh-ere'
+        )
         process_fxa_event.assert_called()
         # The 'None' in messages would cause an exception, but it should be
         # handled, and the remaining message(s) still processed.
@@ -146,7 +149,8 @@ class TestProcessSqsQueue(TestCase):
             [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')])
         delete_mock.assert_called_once()  # Receipt handle is present in foo.
         delete_mock.assert_called_with(
-            QueueUrl='https://nowh.ere/', ReceiptHandle='$$$')
+            QueueUrl='https://sqs.nowh-ere.aws.com/123456789/',
+            ReceiptHandle='$$$')
 
 
 def totimestamp(datetime_obj):
