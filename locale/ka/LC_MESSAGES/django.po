@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-01 20:18+0000\n"
+"PO-Revision-Date: 2018-04-04 17:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1772,10 +1772,10 @@ msgid "Review requested"
 msgstr "საჭიროებს განხილვას"
 
 msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "{addon} {version} საჭიროებს მეტი მონაცემების მითითებას."
 
 msgid "More information requested"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "საჭიროა მეტი მონაცემების მითითება"
 
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
@@ -2693,7 +2693,7 @@ msgstr "Mozilla-ს მიერ დამოწმებული გაფა�
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "სურათის ზომა არ უნდა აღემატებოდეს %dKB-ს."
+msgstr "სურათის მოცულობა არ უნდა აღემატებოდეს %dKB-ს."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
@@ -2721,7 +2721,7 @@ msgid "Review requested."
 msgstr "საჭიროებს განხილვას."
 
 msgid "You must provide further details to proceed."
-msgstr "გასაგრძელებლად, მეტი ინფორმაციის მითითებაა საჭირო."
+msgstr "გასაგრძელებლად, მეტი მონაცემების მითითებაა საჭირო."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "თქვენი ძველი მონაცემები გაუქმებულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
@@ -4356,7 +4356,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "მოიძიეთ სურათების წყაროები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "საინტერესო სურათი ნახეთ და გსურთ მეტი ინფორმაცია გაიგოთ მის შესახებ? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
+msgstr "საინტერესო სურათი ნახეთ და გსურთ მეტი ინფორმაცია მონახოთ მასზე? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -4429,7 +4429,7 @@ msgid "Invalid file name in archive: {0}"
 msgstr "ფაილის უმართებულო სახელი არქივში: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr "ფაილის ზომა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
+msgstr "ფაილის მოცულობა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
 msgid "Invalid archive."
 msgstr "უმართებულო არქივი."
@@ -4553,7 +4553,7 @@ msgstr "ეს ფაილი აღარ არსებობს."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr "ფაილის ზომა აჭარბებს {0} ზღვარს."
+msgstr "ფაილის მოცულობა აჭარბებს {0} ზღვარს."
 
 msgid "Problems decoding {0}."
 msgstr "ხარვეზი {0}-ის გაშიფვრისას."
@@ -6065,7 +6065,7 @@ msgid "Jetpack Add-on"
 msgstr "Jetpack დამატება"
 
 msgid "More Information Requested"
-msgstr "საჭიროა მეტი ინფორმაცია"
+msgstr "საჭიროა მეტი მონაცემების მითითება"
 
 msgid "Expired Information Request"
 msgstr "მონაცემების ვადაგასული მოთხოვნა"
