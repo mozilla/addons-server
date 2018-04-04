@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-04 16:22+0000\n"
+"PO-Revision-Date: 2018-04-04 16:37+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -770,7 +770,7 @@ msgstr "Ops"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparera det snart.</p> <p> Du kan prøva å oppdatera sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
+msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Nokre rettar med atterhald"
