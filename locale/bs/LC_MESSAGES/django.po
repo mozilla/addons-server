@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-03 13:16+0000\n"
+"PO-Revision-Date: 2018-04-04 06:27+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3513,28 +3513,28 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr "Također možete urediti ovu verziju da dodate napomene o verziji ili izvorni kod ako vaš podnesak uključuje umanjen, nečitljiv ili sastavljen kod."
 
 msgid "Edit version {0}"
-msgstr ""
+msgstr "Uredi verziju {0}"
 
 msgid "File Signed"
 msgstr ""
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Završili ste! Ova datoteka je potpisana i spremna je za samodistribuciju. Možete je preuzeti klikom na dugme ispod."
 
 msgid "Version Signed"
-msgstr ""
+msgstr "Verzija potpisana"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Završili ste! Ova verzija je potpisana i spremna je za samodistribuciju. Možete je preuzeti klikom na dugme ispod."
 
 msgid "Download {0}"
 msgstr ""
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Odabrali ste samo neke od dostupnih platformi za ovo podnošenje. Možete učitati više datoteka koje su usmjerene na druge platforme:"
 
 msgid "Upload File"
-msgstr ""
+msgstr "Učitaj datoteku"
 
 msgid "Go to My Submissions"
 msgstr ""
