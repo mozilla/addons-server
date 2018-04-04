@@ -122,14 +122,18 @@ def test_redirect_for_login(default_fxa_login_url):
 
 class TestProcessSqsQueue(TestCase):
 
+    @mock.patch('boto3._get_default_session')
     @mock.patch('olympia.accounts.utils.process_fxa_event')
     @mock.patch('boto3.client')
-    def test_process_sqs_queue(self, client, process_fxa_event):
+    def test_process_sqs_queue(self, client, process_fxa_event, get_session):
         messages = [
             {'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}, None,
             {'Body': 'thisonetoo'}]
         sqs = mock.MagicMock(
             **{'receive_message.side_effect': [{'Messages': messages}]})
+        session_mock = mock.MagicMock(
+            **{'get_available_regions.side_effect': ['nowh-ere']})
+        get_session.return_value = session_mock
         delete_mock = mock.MagicMock()
         sqs.delete_message = delete_mock
         client.return_value = sqs

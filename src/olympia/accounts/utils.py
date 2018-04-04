@@ -114,6 +114,11 @@ def process_sqs_queue(queue_url):
     log.info('Processing account events from %s', queue_url)
     try:
         region = queue_url.split('.')[1]
+        available_regions = (boto3._get_default_session()
+                             .get_available_regions('sqs'))
+        if region not in available_regions:
+            log.error('SQS misconfigured, expected region, got %s from %s' % (
+                region, queue_url))
         # Connect to the SQS queue.
         # Credentials are specified in EC2 as an IAM role on prod/stage/dev.
         # If you're testing locally see boto3 docs for how to specify:
