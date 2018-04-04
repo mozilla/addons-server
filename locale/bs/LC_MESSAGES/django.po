@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-04 06:27+0000\n"
+"PO-Revision-Date: 2018-04-04 12:31+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3540,46 +3540,46 @@ msgid "Go to My Submissions"
 msgstr ""
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Sporazum o distribuciji dodatka"
 
 msgid "Upload Add-on"
-msgstr ""
+msgstr "Učitaj dodatak"
 
 msgid "Where to Host File"
-msgstr ""
+msgstr "Gdje hostati datoteku"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Gdje hostati verziju"
 
 msgid "Upload Version"
-msgstr ""
+msgstr "Učitaj verziju"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Koristite polja ispod da učitate vaš paket dodatka. Nakon učitavanja, niz automatskih testova validacije će biti pokrenuti za vašu datoteku."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "S kojim platformama je ova datoteka kompatibilna?"
 
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Objavite ovu verziju samo za moj beta kanal."
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Administrativna prekoračenja"
 
 msgid "Create a Theme Version"
-msgstr ""
+msgstr "Kreirajte verziju teme"
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Kreirajte temu"
 
 msgid "Submit File"
-msgstr ""
+msgstr "Pošalji datoteku"
 
 msgid "Sign Add-on"
-msgstr ""
+msgstr "Potpiši dodatak"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Generisati temu"
 
 msgid "Theme generator"
 msgstr ""
@@ -3588,31 +3588,31 @@ msgid "Theme name"
 msgstr ""
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Odaberite sliku zaglavlja za vašu temu"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Visina slike treba biti 200 piksela"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ili GIF (neanimiran)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Poravnato sa gornjom-desnom stranom"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Odaberite drugačiju sliku zaglavlja"
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "Odaberite boje za vašu temu"
 
 msgid "Header area background"
-msgstr ""
+msgstr "Pozadina područja zaglavlja"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
+msgstr "Boja pozadine područja zaglavlja, prikazana u dijelu zaglavlja nije pokrivena ili vidljiva kroz sliku zaglavlja. Polje manifesta:  accentcolor."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Tekst i ikone područja zaglavlja"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
