@@ -168,9 +168,9 @@ djangorestframework==3.6.4 \
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
-dockerflow==2018.2.1 \
-    --hash=sha256:93799cbd5abaf1d16c86dc5cee1bf64aee4fefc05d7077bae20591c76a510edd \
-    --hash=sha256:6cd795a00b739d7fb62b1394e2d6f95294e0ccd4f9e233e5c456a34cca9f0c8a
+dockerflow==2018.4.0 \
+    --hash=sha256:388d02c557968e6957140f7b82f669eac70adf5f570bc7705aa749d220a2e535 \
+    --hash=sha256:2ea52a904abfda3430ff4f1effc164863b30d2b69f7ecbf92dd672860b0ec423
 drf-nested-routers==0.90.2 \
     --hash=sha256:a4d97de1be554f5db3fd11c881f578d10a3e1324b6e99be1749a11c7248d3360 \
     --hash=sha256:52cbc4900e3ccd652bfb73017ff466d7b3e4d99838c912c250d75763b32669af
