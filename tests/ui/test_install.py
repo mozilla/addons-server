@@ -10,7 +10,7 @@ def test_addon_install(
     """Test that navigates to an addon and installs it."""
     selenium.get('{}/addon/ui-test-install'.format(base_url))
     addon = Detail(selenium, base_url)
-    assert 'Ui-Addon-Install' in addon.name
+    assert 'My WebExtension Addon' in addon.name
     addon.install()
     firefox.browser.wait_for_notification(
         firefox_notifications.AddOnInstallBlocked).allow()

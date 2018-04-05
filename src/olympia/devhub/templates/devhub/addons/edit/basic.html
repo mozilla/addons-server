@@ -19,7 +19,7 @@
           <tr>
             <th><label data-for="name">{{ _("Name") }}</label></th>
             <td>
-              {% if editable %}
+              {% if editable and not waffle.flag('import-metadata-from-package') %}
                 {{ form.name }}
                 {{ form.name.errors }}
               {% else %}
@@ -55,7 +55,7 @@
               </label>
             </th>
             <td>
-              {% if editable %}
+              {% if editable and not waffle.flag('import-metadata-from-package') %}
                 {{ form.summary }}
                 {{ form.summary.errors }}
                 <div class="char-count"

@@ -23,7 +23,8 @@ from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.amo.utils import (
+    translations_for_field, utc_millesecs_from_epoch)
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
@@ -874,6 +875,73 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             self.upload, self.addon, [self.platform],
             amo.RELEASE_CHANNEL_LISTED)
         assert upload_version.nomination == pending_version.nomination
+
+    @mock.patch('olympia.addons.models.extract_translations')
+    def test_new_version_with_localized_name_and_summary(self,
+                                                         extract_translations):
+        extract_translations.return_value = {
+            'en-US': {
+                'extensionName': {
+                    'message': 'Localized name in en-US'
+                },
+                'extensionDescription': {
+                    'message': 'Localized summary in en-US'
+                }
+            }
+        }
+
+        self.addon.update(guid='notify-link-clicks-i18n@notzilla.org')
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        version = Version.from_upload(self.upload, self.addon, [self.platform],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      needs_import_metadata=True)
+        version.save()
+
+        translations = translations_for_field(self.addon.name)
+        for (locale, localized_string) in translations.items():
+            assert localized_string == 'Localized name in %s' % locale
+
+        translations = translations_for_field(self.addon.summary)
+        for (locale, localized_string) in translations.items():
+            assert localized_string == 'Localized summary in %s' % locale
+
+    @mock.patch('olympia.addons.models.extract_translations')
+    def test_merge_localized_name_and_summary(self, extract_translations):
+        extract_translations.return_value = {
+            'en-US': {
+                'extensionName': {
+                    'message': 'Localized name in en-US'
+                },
+                'extensionDescription': {
+                    'message': 'Localized summary in en-US'
+                }
+            }
+        }
+
+        self.addon.update(guid='notify-link-clicks-i18n@notzilla.org')
+        self.addon.name = {
+            'en-US': 'Initial name in en-US',
+            'es': 'Initial name in es'
+        }
+        self.addon.summary = {
+            'en-US': 'Initial summary in en-US',
+            'de': 'Initial summary in de'
+        }
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        version = Version.from_upload(self.upload, self.addon, [self.platform],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      needs_import_metadata=True)
+        version.save()
+
+        translations = translations_for_field(self.addon.name)
+        assert sorted(translations.keys()) == ['en-US', 'es']
+        assert translations['en-US'] == 'Localized name in en-US'
+        assert translations['es'] == 'Initial name in es'
+
+        translations = translations_for_field(self.addon.summary)
+        assert sorted(translations.keys()) == ['de', 'en-US']
+        assert translations['en-US'] == 'Localized summary in en-US'
+        assert translations['de'] == 'Initial summary in de'
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):

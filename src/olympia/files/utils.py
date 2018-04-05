@@ -796,7 +796,8 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, minimal=False):
+def parse_xpi(xpi, addon=None, minimal=False,
+              needs_validate_translations=False):
     """Extract and parse an XPI. Returns a dict with various properties
     describing the xpi.
 
@@ -806,6 +807,9 @@ def parse_xpi(xpi, addon=None, minimal=False):
     ValidationError for hard errors like I/O or invalid json/rdf) and returns
     only the minimal set of properties needed to decide what to do with the
     add-on: guid, version and is_webextension.
+
+    If needs_validate_translations is True, translated names and summaries are
+    validated to conform AMO restrictions.
     """
     try:
         xpi = get_file(xpi)
@@ -827,10 +831,30 @@ def parse_xpi(xpi, addon=None, minimal=False):
 
     if minimal:
         return xpi_info
-    return check_xpi_info(xpi_info, addon, xpi)
+    return check_xpi_info(
+        xpi_info, addon, xpi,
+        needs_validate_translations=needs_validate_translations)
 
 
-def check_xpi_info(xpi_info, addon=None, xpi_file=None):
+def validate_translations(translations):
+    if isinstance(translations['name'], dict):
+        for locale, localized_name in translations['name'].items():
+            if len(localized_name) > 50:
+                msg = ugettext(
+                    'Localized name (%s) should have fewer than 50 '
+                    'characters.')
+                raise forms.ValidationError(msg % locale)
+    if isinstance(translations['summary'], dict):
+        for locale, localized_summary in translations['summary'].items():
+            if len(localized_summary) > 500:
+                msg = ugettext(
+                    'Localized summary (%s) should have fewer than 500 '
+                    'characters.')
+                raise forms.ValidationError(msg % locale)
+
+
+def check_xpi_info(xpi_info, addon=None, xpi_file=None,
+                   needs_validate_translations=False):
     from olympia.addons.models import Addon, DeniedGuid
     guid = xpi_info['guid']
     is_webextension = xpi_info.get('is_webextension', False)
@@ -886,10 +910,14 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
             xpi_info.copy(), xpi_file)
         verify_mozilla_trademark(translations['name'], core.get_user())
 
+        if needs_validate_translations:
+            validate_translations(translations)
+
     return xpi_info
 
 
-def parse_addon(pkg, addon=None, minimal=False):
+def parse_addon(pkg, addon=None, minimal=False,
+                needs_validate_translations=False):
     """
     Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
     with various properties describing the add-on.
@@ -901,12 +929,17 @@ def parse_addon(pkg, addon=None, minimal=False):
     only the minimal set of properties needed to decide what to do with the
     add-on (the exact set depends on the add-on type, but it should always
     contain at least guid, type, version and is_webextension.
+
+    If needs_validate_translations is True, translated names and summaries are
+    validated to conform AMO restrictions.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
-        parsed = parse_xpi(pkg, addon, minimal=minimal)
+        parsed = parse_xpi(
+            pkg, addon, minimal=minimal,
+            needs_validate_translations=needs_validate_translations)
 
     if not minimal and addon and addon.type != parsed['type']:
         msg = ugettext(
