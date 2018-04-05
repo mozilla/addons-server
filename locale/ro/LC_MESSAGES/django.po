@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-18 01:24+0000\n"
+"PO-Revision-Date: 2018-04-05 11:17+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -604,7 +604,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "Acest supliment poate:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
