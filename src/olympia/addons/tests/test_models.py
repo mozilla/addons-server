@@ -24,7 +24,7 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
     Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
-    FrozenAddon, IncompatibleVersions, Persona, Preview,
+    FrozenAddon, IncompatibleVersions, MigratedLWT, Persona, Preview,
     track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
@@ -3097,3 +3097,24 @@ class TestAddonApprovalsCounter(TestCase):
         assert approval_counter.counter == 42
         self.assertCloseToNow(
             approval_counter.last_human_review, now=self.days_ago(10))
+
+
+class TestMigratedLWTModel(TestCase):
+    def setUp(self):
+        self.lwt = addon_factory(type=amo.ADDON_PERSONA)
+        self.lwt.persona.persona_id = 999
+        self.lwt.persona.save()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        MigratedLWT.objects.create(
+            lightweight_theme=self.lwt,
+            static_theme=self.static_theme)
+
+    def test_addon_id_lookup(self):
+        match = MigratedLWT.objects.get(lightweight_theme=self.lwt)
+        assert match.static_theme == self.static_theme
+        match = MigratedLWT.objects.get(lightweight_theme_id=self.lwt.id)
+        assert match.static_theme == self.static_theme
+
+    def test_getpersonas_id_lookup(self):
+        match = MigratedLWT.objects.get(getpersonas_id=999)
+        assert match.static_theme == self.static_theme
