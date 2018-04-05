@@ -111,7 +111,7 @@ CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
-    'adi.updatecountsfromfile': {'level': logging.INFO},
+    'adi.updatecounts': {'level': logging.INFO},
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
