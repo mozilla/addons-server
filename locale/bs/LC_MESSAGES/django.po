@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-04 12:33+0000\n"
+"PO-Revision-Date: 2018-04-06 05:49+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3624,28 +3624,28 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "Boja pozadine za navigacijsku traku, traku zabilješki i odabranih tabova.  Polje manifesta:  toolbar."
 
 msgid "Toolbar area text icons"
-msgstr ""
+msgstr "Tekst ikone područja alatne trake"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
+msgstr "Boja teksta i ikona u alatnoj traci i aktivnom tabu. Polje manifesta:  toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Pozadina područja polja alatne trake"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Boja pozadine za polja u alatnoj traci, kao što je URL traka. Polje manifesta:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Tekst područja polja alatne trake"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Boja teksta u poljima u alatnoj traci, kao što je URL traka. Polje manifesta:  toolbar_field_text."
 
 msgid "optional"
-msgstr ""
+msgstr "opcionalno"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Pregled browsera"
 
 msgid "Back"
 msgstr ""
@@ -3661,13 +3661,13 @@ msgstr ""
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Za detaljna uputstva, pročitajte <a href=\"%(docs_url)s\">API dokumentaciju</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Čuvajte vaše API ključeve tajnim i <strong>ne dijelite ih ni sa kim</strong>, uključujući i Mozilla doprinosioce."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT izdavač"
 
 msgid "JWT secret"
 msgstr ""
@@ -3677,9 +3677,11 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Da napravite API zahtjev, pošaljite <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> kao zaglavlje autorizacije. Trebat ćete generisati JWT za svaki zahtjev kao što je objašnjeno u <a "
+"href=\"%(docs_url)s\">API dokumentaciji</a>."
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Nemate nikakvih API akreditiva."
 
 msgid "Revoke"
 msgstr ""
