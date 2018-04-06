@@ -12,16 +12,12 @@ EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
 EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
 EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
-EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST')
-EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST')
 
 SEND_REAL_EMAIL = True
 
 ENV = env('ENV')
 
 API_THROTTLE = False
-
-REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
 CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
@@ -34,12 +30,6 @@ MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
-# Filter IP addresses of allowed clients that can post email through the API.
-ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
-# Auth token required to authorize inbound email.
-INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
-# Validation key we need to send in POST response.
-INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
@@ -94,13 +84,8 @@ CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SECRET_KEY = env('SECRET_KEY')
-
-
 # Celery
-CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
-CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 LOGGING['loggers'].update({
     'adi.updatecountsfromfile': {'level': logging.INFO},
@@ -125,25 +110,11 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
-# Old recaptcha V1
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-# New Recaptcha V2
-NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
-NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
-
-RESPONSYS_ID = env('RESPONSYS_ID')
-
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_%s' % (v, ENV)) for k, v in ES_INDEXES.items())
 
-STATSD_HOST = env('STATSD_HOST')
-STATSD_PREFIX = env('STATSD_PREFIX')
-
-GRAPHITE_HOST = env('GRAPHITE_HOST')
-GRAPHITE_PREFIX = env('GRAPHITE_PREFIX')
 
 CEF_PRODUCT = STATSD_PREFIX
 
@@ -158,10 +129,6 @@ XSENDFILE_HEADER = 'X-Accel-Redirect'
 ALLOW_SELF_REVIEWS = False
 
 GEOIP_URL = 'https://geo.services.mozilla.com'
-
-AES_KEYS = env.dict('AES_KEYS')
-
-SENTRY_DSN = env('SENTRY_DSN')
 
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
@@ -214,14 +181,10 @@ VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10
 
-READ_ONLY = env.bool('READ_ONLY', default=False)
-
 RAVEN_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
 RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
-GITHUB_API_USER = env('GITHUB_API_USER')
-GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',

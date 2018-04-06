@@ -84,7 +84,6 @@ TASK_USER_ID = 10968
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
 
-
 AES_KEYS = {
     'api_key:secret': os.path.join(
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
@@ -139,10 +138,6 @@ CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
-
-# For the Github webhook API.
-GITHUB_API_USER = ''
-GITHUB_API_TOKEN = ''
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

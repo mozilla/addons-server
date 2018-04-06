@@ -346,7 +346,9 @@ SUPPORTED_NONLOCALES = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
+SECRET_KEY = env(
+    'SECRET_KEY',
+    default='this-is-a-dummy-key-and-its-overridden-for-prod-servers')
 
 # Templates
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
@@ -1032,7 +1034,7 @@ NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
-REDIRECT_SECRET_KEY = ''
+REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
@@ -1066,13 +1068,10 @@ DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Please use all lowercase for the deny_list.
-EMAIL_DENY_LIST = (
-    'nobody@mozilla.org',
-)
-
 # Please use all lowercase for the QA allow list.
-EMAIL_QA_ALLOW_LIST = ()
+EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST', default=())
+# Please use all lowercase for the deny_list.
+EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST', default=('nobody@mozilla.org',))
 
 # URL for Add-on Validation FAQ.
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
@@ -1080,14 +1079,17 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-CELERY_BROKER_URL = os.environ.get(
+CELERY_BROKER_URL = env(
     'CELERY_BROKER_URL',
-    'amqp://olympia:olympia@localhost:5672/olympia')
+    default=os.environ.get(
+        'CELERY_BROKER_URL', 'amqp://olympia:olympia@localhost:5672/olympia'))
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_BROKER_HEARTBEAT = 60 * 15
 CELERY_TASK_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get(
-    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
+CELERY_RESULT_BACKEND = env(
+    'CELERY_RESULT_BACKEND',
+    default=os.environ.get(
+        'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1'))
 
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -1398,7 +1400,7 @@ CSP_STYLE_SRC = (
 ENGAGE_ROBOTS = True
 
 # Read-only mode setup.
-READ_ONLY = False
+READ_ONLY = env.bool('READ_ONLY', default=False)
 
 
 # Turn on read-only mode in local_settings.py by putting this line
@@ -1433,8 +1435,12 @@ MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
-NOBOT_RECAPTCHA_PUBLIC_KEY = ''
-NOBOT_RECAPTCHA_PRIVATE_KEY = ''
+# Old recaptcha V1
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY', default='')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY', default='')
+# New Recaptcha V2
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY', default='')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
@@ -1474,6 +1480,8 @@ REDIS_BACKEND = REDIS_LOCATION
 REDIS_BACKENDS = {
     'master': get_redis_settings(REDIS_LOCATION)
 }
+
+RESPONSYS_ID = env('RESPONSYS_ID', default=None)
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1537,16 +1545,16 @@ TASK_USER_ID = 4757633
 # use a fake email backend.
 SEND_REAL_EMAIL = False
 
-STATSD_HOST = 'localhost'
+STATSD_HOST = env('STATSD_HOST', default='localhost')
+STATSD_PREFIX = env('STATSD_PREFIX', default='amo')
 STATSD_PORT = 8125
-STATSD_PREFIX = 'amo'
 
 # The django statsd client to use, see django-statsd for more.
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
-GRAPHITE_HOST = 'localhost'
+GRAPHITE_HOST = env('GRAPHITE_HOST', default='localhost')
+GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
 GRAPHITE_PORT = 2003
-GRAPHITE_PREFIX = 'amo'
 GRAPHITE_TIMEOUT = 1
 
 # IP addresses of servers we use as proxies.
@@ -1622,10 +1630,6 @@ LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
-# Whitelist IP addresses of the allowed clients that can post email
-# through the API.
-ALLOWED_CLIENTS_EMAIL_API = []
-
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
 
@@ -1662,9 +1666,8 @@ GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
-AES_KEYS = {
-    # 'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
-}
+# {'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),}
+AES_KEYS = env.dict('AES_KEYS', default={})
 
 # Time in seconds for how long a JWT auth token created by developers with
 # their API key can live. When developers are creating auth tokens they cannot
@@ -1726,9 +1729,8 @@ REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
 }
 
-# This is the DSN to the local Sentry service. It might be overridden in
-# site-specific settings files as well.
-SENTRY_DSN = os.environ.get('SENTRY_DSN')
+# This is the DSN to the Sentry service.
+SENTRY_DSN = env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN'))
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (
@@ -1799,3 +1801,7 @@ FXA_SQS_AWS_QUEUE_URL = (
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
+
+# For the Github webhook API.
+GITHUB_API_USER = env('GITHUB_API_USER', default='')
+GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
