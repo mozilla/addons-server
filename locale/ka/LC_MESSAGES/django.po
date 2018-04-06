@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-05 15:32+0000\n"
+"PO-Revision-Date: 2018-04-06 06:58+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1233,10 +1233,10 @@ msgid "Make Owner"
 msgstr "მფლობელობის გადაცემა"
 
 msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის მოხალისეებიდან ამოღება"
+msgstr "ამ მომხმარებლის მოხალისეებიდან ამოშლა"
 
 msgid "Remove"
-msgstr "ამოღება"
+msgstr "ამოშლა"
 
 msgid "Collection Contributors"
 msgstr "კრებულის წვლილის შემომტანები"
@@ -1270,7 +1270,7 @@ msgid "Admin Settings"
 msgstr "ადმინისტრირების პარამეტრები"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>გაფრთხილება:</b> კრებულის მფლობელის შეცვლით, შესაძლოა დაკარგოთ ჩასწორების შესაძლებლობა. მხოლოდ, დამატებების შეტანა ან ამოღება შეგეძლებათ."
+msgstr "<b>გაფრთხილება:</b> კრებულის მფლობელის შეცვლით, შესაძლოა დაკარგოთ ჩასწორების შესაძლებლობა. მხოლოდ, დამატებების შეტანა ან ამოშლა შეგეძლებათ."
 
 msgid "Continue"
 msgstr "გაგრძელება"
@@ -1279,7 +1279,7 @@ msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "ან <a id=\"change-owner-cancel\" href=\"#\">გაუქმება</a>"
 
 msgid "Remove from favorites"
-msgstr "რჩეულებიდან ამოღება"
+msgstr "რჩეულებიდან მოცილება"
 
 msgid "Add to favorites"
 msgstr "რჩეულებში დამატება"
@@ -1900,7 +1900,7 @@ msgid "User {0.name} added to {group}."
 msgstr "მომხმარებელი {0.name} დაემატა {group}-ში."
 
 msgid "User {0.name} removed from {group}."
-msgstr "მომხამრებელი {0.name} წაიშალა {group}-იდან."
+msgstr "მომხმარებელი {0.name} ამოშლილია {group}-იდან."
 
 msgid "{addon} unlisted."
 msgstr "{addon} გამოუქვეყნებელია."
@@ -3153,7 +3153,7 @@ msgstr ""
 "მისათითებლად. არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
 
 msgid "Remove this dependent add-on"
-msgstr "დაქვემდებარებული დამატების წაშლა"
+msgstr "დაქვემდებარებული დამატების ამოშლა"
 
 msgid "Enter the name of an add-on"
 msgstr "დამატების სახელის მითითება"
@@ -3770,7 +3770,7 @@ msgid "Some HTML supported."
 msgstr "მხარდაჭერილია ზოგიერთი HTML ელემენტი."
 
 msgid "Remove this application"
-msgstr "პროგრამის წაშლა"
+msgstr "პროგრამის ამოშლა"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -5726,7 +5726,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr "მონახეთ Plugin Safety დამატებების ჩამონათვალში."
 
 msgid "Click the remove button."
-msgstr "დააწკაპეთ წაშლის ღილაკზე."
+msgstr "დააწკაპეთ ამოშლის ღილაკზე."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr "თუ დროზე ადრე გსურთ კვლევის დატოვება, გთხოვთ მიიღოთ მონაწილეობა გამოკითხვაში. ჩვენ მაინც გვსურს მოვისმინოთ თქვენი მოსაზრება, მიუხედავად იმისა, დარჩებით თუ არა მონაწილედ, კვლევის ბოლომდე."
