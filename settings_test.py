@@ -17,6 +17,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CELERY_TASK_ALWAYS_EAGER = True
+DEBUG = False
 
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
@@ -57,6 +58,8 @@ TASK_USER_ID = 1337
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 1
 
+# Set to True if we're allowed to use X-SENDFILE.
+XSENDFILE = True
 
 # Don't enable the signing by default in tests, many would fail trying to sign
 # empty or bad zip files, or try posting to the endpoints. We don't want that.
