@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 06:03+0000\n"
+"PO-Revision-Date: 2018-04-06 06:30+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3716,25 +3716,25 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Višeprocesni status dodatka:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Kompatibilnost vašeg dodatka sa višeprocesnim Firefoxom (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Prikazan na ovoj stranici nakon prolaska pregleda koda. Automatska ažuriranja su podržana od ove stranice."
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Objavljena verzija:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "Ovo je verzija vašeg dodatka koja će biti instalirana ako neko klikne na dugme instalacije na addons.mozilla.org."
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Sljedeća objavljena verzija:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Ovo je najnovija verzija, koja još nije dostupna na stranici za preuzimanje."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
