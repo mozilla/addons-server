@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-02 20:11+0000\n"
+"PO-Revision-Date: 2018-04-06 13:05+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3238,9 +3238,8 @@ msgid ""
 msgstr ""
 
 # 75%
-#, fuzzy
 msgid "Required Add-ons"
-msgstr "Suositellut lisäosat"
+msgstr "Vaaditut lisäosat"
 
 msgid "Limit 3"
 msgstr ""
@@ -3524,13 +3523,11 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
 msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Lisää uusi lisäosa"
+msgstr "Lisää uusi tiedosto"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Lisää uusi lisäosa"
+msgstr "Lisää uusi versio"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3545,9 +3542,8 @@ msgstr "Lisäosa"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
-#, fuzzy
 msgid "Summary:"
-msgstr "Yhteenveto"
+msgstr "Yhteenveto:"
 
 msgid "required"
 msgstr "vaaditaan"
@@ -3581,9 +3577,8 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Ei tarkastettu"
+msgstr "Huomiot tarkastajalle:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3654,9 +3649,8 @@ msgstr "Muuta asetuksia."
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Beetaversio {0}"
+msgstr "Muokkaa versiota {0}"
 
 #, fuzzy
 msgid "File Signed"
@@ -3722,9 +3716,8 @@ msgstr ""
 msgid "Create a Theme Version"
 msgstr "Suositellut teemat"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Suositellut teemat"
+msgstr "Luo teema"
 
 #, fuzzy
 msgid "Submit File"
@@ -3743,9 +3736,8 @@ msgstr "Teema poistettu."
 msgid "Theme generator"
 msgstr "Teema poistettu."
 
-#, fuzzy
 msgid "Theme name"
-msgstr "Teema poistettu."
+msgstr "Teeman nimi"
 
 msgid "Select a header image for your theme"
 msgstr ""
@@ -3801,13 +3793,11 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(valinnainen)"
+msgstr "valinnainen"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Kirjoita arvio"
+msgstr "Esikatselu selaimessa"
 
 msgid "Back"
 msgstr ""
@@ -4000,7 +3990,7 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Latest News"
-msgstr ""
+msgstr "Viimeisimmät uutiset"
 
 msgid "Read more in our Blog"
 msgstr ""
@@ -4015,9 +4005,8 @@ msgstr "Arvosana"
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Community"
-msgstr "Kommentoi"
+msgstr "Yhteisö"
 
 msgid "About"
 msgstr "Tietoja"
@@ -4029,9 +4018,8 @@ msgstr "Keskustelu"
 msgid "Blog"
 msgstr "Blogi"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "Yhteystiedot"
+msgstr "Ota yhteyttä"
 
 msgid "Support"
 msgstr "Tuki"
@@ -4046,9 +4034,8 @@ msgstr "Lisäosakäytännöt"
 msgid "FAQ"
 msgstr "UKK"
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "Ilmoita väärinkäyttö"
+msgstr "Ilmoita virhe"
 
 msgid "Site Status"
 msgstr "Sivuston tila"
@@ -4169,16 +4156,14 @@ msgid "Docs"
 msgstr ""
 
 # 81%
-#, fuzzy
 msgid "Sign Out"
-msgstr "Lisää lisäosa"
+msgstr "Kirjaudu ulos"
 
 msgid "No Photo"
 msgstr "Ei kuvaa"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Poista käyttäjäkuva"
+msgstr "Käyttäjän valokuva"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4530,13 +4515,11 @@ msgstr ""
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Beetaversio {0}"
+msgstr "Muut versiot"
 
-#, fuzzy
 msgid "All versions"
-msgstr "Näytä kaikki versiot"
+msgstr "Kaikki versiot"
 
 msgid "Upload a New Version"
 msgstr ""
@@ -6083,9 +6066,8 @@ msgstr[1] "Käyttäjän %(user)s arviot lisäosalle %(addon)s"
 
 # 76%
 # 100%
-#, fuzzy
 msgid "No reviews found."
-msgstr "Osumia ei löytynyt."
+msgstr "Arviointeja ei löytynyt."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -6185,9 +6167,8 @@ msgstr "Ohjelmat:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 päivää"
+msgstr "päivää"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6352,9 +6333,8 @@ msgstr "Hyväksy tai hylkää"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Lisäosani"
+msgstr "Perinteiset lisäosat"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -6823,9 +6803,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Versiot"
+msgstr "Oikeudet:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6988,11 +6967,10 @@ msgid_plural "New Add-ons ({0})"
 msgstr[0] "{0}in lisäosat"
 msgstr[1] "{0}in lisäosat"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Päivitetty {0}"
-msgstr[1] "Päivitetty {0}"
+msgstr[0] "Päivitä ({0})"
+msgstr[1] "Päivitä ({0})"
 
 # 100%
 #, fuzzy
@@ -7488,13 +7466,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "opi tuntemaan <b>lisäosat</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Lataa nyt"
+msgstr "Lataa Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Android-lisäosat"
+msgstr "Android-selain"
 
 msgid "iOS Browser"
 msgstr ""
@@ -7550,7 +7526,7 @@ msgstr "Tee Firefoxista juuri omanlaisesi tuhansilla lisäominaisuuksilla ja tyy
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Lisää uusia ominaisuuksia ja tyylejä joilla teet %(app)sista itsesi näköisen."
 
 msgid "On the go?"
 msgstr "Matkalla?"
