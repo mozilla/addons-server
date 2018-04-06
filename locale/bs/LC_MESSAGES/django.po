@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 05:49+0000\n"
+"PO-Revision-Date: 2018-04-06 06:03+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3687,28 +3687,28 @@ msgid "Revoke"
 msgstr ""
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Poništite i obnovite akreditive"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generišite nove akreditive"
 
 msgid "Invisible"
 msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Molimo vas da dovršite dodatak dodavanjem verzije ili nedostajućih metapodataka."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Dobit ćete email kada pregled bude završen. Do tada, vaš dodatak nije prikazan u našoj galeriji, ali mu se može pristupiti direktno sa njegove stranice s detaljima. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Vaš dodatak je prikazan u našoj galeriji i korisnici dobijaju automatska ažuriranja."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Vaš dodatak je onemogućen od strane administratora stranice i više nije prikazan u našoj galeriji. Ako imate bilo kakvo pitanje, molimo pošaljite email na amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Vaš dodatak neće biti uključen u rezultate pretrage, a njegova oglasna stranica će pokazati da ste ga onemogućili. Nove verzije za oglas neće biti prihvaćene u ovoj državi."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
