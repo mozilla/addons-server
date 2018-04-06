@@ -1445,6 +1445,12 @@ form.favorite {
     float: right;
 }
 
+.highlight.warning {
+    /* @button-red-dark in impala/lib */
+    background-color: #bc2b1a;;
+    color: #fff;
+}
+
 /* @end */
 
 /* @group Top search and cat bar */
