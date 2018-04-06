@@ -56,8 +56,9 @@ def path(*folders):
 # It puts it in a dir called "workspace".  Way to be, hudson.
 ROOT_PACKAGE = os.path.basename(ROOT)
 
-DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG = False
+# Ensure that exceptions aren't re-raised.
+DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
@@ -539,13 +540,6 @@ INSTALLED_APPS = (
 
     # Has to load after auth
     'django_statsd',
-)
-
-# These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by settings_test.py (which is itself loaded by setup.cfg by
-# pytest)
-TEST_INSTALLED_APPS = (
-    'olympia.translations.tests.testapp',
 )
 
 # Tells the extract script what files to look for l10n in and what function
@@ -1098,6 +1092,8 @@ CELERY_RESULT_BACKEND = os.environ.get(
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+# Testing responsiveness without rate limits.
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
 # Continue serializing in pickle but also accept new JSON format
 # for forwards and backwards compatibility.
@@ -1564,9 +1560,6 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 
-# Testing responsiveness without rate limits.
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
@@ -1616,7 +1609,7 @@ DEV_AGREEMENT_LAST_UPDATED = None
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
-ALLOW_SELF_REVIEWS = False
+ALLOW_SELF_REVIEWS = True
 
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'

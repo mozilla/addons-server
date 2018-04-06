@@ -12,7 +12,6 @@ from olympia.lib.settings_base import *  # noqa
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # These apps are great during development.
 INSTALLED_APPS += (
@@ -53,10 +52,6 @@ SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
 CELERY_TASK_ALWAYS_EAGER = False
-
-# If you want to allow self-reviews for add-ons/apps, then enable this.
-# In production we do not want to allow this.
-ALLOW_SELF_REVIEWS = True
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to, this
 # will be the path to the `lessc` executable.
@@ -137,7 +132,6 @@ CSP_REPORT_URI = '/csp-report'
 
 # Allow GA over http + www subdomain in local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'
-CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (HTTP_GA_SRC,)
 CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 

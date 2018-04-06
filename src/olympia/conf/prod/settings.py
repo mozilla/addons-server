@@ -18,9 +18,6 @@ EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST')
 SEND_REAL_EMAIL = True
 
 ENV = env('ENV')
-DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = False
-SESSION_COOKIE_SECURE = True
 
 API_THROTTLE = False
 
@@ -102,13 +99,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 # Celery
 CELERY_BROKER_URL = env('CELERY_BROKER_URL')
-
-CELERY_TASK_IGNORE_RESULT = True
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
-
-LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
     'adi.updatecountsfromfile': {'level': logging.INFO},
@@ -161,9 +153,9 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 ADDONS_LINTER_BIN = 'addons-linter'
 
-LESS_PREPROCESS = True
-
 XSENDFILE_HEADER = 'X-Accel-Redirect'
+
+ALLOW_SELF_REVIEWS = False
 
 GEOIP_URL = 'https://geo.services.mozilla.com'
 
