@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-20 12:33+0000\n"
+"PO-Revision-Date: 2018-04-06 07:56+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -679,7 +679,7 @@ msgid "Not Reviewed"
 msgstr "Net beoardiele"
 
 msgid "Tools"
-msgstr "Helpmiddelen"
+msgstr "Ark"
 
 msgid "My Profile"
 msgstr "Myn profyl"
@@ -715,7 +715,7 @@ msgid "Reviewer Tools"
 msgstr "Ark foar beoardieler"
 
 msgid "Admin Tools"
-msgstr "Behearhelpmiddelen"
+msgstr "Behearark"
 
 msgid "Incorrect, please try again."
 msgstr "Net krekt, probearje it opnij."
@@ -871,7 +871,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Wurdboeken en taalpakketten"
 
 msgid "Search Tools"
-msgstr "Sykhelpmiddelen"
+msgstr "Sykark"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1442,13 +1442,13 @@ msgstr "Hjir binne in pear fan ús favorite add-ons om jo by it oanpassen fan %s
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr "Sykhelpmiddelen yn relaasje ta %s"
+msgstr "Sykark yn relaasje ta %s"
 
 msgid "Search tools and search-related extensions"
-msgstr "Sykhelpmiddelen en sykrelatearre útwreidingen"
+msgstr "Sykark en sykrelatearre útwreidingen"
 
 msgid "Search tools"
-msgstr "Sykhelpmiddelen"
+msgstr "Sykark"
 
 msgid "Most Users"
 msgstr "Measte brûkers"
@@ -1526,7 +1526,7 @@ msgstr "List fan taalpakketten en wurdboeken."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0} :: Sykhelpmiddelen"
+msgstr "{0} :: Sykark"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -2334,7 +2334,7 @@ msgid "Site-specific"
 msgstr "Website-spesifyk"
 
 msgid "Web and Developer Tools"
-msgstr "Web- en ûntwikkelhelpmiddelen"
+msgstr "Web- en ûntwikkelark"
 
 msgid "All Rights Reserved"
 msgstr "Alle rjochten foarbehâlden"
@@ -4540,10 +4540,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr "Ferzje: %(version)s &bull; Grutte: %(size)s &bull; SHA256-hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr "Bestânsfergeliking :: Beoardielershelpmiddelen"
+msgstr "Bestânsfergeliking :: Beoardielersark"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr "Bestân besjen :: Beoardielershelpmiddelen"
+msgstr "Bestân besjen :: Beoardielersark"
 
 msgid "Validation failed:"
 msgstr "Falidaasje mislearre:"
@@ -4721,7 +4721,7 @@ msgid "Must-Have Media"
 msgstr "Unmisbere media"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Meitsje bettere skermôfbyldingen, ferbetterje jo online fideobelibbing, lear einlik hoe't jo in GIF meitsje kinne, en oare geweldige mediahelpmiddelen."
+msgstr "Meitsje bettere skermôfbyldingen, ferbetterje jo online fideobelibbing, lear einlik hoe't jo in GIF meitsje kinne, en oare geweldige media-ark."
 
 msgid "Discover Add-ons"
 msgstr "Untdek add-ons"
@@ -5124,7 +5124,7 @@ msgid ""
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
 "AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is de kweekkas dy't ûntwikkelers helpt by it bouwen, fersprieden en stypjen fan fantastyske konsuminteprodukten mei stipe "
-"fan Mozilla. It biedt jo de nedige helpmiddelen en de ynfrastruktuer foar it behear, hosten en presintearjen fan jo add-on oan in enoarme groep Mozilla-brûkers."
+"fan Mozilla. It biedt jo de nedige ark en de ynfrastruktuer foar it behear, hosten en presintearjen fan jo add-on oan in enoarme groep Mozilla-brûkers."
 
 msgid "Does Mozilla keep my account information private?"
 msgstr "Hâldt Mozilla myn accountgegevens privee?"
@@ -5134,14 +5134,14 @@ msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your inform
 msgstr "Ja. Us <a href=\"%(url)s\">Privacybelied</a> beskriuwt hoe't troch Mozilla mei jo gegevens omgien wurdt."
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Wat binne de ‘Untwikkelershelpmiddelen’ op AMO?"
+msgstr "Wat is it ‘Untwikkelersark’ op AMO?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-"It dashboerd ‘Untwikkelershelpmiddelen’ is it mêd wêr't jo alles fine kinne om jo add-ons mei sukses te behearen. It biedt de nedige funksjonaliteit om jo add-ons by AMO yn te tsjinjen, add-on-"
-"ynformaasje te behearen en statistiken te besjen."
+"It dashboerd ‘Untwikkelersark’ is it mêd wêr't jo alles fine kinne om jo add-ons mei sukses te behearen. It biedt de nedige funksjonaliteit om jo add-ons by AMO yn te tsjinjen, add-on-ynformaasje te"
+" behearen en statistiken te besjen."
 
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Hat Mozilla in belied oer wat in akseptabele bydrage is?"
@@ -5162,8 +5162,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
-"Fia it dashboerd Untwikkelershelpmiddelen kinne jo add-ons by AMO oplade en yntsjinje. Jo moatte in registrearre AMO-brûker wêze eardat jo in add-on yntsjinje kinne. Lês eardat jo jo add-on "
-"yntsjinje it %(review_policy_link_open)sBeoardielingsbelied foar add-ons%(link_close)s om derfoar te soargjen dat jo add-on oan ús rjochtlinen foldocht."
+"Fia it dashboerd Untwikkelersark kinne jo add-ons by AMO oplade en yntsjinje. Jo moatte in registrearre AMO-brûker wêze eardat jo in add-on yntsjinje kinne. Lês eardat jo jo add-on yntsjinje it "
+"%(review_policy_link_open)sBeoardielingsbelied foar add-ons%(link_close)s om derfoar te soargjen dat jo add-on oan ús rjochtlinen foldocht."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Hokker bestjoeringssysteem moat ik foar myn add-on kieze?"
@@ -5186,15 +5186,14 @@ msgstr "Kin ik in brûksrjochtoerienkomst foar myn add-on opjaan?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Ja. Jo kinne in brûksrjochtoerienkomst opjaan by it yntsjinjen fan jo add-on. Jo kinne ek fia it dashboerd Untwikkelershelpmiddelen in brûksrjochtoerienkomst tafoegje of bywurkje neidat jo add-on "
-"yntsjinne is."
+"Ja. Jo kinne in brûksrjochtoerienkomst opjaan by it yntsjinjen fan jo add-on. Jo kinne ek fia it dashboerd Untwikkelersark in brûksrjochtoerienkomst tafoegje of bywurkje neidat jo add-on yntsjinne "
+"is."
 
 msgid "Can I include a privacy policy for my add-on?"
 msgstr "Kin ik in privacybelied foar myn add-on opnimme?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"Ja. Jo kinne in privacybelied opjaan wannear't jo jo add-on yntsjinje. Jo kinne ek fia it dashboerd Untwikkelershelpmiddelen in privacybelied tafoegje of bywurkje neidat jo add-on yntsjinne is."
+msgstr "Ja. Jo kinne in privacybelied opjaan wannear't jo jo add-on yntsjinje. Jo kinne ek fia it dashboerd Untwikkelersark in privacybelied tafoegje of bywurkje neidat jo add-on yntsjinne is."
 
 msgid "Must my add-on be reviewed?"
 msgstr "Moat myn add-on beoardiele wurde?"
@@ -5257,20 +5256,20 @@ msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Hoe kin ik sjen hoe faak myn add-on download is?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "It Statistikendashboerd yn it dashboerd Untwikkelershelpmiddelen biedt ynformaasje oer it oantal downloads fan jo add-on sûnt jo dizze by AMO yntsjinne hawwe."
+msgstr "It Statistikendashboerd yn it dashboerd Untwikkelersark biedt ynformaasje oer it oantal downloads fan jo add-on sûnt jo dizze by AMO yntsjinne hawwe."
 
 msgid "How can I see how many active users are using my add-on?"
 msgstr "Hoe kin ik sjen hoe folle aktive brûkers myn add-on brûke?"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr "It Statistikendashboerd yn it dashboerd Untwikkelershelpmiddelen biedt ynformaasje oer hoefolle brûkers jo add-on aktyf brûke sûnt jo dizze by AMO yntsjinne hawwe."
+msgstr "It Statistikendashboerd yn it dashboerd Untwikkelersark biedt ynformaasje oer hoefolle brûkers jo add-on aktyf brûke sûnt jo dizze by AMO yntsjinne hawwe."
 
 msgid "How do I submit an update for my add-on?"
 msgstr "Hoe tsjinje ik in fernijing foar myn add-on yn?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Jo kinne in fernijing foar jo add-on yntsjinje fia it dashboerd Untwikkelershelpmiddelen troch de opsje ‘In nije ferzje oplade’ te kiezen en in nij .xpi-bestân foar jo add-on op te laden."
+msgstr "Jo kinne in fernijing foar jo add-on yntsjinje fia it dashboerd Untwikkelersark troch de opsje ‘In nije ferzje oplade’ te kiezen en in nij .xpi-bestân foar jo add-on op te laden."
 
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Moat myn fernijing troch beoardielers beoardiele wurde?"
@@ -6399,7 +6398,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Tebek nei it dashboerd fan de Beoardielershelpmiddelen"
+msgstr "Tebek nei it dashboerd fan de Beoardielersark"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
