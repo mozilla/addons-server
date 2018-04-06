@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 06:58+0000\n"
+"PO-Revision-Date: 2018-04-06 07:20+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6146,10 +6146,10 @@ msgid "Last Content Review"
 msgstr "შიგთავსის ბოლო განხილვა"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "ამის შედეგად, მოხდება ამ ვერსიის მიღება, დამოწმება და გამოქვეყნება. კომენტარები გაეგზავნება შემმუშავებელს."
+msgstr "შედეგად, ეს ვერსია მიიღება, დამოწმდება და გამოქვეყნდება. შენიშვნები გადაეგზავნება შემმუშავებელს."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "ამის შედეგად, ეს ვერსია უარყოფილი იქნება და რიგიდან წაიშლება. შეფასებები, გადაეგზავნება შემმუშავებელს."
+msgstr "შედეგად, ეს ვერსია უარყოფილი იქნება და რიგიდან ამოიშლება. შეფასებები, გადაეგზავნება შემმუშავებელს."
 
 msgid "Confirm Approval"
 msgstr "მიღების დამოწმება"
@@ -6161,13 +6161,13 @@ msgid "Reject Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "ამის შედეგად, მითითებული გამოქვეყნებული ვერსიები გაითიშება. კომენტარები გაეგზავნება შემმუშავებელს."
+msgstr "შედეგად, მითითებული გამოქვეყნებული ვერსიები გაითიშება. კომენტარები გაეგზავნება შემმუშავებელს."
 
 msgid "Reviewer reply"
 msgstr "მიმომხილველის პასუხი"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "ამის შედეგად, შემმუშავებელს გაეგზავნება შეტყობინება. გამოხმაურებისთანავე, გეცნობებათ."
+msgstr "შედეგად, შემმუშავებელს გაეგზავნება შეტყობინება. გამოხმაურებისთანავე, გეცნობებათ."
 
 msgid "Request super-review"
 msgstr "განსაკუთრებული განხილვის მოთხოვნა"
@@ -6182,7 +6182,7 @@ msgid "Approve Content"
 msgstr "შიგთავსის მიღება"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "ამის შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
+msgstr "შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
 msgid "Legacy Add-ons"
 msgstr "მოძველებული დამატებები"
