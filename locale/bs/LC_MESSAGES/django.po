@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 06:30+0000\n"
+"PO-Revision-Date: 2018-04-06 06:41+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3737,38 +3737,38 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Ovo je najnovija verzija, koja još nije dostupna na stranici za preuzimanje."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Redovi se ne razmatraju strogo po redoslijedu"
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "Pozicija reda:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
 msgstr ""
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Potpisan za samodistribuciju. Vi brinete o ažuriranju."
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Najnovija verzija:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Ovo je najnovija postavljena neotkrivena verzija."
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Učitaj novu verziju"
 
 msgid "View All"
 msgstr ""
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Stranica za pregled navedenih dodataka"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Stranica za pregled nenavedenih dodataka"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Pokaži kontrolnu tablu sa statistikom"
 
 msgid "Compatibility Reports"
 msgstr ""
