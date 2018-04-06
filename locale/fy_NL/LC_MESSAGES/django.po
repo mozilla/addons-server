@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 07:56+0000\n"
+"PO-Revision-Date: 2018-04-06 08:45+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4721,7 +4721,7 @@ msgid "Must-Have Media"
 msgstr "Unmisbere media"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Meitsje bettere skermôfbyldingen, ferbetterje jo online fideobelibbing, lear einlik hoe't jo in GIF meitsje kinne, en oare geweldige media-ark."
+msgstr "Meitsje bettere skermôfbyldingen, ferbetterje jo online fideobelibbing, lear einlik hoe't jo in GIF meitsje kinne, en oar geweldich media-ark."
 
 msgid "Discover Add-ons"
 msgstr "Untdek add-ons"
@@ -6398,7 +6398,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Tebek nei it dashboerd fan de Beoardielersark"
+msgstr "Tebek nei it dashboerd fan it Beoardielersark"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
