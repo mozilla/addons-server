@@ -153,9 +153,8 @@ class TestReviewForm(TestCase):
 
     def test_versions_queryset_contains_pending_version(self):
         addon_factory()
-        file_factory(version=self.addon.current_version,
-                     status=amo.STATUS_AWAITING_REVIEW)
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+                        file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
