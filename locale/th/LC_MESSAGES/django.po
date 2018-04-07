@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-25 17:43+0000\n"
+"PO-Revision-Date: 2018-04-07 18:10+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1086,7 +1086,7 @@ msgstr "ส่วนตัว"
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "มีผู้ติดตาม <span>%(num)s</span> คน"
+msgstr[0] "<span>%(num)s</span> ผู้ติดตาม"
 
 msgid "About this Collection"
 msgstr "เกี่ยวกับชุดสะสมนี้"
@@ -2480,10 +2480,10 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Reject"
-msgstr ""
+msgstr "ปฏิเสธ"
 
 msgid "Approve"
-msgstr ""
+msgstr "อนุมัติ"
 
 msgid "Sexual or pornographic content"
 msgstr ""
@@ -3049,7 +3049,7 @@ msgid "A longer explanation of features, functionality, and other relevant infor
 msgstr ""
 
 msgid "Default Locale"
-msgstr ""
+msgstr "ภาษาเริ่มต้น"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -3531,7 +3531,7 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "อัปโหลดไฟล์"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3658,7 +3658,7 @@ msgid "Browser preview"
 msgstr "เขียนบทวิจารณ์"
 
 msgid "Back"
-msgstr ""
+msgstr "ย้อนกลับ"
 
 #, fuzzy
 msgid "Uploading Theme"
@@ -4147,10 +4147,10 @@ msgstr ""
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "โดย <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "สร้างชุดตกแต่งใหม่"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
@@ -4166,7 +4166,7 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "ส่งชุดตกแต่ง"
 
 msgid "You're done!"
 msgstr "เสร็จแล้ว!"
@@ -4205,7 +4205,7 @@ msgid "Select a footer image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 พิกเซล"
 
 msgid "Aligned to bottom-left"
 msgstr ""
@@ -4365,7 +4365,7 @@ msgid "Disable Version"
 msgstr ""
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "ซ่อนส่วนเสริม"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4719,7 +4719,7 @@ msgid "Learn More About Add-ons"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับส่วนเสริม"
 
 msgid "See all"
-msgstr ""
+msgstr "ดูทั้งหมด"
 
 msgid "More ways to customize"
 msgstr ""
@@ -4731,7 +4731,7 @@ msgid "See all complete themes"
 msgstr ""
 
 msgid "Close Video"
-msgstr ""
+msgstr "ปิดวิดีโอ"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr ""
@@ -4895,7 +4895,7 @@ msgid ""
 msgstr ""
 
 msgid "Thank you!"
-msgstr ""
+msgstr "ขอบคุณ!"
 
 msgid "Site Credits"
 msgstr ""
@@ -4923,7 +4923,7 @@ msgid "Past Developers &amp; Administrators"
 msgstr ""
 
 msgid "Software and Images"
-msgstr ""
+msgstr "ซอฟต์แวร์และภาพ"
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
@@ -5777,15 +5777,15 @@ msgid "Reply to review by {0}"
 msgstr ""
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "เขียนการตอบกลับ"
 
 msgid "Submit"
-msgstr ""
+msgstr "ส่ง"
 
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "หรือ <a href=\"%(url)s\">ยกเลิก</a>"
 
 msgid "Please select a reason:"
 msgstr ""
@@ -5817,13 +5817,13 @@ msgid "Reply to review"
 msgstr ""
 
 msgid "Edit reply"
-msgstr ""
+msgstr "แก้ไขการตอบกลับ"
 
 msgid "Edit review"
 msgstr ""
 
 msgid "Delete reply"
-msgstr ""
+msgstr "ลบการตอบกลับ"
 
 msgid "Delete review"
 msgstr ""
@@ -5933,13 +5933,13 @@ msgid "Max. Version"
 msgstr ""
 
 msgid "Comments:"
-msgstr ""
+msgstr "ความคิดเห็น:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "ระบบปฏิบัติการ:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "แอปพลิเคชัน:"
 
 msgid "Require developer to respond in less than…"
 msgstr ""
@@ -6029,17 +6029,17 @@ msgstr ""
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} นาที"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} ชั่วโมง"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} วัน"
 
 msgid "Last Review"
 msgstr ""
@@ -6308,13 +6308,13 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "อันดับ"
 
 msgid "Score"
-msgstr ""
+msgstr "คะแนน"
 
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -6329,7 +6329,7 @@ msgid "Your Reviews"
 msgstr ""
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "โดย {user_name}"
 
 msgid "Total Reviews"
 msgstr ""
@@ -6338,10 +6338,10 @@ msgid "Active Contributors"
 msgstr ""
 
 msgid "This Month"
-msgstr ""
+msgstr "เดือนนี้"
 
 msgid "This Year"
-msgstr ""
+msgstr "ปีนี้"
 
 msgid "Monthly Performance"
 msgstr ""
@@ -6353,10 +6353,10 @@ msgid "Total"
 msgstr "รวมทั้งหมด"
 
 msgid "Month"
-msgstr ""
+msgstr "เดือน"
 
 msgid "Year"
-msgstr ""
+msgstr "ปี"
 
 msgid "All-Time"
 msgstr ""
@@ -6426,7 +6426,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "ดาวน์โหลดไฟล์"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -6756,7 +6756,7 @@ msgid "search for apps"
 msgstr ""
 
 msgid "Sort By"
-msgstr ""
+msgstr "เรียงตาม"
 
 msgid "Relevance"
 msgstr ""
@@ -6822,7 +6822,7 @@ msgid "Filter Results"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "หมวดหมู่"
 
 msgid "Tag"
 msgstr "ป้ายกำกับ"
@@ -6928,10 +6928,10 @@ msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "จาก"
 
 msgid "To"
-msgstr ""
+msgstr "ถึง"
 
 msgid "Update"
 msgstr ""
@@ -6978,19 +6978,19 @@ msgid "For last:"
 msgstr ""
 
 msgid "7 days"
-msgstr ""
+msgstr "7 วัน"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 วัน"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 วัน"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 วัน"
 
 msgid "Custom..."
-msgstr ""
+msgstr "กำหนดเอง..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -6999,7 +6999,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "ไม่มีข้อมูล"
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
@@ -7008,7 +7008,7 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
 msgid "Change settings."
-msgstr ""
+msgstr "เปลี่ยนการตั้งค่า"
 
 msgid "Add-ons Created by Date"
 msgstr ""
@@ -7049,7 +7049,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "กำลังโหลด..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -7143,7 +7143,7 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr ""
+msgstr "เลือกหมวดหมู่"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
@@ -7199,7 +7199,7 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> ส่วนเสริม"
 
 msgid "My Account"
-msgstr ""
+msgstr "บัญชีของฉัน"
 
 msgid "Welcome, {0}"
 msgstr "ยินดีต้อนรับ {0}"
@@ -7248,7 +7248,7 @@ msgid "Existing Locales"
 msgstr ""
 
 msgid "New Locales"
-msgstr ""
+msgstr "ภาษาใหม่"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -7262,7 +7262,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "ลบภาษา"
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7271,10 +7271,10 @@ msgid "Display Name"
 msgstr ""
 
 msgid "Location"
-msgstr ""
+msgstr "ตำแหน่งที่ตั้ง"
 
 msgid "Occupation"
-msgstr ""
+msgstr "อาชีพ"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
@@ -7360,10 +7360,10 @@ msgid "User reported."
 msgstr ""
 
 msgid "new"
-msgstr ""
+msgstr "ใหม่"
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "ลบบัญชีผู้ใช้"
 
 #, python-format
 msgid ""
@@ -7382,7 +7382,7 @@ msgid "Your reviews and ratings will not be deleted, but they will no longer be 
 msgstr ""
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "ยืนยันการลบบัญชี"
 
 msgid "I understand this step cannot be undone."
 msgstr ""
@@ -7406,13 +7406,13 @@ msgid "Manage basic account information, such as your username and Firefox Accou
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "ชื่อผู้ใช้"
 
 msgid "Email Address"
-msgstr ""
+msgstr "ที่อยู่อีเมล"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "จัดการบัญชี Firefox..."
 
 msgid "Profile"
 msgstr ""
@@ -7446,7 +7446,7 @@ msgid "Display collections I'm following"
 msgstr ""
 
 msgid "Notifications"
-msgstr ""
+msgstr "การแจ้งเตือน"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr ""
@@ -7458,10 +7458,10 @@ msgid "Admin"
 msgstr ""
 
 msgid "Delete Account"
-msgstr ""
+msgstr "ลบบัญชี"
 
 msgid "Update Account"
-msgstr ""
+msgstr "อัปเดตบัญชี"
 
 msgid "none"
 msgstr ""
@@ -7488,19 +7488,19 @@ msgid "Edit profile"
 msgstr ""
 
 msgid "Manage user"
-msgstr ""
+msgstr "จัดการผู้ใช้"
 
 msgid "Report user"
-msgstr ""
+msgstr "รายงานผู้ใช้"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "นักพัฒนาส่วนเสริม"
 
 msgid "Themes Artist"
 msgstr ""
 
 msgid "About me"
-msgstr ""
+msgstr "เกี่ยวกับฉัน"
 
 msgid "In a little more detail..."
 msgstr ""
@@ -7582,7 +7582,7 @@ msgstr "ส่วนเสริม {0}"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s ชุดตกแต่ง"
 
 #, python-format
 msgid "%(num)s add-on"
