@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-07 18:11+0000\n"
+"PO-Revision-Date: 2018-04-07 18:35+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -209,13 +209,13 @@ msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
 msgid " downloads"
-msgstr " ดาวน์โหลด"
+msgstr " การดาวน์โหลด"
 
 msgid "{0} users"
 msgstr "{0} ผู้ใช้"
 
 msgid "{0} add-ons"
-msgstr "ส่วนเสริม {0}"
+msgstr "{0} ส่วนเสริม"
 
 msgid "{0} collections"
 msgstr "{0} ชุดสะสม"
@@ -233,7 +233,7 @@ msgid "{0} installs"
 msgstr "{0} การติดตั้ง"
 
 msgid "Downloads"
-msgstr "ดาวน์โหลด"
+msgstr "การดาวน์โหลด"
 
 msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
@@ -264,10 +264,10 @@ msgid "Add-ons Downloaded"
 msgstr "ส่วนเสริมที่ดาวน์โหลด"
 
 msgid "Add-ons Updated"
-msgstr "อัปเดตส่วนเสริมแล้ว"
+msgstr "ส่วนเสริมที่อัปเดต"
 
 msgid "Reviews Written"
-msgstr "เขียนบทวิจารณ์แล้ว"
+msgstr "บทวิจารณ์ที่เขียน"
 
 msgid "User Signups"
 msgstr "ผู้ใช้ที่ลงทะเบียน"
@@ -279,10 +279,10 @@ msgid "Ratings"
 msgstr "การจัดอันดับ"
 
 msgid "Sales"
-msgstr "ขาย"
+msgstr "การขาย"
 
 msgid "Installs"
-msgstr "ติดตั้ง"
+msgstr "การติดตั้ง"
 
 msgid "Unknown"
 msgstr "ไม่ทราบ"
@@ -761,7 +761,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
 
 msgid "Remove this localization"
-msgstr "ลบการแปลนี้"
+msgstr "เอาการแปลนี้ออก"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
