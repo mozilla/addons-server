@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-07 18:10+0000\n"
+"PO-Revision-Date: 2018-04-07 18:31+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1678,9 +1678,8 @@ msgstr "แพลตฟอร์ม"
 msgid "e10s Enabled"
 msgstr ""
 
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "ไม่สมบูรณ์"
+msgstr "เข้ากันได้กับ e10s"
 
 msgid "Submitted"
 msgstr "ส่งแล้ว"
@@ -1877,13 +1876,13 @@ msgid "Account updated."
 msgstr "อัปเดตบัญชีแล้ว"
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "สร้างเมื่อ: {0}"
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "ลบเมื่อ: {1}"
 
 msgid "User {user} edited, reason: {1}"
 msgstr "ผู้ใช้ {user} แก้ไข เหตุผล: {1}"
@@ -1927,9 +1926,8 @@ msgstr "{addon} ถูกเอาออกจาก {collection}"
 msgid "Reply by developer on {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "นักพัฒนา"
+msgstr "การตอบกลับของนักพัฒนา"
 
 #, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
@@ -2273,7 +2271,7 @@ msgid "Calendar and Date/Time"
 msgstr "ปฏิทินและวันที่/เวลา"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "แชทและ IM"
 
 msgid "Message Composition"
 msgstr "การเขียนข้อความ"
@@ -2297,10 +2295,10 @@ msgid "Downloading and File Management"
 msgstr "การดาวน์โหลดและการจัดการไฟล์"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "การปรับแต่งส่วนติดต่อ"
 
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "การรองรับและการแปลภาษา"
 
 msgid "Photos and Media"
 msgstr "รูปภาพและสื่อ"
@@ -2732,7 +2730,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "ปิดใช้งานรุ่น %s แล้ว"
 
 #, python-format
 msgid "Version %s deleted."
@@ -2740,7 +2738,7 @@ msgstr "ลบรุ่น %s แล้ว"
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "เปิดใช้งานรุ่น %s ใหม่แล้ว"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -3203,7 +3201,7 @@ msgid "Used in add-on detail pages."
 msgstr "ใช้แสดงในหน้ารายละเอียดของส่วนเสริม"
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "อัปโหลดไอคอนที่กำหนดเอง..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "รองรับ PNG และ JPG ไอคอนจะถูกปรับขนาดเป็น 64x64 ถ้ามีขนาดใหญ่กว่านี้"
@@ -3218,7 +3216,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr ""
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "เพิ่มภาพหน้าจอ..."
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -3295,7 +3293,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "การกระทำ"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3304,20 +3302,19 @@ msgid "Resume"
 msgstr ""
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "ลบส่วนเสริมนี้"
 
 msgid "Delete"
 msgstr "ลบ"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "เพิ่มเติมเกี่ยวกับส่วนเสริมนี้"
+msgstr "แก้ไขข้อมูลเกี่ยวกับส่วนเสริมนี้"
 
 msgid "Upload a new version of this add-on."
 msgstr ""
 
 msgid "New Version"
-msgstr ""
+msgstr "รุ่นใหม่"
 
 msgid "Daily statistics on downloads and users."
 msgstr ""
@@ -3326,7 +3323,7 @@ msgid "Statistics"
 msgstr "สถิติ"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "จัดการสถานะและรุ่น"
 
 msgid "View Add-on Listing"
 msgstr ""
@@ -3422,9 +3419,8 @@ msgstr "อีเมลการสนับสนุน"
 msgid "Support website:"
 msgstr "เว็บไซต์การสนับสนุน"
 
-#, fuzzy
 msgid "License:"
-msgstr "ใบอนุญาต"
+msgstr "สัญญาอนุญาต:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3445,13 +3441,11 @@ msgstr ""
 msgid "Cancel and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "ส่งส่วนเสริมใหม่"
+msgstr "ส่งรุ่น"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "อธิบายส่วนเสริมของคุณ"
+msgstr "อธิบายรุ่น"
 
 msgid "Release Notes:"
 msgstr ""
@@ -3505,9 +3499,8 @@ msgstr "จัดการ"
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "รุ่น {0}"
+msgstr "แก้ไขรุ่น {0}"
 
 #, fuzzy
 msgid "File Signed"
@@ -3566,17 +3559,14 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "สร้างชุดตกแต่งของคุณเอง"
+msgstr "สร้างรุ่นชุดตกแต่ง"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "สร้างชุดตกแต่งของคุณเอง"
+msgstr "สร้างชุดตกแต่ง"
 
-#, fuzzy
 msgid "Submit File"
-msgstr "ส่งชุดตกแต่งใหม่"
+msgstr "ส่งไฟล์"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3590,9 +3580,8 @@ msgstr "ลบชุดตกแต่งแล้ว"
 msgid "Theme generator"
 msgstr "ลบชุดตกแต่งแล้ว"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "ลบชุดตกแต่งแล้ว"
+msgstr "ชื่อชุดตกแต่ง"
 
 msgid "Select a header image for your theme"
 msgstr ""
@@ -3660,9 +3649,8 @@ msgstr "เขียนบทวิจารณ์"
 msgid "Back"
 msgstr "ย้อนกลับ"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "ชุดตกแต่งที่กำลังจะมา"
+msgstr "กำลังอัปโหลดชุดตกแต่ง"
 
 #, fuzzy
 msgid "Finish Theme"
@@ -3812,13 +3800,13 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "HTML ที่อนุญาต: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
 
 msgid "Remove this application"
-msgstr ""
+msgstr "เอาแอปพลิเคชันนี้ออก"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -3872,7 +3860,7 @@ msgid "Contact Us"
 msgstr "ติดต่อเรา"
 
 msgid "Support"
-msgstr ""
+msgstr "การสนับสนุน"
 
 msgid "Policies"
 msgstr "นโยบาย"
@@ -3903,7 +3891,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "ข้อกฎหมาย"
 
 msgid "Report Trademark Abuse"
 msgstr "รายงานการละเมิดเครื่องหมายการค้า"
@@ -3986,7 +3974,7 @@ msgid "Add-on Developer Hub"
 msgstr "ศูนย์กลางนักพัฒนา"
 
 msgid "Docs"
-msgstr ""
+msgstr "เอกสาร"
 
 msgid "Sign Out"
 msgstr "ลงชื่อออก"
@@ -3994,9 +3982,8 @@ msgstr "ลงชื่อออก"
 msgid "No Photo"
 msgstr "ไม่มีรูปภาพ"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "ไม่มีรูปภาพ"
+msgstr "รูปภาพผู้ใช้"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4053,7 +4040,7 @@ msgid "Transfer ownership"
 msgstr ""
 
 msgid "Theme Details"
-msgstr ""
+msgstr "รายละเอียดชุดตกแต่ง"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4143,7 +4130,7 @@ msgid "Preview"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "ชื่อชุดตกแต่งของคุณ"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
