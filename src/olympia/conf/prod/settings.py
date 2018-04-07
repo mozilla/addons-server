@@ -146,16 +146,6 @@ FXA_CONFIG = {
             'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
-    'internal': {
-        'client_id': env('INTERNAL_FXA_CLIENT_ID'),
-        'client_secret': env('INTERNAL_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://addons-admin.prod.mozaws.net/fxa-authenticate',
-        'scope': 'profile',
-    },
     'amo': {
         'client_id': env('AMO_FXA_CLIENT_ID'),
         'client_secret': env('AMO_FXA_CLIENT_SECRET'),
@@ -169,7 +159,6 @@ FXA_CONFIG = {
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(

@@ -101,7 +101,7 @@ FXA_CONFIG = {
         'redirect_url': 'http://olympia.test/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
-    'internal': {
+    'amo': {
         'client_id': '0f95f6474c24c1dc',
         'client_secret':
             'ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
@@ -123,7 +123,6 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
 }
-FXA_CONFIG['amo'] = FXA_CONFIG['internal']
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.

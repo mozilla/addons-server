@@ -163,15 +163,6 @@ FXA_CONFIG = {
             'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
-    'internal': {
-        'client_id': env('INTERNAL_FXA_CLIENT_ID'),
-        'client_secret': env('INTERNAL_FXA_CLIENT_SECRET'),
-        'content_host': 'https://stable.dev.lcip.org',
-        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
-        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://addons-admin.dev.mozaws.net/fxa-authenticate',
-        'scope': 'profile',
-    },
     'amo': {
         'client_id': env('AMO_FXA_CLIENT_ID'),
         'client_secret': env('AMO_FXA_CLIENT_SECRET'),
@@ -193,7 +184,6 @@ FXA_CONFIG = {
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
