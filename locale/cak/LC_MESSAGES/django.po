@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-03-20 21:41+0000\n"
+"PO-Revision-Date: 2018-04-08 22:30+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2970,7 +2970,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
 
 msgid "View Listing"
-msgstr ""
+msgstr "Titz'et Cholb'äl"
 
 msgid "Summary"
 msgstr "Ch'utitzijol"
@@ -2979,7 +2979,7 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "¿La soltojtob'enel?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -3030,22 +3030,22 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "To'onela' URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "Kib'anikil Tz'aqat"
 
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Kib'anikil Rutz'aqat {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Ch'ab'äl K'o Wi"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -3082,14 +3082,14 @@ msgid ""
 msgstr ""
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Etamanel taq B'anïk"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Etamanel Kichin B'anïk {0}"
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "Kitzijoxik B'anonela'"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
@@ -3112,7 +3112,7 @@ msgid "This add-on requires external software."
 msgstr ""
 
 msgid "View Source?"
-msgstr ""
+msgstr "¿La Nitz'et Ruxe'el?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
