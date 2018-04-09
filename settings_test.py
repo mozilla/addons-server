@@ -2,7 +2,11 @@
 from settings import *  # noqa
 
 # Make sure the app needed to test translations is present.
-INSTALLED_APPS += TEST_INSTALLED_APPS
+INSTALLED_APPS += (
+    'olympia.translations.tests.testapp',
+)
+# Make sure the debug toolbar isn't used during the tests.
+INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
@@ -47,20 +51,12 @@ CACHES = {
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-ALLOW_SELF_REVIEWS = True
-
-# Make sure the debug toolbar isn't used during the tests.
-INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
-
 TASK_USER_ID = 1337
 
 # Make sure we have no replicas and only one shard to allow for impedent
 # search scoring
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 1
-
-# Ensure that exceptions aren't re-raised.
-DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

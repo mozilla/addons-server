@@ -12,7 +12,6 @@ from olympia.lib.settings_base import *  # noqa
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # These apps are great during development.
 INSTALLED_APPS += (
@@ -54,10 +53,6 @@ SESSION_COOKIE_DOMAIN = None
 
 CELERY_TASK_ALWAYS_EAGER = False
 
-# If you want to allow self-reviews for add-ons/apps, then enable this.
-# In production we do not want to allow this.
-ALLOW_SELF_REVIEWS = True
-
 # Assuming you did `npm install` (and not `-g`) like you were supposed to, this
 # will be the path to the `lessc` executable.
 LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
@@ -89,6 +84,7 @@ TASK_USER_ID = 10968
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
 
+ALLOW_SELF_REVIEWS = True
 
 AES_KEYS = {
     'api_key:secret': os.path.join(
@@ -107,7 +103,7 @@ FXA_CONFIG = {
         'redirect_url': 'http://olympia.test/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
-    'internal': {
+    'amo': {
         'client_id': '0f95f6474c24c1dc',
         'client_secret':
             'ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
@@ -129,7 +125,6 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
 }
-FXA_CONFIG['amo'] = FXA_CONFIG['internal']
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
@@ -137,7 +132,6 @@ CSP_REPORT_URI = '/csp-report'
 
 # Allow GA over http + www subdomain in local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'
-CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (HTTP_GA_SRC,)
 CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 
@@ -145,10 +139,6 @@ CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
-
-# For the Github webhook API.
-GITHUB_API_USER = ''
-GITHUB_API_TOKEN = ''
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

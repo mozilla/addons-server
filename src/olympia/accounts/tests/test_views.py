@@ -51,7 +51,6 @@ SKIP_REDIRECT_FXA_CONFIG = {
 
 @override_settings(FXA_CONFIG={
     'default': FXA_CONFIG,
-    'internal': FXA_CONFIG,
     'skip': SKIP_REDIRECT_FXA_CONFIG,
 })
 class BaseAuthenticationView(APITestCase, PatchMixin,

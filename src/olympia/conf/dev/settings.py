@@ -25,18 +25,11 @@ EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
 EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
 EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
-EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST')
-EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST')
 
 ENV = env('ENV')
-DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = False
-SESSION_COOKIE_SECURE = True
 RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
-
-REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
@@ -48,12 +41,6 @@ MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
-# Filter IP addresses of allowed clients that can post email through the API.
-ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
-# Auth token required to authorize inbound email.
-INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
-# Validation key we need to send in POST response.
-INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
@@ -108,17 +95,8 @@ CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SECRET_KEY = env('SECRET_KEY')
-
-LOG_LEVEL = logging.DEBUG
-
 # Celery
-CELERY_BROKER_URL = env('CELERY_BROKER_URL')
-
-CELERY_TASK_IGNORE_RESULT = True
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
-CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
@@ -142,27 +120,12 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
-# Old recaptcha V1
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-# New Recaptcha V2
-NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
-NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
-
 csp = 'csp.middleware.CSPMiddleware'
-
-RESPONSYS_ID = env('RESPONSYS_ID')
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_%s' % (v, ENV)) for k, v in ES_INDEXES.items())
-
-STATSD_HOST = env('STATSD_HOST')
-STATSD_PREFIX = env('STATSD_PREFIX')
-
-GRAPHITE_HOST = env('GRAPHITE_HOST')
-GRAPHITE_PREFIX = env('GRAPHITE_PREFIX')
 
 CEF_PRODUCT = STATSD_PREFIX
 
@@ -174,19 +137,11 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 ADDONS_LINTER_BIN = 'addons-linter'
 
-LESS_PREPROCESS = True
-
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
 
-GEOIP_URL = 'https://geo.services.mozilla.com'
-
-AES_KEYS = env.dict('AES_KEYS')
-
 PERSONA_DEFAULT_PAGES = 2
-
-SENTRY_DSN = env('SENTRY_DSN')
 
 AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -206,15 +161,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url':
             'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
-        'scope': 'profile',
-    },
-    'internal': {
-        'client_id': env('INTERNAL_FXA_CLIENT_ID'),
-        'client_secret': env('INTERNAL_FXA_CLIENT_SECRET'),
-        'content_host': 'https://stable.dev.lcip.org',
-        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
-        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://addons-admin.dev.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
     'amo': {
@@ -238,7 +184,6 @@ FXA_CONFIG = {
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
@@ -252,14 +197,9 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     ],
 )
 
-READ_ONLY = env.bool('READ_ONLY', default=False)
-
 RAVEN_DSN = (
     'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
 RAVEN_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
-
-GITHUB_API_USER = env('GITHUB_API_USER')
-GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
