@@ -357,7 +357,7 @@ class ReviewHelper(object):
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
             is_unlisted_reviewer)
         is_public_and_listed_and_user_can_post_review = (
-            self. version and
+            self.version and
             self.addon.status == amo.STATUS_PUBLIC and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_post_reviewer)

@@ -151,6 +151,24 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == [
             self.addon.current_version]
 
+    def test_versions_queryset_contains_pending_version(self):
+        addon_factory()
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+                        file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        form = self.get_form()
+        assert not form.is_bound
+        assert form.fields['versions'].required is False
+        assert list(form.fields['versions'].queryset) == []
+
+        # With post-review permission, the reject_multiple_versions action will
+        # be available, resetting the queryset of allowed choices.
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        form = self.get_form()
+        assert not form.is_bound
+        assert form.fields['versions'].required is False
+        assert list(form.fields['versions'].queryset) == list(
+            self.addon.versions.all().order_by('pk'))
+
     def test_versions_required(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         form = self.get_form(data={
