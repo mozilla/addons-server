@@ -222,6 +222,7 @@ MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 VALID_CONTRIBUTION_DOMAINS = (
     'donate.mozilla.org',
+    'liberapay.com',
     'micropayment.de',
     'opencollective.com',
     'patreon.com',
