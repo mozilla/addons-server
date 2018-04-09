@@ -676,6 +676,8 @@ def queue_expired_info_requests(request):
     qs = (
         Addon.objects.filter(
             addonreviewerflags__pending_info_request__lt=datetime.now()
+        ).filter(
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
         ).order_by('addonreviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
                   qs=qs, SearchForm=None)
