@@ -133,6 +133,8 @@ ADDONS_LINTER_BIN = 'addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
+ALLOW_SELF_REVIEWS = True
+
 GEOIP_URL = 'https://geo.services.mozilla.com'
 
 PERSONA_DEFAULT_PAGES = 5

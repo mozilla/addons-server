@@ -126,8 +126,6 @@ ADDONS_LINTER_BIN = 'addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
-ALLOW_SELF_REVIEWS = False
-
 GEOIP_URL = 'https://geo.services.mozilla.com'
 
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)

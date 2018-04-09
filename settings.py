@@ -84,6 +84,8 @@ TASK_USER_ID = 10968
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
 
+ALLOW_SELF_REVIEWS = True
+
 AES_KEYS = {
     'api_key:secret': os.path.join(
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),

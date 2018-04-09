@@ -1617,7 +1617,7 @@ DEV_AGREEMENT_LAST_UPDATED = None
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
-ALLOW_SELF_REVIEWS = True
+ALLOW_SELF_REVIEWS = False
 
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
