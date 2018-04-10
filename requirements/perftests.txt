@@ -1,0 +1,4 @@
+cssselect >= 0.9.1
+lxml >= 3.5.0
+pyzmq >= 15.1.0
+-e git+https://github.com/locustio/locust@524ab5203ebc7c4c5c108b641773262ae53fbc40#egg=locust
