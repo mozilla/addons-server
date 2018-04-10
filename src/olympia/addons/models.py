@@ -1410,6 +1410,13 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def needs_admin_theme_review(self):
+        try:
+            return self.addonreviewerflags.needs_admin_theme_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def auto_approval_disabled(self):
         try:
             return self.addonreviewerflags.auto_approval_disabled
@@ -1518,10 +1525,11 @@ def attach_tags(addons):
 
 
 class AddonReviewerFlags(ModelBase):
-    addon = addon = models.OneToOneField(
+    addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
+    needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)

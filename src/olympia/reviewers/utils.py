@@ -327,7 +327,8 @@ class ReviewHelper(object):
             (
                 self.version and
                 not self.version.addon.needs_admin_content_review and
-                not self.version.addon.needs_admin_code_review
+                not self.version.addon.needs_admin_code_review and
+                not self.version.addon.needs_admin_theme_review
             ))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
@@ -715,9 +716,11 @@ class ReviewBase(object):
                 self.request.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
-        """Mark an add-on as needing admin code or content review."""
+        """Mark an add-on as needing admin code, content, or theme review."""
+        addon_type = self.addon.type
         needs_admin_property = (
-            'needs_admin_content_review' if self.content_review_only
+            'needs_admin_theme_review' if addon_type == amo.ADDON_STATICTHEME
+            else 'needs_admin_content_review' if self.content_review_only
             else 'needs_admin_code_review')
         AddonReviewerFlags.objects.update_or_create(
             addon=self.addon, defaults={needs_admin_property: True})

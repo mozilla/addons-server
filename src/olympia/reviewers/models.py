@@ -40,6 +40,8 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Code Review')),
     ('needs_admin_content_review', 'needs-admin-content-review',
         _('Needs Admin Content Review')),
+    ('needs_admin_theme_review', 'needs-admin-theme-review',
+        _('Needs Admin Static Theme Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('pending_info_request', 'info', _('More Information Requested')),
@@ -142,6 +144,7 @@ class ViewQueue(RawSQLModel):
     addon_type_id = models.IntegerField()
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
+    needs_admin_theme_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
@@ -166,6 +169,8 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_code_review'),
                 ('needs_admin_content_review',
                     'addons_addonreviewerflags.needs_admin_content_review'),
+                ('needs_admin_theme_review',
+                    'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('latest_version', 'versions.version'),
                 ('has_reviewer_comment', 'versions.has_editor_comment'),
                 ('pending_info_request',
@@ -244,6 +249,7 @@ class ViewUnlistedAllList(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
+    needs_admin_theme_review = models.NullBooleanField()
     is_deleted = models.BooleanField()
 
     def base_query(self):
@@ -262,6 +268,8 @@ class ViewUnlistedAllList(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_code_review'),
                 ('needs_admin_content_review',
                     'addons_addonreviewerflags.needs_admin_content_review'),
+                ('needs_admin_theme_review',
+                    'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),

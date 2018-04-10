@@ -468,7 +468,8 @@ class TestDashboard(TestCase):
             addon=under_admin_review, needs_admin_code_review=True)
         under_admin_review_and_pending = addon_factory()
         AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+            addon=under_admin_review_and_pending,
+            needs_admin_theme_review=True)
         version_factory(
             addon=under_admin_review_and_pending,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -817,11 +818,12 @@ class TestDashboard(TestCase):
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         AddonReviewerFlags.objects.create(
-            addon=under_admin_review, needs_admin_code_review=True)
+            addon=under_admin_review, needs_admin_theme_review=True)
         under_admin_review_and_pending = addon_factory(
             type=amo.ADDON_STATICTHEME)
         AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+            addon=under_admin_review_and_pending,
+            needs_admin_theme_review=True)
         version_factory(
             addon=under_admin_review_and_pending,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -3111,6 +3113,7 @@ class TestReview(ReviewBase):
         assert not doc('#force_enable_addon')
         assert not doc('#clear_admin_code_review')
         assert not doc('#clear_admin_content_review')
+        assert not doc('#clear_admin_theme_review')
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
         assert not doc('#clear_pending_info_request')
@@ -3137,6 +3140,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#clear_admin_code_review').length == 1
         assert doc('#clear_admin_content_review').length == 0
+        assert doc('#clear_admin_content_review').length == 0
 
     def test_unflag_content_option_forflagged_as_admin(self):
         self.login_as_admin()
@@ -3149,6 +3153,21 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#clear_admin_code_review').length == 0
         assert doc('#clear_admin_content_review').length == 1
+        assert doc('#clear_admin_theme_review').length == 0
+
+    def test_unflag_theme_option_forflagged_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=False,
+            needs_admin_content_review=False,
+            needs_admin_theme_review=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#clear_admin_code_review').length == 0
+        assert doc('#clear_admin_content_review').length == 0
+        assert doc('#clear_admin_theme_review').length == 1
 
     def test_disable_auto_approvals_as_admin(self):
         self.login_as_admin()
@@ -3847,6 +3866,49 @@ class TestReview(ReviewBase):
                 action=amo.LOG.REJECT_VERSION.id).count() == 0
             assert ActivityLog.objects.filter(
                 action=amo.LOG.APPROVE_VERSION.id).count() == 0
+
+    def test_cant_review_static_theme_if_admin_theme_review_flag_is_set(self):
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(
+            type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_theme_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        for action in ['public', 'reject']:
+            response = self.client.post(self.url, self.get_dict(action=action))
+            assert response.status_code == 200  # Form error.
+            # The add-on status must not change as non-admin reviewers are not
+            # allowed to review admin-flagged add-ons.
+            addon = self.get_addon()
+            assert addon.status == amo.STATUS_NOMINATED
+            assert self.version == addon.current_version
+            assert addon.current_version.files.all()[0].status == (
+                amo.STATUS_AWAITING_REVIEW)
+            assert response.context['form'].errors['action'] == (
+                [u'Select a valid choice. %s is not one of the available '
+                 u'choices.' % action])
+            assert ActivityLog.objects.filter(
+                action=amo.LOG.REJECT_VERSION.id).count() == 0
+            assert ActivityLog.objects.filter(
+                action=amo.LOG.APPROVE_VERSION.id).count() == 0
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
+            self, mock_sign_file):
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(
+            type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_theme_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        response = self.client.post(self.url, {
+            'action': 'public',
+            'comments': 'it`s good'
+        })
+        assert response.status_code == 302
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
 
     def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -4873,6 +4935,7 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled': False,
             'needs_admin_code_review': True,
             'needs_admin_content_review': True,
+            'needs_admin_theme_review': True,
             'pending_info_request': None,
         }
         response = self.client.patch(self.flags_url, data)
@@ -4882,6 +4945,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert reviewer_flags.auto_approval_disabled is False
         assert reviewer_flags.needs_admin_code_review is True
         assert reviewer_flags.needs_admin_content_review is True
+        assert reviewer_flags.needs_admin_theme_review is True
         assert reviewer_flags.pending_info_request is None
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
