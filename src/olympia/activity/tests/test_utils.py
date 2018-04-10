@@ -637,6 +637,18 @@ class TestLogAndNotify(TestCase):
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
 
     @mock.patch('olympia.activity.utils.send_mail')
+    def test_comment_entity_decode(self, send_mail_mock):
+        # One from the reviewer.
+        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
+        action = amo.LOG.REVIEWER_REPLY_VERSION
+        comments = u'This email&#39;s entities should be decoded'
+        log_and_notify(action, comments, self.reviewer, self.version)
+
+        body = send_mail_mock.call_args_list[1][0][1]
+        assert "email's entities should be decoded" in body
+        assert "&" not in body
+
+    @mock.patch('olympia.activity.utils.send_mail')
     def test_notify_about_previous_activity(self, send_mail_mock):
         # Create an activity to use when notifying.
         activity = self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)

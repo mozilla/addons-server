@@ -2,6 +2,7 @@ import re
 
 from datetime import datetime, timedelta
 from email.utils import formataddr
+from HTMLParser import HTMLParser
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import apnumber
@@ -225,6 +226,9 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # only so prevent language jumble by forcing into en-US.
         with no_translation():
             comments = '%s' % amo.LOG_BY_ID[note.action].short
+    else:
+        htmlparser = HTMLParser()
+        comments = htmlparser.unescape(comments)
 
     # Collect add-on authors (excl. the person who sent the email.) and build
     # the context for them.

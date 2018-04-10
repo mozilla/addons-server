@@ -4,7 +4,7 @@ A reply has been added to the review of version {{ number }} of add-on {{ name }
 
 {{ author }} wrote:
 
-{{ comments }}
+{{ comments|safe }}
 
 If you want to respond please reply to this email or visit {{ url }}
 
