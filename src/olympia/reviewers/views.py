@@ -477,12 +477,15 @@ def is_admin_reviewer(request):
 
 def filter_admin_review_for_legacy_queue(qs):
     return qs.filter(
-        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False))
+        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False),
+        Q(needs_admin_theme_review=None) | Q(needs_admin_theme_review=False))
 
 
 def filter_static_themes(qs, extension_reviewer, theme_reviewer):
-    types_to_include = (amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME]
-                        if extension_reviewer else [])
+    if extension_reviewer:
+        types_to_include = amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME]
+    else:
+        types_to_include = []
     if theme_reviewer:
         types_to_include.append(amo.ADDON_STATICTHEME)
     return (qs.filter_raw('addontype_id IN', types_to_include)

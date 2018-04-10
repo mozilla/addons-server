@@ -1547,6 +1547,18 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_content_review=True)
         assert addon.needs_admin_content_review is True
 
+    def test_needs_admin_theme_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_theme_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_theme_review is False
+        assert addon.needs_admin_theme_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_theme_review=True)
+        assert addon.needs_admin_theme_review is True
+
     def test_pending_info_request_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
