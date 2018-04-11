@@ -958,9 +958,9 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
-            'js/zamboni/reviewers.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/reviewers.js',
             'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
