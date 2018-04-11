@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-07 18:31+0000\n"
+"PO-Revision-Date: 2018-04-11 18:31+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2316,22 +2316,22 @@ msgid "All Rights Reserved"
 msgstr "สงวนลิขสิทธิ์"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์ 3.0"
+msgstr "Creative Commons แบบแสดงที่มา 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า 3.0"
+msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง 3.0"
+msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า ไม่ดัดแปลง 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า อนุญาตแบบเดียวกัน 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons แบบแสดงที่มา ไม่ดัดแปลง 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons แบบแสดงที่มา อนุญาตแบบเดียวกัน 3.0"
 
 msgid "Any"
 msgstr "ใด ๆ"
