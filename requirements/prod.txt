@@ -269,9 +269,9 @@ nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
 # pbr is required by mock
-pbr==4.0.1 \
-    --hash=sha256:de75cf1d510542c746beeff66b52241eb12c8f95f2ef846ee50ed5d72392caa4 \
-    --hash=sha256:56b7a8ba7d64bf6135a9dfefb85a80d95924b3fde5ed6343a1a1d464a040dae3
+pbr==4.0.2 \
+    --hash=sha256:4e8a0ed6a8705a26768f4c3da26026013b157821fe5f95881599556ea9d91c19 \
+    --hash=sha256:dae4aaa78eafcad10ce2581fc34d694faa616727837fd8e55c1a00951ad6744f
 # polib is required by dennis
 polib==1.1.0 \
     --hash=sha256:93b730477c16380c9a96726c54016822ff81acfa553977fdd131f2b90ba858d7 \
