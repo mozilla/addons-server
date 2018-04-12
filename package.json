@@ -25,7 +25,7 @@
     "source-map": "0.7.2",
     "raven-js": "3.24.1",
     "timeago": "1.6.2",
-    "uglify-js": "3.3.19",
+    "uglify-js": "3.3.21",
     "underscore": "1.8.3"
   },
   "devDependencies": {
