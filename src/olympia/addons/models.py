@@ -1712,9 +1712,11 @@ class Persona(caching.CachingMixin, models.Model):
 
 
 class MigratedLWT(OnChangeMixin, ModelBase):
-    lightweight_theme = models.ForeignKey(Addon, unique=True)
+    lightweight_theme = models.ForeignKey(
+        Addon, unique=True, related_name='migrated_to_static_theme')
     getpersonas_id = models.PositiveIntegerField(db_index=True)
-    static_theme = models.ForeignKey(Addon, unique=True)
+    static_theme = models.ForeignKey(
+        Addon, unique=True, related_name='migrated_from_lwt')
 
     class Meta:
         db_table = 'migrated_personas'
