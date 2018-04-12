@@ -1719,6 +1719,21 @@ class Persona(caching.CachingMixin, models.Model):
         return self.addon.listed_authors
 
 
+class MigratedLWT(OnChangeMixin, ModelBase):
+    lightweight_theme = models.ForeignKey(
+        Addon, unique=True, related_name='migrated_to_static_theme')
+    getpersonas_id = models.PositiveIntegerField(db_index=True)
+    static_theme = models.ForeignKey(
+        Addon, unique=True, related_name='migrated_from_lwt')
+
+    class Meta:
+        db_table = 'migrated_personas'
+
+    def __init__(self, *args, **kw):
+        super(MigratedLWT, self).__init__(*args, **kw)
+        self.getpersonas_id = self.lightweight_theme.persona.persona_id
+
+
 class AddonCategory(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
