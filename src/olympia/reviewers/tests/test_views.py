@@ -521,17 +521,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 9  # All 9 sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_nominated'),
-            reverse('reviewers.queue_pending'),
-            reverse('reviewers.performance'),
-            reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
@@ -555,13 +551,13 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Add-ons (2)'
-        assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
-        assert doc('.dashboard a')[10].text == 'Auto Approved Add-ons (4)'
-        assert doc('.dashboard a')[14].text == 'Content Review (4)'
-        assert (doc('.dashboard a')[22].text ==
+        assert doc('.dashboard a')[0].text == 'New (2)'
+        assert doc('.dashboard a')[1].text == 'Updates (3)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[10].text == 'Content Review (4)'
+        assert (doc('.dashboard a')[18].text ==
                 'Ratings Awaiting Moderation (1)')
-        assert (doc('.dashboard a')[28].text ==
+        assert (doc('.dashboard a')[24].text ==
                 'Expired Information Requests (1)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -569,17 +565,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 9  # All 9 sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_nominated'),
-            reverse('reviewers.queue_pending'),
-            reverse('reviewers.performance'),
-            reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
@@ -650,8 +642,8 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Add-ons (1)'
-        assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
+        assert doc('.dashboard a')[0].text == 'New (1)'
+        assert doc('.dashboard a')[1].text == 'Updates (2)'
 
     def test_post_reviewer(self):
         # Create an add-on to test the queue count. It's under admin content
@@ -850,8 +842,8 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Add-ons (1)'
-        assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
+        assert doc('.dashboard a')[0].text == 'New (1)'
+        assert doc('.dashboard a')[1].text == 'Updates (2)'
 
     def test_post_reviewer_and_content_reviewer(self):
         # Create add-ons to test the queue count. The first add-on has its
@@ -919,9 +911,9 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Add-ons (0)'
+        assert doc('.dashboard a')[0].text == 'New (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[1].text == 'Add-on Updates (0)'
+        assert doc('.dashboard a')[1].text == 'Updates (0)'
         assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
         assert 'target' not in doc('.dashboard a')[6].attrib
         assert doc('.dashboard a')[7].text == 'Moderation Guide'
@@ -1435,7 +1427,7 @@ class TestNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_layout(self):
-        self._test_queue_layout('New Add-ons',
+        self._test_queue_layout('New',
                                 tab_position=0, total_addons=2, total_queues=2)
 
     def test_get_queue(self):
@@ -1545,7 +1537,7 @@ class TestStaticThemeNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_layout(self):
-        self._test_queue_layout('New Add-ons',
+        self._test_queue_layout('New',
                                 tab_position=0, total_addons=2, total_queues=2)
 
     def test_get_queue(self):
