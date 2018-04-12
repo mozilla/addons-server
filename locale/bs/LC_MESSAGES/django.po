@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 12:25+0000\n"
+"PO-Revision-Date: 2018-04-12 09:35+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3789,21 +3789,21 @@ msgid "Pending information request:"
 msgstr "Zahtjev informacije na čekanju:"
 
 msgid "This request for information has been resolved"
-msgstr ""
+msgstr "Ovaj zahtjev za informacije je riješen"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Molimo odaberite prikladnu licencu za prava koja dajete za vaš izvorni kod. Odnosi se samo za navedene dodatke."
 
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Dozvoljeni HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Neki HTML-ovi su podržani."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Uklonite ovu aplikaciju"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
