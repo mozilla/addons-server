@@ -78,11 +78,10 @@ def jwt_secret(base_url, variables):
         return os.getenv('JWT_SECRET')
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def user(base_url, fxa_account, jwt_token):
     """This creates a user for logging into the AMO site."""
-    url = '{base_url}/api/v3/accounts/super-create/'.format(
-        base_url=base_url)
+    url = 'http://olympia.test/api/v3/accounts/super-create/'
 
     params = {
         'email': fxa_account.email,
