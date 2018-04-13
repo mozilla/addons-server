@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-11 18:31+0000\n"
+"PO-Revision-Date: 2018-04-13 11:58+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -695,7 +695,7 @@ msgid "Reviewer Tools"
 msgstr "นักพัฒนา"
 
 msgid "Admin Tools"
-msgstr "เครื่องมือผู้ดูแลระบบ"
+msgstr "เครื่องมือผู้ดูแล"
 
 msgid "Incorrect, please try again."
 msgstr "ไม่ถูกต้อง โปรดลองอีกครั้ง"
@@ -1270,7 +1270,7 @@ msgid "Contributor"
 msgstr "ผู้มีส่วนร่วม"
 
 msgid "Admin Settings"
-msgstr ""
+msgstr "การตั้งค่าผู้ดูแล"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>คำเตือน:</b> การเปลี่ยนเจ้าของของชุดสะสมนี้ คุณจะไม่สามารถแก้ไขมันได้อีก คุณจะสามารถทำได้เพียงเพิ่มหรือลบส่วนเสริมที่อยู่ในนั้นออกเท่านั้น"
@@ -7442,7 +7442,7 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr ""
 
 msgid "Admin"
-msgstr ""
+msgstr "ผู้ดูแล"
 
 msgid "Delete Account"
 msgstr "ลบบัญชี"
