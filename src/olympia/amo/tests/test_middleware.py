@@ -8,7 +8,8 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException)
+    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException,
+    RequestIdMiddleware)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
@@ -109,3 +110,16 @@ def test_hide_password_middleware():
     assert request.POST['x'] == '1'
     assert request.POST['password'] == '******'
     assert request.POST['password2'] == '******'
+
+
+def test_request_id_middleware(client):
+    """Test that we add a request id to every response"""
+    response = client.get(reverse('home'))
+    assert response.status_code == 200
+    assert isinstance(response['X-AMO-Request-ID'], basestring)
+
+    # Test that we set `request.request_id` too
+
+    request = RequestFactory().get('/')
+    RequestIdMiddleware().process_request(request)
+    assert request.request_id
