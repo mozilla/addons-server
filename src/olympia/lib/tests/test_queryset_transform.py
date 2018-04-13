@@ -1,24 +1,28 @@
+from datetime import datetime
+
 from olympia.amo.tests import TestCase
 from olympia.lib.queryset_transform import TransformQuerySet
-from olympia.zadmin.models import DownloadSource
+from olympia.zadmin.models import SiteEvent
 
 
 class QuerysetTransformTestCase(TestCase):
     def test_queryset_transform(self):
-        # We test with the DownloadSource model because it's a simple model
+        # We test with the SiteEvent model because it's a simple model
         # with no translated fields, no caching or other fancy features.
-        DownloadSource.objects.create(name='Zero')
-        first = DownloadSource.objects.create(name='First')
-        second = DownloadSource.objects.create(name='Second')
-        DownloadSource.objects.create(name='Third')
-        DownloadSource.objects.create(name='')
+        SiteEvent.objects.create(start=datetime.now(), description='Zero')
+        first = SiteEvent.objects.create(start=datetime.now(),
+                                         description='First')
+        second = SiteEvent.objects.create(start=datetime.now(),
+                                          description='Second')
+        SiteEvent.objects.create(start=datetime.now(), description='Third')
+        SiteEvent.objects.create(start=datetime.now(), description='')
 
         seen_by_first_transform = []
         seen_by_second_transform = []
         with self.assertNumQueries(0):
             # No database hit yet, everything is still lazy.
-            qs = TransformQuerySet(DownloadSource)
-            qs = qs.exclude(name='').order_by('id')[1:3]
+            qs = TransformQuerySet(SiteEvent)
+            qs = qs.exclude(description='').order_by('id')[1:3]
             qs = qs.transform(
                 lambda items: seen_by_first_transform.extend(list(items)))
             qs = qs.transform(

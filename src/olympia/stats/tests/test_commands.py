@@ -23,7 +23,6 @@ from olympia.stats.management.commands.download_counts_from_file import \
 from olympia.stats.management.commands.update_counts_from_file import Command
 from olympia.stats.models import (
     DownloadCount, ThemeUpdateCount, ThemeUserCount, UpdateCount)
-from olympia.zadmin.models import DownloadSource
 
 
 hive_folder = os.path.join(settings.ROOT, 'src/olympia/stats/fixtures/files')
@@ -186,17 +185,13 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         'olympia.stats.management.commands.download_counts_from_file.'
         'save_stats_to_file')
     def test_download_counts_from_file(self, mock_save_stats_to_file):
-        # Create the necessary "valid download sources" entries.
-        DownloadSource.objects.create(name='search', type='full')
-        DownloadSource.objects.create(name='coll', type='prefix')
-
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3
         assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 2, u'collection': 1}
+        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
 
         # save_stats_to_file is called with a non-saved model.
         assert isinstance(
@@ -210,10 +205,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         'close_old_connections')
     def test_download_counts_from_file_closes_old_connections(
             self, close_old_connections_mock, mock_save_stats_to_file):
-        # Create the necessary "valid download sources" entries.
-        DownloadSource.objects.create(name='search', type='full')
-        DownloadSource.objects.create(name='coll', type='prefix')
-
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
@@ -450,10 +441,6 @@ class TestADICommandS3(TransactionTestCase):
         for x in range(2):
             self.add_response('download_counts')
 
-        # Create the necessary "valid download sources" entries.
-        DownloadSource.objects.create(name='search', type='full')
-        DownloadSource.objects.create(name='coll', type='prefix')
-
         mock_boto3.client.return_value = self.client
 
         management.call_command('download_counts_from_file',
@@ -462,7 +449,7 @@ class TestADICommandS3(TransactionTestCase):
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3
         assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 2, u'collection': 1}
+        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
 
         # save_stats_to_file is called with a non-saved model.
         assert isinstance(

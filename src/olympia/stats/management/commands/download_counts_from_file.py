@@ -7,10 +7,10 @@ from django.db import close_old_connections
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.stats.models import DownloadCount, update_inc
-from olympia.zadmin.models import DownloadSource
 
 from . import get_date, get_stats_data, save_stats_to_file
 
@@ -119,13 +119,11 @@ class Command(BaseCommand):
                                                        'version__addon_id'))
         slugs_to_addon = dict(Addon.objects.public().values_list('slug', 'id'))
 
-        # Only accept valid sources, which are listed in the DownloadSource
-        # model. The source must either be exactly one of the "full" valid
-        # sources, or prefixed by one of the "prefix" valid sources.
-        fulls = set(DownloadSource.objects.filter(type='full').values_list(
-            'name', flat=True))
-        prefixes = DownloadSource.objects.filter(type='prefix').values_list(
-            'name', flat=True)
+        # Only accept valid sources, which are constants. The source must
+        # either be exactly one of the "full" valid sources, or prefixed by one
+        # of the "prefix" valid sources.
+        fulls = amo.DOWNLOAD_SOURCES_FULL
+        prefixes = amo.DOWNLOAD_SOURCES_PREFIX
 
         count_file = get_stats_data(filepath)
         for index, line in enumerate(count_file):
