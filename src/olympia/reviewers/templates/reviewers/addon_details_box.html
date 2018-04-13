@@ -1,26 +1,5 @@
   <div class="addon-info-and-previews">
-    <div id="addon-theme-previews-wrapper">
-      <div>
-        {% with previews = version.previews.all() if version else [] %}
-        {% for preview in previews %}
-          <a class="" rel="jquery-lightbox"
-            href="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}">
-              <img alt="" src="{{ preview.image_url }}" />
-          </a>
-        {% endfor %}
-        {% endwith %}
-      </div>
-      <div class="all-backgrounds">
-        {% for background in backgrounds %}
-          {% with filename=background.rsplit('/', 1)[1] %}
-          <a class="thumbnail" rel="jquery-lightbox"
-            href="{{ background }}" title="{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}">
-              <img alt="" src="{{ background }}" />
-          </a>
-          {% endwith %}
-        {% endfor %}
-      </div>
-    </div>
+    {% if not addon.has_per_version_previews %}
     <div class="addon-previews">
       {% if addon.all_previews %}
         {% with preview=addon.all_previews[0] %}
@@ -33,7 +12,8 @@
         <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
           alt="" width="200" height="150" />
       {% endif %}
-    </div>{# /secondary #}
+    </div>
+    {% endif %}
 
     <div class="addon-info object-lead">
       <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
@@ -194,7 +174,28 @@
     {% endif %}
   {% endif %}
 
-  {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
+  {% if addon.has_per_version_previews %}
+    <div id="addon-theme-previews-wrapper">
+      <h3>{{ _('Theme Images') }}</h3>
+      <div>
+        {% with previews = version.previews.all() if version else [] %}
+        {% for preview in previews %}
+          <img alt="" src="{{ preview.image_url }}" title="{{ _('Rendered Preview') }}" />
+        {% endfor %}
+        {% endwith %}
+      </div>
+      <div class="all-backgrounds">
+        {% for background in backgrounds %}
+          {% with filename=background.rsplit('/', 1)[1] %}
+          <div class="background zoombox">
+              <img src="{{ background }}" alt="" width="1000" height="200">
+              {{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}
+          </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+  {% elif addon.description or addon.all_previews|length > 1 or addon.developer_comments or
         addon.show_beta  %}
     <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput more-about">

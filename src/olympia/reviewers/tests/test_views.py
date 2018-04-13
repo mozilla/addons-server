@@ -4297,7 +4297,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         backgrounds_div = doc('div.all-backgrounds')
         assert backgrounds_div.length == 1
-        images = doc('div.all-backgrounds a.thumbnail')
+        images = doc('div.all-backgrounds .background.zoombox')
         assert images.length == len(walkfiles_mock.return_value)
         background_file_folder = '/'.join([
             user_media_url('addons'), str(self.addon.id),
@@ -4306,9 +4306,9 @@ class TestReview(ReviewBase):
             background_file_folder + '/' + filename
             for filename in background_files]
         loop_ct = 0
-        for a_tag in images:
-            assert a_tag.attrib['href'] in background_file_urls
-            assert a_tag.attrib['title'] == (
+        for div_tag in images:
+            assert div_tag[0].attrib['src'] in background_file_urls
+            assert ''.join(div_tag.itertext()).strip() == (
                 'Background file {0} of {1} - {2}'.format(
                     loop_ct + 1, len(background_files),
                     background_files[loop_ct]))

@@ -35,6 +35,10 @@
         initExtraReviewActions();
     }
 
+    if ($('.background').length) {
+        initBackgroundImagesForTheme();
+    }
+
     if($('#monthly.highcharts-container').length) {
         initPerformanceStats();
     }
@@ -127,12 +131,13 @@ function initReviewActions() {
             $current.toggle(show);
 
             if(show) {
+              var title;
               if (d.is_user == 2) {
                 /* 2 is when the editor has reached the lock limit */
-                var title = d.current_name
+                title = d.current_name;
               } else {
-                var title = format(gettext('{name} was viewing this page first.'),
-                                           {name: d.current_name});
+                title = format(gettext('{name} was viewing this page first.'),
+                                       {name: d.current_name});
               }
               $current_div = $current.filter('div');
               $current_div.find('strong').remove();
@@ -142,7 +147,7 @@ function initReviewActions() {
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
     }
-    if (!(z.capabilities.localStorage && window.localStorage['dont_poll'])) {
+    if (!(z.capabilities.localStorage && window.localStorage.dont_poll)) {
         check_currently_viewing();
     }
 
@@ -227,7 +232,7 @@ function initExtraReviewActions() {
         }
         callReviewersAPI(apiUrl, 'post', null, function() {
             $input.prop('disabled', false);
-            $input.prop('checked', !checked)
+            $input.prop('checked', !checked);
         });
     }));
 
@@ -236,7 +241,7 @@ function initExtraReviewActions() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var data = $button.data('api-data') || null;
-        var method = $button.data('api-method') || 'post'
+        var method = $button.data('api-method') || 'post';
         callReviewersAPI(apiUrl, method, data, function() {
             $button.remove();
         });
@@ -248,12 +253,24 @@ function initExtraReviewActions() {
         var $other_button = $($button.data('toggle-button-selector'));
         var apiUrl = $button.data('api-url');
         var data = $button.data('api-data') || null;
-        var method = $button.data('api-method') || 'post'
+        var method = $button.data('api-method') || 'post';
         callReviewersAPI(apiUrl, method, data, function() {
             $button.prop('disabled', false).parents('li').addClass('hidden').hide();
             $other_button.parents('li').removeClass('hidden').show();
          });
     }));
+}
+
+function initBackgroundImagesForTheme() {
+    /* $('div.zoombox').zoomBox(); */
+    $('div.background img').on('load', function(e) {
+        if (!e.target.complete) return;
+        var $target = $(e.target);
+        $target.attr('height', e.target.naturalHeight);
+        $target.attr('width', e.target.naturalWidth);
+        $target.parent().zoomBox();
+    });
+    $('div.background img').trigger('load');
 }
 
 function insertAtCursor(textarea, text) {
@@ -310,7 +327,7 @@ function initQueue() {
     var addon_ids = $.map($('.addon-row'), function(el) {
             return $(el).attr('data-addon');
         });
-    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+    if(!(('localStorage' in window) && window.localStorage.dont_poll)) {
         (function checkCurrentlyViewing() {
             $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
                 $('#addon-queue .locked').removeClass('locked')
@@ -365,7 +382,7 @@ function initQueue() {
                 }
             });
             return true;
-        };;
+        };
 
     $('.addon-version-notes a').each(function(i, el) {
         $(pop).popup(el, { pointTo: el, callback: loadNotes, width: 500});
@@ -378,7 +395,7 @@ function initQueue() {
 }
 
 function initQueueSearch(doc) {
-    $('.toggle-queue-search').click(_pd(function(e) {
+    $('.toggle-queue-search').click(_pd(function() {
         $('.advanced-search').slideToggle();
     }));
 
@@ -453,10 +470,10 @@ function initPerformanceStats() {
         });
 
         $.each(data, function(k, vals) {
-            labels.push(vals['label']);
+            labels.push(vals.label);
             $.each(vals, function(group, amount){
                 if(groups[group]){
-                    data_points[group]['data'].push(parseFloat(amount));
+                    data_points[group].data.push(parseFloat(amount));
                 }
             });
         });
@@ -465,8 +482,7 @@ function initPerformanceStats() {
             chart_series.push(vals);
         });
 
-        var $c = container,
-            chart = new Highcharts.Chart({
+        new Highcharts.Chart({
                 chart: {
                     renderTo: container[0],
                     defaultSeriesType: 'line',

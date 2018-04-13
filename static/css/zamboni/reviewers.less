@@ -1153,12 +1153,21 @@ h2.addon {
 
 #addon-theme-previews-wrapper {
   .all-backgrounds {
-    display: none;
-  }
-}
+    .background {
+        display: block;
+        height: 100px;
+        margin: 13px 0;
+        border: 2px solid #C9DDF2;
+        background: rgba(201,221,242,.1);
+    }
+    .zoombox {
+        overflow: hidden;
+        position: relative;
 
-.addon-type-static-themes {
-  .more-about {
-    display: none;
+        img {
+            position: absolute;
+            right: 0;
+        }
+    }
   }
 }
