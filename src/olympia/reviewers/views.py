@@ -37,8 +37,8 @@ from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm, EventLogForm, MOTDForm, QueueSearchForm,
-    RatingFlagFormSet, ReviewForm, ReviewLogForm, WhiteboardForm)
+    AllAddonSearchForm, MOTDForm, QueueSearchForm, RatingFlagFormSet,
+    RatingModerationLogForm, ReviewForm, ReviewLogForm, WhiteboardForm)
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
@@ -84,28 +84,28 @@ def context(request, **kw):
 
 
 @ratings_moderator_required
-def eventlog(request):
-    form = EventLogForm(request.GET)
-    eventlog = ActivityLog.objects.reviewer_events()
+def ratings_moderation_log(request):
+    form = RatingModerationLogForm(request.GET)
+    mod_log = ActivityLog.objects.moderation_events()
 
     if form.is_valid():
         if form.cleaned_data['start']:
-            eventlog = eventlog.filter(created__gte=form.cleaned_data['start'])
+            mod_log = mod_log.filter(created__gte=form.cleaned_data['start'])
         if form.cleaned_data['end']:
-            eventlog = eventlog.filter(created__lt=form.cleaned_data['end'])
+            mod_log = mod_log.filter(created__lt=form.cleaned_data['end'])
         if form.cleaned_data['filter']:
-            eventlog = eventlog.filter(action=form.cleaned_data['filter'].id)
+            mod_log = mod_log.filter(action=form.cleaned_data['filter'].id)
 
-    pager = amo.utils.paginate(request, eventlog, 50)
+    pager = amo.utils.paginate(request, mod_log, 50)
 
     data = context(request, form=form, pager=pager)
 
-    return render(request, 'reviewers/eventlog.html', data)
+    return render(request, 'reviewers/moderationlog.html', data)
 
 
 @ratings_moderator_required
-def eventlog_detail(request, id):
-    log = get_object_or_404(ActivityLog.objects.reviewer_events(), pk=id)
+def ratings_moderation_log_detail(request, id):
+    log = get_object_or_404(ActivityLog.objects.moderation_events(), pk=id)
 
     review = None
     # I really cannot express the depth of the insanity incarnate in
@@ -128,10 +128,10 @@ def eventlog_detail(request, id):
             ReviewerScore.award_moderation_points(
                 log.user, review.addon, review.id, undo=True)
             review.undelete()
-        return redirect('reviewers.eventlog.detail', id)
+        return redirect('reviewers.ratings_moderation_log.detail', id)
 
     data = context(request, log=log, can_undelete=can_undelete)
-    return render(request, 'reviewers/eventlog_detail.html', data)
+    return render(request, 'reviewers/moderationlog_detail.html', data)
 
 
 @any_reviewer_or_moderator_required
@@ -273,7 +273,7 @@ def dashboard(request):
             reverse('reviewers.queue_moderated')
         ), (
             ugettext('Moderated Review Log'),
-            reverse('reviewers.eventlog')
+            reverse('reviewers.ratings_moderation_log')
         ), (
             ugettext('Moderation Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation'

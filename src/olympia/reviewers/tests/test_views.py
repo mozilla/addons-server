@@ -75,14 +75,14 @@ class ReviewerTest(TestCase):
         return Rating.objects.create(user=u, addon=a, title='foo', body='bar')
 
 
-class TestEventLog(ReviewerTest):
+class TestRatingsModerationLog(ReviewerTest):
 
     def setUp(self):
-        super(TestEventLog, self).setUp()
+        super(TestRatingsModerationLog, self).setUp()
         user = user_factory()
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.login(email=user.email)
-        self.url = reverse('reviewers.eventlog')
+        self.url = reverse('reviewers.ratings_moderation_log')
         core.set_user(user)
 
     def test_log(self):
@@ -126,12 +126,12 @@ class TestEventLog(ReviewerTest):
         assert response.status_code == 200
         assert '"no-results"' in response.content
 
-    def test_event_log_detail(self):
+    def test_moderation_log_detail(self):
         review = self.make_review()
         ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
-        id_ = ActivityLog.objects.reviewer_events()[0].id
+        id_ = ActivityLog.objects.moderation_events()[0].id
         response = self.client.get(
-            reverse('reviewers.eventlog.detail', args=[id_]))
+            reverse('reviewers.ratings_moderation_log.detail', args=[id_]))
         assert response.status_code == 200
 
 
@@ -546,7 +546,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.deleted'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
-            reverse('reviewers.eventlog'),
+            reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
@@ -594,7 +594,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.deleted'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
-            reverse('reviewers.eventlog'),
+            reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
@@ -777,7 +777,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.queue_moderated'),
-            reverse('reviewers.eventlog'),
+            reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -914,7 +914,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
-            reverse('reviewers.eventlog'),
+            reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -1640,9 +1640,10 @@ class TestModeratedQueue(QueueTest):
         assert response.status_code == 200
         assert pq(response.content)('#reviews-flagged .no-results').length == 1
 
-        response = self.client.get(reverse('reviewers.eventlog'))
+        response = self.client.get(reverse('reviewers.ratings_moderation_log'))
         assert pq(response.content)('table .more-details').attr('href') == (
-            reverse('reviewers.eventlog.detail', args=[logs[0].id]))
+            reverse('reviewers.ratings_moderation_log.detail',
+                    args=[logs[0].id]))
 
         # Make sure it was actually deleted.
         assert Rating.objects.filter(addon=1865).count() == 1

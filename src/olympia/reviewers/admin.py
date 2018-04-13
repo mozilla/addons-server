@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from olympia.translations.templatetags.jinja_helpers import truncate
 
-from .models import CannedResponse, EventLog, ReviewerScore
+from .models import CannedResponse, ReviewerScore
 
 
 class CannedResponseAdmin(admin.ModelAdmin):
@@ -12,21 +12,6 @@ class CannedResponseAdmin(admin.ModelAdmin):
 
     list_display = ('name', truncate_response)
     list_filter = ('type',)
-
-
-class EventLogAdmin(admin.ModelAdmin):
-    list_display = ('created', 'type', 'action', 'field', 'user',
-                    'changed_id', 'added', 'removed', 'notes')
-    list_filter = ('type', 'action')
-    readonly_fields = list_display
-    date_hierarchy = 'created'
-    raw_id_fields = ('user',)
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
 
 
 class ReviewerScoreAdmin(admin.ModelAdmin):
@@ -41,5 +26,4 @@ class ReviewerScoreAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CannedResponse, CannedResponseAdmin)
-admin.site.register(EventLog, EventLogAdmin)
 admin.site.register(ReviewerScore, ReviewerScoreAdmin)

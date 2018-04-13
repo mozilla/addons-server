@@ -16,8 +16,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.access.models import Group
-from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -91,35 +89,6 @@ class CannedResponse(ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-
-class EventLog(models.Model):
-    type = models.CharField(max_length=60)
-    action = models.CharField(max_length=120)
-    field = models.CharField(max_length=60, blank=True)
-    user = models.ForeignKey(UserProfile)
-    changed_id = models.IntegerField()
-    added = models.CharField(max_length=765, blank=True)
-    removed = models.CharField(max_length=765, blank=True)
-    notes = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = u'eventlog'
-
-    @staticmethod
-    def new_reviewers():
-        action = amo.LOG.GROUP_USER_ADDED
-        groups = Group.objects.filter(name__startswith='Reviewers: ')
-        items = (ActivityLog.objects.for_groups(groups)
-                            .filter(action=action.id)
-                            .order_by('-created')[:5])
-
-        # We re-filter the results to make sure to display only users that are
-        # still part of the reviewers groups we've looked at.
-        return [{'user': i.arguments[1], 'created': i.created}
-                for i in items if i.arguments[1].groups.filter(
-                    name__startswith='Reviewers: ').exists()]
 
 
 def get_flags(addon, version):
