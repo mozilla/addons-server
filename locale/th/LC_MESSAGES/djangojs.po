@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-11 18:27+0000\n"
+"PO-Revision-Date: 2018-04-14 07:56+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -656,9 +656,8 @@ msgid "Not available for your platform"
 msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
+msgstr "ส่วนเสริมนี้เข้ากันไม่ได้กับ {0} รุ่นของคุณ"
 
 msgid "View other versions"
 msgstr "ดูรุ่นอื่น"
