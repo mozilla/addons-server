@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-15 21:47+0000\n"
+"PO-Revision-Date: 2018-04-15 21:52+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2849,7 +2849,7 @@ msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are
 msgstr "Tanataj chi re samajib'äl re' xa xe nisamäj kik'in taq tz'aqat e'ichinan kan. WebExtension APIs wawe' <a href=\"%(webext_doc_url)s\">k'o taq ruwujil</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Chi rij ri jotob'anïk, xkesamajïx jalajöj taq rutojtob'enik ruyonil junamanem richin nitojtob'ëx we nuk'äm ri' rik'in ri ruwäch chokoy:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
