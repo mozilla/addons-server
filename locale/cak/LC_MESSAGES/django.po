@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-15 21:52+0000\n"
+"PO-Revision-Date: 2018-04-15 22:28+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2852,7 +2852,7 @@ msgid "After upload, a series of automated validation tests will run to check co
 msgstr "Chi rij ri jotob'anïk, xkesamajïx jalajöj taq rutojtob'enik ruyonil junamanem richin nitojtob'ëx we nuk'äm ri' rik'in ri ruwäch chokoy:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Chi rij ri jotob'anïk, xkesamajïx jalajöj taq rutojtob'enik yonil junamanem chi rij ri ayakb'al."
 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "¿La nawajo' chi nitalüx ri atz'aqat pa re ruxaq re'?"
@@ -2898,6 +2898,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Man nuk'äm ta ri' re tz'aqat re' rik'in ri <b>%(app_name)s %(app_version)s</b>, ri ruk'isib'äl ruwäch %(app_name)s. Yatikïr nak'ëx ri retamab'al richin nuk'äm ri' ri atz'aqat, o natäq jun k'ak'a' "
+"ruwäch re tz'aqat re'."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
