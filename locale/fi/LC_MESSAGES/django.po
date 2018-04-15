@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-06 13:05+0000\n"
+"PO-Revision-Date: 2017-04-03 06:16+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -49,7 +49,6 @@ msgstr ""
 msgid "You are already logged in."
 msgstr ""
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
 
