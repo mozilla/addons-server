@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-03-01 18:15+0000\n"
-"PO-Revision-Date: 2018-04-15 20:53+0000\n"
+"PO-Revision-Date: 2018-04-15 21:27+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2653,7 +2653,7 @@ msgstr "Man rilon ta ri k'uxasamaj pa \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Ri junamanem ruya'on k'ïy taq sachoj//warnings ruma ri toq %s taq rutzijol xe'ewäx. Toq xesamajïx yan ri tz'etel taq rutzijol, xkatikïr xtatz'ët ri ch'aqa' chik."
 
 msgid "All My Add-ons"
 msgstr "Ronojel Taq Nutz'aqat"
@@ -2728,7 +2728,7 @@ msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Ri wachib'äl k'o chi {0} piksel ruwa chuqa' {1} taq piksel rujotolem."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Xk'ulwachitäj jun sachoj toq nijotob'äx ri nab'ey rutzub'al."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2743,7 +2743,7 @@ msgid "Version %s re-enabled."
 msgstr "Ruwäch %s xtzij chik."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Re jotonem re' xuyüj ri junamanem ruma ri' toq rik'in jub'a' man tz'aqät ta ri ketal junamanem. Jeb'ël tanik'oj."
 
 msgid "Review requested."
 msgstr "Xk'utüx nik'oxïk."
