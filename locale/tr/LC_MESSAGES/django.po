@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2018-01-02 14:05+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -2033,15 +2033,19 @@ msgid "Content rejected"
 msgstr "İçerik reddedildi"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Daha fazla bilgi istendi"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Daha fazla bilgi istendi"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Daha fazla bilgi istendi"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2413,8 +2417,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Uygulama"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Temayı gönder"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2452,6 +2457,10 @@ msgstr "Güncellenmiş Dil Paketi İncelemesi"
 
 msgid "Theme Review"
 msgstr "Tema İnceleme"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Tema (Sabit)"
 
 msgid "New Search Provider Review"
 msgstr "Yeni arama sağlayıcı incelemesi"
@@ -3009,6 +3018,16 @@ msgstr "Bilgileri düzenle"
 msgid "None"
 msgstr "Hiçbiri"
 
+msgid "Preview"
+msgstr "Ön izleme"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Listelenen sürümler"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "Yazarları ve lisansı yönet"
 
@@ -3552,6 +3571,10 @@ msgstr "İşlem tamam!"
 msgid "Version Submitted for Review"
 msgstr "Sürüm incelemeye gönderildi"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Sürüm gönderildi"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3694,7 +3717,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4172,18 +4195,11 @@ msgstr ""
 msgid "Pending Header"
 msgstr "Onay bekliyor"
 
-#, fuzzy
-msgid "Pending Footer"
-msgstr "Beklemede"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Tema tasarımınız onaylandıktan sonra burada güncelleştirebilirsiniz."
 
 msgid "Header"
 msgstr "Üstbilgi"
-
-msgid "Footer"
-msgstr "Altbilgi"
 
 msgid "Select colors for your Theme."
 msgstr "Temanızın renklerini seçin."
@@ -4199,9 +4215,6 @@ msgstr "Arka plan"
 
 msgid "This is the color of the tabs."
 msgstr "Bu renk, sekmelerin rengidir."
-
-msgid "Preview"
-msgstr "Ön izleme"
 
 msgid "Your Theme's Name"
 msgstr "Temanızın adı"
@@ -4261,18 +4274,6 @@ msgstr "En fazla 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG veya JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Temanız için altbilgi resmi seçin."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 piksel"
-
-msgid "Aligned to bottom-left"
-msgstr "Alt sağa hizalı"
-
-msgid "Select a different footer image"
-msgstr "Farklı bir alt kısım resmi seçin"
 
 msgid "Manage Version {0}"
 msgstr "{0} sürümünü yönet"
@@ -4458,28 +4459,31 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5312,7 +5316,7 @@ msgstr "Yanlış yere konmuş hata raporu veya destek isteği"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Diğer (bilgi için açılır pencere sağlar)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6000,16 +6004,6 @@ msgstr "ve"
 msgid "Filter by type/action"
 msgstr "Uygulamaya göre süz"
 
-msgid "Passed automatic validation"
-msgstr "Otomatik doğrulamayı geçti"
-
-msgid "Failed automatic validation"
-msgstr "Otomatik doğrulama başarısız oldu"
-
-#, fuzzy
-msgid "Filter by automatic validation"
-msgstr "Uygulamaya göre süz"
-
 msgid "containing"
 msgstr ""
 
@@ -6092,6 +6086,10 @@ msgstr "Şimdilik geç"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Eklenti İçeriği İncelemesi"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "İnceleme Bekliyor"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack eklentisi"
@@ -6228,27 +6226,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Eklentilerim"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Öne Çıkan Temalar"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Eklentilerim"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
-msgstr "Yeni Eklentiler ({0})"
+msgid "New ({0})"
+msgstr "Yeni Temalar ({0})"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "Eklenti güncellemeleri"
+msgid "Updates ({0})"
+msgstr "Güncellemeler ({0})"
 
 #, fuzzy
-msgid "Add-on Review Log"
-msgstr "Eklenti İnceleme Süreci"
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Review Log"
+msgstr "İnceleme notu"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "İnceleme Yönergesi"
+msgid "Add-on Review Guide"
+msgstr "Eklenti İncelemesi"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Tema İnceleme Sırası"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6257,6 +6264,14 @@ msgstr "Engellenen Eklentiler"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Add-on Review Log"
+msgstr "Eklenti İnceleme Süreci"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "İnceleme Yönergesi"
 
 #, fuzzy
 msgid "Content Review"
@@ -6278,8 +6293,8 @@ msgid "Flagged Themes ({0})"
 msgstr "Öne Çıkan Temalar"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "Tema İnceleme"
+msgid "Lightweight Themes Review Log"
+msgstr "Hafif Temalar"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6375,6 +6390,17 @@ msgstr "Suistimal raporları ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Kullanıcı incelemeleri"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "tema adı"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Silindi"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Bu eklenti hakkında daha fazla bilgi"
 
@@ -6388,6 +6414,18 @@ msgstr "Burda bir şey yok!  Geliştirici herhangi bir ayrıntı vermemiş."
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "{0} Eklentileri ana sayfasına dön"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr "Henüz bir değerlendirme puanı verilmemiş."
+
+msgid "Rank"
+msgstr "Sıra"
+
+msgid "Score"
+msgstr "Puan"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6430,18 +6468,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "Silmeyi geri al"
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr "Henüz bir değerlendirme puanı verilmemiş."
-
-msgid "Rank"
-msgstr "Sıra"
-
-msgid "Score"
-msgstr "Puan"
 
 msgid "Save"
 msgstr "Kaydet"
@@ -6639,6 +6665,10 @@ msgstr "Eklenti İnceleme Süreci"
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Eklenti İnceleme Süreci"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Eklenti İnceleme Süreci"
 
 msgid "(admin)"
@@ -6851,10 +6881,6 @@ msgstr "Reddedildi veya incelenmedi"
 #, python-format
 msgid "[status:%s]"
 msgstr "[durum:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Yeni Eklentiler ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2013-11-28 12:53+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2036,15 +2036,20 @@ msgstr ""
 msgid "Content rejected"
 msgstr ""
 
-msgid "{addon} information request removed."
+#, fuzzy
+msgid "{addon} information request altered or removed by admin."
+msgstr "Review"
+
+#, fuzzy
+msgid "Information request altered"
+msgstr "Review"
+
+msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
 #, fuzzy
 msgid "Information request removed"
 msgstr "Review"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2421,8 +2426,10 @@ msgstr ""
 msgid "Android"
 msgstr ""
 
-msgid "App"
-msgstr ""
+# "Me" in this context is the user shown on the User Info page
+#, fuzzy
+msgid "Static Theme"
+msgstr "Created by Me"
 
 msgid "Persona"
 msgstr ""
@@ -2463,6 +2470,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr ""
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Delete review"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -3013,6 +3024,16 @@ msgstr "Developer Information"
 msgid "None"
 msgstr ""
 
+msgid "Preview"
+msgstr ""
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "New Version"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr ""
 
@@ -3553,6 +3574,10 @@ msgstr ""
 msgid "Version Submitted for Review"
 msgstr ""
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Хувилбарын тэмдэглэл"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3700,7 +3725,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4178,16 +4203,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4203,9 +4222,6 @@ msgid "Background"
 msgstr ""
 
 msgid "This is the color of the tabs."
-msgstr ""
-
-msgid "Preview"
 msgstr ""
 
 msgid "Your Theme's Name"
@@ -4265,18 +4281,6 @@ msgid "300 KB max"
 msgstr ""
 
 msgid "PNG or JPG"
-msgstr ""
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr ""
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4473,28 +4477,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5310,7 +5317,7 @@ msgstr "Misplaced bug report or support request"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5983,15 +5990,6 @@ msgstr ""
 msgid "Filter by type/action"
 msgstr "Төрөл/Үйлдлээр нь шүүх"
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr ""
 
@@ -6071,6 +6069,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Needs Admin Content Review"
+msgstr "Нийт үнэлгээ"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
 msgstr "Нийт үнэлгээ"
 
 msgid "Jetpack Add-on"
@@ -6208,27 +6210,37 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Миний нэмэгдлүүд"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Statistics"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Миний нэмэгдлүүд"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "{0} нэмэгдлүүд"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
+msgid "Updates ({0})"
 msgstr "Updated"
 
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
+#, fuzzy
+msgid "Review Log"
+msgstr "Review"
 
 #, fuzzy
-msgid "Review Guide"
+msgid "Add-on Review Guide"
+msgstr "Нийт үнэлгээ"
+
+#, fuzzy
+msgid "Theme Review Guide"
 msgstr "Review Guidelines"
 
 #, fuzzy
@@ -6240,6 +6252,13 @@ msgstr "What are Add-ons?"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "{0} нэмэгдлүүд"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Review Guidelines"
 
 #, fuzzy
 msgid "Content Review"
@@ -6264,7 +6283,7 @@ msgid "Flagged Themes ({0})"
 msgstr ""
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "Delete review"
 
 #, fuzzy
@@ -6360,6 +6379,16 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr ""
 
+msgid "Theme Images"
+msgstr ""
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Deleted reviews"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 #, fuzzy
 msgid "More about this add-on"
 msgstr "More about this add-on"
@@ -6375,6 +6404,18 @@ msgstr ""
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "{0} нэмэгдлийн хуудас руу буцах"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6417,18 +6458,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
 msgstr ""
 
 msgid "Save"
@@ -6616,6 +6645,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Нийт үнэлгээ"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Нийт үнэлгээ"
 
 msgid "(admin)"
@@ -6819,14 +6852,6 @@ msgstr ""
 #, python-format
 msgid "[status:%s]"
 msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "{0} нэмэгдлүүд"
-msgstr[1] "{0} нэмэгдлүүд"
 
 #, fuzzy
 msgid "Update ({0})"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2018-01-21 02:03+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2034,16 +2034,20 @@ msgid "Content rejected"
 msgstr "Obsah zamítnut"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Vyžádáno více informací"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Vyžádáno více informací"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Odpověď vývojáře doplňku {addon} {version}."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Vyžádáno více informací"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2408,8 +2412,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Aplikace"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Přidat motiv"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2446,6 +2451,10 @@ msgstr "Kontroly aktualizovaných jazykových balíčků"
 
 msgid "Theme Review"
 msgstr "Kontrola motivu"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Motiv (statický)"
 
 msgid "New Search Provider Review"
 msgstr "Nová kontrola vyhledávacích modulů"
@@ -3004,6 +3013,16 @@ msgstr "Upravit informace"
 msgid "None"
 msgstr "Žádné"
 
+msgid "Preview"
+msgstr "Náhled"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Zveřejněné verze"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "Správa autorů a licence"
 
@@ -3545,6 +3564,10 @@ msgstr "A je to hotovo!"
 msgid "Version Submitted for Review"
 msgstr "Verze odeslaná ke kontrole"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Verze odeslána"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Hotovo! Tato verze bude k dispozici po její kontrole. O jejím dokončení vás budeme informovat."
 
@@ -3680,7 +3703,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4152,17 +4175,11 @@ msgstr "Vámi dříve odeslaný vzhled, který čeká na kontrolu."
 msgid "Pending Header"
 msgstr "Čekající hlavička"
 
-msgid "Pending Footer"
-msgstr "Čekající patička"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Svůj návrh motivu budete moci aktualizovat až bude schválen."
 
 msgid "Header"
 msgstr "Hlavička"
-
-msgid "Footer"
-msgstr "Patička"
 
 msgid "Select colors for your Theme."
 msgstr "Zvolte barvy pro váš motiv."
@@ -4178,9 +4195,6 @@ msgstr "Pozadí"
 
 msgid "This is the color of the tabs."
 msgstr "Jedná se o barvu panelů."
-
-msgid "Preview"
-msgstr "Náhled"
 
 msgid "Your Theme's Name"
 msgstr "Jméno vašeho motivu"
@@ -4242,18 +4256,6 @@ msgstr "max 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG nebo JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Zvolte obrázek patičky pro váš motiv."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pixelů"
-
-msgid "Aligned to bottom-left"
-msgstr "Zarovnáno doleva dolů"
-
-msgid "Select a different footer image"
-msgstr "Vybrat jiný obrázek patičky"
 
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
@@ -4446,30 +4448,35 @@ msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+#, fuzzy
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+#, fuzzy
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Tisíce úžasných emoji vždy po ruce."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -5333,7 +5340,8 @@ msgstr "Nevhodné oznámení chyby nebo žádost o podporu"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Jiný (zobrazí se okno pro možnost zadání dalších informací)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+#, fuzzy
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "V současné době AMO nenabízí možnost přímé komunikace s autory uživatelských recenzí."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6072,15 +6080,6 @@ msgstr "a"
 msgid "Filter by type/action"
 msgstr "Filtrovat dle typu/akce"
 
-msgid "Passed automatic validation"
-msgstr "Prošlo automatickou kontrolou"
-
-msgid "Failed automatic validation"
-msgstr "Neprošlo automatickou kontrolou"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrovat podle stavu automatické kontroly"
-
 msgid "containing"
 msgstr "obsahující"
 
@@ -6156,6 +6155,10 @@ msgstr "Nyní neřešit"
 
 msgid "Needs Admin Content Review"
 msgstr "Čeká na kontrolu obsahu administrátorem"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Čeká na kontrolu kódu administrátorem"
 
 msgid "Jetpack Add-on"
 msgstr "Doplněk postavený na Jetpacku"
@@ -6288,29 +6291,48 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
+#, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Zastaralé doplňky"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Doporučené motivy vzhledu"
+
 msgid "Legacy Add-ons"
 msgstr "Zastaralé doplňky"
 
-msgid "New Add-ons ({0})"
-msgstr "Nové doplňky ({0})"
+#, fuzzy
+msgid "New ({0})"
+msgstr "Nové motivy vzhledu ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Aktualizace doplňků ({0})"
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "Aktualizace ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Seznam kontrol doplňků"
+#, fuzzy
+msgid "Review Log"
+msgstr "Poznámka ke kontrole"
 
-msgid "Signed Beta Files Log"
-msgstr "Žurnál podepsaných beta souborů"
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Kontrola doplňku"
 
-msgid "Review Guide"
-msgstr "Příručka recenzenta"
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Fronta pro schválení motivů"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Automaticky schválené doplňky ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Seznam kontrol doplňků"
+
+msgid "Review Guide"
+msgstr "Příručka recenzenta"
 
 msgid "Content Review"
 msgstr "Kontrola obsahu"
@@ -6330,8 +6352,9 @@ msgstr "Aktualizace motivů vzhledu ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Označené motivy vzhledu ({0})"
 
-msgid "Themes Review Log"
-msgstr "Záznam kontroly motivů vzhledu"
+#, fuzzy
+msgid "Lightweight Themes Review Log"
+msgstr "Lehké motivy vzhledu"
 
 msgid "Deleted Themes Log"
 msgstr "Záznam smazaných motivů"
@@ -6422,6 +6445,17 @@ msgstr "Nahlášená zneužití ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Špatná uživatelská hodnocení ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "Obrázky"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Smazané recenze"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Více o doplňku"
 
@@ -6433,6 +6467,20 @@ msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Zpět na nástěnku s nástroji redaktora"
+
+msgid "Reviewer Leaderboard"
+msgstr "Nástěnka redaktorů"
+
+# 75%
+# 100%
+msgid "No review points awarded yet."
+msgstr "Dosud jste neobdrželi žádný bod."
+
+msgid "Rank"
+msgstr "Hodnocení"
+
+msgid "Score"
+msgstr "Skóre"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6474,20 +6522,6 @@ msgstr "Recenze byla označena k odstranění."
 
 msgid "Undelete"
 msgstr "Vrátit zpět odstranění"
-
-msgid "Reviewer Leaderboard"
-msgstr "Nástěnka redaktorů"
-
-# 75%
-# 100%
-msgid "No review points awarded yet."
-msgstr "Dosud jste neobdrželi žádný bod."
-
-msgid "Rank"
-msgstr "Hodnocení"
-
-msgid "Score"
-msgstr "Skóre"
 
 msgid "Save"
 msgstr "Uložit"
@@ -6668,6 +6702,10 @@ msgstr "Vymazat příznak kontroly kódu administrátorem"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Vymazat příznak kontroly obsahu recenze administrátorem"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Vymazat příznak kontroly kódu administrátorem"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6869,12 +6907,6 @@ msgstr "Zamítnuté nebo nezkontrolované"
 #, python-format
 msgid "[status:%s]"
 msgstr "[stav:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nový doplněk ({0})"
-msgstr[1] "Nové doplňky ({0})"
-msgstr[2] "Nové doplňky ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
