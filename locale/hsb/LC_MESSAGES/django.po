@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 20:46+0000\n"
+"PO-Revision-Date: 2018-04-16 21:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2420,9 +2420,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Drastu zapodać"
+msgstr "Statiska drasta"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2460,9 +2459,8 @@ msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
 msgid "Theme Review"
 msgstr "Přepruwowanje drasty"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Drasta (statiska)"
+msgstr "Přepruwowanje (statiskeje) drasty"
 
 msgid "New Search Provider Review"
 msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
@@ -3016,9 +3014,8 @@ msgstr "Žane"
 msgid "Preview"
 msgstr "Přehlad"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Nalistowane wersije"
+msgstr "Přehlad nalistowaneje wersije"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Přehlad so hišće twori - wróćće so pozdźišo abo aktualizujće stronu."
@@ -3571,9 +3568,8 @@ msgstr "Sće hotowy!"
 msgid "Version Submitted for Review"
 msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Wersija je so zapodała"
+msgstr "Přehlad wersije je so zapodał"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Sće hotowy! Tuta wersija budźe k dispoziciji, po tym zo je so wuspěšnje přepruwowała. Dóstańće zdźělenku, hdyž je přepruwowana."
@@ -3710,7 +3706,6 @@ msgstr "Pozadk wobłuka symboloweje lajsty"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark. Polo manifesta: toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobłuka symboloweje lajsty"
 
