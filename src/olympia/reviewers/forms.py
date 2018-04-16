@@ -39,7 +39,7 @@ ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
                    deleted=amo.LOG.DELETE_RATING)
 
 
-class EventLogForm(happyforms.Form):
+class RatingModerationLogForm(happyforms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False,

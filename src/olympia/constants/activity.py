@@ -613,7 +613,7 @@ LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = namedtuple('LogTuple', [l.__name__ for l in LOGS])(*[l for l in LOGS])
 LOG_ADMINS = [l.id for l in LOGS if hasattr(l, 'admin_event')]
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
-LOG_REVIEWERS = [l.id for l in LOGS if hasattr(l, 'reviewer_event')]
+LOG_RATING_MODERATION = [l.id for l in LOGS if hasattr(l, 'reviewer_event')]
 LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 LOG_REVIEWER_REVIEW_ACTION = [
     l.id for l in LOGS if hasattr(l, 'reviewer_review_action')]

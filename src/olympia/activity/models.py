@@ -170,8 +170,8 @@ class ActivityLogManager(ManagerBase):
     def admin_events(self):
         return self.filter(action__in=constants.activity.LOG_ADMINS)
 
-    def reviewer_events(self):
-        return self.filter(action__in=constants.activity.LOG_REVIEWERS)
+    def moderation_events(self):
+        return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
 
     def review_queue(self):
         qs = self._by_type()

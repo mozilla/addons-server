@@ -5,7 +5,7 @@
 
 <div class="listing results">
   <div class="results-inner controls">
-    <form action="{{ url('reviewers.eventlog') }}" data-no-csrf>
+    <form action="{{ url('reviewers.ratings_moderation_log') }}" data-no-csrf>
       <p class="date_range">
         {{ form.start.label_tag() }}
         {{ form.start }}
@@ -36,7 +36,7 @@
               {{ item.to_string('reviewer') }}
               {% if item.details %}
               <a class="more-details"
-                 href="{{ url('reviewers.eventlog.detail', item.id) }}">
+                 href="{{ url('reviewers.ratings_moderation_log.detail', item.id) }}">
                 {{ _('More details.') }}
               </a>
               {% endif %}
@@ -57,4 +57,3 @@
   {% endif %}
 </div>
 {% endblock %}
-
