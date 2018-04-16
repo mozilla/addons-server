@@ -67,13 +67,7 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.debug(m % (count, pk))
             continue
 
-        if (count - addon.total_downloads) > 10000:
-            # Adjust ADU to equal total downloads so bundled add-ons don't
-            # skew the results when sorting by users.
-            task_log.info('Readjusted ADU count for addon %s' % addon.slug)
-            addon.update(average_daily_users=addon.total_downloads)
-        else:
-            addon.update(average_daily_users=count)
+        addon.update(average_daily_users=count)
 
 
 def update_addon_download_totals():

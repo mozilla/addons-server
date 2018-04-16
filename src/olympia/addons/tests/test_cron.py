@@ -200,17 +200,6 @@ class AvgDailyUserCountTestCase(TestCase):
         super(AvgDailyUserCountTestCase, self).setUp()
         self.create_switch('local-statistics-processing')
 
-    def test_adu_is_adjusted_in_cron(self):
-        addon = Addon.objects.get(pk=3615)
-        assert addon.average_daily_users == 6000000
-        assert \
-            addon.average_daily_users > addon.total_downloads + 10000, \
-            ('Unexpected ADU count. ADU of %d not greater than %d' % (
-                addon.average_daily_users, addon.total_downloads + 10000))
-        cron._update_addon_average_daily_users([(3615, 6000000)])
-        addon = Addon.objects.get(pk=3615)
-        assert addon.average_daily_users == addon.total_downloads
-
     def test_13_day_window(self):
         addon = Addon.objects.get(pk=3615)
 
