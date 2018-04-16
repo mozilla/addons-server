@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-03-31 18:28+0000\n"
+"PO-Revision-Date: 2018-04-16 20:49+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2052,7 +2052,6 @@ msgstr "התוכן נדחה"
 msgid "{addon} information request altered or removed by admin."
 msgstr "הוסרה בקשה למידע מ־{addon}."
 
-#, fuzzy
 msgid "Information request altered"
 msgstr "הוסרה בקשה למידע"
 
@@ -2429,9 +2428,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "הגשת ערכת נושא"
+msgstr "ערכת נושא קבועה"
 
 msgid "Persona"
 msgstr "Persona"
@@ -4023,7 +4021,7 @@ msgid "Update Your Legacy Extension"
 msgstr "עדכון ההרחבה מדור קודם שלך"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "לאחרונה הוקם תקן חדש משותף לכל הדפדפנים לפיתוח תוספות ל־Firefox. יהיה עליך לעדכן את התוספות המיושנות שלך כדי לשמור על תאימות."
+msgstr ""
 
 msgid "Learn How"
 msgstr "למדו כיצד"
@@ -4463,9 +4461,8 @@ msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{en
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
@@ -5306,7 +5303,6 @@ msgstr "דיווח באג או בקשת תמיכה במקום הלא־נכון"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "נכון לעכשיו, אין ב־AMO אפשרות ליצור קשר באופן ישיר עם יוצר של סקירת משתמש."
 
@@ -6225,13 +6221,11 @@ msgstr "אישור תוכן"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "תוספות מדור קודם"
+msgstr "ערכות נושא קבועות ותוספות מדור קודם"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "ערכות נושא מומלצות"
+msgstr "ערכות נושא קבועות"
 
 msgid "Legacy Add-ons"
 msgstr "תוספות מדור קודם"
@@ -6239,12 +6233,12 @@ msgstr "תוספות מדור קודם"
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 msgid "New ({0})"
-msgstr ""
+msgstr "חדש ({0})"
 
 # 85%
 # 100%
 msgid "Updates ({0})"
-msgstr ""
+msgstr "עדכונים ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -6386,9 +6380,8 @@ msgstr "דיווחים על שימוש לרעה ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "דירוגי משתמשים שליליים ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "שם ערכת נושא"
+msgstr "תמונות של ערכת נושא"
 
 # 86%
 # 100%
@@ -6844,7 +6837,7 @@ msgid "Ask a question to the artist"
 msgstr "שליחת שאלה לאמן"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "נא לציין את סיבת הסימון בדגל"
 
 msgid "Rejected or Unreviewed"
 msgstr "נדחה או לא נסקר"
