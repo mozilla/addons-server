@@ -471,17 +471,17 @@ class ActivityLog(ModelBase):
             log.warning('Activity log called with no user: %s' % action.id)
             return
 
-        al = ActivityLog(user=user, action=action.id)
-        al.arguments = args
+        actl = ActivityLog(user=user, action=action.id)
+        actl.arguments = args
         if 'details' in kw:
-            al.details = kw['details']
-        al.save()
+            actl.details = kw['details']
+        actl.save()
 
         if 'created' in kw:
-            al.update(created=kw.get('created'))
+            actl.update(created=kw.get('created'))
 
-        if 'details' in kw and 'comments' in al.details:
-            cl = CommentLog(comments=al.details['comments'], activity_log=al)
+        if 'details' in kw and 'comments' in actl.details:
+            cl = CommentLog(comments=actl.details['comments'], activity_log=actl)
             cl.save()
             if 'created' in kw:
                 cl.update(created=kw.get('created'))
@@ -531,7 +531,7 @@ class ActivityLog(ModelBase):
                     gl.update(created=kw.get('created'))
 
         # Index by every user
-        ul = UserLog(activity_log=al, user=user)
+        ul = UserLog(activity_log=actl, user=user)
         ul.save()
         if 'created' in kw:
             ul.update(created=kw.get('created'))
