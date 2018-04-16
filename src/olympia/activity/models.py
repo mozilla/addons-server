@@ -466,41 +466,73 @@ class ActivityLog(ModelBase):
         from olympia import core
 
         user = kw.get('user', core.get_user())
-        created = kw.get('created', datetime.now())
 
         if not user:
             log.warning('Activity log called with no user: %s' % action.id)
             return
 
-        al = ActivityLog(user=user, action=action.id, created=created)
+        al = ActivityLog(user=user, action=action.id)
         al.arguments = args
         if 'details' in kw:
             al.details = kw['details']
         al.save()
 
+        if 'created' in kw:
+            al.update(created=kw.get('created'))
+
         if 'details' in kw and 'comments' in al.details:
-            CommentLog(comments=al.details['comments'], activity_log=al, created=created).save()
+            l = CommentLog(comments=al.details['comments'], activity_log=al)
+            l.save()
+            if 'created' in kw:
+                l.update(created=kw.get('created'))
 
         for arg in args:
             if isinstance(arg, tuple):
                 if arg[0] == Addon:
-                    AddonLog(addon_id=arg[1], activity_log=al, created=created).save()
+                    l = AddonLog(addon_id=arg[1], activity_log=al)
+                    l.save()
+                    if 'created' in kw:
+                        l.update(created=kw.get('created'))
                 elif arg[0] == Version:
-                    VersionLog(version_id=arg[1], activity_log=al, created=created).save()
+                    l = VersionLog(version_id=arg[1], activity_log=al)
+                    l.save()
+                    if 'created' in kw:
+                        l.update(created=kw.get('created'))
                 elif arg[0] == UserProfile:
-                    UserLog(user_id=arg[1], activity_log=al, created=created).save()
+                    l = UserLog(user_id=arg[1], activity_log=al)
+                    l.save()
+                    if 'created' in kw:
+                        l.update(created=kw.get('created'))
                 elif arg[0] == Group:
-                    GroupLog(group_id=arg[1], activity_log=al, created=created).save()
+                    l = GroupLog(group_id=arg[1], activity_log=al)
+                    l.save()
+                    if 'created' in kw:
+                        l.update(created=kw.get('created'))
             elif isinstance(arg, Addon):
-                AddonLog(addon=arg, activity_log=al, created=created).save()
+                l = AddonLog(addon=arg, activity_log=al)
+                l.save()
+                if 'created' in kw:
+                    l.update(created=kw.get('created'))
             elif isinstance(arg, Version):
-                VersionLog(version=arg, activity_log=al, created=created).save()
+                l = VersionLog(version=arg, activity_log=al)
+                l.save()
+                if 'created' in kw:
+                    l.update(created=kw.get('created'))
             elif isinstance(arg, UserProfile):
                 # Index by any user who is mentioned as an argument.
-                UserLog(activity_log=al, user=arg, created=created).save()
+                l = UserLog(activity_log=al, user=arg)
+                l.save()
+                if 'created' in kw:
+                    l.update(created=kw.get('created'))
             elif isinstance(arg, Group):
-                GroupLog(group=arg, activity_log=al, created=created).save()
+                l = GroupLog(group=arg, activity_log=al)
+                l.save()
+                if 'created' in kw:
+                    l.update(created=kw.get('created'))
 
         # Index by every user
-        UserLog(activity_log=al, user=user, created=created).save()
+        l = UserLog(activity_log=al, user=user)
+        l.save()
+        if 'created' in kw:
+            l.update(created=kw.get('created'))
         return al

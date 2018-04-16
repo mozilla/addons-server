@@ -506,7 +506,7 @@ class ReviewBase(object):
             file.save()
 
     def log_action(self, action, version=None, files=None,
-                   timestamp=datetime.now()):
+                   timestamp=None):
         details = {'comments': self.data['comments'],
                    'reviewtype': self.review_type}
         if files is None and self.files:
@@ -520,6 +520,8 @@ class ReviewBase(object):
             args = (self.addon, version)
         else:
             args = (self.addon,)
+        if timestamp is None:
+            timestamp = datetime.now()
 
         kwargs = {'user': self.user, 'created': timestamp,
                   'details': details}
