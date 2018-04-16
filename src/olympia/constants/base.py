@@ -444,6 +444,8 @@ ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
 DISCO_API_ALLOWED_PARAMETERS = (
     'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
 
+# If you add/remove any sources, update the docs: /api/download_sources.html
+# Note there are some additional sources here for historical/backwards compat.
 DOWNLOAD_SOURCES_FULL = (
     'addondetail', 'addon-detail-version', 'api', 'category', 'collection',
     'creatured', 'developers', 'discovery-dependencies', 'discovery-upsell',
