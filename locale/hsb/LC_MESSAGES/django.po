@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 21:30+0000\n"
+"PO-Revision-Date: 2018-04-16 21:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4448,23 +4448,20 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Zastajće slědowanje Facebooka {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Zjednorće pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
@@ -6179,9 +6176,8 @@ msgstr "Nětko přeskočić"
 msgid "Needs Admin Content Review"
 msgstr "Wobsah dyrbi so wot administratora přepruwować"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Žórłowy kod dyrbi so wot administratora přepruwować"
+msgstr "Statiska drasta dyrbi so wot administratora přepruwować"
 
 msgid "Jetpack Add-on"
 msgstr "Přidatk typa Jetpack"
@@ -6315,36 +6311,29 @@ msgstr "Wobsah schwalić"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Zestarjene přidatki"
+msgstr "Statiske drasty a zestarjene přidatki"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Předstajene drasty"
+msgstr "Statiske drasty"
 
 msgid "Legacy Add-ons"
 msgstr "Zestarjene přidatki"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nowe drasty ({0})"
+msgstr "Nowy ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Aktualizacija ({0})"
+msgstr "Aktualizacije ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Přepruwowanska přispomnjenka"
+msgstr "Protokol přepruwowanjow"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Přepruwowanje přidatka"
+msgstr "Nawod za přepruwowanje přidatkow"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Čakanski rynk drastowych přepruwowanjow"
+msgstr "Nawod za přepruwowanje drastow"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
@@ -6377,9 +6366,8 @@ msgstr "Aktualizacije drastow ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Markěrowane drasty ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lochke drasty"
+msgstr "Protokol za přepruwowanja lochkich drastow"
 
 msgid "Deleted Themes Log"
 msgstr "Protokol zhašanych drastow"
@@ -6471,13 +6459,11 @@ msgstr "Znjewužiwanske rozprawy ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužiwarske pohódnoćenja ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Mjeno drasty"
+msgstr "Wobrazy drasty"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Zhašane přepruwowanja"
+msgstr "Narysowany přehlad"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Pozadkowa dataja {0} z {1} - {2}"
