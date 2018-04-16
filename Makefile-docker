@@ -93,11 +93,11 @@ populate_data:
 	python manage.py update_permissions_from_mc
 
 install_python_dependencies:
-	pip install --no-deps --exists-action=w -r requirements/system.txt
-	pip install --no-deps --exists-action=w -r requirements/flake8.txt
-	pip install --no-deps --exists-action=w -r requirements/dev.txt
-	pip install --no-deps --exists-action=w -r requirements/docs.txt
-	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/system.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
@@ -152,6 +152,6 @@ ui-tests:
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
 
-	pip install --no-deps -r requirements/uitests.txt
+	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
 
 initialize: update_deps initialize_db update_assets populate_data
