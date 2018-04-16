@@ -4441,7 +4441,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Re-imagine os separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Tem uma tonelada de separadores abertos? Organize-os numa barra lateral arrumada."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarregar vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
@@ -6430,7 +6430,7 @@ msgid "Rendered Preview"
 msgstr "Pré-visualização renderizada"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Ficheiro de fundo {0} de {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Mais acerca deste extra"
