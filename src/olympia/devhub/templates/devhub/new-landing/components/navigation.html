@@ -29,7 +29,7 @@
       </a></li>
 
       {% if user_authenticated %}
-        <li class="DevHub-Navigation-SignOut"><a href="{{ url('users.logout') }}">
+        <li class="DevHub-Navigation-SignOut"><a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">
           {{ _('Sign Out') }}
         </a></li>
 
