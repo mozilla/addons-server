@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 16:10+0000\n"
+"PO-Revision-Date: 2018-04-16 16:13+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3009,7 +3009,7 @@ msgid "Preview of listed version"
 msgstr "Náhled zveřejněné verze"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Náhled se stále generuje. Obnovte stránku nebo se sem vraťte později."
 
 msgid "Manage Authors & License"
 msgstr "Správa autorů a licence"
@@ -3692,7 +3692,7 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr "Barva pozadí navigační lišty, lišty záložek, navigační lišty a vybraného panelu. Pole manifestu: toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Text a ikony v nástrojové liště"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Barva textu a ikon v lištách a aktivním panelu. Pole manifestu: toolbar_text."
@@ -6263,28 +6263,23 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Zastaralé doplňky"
+msgstr "Statické vzhledy a zastaralé doplňky"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Doporučené motivy vzhledu"
+msgstr "Statické vzhledy"
 
 msgid "Legacy Add-ons"
 msgstr "Zastaralé doplňky"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nové motivy vzhledu ({0})"
+msgstr "Nové ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Aktualizace ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Poznámka ke kontrole"
+msgstr "Záznam kontrol"
 
 #, fuzzy
 msgid "Add-on Review Guide"
@@ -6324,9 +6319,8 @@ msgstr "Aktualizace motivů vzhledu ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Označené motivy vzhledu ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lehké motivy vzhledu"
+msgstr "Záznam kontrol lehkých vzhledů"
 
 msgid "Deleted Themes Log"
 msgstr "Záznam smazaných motivů"
@@ -6416,13 +6410,11 @@ msgstr "Nahlášená zneužití ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Špatná uživatelská hodnocení ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Obrázky"
+msgstr "Obrázky vzhledu"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Smazané recenze"
+msgstr "Vykreslený náhled"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
