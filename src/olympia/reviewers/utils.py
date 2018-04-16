@@ -326,9 +326,31 @@ class ReviewHelper(object):
             is_admin_tools_viewer or
             (
                 self.version and
-                not self.version.addon.needs_admin_content_review and
-                not self.version.addon.needs_admin_code_review and
-                not self.version.addon.needs_admin_theme_review
+                (
+                    (
+                        (
+                            # Content Review
+                            self.content_review_only and
+                            (
+                                not self.addon.needs_admin_content_review or
+                                # Content reviews should allowed if the add-on
+                                # is pending admin review because it has
+                                # sources attached
+                                self.version.source
+                            )
+                        ) or (
+                            # Theme Review
+                            self.addon.type == amo.ADDON_STATICTHEME and
+                            not self.addon.needs_admin_theme_review
+                        ) or (
+                            # Add-on Review
+                            not self.content_review_only and
+                            self.addon.type != amo.ADDON_STATICTHEME and
+                            not self.addon.needs_admin_code_review and
+                            not self.addon.needs_admin_content_review
+                        )
+                    )
+                )
             ))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
