@@ -89,6 +89,7 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
+            docker-compose pull --quiet
             docker-compose up -d
             sleep 20
             docker-compose ps
