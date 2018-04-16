@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2038,16 +2038,20 @@ msgid "Content rejected"
 msgstr "rejeitado"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Solicitada mais informação"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Solicitada mais informação"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Comentário a {addon} {version}."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Solicitada mais informação"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2437,8 +2441,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Aplicação"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Enviar tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2478,6 +2483,10 @@ msgstr "Análise do pacote de idioma atualizada"
 
 msgid "Theme Review"
 msgstr "Análise do tema"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Detalhes do tema"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -3036,6 +3045,16 @@ msgstr "Informação básica"
 
 msgid "None"
 msgstr "Nenhum"
+
+msgid "Preview"
+msgstr "Pré-visualizar"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Ver outras versões"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "Gerir autores e licença"
@@ -3619,6 +3638,10 @@ msgstr "Está feito!"
 msgid "Version Submitted for Review"
 msgstr "Notas da versão / Notas para o editor"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Notas da versão"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3779,7 +3802,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4292,17 +4315,11 @@ msgstr "O seu design anteriormente resubmetido e que aguarda revisão."
 msgid "Pending Header"
 msgstr "Cabeçalho em espera"
 
-msgid "Pending Footer"
-msgstr "Rodapé em espera"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Pode atualizar aqui o design do seu tema após este ter sido aprovado."
 
 msgid "Header"
 msgstr "Cabeçalho"
-
-msgid "Footer"
-msgstr "Rodapé"
 
 msgid "Select colors for your Theme."
 msgstr "Selecione as cores para o seu tema."
@@ -4318,9 +4335,6 @@ msgstr "Fundo"
 
 msgid "This is the color of the tabs."
 msgstr "Esta é a cor dos separadores."
-
-msgid "Preview"
-msgstr "Pré-visualizar"
 
 msgid "Your Theme's Name"
 msgstr "Nome do seu tema"
@@ -4380,18 +4394,6 @@ msgstr "máximo de 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG ou JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Selecione uma imagem para o rodapé do seu tema."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pixeis"
-
-msgid "Aligned to bottom-left"
-msgstr "Alinhado em baixo à esquerda"
-
-msgid "Select a different footer image"
-msgstr "Selecione uma imagem de rodapé diferente"
 
 msgid "Manage Version {0}"
 msgstr "Gerir versão {0}"
@@ -4591,28 +4593,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5492,7 +5497,7 @@ msgid "Other (provides a pop-up prompt for information)"
 msgstr "Outro (apresenta uma caixa com a solicitação de mais informações)"
 
 #, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Atualmente, o AMO não fornece um mecanismo para comunicação com o revisor mas esta funcionalidade está a ser investigada e considerada para uma futura atualização."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6240,15 +6245,6 @@ msgstr "e"
 msgid "Filter by type/action"
 msgstr "Filtro por tipo/ação"
 
-msgid "Passed automatic validation"
-msgstr "Passou a validação automática"
-
-msgid "Failed automatic validation"
-msgstr "Falhou a validação automática"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrado por validação automática"
-
 msgid "containing"
 msgstr "contendo"
 
@@ -6329,6 +6325,10 @@ msgstr "Saltar por agora"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Submeter revisão"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Revisão administrativa"
 
 msgid "Jetpack Add-on"
 msgstr "Extra Jetpack"
@@ -6475,26 +6475,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Os meus Extras"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Temas em destaque"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Os meus Extras"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "Não listar extra"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "Atualizações do extra"
-
-msgid "Add-on Review Log"
-msgstr "Registo da revisão do extra"
-
-msgid "Signed Beta Files Log"
-msgstr "Registo de ficheiros beta assinados"
+msgid "Updates ({0})"
+msgstr "Atualizado {0}"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "Guia dos revisores"
+msgid "Review Log"
+msgstr "Data da revisão"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Análise completa do extra"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Fila de revisão do tema"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6503,6 +6513,13 @@ msgstr "Extras para o Android"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Não listar extra"
+
+msgid "Add-on Review Log"
+msgstr "Registo da revisão do extra"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Guia dos revisores"
 
 #, fuzzy
 msgid "Content Review"
@@ -6527,8 +6544,8 @@ msgid "Flagged Themes ({0})"
 msgstr "Temas marcados"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "Análise do tema"
+msgid "Lightweight Themes Review Log"
+msgstr "Temas leves"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6629,6 +6646,17 @@ msgstr "Denúncias de abuso para {addon} ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Revisão moderada ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "nome do tema"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Revisões eliminadas"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Mais sobre este extra"
 
@@ -6642,6 +6670,18 @@ msgstr "Não existe nada para ver aqui! O programador não incluiu quaisquer det
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Voltar à página inicial das ferramentas do editor"
+
+msgid "Reviewer Leaderboard"
+msgstr "Tabela de classificações dos revisores"
+
+msgid "No review points awarded yet."
+msgstr "Nenhum ponto recebido por revisões ainda."
+
+msgid "Rank"
+msgstr "Classificação"
+
+msgid "Score"
+msgstr "Pontuação"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6684,18 +6724,6 @@ msgstr "A revisão foi marcada antes para eliminação."
 
 msgid "Undelete"
 msgstr "Não eliminar"
-
-msgid "Reviewer Leaderboard"
-msgstr "Tabela de classificações dos revisores"
-
-msgid "No review points awarded yet."
-msgstr "Nenhum ponto recebido por revisões ainda."
-
-msgid "Rank"
-msgstr "Classificação"
-
-msgid "Score"
-msgstr "Pontuação"
 
 msgid "Save"
 msgstr "Guardar"
@@ -6886,6 +6914,10 @@ msgstr "Limpar etiqueta de revisão de administração"
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Limpar etiqueta de revisão de administração"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Limpar etiqueta de revisão de administração"
 
 msgid "(admin)"
@@ -7089,12 +7121,6 @@ msgstr "Rejeitado ou não revisto"
 #, fuzzy, python-format
 msgid "[status:%s]"
 msgstr "Estado:"
-
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Não listar extra"
-msgstr[1] "Não listar extra"
 
 #, fuzzy
 msgid "Update ({0})"

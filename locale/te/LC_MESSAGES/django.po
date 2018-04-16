@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2018-02-26 11:28+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1971,15 +1971,19 @@ msgid "Content rejected"
 msgstr "విషయం తిరస్కరించబడింది"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2342,8 +2346,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "అనువర్తనం"
+#, fuzzy
+msgid "Static Theme"
+msgstr "అలంకరణను సవరించండి"
 
 msgid "Persona"
 msgstr "పెర్సోనా"
@@ -2380,6 +2385,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr "అలంకారపు సమీక్ష"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "అలంకారం (అచలం)"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2923,6 +2932,16 @@ msgstr "సమాచారాన్ని సవరించండి"
 msgid "None"
 msgstr "ఏదీకాదు"
 
+msgid "Preview"
+msgstr "ముందస్తు వీక్షణం"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "జాబితా చేసిన వెర్షన్లు"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr ""
 
@@ -3447,6 +3466,9 @@ msgstr "మీరు పూర్తి చేశారు!"
 msgid "Version Submitted for Review"
 msgstr ""
 
+msgid "Preview of the version submitted"
+msgstr ""
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3585,7 +3607,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4049,16 +4071,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4075,9 +4091,6 @@ msgstr "వెనుతలం"
 
 msgid "This is the color of the tabs."
 msgstr "ఇది ట్యాబ్ల రంగు."
-
-msgid "Preview"
-msgstr "ముందస్తు వీక్షణం"
 
 msgid "Your Theme's Name"
 msgstr "మీ అలంకారం పేరు"
@@ -4137,18 +4150,6 @@ msgstr "300 KB గరిష్టంగా"
 
 msgid "PNG or JPG"
 msgstr "PNG లేదా JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr ""
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
-msgstr ""
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4331,28 +4332,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} హెచ్చరిక"
 msgstr[1] "{0} హెచ్చరికలు"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5158,7 +5162,7 @@ msgstr ""
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5826,15 +5830,6 @@ msgstr "మరియు"
 msgid "Filter by type/action"
 msgstr "రకం ద్వారా వడపోత/action"
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr "కలిగి ఉంటోంది"
 
@@ -5914,6 +5909,10 @@ msgstr "ప్రస్తుతం దాటవేయి"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "పొడిగింత విషయం సమీక్ష"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "కొత్త పొడిగింత సమీక్ష"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack పొడిగింత"
@@ -6044,23 +6043,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "నా పొడిగింతలు"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "నా అలంకారాలు"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "నా పొడిగింతలు"
 
-msgid "New Add-ons ({0})"
-msgstr "కొత్త పొడిగింతలు ({0})"
+#, fuzzy
+msgid "New ({0})"
+msgstr "కొత్త అలంకారాలు ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "పొడిగింత తాజాకరణలు ({0})"
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "నవీకరణ ({0})"
 
-msgid "Add-on Review Log"
-msgstr ""
+#, fuzzy
+msgid "Review Log"
+msgstr "గమనికను సమీక్షించండి"
 
-msgid "Signed Beta Files Log"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "పొడిగింత యొక్క సమీక్ష"
 
-msgid "Review Guide"
-msgstr "సమీక్షల మార్గదర్శిని"
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "అలంకారపు సమీక్ష"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6069,6 +6081,12 @@ msgstr "అవసరమైన పొడిగింత"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "కొత్త పొడిగింత ({0})"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+msgid "Review Guide"
+msgstr "సమీక్షల మార్గదర్శిని"
 
 msgid "Content Review"
 msgstr "విషయం సమీక్ష"
@@ -6087,7 +6105,8 @@ msgstr "అలంకారాల తాజాకరణలు ({0})"
 msgid "Flagged Themes ({0})"
 msgstr ""
 
-msgid "Themes Review Log"
+#, fuzzy
+msgid "Lightweight Themes Review Log"
 msgstr "అలంకారాల సమీక్షల చిట్టా"
 
 msgid "Deleted Themes Log"
@@ -6180,6 +6199,17 @@ msgstr "దుర్వినియోగ నివేదికలు ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "దుర్వినియోగ నివేదికలు ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "అలంకారం పేరు"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "తొలగించిన సమీక్షలు"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr ""
 
@@ -6190,6 +6220,18 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
+msgstr ""
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
 msgstr ""
 
 #. "Filter" is a button label (verb)
@@ -6232,18 +6274,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "తొలగించనిది"
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
-msgstr ""
 
 msgid "Save"
 msgstr "భద్రపరచు"
@@ -6427,6 +6457,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "పొడిగింత విషయం సమీక్ష"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "పొడిగింత విషయం సమీక్ష"
 
 msgid "(admin)"
@@ -6629,11 +6663,6 @@ msgstr ""
 #, python-format
 msgid "[status:%s]"
 msgstr ""
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "కొత్త పొడిగింత ({0})"
-msgstr[1] "కొత్త పొడిగింతలు ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"

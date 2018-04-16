@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2040,16 +2040,20 @@ msgid "Content rejected"
 msgstr "απορρίφθηκε"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2416,8 +2420,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Εφαρμογή"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Υποβολή θέματος"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2454,6 +2459,10 @@ msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσα�
 
 msgid "Theme Review"
 msgstr "Επιθεώρηση θέματος"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Λεπτομέρειες θέματος"
 
 msgid "New Search Provider Review"
 msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
@@ -3007,6 +3016,16 @@ msgstr "Επεξεργασία πληροφοριών"
 msgid "None"
 msgstr "Κανένα"
 
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Αναγραφόμενες εκδόσεις"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "Διαχείριση προγραμματιστών & άδειας χρήσης"
 
@@ -3542,6 +3561,10 @@ msgstr "Τελειώσατε!"
 msgid "Version Submitted for Review"
 msgstr ""
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Η έκδοση υπεβλήθη"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3687,7 +3710,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4160,17 +4183,11 @@ msgstr ""
 msgid "Pending Header"
 msgstr "Εκκρεμούσα επικεφαλίδα"
 
-msgid "Pending Footer"
-msgstr "Εκκρεμές υποσέλιδο"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Μπορείτε να ενημερώσετε το σχέδιο του θέματός σας εδώ, μόλις εγκριθεί."
 
 msgid "Header"
 msgstr "Κεφαλίδα"
-
-msgid "Footer"
-msgstr "Υποσέλιδο"
 
 msgid "Select colors for your Theme."
 msgstr "Επιλέξτε χρώματα για το θέμα σας."
@@ -4186,9 +4203,6 @@ msgstr "Παρασκήνιο"
 
 msgid "This is the color of the tabs."
 msgstr "Αυτό είναι το χρώμα των καρτελών."
-
-msgid "Preview"
-msgstr "Προεπισκόπηση"
 
 msgid "Your Theme's Name"
 msgstr "Το όνομα του θέματός σας"
@@ -4250,18 +4264,6 @@ msgstr "Μεγ. 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG ή JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Επιλέξτε μια εικόνα υποσέλιδου για το θέμα σας."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pixels"
-
-msgid "Aligned to bottom-left"
-msgstr "Προσανατολισμένο κάτω αριστερά"
-
-msgid "Select a different footer image"
-msgstr "Επιλογή διαφορετικής εικόνας υποσέλιδου"
 
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
@@ -4451,31 +4453,36 @@ msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+#, fuzzy
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+#, fuzzy
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 #, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -5285,7 +5292,7 @@ msgstr "Αναφορά σφάλματος ή αίτημα υποστήριξης
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6003,15 +6010,6 @@ msgstr "και"
 msgid "Filter by type/action"
 msgstr "Φιλτράρισμα με βάση τον τύπο/λειτουργία"
 
-msgid "Passed automatic validation"
-msgstr "Πέρασε την αυτόματη επικύρωση"
-
-msgid "Failed automatic validation"
-msgstr "Απέτυχε στην αυτόματη επικύρωση"
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr "Περιέχει"
 
@@ -6091,6 +6089,10 @@ msgstr "Παράκαμψη για την ώρα"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Υποβολή Επιθεώρησης"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Αξιολόγηση συντάκτη"
 
 msgid "Jetpack Add-on"
 msgstr "Πρόσθετο Jetpack"
@@ -6223,6 +6225,14 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Τα πρόσθετά μου"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Προβεβλημένα θέματα"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Τα πρόσθετά μου"
 
@@ -6230,22 +6240,24 @@ msgstr "Τα πρόσθετά μου"
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "Νέο πρόσθετο ({0})"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "Ενημερώσεις πρόσθετου"
-
-msgid "Add-on Review Log"
-msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Updates ({0})"
+msgstr "Ενημέρωση ({0})"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "Οδηγός του κριτή"
+msgid "Review Log"
+msgstr "Σημείωση αξιολόγησης"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Αξιολόγηση προσθέτου"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Ουρά επιθεωρήσεων θέματος"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6257,6 +6269,13 @@ msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Οδηγός του κριτή"
 
 #, fuzzy
 msgid "Content Review"
@@ -6284,8 +6303,8 @@ msgid "Flagged Themes ({0})"
 msgstr "Θέματα με επισήμανση"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "Επιθεώρηση θέματος"
+msgid "Lightweight Themes Review Log"
+msgstr "\"Ελαφριά\" θέματα"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6379,6 +6398,17 @@ msgstr "Αναφορές κατάχρησης ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Κακές κριτικές χρηστών ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "όνομα θέματος"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Διαγραμμένες αξιολογήσεις  "
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Περισσότερα γι' αυτό το πρόσθετο"
 
@@ -6390,6 +6420,18 @@ msgstr "Τίποτα προς προβολή!  Ο δημιουργός δεν σ
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr ""
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr "Βαθμολογία"
+
+msgid "Score"
+msgstr "Βαθμολογία"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6431,18 +6473,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "Βαθμολογία"
-
-msgid "Score"
-msgstr "Βαθμολογία"
 
 msgid "Save"
 msgstr "Αποθήκευση"
@@ -6632,6 +6662,10 @@ msgstr "Αξιολόγηση συντάκτη"
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
 msgstr "Υποβολή Επιθεώρησης"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Αξιολόγηση συντάκτη"
 
 msgid "(admin)"
 msgstr "(διαχειριστής)"
@@ -6833,14 +6867,6 @@ msgstr ""
 #, python-format
 msgid "[status:%s]"
 msgstr "[κατάσταση:%s]"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Νέο πρόσθετο ({0})"
-msgstr[1] "Νέα πρόσθετα ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"

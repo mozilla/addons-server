@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2016,16 +2016,20 @@ msgid "Content rejected"
 msgstr "이(가) 심사 거부되었습니다"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "추가 정보 필요"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "추가 정보 필요"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "추가 정보 필요"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2398,8 +2402,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "안드로이드"
 
-msgid "App"
-msgstr "App"
+#, fuzzy
+msgid "Static Theme"
+msgstr "테마 제출"
 
 msgid "Persona"
 msgstr "페르소나"
@@ -2439,6 +2444,10 @@ msgstr "업데이트된 언어팩 심사"
 
 msgid "Theme Review"
 msgstr "테마 심사"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "테마 상세 정보"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -2999,6 +3008,16 @@ msgstr "정보 수정"
 msgid "None"
 msgstr "없음"
 
+msgid "Preview"
+msgstr "미리보기"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "다른 버전 보기"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "제작자 및 라이선스 관리"
 
@@ -3556,6 +3575,10 @@ msgstr "완료하셨습니다!"
 msgid "Version Submitted for Review"
 msgstr "버전 기록서 / 심사원에게 남기는 메모"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "버전 기록"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3716,7 +3739,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4235,17 +4258,11 @@ msgstr "이전에 다시 제출했던 디자인으로 심사 대기중에 있습
 msgid "Pending Header"
 msgstr "대기중 상단"
 
-msgid "Pending Footer"
-msgstr "대기중 하단"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "승급이 되면 이곳에서 테마 디자인을 업데이트 할 수 있습니다."
 
 msgid "Header"
 msgstr "상단"
-
-msgid "Footer"
-msgstr "하단"
 
 msgid "Select colors for your Theme."
 msgstr "테마에 사용할 색을 설정하세요."
@@ -4261,9 +4278,6 @@ msgstr "바탕색"
 
 msgid "This is the color of the tabs."
 msgstr "탭의 색상입니다."
-
-msgid "Preview"
-msgstr "미리보기"
 
 msgid "Your Theme's Name"
 msgstr "테마의 이름"
@@ -4324,19 +4338,6 @@ msgstr "최대 용량 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG 나 JPG"
-
-# 82%
-msgid "Select a footer image for your Theme."
-msgstr "테마의 하단 이미지를 선택하세요."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 픽셀"
-
-msgid "Aligned to bottom-left"
-msgstr "Bottom-left 방향으로 정렬됨"
-
-msgid "Select a different footer image"
-msgstr "다른 하단 이미지 선택"
 
 msgid "Manage Version {0}"
 msgstr "버전 {0} 관리"
@@ -4534,28 +4535,31 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5413,7 +5417,7 @@ msgid "Other (provides a pop-up prompt for information)"
 msgstr "기타 (세부 사항을 묻는 팝업창이 뜹니다)"
 
 #, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "현재 AMO에선 심사원과 직접 연결해주는 메커니즘을 제공하고 있지 않지만 이러한 기능은 향후 업데이트를 통해 개발을 고려중에 있습니다."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6128,15 +6132,6 @@ msgstr "and"
 msgid "Filter by type/action"
 msgstr "필터 (형식/행동)"
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr "containing"
 
@@ -6219,6 +6214,10 @@ msgstr "지금은 접어두기"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "심사 완료하기"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "관리자 심사"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 부가 기능"
@@ -6358,26 +6357,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "나의 부가 기능"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "추천 테마"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "나의 부가 기능"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "내가 제작한 모든 부가 기능"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "부가 기능 업데이트"
-
-msgid "Add-on Review Log"
-msgstr "부가 기능 심사 기록"
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Updates ({0})"
+msgstr "업데이트 ({0})"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "심사원 지침사항"
+msgid "Review Log"
+msgstr "심사 노트"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "부가 기능 전체 심사"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "테마 심사 대기열"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6386,6 +6395,13 @@ msgstr "안드로이드용 부가 기능"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "내가 제작한 모든 부가 기능"
+
+msgid "Add-on Review Log"
+msgstr "부가 기능 심사 기록"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "심사원 지침사항"
 
 #, fuzzy
 msgid "Content Review"
@@ -6409,8 +6425,8 @@ msgid "Flagged Themes ({0})"
 msgstr "표시된 테마"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "테마 심사"
+msgid "Lightweight Themes Review Log"
+msgstr "가벼운 테마"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6512,6 +6528,17 @@ msgstr "{addon} ({num})에 대한 정책 위반 신고"
 msgid "Bad User Ratings ({num})"
 msgstr "조정중인 심사 ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "테마 이름"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "삭제된 심사"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "상세 정보"
 
@@ -6525,6 +6552,19 @@ msgstr "내용이 아무것도 없습니다! 이 개발자는 세부 정보를 �
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "편집자 도구 대문으로 돌아가기"
+
+msgid "Reviewer Leaderboard"
+msgstr "심사원 현황판"
+
+# 75%
+msgid "No review points awarded yet."
+msgstr "아직 받은 평가 점수가 없습니다."
+
+msgid "Rank"
+msgstr "순위"
+
+msgid "Score"
+msgstr "점수"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6567,19 +6607,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr "심사원 현황판"
-
-# 75%
-msgid "No review points awarded yet."
-msgstr "아직 받은 평가 점수가 없습니다."
-
-msgid "Rank"
-msgstr "순위"
-
-msgid "Score"
-msgstr "점수"
 
 msgid "Save"
 msgstr "저장"
@@ -6772,6 +6799,10 @@ msgstr "관리자 심사 플래그 지우기"
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "관리자 심사 플래그 지우기"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "관리자 심사 플래그 지우기"
 
 msgid "(admin)"
@@ -6974,11 +7005,6 @@ msgstr "거부 또는 미심사"
 #, python-format
 msgid "[status:%s]"
 msgstr "[상태:%s]"
-
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "내가 제작한 모든 부가 기능"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"

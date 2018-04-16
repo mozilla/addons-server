@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-01 18:15+0000\n"
+"POT-Creation-Date: 2018-04-16 09:58+0000\n"
 "PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2010,15 +2010,20 @@ msgstr ""
 msgid "Content rejected"
 msgstr ""
 
-msgid "{addon} information request removed."
+#, fuzzy
+msgid "{addon} information request altered or removed by admin."
+msgstr "بررسی"
+
+#, fuzzy
+msgid "Information request altered"
+msgstr "بررسی"
+
+msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
 #, fuzzy
 msgid "Information request removed"
 msgstr "بررسی"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
 
 msgid "Firefox"
 msgstr "فایرفاکس"
@@ -2395,8 +2400,9 @@ msgstr ""
 msgid "Android"
 msgstr ""
 
-msgid "App"
-msgstr ""
+#, fuzzy
+msgid "Static Theme"
+msgstr "ویرایش تم"
 
 msgid "Persona"
 msgstr ""
@@ -2437,6 +2443,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr ""
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "هنرمند مضمون‌ها"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2987,6 +2997,16 @@ msgstr "اطّلاعات نسخه"
 msgid "None"
 msgstr "هیچ"
 
+msgid "Preview"
+msgstr ""
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "نمایش سایر نسخه‌ها"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr ""
 
@@ -3520,6 +3540,10 @@ msgstr ""
 msgid "Version Submitted for Review"
 msgstr ""
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "نسخه"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3667,7 +3691,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4161,16 +4185,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4186,9 +4204,6 @@ msgid "Background"
 msgstr ""
 
 msgid "This is the color of the tabs."
-msgstr ""
-
-msgid "Preview"
 msgstr ""
 
 msgid "Your Theme's Name"
@@ -4248,18 +4263,6 @@ msgid "300 KB max"
 msgstr ""
 
 msgid "PNG or JPG"
-msgstr ""
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr ""
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4450,28 +4453,31 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} هشدار"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -5282,7 +5288,7 @@ msgstr "گزارش اشکال یا تقاضای پشتیبانی نابه‌جا
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5953,15 +5959,6 @@ msgstr "و"
 msgid "Filter by type/action"
 msgstr ""
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr ""
 
@@ -6038,6 +6035,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Needs Admin Content Review"
+msgstr "بازبینی نشده"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
 msgstr "بازبینی نشده"
 
 msgid "Jetpack Add-on"
@@ -6168,6 +6169,14 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "افزودنی‌های من"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "مضامین ویژه"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "افزودنی‌های من"
 
@@ -6175,21 +6184,23 @@ msgstr "افزودنی‌های من"
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "افزودنی‌های {0}"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
+msgid "Updates ({0})"
 msgstr "به‌هنگام شده"
 
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
+#, fuzzy
+msgid "Review Log"
+msgstr "یادداشت بررسی"
 
 #, fuzzy
-msgid "Review Guide"
+msgid "Add-on Review Guide"
+msgstr "بازبینی نشده"
+
+#, fuzzy
+msgid "Theme Review Guide"
 msgstr "رهنمون‌های بررسی"
 
 #, fuzzy
@@ -6202,6 +6213,13 @@ msgstr "افزودنی‌های بیشتر"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "افزودنی‌های {0}"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "رهنمون‌های بررسی"
 
 #, fuzzy
 msgid "Content Review"
@@ -6227,7 +6245,7 @@ msgid "Flagged Themes ({0})"
 msgstr "مضامین ویژه"
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "حذف بررسی"
 
 #, fuzzy
@@ -6323,6 +6341,17 @@ msgstr "گزارش‌های سوء استفاده"
 msgid "Bad User Ratings ({num})"
 msgstr "گزارش‌های سوء استفاده"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "مضامین"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "حذف بررسی"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "اطلاعات بیشتر درباره‌ی این افزودنی"
 
@@ -6336,6 +6365,18 @@ msgstr ""
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "بازگشت به صفحه‌ی آغازه‌ی افزودنی‌های {0}"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr "رتبه"
+
+msgid "Score"
+msgstr "امتیاز"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6378,18 +6419,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "رتبه"
-
-msgid "Score"
-msgstr "امتیاز"
 
 msgid "Save"
 msgstr ""
@@ -6577,6 +6606,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "بازبینی نشده"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "بازبینی نشده"
 
 msgid "(admin)"
@@ -6781,14 +6814,6 @@ msgstr ""
 #, python-format
 msgid "[status:%s]"
 msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "افزودنی‌های {0}"
 
 #, fuzzy
 msgid "Update ({0})"
