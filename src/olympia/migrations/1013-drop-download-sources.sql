@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `download-sources`;
+DROP TABLE IF EXISTS `download_sources`;
