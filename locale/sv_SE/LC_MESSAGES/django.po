@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 19:57+0000\n"
+"PO-Revision-Date: 2018-04-16 20:20+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6413,16 +6413,14 @@ msgstr "Missbruksrapporter ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Dåliga användarbetyg ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Temanamn"
+msgstr "Temabilder"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Borttagna granskningar"
+msgstr "Återgiven förhandsvisning"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Bakgrundsfil {0} av {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Mer om detta tillägg"
@@ -6668,9 +6666,8 @@ msgstr "Rensa flagga för administrativ kodgranskning"
 msgid "Clear Admin Content Review Flag"
 msgstr "Rensa flagga för administrativ innehållsgranskning"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Rensa flagga för administrativ kodgranskning"
+msgstr "Rensa flagga för administrativ statisk temagranskning"
 
 msgid "(admin)"
 msgstr "(admin)"
