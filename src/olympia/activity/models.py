@@ -471,17 +471,17 @@ class ActivityLog(ModelBase):
             log.warning('Activity log called with no user: %s' % action.id)
             return
 
-        actl = ActivityLog(user=user, action=action.id)
-        actl.arguments = args
+        al = ActivityLog(user=user, action=action.id)
+        al.arguments = args
         if 'details' in kw:
-            actl.details = kw['details']
-        actl.save()
+            al.details = kw['details']
+        al.save()
 
         if 'created' in kw:
-            actl.update(created=kw.get('created'))
+            al.update(created=kw.get('created'))
 
-        if 'details' in kw and 'comments' in actl.details:
-            cl = CommentLog(comments=actl.details['comments'], activity_log=actl)
+        if 'details' in kw and 'comments' in al.details:
+            cl = CommentLog(comments=al.details['comments'], activity_log=al)
             cl.save()
             if 'created' in kw:
                 cl.update(created=kw.get('created'))
@@ -489,10 +489,10 @@ class ActivityLog(ModelBase):
         for arg in args:
             if isinstance(arg, tuple):
                 if arg[0] == Addon:
-                    al = AddonLog(addon_id=arg[1], activity_log=al)
-                    al.save()
+                    addon_l = AddonLog(addon_id=arg[1], activity_log=al)
+                    addon_l.save()
                     if 'created' in kw:
-                        al.update(created=kw.get('created'))
+                        addon_l.update(created=kw.get('created'))
                 elif arg[0] == Version:
                     vl = VersionLog(version_id=arg[1], activity_log=al)
                     vl.save()
@@ -509,10 +509,10 @@ class ActivityLog(ModelBase):
                     if 'created' in kw:
                         gl.update(created=kw.get('created'))
             elif isinstance(arg, Addon):
-                al = AddonLog(addon=arg, activity_log=al)
-                al.save()
+                addon_l = AddonLog(addon=arg, activity_log=al)
+                addon_l.save()
                 if 'created' in kw:
-                    al.update(created=kw.get('created'))
+                    addon_l.update(created=kw.get('created'))
             elif isinstance(arg, Version):
                 vl = VersionLog(version=arg, activity_log=al)
                 vl.save()
@@ -531,7 +531,7 @@ class ActivityLog(ModelBase):
                     gl.update(created=kw.get('created'))
 
         # Index by every user
-        ul = UserLog(activity_log=actl, user=user)
+        ul = UserLog(activity_log=al, user=user)
         ul.save()
         if 'created' in kw:
             ul.update(created=kw.get('created'))
