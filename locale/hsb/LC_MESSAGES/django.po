@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 20:31+0000\n"
+"PO-Revision-Date: 2018-04-16 20:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2047,13 +2047,11 @@ msgstr "Wobsah {addon} {version} wotpokazany."
 msgid "Content rejected"
 msgstr "Wobsah wotpokazany"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} je próstwu wo informacije wotstronił."
+msgstr "Próstwa wo informacije wo {addon} je so wot administratora změniła a wotstroniła."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Próstwa wo informacije je so wotstroniła"
+msgstr "Próstwa wo informacije je so změniła"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Próstwa wo informacije je so wot wuwiwarja w {addon} {version} zhašała."
@@ -4460,28 +4458,28 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
 
 #, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
 
 #, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
 
 #, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -6487,7 +6485,7 @@ msgid "Rendered Preview"
 msgstr "Zhašane přepruwowanja"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Pozadkowa dataja {0} z {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Wjace wo tutym přidatku"
