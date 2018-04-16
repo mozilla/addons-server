@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 23:03+0000\n"
+"PO-Revision-Date: 2018-04-16 23:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1963,13 +1963,11 @@ msgstr "Kandungan {addon} {version} ditolak."
 msgid "Content rejected"
 msgstr "Kandungan ditolak"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Permintaan maklumat {addon} dibuang."
+msgstr "Permintaan maklumat {addon} diubah atau dibuang oleh pentadbir."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Permintaan maklumat dibuang"
+msgstr "Permintaan maklumat diubah"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Permintaan maklumat dibuang oleh pembangun {addon} {version}."
@@ -2338,9 +2336,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Hantar Tema"
+msgstr "Tema Statik"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2378,9 +2375,8 @@ msgstr "Ulasan Pek Bahasa Dikemaskini"
 msgid "Theme Review"
 msgstr "Ulasan Tema"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Tema (Statik)"
+msgstr "Ulasan Tema (Statik)"
 
 msgid "New Search Provider Review"
 msgstr "Ulasan Penyedia Carian Baru"
@@ -2932,9 +2928,8 @@ msgstr "Tiada"
 msgid "Preview"
 msgstr "Previu"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Versi disenaraikan"
+msgstr "Previu versi disenaraikan"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Previu sedang dijana - layari lagi nanti atau muat semula halaman."
@@ -3472,9 +3467,8 @@ msgstr "Sudah siap!"
 msgid "Version Submitted for Review"
 msgstr "Versi Dihantar untuk Semakan"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versi Dihantar"
+msgstr "Previu versi yang dihantar"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Sudah siap! Versi ini akan tersedia selepas lulus semakan. Anda akan dimaklumkan apabila sudah disemak."
@@ -3611,7 +3605,6 @@ msgstr "Latar belakang kawasan bar alatan"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih.  Medan manifes:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Teks dan ikon kawasan bar alatan"
 
@@ -4348,33 +4341,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hentikan Facebook menjejaki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Mudahkan carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Serlahkan sahaja teks dalam halaman web untuk mencari frasa dari tatasusunan enjin."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Tetapan mudah yang membolehkan anda mengawal iklan dan cara anda dijejaki dalam internet."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ubah suai tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Anda ada banyak tab terbuka? Susun dengan kemas dalam bar sisi."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -5238,9 +5227,8 @@ msgstr "Laporan atau sokongan pepijat yang tersalah tempat"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Lain-lain (menyediakan pop-up untuk meminta maklumat)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Pada masa ini, AMO tidak menyediakan mekanisme perhubungan terus antara pengarang terhadap ulasan pengguna."
+msgstr "Pada masa ini, AMO tidak menyediakan mekanisme perhubungan terus antara pengarang dengan ulasan pengguna."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Bolehkah saya minta ulasan negatif itu dibuang?"
@@ -6061,9 +6049,8 @@ msgstr "Langkau dulu sekarang"
 msgid "Needs Admin Content Review"
 msgstr "Perlu Semakan Kandungan Pentadbir"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Perlu Semakan Kod Pentadbir"
+msgstr "Perlu Semakan Pentadbir Tema Statik"
 
 msgid "Jetpack Add-on"
 msgstr "Add-on Jetpack"
@@ -6188,36 +6175,29 @@ msgstr "Kandungan Lulus"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Add-ons Legasi"
+msgstr "Tema Statik dan Add-ons Legasi"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Tema Sorotan"
+msgstr "Tema Statik"
 
 msgid "Legacy Add-ons"
 msgstr "Add-ons Legasi"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Tema Baru ({0})"
+msgstr "Baru ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "Kemaskini ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Nota ulasan"
+msgstr "Log Ulasan"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Ulasan Add-on"
+msgstr "Panduan Ulasan Add-on"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Giliran Semakan Tema"
+msgstr "Panduan Semakan Tema"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Add-ons Auto-Lulus"
@@ -6247,9 +6227,8 @@ msgstr "Kemaskini Tema ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Tema Ditanda ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Tema Ringan"
+msgstr "Lig Ulasan Tema Ringan"
 
 msgid "Deleted Themes Log"
 msgstr "Log Tema Dibuang"
@@ -6338,16 +6317,14 @@ msgstr "Laporan Penyalahgunaan ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Pengkadaran Teruk Pengguna ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Nama tema"
+msgstr "Imej Tema"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Semakan yang dibuang"
+msgstr "Semakan Dihurai"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Fail latar belakang {0} daripada {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Maklumat lanjut perihal add-on ini"
@@ -6593,9 +6570,8 @@ msgstr "Buang Tanda Semakan Kod Pentadbir"
 msgid "Clear Admin Content Review Flag"
 msgstr "Buang Tanda Semakan Kandungan Pentadbir"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Buang Tanda Semakan Kod Pentadbir"
+msgstr "Buang Tanda Semakan Pentadbir Tema Statik"
 
 msgid "(admin)"
 msgstr "(pentadbir)"
