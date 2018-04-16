@@ -147,7 +147,7 @@ def dashboard(request):
         request, amo.permissions.ADDONS_REVIEW)
     theme_reviewer = acl.action_allowed(
         request, amo.permissions.STATIC_THEMES_REVIEW)
-    if view_all or extension_reviewer:
+    if view_all or extension_reviewer or theme_reviewer:
         full_review_queue = ViewFullReviewQueue.objects
         pending_queue = ViewPendingQueue.objects
         if not admin_reviewer:
@@ -161,56 +161,33 @@ def dashboard(request):
             pending_queue = filter_static_themes(
                 pending_queue, extension_reviewer, theme_reviewer)
 
-        sections[ugettext('Legacy Add-ons')] = [(
-            ugettext('New Add-ons ({0})').format(
-                full_review_queue.count()),
+        header = (
+            ugettext('Static Themes and Legacy Add-ons')
+            if extension_reviewer and theme_reviewer
+            else ugettext('Static Themes') if theme_reviewer
+            else ugettext('Legacy Add-ons'))
+        sections[header] = [(
+            ugettext('New ({0})').format(full_review_queue.count()),
             reverse('reviewers.queue_nominated')
         ), (
-            ugettext('Add-on Updates ({0})').format(
-                pending_queue.count()),
+            ugettext('Updates ({0})').format(pending_queue.count()),
             reverse('reviewers.queue_pending')
         ), (
             ugettext('Performance'),
             reverse('reviewers.performance')
         ), (
-            ugettext('Add-on Review Log'),
+            ugettext('Review Log'),
             reverse('reviewers.reviewlog')
-        ), (
-            ugettext('Review Guide'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
-    if view_all or theme_reviewer:
-        full_review_queue = ViewFullReviewQueue.objects
-        pending_queue = ViewPendingQueue.objects
-        if not admin_reviewer:
-            full_review_queue = filter_admin_review_for_legacy_queue(
-                full_review_queue)
-            pending_queue = filter_admin_review_for_legacy_queue(
-                pending_queue)
-        if not view_all:
-            full_review_queue = filter_static_themes(
-                full_review_queue, extension_reviewer, theme_reviewer)
-            pending_queue = filter_static_themes(
-                pending_queue, extension_reviewer, theme_reviewer)
-
-        sections[ugettext('Static Themes')] = [(
-            ugettext('New Add-ons ({0})').format(
-                full_review_queue.count()),
-            reverse('reviewers.queue_nominated')
-        ), (
-            ugettext('Add-on Updates ({0})').format(
-                pending_queue.count()),
-            reverse('reviewers.queue_pending')
-        ), (
-            ugettext('Performance'),
-            reverse('reviewers.performance')
-        ), (
-            ugettext('Add-on Review Log'),
-            reverse('reviewers.reviewlog')
-        ), (
-            ugettext('Review Guide'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines'
-        )]
+        if view_all or extension_reviewer:
+            sections[header].append(
+                (ugettext('Add-on Review Guide'),
+                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'))
+        if view_all or theme_reviewer:
+            sections[header].append(
+                (ugettext('Theme Review Guide'),
+                 'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/'
+                 'Guidelines'))
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -256,7 +233,7 @@ def dashboard(request):
                     addon__status=amo.STATUS_REVIEW_PENDING).count()),
             reverse('reviewers.themes.list_flagged')
         ), (
-            ugettext('Themes Review Log'),
+            ugettext('Lightweight Themes Review Log'),
             reverse('reviewers.themes.logs')
         ), (
             ugettext('Deleted Themes Log'),
