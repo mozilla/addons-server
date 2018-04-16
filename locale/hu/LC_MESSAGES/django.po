@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 14:36+0000\n"
+"PO-Revision-Date: 2018-04-16 14:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6281,13 +6281,11 @@ msgstr "Frissítések ({0})"
 msgid "Review Log"
 msgstr "Értékelési napló"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Kiegészítőértékelés"
+msgstr "Kiegészítő értékelési útmutató"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Téma értékelési sor"
+msgstr "Téma értékelési útmutató"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
@@ -6318,9 +6316,8 @@ msgstr "Témafrissítések ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Megjelölt témák ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Könnyű témák"
+msgstr "Könnyű téma értékelési napló"
 
 msgid "Deleted Themes Log"
 msgstr "Törölt témák naplója"
@@ -6413,13 +6410,11 @@ msgstr "Visszaélési jelentések ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Rossz felhasználói értékelések ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Téma neve"
+msgstr "Téma képek"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Törölt értékelések"
+msgstr "Renderelt előnézet"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Háttér fájl {0} / {1} – {2}"
@@ -6670,9 +6665,8 @@ msgstr "Adminisztrátori kódértékelés jelző törlése"
 msgid "Clear Admin Content Review Flag"
 msgstr "Adminisztrátori tartalomértékelés jelző törlése"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Adminisztrátori kódértékelés jelző törlése"
+msgstr "Adminisztrátori statikus téma értékelés jelző törlése"
 
 msgid "(admin)"
 msgstr "(admin)"
