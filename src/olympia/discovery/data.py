@@ -25,64 +25,64 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'The universe of ancient times.' theme.
+        # 'Spring is Here' theme.
         DiscoItem(
-            addon_id=317972, type=amo.ADDON_PERSONA,
-            addon_name=u'The Universe of Ancient Times'),
+            addon_id=368421, type=amo.ADDON_PERSONA,
+            addon_name=u'Spring is Here'),
 
-        # Firefox Multi-Account Containers
+        # Facebook Container
         DiscoItem(
-            addon_id=782160,
-            heading=_(u'Separate your online lives {start_sub_heading}with '
+            addon_id=954390,
+            heading=_(u'Stop Facebook tracking {start_sub_heading}with '
                       u'{addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Privately distinguish your various online '
-                  u'identities—work, personal, etc.—through color-coded tabs '
-                  u'that split your digital cookie trail.'),
+                _(u'Isolate your Facebook identity into a separate '
+                  u'"container" that makes it harder for Facebook to track '
+                  u'your movements around the web.'),
                 '</blockquote>')),
 
-        # Forecastfox
+        # Swift Selection Search
         DiscoItem(
-            addon_id=583250,
-            heading=_(u'Instant weather updates {start_sub_heading}with '
+            addon_id=587410,
+            heading=_(u'Simplify search {start_sub_heading}with '
                       u'{addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Get instant global weather information right in Firefox.'),
+                _(u'Just highlight text on any web page to search the phrase '
+                  u'from an array of engines.'),
                 '</blockquote>')),
 
-        # 'square red' theme
+        # 'Dream of Waves' theme
         DiscoItem(
-            addon_id=450148, type=amo.ADDON_PERSONA,
-            addon_name=u'Square Red'),
+            addon_id=46638, type=amo.ADDON_PERSONA),
 
-        # New Tab Override (WebExtension)
+        # Ghostery
         DiscoItem(
-            addon_id=626810,
-            addon_name=u'New Tab Override',
-            heading=_(u'Tab Customization {start_sub_heading}with '
-                      u'{addon_name}{end_sub_heading}'),
+            addon_id=9609,
+            heading=_(u'Ad blocking & privacy protection {start_sub_heading}'
+                      u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Choose the page you see every time you open a new tab.'),
+                _(u'A simple set-up lets you take control of the ads you see '
+                  u'and how you’re tracked on the internet.'),
                 '</blockquote>')),
 
-        # To Google Translate
+        # Tree Style Tab
         DiscoItem(
-            addon_id=445852,
-            heading=_(u'Translate easily {start_sub_heading}with {addon_name}'
+            addon_id=5890,
+            heading=_(u'Re-imagine tabs {start_sub_heading}with {addon_name}'
                       u'{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Highlight any text, right-click, and translate '
-                  u'instantly.'),
+                _(u'Do you have a ton of open tabs? Organize them in a tidy '
+                  u'sidebar.'),
                 '</blockquote>')),
 
-        # 'dreams beach' theme.
+        # 'Space Stars' theme.
         DiscoItem(
-            addon_id=521204, type=amo.ADDON_PERSONA,
-            addon_name=u'Dreams Beach'),
+            addon_id=211644, type=amo.ADDON_PERSONA,
+            addon_name=u'Space Stars'),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.
