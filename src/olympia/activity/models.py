@@ -477,6 +477,9 @@ class ActivityLog(ModelBase):
             al.details = kw['details']
         al.save()
 
+        # We make sure that we take the timestamp if provided, instead of
+        # creating a new one, especially useful for log entries created
+        # in a loop.
         if 'created' in kw:
             al.update(created=kw.get('created'))
 
