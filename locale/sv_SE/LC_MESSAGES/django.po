@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 19:29+0000\n"
+"PO-Revision-Date: 2018-04-16 19:57+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4443,9 +4443,8 @@ msgstr "Annonsblockering och integritetsskydd {start_sub_heading}med {addon_name
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Med en enkel inställning kan du ta kontroll över de annonser du ser och hur du spåras på internet."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Omvänd bildsökning {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Omvärdera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
@@ -5313,9 +5312,8 @@ msgstr "Felrapport eller begäran om hjälp på fel ställe"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Annat (ger en pop-up prompt för information)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "För närvarande tillhandahåller AMO inte en mekanism för att direkt kommunicera med en författare till en användarrecension."
+msgstr "För närvarande tillhandahåller AMO inte en mekanism för att direkt kommunicera med författare till en användarrecension."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Kan jag begära att en granskning tas bort om granskningen är negativ?"
@@ -6143,9 +6141,8 @@ msgstr "Hoppa över nu"
 msgid "Needs Admin Content Review"
 msgstr "Behöver administrativ innehållsgranskning"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Behöver administrativ kodgranskning"
+msgstr "Behöver administrativ statisk temagranskning"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-tillägg"
@@ -6273,36 +6270,29 @@ msgstr "Godkänn innehåll"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Äldre tillägg"
+msgstr "Statiska teman och äldre tillägg"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Utvalda teman"
+msgstr "Statiska teman"
 
 msgid "Legacy Add-ons"
 msgstr "Äldre tillägg"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nya teman ({0})"
+msgstr "Nya ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "Uppdatering ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Granskningsanteckning"
+msgstr "Granskningslogg"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Granskning av tillägg"
+msgstr "Granskningsriktlinjer för tillägg"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Granskningskö för teman"
+msgstr "Granskningsriktlinjer för teman"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
@@ -6333,9 +6323,8 @@ msgstr "Temauppdateringar ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Flaggade teman ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lätta teman"
+msgstr "Lätta teman granskningslogg"
 
 msgid "Deleted Themes Log"
 msgstr "Borttagna temaloggar"
