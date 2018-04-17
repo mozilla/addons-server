@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 06:44+0000\n"
+"PO-Revision-Date: 2018-04-17 09:42+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3846,7 +3846,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Molimo uključite instrukcije za način kako reprodukovati konačnu verziju dodatka, bilo u README datoteci ili u napomeni za recenzenta za ovu verziju."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Pročitajte više o politici pregleda izvornog koda."
 
 msgid "Latest News"
 msgstr ""
@@ -3885,19 +3885,19 @@ msgid "FAQ"
 msgstr "Često postavljena pitanja"
 
 msgid "Report Bug"
-msgstr ""
+msgstr "Prijavi grešku"
 
 msgid "Site Status"
 msgstr "Status stranice"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: napravi i testiraj proširenja"
 
 msgid "Compatibility Checker"
-msgstr ""
+msgstr "Provjera kompatibilnosti"
 
 msgid "Promote"
-msgstr ""
+msgstr "Unaprijedi"
 
 msgid "Get Your Add-on Featured"
 msgstr ""
