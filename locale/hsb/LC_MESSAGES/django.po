@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 21:45+0000\n"
+"PO-Revision-Date: 2018-04-17 06:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4466,9 +4466,8 @@ msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_nam
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
@@ -5341,7 +5340,6 @@ msgstr "Deplacěrowana zmylkowa rozprawa abo próstwa wo pomoc"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Druhe (pokazuje wuskakowace naprašowanje za dalše informacije)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z awtorom wužiwarskeho pohódnoćenja njeskići."
 
@@ -6713,9 +6711,8 @@ msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstroni
 msgid "Clear Admin Content Review Flag"
 msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
+msgstr "Marku za přepruwowanje statiskeje drasty wot administratora wotstronić"
 
 msgid "(admin)"
 msgstr "(admin)"
