@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 02:09+0000\n"
+"PO-Revision-Date: 2018-04-17 02:21+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1954,13 +1954,11 @@ msgstr "已退回 {addon} {version} 內容。"
 msgid "Content rejected"
 msgstr "已退回內容"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "已移除對 {addon} 提供更多資訊的要求。"
+msgstr "管理員已修改或移除要求 {addon} 提供更多資訊的請求。"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "已移除提供更多資訊的要求。"
+msgstr "已修改要求更多資訊的請求"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "開發者已清除對 {addon} {version} 的資訊要求。"
@@ -2337,9 +2335,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "提交佈景主題"
+msgstr "靜態佈景主題"
 
 msgid "Persona"
 msgstr "個性面板"
@@ -2377,9 +2374,8 @@ msgstr "更新語言包審核"
 msgid "Theme Review"
 msgstr "主題審核"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "主題（靜態）"
+msgstr "佈景主題（靜態）審核"
 
 msgid "New Search Provider Review"
 msgstr "新搜尋引擎提供商審核"
@@ -2922,9 +2918,8 @@ msgstr "無"
 msgid "Preview"
 msgstr "預覽"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "已上架的版本"
+msgstr "已上架版本預覽"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "正在產生預覽內容 - 請稍後再回來，或重新整理頁面。"
@@ -3452,9 +3447,8 @@ msgstr "完成了！"
 msgid "Version Submitted for Review"
 msgstr "已送出進行審查的版本"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "送出的版本"
+msgstr "送出版本預覽"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "搞定！此版本通過審核後就會在網站上出現。您將會在套件接受審核後收到通知。"
@@ -3594,9 +3588,8 @@ msgstr "工具列背景"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "導航列、書籤列、被選擇分頁的背景色。安裝資訊欄位: toolbar。"
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "工具列文字圖示"
+msgstr "工具列文字與圖示"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "工具列中的欄位（例如網址列）與使用中分頁的文字顏色與圖示。安裝資訊欄位: toolbar_text。"
@@ -4327,30 +4320,26 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}不讓 Facebook 追蹤{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}以圖找圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}簡化搜尋{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，進行搜尋。"
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}封鎖廣告並保護隱私{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}以圖找圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}重新發想分頁標籤{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "您還開著一大票分頁標籤嗎？用簡潔的側邊欄好好管理。"
@@ -5165,7 +5154,6 @@ msgstr "誤置的臭蟲回報或是技術支援要求"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "其它（提供彈出式視窗輸入其他資訊）"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "目前 AMO 並沒有可以直接與回應者溝通的機制。"
 
@@ -5914,9 +5902,8 @@ msgstr "馬上跳過"
 msgid "Needs Admin Content Review"
 msgstr "需要管理員內容審查"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "需要管理員進行程式碼審查"
+msgstr "需要管理員進行靜態佈景主題審查"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 附加元件"
@@ -6041,36 +6028,29 @@ msgstr "核准內容"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "傳統附加元件"
+msgstr "靜態佈景主題與傳統附加元件"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "精選佈景主題"
+msgstr "靜態佈景主題"
 
 msgid "Legacy Add-ons"
 msgstr "傳統附加元件"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "新進佈景主題（{0}）"
+msgstr "新進（{0}）"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "更新（{0}）"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "審核註記"
+msgstr "審核紀錄"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "附加元件審核"
+msgstr "附加元件審核指南"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "佈景主題待審區"
+msgstr "佈景主題審核指南"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動通過審核的附加元件"
@@ -6100,9 +6080,8 @@ msgstr "佈景主題更新（{0}）"
 msgid "Flagged Themes ({0})"
 msgstr "已標記的佈景主題（{0}）"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "個性面板"
+msgstr "輕量佈景主題審核紀錄"
 
 msgid "Deleted Themes Log"
 msgstr "刪除的佈景主題紀錄"
@@ -6190,13 +6169,11 @@ msgstr "濫用回報 ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "不良的使用者評論 ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "佈景主題名稱"
+msgstr "佈景主題圖片"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "已刪除的審核"
+msgstr "產生的預覽"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "背景圖檔案第 {0} 張，共 {1} 張 - {2}"
@@ -6445,9 +6422,8 @@ msgstr "清除管理員程式碼審查旗標"
 msgid "Clear Admin Content Review Flag"
 msgstr "清除管理員內容審查旗標"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "清除管理員程式碼審查旗標"
+msgstr "清除需要管理員進行靜態佈景主題審查旗標"
 
 msgid "(admin)"
 msgstr "(admin)"
