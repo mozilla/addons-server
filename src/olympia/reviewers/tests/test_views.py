@@ -3839,6 +3839,8 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.addon.current_version.update(source='/path/to/fake/file.zip')
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
@@ -3856,6 +3858,23 @@ class TestReview(ReviewBase):
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
         self.assert3xx(response, reverse('reviewers.queue_content_review'))
+
+    def test_cant_contentreview_if_addon_has_admin_flag_but_no_sources(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        assert response.status_code == 200  # Form error
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 0
 
     def test_cant_addonreview_if_admin_content_review_flag_is_set(self):
         AutoApprovalSummary.objects.create(
