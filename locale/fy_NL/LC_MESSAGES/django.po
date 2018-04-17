@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 06:50+0000\n"
+"PO-Revision-Date: 2018-04-17 06:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4429,13 +4429,13 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Mei inkelde ienfâldige ynstellingen kontrolearje jo de advertinsjes dy't oan jo toand wurde en hoe't jo op it ynternet folge wurde."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Hawwe jo in enoarm oantal iepensteande ljepblêden? Organisearje se yn in lytse sidebalke."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
@@ -6401,7 +6401,7 @@ msgid "Rendered Preview"
 msgstr "Ferwurke foarbyld"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Achtergrûnbestân {0} fan {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Mear oer dizze add-on"
