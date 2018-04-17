@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 09:26+0000\n"
+"PO-Revision-Date: 2018-04-17 06:44+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1992,13 +1992,11 @@ msgstr "Sadržaj {addon} {version} je odbijen."
 msgid "Content rejected"
 msgstr "Sadržaj je odbijen"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} uklonjen zahtev za informacije."
+msgstr "Tražene informacije za {addon} je promijenio ili uklonio admin."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Zahtev za informaciju je uklonjen"
+msgstr "Tražene informacije us promijenjene"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Zahtjev za informacije o {addon} {version} je uklonio programer."
@@ -2367,9 +2365,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Kreirajte temu"
+msgstr "Statička tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2407,9 +2404,8 @@ msgstr "Ažurirana recenzija jezičnog paketa"
 msgid "Theme Review"
 msgstr "Recenzija teme"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Tema (statička)"
+msgstr "Pregled (statička) teme"
 
 msgid "New Search Provider Review"
 msgstr "Nova recenzija pružaoca usluga pretrage"
@@ -2964,9 +2960,8 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Navedene verzije"
+msgstr "Pregled navedene verzije"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -3508,9 +3503,8 @@ msgstr ""
 msgid "Version Submitted for Review"
 msgstr "Verzija poslana za pregled"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Verzija poslana"
+msgstr "Pregled verzije poslan"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Završili ste! Ova verzija će biti dostupna nakon što prođe pregled. Bićete obaviješteni kada se pregleda."
@@ -3647,9 +3641,8 @@ msgstr "Pozadina područja alatne trake"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Boja pozadine za navigacijsku traku, traku zabilješki i odabranih tabova.  Polje manifesta:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Tekst ikone područja alatne trake"
+msgstr "Tekst i ikone područja alatne trake"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Boja teksta i ikona u alatnoj traci i aktivnom tabu. Polje manifesta:  toolbar_text."
@@ -5948,9 +5941,8 @@ msgstr ""
 msgid "Needs Admin Content Review"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Nova recenzija kompletne teme"
+msgstr "Potreban adminov pregled statičke teme"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6096,17 +6088,14 @@ msgstr ""
 msgid "Updates ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Pregledajte napomenu"
+msgstr "Dnevnik pregleda"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Nova recenzija dodatka"
+msgstr "Vodič za pregled dodatka"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Recenzija teme"
+msgstr "Vodič za pregled teme"
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -6229,9 +6218,8 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Dizajn teme"
+msgstr "Slike teme"
 
 msgid "Rendered Preview"
 msgstr ""
