@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 14:39+0000\n"
+"PO-Revision-Date: 2018-04-17 01:09+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4448,25 +4448,25 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Bloquez le pistage Facebook {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isolez votre identité Facebook dans un « contexte » séparé, afin d’empêcher Facebook de vous suivre à la trace sur le Web."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simplifiez les recherches {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Surlignez du texte sur n’importe quelle page web pour effectuer une recherche sur une multitude de moteurs de recherche."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités et protégez votre vie privée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Contrôlez facilement les publicités qui vous sont affichées et quelles traces vous laissez au cours de votre navigation."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Les onglets, réimaginés {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Vous avez de nombreux onglets ouverts ? Organisez-les dans une barre latérale."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -5344,10 +5344,8 @@ msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Autre (fournit une fenêtre surgissante pour fournir plus d’informations)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr ""
-"Actuellement, AMO ne propose pas de mécanisme pour directement communiquer avec un testeur mais cette fonctionnalité est actuellement à l’étude et pourrait apparaître dans une future mise à jour."
+msgstr "Actuellement, AMO ne propose pas de mécanisme pour directement communiquer avec l’auteur d’une critique."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Puis-je demander le retrait d’un commentaire négatif ?"
