@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 13:05+0000\n"
+"PO-Revision-Date: 2018-04-17 13:32+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2057,13 +2057,11 @@ msgstr "Vsebina dodatka {addon} {version} zavrnjena."
 msgid "Content rejected"
 msgstr "Vsebina zavrnjena"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Zahteva za informacije za dodatek {addon} je odstranjena."
+msgstr "Zahtevo za informacije za dodatek {addon} je spremenil ali odstranil skrbnik."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Zahteva za informacije odstranjena"
+msgstr "Zahteva za informacije spremenjena"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Zahtevo za informacije o {addon} {version} je razvijalec odstranil."
@@ -2435,9 +2433,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Pošlji Temo"
+msgstr "Statična tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2475,9 +2472,8 @@ msgstr "Posodobljen pregled jezikovnega paketa"
 msgid "Theme Review"
 msgstr "Pregled teme"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Tema (statična)"
+msgstr "Pregled teme (statične)"
 
 msgid "New Search Provider Review"
 msgstr "Pregled novega ponudnika za iskanje"
@@ -4493,9 +4489,8 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pristrizite krila Facebookovemu sledenju {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
@@ -5381,7 +5376,6 @@ msgstr "Založeno poročilo o napaki ali zahteva za podporo"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Drugo (nudi spustno okno za informacije)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Trenutno AMO ne nudi mehanizma za neposredno komunikacijo z avtorjem uporabniške ocene."
 
@@ -6211,9 +6205,8 @@ msgstr "Preskoči za zdaj"
 msgid "Needs Admin Content Review"
 msgstr "Potrebuje skrbnikov pregled vsebine"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Potrebuje skrbnikov pregled kode"
+msgstr "Potrebuje skrbnikov pregled statične teme"
 
 msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
@@ -6347,13 +6340,11 @@ msgstr "Odobri vsebino"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To zabeleži vašo odobritev vsebine zadnje javne različice, brez obveščanja razvijalca."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Zastareli dodatki"
+msgstr "Statične teme in zastareli dodatki"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Izbrane teme"
+msgstr "Statične teme"
 
 msgid "Legacy Add-ons"
 msgstr "Zastareli dodatki"
@@ -6364,9 +6355,8 @@ msgstr "Novo ({0})"
 msgid "Updates ({0})"
 msgstr "Posodobitve ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Opomba pregleda"
+msgstr "Dnevnik pregledov"
 
 msgid "Add-on Review Guide"
 msgstr "Vodnik za pregledovanje dodatkov"
@@ -6405,9 +6395,8 @@ msgstr "Posodobitve tem ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Označene teme ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lahke teme"
+msgstr "Dnevnik pregledov lahkih tem"
 
 msgid "Deleted Themes Log"
 msgstr "Dnevnik izbrisanih tem"
@@ -6502,16 +6491,14 @@ msgstr "Poročila o zlorabi ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Slabe ocene uporabnikov ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Ime teme"
+msgstr "Slike teme"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Izbrisane ocene"
+msgstr "Izrisan predogled"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Datoteka ozadja {0} od {1} – {2}"
 
 msgid "More about this add-on"
 msgstr "Več o tem dodatku"
@@ -6758,9 +6745,8 @@ msgstr "Izbriši zastavico za skrbnikov pregled kode"
 msgid "Clear Admin Content Review Flag"
 msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Izbriši zastavico za skrbnikov pregled kode"
+msgstr "Izbriši zastavico za skrbnikov pregled statične teme"
 
 msgid "(admin)"
 msgstr "(admin)"
