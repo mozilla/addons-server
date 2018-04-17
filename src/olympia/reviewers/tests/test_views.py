@@ -3863,7 +3863,7 @@ class TestReview(ReviewBase):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
-        summary = AutoApprovalSummary.objects.create(
+        AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True)
