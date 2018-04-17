@@ -132,6 +132,15 @@ class TestThemeUpdate(TestCase):
         self.check_good(
             json.loads(self.get_update('en-US', 813, 'src=gp').get_json()))
 
+    def test_get_json_missing_colors(self):
+        addon = Addon.objects.get()
+        addon.persona.textcolor = None
+        addon.persona.accentcolor = None
+        addon.persona.save()
+        data = json.loads(self.get_update('en-US', addon.pk).get_json())
+        assert data['textcolor'] == '#'
+        assert data['accentcolor'] == '#'
+
     def test_blank_footer_url(self):
         addon = Addon.objects.get()
         persona = addon.persona
