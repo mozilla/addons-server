@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 06:11+0000\n"
+"PO-Revision-Date: 2018-04-17 06:18+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2014,9 +2014,8 @@ msgstr "Inhoud afgewezen"
 msgid "{addon} information request altered or removed by admin."
 msgstr "Verzoek om informatie voor {addon} gewijzigd of verwijderd door een beheerder."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Verzoek om informatie verwijderd"
+msgstr "Verzoek om informatie gewijzigd"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Verzoek om informatie voor {addon} {version} gewist door ontwikkelaar."
@@ -2387,9 +2386,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Thema indienen"
+msgstr "Statisch thema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2427,9 +2425,8 @@ msgstr "Bijgewerkte taalpakket-beoordeling"
 msgid "Theme Review"
 msgstr "Themabeoordeling"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Thema (statisch)"
+msgstr "Beoordeling thema (statisch)"
 
 msgid "New Search Provider Review"
 msgstr "Nieuwe zoekprovider-beoordeling"
@@ -2989,9 +2986,8 @@ msgstr "Geen"
 msgid "Preview"
 msgstr "Voorbeeld"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Vermelde versies"
+msgstr "Voorbeeld van vermelde versie"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Voorbeeld wordt nog aangemaakt - kom later terug of ververs de pagina."
@@ -3538,9 +3534,8 @@ msgstr "U bent klaar!"
 msgid "Version Submitted for Review"
 msgstr "Versie ingediend voor beoordeling"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versie ingediend"
+msgstr "Voorbeeld van de ingediende versie"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "U bent klaar! Deze versie wordt beschikbaar na succesvolle beoordeling. U ontvangt bericht na de beoordeling."
@@ -3677,9 +3672,8 @@ msgstr "Achtergrond van werkbalkgebied"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad.  Manifestveld:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Tekst en pictogrammen van werkbalkgebied"
+msgstr "Tekst en pictogrammen van het werkbalkgebied"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "De kleur van tekst en pictogrammen in de werkbalk en het actieve tabblad. Manifestveld:  toolbar_text."
@@ -4423,30 +4417,26 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarschuwing"
 msgstr[1] "{0} waarschuwingen"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop volgen door Facebook {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Isoleer uw Facebook-identiteit in een aparte ‘container’ die het voor Facebook moeilijker maakt om uw webbezoeken te volgen."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zoek afbeeldingen terug {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vereenvoudig zoeken {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Accentueer eenvoudigweg tekst op een webpagina om met een aantal zoekmachines naar de zin te zoeken."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Advertenties blokkeren en privacybescherming {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Met enkele eenvoudige instellingen controleert u de advertenties die u getoond worden en hoe u op het internet wordt gevolgd."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zoek afbeeldingen terug {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Tabbladen opnieuw uitgevonden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Het u een enorm aantal openstaande tabbladen? Organiseer ze in een kleine zijbalk."
@@ -5315,7 +5305,6 @@ msgstr "Misplaatst bugrapport of ondersteuningsverzoek"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Overig (via een pop-upvenster wordt om meer informatie gevraagd)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Op dit moment heeft AMO geen mechanisme om rechtstreeks met de schrijver van een gebruikersbeoordeling te communiceren."
 
@@ -6141,9 +6130,8 @@ msgstr "Voorlopig overslaan"
 msgid "Needs Admin Content Review"
 msgstr "Inhoudsbeoordeling door beheerder vereist"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Codebeoordeling door beheerder vereist"
+msgstr "Beoordeling statisch thema door beheerder vereist"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-add-on"
@@ -6272,36 +6260,29 @@ msgstr "Inhoud goedkeuren"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Dit legt uw goedkeuring van de inhoud van de laatste publieke versie vast, zonder de ontwikkelaar te informeren."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Verouderde add-ons"
+msgstr "Statische thema’s en verouderde add-ons"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Aanbevolen thema’s"
+msgstr "Statische thema’s"
 
 msgid "Legacy Add-ons"
 msgstr "Verouderde add-ons"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nieuwe thema’s ({0})"
+msgstr "Nieuw ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Update ({0})"
+msgstr "Updates ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Opmerking bij beoordeling"
+msgstr "Beoordelingslogboek"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Add-on-beoordeling"
+msgstr "Add-on-beoordelingsgids"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Thema-beoordelingswachtrij"
+msgstr "Thema-beoordelingsgids"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
@@ -6332,9 +6313,8 @@ msgstr "Thema-updates ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Gemarkeerde thema’s ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lichtgewicht-thema’s"
+msgstr "Beoordelingslogboek lichtgewicht-thema’s"
 
 msgid "Deleted Themes Log"
 msgstr "Logboek van verwijderde thema’s"
@@ -6425,13 +6405,11 @@ msgstr "Misbruikmeldingen ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Slechte gebruikerswaarderingen ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Themanaam"
+msgstr "Thema-afbeeldingen"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Verwijderde beoordelingen"
+msgstr "Verwerkt voorbeeld"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Achtergrondbestand {0} van {1} - {2}"
@@ -6682,9 +6660,8 @@ msgstr "Markering voor codebeoordeling door beheerder wissen"
 msgid "Clear Admin Content Review Flag"
 msgstr "Markering voor inhoudsbeoordeling door beheerder wissen"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Markering voor codebeoordeling door beheerder wissen"
+msgstr "Markering voor beoordeling van statisch thema door beheerder wissen"
 
 msgid "(admin)"
 msgstr "(beheer)"
