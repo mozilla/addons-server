@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 06:52+0000\n"
+"PO-Revision-Date: 2018-04-17 18:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4449,7 +4449,7 @@ msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastajće slědowanje Facebooka {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
@@ -4461,7 +4461,7 @@ msgid "Just highlight text on any web page to search the phrase from an array of
 msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
@@ -4479,7 +4479,7 @@ msgid "Works seamlessly with most popular video sites."
 msgstr "Funguje bjezposrědnje z najbóle woblubowanymi widejosydłami."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Postajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
@@ -4491,7 +4491,7 @@ msgid "Dozens of amazing emojis for every occasion—always just one click away.
 msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
