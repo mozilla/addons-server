@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 12:49+0000\n"
+"PO-Revision-Date: 2018-04-17 13:05+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3030,12 +3030,11 @@ msgstr "Brez"
 msgid "Preview"
 msgstr "Predogled"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Navedene različice"
+msgstr "Predogled navedene različice"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Predogled se še ustvarja – vrnite se pozneje ali osvežite stran."
 
 msgid "Manage Authors & License"
 msgstr "Upravljanje z avtorji in licencami"
@@ -3589,9 +3588,8 @@ msgstr "Končali ste!"
 msgid "Version Submitted for Review"
 msgstr "Različica poslana za pregled"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Različica potrjena"
+msgstr "Predogled različice poslan"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Končali ste! Ta različica bo postala na voljo, ko bo opravljen njen pregled. Ko bo pregledana, boste obveščeni."
@@ -3732,7 +3730,6 @@ msgstr "Ozadje območja orodne vrstice"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek.  Polje manifesta:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Besedilo in ikone območja orodne vrstice"
 
