@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 14:39+0000\n"
+"PO-Revision-Date: 2018-04-17 15:01+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4209,7 +4209,7 @@ msgstr "ფაილი {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr "შექმნის თარიღია %(created)s და მისი მდგომარეობის %(status)s-ით შეცვლის თარიღია %(status_date)s"
+msgstr "შექმნის თარიღია %(created)s და მისი მდგომარეობის („%(status)s“) შეცვლის თარიღია %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
