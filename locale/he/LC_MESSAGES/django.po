@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 20:49+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"PO-Revision-Date: 2018-04-17 06:33+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -6390,7 +6390,7 @@ msgid "Rendered Preview"
 msgstr "סקירות שנמחקו"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "קובץ רקע {0} מתוך {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "עוד על התוספת הזאת"
@@ -7406,7 +7406,7 @@ msgstr "תרגום לשפה: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
 msgstr "שפות קיימות"
@@ -7450,7 +7450,7 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "לכתובת URL זו תבנית שגויה. כתובות URL תקינות נראות בסגנון של http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "כדי להישאר בעילום שם, יש להקליד את סיבת השינוי מבלי לשנות אף שדה אחר."
 
 msgid "Please enter at least one name to be denied."
 msgstr "נא להקליד לפחות שם אחד לדחייה."
@@ -7480,7 +7480,7 @@ msgid "my add-on's compatibility is upgraded successfully"
 msgstr "התאימות של התוספת שלי שודרגה בהצלחה"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "התוספת מבוססת ה־sdk שלי שודרגה בהצלחה"
 
 msgid "someone writes a review of my add-on"
 msgstr "מישהו כותב סקירה על התוספת שלי"
@@ -7492,7 +7492,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "לא ניתן לשדרג את התאימות של התוספת שלי"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "לא ניתן לשדרג את התוספת שלי המבוססת על sdk"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "התוספת שלי נסקרה על ידי סוקר"
