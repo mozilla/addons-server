@@ -505,7 +505,8 @@ class ReviewBase(object):
             file.status = status
             file.save()
 
-    def log_action(self, action, version=None, files=None):
+    def log_action(self, action, version=None, files=None,
+                   timestamp=None):
         details = {'comments': self.data['comments'],
                    'reviewtype': self.review_type}
         if files is None and self.files:
@@ -519,8 +520,10 @@ class ReviewBase(object):
             args = (self.addon, version)
         else:
             args = (self.addon,)
+        if timestamp is None:
+            timestamp = datetime.now()
 
-        kwargs = {'user': self.user, 'created': datetime.now(),
+        kwargs = {'user': self.user, 'created': timestamp,
                   'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
@@ -776,10 +779,12 @@ class ReviewBase(object):
         self.files = None
         action_id = (amo.LOG.REJECT_CONTENT if self.content_review_only
                      else amo.LOG.REJECT_VERSION)
+        timestamp = datetime.now()
         for version in self.data['versions']:
             files = version.files.all()
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files)
+            self.log_action(action_id, version=version, files=files,
+                            timestamp=timestamp)
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
             unicode(v.version) for v in self.data['versions'])

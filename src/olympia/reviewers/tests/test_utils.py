@@ -1146,6 +1146,10 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
+        logs = (ActivityLog.objects.for_addons(self.addon)
+                                   .filter(action=amo.LOG.REJECT_VERSION.id))
+        assert logs[0].created == logs[1].created
+
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_HIGH_RISK)
 
