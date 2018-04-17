@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 17:34+0000\n"
+"PO-Revision-Date: 2018-04-17 17:38+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2393,9 +2393,8 @@ msgstr "Android"
 
 # 77%
 # 85%
-#, fuzzy
 msgid "Static Theme"
-msgstr "Enviar tema"
+msgstr "Tema estático"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2990,9 +2989,8 @@ msgstr "Ninguno"
 msgid "Preview"
 msgstr "Vista previa"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Versiones listadas"
+msgstr "Vista previa de la versión listada"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Aún se está generando la vista previa: vuelva más tarde o actualice la página."
@@ -3576,9 +3574,8 @@ msgstr "¡Ya está!"
 msgid "Version Submitted for Review"
 msgstr "Versión enviada para revisión"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versión enviada"
+msgstr "Vista previa de la versión enviada"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "¡Ya está! Esta versión estará disponible una vez revisada. Se te enviará una notificación cuando la revisen."
@@ -4494,23 +4491,20 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personaliza pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Detén el rastreo de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Búsqueda relacionada de imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Simplifica las búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personaliza pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Protección de privacidad y bloqueo de publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
@@ -6374,9 +6368,8 @@ msgstr "Aprobar contenido"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Esto registra tu aprobación del contenido de la última versión publicada, sin notificárselo al desarrollador."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Complementos reemplazados"
+msgstr "Temas estáticos y complementos antiguos"
 
 msgid "Static Themes"
 msgstr "Temas estáticos"
@@ -6393,13 +6386,11 @@ msgstr "Actualizaciones ({0})"
 msgid "Review Log"
 msgstr "Registro de revisiones"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Revisión del complemento"
+msgstr "Guía de revisión de complementos"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Cola de revisiones del tema"
+msgstr "Guía de revisión de temas"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Complementos autoaprobados"
@@ -6430,9 +6421,8 @@ msgstr "Actualizaciones de temas ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Temas marcados ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Temas ligeros"
+msgstr "Registro de revisiones de temas ligeros"
 
 msgid "Deleted Themes Log"
 msgstr "Se eliminó el registro de temas"
@@ -6525,13 +6515,11 @@ msgstr "Informes de uso indebido ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Calificaciones de usuario con mala conducta ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Nombre del tema"
+msgstr "Imágenes de temas"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Revisiones borradas"
+msgstr "Vista previa generada"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
