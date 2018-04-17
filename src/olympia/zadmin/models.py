@@ -206,20 +206,3 @@ class SiteEvent(models.Model):
 
     class Meta:
         db_table = 'zadmin_siteevent'
-
-
-class DownloadSource(models.Model):
-    # e.g., `mkt-search` or `mkt-detail-`.
-    name = models.CharField(max_length=255)
-
-    # e.g., `full` or `prefix`.
-    type = models.CharField(max_length=255)
-
-    description = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'download_sources'
-
-    def __unicode__(self):
-        return u'%s (%s)' % (self.name, self.type)

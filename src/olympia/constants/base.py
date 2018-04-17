@@ -443,3 +443,32 @@ ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
 
 DISCO_API_ALLOWED_PARAMETERS = (
     'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
+
+# If you add/remove any sources, update the docs: /api/download_sources.html
+# Note there are some additional sources here for historical/backwards compat.
+DOWNLOAD_SOURCES_FULL = (
+    'addondetail', 'addon-detail-version', 'api', 'category', 'collection',
+    'creatured', 'developers', 'discovery-dependencies', 'discovery-upsell',
+    'discovery-video', 'email', 'find-replacement', 'fxcustomization',
+    'fxfirstrun', 'fxwhatsnew', 'homepagebrowse', 'homepagepromo',
+    'installservice', 'mostshared', 'oftenusedwith', 'prerelease-banner',
+    'recommended', 'rockyourfirefox', 'search', 'sharingapi',
+    'similarcollections', 'ss', 'userprofile', 'version-history',
+
+    'co-hc-sidebar', 'co-dp-sidebar',
+
+    'cb-hc-featured', 'cb-dl-featured', 'cb-hc-toprated', 'cb-dl-toprated',
+    'cb-hc-mostpopular', 'cb-dl-mostpopular', 'cb-hc-recentlyadded',
+    'cb-dl-recentlyadded',
+
+    'hp-btn-promo', 'hp-dl-promo', 'hp-hc-featured', 'hp-dl-featured',
+    'hp-hc-upandcoming', 'hp-dl-upandcoming', 'hp-hc-mostpopular',
+    'hp-dl-mostpopular', 'hp-contest-winners',
+
+    'dp-hc-oftenusedwith', 'dp-dl-oftenusedwith', 'dp-hc-othersby',
+    'dp-dl-othersby', 'dp-btn-primary', 'dp-btn-version', 'dp-btn-devchannel',
+    'dp-hc-dependencies', 'dp-dl-dependencies', 'dp-hc-upsell', 'dp-dl-upsell',
+)
+
+DOWNLOAD_SOURCES_PREFIX = (
+    'external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-dl-')
