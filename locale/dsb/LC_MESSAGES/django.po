@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 18:33+0000\n"
+"PO-Revision-Date: 2018-04-17 18:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2047,13 +2047,11 @@ msgstr "Wopśimjeśe {addon} {version} jo wótpokazane."
 msgid "Content rejected"
 msgstr "Wopśimjeśe jo wótpokazane"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Pšosba wó informacije wó {addon} jo se wótwónoźeła."
+msgstr "Pšosba wó informacije wó {addon} jo se změniła abo wótwónoźeła wót administratora."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Pšosba wó informacije jo se wótwónoźiła"
+msgstr "Pšosba wó informacije jo se změniła"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Pšosba wó informacije jo se wót wuwijarja w {addon} {version} wulašowała."
@@ -2422,9 +2420,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Drastwu zapódaś"
+msgstr "Statiska drastwa"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2462,9 +2459,8 @@ msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
 msgid "Theme Review"
 msgstr "Pśeglědanje drastwy"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Drastwa (statiska)"
+msgstr "Pśeglědanje (statiskeje) drastwy"
 
 msgid "New Search Provider Review"
 msgstr "Nowe pśeglědanje pytańskego póbitowarja"
@@ -3018,9 +3014,8 @@ msgstr "Žedno"
 msgid "Preview"
 msgstr "Pśeglěd"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Nalicone wersije"
+msgstr "Pśeglěd naliconeje wersije"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Pśeglěd se hyšći twóri - wrośćo se pózdźej abo aktualizěrujśo bok."
@@ -3573,9 +3568,8 @@ msgstr "Sćo gótowy!"
 msgid "Version Submitted for Review"
 msgstr "Wersija, kótaraž jo se za pśeglědowanje zapódała"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Wersija jo se zapódała"
+msgstr "Pśeglěd wersije jo se zapódał"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Sćo gótowy! Toś ta wersija buźo k dispoziciji, za tym až jo se wuspěšnje pśeglědała. Dostańśo powěźeńku, gaž jo pśeglědana."
@@ -3712,7 +3706,6 @@ msgstr "Slězyna wobcerka symboloweje rědki"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtark. Pólo manifesta: toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobcerka symboloweje rědki"
 
@@ -4455,30 +4448,26 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměrjenje rejtarkow {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Zastajśo slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nawopacne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Zjadnorśo pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Wuzwigniśo jadnorje tekst na někakem webboku, aby z pytnicu wuraz pytał."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměrjenje rejtarkow {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Blokěrowanje wabjenja a šćit priwatnosći {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Z jadnorym nastajenim kontrolěrujośo wabjenje, kótarež wiźiśo a wašnju, kak wam w interneśe slěduju."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nawopacne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgstr "Pśemsyliśo rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Maśo wjelgin wjele wócynjonych rejtarkow? Organizěrujśo je w praktiskej bocnicy."
@@ -5350,9 +5339,8 @@ msgstr "Deplacěrowana zmólkowa rozpšawa abo pšosba wó pomoc"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Druge (pokazujo wuskokujuce napšašowanje za dalšne informacije)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Tuchylu AMO njebitujo mechanizm za direktnu komunikaciju z awtorom wužywarskego pógódnośenja."
+msgstr "Tuchylu AMO mechanizm za direktnu komunikaciju z awtorom wužywarskego pógódnośenja njebitujo."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Mógu pominaś, až se pógódnośenje wótpórajo, jolic pógódnośenje jo negatiwne?"
@@ -6187,9 +6175,8 @@ msgstr "Tuchylu pśeskócyś"
 msgid "Needs Admin Content Review"
 msgstr "¨Wopśimjeśe musy se wót administratora pśeglědowaś"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Žrědłowy kod musy se wót administratora pśeglědowaś"
+msgstr "Statiska drastwa musy se wót administratora pśeglědowaś"
 
 msgid "Jetpack Add-on"
 msgstr "Dodank typa Jetpack"
@@ -6323,36 +6310,29 @@ msgstr "Wopśimjeśe pśizwóliś"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Zesttarjone dodanki"
+msgstr "Statiske drastwy a zestarjone dodanki"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Pśedstajone drastwy"
+msgstr "Statiske drastwy"
 
 msgid "Legacy Add-ons"
 msgstr "Zesttarjone dodanki"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nowe drastwy ({0})"
+msgstr "Nowy ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Aktualizacija ({0})"
+msgstr "Aktualizacije ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Pśeglědański pśipisk"
+msgstr "Protokol pśeglědanjow"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Pśeglědanje dodanka"
+msgstr "Rozpokazanje za pśeglědowanje dodankow"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Cakański rěd drastwowych pśeglědanjow"
+msgstr "Rozpokazanje za seglědowanje drastwow"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
@@ -6385,9 +6365,8 @@ msgstr "Aktualizacije drastwow ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Markěrowane drastwy ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lažke drastwy"
+msgstr "Protokol za pśeglědowanje lažkich drastwow"
 
 msgid "Deleted Themes Log"
 msgstr "Protokol wulašowanych drastwow"
@@ -6478,13 +6457,11 @@ msgstr "Znjewužywańske rozpšawy ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužywarske pógódnośenja ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Mě drastwy"
+msgstr "Wobraze drastwy"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Wulašone pśeglědanja"
+msgstr "Nakreslony pśeglěd"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Slězynowa dataja {0} z {1} - {2}"
@@ -6734,9 +6711,8 @@ msgstr "Marku za pśeglědowanje žrědłowego teksta wót administratora wótp�
 msgid "Clear Admin Content Review Flag"
 msgstr "Marku za pśeglědowanje wopśimjeśa wót administratora wótpóraś"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Marku za pśeglědowanje žrědłowego teksta wót administratora wótpóraś"
+msgstr "Marku za pśeglědowanje statiskeje drastwy wót administratora wótwónoźeś"
 
 msgid "(admin)"
 msgstr "(admin)"
