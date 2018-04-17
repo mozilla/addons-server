@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 14:10+0000\n"
+"PO-Revision-Date: 2018-04-17 14:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3290,7 +3290,7 @@ msgid ""
 "able to submit versions using the same ID."
 msgstr ""
 "თქვენი დამატების წაშლით, სამუდამოდ წაიშლება ამ დამატებასთან დაკავშირებული ყველა ვერსია და ფაილი, მიუხედავად იმისა, გამოქვეყნებულია თუ არა. დამატების ID დარჩება თქვენს ანგარიშთან დაკავშირებული, ასე "
-"რომ სხვებს არ შეეძლებათ, ამ დამატების ID-ს გამოყენებით ვერსიების გადმოგზავნა."
+"რომ სხვებს არ შეეძლებათ, ამ დამატების ID-ს გამოყენებით ვერსიების წარდგენა."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "გადაწყვეტილების დასადასტურებლად, შეიყვანეთ მოცემული ტექსტი: {slug}"
@@ -3699,7 +3699,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "თქვენი დამატება შეზღუდულია საიტის ადმინისტრატორის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "თქვენი დამატება არ გამოჩნდება ძიების შედეგებში, მის გვერდზე კი მიეთითება რომ შეზღუდული გაქვთ წვდომა. ასეთ შემთხვევაში, წარდგენილი ახალი ვერსიები არ მიიღება."
+msgstr "თქვენი დამატება არ გამოჩნდება ძიების შედეგებში, მის გვერდზე კი მიეთითება, რომ არაა ხელმისაწვდომი. ასეთ შემთხვევაში, წარდგენილი ახალი ვერსიები არ მიიღება."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
