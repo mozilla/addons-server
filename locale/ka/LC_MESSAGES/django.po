@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 12:27+0000\n"
+"PO-Revision-Date: 2018-04-17 14:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2596,7 +2596,7 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"ამ საიტზე. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება გამოქყვენდება საიტსა და Firefox დამატებების მმართველში მილიონობით მომხმარებლისთვის, კოდის შემოწმების გავლის შემდეგ. ავტომატური "
+"ამ საიტით. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება გამოქყვენდება საიტსა და Firefox დამატებების მმართველში მილიონობით მომხმარებლისთვის, კოდის შემოწმების გავლის შემდეგ. ავტომატური "
 "განახლებების მართვა, საიტიდანვე არის შესაძლებელი. დამატება ასევე ჩაერთვება Mozilla-ს სარეკლამო აქციებსა და შეჯიბრებებში. ამასთან, ნებადართულია შემოწმებული დამატების საკუთარი საშუალებებით "
 "გავრცელებაც.</span>"
 
@@ -2836,7 +2836,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "ატვირთვის შემდეგ, რიგი ავტომატური ტესტები გაეშვება, თქვენი ფაილის შესამოწმებლად."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "გსურთ თქვენი დამატების გავრცელება ამ საიტით?"
+msgstr "როგორ გსურთ თქვენი დამატების გავრცელება?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
