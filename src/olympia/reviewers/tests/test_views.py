@@ -3828,8 +3828,51 @@ class TestReview(ReviewBase):
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
         })
-        # The request will succeed but nothing will happen.
-        assert response.status_code == 200
+        assert response.status_code == 200  # Form error
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 0
+
+    def test_can_contentreview_if_addon_has_sources_attached(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.addon.current_version.update(source='/path/to/fake/file.zip')
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        assert response.status_code == 302
+        summary.reload()
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+
+    def test_cant_contentreview_if_addon_has_admin_flag_but_no_sources(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        assert response.status_code == 200  # Form error
         assert ActivityLog.objects.filter(
             action=amo.LOG.APPROVE_CONTENT.id).count() == 0
 

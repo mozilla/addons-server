@@ -322,13 +322,27 @@ class ReviewHelper(object):
             request, amo.permissions.REVIEWS_ADMIN)
         reviewable_because_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
+        regular_addon_review_is_allowed = (
+            not self.content_review_only and
+            not self.addon.needs_admin_code_review and
+            not self.addon.needs_admin_content_review and
+            not self.addon.needs_admin_theme_review
+        )
+        regular_content_review_is_allowed = (
+            self.content_review_only and
+            not self.addon.needs_admin_content_review and
+            (
+                not self.addon.needs_admin_code_review or
+                self.version.source
+            ))
         reviewable_because_not_reserved_for_admins_or_user_is_admin = (
             is_admin_tools_viewer or
             (
                 self.version and
-                not self.version.addon.needs_admin_content_review and
-                not self.version.addon.needs_admin_code_review and
-                not self.version.addon.needs_admin_theme_review
+                (
+                    regular_addon_review_is_allowed or
+                    regular_content_review_is_allowed
+                )
             ))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
