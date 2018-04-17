@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 19:37+0000\n"
+"PO-Revision-Date: 2018-04-17 15:51+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6541,9 +6541,8 @@ msgstr "Denúncias de abuso ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Classificações negativas de usuários ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Nome do tema"
+msgstr "Imagens do tema"
 
 #, fuzzy
 msgid "Rendered Preview"
