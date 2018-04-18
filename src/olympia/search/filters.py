@@ -37,9 +37,12 @@ class AddonQueryParam(object):
         except ValueError:
             # Fall back on the string, it should be a key in the reverse dict.
             value = self.get_value_from_reverse_dict()
-        if value in self.valid_values:
+        if self.is_valid(value):
             return value
         raise ValueError('Invalid "%s" parameter.' % self.query_param)
+
+    def is_valid(self, value):
+        return value in self.valid_values
 
     def get_value_from_reverse_dict(self):
         value = self.request.GET.get(self.query_param, '')
@@ -153,6 +156,14 @@ class AddonTypeQueryParam(AddonQueryParam):
     reverse_dict = amo.ADDON_SEARCH_SLUGS
     valid_values = amo.ADDON_SEARCH_TYPES
     es_field = 'type'
+    operator = 'terms'
+
+    def get_value_from_reverse_dict(self):
+        values = self.request.GET.get(self.query_param, '').split(',')
+        return [self.reverse_dict.get(value.lower()) for value in values]
+
+    def is_valid(self, value):
+        return all([_value in self.valid_values for _value in value])
 
 
 class AddonStatusQueryParam(AddonQueryParam):
@@ -166,6 +177,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
     query_param = 'category'
     es_field = 'category'
     valid_values = CATEGORIES_BY_ID.keys()
+    operator = 'terms'
 
     def __init__(self, request):
         super(AddonCategoryQueryParam, self).__init__(request)
@@ -175,9 +187,8 @@ class AddonCategoryQueryParam(AddonQueryParam):
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
             app = AddonAppQueryParam(self.request).get_value()
-            type_ = AddonTypeQueryParam(self.request).get_value()
-
-            self.reverse_dict = CATEGORIES[app][type_]
+            types = AddonTypeQueryParam(self.request).get_value()
+            self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
             raise ValueError(
                 'Invalid combination of "%s", "%s" and "%s" parameters.' % (
@@ -187,6 +198,22 @@ class AddonCategoryQueryParam(AddonQueryParam):
 
     def get_value_from_reverse_dict(self):
         return self.get_value_from_object_from_reverse_dict()
+
+    def get_object_from_reverse_dict(self):
+        query_value = self.request.GET.get(self.query_param, '').lower()
+        values = []
+        for reverse_dict in self.reverse_dict:
+            value = reverse_dict.get(query_value)
+            if value is None:
+                raise ValueError('Invalid "%s" parameter.' % self.query_param)
+            values.append(value)
+        return values
+
+    def get_value_from_object_from_reverse_dict(self):
+        return [obj.id for obj in self.get_object_from_reverse_dict()]
+
+    def is_valid(self, value):
+        return all([_value in self.valid_values for _value in value])
 
 
 class AddonTagQueryParam(AddonQueryParam):

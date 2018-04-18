@@ -748,11 +748,13 @@ class AddonFeaturedView(GenericAPIView):
             # AddonCategoryQueryParam parses the request parameters for us to
             # determine the category.
             try:
-                category = AddonCategoryQueryParam(self.request).get_value()
+                categories = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
-            ids = get_creatured_ids(category, lang)
+            ids = []
+            for category in categories:
+                ids.extend(get_creatured_ids(category, lang))
         else:
             # If no category is passed, only the app parameter is mandatory,
             # because get_featured_ids() needs it to find the right collection
@@ -761,13 +763,13 @@ class AddonFeaturedView(GenericAPIView):
             try:
                 app = AddonAppQueryParam(
                     self.request).get_object_from_reverse_dict()
-                type_ = None
+                types = None
                 if 'type' in self.request.GET:
-                    type_ = AddonTypeQueryParam(self.request).get_value()
+                    types = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
-            ids = get_featured_ids(app, lang=lang, type=type_)
+            ids = get_featured_ids(app, lang=lang, types=types)
         # ids is going to be a random list of ids, we just slice it to get
         # the number of add-ons that was requested. We do it before calling
         # manual_order(), since it'll use the ids as part of a id__in filter.
@@ -852,7 +854,8 @@ class LanguageToolsView(ListAPIView):
         # to filter by type if they want appversion filtering.
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
-                addon_types = (AddonTypeQueryParam(self.request).get_value(),)
+                addon_types = tuple(
+                    AddonTypeQueryParam(self.request).get_value())
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
