@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 16:26+0000\n"
+"PO-Revision-Date: 2018-04-18 17:38+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2597,9 +2597,8 @@ msgstr "รุ่นไม่ตรงกัน"
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+msgstr "มีรุ่น {version} อยู่แล้ว"
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -6869,7 +6868,7 @@ msgid "Version does not match the manifest file."
 msgstr ""
 
 msgid "Version already exists."
-msgstr ""
+msgstr "มีรุ่นอยู่แล้ว"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
