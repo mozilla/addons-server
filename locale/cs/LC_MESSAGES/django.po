@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 16:13+0000\n"
+"PO-Revision-Date: 2018-04-18 13:26+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2112,7 +2112,7 @@ msgid "Theme"
 msgstr "Motiv vzhledu"
 
 msgid "Theme (Static)"
-msgstr "Motiv (statický)"
+msgstr "Vzhled (statický)"
 
 msgid "Complete Themes"
 msgstr "Plné motivy"
@@ -2132,7 +2132,7 @@ msgid "Plugins"
 msgstr "Zásuvné moduly"
 
 msgid "Themes (Static)"
-msgstr "Motivy (statické)"
+msgstr "Vzhledy (statické)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2444,9 +2444,8 @@ msgstr "Kontroly aktualizovaných jazykových balíčků"
 msgid "Theme Review"
 msgstr "Kontrola motivu"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Motiv (statický)"
+msgstr "Kontrola statického vzhledu"
 
 msgid "New Search Provider Review"
 msgstr "Nová kontrola vyhledávacích modulů"
@@ -4436,25 +4435,25 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "{start_sub_heading}S doplňkem {addon_name}{end_sub_heading} se nemusíte nechat Facebookem sledovat"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Snadné vyhledávání {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Označte text na jakékoliv webové stránce a vyberte si vyhledávač, kterým jej chcete vyhledat."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy a chraňte své soukromí {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Jednoduché nastavení zobrazovaných reklamam a sledování na internetu."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšené své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -6100,9 +6099,8 @@ msgstr "Aplikace:"
 msgid "Require developer to respond in less than…"
 msgstr "Vyžadovat odpověď vývojáře do…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 dní"
+msgstr "dnů"
 
 msgid "Choose a canned response..."
 msgstr "Volba předpřipravené odpovědi..."
@@ -6130,9 +6128,8 @@ msgstr "Nyní neřešit"
 msgid "Needs Admin Content Review"
 msgstr "Čeká na kontrolu obsahu administrátorem"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Čeká na kontrolu kódu administrátorem"
+msgstr "Čeká na kontrolu statického vzhledu administrátorem"
 
 msgid "Jetpack Add-on"
 msgstr "Doplněk postavený na Jetpacku"
@@ -6276,18 +6273,16 @@ msgid "New ({0})"
 msgstr "Nové ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Aktualizace ({0})"
 
 msgid "Review Log"
 msgstr "Záznam kontrol"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Kontrola doplňku"
+msgstr "Příručka pro kontrolu doplňků"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Fronta pro schválení motivů"
+msgstr "Příručka pro kontrolu vzhledů"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
@@ -6665,9 +6660,8 @@ msgstr "Vymazat příznak kontroly kódu administrátorem"
 msgid "Clear Admin Content Review Flag"
 msgstr "Vymazat příznak kontroly obsahu recenze administrátorem"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Vymazat příznak kontroly kódu administrátorem"
+msgstr "Vymazat příznak kontroly statického vzhledu administrátorem"
 
 msgid "(admin)"
 msgstr "(admin)"
