@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-18 17:11+0000\n"
+"PO-Revision-Date: 2018-04-18 17:32+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2931,7 +2931,7 @@ msgid "Preview of listed version"
 msgstr "გამოქვეყნებული ვერსიის წინასწარი ვარიანტი"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "წინასწარი ვარიანტი ჯერ კიდევ იქმნება - შეამოწმეთ მოგვიანებით ან განაახლეთ გვერდი."
 
 msgid "Manage Authors & License"
 msgstr "ავტორების და ლიცენზიის მართვა"
@@ -3607,7 +3607,6 @@ msgstr "ხელსაწყოთა ზოლის ფონი"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "ფონის ფერი გადასაადგილებელი ღილაკებისთვის, სანიშნების ზოლისა და არჩეული ჩანართისთვის.  მანიფესტის ველი:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "ხელსაწყოთა ზოლის ტექსტი და ხატულები"
 
