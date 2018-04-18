@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 15:50+0000\n"
+"PO-Revision-Date: 2018-04-18 16:43+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7340,7 +7340,7 @@ msgstr "აუცილებელი ველები"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr "ლოკალიზება: <a id=\"change-locale\" href=\"#\">%(dl)s-ზე</a>"
+msgstr "თარგმანი: <a id=\"change-locale\" href=\"#\">%(dl)s-ზე</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
