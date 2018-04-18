@@ -48,7 +48,7 @@ class Header(Region):
     _extensions_locator = (By.CSS_SELECTOR, '.SectionLinks \
                            > li:nth-child(2) > a:nth-child(1)')
     _login_locator = (By.CLASS_NAME, 'Header-authenticate-button')
-    _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items > .Header-logout-button')
+    _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
     _user_locator = (By.CSS_SELECTOR,
@@ -80,12 +80,19 @@ class Header(Region):
         logout = self.find_element(*self._logout_locator)
         action = ActionChains(self.selenium)
         action.move_to_element(user)
-        action.move_to_element(logout)
         action.click()
+        action.pause(2)
+        action.move_to_element(logout)
+        action.pause(2)
+        action.click(logout)
         action.perform()
+        # user.click()
+        # import time
+        # time.sleep(5)
+        # logout.click()
+        # time.sleep(5)
         self.wait.until(lambda s: self.is_element_displayed(
             *self._login_locator))
-        action.reset_actions()
 
     def search_for(self, term):
         textbox = self.find_element(*self._search_textbox_locator)
