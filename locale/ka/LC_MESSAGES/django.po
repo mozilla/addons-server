@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-18 16:43+0000\n"
+"PO-Revision-Date: 2018-04-18 17:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1965,9 +1965,8 @@ msgstr "შიგთავსი უარყოფილია"
 msgid "{addon} information request altered or removed by admin."
 msgstr "{addon} მონაცემების მოთხოვნა შეცვლილი ან გაუქმებულია ადმინისტრატორის მიერ."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "მონაცემების მოთხოვნა გაუქმებულია"
+msgstr "მონაცემების მოთხოვნა შეცვლილია"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "მონაცემების მოთხოვნა {addon} {version}-ზე წაშალა შემმუშავებელმა."
@@ -2045,7 +2044,7 @@ msgid "Theme"
 msgstr "თემა"
 
 msgid "Theme (Static)"
-msgstr "თემა (უძრავი)"
+msgstr "თემა (უცვლელი)"
 
 msgid "Complete Themes"
 msgstr "სრული თემები"
@@ -2063,7 +2062,7 @@ msgid "Plugins"
 msgstr "მოდულები"
 
 msgid "Themes (Static)"
-msgstr "თემა (უძრავი)"
+msgstr "თემა (უცვლელი)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2336,9 +2335,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "თემის წარდგენა"
+msgstr "უცვლელი თემა"
 
 msgid "Persona"
 msgstr "პიროვნება"
@@ -2376,9 +2374,8 @@ msgstr "ენის პაკეტის განახლებული მ
 msgid "Theme Review"
 msgstr "თემის მიმოხილვა"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "თემა (უძრავი)"
+msgstr "თემა (უცვლელი)"
 
 msgid "New Search Provider Review"
 msgstr "ახალი საძიებო სისტემის მიმოხილვა"
@@ -2930,9 +2927,8 @@ msgstr "არცერთი"
 msgid "Preview"
 msgstr "წინასწარ გადახედვა"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "გამოქვეყნებული ვერსიები"
+msgstr "გამოქვეყნებული ვერსიის წინასწარი ვარიანტი"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -3473,9 +3469,8 @@ msgstr "მორჩა!"
 msgid "Version Submitted for Review"
 msgstr "ვერსია წარდგენილია განსახილველად"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "ვერსია გადაგზავნილია"
+msgstr "ვერსიის წინასწარი ვარიანტი გადაგზავნილია"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "მზადაა! ეს ვერსია საიტზე ხელმისაწვდომი გახდება მიმოხილვის გავლის შემდგომ. გეცნობებათ, მიმოხილვის დასრულებისთანავე."
@@ -6063,7 +6058,7 @@ msgid "Needs Admin Content Review"
 msgstr "დამატების შიგთავსი საჭიროებს ადმინისტრატორის მიმოხილვას"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "თემა საჭიროებს ადმინისტრატორის მიმოხილვას"
+msgstr "უცვლელი თემა საჭიროებს ადმინისტრატორის მიმოხილვას"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack დამატება"
@@ -6188,13 +6183,11 @@ msgstr "შიგთავსის მიღება"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "მოძველებული დამატებები"
+msgstr "უცვლელი თემები და მოძველებული დამატებები"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "გამორჩეული თემები"
+msgstr "უცვლელი თემები"
 
 msgid "Legacy Add-ons"
 msgstr "მოძველებული დამატებები"
