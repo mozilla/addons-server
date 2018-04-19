@@ -607,6 +607,14 @@ class TestParseXpi(TestCase):
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
         assert not parsed['is_restart_required']
+        assert not parsed['is_experiment']
+
+    def test_experiment_inside_webextension(self):
+        parsed = self.parse(filename='experiment_inside_webextension.xpi')
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
+        assert not parsed['is_restart_required']
+        assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
         parsed = self.parse(filename='webextension_signed_already.xpi')
