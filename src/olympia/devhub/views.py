@@ -54,9 +54,6 @@ from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
-from olympia.users.utils import (
-    mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed)
 from olympia.versions import compare
 from olympia.versions.models import Version
 from olympia.zadmin.models import ValidationResult, get_config
@@ -555,13 +552,11 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
+    user = request.user if request.user.is_authenticated() else None
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
-        automated_signing=automated_signing, addon=addon)
+        automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
-    if request.user.is_authenticated():
-        upload.user = request.user
-        upload.save()
     if app_id and version_id:
         # If app_id and version_id are present, we are dealing with a
         # compatibility check (i.e. this is not an upload meant for submission,
@@ -723,25 +718,14 @@ def json_upload_detail(request, upload, addon_slug=None):
     plat_exclude = []
     if result['validation']:
         try:
-            pkg = parse_addon(upload, addon=addon)
-            if not acl.submission_allowed(request.user, pkg):
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit this type of add-on'))
-            if not addon and not system_addon_submission_allowed(
-                    request.user, pkg):
-                guids = ' or '.join(
-                    '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit an add-on with a guid '
-                             u'ending %s' % guids))
-            if not mozilla_signed_extension_submission_allowed(
-                    request.user, pkg):
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit a Mozilla Signed Extension'))
+            pkg = parse_addon(upload, addon=addon, user=request.user)
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
-            # FIXME: This doesn't guard against client-side
-            # tinkering.
+            # This doesn't guard against client-side tinkering, and is purely
+            # to display those non-linter errors nicely in the frontend. What
+            # does prevent clients from bypassing those is the fact that we
+            # always call parse_addon() before calling from_upload(), so
+            # ValidationError would be raised before proceeding.
             for i, msg in enumerate(exc.messages):
                 # Simulate a validation error so the UI displays
                 # it as such

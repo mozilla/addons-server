@@ -164,9 +164,11 @@ def fetch_langpack(url, xpi, **kw):
         except Addon.DoesNotExist:
             addon = None
 
+        owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
+
         try:
             # Parse again now that we have the add-on.
-            data = parse_addon(upload, addon)
+            data = parse_addon(upload, addon, user=owner)
         except Exception, e:
             log.error('[@None] Error parsing "{0}" language pack: {1}'
                       .format(xpi, e),
@@ -183,7 +185,6 @@ def fetch_langpack(url, xpi, **kw):
 
         is_beta = (amo.VERSION_BETA.search(data['version']) and
                    waffle.switch_is_active('beta-versions'))
-        owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:
             if addon.versions.filter(version=data['version']).exists():
