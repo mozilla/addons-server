@@ -158,12 +158,20 @@ class AddonTypeQueryParam(AddonQueryParam):
     es_field = 'type'
     operator = 'terms'
 
+    def get_value(self):
+        value = super(AddonTypeQueryParam, self).get_value()
+        # if API gets an int rather than string get_value won't return a list.
+        return [value] if isinstance(value, int) else value
+
     def get_value_from_reverse_dict(self):
         values = self.request.GET.get(self.query_param, '').split(',')
         return [self.reverse_dict.get(value.lower()) for value in values]
 
     def is_valid(self, value):
-        return all([_value in self.valid_values for _value in value])
+        if isinstance(value, int):
+            return value in self.valid_values
+        else:
+            return all([_value in self.valid_values for _value in value])
 
 
 class AddonStatusQueryParam(AddonQueryParam):
@@ -196,6 +204,11 @@ class AddonCategoryQueryParam(AddonQueryParam):
                     AddonTypeQueryParam.query_param,
                     self.query_param))
 
+    def get_value(self):
+        value = super(AddonCategoryQueryParam, self).get_value()
+        # if API gets an int rather than string get_value won't return a list.
+        return [value] if isinstance(value, int) else value
+
     def get_value_from_reverse_dict(self):
         return self.get_value_from_object_from_reverse_dict()
 
@@ -213,7 +226,10 @@ class AddonCategoryQueryParam(AddonQueryParam):
         return [obj.id for obj in self.get_object_from_reverse_dict()]
 
     def is_valid(self, value):
-        return all([_value in self.valid_values for _value in value])
+        if isinstance(value, int):
+            return value in self.valid_values
+        else:
+            return all([_value in self.valid_values for _value in value])
 
 
 class AddonTagQueryParam(AddonQueryParam):
