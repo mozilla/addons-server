@@ -372,6 +372,14 @@ class ManifestJSONExtractor(object):
         return self.data.get(key, default)
 
     @property
+    def is_experiment(self):
+        """Return whether or not the webextension uses experiments API.
+
+        In legacy extensions this is a different type, but for webextensions
+        we just look at the manifest."""
+        return bool(self.get('experiment_apis', False))
+
+    @property
     def gecko(self):
         """Return the "applications["gecko"]" part of the manifest."""
         return self.get('applications', {}).get('gecko', {})
@@ -492,6 +500,7 @@ class ManifestJSONExtractor(object):
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
+                'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
                 # Only extensions have permissions and content scripts
