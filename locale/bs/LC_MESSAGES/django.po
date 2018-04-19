@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 10:41+0000\n"
+"PO-Revision-Date: 2018-04-19 07:24+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3927,7 +3927,7 @@ msgid "Write Some Code"
 msgstr "Napišite neke kodove"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Pomozite nam učiniti dodatak boljim doprinošenjem vaših kodnih vještina."
 
 msgid "Get started"
 msgstr "Započnite"
@@ -3936,19 +3936,19 @@ msgid "More Ways to Participate"
 msgstr "Više načina za sudjelovanje"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Ne trebate vještine za kodiranje da bi nam pomogli zadržati Firefox najprilagodljivijim dostupnim browserom!"
 
 msgid "See how"
 msgstr "Pogledajte kako"
 
 msgid "Manage Your Add-on"
-msgstr ""
+msgstr "Upravljajte vašim dodatkom"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Prijavite se da uredite i ažurirate vaš dodatak"
 
 msgid "Update Your Legacy Extension"
-msgstr ""
+msgstr "Ažurirajte vaše zastarjelo proširenje"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
