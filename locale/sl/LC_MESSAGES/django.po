@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 13:33+0000\n"
+"PO-Revision-Date: 2018-04-19 19:59+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4493,7 +4493,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Pristrizite krila Facebookovemu sledenju {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolirajte svojo osebnost na Facebooku od preostalega spletnega življenja z ločenim \"vsebnikom\", ki Facebooku oteži sledenje vaši dejavnosti po spletu."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Poenostavljeno iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4505,7 +4505,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Zavračanje oglasov in zaščita zasebnosti {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Preprosto orodje, ki vam omogoča nadzor nad prikazanimi oglasi in sledenjem po internetu."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ponovno odkrijte zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
