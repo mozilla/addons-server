@@ -83,7 +83,6 @@ RSVG_CONVERT_BIN = 'rsvg-convert'
 PNGCRUSH_BIN = 'pngcrush'
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
-REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'

@@ -188,7 +188,7 @@ class TestAutoApproveCommand(TestCase):
         assert len(mail.outbox) == 1
         msg = mail.outbox[0]
         assert msg.to == [self.author.email]
-        assert msg.from_email == settings.REVIEWERS_EMAIL
+        assert msg.from_email == settings.NOBODY_EMAIL
         assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
             unicode(self.addon.name), self.version.version)
 

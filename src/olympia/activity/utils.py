@@ -72,7 +72,7 @@ class ActivityEmailParser(object):
     def _extra_email_reply_parse(self, email):
         """
         Adds an extra case to the email reply parser where the reply is
-        followed by headers like "From: amo-editors@mozilla.org" and
+        followed by headers like "From: nobody@mozilla.org" and
         strips that part out.
         """
         email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
@@ -384,5 +384,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient['EmailAddress']],
-        from_email=settings.REVIEWERS_EMAIL,
+        from_email=settings.NOBODY_EMAIL,
         use_deny_list=False)
