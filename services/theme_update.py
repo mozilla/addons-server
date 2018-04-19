@@ -149,8 +149,8 @@ class ThemeUpdate(object):
             'previewURL': self.image_url('preview.png'),
             'iconURL': self.image_url('icon.png'),
             'dataurl': self.base64_icon(row['addon_id']),
-            'accentcolor': '#%s' % accent if accent else None,
-            'textcolor': '#%s' % text if text else None,
+            'accentcolor': '#%s' % accent if accent else "#",
+            'textcolor': '#%s' % text if text else "#",
             'updateURL': self.locale_url(settings.VAMO_URL,
                                          '/themes/update-check/' + id_),
             # 04-25-2013: Bumped for GP migration so we get new `updateURL`s.
