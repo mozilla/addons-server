@@ -531,7 +531,9 @@ class NewUploadForm(AddonUploadForm):
 
         if not self.errors:
             self._clean_upload()
-            parsed_data = parse_addon(self.cleaned_data['upload'], self.addon)
+            parsed_data = parse_addon(
+                self.cleaned_data['upload'], self.addon,
+                user=self.request.user)
 
             if self.version:
                 if parsed_data['version'] != self.version.version:

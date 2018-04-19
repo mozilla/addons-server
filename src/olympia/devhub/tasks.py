@@ -40,7 +40,7 @@ from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.utils import is_beta
+from olympia.files.utils import is_beta, parse_addon
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
@@ -113,9 +113,13 @@ def create_version_for_upload(addon, upload, channel):
                  'validation'.format(upload_uuid=upload.uuid))
         beta = (bool(upload.version) and is_beta(upload.version) and
                 waffle.switch_is_active('beta-versions'))
+        # Note: if we somehow managed to get here with an invalid add-on,
+        # parse_addon() will raise ValidationError and the task will fail
+        # loudly in sentry.
+        parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
-            is_beta=beta)
+            is_beta=beta, parsed_data=parsed_data)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
