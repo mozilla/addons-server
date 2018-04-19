@@ -45,6 +45,9 @@ class CollectionSerializer(serializers.ModelSerializer):
         if isinstance(value, dict):
             return {locale: self.validate_name(sub_value)
                     for locale, sub_value in value.iteritems()}
+        if value.strip() == u'':
+            raise serializers.ValidationError(
+                ugettext(u'Name cannot be empty.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
                 ugettext(u'This name cannot be used.'))

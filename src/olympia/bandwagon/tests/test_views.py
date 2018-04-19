@@ -1574,6 +1574,22 @@ class CollectionViewSetDataMixin(object):
         response = self.send()
         assert response.status_code == 401
 
+    def test_update_name_invalid(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(name=u'   ')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['Name cannot be empty.']}
+
+        # Passing a dict of localised values
+        data.update(name={'en-US': u'   '})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['Name cannot be empty.']}
+
     def test_biography_no_links(self):
         self.client.login_api(self.user)
         data = dict(self.data)
