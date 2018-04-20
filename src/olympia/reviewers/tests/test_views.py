@@ -265,7 +265,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_exists(self):
         """Search by comment."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'hello'})
         assert response.status_code == 200
         assert pq(response.content)(
@@ -273,7 +274,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_case_exists(self):
         """Search by comment, with case."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'HeLlO'})
         assert response.status_code == 200
         assert pq(response.content)(
@@ -281,7 +283,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_doesnt_exist(self):
         """Search by comment, with no results."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'bye'})
         assert response.status_code == 200
         assert pq(response.content)('.no-results').length == 1
@@ -290,7 +293,8 @@ class TestReviewLog(ReviewerTest):
         """Search by author."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer', comment='hi')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer',
+            comment='hi')
 
         response = self.client.get(self.url, {'search': 'reviewer'})
         assert response.status_code == 200
@@ -303,7 +307,8 @@ class TestReviewLog(ReviewerTest):
         """Search by author, with case."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer', comment='hi')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer',
+            comment='hi')
 
         response = self.client.get(self.url, {'search': 'ReviEwEr'})
         assert response.status_code == 200
@@ -316,7 +321,7 @@ class TestReviewLog(ReviewerTest):
         """Search by author, with no results."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer')
 
         response = self.client.get(self.url, {'search': 'wrong'})
         assert response.status_code == 200
@@ -368,11 +373,11 @@ class TestReviewLog(ReviewerTest):
             'More information requested')
 
     def test_super_review_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tr td a').eq(1).text() == (
-            'Super review requested')
+            'Admin add-on-review requested')
 
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)

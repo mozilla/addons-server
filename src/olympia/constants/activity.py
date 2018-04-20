@@ -604,6 +604,33 @@ class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     review_queue = True
 
 
+class REQUEST_ADMIN_REVIEW_CODE(_LOG):
+    id = 151
+    format = _(u'{addon} {version} admin add-on-review requested.')
+    short = _(u'Admin add-on-review requested')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
+class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
+    id = 152
+    format = _(u'{addon} {version} admin content-review requested.')
+    short = _(u'Admin content-review requested')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
+class REQUEST_ADMIN_REVIEW_THEME(_LOG):
+    id = 153
+    format = _(u'{addon} {version} admin theme-review requested.')
+    short = _(u'Admin theme-review requested')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
