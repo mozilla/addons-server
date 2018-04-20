@@ -158,7 +158,7 @@ ui-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
 
 perf-tests: setup-ui-tests
-
-
+	pip install --progress-bar=off --no-deps -r requirements/perftests.txt
+	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
 initialize: update_deps initialize_db update_assets populate_data
