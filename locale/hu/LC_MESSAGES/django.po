@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 12:57+0000\n"
+"PO-Revision-Date: 2018-04-20 09:05+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4417,25 +4417,25 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Facebook követés megállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolálja a Facebook személyazonosságát egy külön „konténerbe”, így nehezebbé téve, hogy a Facebook kövesse a mozgását a weben."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "A keresés egyszerűsítése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Jelöljön ki egy szöveget egy tetszőleges weboldalon, és keressen a kifejezésre számos keresőszolgáltatás egyikében."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reklámblokkolás és adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Egy egyszerű beállítással szabályozhatja, hogy mely hirdetések jelennek meg, és hogyan követik az interneten."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "A lapok újragondolása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Sok nyitott lapja van? Rendszerezze őket egy rendezett oldalsávon."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
