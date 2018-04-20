@@ -496,12 +496,6 @@ class NewUploadForm(AddonUploadForm):
         error_messages={'required': 'Need at least one platform.'}
     )
 
-    beta = forms.BooleanField(
-        required=False,
-        help_text=_(u'A file with a version ending with '
-                    u'a|alpha|b|beta|pre|rc and an optional number is '
-                    u'detected as beta.'))
-
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)

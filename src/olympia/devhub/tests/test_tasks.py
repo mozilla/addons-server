@@ -7,8 +7,6 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
 
 import mock
@@ -621,33 +619,6 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'warning'
         assert validation['errors'] == 0
 
-    def test_only_consider_beta_for_downgrade_error_if_uploading_a_beta(self):
-        """Make sure we don't raise the webextension downgrade error when
-        uploading a public legacy version we have a beta webext."""
-        # Create a beta webext with a version number higher than the existing
-        # legacy, but lower than the legacy we're about to upload...
-        version_factory(addon=self.addon, version='1.0b1', file_kw={
-            'is_webextension': True, 'status': amo.STATUS_BETA,
-        })
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert upload.processed_validation['errors'] == 0
-        assert upload.valid
-
-        # Do consider previous betas when uploading a beta, though.
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'beta-extension.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert not upload.valid
-        expected = ['validation', 'messages', 'webext_downgrade']
-        assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['messages'][0]['type'] == 'error'
-
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
         """Make sure even deleting the previous version does not prevent
         the downgrade error."""
@@ -1058,7 +1029,7 @@ class TestCreateVersionForUpload(TestCase):
                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False,
+            amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_version_exists(self):
@@ -1094,22 +1065,9 @@ class TestCreateVersionForUpload(TestCase):
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False,
+            amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
-    @override_switch('beta-versions', active=True)
-    def test_file_passed_all_validations_beta(self):
-        upload = self.create_upload(version='1.0-beta1')
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(
-            upload, self.addon, user=self.user)
-        self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=True,
-            parsed_data=self.mocks['parse_addon'].return_value)
-
-    @override_switch('beta-versions', active=False)
     def test_file_passed_all_validations_beta_string(self):
         upload = self.create_upload(version='1.0-beta1')
         self.create_version_for_upload(self.addon, upload,
@@ -1118,7 +1076,7 @@ class TestCreateVersionForUpload(TestCase):
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False,
+            amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_no_version(self):
@@ -1129,5 +1087,5 @@ class TestCreateVersionForUpload(TestCase):
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False,
+            amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)

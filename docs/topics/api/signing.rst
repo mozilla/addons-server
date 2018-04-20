@@ -51,9 +51,7 @@ validation and you will be able to check its status.
             -H "Authorization: JWT <jwt-token>"
 
     :param addon-id: The id for the add-on.
-    :param version: The version of the add-on. A version ending with
-        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
-        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :param version: The version of the add-on.
     :form upload: The add-on file being uploaded.
     :form channel: (optional) The channel this version should be uploaded to,
         which determines its visibility on the site. It can be either
@@ -100,9 +98,7 @@ Uploading without an ID
             -H "Authorization: JWT <jwt-token>"
 
     :form upload: The add-on file being uploaded.
-    :form version: The version of the add-on. A version ending with
-        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
-        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :form version: The version of the add-on.
     :reqheader Content-Type: multipart/form-data
 
     **Response:**

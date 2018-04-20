@@ -300,21 +300,6 @@ class TestDashboard(HubTest):
         assert doc('.incomplete').text() == (
             "This add-on doesn't have any versions.")
 
-    @override_switch('beta-versions', active=True)
-    def test_only_a_beta_version(self):
-        beta_version = version_factory(
-            addon=self.addon, version='2.0beta',
-            file_kw={'status': amo.STATUS_BETA})
-        beta_version.update(license=self.addon.current_version.license)
-        self.addon.current_version.update(license=None)
-        self.addon.current_version.delete()
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.incomplete').text() == (
-            "This add-on doesn't have any approved versions, so its public "
-            "pages (including beta versions) are hidden.")
-
 
 class TestUpdateCompatibility(TestCase):
     fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']

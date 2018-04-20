@@ -3,8 +3,6 @@ import urlparse
 
 from django.conf import settings
 
-from waffle.testutils import override_switch
-
 import mock
 
 from olympia import amo
@@ -189,38 +187,6 @@ class TestLangpackFetcher(TestCase):
 
         mock_sign_file.assert_called_once_with(
             addon.current_version.files.get())
-
-    @override_switch('beta-versions', active=True)
-    @mock.patch('olympia.zadmin.tasks.sign_file')
-    def test_fetch_updated_langpack_beta(self, mock_sign_file):
-        versions = ('16.0', '16.0a2')
-
-        self.fetch_langpacks(versions[0])
-
-        langpacks = self.get_langpacks()
-        assert langpacks.count() == 1
-        addon = langpacks[0]
-        assert addon.status == amo.STATUS_PUBLIC
-
-        self.fetch_langpacks(versions[1])
-
-        assert self.get_langpacks().count() == 1
-
-        assert addon.versions.count() == 2
-
-        version = addon.versions.get(version=versions[1])
-        assert version.files.all()[0].status == amo.STATUS_BETA
-
-        mock_sign_file.assert_called_with(version.files.get())
-
-    @override_switch('beta-versions', active=True)
-    @mock.patch('olympia.zadmin.tasks.sign_file')
-    def test_fetch_new_langpack_beta(self, mock_sign_file):
-        self.fetch_langpacks('16.0a2')
-
-        assert self.get_langpacks().count() == 0
-
-        assert not mock_sign_file.called
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_langpack_wrong_owner(self, mock_sign_file):

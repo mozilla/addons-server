@@ -615,8 +615,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             'all_with_unlisted',
             'all_without_unlisted',
         )
-        if waffle.switch_is_active('beta-versions'):
-            valid_filters = valid_filters + ('only_beta',)
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
@@ -634,10 +632,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         elif requested == 'all_without_unlisted':
             queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
-        elif requested == 'only_beta':
-            queryset = Version.objects.filter(
-                channel=amo.RELEASE_CHANNEL_LISTED,
-                files__status=amo.STATUS_BETA).distinct()
         else:
             # By default, we rely on queryset filtering to hide
             # non-public/unlisted versions. get_queryset() might override this

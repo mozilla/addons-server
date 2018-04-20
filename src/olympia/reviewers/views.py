@@ -791,8 +791,7 @@ def review(request, addon, channel=None):
         perform_review_permission_checks(
             request, addon, channel, content_review_only=content_review_only)
 
-    version = addon.find_latest_version(
-        channel=channel, exclude=(amo.STATUS_BETA,))
+    version = addon.find_latest_version(channel=channel, exclude=())
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(
@@ -889,7 +888,6 @@ def review(request, addon, channel=None):
 
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
-                                  .exclude(files__status=amo.STATUS_BETA)
                                   .order_by('-created')
                                   .transform(Version.transformer_activity)
                                   .transform(Version.transformer))

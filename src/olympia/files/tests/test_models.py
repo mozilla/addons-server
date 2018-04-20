@@ -7,8 +7,6 @@ import zipfile
 
 from datetime import datetime
 
-from waffle.testutils import override_switch
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -182,16 +180,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             '/firefox/downloads/latest/cooliris/type:attachment/platform:3/'
             'addon-5579-latest.xpi')
 
-        actual = file_.latest_xpi_url(beta=True)
-        assert actual == (
-            '/firefox/downloads/latest-beta/cooliris/platform:3/'
-            'addon-5579-latest.xpi')
-
-        actual = file_.latest_xpi_url(beta=True, attachment=True)
-        assert actual == (
-            '/firefox/downloads/latest-beta/cooliris/type:attachment/'
-            'platform:3/addon-5579-latest.xpi')
-
         # Same tests repeated, but now without a platform because that File is
         # available for all platforms and not just a specific one.
         file_ = File.objects.get(id=67442)
@@ -202,15 +190,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         actual = file_.latest_xpi_url(attachment=True)
         assert actual == (
             '/firefox/downloads/latest/a3615/type:attachment/'
-            'addon-3615-latest.xpi')
-
-        actual = file_.latest_xpi_url(beta=True)
-        assert actual == (
-            '/firefox/downloads/latest-beta/a3615/addon-3615-latest.xpi')
-
-        actual = file_.latest_xpi_url(beta=True, attachment=True)
-        assert actual == (
-            '/firefox/downloads/latest-beta/a3615/type:attachment/'
             'addon-3615-latest.xpi')
 
     def test_eula_url(self):
@@ -1189,15 +1168,6 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
         assert file_.size == 675
-
-    @override_switch('beta-versions', active=True)
-    def test_public_to_beta(self):
-        upload = self.upload('beta-extension')
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        file_ = File.from_upload(
-            upload, self.version, self.platform, is_beta=True, parsed_data={})
-        assert file_.status == amo.STATUS_BETA
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')

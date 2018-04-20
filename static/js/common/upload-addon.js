@@ -363,16 +363,6 @@
             });
 
             $upload_field.on("upload_success_results", function(e, file, results) {
-                // If the addon is detected as beta, automatically check
-                // the "beta" input, but only if the addon is listed.
-                var $beta = $('#id_beta');
-                if (results.beta && !isUnlisted()) {
-                  $beta.prop('checked', true);
-                  $('.beta-status').show();
-                } else {
-                  $beta.prop('checked', false);
-                  $('.beta-status').hide();
-                }
                 if(results.error) {
                     // This shouldn't happen.  But it might.
                     var error = gettext('Unexpected server error while validating.');

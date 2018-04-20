@@ -26,8 +26,6 @@ from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
-import waffle
-
 import olympia.core.logger
 
 from olympia import activity, amo, core
@@ -728,15 +726,14 @@ class Addon(OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def find_latest_version(
-            self, channel, exclude=(amo.STATUS_DISABLED, amo.STATUS_BETA)):
+    def find_latest_version(self, channel, exclude=((amo.STATUS_DISABLED,))):
         """Retrieve the latest version of an add-on for the specified channel.
 
         If channel is None either channel is returned.
 
         Keyword arguments:
         exclude -- exclude versions for which all files have one
-                   of those statuses (default STATUS_DISABLED, STATUS_BETA)."""
+                   of those statuses (default STATUS_DISABLED)."""
 
         # If the add-on is deleted or hasn't been saved yet, it should not
         # have a latest version.
@@ -746,12 +743,12 @@ class Addon(OnChangeMixin, ModelBase):
         # would exclude a version if *any* of its files match but if there is
         # only one file that doesn't have one of the excluded statuses it
         # should be enough for that version to be considered.
-        statuses_no_disabled_or_beta = (
+        statuses_no_disabled = (
             set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
         try:
             latest_qs = (
                 Version.objects.filter(addon=self)
-                       .filter(files__status__in=statuses_no_disabled_or_beta))
+                       .filter(files__status__in=statuses_no_disabled))
             if channel is not None:
                 latest_qs = latest_qs.filter(channel=channel)
             latest = latest_qs.latest()
@@ -1081,22 +1078,8 @@ class Addon(OnChangeMixin, ModelBase):
 
         return addon_dict
 
-    @property
-    def show_beta(self):
-        return self.status == amo.STATUS_PUBLIC and self.current_beta_version
-
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
-
-    @cached_property
-    def current_beta_version(self):
-        """Retrieves the latest version of an addon, in the beta channel."""
-        if not waffle.switch_is_active('beta-versions'):
-            return
-        versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
-
-        if versions:
-            return versions[0]
 
     @property
     def icon_url(self):
@@ -1140,8 +1123,8 @@ class Addon(OnChangeMixin, ModelBase):
                                 amo.STATUS_DELETED)):
             return False
 
-        latest_version = self.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
+        latest_version = self.find_latest_version(amo.RELEASE_CHANNEL_LISTED,
+                                                  exclude=())
 
         return (latest_version is not None and
                 latest_version.files.exists() and

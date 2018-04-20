@@ -2951,28 +2951,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#review-files .no-activity').length == 1
 
-    def test_hide_beta(self):
-        version = self.addon.current_version
-        file_ = version.files.all()[0]
-        version.pk = None
-        version.version = '0.3beta'
-        version.save()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#review-files tr.listing-header').length == 2
-
-        file_.pk = None
-        file_.status = amo.STATUS_BETA
-        file_.version = version
-        file_.save()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#review-files tr.listing-header').length == 1
-
     def test_action_links(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4283,12 +4261,11 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
             '|')
 
-    def test_post_review_ignore_disabled_or_beta(self):
+    def test_post_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and
         # was auto-approved so the confirmation action is available.
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
-        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
         version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.grant_permission(self.reviewer, 'Addons:PostReview')
@@ -4301,12 +4278,11 @@ class TestReview(ReviewBase):
             [action[0] for action in response.context['actions']] ==
             expected_actions)
 
-    def test_content_review_ignore_disabled_or_beta(self):
+    def test_content_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and
         # was auto-approved so the content approval action is available.
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
-        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
         version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -4512,10 +4488,6 @@ class TestStatusFile(ReviewBase):
         self.get_file().update(status=amo.STATUS_PUBLIC)
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.check_status('Approved')
-
-    def test_other(self):
-        self.addon.update(status=amo.STATUS_BETA)
-        self.check_status(unicode(File.STATUS_CHOICES[self.get_file().status]))
 
 
 class TestWhiteboard(ReviewBase):

@@ -365,7 +365,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
         mock_auto_sign_file.assert_has_calls([
-            mock.call(f, is_beta=False)
+            mock.call(f)
             for f in latest_version.all_files])
 
     def test_with_source(self):
@@ -1232,16 +1232,14 @@ class VersionSubmitUploadMixin(object):
         self.version.save()
 
     def post(self, supported_platforms=None,
-             override_validation=False, expected_status=302, source=None,
-             beta=False):
+             override_validation=False, expected_status=302, source=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_MAC]
         data = {
             'upload': self.upload.uuid.hex,
             'source': source,
             'supported_platforms': [p.id for p in supported_platforms],
-            'admin_override_validation': override_validation,
-            'beta': beta
+            'admin_override_validation': override_validation
         }
         response = self.client.post(self.url, data)
         assert response.status_code == expected_status
@@ -1333,23 +1331,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
-
-    @override_switch('beta-versions', active=True)
-    def test_beta_field_with_beta(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.beta-status').length
-
-    def test_beta_field(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('.beta-status')
-
-    def test_no_beta_field_when_addon_not_approved(self):
-        self.addon.update(status=amo.STATUS_NULL)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('.beta-status').length
 
     def test_url_is_404_for_disabled_addons(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1528,19 +1509,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 
         assert mock_sign_file.call_count == 0
 
-    @override_switch('beta-versions', active=True)
-    def test_force_beta(self):
-        response = self.post(beta=True)
-        # Need latest() rather than find_latest_version as Beta isn't returned.
-        version = self.addon.versions.latest()
-        assert version.all_files[0].status == amo.STATUS_BETA
-
-        # Beta versions should skip the details step.
-        finish_url = reverse('devhub.submit.version.finish', args=[
-            self.addon.slug, version.pk])
-        assert finish_url != self.get_next_url(version)
-        self.assert3xx(response, finish_url)
-
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
         nominated."""
@@ -1588,16 +1556,8 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         mock_auto_sign_file.assert_has_calls([
-            mock.call(f, is_beta=False)
+            mock.call(f)
             for f in version.all_files])
-
-    @override_switch('beta-versions', active=True)
-    def test_no_force_beta_for_unlisted(self):
-        """No beta version for unlisted addons."""
-        self.post(beta=True)
-        # Need latest() rather than find_latest_version as Beta isn't returned.
-        version = self.addon.versions.latest()
-        assert version.all_files[0].status != amo.STATUS_BETA
 
 
 class TestVersionSubmitDetails(TestSubmitBase):
@@ -1846,16 +1806,14 @@ class TestFileSubmitUpload(UploadTest):
         assert self.addon.has_complete_metadata()
 
     def post(self, supported_platforms=None,
-             override_validation=False, expected_status=302, source=None,
-             beta=False):
+             override_validation=False, expected_status=302, source=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_MAC]
         data = {
             'upload': self.upload.uuid.hex,
             'source': source,
             'supported_platforms': [p.id for p in supported_platforms],
-            'admin_override_validation': override_validation,
-            'beta': beta
+            'admin_override_validation': override_validation
         }
         response = self.client.post(self.url, data)
         assert response.status_code == expected_status, response.content
@@ -1921,34 +1879,6 @@ class TestFileSubmitUpload(UploadTest):
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
             "Version doesn't match")
-
-    @override_switch('beta-versions', active=True)
-    def test_force_beta_is_ignored(self):
-        """Files must have the same beta status as the existing version."""
-        self.post(beta=True)
-        # Need latest() rather than find_latest_version as Beta isn't returned.
-        version = self.addon.versions.latest()
-        assert version.all_files[0].status != amo.STATUS_BETA
-
-    @override_switch('beta-versions', active=True)
-    def test_beta_automatically_if_version_is_beta(self):
-        """Files must have the same beta status as the existing version."""
-        existing_file = self.version.all_files[0]
-        existing_file.update(status=amo.STATUS_BETA)
-        result = {
-            'errors': 0,
-            'warnings': 0,
-            'notices': 2,
-            'metadata': {},
-            'messages': [],
-        }
-        FileValidation.from_json(existing_file, json.dumps(result))
-        self.version.save()
-
-        self.post(beta=False)
-        # Need latest() rather than find_latest_version as Beta isn't returned.
-        version = self.addon.versions.latest()
-        assert version.all_files[0].status == amo.STATUS_BETA
 
     def test_with_source_ignored(self):
         # Source submit shouldn't be on the page

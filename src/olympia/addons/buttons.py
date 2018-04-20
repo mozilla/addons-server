@@ -12,15 +12,10 @@ from olympia.amo.urlresolvers import reverse
 @jinja2.contextfunction
 def install_button(context, addon, version=None,
                    show_warning=True, src='', collection=None, size='',
-                   detailed=False, impala=False, latest_beta=False,
-                   show_download_anyway=False):
+                   detailed=False, impala=False, show_download_anyway=False):
     """
-    If version isn't given, we use the latest version. You can set latest_beta
-    parameter to use latest beta version instead.
+    If version isn't given, we use the latest version.
     """
-    assert not (version and latest_beta), (
-        'Only one of version and latest_beta can be specified')
-
     request = context['request']
     app, lang = context['APP'], context['LANG']
     src = src or context.get('src') or request.GET.get('src', '')
@@ -33,7 +28,7 @@ def install_button(context, addon, version=None,
     button = install_button_factory(
         addon, app, lang, version=version,
         show_warning=show_warning, src=src, collection=collection, size=size,
-        detailed=detailed, impala=impala, latest_beta=latest_beta,
+        detailed=detailed, impala=impala,
         show_download_anyway=show_download_anyway)
     installed = (request.user.is_authenticated() and
                  addon.id in request.user.mobile_addons)
@@ -82,14 +77,12 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None,
                  show_warning=True, src='', collection=None, size='',
-                 detailed=False, impala=False, latest_beta=False,
-                 show_download_anyway=False):
+                 detailed=False, impala=False, show_download_anyway=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version
         if not self.version:
-            self.version = (addon.current_beta_version if latest_beta
-                            else addon.current_version)
+            self.version = addon.current_version
         self.src = src
         self.collection = collection
         self.size = size
@@ -97,14 +90,11 @@ class InstallButton(object):
         self.show_download_anyway = show_download_anyway
         self.impala = impala
 
-        self.is_beta = self.version and self.version.is_beta
         version_unreviewed = self.version and self.version.is_unreviewed
         self.experimental = addon.is_experimental
-        self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
-                           self.is_beta)
+        self.unreviewed = addon.is_unreviewed() or version_unreviewed
         self.featured = (not self.unreviewed and
                          not self.experimental and
-                         not self.is_beta and
                          addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
@@ -118,8 +108,6 @@ class InstallButton(object):
 
         if self.size:
             self.button_class.append(self.size)
-        if self.is_beta:
-            self.install_class.append('beta')
 
     def attrs(self):
         rv = {}
@@ -144,13 +132,10 @@ class InstallButton(object):
 
     def file_details(self, file):
         platform = file.platform
-        if self.latest and not self.is_beta and (
+        if self.latest and (
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
             download_url = file.latest_xpi_url(attachment=True)
-        elif self.latest and self.is_beta and self.addon.show_beta:
-            url = file.latest_xpi_url(beta=True)
-            download_url = file.latest_xpi_url(beta=True, attachment=True)
         else:
             url = file.get_url_path(self.src)
             download_url = file.get_url_path(self.src, attachment=True)

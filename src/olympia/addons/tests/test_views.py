@@ -419,29 +419,6 @@ class TestDetailPage(TestCase):
         assert doc('#more-about').length == 0
         assert doc('.article.userinput').length == 0
 
-    @override_switch('beta-versions', active=True)
-    def test_beta(self):
-        """Test add-on with a beta channel."""
-        def get_pq_content():
-            return pq(self.client.get(self.url, follow=True).content)
-
-        # Add a beta version and show it.
-        version_factory(file_kw={'status': amo.STATUS_BETA}, addon=self.addon)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        beta = get_pq_content()
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert beta('#beta-channel').length == 1
-
-        # Beta channel section should link to beta versions listing
-        versions_url = reverse('addons.beta-versions', args=[self.addon.slug])
-        assert beta('#beta-channel a.more-info').length == 1
-        assert beta('#beta-channel a.more-info').attr('href') == versions_url
-
-        # Now hide it.  Beta is only shown for STATUS_PUBLIC.
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        beta = get_pq_content()
-        assert beta('#beta-channel').length == 0
-
     def test_type_redirect(self):
         """
         If current add-on's type is unsupported by app, redirect to an
@@ -1801,14 +1778,6 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': param, 'pk': self.version.pk})
 
-    def test_bad_filter(self):
-        self.version.files.update(status=amo.STATUS_BETA)
-        # The filter is valid, but not for the 'list' action.
-        response = self.client.get(self.url, data={'filter': 'only_beta'})
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == ['The "filter" parameter is not valid in this context.']
-
     def test_version_get_not_found(self):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
@@ -2142,18 +2111,6 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
-
-    @override_switch('beta-versions', active=True)
-    def test_beta_version(self):
-        self.old_version.files.update(status=amo.STATUS_BETA)
-        self._test_url_only_contains_old_version(filter='only_beta')
-
-    def test_no_beta_version(self):
-        self.version.files.update(status=amo.STATUS_BETA)
-        response = self.client.get(self.url, data={'filter': 'only_beta'})
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == ['Invalid "filter" parameter specified.']
 
 
 class TestAddonViewSetFeatureCompatibility(TestCase):

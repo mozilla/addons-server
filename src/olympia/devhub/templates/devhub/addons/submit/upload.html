@@ -64,13 +64,6 @@
       </div>
     </div>
 
-    {% if submit_page == 'version' and addon.status == amo.STATUS_PUBLIC and waffle.switch('beta-versions') %}
-      <div class="beta-status hide">
-        <label>{{ new_addon_form.beta }} {{ _('Only publish this version to my beta channel.') }}
-        <span class="tip tooltip" title="{{ new_addon_form.beta.help_text }}">?</span>
-        </label>
-      </div>
-    {% endif %}
     {% if is_admin %}
     <div class="admin-settings">
       <label>{{ _('Administrative overrides') }}</label>

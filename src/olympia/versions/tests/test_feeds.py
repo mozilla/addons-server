@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-from waffle.testutils import override_switch
-
 import mock
 
 from pyquery import PyQuery
 
-from olympia import amo
-from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.models import File
 from olympia.versions import feeds
 
 
@@ -24,10 +19,7 @@ class TestFeeds(TestCase):
         self.addCleanup(patcher.stop)
 
     def get_feed(self, slug, **kwargs):
-        beta = kwargs.pop('beta', False)
-        url = reverse('addons.beta-versions.rss' if beta
-                      else 'addons.versions.rss',
-                      args=[slug])
+        url = reverse('addons.versions.rss', args=[slug])
         r = self.client.get(url, kwargs, follow=True)
         return PyQuery(r.content, parser='xml')
 
@@ -52,21 +44,6 @@ class TestFeeds(TestCase):
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 +0000'
-
-    @override_switch('beta-versions', active=True)
-    def test_status_beta_without_beta_builds(self):
-        doc = self.get_feed('a11730', beta=True)
-        assert len(doc('rss channel item link')) == 0
-
-    @override_switch('beta-versions', active=True)
-    def test_status_beta_with_beta_builds(self):
-        addon = Addon.objects.get(id=11730)
-        qs = File.objects.filter(version=addon.current_version)
-        qs.update(status=amo.STATUS_BETA)
-
-        doc = self.get_feed('a11730', beta=True)
-        item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/a11730/versions/20090521')
 
     def assert_page_relations(self, doc, page_relations):
         rel = doc[0].xpath('//channel/atom:link', namespaces=self.rel_ns)

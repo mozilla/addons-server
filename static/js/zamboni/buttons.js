@@ -256,8 +256,7 @@ var installButton = function() {
     };
 
     // What kind of button are we dealing with?
-    var beta = $this.hasClass('beta'),
-        unreviewed = $this.hasClass('unreviewed') && !beta,
+    var unreviewed = $this.hasClass('unreviewed'),
         persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         eula = $this.hasClass('eula');
