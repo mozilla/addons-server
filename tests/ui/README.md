@@ -39,7 +39,7 @@ line options available too. The full documentation for the plugin can be found [
 
 ## Additional Information
 
-The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```olympia.test:4000```.
+The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```olympia.test:3000```.
 
 ### Watching a test run
 

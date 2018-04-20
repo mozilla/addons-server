@@ -86,11 +86,6 @@ class Header(Region):
         action.pause(2)
         action.click(logout)
         action.perform()
-        # user.click()
-        # import time
-        # time.sleep(5)
-        # logout.click()
-        # time.sleep(5)
         self.wait.until(lambda s: self.is_element_displayed(
             *self._login_locator))
 
