@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.stats.models import UpdateCount, update_inc
 
-from . import get_date, get_stats_data, save_stats_to_file
+from . import get_date, get_stats_data
 
 
 log = olympia.core.logger.getLogger('adi.updatecounts')
@@ -232,8 +232,7 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
-        for udate_count in update_counts.values():
-            save_stats_to_file(update_count)
+
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 
