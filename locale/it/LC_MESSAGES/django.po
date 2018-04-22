@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-22 16:45+0000\n"
+"PO-Revision-Date: 2018-04-22 18:01+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3001,7 +3001,7 @@ msgid "Preview of listed version"
 msgstr "Anteprima versioni visualizzate"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "L’anteprima è ancora in fase di elaborazione; riprova più tardi o ricarica la pagina."
 
 msgid "Manage Authors & License"
 msgstr "Gestisci autori e licenza"
@@ -4466,13 +4466,13 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Blocca il tracciamento di Facebook {start_sub_heading}grazie a {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isola la tua identità grazie a un \"contenitore\" che rende più difficile per Facebook tracciare i tuoi movimenti sul Web."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ricerca semplificata {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Basta evidenziare un testo da una qualsiasi pagina web per cercarlo su differenti motori di ricerca."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Protezione della privacy e blocco degli annunci pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4484,7 +4484,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reinventa le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Tieni un sacco di schede aperte? Organizzale in una barra laterale ordinata."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
