@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-22 03:10+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2018-04-17 10:14+0000\n"
+"Last-Translator: 新垣结衣 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -4306,12 +4306,11 @@ msgstr "拦截广告并保护隐私 {start_sub_heading}就用 {addon_name}{end_s
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "简单安装后，您就能控制所看到的广告、限制您在互联网上被跟踪的情况。"
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "反搜图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "您是否有一大堆打开的标签页？试试在整齐的侧栏中进行管理。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -5120,9 +5119,8 @@ msgstr "错置的bug报告或支持请求"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "其他（为信息提供了一个弹出提示）"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "目前来说，AMO 不提供与评价用户直接沟通的机制。"
+msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "我可以要求审核并删除负面的评价吗？"
@@ -5871,9 +5869,8 @@ msgstr "暂时跳过"
 msgid "Needs Admin Content Review"
 msgstr "需要管理员审核内容"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "需要管理员审核代码"
+msgstr "需要管理员审核静态主题"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 附加组件"
@@ -5998,9 +5995,8 @@ msgstr "核准内容"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "旧式附加组件"
+msgstr "静态主题和旧式附加组件"
 
 #, fuzzy
 msgid "Static Themes"
