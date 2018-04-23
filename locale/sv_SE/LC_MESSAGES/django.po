@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 07:20+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-04-23 15:34+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4005,7 +4005,6 @@ msgstr "Lär dig hur"
 msgid "Get Started"
 msgstr "Kom igång"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Klar för att skicka in ett tillägg? Läs vår steg-för-steg-handledning för inlämningsprocessen."
 
@@ -4013,7 +4012,7 @@ msgid "See Tutorial"
 msgstr "Se handledning"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Hjälp användare att upptäcka ditt tillägg genom att skapa en tilltalande lista."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
