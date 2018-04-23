@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:10+0000\n"
+"PO-Revision-Date: 2018-04-23 10:14+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5446,7 +5446,7 @@ msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support w
 msgstr ""
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "గొప్ప సమీక్ష వ్రాయడానికి కొన్ని చిట్కాలు"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
@@ -5466,13 +5466,13 @@ msgid "Keep reviews concise and easy to understand."
 msgstr ""
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "ప్రత్యేక, ఉపయోగపడే వివరాలు ఇవ్వండి. ఉదాహరణకు:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "ఆ పొడగింత మీరు ఆశించినట్టుగా పనిచేసిందా?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "మీకు నచ్చిన లేదా నచ్చని సౌలభ్యాలు ఏమిటి?"
 
 msgid "Was it useful?"
 msgstr ""
@@ -5857,7 +5857,7 @@ msgid "Search by add-on name / author email / guid"
 msgstr ""
 
 msgid "Max. Version"
-msgstr ""
+msgstr "గరిష్ఠ వెర్షన్"
 
 msgid "Comments:"
 msgstr "వ్యాఖ్యలు:"
