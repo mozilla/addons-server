@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:33+0000\n"
+"PO-Revision-Date: 2018-04-23 12:26+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -74,7 +74,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- AMOలో పొడిగింత లేదు -"
 
 msgid "Download Now"
 msgstr "ఇప్పుడే దింపుకోళ్ళు చేయండి"
@@ -643,10 +643,10 @@ msgid "Review History"
 msgstr "చరిత్రను సమీక్షించండి"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "క్షమించండి, ఈ అలంకారం వేచివుంది. దయచేసి తరువాత తిరిగి రండి."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "ఈ అలంకారం వేచివుంది. ఇది మీకు తప్ప ఇంకెవరికీ కనబడదు."
 
 msgid "Collector's Note"
 msgstr ""
@@ -730,10 +730,10 @@ msgid "Suggested Pages"
 msgstr "సూచించిన పేజీలు"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "పొడగింతలన్నీ చూడండి"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "అలంకారాలన్నీ చూడండి"
 
 msgid "Add-ons Home Page"
 msgstr ""
@@ -3025,8 +3025,8 @@ msgstr ""
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ప్రత్యేకిత ట్యాగు:"
+msgstr[1] "ప్రత్యేకిత ట్యాగులు:"
 
 msgid "Contributions URL"
 msgstr "సహాయకులు URL"
@@ -3227,7 +3227,7 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "అవును, వారు ఇదే విధంగా పంచుకున్నంతవరకు"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
@@ -3563,7 +3563,7 @@ msgid "Theme generate"
 msgstr "అలంకారం పేరు"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "అలంకార జనకం"
 
 msgid "Theme name"
 msgstr "అలంకారం పేరు"
@@ -3584,7 +3584,7 @@ msgid "Select a different header image"
 msgstr ""
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "మీ అలంకారానికి రంగులు ఎంచుకోండి"
 
 msgid "Header area background"
 msgstr ""
