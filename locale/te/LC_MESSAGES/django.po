@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 12:26+0000\n"
+"PO-Revision-Date: 2018-04-23 16:17+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -511,7 +511,7 @@ msgid "Add-on screenshot #{0}"
 msgstr "పొడిగింతల తెరపట్టు #{0}"
 
 msgid "Add-on home page"
-msgstr "పొడిగింతల హోమ్ పేజీ"
+msgstr "పొడిగింతల ముంగిలి పేజీ"
 
 msgid "Support site"
 msgstr "మదతు సైటు"
@@ -2778,7 +2778,7 @@ msgid "{0} Add-ons"
 msgstr "{0} పొడిగింతలు"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "తిరిగి DevHub ముంగిలి పేజీకి వెళ్ళండి"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -7135,7 +7135,7 @@ msgid "Other languages"
 msgstr "ఇతర భాషలు"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "తిరిగి {0} పొడగింతల ముంగిలి పేజీకి వెళ్ళండి"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
