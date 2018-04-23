@@ -2462,6 +2462,8 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         theme = addon_factory(slug='my-theme', name=u'My Thème',
                               type=amo.ADDON_THEME)
+        addon_factory(slug='my-search', name=u'My Seárch',
+                      type=amo.ADDON_SEARCH)
         self.refresh()
 
         data = self.perform_search(self.url, {'type': 'extension'})
@@ -2473,6 +2475,12 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
+
+        data = self.perform_search(self.url, {'type': 'theme,extension'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        result_ids = (data['results'][0]['id'], data['results'][1]['id'])
+        assert sorted(result_ids) == [addon.pk, theme.pk]
 
     @patch('olympia.addons.models.get_featured_ids')
     def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
@@ -2694,6 +2702,44 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
+
+    def test_filter_by_category_multiple_types(self):
+        def get_category(type_, name):
+            static_category = (
+                CATEGORIES[amo.FIREFOX.id][type_][name])
+            return Category.from_static_category(static_category, True)
+
+        addon_lwt = addon_factory(
+            slug='my-addon-lwt', name=u'My Addôn LWT',
+            category=get_category(amo.ADDON_PERSONA, 'holiday'),
+            type=amo.ADDON_PERSONA)
+        addon_st = addon_factory(
+            slug='my-addon-st', name=u'My Addôn ST',
+            category=get_category(amo.ADDON_STATICTHEME, 'holiday'),
+            type=amo.ADDON_STATICTHEME)
+
+        self.refresh()
+
+        # Create some add-ons in a different category.
+        addon_factory(
+            slug='different-addon-lwt', name=u'Diff Addôn LWT',
+            category=get_category(amo.ADDON_PERSONA, 'sports'),
+            type=amo.ADDON_PERSONA)
+        addon_factory(
+            slug='different-addon-st', name=u'Diff Addôn ST',
+            category=get_category(amo.ADDON_STATICTHEME, 'sports'),
+            type=amo.ADDON_STATICTHEME)
+
+        self.refresh()
+
+        # Search for add-ons in the first category. There should be two.
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'type': 'persona,statictheme',
+                                              'category': 'holiday'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        result_ids = (data['results'][0]['id'], data['results'][1]['id'])
+        assert sorted(result_ids) == [addon_lwt.pk, addon_st.pk]
 
     def test_filter_with_tags(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
@@ -2981,6 +3027,26 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
 
+    def test_type(self):
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION)
+        addon2 = addon_factory(
+            slug='my-second-addon', name=u'My second Addôn',
+            type=amo.ADDON_PERSONA)
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        addon_factory(
+            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'q': 'my', 'type': 'persona,extension'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
+
     def test_default_locale_fallback_still_works_for_translations(self):
         addon = addon_factory(default_locale='pt-BR', name='foobar')
         # Couple quick checks to make sure the add-on is in the right state
@@ -3073,7 +3139,7 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': None, 'lang': None})
+                {'types': None, 'lang': None})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3094,7 +3160,29 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': amo.ADDON_EXTENSION, 'lang': None})
+                {'types': [amo.ADDON_EXTENSION], 'lang': None})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon1.pk
+        assert data['results'][1]['id'] == addon2.pk
+
+    @patch('olympia.addons.views.get_featured_ids')
+    def test_app_and_types(self, get_featured_ids_mock):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
+
+        response = self.client.get(self.url, {
+            'app': 'firefox', 'type': 'extension,theme'
+        })
+        assert get_featured_ids_mock.call_count == 1
+        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
+                amo.FIREFOX)  # app
+        assert (get_featured_ids_mock.call_args_list[0][1] ==
+                {'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
+                 'lang': None})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3115,7 +3203,7 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': amo.ADDON_EXTENSION, 'lang': 'es'})
+                {'types': [amo.ADDON_EXTENSION], 'lang': 'es'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3162,6 +3250,28 @@ class TestAddonFeaturedView(TestCase):
         assert get_creatured_ids_mock.call_count == 1
         assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # category
         assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon1.pk
+        assert data['results'][1]['id'] == addon2.pk
+
+    @patch('olympia.addons.views.get_creatured_ids')
+    def test_category_with_multiple_types(self, get_creatured_ids_mock):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
+
+        response = self.client.get(self.url, {
+            'category': 'nature', 'app': 'firefox',
+            'type': 'persona,statictheme'
+        })
+        assert get_creatured_ids_mock.call_count == 2
+        assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
+        assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
+        assert get_creatured_ids_mock.call_args_list[1][0][0] == 302  # cat
+        assert get_creatured_ids_mock.call_args_list[1][0][1] is None  # lang
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']

@@ -28,7 +28,7 @@ def clear_get_featured_ids_cache(*args, **kwargs):
 
 
 @memoize('addons:featured', time=60 * 10)
-def get_featured_ids(app=None, lang=None, type=None):
+def get_featured_ids(app=None, lang=None, type=None, types=None):
     from olympia.addons.models import Addon
     ids = []
     is_featured = Q(collections__featuredcollection__isnull=False)
@@ -38,6 +38,8 @@ def get_featured_ids(app=None, lang=None, type=None):
 
     if type:
         qs = qs.filter(type=type)
+    elif types:
+        qs = qs.filter(type__in=types)
     if lang:
         has_locale = qs.filter(
             is_featured &

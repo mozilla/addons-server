@@ -295,20 +295,26 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_type_id(self):
         qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION)})
         must = qs['query']['bool']['must']
-        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
+        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in must
 
         qs = self._filter(data={'type': unicode(amo.ADDON_PERSONA)})
         must = qs['query']['bool']['must']
-        assert {'term': {'type': amo.ADDON_PERSONA}} in must
+        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in must
 
     def test_search_by_type_string(self):
         qs = self._filter(data={'type': 'extension'})
         must = qs['query']['bool']['must']
-        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
+        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in must
 
         qs = self._filter(data={'type': 'persona'})
         must = qs['query']['bool']['must']
-        assert {'term': {'type': amo.ADDON_PERSONA}} in must
+        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in must
+
+        qs = self._filter(data={'type': 'persona,extension'})
+        must = qs['query']['bool']['must']
+        assert (
+            {'terms': {'type': [amo.ADDON_PERSONA, amo.ADDON_EXTENSION]}}
+            in must)
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -431,7 +437,19 @@ class TestSearchParameterFilter(FilterTestsBase):
             'type': 'extension'
         })
         must = qs['query']['bool']['must']
-        assert {'term': {'category': category.id}} in must
+        assert {'terms': {'category': [category.id]}} in must
+
+    def test_search_by_category_slug_multiple_types(self):
+        category_a = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
+        category_b = CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['other']
+        qs = self._filter(data={
+            'category': 'other',
+            'app': 'firefox',
+            'type': 'extension,persona'
+        })
+        must = qs['query']['bool']['must']
+        assert (
+            {'terms': {'category': [category_a.id, category_b.id]}} in must)
 
     def test_search_by_category_id(self):
         qs = self._filter(data={
@@ -440,7 +458,7 @@ class TestSearchParameterFilter(FilterTestsBase):
             'type': 'extension'
         })
         must = qs['query']['bool']['must']
-        assert {'term': {'category': 1}} in must
+        assert {'terms': {'category': [1]}} in must
 
     def test_search_by_category_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
