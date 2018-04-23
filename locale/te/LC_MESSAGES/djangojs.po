@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:04+0000\n"
+"PO-Revision-Date: 2018-04-23 10:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -312,7 +312,7 @@ msgid "Homepage Promo"
 msgstr "నివాసపేజీ ప్రోమో"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "ముంగిలి పుటలో ప్రదర్శితం"
 
 msgid "Homepage Up and Coming"
 msgstr "నివాసపేజీ రాబోతోంది"
@@ -579,11 +579,11 @@ msgstr "{0} నుండి {1} వరకు సృష్టించబడి�
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "చందాదార్లు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు చందాదార్లు"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -591,7 +591,7 @@ msgstr "గత {0} రోజుల రేటింగులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రేటింగులు"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -783,7 +783,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "వస్తోంది&hellip;"
 
 msgid "Version Notes"
 msgstr "వెర్షన్ గమనికలు"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:14+0000\n"
+"PO-Revision-Date: 2018-04-23 10:33+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -177,7 +177,7 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "అనుగుణ్యమైన వెర్షనులు లేవు"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
@@ -230,7 +230,7 @@ msgid "See all »"
 msgstr "అన్నీ చూడండి »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "రాబోయే పొడగింతలు"
 
 msgid "Featured Themes"
 msgstr "విశేష అలంకారాలు"
