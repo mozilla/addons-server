@@ -1,6 +1,11 @@
 {% extends "devhub/base_impala.html" %}
 
 
+
+{% block user_logout_link %}
+  <a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+{% endblock %}
+
 {% set title = _('Manage My Submissions') %}
 
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
