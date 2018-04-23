@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 18:28+0000\n"
+"PO-Revision-Date: 2018-04-23 19:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1042,9 +1042,8 @@ msgstr "Symbole njedaju se animěrowaś."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Toś ten swójski URL se južo wót drugeje z wašych zběrkow wužywa."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Toś to mě njedajo se wužywaś."
+msgstr "Mě njamóžo prozne byś."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Swójski URL musy z pismikow, licbow, pódsmužkow abo wězawkow wobstaś."
@@ -4031,9 +4030,8 @@ msgstr "Zgóńśo, kak to źo"
 msgid "Get Started"
 msgstr "Prědne kšace"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Sćo gótowy, dodank zapódaś? Cytajśo našo rozpokazanje wó zapódawańskem procesu kšac pó kšacu."
+msgstr "Sćo gótowy, dodank zapódaś? Cytajśo našo rozpokazanje kšac pó kšacu wó zapódawańskem procesu."
 
 msgid "See Tutorial"
 msgstr "Rozpokazanje pokazaś"
