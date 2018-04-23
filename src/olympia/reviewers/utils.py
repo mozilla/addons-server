@@ -735,15 +735,22 @@ class ReviewBase(object):
     def process_super_review(self):
         """Mark an add-on as needing admin code, content, or theme review."""
         addon_type = self.addon.type
-        needs_admin_property = (
-            'needs_admin_theme_review' if addon_type == amo.ADDON_STATICTHEME
-            else 'needs_admin_content_review' if self.content_review_only
-            else 'needs_admin_code_review')
+
+        if addon_type == amo.ADDON_STATICTHEME:
+            needs_admin_property = 'needs_admin_theme_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_THEME
+        elif self.content_review_only:
+            needs_admin_property = 'needs_admin_content_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT
+        else:
+            needs_admin_property = 'needs_admin_code_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CODE
+
         AddonReviewerFlags.objects.update_or_create(
             addon=self.addon, defaults={needs_admin_property: True})
 
-        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
-        log.info(u'Super review requested for %s' % (self.addon))
+        self.log_action(log_action_type)
+        log.info(u'%s for %s' % (log_action_type.short, self.addon))
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
