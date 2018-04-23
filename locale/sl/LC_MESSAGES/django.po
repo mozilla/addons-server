@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:39+0000\n"
+"PO-Revision-Date: 2018-04-23 12:06+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4059,15 +4059,14 @@ msgstr "Več o tem"
 msgid "Get Started"
 msgstr "Začnite"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Ste pripravljeni na potrditev dodatka? Preberite naš podroben vodnik o postopku potrditve."
+msgstr "Ste pripravljeni na oddajo razširitve? Preberite naš podroben vodnik o postopku oddaje."
 
 msgid "See Tutorial"
 msgstr "Glej vodnik"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Pomagajte uporabnikom odkriti vašo razširitev z ustvaritvijo privlačne strani."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
