@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 09:43+0000\n"
+"PO-Revision-Date: 2018-04-23 10:04+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -279,7 +279,7 @@ msgid "Subscribers"
 msgstr "చందాచేరు"
 
 msgid "Ratings"
-msgstr ""
+msgstr "రేటింగులు"
 
 msgid "Sales"
 msgstr "అమ్మకాలు"
@@ -587,7 +587,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల రేటింగులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
