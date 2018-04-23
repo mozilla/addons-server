@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1022,6 +1022,10 @@ msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4116,15 +4120,18 @@ msgid "Learn How"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
 #, fuzzy
-msgid "What's New"
-msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+msgid "Get Started"
+msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "ਸਾਰੇ ਵੇਖੋ"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4930,10 +4937,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
 
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"

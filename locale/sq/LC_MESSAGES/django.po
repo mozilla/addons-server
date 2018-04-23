@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-03-02 09:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1021,6 +1021,10 @@ msgstr "Ikonat s’mund të jenë të animuara."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Kjo URL vetjake përdoret tashmë nga një tjetër koleksion i juaji."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ky emër s’përdoret dot."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "URL-ja vetjake duhet të përbëhet nga shkronja, numra, nënvija ose vija ndarëse."
@@ -4000,14 +4004,18 @@ msgstr "Ka një standard të ri, ndër-shfletues, për zhvillim zgjerimesh në F
 msgid "Learn How"
 msgstr "Mësoni Se Si"
 
-msgid "What's New"
-msgstr "Ç’ka të Re"
+msgid "Get Started"
+msgstr "Nisjani"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Gati për parashtrimin e një shtesë? Lexoni përkujdesoren tonë mbi procesin e parashtrimeve, hap pas hapi."
 
 msgid "See Tutorial"
 msgstr "Shihni Përkujdesore"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4811,9 +4819,6 @@ msgstr "Bëhuni një Pilot Testesh"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Lejoni përdorim të hershëm për veçori eksperimentale shfletuesi."
-
-msgid "Get Started"
-msgstr "Nisjani"
 
 msgid "About Mozilla Add-ons"
 msgstr "Rreth Shtesave Mozilla"

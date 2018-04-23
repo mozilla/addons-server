@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1021,6 +1021,10 @@ msgstr "Os ícones não podem ser animados."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta url já está a ser utilizada por outra coleção"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Este nome não pode ser utilizado."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4151,15 +4155,18 @@ msgid "Learn How"
 msgstr "Saiba mais"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Última versão:"
+msgid "Get Started"
+msgstr "Começar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Ver tudo"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4973,10 +4980,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Começar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos extras da Mozilla"

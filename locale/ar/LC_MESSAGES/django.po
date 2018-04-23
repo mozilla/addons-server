@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1094,6 +1094,10 @@ msgstr "الأيقونات لا يمكن أن تكون متحركة."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "هذا الرابط مستخدم بالفعل من مجموعة أخرى"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "الصور لا يمكن أن تكون متحركة."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4198,16 +4202,18 @@ msgstr ""
 msgid "Learn How"
 msgstr "اعرف المزيد"
 
-#, fuzzy
-msgid "What's New"
-msgstr "الإصدارة الأخيرة:"
+msgid "Get Started"
+msgstr ""
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "عرض الكل"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -5029,9 +5035,6 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-09-13 19:13+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -998,6 +998,10 @@ msgstr "Biểu tượng không được chuyển động."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Url này đã được dùng bởi bộ sưu tập khác"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Biểu tượng không được chuyển động."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -4026,16 +4030,18 @@ msgstr ""
 msgid "Learn How"
 msgstr "Tìm hiểu Thêm"
 
-#, fuzzy
-msgid "What's New"
-msgstr "Đây là gì?"
+msgid "Get Started"
+msgstr "Bắt đầu"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Xem tất cả"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4839,9 +4845,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-msgid "Get Started"
-msgstr "Bắt đầu"
 
 msgid "About Mozilla Add-ons"
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-04-15 22:34+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1009,6 +1009,10 @@ msgstr "Man tikirel ta e silonel ri taq wachib'äl."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Man tikirel ta nokisäx re b'i'aj re'."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Ri ichinan URL k'o chi yeruk'waj taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
@@ -3946,13 +3950,16 @@ msgstr ""
 msgid "Learn How"
 msgstr ""
 
-msgid "What's New"
+msgid "Get Started"
 msgstr ""
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
+msgstr ""
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4728,9 +4735,6 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"

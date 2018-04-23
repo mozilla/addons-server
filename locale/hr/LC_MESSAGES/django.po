@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -1041,6 +1041,10 @@ msgstr "Ikonice ne smiju biti animirane."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ikonice ne smiju biti animirane."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -4093,15 +4097,18 @@ msgid "Learn How"
 msgstr ""
 
 #, fuzzy
-msgid "What's New"
-msgstr "Što je ovo?"
+msgid "Get Started"
+msgstr "Početak rada"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Vidi sve"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4896,10 +4903,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Početak rada"
 
 msgid "About Mozilla Add-ons"
 msgstr ""

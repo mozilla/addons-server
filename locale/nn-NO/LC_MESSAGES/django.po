@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-04-06 09:51+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1004,6 +1004,10 @@ msgstr "Ikon kan ikkje vere animerte."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne sluggen vert allereie brukt av ei av samlingane dine."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Dette namnet kan ikkje brukast."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -3942,14 +3946,18 @@ msgstr "Det finst ein ny standard for utvidingsutvikling i Firefox. Du må oppda
 msgid "Learn How"
 msgstr "Lær deg korleis"
 
-msgid "What's New"
-msgstr "Kva er nytt"
+msgid "Get Started"
+msgstr "Kom i gang"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Er du klar for å sende inn ei utviding? Les steg-för-steg-rettleiinga vår for innsendingsprosessen."
 
 msgid "See Tutorial"
 msgstr "Vis rettleiing"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4739,9 +4747,6 @@ msgstr "Bli testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-msgid "Get Started"
-msgstr "Kom i gang"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-utvidingar"

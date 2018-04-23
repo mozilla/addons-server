@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-02-07 11:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1053,6 +1053,10 @@ msgstr "Les icones no poden ser animades."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Les imatges no poden ser animades."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -4127,15 +4131,18 @@ msgid "Learn How"
 msgstr "Més informació"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Què és això?"
+msgid "Get Started"
+msgstr "Com començar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Mostra-ho tot"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4946,10 +4953,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Com començar"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
