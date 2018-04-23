@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-17 10:14+0000\n"
+"PO-Revision-Date: 2018-04-17 10:09+0000\n"
 "Last-Translator: 新垣结衣 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5166,7 +5166,7 @@ msgid "Other (provides a pop-up prompt for information)"
 msgstr "其他（为信息提供了一个弹出提示）"
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr ""
+msgstr "目前来说，AMO 不提供与评价用户直接沟通的机制。"
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "我可以要求审核并删除负面的评价吗？"
@@ -6066,32 +6066,26 @@ msgstr "这将记录您为何认可最新公开版本的内容（不会通知开
 msgid "Static Themes and Legacy Add-ons"
 msgstr "静态主题和旧式附加组件"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "精选主题"
+msgstr "静态主题"
 
 msgid "Legacy Add-ons"
 msgstr "旧式附加组件"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "新主题 ({0})"
+msgstr "最新 ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "更新 ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "审核说明"
+msgstr "审核日志"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "附加组件审核"
+msgstr "附加组件审核指南"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "主题校验队列"
+msgstr "主题审核指南"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动批准的附加组件"
@@ -6121,9 +6115,8 @@ msgstr "主题更新 ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "待审的主题 ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "轻量级主题"
+msgstr "轻量级主题审核日志"
 
 msgid "Deleted Themes Log"
 msgstr "主题删除日志"
@@ -6211,16 +6204,15 @@ msgstr "滥用报告 ({num} 项)"
 msgid "Bad User Ratings ({num})"
 msgstr "不良用户评价 ({num} 项)"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "主题名称"
+msgstr "主题图片"
 
 #, fuzzy
 msgid "Rendered Preview"
 msgstr "已删除的审核"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "背景图文件第 {0} 张，共 {1} 张 - {2}"
 
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
@@ -6466,9 +6458,8 @@ msgstr "清除管理员审核代码标记"
 msgid "Clear Admin Content Review Flag"
 msgstr "清除管理员审核内容标记"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "清除管理员审核代码标记"
+msgstr "清除管理员审核静态主题标记"
 
 msgid "(admin)"
 msgstr "（管理员）"

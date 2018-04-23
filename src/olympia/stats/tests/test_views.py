@@ -2,8 +2,6 @@
 import csv
 import datetime
 import json
-import os
-import shutil
 
 from django.http import Http404
 from django.test.client import RequestFactory
@@ -14,16 +12,13 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.bandwagon.models import Collection
 from olympia.stats import search, tasks, views
-from olympia.stats.management.commands import save_stats_to_file
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, GlobalStat, ThemeUpdateCount,
-    ThemeUserCount, UpdateCount)
+    CollectionCount, DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
 from olympia.users.models import UserProfile
 
 
@@ -816,134 +811,3 @@ class TestXss(amo.tests.TestXss):
 
         req = RequestFactory().get('/', last='<alert>')
         assert views.get_report_view(req) == {}
-
-
-class ArchiveTestCase(APIKeyAuthTestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        self.user = UserProfile.objects.get(email='del@icio.us')
-        self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
-        self.addon = Addon.objects.get(pk=3615)
-        self.theme_update_count = ThemeUpdateCount(
-            addon_id=3615, date='2016-01-18', count=123)
-
-    def tearDown(self):
-        self.clean_up_files()
-
-    def clean_up_files(self):
-        path = os.path.join(views.storage.location, '3615')
-        if os.path.isdir(path):
-            shutil.rmtree(path)
-
-    def get(self, url=None):
-        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization())
-
-    def test_list_not_authenticated(self):
-        response = self.client.get(
-            reverse('stats.archive_list', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01'}))
-
-        assert response.status_code == 401
-
-    def test_list_does_not_own_addon(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        response = self.get(
-            reverse('stats.archive_list', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01'}))
-        assert response.status_code == 403
-
-    def test_list(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        save_stats_to_file(self.theme_update_count)
-
-        response = self.get(
-            reverse('stats.archive_list', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01'}))
-        assert response.status_code == 200
-        assert json.loads(response.content) == [
-            {
-                'date': '2016-01-18',
-                'addon_id': 3615,
-                'model_name': 'themeupdatecount',
-            }
-        ]
-
-    def test_list_not_existing(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        response = self.get(
-            reverse('stats.archive_list', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01'}))
-        assert response.status_code == 404
-
-    def test_get(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        save_stats_to_file(self.theme_update_count)
-
-        response = self.get(
-            reverse('stats.archive', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01',
-                'day': '18', 'model_name': 'themeupdatecount'}))
-        assert response.status_code == 200
-        assert json.loads(response.content) == {
-            'count': 123,
-            'date': '2016-01-18',
-            'addon': 3615
-        }
-
-    def test_get_not_existing(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        response = self.get(
-            reverse('stats.archive', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01',
-                'day': '18', 'model_name': 'themeupdatecount'}))
-        assert response.status_code == 404
-
-    def test_list_unlisted_addon(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        save_stats_to_file(self.theme_update_count)
-        self.make_addon_unlisted(self.addon)
-
-        response = self.get(
-            reverse('stats.archive_list', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01'}))
-        # There are stats for this add-on for the requested timeframe, but it
-        # has no listed versions to it should return a 404.
-        assert response.status_code == 404
-
-    def test_get_unlisted_addon(self):
-        self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.datetime.now())
-        self.api_key = self.create_api_key(self.user, 'bar')
-        AddonUser.objects.create(user=self.user, addon=self.addon)
-
-        save_stats_to_file(self.theme_update_count)
-        self.make_addon_unlisted(self.addon)
-
-        response = self.get(
-            reverse('stats.archive', kwargs={
-                'slug': 'a3615', 'year': '2016', 'month': '01',
-                'day': '18', 'model_name': 'themeupdatecount'}))
-        assert response.status_code == 404
