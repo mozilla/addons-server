@@ -88,15 +88,12 @@ services:
   addons-frontend:
     <<: *env
     environment:
-      - NODE_APP_INSTANCE=amo
-      - NODE_ENV=development
-      - API_HOST=http://olympia.test
-      - HOSTNAME=functional.test
-    ports:
-      - "4000:4000"
-    expose:
-      - "4000"
+      - WEBPACK_SERVER_HOST=olympia-frontend.test
+      - FXA_CONFIG=local
     image: addons/addons-frontend
-    command: yarn build && yarn start
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: yarn amo
     links:
       - "nginx:olympia.test"

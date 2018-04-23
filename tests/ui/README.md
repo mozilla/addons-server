@@ -17,6 +17,8 @@ Follow the instructions found [here][addons-server-docs].
 
 ### Run the tests
 
+*IMPORTANT* : Run the script in ```scripts/ui-test-hostname-setup.sh``` before running the test to setup the hostnames within the docker container.
+
 Included in the docker-compose file is an image containing Firefox Nightly. [tox][Tox]
 is our test environment manager and [pytest][pytest] is the test runner.
 
@@ -37,7 +39,7 @@ line options available too. The full documentation for the plugin can be found [
 
 ## Additional Information
 
-The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```olympia.test:4000```.
+The tests run against the newest version of the [AMO][amo] frontend using a docker image provided by [addons-frontend][addons-frontend]. You can view the frontend after the build has been completed at ```olympia.test:3000```.
 
 ### Watching a test run
 
