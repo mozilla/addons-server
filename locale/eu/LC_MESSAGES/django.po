@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1023,6 +1023,10 @@ msgstr "Ikonoak ezin dira animatuak izan."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URLa beste bilduma batek darabil"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ikonoak ezin dira animatuak izan."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -4081,15 +4085,18 @@ msgid "Learn How"
 msgstr "Argibide gehiago"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Zer da hau?"
+msgid "Get Started"
+msgstr "Hasten"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Ikusi guztiak"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4900,10 +4907,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Hasten"
 
 msgid "About Mozilla Add-ons"
 msgstr ""

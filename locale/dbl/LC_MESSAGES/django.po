@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1005,6 +1005,9 @@ msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ǿƞḗ ǿƒ ẏǿŭř ƈǿŀŀḗƈŧīǿƞş."
+
+msgid "Name cannot be empty."
+msgstr "Ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ḗḿƥŧẏ."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Ŧħḗ ƈŭşŧǿḿ ŬŘĿ ḿŭşŧ ƈǿƞşīşŧ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř ħẏƥħḗƞş."
@@ -3952,14 +3955,17 @@ msgstr "Ŧħḗřḗ īş ȧ ƞḗẇ, ƈřǿşş-ƀřǿẇşḗř şŧȧƞḓȧ
 msgid "Learn How"
 msgstr "Ŀḗȧřƞ Ħǿẇ"
 
-msgid "What's New"
-msgstr "Ẇħȧŧ'ş Ƞḗẇ"
+msgid "Get Started"
+msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ? Řḗȧḓ ǿŭř şŧḗƥ-ƀẏ-şŧḗƥ ŧŭŧǿřīȧŀ ǿƞ ŧħḗ şŭƀḿīşşīǿƞ ƥřǿƈḗşş."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ḗẋŧḗƞşīǿƞ? Řḗȧḓ ǿŭř şŧḗƥ-ƀẏ-şŧḗƥ ŧŭŧǿřīȧŀ ǿƞ ŧħḗ şŭƀḿīşşīǿƞ ƥřǿƈḗşş."
 
 msgid "See Tutorial"
 msgstr "Şḗḗ Ŧŭŧǿřīȧŀ"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿƞ ƀẏ ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ŀīşŧīƞɠ."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4744,9 +4750,6 @@ msgstr "Ɓḗƈǿḿḗ ȧ Ŧḗşŧ Ƥīŀǿŧ"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ŭƞŀǿƈķ ḗȧřŀẏ ȧƈƈḗşş ŧǿ ḗẋƥḗřīḿḗƞŧȧŀ ƀřǿẇşḗř ƒḗȧŧŭřḗş."
-
-msgid "Get Started"
-msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
 
 msgid "About Mozilla Add-ons"
 msgstr "Aƀǿŭŧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş"
