@@ -43,5 +43,4 @@ using the API.
    reviews
    reviewers
    signing
-   stats
    github
