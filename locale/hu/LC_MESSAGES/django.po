@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 12:57+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1022,6 +1022,9 @@ msgstr "Az ikon nem lehet animált."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
+
+msgid "Name cannot be empty."
+msgstr "A név nem lehet üres."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Az egyéni URL-nek betűkből, számokból, aláhúzásokból vagy kötőjelekből kell állnia."
@@ -3990,14 +3993,17 @@ msgstr "Létezik egy új, keresztplatformos szabvány a Firefox kiegészítők f
 msgid "Learn How"
 msgstr "Tudja meg hogyan"
 
-msgid "What's New"
-msgstr "Újdonságok"
+msgid "Get Started"
+msgstr "Első lépések"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Készen áll a kiegészítő beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Készen áll a kiterjesztés beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
 
 msgid "See Tutorial"
 msgstr "Ismertető megtekintése"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Segítsen a felhasználóknak felfedezni a kiterjesztését, azáltal hogy tetszetős listázást készít."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4417,25 +4423,25 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Facebook követés megállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolálja a Facebook személyazonosságát egy külön „konténerbe”, így nehezebbé téve, hogy a Facebook kövesse a mozgását a weben."
 
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "A keresés egyszerűsítése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Jelöljön ki egy szöveget egy tetszőleges weboldalon, és keressen a kifejezésre számos keresőszolgáltatás egyikében."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reklámblokkolás és adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Egy egyszerű beállítással szabályozhatja, hogy mely hirdetések jelennek meg, és hogyan követik az interneten."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "A lapok újragondolása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Sok nyitott lapja van? Rendszerezze őket egy rendezett oldalsávon."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -4792,9 +4798,6 @@ msgstr "Legyen tesztpilóta"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
-
-msgid "Get Started"
-msgstr "Első lépések"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"

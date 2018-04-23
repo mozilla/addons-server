@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-03-02 07:19+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-17 10:09+0000\n"
+"Last-Translator: 新垣结衣 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -989,6 +989,10 @@ msgstr "不能使用动画图标。"
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "此自定义网址已被您的另一个收藏集使用。"
 
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "不能使用这个名字。"
+
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "请输入一个有效的自定义网址，只能由字母、数字、下划线及连字符构成。"
 
@@ -1949,13 +1953,11 @@ msgstr "{addon} {version} 内容被退回。"
 msgid "Content rejected"
 msgstr "内容被退回"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} 的信息请求已移除。"
+msgstr "管理员已更改或移除要求 {addon} 提供更多信息的请求。"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "信息请求已移除"
+msgstr "信息请求已更改"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "开发者已清除在 {addon} {version} 的信息请求。"
@@ -2326,9 +2328,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "发布主题"
+msgstr "静态主题"
 
 msgid "Persona"
 msgstr "炫彩风格"
@@ -2366,9 +2367,8 @@ msgstr "已更新语言包审核"
 msgid "Theme Review"
 msgstr "主题审核"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "主题 (静态)"
+msgstr "主题 (静态) 审核"
 
 msgid "New Search Provider Review"
 msgstr "新搜索提供商审核"
@@ -2917,12 +2917,11 @@ msgstr "无"
 msgid "Preview"
 msgstr "预览"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "上架版本"
+msgstr "上架版本预览"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "正在生成预览 - 请稍后再回来，或刷新页面。"
 
 msgid "Manage Authors & License"
 msgstr "管理作者和许可协议"
@@ -3444,9 +3443,8 @@ msgstr "完成了！"
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "版本已提交"
+msgstr "提交版本预览"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "完成！此版本在审核通过后就会在网站上出现。您将在审核完成后收到我们的通知。"
@@ -3583,9 +3581,8 @@ msgstr "工具栏区域背景色"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "导航栏、书签栏和已选标签页的背景颜色。清单字段：toolbar。"
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "工具栏区域文本图标"
+msgstr "工具栏区域文本和图标"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：toolbar_text。"
@@ -3897,14 +3894,18 @@ msgstr "Firefox 已采用全新、跨浏览器的扩展开发标准。您得更�
 msgid "Learn How"
 msgstr "了解方法"
 
-msgid "What's New"
-msgstr "最新消息"
+msgid "Get Started"
+msgstr "入门指南"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "准备提交附加组件？阅读我们关于提交流程的分步解释。"
 
 msgid "See Tutorial"
 msgstr "查看教程"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4310,33 +4311,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "反搜图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "简化搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "只需在任何网页上选中文本，就可从一系列引擎中搜索短语。"
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "拦截广告并保护隐私 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "简单安装后，您就能控制所看到的广告、限制您在互联网上被跟踪的情况。"
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "反搜图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "您是否有一大堆打开的标签页？试试在整齐的侧栏中进行管理。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -4689,9 +4686,6 @@ msgstr "成为试飞员"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "更早的体验实验性的浏览器功能。"
-
-msgid "Get Started"
-msgstr "入门指南"
 
 msgid "About Mozilla Add-ons"
 msgstr "关于 Mozilla 附加组件"
@@ -5171,7 +5165,6 @@ msgstr "错置的bug报告或支持请求"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "其他（为信息提供了一个弹出提示）"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "目前来说，AMO 不提供与评价用户直接沟通的机制。"
 
@@ -5944,9 +5937,8 @@ msgstr "暂时跳过"
 msgid "Needs Admin Content Review"
 msgstr "需要管理员审核内容"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "需要管理员审核代码"
+msgstr "需要管理员审核静态主题"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 附加组件"
@@ -6071,36 +6063,29 @@ msgstr "核准内容"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "旧式附加组件"
+msgstr "静态主题和旧式附加组件"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "精选主题"
+msgstr "静态主题"
 
 msgid "Legacy Add-ons"
 msgstr "旧式附加组件"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "新主题 ({0})"
+msgstr "最新 ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "更新 ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "审核说明"
+msgstr "审核日志"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "附加组件审核"
+msgstr "附加组件审核指南"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "主题校验队列"
+msgstr "主题审核指南"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动批准的附加组件"
@@ -6130,9 +6115,8 @@ msgstr "主题更新 ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "待审的主题 ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "轻量级主题"
+msgstr "轻量级主题审核日志"
 
 msgid "Deleted Themes Log"
 msgstr "主题删除日志"
@@ -6220,16 +6204,15 @@ msgstr "滥用报告 ({num} 项)"
 msgid "Bad User Ratings ({num})"
 msgstr "不良用户评价 ({num} 项)"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "主题名称"
+msgstr "主题图片"
 
 #, fuzzy
 msgid "Rendered Preview"
 msgstr "已删除的审核"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "背景图文件第 {0} 张，共 {1} 张 - {2}"
 
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
@@ -6475,9 +6458,8 @@ msgstr "清除管理员审核代码标记"
 msgid "Clear Admin Content Review Flag"
 msgstr "清除管理员审核内容标记"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "清除管理员审核代码标记"
+msgstr "清除管理员审核静态主题标记"
 
 msgid "(admin)"
 msgstr "（管理员）"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-03-08 13:51+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1008,6 +1008,10 @@ msgstr "Tignitin ur zmirent ara ad mbiwlent."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Isem agi ur yettwaseqdac ara."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -3981,14 +3985,17 @@ msgstr "WebExtensions uɣalen d tizeɣt i tneflit n izegrar di Firefox. Tesriḍ
 msgid "Learn How"
 msgstr "Issin amek"
 
-msgid "What's New"
-msgstr "D acu yellan d amaynut"
+msgid "Get Started"
+msgstr "Bdu"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Wali atiṭiriyal"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4776,9 +4783,6 @@ msgstr "Uɣal d Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Rnu anekcum uzwir ar tmahilin tirmitantin n iminig."
-
-msgid "Get Started"
-msgstr "Bdu"
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"

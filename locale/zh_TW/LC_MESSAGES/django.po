@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 02:21+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:03+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -983,6 +983,9 @@ msgstr "不能使用動畫圖示。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "這個自訂網址已被您其他的收藏集使用。"
+
+msgid "Name cannot be empty."
+msgstr "名稱不得為空白。"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "請輸入有效的自訂網址，當中只能有字母、數字、底線或連字號。"
@@ -3903,14 +3906,17 @@ msgstr "已有全新、跨瀏覽器的附加元件開發標準。您將需要更
 msgid "Learn How"
 msgstr "更多資訊"
 
-msgid "What's New"
-msgstr "有什麼新鮮事"
+msgid "Get Started"
+msgstr "開始使用"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "準備要送出附加元件了嗎？請閱讀上架流程的逐步教學。"
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "準備要送出擴充套件了嗎？請閱讀上架流程的逐步教學。"
 
 msgid "See Tutorial"
 msgstr "檢視教學"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "填寫吸引人的上架資訊，幫助使用者找到您的擴充套件。"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4698,9 +4704,6 @@ msgstr "成為試飛員"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "解開實驗中的瀏覽功能，搶先試用。"
-
-msgid "Get Started"
-msgstr "開始使用"
 
 msgid "About Mozilla Add-ons"
 msgstr "關於 Mozilla 附加元件站"

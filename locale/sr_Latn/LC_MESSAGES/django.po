@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1157,6 +1157,10 @@ msgstr "Ikonice ne mogu biti pokretne."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ovo ime ne može biti upotrebljeno."
 
 #, fuzzy
 msgid ""
@@ -4561,17 +4565,20 @@ msgid "Learn How"
 msgstr "Saznajte više"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Poslednja verzija:"
+msgid "Get Started"
+msgstr "Kako početi"
 
 msgid ""
-"Ready to submit an add-on? Read our step-by-step tutorial on the submission "
-"process."
+"Ready to submit an extension? Read our step-by-step tutorial on the "
+"submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Pogledajte sve"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -5530,10 +5537,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Kako početi"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozilla dodacima"

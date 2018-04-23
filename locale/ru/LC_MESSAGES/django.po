@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-03-08 22:18+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1040,6 +1040,10 @@ msgstr "Иконки не могут быть анимированы."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Этот пользовательский URL уже используется в одной из ваших подборок."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Это имя не может быть использовано."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Этот пользовательский URL может состоять из букв, цифр, подчеркиваний или дефисов."
@@ -4051,14 +4055,18 @@ msgstr "Появился новый, кроссбраузерный станда
 msgid "Learn How"
 msgstr "Узнайте как"
 
-msgid "What's New"
-msgstr "Что нового"
+msgid "Get Started"
+msgstr "Начать"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Готовы представить дополнение? Прочтите наше пошаговое руководство о процессе представления."
 
 msgid "See Tutorial"
 msgstr "Показать руководство"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4864,9 +4872,6 @@ msgstr "Станьте лётчиком-испытателем"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Разблокируйте ранний доступ к экспериментальным возможностям браузера."
-
-msgid "Get Started"
-msgstr "Начать"
 
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"

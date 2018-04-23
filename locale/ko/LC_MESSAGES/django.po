@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2017-12-14 05:06+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1016,6 +1016,10 @@ msgstr "움직이는 아이콘은 사용할 수 없습니다."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "이 이름은 사용할 수 없습니다."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4089,15 +4093,18 @@ msgid "Learn How"
 msgstr "더 알아보기"
 
 #, fuzzy
-msgid "What's New"
-msgstr "최신 버전:"
+msgid "Get Started"
+msgstr "시작하기"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "전부 보기"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4920,10 +4927,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "시작하기"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"

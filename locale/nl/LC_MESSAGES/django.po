@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 10:21+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 08:17+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1023,6 +1023,9 @@ msgstr "Pictogrammen mogen niet bewegend zijn."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Deze aangepaste URL wordt al door een van uw andere collecties gebruikt."
+
+msgid "Name cannot be empty."
+msgstr "De naam mag niet leeg zijn."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "De aangepaste URL moet uit letters, cijfers, liggende streepjes of afbreektekens bestaan."
@@ -3994,14 +3997,17 @@ msgstr "Er is een nieuwe, browser-onafhankelijke standaard voor het ontwikkelen 
 msgid "Learn How"
 msgstr "Meer info"
 
-msgid "What's New"
-msgstr "Wat is er nieuw"
+msgid "Get Started"
+msgstr "Beginnen"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Klaar om een add-on in te dienen? Lees onze stap-voor-stap handleiding over het indieningsproces."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Klaar om een extensie in te dienen? Lees onze stap-voor-stap handleiding over het indieningsproces."
 
 msgid "See Tutorial"
 msgstr "Handleiding bekijken"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke vermelding te maken."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4795,9 +4801,6 @@ msgstr "Word een testpiloot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Verkrijg vroege toegang tot experimentele browserfuncties."
-
-msgid "Get Started"
-msgstr "Beginnen"
 
 msgid "About Mozilla Add-ons"
 msgstr "Over Mozilla Add-ons"

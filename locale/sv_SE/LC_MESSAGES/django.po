@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 20:20+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:20+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1008,6 +1008,9 @@ msgstr "Ikoner kan inte vara animerade."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denna anpassade URL används redan av en av dina samlingar."
+
+msgid "Name cannot be empty."
+msgstr "Namn kan inte vara tomt."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Denna anpassade URL måste bestå av bokstäver, siffror, understreck eller bindestreck."
@@ -3999,14 +4002,18 @@ msgstr "Det finns en ny standard för att utveckla tillägg i Firefox. Du måste
 msgid "Learn How"
 msgstr "Lär dig hur"
 
-msgid "What's New"
-msgstr "Nyheter"
+msgid "Get Started"
+msgstr "Kom igång"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Klar för att skicka in ett tillägg? Läs vår steg-för-steg-handledning för inlämningsprocessen."
 
 msgid "See Tutorial"
 msgstr "Se handledning"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4802,9 +4809,6 @@ msgstr "Bli en testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
-
-msgid "Get Started"
-msgstr "Kom igång"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla tillägg"

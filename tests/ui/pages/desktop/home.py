@@ -13,6 +13,7 @@ class Home(Base):
     _popular_extensions_locator = (By.CLASS_NAME, 'Home-PopularExtensions')
     _popular_themes_locator = (By.CLASS_NAME, 'Home-PopularThemes')
     _themes_category_locator = (By.CLASS_NAME, 'Home-CuratedThemes')
+    _toprated_themes_locator = (By.CLASS_NAME, 'Home-TopRatedThemes')
 
     @property
     def popular_extensions(self):
@@ -32,6 +33,11 @@ class Home(Base):
     @property
     def popular_themes(self):
         el = self.find_element(*self._popular_themes_locator)
+        return self.Themes(self, el)
+
+    @property
+    def toprated_themes(self):
+        el = self.find_element(*self._toprated_themes_locator)
         return self.Themes(self, el)
 
     @property

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 11:45+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1022,6 +1022,9 @@ msgstr "Piktogrammen meie net bewegend wêze."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
+
+msgid "Name cannot be empty."
+msgstr "Namme kin net leech wêze."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Fier in oanpaste URL yn dy't út letters, sifers, lizzende streepkes of ôfbrektekens bestiet."
@@ -3988,14 +3991,17 @@ msgstr "Der is in nije, browser-ûnôfhinklike standert foar it ûntwikkeljen fa
 msgid "Learn How"
 msgstr "Mear ynfo"
 
-msgid "What's New"
-msgstr "Wat is nij"
+msgid "Get Started"
+msgstr "Fan start"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Klear om in add-on yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Klear om in útwreiding yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
 
 msgid "See Tutorial"
 msgstr "Hantlieding besjen"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Help brûkers jo útwreiding te ûntdekken troch in útnûgjende tekst te meitsjen."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4790,9 +4796,6 @@ msgstr "Wurd in testpiloat"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Krij betiid tagong ta eksperimintele browserfunksjes."
-
-msgid "Get Started"
-msgstr "Fan start"
 
 msgid "About Mozilla Add-ons"
 msgstr "Oer Mozilla Add-ons"

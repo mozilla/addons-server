@@ -15,6 +15,7 @@ featured_collections = [
     u'wikipedia-boosters',
     u'trending-add-ons',
     u'social-media-customization',
+    u'privacy-matters',
 ]
 
 #  Featured collections on the homepage.
@@ -30,7 +31,6 @@ base_collections = [
 #  Addons that exist in the carousel.
 #  Needs to be updated as the homepage is updated
 hero_addons = [
-    u'wikiwand-wikipedia-modernized',
     u'ublock-origin',
     u'ghostery',
     u'multi-account-containers',
@@ -40,13 +40,15 @@ hero_addons = [
     u'notebook_web_clipper',
     u'flagfox',
     u'ali-tools',
-    u'snake-game',
-    u'tab-invaders',
     u'leechblock-ng',
     u'black-menu-google',
     u'honey',
     u'shine-reddit',
-
+    u'container',
+    u'tab_search',
+    u'the-laser-cat',
+    u's3download-statusbar',
+    u'foxy-gestures',
 ]
 
 

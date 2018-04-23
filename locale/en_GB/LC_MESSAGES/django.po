@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1006,6 +1006,10 @@ msgstr "Icons cannot be animated."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "This custom URL is already in use by another one of your collections."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "This name cannot be used."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4002,14 +4006,18 @@ msgstr "There is a new, cross-browser standard for developing extensions in Fire
 msgid "Learn How"
 msgstr "Learn How"
 
-msgid "What's New"
-msgstr "What's New"
+msgid "Get Started"
+msgstr "Get Started"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 
 msgid "See Tutorial"
 msgstr "See Tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4804,9 +4812,6 @@ msgstr "Become a Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Unlock early access to experimental browser features."
-
-msgid "Get Started"
-msgstr "Get Started"
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"

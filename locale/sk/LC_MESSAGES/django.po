@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-03-12 18:37+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-22 19:07+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1037,6 +1037,10 @@ msgstr "Ikony nesmú byť animované."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou kolekciou."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Tento názov nemôže byť použitý."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4081,14 +4085,17 @@ msgstr "Firefox odteraz podporuje nový štandard doplnkov, ktorý je kompatibil
 msgid "Learn How"
 msgstr "Ďalšie informácie"
 
-msgid "What's New"
-msgstr "Čo je nové"
+msgid "Get Started"
+msgstr "Začíname"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Zobraziť návod"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4515,44 +4522,38 @@ msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Zastavte vaše sledovanie Facebookom {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Zjednodušte si vyhľadávanie {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy a chráňte svoje súkromie {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Vylepšite svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Preberajte videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Prispôsobte si svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
@@ -4561,13 +4562,11 @@ msgstr ""
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rozšírte svoju paletu smajlíkov {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Tucty úžasných smajlíkov - vždy poruke."
+msgstr "Tucty úžasných smajlíkov na každú príležitosť - vždy poruke."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spravujte heslá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Tvorte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4648,9 +4647,9 @@ msgstr "Späť na recenziu"
 msgid "Back to add-on"
 msgstr "Späť na doplnok"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Verzia: %(version)s &bull; Veľkosť: %(size)s &bull; MD5 hash: %(md5)s &bull; Typ mime: %(mimetype)s"
+msgstr "Verzia: %(version)s &bull; Veľkosť: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Typ mime: %(mimetype)s"
 
 #, fuzzy
 msgid "File Compare :: Reviewer tools"
@@ -4906,9 +4905,6 @@ msgstr "Staňte sa testovacím pilotom"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Objavte experimentálne funkcie prehliadača medzi prvými."
-
-msgid "Get Started"
-msgstr "Začíname"
 
 msgid "About Mozilla Add-ons"
 msgstr "O stránke Doplnky Mozilly"

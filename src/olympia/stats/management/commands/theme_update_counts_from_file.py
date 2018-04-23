@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.stats.models import ThemeUpdateCount
 
-from . import get_date, get_stats_data, save_stats_to_file
+from . import get_date, get_stats_data
 
 
 log = olympia.core.logger.getLogger('adi.themeupdatecount')
@@ -147,8 +147,7 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         ThemeUpdateCount.objects.bulk_create(theme_update_counts.values(), 100)
-        for theme_update_count in theme_update_counts.values():
-            save_stats_to_file(theme_update_count)
+
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 

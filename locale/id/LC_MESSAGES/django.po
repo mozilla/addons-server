@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-03-20 03:31+0000\n"
 "Last-Translator: Kiki <kelimutu.rizki@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1006,6 +1006,10 @@ msgstr "Icon tidak dapat dijadikan animasi."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ini telah dipakai oleh koleksi lain"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Nama ini tidak dapat digunakan."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4146,15 +4150,18 @@ msgid "Learn How"
 msgstr "Pelajari lebih Lanjut"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Versi Terbaru:"
+msgid "Get Started"
+msgstr "Memulai"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Lihat semuanya"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4986,10 +4993,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Memulai"
 
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"

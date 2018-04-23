@@ -5,8 +5,8 @@ DJANGO_SETTINGS_MODULE='settings_local'
 
 HOME=/tmp
 
-# Every 10 minutes
-*/10 * * * * %(django)s auto_approve
+# Every 5 minutes
+*/5 * * * * %(django)s auto_approve
 
 #once per hour
 5 * * * * %(z_cron)s update_collections_subscribers

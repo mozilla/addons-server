@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-16 17:46+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:23+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -992,6 +992,9 @@ msgstr "アニメーションするアイコンは使用できません。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
+
+msgid "Name cannot be empty."
+msgstr "名前を空欄にすることはできません。"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "カスタム URL には、英数字、アンダーバー、ハイフンのみ使用できます。"
@@ -3884,14 +3887,17 @@ msgstr "Firefox における拡張機能開発に新たなクロスブラウザ�
 msgid "Learn How"
 msgstr "手順を見る"
 
-msgid "What's New"
-msgstr "最新ニュース"
+msgid "Get Started"
+msgstr "ここからスタート"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "アドオンを登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "拡張機能を登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
 
 msgid "See Tutorial"
 msgstr "チュートリアルを見る"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4673,9 +4679,6 @@ msgstr "テストパイロットになる"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "実験的なブラウザー機能をいち早く試してみましょう。"
-
-msgid "Get Started"
-msgstr "ここからスタート"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"

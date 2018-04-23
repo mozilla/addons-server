@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-02-09 00:14+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -1017,6 +1017,10 @@ msgstr "Ikoner kan ikke være animerede."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url anvendes allerede af en anden af dine samlinger."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Dette navn kan ikke benyttes."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -3971,14 +3975,18 @@ msgstr "Der findes en ny standard, når det drejer sig om udvikling af tilføjel
 msgid "Learn How"
 msgstr "Læs hvordan"
 
-msgid "What's New"
-msgstr "Sidste nyt"
+msgid "Get Started"
+msgstr "Start"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Klar til at indsende en tilføjelse? Læs vores trin-for-trin-vejledning til hvordan du gør."
 
 msgid "See Tutorial"
 msgstr "Læs vejledning"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4775,9 +4783,6 @@ msgstr "Bliv testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Få tidlig adgang til eksperimentelle browser-funktioner."
-
-msgid "Get Started"
-msgstr "Start"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-tilføjelser"

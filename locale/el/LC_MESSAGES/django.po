@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1032,6 +1032,10 @@ msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -4032,14 +4036,17 @@ msgstr ""
 msgid "Learn How"
 msgstr "Μάθετε πώς"
 
-msgid "What's New"
-msgstr "Τι νέο υπάρχει"
+msgid "Get Started"
+msgstr "Ξεκινήστε"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Προβολή οδηγού εκμάθησης"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4837,9 +4844,6 @@ msgstr "Γίνετε ένας Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ξεκλειδώστε πρώιμη πρόσβαση σε πειραματικές λειτουργίες."
-
-msgid "Get Started"
-msgstr "Ξεκινήστε"
 
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"

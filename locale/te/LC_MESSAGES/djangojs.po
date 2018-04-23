@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-01-23 09:56+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 10:04+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -185,7 +185,7 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Your input is required"
-msgstr ""
+msgstr "మీ ఇన్‌పుట్ అవసరం"
 
 msgid "Marked for deletion"
 msgstr "తొలగింపు కోసం గుర్తించబడింది"
@@ -245,7 +245,7 @@ msgid "Amount, in USD"
 msgstr "మొత్తం, USD లో"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "తోడ్పాటుల సంఖ్య"
 
 msgid "More Info..."
 msgstr "మరింత సమాచారం..."
@@ -273,13 +273,13 @@ msgid "Reviews Written"
 msgstr "సమీక్షలు వ్రాయబడ్డాయి"
 
 msgid "User Signups"
-msgstr ""
+msgstr "ఖాతాలు తెరచిన వాడుకరులు"
 
 msgid "Subscribers"
 msgstr "చందాచేరు"
 
 msgid "Ratings"
-msgstr ""
+msgstr "రేటింగులు"
 
 msgid "Sales"
 msgstr "అమ్మకాలు"
@@ -587,7 +587,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల రేటింగులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -595,15 +595,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల అమ్మకాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు అమ్మకాలు"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల స్థాపనలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -771,7 +771,7 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
 
 msgid "Receipt checked by app."
 msgstr ""
@@ -795,19 +795,19 @@ msgid "No version notes found"
 msgstr "వెర్షన్ గమనికలు కనుగొనబడలేదు"
 
 msgid "Review Text"
-msgstr ""
+msgstr "సమీక్షా పాఠ్యం"
 
 msgid "Review notes found"
 msgstr ""
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "సగటు సమీక్షలు"
 
 msgid "Number of Reviews"
 msgstr "సమీక్షల సంఖ్య"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "అభ్యర్థించిన సమాచారం"
 
 msgid "Flagged"
 msgstr ""
@@ -882,4 +882,4 @@ msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "అంతర్గత సర్వర్ లోపం"

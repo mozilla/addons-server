@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-03-06 14:51+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-20 12:47+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1033,6 +1033,10 @@ msgstr "Іконки не можуть бути з анімацією."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ця адреса URL вже використовується в одній з ваших збірок."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ця назва не може бути використана."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Власна URL-адреса повинна складатися з літер, цифр, підкреслювань чи дефісів."
@@ -3007,7 +3011,7 @@ msgid "Preview of listed version"
 msgstr "Опубліковані версії"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Попередній перегляд все ще генерується. Поверніться сюди згодом чи оновіть сторінку."
 
 msgid "Manage Authors & License"
 msgstr "Керування авторами і ліцензією"
@@ -4027,14 +4031,18 @@ msgstr "З'явився новий, крос-браузерний стандар
 msgid "Learn How"
 msgstr "Дізнайтеся як"
 
-msgid "What's New"
-msgstr "Що нового"
+msgid "Get Started"
+msgstr "Початок роботи"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Готові надіслати додаток? Прочитайте нашу покрокову інструкцію про процес надсилання."
 
 msgid "See Tutorial"
 msgstr "Дивитися посібник"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4449,28 +4457,28 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Ізолюйте свою діяльність в Facebook в окремому \"контейнері\", ускладнюючи таким чином відстеження вас в інтернеті."
 
 #, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Реверсивний пошук зображень {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Просто оберіть текст на будь-якій веб-сторінці для пошуку з багатьма засобами."
 
 #, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Просте налаштування дозволяє вам взяти під контроль рекламу, яку ви бачите, а також стеження в інтернеті."
 
 #, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Реверсивний пошук зображень {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "У вас повно відкритих вкладок? Організуйте їх в упорядкованій бічній панелі."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Завантажуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -4825,9 +4833,6 @@ msgstr "Приєднайтеся до Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Розблокуйте доступ до експериментальних функцій браузера."
-
-msgid "Get Started"
-msgstr "Початок роботи"
 
 msgid "About Mozilla Add-ons"
 msgstr "Про додатки Mozilla"
@@ -6468,7 +6473,7 @@ msgid "Rendered Preview"
 msgstr "Видалені розгляди"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Файл зображення тла {0} із {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Докладніше про цей додаток"

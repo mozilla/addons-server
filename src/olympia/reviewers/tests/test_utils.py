@@ -409,12 +409,12 @@ class TestReviewHelper(TestCase):
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED,
-                   content_review_only=False):
+                   content_review_only=False, type=amo.ADDON_EXTENSION):
         if delete is None:
             delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status)
+        self.addon.update(status=status, type=type)
         self.file.update(status=file_status)
         if channel == amo.RELEASE_CHANNEL_UNLISTED:
             self.make_addon_unlisted(self.addon)
@@ -1023,16 +1023,37 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
-    def test_auto_approved_super_review(self):
+    def test_auto_approved_admin_code_review(self):
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
+
+    def test_auto_approved_admin_content_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+                        content_review_only=True)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.needs_admin_content_review
+        assert self.check_log_count(
+            amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
+
+    def test_auto_approved_admin_theme_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+                        type=amo.ADDON_STATICTHEME)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.needs_admin_theme_review
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1040,7 +1061,7 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_PUBLIC)
