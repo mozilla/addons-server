@@ -12,7 +12,7 @@
       {% endif %}
       <li class="nomenu logout">
         {% block user_logout_link %}
-        <a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+        <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
         {% endblock %}
       </li>
     </ul>
