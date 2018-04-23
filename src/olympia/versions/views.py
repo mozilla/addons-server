@@ -4,8 +4,6 @@ from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 
-import caching.base as caching
-
 import olympia.core.logger
 
 from olympia import amo
@@ -17,6 +15,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
+from olympia.lib.cache import cached
 
 
 # The version detail page redirects to the version within pagination, so we
@@ -54,11 +53,10 @@ def version_list(request, addon):
 def version_detail(request, addon, version_num):
     qs = _version_list_qs(addon)
 
-    # Use cached_with since values_list won't be cached.
     def f():
         return _find_version_page(qs, addon, version_num)
 
-    return caching.cached_with(qs, f, 'vd:%s:%s' % (addon.id, version_num))
+    return cached(f, 'version-detail:{}:{}'.format(addon.id, version_num))
 
 
 def _find_version_page(qs, addon, version_num):

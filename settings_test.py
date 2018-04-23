@@ -39,11 +39,16 @@ CACHE_COUNT_TIMEOUT = -1
 # until we're sure the deadlock issues are fixed.
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        # `CacheStatTracker` is required for `assert_cache_requests` to work
+        # properly
+        'BACKEND': 'olympia.amo.tests.cache_helpers.CacheStatTracker',
         'LOCATION': 'olympia',
+        'OPTIONS': {
+            'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
     },
     'filesystem': {  # In real settings it's a filesystem cache, not here.
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'olympia-filesystem',
     }
 }

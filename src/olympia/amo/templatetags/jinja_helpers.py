@@ -18,7 +18,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import (
     get_language, to_locale, trim_whitespace, ugettext)
 
-import caching.base as caching
 import jinja2
 import waffle
 
@@ -31,6 +30,7 @@ from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, _get_compiled_css_url, get_css_urls, get_js_urls, get_path,
     is_external)
+from olympia.lib.cache import cached
 
 
 # Registering some utils as filters:
@@ -357,8 +357,9 @@ def attrs(ctx, *args, **kw):
 def side_nav(context, addon_type, category=None):
     app = context['request'].APP.id
     cat = str(category.id) if category else 'all'
-    return caching.cached(lambda: _side_nav(context, addon_type, category),
-                          'side-nav-%s-%s-%s' % (app, addon_type, cat))
+    return cached(
+        lambda: _side_nav(context, addon_type, category),
+        'side-nav-%s-%s-%s' % (app, addon_type, cat))
 
 
 def _side_nav(context, addon_type, cat):
@@ -384,7 +385,7 @@ def _side_nav(context, addon_type, cat):
 @jinja2.contextfunction
 def site_nav(context):
     app = context['request'].APP.id
-    return caching.cached(lambda: _site_nav(context), 'site-nav-%s' % app)
+    return cached(lambda: _site_nav(context), 'site-nav-%s' % app)
 
 
 def _site_nav(context):

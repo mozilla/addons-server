@@ -1,12 +1,11 @@
 from django.db.models import Avg, Count, F
 
-import caching.base as caching
-
 import olympia.core.logger
 
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
+from olympia.lib.cache import cached
 
 from .models import GroupedRating, Rating
 
@@ -84,11 +83,14 @@ def addon_bayesian_rating(*addons, **kw):
 
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
-    avg = caching.cached(addon_aggregates, 'task.bayes.avg', 60 * 60 * 60)
+
+    avg = cached(addon_aggregates, 'task.bayes.avg', 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return
+
     mc = avg['reviews'] * avg['rating']
+
     for addon in Addon.objects.no_cache().filter(id__in=addons):
         if addon.average_rating is None:
             # Ignoring addons with no average rating.
