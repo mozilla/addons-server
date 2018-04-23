@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 import olympia  # noqa
 from django.conf import settings  # noqa
+from olympia.amo.urlresolvers import reverse
 
 from locust import HttpLocust, TaskSet, task  # noqa
 import lxml.html  # noqa
@@ -74,7 +75,7 @@ class UserBehavior(TaskSet):
 
         log.debug('calling login/start to generate fxa_state')
         response = self.client.get(
-            '/api/v3/accounts/login/start/',
+            reverse('accounts.login_start'),
             allow_redirects=False)
 
         params = dict(urlparse.parse_qsl(response.headers['Location']))
@@ -95,7 +96,7 @@ class UserBehavior(TaskSet):
 
         # Now authenticate the user, this will verify the user on the
         response = self.client.get(
-            '/api/v3/accounts/authenticate/',
+            reverse('accounts.authenticate'),
             params={
                 'state': fxa_state,
                 'code': oauth_code,
@@ -104,7 +105,7 @@ class UserBehavior(TaskSet):
 
     def logout(self, account):
         log.debug('Logging out {}'.format(account))
-        self.client.get('http://olympia.test/en-US/firefox/users/logout/')
+        self.client.get(reverse('users.logout'))
 
     def load_upload_form(self):
         url = helpers.submit_url('upload-unlisted')
@@ -128,10 +129,10 @@ class UserBehavior(TaskSet):
 
         with helpers.get_xpi() as addon_file:
             response = self.client.post(
-                '/en-US/developers/upload',
+                reverse('devhub.upload'),
                 {'csrfmiddlewaretoken': csrfmiddlewaretoken},
                 files={'upload': addon_file},
-                name='/en-US/developers/upload ({})'.format(
+                name='devhub.upload {}'.format(
                     os.path.basename(addon_file.name)),
                 allow_redirects=False,
                 catch_response=True)
@@ -158,42 +159,48 @@ class UserBehavior(TaskSet):
 
     @task(5)
     def browse(self):
-        self.client.get('/en-US/firefox/')
-        with self.client.get(
-                '/en-US/firefox/extensions/',
-                allow_redirects=False, catch_response=True) as response:
-            if response.status_code == 200:
-                html = lxml.html.fromstring(response.content)
-                addon_links = html.cssselect('.item.addon h3 a')
-                url = random.choice(addon_links).get('href')
-                self.client.get(url, name='/en-US/firefox/addon/:slug')
-            else:
-                response.failure('Unexpected status code {}'.format(
-                    response.status_code))
+        self.client.get(reverse('home'))
+
+        response = self.client.get(
+            reverse('browse.extensions'),
+            allow_redirects=False, catch_response=True)
+
+        if response.status_code == 200:
+            html = lxml.html.fromstring(response.content)
+            addon_links = html.cssselect('.item.addon h3 a')
+            url = random.choice(addon_links).get('href')
+            self.client.get(
+                url,
+                name=reverse('addons.detail', kwargs={'addon_id': ':slug'}))
+        else:
+            response.failure('Unexpected status code {}'.format(
+                response.status_code))
 
     def poll_upload_until_ready(self, url):
         for i in xrange(MAX_UPLOAD_POLL_ATTEMPTS):
-            with self.client.get(url, allow_redirects=False,
-                                 name='/en-US/developers/upload/:uuid/json',
-                                 catch_response=True) as response:
-                try:
-                    data = response.json()
-                except ValueError:
-                    return response.failure(
-                        'Failed to parse JSON when polling. '
-                        'Status: {} content: {}'.format(
-                            response.status_code, response.content))
+            response = self.client.get(
+                url, allow_redirects=False,
+                name=reverse('devhub.upload_detail', args=(':uuid',)),
+                catch_response=True)
 
-                if response.status_code == 200:
-                    if data['error']:
-                        return response.failure('Unexpected error: {}'.format(
-                            data['error']))
-                    elif data['validation']:
-                        return data['upload']
-                else:
-                    return response.failure('Unexpected status: {}'.format(
-                        response.status_code))
-                time.sleep(1)
+            try:
+                data = response.json()
+            except ValueError:
+                return response.failure(
+                    'Failed to parse JSON when polling. '
+                    'Status: {} content: {}'.format(
+                        response.status_code, response.content))
+
+            if response.status_code == 200:
+                if data['error']:
+                    return response.failure('Unexpected error: {}'.format(
+                        data['error']))
+                elif data['validation']:
+                    return data['upload']
+            else:
+                return response.failure('Unexpected status: {}'.format(
+                    response.status_code))
+            time.sleep(1)
         else:
             response.failure('Upload did not complete in {} tries'.format(
                 MAX_UPLOAD_POLL_ATTEMPTS))
