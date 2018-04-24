@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 19:44+0000\n"
+"PO-Revision-Date: 2018-04-24 05:30+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4022,7 +4022,7 @@ msgid "See Tutorial"
 msgstr "Prohlédnout si průvoce"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Usnadněte uživatelům najít vaše rozšíření vytvořením atraktivní stránky."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
