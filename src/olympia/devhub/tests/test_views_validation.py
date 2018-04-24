@@ -89,13 +89,14 @@ class TestUploadErrors(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadErrors, self).setUp()
-        self.client.login(email='regular@mozilla.com')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.login(email=self.user.email)
 
     @mock.patch.object(waffle, 'flag_is_active')
     def test_dupe_uuid(self, flag_is_active):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
-        data = parse_addon(self.get_upload('extension.xpi'))
+        data = parse_addon(self.get_upload('extension.xpi'), user=self.user)
         addon.update(guid=data['guid'])
 
         dupe_xpi = self.get_upload('extension.xpi')
@@ -526,7 +527,7 @@ class TestValidateFile(BaseUploadTest):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
         xpi = self.get_upload('extension.xpi')
-        data = parse_addon(xpi.path)
+        data = parse_addon(xpi.path, user=self.user)
         # Set up a duplicate upload:
         addon.update(guid=data['guid'])
         res = self.client.get(reverse('devhub.validate_addon'))
@@ -764,7 +765,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
         dupe_xpi = self.get_upload('extension.xpi')
-        data = parse_addon(dupe_xpi)
+        data = parse_addon(dupe_xpi, user=mock.Mock())
         # Set up a duplicate upload:
         addon.update(guid=data['guid'])
         data = self.upload(filename=dupe_xpi.path)

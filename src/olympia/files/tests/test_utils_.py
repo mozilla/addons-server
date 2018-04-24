@@ -298,6 +298,7 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_moz_signed_extension_no_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -305,12 +306,13 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
             assert not parsed['strict_compatibility']
 
     def test_moz_signed_extension_reuse_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -318,7 +320,7 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
 
             # We set `strictCompatibility` in install.rdf

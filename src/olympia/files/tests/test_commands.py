@@ -4,6 +4,7 @@ from django.core.management import call_command
 from django.test.utils import override_settings
 from django.utils import translation
 
+import mock
 import responses
 
 from requests import HTTPError
@@ -18,6 +19,7 @@ from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
+from olympia.users.models import UserProfile
 
 
 class TestWebextExtractPermissions(UploadTest):
@@ -30,10 +32,11 @@ class TestWebextExtractPermissions(UploadTest):
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')
         self.version = Version.objects.create(addon=self.addon)
+        UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
     def test_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload)
+        parsed_data = parse_addon(upload, user=mock.Mock())
         # Remove the permissions from the parsed data so they aren't added.
         pdata_permissions = parsed_data.pop('permissions')
         pdata_cscript = parsed_data.pop('content_scripts')
@@ -61,7 +64,7 @@ class TestWebextExtractPermissions(UploadTest):
 
     def test_force_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload)
+        parsed_data = parse_addon(upload, user=mock.Mock())
         # change the permissions so we can tell they've been re-parsed.
         parsed_data['permissions'].pop()
         file_ = File.from_upload(upload, self.version, self.platform,
