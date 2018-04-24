@@ -277,25 +277,6 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
-    @override_switch('beta-versions', active=True)
-    def test_version_is_allowed_upload_beta(self):
-        version = Version.objects.get(pk=81551)
-        version.files.all().delete()
-        amo.tests.file_factory(version=version,
-                               status=amo.STATUS_BETA,
-                               platform=amo.PLATFORM_MAC.id)
-        version = Version.objects.get(pk=81551)
-        assert version.is_allowed_upload()
-
-    def test_version_is_not_allowed_upload_beta(self):
-        version = Version.objects.get(pk=81551)
-        version.files.all().delete()
-        amo.tests.file_factory(version=version,
-                               status=amo.STATUS_BETA,
-                               platform=amo.PLATFORM_MAC.id)
-        version = Version.objects.get(pk=81551)
-        assert not version.is_allowed_upload()
-
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
@@ -326,20 +307,6 @@ class TestVersion(TestCase):
 
         old_version.reload()
         assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    @override_switch('beta-versions', active=True)
-    def test_new_version_beta_dont_disable_old_unreviewed(
-            self, hide_disabled_file_mock):
-        addon = Addon.objects.get(id=3615)
-        qs = File.objects.filter(version=addon.current_version)
-        qs.update(status=amo.STATUS_AWAITING_REVIEW)
-
-        version = Version.objects.create(addon=addon)
-        File.objects.create(version=version, status=amo.STATUS_BETA)
-        version.disable_old_files()
-        assert qs.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
     def test_version_int(self):
@@ -624,12 +591,10 @@ class TestVersion(TestCase):
     (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
     (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
     (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
-    (amo.STATUS_NOMINATED, amo.STATUS_BETA, False),
     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, True),
     (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
     (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_BETA, False)])
+    (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False)])
 def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     """Files that need to be reviewed are returned by version.unreviewed_files.
 
@@ -961,35 +926,6 @@ class TestStatusFromUpload(TestVersionFromUpload):
                             parsed_data=self.dummy_parsed_data)
         assert File.objects.filter(version=self.current)[0].status == (
             amo.STATUS_DISABLED)
-
-    @override_switch('beta-versions', active=True)
-    def test_status_beta(self):
-        # Check that the add-on + files are in the public status.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert File.objects.filter(version=self.current)[0].status == (
-            amo.STATUS_PUBLIC)
-        # Create a new under review version with a pending file.
-        upload = self.get_upload('extension-0.2.xpi')
-        new_version = Version.from_upload(upload, self.addon, [self.platform],
-                                          amo.RELEASE_CHANNEL_LISTED,
-                                          parsed_data=self.dummy_parsed_data)
-        new_version.files.all()[0].update(status=amo.STATUS_PENDING)
-        # Create a beta version.
-        upload = self.get_upload('extension-0.2b1.xpi')
-        beta_version = Version.from_upload(upload, self.addon, [self.platform],
-                                           amo.RELEASE_CHANNEL_LISTED,
-                                           is_beta=True,
-                                           parsed_data=self.dummy_parsed_data)
-        # Check that it doesn't modify the public status.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert File.objects.filter(version=self.current)[0].status == (
-            amo.STATUS_PUBLIC)
-        # Check that the file created with the beta version is in beta status.
-        assert File.objects.filter(version=beta_version)[0].status == (
-            amo.STATUS_BETA)
-        # Check that the previously uploaded version is still pending.
-        assert File.objects.filter(version=new_version)[0].status == (
-            amo.STATUS_PENDING)
 
 
 @override_switch('allow-static-theme-uploads', active=True)

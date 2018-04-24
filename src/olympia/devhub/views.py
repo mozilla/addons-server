@@ -46,7 +46,7 @@ from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.utils import is_beta, parse_addon
+from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
@@ -752,9 +752,6 @@ def json_upload_detail(request, upload, addon_slug=None):
                 set(amo.SUPPORTED_PLATFORMS.keys()) - set(supported_platforms))
             plat_exclude = [str(p) for p in plat_exclude]
 
-            # Does the version number look like it's beta?
-            result['beta'] = (is_beta(pkg.get('version', '')) and
-                              waffle.switch_is_active('beta-versions'))
             result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
@@ -1183,17 +1180,12 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False):
+def auto_sign_file(file_):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
-    elif is_beta:
-        # Beta won't be reviewed. They will always get signed, and logged, for
-        # further review if needed.
-        ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
         sign_file(file_)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
@@ -1325,8 +1317,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
     next_details is the view that will be redirected to when details are needed
-    (for listed, non-beta, addons/versions); next_finish is the finishing view
-    when no details step is needed (for unlisted addons/versions and beta).
+    (for listed, addons/versions); next_finish is the finishing view
+    when no details step is needed (for unlisted addons/versions).
     """
     form = forms.NewUploadForm(
         request.POST or None,
@@ -1339,30 +1331,23 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         data = form.cleaned_data
 
         if version:
-            is_beta = version.is_beta
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],
                     version=version,
                     platform=platform,
-                    is_beta=is_beta,
                     parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
-            is_beta = (data.get('beta') and
-                       channel == amo.RELEASE_CHANNEL_LISTED and
-                       waffle.switch_is_active('beta-versions'))
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
                 platforms=data.get('supported_platforms', []),
                 channel=channel,
                 source=data['source'],
-                is_beta=is_beta,
                 parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
-            is_beta = False
             addon = Addon.from_upload(
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
@@ -1391,9 +1376,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version, is_beta=is_beta)
+        auto_sign_version(version)
         next_url = (next_details
-                    if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
+                    if channel == amo.RELEASE_CHANNEL_LISTED
                     else next_finish)
         return redirect(next_url, *url_args)
     is_admin = acl.action_allowed(request,
@@ -1483,7 +1468,6 @@ def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
-                             version.is_beta or
                              (static_theme and addon.has_complete_metadata()))
         if skip_details_step:
             # Nothing to do here.
@@ -1683,8 +1667,8 @@ def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
-    latest_version = addon.find_latest_version(
-        amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
+    latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED,
+                                               exclude=())
     if latest_version:
         for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
             f.update(status=amo.STATUS_AWAITING_REVIEW)

@@ -399,11 +399,6 @@ class TestReviewerSubscription(TestCase):
         send_notifications(Version, self.version)
         assert len(mail.outbox) == 2
 
-    def test_dont_send_notifications_beta(self):
-        self.version.all_files[0].update(status=amo.STATUS_BETA)
-        version_uploaded.send(sender=self.version)
-        assert len(mail.outbox) == 0
-
     def test_dont_send_notifications_unlisted(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_uploaded.send(sender=self.version)
@@ -480,7 +475,6 @@ class TestReviewerScore(TestCase):
             amo.STATUS_NOMINATED: 'FULL',
             amo.STATUS_PUBLIC: 'UPDATE',
             amo.STATUS_DISABLED: None,
-            amo.STATUS_BETA: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
             amo.STATUS_REVIEW_PENDING: None,

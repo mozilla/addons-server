@@ -114,11 +114,6 @@ def make_xpi(files):
     return f
 
 
-def is_beta(version):
-    """Return True if the version is believed to be a beta version."""
-    return bool(amo.VERSION_BETA.search(version))
-
-
 class Extractor(object):
     """Extract add-on info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')

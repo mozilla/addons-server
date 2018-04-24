@@ -22,12 +22,3 @@ $(document).ready(function(){
 
 // TODO(jbalogh): save from amo2009.
 var AMO = {};
-
-// TODO(jbalogh): save from amo2009.
-// Hide the beta installer.
-$(document).ready(function(){
-    $('a[href="#install-beta"]').click(function(e) {
-        e.preventDefault();
-        $('.install-beta').slideDown('slow').show();
-    });
-});

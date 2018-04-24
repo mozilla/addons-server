@@ -13,10 +13,6 @@
         <p class="incomplete">
           {{ _("This add-on doesn't have any versions.")}}
         </p>
-      {% elif addon.status == amo.STATUS_NULL and addon.current_beta_version %}
-          <p class="incomplete">
-            {{ _("This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden.") }}
-          </p>
       {% else %}
         {% if addon.status != amo.STATUS_NULL or addon.has_listed_versions() %}
           <div class="item-info">

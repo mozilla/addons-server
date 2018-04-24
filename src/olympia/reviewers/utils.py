@@ -35,7 +35,7 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('z.mailer')
 
 
-PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
+PENDING_STATUSES = (amo.STATUS_DISABLED, amo.STATUS_NULL,
                     amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 

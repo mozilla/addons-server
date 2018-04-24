@@ -104,7 +104,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'category': {'type': 'integer'},
                     'contributions': {'type': 'text'},
                     'created': {'type': 'date'},
-                    'current_beta_version': version_mapping,
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
@@ -328,8 +327,6 @@ class AddonIndexer(BaseSearchIndexer):
         data['category'] = [cat.id for cat in obj.all_categories]
         data['current_version'] = cls.extract_version(
             obj, obj.current_version)
-        data['current_beta_version'] = cls.extract_version(
-            obj, obj.current_beta_version)
         data['listed_authors'] = [
             {'name': a.name, 'id': a.id, 'username': a.username,
              'is_public': a.is_public}

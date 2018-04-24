@@ -7,7 +7,7 @@
 {% block primary %}
 {% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
 {% if uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED %}
-  {% if submit_page == 'file' or uploaded_version.is_beta %}
+  {% if submit_page == 'file' %}
     <p>
       {{ _("You’re done!") }}
     </p>

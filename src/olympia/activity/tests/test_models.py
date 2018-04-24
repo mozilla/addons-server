@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 from uuid import UUID
 
-from django.core.urlresolvers import reverse
-
 from mock import Mock
 from pyquery import PyQuery as pq
 
@@ -278,19 +276,6 @@ class TestActivityLog(TestCase):
         text = amo.utils.from_string('<p>{{ log }}</p>').render({'log': log})
         # There should only be one a, the link to the addon, but no tag link.
         assert len(pq(text)('a')) == 1
-
-    def test_beta_signed_events_validation_ignored(self):
-        addon = Addon.objects.get()
-        file_ = addon.versions.first().files.first()
-        # Signed beta file which passed validation.
-        ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        log = ActivityLog.objects.beta_signed_events().first().to_string()
-        link = pq(log)('a')
-        assert len(link) == 1
-        assert link[0].attrib['href'] == reverse('files.list', args=[file_.pk])
-        msg = '<a href="{0}">{1}</a> (validation ignored) was signed.'.format(
-            reverse('files.list', args=[file_.pk]), file_.filename)
-        assert log == msg
 
     def test_change_status(self):
         addon = Addon.objects.get()

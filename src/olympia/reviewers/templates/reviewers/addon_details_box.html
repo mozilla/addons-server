@@ -195,8 +195,7 @@
         {% endfor %}
       </div>
     </div>
-  {% elif addon.description or addon.all_previews|length > 1 or addon.developer_comments or
-        addon.show_beta  %}
+  {% elif addon.description or addon.all_previews|length > 1 or addon.developer_comments %}
     <h3 id="more-about" class="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput more-about">
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>

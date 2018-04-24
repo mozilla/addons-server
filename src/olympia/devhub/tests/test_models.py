@@ -32,15 +32,6 @@ class TestVersion(TestCase):
         file_two.save()
         return version_two, file_two
 
-    def test_version_delete_status(self):
-        self._extra_version_and_file(amo.STATUS_PUBLIC)
-        self.addon.status = amo.STATUS_BETA
-        self.addon.save()
-
-        self.version.delete()
-        assert self.addon.versions.count() == 1
-        assert Addon.objects.get(id=3615).status == amo.STATUS_BETA
-
     def test_version_delete_status_unreviewed(self):
         self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 

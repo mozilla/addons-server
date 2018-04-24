@@ -2,8 +2,6 @@
 import datetime
 import os
 
-import waffle
-
 import django.dispatch
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -143,7 +141,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, channel,
-                    source=None, is_beta=False, parsed_data=None):
+                    source=None, parsed_data=None):
         """
         Create a Version instance and corresponding File(s) from a
         FileUpload, an Addon, a list of platform ids, a channel id and the
@@ -154,6 +152,7 @@ class Version(OnChangeMixin, ModelBase):
         validation results.
         """
         assert parsed_data is not None
+
         from olympia.addons.models import AddonFeatureCompatibility
 
         if addon.status == amo.STATUS_DISABLED:
@@ -209,8 +208,7 @@ class Version(OnChangeMixin, ModelBase):
         # need it afterwards.
         version.all_files = [
             File.from_upload(
-                upload, version, platform, parsed_data=parsed_data,
-                is_beta=(is_beta and waffle.switch_is_active('beta-versions')))
+                upload, version, platform, parsed_data=parsed_data)
             for platform in platforms]
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
@@ -469,14 +467,12 @@ class Version(OnChangeMixin, ModelBase):
         num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
             return num_files == 0
-        elif self.is_beta and not waffle.switch_is_active('beta-versions'):
-            return False
         elif num_files == 0:
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
             return False
         # We don't want new files once a review has been done.
-        elif (not self.is_all_unreviewed and not self.is_beta and
+        elif (not self.is_all_unreviewed and
               self.channel == amo.RELEASE_CHANNEL_LISTED):
             return False
         else:
@@ -528,10 +524,6 @@ class Version(OnChangeMixin, ModelBase):
     def is_all_unreviewed(self):
         return not bool([f for f in self.all_files if f.status not in
                          amo.UNREVIEWED_FILE_STATUSES])
-
-    @property
-    def is_beta(self):
-        return any(f for f in self.all_files if f.status == amo.STATUS_BETA)
 
     @property
     def is_jetpack(self):
@@ -603,10 +595,9 @@ class Version(OnChangeMixin, ModelBase):
         Disable files from versions older than the current one and awaiting
         review. Used when uploading a new version.
 
-        Does nothing if the current instance is unlisted or has beta files.
+        Does nothing if the current instance is unlisted.
         """
-        if (self.channel == amo.RELEASE_CHANNEL_LISTED and
-                not self.files.filter(status=amo.STATUS_BETA).exists()):
+        if self.channel == amo.RELEASE_CHANNEL_LISTED:
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
@@ -736,8 +727,7 @@ def inherit_nomination(sender, instance, **kw):
         return
     addon = instance.addon
     if (instance.nomination is None and
-            addon.status in amo.UNREVIEWED_ADDON_STATUSES and not
-            instance.is_beta):
+            addon.status in amo.UNREVIEWED_ADDON_STATUSES):
         instance.inherit_nomination()
 
 

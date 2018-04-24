@@ -12,7 +12,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import is_beta, parse_addon
+from olympia.files.utils import parse_addon
 from olympia.versions.compare import version_int
 
 from . import tasks
@@ -183,17 +183,7 @@ def find_previous_version(addon, file, version_string, channel):
     if not addon or not version_string:
         return
 
-    is_version_beta = is_beta(version_string)
     statuses = [amo.STATUS_PUBLIC]
-    if is_version_beta:
-        # Only include beta versions if the version string passed corresponds
-        # to a beta version. This is not perfect because even if the version
-        # string *looks* like a beta, the developer might want to use it as a
-        # regular listed upload, and in that case including previous betas in
-        # the list is wrong, but it's the best we can do when we're dealing
-        # with a FileUpload, since it's too early to know what the developer
-        # intends to do.
-        statuses.append(amo.STATUS_BETA)
     # Find all previous files of this add-on with the correct status and in
     # the right channel.
     qs = File.objects.filter(

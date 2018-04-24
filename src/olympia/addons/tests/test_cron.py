@@ -94,8 +94,7 @@ class TestHideDisabledFiles(TestCase):
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
         stati = ((amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
-                 (amo.STATUS_PUBLIC, amo.STATUS_BETA))
+                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW))
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)

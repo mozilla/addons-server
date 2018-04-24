@@ -454,15 +454,12 @@ class TestVersion(TestCase):
         self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        self._extra_version_and_file(amo.STATUS_BETA)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         show_links = doc('.review-history-show')
-        # Beta version does not have the link; so there will be 2 'Show' links
-        # and 1 link at the bottom of v1's history to reveal the reply field.
         assert show_links.length == 3
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
         assert not show_links[1].attrib.get('data-div')

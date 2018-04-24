@@ -53,7 +53,7 @@ class ActivityLogToken(ModelBase):
     def is_valid(self):
         return (not self.is_expired() and
                 self.version == self.version.addon.find_latest_version(
-                    channel=self.version.channel, exclude=(amo.STATUS_BETA,)))
+                    channel=self.version.channel, exclude=()))
 
     def expire(self):
         self.update(use_count=MAX_TOKEN_USE_COUNT)
@@ -183,14 +183,6 @@ class ActivityLogManager(ManagerBase):
         return (
             qs.filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
             .exclude(user__id=settings.TASK_USER_ID))
-
-    def beta_signed_events(self):
-        """List of all the auto signatures of beta files."""
-        # Even though we don't use BETA_SIGNED_VALIDATION_FAILED anymore, some
-        # old logs might have it.
-        return self.filter(action__in=[
-            amo.LOG.BETA_SIGNED.id,
-            amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
 
     def total_ratings(self, theme=False):
         """Return the top users, and their # of reviews."""
@@ -404,8 +396,6 @@ class ActivityLog(ModelBase):
             if isinstance(arg, File) and not file_:
                 validation = 'passed'
                 if self.action in (
-                        amo.LOG.BETA_SIGNED.id,
-                        amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id,
                         amo.LOG.UNLISTED_SIGNED.id,
                         amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id):
                     validation = 'ignored'
