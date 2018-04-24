@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-24 13:52+0000\n"
+"PO-Revision-Date: 2018-04-24 13:54+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -40,14 +40,14 @@ msgid "Images must be either PNG or JPG."
 msgstr "Kuvien pitää olla joko PNG- tai JPG-muodossa."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Animoituja kuvia ei voi käyttää."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Käytä kuvia, joiden koko on alle %d MB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Olet jo kirjautunut."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
@@ -65,9 +65,8 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 
 # 85%
-#, fuzzy
 msgid "Review"
-msgstr "Arvostelu:"
+msgstr "Arvostelu"
 
 msgid "Version {0}"
 msgstr "Versio {0}"
@@ -371,8 +370,8 @@ msgstr "<b>{0}</b> käyttäjää"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} päivittäistä käyttäjää"
-msgstr[1] ""
+msgstr[0] "{0} päivittäinen käyttäjä"
+msgstr[1] "{0} päivittäistä käyttäjää"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
