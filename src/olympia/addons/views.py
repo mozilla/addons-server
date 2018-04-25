@@ -951,4 +951,4 @@ class CompatOverrideView(ListAPIView):
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
         return queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer)
+            CompatOverride.transformer).order_by('-pk')
