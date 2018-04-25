@@ -144,7 +144,11 @@ class CacheStatTracker(BaseCache):
     requests_limit = 5000
 
     def __init__(self, location, params):
-        actual_backend = params['OPTIONS'].pop('ACTUAL_BACKEND')
+        # Do a .copy() dance to avoid modifying `OPTIONS` in the actual
+        # settings object.
+        options = params['OPTIONS'].copy()
+        actual_backend = options.pop('ACTUAL_BACKEND')
+        params['OPTIONS'] = options
 
         self._real_cache = _create_cache(actual_backend, **params)
 
