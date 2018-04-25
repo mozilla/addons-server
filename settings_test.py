@@ -41,7 +41,7 @@ CACHES = {
     'default': {
         # `CacheStatTracker` is required for `assert_cache_requests` to work
         # properly
-        'BACKEND': 'olympia.amo.tests.cache_helpers.CacheStatTracker',
+        'BACKEND': 'olympia.amo.cache_nuggets.CacheStatTracker',
         'LOCATION': 'olympia',
         'OPTIONS': {
             'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
