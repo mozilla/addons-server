@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-25 07:11+0000\n"
+"PO-Revision-Date: 2018-04-25 07:15+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5325,9 +5325,8 @@ msgstr "Неправильно розміщений звіт про ваду ч�
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Інше (виводить виринаючий запит для вводу інформації)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "В даний час AMO не надає механізму для прямого зв'язку з автором відгуку."
+msgstr "Наразі, AMO не забезпечує можливість прямого зв'язку з автором відгуку."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Чи можу я дати запит на вилучення негативного відгуку?"
@@ -6159,9 +6158,8 @@ msgstr "Пропустити зараз"
 msgid "Needs Admin Content Review"
 msgstr "Потрібна перевірка вмісту адміном"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Потрібна перевірка коду адміном"
+msgstr "Потрібна перевірка статичної теми адміном"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-додаток"
@@ -6292,36 +6290,29 @@ msgstr "Схвалити вміст"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ця дія записує ваше схвалення вмісту останньої публічної версії, без сповіщення розробника."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Застарілі додатки"
+msgstr "Статичні теми і застарілі додатки"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Відібрані теми"
+msgstr "Статичні теми"
 
 msgid "Legacy Add-ons"
 msgstr "Застарілі додатки"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Нові теми ({0})"
+msgstr "Нові ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "({0}) оновлення"
+msgstr "Оновлення ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Нотатка перевірки"
+msgstr "Журнал перевірки"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Перевірка додатку"
+msgstr "Настанови з перевірки додатків"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Черга розгляду теми"
+msgstr "Настанови з перевірки тем"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
@@ -6353,9 +6344,8 @@ msgstr "Оновлення тем ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Позначені теми ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Легкі теми"
+msgstr "Журнал перевірки легких тем"
 
 msgid "Deleted Themes Log"
 msgstr "Журнал видалених тем"
@@ -6445,13 +6435,11 @@ msgstr "Звіти про зловживання ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Погані оцінки користувачів ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Назва теми"
+msgstr "Зображення теми"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Видалені розгляди"
+msgstr "Відображений перегляд"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Файл зображення тла {0} із {1} - {2}"
@@ -6700,9 +6688,8 @@ msgstr "Прибрати позначку перевірки коду адмін
 msgid "Clear Admin Content Review Flag"
 msgstr "Прибрати позначку перевірки вмісту адміном"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Прибрати позначку перевірки коду адміном"
+msgstr "Прибрати позначку перевірки статичної теми адміном"
 
 msgid "(admin)"
 msgstr "(admin)"
