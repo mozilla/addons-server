@@ -116,7 +116,7 @@ def delete_photo(request, user_id):
     user = UserProfile.objects.get(id=user_id)
 
     if request.method == 'POST':
-        user.picture_type = ''
+        user.picture_type = None
         user.save()
         log.debug(u'User (%s) deleted photo' % user)
         tasks.delete_photo.delay(user.picture_path)

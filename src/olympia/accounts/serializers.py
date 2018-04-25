@@ -45,12 +45,14 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     # Used in subclasses.
     def get_picture_url(self, obj):
-        return absolutify(obj.picture_url)
+        if obj.picture_type:
+            return absolutify(obj.picture_url)
+        return None
 
 
 class PublicUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
-    average_addon_rating = serializers.CharField(source='averagerating')
+    average_addon_rating = serializers.FloatField(source='averagerating')
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (

@@ -28,7 +28,7 @@ def clear_get_featured_ids_cache(*args, **kwargs):
 
 
 @memoize('addons:featured', time=60 * 10)
-def get_featured_ids(app=None, lang=None, type=None):
+def get_featured_ids(app=None, lang=None, type=None, types=None):
     from olympia.addons.models import Addon
     ids = []
     is_featured = Q(collections__featuredcollection__isnull=False)
@@ -38,6 +38,8 @@ def get_featured_ids(app=None, lang=None, type=None):
 
     if type:
         qs = qs.filter(type=type)
+    elif types:
+        qs = qs.filter(type__in=types)
     if lang:
         has_locale = qs.filter(
             is_featured &
@@ -107,25 +109,16 @@ def verify_mozilla_trademark(name, user):
     def _check(name):
         name = normalize_string(name, strip_puncutation=True).lower()
 
-        contains_trademark_symbol = any(
-            symbol in name for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
+        for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
+            violates_trademark = (
+                name.count(symbol) > 1 or (
+                    name.count(symbol) >= 1 and not
+                    name.endswith(' for {}'.format(symbol))))
 
-        allowed_symbols = tuple(
-            ' for {}'.format(symbol)
-            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS)
-
-        violates_trademark = False
-
-        if contains_trademark_symbol:
-            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-                violates_trademark = (
-                    name.count(symbol) > 1 or not
-                    name.endswith(allowed_symbols))
-
-                if violates_trademark:
-                    raise forms.ValidationError(ugettext(
-                        u'Add-on names cannot contain the Mozilla or '
-                        u'Firefox trademarks.'))
+            if violates_trademark:
+                raise forms.ValidationError(ugettext(
+                    u'Add-on names cannot contain the Mozilla or '
+                    u'Firefox trademarks.'))
 
     # TODO: Deactivated for now
     if not skip_trademark_check:

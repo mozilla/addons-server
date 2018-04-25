@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 02:01+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:39+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -36,6 +36,9 @@ msgstr "Nama pengguna sedang digunakan."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Imej mesti dalam PNG atau JPG."
+
+msgid "Images cannot be animated."
+msgstr "Imej tidak boleh bentuk animasi."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -987,8 +990,14 @@ msgstr "Url ini sudah digunakan oleh koleksi lain"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikon mesti samada PNG atau JPG."
 
+msgid "Icons cannot be animated."
+msgstr "Ikon tidak boleh bentuk animasi."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL penyesuaian ini sudah digunakan oleh satu lagi koleksi anda."
+
+msgid "Name cannot be empty."
+msgstr "Nama tidak boleh kosong."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "URL penyesuaian mesti terdiri daripada huruf, nombor, garis bawah atau sengkang."
@@ -1957,14 +1966,17 @@ msgstr "Kandungan {addon} {version} ditolak."
 msgid "Content rejected"
 msgstr "Kandungan ditolak"
 
-msgid "{addon} information request removed."
-msgstr "Permintaan maklumat {addon} dibuang."
+msgid "{addon} information request altered or removed by admin."
+msgstr "Permintaan maklumat {addon} diubah atau dibuang oleh pentadbir."
 
-msgid "Information request removed"
-msgstr "Permintaan maklumat dibuang"
+msgid "Information request altered"
+msgstr "Permintaan maklumat diubah"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Permintaan maklumat dibuang oleh pembangun {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Permintaan maklumat dibuang"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2327,8 +2339,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "App"
+msgid "Static Theme"
+msgstr "Tema Statik"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2365,6 +2377,9 @@ msgstr "Ulasan Pek Bahasa Dikemaskini"
 
 msgid "Theme Review"
 msgstr "Ulasan Tema"
+
+msgid "Theme (Static) Review"
+msgstr "Ulasan Tema (Statik)"
 
 msgid "New Search Provider Review"
 msgstr "Ulasan Penyedia Carian Baru"
@@ -2683,12 +2698,6 @@ msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
-msgid "Icons cannot be animated."
-msgstr "Ikon tidak boleh bentuk animasi."
-
-msgid "Images cannot be animated."
-msgstr "Imej tidak boleh bentuk animasi."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Imej tidak boleh melebihi %dKB."
@@ -2918,6 +2927,15 @@ msgstr "Edit Maklumat"
 
 msgid "None"
 msgstr "Tiada"
+
+msgid "Preview"
+msgstr "Previu"
+
+msgid "Preview of listed version"
+msgstr "Previu versi disenaraikan"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Previu sedang dijana - layari lagi nanti atau muat semula halaman."
 
 msgid "Manage Authors & License"
 msgstr "Urus Pengarang & Lesen"
@@ -3452,6 +3470,9 @@ msgstr "Sudah siap!"
 msgid "Version Submitted for Review"
 msgstr "Versi Dihantar untuk Semakan"
 
+msgid "Preview of the version submitted"
+msgstr "Previu versi yang dihantar"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Sudah siap! Versi ini akan tersedia selepas lulus semakan. Anda akan dimaklumkan apabila sudah disemak."
 
@@ -3587,7 +3608,7 @@ msgstr "Latar belakang kawasan bar alatan"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih.  Medan manifes:  toolbar."
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr "Teks dan ikon kawasan bar alatan"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -3905,14 +3926,17 @@ msgstr "Ada piawaian lintas-pelayar baru untuk pembangunan ekstensi di Firefox. 
 msgid "Learn How"
 msgstr "Belajar Caranya"
 
-msgid "What's New"
-msgstr "Apa Yang Terbaru"
+msgid "Get Started"
+msgstr "Memulakan"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah perihal proses serahan."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Sudah sedia menghantar ekstensi? Baca tutorial langkah-demi-langkah perihal proses serahan."
 
 msgid "See Tutorial"
 msgstr "Lihat Tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Bantu pengguna mencari ekstensi anda dengan mencipta senarai yang menarik."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4056,17 +4080,11 @@ msgstr "Reka bentuk anda sebelum ini yang direka semula, yang masih menunggu sem
 msgid "Pending Header"
 msgstr "Pengepala Tertangguh"
 
-msgid "Pending Footer"
-msgstr "Pembawah Tertangguh"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Anda boleh mengemaskini reka bentuk tema anda di sini apabila sudah diluluskan."
 
 msgid "Header"
 msgstr "Pengepala"
-
-msgid "Footer"
-msgstr "Pembawah"
 
 msgid "Select colors for your Theme."
 msgstr "Pilih warna untuk Tema anda."
@@ -4082,9 +4100,6 @@ msgstr "Latar belakang"
 
 msgid "This is the color of the tabs."
 msgstr "Ini warna untuk tab."
-
-msgid "Preview"
-msgstr "Previu"
 
 msgid "Your Theme's Name"
 msgstr "Nama Tema Anda"
@@ -4146,18 +4161,6 @@ msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr "PNG atau JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Pilih imej pembawah untuk Tema anda."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 piksel"
-
-msgid "Aligned to bottom-left"
-msgstr "Sejajar bahagian bawah-kiri"
-
-msgid "Select a different footer image"
-msgstr "Pilih imej pembawah yang lain"
 
 msgid "Manage Version {0}"
 msgstr "Urus Versi {0}"
@@ -4344,29 +4347,32 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Terjemahkan {start_sub_heading} secara mudah dengan {addon_name} {end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Hentikan Facebook menjejaki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Serlahkan mana-mana teks, klik kanan, dan diterjemahkan serta-merta."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mudahkan carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Nampak gambar yang menarik dalam Web dan mahu mengetahuinya lebih lanjut? Cuba alatan carian imej ini."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Serlahkan sahaja teks dalam halaman web untuk mencari frasa dari tatasusunan enjin."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Tetapan mudah yang membolehkan anda mengawal iklan dan cara anda dijejaki dalam internet."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ubah suai tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Anda ada banyak tab terbuka? Susun dengan kemas dalam bar sisi."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Berfungsi dalam YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dan ratusan laman video lain."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Berfungsi dengan lancar dalam kebanyakan laman video yang popular."
@@ -4718,9 +4724,6 @@ msgstr "Jadilah Penguji Perintis"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Dapatkan akses awal kepada ciri eksperimen pelayar."
-
-msgid "Get Started"
-msgstr "Memulakan"
 
 msgid "About Mozilla Add-ons"
 msgstr "Perihal Add-ons Mozilla"
@@ -5227,8 +5230,8 @@ msgstr "Laporan atau sokongan pepijat yang tersalah tempat"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Lain-lain (menyediakan pop-up untuk meminta maklumat)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Pada masa ini, AMO tidak menyediakan mekanisme perhubungan terus antara pengarang terhadap ulasan pengguna."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
+msgstr "Pada masa ini, AMO tidak menyediakan mekanisme perhubungan terus antara pengarang dengan ulasan pengguna."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Bolehkah saya minta ulasan negatif itu dibuang?"
@@ -5835,7 +5838,7 @@ msgstr "Anda tidak boleh semak add-on anda sendiri."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Penilaian ini tidak boleh ditandakan kerana tiada teks ulasan."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -5974,15 +5977,6 @@ msgstr "dan"
 msgid "Filter by type/action"
 msgstr "Tapis mengikut jenis/tindakan"
 
-msgid "Passed automatic validation"
-msgstr "Pengesahan automatik diluluskan"
-
-msgid "Failed automatic validation"
-msgstr "Pengesahan automatik gagal"
-
-msgid "Filter by automatic validation"
-msgstr "Tapis mengikut pengesahan automatik"
-
 msgid "containing"
 msgstr "mengandungi"
 
@@ -6057,6 +6051,9 @@ msgstr "Langkau dulu sekarang"
 
 msgid "Needs Admin Content Review"
 msgstr "Perlu Semakan Kandungan Pentadbir"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Perlu Semakan Pentadbir Tema Statik"
 
 msgid "Jetpack Add-on"
 msgstr "Add-on Jetpack"
@@ -6181,29 +6178,41 @@ msgstr "Kandungan Lulus"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Tema Statik dan Add-ons Legasi"
+
+msgid "Static Themes"
+msgstr "Tema Statik"
+
 msgid "Legacy Add-ons"
 msgstr "Add-ons Legasi"
 
-msgid "New Add-ons ({0})"
-msgstr "Add-ons Baru ({0})"
+msgid "New ({0})"
+msgstr "Baru ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Kemaskini Add-on ({0})"
+msgid "Updates ({0})"
+msgstr "Kemaskini ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Log Semakan Add-on"
+msgid "Review Log"
+msgstr "Log Ulasan"
 
-msgid "Signed Beta Files Log"
-msgstr "Log Fail Beta Ditandatangani"
+msgid "Add-on Review Guide"
+msgstr "Panduan Ulasan Add-on"
 
-msgid "Review Guide"
-msgstr "Panduan Semakan"
+msgid "Theme Review Guide"
+msgstr "Panduan Semakan Tema"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Add-ons Auto-Lulus"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Add-on Auto Lulus ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Log Semakan Add-on"
+
+msgid "Review Guide"
+msgstr "Panduan Semakan"
 
 msgid "Content Review"
 msgstr "Semakan Kandungan"
@@ -6221,8 +6230,8 @@ msgstr "Kemaskini Tema ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Tema Ditanda ({0})"
 
-msgid "Themes Review Log"
-msgstr "Log Ulasan Tema"
+msgid "Lightweight Themes Review Log"
+msgstr "Lig Ulasan Tema Ringan"
 
 msgid "Deleted Themes Log"
 msgstr "Log Tema Dibuang"
@@ -6251,8 +6260,8 @@ msgstr "Pengumuman"
 msgid "Update message of the day"
 msgstr "Kemaskini mesej penting hari ini"
 
-msgid "Add-ons with expired information requests"
-msgstr "Add-ons dengan permintaan maklumat tamat tempoh"
+msgid "Expired Information Requests ({0})"
+msgstr "Permintaan Maklumat Tamat Tempoh ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ada ralat yang tidak diketahui"
@@ -6311,6 +6320,15 @@ msgstr "Laporan Penyalahgunaan ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Pengkadaran Teruk Pengguna ({num})"
 
+msgid "Theme Images"
+msgstr "Imej Tema"
+
+msgid "Rendered Preview"
+msgstr "Semakan Dihurai"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Fail latar belakang {0} daripada {1} - {2}"
+
 msgid "More about this add-on"
 msgstr "Maklumat lanjut perihal add-on ini"
 
@@ -6322,6 +6340,18 @@ msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Kembali ke papan pemuka Alatan Penyemak"
+
+msgid "Reviewer Leaderboard"
+msgstr "Carta-kedudukan Penyemak"
+
+msgid "No review points awarded yet."
+msgstr "Belum ada markah yang diberikan."
+
+msgid "Rank"
+msgstr "Kedudukan"
+
+msgid "Score"
+msgstr "Markah"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6363,18 +6393,6 @@ msgstr "Semakan telah ditandakan sebelum dihapuskan."
 
 msgid "Undelete"
 msgstr "Batalkan membuang"
-
-msgid "Reviewer Leaderboard"
-msgstr "Carta-kedudukan Penyemak"
-
-msgid "No review points awarded yet."
-msgstr "Belum ada markah yang diberikan."
-
-msgid "Rank"
-msgstr "Kedudukan"
-
-msgid "Score"
-msgstr "Markah"
 
 msgid "Save"
 msgstr "Simpan"
@@ -6554,6 +6572,9 @@ msgstr "Buang Tanda Semakan Kod Pentadbir"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Buang Tanda Semakan Kandungan Pentadbir"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Buang Tanda Semakan Pentadbir Tema Statik"
 
 msgid "(admin)"
 msgstr "(pentadbir)"
@@ -6756,21 +6777,21 @@ msgstr "Ditolak atau Tidak-disemak"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Add-ons Baru ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Kemaskini ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Semakan Moderat ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Ulasan Penilaian ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Add-on Automatik Diluluskan ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Auto-lulus ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Permintaan Info Tamat Tempoh ({0})"
 
 msgid "Flagged"
 msgstr "Ditandai"

@@ -1,5 +1,3 @@
-import codecs
-
 from datetime import datetime, timedelta
 from os import path, unlink
 
@@ -12,7 +10,7 @@ from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.stats.models import ThemeUpdateCount
 
-from . import get_date_from_file, save_stats_to_file
+from . import get_date, get_stats_data
 
 
 log = olympia.core.logger.getLogger('adi.themeupdatecount')
@@ -22,14 +20,26 @@ class Command(BaseCommand):
     """Process hive results stored in different files and store them in the db.
 
     Usage:
-    ./manage.py theme_update_counts_from_file <folder> --date=YYYY-MM-DD
+    ./manage.py theme_update_counts_from_file \
+        <folder> --date=YYYY-MM-DD --stats_source={s3,file}
 
     If no date is specified, the default is the day before.
-    If not folder is specified, the default is `hive_results/<YYYY-MM-DD>/`.
-    This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
 
-    File processed:
-    - theme_update_counts.hive
+    If no stats_source is specified, the default is set to s3.
+
+    If stats_source is file:
+        If not folder is specified, the default is `hive_results/YYYY-MM-DD/`.
+        This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
+
+        File processed:
+        - theme_update_counts.hive
+
+    If stats_source is s3:
+        This file will be located in
+            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
+
+        File processed:
+        - theme_update_counts/YYYY-MM-DD/000000_0
 
     Each file has the following cols:
     - date
@@ -44,6 +54,10 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument('folder_name', default='hive_results', nargs='?')
         parser.add_argument(
+            '--stats_source', default='s3',
+            choices=['s3', 'file'],
+            help='Source of stats data')
+        parser.add_argument(
             '--date', action='store', type=str,
             dest='date', help='Date in the YYYY-MM-DD format.')
         parser.add_argument(
@@ -51,18 +65,27 @@ class Command(BaseCommand):
             dest='separator', help='Field separator in file.')
 
     def handle(self, *args, **options):
+        sep = options['separator']
         start = datetime.now()  # Measure the time it takes to run the script.
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        folder = options['folder_name']
-        folder = path.join(settings.TMP_PATH, folder, day)
-        sep = options['separator']
-        filepath = path.join(folder, 'theme_update_counts.hive')
+
+        if options['stats_source'] == 's3':
+            filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
+                                           'amo_stats', 'theme_update_counts',
+                                           day, '000000_0'])
+
+        elif options['stats_source'] == 'file':
+            folder = options['folder_name']
+            folder = path.join(settings.TMP_PATH, folder, day)
+            filepath = path.join(folder, 'theme_update_counts.hive')
+
         # Make sure we're not trying to update with mismatched data.
-        if get_date_from_file(filepath, sep) != day:
+        if get_date(filepath, sep) != day:
             raise CommandError('%s file contains data for another day' %
                                filepath)
+
         # First, make sure we don't have any existing counts for the same day,
         # or it would just increment again the same data.
         ThemeUpdateCount.objects.filter(date=day).delete()
@@ -82,53 +105,53 @@ class Command(BaseCommand):
         persona_to_addon = dict(Persona.objects.values_list('persona_id',
                                                             'addon_id'))
 
-        with codecs.open(filepath, encoding='utf8') as count_file:
-            for index, line in enumerate(count_file):
-                if index and (index % 1000000) == 0:
-                    log.info('Processed %s lines' % index)
+        count_file = get_stats_data(filepath)
+        for index, line in enumerate(count_file):
+            if index and (index % 1000000) == 0:
+                log.info('Processed %s lines' % index)
 
-                splitted = line[:-1].split(sep)
+            splitted = line[:-1].split(sep)
 
-                if len(splitted) != 4:
-                    log.debug('Badly formatted row: %s' % line)
-                    continue
+            if len(splitted) != 4:
+                log.debug('Badly formatted row: %s' % line)
+                continue
 
-                day, id_, src, count = splitted
-                try:
-                    id_, count = int(id_), int(count)
-                except ValueError:  # Badly formatted? Drop.
-                    continue
+            day, id_, src, count = splitted
+            try:
+                id_, count = int(id_), int(count)
+            except ValueError:  # Badly formatted? Drop.
+                continue
 
-                if src:
-                    src = src.strip()
+            if src:
+                src = src.strip()
 
-                # If src is 'gp', it's an old request for the persona id.
-                if id_ not in persona_to_addon and src == 'gp':
-                    continue  # No such persona.
-                addon_id = persona_to_addon[id_] if src == 'gp' else id_
+            # If src is 'gp', it's an old request for the persona id.
+            if id_ not in persona_to_addon and src == 'gp':
+                continue  # No such persona.
+            addon_id = persona_to_addon[id_] if src == 'gp' else id_
 
-                # Does this addon exist?
-                if addon_id not in addons:
-                    continue
+            # Does this addon exist?
+            if addon_id not in addons:
+                continue
 
-                # Memoize the ThemeUpdateCount.
-                if addon_id in theme_update_counts:
-                    tuc = theme_update_counts[addon_id]
-                else:
-                    tuc = ThemeUpdateCount(addon_id=addon_id, date=day,
-                                           count=0)
-                    theme_update_counts[addon_id] = tuc
+            # Memoize the ThemeUpdateCount.
+            if addon_id in theme_update_counts:
+                tuc = theme_update_counts[addon_id]
+            else:
+                tuc = ThemeUpdateCount(addon_id=addon_id, date=day,
+                                       count=0)
+                theme_update_counts[addon_id] = tuc
 
-                # We can now fill the ThemeUpdateCount object.
-                tuc.count += count
+            # We can now fill the ThemeUpdateCount object.
+            tuc.count += count
 
         # Create in bulk: this is much faster.
         ThemeUpdateCount.objects.bulk_create(theme_update_counts.values(), 100)
-        for theme_update_count in theme_update_counts.values():
-            save_stats_to_file(theme_update_count)
+
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 
         # Clean up file.
-        log.debug('Deleting {path}'.format(path=filepath))
-        unlink(filepath)
+        if options['stats_source'] == 'file':
+            log.debug('Deleting {path}'.format(path=filepath))
+            unlink(filepath)

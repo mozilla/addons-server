@@ -10,6 +10,7 @@ import StringIO
 import struct
 import tempfile
 import zipfile
+import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
@@ -33,10 +34,15 @@ from signing_clients.apps import get_signer_organizational_unit_name
 import olympia.core.logger
 
 from olympia import amo, core
+from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib.safe_xml import lxml
+from olympia.users.utils import (
+    mozilla_signed_extension_submission_allowed,
+    system_addon_submission_allowed)
+
 from olympia.versions.compare import version_int as vint
 
 
@@ -106,11 +112,6 @@ def make_xpi(files):
     z.close()
     f.seek(0)
     return f
-
-
-def is_beta(version):
-    """Return True if the version is believed to be a beta version."""
-    return bool(amo.VERSION_BETA.search(version))
 
 
 class Extractor(object):
@@ -371,6 +372,14 @@ class ManifestJSONExtractor(object):
         return self.data.get(key, default)
 
     @property
+    def is_experiment(self):
+        """Return whether or not the webextension uses experiments API.
+
+        In legacy extensions this is a different type, but for webextensions
+        we just look at the manifest."""
+        return bool(self.get('experiment_apis', False))
+
+    @property
     def gecko(self):
         """Return the "applications["gecko"]" part of the manifest."""
         return self.get('applications', {}).get('gecko', {})
@@ -491,6 +500,7 @@ class ManifestJSONExtractor(object):
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
+                'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
                 # Only extensions have permissions and content scripts
@@ -776,7 +786,7 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     if expand:
         for x in xrange(0, 10):
             flag = False
-            for root, dirs, files in os.walk(tempdir):
+            for root, dirs, files in scandir.walk(tempdir):
                 for name in files:
                     if os.path.splitext(name)[1] in expand_allow_list:
                         src = os.path.join(root, name)
@@ -795,7 +805,7 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, minimal=False):
+def parse_xpi(xpi, addon=None, minimal=False, user=None):
     """Extract and parse an XPI. Returns a dict with various properties
     describing the xpi.
 
@@ -826,10 +836,10 @@ def parse_xpi(xpi, addon=None, minimal=False):
 
     if minimal:
         return xpi_info
-    return check_xpi_info(xpi_info, addon, xpi)
+    return check_xpi_info(xpi_info, addon, xpi, user=user)
 
 
-def check_xpi_info(xpi_info, addon=None, xpi_file=None):
+def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
     guid = xpi_info['guid']
     is_webextension = xpi_info.get('is_webextension', False)
@@ -860,7 +870,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
         if (not addon and
             # Non-deleted add-ons.
             (Addon.objects.filter(guid=guid).exists() or
-             # DeniedGuid objects for legacy deletions.
+             # DeniedGuid objects for deletions for Mozilla disabled add-ons
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
@@ -885,33 +895,64 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
             xpi_info.copy(), xpi_file)
         verify_mozilla_trademark(translations['name'], core.get_user())
 
+    # Parse the file to get and validate package data with the addon.
+    if not acl.submission_allowed(user, xpi_info):
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit this type of add-on'))
+
+    if not addon and not system_addon_submission_allowed(
+            user, xpi_info):
+        guids = ' or '.join(
+                '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit an add-on with a guid ending '
+                     u'%s' % guids))
+
+    if not mozilla_signed_extension_submission_allowed(user, xpi_info):
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit a Mozilla Signed Extension'))
+
     return xpi_info
 
 
-def parse_addon(pkg, addon=None, minimal=False):
+def parse_addon(pkg, addon=None, user=None, minimal=False):
     """
     Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
     with various properties describing the add-on.
 
     Will raise ValidationError if something went wrong while parsing.
 
-    If minimal is True, it avoids validation as much as possible (still raising
-    ValidationError for hard errors like I/O or invalid json/rdf) and returns
-    only the minimal set of properties needed to decide what to do with the
-    add-on (the exact set depends on the add-on type, but it should always
-    contain at least guid, type, version and is_webextension.
+    `addon` parameter is mandatory if the file being parsed is going to be
+    attached to an existing Addon instance.
+
+    `user` parameter is mandatory unless minimal `parameter` is True. It should
+    point to the UserProfile responsible for the upload.
+
+    If `minimal` parameter is True, it avoids validation as much as possible
+    (still raising ValidationError for hard errors like I/O or invalid
+    json/rdf) and returns only the minimal set of properties needed to decide
+    what to do with the add-on (the exact set depends on the add-on type, but
+    it should always contain at least guid, type, version and is_webextension.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
-        parsed = parse_xpi(pkg, addon, minimal=minimal)
+        parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
 
-    if not minimal and addon and addon.type != parsed['type']:
-        msg = ugettext(
-            "<em:type> in your install.rdf (%s) "
-            "does not match the type of your add-on on AMO (%s)")
-        raise forms.ValidationError(msg % (parsed['type'], addon.type))
+    if not minimal:
+        if user is None:
+            # This should never happen and means there is a bug in
+            # addons-server itself.
+            raise forms.ValidationError(ugettext('Unexpected error.'))
+
+        # FIXME: do the checks depending on user here.
+
+        if addon and addon.type != parsed['type']:
+            msg = ugettext(
+                "<em:type> in your install.rdf (%s) "
+                "does not match the type of your add-on on AMO (%s)")
+            raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 
 
@@ -935,7 +976,7 @@ def zip_folder_content(folder, filename):
     """Compress the _content_ of a folder."""
     with zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED) as dest:
         # Add each file/folder from the folder to the zip file.
-        for root, dirs, files in os.walk(folder):
+        for root, dirs, files in scandir.walk(folder):
             relative_dir = os.path.relpath(root, folder)
             for file_ in files:
                 dest.write(os.path.join(root, file_),
@@ -1155,10 +1196,16 @@ def extract_header_img(file_obj, theme_data, dest_path):
     # Get the reference in the manifest.  theme_frame is the Chrome variant.
     header_url = images_dict.get(
         'headerURL', images_dict.get('theme_frame'))
-
+    # And any additional backgrounds too.
+    additional_urls = images_dict.get('additional_backgrounds', [])
+    image_urls = [header_url] + additional_urls
     try:
         with zipfile.ZipFile(xpi, 'r') as source:
-            source.extract(header_url, dest_path)
+            for url in image_urls:
+                try:
+                    source.extract(url, dest_path)
+                except KeyError:
+                    pass
     except IOError as ioerror:
         log.debug(ioerror)
 

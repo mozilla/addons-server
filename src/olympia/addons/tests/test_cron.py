@@ -94,8 +94,7 @@ class TestHideDisabledFiles(TestCase):
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
         stati = ((amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
-                 (amo.STATUS_PUBLIC, amo.STATUS_BETA))
+                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW))
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
@@ -199,17 +198,6 @@ class AvgDailyUserCountTestCase(TestCase):
     def setUp(self):
         super(AvgDailyUserCountTestCase, self).setUp()
         self.create_switch('local-statistics-processing')
-
-    def test_adu_is_adjusted_in_cron(self):
-        addon = Addon.objects.get(pk=3615)
-        assert addon.average_daily_users == 6000000
-        assert \
-            addon.average_daily_users > addon.total_downloads + 10000, \
-            ('Unexpected ADU count. ADU of %d not greater than %d' % (
-                addon.average_daily_users, addon.total_downloads + 10000))
-        cron._update_addon_average_daily_users([(3615, 6000000)])
-        addon = Addon.objects.get(pk=3615)
-        assert addon.average_daily_users == addon.total_downloads
 
     def test_13_day_window(self):
         addon = Addon.objects.get(pk=3615)

@@ -70,61 +70,41 @@ class TestHomeAndIndex(TestCase):
         assert response.context['user'].email == 'admin@mozilla.com'
 
     def test_django_index(self):
+        # Can access with full admin.
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        assert len(modules) == 15  # Increment as we add new admin modules.
 
+        # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
         self.assert3xx(response, '/admin/models/login/?'
                                  'next=/en-US/admin/models/')
 
+        # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.grant_permission(user, 'Addons:Edit')
         self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
         self.assert3xx(response, '/admin/models/login/?'
                                  'next=/en-US/admin/models/')
+
+        # Can access with a "is_staff" user.
+        self.grant_permission(user, 'Admin:Something')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        # Admin:Something doesn't give access to anything, so they can log in
+        # but they don't see any modules.
+        assert len(modules) == 0
 
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
         response = self.client.get(url)
         assert response.status_code == 200
-
-
-class TestStaffAdmin(TestCase):
-    def test_index(self):
-        url = reverse('staffadmin:index')
-        response = self.client.get(url)
-        self.assert3xx(response, '/admin/staff-models/login/?'
-                                 'next=/en-US/admin/staff-models/')
-
-        user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.grant_permission(user, 'Addons:Edit')
-        self.client.login(email='staffperson@m.c')
-        response = self.client.get(url)
-        assert response.status_code == 200
-        assert 'Replacement addons' in response.content
-
-    def test_model_page(self):
-        url = reverse('staffadmin:addons_replacementaddon_changelist')
-        user = user_factory(username='staffperson', email='staffperson@m.c')
-        redirect_url_403 = ('/admin/staff-models/login/?next=/en-US/admin/'
-                            'staff-models/addons/replacementaddon/')
-
-        # Not logged in.
-        response = self.client.get(url)
-        self.assert3xx(response, redirect_url_403)
-
-        # Logged in but not auth'd.
-        self.client.login(email='staffperson@m.c')
-        response = self.client.get(url)
-        self.assert3xx(response, redirect_url_403)
-
-        # Only succeeds with correct permission.
-        self.grant_permission(user, 'Addons:Edit')
-        response = self.client.get(url)
-        assert response.status_code == 200
-        assert 'Select replacement addon to change' in response.content
 
 
 class TestSiteEvents(TestCase):
@@ -905,7 +885,7 @@ class TestPerms(TestCase):
     def test_staff_user(self):
         # Staff users have some privileges.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='AdminTools:View')
+        group = Group.objects.create(name='Staff', rules='Admin:Tools')
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)

@@ -6,12 +6,13 @@ import pytest
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, req_factory_factory
+from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
-    check_ownership, check_personas_reviewer, check_unlisted_addons_reviewer,
+    check_ownership, check_personas_reviewer, check_static_theme_reviewer,
+    check_unlisted_addons_reviewer,
     is_reviewer, is_user_any_kind_of_reviewer, match_rules)
 
 
@@ -64,7 +65,7 @@ def test_match_rules():
 
 def test_anonymous_user():
     fake_request = req_factory_factory('/')
-    assert not action_allowed(fake_request, amo.permissions.ADMIN)
+    assert not action_allowed(fake_request, amo.permissions.ANY_ADMIN)
 
 
 class ACLTestCase(TestCase):
@@ -174,6 +175,7 @@ class TestCheckReviewer(TestCase):
         self.user = UserProfile.objects.get()
         self.persona = Addon.objects.get(pk=15663)
         self.addon = Addon.objects.get(pk=3615)
+        self.statictheme = addon_factory(type=amo.ADDON_STATICTHEME)
 
     def test_no_perm(self):
         request = req_factory_factory('noop', user=self.user)
@@ -183,6 +185,7 @@ class TestCheckReviewer(TestCase):
         assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.statictheme)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
@@ -190,6 +193,7 @@ class TestCheckReviewer(TestCase):
         assert check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_themes(self):
@@ -198,6 +202,7 @@ class TestCheckReviewer(TestCase):
         assert not check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
         assert check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_unlisted_addons(self):
@@ -206,14 +211,25 @@ class TestCheckReviewer(TestCase):
         assert not check_addons_reviewer(request)
         assert check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
+        assert is_user_any_kind_of_reviewer(request.user)
+
+    def test_perm_static_themes(self):
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        request = req_factory_factory('noop', user=self.user)
+        assert not check_addons_reviewer(request)
+        assert not check_unlisted_addons_reviewer(request)
+        assert not check_personas_reviewer(request)
+        assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
-        """An addon reviewer is also a persona reviewer."""
+        """An addon reviewer is not necessarily a persona reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
         request = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.persona)
         assert is_reviewer(request, self.addon)
+        assert not is_reviewer(request, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_persona_reviewer(self):
@@ -221,6 +237,15 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.addon)
+        assert not is_reviewer(request, self.statictheme)
+        assert is_user_any_kind_of_reviewer(request.user)
+
+    def test_is_reviewer_for_static_theme_reviewer(self):
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        request = req_factory_factory('noop', user=self.user)
+        assert not is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.addon)
+        assert is_reviewer(request, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_post_review(self):
@@ -231,13 +256,10 @@ class TestCheckReviewer(TestCase):
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
         assert not is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.statictheme)
 
-        # Technically, someone with PostReview has access to reviewer tools,
-        # and would be called a reviewer... but those 2 functions predates the
-        # introduction of PostReview, so at the moment they don't let you in
-        # if you only have that permission.
-        assert not check_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
+        assert check_addons_reviewer(request)
+        assert is_reviewer(request, self.addon)
 
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -247,11 +269,7 @@ class TestCheckReviewer(TestCase):
         assert not check_unlisted_addons_reviewer(request)
         assert not check_personas_reviewer(request)
         assert not is_reviewer(request, self.persona)
+        assert not is_reviewer(request, self.statictheme)
 
-        # Technically, someone with ContentReview has access to (some of the)
-        # reviewer tools, and could be called a reviewer (though they are more
-        # limited than other kind of reviewers...) but those 2 functions
-        # predates the introduction of PostReview, so at the moment they don't
-        # let you in if you only have that permission.
-        assert not check_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
+        assert check_addons_reviewer(request)
+        assert is_reviewer(request, self.addon)

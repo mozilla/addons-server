@@ -3,7 +3,6 @@ import json
 from datetime import datetime
 
 import jinja2
-import pytest
 
 from mock import Mock, patch
 from pyquery import PyQuery
@@ -38,23 +37,15 @@ class ButtonTest(TestCase):
         v.is_compatible_by_default = False
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
-        v.is_beta = False
         v.version = '2.0.3.8'
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL.id)
         v.all_files = [self.file]
 
-        self.beta_version = v = Mock(spec=Version)
         v.is_compatible_by_default = False
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
-        v.is_beta = True
-        v.version = 'v2-beta'
-        self.addon.current_beta_version = v
-
-        self.beta_file = self.get_file(amo.PLATFORM_ALL.id)
-        v.all_files = [self.beta_file]
 
         self.platforms = amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id
         self.platform_files = map(self.get_file, self.platforms)
@@ -144,22 +135,9 @@ class TestButtonSetup(ButtonTest):
     def test_version(self):
         b = self.get_button()
         assert b.version == self.version
-        assert not b.is_beta
-
-        b = self.get_button(latest_beta=True)
-        assert b.version == self.beta_version
-        assert b.is_beta
 
         b = self.get_button(version=self.version)
         assert b.version == self.version
-        assert not b.is_beta
-
-        b = self.get_button(version=self.beta_version)
-        assert b.version == self.beta_version
-        assert b.is_beta
-
-        with pytest.raises(AssertionError):
-            self.get_button(version=self.version, latest_beta=True)
 
 
 class TestButton(ButtonTest):
@@ -203,16 +181,6 @@ class TestButton(ButtonTest):
         assert b.unreviewed
         assert b.button_class == ['download', 'caution']
         assert b.install_class == ['unreviewed']
-        assert b.install_text == 'Not Reviewed'
-
-    def test_beta(self):
-        # Throw featured in there to make sure it's ignored.
-        self.addon.is_featured.return_value = True
-        b = self.get_button(version=self.beta_version)
-        assert not b.featured
-        assert b.is_beta
-        assert b.button_class == ['download', 'caution']
-        assert b.install_class == ['unreviewed', 'beta']
         assert b.install_text == 'Not Reviewed'
 
     def test_experimental(self):

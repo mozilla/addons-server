@@ -289,8 +289,7 @@ class TestThemeForm(TestCase):
             'tags': 'tag1, tag2, tag3',
             'license': amo.LICENSE_CC_BY.id,
             'agreed': True,
-            'header_hash': 'b4ll1n',
-            'footer_hash': '5w4g'
+            'header_hash': 'b4ll1n'
         }
         data.update(**kw)
         return data
@@ -359,10 +358,6 @@ class TestThemeForm(TestCase):
         assert not self.form.is_valid()
         assert self.form.errors == {'header_hash': ['This field is required.']}
 
-    def test_footer_hash_optional(self):
-        self.post(footer_hash='')
-        assert self.form.is_valid()
-
     def test_accentcolor_optional(self):
         self.post(accentcolor='')
         assert self.form.is_valid()
@@ -386,21 +381,16 @@ class TestThemeForm(TestCase):
                            'such as #000000.']})
 
     def get_img_urls(self):
-        return (
-            reverse('devhub.personas.upload_persona', args=['persona_header']),
-            reverse('devhub.personas.upload_persona', args=['persona_footer'])
-        )
+        return reverse('devhub.personas.upload_persona',
+                       args=['persona_header'])
 
     def test_img_attrs(self):
-        header_url, footer_url = self.get_img_urls()
+        header_url = self.get_img_urls()
 
         self.post()
         assert self.form.fields['header'].widget.attrs == (
-            {'data-allowed-types': 'image/jpeg|image/png',
+            {'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES,
              'data-upload-url': header_url})
-        assert self.form.fields['footer'].widget.attrs == (
-            {'data-allowed-types': 'image/jpeg|image/png',
-             'data-upload-url': footer_url})
 
     @mock.patch('olympia.addons.tasks.make_checksum')
     @mock.patch('olympia.addons.tasks.create_persona_preview_images')
@@ -414,17 +404,12 @@ class TestThemeForm(TestCase):
         self.request.user = UserProfile.objects.get(pk=2519)
 
         data = self.get_dict()
-        header_url, footer_url = self.get_img_urls()
+        header_url = self.get_img_urls()
 
         # Upload header image.
         img = open(get_image_path('persona-header.jpg'), 'rb')
         r_ajax = self.client.post(header_url, {'upload_image': img})
         data.update(header_hash=json.loads(r_ajax.content)['upload_hash'])
-
-        # Upload footer image.
-        img = open(get_image_path('persona-footer.jpg'), 'rb')
-        r_ajax = self.client.post(footer_url, {'upload_image': img})
-        data.update(footer_hash=json.loads(r_ajax.content)['upload_hash'])
 
         # Populate and save form.
         self.post()
@@ -453,19 +438,15 @@ class TestThemeForm(TestCase):
         assert len(v) == 1
         assert v[0].version == '0'
 
-        # Test for header, footer, and preview images.
+        # Test for header and preview images.
         dst = os.path.join(user_media_path('addons'), str(addon.id))
 
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
                                   u'b4ll1n')
-        footer_src = os.path.join(settings.TMP_PATH, 'persona_footer',
-                                  u'5w4g')
 
         assert save_persona_image_mock.mock_calls == (
             [mock.call(src=header_src,
-                       full_dst=os.path.join(dst, 'header.png')),
-             mock.call(src=footer_src,
-                       full_dst=os.path.join(dst, 'footer.png'))])
+                       full_dst=os.path.join(dst, 'header.png'))])
 
         create_persona_preview_images_mock.assert_called_with(
             src=header_src,
@@ -614,7 +595,7 @@ class TestEditThemeForm(TestCase):
                       create_persona_preview_images_mock,
                       make_checksum_mock):
         make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
-        data = self.get_dict(header_hash='y0l0', footer_hash='abab')
+        data = self.get_dict(header_hash='y0l0')
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
         assert self.form.is_valid()
@@ -623,19 +604,14 @@ class TestEditThemeForm(TestCase):
         dst = os.path.join(user_media_path('addons'), str(self.instance.id))
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
                                   u'y0l0')
-        footer_src = os.path.join(settings.TMP_PATH, 'persona_footer',
-                                  u'abab')
 
         assert save_persona_image_mock.mock_calls == (
             [mock.call(src=header_src,
-                       full_dst=os.path.join(dst, 'pending_header.png')),
-             mock.call(src=footer_src,
-                       full_dst=os.path.join(dst, 'pending_footer.png'))])
+                       full_dst=os.path.join(dst, 'pending_header.png'))])
 
         rqt = RereviewQueueTheme.objects.filter(theme=self.instance.persona)
         assert rqt.count() == 1
         assert rqt[0].header == 'pending_header.png'
-        assert rqt[0].footer == 'pending_footer.png'
         assert not rqt[0].dupe_persona
 
     @mock.patch('olympia.addons.tasks.create_persona_preview_images',
@@ -649,7 +625,7 @@ class TestEditThemeForm(TestCase):
         theme.persona.checksum = 'checksumbeforeyouwrecksome'
         theme.persona.save()
 
-        data = self.get_dict(header_hash='head', footer_hash='foot')
+        data = self.get_dict(header_hash='head')
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
         assert self.form.is_valid()
@@ -672,11 +648,13 @@ class TestEditThemeForm(TestCase):
         - On approving, it would see 'footer.png' !== 'leg.png'
         - It run move_stored_file('footer.png', 'leg.png').
         - But footer.png does not exist. BAM BUG.
+
+        Footer has been removed in Issue #5379
+        https://github.com/mozilla/addons-server/issues/5379
         """
         make_checksum_mock.return_value = 'comechecksome'
 
         self.theme.header = 'Legacy-header3H.png'
-        self.theme.footer = 'Legacy-footer3H-Copy.jpg'
         self.theme.save()
 
         data = self.get_dict(header_hash='arthro')
@@ -687,34 +665,6 @@ class TestEditThemeForm(TestCase):
 
         rqt = RereviewQueueTheme.objects.get()
         assert rqt.header == 'pending_header.png'
-        assert rqt.footer == 'Legacy-footer3H-Copy.jpg'
-
-    @mock.patch('olympia.addons.tasks.make_checksum')
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
-    @mock.patch('olympia.addons.tasks.save_persona_image')
-    def test_reupload_no_footer(self, save_persona_image_mock,
-                                create_persona_preview_images_mock,
-                                make_checksum_mock):
-        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
-        data = self.get_dict(header_hash='y0l0', footer_hash='')
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-        assert self.form.is_valid()
-        self.form.save()
-
-        dst = os.path.join(user_media_path('addons'), str(self.instance.id))
-        header_src = os.path.join(settings.TMP_PATH, 'persona_header',
-                                  u'y0l0')
-
-        assert save_persona_image_mock.mock_calls == (
-            [mock.call(src=header_src,
-                       full_dst=os.path.join(dst, 'pending_header.png'))])
-
-        rqt = RereviewQueueTheme.objects.filter(theme=self.instance.persona)
-        assert rqt.count() == 1
-        assert rqt[0].header == 'pending_header.png'
-        assert rqt[0].footer == ''
-        assert not rqt[0].dupe_persona
 
 
 class TestEditThemeOwnerForm(TestCase):

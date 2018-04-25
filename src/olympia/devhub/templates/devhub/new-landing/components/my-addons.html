@@ -21,12 +21,12 @@
   <div>
     <div class="DevHub-MyAddons-whatsnew-container">
       <div>
-        <h2>{{ _("What's New") }}</h2>
+        <h2>{{ _("Get Started") }}</h2>
       </div>
       <div>
         <p>
           {% trans %}
-            Ready to submit an add-on? Read our step-by-step tutorial on the submission process.
+            Ready to submit an extension? Read our step-by-step tutorial on the submission process.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/en-US/Add-ons/Distribution/Submitting_an_add-on/" class="Button">
@@ -36,11 +36,10 @@
       <div>
         <p>
           {% trans %}
-            There is a new, cross-browser standard for developing extensions in Firefox.
-            You'll need to update your legacy extensions to stay compatible.
+            Help users discover your extension by creating an appealing listing.
           {% endtrans %}
         </p>
-        <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on" class="Button">
+        <a href="https://developer.mozilla.org/Add-ons/Listing" class="Button">
           {{ _('Learn How') }}
         </a>
       </div>
@@ -121,7 +120,11 @@
         <a class="DevHub-MyAddons-item-buttons-all" href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
         <div class="DevHub-MyAddons-item-buttons-submit">
           <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Add-on') }}</a>
-          <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
+          {% if waffle.switch('disable-lwt-uploads') %}
+            <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Theme') }}</a>
+          {% else %}
+            <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
+          {% endif %}
         </div>
       </div>
     {% else %}
@@ -133,7 +136,11 @@
         {% endtrans %}
       </p>
       <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Add-on') }}</a>
-      <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
+      {% if waffle.switch('disable-lwt-uploads') %}
+          <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
+      {% else %}
+        <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
+      {% endif %}
     {% endif %}
   </div>
 </div>

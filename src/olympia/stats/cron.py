@@ -63,18 +63,6 @@ def update_global_totals(date=None):
     group(ts).apply_async()
 
 
-def update_google_analytics(date=None):
-    """
-    Update stats from Google Analytics.
-    """
-    if date:
-        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-    else:
-        # Assume that we want to populate yesterday's stats by default.
-        date = datetime.date.today() - datetime.timedelta(days=1)
-    tasks.update_google_analytics.delay(date=date)
-
-
 def index_latest_stats(index=None):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False

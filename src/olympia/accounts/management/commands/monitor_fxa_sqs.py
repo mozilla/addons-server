@@ -19,21 +19,12 @@ class Command(BaseCommand):
             '--queue',
             action='store',
             dest='queue_url',
-            default=settings.FXA_SQS_CONFIG['aws_queue_url'],
+            default=settings.FXA_SQS_AWS_QUEUE_URL,
             help='Monitor specified SQS queue, rather than default.')
-        parser.add_argument(
-            '--region',
-            action='store',
-            dest='aws_region',
-            default=settings.FXA_SQS_CONFIG['aws_region'],
-            help='Use specified AWS region, rather than default.')
 
     def handle(self, *args, **options):
         queue_url = options['queue_url']
-        aws_region = options['aws_region']
-
-        queue_wait_time = settings.FXA_SQS_CONFIG['wait_time']
         # Quieten boto - we don't need that much chatter in our logs
         logger.logging.getLogger('boto3').setLevel(logger.logging.WARNING)
         logger.logging.getLogger('botocore').setLevel(logger.logging.WARNING)
-        process_sqs_queue(queue_url, aws_region, queue_wait_time)
+        process_sqs_queue(queue_url)

@@ -73,8 +73,8 @@ class TestPublicUserProfileSerializer(TestCase):
 
     def test_picture(self):
         serial = self.serialize()
-        assert ('anon_user.png' in serial['picture_url'])
-        assert serial['picture_type'] == ''
+        assert serial['picture_url'] is None
+        assert serial['picture_type'] is None
         assert 'picture_upload' not in serial  # its a write only field.
 
         self.user.update(picture_type='image/jpeg')
@@ -97,7 +97,7 @@ class TestPublicUserProfileSerializer(TestCase):
         addon_factory(status=amo.STATUS_NULL, users=[self.user])
         data = self.serialize()
         assert data['num_addons_listed'] == 2  # only public addons.
-        assert data['average_addon_rating'] == '3.6'
+        assert data['average_addon_rating'] == 3.6
 
     def test_url_for_non_developers(self):
         result = self.serialize()

@@ -1,6 +1,5 @@
 import datetime
 
-from django.conf import settings
 from django.core.management import call_command
 
 import mock
@@ -60,27 +59,6 @@ class TestGlobalStats(TestCase):
                   datetime.datetime(2009, 1, 1, 11, 0)]:
             with self.assertRaises((TypeError, ValueError)):
                 tasks._get_daily_jobs(x)
-
-
-class TestGoogleAnalytics(TestCase):
-    @mock.patch.object(settings, 'GOOGLE_ANALYTICS_CREDENTIALS',
-                       {'access_token': '', 'client_id': '',
-                        'client_secret': '', 'refresh_token': '',
-                        'token_expiry': '', 'token_uri': '',
-                        'user_agent': ''}, create=True)
-    @mock.patch('httplib2.Http')
-    @mock.patch('olympia.stats.tasks.get_profile_id')
-    @mock.patch('olympia.stats.tasks.build')
-    def test_ask_google(self, build, gpi, http):
-        gpi.return_value = '1'
-        d = '2012-01-01'
-        get = build('analytics', 'v3', http=http).data().ga().get(
-            metrics='ga:visits', ids='ga:1',
-            start_date=d, end_date=d)
-        get.execute.return_value = {'rows': [[49]]}
-        cron.update_google_analytics(d)
-        assert GlobalStat.objects.get(
-            name='webtrends_DailyVisitors', date=d).count == 49
 
 
 @mock.patch('olympia.stats.management.commands.index_stats.create_subtasks')

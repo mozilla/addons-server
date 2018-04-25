@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
-from django.utils.functional import lazy
-
 # Make sure the app needed to test translations is present.
-INSTALLED_APPS += TEST_INSTALLED_APPS
+INSTALLED_APPS += (
+    'olympia.translations.tests.testapp',
+)
+# Make sure the debug toolbar isn't used during the tests.
+INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
@@ -37,18 +39,22 @@ CACHE_COUNT_TIMEOUT = -1
 # until we're sure the deadlock issues are fixed.
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        # `CacheStatTracker` is required for `assert_cache_requests` to work
+        # properly
+        'BACKEND': 'olympia.amo.cache_nuggets.CacheStatTracker',
         'LOCATION': 'olympia',
+        'OPTIONS': {
+            'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
+    },
+    'filesystem': {  # In real settings it's a filesystem cache, not here.
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'olympia-filesystem',
     }
 }
 
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
-
-ALLOW_SELF_REVIEWS = True
-
-# Make sure the debug toolbar isn't used during the tests.
-INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
 TASK_USER_ID = 1337
 
@@ -56,9 +62,6 @@ TASK_USER_ID = 1337
 # search scoring
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 1
-
-# Ensure that exceptions aren't re-raised.
-DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

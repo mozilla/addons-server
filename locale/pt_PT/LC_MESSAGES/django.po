@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-28 15:01+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 11:06+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -35,6 +35,9 @@ msgstr "Este nome de utilizador já está a ser utilizado."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser ou PNG ou JPG."
+
+msgid "Images cannot be animated."
+msgstr "As imagens não podem ser animadas."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -74,10 +77,10 @@ msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
 
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 msgid "Download"
-msgstr "Transferir"
+msgstr "Descarregar"
 
 msgid "Featured"
 msgstr "Em destaque"
@@ -254,8 +257,8 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s transferência semanal"
-msgstr[1] "%(num)s transferências semanais"
+msgstr[0] "%(num)s descarga semanal"
+msgstr[1] "%(num)s descargas semanais"
 
 #, python-format
 msgid "%(num)s user"
@@ -276,7 +279,7 @@ msgstr "Compatível com o Firefox 57+"
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} transferência semanal"
-msgstr[1] "{0} descargas semanais"
+msgstr[1] "{0} transferências semanais"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -450,7 +453,7 @@ msgid "by %(users)s"
 msgstr "por %(users)s"
 
 msgid "Download Anyway"
-msgstr "Transferir mesmo assim"
+msgstr "Descarregar mesmo assim"
 
 msgid "[Warning]"
 msgstr "[Aviso]"
@@ -665,7 +668,7 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> transferência semanal"
+msgstr[0] "<strong>{0}</strong> descarga semanal"
 msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 msgid "Not Reviewed"
@@ -1008,8 +1011,14 @@ msgstr "Este url já está a ser utilizado por outra coleção"
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser PNG ou JPG."
 
+msgid "Icons cannot be animated."
+msgstr "Os ícones não podem ser animados."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Este URL personalizado já está a ser utilizado por uma outra coleção sua."
+
+msgid "Name cannot be empty."
+msgstr "O nome não pode estar vazio."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "O URL personalizado deve ser constituído por letras, números, traços inferiores ou hífenes."
@@ -1442,7 +1451,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Transferências semanais"
+msgstr "Descargas semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1454,7 +1463,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Transferências"
+msgstr "Descargas"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1478,10 +1487,10 @@ msgid "Install Language Pack"
 msgstr "Instalar pacote de idioma"
 
 msgid "Download Dictionary"
-msgstr "Transferir dicionário"
+msgstr "Descarregar dicionário"
 
 msgid "Download Language Pack"
-msgstr "Transferir pacote de idioma"
+msgstr "Descarregar pacote de idioma"
 
 #, python-format
 msgid ""
@@ -1561,7 +1570,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por transferências semanais"
+msgstr "Extensões por descargas semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1587,7 +1596,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por transferências semanais"
+msgstr "Temas completos por descargas semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -1997,14 +2006,17 @@ msgstr "{addon} {version} conteúdo rejeitado."
 msgid "Content rejected"
 msgstr "Conteúdo rejeitado"
 
-msgid "{addon} information request removed."
-msgstr "Solicitação de informação removida de {addon}."
+msgid "{addon} information request altered or removed by admin."
+msgstr "Solicitação de informação alterada ou removida para {addon} pelo admin."
 
-msgid "Information request removed"
-msgstr "Solicitação de informação removida"
+msgid "Information request altered"
+msgstr "Solicitação de informação alterada"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Solicitação de informação limpa pelo programador em {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Solicitação de informação removida"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2128,7 +2140,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de transferências"
+msgstr "Gestão de descargas"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2305,7 +2317,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Gestão de transferências e de ficheiros"
+msgstr "Descargas e gestão de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -2370,8 +2382,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "App"
+msgid "Static Theme"
+msgstr "Tema estático"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2408,6 +2420,9 @@ msgstr "Análise atualizada do pacote de idioma"
 
 msgid "Theme Review"
 msgstr "Análise do tema"
+
+msgid "Theme (Static) Review"
+msgstr "Revisão de tema (estático)"
 
 msgid "New Search Provider Review"
 msgstr "Nova revisão de mecanismo de pesquisa"
@@ -2727,12 +2742,6 @@ msgstr "Não pode submeter um extra com um guid que acabe em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Não pode submeter uma extensão assinada pela Mozilla"
 
-msgid "Icons cannot be animated."
-msgstr "Os ícones não podem ser animados."
-
-msgid "Images cannot be animated."
-msgstr "As imagens não podem ser animadas."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "As imagens não podem ser maiores que %dKB."
@@ -2964,6 +2973,15 @@ msgstr "Editar informação"
 msgid "None"
 msgstr "Nenhum"
 
+msgid "Preview"
+msgstr "Pré-visualizar"
+
+msgid "Preview of listed version"
+msgstr "Pré-visualização da versão listada"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Pré-visualização ainda a ser gerada - volte mais tarde ou atualize a página."
+
 msgid "Manage Authors & License"
 msgstr "Gerir autores e licença"
 
@@ -3163,7 +3181,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de transferências e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3363,7 +3381,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre transferências e utilizadores."
+msgstr "Estatísticas diárias sobre descargas e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3510,6 +3528,9 @@ msgstr "Está feito!"
 msgid "Version Submitted for Review"
 msgstr "Versão submetida para revisão"
 
+msgid "Preview of the version submitted"
+msgstr "Pré-visualização da versão submetida"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Está pronto! Esta versão irá estar disponível após passar a revisão. Irá ser notificado(a) quando estiver revista."
 
@@ -3541,7 +3562,7 @@ msgid "File Signed"
 msgstr "Ficheiro assinado"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode transferi-lo clicando no botão abaixo."
+msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
 
 msgid "Version Signed"
 msgstr "Versão assinada"
@@ -3550,7 +3571,7 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode transferi-la clicando no botão abaixo."
 
 msgid "Download {0}"
-msgstr "Transferir {0}"
+msgstr "Descarregar {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Selecionou apenas algumas das plataformas disponíveis para esta submissão.Pode carregar mais ficheiros, indicados outras plataformas:"
@@ -3647,8 +3668,8 @@ msgstr "Fundo da área da barra de ferramentas"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "A cor do fundo para a barra de navegação, a barra de marcadores e o separador selecionado.  Campo do manifesto:  toolbar."
 
-msgid "Toolbar area text icons"
-msgstr "Ícones de texto da área da barra de ferramentas"
+msgid "Toolbar area text and icons"
+msgstr "Texto e ícones da área da barra de ferramentas"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "A cor do texto e ícones na barra de ferramentas e no separador ativo. Campo do manifesto:  toolbar_text."
@@ -3972,14 +3993,17 @@ msgstr "Existe um standard novo e \"cross-browser\" para programar extensões no
 msgid "Learn How"
 msgstr "Saber mais"
 
-msgid "What's New"
-msgstr "Novidades"
+msgid "Get Started"
+msgstr "Começar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Pronto(a) para submeter um extra? Leia o nosso tutorial passo-a-passo sobre o processo de submissão."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Pronto(a) para submeter uma extensão? Leia o nosso tutorial passo-a-passo sobre o processo de submissão."
 
 msgid "See Tutorial"
 msgstr "Ver tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Ajude os utilizadores a descobrir a sua extensão ao criar uma listagem atraente."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4129,17 +4153,11 @@ msgstr "O seu design anteriormente resubmetido e que aguarda revisão."
 msgid "Pending Header"
 msgstr "Cabeçalho em espera"
 
-msgid "Pending Footer"
-msgstr "Rodapé em espera"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Pode atualizar aqui o design do seu tema após este ter sido aprovado."
 
 msgid "Header"
 msgstr "Cabeçalho"
-
-msgid "Footer"
-msgstr "Rodapé"
 
 msgid "Select colors for your Theme."
 msgstr "Selecione as cores para o seu tema."
@@ -4155,9 +4173,6 @@ msgstr "Fundo"
 
 msgid "This is the color of the tabs."
 msgstr "Esta é a cor dos separadores."
-
-msgid "Preview"
-msgstr "Pré-visualizar"
 
 msgid "Your Theme's Name"
 msgstr "Nome do seu tema"
@@ -4220,19 +4235,6 @@ msgstr "300 KB máx"
 
 msgid "PNG or JPG"
 msgstr "PNG ou JPG"
-
-# 82%
-msgid "Select a footer image for your Theme."
-msgstr "Selecione uma imagem para o rodapé do seu tema."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pixéis"
-
-msgid "Aligned to bottom-left"
-msgstr "Alinhado em baixo à esquerda"
-
-msgid "Select a different footer image"
-msgstr "Selecione uma imagem de rodapé diferente"
 
 msgid "Manage Version {0}"
 msgstr "Gerir versão {0}"
@@ -4423,29 +4425,32 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traduza facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Destaque qualquer texto, clique com o lado direito, e traduza instantaneamente."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isole a sua identidade do Facebook num \"contentor\" separado que faz mais difícil com que o Facebook monitorize os seus movimentos à volta da web."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pesquisa inversa de imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Simplifique a pesquisa {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Viu uma imagem interessante na Web e deseja saber mais acerca da mesma? Experimente esta ferramenta de pesquisa de imagens."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Apenas destaque texto em qualquer página web para pesquisar a frase a partir de uma matriz de motores."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloqueio de anúncios e proteção de privacidade {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Uma simples configuração permite-lhe tomar controlo dos anúncios que vê e como é monitorizado(a) na internet."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Re-imagine os separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Tem uma tonelada de separadores abertos? Organize-os numa barra lateral arrumada."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de outros sites de vídeo."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
+msgstr "Descarregar vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funciona perfeitamente com os sites de vídeo mais populares."
@@ -4637,7 +4642,7 @@ msgid "Problems decoding {0}."
 msgstr "Problemas ao decodificar {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Este ficheiro não é visível online. Por favor, transfira o ficheiro para ver o conteúdo."
+msgstr "Este ficheiro não é visível online. Por favor, descarregue o ficheiro para ver o conteúdo."
 
 msgid "This file is a directory."
 msgstr "Este ficheiro é uma directoria."
@@ -4777,7 +4782,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Obrigado por usar o %(app)s e ajudar a <a href=\"%(url)s\">missão da Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Extras transferidos:"
+msgstr "Extras descarregados:"
 
 msgid "View Privacy Policy"
 msgstr "Ver Política de privacidade"
@@ -4799,9 +4804,6 @@ msgstr "Torne-se um piloto de testes"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Desbloqueie o acesso antecipado a funcionalidades experimentais do navegador."
-
-msgid "Get Started"
-msgstr "Começar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos Extras da Mozilla"
@@ -5076,9 +5078,9 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir compatibilidade com o software da Mozilla mais recente, é importante transferir atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda funciona"
-" como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no "
-"processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
+"Para garantir compatibilidade com o software da Mozilla mais recente, é importante descarregar atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda "
+"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente "
+"no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu extra. Onde eu posso encontrar ajuda?"
@@ -5321,8 +5323,8 @@ msgstr "Relatório de erro mal colocado ou pedido de apoio"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Outro (providencia uma solicitação pop-up para mais informação)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Atualmente, o AMO não fornece um mecanismo de comunicação direta com um autor de análise de utilizador."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
+msgstr "Atualmente, o AMO não fornece um mecanismo para comunicar diretamente com o autor de uma análise de utilizador."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Eu posso solicitar que uma análise seja removida caso ela seja negativa?"
@@ -5931,7 +5933,7 @@ msgstr "Não pode deixar uma análise no seu próprio extra."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Esta avaliação não pode ser marcada porque não possui texto de análise."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6076,15 +6078,6 @@ msgstr "e"
 msgid "Filter by type/action"
 msgstr "Filtro por tipo/ação"
 
-msgid "Passed automatic validation"
-msgstr "Passou a validação automática"
-
-msgid "Failed automatic validation"
-msgstr "Falhou a validação automática"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrado por validação automática"
-
 msgid "containing"
 msgstr "contendo"
 
@@ -6159,6 +6152,9 @@ msgstr "Saltar por agora"
 
 msgid "Needs Admin Content Review"
 msgstr "Precisa de revisão de conteúdo de administrador"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Precisa de revisão de tema estático de administrador"
 
 msgid "Jetpack Add-on"
 msgstr "Extra Jetpack"
@@ -6286,29 +6282,41 @@ msgstr "Aprovar conteúdo"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Isto grava a sua aprovação do conteúdo da última versão pública, sem notificar o programador."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Temas estáticos e extras de legado"
+
+msgid "Static Themes"
+msgstr "Temas estáticos"
+
 msgid "Legacy Add-ons"
 msgstr "Extras de legado"
 
-msgid "New Add-ons ({0})"
-msgstr "Novos extras ({0})"
+msgid "New ({0})"
+msgstr "Novo ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Atualizações de extra ({0})"
+msgid "Updates ({0})"
+msgstr "Atualizações ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Registo da revisão do extra"
+msgid "Review Log"
+msgstr "Registo de revisão"
 
-msgid "Signed Beta Files Log"
-msgstr "Registo de ficheiros beta assinados"
+msgid "Add-on Review Guide"
+msgstr "Guia de revisão de extra"
 
-msgid "Review Guide"
-msgstr "Guia de análise"
+msgid "Theme Review Guide"
+msgstr "Guia de revisão de tema"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extras aprovados automaticamente"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Extra aprovado automaticamente ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Registo da revisão do extra"
+
+msgid "Review Guide"
+msgstr "Guia de análise"
 
 msgid "Content Review"
 msgstr "Revisão de conteúdo"
@@ -6327,8 +6335,8 @@ msgstr "Atualizações de temas ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Temas marcados ({0})"
 
-msgid "Themes Review Log"
-msgstr "Registo de revisões de temas"
+msgid "Lightweight Themes Review Log"
+msgstr "Registo de revisão de temas leves"
 
 msgid "Deleted Themes Log"
 msgstr "Registo de temas eliminados"
@@ -6357,8 +6365,8 @@ msgstr "Anúncio"
 msgid "Update message of the day"
 msgstr "Atualizar mensagem do dia"
 
-msgid "Add-ons with expired information requests"
-msgstr "Extras com solicitações de informação expiradas"
+msgid "Expired Information Requests ({0})"
+msgstr "Solicitações de informação expiradas ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
@@ -6418,6 +6426,15 @@ msgstr "Denúncias de abuso ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Más análises de utilizador ({num})"
 
+msgid "Theme Images"
+msgstr "Imagens do tema"
+
+msgid "Rendered Preview"
+msgstr "Pré-visualização renderizada"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Ficheiro de fundo {0} de {1} - {2}"
+
 msgid "More about this add-on"
 msgstr "Mais acerca deste extra"
 
@@ -6429,6 +6446,18 @@ msgstr "Nada a mostrar aqui! O programador não incluiu quaisquer detalhes."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Regressar ao painel de controlo das ferramentas do revisor"
+
+msgid "Reviewer Leaderboard"
+msgstr "Tabela de classificações dos revisores"
+
+msgid "No review points awarded yet."
+msgstr "Nenhum ponto recebido ainda."
+
+msgid "Rank"
+msgstr "Classificação"
+
+msgid "Score"
+msgstr "Pontuação"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6470,18 +6499,6 @@ msgstr "A revisão foi marcada antes da eliminação."
 
 msgid "Undelete"
 msgstr "Cancelar eliminação"
-
-msgid "Reviewer Leaderboard"
-msgstr "Tabela de classificações dos revisores"
-
-msgid "No review points awarded yet."
-msgstr "Nenhum ponto recebido ainda."
-
-msgid "Rank"
-msgstr "Classificação"
-
-msgid "Score"
-msgstr "Pontuação"
 
 msgid "Save"
 msgstr "Guardar"
@@ -6595,7 +6612,7 @@ msgid "Additional sources:"
 msgstr "Fontes adicionais:"
 
 msgid "Download files"
-msgstr "Transferir ficheiros"
+msgstr "Descarregar ficheiros"
 
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
@@ -6662,6 +6679,9 @@ msgstr "Limpar etiqueta de revisão de código de administrador"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Limpar etiqueta de revisão de conteúdo de administrador"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Limpar etiqueta de revisão de tema estático de administrador"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6865,25 +6885,25 @@ msgstr "Rejeitado ou não revisto"
 msgid "[status:%s]"
 msgstr "[estado:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Novo extra ({0})"
-msgstr[1] "Novos extras ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Atualização ({0})"
 msgstr[1] "Atualizações ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Revisão moderada ({0})"
-msgstr[1] "Revisões moderadas ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Revisão de avaliação ({0})"
+msgstr[1] "Revisões de avaliações ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Extra aprovado automaticamente ({0})"
-msgstr[1] "Extras aprovados automaticamente ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Aprovado automaticamente ({0})"
+msgstr[1] "Aprovados automaticamente ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Solicitação de informação expirada ({0})"
+msgstr[1] "Solicitações de informação expiradas ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"
@@ -7210,14 +7230,14 @@ msgid "Downloaded by Date"
 msgstr "Transferidos por data"
 
 msgid "How are downloads counted?"
-msgstr "Como é que as transferências são contabilizadas?"
+msgstr "Como é que as descargas são contabilizadas?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Como é que as transferências são contabilizadas?</h2> <p> O número de transferências é atualizado todas as noites e inclui apenas transferências originais de extras, e não atualizações. As "
-"transferências podem ser decompostas pela fonte específica que referenciou a transferência. </p>"
+"<h2>Como é que as descargas são contabilizadas?</h2> <p> O número de descargas é atualizado todas as noites e apenas inclui descargas originais de extras e não atualizações. As descargas podem ser "
+"decompostas pela fonte específica que referenciou a descarga. </p>"
 
 msgid "User languages by Date"
 msgstr "Idiomas de utilizador por data"
@@ -7226,7 +7246,7 @@ msgid "Platform usage by Date"
 msgstr "Utilização da plataforma por data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> Transferências"
+msgstr "<b>{0}</b> descargas"
 
 msgid "Loading..."
 msgstr "A carregar..."
@@ -7259,7 +7279,7 @@ msgid "Reviews Created by Date"
 msgstr "Análise criadas por data"
 
 msgid "Download sources by Date"
-msgstr "Fonte das transferências por data"
+msgstr "Fonte das descargas por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
@@ -7355,7 +7375,7 @@ msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>extras</b>"
 
 msgid "Download Firefox"
-msgstr "Transferir o Firefox"
+msgstr "Descarregar o Firefox"
 
 msgid "Android Browser"
 msgstr "Navegador para Android"

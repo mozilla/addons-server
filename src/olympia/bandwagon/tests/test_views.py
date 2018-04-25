@@ -1397,10 +1397,13 @@ class TestCollectionViewSetDetail(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': self.collection.slug})
+        self.url = self._get_url(self.user, self.collection)
         super(TestCollectionViewSetDetail, self).setUp()
+
+    def _get_url(self, user, collection):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': collection.slug})
 
     def test_basic(self):
         response = self.client.get(self.url)
@@ -1434,9 +1437,7 @@ class TestCollectionViewSetDetail(TestCase):
 
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
-        response = self.client.get(
-            reverse('collection-detail', kwargs={'user_pk': random_user.pk,
-                                                 'slug': collection.slug}))
+        response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 200
         assert response.data['id'] == collection.id
 
@@ -1485,7 +1486,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
-        patched_drf_setting = settings.REST_FRAMEWORK
+        patched_drf_setting = dict(settings.REST_FRAMEWORK)
         patched_drf_setting['PAGE_SIZE'] = 3
         with django.test.override_settings(REST_FRAMEWORK=patched_drf_setting):
             response = self.client.get(self.url + '?with_addons')
@@ -1510,6 +1511,25 @@ class TestCollectionViewSetDetail(TestCase):
         assert isinstance(addon_data['support_url'], basestring)
         assert addon_data['support_url'] == get_outgoing_url(
             unicode(addon.support_url))
+
+
+class TestCollectionViewSetDetailWithId(TestCollectionViewSetDetail):
+    def _get_url(self, user, collection):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': collection.id})
+
+    def test_404(self):
+        # Invalid user.
+        response = self.client.get(reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk + 66, 'slug': self.collection.id}))
+        assert response.status_code == 404
+        # Invalid collection.
+        response = self.client.get(reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': '123456'}))
+        assert response.status_code == 404
 
 
 class CollectionViewSetDataMixin(object):
@@ -1553,6 +1573,22 @@ class CollectionViewSetDataMixin(object):
     def test_no_auth(self):
         response = self.send()
         assert response.status_code == 401
+
+    def test_update_name_invalid(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(name=u'   ')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['Name cannot be empty.']}
+
+        # Passing a dict of localised values
+        data.update(name={'en-US': u'   '})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['Name cannot be empty.']}
 
     def test_biography_no_links(self):
         self.client.login_api(self.user)
@@ -1713,16 +1749,26 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 403
 
 
+class TestCollectionViewSetPatchWithId(TestCollectionViewSetPatch):
+    def get_url(self, user):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': self.collection.id})
+
+
 class TestCollectionViewSetDelete(TestCase):
     client_class = APITestClient
 
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': self.collection.slug})
+        self.url = self.get_url(self.user)
         super(TestCollectionViewSetDelete, self).setUp()
+
+    def get_url(self, user):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_delete(self):
         self.client.login_api(self.user)
@@ -1738,9 +1784,7 @@ class TestCollectionViewSetDelete(TestCase):
         self.client.login_api(self.user)
         different_user = user_factory()
         self.collection.update(author=different_user)
-        url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': different_user.pk, 'slug': self.collection.slug})
+        url = self.get_url(different_user)
         response = self.client.delete(url)
         assert response.status_code == 403
 
@@ -1749,9 +1793,7 @@ class TestCollectionViewSetDelete(TestCase):
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
-        url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': random_user.pk, 'slug': self.collection.slug})
+        url = self.get_url(random_user)
         response = self.client.delete(url)
         assert response.status_code == 204
         assert not Collection.objects.filter(id=self.collection.id).exists()
@@ -1762,15 +1804,20 @@ class TestCollectionViewSetDelete(TestCase):
         self.collection.update(author=different_user)
         CollectionUser.objects.create(collection=self.collection,
                                       user=self.user)
-        url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': different_user.pk, 'slug': self.collection.slug})
+        url = self.get_url(different_user)
         # Check setup is good and we can access the collection okay.
         get_response = self.client.get(url)
         assert get_response.status_code == 200
         # But can't delete it.
         response = self.client.delete(url)
         assert response.status_code == 403
+
+
+class TestCollectionViewSetDeleteWithId(TestCollectionViewSetDelete):
+    def get_url(self, user):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': self.collection.id})
 
 
 class CollectionAddonViewSetMixin(object):

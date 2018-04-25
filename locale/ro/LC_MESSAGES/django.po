@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-09 23:25+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-06 15:06+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -34,6 +34,9 @@ msgid "This username is already in use."
 msgstr "Acest nume de utilizator este deja folosit."
 
 msgid "Images must be either PNG or JPG."
+msgstr ""
+
+msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -339,7 +342,7 @@ msgid "Rejected"
 msgstr ""
 
 msgid "Approved"
-msgstr ""
+msgstr "Aprobat"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -471,9 +474,8 @@ msgstr "Descarcă oricum"
 msgid "[Warning]"
 msgstr "{0} avertisment"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Versiuni"
+msgstr "Permisiuni"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Acest supliment a fost marcat ca experimental de către dezvoltatorii săi"
@@ -601,7 +603,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "Acest supliment poate:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -771,9 +773,8 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Suplimente pentru {0}"
+msgstr "Pagina de start a suplimentelor"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -934,7 +935,7 @@ msgid "Error decoding signature."
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Indicativ JWT nevalid."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -1023,8 +1024,15 @@ msgstr ""
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
+msgid "Icons cannot be animated."
+msgstr ""
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Acest nume te utilizator nu poate fi folosit."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1091,7 +1099,7 @@ msgid "Name:"
 msgstr "Nume:"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(opțional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1917,7 +1925,7 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Aprobat, însă în așteptare"
 
 msgid "Account updated."
 msgstr ""
@@ -2011,7 +2019,7 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "Conţinut aprobat"
 
 msgid "{addon} {version} content rejected."
 msgstr ""
@@ -2019,15 +2027,20 @@ msgstr ""
 msgid "Content rejected"
 msgstr ""
 
-msgid "{addon} information request removed."
+#, fuzzy
+msgid "{addon} information request altered or removed by admin."
+msgstr "Review"
+
+#, fuzzy
+msgid "Information request altered"
+msgstr "Review"
+
+msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
 #, fuzzy
 msgid "Information request removed"
 msgstr "Review"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2399,8 +2412,9 @@ msgstr ""
 msgid "Android"
 msgstr ""
 
-msgid "App"
-msgstr ""
+#, fuzzy
+msgid "Static Theme"
+msgstr "Următoarea temă"
 
 msgid "Persona"
 msgstr ""
@@ -2441,6 +2455,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr ""
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Șterge recenzia"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2727,7 +2745,7 @@ msgid "Theme deleted."
 msgstr ""
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Supliment șters."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -2758,12 +2776,6 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
@@ -2871,7 +2883,7 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunitate și suport"
 
 msgid "Add-ons Blog"
 msgstr ""
@@ -2918,11 +2930,11 @@ msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Activitate recentă pentru suplimentele mele"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Activitate recentă pentru {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2938,7 +2950,7 @@ msgid "Activity"
 msgstr ""
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Abonează-te la acest flux"
 
 #, python-format
 msgid ""
@@ -2990,15 +3002,24 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "Developer Information"
+msgstr "Editează informaţille"
 
 msgid "None"
 msgstr ""
 
-msgid "Manage Authors & License"
+msgid "Preview"
 msgstr ""
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Versiunile listate"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
+msgid "Manage Authors & License"
+msgstr "Gestionează autorii și licența"
 
 msgid "Authors"
 msgstr "Autori"
@@ -3331,7 +3352,7 @@ msgid "Delete Theme"
 msgstr ""
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Șterge suplimentul"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3342,16 +3363,16 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Introdu următorul text pentru a confirma decizia: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr ""
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Te rugăm să ne spui de ce îți ștergi suplimentul:"
 
 msgid "Actions"
-msgstr ""
+msgstr "Acțiuni"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3369,7 +3390,7 @@ msgid "Edit information about this add-on."
 msgstr "Editează informațiile despre acest supliment."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Încarcă o versiune nouă a acestui supliment."
 
 msgid "New Version"
 msgstr "Versiune nouă"
@@ -3382,13 +3403,13 @@ msgid "Statistics"
 msgstr "Statistics"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Gestionează starea și versiunile"
 
 msgid "View Add-on Listing"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vezi schimbările recente"
 
 msgid "Edit details about this theme's listing."
 msgstr ""
@@ -3415,7 +3436,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Acest supliment nu are nicio versiune."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3531,6 +3552,10 @@ msgstr ""
 
 msgid "Version Submitted for Review"
 msgstr ""
+
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Versiune"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -3677,7 +3702,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -3696,7 +3721,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "optional"
-msgstr ""
+msgstr "opțional"
 
 #, fuzzy
 msgid "Browser preview"
@@ -3806,7 +3831,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Ultima versiune:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3900,7 +3925,7 @@ msgid "Porting"
 msgstr ""
 
 msgid "Community"
-msgstr ""
+msgstr "Comunitate"
 
 msgid "About"
 msgstr ""
@@ -4000,13 +4025,16 @@ msgstr ""
 msgid "Learn How"
 msgstr "Află mai multe"
 
-msgid "What's New"
+msgid "Get Started"
 msgstr ""
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
+msgstr ""
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4091,7 +4119,7 @@ msgid "Transfer ownership"
 msgstr ""
 
 msgid "Theme Details"
-msgstr ""
+msgstr "Detaliile temei"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4150,16 +4178,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4175,9 +4197,6 @@ msgid "Background"
 msgstr ""
 
 msgid "This is the color of the tabs."
-msgstr ""
-
-msgid "Preview"
 msgstr ""
 
 msgid "Your Theme's Name"
@@ -4237,18 +4256,6 @@ msgid "300 KB max"
 msgstr ""
 
 msgid "PNG or JPG"
-msgstr ""
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr ""
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4379,7 +4386,7 @@ msgid "All versions"
 msgstr "Toate versiunile"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Încarcă o versiune nouă"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -4441,43 +4448,45 @@ msgstr[1] "{0} avertismente"
 msgstr[2] "{0} de avertismente"
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește videoclipurile {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #, fuzzy
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+#, fuzzy
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește videoclipurile {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Zeci de emojiuri uimitoare—mereu la un clic distanță."
+msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
@@ -4485,9 +4494,8 @@ msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Zeci de emojiuri uimitoare—mereu la un clic distanță."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Realizează capturi de ecran {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4819,9 +4827,6 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -5275,7 +5280,7 @@ msgstr "Raport de defect sau cerere de asistență amplasate greșit"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5805,7 +5810,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -5934,7 +5939,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Evaluată cu %(rating)s din 5 stele"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Recenzii aprobate"
 
 msgid "Deleted reviews"
 msgstr ""
@@ -5946,15 +5951,6 @@ msgid "and"
 msgstr ""
 
 msgid "Filter by type/action"
-msgstr ""
-
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
 msgstr ""
 
 msgid "containing"
@@ -6032,6 +6028,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Needs Admin Content Review"
+msgstr "Review"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
 msgstr "Review"
 
 msgid "Jetpack Add-on"
@@ -6165,27 +6165,38 @@ msgstr ""
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Suplimente obsolete"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Temele mele"
+
 msgid "Legacy Add-ons"
 msgstr "Suplimente obsolete"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-msgid "New Add-ons ({0})"
-msgstr "Suplimente noi ({0})"
+#, fuzzy
+msgid "New ({0})"
+msgstr "Suplimente pentru {0}"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
+msgid "Updates ({0})"
 msgstr "Actualizat"
 
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
+#, fuzzy
+msgid "Review Log"
+msgstr "Review"
 
 #, fuzzy
-msgid "Review Guide"
+msgid "Add-on Review Guide"
+msgstr "Review"
+
+#, fuzzy
+msgid "Theme Review Guide"
 msgstr "Ghid pentru recenzii"
 
 #, fuzzy
@@ -6198,6 +6209,13 @@ msgstr "Ce sunt suplimentele?"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Suplimente pentru {0}"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Ghid pentru recenzii"
 
 #, fuzzy
 msgid "Content Review"
@@ -6224,7 +6242,7 @@ msgid "Flagged Themes ({0})"
 msgstr ""
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "Șterge recenzia"
 
 msgid "Deleted Themes Log"
@@ -6256,8 +6274,9 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "Developer Information"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6315,9 +6334,19 @@ msgstr "Ultima actualizare"
 msgid "Abuse Reports ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Recenzii proaste ale utilizatorilor ({num})"
+
+#, fuzzy
+msgid "Theme Images"
+msgstr "Teme"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Șterge recenzia"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
 
 msgid "More about this add-on"
 msgstr "Mai multe despre acest supliment"
@@ -6333,6 +6362,18 @@ msgstr ""
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Înapoi la pagina de start a suplimentelor {0}"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6374,18 +6415,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
 msgstr ""
 
 msgid "Save"
@@ -6446,7 +6475,7 @@ msgid "Process Reviews"
 msgstr ""
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Acțiuni de moderare:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -6543,9 +6572,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Mai multe acțiuni:"
+msgstr "Mai multe acțiuni"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -6572,6 +6600,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Review"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Review"
 
 msgid "(admin)"
@@ -6620,9 +6652,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Versiuni"
+msgstr "Permisiuni:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6776,15 +6807,6 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Supliment nou ({0})"
-msgstr[1] "Suplimente noi ({0})"
-msgstr[2] "Suplimente noi ({0})"
-
 #, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
@@ -6792,21 +6814,29 @@ msgstr[0] "Actualizat"
 msgstr[1] "Actualizat"
 msgstr[2] "Actualizat"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Review"
+msgstr[1] "Review"
+msgstr[2] "Review"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Suplimente pentru {0}"
 msgstr[1] "Suplimente pentru {0}"
 msgstr[2] "Suplimente pentru {0}"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Developer Information"
+msgstr[1] "Developer Information"
+msgstr[2] "Developer Information"
 
 msgid "Flagged"
 msgstr ""
@@ -7381,7 +7411,7 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Acest URL are un format invalid. URL-urile valide arată ca http://exemplu.ro/pagina_mea."
+msgstr "Acest URL are un format nevalid. URL-urile valide arată ca http://exemplu.ro/pagina_mea."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
@@ -7583,7 +7613,7 @@ msgid "User Info for {0}"
 msgstr "Informații privind utilizatorul {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Editează profilul"
 
 msgid "Manage user"
 msgstr ""

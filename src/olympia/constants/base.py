@@ -12,7 +12,7 @@ STATUS_NOMINATED = 3  # Waiting for review.
 STATUS_PUBLIC = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7  # Beta file, only available on approved add-ons.
+_STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
@@ -42,7 +42,6 @@ STATUS_CHOICES_FILE = {
     STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
     STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_BETA: _(u'Beta'),
 }
 
 # We need to expose nice values that aren't localisable.
@@ -53,7 +52,6 @@ STATUS_CHOICES_API = {
     STATUS_NOMINATED: 'nominated',
     STATUS_PUBLIC: 'public',
     STATUS_DISABLED: 'disabled',
-    STATUS_BETA: 'beta',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_REVIEW_PENDING: 'review-pending',
@@ -66,7 +64,6 @@ STATUS_CHOICES_API_LOOKUP = {
     'nominated': STATUS_NOMINATED,
     'public': STATUS_PUBLIC,
     'disabled': STATUS_DISABLED,
-    'beta': STATUS_BETA,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
@@ -76,7 +73,7 @@ REVIEWED_STATUSES = (STATUS_PUBLIC,)
 UNREVIEWED_ADDON_STATUSES = (STATUS_NOMINATED,)
 UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
-VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC, STATUS_BETA)
+VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC)
 
 # Version channels
 RELEASE_CHANNEL_UNLISTED = 1
@@ -221,8 +218,13 @@ MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 VALID_CONTRIBUTION_DOMAINS = (
-    'donate.mozilla.org', 'micropayment.de', 'patreon.com', 'paypal.com',
-    'paypal.me',
+    'donate.mozilla.org',
+    'liberapay.com',
+    'micropayment.de',
+    'opencollective.com',
+    'patreon.com',
+    'paypal.com',
+    'paypal.me'
 )
 
 # Icon upload sizes
@@ -241,8 +243,11 @@ PERSONA_IMAGE_SIZES = {
 }
 
 # Accepted image MIME-types
-IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
+IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
+
+# The string concatinating all accepted image MIME-types with '|'
+SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
@@ -361,10 +366,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "ending_tier": 5,
 }
 
-VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
-                              (([\.-]\d)?\d*)         # followed by nothing
-                              $                       # or 123 or .123 or -123
-                              """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Types of SiteEvent
@@ -435,3 +436,32 @@ ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
 
 DISCO_API_ALLOWED_PARAMETERS = (
     'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
+
+# If you add/remove any sources, update the docs: /api/download_sources.html
+# Note there are some additional sources here for historical/backwards compat.
+DOWNLOAD_SOURCES_FULL = (
+    'addondetail', 'addon-detail-version', 'api', 'category', 'collection',
+    'creatured', 'developers', 'discovery-dependencies', 'discovery-upsell',
+    'discovery-video', 'email', 'find-replacement', 'fxcustomization',
+    'fxfirstrun', 'fxwhatsnew', 'homepagebrowse', 'homepagepromo',
+    'installservice', 'mostshared', 'oftenusedwith', 'prerelease-banner',
+    'recommended', 'rockyourfirefox', 'search', 'sharingapi',
+    'similarcollections', 'ss', 'userprofile', 'version-history',
+
+    'co-hc-sidebar', 'co-dp-sidebar',
+
+    'cb-hc-featured', 'cb-dl-featured', 'cb-hc-toprated', 'cb-dl-toprated',
+    'cb-hc-mostpopular', 'cb-dl-mostpopular', 'cb-hc-recentlyadded',
+    'cb-dl-recentlyadded',
+
+    'hp-btn-promo', 'hp-dl-promo', 'hp-hc-featured', 'hp-dl-featured',
+    'hp-hc-upandcoming', 'hp-dl-upandcoming', 'hp-hc-mostpopular',
+    'hp-dl-mostpopular', 'hp-contest-winners',
+
+    'dp-hc-oftenusedwith', 'dp-dl-oftenusedwith', 'dp-hc-othersby',
+    'dp-dl-othersby', 'dp-btn-primary', 'dp-btn-version', 'dp-btn-devchannel',
+    'dp-hc-dependencies', 'dp-dl-dependencies', 'dp-hc-upsell', 'dp-dl-upsell',
+)
+
+DOWNLOAD_SOURCES_PREFIX = (
+    'external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-dl-')

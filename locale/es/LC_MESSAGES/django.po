@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 11:35+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-24 16:53+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -42,6 +42,9 @@ msgstr "Este nombre de usuario/a ya se utiliza."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Las imágenes deben estar en formato PNG o JPG."
+
+msgid "Images cannot be animated."
+msgstr "Las imágenes no pueden ser animadas."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1020,8 +1023,14 @@ msgstr "Esta URL ya la utiliza otra colección"
 msgid "Icons must be either PNG or JPG."
 msgstr "Los iconos deben ser PNG o JPG."
 
+msgid "Icons cannot be animated."
+msgstr "Los iconos no pueden ser animados."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
+
+msgid "Name cannot be empty."
+msgstr "El nombre no puede estar vacío."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "La URL personalizada debe incluir letras, números, guiones o guiones bajos."
@@ -2010,14 +2019,17 @@ msgstr "Se rechazó el contenido de {addon} {version}."
 msgid "Content rejected"
 msgstr "Se rechazó el contenido"
 
-msgid "{addon} information request removed."
-msgstr "Eliminada la solicitud de información de {addon}."
+msgid "{addon} information request altered or removed by admin."
+msgstr "El administrador eliminó o modificó la solicitud de información de {addon}."
 
-msgid "Information request removed"
-msgstr "Eliminada la solicitud de información"
+msgid "Information request altered"
+msgstr "Se modificó la solicitud de información"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Solicitud de información resuelta por el desarrollador en {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Eliminada la solicitud de información"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2382,8 +2394,10 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "App"
+# 77%
+# 85%
+msgid "Static Theme"
+msgstr "Tema estático"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2420,6 +2434,10 @@ msgstr "Valoración actualizada del paquete de idioma"
 
 msgid "Theme Review"
 msgstr "Valoración del tema"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Tema (estático)"
 
 msgid "New Search Provider Review"
 msgstr "Nueva valoración del proveedor de búsquedas"
@@ -2740,12 +2758,6 @@ msgstr "No puedes enviar un complemento con un guid acabado en %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
 
-msgid "Icons cannot be animated."
-msgstr "Los iconos no pueden ser animados."
-
-msgid "Images cannot be animated."
-msgstr "Las imágenes no pueden ser animadas."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Las imágenes no pueden ser mayores de %dKB."
@@ -2976,6 +2988,15 @@ msgstr "Editar información"
 
 msgid "None"
 msgstr "Ninguno"
+
+msgid "Preview"
+msgstr "Vista previa"
+
+msgid "Preview of listed version"
+msgstr "Vista previa de la versión listada"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Aún se está generando la vista previa: vuelva más tarde o actualice la página."
 
 msgid "Manage Authors & License"
 msgstr "Administrar autores y licencia"
@@ -3556,6 +3577,9 @@ msgstr "¡Ya está!"
 msgid "Version Submitted for Review"
 msgstr "Versión enviada para revisión"
 
+msgid "Preview of the version submitted"
+msgstr "Vista previa de la versión enviada"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "¡Ya está! Esta versión estará disponible una vez revisada. Se te enviará una notificación cuando la revisen."
 
@@ -3693,7 +3717,8 @@ msgstr "Fondo del área de la barra de herramientas"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
 
-msgid "Toolbar area text icons"
+#, fuzzy
+msgid "Toolbar area text and icons"
 msgstr "Iconos del texto del área de la barra de herramientas"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4024,14 +4049,17 @@ msgstr "Existe un nuevo estándar para desarrollar extensiones en Firefox. Tendr
 msgid "Learn How"
 msgstr "Descubre cómo"
 
-msgid "What's New"
-msgstr "Novedades"
+msgid "Get Started"
+msgstr "Comenzar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "¿Preparado para enviar un complemento? Lee nuestro tutorial sobre el proceso de envío paso a paso."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "¿Preparado para enviar una extensión? Lee nuestro tutorial sobre el proceso de envío paso a paso."
 
 msgid "See Tutorial"
 msgstr "Ver tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Crea una lista interesante y ayudarás a los usuarios a descubrir tu extensión."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4192,17 +4220,11 @@ msgstr "El diseño que enviaste anteriormente,  que está pendiente de revisión
 msgid "Pending Header"
 msgstr "Cabecera pendiente"
 
-msgid "Pending Footer"
-msgstr "Pie de página pendiente"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Aquí puedes actualizar el diseño de tu tema una vez que se haya aprobado."
 
 msgid "Header"
 msgstr "Encabezado"
-
-msgid "Footer"
-msgstr "Pie de página"
 
 msgid "Select colors for your Theme."
 msgstr "Selecciona colores para tu tema."
@@ -4218,9 +4240,6 @@ msgstr "Fondo"
 
 msgid "This is the color of the tabs."
 msgstr "Este es el color de las pestañas."
-
-msgid "Preview"
-msgstr "Vista previa"
 
 msgid "Your Theme's Name"
 msgstr "Nombre de tu tema"
@@ -4286,20 +4305,6 @@ msgstr "300 Kb máx."
 
 msgid "PNG or JPG"
 msgstr "PNG o JPG"
-
-# 82%
-# 100%
-msgid "Select a footer image for your Theme."
-msgstr "Selecciona una imagen para el pie de tu tema."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 píxeles"
-
-msgid "Aligned to bottom-left"
-msgstr "Ajustado a la esquina inferior izquierda"
-
-msgid "Select a different footer image"
-msgstr "Selecciona una imagen de pie diferente"
 
 msgid "Manage Version {0}"
 msgstr "Administrar versión {0}"
@@ -4492,30 +4497,33 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traduce fácilmente {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén el rastreo de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Resalta cualquier texto, haz clic con el botón derecho y traduce al instante."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Simplifica las búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Protección de privacidad y bloqueo de publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
 
 #, fuzzy
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mejora los vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Búsqueda relacionada de imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "¿Has visto una imagen interesante en la Web y quieres saber más sobre ella? Prueba esta herramienta de búsqueda de imágenes."
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarga vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funciona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope y cientos de sitios de vídeos."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sube tu juego de emojis {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Decenas de emojis alucinantes—a un solo clic de distancia."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funciona sin interrupciones con la mayoría de páginas de videos."
@@ -4869,9 +4877,6 @@ msgstr "Conviértete en un Piloto de pruebas"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Desbloquea el acceso temprano a las características experimentales del navegador."
-
-msgid "Get Started"
-msgstr "Comenzar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -5391,7 +5396,7 @@ msgstr "Informe de problema o petición de asistencia en una ubicación incorrec
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Otro (incluye información adicional en una ventana emergente)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Actualmente, AMO no incluye ningún sistema para contactar directamente con el autor de una valoración."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6017,7 +6022,7 @@ msgstr "No puedes escribir una revisión de tu propio complemento."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Esta calificación no se puede marcar porque no tiene texto de revisión."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6160,15 +6165,6 @@ msgstr "y"
 msgid "Filter by type/action"
 msgstr "Filtrar por tipo/acción"
 
-msgid "Passed automatic validation"
-msgstr "Validación automática superada"
-
-msgid "Failed automatic validation"
-msgstr "Falló la validación automática"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrar por validación automática"
-
 msgid "containing"
 msgstr "que contiene"
 
@@ -6243,6 +6239,10 @@ msgstr "Saltar de momento"
 
 msgid "Needs Admin Content Review"
 msgstr "Se necesita revisión de contenido de administrador"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Se necesita revisión de código de administrador"
 
 msgid "Jetpack Add-on"
 msgstr "Complemento Jetpack"
@@ -6370,29 +6370,41 @@ msgstr "Aprobar contenido"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Esto registra tu aprobación del contenido de la última versión publicada, sin notificárselo al desarrollador."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Temas estáticos y complementos antiguos"
+
+msgid "Static Themes"
+msgstr "Temas estáticos"
+
 msgid "Legacy Add-ons"
 msgstr "Complementos reemplazados"
 
-msgid "New Add-ons ({0})"
-msgstr "Nuevos complementos ({0})"
+msgid "New ({0})"
+msgstr "Nuevo ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Actualizaciones de complemento ({0})"
+msgid "Updates ({0})"
+msgstr "Actualizaciones ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Registro de revisiones del complemento"
+msgid "Review Log"
+msgstr "Registro de revisiones"
 
-msgid "Signed Beta Files Log"
-msgstr "Registro de archivos beta firmados"
+msgid "Add-on Review Guide"
+msgstr "Guía de revisión de complementos"
 
-msgid "Review Guide"
-msgstr "Guía de revisores"
+msgid "Theme Review Guide"
+msgstr "Guía de revisión de temas"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Complementos autoaprobados"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Complementos autoaprobados ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Registro de revisiones del complemento"
+
+msgid "Review Guide"
+msgstr "Guía de revisores"
 
 msgid "Content Review"
 msgstr "Revisión de contenido"
@@ -6411,8 +6423,8 @@ msgstr "Actualizaciones de temas ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Temas marcados ({0})"
 
-msgid "Themes Review Log"
-msgstr "Registro de revisión de temas"
+msgid "Lightweight Themes Review Log"
+msgstr "Registro de revisiones de temas ligeros"
 
 msgid "Deleted Themes Log"
 msgstr "Se eliminó el registro de temas"
@@ -6443,8 +6455,8 @@ msgstr "Anuncio"
 msgid "Update message of the day"
 msgstr "Actualizar mensaje del día"
 
-msgid "Add-ons with expired information requests"
-msgstr "Complementos con solicitudes de información ya expiradas"
+msgid "Expired Information Requests ({0})"
+msgstr "Solicitudes de información expiradas ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ha sucedido un error desconocido"
@@ -6505,6 +6517,15 @@ msgstr "Informes de uso indebido ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Calificaciones de usuario con mala conducta ({num})"
 
+msgid "Theme Images"
+msgstr "Imágenes de temas"
+
+msgid "Rendered Preview"
+msgstr "Vista previa generada"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Más sobre este complemento"
 
@@ -6516,6 +6537,18 @@ msgstr "¡Nada que mostrar aquí!  El desarrollador no incluyó ningún detalle.
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Volver a la página de herramientas del revisor"
+
+msgid "Reviewer Leaderboard"
+msgstr "Panel de calificación del revisor"
+
+msgid "No review points awarded yet."
+msgstr "No se otorgaron puntos todavía."
+
+msgid "Rank"
+msgstr "Posición"
+
+msgid "Score"
+msgstr "Puntuación"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6557,18 +6590,6 @@ msgstr "La revisión ha sido marcada previamente para su eliminación."
 
 msgid "Undelete"
 msgstr "Deshacer borrar"
-
-msgid "Reviewer Leaderboard"
-msgstr "Panel de calificación del revisor"
-
-msgid "No review points awarded yet."
-msgstr "No se otorgaron puntos todavía."
-
-msgid "Rank"
-msgstr "Posición"
-
-msgid "Score"
-msgstr "Puntuación"
 
 msgid "Save"
 msgstr "Guardar"
@@ -6750,6 +6771,10 @@ msgstr "Limpiar la etiqueta de revisión de código de administrador"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Limpiar la etiqueta de revisión de contenido de administrador"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Limpiar la etiqueta de revisión de código de administrador"
 
 msgid "(admin)"
 msgstr "(administrador)"
@@ -6952,25 +6977,25 @@ msgstr "Rechazados o sin revisar"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nuevo complemento ({0})"
-msgstr[1] "Nuevos complementos ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Actualización ({0})"
 msgstr[1] "Actualizaciones ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Revisión moderada ({0})"
-msgstr[1] "Revisiones moderadas ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Revisión de la calificación ({0})"
+msgstr[1] "Revisiones de la calificación ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Complemento autoaprobado ({0})"
-msgstr[1] "Complementos autoaprobados ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Autoaprobado ({0})"
+msgstr[1] "Autoaprobados ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Solicitud de información expirada ({0})"
+msgstr[1] "Solicitudes de información expiradas ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"

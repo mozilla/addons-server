@@ -82,4 +82,18 @@ services:
       - "5900"
     shm_size: 2g
     links:
+      - "addons-frontend:olympia-frontend.test"
+      - "nginx:olympia.test"
+
+  addons-frontend:
+    <<: *env
+    environment:
+      - WEBPACK_SERVER_HOST=olympia-frontend.test
+      - FXA_CONFIG=local
+    image: addons/addons-frontend
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: yarn amo
+    links:
       - "nginx:olympia.test"

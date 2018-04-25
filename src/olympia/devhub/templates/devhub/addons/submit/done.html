@@ -7,13 +7,19 @@
 {% block primary %}
 {% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
 {% if uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED %}
-  {% if submit_page == 'file' or uploaded_version.is_beta %}
+  {% if submit_page == 'file' %}
     <p>
       {{ _("You’re done!") }}
     </p>
   {% else %}
     {% if addon.type == amo.ADDON_STATICTHEME %}
       <h3>{{ _("Version Submitted for Review") }}</h3>
+      <p>
+        {% for preview in uploaded_version.previews.all() %}
+          <img src="{{ preview.image_url }}" title="{{ _('Preview of the version submitted') }}"
+            alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
+        {% endfor %}
+      </p>
       <p>
         {{ _("You’re done! This version will be available after it passes review. "
              "You will be notified when it is reviewed.") }}

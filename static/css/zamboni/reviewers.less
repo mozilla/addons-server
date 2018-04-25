@@ -29,6 +29,7 @@
 .ed-sprite-notes { background-position: 0 -112px; }
 .ed-sprite-needs-admin-content-review { background-position: 0 -128px; }
 .ed-sprite-needs-admin-code-review { background-position: 0 -128px; }
+.ed-sprite-needs-admin-theme-review { background-position: 0 -128px; }
 .ed-sprite-reviewer { background-position: 0 -144px; }
 .ed-sprite-info { background-position: 0 -160px; }
 .ed-sprite-sources-provided { background-position: 0 -192px; }
@@ -1090,12 +1091,6 @@ h2.addon {
         float: right;
     }
 }
-gradient-two-color($color1, $color2) {
-    background-color: $color2;
-    background-image: -webkit-gradient(linear, left bottom, left top, from($color1), to($color2));
-    background-image: linear-gradient($color1, $color2);
-    background-image: -webkit-linear-gradient($color1, $color2);
-}
 
 .whiteboard {
     margin: 1em auto 0;
@@ -1144,4 +1139,35 @@ gradient-two-color($color1, $color2) {
     #disable_auto_approval, #enable_auto_approval {
         background-color: orange;
     }
+}
+
+.addon-info-and-previews {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.addon-info {
+    flex: 1;  /* try to take up "one" space regardless of content */
+    padding: 0 1em;
+}
+
+#addon-theme-previews-wrapper {
+  .all-backgrounds {
+    .background {
+        display: block;
+        height: 100px;
+        margin: 13px 0;
+        border: 2px solid #C9DDF2;
+        background: rgba(201,221,242,.1);
+    }
+    .zoombox {
+        overflow: hidden;
+        position: relative;
+
+        img {
+            position: absolute;
+            right: 0;
+        }
+    }
+  }
 }

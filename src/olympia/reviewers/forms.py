@@ -38,7 +38,7 @@ ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
                    deleted=amo.LOG.DELETE_RATING)
 
 
-class EventLogForm(forms.Form):
+class RatingModerationLogForm(happyforms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False,
@@ -69,6 +69,9 @@ class BetaSignedLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
+=======
+class ReviewLogForm(happyforms.Form):
+>>>>>>> upstream/master
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False, label=_(u'and'))
@@ -330,7 +333,6 @@ class ReviewForm(forms.Form):
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
-        self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
 
         # Info request deadline needs to be readonly unless we're an admin.
@@ -355,14 +357,20 @@ class ReviewForm(forms.Form):
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
                     channel=amo.RELEASE_CHANNEL_LISTED,
-                    files__status=amo.STATUS_PUBLIC).order_by('created'))
+                    files__status__in=(amo.STATUS_PUBLIC,
+                                       amo.STATUS_AWAITING_REVIEW)).
+                order_by('created'))
 
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
         canned_choices = [
             ['', [('', ugettext('Choose a canned response...'))]]]
 
-        responses = CannedResponse.objects.filter(type=self.type)
+        canned_type = (
+            amo.CANNED_RESPONSE_THEME
+            if self.helper.addon.type == amo.ADDON_STATICTHEME
+            else amo.CANNED_RESPONSE_ADDON)
+        responses = CannedResponse.objects.filter(type=canned_type)
 
         # Loop through the actions (public, etc).
         for k, action in self.helper.actions.iteritems():

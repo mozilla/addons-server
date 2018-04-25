@@ -34,8 +34,8 @@
 </hgroup>
 
 <form method="POST" action="#review-actions" class="review-form">
-  {{ csrf_input }}
-  <div id="addon" class="primary" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+  {% csrf_input %}
+  <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
 
   {% include 'reviewers/addon_details_box.html' %}
 
@@ -76,30 +76,44 @@
         </tr>
         <tr class="listing-body">
           <td class="files">
-            {{ all_distinct_files(version) }}
-            {% if version.compatible_apps_ordered %}
-              <div><strong>{{ _('Compatibility:') }}</strong></div>
+            {% if addon.type != amo.ADDON_STATICTHEME %}
+              {{ all_distinct_files(version) }}
+              {% if version.compatible_apps_ordered %}
+                <div><strong>{{ _('Compatibility:') }}</strong></div>
+                <ul>
+                  {% for app, compat in version.compatible_apps_ordered %}
+                  <li>
+                    <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
+                    {{ compat }}
+                  </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if version.source %}
+                  <div><strong>{{ _('Additional sources:') }}</strong></div>
+                  <div>
+                      {% if is_admin %}
+                          <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
+                      {% else %}
+                          {{ _('The developer has provided source code.')}}
+                      {% endif %}
+                  </div>
+              {% endif %}
+              {% if version.autoapprovalsummary %}
+                <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
+              {% endif %}
+            {% else %}
               <ul>
-                {% for app, compat in version.compatible_apps_ordered %}
-                <li>
-                  <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
-                  {{ compat }}
+                <li class="file-info">
+                  <span class="light">
+                    <strong><a href="{{ version.all_files[0].get_url_path('reviewer') }}" class="reviewers-install"
+                      data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
+                    <div>
+                      {{ file_review_status(addon, version.all_files[0]) }}
+                    </div>
+                  </span>
                 </li>
-                {% endfor %}
               </ul>
-            {% endif %}
-            {% if version.source %}
-                <div><strong>{{ _('Additional sources:') }}</strong></div>
-                <div>
-                    {% if is_admin %}
-                        <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
-                    {% else %}
-                        {{ _('The developer has provided source code.')}}
-                    {% endif %}
-                </div>
-            {% endif %}
-            {% if version.autoapprovalsummary %}
-              <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
             {% endif %}
           </td>
           <td>
@@ -199,7 +213,7 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_minimal|join("|") }}|">
+           data-value="{{ actions_full|join("|") }}|">
         <label><strong>{{ _('Files:') }}</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
@@ -213,7 +227,7 @@
       </div>
 
       <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_minimal|join("|") }}|">
+           data-value="{{ actions_full|join("|") }}|">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}
@@ -252,6 +266,7 @@
   </div>
 </form>
 
+{% if whiteboard_form %}
 <form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
   {{ csrf_input }}
   <div class="whiteboard">
@@ -277,6 +292,7 @@
     <input type="submit" value="{{ _('Update whiteboards') }}" />
   </div>
 </form>
+{% endif %}
 
 {% if not addon.is_deleted %}
 <form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">
@@ -303,34 +319,52 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-        <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-disable-auto-approval', addon.pk) }}"
-                  data-toggle-button-selector="#enable_auto_approval"
-                  id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
-        </li>
-        <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-enable-auto-approval', addon.pk) }}"
-                  data-toggle-button-selector="#disable_auto_approval"
-                  id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
-        </li>
+        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) %}
+          <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval"
+                    id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval"
+                    id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
+          </li>
+        {% endif %}
         {% if addon.pending_info_request %}
           <li>
-              <button data-api-url="{{ url('reviewers-addon-clear-pending-info-request', addon.pk) }}"
+              <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                      data-api-method="patch"
+                      data-api-data="{&quot;pending_info_request&quot;: null}"
                       id="clear_pending_info_request" type="button">{{ _('Clear information request') }}</button>
           </li>
         {% endif %}
         {% if addon.needs_admin_code_review %}
           <li>
-            <button data-api-url="{{ url('reviewers-addon-clear-admin-review-flag', addon.pk) }}"
-                    data-api-flag="code"
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;needs_admin_code_review&quot;: false}"
                     id="clear_admin_code_review"  type="button">{{ _('Clear Admin Code Review Flag') }}</button>
           </li>
         {% endif %}
         {% if addon.needs_admin_content_review %}
           <li>
-            <button data-api-url="{{ url('reviewers-addon-clear-admin-review-flag', addon.pk) }}"
-                    data-api-flag="content"
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;needs_admin_content_review&quot;: false}"
                     id="clear_admin_content_review" type="button">{{ _('Clear Admin Content Review Flag') }}</button>
+          </li>
+        {% endif %}
+        {% if addon.needs_admin_theme_review %}
+          <li>
+            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;needs_admin_theme_review&quot;: false}"
+                    id="clear_admin_theme_review" type="button">{{ _('Clear Admin Static Theme Review Flag') }}</button>
           </li>
         {% endif %}
     </ul>

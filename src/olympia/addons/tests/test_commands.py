@@ -24,50 +24,42 @@ from olympia.versions.models import ApplicationsVersions
 SIGN_ADDONS = 'olympia.addons.management.commands.sign_addons.sign_addons'
 
 
-# Test the "sign_addons" command.
-
-def test_no_overridden_settings(monkeypatch):
-    assert not settings.SIGNING_SERVER
-
-    def no_endpoint(ids, **kwargs):
-        assert not settings.SIGNING_SERVER
-
-    monkeypatch.setattr(SIGN_ADDONS, no_endpoint)
-    call_command('sign_addons', '123')
-
-
-def test_override_SIGNING_SERVER_setting(monkeypatch):
-    """You can override the SIGNING_SERVER settings."""
-    assert not settings.SIGNING_SERVER
-
-    def signing_server(ids, **kwargs):
-        assert settings.SIGNING_SERVER == 'http://example.com'
-
-    monkeypatch.setattr(SIGN_ADDONS, signing_server)
-    call_command('sign_addons', '123', signing_server='http://example.com')
-
-
-def test_force_signing(monkeypatch):
+def test_sign_addons_force_signing(monkeypatch):
     """You can force signing an addon even if it's already signed."""
-    def not_forced(ids, force, reason, use_autograph):
+    def not_forced(ids, force, reason):
         assert not force
     monkeypatch.setattr(SIGN_ADDONS, not_forced)
     call_command('sign_addons', '123')
 
-    def is_forced(ids, force, reason, use_autograph):
+    def is_forced(ids, force, reason):
         assert force
     monkeypatch.setattr(SIGN_ADDONS, is_forced)
     call_command('sign_addons', '123', force=True)
 
 
-def test_reason(monkeypatch):
+def test_sign_addons_reason(monkeypatch):
     """You can pass a reason."""
-    def has_reason(ids, force, reason, use_autograph):
+    def has_reason(ids, force, reason):
         assert reason == 'expiry'
     monkeypatch.setattr(SIGN_ADDONS, has_reason)
     call_command('sign_addons', '123', reason='expiry')
 
-# Test the "approve_addons" command.
+
+def test_sign_addons_overwrite_autograph_settings(monkeypatch):
+    def has_config_overwrite(ids, force, reason):
+        config = settings.AUTOGRAPH_CONFIG
+        assert config['server_url'] == 'dummy server url'
+        assert config['user_id'] == 'dummy user id'
+        assert config['key'] == 'dummy key'
+        assert config['signer'] == 'dummy signer'
+
+    monkeypatch.setattr(SIGN_ADDONS, has_config_overwrite)
+    call_command(
+        'sign_addons', '123',
+        autograph_server_url='dummy server url',
+        autograph_user_id='dummy user id',
+        autograph_key='dummy key',
+        autograph_signer='dummy signer')
 
 
 @pytest.mark.django_db

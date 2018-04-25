@@ -3,7 +3,7 @@
 
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
 {% set is_reviewer = action_allowed(amo.permissions.ADDONS_REVIEW) %}
-{% set is_staff = action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}
+{% set is_admin = action_allowed(amo.permissions.REVIEWS_ADMIN) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
@@ -83,7 +83,7 @@
     {% if is_reviewer %}
       <p class="manage-button"><a href="{{ url('reviewers.review', addon.slug) }}" class="button"><span>{{ _('Add-on Review') }}</span></a></p>
     {% endif %}
-    {% if is_staff %}
+    {% if is_admin %}
       <p class="manage-button"><a href="{{ url('zadmin.addon_manage', addon.slug) }}" class="button"><span>{{ _('Admin Manage') }}</span></a></p>
     {% endif %}
   </aside>
@@ -143,16 +143,16 @@
 
 {% block content %}
 
-{% if addon.type != amo.ADDON_PERSONA %}
-  {% set version = addon.current_version %}
+{% set version = addon.current_version %}
 
-  {% if addon.all_previews|length > 0 %}
+{% if addon.type != amo.ADDON_PERSONA %}
+  {% if addon.current_previews|length > 0 %}
     <section class="previews">
       <div class="carousel">
         <a href="#" class="control prev">&laquo;</a>
         <a href="#" class="control next">&raquo;</a>
         <ul id="preview" class="slider">
-          {%- for preview in addon.all_previews -%}
+          {%- for preview in addon.current_previews -%}
             <li class="panel">
               <a class="screenshot thumbnail" rel="jquery-lightbox"
                  href="{{ preview.image_url }}" title="{{ preview.caption }}">
@@ -230,7 +230,7 @@
 
 <div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(more=True) }}"></div>
 
-{% if version or addon.developer_comments or addon.show_beta %}
+{% if version or addon.developer_comments %}
 <section class="primary island more-island">
   {% if addon.developer_comments %}
     <section class="expando" id="developer-comments">
@@ -252,43 +252,6 @@
         <p class="more c">
           <a class="more-info" href="{{ url('addons.versions', addon.slug) }}">
             {{ _('See complete version history') }}
-          </a>
-        </p>
-      </div>
-    </section>
-  {% endif %}
-
-  {% if addon.show_beta %}
-    <section id="beta-channel" class="expando">
-      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><b></b></a></h2>
-      <div class="content">
-        <p>
-          {% trans %}
-            The Development Channel lets you test an experimental new version of this
-            add-on before it's released to the general public. Once you install the
-            development version, you will continue to get updates from this channel. To
-            stop receiving development updates, reinstall the default version from the link
-            above.
-          {% endtrans %}
-        </p>
-        <div class="install-beta" id="install-beta">
-          <p>
-            {% trans %}
-              <strong>Caution:</strong> Development versions of this add-on
-              have not been reviewed by Mozilla.
-            {% endtrans %}
-          </p>
-          <dl>
-            <dt class="beta-version">{{ _('Version {0}')|format_html(
-              addon.current_beta_version.version) }}</dt>
-            <dd>{{ install_button(addon, latest_beta=True,
-                                  show_warning=False, impala=True,
-                                  src=request.GET.get('src', 'dp-btn-devchannel')) }}</dd>
-          </dl>
-        </div>
-        <p class="more c">
-          <a class="more-info" href="{{ url('addons.beta-versions', addon.slug) }}">
-            {{ _('See complete development channel history') }}
           </a>
         </p>
       </div>

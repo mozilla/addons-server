@@ -46,7 +46,7 @@ from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.utils import is_beta, parse_addon
+from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
@@ -54,9 +54,6 @@ from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
-from olympia.users.utils import (
-    mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed)
 from olympia.versions import compare
 from olympia.versions.models import Version
 from olympia.zadmin.models import ValidationResult, get_config
@@ -89,8 +86,8 @@ class AddonFilter(BaseFilter):
 
 
 class ThemeFilter(BaseFilter):
-    opts = (('name', _(u'Name')),
-            ('created', _(u'Created')),
+    opts = (('created', _(u'Created')),
+            ('name', _(u'Name')),
             ('popular', _(u'Downloads')),
             ('rating', _(u'Rating')))
 
@@ -101,7 +98,7 @@ def addon_listing(request, theme=False):
         qs = request.user.addons.filter(
             type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
         filter_cls = ThemeFilter
-        default = 'name'
+        default = 'created'
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
             type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
@@ -132,7 +129,6 @@ def dashboard(request, theme=False):
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
                 theme=theme, addon_items=addon_items)
-
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
         # We know the dashboard is going to want to display feature
@@ -328,6 +324,7 @@ def edit(request, addon_id, addon):
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
         'previews': addon.previews.all(),
+        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
     if acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
@@ -555,13 +552,11 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
+    user = request.user if request.user.is_authenticated() else None
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
-        automated_signing=automated_signing, addon=addon)
+        automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
-    if request.user.is_authenticated():
-        upload.user = request.user
-        upload.save()
     if app_id and version_id:
         # If app_id and version_id are present, we are dealing with a
         # compatibility check (i.e. this is not an upload meant for submission,
@@ -574,10 +569,7 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(
-            addon, upload, channel=channel,
-            use_autograph=waffle.flag_is_active(
-                request, 'activate-autograph-signing'))
+        tasks.validate_and_submit(addon, upload, channel=channel)
     else:
         tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
@@ -726,25 +718,14 @@ def json_upload_detail(request, upload, addon_slug=None):
     plat_exclude = []
     if result['validation']:
         try:
-            pkg = parse_addon(upload, addon=addon)
-            if not acl.submission_allowed(request.user, pkg):
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit this type of add-on'))
-            if not addon and not system_addon_submission_allowed(
-                    request.user, pkg):
-                guids = ' or '.join(
-                    '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit an add-on with a guid '
-                             u'ending %s' % guids))
-            if not mozilla_signed_extension_submission_allowed(
-                    request.user, pkg):
-                raise django_forms.ValidationError(
-                    ugettext(u'You cannot submit a Mozilla Signed Extension'))
+            pkg = parse_addon(upload, addon=addon, user=request.user)
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
-            # FIXME: This doesn't guard against client-side
-            # tinkering.
+            # This doesn't guard against client-side tinkering, and is purely
+            # to display those non-linter errors nicely in the frontend. What
+            # does prevent clients from bypassing those is the fact that we
+            # always call parse_addon() before calling from_upload(), so
+            # ValidationError would be raised before proceeding.
             for i, msg in enumerate(exc.messages):
                 # Simulate a validation error so the UI displays
                 # it as such
@@ -771,9 +752,6 @@ def json_upload_detail(request, upload, addon_slug=None):
                 set(amo.SUPPORTED_PLATFORMS.keys()) - set(supported_platforms))
             plat_exclude = [str(p) for p in plat_exclude]
 
-            # Does the version number look like it's beta?
-            result['beta'] = (is_beta(pkg.get('version', '')) and
-                              waffle.switch_is_active('beta-versions'))
             result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
@@ -952,18 +930,21 @@ def addons_section(request, addon_id, addon, section, editable=False):
     else:
         form = False
 
-    data = {'addon': addon,
-            'whiteboard': whiteboard,
-            'show_listed_fields': show_listed,
-            'form': form,
-            'editable': editable,
-            'tags': tags,
-            'restricted_tags': restricted_tags,
-            'cat_form': cat_form,
-            'preview_form': previews,
-            'dependency_form': dependency_form,
-            'whiteboard_form': whiteboard_form,
-            'valid_slug': valid_slug}
+    data = {
+        'addon': addon,
+        'whiteboard': whiteboard,
+        'show_listed_fields': show_listed,
+        'form': form,
+        'editable': editable,
+        'tags': tags,
+        'restricted_tags': restricted_tags,
+        'cat_form': cat_form,
+        'preview_form': previews,
+        'dependency_form': dependency_form,
+        'whiteboard_form': whiteboard_form,
+        'valid_slug': valid_slug,
+        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+    }
 
     return render(request, 'devhub/addons/edit/%s.html' % section, data)
 
@@ -1082,7 +1063,7 @@ def version_edit(request, addon_id, addon, version_id):
         data['version_form'] = version_form
 
     is_admin = acl.action_allowed(request,
-                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
+                                  amo.permissions.REVIEWS_ADMIN)
 
     if addon.accepts_compatible_apps():
         # We should be in no-caching land but this one stays cached for some
@@ -1199,18 +1180,13 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, use_autograph=False, is_beta=False):
+def auto_sign_file(file_):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, use_autograph=use_autograph)
-    elif is_beta:
-        # Beta won't be reviewed. They will always get signed, and logged, for
-        # further review if needed.
-        ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_, use_autograph=use_autograph)
+        sign_file(file_)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1222,10 +1198,10 @@ def auto_sign_file(file_, use_autograph=False, is_beta=False):
         ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
 
 
-def auto_sign_version(version, use_autograph=False, **kwargs):
+def auto_sign_version(version, **kwargs):
     # Sign all the unapproved files submitted, one for each platform.
     for file_ in version.files.exclude(status=amo.STATUS_PUBLIC):
-        auto_sign_file(file_, use_autograph=use_autograph, **kwargs)
+        auto_sign_file(file_, **kwargs)
 
 
 @dev_required
@@ -1233,7 +1209,7 @@ def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request,
-                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
+                                  amo.permissions.REVIEWS_ADMIN)
 
     token = request.COOKIES.get(API_TOKEN_COOKIE, None)
 
@@ -1341,8 +1317,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
     next_details is the view that will be redirected to when details are needed
-    (for listed, non-beta, addons/versions); next_finish is the finishing view
-    when no details step is needed (for unlisted addons/versions and beta).
+    (for listed, addons/versions); next_finish is the finishing view
+    when no details step is needed (for unlisted addons/versions).
     """
     form = forms.NewUploadForm(
         request.POST or None,
@@ -1355,30 +1331,23 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         data = form.cleaned_data
 
         if version:
-            is_beta = version.is_beta
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],
                     version=version,
                     platform=platform,
-                    is_beta=is_beta,
                     parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
-            is_beta = (data.get('beta') and
-                       channel == amo.RELEASE_CHANNEL_LISTED and
-                       waffle.switch_is_active('beta-versions'))
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
                 platforms=data.get('supported_platforms', []),
                 channel=channel,
                 source=data['source'],
-                is_beta=is_beta,
                 parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
-            is_beta = False
             addon = Addon.from_upload(
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
@@ -1407,18 +1376,13 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
-        use_autograph = waffle.flag_is_active(
-            request, 'activate-autograph-signing')
-        auto_sign_version(
-            version,
-            is_beta=is_beta,
-            use_autograph=use_autograph)
+        auto_sign_version(version)
         next_url = (next_details
-                    if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
+                    if channel == amo.RELEASE_CHANNEL_LISTED
                     else next_finish)
         return redirect(next_url, *url_args)
     is_admin = acl.action_allowed(request,
-                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
+                                  amo.permissions.REVIEWS_ADMIN)
     if addon:
         channel_choice_text = (forms.DistributionChoiceForm().LISTED_LABEL
                                if channel == amo.RELEASE_CHANNEL_LISTED else
@@ -1504,7 +1468,6 @@ def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
-                             version.is_beta or
                              (static_theme and addon.has_complete_metadata()))
         if skip_details_step:
             # Nothing to do here.
@@ -1647,6 +1610,13 @@ def submit_file_finish(request, addon_id, addon, version_id):
 
 @login_required
 def submit_theme(request):
+    if waffle.switch_is_active('disable-lwt-uploads'):
+        return redirect('devhub.submit.agreement')
+    else:
+        return submit_lwt_theme(request)
+
+
+def submit_lwt_theme(request):
     data = {}
     if request.method == 'POST':
         data = request.POST.dict()
@@ -1697,8 +1667,8 @@ def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
-    latest_version = addon.find_latest_version(
-        amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
+    latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED,
+                                               exclude=())
     if latest_version:
         for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
             f.update(status=amo.STATUS_AWAITING_REVIEW)

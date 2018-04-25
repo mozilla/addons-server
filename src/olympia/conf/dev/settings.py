@@ -1,4 +1,3 @@
-import datetime
 import logging
 import os
 
@@ -26,18 +25,11 @@ EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
 EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
 EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
-EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST')
-EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST')
 
 ENV = env('ENV')
-DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = False
-SESSION_COOKIE_SECURE = True
 RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
-
-REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
@@ -49,12 +41,6 @@ MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
-# Filter IP addresses of allowed clients that can post email through the API.
-ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
-# Auth token required to authorize inbound email.
-INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
-# Validation key we need to send in POST response.
-INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
@@ -63,6 +49,19 @@ SYSLOG_TAG = "http_app_addons_dev"
 MOZLOG_NAME = SYSLOG_TAG
 SYSLOG_TAG2 = "http_app_addons_dev_timer"
 SYSLOG_CSP = "http_app_addons_dev_csp"
+
+NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
+
+ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
+
+REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
+
+FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
 
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
@@ -85,39 +84,22 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {}
+# Disable cache-machine on dev to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
+
+CACHES = {
+    'filesystem': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': FILESYSTEM_CACHE_ROOT,
+    }
+}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SECRET_KEY = env('SECRET_KEY')
-
-LOG_LEVEL = logging.DEBUG
-
 # Celery
-CELERY_BROKER_URL = env('CELERY_BROKER_URL')
-
-CELERY_TASK_IGNORE_RESULT = True
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
-CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
-
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
-
-# Must be forced in settings because name => path can't be dyncamically
-# computed: reviewer_attachmentS VS reviewer_attachment.
-# TODO: rename folder on file system.
-# (One can also just rename the setting, but this will not be consistent
-# with the naming scheme.)
-REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
@@ -141,27 +123,12 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
-# Old recaptcha V1
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-# New Recaptcha V2
-NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
-NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
-
 csp = 'csp.middleware.CSPMiddleware'
-
-RESPONSYS_ID = env('RESPONSYS_ID')
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_%s' % (v, ENV)) for k, v in ES_INDEXES.items())
-
-STATSD_HOST = env('STATSD_HOST')
-STATSD_PREFIX = env('STATSD_PREFIX')
-
-GRAPHITE_HOST = env('GRAPHITE_HOST')
-GRAPHITE_PREFIX = env('GRAPHITE_PREFIX')
 
 CEF_PRODUCT = STATSD_PREFIX
 
@@ -173,32 +140,15 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 ADDONS_LINTER_BIN = 'addons-linter'
 
-LESS_PREPROCESS = True
-
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
 
-GOOGLE_ANALYTICS_CREDENTIALS = env.dict('GOOGLE_ANALYTICS_CREDENTIALS')
-GOOGLE_ANALYTICS_CREDENTIALS['user_agent'] = None
-GOOGLE_ANALYTICS_CREDENTIALS['token_expiry'] = datetime.datetime(2013, 1, 3, 1, 20, 16, 45465)  # noqa
-
-GEOIP_URL = 'https://geo.services.mozilla.com'
-
-AES_KEYS = env.dict('AES_KEYS')
-
 PERSONA_DEFAULT_PAGES = 2
-
-# Signing
-SIGNING_SERVER = env('SIGNING_SERVER')
-
-SENTRY_DSN = env('SENTRY_DSN')
 
 AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-
-GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
@@ -214,15 +164,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url':
             'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
-        'scope': 'profile',
-    },
-    'internal': {
-        'client_id': env('INTERNAL_FXA_CLIENT_ID'),
-        'client_secret': env('INTERNAL_FXA_CLIENT_SECRET'),
-        'content_host': 'https://stable.dev.lcip.org',
-        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
-        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://addons-admin.dev.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
     'amo': {
@@ -246,7 +187,6 @@ FXA_CONFIG = {
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
@@ -260,11 +200,10 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     ],
 )
 
-READ_ONLY = env.bool('READ_ONLY', default=False)
-
 RAVEN_DSN = (
     'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
 RAVEN_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
 
-GITHUB_API_USER = env('GITHUB_API_USER')
-GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
+FXA_SQS_AWS_QUEUE_URL = (
+    'https://sqs.us-east-1.amazonaws.com/927034868273/'
+    'amo-account-change-dev')

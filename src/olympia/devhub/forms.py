@@ -434,7 +434,7 @@ class AddonUploadForm(WithSourceMixin, forms.Form):
                 self.cleaned_data['upload'].validation_timeout or
                 self.cleaned_data['admin_override_validation'] and
                 acl.action_allowed(self.request,
-                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)):
+                                   amo.permissions.REVIEWS_ADMIN)):
             raise forms.ValidationError(
                 ugettext(u'There was an error with your upload. '
                          u'Please try again.'))
@@ -448,12 +448,6 @@ class NewUploadForm(AddonUploadForm):
         coerce=int,
         error_messages={'required': 'Need at least one platform.'}
     )
-
-    beta = forms.BooleanField(
-        required=False,
-        help_text=_(u'A file with a version ending with '
-                    u'a|alpha|b|beta|pre|rc and an optional number is '
-                    u'detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
@@ -484,7 +478,9 @@ class NewUploadForm(AddonUploadForm):
 
         if not self.errors:
             self._clean_upload()
-            parsed_data = parse_addon(self.cleaned_data['upload'], self.addon)
+            parsed_data = parse_addon(
+                self.cleaned_data['upload'], self.addon,
+                user=self.request.user)
 
             if self.version:
                 if parsed_data['version'] != self.version.version:

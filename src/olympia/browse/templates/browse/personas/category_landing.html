@@ -12,7 +12,7 @@
 {% if category %}
     {{ url('browse.personas', category.slug)|urlparams(sort=key) }}
 {% else %}
-    {{ url('browse.personas', '')|urlparams(sort=key) }}
+    {{ url('browse.personas')|urlparams(sort=key) }}
 {% endif %}
 {%- endmacro %}
 

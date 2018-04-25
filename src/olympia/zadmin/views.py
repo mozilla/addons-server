@@ -19,7 +19,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
-    any_permission_required, json_view, login_required, post_required)
+    json_view, login_required, permission_required, post_required)
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
@@ -72,13 +72,6 @@ def langpacks(request):
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
-
-    # Retain this so that GOOGLE_ANALYTICS_CREDENTIALS variables in local
-    # settings are not exposed.
-    google_cred = 'GOOGLE_ANALYTICS_CREDENTIALS'
-    settings_dict[google_cred] = debug.cleanse_setting(
-        google_cred, getattr(settings, google_cred, {}))
-
     return render(request, 'zadmin/settings.html',
                   {'settings_dict': settings_dict, 'title': 'Settings!'})
 
@@ -115,8 +108,7 @@ def application_versions_json(request):
     return {'choices': [(v.id, v.version) for v in versions]}
 
 
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
+@permission_required(amo.permissions.REVIEWS_ADMIN)
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -333,9 +325,7 @@ def email_devs(request):
                   dict(form=form, preview_csv=preview_csv))
 
 
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
+@permission_required(amo.permissions.ANY_ADMIN)
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
@@ -487,14 +477,12 @@ def delete_site_event(request, event_id):
     return redirect('zadmin.site_events')
 
 
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.MAILING_LISTS_VIEW])
+@permission_required(amo.permissions.MAILING_LISTS_VIEW)
 def export_email_addresses(request):
     return render(request, 'zadmin/export_button.html', {})
 
 
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.MAILING_LISTS_VIEW])
+@permission_required(amo.permissions.MAILING_LISTS_VIEW)
 def email_addresses_file(request):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/plain; charset=utf-8'

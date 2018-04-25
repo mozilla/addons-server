@@ -1,47 +1,17 @@
 import os
-import StringIO
-import subprocess
-import tempfile
-from base64 import b64encode
+from itertools import izip_longest
 
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.template import loader
 
-from PIL import Image
-
-import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.amo.utils import pngcrush_image
+from olympia.amo.utils import pngcrush_image, resize_image
+from olympia.versions.models import VersionPreview
 
-
-log = olympia.core.logger.getLogger('z.files.utils')
-
-
-def write_svg_to_png(svg_content, out):
-    tmp_args = {'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg'}
-    with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:
-        temporary_svg.write(svg_content)
-        temporary_svg.flush()
-
-        size = None
-        try:
-            if not os.path.exists(os.path.dirname(out)):
-                os.makedirs(out)
-            command = [
-                settings.RSVG_CONVERT_BIN,
-                '-o', out,
-                temporary_svg.name
-            ]
-            subprocess.check_call(command)
-            size = amo.THEME_PREVIEW_SIZE
-        except IOError as io_error:
-            log.debug(io_error)
-        except subprocess.CalledProcessError as process_error:
-            log.debug(process_error)
-    return size
+from .utils import (
+    AdditionalBackground, process_color_value,
+    encode_header_image, write_svg_to_png)
 
 
 @task
@@ -50,28 +20,54 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = {'amo': amo}
-    context.update(theme_manifest.get('colors', {}))
-    header_url = theme_manifest.get('images', {}).get('headerURL')
+    context.update(
+        {process_color_value(prop, color)
+         for prop, color in theme_manifest.get('colors', {}).items()})
+    images_dict = theme_manifest.get('images', {})
+    header_url = images_dict.get(
+        'headerURL', images_dict.get('theme_frame', ''))
 
-    header_path = os.path.join(header_root, header_url)
-    try:
-        with storage.open(header_path, 'rb') as header_file:
-            header_blob = header_file.read()
-            with Image.open(StringIO.StringIO(header_blob)) as header_image:
-                (width, height) = header_image.size
-                context.update(header_src_height=height)
-                meetOrSlice = ('meet' if width < amo.THEME_PREVIEW_SIZE.width
-                               else 'slice')
-                context.update(
-                    preserve_aspect_ratio='xMaxYMin %s' % meetOrSlice)
-            data_url = 'data:image/%s;base64,%s' % (
-                header_image.format.lower(), b64encode(header_blob))
-            context.update(header_src=data_url)
-    except IOError as io_error:
-        log.debug(io_error)
+    header_src, header_width, header_height = encode_header_image(
+        os.path.join(header_root, header_url))
+    meet_or_slice = ('meet' if header_width < amo.THEME_PREVIEW_SIZE.width
+                     else 'slice')
+    preserve_aspect_ratio = '%s %s' % ('xMaxYMin', meet_or_slice)
+    context.update(
+        header_src=header_src,
+        header_src_height=header_height,
+        preserve_aspect_ratio=preserve_aspect_ratio)
+
+    # Limit the srcs rendered to 15 to ameliorate DOSing somewhat.
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=1435191 for background.
+    additional_srcs = images_dict.get('additional_backgrounds', [])[:15]
+    additional_alignments = (theme_manifest.get('properties', {})
+                             .get('additional_backgrounds_alignment', []))
+    additional_tiling = (theme_manifest.get('properties', {})
+                         .get('additional_backgrounds_tiling', []))
+    additional_backgrounds = [
+        AdditionalBackground(path, alignment, tiling, header_root)
+        for (path, alignment, tiling) in izip_longest(
+            additional_srcs, additional_alignments, additional_tiling)
+        if path is not None]
+    context.update(additional_backgrounds=additional_backgrounds)
 
     svg = tmpl.render(context).encode('utf-8')
-    size = write_svg_to_png(svg, preview.image_path)
-    if size:
+    image_size = write_svg_to_png(svg, preview.image_path)
+    if image_size:
         pngcrush_image(preview.image_path)
-        preview.update(sizes={'image': size})
+        sizes = {
+            # We mimic what resize_preview() does, but in our case, 'image'
+            # dimensions are not amo.ADDON_PREVIEW_SIZES[1] but something
+            # specific to static themes automatic preview.
+            'image': image_size,
+            'thumbnail': resize_image(
+                preview.image_path, preview.thumbnail_path,
+                amo.ADDON_PREVIEW_SIZES[0])[0]
+        }
+        preview.update(sizes=sizes)
+
+
+@task
+def delete_preview_files(id, **kw):
+    VersionPreview.delete_preview_files(
+        sender=None, instance=VersionPreview(id=id))

@@ -104,7 +104,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'category': {'type': 'integer'},
                     'contributions': {'type': 'text'},
                     'created': {'type': 'date'},
-                    'current_beta_version': version_mapping,
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
@@ -328,8 +327,6 @@ class AddonIndexer(BaseSearchIndexer):
         data['category'] = [cat.id for cat in obj.all_categories]
         data['current_version'] = cls.extract_version(
             obj, obj.current_version)
-        data['current_beta_version'] = cls.extract_version(
-            obj, obj.current_beta_version)
         data['listed_authors'] = [
             {'name': a.name, 'id': a.id, 'username': a.username,
              'is_public': a.is_public}
@@ -347,11 +344,9 @@ class AddonIndexer(BaseSearchIndexer):
         data['latest_unlisted_version'] = cls.extract_version(
             obj, obj.latest_unlisted_version)
 
-        # We can use all_previews because the indexing code goes through the
-        # transformer that sets it.
         data['previews'] = [{'id': preview.id, 'modified': preview.modified,
                              'sizes': preview.sizes}
-                            for preview in obj.all_previews]
+                            for preview in obj.current_previews]
         data['ratings'] = {
             'average': obj.average_rating,
             'count': obj.total_ratings,
@@ -373,11 +368,12 @@ class AddonIndexer(BaseSearchIndexer):
         for field in ('developer_comments', 'homepage', 'support_email',
                       'support_url'):
             data.update(cls.extract_field_raw_translations(obj, field))
-        # Also do that for preview captions, which are set on each preview
-        # object.
-        attach_trans_dict(Preview, obj.all_previews)
-        for i, preview in enumerate(obj.all_previews):
-            data['previews'][i].update(
-                cls.extract_field_raw_translations(preview, 'caption'))
+        if obj.type != amo.ADDON_STATICTHEME:
+            # Also do that for preview captions, which are set on each preview
+            # object.
+            attach_trans_dict(Preview, obj.current_previews)
+            for i, preview in enumerate(obj.current_previews):
+                data['previews'][i].update(
+                    cls.extract_field_raw_translations(preview, 'caption'))
 
         return data

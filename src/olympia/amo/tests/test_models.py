@@ -1,6 +1,9 @@
 import mock
 import pytest
 
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
+
 from mock import Mock
 
 from olympia import amo
@@ -27,13 +30,21 @@ class ManualOrderTest(TestCase):
 
 
 def test_skip_cache():
-    assert not getattr(amo_models._locals, 'skip_cache', False)
+    assert (
+        getattr(amo_models._locals, 'skip_cache') is
+        not settings.CACHE_MACHINE_ENABLED)
+
+    setattr(amo_models._locals, 'skip_cache', False)
+
     with amo_models.skip_cache():
         assert amo_models._locals.skip_cache
         with amo_models.skip_cache():
             assert amo_models._locals.skip_cache
         assert amo_models._locals.skip_cache
+
     assert not amo_models._locals.skip_cache
+
+    setattr(amo_models._locals, 'skip_cache', settings.CACHE_MACHINE_ENABLED)
 
 
 def test_use_master():
@@ -168,3 +179,42 @@ def test_cache_key():
     # Test that we are not taking the db into account when building our
     # cache keys for django-cache-machine. See bug 928881.
     assert Addon._cache_key(1, 'default') == Addon._cache_key(1, 'slave')
+
+
+class BasePreviewMixin(object):
+
+    def get_object(self):
+        raise NotImplementedError
+
+    def test_filename(self):
+        preview = self.get_object()
+        assert 'png' in preview.thumbnail_path
+        assert 'png' in preview.image_path
+
+    def test_filename_in_url(self):
+        preview = self.get_object()
+        assert 'png' in preview.thumbnail_url
+        assert 'png' in preview.image_url
+
+    def check_delete(self, preview, filename):
+        """
+        Test that when the Preview object is deleted, its image and thumb
+        are deleted from the filesystem.
+        """
+        try:
+            with storage.open(filename, 'w') as f:
+                f.write('sample data\n')
+            assert storage.exists(filename)
+            preview.delete()
+            assert not storage.exists(filename)
+        finally:
+            if storage.exists(filename):
+                storage.delete(filename)
+
+    def test_delete_image(self):
+        preview = self.get_object()
+        self.check_delete(preview, preview.image_path)
+
+    def test_delete_thumbnail(self):
+        preview = self.get_object()
+        self.check_delete(preview, preview.thumbnail_path)

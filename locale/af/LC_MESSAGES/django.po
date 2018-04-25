@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -37,6 +37,9 @@ msgstr ""
 
 msgid "Images must be either PNG or JPG."
 msgstr "Prentjies moet óf PNG óf JPG wees."
+
+msgid "Images cannot be animated."
+msgstr ""
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1031,9 +1034,15 @@ msgstr "Dié URL is reeds in gebruik deur 'n ander versameling"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikone moet óf PNG óf JPG wees."
 
+msgid "Icons cannot be animated."
+msgstr ""
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dié URL is reeds in gebruik deur 'n ander versameling"
+
+msgid "Name cannot be empty."
+msgstr ""
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -2065,15 +2074,19 @@ msgid "Content rejected"
 msgstr ""
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "{addon} se beskrywing is geredigeer."
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Resensie"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Resensie"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2441,8 +2454,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr ""
+#, fuzzy
+msgid "Static Theme"
+msgstr "Skep u eie tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2483,6 +2497,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr ""
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Skrap resensie"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -2806,12 +2824,6 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Icons cannot be animated."
-msgstr ""
-
-msgid "Images cannot be animated."
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -3040,6 +3052,16 @@ msgid "Edit Information"
 msgstr "Weergawe-inligting"
 
 msgid "None"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Beta-weergawe {0}"
+
+msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "Manage Authors & License"
@@ -3587,6 +3609,10 @@ msgstr ""
 msgid "Version Submitted for Review"
 msgstr "Dien resensie in"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Weergawe"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3734,7 +3760,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4074,17 +4100,18 @@ msgstr ""
 msgid "Learn How"
 msgstr "Meer inligting"
 
-# 100%
-#, fuzzy
-msgid "What's New"
-msgstr "Wat is dié?"
+msgid "Get Started"
+msgstr ""
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Sien almal"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4236,16 +4263,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4261,9 +4282,6 @@ msgid "Background"
 msgstr ""
 
 msgid "This is the color of the tabs."
-msgstr ""
-
-msgid "Preview"
 msgstr ""
 
 msgid "Your Theme's Name"
@@ -4323,18 +4341,6 @@ msgid "300 KB max"
 msgstr ""
 
 msgid "PNG or JPG"
-msgstr ""
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr ""
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4531,28 +4537,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarskuwing"
 msgstr[1] "{0} waarskuwings"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -4907,9 +4916,6 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -5364,7 +5370,7 @@ msgstr ""
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5903,7 +5909,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6048,15 +6054,6 @@ msgstr ""
 msgid "Filter by type/action"
 msgstr ""
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr ""
 
@@ -6136,6 +6133,10 @@ msgstr ""
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Nie nagegaan nie"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Nog geen resensies oor byvoegings nie."
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6270,27 +6271,37 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "My byvoegings"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Uitgesoekte temas"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "My byvoegings"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "Byvoegings vir {0}"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
+msgid "Updates ({0})"
 msgstr "Bygewerk op {0}"
 
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
+#, fuzzy
+msgid "Review Log"
+msgstr "Resensie"
 
 #, fuzzy
-msgid "Review Guide"
+msgid "Add-on Review Guide"
+msgstr "Nog geen resensies oor byvoegings nie."
+
+#, fuzzy
+msgid "Theme Review Guide"
 msgstr "Riglyne vir resensies"
 
 # 75%
@@ -6304,6 +6315,13 @@ msgstr "Meer byvoegings"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Byvoegings vir {0}"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Riglyne vir resensies"
 
 #, fuzzy
 msgid "Content Review"
@@ -6329,7 +6347,7 @@ msgid "Flagged Themes ({0})"
 msgstr "Uitgesoekte temas"
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "Skrap resensie"
 
 #, fuzzy
@@ -6362,8 +6380,9 @@ msgstr "Aankondiging"
 msgid "Update message of the day"
 msgstr ""
 
-msgid "Add-ons with expired information requests"
-msgstr ""
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "Weergawe-inligting"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6426,6 +6445,17 @@ msgstr "Misbruik gerapporteer."
 msgid "Bad User Ratings ({num})"
 msgstr "Gebruikerresensies"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "Tema"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Skrap resensie"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Meer aangaande dié byvoeging"
 
@@ -6439,6 +6469,18 @@ msgstr ""
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Terug na {0} se byvoegingsblad"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr "Rang"
+
+msgid "Score"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6482,18 +6524,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "Rang"
-
-msgid "Score"
 msgstr ""
 
 msgid "Save"
@@ -6686,6 +6716,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Nie nagegaan nie"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Nie nagegaan nie"
 
 msgid "(admin)"
@@ -6890,32 +6924,31 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Byvoegings vir {0}"
-msgstr[1] "Byvoegings vir {0}"
-
 #, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Bygewerk op {0}"
 msgstr[1] "Bygewerk op {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Nie nagegaan nie"
+msgstr[1] "Nie nagegaan nie"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Byvoegings vir {0}"
 msgstr[1] "Byvoegings vir {0}"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Weergawe-inligting"
+msgstr[1] "Weergawe-inligting"
 
 msgid "Flagged"
 msgstr ""

@@ -7,10 +7,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
-from django.test.utils import override_settings
 
 import mock
 import pytest
@@ -20,7 +17,8 @@ from PIL import Image
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -229,7 +227,6 @@ class TestValidator(ValidatorTestCase):
         assert 'WebExtension' in validation['messages'][0]['message']
         assert not self.upload.valid
 
-    @override_settings(SIGNING_SERVER='http://full')
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
@@ -238,16 +235,6 @@ class TestValidator(ValidatorTestCase):
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
-
-    @override_settings(SIGNING_SERVER='')
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_validation_no_signing_warning(self, _mock):
-        """If we're not signing addon don't warn on signed addon submission."""
-        _mock.return_value = self.mock_sign_addon_warning
-        tasks.validate(self.upload, listed=True)
-        validation = json.loads(self.get_upload().validation)
-        assert validation['warnings'] == 0
-        assert len(validation['messages']) == 0
 
     @mock.patch('validator.validate.validate')
     @mock.patch('olympia.devhub.tasks.track_validation_stats')
@@ -632,33 +619,6 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'warning'
         assert validation['errors'] == 0
 
-    def test_only_consider_beta_for_downgrade_error_if_uploading_a_beta(self):
-        """Make sure we don't raise the webextension downgrade error when
-        uploading a public legacy version we have a beta webext."""
-        # Create a beta webext with a version number higher than the existing
-        # legacy, but lower than the legacy we're about to upload...
-        version_factory(addon=self.addon, version='1.0b1', file_kw={
-            'is_webextension': True, 'status': amo.STATUS_BETA,
-        })
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert upload.processed_validation['errors'] == 0
-        assert upload.valid
-
-        # Do consider previous betas when uploading a beta, though.
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'beta-extension.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert not upload.valid
-        expected = ['validation', 'messages', 'webext_downgrade']
-        assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['messages'][0]['type'] == 'error'
-
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
         """Make sure even deleting the previous version does not prevent
         the downgrade error."""
@@ -1001,8 +961,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         recipient_list=['del@icio.us'],
         from_email=settings.NOBODY_EMAIL,
         use_deny_list=False,
-        perm_setting='individual_contact',
-        headers={'Reply-To': settings.REVIEWERS_EMAIL})
+        perm_setting='individual_contact')
 
 
 class TestSubmitFile(TestCase):
@@ -1025,8 +984,7 @@ class TestSubmitFile(TestCase):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED,
-            use_autograph=False)
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)
@@ -1044,14 +1002,17 @@ class TestCreateVersionForUpload(TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.create_version_for_upload = (
             tasks.create_version_for_upload.non_atomic)
-        patcher = mock.patch('olympia.devhub.tasks.Version.from_upload')
-        self.version__from_upload = patcher.start()
-        self.addCleanup(patcher.stop)
+        self.mocks = {}
+        for key in ['Version.from_upload', 'parse_addon']:
+            patcher = mock.patch('olympia.devhub.tasks.%s' % key)
+            self.mocks[key] = patcher.start()
+            self.addCleanup(patcher.stop)
+        self.user = user_factory()
 
     def create_upload(self, version='1.0'):
         return FileUpload.objects.create(
-            addon=self.addon, version=version, validation='{"errors":0}',
-            automated_signing=False)
+            addon=self.addon, version=version, user=self.user,
+            validation='{"errors":0}', automated_signing=False)
 
     def test_file_passed_all_validations_not_most_recent(self):
         upload = self.create_upload()
@@ -1061,14 +1022,15 @@ class TestCreateVersionForUpload(TestCase):
         # Check that the older file won't turn into a Version.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
         self.create_version_for_upload(self.addon, newer_upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['Version.from_upload'].assert_called_with(
             newer_upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_version_exists(self):
         upload = self.create_upload()
@@ -1077,7 +1039,7 @@ class TestCreateVersionForUpload(TestCase):
         # Check that the older file won't turn into a Version.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
         upload = self.create_upload()
@@ -1088,7 +1050,7 @@ class TestCreateVersionForUpload(TestCase):
 
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
         upload = self.create_upload(version='1.0')
@@ -1099,32 +1061,31 @@ class TestCreateVersionForUpload(TestCase):
         # version_string.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
-    @override_switch('beta-versions', active=True)
-    def test_file_passed_all_validations_beta(self):
-        upload = self.create_upload(version='1.0-beta1')
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=True)
-
-    @override_switch('beta-versions', active=False)
     def test_file_passed_all_validations_beta_string(self):
         upload = self.create_upload(version='1.0-beta1')
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_no_version(self):
         upload = self.create_upload(version=None)
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)

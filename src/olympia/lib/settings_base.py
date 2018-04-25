@@ -56,8 +56,9 @@ def path(*folders):
 # It puts it in a dir called "workspace".  Way to be, hudson.
 ROOT_PACKAGE = os.path.basename(ROOT)
 
-DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG = False
+# Ensure that exceptions aren't re-raised.
+DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
@@ -68,9 +69,6 @@ SILENCED_SYSTEM_CHECKS = (
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
-
-# Path to stylus (to compile .styl files).
-STYLUS_BIN = 'stylus'
 
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = 'cleancss'
@@ -85,7 +83,6 @@ RSVG_CONVERT_BIN = 'rsvg-convert'
 PNGCRUSH_BIN = 'pngcrush'
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
-REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
@@ -350,7 +347,9 @@ SUPPORTED_NONLOCALES = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
+SECRET_KEY = env(
+    'SECRET_KEY',
+    default='this-is-a-dummy-key-and-its-overridden-for-prod-servers')
 
 # Templates
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
@@ -481,6 +480,7 @@ MIDDLEWARE_CLASSES = (
     'olympia.access.middleware.UserAndAddrMiddleware',
 
     'olympia.amo.middleware.ScrubRequestOnException',
+    'olympia.amo.middleware.RequestIdMiddleware',
 )
 
 # Auth
@@ -542,13 +542,6 @@ INSTALLED_APPS = (
 
     # Has to load after auth
     'django_statsd',
-)
-
-# These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by settings_test.py (which is itself loaded by setup.cfg by
-# pytest)
-TEST_INSTALLED_APPS = (
-    'olympia.translations.tests.testapp',
 )
 
 # Tells the extract script what files to look for l10n in and what function
@@ -705,13 +698,14 @@ MINIFY_BUNDLES = {
             'css/impala/devhub-api.less',
         ),
         'zamboni/reviewers': (
-            'css/zamboni/reviewers.styl',
+            'css/zamboni/reviewers.less',
             'css/zamboni/unlisted.less',
+            'css/zamboni/reviewers.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
-            'css/zamboni/reviewers.styl',
-            'css/zamboni/themes_review.styl',
+            'css/zamboni/reviewers.less',
+            'css/zamboni/themes_review.less',
         ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',
@@ -964,9 +958,9 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
-            'js/zamboni/reviewers.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/reviewers.js',
             'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
@@ -1012,6 +1006,8 @@ MINIFY_BUNDLES = {
 
 
 # Caching
+CACHE_MACHINE_ENABLED = True
+
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:%s:' % build_id
 KEY_PREFIX = CACHE_PREFIX
@@ -1040,7 +1036,7 @@ NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
-REDIRECT_SECRET_KEY = ''
+REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
@@ -1074,13 +1070,10 @@ DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Please use all lowercase for the deny_list.
-EMAIL_DENY_LIST = (
-    'nobody@mozilla.org',
-)
-
 # Please use all lowercase for the QA allow list.
-EMAIL_QA_ALLOW_LIST = ()
+EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST', default=())
+# Please use all lowercase for the deny_list.
+EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST', default=('nobody@mozilla.org',))
 
 # URL for Add-on Validation FAQ.
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
@@ -1088,18 +1081,23 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-CELERY_BROKER_URL = os.environ.get(
+CELERY_BROKER_URL = env(
     'CELERY_BROKER_URL',
-    'amqp://olympia:olympia@localhost:5672/olympia')
+    default=os.environ.get(
+        'CELERY_BROKER_URL', 'amqp://olympia:olympia@localhost:5672/olympia'))
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_BROKER_HEARTBEAT = 60 * 15
 CELERY_TASK_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get(
-    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
+CELERY_RESULT_BACKEND = env(
+    'CELERY_RESULT_BACKEND',
+    default=os.environ.get(
+        'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1'))
 
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+# Testing responsiveness without rate limits.
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
 # Continue serializing in pickle but also accept new JSON format
 # for forwards and backwards compatibility.
@@ -1191,6 +1189,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
     'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
+    'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
@@ -1256,7 +1255,6 @@ CELERY_TASK_ROUTES = {
         'queue': 'stats'},
     'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
-    'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1404,7 +1402,7 @@ CSP_STYLE_SRC = (
 ENGAGE_ROBOTS = True
 
 # Read-only mode setup.
-READ_ONLY = False
+READ_ONLY = env.bool('READ_ONLY', default=False)
 
 
 # Turn on read-only mode in local_settings.py by putting this line
@@ -1439,8 +1437,12 @@ MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
-NOBOT_RECAPTCHA_PUBLIC_KEY = ''
-NOBOT_RECAPTCHA_PRIVATE_KEY = ''
+# Old recaptcha V1
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY', default='')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY', default='')
+# New Recaptcha V2
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY', default='')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
@@ -1480,6 +1482,8 @@ REDIS_BACKEND = REDIS_LOCATION
 REDIS_BACKENDS = {
     'master': get_redis_settings(REDIS_LOCATION)
 }
+
+RESPONSYS_ID = env('RESPONSYS_ID', default=None)
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1543,16 +1547,16 @@ TASK_USER_ID = 4757633
 # use a fake email backend.
 SEND_REAL_EMAIL = False
 
-STATSD_HOST = 'localhost'
+STATSD_HOST = env('STATSD_HOST', default='localhost')
+STATSD_PREFIX = env('STATSD_PREFIX', default='amo')
 STATSD_PORT = 8125
-STATSD_PREFIX = 'amo'
 
 # The django statsd client to use, see django-statsd for more.
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
-GRAPHITE_HOST = 'localhost'
+GRAPHITE_HOST = env('GRAPHITE_HOST', default='localhost')
+GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
 GRAPHITE_PORT = 2003
-GRAPHITE_PREFIX = 'amo'
 GRAPHITE_TIMEOUT = 1
 
 # IP addresses of servers we use as proxies.
@@ -1567,17 +1571,12 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 CSRF_USE_SESSIONS = True
 
-# Testing responsiveness without rate limits.
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-# This is the signing server for signing files.
-SIGNING_SERVER = ''
-
-# And how long we'll give the server to respond.
-SIGNING_SERVER_TIMEOUT = 10
+# And how long we'll give the server to respond for monitoring.
+# We currently do not have any actual timeouts during the signing-process.
+SIGNING_SERVER_MONITORING_TIMEOUT = 10
 
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
 HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
@@ -1602,10 +1601,8 @@ AUTOGRAPH_CONFIG = {
         default='webextensions-rsa')
 }
 
-# Enable addon signing. This setting is primarily be thought to be used
-# for Autograph based signing. Trunion based signing also listens to
-# `SIGNING_SERVER` being empty. We are trying to have Autograph
-# being configured to something locally running by default though.
+# Enable addon signing. Autograph is configured to something reasonable
+# when running locally so there aren't many reasons to deactivate that.
 ENABLE_ADDON_SIGNING = True
 
 # True when the Django app is running from the test suite.
@@ -1625,12 +1622,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# Credentials for accessing Google Analytics stats.
-GOOGLE_ANALYTICS_CREDENTIALS = {}
-
-# Which domain to access GA stats for. If not set, defaults to DOMAIN.
-GOOGLE_ANALYTICS_DOMAIN = None
-
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
 LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
@@ -1641,10 +1632,6 @@ LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
-
-# Whitelist IP addresses of the allowed clients that can post email
-# through the API.
-ALLOWED_CLIENTS_EMAIL_API = []
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
@@ -1682,9 +1669,8 @@ GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
-AES_KEYS = {
-    # 'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
-}
+# {'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),}
+AES_KEYS = env.dict('AES_KEYS', default={})
 
 # Time in seconds for how long a JWT auth token created by developers with
 # their API key can live. When developers are creating auth tokens they cannot
@@ -1746,9 +1732,8 @@ REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
 }
 
-# This is the DSN to the local Sentry service. It might be overridden in
-# site-specific settings files as well.
-SENTRY_DSN = os.environ.get('SENTRY_DSN')
+# This is the DSN to the Sentry service.
+SENTRY_DSN = env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN'))
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (
@@ -1756,7 +1741,6 @@ SHELL_PLUS_POST_IMPORTS = (
 )
 
 DEFAULT_FXA_CONFIG_NAME = 'default'
-INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default']
 
 WEBEXT_PERM_DESCRIPTIONS_URL = (
@@ -1799,7 +1783,6 @@ CRON_JOBS = {
     'update_addons_collections_downloads': 'olympia.stats.cron',
     'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
-    'update_google_analytics': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',
@@ -1811,11 +1794,16 @@ RECOMMENDATION_ENGINE_URL = env(
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 
-FXA_SQS_CONFIG = {
-    'aws_region': 'us-east-1',
-    'aws_queue_url': ('https://sqs.us-east-1.amazonaws.com/'
-                      '927034868273/amo-account-change-dev'),
-    'wait_time': 20,
-}
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=None)
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)
+# This is the queue used for addons-dev, so it'll consume events (i.e. process
+# then delete) before you can locally.  If you really need to test get ops to
+# stop the 'monitor_fxa_sqs` command.
+FXA_SQS_AWS_QUEUE_URL = (
+    'https://sqs.us-east-1.amazonaws.com/927034868273/'
+    'amo-account-change-dev')
+FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
+
+AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
+
+# For the Github webhook API.
+GITHUB_API_USER = env('GITHUB_API_USER', default='')
+GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')

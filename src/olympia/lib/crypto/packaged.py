@@ -41,14 +41,6 @@ def supports_firefox(file_obj):
     return apps.filter(max__application__in=SIGN_FOR_APPS)
 
 
-def get_trunion_endpoint(server):
-    """Get the endpoint to sign the file."""
-    if not server:  # Setting is empty, signing isn't enabled.
-        return
-
-    return u'{server}/1.0/sign_addon'.format(server=server)
-
-
 def get_id(addon):
     """Return the addon GUID if <= 64 chars, or its sha256 hash otherwise.
 
@@ -60,7 +52,7 @@ def get_id(addon):
     return hashlib.sha256(guid).hexdigest()
 
 
-def call_signing(file_obj, use_autograph=False):
+def call_signing(file_obj):
     """Get the jar signature and send it to the signing server to be signed."""
     # Extract jar signature.
     jar = JarExtractor(path=storage.open(file_obj.file_path))
@@ -68,55 +60,34 @@ def call_signing(file_obj, use_autograph=False):
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
     signed_manifest = unicode(jar.signatures)
-    has_error = False
 
-    if use_autograph:
-        conf = settings.AUTOGRAPH_CONFIG
-        log.debug('Calling autograph service: {0}'.format(conf['server_url']))
+    conf = settings.AUTOGRAPH_CONFIG
+    log.debug('Calling autograph service: {0}'.format(conf['server_url']))
 
-        # create the signing request
-        signing_request = [{
-            'input': b64encode(signed_manifest),
-            'keyid': conf['signer'],
-            'options': {
-                'id': get_id(file_obj.version.addon),
-            },
-        }]
+    # create the signing request
+    signing_request = [{
+        'input': b64encode(signed_manifest),
+        'keyid': conf['signer'],
+        'options': {
+            'id': get_id(file_obj.version.addon),
+        },
+    }]
 
-        # post the request
-        with statsd.timer('services.sign.addon.autograph'):
-            response = requests.post(
-                '{server}/sign/data'.format(server=conf['server_url']),
-                json=signing_request,
-                auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+    # post the request
+    with statsd.timer('services.sign.addon.autograph'):
+        response = requests.post(
+            '{server}/sign/data'.format(server=conf['server_url']),
+            json=signing_request,
+            auth=HawkAuth(id=conf['user_id'], key=conf['key']))
 
-        if response.status_code != requests.codes.CREATED:
-            has_error = True
-    else:
-        log.debug(u'Calling signing service: {0}'.format(
-            settings.SIGNING_SERVER))
-
-        with statsd.timer('services.sign.addon'):
-            response = requests.post(
-                get_trunion_endpoint(settings.SIGNING_SERVER),
-                timeout=settings.SIGNING_SERVER_TIMEOUT,
-                data={'addon_id': get_id(file_obj.version.addon)},
-                files={'file': (u'mozilla.sf', signed_manifest)})
-
-        if response.status_code != requests.codes.OK:
-            has_error = True
-
-    if has_error:
+    if response.status_code != requests.codes.CREATED:
         msg = u'Posting to add-on signing failed: {0} {1}'.format(
             response.reason, response.text)
         log.error(msg)
         raise SigningError(msg)
 
     # convert the base64 encoded pkcs7 signature back to binary
-    if use_autograph:
-        pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
-    else:
-        pkcs7 = b64decode(response.json()['mozilla.rsa'])
+    pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
 
     cert_serial_num = get_signer_serial_number(pkcs7)
 
@@ -133,7 +104,7 @@ def call_signing(file_obj, use_autograph=False):
     return cert_serial_num
 
 
-def sign_file(file_obj, use_autograph=False):
+def sign_file(file_obj):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
@@ -142,7 +113,7 @@ def sign_file(file_obj, use_autograph=False):
 
     Otherwise return the signed file.
     """
-    if not settings.SIGNING_SERVER or not settings.ENABLE_ADDON_SIGNING:
+    if not settings.ENABLE_ADDON_SIGNING:
         log.info(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
         return
@@ -178,8 +149,7 @@ def sign_file(file_obj, use_autograph=False):
         return
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = unicode(
-        call_signing(file_obj, use_autograph=use_autograph))
+    cert_serial_num = unicode(call_signing(file_obj))
 
     size = storage.size(file_obj.file_path)
 

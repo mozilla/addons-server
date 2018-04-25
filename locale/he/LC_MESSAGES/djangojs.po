@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-03-01 11:50+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2015-12-01 12:34+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -36,7 +36,7 @@ msgstr "{0}% הושלמו"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr "{0} מתוך {1}"
+msgstr "‎{0} מתוך ‎{1}"
 
 msgid "Cancel"
 msgstr "ביטול"
@@ -52,8 +52,8 @@ msgstr "הפעלנו מערכת lint חדשה לעיבוד התוספת שלך. 
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "התוספת שלך נכשלה בבדיקה עם שגיאה אחת."
-msgstr[1] "התוספת שלך נכשלה בבדיקה עם {0} שגיאות."
+msgstr[0] "התוספת שלך נכשלה בבדיקת האימות עם שגיאה אחת."
+msgstr[1] "התוספת שלך נכשלה בבדיקת האימות עם {0} שגיאות."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -61,7 +61,7 @@ msgstr[0] "&hellip;ועוד אחד"
 msgstr[1] "&hellip;ועוד {0}"
 
 msgid "See full validation report"
-msgstr "הצגת דוח הבדיקה המלא"
+msgstr "הצגת דוח בדיקת האימות המלא"
 
 msgid "Validating {0}"
 msgstr "‏{0} בהליכי בדיקה"
@@ -73,13 +73,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "התקבלה תגובה ריקה מהשרת; סטטוס: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקה."
+msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקת האימות."
 
 msgid "Finished validating {0}"
-msgstr "בדיקת {0} הסתיימה"
+msgstr "בדיקת האימות של {0} הסתיימה"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "בדיקת התוספת שלך התעכבה זמן רב מדי, התוספת תעבור סקירה ידנית."
+msgstr "בדיקת האימות של התוספת שלך התעכבה זמן רב מדי, התוספת תעבור סקירה ידנית."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -88,8 +88,8 @@ msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} אז
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "התוספת שלך אומתה ללא שגיאות ועם הודעה אחת."
-msgstr[1] "התוספת שלך אומתה ללא שגיאות ועם {0} הודעות."
+msgstr[0] "התוספת שלך אומתה ללא שגיאות אך עם הודעה אחת."
+msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} הודעות."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "התוספת שלך אומתה ללא כל שגיאות או אזהרות."
@@ -107,13 +107,13 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "הסבת תוספת מדור קודם של Firefox ב־MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "יש להוסיף הערות גרסה מפורטות (ניתן לביצוע בשלב הבא)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "אם התוספת שלך דורשת חשבון לאתר לטובת בדיקה מלאה, יש לכלול שם משתמש וססמה לניסיון בהערות לסוקר (ניתן לביצוע בשלב הבא)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "בדיקות לפני הגשת תוספת"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "נא לבדוק את הנקודות הבאות לפני סיום ההגשה. הבדיקה תמזער עיכובים או אי הבנות במהלך הסקירה:"
@@ -121,10 +121,10 @@ msgstr "נא לבדוק את הנקודות הבאות לפני סיום ההג�
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
+msgstr "יש לשלוח את קובצי המקור של קבצים בינריים שהודרו מראש, כמו גם סקריפטים מעורפלים (למעט ספריות מוכרות) בנפרד לסקירה. נא לוודא שעשית שימוש בשדה העלאת קוד מקור כדי להימנע מדחיית ההגשה שלך."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "תהליך הבדיקה מצא את התקלות הבאות שעלולות להוביל לסירובים:"
+msgstr "תהליך בדיקת האימות מצא את התקלות הבאות שעלולות להוביל לסירובים:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "מצטערים, לא נמצאה פלטפורמה נתמכת."
@@ -136,7 +136,7 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr "הקובץ שלך חורג מהגודל המירבי של {0}."
 
 msgid "You cancelled the upload."
-msgstr "העלאה בוטלה."
+msgstr "ביטלת את ההעלאה."
 
 msgid "Images must be either PNG or JPG."
 msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
@@ -635,13 +635,13 @@ msgstr "תחילה יש לבחור יישום"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הגדרת תוספת אחת לגרסה מרבית של {1} ושליחת דוא״ל ליוצר."
+msgstr[1] "הגדרת {0} תוספות לגרסה מרבית של {1} ושליחת דוא״ל ליוצר."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שליחת דוא״ל ליוצר של תוספת אחת שנכשלה בבדיקת האימות."
+msgstr[1] "שליחת דוא״ל ליוצר של {2} תוספות שנכשלו בבדיקת האימות."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -677,7 +677,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "רק עם Firefox — קבלו את Firefox כעת!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
+msgstr "מצטערים, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "הוספה למועדפים&hellip;"
@@ -774,13 +774,13 @@ msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "הקבלה נבדקה על ידי היישום."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "הקבלה לא נבדקה על ידי היישום."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "תוספת זו כבר נצפתה על ידי {name}."
 
 msgid "Loading&hellip;"
 msgstr "טעינה&hellip;"
@@ -807,7 +807,7 @@ msgid "Number of Reviews"
 msgstr "מספר הסקירות"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "נדרש מידע"
 
 msgid "Flagged"
 msgstr "מסומן בדגל"
@@ -819,7 +819,7 @@ msgid "Rejected"
 msgstr ""
 
 msgid "Approved"
-msgstr ""
+msgstr "אושר"
 
 msgid "No results found"
 msgstr "לא נמצאו תוצאות"
@@ -858,10 +858,10 @@ msgid "Compatibility Tests"
 msgstr "בדיקות תאימות"
 
 msgid "Add-on failed validation."
-msgstr "התוספת נכשלה בבדיקה."
+msgstr "התוספת נכשלה בבדיקת האימות."
 
 msgid "Add-on passed validation."
-msgstr "התוספת עברה את הבדיקה."
+msgstr "התוספת עברה את בדיקת האימות."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -879,7 +879,7 @@ msgstr[0] "הודעה אחת"
 msgstr[1] "{0} הודעות"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "משימת הבדיקה לא הושלמה או הושלמה עם שגיאות"
+msgstr "משימת בדיקת האימות לא הושלמה או הושלמה עם שגיאות"
 
 msgid "Internal server error"
 msgstr "שגיאה פנימית בשרת"

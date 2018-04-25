@@ -11,7 +11,7 @@ from olympia.addons.models import Addon, Persona, update_search_index
 from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
+    ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_PUBLIC)
 
 from .categories import generate_categories
 from .collection import generate_collection
@@ -53,10 +53,11 @@ def create_addon(name, icon_type, application, **extra_kwargs):
         'created': datetime.now(),
         'last_updated': datetime.now(),
         'icon_type': icon_type,
+        'type': ADDON_EXTENSION,
     }
     kwargs.update(extra_kwargs)
 
-    addon = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
+    addon = Addon.objects.create(**kwargs)
     generate_version(addon=addon, app=application)
     addon.update_version()
     addon.status = STATUS_PUBLIC
@@ -64,7 +65,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     return addon
 
 
-def generate_addons(num, owner, app_name):
+def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
     """Generate `num` addons for the given `owner` and `app_name`."""
     # Disconnect this signal given that we issue a reindex at the end.
     post_save.disconnect(update_search_index, sender=Addon,
@@ -75,11 +76,11 @@ def generate_addons(num, owner, app_name):
     app = APPS[app_name]
     default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
     for name, category in _yield_name_and_cat(
-            num, app=app, type=ADDON_EXTENSION):
+            num, app=app, type=addon_type):
         # Use one of the default icons at random.
         icon_type = random.choice(default_icons)
         addon = create_addon(name=name, icon_type=icon_type,
-                             application=app)
+                             application=app, type=addon_type)
         generate_addon_user_and_category(addon, user, category)
         generate_addon_preview(addon)
         generate_translations(addon)
@@ -127,6 +128,8 @@ def generate_themes(num, owner):
                          dispatch_uid='addons.search.index')
 
     user = generate_user(owner)
+
+    # Generate personas.
     for name, category in _yield_name_and_cat(
             num, app=FIREFOX, type=ADDON_PERSONA):
         theme = create_theme(name=name)
@@ -135,3 +138,6 @@ def generate_themes(num, owner):
         generate_translations(theme)
         generate_collection(theme)
         generate_ratings(theme, 5)
+
+    # Generate static themes.
+    generate_addons(num, owner, 'firefox', addon_type=ADDON_STATICTHEME)

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 08:55+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -43,6 +43,9 @@ msgstr "Ez a felhasználónév már használatban van."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
+
+msgid "Images cannot be animated."
+msgstr "A kép nem lehet animált."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1014,8 +1017,14 @@ msgstr "Ezt az URL-t egy másik gyűjtemény használja"
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
+msgid "Icons cannot be animated."
+msgstr "Az ikon nem lehet animált."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
+
+msgid "Name cannot be empty."
+msgstr "A név nem lehet üres."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Az egyéni URL-nek betűkből, számokból, aláhúzásokból vagy kötőjelekből kell állnia."
@@ -2002,14 +2011,17 @@ msgstr "{addon} {version} tartalma elutasítva."
 msgid "Content rejected"
 msgstr "Tartalom elutasítva"
 
-msgid "{addon} information request removed."
-msgstr "{addon} információs kérés eltávolítva."
+msgid "{addon} information request altered or removed by admin."
+msgstr "{addon} információs kérés módosítva vagy adminisztrátor által eltávolítva."
 
-msgid "Information request removed"
-msgstr "Információkérés eltávolítva"
+msgid "Information request altered"
+msgstr "Információkérés módosítva"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Az információs kérést törölte a fejlesztő ennél: {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Információkérés eltávolítva"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2374,8 +2386,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "App"
+msgid "Static Theme"
+msgstr "Statikus téma"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2412,6 +2424,9 @@ msgstr "Frissített nyelvicsomag-értékelés"
 
 msgid "Theme Review"
 msgstr "Témaértékelés"
+
+msgid "Theme (Static) Review"
+msgstr "Téma (statikus) előnézete"
 
 msgid "New Search Provider Review"
 msgstr "Új keresőszolgáltatás-értékelés"
@@ -2731,12 +2746,6 @@ msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 
-msgid "Icons cannot be animated."
-msgstr "Az ikon nem lehet animált."
-
-msgid "Images cannot be animated."
-msgstr "A kép nem lehet animált."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "A kép nem lehet nagyobb, mint %d KB."
@@ -2969,6 +2978,15 @@ msgstr "Információk szerkesztése"
 
 msgid "None"
 msgstr "Nincs"
+
+msgid "Preview"
+msgstr "Előnézet"
+
+msgid "Preview of listed version"
+msgstr "Listázott verziók előnézete"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Az előnézet előállítása még folyamatban van – jöjjön vissza később vagy frissítse az oldalt."
 
 msgid "Manage Authors & License"
 msgstr "Szerzők és licencek kezelése"
@@ -3512,6 +3530,9 @@ msgstr "Kész is van!"
 msgid "Version Submitted for Review"
 msgstr "Verzió értékelésre benyújtva"
 
+msgid "Preview of the version submitted"
+msgstr "Beküldött verzió előnézete"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Kész van! Ez a verzió elérhető lesz, amint átmegy az értékelésen. Értesítve lesz, ha értékelésre kerül."
 
@@ -3649,8 +3670,8 @@ msgstr "Az eszköztárterület háttere"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne. Leírófájl: toolbar."
 
-msgid "Toolbar area text icons"
-msgstr "Eszköztárterület szövegének ikonjai"
+msgid "Toolbar area text and icons"
+msgstr "Az eszköztárterület szövege és ikonok"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Az eszköztáron és aktív lapon található szöveg színe és ikonjai. Leírófájl mező: toolbar_text."
@@ -3972,14 +3993,17 @@ msgstr "Létezik egy új, keresztplatformos szabvány a Firefox kiegészítők f
 msgid "Learn How"
 msgstr "Tudja meg hogyan"
 
-msgid "What's New"
-msgstr "Újdonságok"
+msgid "Get Started"
+msgstr "Első lépések"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Készen áll a kiegészítő beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Készen áll a kiterjesztés beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
 
 msgid "See Tutorial"
 msgstr "Ismertető megtekintése"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Segítsen a felhasználóknak felfedezni a kiterjesztését, azáltal hogy tetszetős listázást készít."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4124,17 +4148,11 @@ msgstr "Az előzőleg benyújtott dizájnja, amely értékelésre vár."
 msgid "Pending Header"
 msgstr "Függő fejléc"
 
-msgid "Pending Footer"
-msgstr "Függő lábléc"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Majd frissítheti a témadizájnt itt, amint az elfogadásra került."
 
 msgid "Header"
 msgstr "Fejléc"
-
-msgid "Footer"
-msgstr "Lábléc"
 
 msgid "Select colors for your Theme."
 msgstr "Válasszon színeket a témájához."
@@ -4150,9 +4168,6 @@ msgstr "Háttér"
 
 msgid "This is the color of the tabs."
 msgstr "Ez a lapok színe."
-
-msgid "Preview"
-msgstr "Előnézet"
 
 msgid "Your Theme's Name"
 msgstr "Téma neve"
@@ -4214,18 +4229,6 @@ msgstr "max. 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG vagy JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Válasszon lábléc képet a témájához."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 képpont"
-
-msgid "Aligned to bottom-left"
-msgstr "Bal alulra igazítva"
-
-msgid "Select a different footer image"
-msgstr "Válasszon másik alsó képet"
 
 msgid "Manage Version {0}"
 msgstr "{0} verzió kezelése"
@@ -4416,29 +4419,32 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fordítson egyszerűen {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Facebook követés megállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Jelöljön ki tetszőleges szöveget, kattintson a jobb gombbal, és fordítsa le azonnal."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izolálja a Facebook személyazonosságát egy külön „konténerbe”, így nehezebbé téve, hogy a Facebook kövesse a mozgását a weben."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fordított képkeresés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "A keresés egyszerűsítése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Egy érdekes képet lát a weben, és szeretne többet megtudni róla? Próbálja ki ezt a képkereső eszközt."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Jelöljön ki egy szöveget egy tetszőleges weboldalon, és keressen a kifejezésre számos keresőszolgáltatás egyikében."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reklámblokkolás és adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Egy egyszerű beállítással szabályozhatja, hogy mely hirdetések jelennek meg, és hogyan követik az interneten."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "A lapok újragondolása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Sok nyitott lapja van? Rendszerezze őket egy rendezett oldalsávon."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Működik a YouTube-bal, a Facebookkal, a Vimeóval, a Twitchel, a Dailymotionnal, a Periscope-pal, és több száz más videós oldallal."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Tucatnyi elképesztő emodzsi – egyetlen kattintásnyira."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Zökkenőmentesen működik a legnépszerűbb videós oldalakkal."
@@ -4471,7 +4477,7 @@ msgid "Access your data on the following websites:"
 msgstr "Hozzáférés az adataihoz ezeken a weboldalakon:"
 
 msgid "Access your data for all websites"
-msgstr "Hozzéférés az adataihoz minden weboldalon"
+msgstr "Hozzáférés az adataihoz minden weboldalon"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 és korábbi verziókhoz GUID szükséges."
@@ -4792,9 +4798,6 @@ msgstr "Legyen tesztpilóta"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
-
-msgid "Get Started"
-msgstr "Első lépések"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"
@@ -5303,7 +5306,7 @@ msgstr "Rossz helyre küldött hibajelentés vagy támogatási kérés"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Más (felugró ablakot nyújt az információk bekéréséhez)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Jelenleg, az AMO nem biztosít módot az értékelővel történő közvetlenül kommunikációra."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5915,7 +5918,7 @@ msgstr "Nem készíthet értékelést a saját kiegészítőjéhez."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nem készíthet több értékelést egy kiegészítő ugyanazon verziójához."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Ez az értékelés nem jelölhető meg, mert nincs értékelési szövege."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6059,15 +6062,6 @@ msgstr "és"
 msgid "Filter by type/action"
 msgstr "Szűrés típus/művelet szerint"
 
-msgid "Passed automatic validation"
-msgstr "Átment az automatikus ellenőrzésen"
-
-msgid "Failed automatic validation"
-msgstr "Megbukott az automatikus ellenőrzésen"
-
-msgid "Filter by automatic validation"
-msgstr "Szűrés automatikus ellenőrzés szerint"
-
 msgid "containing"
 msgstr "tartalmazza"
 
@@ -6142,6 +6136,9 @@ msgstr "Kihagyás"
 
 msgid "Needs Admin Content Review"
 msgstr "Adminisztrátori tartalomértékelés szükséges"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Adminisztrátori statikus téma értékelés szükséges"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack kiegészítők"
@@ -6269,29 +6266,41 @@ msgstr "Tartalom jóváhagyása"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Statikus témák és örökölt kiegészítők"
+
+msgid "Static Themes"
+msgstr "Statikus témák"
+
 msgid "Legacy Add-ons"
 msgstr "Örökölt kiegészítők"
 
-msgid "New Add-ons ({0})"
-msgstr "Új kiegészítők ({0})"
+msgid "New ({0})"
+msgstr "Új ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Kiegészítő-frissítések ({0})"
+msgid "Updates ({0})"
+msgstr "Frissítések ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Kiegészítő értékelési naplója"
+msgid "Review Log"
+msgstr "Értékelési napló"
 
-msgid "Signed Beta Files Log"
-msgstr "Aláírt béta fájlok naplója"
+msgid "Add-on Review Guide"
+msgstr "Kiegészítő értékelési útmutató"
 
-msgid "Review Guide"
-msgstr "Értékelési útmutató"
+msgid "Theme Review Guide"
+msgstr "Téma értékelési útmutató"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Automatikusan jóváhagyott kiegészítők ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Kiegészítő értékelési naplója"
+
+msgid "Review Guide"
+msgstr "Értékelési útmutató"
 
 msgid "Content Review"
 msgstr "Tartalom értékelése"
@@ -6310,8 +6319,8 @@ msgstr "Témafrissítések ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Megjelölt témák ({0})"
 
-msgid "Themes Review Log"
-msgstr "Témaértékelési napló"
+msgid "Lightweight Themes Review Log"
+msgstr "Könnyű téma értékelési napló"
 
 msgid "Deleted Themes Log"
 msgstr "Törölt témák naplója"
@@ -6342,8 +6351,8 @@ msgstr "Bejelentés"
 msgid "Update message of the day"
 msgstr "A nap üzenetének frissítése"
 
-msgid "Add-ons with expired information requests"
-msgstr "Kiegészítők lejárt információkérésekkel"
+msgid "Expired Information Requests ({0})"
+msgstr "Lejárt információkérések ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ismeretlen hiba történt"
@@ -6404,6 +6413,15 @@ msgstr "Visszaélési jelentések ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Rossz felhasználói értékelések ({num})"
 
+msgid "Theme Images"
+msgstr "Téma képek"
+
+msgid "Rendered Preview"
+msgstr "Renderelt előnézet"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Háttér fájl {0} / {1} – {2}"
+
 msgid "More about this add-on"
 msgstr "További tudnivalók a kiegészítőről"
 
@@ -6415,6 +6433,18 @@ msgstr "Nincs itt semmi látnivaló! A fejlesztő nem adott meg részleteket."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Visszatérés a Szerkesztői eszközök vezérlőpultra"
+
+msgid "Reviewer Leaderboard"
+msgstr "Értékelő ranglista"
+
+msgid "No review points awarded yet."
+msgstr "Nincsenek még értékelési pontok."
+
+msgid "Rank"
+msgstr "Helyezés"
+
+msgid "Score"
+msgstr "Pontszám"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6456,18 +6486,6 @@ msgstr "Az értékelés meg lett jelölve törlés előtt."
 
 msgid "Undelete"
 msgstr "Törlés visszavonása"
-
-msgid "Reviewer Leaderboard"
-msgstr "Értékelő ranglista"
-
-msgid "No review points awarded yet."
-msgstr "Nincsenek még értékelési pontok."
-
-msgid "Rank"
-msgstr "Helyezés"
-
-msgid "Score"
-msgstr "Pontszám"
 
 msgid "Save"
 msgstr "Mentés"
@@ -6649,6 +6667,9 @@ msgstr "Adminisztrátori kódértékelés jelző törlése"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Adminisztrátori tartalomértékelés jelző törlése"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Adminisztrátori statikus téma értékelés jelző törlése"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6851,25 +6872,25 @@ msgstr "Visszautasított vagy nem értékelt"
 msgid "[status:%s]"
 msgstr "[állapot: %s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Új kiegészítő ({0})"
-msgstr[1] "Új kiegészítők ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Frissítés ({0})"
 msgstr[1] "Frissítések ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderált értékelés ({0})"
-msgstr[1] "Moderált értékelések ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Tartalom értékelés ({0})"
+msgstr[1] "Tartalom értékelések ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Automatikusan jóváhagyott kiegészítő ({0})"
-msgstr[1] "Automatikusan jóváhagyott kiegészítők ({0})"
+msgstr[1] "Automatikusan jóváhagyott kiegészítő ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Lejárt információkérés ({0})"
+msgstr[1] "Lejárt információkérések ({0})"
 
 msgid "Flagged"
 msgstr "Megjelölve"

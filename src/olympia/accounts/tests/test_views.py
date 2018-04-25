@@ -51,7 +51,6 @@ SKIP_REDIRECT_FXA_CONFIG = {
 
 @override_settings(FXA_CONFIG={
     'default': FXA_CONFIG,
-    'internal': FXA_CONFIG,
     'skip': SKIP_REDIRECT_FXA_CONFIG,
 })
 class BaseAuthenticationView(APITestCase, PatchMixin,
@@ -968,7 +967,7 @@ class TestAccountViewSetUpdate(TestCase):
         # Should delete the photo
         assert not path.exists(self.user.picture_path)
         json_content = json.loads(response.content)
-        assert 'anon_user.png' in json_content['picture_url']
+        assert json_content['picture_url'] is None
 
     def test_account_picture_disallowed_verbs(self):
         picture_url = reverse('account-picture', kwargs={'pk': self.user.pk})

@@ -25,62 +25,64 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Swirly Purple' theme.
+        # 'Spring is Here' theme.
         DiscoItem(
-            addon_id=18705, type=amo.ADDON_PERSONA),
+            addon_id=368421, type=amo.ADDON_PERSONA,
+            addon_name=u'Spring is Here'),
 
-        # To Google Translate
+        # Facebook Container
         DiscoItem(
-            addon_id=445852,
-            heading=_(u'Translate easily {start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Highlight any text, right-click, and translate '
-                  u'instantly.'),
-                '</blockquote>')),
-
-        # Search by Image
-        DiscoItem(
-            addon_id=824288,
-            heading=_(u'Reverse image search '
-                      u'{start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'See an interesting picture on the Web and want to learn '
-                  u'more about it? Try this image search tool.'),
-                '</blockquote>')),
-
-        # 'Eco Theme' theme
-        DiscoItem(
-            addon_id=294291,
-            type=amo.ADDON_PERSONA),
-
-        # Video DownloadHelper
-        DiscoItem(
-            addon_id=3006,
-            heading=_(u'Download videos {start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, '
-                  u'Periscope, and hundreds of other video sites.'),
-                '</blockquote>')),
-
-        # Emoji Cheatsheet.
-        DiscoItem(
-            addon_id=511962,
-            heading=_(u'Up your emoji game {start_sub_heading}with '
+            addon_id=954390,
+            heading=_(u'Stop Facebook tracking {start_sub_heading}with '
                       u'{addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Dozens of amazing emojis—always a click away.'),
+                _(u'Isolate your Facebook identity into a separate '
+                  u'"container" that makes it harder for Facebook to track '
+                  u'your movements around the web.'),
                 '</blockquote>')),
 
-        # 'Light Up the Morning' theme.
+        # Swift Selection Search
         DiscoItem(
-            addon_id=571240, type=amo.ADDON_PERSONA),
+            addon_id=587410,
+            heading=_(u'Simplify search {start_sub_heading}with '
+                      u'{addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Just highlight text on any web page to search the phrase '
+                  u'from an array of engines.'),
+                '</blockquote>')),
+
+        # 'Dream of Waves' theme
+        DiscoItem(
+            addon_id=46638, type=amo.ADDON_PERSONA),
+
+        # Ghostery
+        DiscoItem(
+            addon_id=9609,
+            heading=_(u'Ad blocking & privacy protection {start_sub_heading}'
+                      u'with {addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'A simple set-up lets you take control of the ads you see '
+                  u'and how you’re tracked on the internet.'),
+                '</blockquote>')),
+
+        # Tree Style Tab
+        DiscoItem(
+            addon_id=5890,
+            heading=_(u'Re-imagine tabs {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Do you have a ton of open tabs? Organize them in a tidy '
+                  u'sidebar.'),
+                '</blockquote>')),
+
+        # 'Space Stars' theme.
+        DiscoItem(
+            addon_id=211644, type=amo.ADDON_PERSONA,
+            addon_name=u'Space Stars'),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.

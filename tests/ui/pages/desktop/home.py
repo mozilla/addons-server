@@ -1,144 +1,121 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
 
-from base import Base
+from pages.desktop.base import Base
 
 
 class Home(Base):
     """Addons Home page"""
+
+    _extensions_category_locator = (By.CLASS_NAME, 'Home-CuratedCollections')
+    _featured_extensions_locator = (By.CLASS_NAME, 'Home-FeaturedExtensions')
+    _featured_themes_locator = (By.CLASS_NAME, 'Home-FeaturedThemes')
+    _popular_extensions_locator = (By.CLASS_NAME, 'Home-PopularExtensions')
+    _popular_themes_locator = (By.CLASS_NAME, 'Home-PopularThemes')
+    _themes_category_locator = (By.CLASS_NAME, 'Home-CuratedThemes')
+    _toprated_themes_locator = (By.CLASS_NAME, 'Home-TopRatedThemes')
+
     @property
-    def most_popular(self):
-        return self.MostPopular(self)
+    def popular_extensions(self):
+        el = self.find_element(*self._popular_extensions_locator)
+        return self.Extensions(self, el)
 
     @property
     def featured_extensions(self):
-        return self.FeaturedExtensions(self)
-
-    @property
-    def featured_collections(self):
-        return self.FeaturedCollections(self)
+        el = self.find_element(*self._featured_extensions_locator)
+        return self.Extensions(self, el)
 
     @property
     def featured_themes(self):
-        return self.FeaturedThemes(self)
+        el = self.find_element(*self._featured_themes_locator)
+        return self.Themes(self, el)
 
-    class MostPopular(Region):
-        """Most popular extensions region"""
-        _root_locator = (By.ID, 'popular-extensions')
-        _extension_locator = (By.CSS_SELECTOR, '.toplist li')
+    @property
+    def popular_themes(self):
+        el = self.find_element(*self._popular_themes_locator)
+        return self.Themes(self, el)
+
+    @property
+    def toprated_themes(self):
+        el = self.find_element(*self._toprated_themes_locator)
+        return self.Themes(self, el)
+
+    @property
+    def extension_category(self):
+        el = self.find_element(*self._extensions_category_locator)
+        return self.Category(self, el)
+
+    @property
+    def theme_category(self):
+        el = self.find_element(*self._themes_category_locator)
+        return self.Category(self, el)
+
+    class Category(Region):
+        _extensions_locator = (By.CLASS_NAME, 'Home-SubjectShelf-list-item')
 
         @property
-        def extensions(self):
-            extensions = self.find_elements(*self._extension_locator)
-            return [self.Extension(self.page, el) for el in extensions]
+        def list(self):
+            items = self.find_elements(*self._extensions_locator)
+            return [self.CategoryDetail(self.page, el) for el in items]
 
-        class Extension(Region):
+        class CategoryDetail(Region):
+            _extension_link_locator = (By.CLASS_NAME, 'Home-SubjectShelf-link')
+            _extension_name_locator = (
+                By.CSS_SELECTOR, '.Home-SubjectShelf-link span')
 
-            _name_locator = (By.CLASS_NAME, 'name')
-            _users_locator = (By.TAG_NAME, 'small')
-
-            def __repr__(self):
-                return '{0.name} ({0.users:,} users)'.format(self)
+            @property
+            def name(self):
+                return self.find_element(*self._extension_name_locator).text
 
             def click(self):
-                """Clicks on the addon."""
-                self.find_element(*self._name_locator).click()
-                from pages.desktop.details import Details
-                return Details(
-                    self.selenium, self.page.base_url).wait_for_page_to_load()
+                self.root.click()
+                from pages.desktop.extensions import Extensions
+                return Extensions(self.selenium, self.page.base_url)
 
-            @property
-            def name(self):
-                """Extension name"""
-                return self.find_element(*self._name_locator).text
-
-            @property
-            def users(self):
-                """Number of users that have downloaded the extension"""
-                users_str = self.find_element(*self._users_locator).text
-                return int(users_str.split()[0].replace(',', ''))
-
-    class FeaturedExtensions(Region):
-        """Featured Extension region"""
-        _root_locator = (By.ID, 'featured-extensions')
-        _extension_locator = (By.CSS_SELECTOR, 'section > li > .addon')
-        _see_all_locator = (By.CSS_SELECTOR, 'h2 > a')
+    class Extensions(Region):
+        _browse_all_locator = (By.CSS_SELECTOR, '.Card-footer-link > a')
+        _extensions_locator = (By.CLASS_NAME, 'SearchResult')
+        _extension_card_locator = (By.CSS_SELECTOR, '.Home-category-li')
 
         @property
-        def extensions(self):
-            extentions = self.find_elements(*self._extension_locator)
-            return [self.Extension(self.page, el) for el in extentions]
-
-        class Extension(Region):
-
-            _name_locator = (By.CSS_SELECTOR, 'h3')
-            _link_locator = (By.CSS_SELECTOR, '.addon .summary a')
-
-            def click(self):
-                """Clicks the addon link"""
-                self.find_element(*self._link_locator).click()
-                from pages.desktop.details import Details
-                return Details(
-                    self.selenium, self.page.base_url).wait_for_page_to_load()
-
-            @property
-            def name(self):
-                return self.find_element(*self._name_locator).text
-
-    class FeaturedThemes(Region):
-        """Featured Themes region"""
-        _root_locator = (By.ID, 'featured-themes')
-        _themes_locator = (By.CSS_SELECTOR, 'li')
-        _see_all_link = (By.CLASS_NAME, 'seeall')
+        def list(self):
+            items = self.find_elements(*self._extensions_locator)
+            return [Home.ExtensionsList(self.page, el) for el in items]
 
         @property
-        def themes(self):
-            """Represents all themes found within the Featured Themes region.
-            """
-            themes = self.find_elements(*self._themes_locator)
-            return [self.Theme(self, el) for el in themes]
+        def browse_all(self):
+            self.find_element(*self._browse_all_locator).click()
+            from pages.desktop.search import Search
+            search = Search(self.selenium, self.page.base_url)
+            return search.wait_for_page_to_load()
 
-        def see_all(self):
-            """Clicks the 'See All' link."""
-            self.find_element(*self._see_all_link).click()
-            from pages.desktop.themes import Themes
-            return Themes(
-                self.selenium, self.page.base_url).wait_for_page_to_load()
-
-        class Theme(Region):
-
-            _name_locator = (By.CSS_SELECTOR, 'h3')
-
-            @property
-            def name(self):
-                """Theme Name"""
-                return self.find_element(*self._name_locator).text
-
-    class FeaturedCollections(Region):
-        """Featured Collections region"""
-        _root_locator = (By.ID, 'featured-collections')
-        _items_locator = (By.CSS_SELECTOR, 'li')
-        _see_all_link = (By.CSS_SELECTOR, 'h2 a')
+    class Themes(Region):
+        _browse_all_locator = (By.CSS_SELECTOR, '.Card-footer-link > a')
+        _themes_locator = (By.CLASS_NAME, 'SearchResult--theme')
+        _theme_card_locator = (By.CSS_SELECTOR, '.Home-category-li')
 
         @property
-        def collections(self):
-            """Represents all Collections found within the Featured Collections
-            """
-            collections = self.find_elements(*self._items_locator)
-            return[self.Collection(self.page, el) for el in collections]
+        def list(self):
+            items = self.find_elements(*self._themes_locator)
+            return [Home.ExtensionsList(self.page, el) for el in items]
 
-        def see_all(self):
-            """Clicks the 'See All' link."""
-            self.find_element(*self._see_all_link).click()
-            from pages.desktop.collections import Collections
-            return Collections(
-                self.selenium, self.page.base_url).wait_for_page_to_load()
+        @property
+        def browse_all(self):
+            self.find_element(*self._browse_all_locator).click()
+            from pages.desktop.search import Search
+            search = Search(self.selenium, self.page.base_url)
+            return search.wait_for_page_to_load()
 
-        class Collection(Region):
-            """Individual Collection region"""
-            _name_locator = (By.TAG_NAME, 'h3')
+    class ExtensionsList(Region):
 
-            @property
-            def name(self):
-                """Collection name"""
-                return self.find_element(*self._name_locator).text
+        _extension_link_locator = (By.CLASS_NAME, 'SearchResult-link')
+        _extension_name_locator = (By.CLASS_NAME, 'SearchResult-name')
+
+        @property
+        def name(self):
+            return self.find_element(*self._extension_name_locator).text
+
+        def click(self):
+            self.find_element(*self._extension_link_locator).click()
+            from pages.desktop.extensions import Extensions
+            return Extensions(self.selenium, self.page.base_url)

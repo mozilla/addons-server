@@ -33,13 +33,13 @@ Detail
 
 .. _collection-detail:
 
-This endpoint allows you to fetch a single collection by its ``slug``.
+This endpoint allows you to fetch a single collection by its ``id`` or ``slug``.
 It returns any ``public`` collection by the specified user. You can access
 a non-``public`` collection only if it was authored by you, the authenticated user.
 If your account has the `Collections:Edit` permission then you can access any collection.
 
 
-.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/
 
     .. _collection-detail-object:
 
@@ -65,7 +65,7 @@ Filtering is as per :ref:`collection addon list endpoint<collection-addon-filter
 Additional add-ons can be returned from the :ref:`Collection Add-on list endpoint<collection-addon-list>`.
 
 
-.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/?with_addons
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/?with_addons
 
     .. _collection-detail-object-with-addons:
 
@@ -113,7 +113,7 @@ Edit
 This endpoint allows some of the details for a collection to be updated.  Any fields
 in the :ref:`collection <collection-detail-object>` but not listed below are not editable and will be ignored in the patch request.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/
 
     .. _collection-edit-request:
 
@@ -136,7 +136,7 @@ Delete
 
 This endpoint allows the collection to be deleted.
 
-.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/
 
 
 
@@ -148,7 +148,7 @@ Collection Add-ons List
 
 This endpoint lists the add-ons in a collection, together with collector's notes.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/addons/
 
     :query string filter: The :ref:`filter <collection-addon-filtering-param>` to apply.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <collection-addon-list-sort>`.
@@ -199,7 +199,7 @@ Collection Add-ons Detail
 
 This endpoint gets details of a single add-on in a collection, together with collector's notes.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/addons/(int:addon_id|string:slug)/
 
     .. _collection-addon-detail-object:
 
@@ -220,7 +220,7 @@ Collection Add-ons Create
 
 This endpoint allows a single add-on to be added to a collection, optionally with collector's notes.
 
-.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/addons/
 
     :<json string addon: The add-on id or slug to be added (required).
     :<json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
@@ -238,7 +238,7 @@ Collection Add-ons Edit
 
 This endpoint allows the collector's notes for single add-on to be updated.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/addons/(int:addon_id|string:slug)/
 
     :<json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
 
@@ -255,4 +255,4 @@ Collection Add-ons Delete
 
 This endpoint allows a single add-on to be removed from a collection.
 
-.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(int:id|string:collection_slug)/addons/(int:addon_id|string:slug)/

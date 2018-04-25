@@ -11,7 +11,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import django_tables2 as tables
 import jinja2
-import waffle
 
 import olympia.core.logger
 
@@ -36,7 +35,7 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('z.mailer')
 
 
-PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
+PENDING_STATUSES = (amo.STATUS_DISABLED, amo.STATUS_NULL,
                     amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
@@ -320,17 +319,30 @@ class ReviewHelper(object):
         is_content_reviewer = acl.action_allowed(
             request, amo.permissions.ADDONS_CONTENT_REVIEW)
         is_admin_tools_viewer = acl.action_allowed(
-            request, amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
+            request, amo.permissions.REVIEWS_ADMIN)
         reviewable_because_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
+        regular_addon_review_is_allowed = (
+            not self.content_review_only and
+            not self.addon.needs_admin_code_review and
+            not self.addon.needs_admin_content_review and
+            not self.addon.needs_admin_theme_review
+        )
+        regular_content_review_is_allowed = (
+            self.content_review_only and
+            not self.addon.needs_admin_content_review and
+            (
+                not self.addon.needs_admin_code_review or
+                self.version.source
+            ))
         reviewable_because_not_reserved_for_admins_or_user_is_admin = (
             is_admin_tools_viewer or
             (
-                self.content_review_only and self.version and
-                not self.version.addon.needs_admin_content_review) or
-            (
-                not self.content_review_only and self.version and
-                not self.version.addon.needs_admin_code_review
+                self.version and
+                (
+                    regular_addon_review_is_allowed or
+                    regular_content_review_is_allowed
+                )
             ))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
@@ -358,7 +370,7 @@ class ReviewHelper(object):
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
             is_unlisted_reviewer)
         is_public_and_listed_and_user_can_post_review = (
-            self. version and
+            self.version and
             self.addon.status == amo.STATUS_PUBLIC and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_post_reviewer)
@@ -416,6 +428,7 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
+                self.addon.type != amo.ADDON_STATICTHEME and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (is_public_and_listed_and_user_can_post_review or
                  is_public_and_listed_and_user_can_content_review)
@@ -506,7 +519,8 @@ class ReviewBase(object):
             file.status = status
             file.save()
 
-    def log_action(self, action, version=None, files=None):
+    def log_action(self, action, version=None, files=None,
+                   timestamp=None):
         details = {'comments': self.data['comments'],
                    'reviewtype': self.review_type}
         if files is None and self.files:
@@ -520,8 +534,10 @@ class ReviewBase(object):
             args = (self.addon, version)
         else:
             args = (self.addon,)
+        if timestamp is None:
+            timestamp = datetime.now()
 
-        kwargs = {'user': self.user, 'created': datetime.now(),
+        kwargs = {'user': self.user, 'created': timestamp,
                   'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
@@ -549,7 +565,7 @@ class ReviewBase(object):
             'reviewers/emails/%s.ltxt' % template).render(data)
         send_activity_mail(
             subject, message, version, self.addon.authors.all(),
-            settings.REVIEWERS_EMAIL, unique_id, perm_setting=perm_setting)
+            settings.NOBODY_EMAIL, unique_id, perm_setting=perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
@@ -641,10 +657,8 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(
-            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_, use_autograph=use_autograph)
+            sign_file(file_)
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -719,15 +733,24 @@ class ReviewBase(object):
                 self.request.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
-        """Mark an add-on as needing admin code or content review."""
-        needs_admin_property = (
-            'needs_admin_content_review' if self.content_review_only
-            else 'needs_admin_code_review')
+        """Mark an add-on as needing admin code, content, or theme review."""
+        addon_type = self.addon.type
+
+        if addon_type == amo.ADDON_STATICTHEME:
+            needs_admin_property = 'needs_admin_theme_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_THEME
+        elif self.content_review_only:
+            needs_admin_property = 'needs_admin_content_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT
+        else:
+            needs_admin_property = 'needs_admin_code_review'
+            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CODE
+
         AddonReviewerFlags.objects.update_or_create(
             addon=self.addon, defaults={needs_admin_property: True})
 
-        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
-        log.info(u'Super review requested for %s' % (self.addon))
+        self.log_action(log_action_type)
+        log.info(u'%s for %s' % (log_action_type.short, self.addon))
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
@@ -777,10 +800,12 @@ class ReviewBase(object):
         self.files = None
         action_id = (amo.LOG.REJECT_CONTENT if self.content_review_only
                      else amo.LOG.REJECT_VERSION)
+        timestamp = datetime.now()
         for version in self.data['versions']:
             files = version.files.all()
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files)
+            self.log_action(action_id, version=version, files=files,
+                            timestamp=timestamp)
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
             unicode(v.version) for v in self.data['versions'])
@@ -840,17 +865,16 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
-        use_autograph = waffle.flag_is_active(
-            self.request, 'activate-autograph-signing')
         for file_ in self.files:
-            sign_file(file_, use_autograph=use_autograph)
+            sign_file(file_)
 
         self.set_files(amo.STATUS_PUBLIC, self.files)
 
         template = u'unlisted_to_reviewed_auto'
         subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.log_action(amo.LOG.APPROVE_VERSION)
-        self.notify_email(template, subject)
+
+        self.notify_email(template, subject, perm_setting=None)
 
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))

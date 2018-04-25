@@ -13,8 +13,6 @@ from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
 
-import waffle
-
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
@@ -40,7 +38,7 @@ from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.utils import is_beta
+from olympia.files.utils import parse_addon
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
@@ -77,28 +75,26 @@ def validate(file_, listed=None, subtask=None, synchronous=False):
         return result
 
 
-def validate_and_submit(addon, file_, channel, use_autograph=False):
+def validate_and_submit(addon, file_, channel):
     return validate(
         file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(
-            addon.pk, file_.pk, channel, use_autograph=use_autograph))
+        subtask=submit_file.si(addon.pk, file_.pk, channel))
 
 
 @task
 @write
-def submit_file(addon_pk, upload_pk, channel, use_autograph=False):
+def submit_file(addon_pk, upload_pk, channel):
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(
-            addon, upload, channel, use_autograph=use_autograph)
+        create_version_for_upload(addon, upload, channel)
     else:
         log.info('Skipping version creation for {upload_uuid} that failed '
                  'validation'.format(upload_uuid=upload.uuid))
 
 
 @atomic
-def create_version_for_upload(addon, upload, channel, use_autograph=False):
+def create_version_for_upload(addon, upload, channel):
     """Note this function is only used for API uploads."""
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
@@ -113,19 +109,20 @@ def create_version_for_upload(addon, upload, channel, use_autograph=False):
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
-        beta = (bool(upload.version) and is_beta(upload.version) and
-                waffle.switch_is_active('beta-versions'))
+        # Note: if we somehow managed to get here with an invalid add-on,
+        # parse_addon() will raise ValidationError and the task will fail
+        # loudly in sentry.
+        parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
-            is_beta=beta)
+            parsed_data=parsed_data)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
         if (addon.status == amo.STATUS_NULL and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        auto_sign_version(
-            version, is_beta=version.is_beta, use_autograph=use_autograph)
+        auto_sign_version(version)
 
 
 # Override the validator's stock timeout exception so that it can
@@ -219,7 +216,6 @@ def handle_upload_validation_result(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version, channel=channel)
 
-    results = skip_signing_warning_if_signing_server_not_configured(results)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
 
@@ -282,7 +278,6 @@ def handle_file_validation_result(results, file_id, *args):
         results=results, file_=file_, addon=file_.version.addon,
         version_string=file_.version.version, channel=file_.version.channel)
 
-    results = skip_signing_warning_if_signing_server_not_configured(results)
     return FileValidation.from_json(file_, results)
 
 
@@ -431,23 +426,6 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
             results['warnings'] += 1
 
     return results
-
-
-def skip_signing_warning_if_signing_server_not_configured(result):
-    """Remove the "Package already signed" warning if we're not signing."""
-    if settings.SIGNING_SERVER:
-        return result
-    try:
-        messages = result['messages']
-    except (KeyError, ValueError):
-        return result
-
-    messages = [m for m in messages if 'signed_xpi' not in m['id']]
-    diff = len(result['messages']) - len(messages)
-    if diff:  # We did remove a warning.
-        result['messages'] = messages
-        result['warnings'] -= diff
-    return result
 
 
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
@@ -818,5 +796,4 @@ def send_welcome_email(addon_pk, emails, context, **kw):
                                 context, recipient_list=emails,
                                 from_email=settings.NOBODY_EMAIL,
                                 use_deny_list=False,
-                                perm_setting='individual_contact',
-                                headers={'Reply-To': settings.REVIEWERS_EMAIL})
+                                perm_setting='individual_contact')

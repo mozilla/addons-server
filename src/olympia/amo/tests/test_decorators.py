@@ -166,7 +166,8 @@ class TestPermissionRequired(TestCase):
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed_correctly(self, action_allowed):
-        func = decorators.permission_required(amo.permissions.ADMIN)(self.f)
+        func = decorators.permission_required(
+            amo.permissions.ANY_ADMIN)(self.f)
         func(self.request)
         action_allowed.assert_called_with(
             self.request, amo.permissions.AclPermission('Admin', '%'))

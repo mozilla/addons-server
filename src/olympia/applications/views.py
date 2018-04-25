@@ -1,18 +1,17 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 
-import caching.base as caching
-
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.utils import render
+from olympia.lib.cache import cached
 
 from .models import AppVersion
 
 
 def get_versions(order=('application', 'version_int')):
-    def f():
+    def fetch_versions():
         apps = amo.APP_USAGE
         versions = dict((app.id, []) for app in apps)
         qs = list(AppVersion.objects.order_by(*order)
@@ -21,7 +20,7 @@ def get_versions(order=('application', 'version_int')):
         for app, version in qs:
             versions[app].append(version)
         return apps, versions
-    return caching.cached(f, 'getv' + ''.join(order))
+    return cached(fetch_versions, 'getv' + ''.join(order))
 
 
 @non_atomic_requests

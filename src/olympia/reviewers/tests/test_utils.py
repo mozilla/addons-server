@@ -232,7 +232,6 @@ class TestReviewHelper(TestCase):
         assert self.setup_type(amo.STATUS_NULL) == 'pending'
         assert self.setup_type(amo.STATUS_PUBLIC) == 'pending'
         assert self.setup_type(amo.STATUS_DISABLED) == 'pending'
-        assert self.setup_type(amo.STATUS_BETA) == 'pending'
 
     def test_no_version(self):
         helper = ReviewHelper(
@@ -324,6 +323,17 @@ class TestReviewHelper(TestCase):
             file_status=amo.STATUS_PUBLIC,
             content_review_only=True).keys() == expected
 
+    def test_actions_public_static_theme(self):
+        # Having Addons:PostReview and dealing with a public add-on would
+        # normally be enough to give you access to reject multiple versions
+        # action, but it should not be available for static themes.
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
+
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
         version set."""
@@ -358,12 +368,22 @@ class TestReviewHelper(TestCase):
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
         for template in ('nominated_to_sandbox', 'pending_to_public',
-                         'pending_to_sandbox', 'unlisted_to_reviewed_auto'):
+                         'pending_to_sandbox',):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
             assert base_fragment in mail.outbox[0].body
             assert mail.outbox[0].reply_to == [reply_email]
+
+        mail.outbox = []
+        # This one does not inherit from base.txt because it's for unlisted
+        # signing notification, which is not really something that necessitates
+        # reviewer interaction, so it's simpler.
+        template = 'unlisted_to_reviewed_auto'
+        self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+        assert len(mail.outbox) == 1
+        assert base_fragment not in mail.outbox[0].body
+        assert mail.outbox[0].reply_to == [reply_email]
 
     def test_email_links(self):
         expected = {
@@ -388,12 +408,12 @@ class TestReviewHelper(TestCase):
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED,
-                   content_review_only=False):
+                   content_review_only=False, type=amo.ADDON_EXTENSION):
         if delete is None:
             delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status)
+        self.addon.update(status=status, type=type)
         self.file.update(status=file_status)
         if channel == amo.RELEASE_CHANNEL_UNLISTED:
             self.make_addon_unlisted(self.addon)
@@ -571,7 +591,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -599,7 +619,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -633,7 +653,7 @@ class TestReviewHelper(TestCase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -684,7 +704,7 @@ class TestReviewHelper(TestCase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -888,9 +908,11 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             '%s signed and ready to download' % self.preamble)
-        assert 'our automatic tests and is now signed' in mail.outbox[0].body
+        assert ('%s is now signed and ready for you to download' %
+                self.version.version in mail.outbox[0].body)
+        assert 'You received this email because' not in mail.outbox[0].body
 
-        sign_mock.assert_called_with(self.file, use_autograph=False)
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1000,16 +1022,37 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
-    def test_auto_approved_super_review(self):
+    def test_auto_approved_admin_code_review(self):
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
+
+    def test_auto_approved_admin_content_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+                        content_review_only=True)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.needs_admin_content_review
+        assert self.check_log_count(
+            amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
+
+    def test_auto_approved_admin_theme_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+                        type=amo.ADDON_STATICTHEME)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.needs_admin_theme_review
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1017,7 +1060,7 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_PUBLIC)
@@ -1122,6 +1165,10 @@ class TestReviewHelper(TestCase):
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+        logs = (ActivityLog.objects.for_addons(self.addon)
+                                   .filter(action=amo.LOG.REJECT_VERSION.id))
+        assert logs[0].created == logs[1].created
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_HIGH_RISK)

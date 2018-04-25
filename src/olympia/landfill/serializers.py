@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import mimetypes
 import random
-import waffle
 
 from django.conf import settings
 from django.utils.translation import activate
@@ -13,7 +14,6 @@ from olympia import amo
 from olympia.addons.forms import icons
 from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
-from olympia.amo.tests import version_factory
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION,
@@ -61,7 +61,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=STATUS_PUBLIC,
                 users=[UserProfile.objects.get(username=author)],
                 name=u'{}'.format(name),
-                slug='{}'.format(name),
+                slug=u'{}'.format(name),
             )
             addon.save()
         else:
@@ -69,7 +69,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=STATUS_PUBLIC,
                 users=[UserProfile.objects.get(username=author.username)],
                 name=u'{}'.format(name),
-                slug='{}'.format(name),
+                slug=u'{}'.format(name),
             )
             addon.save()
         return addon
@@ -81,7 +81,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         attatched to it. It will belong to the user uitest.
 
         It has 1 preview, 5 reviews, and 2 authors. The second author is named
-        'ui-tester2'. It has a version number as well as a beta version.
+        'ui-tester2'. It has a version number.
 
         """
         default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
@@ -120,9 +120,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
-        if waffle.switch_is_active('beta-versions'):
-            version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
-                            version='1.1beta')
         addon.save()
         generate_collection(addon, app=FIREFOX)
         print(
@@ -136,7 +133,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         attatched to it. It will belong to the user uitest.
 
         It has 1 preview, 5 reviews, and 2 authors. The second author is named
-        'ui-tester2'. It has a version number as well as a beta version.
+        'ui-tester2'. It has a version number.
 
         """
         default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]

@@ -88,7 +88,7 @@ def get_new_version_number(version):
 
 
 @task
-def sign_addons(addon_ids, force=False, use_autograph=False, **kw):
+def sign_addons(addon_ids, force=False, **kw):
     """Used to sign all the versions of an addon.
 
     This is used in the 'sign_addons' and 'process_addons --task sign_addons'
@@ -138,7 +138,7 @@ def sign_addons(addon_ids, force=False, use_autograph=False, **kw):
                 # Need to bump the version (modify manifest file)
                 # before the file is signed.
                 update_version_number(file_obj, bumped_version_number)
-                signed = bool(sign_file(file_obj, use_autograph=False))
+                signed = bool(sign_file(file_obj))
                 if signed:  # Bump the version number if at least one signed.
                     signed_at_least_a_file = True
                 else:  # We didn't sign, so revert the version bump.

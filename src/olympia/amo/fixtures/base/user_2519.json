@@ -8,7 +8,7 @@
             "occupation": "Software Developer",
             "location": "Minneapolis, MN",
             "picture_type": "image/png",
-            "averagerating": "4.09",
+            "averagerating": 4.09,
             "homepage": "http://www.chrisfinke.com/",
             "email": "dd+357b3dde1@davedash.com",
             "notifycompat": true,

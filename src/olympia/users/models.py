@@ -16,8 +16,6 @@ from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
 
-import caching.base as caching
-
 import olympia.core.logger
 
 from olympia import amo, core
@@ -27,6 +25,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
+from olympia.lib.cache import cached
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -120,7 +119,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 
-    averagerating = models.CharField(max_length=255, blank=True, null=True)
+    averagerating = models.FloatField(null=True)
     # biography can (and does) contains html and other unsanitized content.
     # It must be cleaned before display.
     biography = models.TextField(blank=True, null=True)
@@ -134,7 +133,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     notifyevents = models.BooleanField(default=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
-    picture_type = models.CharField(max_length=75, default='', blank=True)
+    picture_type = models.CharField(max_length=75, default=None, null=True,
+                                    blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
@@ -159,11 +159,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
-    # Date that the developer agreement last changed (currently, the last
-    # changed happened when we switched to post-review). Used to show the
-    # developer agreement to developers again when it changes.
-    last_developer_agreement_change = datetime(2017, 9, 22, 17, 36)
-
     class Meta:
         db_table = 'users'
 
@@ -181,19 +176,61 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_staff(self):
+        """Property indicating whether the user should be able to log in to
+        the django admin tools. Does not guarantee that the user will then
+        be able to do anything, as each module can have its own permission
+        checks. (see has_module_perms() and has_perm())"""
         from olympia.access import acl
-        return acl.action_allowed_user(self, amo.permissions.ADMIN)
+        return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
 
     def has_perm(self, perm, obj=None):
-        return self.is_superuser
+        """Determine what the user can do in the django admin tools.
+
+        perm is in the form "<app>.<action>_<model>".
+        """
+        from olympia.access import acl
+        return acl.action_allowed_user(
+            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm])
 
     def has_module_perms(self, app_label):
-        return self.is_superuser
+        """Determine whether the user can see a particular app in the django
+        admin tools. """
+        # If the user is a superuser or has permission for any action available
+        # for any of the models of the app, they can see the app in the django
+        # admin. The is_superuser check is needed to allow superuser to access
+        # modules that are not in the mapping at all (i.e. things only they
+        # can access).
+        return (self.is_superuser or
+                any(self.has_perm(key)
+                    for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+                    if key.startswith('%s.' % app_label)))
 
     def has_read_developer_agreement(self):
+        from olympia.zadmin.models import get_config
+
+        # Fallback date in case the config date value is invalid or set to the
+        # future. The current fallback date is when we enabled post-review.
+        dev_agreement_change_fallback = datetime(2017, 9, 22, 17, 36)
+
         if self.read_dev_agreement is None:
             return False
-        return self.read_dev_agreement > self.last_developer_agreement_change
+        try:
+            last_agreement_change_config = get_config(
+                'last_dev_agreement_change_date')
+            change_config_date = datetime.strptime(
+                last_agreement_change_config, '%Y-%m-%d %H:%M')
+
+            # If the config date is in the future, instead check against the
+            # fallback date
+            if change_config_date > datetime.now():
+                return self.read_dev_agreement > dev_agreement_change_fallback
+
+            return self.read_dev_agreement > change_config_date
+        except (ValueError, TypeError):
+            log.exception('last_developer_agreement_change misconfigured, '
+                          '"%s" is not a '
+                          'datetime' % last_agreement_change_config)
+            return self.read_dev_agreement > dev_agreement_change_fallback
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
@@ -377,7 +414,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.display_name = None
             self.homepage = ""
             self.deleted = True
-            self.picture_type = ""
+            self.picture_type = None
             self.auth_id = generate_auth_id()
             self.save()
 
@@ -482,10 +519,10 @@ class DeniedName(ModelBase):
         name = name.lower()
         qs = cls.objects.all()
 
-        def f():
+        def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = caching.cached_with(qs, f, 'blocked')
+        blocked_list = cached(fetch_names, 'denied-name:blocked')
         return any(n in name for n in blocked_list)
 
 

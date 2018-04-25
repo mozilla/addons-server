@@ -39,6 +39,7 @@ from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
+from olympia.zadmin.models import set_config
 
 
 class HubTest(TestCase):
@@ -136,6 +137,22 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
 
+    @override_switch('disable-lwt-uploads', active=False)
+    def test_disable_lwt_uploads_waffle_disabled(self):
+        response = self.client.get(self.themes_url)
+        doc = pq(response.content)
+        assert doc('.submit-theme.submit-cta a').attr('href') == (
+            reverse('devhub.themes.submit')
+        )
+
+    @override_switch('disable-lwt-uploads', active=True)
+    def test_disable_lwt_uploads_waffle_enabled(self):
+        response = self.client.get(self.themes_url)
+        doc = pq(response.content)
+        assert doc('.submit-theme.submit-cta a').attr('href') == (
+            reverse('devhub.submit.agreement')
+        )
+
     def test_show_hide_statistics_and_new_version_for_disabled(self):
         # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
@@ -230,10 +247,10 @@ class TestDashboard(HubTest):
         addon = addon_factory(type=amo.ADDON_PERSONA)
         addon.addonuser_set.create(user=self.user_profile)
 
-        # There's no "updated" sort filter, so order by the default: "Name".
+        # There's no "updated" sort filter, so order by the default: "Created".
         response = self.client.get(self.themes_url + '?sort=updated')
         doc = pq(response.content)
-        assert doc('#sorter li.selected').text() == 'Name'
+        assert doc('#sorter li.selected').text() == 'Created'
         sorts = doc('#sorter li a.opt')
         assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
 
@@ -282,21 +299,6 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert doc('.incomplete').text() == (
             "This add-on doesn't have any versions.")
-
-    @override_switch('beta-versions', active=True)
-    def test_only_a_beta_version(self):
-        beta_version = version_factory(
-            addon=self.addon, version='2.0beta',
-            file_kw={'status': amo.STATUS_BETA})
-        beta_version.update(license=self.addon.current_version.license)
-        self.addon.current_version.update(license=None)
-        self.addon.current_version.delete()
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.incomplete').text() == (
-            "This add-on doesn't have any approved versions, so its public "
-            "pages (including beta versions) are hidden.")
 
 
 class TestUpdateCompatibility(TestCase):
@@ -714,8 +716,9 @@ class TestAPIAgreement(TestCase):
         assert 'agreement_form' in response.context
 
     def test_agreement_read_but_too_long_ago(self):
-        before_agreement_last_changed = (
-            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
+        before_agreement_last_changed = (datetime(2018, 1, 1, 12, 0) -
+                                         timedelta(days=1))
         self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.get(reverse('devhub.api_key_agreement'))
         assert response.status_code == 200
@@ -1420,6 +1423,19 @@ class TestRedirects(TestCase):
         response = self.client.get(url, follow=True)
         self.assert3xx(
             response, reverse('devhub.addons.versions', args=['a3615']), 301)
+
+    @override_switch('disable-lwt-uploads', active=True)
+    def test_lwt_submit_redirects_to_addon_submit(self):
+        url = reverse('devhub.themes.submit')
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.submit.distribution'), 301)
+
+    @override_switch('disable-lwt-uploads', active=False)
+    def test_lwt_submit_no_redirect_when_waffle_offf(self):
+        url = reverse('devhub.themes.submit')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
 
 
 class TestHasCompleteMetadataRedirects(TestCase):

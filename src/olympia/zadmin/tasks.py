@@ -4,8 +4,6 @@ import sys
 
 from urlparse import urljoin
 
-import waffle
-
 from django.conf import settings
 from django.utils import translation
 
@@ -164,9 +162,11 @@ def fetch_langpack(url, xpi, **kw):
         except Addon.DoesNotExist:
             addon = None
 
+        owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
+
         try:
             # Parse again now that we have the add-on.
-            data = parse_addon(upload, addon)
+            data = parse_addon(upload, addon, user=owner)
         except Exception, e:
             log.error('[@None] Error parsing "{0}" language pack: {1}'
                       .format(xpi, e),
@@ -181,8 +181,6 @@ def fetch_langpack(url, xpi, **kw):
                       'it has no valid compatible apps.'.format(**data))
             return
 
-        is_beta = (amo.VERSION_BETA.search(data['version']) and
-                   waffle.switch_is_active('beta-versions'))
         owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:
@@ -199,16 +197,11 @@ def fetch_langpack(url, xpi, **kw):
 
             version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id],
                                           amo.RELEASE_CHANNEL_LISTED,
-                                          is_beta=is_beta)
+                                          parsed_data=data)
 
             log.info('[@None] Updated language pack "{0}" to version {1}'
                      .format(xpi, data['version']))
         else:
-            if is_beta:
-                log.error('[@None] Not creating beta version {0} for new '
-                          '"{1}" language pack'.format(data['version'], xpi))
-                return
-
             if (Addon.objects.filter(name__localized_string=data['name'])
                     .exists()):
                 data['old_name'] = data['name']
@@ -247,12 +240,11 @@ def fetch_langpack(url, xpi, **kw):
             version.update(license=license)
 
         file_ = version.files.get()
-        if not is_beta:
-            # Not `version.files.update`, because we need to trigger save
-            # hooks.
-            file_.update(status=amo.STATUS_PUBLIC)
+        # Not `version.files.update`, because we need to trigger save
+        # hooks.
+        file_.update(status=amo.STATUS_PUBLIC)
 
-        sign_file(file_, use_autograph=False)
+        sign_file(file_)
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC

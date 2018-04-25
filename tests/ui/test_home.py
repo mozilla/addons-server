@@ -1,70 +1,71 @@
 import pytest
 
+from pages.desktop.categories import Categories
+from pages.desktop.extensions import Extensions
 from pages.desktop.home import Home
 
 
 @pytest.mark.nondestructive
-def test_there_are_ten_most_popular_extensions(
-        base_url, selenium):
-    """Ten most popular add-ons are listed"""
+def test_there_are_6_extension_categories(base_url, selenium):
     page = Home(selenium, base_url).open()
-    assert len(page.most_popular.extensions) == 10
+    assert len(page.extension_category.list) == 6
 
 
 @pytest.mark.nondestructive
-def test_most_popular_extensions_are_sorted_by_users(
-        base_url, selenium):
-    """Most popular add-ons are sorted by popularity"""
+def test_there_are_6_theme_categories(base_url, selenium):
     page = Home(selenium, base_url).open()
-    extensions_page = page.most_popular.extensions
-    sorted_by_users = sorted(extensions_page,
-                             key=lambda e: e.users, reverse=True)
-    assert sorted_by_users == extensions_page
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_that_clicking_on_addon_name_loads_details_page(
-        base_url, selenium):
-    """Details page addon name matches clicked addon"""
-    page = Home(selenium, base_url).open()
-    name = page.most_popular.extensions[0].name
-    extension_page = page.most_popular.extensions[0].click()
-    assert name in extension_page.description_header.name
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_that_featured_themes_exist_on_the_home(
-        base_url, selenium):
-    """Featured themes are displayed"""
-    page = Home(selenium, base_url).open()
-    assert len(page.featured_themes.themes) == 6
+    assert len(page.theme_category.list) == 6
 
 
 @pytest.mark.nondestructive
-def test_that_clicking_see_all_themes_link_works(
-        base_url, selenium):
-    """Amount of featured themes matches on both pages"""
+def test_extensions_section_load_correctly(base_url, selenium):
     page = Home(selenium, base_url).open()
-    themes = page.featured_themes.themes
-    theme_page = page.featured_themes.see_all()
-    assert len(themes) == len(theme_page.featured.themes)
+    ext_page = page.header.click_extensions()
+    assert 'Extensions' in ext_page.text
 
 
 @pytest.mark.nondestructive
-def test_that_featured_extensions_exist_on_the_home(
-        base_url, selenium):
-    """Featured extensions exist on home page"""
-    page = Home(selenium, base_url).open()
-    assert len(page.featured_extensions.extensions) >= 1
+def test_explore_section_loads(base_url, selenium):
+    page = Extensions(selenium, base_url).open()
+    page.header.click_explore()
+    assert 'firefox/' in selenium.current_url
 
 
 @pytest.mark.nondestructive
-def test_that_clicking_see_all_collections_link_works(
-        base_url, selenium):
-    """Amount of featured themes matches on both pages"""
+def test_themes_section_loads(base_url, selenium):
     page = Home(selenium, base_url).open()
-    collections = page.featured_collections.collections
-    collections_page = page.featured_collections.see_all()
-    assert len(collections_page.collections) >= len(collections)
+    themes_page = page.header.click_themes()
+    assert 'Themes' in themes_page.text
+
+
+@pytest.mark.nondestructive
+def test_browse_all_button_loads_correct_page(base_url, selenium):
+    page = Home(selenium, base_url).open()
+    page.featured_extensions.browse_all
+    assert 'type=extension' in selenium.current_url
+
+
+@pytest.mark.nondestructive
+def test_browse_all_themes_button_loads_correct_page(
+        base_url, selenium):
+    page = Home(selenium, base_url).open()
+    page.toprated_themes.browse_all
+    assert 'type=persona' in selenium.current_url
+
+
+@pytest.mark.nondestructive
+def test_category_loads_extensions(base_url, selenium):
+    page = Home(selenium, base_url).open()
+    category = page.extension_category.list[0]
+    category_name = category.name
+    category.click()
+    assert category_name in selenium.current_url
+
+
+@pytest.mark.nondestructive
+def test_category_section_loads_correct_category(base_url, selenium):
+    page = Categories(selenium, base_url).open()
+    item = page.category_list[0]
+    name = item.name
+    category = item.click()
+    assert name in category.header.name

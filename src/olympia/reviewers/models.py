@@ -15,8 +15,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.access.models import Group
-from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -39,6 +37,8 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Code Review')),
     ('needs_admin_content_review', 'needs-admin-content-review',
         _('Needs Admin Content Review')),
+    ('needs_admin_theme_review', 'needs-admin-theme-review',
+        _('Needs Admin Static Theme Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('pending_info_request', 'info', _('More Information Requested')),
@@ -70,7 +70,6 @@ def set_reviewing_cache(addon_id, user_id):
 
 
 class CannedResponse(ModelBase):
-
     name = models.CharField(max_length=255)
     response = models.TextField()
     sort_group = models.CharField(max_length=255)
@@ -82,48 +81,6 @@ class CannedResponse(ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-
-class AddonCannedResponseManager(ManagerBase):
-    def get_queryset(self):
-        qs = super(AddonCannedResponseManager, self).get_queryset()
-        return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
-
-
-class AddonCannedResponse(CannedResponse):
-    objects = AddonCannedResponseManager()
-
-    class Meta:
-        proxy = True
-
-
-class EventLog(models.Model):
-    type = models.CharField(max_length=60)
-    action = models.CharField(max_length=120)
-    field = models.CharField(max_length=60, blank=True)
-    user = models.ForeignKey(UserProfile)
-    changed_id = models.IntegerField()
-    added = models.CharField(max_length=765, blank=True)
-    removed = models.CharField(max_length=765, blank=True)
-    notes = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = u'eventlog'
-
-    @staticmethod
-    def new_reviewers():
-        action = amo.LOG.GROUP_USER_ADDED
-        groups = Group.objects.filter(name__startswith='Reviewers: ')
-        items = (ActivityLog.objects.for_groups(groups)
-                            .filter(action=action.id)
-                            .order_by('-created')[:5])
-
-        # We re-filter the results to make sure to display only users that are
-        # still part of the reviewers groups we've looked at.
-        return [{'user': i.arguments[1], 'created': i.created}
-                for i in items if i.arguments[1].groups.filter(
-                    name__startswith='Reviewers: ').exists()]
 
 
 def get_flags(addon, version):
@@ -148,6 +105,7 @@ class ViewQueue(RawSQLModel):
     addon_type_id = models.IntegerField()
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
+    needs_admin_theme_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
@@ -172,6 +130,8 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_code_review'),
                 ('needs_admin_content_review',
                     'addons_addonreviewerflags.needs_admin_content_review'),
+                ('needs_admin_theme_review',
+                    'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('latest_version', 'versions.version'),
                 ('has_reviewer_comment', 'versions.has_editor_comment'),
                 ('pending_info_request',
@@ -250,6 +210,7 @@ class ViewUnlistedAllList(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
+    needs_admin_theme_review = models.NullBooleanField()
     is_deleted = models.BooleanField()
 
     def base_query(self):
@@ -268,6 +229,8 @@ class ViewUnlistedAllList(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_code_review'),
                 ('needs_admin_content_review',
                     'addons_addonreviewerflags.needs_admin_content_review'),
+                ('needs_admin_theme_review',
+                    'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
@@ -385,12 +348,12 @@ class ReviewerSubscription(ModelBase):
         template = loader.get_template('reviewers/emails/notify_update.ltxt')
         send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
-                  from_email=settings.REVIEWERS_EMAIL,
+                  from_email=settings.NOBODY_EMAIL,
                   use_deny_list=False)
 
 
 def send_notifications(signal=None, sender=None, **kw):
-    if sender.is_beta or sender.channel != amo.RELEASE_CHANNEL_LISTED:
+    if sender.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
     subscribers = sender.addon.reviewersubscription_set.all()
@@ -490,10 +453,12 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
             elif addon.type == amo.ADDON_PERSONA:
                 reviewed_score_name = 'REVIEWED_PERSONA'
+            elif addon.type == amo.ADDON_STATICTHEME:
+                reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
             elif addon.type == amo.ADDON_THEME and queue:
-                reviewed_score_name = 'REVIEWED_THEME_%s' % queue
+                reviewed_score_name = 'REVIEWED_XUL_THEME_%s' % queue
 
         if reviewed_score_name:
             return getattr(amo, reviewed_score_name)
@@ -1140,7 +1105,6 @@ class RereviewQueueThemeManager(ManagerBase):
 class RereviewQueueTheme(ModelBase):
     theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
-    footer = models.CharField(max_length=72, blank=True, default='')
 
     # Holds whether this reuploaded theme is a duplicate.
     dupe_persona = models.ForeignKey(Persona, null=True,

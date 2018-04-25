@@ -131,7 +131,7 @@
             "display_name": "The Author",
             "location": "",
             "picture_type": "image/png",
-            "averagerating": "",
+            "averagerating": null,
             "homepage": "",
             "email": "the-author@nowehere.com",
             "notifycompat": false,

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from waffle.testutils import override_switch
-
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -27,7 +25,8 @@ from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission
-from olympia.versions.models import ApplicationsVersions, AppVersion, License
+from olympia.versions.models import (
+    ApplicationsVersions, AppVersion, License, VersionPreview)
 
 
 class AddonSerializerOutputTestMixin(object):
@@ -41,7 +40,7 @@ class AddonSerializerOutputTestMixin(object):
         assert data == {
             'id': author.pk,
             'name': author.name,
-            'picture_url': absolutify(author.picture_url),
+            'picture_url': None,
             'url': absolutify(author.get_url_path()),
             'username': author.username,
         }
@@ -195,8 +194,6 @@ class AddonSerializerOutputTestMixin(object):
             'firefox': ['alerts-updates', 'bookmarks'],
             'thunderbird': ['calendar']}
 
-        assert result['current_beta_version'] is None
-
         # In this serializer latest_unlisted_version is omitted.
         assert 'latest_unlisted_version' not in result
 
@@ -273,9 +270,9 @@ class AddonSerializerOutputTestMixin(object):
             'count': self.addon.total_ratings,
             'text_count': self.addon.text_ratings_count,
         }
-        assert result['ratings_url'] == self.addon.ratings_url == (
-            reverse('addons.ratings.list', args=[self.addon.slug])
-        )
+        assert (
+            result['ratings_url'] == absolutify(self.addon.ratings_url) ==
+            absolutify(reverse('addons.ratings.list', args=[self.addon.slug])))
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
@@ -324,6 +321,14 @@ class AddonSerializerOutputTestMixin(object):
             get_outgoing_url(unicode(self.addon.support_url))
         )
 
+        # Try with empty strings/None. Annoyingly, contribution model field
+        # does not let us set it to None, so use a translated field for that
+        # part of the test.
+        self.addon.update(contributions='', homepage=None)
+        result = self.serialize()
+        assert result['contributions_url'] == ''
+        assert result['homepage'] is None
+
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
         version_factory(
@@ -352,28 +357,6 @@ class AddonSerializerOutputTestMixin(object):
             self.addon.latest_unlisted_version,
             result['latest_unlisted_version'])
         assert result['latest_unlisted_version']['url'] == absolutify('')
-
-    @override_switch('beta-versions', active=True)
-    def test_current_beta_version(self):
-        self.addon = addon_factory()
-
-        self.beta_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
-            version='1.1beta')
-
-        result = self.serialize()
-        assert result['current_beta_version']
-        self._test_version(self.beta_version, result['current_beta_version'], )
-        assert result['current_beta_version']['url'] == absolutify(
-            reverse('addons.versions',
-                    args=[self.addon.slug, self.beta_version.version])
-        )
-
-        # Just in case, test that current version is still present & different.
-        assert result['current_version']
-        assert result['current_version'] != result['current_beta_version']
-        self._test_version(
-            self.addon.current_version, result['current_version'])
 
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)
@@ -616,6 +599,47 @@ class AddonSerializerOutputTestMixin(object):
             # fake compatibility data for NO_COMPAT add-ons we do obey that.
         }
         assert result_version['is_strict_compatibility_enabled'] is False
+
+    def test_static_theme_preview(self):
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        # Attach some Preview instances do the add-on, they should be ignored
+        # since it's a static theme.
+        Preview.objects.create(
+            addon=self.addon, position=1,
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            sizes={'thumbnail': [123, 45], 'image': [678, 910]})
+        result = self.serialize()
+        assert result['previews'] == []
+
+        # Add a second version, attach VersionPreview to both, make sure we
+        # take the right one.
+        first_version = self.addon.current_version
+        VersionPreview.objects.create(
+            version=first_version,
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]})
+        second_version = version_factory(addon=self.addon)
+        current_preview = VersionPreview.objects.create(
+            version=second_version,
+            sizes={'thumbnail': [56, 78], 'image': [91, 234]})
+        assert self.addon.reload().current_version == second_version
+        result = self.serialize()
+        assert len(result['previews']) == 1
+        assert result['previews'][0]['id'] == current_preview.pk
+        assert result['previews'][0]['caption'] is None
+        assert result['previews'][0]['image_url'] == absolutify(
+            current_preview.image_url)
+        assert result['previews'][0]['thumbnail_url'] == absolutify(
+            current_preview.thumbnail_url)
+        assert result['previews'][0]['image_size'] == (
+            current_preview.image_size)
+        assert result['previews'][0]['thumbnail_size'] == (
+            current_preview.thumbnail_size)
+
+        # Make sure we don't fail if somehow there is no current version.
+        self.addon.update(_current_version=None)
+        result = self.serialize()
+        assert result['current_version'] is None
+        assert result['previews'] == []
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
@@ -933,11 +957,43 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['target_locale'] == self.addon.target_locale
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
+        assert 'current_compatible_version' not in result
 
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)
         result = self.serialize()
         assert result['type'] == 'dictionary'
+        assert 'current_compatible_version' not in result
+
+    def test_current_compatible_version(self):
+        self.addon = addon_factory(type=amo.ADDON_LPAPP)
+        # compatible_versions is set by the view through prefetch, it
+        # looks like a list.
+        self.addon.compatible_versions = [self.addon.current_version]
+        self.addon.compatible_versions[0].update(created=self.days_ago(1))
+        # Create a new current version, just to prove that
+        # current_compatible_version does not use that.
+        version_factory(addon=self.addon)
+        self.addon.reload
+        assert (
+            self.addon.compatible_versions[0] !=
+            self.addon.current_version)
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=57.0')
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is not None
+        assert set(result['current_compatible_version'].keys()) == set(
+            ['id', 'files', 'reviewed', 'version'])
+
+        self.addon.compatible_versions = None
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is None
+
+        self.addon.compatible_versions = []
+        result = self.serialize()
+        assert 'current_compatible_version' in result
+        assert result['current_compatible_version'] is None
 
 
 class TestESAddonAutoCompleteSerializer(ESTestCase):
@@ -1041,7 +1097,7 @@ class TestAddonDeveloperSerializer(TestBaseUserSerializer):
 
     def test_picture(self):
         serialized = self.serialize()
-        assert ('anon_user.png' in serialized['picture_url'])
+        assert serialized['picture_url'] is None
 
         self.user.update(picture_type='image/jpeg')
         serialized = self.serialize()

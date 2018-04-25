@@ -12,12 +12,19 @@ from olympia import amo
 
 @pytest.fixture
 def firefox_options(firefox_options):
+    """Firefox options.
+
+    These options configure firefox to allow for addon installation,
+    as well as allowing it to run headless.
+
+    """
     firefox_options.set_preference(
         'extensions.install.requireBuiltInCerts', False)
     firefox_options.set_preference('xpinstall.signatures.required', False)
     firefox_options.set_preference('extensions.webapi.testing', True)
     firefox_options.set_preference('ui.popup.disable_autohide', True)
     firefox_options.add_argument('-foreground')
+    firefox_options.add_argument('-headless')
     firefox_options.log.level = 'trace'
     return firefox_options
 
@@ -27,10 +34,27 @@ def firefox_notifications(notifications):
     return notifications
 
 
-@pytest.fixture
+@pytest.fixture(scope='function',
+                params=[(1080, 1920), (414, 738)],
+                ids=['Resolution: 1080x1920', 'Resolution: 414x738'])
+def selenium(selenium, request):
+    """Fixture to set custom selenium parameters.
+
+    This fixture will also parametrize all of the tests to run them on both a
+    Desktop resolution and a mobile resolution.
+
+    Desktop size: 1920x1080
+    Mobile size: 738x414 (iPhone 7+)
+
+    """
+    selenium.set_window_size(*request.param)
+    return selenium
+
+
+@pytest.fixture(scope='session')
 def fxa_account(base_url):
     """Account used to login to the AMO site."""
-    url = DEV_URL if 'dev' or 'localhost' in base_url else PROD_URL
+    url = DEV_URL if 'olympia' or 'localhost' in base_url else PROD_URL
     return FxATestAccount(url)
 
 
@@ -54,11 +78,10 @@ def jwt_secret(base_url, variables):
         return os.getenv('JWT_SECRET')
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def user(base_url, fxa_account, jwt_token):
     """This creates a user for logging into the AMO site."""
-    url = '{base_url}/api/v3/accounts/super-create/'.format(
-        base_url=base_url)
+    url = 'http://olympia.test/api/v3/accounts/super-create/'
 
     params = {
         'email': fxa_account.email,

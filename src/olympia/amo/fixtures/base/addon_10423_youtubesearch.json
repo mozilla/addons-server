@@ -144,7 +144,7 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "averagerating": "4.84",
+            "averagerating": 4.84,
             "display_name": "ditman",
             "notifycompat": true,
             "picture_type": "",

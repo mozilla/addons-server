@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,9 @@ msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤ�
 
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
+
+msgid "Images cannot be animated."
+msgstr "ਤਸਵੀਰ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1010,9 +1013,16 @@ msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍
 msgid "Icons must be either PNG or JPG."
 msgstr "ਆਈਕਾਨ PNG ਜਾਂJPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
+msgid "Icons cannot be animated."
+msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2028,16 +2038,20 @@ msgid "Content rejected"
 msgstr "ਰੱਦ ਕੀਤਾ"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 msgid "Firefox"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ"
@@ -2427,8 +2441,9 @@ msgstr "ਸੋਲਰਿਸ"
 msgid "Android"
 msgstr "ਐਨਡਰੋਇਡ"
 
-msgid "App"
-msgstr "ਐੱਪ"
+#, fuzzy
+msgid "Static Theme"
+msgstr "ਥੀਮ ਦਾਖਲ ਕਰੋ"
 
 msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
@@ -2468,6 +2483,10 @@ msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋ�
 
 msgid "Theme Review"
 msgstr "ਥੀਮ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "ਥੀਮ ਵੇਰਵਾ"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -2792,12 +2811,6 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Icons cannot be animated."
-msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
-
-msgid "Images cannot be animated."
-msgstr "ਤਸਵੀਰ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "ਤਸਵੀਰ %dKB ਤੋਂ ਵੱਡੀ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
@@ -3030,6 +3043,16 @@ msgstr "ਮੁੱਢਲੀ ਜਾਣਕਾਰੀ"
 
 msgid "None"
 msgstr "ਕੋਈ ਨਹੀਂ"
+
+msgid "Preview"
+msgstr "ਝਲਕ"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "ਲੇਖਕਾਂ ਅਤੇ ਲਾਇਸੰਸ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
@@ -3593,6 +3616,10 @@ msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
 msgid "Version Submitted for Review"
 msgstr "ਵਰਜਨ ਨੋਟ / ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "ਵਰਜਨ ਨੋਟ"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3751,7 +3778,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4097,15 +4124,18 @@ msgid "Learn How"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
 #, fuzzy
-msgid "What's New"
-msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+msgid "Get Started"
+msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "ਸਾਰੇ ਵੇਖੋ"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4260,17 +4290,11 @@ msgstr "ਤੁਹਾਡਾ ਪਿਛਲਾ ਮੁੜ-ਦਾਖਲ ਹੋਇਆ �
 msgid "Pending Header"
 msgstr "ਅਧੂਰਾ ਸਿਰਲੇਖ"
 
-msgid "Pending Footer"
-msgstr "ਅਧੂਰਾ ਪਦਲੇਖ"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਥੀਮ ਦਾ ਡਿਜਾਇਨ ਅੱਪਡੇਟ ਕਰੋ ਜਦੋਂ ਇਹ ਇੱਕ ਵਾਰ ਪ੍ਰਵਾਨਿਤ ਹੋ ਜਾਵੇ।"
 
 msgid "Header"
 msgstr "ਸਿਰਲੇਖ"
-
-msgid "Footer"
-msgstr "ਪਦਲੇਖ"
 
 msgid "Select colors for your Theme."
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
@@ -4286,9 +4310,6 @@ msgstr "ਬੈਕਗਰਾਂਊਡ"
 
 msgid "This is the color of the tabs."
 msgstr "ਇਹ ਟੈਬਾਂ ਦਾ ਰੰਗ ਹੈ।"
-
-msgid "Preview"
-msgstr "ਝਲਕ"
 
 msgid "Your Theme's Name"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
@@ -4348,18 +4369,6 @@ msgstr "300KB ਵੱਧ"
 
 msgid "PNG or JPG"
 msgstr "PNG ਜਾਂ JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਪਦਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 ਪਿਕਸਲ"
-
-msgid "Aligned to bottom-left"
-msgstr "ਹੇਠਲੇ-ਖੱਬੇ ਪਾਸੇ ਇਕਸਾਰ"
-
-msgid "Select a different footer image"
-msgstr "ਇੱਕ ਵੱਖ ਪਦਲੇਖ ਤਸਵੀਰ"
 
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
@@ -4556,28 +4565,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -4931,10 +4943,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
 
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"
@@ -5433,7 +5441,7 @@ msgid "Other (provides a pop-up prompt for information)"
 msgstr "ਹੋਰ (ਜਾਣਕਾਰੀ ਲਈ ਇੱਕ ਪਾੱਪ-ਅਪ ਪ੍ਰਾਉਟ ਮੁਹੱਈਆ ਕਰਵਾਓ)"
 
 #, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ, AMO ਸਮੀਖਿਅਕ ਨਾਲ ਸਿੱਧੇ ਤੌਰ ਤੇ ਗੱਲਬਾਤ ਕਰਨ ਲਈ ਕੋਈ ਢੰਗ ਮੁਹੱਈਆ ਨਹੀਂ ਕਰਵਾਉਂਦਾ ਪਰ ਇਸ ਵਿਸ਼ੇਸਤਾ ਨੂੰ ਪਰਖਿਆ ਜਾ ਰਿਹਾ ਅਤੇ ਭਵਿੱਖ ਅੱਪਡੇਟ ਵਿੱਚ ਰੱਖਿਆ ਜਾ ਸਕਦਾ।"
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6019,7 +6027,7 @@ msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6158,15 +6166,6 @@ msgstr "ਅਤੇ"
 msgid "Filter by type/action"
 msgstr "ਕਿਸਮ/ਕੰਮ ਦੁਆਰਾ ਛਾਂਟੋ"
 
-msgid "Passed automatic validation"
-msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ"
-
-msgid "Failed automatic validation"
-msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਫੇਲ੍ਹ ਕੀਤੀ"
-
-msgid "Filter by automatic validation"
-msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਦੁਆਰਾ ਛਾਨਣਾ"
-
 msgid "containing"
 msgstr "ਸ਼ਾਮਲ"
 
@@ -6247,6 +6246,10 @@ msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 
 msgid "Jetpack Add-on"
 msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
@@ -6389,26 +6392,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "ਥੀਮ ਪੇਸਕਸ਼"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-msgid "Add-on Review Log"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
-
-msgid "Signed Beta Files Log"
-msgstr "ਸਾਈਨ ਹੋਈਆਂ ਬੀਟਾ ਫਾਈਲਾਂ ਦਾ ਲਾਗ"
+msgid "Updates ({0})"
+msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
+msgid "Review Log"
+msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "ਥੀਮ ਸਮੀਖਿਆ ਕਤਾਰ"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6417,6 +6430,13 @@ msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+msgid "Add-on Review Log"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
 
 #, fuzzy
 msgid "Content Review"
@@ -6441,8 +6461,8 @@ msgid "Flagged Themes ({0})"
 msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "ਥੀਮ ਸਮੀਖਿਆ"
+msgid "Lightweight Themes Review Log"
+msgstr "ਲਾਈਟਵੇਟ ਥੀਮ"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6476,8 +6496,8 @@ msgid "Update message of the day"
 msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+msgid "Expired Information Requests ({0})"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 msgid "An unknown error occurred"
 msgstr "ਅਣਜਾਣ ਖਾਮੀ ਆਈ"
@@ -6542,6 +6562,17 @@ msgstr "{addon} ({num}) ਲਈ ਬਦਸਲੂਕੀ ਰਿਪੋਰਟਾਂ"
 msgid "Bad User Ratings ({num})"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "ਥੀਮ ਨਾਂ"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "ਹਟਾਈਆਂ ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਹੋਰ"
 
@@ -6555,6 +6586,18 @@ msgstr "ਇੱਥੇ ਵੇਖਣ ਲਈ ਕੁੱਝ ਨਹੀਂ! ਡਿਵੈ
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "ਸੰਪਾਦਕ ਟੂਲ ਮੁੱਖਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
+
+msgid "Reviewer Leaderboard"
+msgstr "ਸਮੀਖਿਅਕ ਦਾ ਲੀਡਰਬੋਰਡ"
+
+msgid "No review points awarded yet."
+msgstr "ਹਾਲੇ ਤੱਕ ਕੋਈ ਸਮੀਖਿਆ ਅੰਕ ਨਹੀਂ ਦਿੱਤੇ ਗਏ।"
+
+msgid "Rank"
+msgstr "ਦਰਜਾ"
+
+msgid "Score"
+msgstr "ਅੰਕ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6597,18 +6640,6 @@ msgstr "ਸਮੀਖਿਆ ਨੂੰ ਹਟਾਉਣ ਤੋਂ ਪਹਿਲਾ�
 
 msgid "Undelete"
 msgstr "ਬਿਨਾਂ-ਹਟਾਏ"
-
-msgid "Reviewer Leaderboard"
-msgstr "ਸਮੀਖਿਅਕ ਦਾ ਲੀਡਰਬੋਰਡ"
-
-msgid "No review points awarded yet."
-msgstr "ਹਾਲੇ ਤੱਕ ਕੋਈ ਸਮੀਖਿਆ ਅੰਕ ਨਹੀਂ ਦਿੱਤੇ ਗਏ।"
-
-msgid "Rank"
-msgstr "ਦਰਜਾ"
-
-msgid "Score"
-msgstr "ਅੰਕ"
 
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
@@ -6799,6 +6830,10 @@ msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
 msgid "(admin)"
@@ -7004,27 +7039,28 @@ msgid "[status:%s]"
 msgstr "ਦਰਜਾ:"
 
 #, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
 msgstr[1] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
+msgstr[1] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
 
 msgid "Flagged"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"

@@ -1,13 +1,28 @@
-from olympia.amo.tests import TestCase
-from olympia.zadmin.models import DownloadSource
+import pytest
+
+from django.core.cache import cache
+
+from olympia.zadmin.models import set_config, Config
+from olympia.amo.cache_nuggets import assert_cache_requests
 
 
-class TestDownloadSource(TestCase):
+@pytest.mark.django_db
+def test_set_config():
+    assert Config.objects.filter(key='foo').count() == 0
+    set_config('foo', 'bar')
+    assert Config.objects.get(key='foo').value == 'bar'
 
-    def test_add(self):
-        created = DownloadSource.objects.create(
-            name='home', type='full',
-            description='This is obviously for the homepage')
-        d = DownloadSource.objects.filter(id=created.id)
-        assert d.count() == 1
-        assert d[0].__unicode__() == 'home (full)'
+    # Overwrites existing values
+    set_config('key', 'value 1')
+    set_config('key', 'value 2')
+
+    assert Config.objects.get(key='key').value == 'value 2'
+
+
+def test_assert_cache_requests_helper():
+    with assert_cache_requests(1):
+        cache.get('foobar')
+
+    with assert_cache_requests(2):
+        cache.set('foobar', 'key')
+        assert cache.get('foobar') == 'key'

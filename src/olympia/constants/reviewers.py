@@ -7,12 +7,12 @@ REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_APP = 2  # Unused, should be removed
+CANNED_RESPONSE_THEME = 2
 CANNED_RESPONSE_PERSONA = 3
 
 CANNED_RESPONSE_CHOICES = {
     CANNED_RESPONSE_ADDON: _('Add-on'),
-    CANNED_RESPONSE_APP: _('App'),
+    CANNED_RESPONSE_THEME: _('Static Theme'),
     CANNED_RESPONSE_PERSONA: _('Persona'),
 }
 
@@ -34,13 +34,14 @@ REVIEWED_LP_FULL = 30
 _REVIEWED_LP_PRELIM = 31  # Deprecated for new reviews - no more prelim.
 REVIEWED_LP_UPDATE = 32
 REVIEWED_PERSONA = 40
+REVIEWED_STATICTHEME = 41
 # TODO: Leaving room for persona points based on queue.
 REVIEWED_SEARCH_FULL = 50
 _REVIEWED_SEARCH_PRELIM = 51  # Deprecated for new reviews - no more prelim.
 REVIEWED_SEARCH_UPDATE = 52
-REVIEWED_THEME_FULL = 60
-_REVIEWED_THEME_PRELIM = 61  # Deprecated for new reviews - no more prelim.
-REVIEWED_THEME_UPDATE = 62
+REVIEWED_XUL_THEME_FULL = 60
+_REVIEWED_XUL_THEME_PRELIM = 61  # Deprecated for new reviews - no more prelim.
+REVIEWED_XUL_THEME_UPDATE = 62
 REVIEWED_ADDON_REVIEW = 80
 REVIEWED_ADDON_REVIEW_POORLY = 81
 REVIEWED_CONTENT_REVIEW = 101
@@ -62,12 +63,13 @@ REVIEWED_CHOICES = {
     _REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
     REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
     REVIEWED_PERSONA: _('Theme Review'),
+    REVIEWED_STATICTHEME: _('Theme (Static) Review'),
     REVIEWED_SEARCH_FULL: _('New Search Provider Review'),
     _REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
     REVIEWED_SEARCH_UPDATE: _('Updated Search Provider Review'),
-    REVIEWED_THEME_FULL: _('New Complete Theme Review'),
-    _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
-    REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
+    REVIEWED_XUL_THEME_FULL: _('New Complete Theme Review'),
+    _REVIEWED_XUL_THEME_PRELIM: _('Preliminary Complete Theme Review'),
+    REVIEWED_XUL_THEME_UPDATE: _('Updated Complete Theme Review'),
     REVIEWED_ADDON_REVIEW: _('Moderated Add-on Review'),
     REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
     REVIEWED_CONTENT_REVIEW: _('Add-on Content Review'),
@@ -93,10 +95,11 @@ REVIEWED_SCORES = {
     REVIEWED_LP_FULL: 60,
     REVIEWED_LP_UPDATE: 60,
     REVIEWED_PERSONA: 5,
+    REVIEWED_STATICTHEME: 5,
     REVIEWED_SEARCH_FULL: 30,
     REVIEWED_SEARCH_UPDATE: 30,
-    REVIEWED_THEME_FULL: 80,
-    REVIEWED_THEME_UPDATE: 80,
+    REVIEWED_XUL_THEME_FULL: 80,
+    REVIEWED_XUL_THEME_UPDATE: 80,
     REVIEWED_ADDON_REVIEW: 1,
     REVIEWED_ADDON_REVIEW_POORLY: -1,  # -REVIEWED_ADDON_REVIEW,
     REVIEWED_CONTENT_REVIEW: 10,
@@ -115,8 +118,9 @@ REVIEWED_AMO = (
     REVIEWED_LP_UPDATE,
     REVIEWED_SEARCH_FULL,
     REVIEWED_SEARCH_UPDATE,
-    REVIEWED_THEME_FULL,
-    REVIEWED_THEME_UPDATE,
+    REVIEWED_XUL_THEME_FULL,
+    REVIEWED_XUL_THEME_UPDATE,
+    REVIEWED_STATICTHEME,
     REVIEWED_ADDON_REVIEW,
     REVIEWED_CONTENT_REVIEW,
     REVIEWED_EXTENSION_HIGHEST_RISK,

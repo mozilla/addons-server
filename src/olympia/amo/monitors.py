@@ -190,10 +190,12 @@ def signer():
     signer_results = None
     status = ''
 
-    if getattr(settings, 'SIGNING_SERVER', False):
+    autograph_url = settings.AUTOGRAPH_CONFIG['server_url']
+    if autograph_url:
         try:
-            response = requests.get('%s/status' % settings.SIGNING_SERVER,
-                                    timeout=settings.SIGNING_SERVER_TIMEOUT)
+            response = requests.get(
+                '{host}/__heartbeat__'.format(host=autograph_url),
+                timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT)
             if response.status_code != 200:
                 status = (
                     'Failed to chat with signing service. '
@@ -202,12 +204,13 @@ def signer():
                 signer_results = False
             else:
                 signer_results = True
-        except Exception, e:
-            status = 'Failed to chat with signing service: %s' % e
+        except Exception as exc:
+            status = 'Failed to chat with signing service: %s' % exc
             monitor_log.critical(status)
             signer_results = False
     else:
-        status = 'SIGNING_SERVER is not set'
+        status = 'server_url in AUTOGRAPH_CONFIG is not set'
         monitor_log.critical(status)
         signer_results = False
+
     return status, signer_results

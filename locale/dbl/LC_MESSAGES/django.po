@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,9 @@ msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
+
+msgid "Images cannot be animated."
+msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -997,8 +1000,14 @@ msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗ�
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
+msgid "Icons cannot be animated."
+msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ǿƞḗ ǿƒ ẏǿŭř ƈǿŀŀḗƈŧīǿƞş."
+
+msgid "Name cannot be empty."
+msgstr "Ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ḗḿƥŧẏ."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Ŧħḗ ƈŭşŧǿḿ ŬŘĿ ḿŭşŧ ƈǿƞşīşŧ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř ħẏƥħḗƞş."
@@ -1979,14 +1988,17 @@ msgstr "{addon} {version} ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ."
 msgid "Content rejected"
 msgstr "Ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ"
 
-msgid "{addon} information request removed."
-msgstr "{addon} īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ řḗḿǿṽḗḓ."
+msgid "{addon} information request altered or removed by admin."
+msgstr "{addon} īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ ȧŀŧḗřḗḓ ǿř řḗḿǿṽḗḓ ƀẏ ȧḓḿīƞ."
 
-msgid "Information request removed"
-msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ řḗḿǿṽḗḓ"
+msgid "Information request altered"
+msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ ȧŀŧḗřḗḓ"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ ƈŀḗȧřḗḓ ƀẏ ḓḗṽḗŀǿƥḗř ǿƞ {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧ řḗḿǿṽḗḓ"
 
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
@@ -2349,8 +2361,8 @@ msgstr "Şǿŀȧřīş"
 msgid "Android"
 msgstr "Aƞḓřǿīḓ"
 
-msgid "App"
-msgstr "Aƥƥ"
+msgid "Static Theme"
+msgstr "Şŧȧŧīƈ Ŧħḗḿḗ"
 
 msgid "Persona"
 msgstr "Ƥḗřşǿƞȧ"
@@ -2387,6 +2399,9 @@ msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
 msgid "Theme Review"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
+
+msgid "Theme (Static) Review"
+msgstr "Ŧħḗḿḗ (Şŧȧŧīƈ) Řḗṽīḗẇ"
 
 msgid "New Search Provider Review"
 msgstr "Ƞḗẇ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
@@ -2706,12 +2721,6 @@ msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ ẇīŧħ ȧ ɠŭ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧ Ḿǿẑīŀŀȧ Şīɠƞḗḓ Ḗẋŧḗƞşīǿƞ"
 
-msgid "Icons cannot be animated."
-msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
-
-msgid "Images cannot be animated."
-msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
@@ -2944,6 +2953,15 @@ msgstr "Ḗḓīŧ Īƞƒǿřḿȧŧīǿƞ"
 
 msgid "None"
 msgstr "Ƞǿƞḗ"
+
+msgid "Preview"
+msgstr "Ƥřḗṽīḗẇ"
+
+msgid "Preview of listed version"
+msgstr "Ƥřḗṽīḗẇ ǿƒ ŀīşŧḗḓ ṽḗřşīǿƞ"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Ƥřḗṽīḗẇ şŧīŀŀ ƀḗīƞɠ ɠḗƞḗřȧŧḗḓ - ƈǿḿḗ ƀȧƈķ ŀȧŧḗř ǿř řḗƒřḗşħ ŧħḗ ƥȧɠḗ."
 
 msgid "Manage Authors & License"
 msgstr "Ḿȧƞȧɠḗ Aŭŧħǿřş & Ŀīƈḗƞşḗ"
@@ -3483,6 +3501,9 @@ msgstr "Ẏǿŭ’řḗ ḓǿƞḗ!"
 msgid "Version Submitted for Review"
 msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ ƒǿř Řḗṽīḗẇ"
 
+msgid "Preview of the version submitted"
+msgstr "Ƥřḗṽīḗẇ ǿƒ ŧħḗ ṽḗřşīǿƞ şŭƀḿīŧŧḗḓ"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ṽḗřşīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ ȧƒŧḗř īŧ ƥȧşşḗş řḗṽīḗẇ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ẇħḗƞ īŧ īş řḗṽīḗẇḗḓ."
 
@@ -3618,8 +3639,8 @@ msgstr "Ŧǿǿŀƀȧř ȧřḗȧ ƀȧƈķɠřǿŭƞḓ"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Ŧħḗ ƀȧƈķɠřǿŭƞḓ ƈǿŀǿř ƒǿř ŧħḗ ƞȧṽīɠȧŧīǿƞ ƀȧř, ŧħḗ ƀǿǿķḿȧřķş ƀȧř, ȧƞḓ ŧħḗ şḗŀḗƈŧḗḓ ŧȧƀ.  Ḿȧƞīƒḗşŧ ƒīḗŀḓ:  ŧǿǿŀƀȧř."
 
-msgid "Toolbar area text icons"
-msgstr "Ŧǿǿŀƀȧř ȧřḗȧ ŧḗẋŧ īƈǿƞş"
+msgid "Toolbar area text and icons"
+msgstr "Ŧǿǿŀƀȧř ȧřḗȧ ŧḗẋŧ ȧƞḓ īƈǿƞş"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ŧḗẋŧ ȧƞḓ īƈǿƞş īƞ ŧħḗ ŧǿǿŀƀȧř ȧƞḓ ŧħḗ ȧƈŧīṽḗ ŧȧƀ. Ḿȧƞīƒḗşŧ ƒīḗŀḓ:  ŧǿǿŀƀȧř_ŧḗẋŧ."
@@ -3934,14 +3955,17 @@ msgstr "Ŧħḗřḗ īş ȧ ƞḗẇ, ƈřǿşş-ƀřǿẇşḗř şŧȧƞḓȧ
 msgid "Learn How"
 msgstr "Ŀḗȧřƞ Ħǿẇ"
 
-msgid "What's New"
-msgstr "Ẇħȧŧ'ş Ƞḗẇ"
+msgid "Get Started"
+msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ? Řḗȧḓ ǿŭř şŧḗƥ-ƀẏ-şŧḗƥ ŧŭŧǿřīȧŀ ǿƞ ŧħḗ şŭƀḿīşşīǿƞ ƥřǿƈḗşş."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ḗẋŧḗƞşīǿƞ? Řḗȧḓ ǿŭř şŧḗƥ-ƀẏ-şŧḗƥ ŧŭŧǿřīȧŀ ǿƞ ŧħḗ şŭƀḿīşşīǿƞ ƥřǿƈḗşş."
 
 msgid "See Tutorial"
 msgstr "Şḗḗ Ŧŭŧǿřīȧŀ"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿƞ ƀẏ ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ŀīşŧīƞɠ."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4084,17 +4108,11 @@ msgstr "Ẏǿŭř ƥřḗṽīǿŭşŀẏ řḗşŭƀḿīŧŧḗḓ ḓḗşī�
 msgid "Pending Header"
 msgstr "Ƥḗƞḓīƞɠ Ħḗȧḓḗř"
 
-msgid "Pending Footer"
-msgstr "Ƥḗƞḓīƞɠ Ƒǿǿŧḗř"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Ẏǿŭ ḿȧẏ ŭƥḓȧŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ħḗřḗ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ȧƥƥřǿṽḗḓ."
 
 msgid "Header"
 msgstr "Ħḗȧḓḗř"
-
-msgid "Footer"
-msgstr "Ƒǿǿŧḗř"
 
 msgid "Select colors for your Theme."
 msgstr "Şḗŀḗƈŧ ƈǿŀǿřş ƒǿř ẏǿŭř Ŧħḗḿḗ."
@@ -4110,9 +4128,6 @@ msgstr "Ɓȧƈķɠřǿŭƞḓ"
 
 msgid "This is the color of the tabs."
 msgstr "Ŧħīş īş ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ŧȧƀş."
-
-msgid "Preview"
-msgstr "Ƥřḗṽīḗẇ"
 
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
@@ -4174,18 +4189,6 @@ msgstr "300 ĶƁ ḿȧẋ"
 
 msgid "PNG or JPG"
 msgstr "ƤȠƓ ǿř ĴƤƓ"
-
-msgid "Select a footer image for your Theme."
-msgstr "Şḗŀḗƈŧ ȧ ƒǿǿŧḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 ƥīẋḗŀş"
-
-msgid "Aligned to bottom-left"
-msgstr "Aŀīɠƞḗḓ ŧǿ ƀǿŧŧǿḿ-ŀḗƒŧ"
-
-msgid "Select a different footer image"
-msgstr "Şḗŀḗƈŧ ȧ ḓīƒƒḗřḗƞŧ ƒǿǿŧḗř īḿȧɠḗ"
 
 msgid "Manage Version {0}"
 msgstr "Ḿȧƞȧɠḗ Ṽḗřşīǿƞ {0}"
@@ -4372,29 +4375,32 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŧřȧƞşŀȧŧḗ ḗȧşīŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ Ƒȧƈḗƀǿǿķ ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ, řīɠħŧ-ƈŀīƈķ, ȧƞḓ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Īşǿŀȧŧḗ ẏǿŭř Ƒȧƈḗƀǿǿķ īḓḗƞŧīŧẏ īƞŧǿ ȧ şḗƥȧřȧŧḗ \"ƈǿƞŧȧīƞḗř\" ŧħȧŧ ḿȧķḗş īŧ ħȧřḓḗř ƒǿř Ƒȧƈḗƀǿǿķ ŧǿ ŧřȧƈķ ẏǿŭř ḿǿṽḗḿḗƞŧş ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şīḿƥŀīƒẏ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Şḗḗ ȧƞ īƞŧḗřḗşŧīƞɠ ƥīƈŧŭřḗ ǿƞ ŧħḗ Ẇḗƀ ȧƞḓ ẇȧƞŧ ŧǿ ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ īŧ? Ŧřẏ ŧħīş īḿȧɠḗ şḗȧřƈħ ŧǿǿŀ."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Ĵŭşŧ ħīɠħŀīɠħŧ ŧḗẋŧ ǿƞ ȧƞẏ ẇḗƀ ƥȧɠḗ ŧǿ şḗȧřƈħ ŧħḗ ƥħřȧşḗ ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aḓ ƀŀǿƈķīƞɠ & ƥřīṽȧƈẏ ƥřǿŧḗƈŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "A şīḿƥŀḗ şḗŧ-ŭƥ ŀḗŧş ẏǿŭ ŧȧķḗ ƈǿƞŧřǿŀ ǿƒ ŧħḗ ȧḓş ẏǿŭ şḗḗ ȧƞḓ ħǿẇ ẏǿŭ’řḗ ŧřȧƈķḗḓ ǿƞ ŧħḗ īƞŧḗřƞḗŧ."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗ-īḿȧɠīƞḗ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Ḓǿ ẏǿŭ ħȧṽḗ ȧ ŧǿƞ ǿƒ ǿƥḗƞ ŧȧƀş? Ǿřɠȧƞīẑḗ ŧħḗḿ īƞ ȧ ŧīḓẏ şīḓḗƀȧř."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Ẇǿřķş ẇīŧħ ẎǿŭŦŭƀḗ, Ƒȧƈḗƀǿǿķ, Ṽīḿḗǿ, Ŧẇīŧƈħ, Ḓȧīŀẏḿǿŧīǿƞ, Ƥḗřīşƈǿƥḗ, ȧƞḓ ħŭƞḓřḗḓş ǿƒ ǿŧħḗř ṽīḓḗǿ şīŧḗş."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş—ȧŀẇȧẏş ȧ ƈŀīƈķ ȧẇȧẏ."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Ẇǿřķş şḗȧḿŀḗşşŀẏ ẇīŧħ ḿǿşŧ ƥǿƥŭŀȧř ṽīḓḗǿ şīŧḗş."
@@ -4744,9 +4750,6 @@ msgstr "Ɓḗƈǿḿḗ ȧ Ŧḗşŧ Ƥīŀǿŧ"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ŭƞŀǿƈķ ḗȧřŀẏ ȧƈƈḗşş ŧǿ ḗẋƥḗřīḿḗƞŧȧŀ ƀřǿẇşḗř ƒḗȧŧŭřḗş."
-
-msgid "Get Started"
-msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
 
 msgid "About Mozilla Add-ons"
 msgstr "Aƀǿŭŧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş"
@@ -5254,8 +5257,8 @@ msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭ
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Ǿŧħḗř (ƥřǿṽīḓḗş ȧ ƥǿƥ-ŭƥ ƥřǿḿƥŧ ƒǿř īƞƒǿřḿȧŧīǿƞ)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Ƈŭřřḗƞŧŀẏ, AḾǾ ḓǿḗş ƞǿŧ ƥřǿṽīḓḗ ȧ ḿḗƈħȧƞīşḿ ŧǿ ḓīřḗƈŧŀẏ ƈǿḿḿŭƞīƈȧŧḗ ẇīŧħ ȧ ŧħḗ ȧŭŧħǿř ǿƒ ȧ ŭşḗř řḗṽīḗẇ."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
+msgstr "Ƈŭřřḗƞŧŀẏ, AḾǾ ḓǿḗş ƞǿŧ ƥřǿṽīḓḗ ȧ ḿḗƈħȧƞīşḿ ŧǿ ḓīřḗƈŧŀẏ ƈǿḿḿŭƞīƈȧŧḗ ẇīŧħ ŧħḗ ȧŭŧħǿř ǿƒ ȧ ŭşḗř řḗṽīḗẇ."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Ƈȧƞ Ī řḗɋŭḗşŧ ŧħȧŧ ȧ řḗṽīḗẇ ƀḗ řḗḿǿṽḗḓ īƒ ŧħḗ řḗṽīḗẇ īş ƞḗɠȧŧīṽḗ?"
@@ -5848,8 +5851,8 @@ msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
 
-msgid "This rating can't flagged because it has no review text."
-msgstr "Ŧħīş řȧŧīƞɠ ƈȧƞ'ŧ ƒŀȧɠɠḗḓ ƀḗƈȧŭşḗ īŧ ħȧş ƞǿ řḗṽīḗẇ ŧḗẋŧ."
+msgid "This rating can't be flagged because it has no review text."
+msgstr "Ŧħīş řȧŧīƞɠ ƈȧƞ'ŧ ƀḗ ƒŀȧɠɠḗḓ ƀḗƈȧŭşḗ īŧ ħȧş ƞǿ řḗṽīḗẇ ŧḗẋŧ."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇḗř ȧƥƥřǿṽȧŀ."
@@ -5992,15 +5995,6 @@ msgstr "ȧƞḓ"
 msgid "Filter by type/action"
 msgstr "Ƒīŀŧḗř ƀẏ ŧẏƥḗ/ȧƈŧīǿƞ"
 
-msgid "Passed automatic validation"
-msgstr "Ƥȧşşḗḓ ȧŭŧǿḿȧŧīƈ ṽȧŀīḓȧŧīǿƞ"
-
-msgid "Failed automatic validation"
-msgstr "Ƒȧīŀḗḓ ȧŭŧǿḿȧŧīƈ ṽȧŀīḓȧŧīǿƞ"
-
-msgid "Filter by automatic validation"
-msgstr "Ƒīŀŧḗř ƀẏ ȧŭŧǿḿȧŧīƈ ṽȧŀīḓȧŧīǿƞ"
-
 msgid "containing"
 msgstr "ƈǿƞŧȧīƞīƞɠ"
 
@@ -6075,6 +6069,9 @@ msgstr "Şķīƥ ƒǿř ƞǿẇ"
 
 msgid "Needs Admin Content Review"
 msgstr "Ƞḗḗḓş Aḓḿīƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Ƞḗḗḓş Aḓḿīƞ Şŧȧŧīƈ Ŧħḗḿḗ Řḗṽīḗẇ"
 
 msgid "Jetpack Add-on"
 msgstr "Ĵḗŧƥȧƈķ Aḓḓ-ǿƞ"
@@ -6202,29 +6199,41 @@ msgstr "Aƥƥřǿṽḗ Ƈǿƞŧḗƞŧ"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ŧħīş řḗƈǿřḓş ẏǿŭř ȧƥƥřǿƀȧŧīǿƞ ǿƒ ŧħḗ ƈǿƞŧḗƞŧ ǿƒ ŧħḗ ŀȧŧḗşŧ ƥŭƀŀīƈ ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Şŧȧŧīƈ Ŧħḗḿḗş ȧƞḓ Ŀḗɠȧƈẏ Aḓḓ-ǿƞş"
+
+msgid "Static Themes"
+msgstr "Şŧȧŧīƈ Ŧħḗḿḗş"
+
 msgid "Legacy Add-ons"
 msgstr "Ŀḗɠȧƈẏ Aḓḓ-ǿƞş"
 
-msgid "New Add-ons ({0})"
-msgstr "Ƞḗẇ Aḓḓ-ǿƞş ({0})"
+msgid "New ({0})"
+msgstr "Ƞḗẇ ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Aḓḓ-ǿƞ Ŭƥḓȧŧḗş ({0})"
+msgid "Updates ({0})"
+msgstr "Ŭƥḓȧŧḗş ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ŀǿɠ"
+msgid "Review Log"
+msgstr "Řḗṽīḗẇ Ŀǿɠ"
 
-msgid "Signed Beta Files Log"
-msgstr "Şīɠƞḗḓ Ɓḗŧȧ Ƒīŀḗş Ŀǿɠ"
+msgid "Add-on Review Guide"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ɠŭīḓḗ"
 
-msgid "Review Guide"
-msgstr "Řḗṽīḗẇ Ɠŭīḓḗ"
+msgid "Theme Review Guide"
+msgstr "Ŧħḗḿḗ Řḗṽīḗẇ Ɠŭīḓḗ"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Aŭŧǿ-Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ŀǿɠ"
+
+msgid "Review Guide"
+msgstr "Řḗṽīḗẇ Ɠŭīḓḗ"
 
 msgid "Content Review"
 msgstr "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
@@ -6243,8 +6252,8 @@ msgstr "Ŧħḗḿḗş Ŭƥḓȧŧḗş ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Ƒŀȧɠɠḗḓ Ŧħḗḿḗş ({0})"
 
-msgid "Themes Review Log"
-msgstr "Ŧħḗḿḗş Řḗṽīḗẇ Ŀǿɠ"
+msgid "Lightweight Themes Review Log"
+msgstr "Ŀīɠħŧẇḗīɠħŧ Ŧħḗḿḗş Řḗṽīḗẇ Ŀǿɠ"
 
 msgid "Deleted Themes Log"
 msgstr "Ḓḗŀḗŧḗḓ Ŧħḗḿḗş Ŀǿɠ"
@@ -6273,8 +6282,8 @@ msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
 msgid "Update message of the day"
 msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
 
-msgid "Add-ons with expired information requests"
-msgstr "Aḓḓ-ǿƞş ẇīŧħ ḗẋƥīřḗḓ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧş"
+msgid "Expired Information Requests ({0})"
+msgstr "Ḗẋƥīřḗḓ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧş ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Aƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
@@ -6333,6 +6342,15 @@ msgstr "Aƀŭşḗ Řḗƥǿřŧş ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Ɓȧḓ Ŭşḗř Řȧŧīƞɠş ({num})"
 
+msgid "Theme Images"
+msgstr "Ŧħḗḿḗ Īḿȧɠḗş"
+
+msgid "Rendered Preview"
+msgstr "Řḗƞḓḗřḗḓ Ƥřḗṽīḗẇ"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Ɓȧƈķɠřǿŭƞḓ ƒīŀḗ {0} ǿƒ {1} - {2}"
+
 msgid "More about this add-on"
 msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ"
 
@@ -6344,6 +6362,18 @@ msgstr "Ƞǿŧħīƞɠ ŧǿ şḗḗ ħḗřḗ!  Ŧħḗ ḓḗṽḗŀǿƥḗ�
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Řḗṽīḗẇḗř Ŧǿǿŀş ḓȧşħƀǿȧřḓ"
+
+msgid "Reviewer Leaderboard"
+msgstr "Řḗṽīḗẇḗř Ŀḗȧḓḗřƀǿȧřḓ"
+
+msgid "No review points awarded yet."
+msgstr "Ƞǿ řḗṽīḗẇ ƥǿīƞŧş ȧẇȧřḓḗḓ ẏḗŧ."
+
+msgid "Rank"
+msgstr "Řȧƞķ"
+
+msgid "Score"
+msgstr "Şƈǿřḗ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6385,18 +6415,6 @@ msgstr "Řḗṽīḗẇ ẇȧş ƒŀȧɠɠḗḓ ƥřīǿř ŧǿ ḓḗŀḗŧ�
 
 msgid "Undelete"
 msgstr "Ŭƞḓḗŀḗŧḗ"
-
-msgid "Reviewer Leaderboard"
-msgstr "Řḗṽīḗẇḗř Ŀḗȧḓḗřƀǿȧřḓ"
-
-msgid "No review points awarded yet."
-msgstr "Ƞǿ řḗṽīḗẇ ƥǿīƞŧş ȧẇȧřḓḗḓ ẏḗŧ."
-
-msgid "Rank"
-msgstr "Řȧƞķ"
-
-msgid "Score"
-msgstr "Şƈǿřḗ"
 
 msgid "Save"
 msgstr "Şȧṽḗ"
@@ -6576,6 +6594,9 @@ msgstr "Ƈŀḗȧř Aḓḿīƞ Ƈǿḓḗ Řḗṽīḗẇ Ƒŀȧɠ"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Ƈŀḗȧř Aḓḿīƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ Ƒŀȧɠ"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Ƈŀḗȧř Aḓḿīƞ Şŧȧŧīƈ Ŧħḗḿḗ Řḗṽīḗẇ Ƒŀȧɠ"
 
 msgid "(admin)"
 msgstr "(ȧḓḿīƞ)"
@@ -6778,25 +6799,25 @@ msgstr "Řḗĵḗƈŧḗḓ ǿř Ŭƞřḗṽīḗẇḗḓ"
 msgid "[status:%s]"
 msgstr "[şŧȧŧŭş:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Ƞḗẇ Aḓḓ-ǿƞ ({0})"
-msgstr[1] "Ƞḗẇ Aḓḓ-ǿƞş ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Ŭƥḓȧŧḗ ({0})"
 msgstr[1] "Ŭƥḓȧŧḗş ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ ({0})"
-msgstr[1] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Řȧŧīƞɠ Řḗṽīḗẇ ({0})"
+msgstr[1] "Řȧŧīƞɠ Řḗṽīḗẇş ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞ ({0})"
-msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ ({0})"
+msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Ḗẋƥīřḗḓ Īƞƒǿ Řḗɋŭḗşŧ ({0})"
+msgstr[1] "Ḗẋƥīřḗḓ Īƞƒǿ Řḗɋŭḗşŧş ({0})"
 
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"

@@ -11,4 +11,3 @@ class Login(Base):
     def login(self, email, password):
         from fxapom.pages.sign_in import SignIn
         SignIn(self.selenium).sign_in(email, password)
-        self.wait.until(lambda _: self.logged_in)

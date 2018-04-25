@@ -7,8 +7,6 @@ from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
-from waffle.testutils import override_switch
-
 import jinja2
 import pytest
 
@@ -460,25 +458,6 @@ class APITest(TestCase):
         for tag, needle in url_needles.iteritems():
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
-
-    @override_switch('beta-versions', active=True)
-    def test_beta_channel(self):
-        """
-        This tests that addons with files in beta will have those files
-        displayed.
-        """
-        response = make_call('addon/5299', version=1.5)
-
-        needles = (
-            """<install hash="sha256:4395f9cf4934ecc8f22d367c2a301fd7""",
-            """9613b68937c59e676e92e4f0a89a5b92" """,
-            'size="24576"',
-            'status="Beta">',
-            "/downloads/file/64874/better_gcal-0.4-fx.xpi?src=api",
-        )
-
-        for needle in needles:
-            self.assertContains(response, needle)
 
     def test_slug(self):
         Addon.objects.get(pk=5299).update(type=amo.ADDON_EXTENSION)

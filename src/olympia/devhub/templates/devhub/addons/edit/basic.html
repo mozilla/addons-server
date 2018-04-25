@@ -198,7 +198,7 @@
                 <p>{{ form.contributions }}</p>
                 {{ form.contributions.errors }}
               {% else %}
-                {{ addon.contributions }}
+                <a href="{{ addon.contributions }}" target="_blank" rel="noopener noreferrer">{{ addon.contributions }}</a>
               {% endif %}
             </td>
           </tr>

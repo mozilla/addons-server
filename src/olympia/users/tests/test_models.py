@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 import django  # noqa
 
@@ -20,6 +20,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
+from olympia.zadmin.models import set_config
 
 
 class TestUserProfile(TestCase):
@@ -121,33 +122,36 @@ class TestUserProfile(TestCase):
         user = UserProfile(username='bob', display_name='Bob Bobbertson')
         assert not user.has_anonymous_display_name
 
-    def test_add_admin_powers(self):
+    def test_superuser(self):
         user = UserProfile.objects.get(username='jbalogh')
-
         assert not user.is_staff
         assert not user.is_superuser
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
-                                 user=user)
+
+        # Give the user '*:*'.
+        group = Group.objects.filter(rules='*:*').get()
+        GroupUser.objects.create(group=group, user=user)
         assert user.is_staff
         assert user.is_superuser
 
-    def test_dont_add_admin_powers(self):
-        Group.objects.create(name='API', rules='API.Users:*')
-        u = UserProfile.objects.get(username='jbalogh')
+    def test_staff_only(self):
+        group = Group.objects.create(
+            name='Admins of Something', rules='Admin:Something')
+        user = UserProfile.objects.get(username='jbalogh')
+        assert not user.is_staff
+        assert not user.is_superuser
 
-        GroupUser.objects.create(group=Group.objects.get(name='API'),
-                                 user=u)
-        assert not u.is_staff
-        assert not u.is_superuser
+        GroupUser.objects.create(group=group, user=user)
+        # User now has access to an Admin permission, so is_staff is True.
+        assert user.is_staff
+        assert not user.is_superuser
 
     def test_remove_admin_powers(self):
-        Group.objects.create(name='Admins', rules='*:*')
-        u = UserProfile.objects.get(username='jbalogh')
-        g = GroupUser.objects.create(
-            group=Group.objects.filter(name='Admins')[0], user=u)
-        g.delete()
-        assert not u.is_staff
-        assert not u.is_superuser
+        group = Group.objects.create(name='Admins', rules='*:*')
+        user = UserProfile.objects.get(username='jbalogh')
+        relation = GroupUser.objects.create(group=group, user=user)
+        relation.delete()
+        assert not user.is_staff
+        assert not user.is_superuser
 
     def test_picture_url(self):
         """
@@ -300,10 +304,11 @@ class TestUserProfile(TestCase):
         assert hash1 != hash2
 
     def test_has_read_developer_agreement(self):
+        set_config('last_dev_agreement_change_date', '2018-01-01 00:00')
         after_change = (
-            UserProfile.last_developer_agreement_change + timedelta(days=1))
+            datetime(2018, 1, 1) + timedelta(days=1))
         before_change = (
-            UserProfile.last_developer_agreement_change - timedelta(days=42))
+            datetime(2018, 1, 1) - timedelta(days=42))
 
         assert not UserProfile().has_read_developer_agreement()
         assert not UserProfile(

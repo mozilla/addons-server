@@ -77,7 +77,9 @@
 			var scale = Math.min(sx, sy);
 
 			return {
-				'left': (boxW - scale*imgW) / 2,
+				/* line below patched to always pin images to the top right -
+				helps when images don't fill the div width for static themes.*/
+				'left': (boxW - scale*imgW) - opts.zoomMargin,
 				'top': (boxH - scale*imgH) / 2,
 				'width': scale*imgW,
 				'height': scale*imgH

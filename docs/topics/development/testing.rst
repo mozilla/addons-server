@@ -8,8 +8,6 @@ We're using a mix of `Django's Unit Testing`_ and `pytest`_ with
 `pytest-django`_, and `Selenium`_ for our automated testing. This gives us a
 lot of power and flexibility to test all aspects of the site.
 
-Selenium tests are in a separate `Selenium repository`_.
-
 Configuration
 -------------
 
@@ -75,6 +73,16 @@ If you wish to re-run only the tests failed from the previous run::
 
     make test_failed
 
+Selenium Integration Tests
+--------------------------
+To run the selenium based tests outside of the docker container use the following command::
+
+    docker-compose exec --user root selenium-firefox tox -e ui-tests
+
+WARNING: This will WIPE the database as the test will create specific data for itself to look for.
+If you have anything you don't want to be deleted, please do not run these tests.
+
+For more detailed information on the integration tests, please see the Readme within the ``tests/ui`` directory.
 
 Database Setup
 ~~~~~~~~~~~~~~
@@ -109,6 +117,11 @@ Most tests are in this category.  Our test classes extend
 ``django.test.TestCase`` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
+Selenium Integration Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The `Selenium`_ tests are written using a Page Object Model via `PyPom`_. Please
+view the documentation there to help you write integration tests.
+
 External calls
 ~~~~~~~~~~~~~~
 Connecting to remote services in tests is not recommended, developers should
@@ -137,6 +150,7 @@ need to recompile the .mo files manually, for example::
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
+.. _`PyPom`: http://pypom.readthedocs.io/en/latest/
 .. _`pytest`: http://pytest.org/latest/
 .. _`pytest-django`: https://pytest-django.readthedocs.io/en/latest/
 .. _`Selenium`: http://www.seleniumhq.org/

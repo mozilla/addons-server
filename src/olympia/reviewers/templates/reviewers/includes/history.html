@@ -1,6 +1,6 @@
 <tr>
   <th>
-    {{ record.log.short }}
+    {{ record.log.short|default }}
   </th>
   <td>
     {% trans user = record.user|user_link, date = record.created|datetime %}

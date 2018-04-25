@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 20:37+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 20:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -36,6 +36,9 @@ msgstr "Tute wužiwarske mjeno so hižo wužiwa."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Wobrazy dyrbja format PNG abo JPG měć."
+
+msgid "Images cannot be animated."
+msgstr "Wobrazy njedadźa so animować."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1033,8 +1036,14 @@ msgstr "Tutón URL so hižo wot druheje zběrki wužiwa"
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole dyrbja pak we formaće PNG pak JPG być."
 
+msgid "Icons cannot be animated."
+msgstr "Symbole njedadźa so animować."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tutón swójski URL so hižo wot druheje z wašich zběrkow wužiwa."
+
+msgid "Name cannot be empty."
+msgstr "Mjeno njemóže pródzne być."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Swójski URL dyrbi z pismikow, ličbow, podsmužkow abo wjazawkow wobstać."
@@ -2041,14 +2050,17 @@ msgstr "Wobsah {addon} {version} wotpokazany."
 msgid "Content rejected"
 msgstr "Wobsah wotpokazany"
 
-msgid "{addon} information request removed."
-msgstr "{addon} je próstwu wo informacije wotstronił."
+msgid "{addon} information request altered or removed by admin."
+msgstr "Próstwa wo informacije wo {addon} je so wot administratora změniła a wotstroniła."
 
-msgid "Information request removed"
-msgstr "Próstwa wo informacije je so wotstroniła"
+msgid "Information request altered"
+msgstr "Próstwa wo informacije je so změniła"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Próstwa wo informacije je so wot wuwiwarja w {addon} {version} zhašała."
+
+msgid "Information request removed"
+msgstr "Próstwa wo informacije je so wotstroniła"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2411,8 +2423,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Nałoženje"
+msgid "Static Theme"
+msgstr "Statiska drasta"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2449,6 +2461,9 @@ msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
 
 msgid "Theme Review"
 msgstr "Přepruwowanje drasty"
+
+msgid "Theme (Static) Review"
+msgstr "Přepruwowanje (statiskeje) drasty"
 
 msgid "New Search Provider Review"
 msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
@@ -2766,12 +2781,6 @@ msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
 
-msgid "Icons cannot be animated."
-msgstr "Symbole njedadźa so animować."
-
-msgid "Images cannot be animated."
-msgstr "Wobrazy njedadźa so animować."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Wobrazy njesmědźa wjetše hač %d KB być."
@@ -3004,6 +3013,15 @@ msgstr "Informacije wobdźěłać"
 
 msgid "None"
 msgstr "Žane"
+
+msgid "Preview"
+msgstr "Přehlad"
+
+msgid "Preview of listed version"
+msgstr "Přehlad nalistowaneje wersije"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Přehlad so hišće twori - wróćće so pozdźišo abo aktualizujće stronu."
 
 msgid "Manage Authors & License"
 msgstr "Awtorow a licencu rjadować"
@@ -3553,6 +3571,9 @@ msgstr "Sće hotowy!"
 msgid "Version Submitted for Review"
 msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
 
+msgid "Preview of the version submitted"
+msgstr "Přehlad wersije je so zapodał"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Sće hotowy! Tuta wersija budźe k dispoziciji, po tym zo je so wuspěšnje přepruwowała. Dóstańće zdźělenku, hdyž je přepruwowana."
 
@@ -3688,7 +3709,7 @@ msgstr "Pozadk wobłuka symboloweje lajsty"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark. Polo manifesta: toolbar."
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobłuka symboloweje lajsty"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -4006,14 +4027,17 @@ msgstr "Je nětko nowy standard za wuwiwanje přidatkow w Firefox, kotryž hodź
 msgid "Learn How"
 msgstr "Zhońće, kak to dźe"
 
-msgid "What's New"
-msgstr "Nowosće"
+msgid "Get Started"
+msgstr "Prěnje kroki"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Sće hotowy, přidatk zapodać? Čitajće naš nawod wo zapodawanskim procesu krok po kroku."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "Sće hotowy, rozšěrjenje zapodać? Čitajće naš nawod krok po kroku wo zapodawanskim procesu."
 
 msgid "See Tutorial"
 msgstr "Nawod pokazać"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Wutworće spodobny lisćinowy zapisk, zo byšće pomhał wužiwarjam, waše rozšěrjenje wotkryć."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4157,17 +4181,11 @@ msgstr "Waš design znowa zapodaty do toho, kotryž na přepruwowanje čaka."
 msgid "Pending Header"
 msgstr "Wustejaca hłowa"
 
-msgid "Pending Footer"
-msgstr "Wustejaca noha"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Móžeće tu swój drastowy design aktualizować, hdyž je so schwalił."
 
 msgid "Header"
 msgstr "Hłowa"
-
-msgid "Footer"
-msgstr "Noha"
 
 msgid "Select colors for your Theme."
 msgstr "Wubjerće barby za swoju drastu."
@@ -4183,9 +4201,6 @@ msgstr "Pozadk"
 
 msgid "This is the color of the tabs."
 msgstr "To je barba rajtarkow."
-
-msgid "Preview"
-msgstr "Přehlad"
 
 msgid "Your Theme's Name"
 msgstr "Mjeno wašeje drasty"
@@ -4247,18 +4262,6 @@ msgstr "300 KB maksimalnje"
 
 msgid "PNG or JPG"
 msgstr "PNG abo JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Wubjerće nohowy wobraz za swoju drastu."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pikselow"
-
-msgid "Aligned to bottom-left"
-msgstr "Nalěwo deleka wusměrjeny"
-
-msgid "Select a different footer image"
-msgstr "Wubjerće druhi nohowy wobraz"
 
 msgid "Manage Version {0}"
 msgstr "Wersiju {0} rjadować"
@@ -4451,35 +4454,38 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přełožće lochko {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Wuzběhńće tekst, klikńće z prawej tastu a přełožće hnydom."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nawopačne pytanje za wobrazami {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zjednorće pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Chceće sej zajimawy wobraz w interneće wobhladać a wjace wo nim zhonić? Wupruwujće tutón nastroj za pytanje wobrazow."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funguje z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami druhich widejosydłow."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Funguje bjezposrědnje z najbóle woblubowanymi widejosydłami."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrjenje rajtarkow {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Postajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
@@ -4491,7 +4497,7 @@ msgid "Dozens of amazing emojis for every occasion—always just one click away.
 msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4826,9 +4832,6 @@ msgstr "Budźće testowy pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Dowolće zažny přistup k eksperimentelnym funkcijam wobhladowaka."
-
-msgid "Get Started"
-msgstr "Prěnje kroki"
 
 msgid "About Mozilla Add-ons"
 msgstr "Wo Mozilla Add-ons"
@@ -5340,7 +5343,7 @@ msgstr "Deplacěrowana zmylkowa rozprawa abo próstwa wo pomoc"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Druhe (pokazuje wuskakowace naprašowanje za dalše informacije)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z awtorom wužiwarskeho pohódnoćenja njeskići."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5947,7 +5950,7 @@ msgstr "Njemóžeće pohódnoćenje za swójski přidatk zawostajić."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Njemóžeće wjace hač jedne pohódnoćenje za samsnu wersiju přidatka zawostajić."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Tute pohódnoćenje njeda so markěrować, dokelž pohódnoćenski tekst nima."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6099,15 +6102,6 @@ msgstr "a"
 msgid "Filter by type/action"
 msgstr "Po typje/akciji filtrować"
 
-msgid "Passed automatic validation"
-msgstr "Awtomatiske přepruwowanje wobstało"
-
-msgid "Failed automatic validation"
-msgstr "Awtomatiske přepruwowanje nimokuliło"
-
-msgid "Filter by automatic validation"
-msgstr "Po awtomatiskim přepruwowanju filtrować"
-
 msgid "containing"
 msgstr "z"
 
@@ -6182,6 +6176,9 @@ msgstr "Nětko přeskočić"
 
 msgid "Needs Admin Content Review"
 msgstr "Wobsah dyrbi so wot administratora přepruwować"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Statiska drasta dyrbi so wot administratora přepruwować"
 
 msgid "Jetpack Add-on"
 msgstr "Přidatk typa Jetpack"
@@ -6315,29 +6312,41 @@ msgstr "Wobsah schwalić"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Statiske drasty a zestarjene přidatki"
+
+msgid "Static Themes"
+msgstr "Statiske drasty"
+
 msgid "Legacy Add-ons"
 msgstr "Zestarjene přidatki"
 
-msgid "New Add-ons ({0})"
-msgstr "Nowe přidatki ({0})"
+msgid "New ({0})"
+msgstr "Nowy ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Aktualizacije přidatkow ({0})"
+msgid "Updates ({0})"
+msgstr "Aktualizacije ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Protokol přidatkowych přepruwowanjow"
+msgid "Review Log"
+msgstr "Protokol přepruwowanjow"
 
-msgid "Signed Beta Files Log"
-msgstr "Protokol signowanych betadatajow"
+msgid "Add-on Review Guide"
+msgstr "Nawod za přepruwowanje přidatkow"
 
-msgid "Review Guide"
-msgstr "Přewodnik za pohódnoćenja"
+msgid "Theme Review Guide"
+msgstr "Nawod za přepruwowanje drastow"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Awtomatisce schwalene přidatki ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Protokol přidatkowych přepruwowanjow"
+
+msgid "Review Guide"
+msgstr "Přewodnik za pohódnoćenja"
 
 msgid "Content Review"
 msgstr "Přepruwowanje wobsaha"
@@ -6358,8 +6367,8 @@ msgstr "Aktualizacije drastow ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Markěrowane drasty ({0})"
 
-msgid "Themes Review Log"
-msgstr "Protokol drastowych přepruwowanjow"
+msgid "Lightweight Themes Review Log"
+msgstr "Protokol za přepruwowanja lochkich drastow"
 
 msgid "Deleted Themes Log"
 msgstr "Protokol zhašanych drastow"
@@ -6388,8 +6397,8 @@ msgstr "Připowědźenje"
 msgid "Update message of the day"
 msgstr "Powěsć dnja aktualizować"
 
-msgid "Add-ons with expired information requests"
-msgstr "Přidatki ze spadnjenymi próstwami wo informacije"
+msgid "Expired Information Requests ({0})"
+msgstr "Spadnjene próstwy wo Informacije ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Njeznaty zmylk je wustupił"
@@ -6451,6 +6460,15 @@ msgstr "Znjewužiwanske rozprawy ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužiwarske pohódnoćenja ({num})"
 
+msgid "Theme Images"
+msgstr "Wobrazy drasty"
+
+msgid "Rendered Preview"
+msgstr "Narysowany přehlad"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Pozadkowa dataja {0} z {1} - {2}"
+
 msgid "More about this add-on"
 msgstr "Wjace wo tutym přidatku"
 
@@ -6462,6 +6480,18 @@ msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Wróćo k přehladej nastrojow za přepruwowarjow"
+
+msgid "Reviewer Leaderboard"
+msgstr "Lisćina porjada přepruwowarjow"
+
+msgid "No review points awarded yet."
+msgstr "Hišće žane pohódnoćenske dypki spožčene."
+
+msgid "Rank"
+msgstr "Pozicija"
+
+msgid "Score"
+msgstr "Staw po dypkach"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6503,18 +6533,6 @@ msgstr "Pohódnoćenje je so před zhašenjom markěrowało."
 
 msgid "Undelete"
 msgstr "Wotstronjenje cofnyć"
-
-msgid "Reviewer Leaderboard"
-msgstr "Lisćina porjada přepruwowarjow"
-
-msgid "No review points awarded yet."
-msgstr "Hišće žane pohódnoćenske dypki spožčene."
-
-msgid "Rank"
-msgstr "Pozicija"
-
-msgid "Score"
-msgstr "Staw po dypkach"
 
 msgid "Save"
 msgstr "Składować"
@@ -6695,6 +6713,9 @@ msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstroni
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Marku za přepruwowanje statiskeje drasty wot administratora wotstronić"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6897,13 +6918,6 @@ msgstr "Wotpokazane abo njepřepruwowane"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nowy přidatk ({0})"
-msgstr[1] "Nowej přidatkaj ({0})"
-msgstr[2] "Nowe přidatki ({0})"
-msgstr[3] "Nowe přidatki ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Aktualizacija ({0})"
@@ -6911,19 +6925,26 @@ msgstr[1] "Aktualizaciji ({0})"
 msgstr[2] "Aktualizacije ({0})"
 msgstr[3] "Aktualizacije ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderěrowane přepruwowanje ({0})"
-msgstr[1] "Moderěrowanej přepruwowani ({0})"
-msgstr[2] "Moderěrowane přepruwowanja ({0})"
-msgstr[3] "Moderěrowane přepruwowanja ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Přepruwowanje pohódnoćenja ({0})"
+msgstr[1] "Přepruwowanej pohódnoćeni ({0})"
+msgstr[2] "Přepruwowane pohódnoćenja ({0})"
+msgstr[3] "Přepruwowane pohódnoćenja ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Awtomatisce schwaleny přidatk ({0})"
 msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
 msgstr[2] "Awtomatisce schwalene přidatki ({0})"
 msgstr[3] "Awtomatisce schwalene přidatki ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Spadnjena próstwa wo Informacije ({0})"
+msgstr[1] "Spadnjenej próstwje wo Informacije ({0})"
+msgstr[2] "Spadnjene próstwy wo Informacije ({0})"
+msgstr[3] "Spadnjene próstwy wo Informacije ({0})"
 
 msgid "Flagged"
 msgstr "Markěrowany"

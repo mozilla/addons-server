@@ -23,18 +23,19 @@ log = olympia.core.logger.getLogger('z.addons')
 
 
 def setup_viewer(request, file_obj):
-    data = {'file': file_obj,
-            'version': file_obj.version,
-            'addon': file_obj.version.addon,
-            'status': False,
-            'selected': {},
-            'validate_url': ''}
+    addon = file_obj.version.addon
+    data = {
+        'file': file_obj,
+        'version': file_obj.version,
+        'addon': addon,
+        'status': False,
+        'selected': {},
+        'validate_url': ''
+    }
+    is_user_a_reviewer = acl.is_reviewer(request, addon)
 
-    if (acl.check_addons_reviewer(request) or
-        acl.check_addon_ownership(request, file_obj.version.addon, dev=True,
-                                  ignore_disabled=True)):
-
-        addon = file_obj.version.addon
+    if (is_user_a_reviewer or acl.check_addon_ownership(
+            request, addon, dev=True, ignore_disabled=True)):
 
         data['validate_url'] = reverse('devhub.json_file_validation',
                                        args=[addon.slug, file_obj.id])
@@ -43,14 +44,16 @@ def setup_viewer(request, file_obj):
         if file_obj.has_been_validated:
             data['validation_data'] = file_obj.validation.processed_validation
 
-    if acl.check_addons_reviewer(request):
-        data['file_link'] = {'text': ugettext('Back to review'),
-                             'url': reverse('reviewers.review',
-                                            args=[data['addon'].slug])}
+    if is_user_a_reviewer:
+        data['file_link'] = {
+            'text': ugettext('Back to review'),
+            'url': reverse('reviewers.review', args=[addon.slug])
+        }
     else:
-        data['file_link'] = {'text': ugettext('Back to add-on'),
-                             'url': reverse('addons.detail',
-                                            args=[data['addon'].pk])}
+        data['file_link'] = {
+            'text': ugettext('Back to add-on'),
+            'url': reverse('addons.detail', args=[addon.pk])
+        }
     return data
 
 

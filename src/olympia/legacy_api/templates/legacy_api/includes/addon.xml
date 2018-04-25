@@ -95,15 +95,6 @@
   {% endfor -%}
   {%- endif -%}
   {%- if new_api %}
-    {%- if addon.current_beta_version -%}
-    {%- for file in addon.current_beta_version.all_files -%}
-    <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
-             size="{{ file.size }}"
-             status="{{ file.STATUS_CHOICES[amo.STATUS_BETA] }}">
-      {{ file.get_url_path('api') }}
-    </install>
-    {% endfor -%}
-    {%- endif -%}
 
     {%- if addon.contributions -%}
     <contribution_data>

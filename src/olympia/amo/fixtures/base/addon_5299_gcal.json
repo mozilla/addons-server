@@ -121,7 +121,7 @@
         "fields": {
             "display_collections_fav": true,
             "display_collections": true,
-            "averagerating": "3.86",
+            "averagerating": 3.86,
             "notifycompat": true,
             "picture_type": "image/jpeg",
             "occupation": "",

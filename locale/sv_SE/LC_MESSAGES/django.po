@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-24 07:40+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 15:34+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -35,6 +35,9 @@ msgstr "Användarnamnet används redan"
 
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder måste vara antingen PNG eller JPG."
+
+msgid "Images cannot be animated."
+msgstr "Bilder kan inte vara animerade."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1000,8 +1003,14 @@ msgstr "Denna URL används redan av en annan samling"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner måste vara antingen PNG eller JPG."
 
+msgid "Icons cannot be animated."
+msgstr "Ikoner kan inte vara animerade."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denna anpassade URL används redan av en av dina samlingar."
+
+msgid "Name cannot be empty."
+msgstr "Namn kan inte vara tomt."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Denna anpassade URL måste bestå av bokstäver, siffror, understreck eller bindestreck."
@@ -1984,14 +1993,17 @@ msgstr "{addon} {version} innehåll avvisat."
 msgid "Content rejected"
 msgstr "Innehåll avvisat"
 
-msgid "{addon} information request removed."
-msgstr "{addon} informationsbegäran borttagen."
+msgid "{addon} information request altered or removed by admin."
+msgstr "{addon} informationsbegäran ändrad eller borttagen av admin."
 
-msgid "Information request removed"
-msgstr "Informationsbegäran borttagen"
+msgid "Information request altered"
+msgstr "Informationsbegäran ändrad"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Informationsbegäran borttagen"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2354,8 +2366,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "App"
+msgid "Static Theme"
+msgstr "Statisk tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2392,6 +2404,9 @@ msgstr "Uppdaterad språkpaketsgranskning"
 
 msgid "Theme Review"
 msgstr "Temagranskning"
+
+msgid "Theme (Static) Review"
+msgstr "Tema (statisk) granskning"
 
 msgid "New Search Provider Review"
 msgstr "Ny granskning av sökleverantör"
@@ -2711,12 +2726,6 @@ msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
 
-msgid "Icons cannot be animated."
-msgstr "Ikoner kan inte vara animerade."
-
-msgid "Images cannot be animated."
-msgstr "Bilder kan inte vara animerade."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Bilder kan inte vara större än %dkB."
@@ -2947,6 +2956,15 @@ msgstr "Redigera information"
 
 msgid "None"
 msgstr "Ingen"
+
+msgid "Preview"
+msgstr "Förhandsvisa"
+
+msgid "Preview of listed version"
+msgstr "Förhandsvisa listade versioner"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr "Förhandsvisning skapas fortfarande - kom tillbaka senare eller uppdatera sidan."
 
 msgid "Manage Authors & License"
 msgstr "Hantera upphovsmän & licens"
@@ -3519,6 +3537,9 @@ msgstr "Du är klar!"
 msgid "Version Submitted for Review"
 msgstr "Version som skickats in för granskning"
 
+msgid "Preview of the version submitted"
+msgstr "Förhandsvisa inskickad version"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Du är klar! Den här versionen kommer att finnas tillgänglig efter det att den har gått igenom granskning. Du kommer bli underrättad när den har granskats."
 
@@ -3654,8 +3675,8 @@ msgstr "Bakgrund verktygsfältområde"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Bakgrundsfärgen för navigeringsfältet, bokmärkesfältet och den valda fliken. Manifest-fält:  toolbar."
 
-msgid "Toolbar area text icons"
-msgstr "Text på ikoner i verktygsfältområde"
+msgid "Toolbar area text and icons"
+msgstr "Text och ikoner i verktygsfältområde"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Färgen på texten och ikonerna i verktygsfältet och den aktiva fliken. Manifest-fält:   toolbar_text."
@@ -3981,14 +4002,17 @@ msgstr "Det finns en ny standard för att utveckla tillägg i Firefox. Du måste
 msgid "Learn How"
 msgstr "Lär dig hur"
 
-msgid "What's New"
-msgstr "Nyheter"
+msgid "Get Started"
+msgstr "Kom igång"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Klar för att skicka in ett tillägg? Läs vår steg-för-steg-handledning för inlämningsprocessen."
 
 msgid "See Tutorial"
 msgstr "Se handledning"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Hjälp användare att upptäcka ditt tillägg genom att skapa en tilltalande lista."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4136,17 +4160,11 @@ msgstr "Din tidigare återinskickade design,  som är under pågående gransknin
 msgid "Pending Header"
 msgstr "Väntande sidhuvud"
 
-msgid "Pending Footer"
-msgstr "Väntande sidfot"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Du kan uppdatera ditt temas design här när det har godkänts."
 
 msgid "Header"
 msgstr "Sidhuvud"
-
-msgid "Footer"
-msgstr "Sidfot"
 
 msgid "Select colors for your Theme."
 msgstr "Välj färger för ditt tema."
@@ -4162,9 +4180,6 @@ msgstr "Bakgrund"
 
 msgid "This is the color of the tabs."
 msgstr "Detta är färgen på flikarna."
-
-msgid "Preview"
-msgstr "Förhandsvisa"
 
 msgid "Your Theme's Name"
 msgstr "Ditt temas namn"
@@ -4226,18 +4241,6 @@ msgstr "Max 300 kB"
 
 msgid "PNG or JPG"
 msgstr "PNG eller JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Välj en bild för ditt tema till sidfoten."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 pixlar"
-
-msgid "Aligned to bottom-left"
-msgstr "Justera längst ner till vänster"
-
-msgid "Select a different footer image"
-msgstr "Välj en annan bild för sidfot"
 
 msgid "Manage Version {0}"
 msgstr "Hantera version {0}"
@@ -4428,29 +4431,32 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Översätt enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Markera vilken text som helst, högerklicka och översätt direkt."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Omvänd bildsökning {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Förenkla sökning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
-msgstr "Se en intressant bild på webben och du vill veta mer om den? Prova detta bildsökverktyg."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Markera endast text på vilken webbsida som helst för att söka frasen från en rad olika motorer."
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Annonsblockering och integritetsskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Med en enkel inställning kan du ta kontroll över de annonser du ser och hur du spåras på internet."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Omvärdera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Fungerar med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope och hundratals andra videosidor."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Fungerar smidigt med de flesta populära videosajter."
@@ -4802,9 +4808,6 @@ msgstr "Bli en testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
-
-msgid "Get Started"
-msgstr "Kom igång"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla tillägg"
@@ -5312,8 +5315,8 @@ msgstr "Felrapport eller begäran om hjälp på fel ställe"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Annat (ger en pop-up prompt för information)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "För närvarande tillhandahåller AMO inte en mekanism för att direkt kommunicera med en författare till en användarrecension."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
+msgstr "För närvarande tillhandahåller AMO inte en mekanism för att direkt kommunicera med författare till en användarrecension."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Kan jag begära att en granskning tas bort om granskningen är negativ?"
@@ -5922,7 +5925,7 @@ msgstr "Du kan inte lämna en recension för ditt egna tillägg."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Du kan inte lämna mer än en recension för samma version av ett tillägg."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr "Detta betyg kan inte flaggas eftersom den inte har någon granskningstext."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -6066,15 +6069,6 @@ msgstr "och"
 msgid "Filter by type/action"
 msgstr "Filtrera efter typ/åtgärd"
 
-msgid "Passed automatic validation"
-msgstr "Klarade automatisk validering"
-
-msgid "Failed automatic validation"
-msgstr "Automatisk valideringen misslyckades"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrera efter automatisk validering"
-
 msgid "containing"
 msgstr "innehåller"
 
@@ -6149,6 +6143,9 @@ msgstr "Hoppa över nu"
 
 msgid "Needs Admin Content Review"
 msgstr "Behöver administrativ innehållsgranskning"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "Behöver administrativ statisk temagranskning"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-tillägg"
@@ -6276,29 +6273,41 @@ msgstr "Godkänn innehåll"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Statiska teman och äldre tillägg"
+
+msgid "Static Themes"
+msgstr "Statiska teman"
+
 msgid "Legacy Add-ons"
 msgstr "Äldre tillägg"
 
-msgid "New Add-ons ({0})"
-msgstr "Nya tillägg ({0})"
+msgid "New ({0})"
+msgstr "Nya ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Tilläggsuppdateringar ({0})"
+msgid "Updates ({0})"
+msgstr "Uppdatering ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Granskningslogg för tillägg"
+msgid "Review Log"
+msgstr "Granskningslogg"
 
-msgid "Signed Beta Files Log"
-msgstr "Signerad Beta fillogg"
+msgid "Add-on Review Guide"
+msgstr "Granskningsriktlinjer för tillägg"
 
-msgid "Review Guide"
-msgstr "Riktlinjer för granskare"
+msgid "Theme Review Guide"
+msgstr "Granskningsriktlinjer för teman"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Automatiskt godkända tillägg ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Granskningslogg för tillägg"
+
+msgid "Review Guide"
+msgstr "Riktlinjer för granskare"
 
 msgid "Content Review"
 msgstr "Innehållsgranskning"
@@ -6317,8 +6326,8 @@ msgstr "Temauppdateringar ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Flaggade teman ({0})"
 
-msgid "Themes Review Log"
-msgstr "Temagranskningslogg"
+msgid "Lightweight Themes Review Log"
+msgstr "Lätta teman granskningslogg"
 
 msgid "Deleted Themes Log"
 msgstr "Borttagna temaloggar"
@@ -6347,8 +6356,8 @@ msgstr "Meddelande"
 msgid "Update message of the day"
 msgstr "Uppdatera meddelande för dagen"
 
-msgid "Add-ons with expired information requests"
-msgstr "Tillägg med upphörd informationsbegäran"
+msgid "Expired Information Requests ({0})"
+msgstr "Upphörd informationsbegäran ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ett okänt fel uppstod"
@@ -6407,6 +6416,15 @@ msgstr "Missbruksrapporter ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Dåliga användarbetyg ({num})"
 
+msgid "Theme Images"
+msgstr "Temabilder"
+
+msgid "Rendered Preview"
+msgstr "Återgiven förhandsvisning"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr "Bakgrundsfil {0} av {1} - {2}"
+
 msgid "More about this add-on"
 msgstr "Mer om detta tillägg"
 
@@ -6418,6 +6436,18 @@ msgstr "Inget att se här!  Utvecklaren inkluderade inga detaljer."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Återgå till översikten för granskningsverktyg"
+
+msgid "Reviewer Leaderboard"
+msgstr "Granskarnas ledartavla"
+
+msgid "No review points awarded yet."
+msgstr "Inga granskningspoäng tilldelade ännu."
+
+msgid "Rank"
+msgstr "Rank"
+
+msgid "Score"
+msgstr "Poäng"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6459,18 +6489,6 @@ msgstr "Granskning har flaggats innan borttagning."
 
 msgid "Undelete"
 msgstr "Ångra ta bort"
-
-msgid "Reviewer Leaderboard"
-msgstr "Granskarnas ledartavla"
-
-msgid "No review points awarded yet."
-msgstr "Inga granskningspoäng tilldelade ännu."
-
-msgid "Rank"
-msgstr "Rank"
-
-msgid "Score"
-msgstr "Poäng"
 
 msgid "Save"
 msgstr "Spara"
@@ -6650,6 +6668,9 @@ msgstr "Rensa flagga för administrativ kodgranskning"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Rensa flagga för administrativ innehållsgranskning"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Rensa flagga för administrativ statisk temagranskning"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6852,25 +6873,25 @@ msgstr "Avvisad och ogranskad"
 msgid "[status:%s]"
 msgstr "[status: %s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nytt tillägg ({0})"
-msgstr[1] "Nya tillägg ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Uppdatering ({0})"
 msgstr[1] "Uppdateringar ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Modererad granskning({0})"
-msgstr[1] "Modererade granskningar({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Betygsgranskning ({0})"
+msgstr[1] "Betygsgranskningar ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Automatiskt godkänt tillägg ({0})"
-msgstr[1] "Automatiskt godkända tillägg ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Automatiskt godkänt ({0})"
+msgstr[1] "Automatiskt godkända ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Upphörd informationsbegäran ({0})"
+msgstr[1] "Upphörd informationsbegäran ({0})"
 
 msgid "Flagged"
 msgstr "Flaggad"

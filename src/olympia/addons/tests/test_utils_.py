@@ -33,6 +33,8 @@ from olympia.constants.categories import CATEGORIES_BY_ID
     ('Firefox add-on for Firefox', True, 'foo@mozilla.com'),
     ('Foobarfor Firefox', False, 'foo@bar.com'),
     ('Better Privacy for Firefox!', True, 'foo@bar.com'),
+    ('Firefox awesome for Mozilla', False, 'foo@bar.com'),
+    ('Firefox awesome for Mozilla', True, 'foo@mozilla.org'),
 ))
 def test_verify_mozilla_trademark(name, allowed, email):
     user = user_factory(email=email)

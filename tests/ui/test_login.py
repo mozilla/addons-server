@@ -1,11 +1,9 @@
-import os
 import pytest
 
 from pages.desktop.home import Home
 
 
-@pytest.mark.skipif(os.environ.get('PYTEST_BASE_URL') is None,
-                    reason='Live Server login currently not functioning')
+@pytest.mark.withoutresponses
 def test_login(base_url, selenium, user):
     """User can login"""
     page = Home(selenium, base_url).open()
@@ -15,7 +13,8 @@ def test_login(base_url, selenium, user):
 
 
 @pytest.mark.skip(
-    reason='https://github.com/mozilla/geckodriver/issues/233')
+    reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1453779')
+@pytest.mark.withoutresponses
 def test_logout(base_url, selenium, user):
     """User can logout"""
     page = Home(selenium, base_url).open()

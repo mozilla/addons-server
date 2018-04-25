@@ -667,7 +667,17 @@ class CollectionViewSet(ModelViewSet):
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),
     ]
-    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'
+
+    @property
+    def lookup_field(self):
+        identifier = self.kwargs.get(self.lookup_url_kwarg)
+        if identifier and identifier.isdigit():
+            lookup_field = 'pk'
+        else:
+            # If the identifier is anything other than a digit, it's the slug.
+            lookup_field = 'slug'
+        return lookup_field
 
     def get_account_viewset(self):
         if not hasattr(self, 'account_viewset'):

@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2017-12-16 02:26+0000\n"
-"Last-Translator: Ashikur Rahman <ashikurrahman068@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-03-04 16:16+0000\n"
+"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
@@ -36,6 +36,9 @@ msgstr ""
 msgid "Images must be either PNG or JPG."
 msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
 
+msgid "Images cannot be animated."
+msgstr "ছবি এনিমেটেড হতে পারবে না।"
+
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "অনুগ্রহ করে %dMB এর থেকে ছোট ছবি ব্যবহার করুন।"
@@ -43,9 +46,8 @@ msgstr "অনুগ্রহ করে %dMB এর থেকে ছোট ছ�
 msgid "You are already logged in."
 msgstr "আপনি ইতোমধ্যেই লগ ইন অবস্থায় রয়েছেন।"
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "আপনার লগইন প্রচেষ্টা পার্স করা যায়নি। অনুগ্রহপূর্বক আবার চেষ্টা করুন।"
+msgstr "আপনার লগইন প্রচেষ্টা সফল হয়নি। অনুগ্রহপূর্বক আবার চেষ্টা করুন।"
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "আপনার ফায়ারফক্স অ্যাকাউন্টটি খুঁজে পাওয়া যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।"
@@ -354,11 +356,10 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> জন ব্যবহারকারী"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} জন দৈনিক ব্যবহারকারী"
-msgstr[1] "{0} জন দৈনিক ব্যবহারকারী"
+msgstr[0] "{0} দৈনিক ব্যবহারকারী"
+msgstr[1] ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -577,9 +578,8 @@ msgid ""
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
-#, fuzzy
 msgid "This add-on can:"
-msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
+msgstr "অ্যাড-অনটি পারে:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -991,9 +991,16 @@ msgstr "এই ইউআরএলটি অন্য একটি সংগ্�
 msgid "Icons must be either PNG or JPG."
 msgstr "আইকন অবশ্যই PNG অথবা JPG তে হতে হবে।"
 
+msgid "Icons cannot be animated."
+msgstr "আইকন এনিমেটেড হতে পারবে না।"
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1002,9 +1009,8 @@ msgstr ""
 msgid "This custom URL cannot be used."
 msgstr "এই নামটি ব্যবহার করা যাবে না।"
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
+msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
 
 msgid "Name"
 msgstr "নাম"
@@ -1514,9 +1520,8 @@ msgid "Additional Resources"
 msgstr "অতিরিক্ত সামগ্রী"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "{0} এর <a href=\"http://support.mozilla.com/kb/Search+bar\">অনুসন্ধান বার</a> সম্পর্কে আরও জানুন"
+msgstr "{0} এর মধ্যে <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">সার্চ বার</a> সম্পর্কে আরো জানুন"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
@@ -1990,16 +1995,20 @@ msgid "Content rejected"
 msgstr "বাতিল করা হয়েছে"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "মন্তব্য করুন {addon} {version}।"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 msgid "Firefox"
 msgstr "ফায়ারফক্স"
@@ -2365,8 +2374,9 @@ msgstr "সোলারিস"
 msgid "Android"
 msgstr "এনড্রয়েড"
 
-msgid "App"
-msgstr "অ্যাপ"
+#, fuzzy
+msgid "Static Theme"
+msgstr "থিম সাবমিট করুন"
 
 msgid "Persona"
 msgstr "পারসোনা"
@@ -2403,6 +2413,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr "থিম রিভিউ"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "থিম এর বিস্তারিত"
 
 msgid "New Search Provider Review"
 msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
@@ -2724,12 +2738,6 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Icons cannot be animated."
-msgstr "আইকন এনিমেটেড হতে পারবে না।"
-
-msgid "Images cannot be animated."
-msgstr "ছবি এনিমেটেড হতে পারবে না।"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2756,9 +2764,8 @@ msgstr ""
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
+msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে।"
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2783,9 +2790,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "পর্যালোচনা নোট"
+msgstr "পর্যালোচনা নীতিগুলি ও নিয়মগুলি"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -2959,6 +2965,16 @@ msgstr "তথ্য সম্পাদনা করুন"
 msgid "None"
 msgstr "কোনোটি নয়"
 
+msgid "Preview"
+msgstr "প্রাকদর্শন"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "অন্য সংস্করণসূমহ দেখুন"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr ""
 
@@ -3007,9 +3023,8 @@ msgstr "অ্যাড-অনটি পরীক্ষামূলক।"
 msgid "This add-on is ready for general use."
 msgstr ""
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "পুনরায় চালু করা প্রয়োজন"
+msgstr "অর্থ প্রদান প্রয়োজন?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3048,9 +3063,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "অবদানসমূহ"
+msgstr "অবদানকরীদের URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3434,9 +3448,8 @@ msgstr "সহায়তাকারী ইমেইল:"
 msgid "Support website:"
 msgstr "সহায়ক ওয়েবসাইট:"
 
-#, fuzzy
 msgid "License:"
-msgstr "লাইসেন্স"
+msgstr "নিবন্ধণ:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3488,6 +3501,10 @@ msgstr "আপনি সম্পূর্ণ করেছেন!"
 msgid "Version Submitted for Review"
 msgstr "সংস্করণ জমা দেওয়া হয়েছে পর্যালোচনার জন্য"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "সংস্করণের সাইনড"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3516,9 +3533,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "সংস্করণ সম্পাদনা করুন {0}"
 
-#, fuzzy
 msgid "File Signed"
-msgstr "সংস্করণ নোটসমূহ"
+msgstr "ফাইল সাইন করা হয়েছে"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3629,7 +3645,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -3964,16 +3980,18 @@ msgstr ""
 msgid "Learn How"
 msgstr "আরও জানুন"
 
-#, fuzzy
-msgid "What's New"
-msgstr "এটা কী?"
+msgid "Get Started"
+msgstr "শুরু হয়েছে"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "সবগুলো দেখুন"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4121,17 +4139,11 @@ msgstr "আপনি পূর্বেই ডিজাইন সাবমিট
 msgid "Pending Header"
 msgstr "পেন্ডিং হেডার"
 
-msgid "Pending Footer"
-msgstr "পেন্ডিং ফুটার"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "আপনার থিমের ডিজাইন গৃহীত হলে আপনি এখান হতেই তা হালনাগাদ করতে পারবেন।"
 
 msgid "Header"
 msgstr "হেডার"
-
-msgid "Footer"
-msgstr "ফুটার"
 
 msgid "Select colors for your Theme."
 msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
@@ -4147,9 +4159,6 @@ msgstr "ব্যাকগ্রাউন্ড"
 
 msgid "This is the color of the tabs."
 msgstr "এটি ট্যাবের রঙ"
-
-msgid "Preview"
-msgstr "প্রাকদর্শন"
 
 msgid "Your Theme's Name"
 msgstr "আপনার থিমের নাম"
@@ -4209,18 +4218,6 @@ msgstr "সর্বোচ্চ 300 কেবি"
 
 msgid "PNG or JPG"
 msgstr "PNG অথবা JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 পিক্সেল"
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
-msgstr ""
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4408,28 +4405,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} টি সতর্কতা"
 msgstr[1] ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -4780,9 +4780,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-msgid "Get Started"
-msgstr "শুরু হয়েছে"
 
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
@@ -5237,7 +5234,7 @@ msgstr ""
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5771,7 +5768,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -5909,15 +5906,6 @@ msgstr "এবং"
 msgid "Filter by type/action"
 msgstr ""
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr ""
 
@@ -5997,6 +5985,10 @@ msgstr "এখকার জন্য স্কিপ করুন"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "এডমিন পর্যালোচনা"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6133,26 +6125,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "আমার অ্যাড-অনসমূহ"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "নির্বাচিত থিমসমূহ"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "আমার অ্যাড-অনসমূহ"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "নতুন অ্যাড-অন ({0})"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "এড-অন আপডেট"
-
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Updates ({0})"
+msgstr "হালনাগাদ ({0})"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "পর্যালোচনা নির্দেশিকা"
+msgid "Review Log"
+msgstr "পর্যালোচনা নোট"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "থিম রিভিউ"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6161,6 +6163,13 @@ msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "{0} জন্য অ্যাড-অন"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "পর্যালোচনা নির্দেশিকা"
 
 #, fuzzy
 msgid "Content Review"
@@ -6184,7 +6193,7 @@ msgid "Flagged Themes ({0})"
 msgstr "নির্বাচিত থিমসমূহ"
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "থিম রিভিউ"
 
 #, fuzzy
@@ -6218,7 +6227,7 @@ msgid "Update message of the day"
 msgstr ""
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 msgid "An unknown error occurred"
@@ -6282,6 +6291,17 @@ msgstr "অপব্যবহারের রিপোর্ট"
 msgid "Bad User Ratings ({num})"
 msgstr "ব্যবহারকারীর পর্যালোচনা"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "থিমের নাম"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
 
@@ -6294,6 +6314,18 @@ msgstr "এখানে দেখার মতো কিছু নেই!  ড�
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr "র‌্যাঙ্ক"
+
+msgid "Score"
+msgstr "স্কোর"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6336,18 +6368,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "র‌্যাঙ্ক"
-
-msgid "Score"
-msgstr "স্কোর"
 
 msgid "Save"
 msgstr "সংরক্ষণ করা"
@@ -6537,6 +6557,10 @@ msgstr "এডমিন পর্যালোচনা"
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
 msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "এডমিন পর্যালোচনা"
 
 msgid "(admin)"
 msgstr "(এডমিন)"
@@ -6740,26 +6764,28 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "[অবস্থা:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "নতুন অ্যাড-অন ({0})"
-msgstr[1] ""
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "হালনাগাদ ({0})"
 msgstr[1] ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "পর্যালোচনার জন্য অপেক্ষা করছে"
+msgstr[1] "পর্যালোচনার জন্য অপেক্ষা করছে"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "{0} জন্য অ্যাড-অন"
 msgstr[1] "{0} জন্য অ্যাড-অন"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "আরও তথ্য জানতে চাওয়া হয়েছে"
+msgstr[1] "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 msgid "Flagged"
 msgstr "ফ্ল্যাগকৃত"

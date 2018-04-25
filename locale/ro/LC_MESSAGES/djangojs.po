@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-01-23 00:29+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-03-05 23:22+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -263,7 +263,7 @@ msgid "Collections Created"
 msgstr "Colecții create"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Suplimente în uz"
 
 msgid "Add-ons Created"
 msgstr "Suplimente create"
@@ -592,11 +592,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Evaluări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Evaluări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -829,7 +829,7 @@ msgid "Rejected"
 msgstr ""
 
 msgid "Approved"
-msgstr ""
+msgstr "Aprobat"
 
 msgid "No results found"
 msgstr ""

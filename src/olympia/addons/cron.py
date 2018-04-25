@@ -67,13 +67,7 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.debug(m % (count, pk))
             continue
 
-        if (count - addon.total_downloads) > 10000:
-            # Adjust ADU to equal total downloads so bundled add-ons don't
-            # skew the results when sorting by users.
-            task_log.info('Readjusted ADU count for addon %s' % addon.slug)
-            addon.update(average_daily_users=addon.total_downloads)
-        else:
-            addon.update(average_daily_users=count)
+        addon.update(average_daily_users=count)
 
 
 def update_addon_download_totals():
@@ -281,14 +275,14 @@ def reindex_addons(index=None, addon_type=None):
 
 def cleanup_image_files():
     """
-    Clean up all header and footer images files for themes.
+    Clean up all header images files for themes.
 
     We use these images to asynchronuously generate thumbnails with
     tasks, here we delete images that are older than one day.
 
     """
     log.info('Removing one day old temporary image files for themes.')
-    for folder in ('persona_footer', 'persona_header'):
+    for folder in ('persona_header', ):
         root = os.path.join(settings.TMP_PATH, folder)
         if not os.path.exists(root):
             continue

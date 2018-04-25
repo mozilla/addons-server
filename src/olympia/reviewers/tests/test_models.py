@@ -399,11 +399,6 @@ class TestReviewerSubscription(TestCase):
         send_notifications(Version, self.version)
         assert len(mail.outbox) == 2
 
-    def test_dont_send_notifications_beta(self):
-        self.version.all_files[0].update(status=amo.STATUS_BETA)
-        version_uploaded.send(sender=self.version)
-        assert len(mail.outbox) == 0
-
     def test_dont_send_notifications_unlisted(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_uploaded.send(sender=self.version)
@@ -464,7 +459,7 @@ class TestReviewerScore(TestCase):
         types = {
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
-            amo.ADDON_THEME: 'THEME',
+            amo.ADDON_THEME: 'XUL_THEME',
             amo.ADDON_DICT: 'DICT',
             amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',
@@ -472,6 +467,7 @@ class TestReviewerScore(TestCase):
             amo.ADDON_PLUGIN: 'ADDON',
             amo.ADDON_API: 'ADDON',
             amo.ADDON_PERSONA: 'PERSONA',
+            amo.ADDON_STATICTHEME: 'STATICTHEME',
         }
         statuses = {
             amo.STATUS_NULL: None,
@@ -479,7 +475,6 @@ class TestReviewerScore(TestCase):
             amo.STATUS_NOMINATED: 'FULL',
             amo.STATUS_PUBLIC: 'UPDATE',
             amo.STATUS_DISABLED: None,
-            amo.STATUS_BETA: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
             amo.STATUS_REVIEW_PENDING: None,
@@ -749,7 +744,7 @@ class TestReviewerScore(TestCase):
         with self.assertNumQueries(0):
             ReviewerScore.get_recent(self.user)
 
-        with self.assertNumQueries(3):
+        with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(0):
             ReviewerScore.get_leaderboards(self.user)
@@ -766,7 +761,7 @@ class TestReviewerScore(TestCase):
             ReviewerScore.get_total(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
-        with self.assertNumQueries(3):
+        with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)
@@ -778,29 +773,15 @@ class TestRereviewQueueTheme(TestCase):
         """Test manager excludes soft delete add-ons."""
         # Normal RQT object.
         RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='')
 
         # Deleted add-on RQT object.
         addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(
-            theme=addon.persona, header='', footer='')
+        RereviewQueueTheme.objects.create(theme=addon.persona, header='')
         addon.delete()
 
         assert RereviewQueueTheme.objects.count() == 1
         assert RereviewQueueTheme.unfiltered.count() == 2
-
-    def test_footer_path_without_footer(self):
-        rqt = RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-        assert rqt.footer_path == ''
-
-    def test_footer_url_without_footer(self):
-        rqt = RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-        assert rqt.footer_url == ''
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.

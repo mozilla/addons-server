@@ -1,5 +1,3 @@
-import os
-
 from django.conf import settings
 from django.utils.translation import override, ugettext
 
@@ -8,11 +6,11 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.addons.models import Addon
-from olympia.addons.tasks import create_persona_preview_images
+from olympia.addons.tasks import (
+    create_persona_preview_images, theme_checksum)
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import LocalFileStorage, send_mail_jinja
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import Version
@@ -133,19 +131,8 @@ def approve_rereview(theme):
             reupload.header_path, reupload.theme.header_path, storage=storage)
 
     theme = reupload.theme
-    footer_path = theme.footer_path
-    if reupload.footer_path != footer_path:
-        if not footer_path:
-            dst_root = os.path.join(user_media_path('addons'),
-                                    str(theme.addon.id))
-            footer_path = os.path.join(dst_root, 'footer.png')
-            theme.footer = 'footer.png'
-            theme.save()
-
-        move_stored_file(
-            reupload.footer_path, footer_path, storage=storage)
     rereview.delete()
-
+    theme_checksum(theme)
     theme.addon.increment_theme_version_number()
 
 
@@ -158,8 +145,6 @@ def reject_rereview(theme):
     reupload = rereview[0]
 
     storage.delete(reupload.header_path)
-    if reupload.footer:
-        storage.delete(reupload.footer_path)
     rereview.delete()
 
 

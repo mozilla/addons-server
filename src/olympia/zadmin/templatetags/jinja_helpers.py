@@ -17,7 +17,7 @@ def admin_site_links():
             ('ACR Reports', reverse('zadmin.compat')),
             ('Email Add-on Developers', reverse('zadmin.email_devs')),
             ('Replacement Addons', reverse(
-                'staffadmin:addons_replacementaddon_changelist')),
+                'admin:addons_replacementaddon_changelist')),
         ],
         'users': [
             ('Configure groups', reverse('admin:access_group_changelist')),
@@ -31,7 +31,6 @@ def admin_site_links():
         'tools': [
             ('Manage elasticsearch', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
-            ('View event log', reverse('admin:reviewers_eventlog_changelist')),
             ('View addon log',
              reverse('admin:activity_activitylog_changelist')),
         ],

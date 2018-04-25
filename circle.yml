@@ -89,9 +89,11 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
+            docker-compose pull --quiet
             docker-compose up -d
             sleep 20
             docker-compose ps
+            scripts/ui-test-hostname-setup.sh
             # Make sure dependencies get updated in worker and web container
             docker-compose exec worker make -f Makefile-docker update_deps
             docker-compose restart worker

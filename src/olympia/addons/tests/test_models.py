@@ -5,13 +5,11 @@ import time
 
 from datetime import datetime, timedelta
 
-from waffle.testutils import override_switch
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.files.storage import default_storage as storage
+
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -24,23 +22,26 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
     Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
-    FrozenAddon, IncompatibleVersions, Persona, Preview,
+    FrozenAddon, IncompatibleVersions, MigratedLWT, Persona, Preview,
     track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
+from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
+from olympia.files.utils import parse_addon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import (
+    ApplicationsVersions, Version, VersionPreview)
 
 
 class TestCleanSlug(TestCase):
@@ -461,18 +462,6 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(pk=3723)
         assert addon.find_latest_version(None) is None
 
-    def test_find_latest_version_ignore_beta(self):
-        addon = Addon.objects.get(pk=3615)
-
-        v1 = version_factory(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(1))
-        assert addon.find_latest_version(None).id == v1.id
-
-        version_factory(addon=addon, version='2.0beta',
-                        file_kw={'status': amo.STATUS_BETA})
-        # Still should be v1
-        assert addon.find_latest_version(None).id == v1.id
-
     def test_find_latest_version_ignore_disabled(self):
         addon = Addon.objects.get(pk=3615)
 
@@ -484,45 +473,6 @@ class TestAddonModels(TestCase):
                         file_kw={'status': amo.STATUS_DISABLED})
         # Still should be v1
         assert addon.find_latest_version(None).id == v1.id
-
-    def test_find_latest_version_only_exclude_beta(self):
-        addon = Addon.objects.get(pk=3615)
-
-        v1 = version_factory(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(2))
-
-        assert addon.find_latest_version(
-            None, exclude=(amo.STATUS_BETA,)).id == v1.id
-
-        v2 = version_factory(addon=addon, version='2.0',
-                             file_kw={'status': amo.STATUS_DISABLED})
-        v2.update(created=self.days_ago(1))
-
-        version_factory(addon=addon, version='3.0beta',
-                        file_kw={'status': amo.STATUS_BETA})
-
-        # Should be v2 since we don't exclude disabled, but do exclude beta.
-        assert addon.find_latest_version(
-            None, exclude=(amo.STATUS_BETA,)).id == v2.id
-
-    @override_switch('beta-versions', active=True)
-    def test_find_latest_version_dont_exclude_anything_with_beta(self):
-        addon = Addon.objects.get(pk=3615)
-
-        v1 = version_factory(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(2))
-
-        assert addon.find_latest_version(None, exclude=()).id == v1.id
-
-        v2 = version_factory(addon=addon, version='2.0',
-                             file_kw={'status': amo.STATUS_DISABLED})
-        v2.update(created=self.days_ago(1))
-
-        v3 = version_factory(addon=addon, version='3.0beta',
-                             file_kw={'status': amo.STATUS_BETA})
-
-        # Should be v3 since we don't exclude anything.
-        assert addon.find_latest_version(None, exclude=()).id == v3.id
 
     def test_find_latest_version_dont_exclude_anything(self):
         addon = Addon.objects.get(pk=3615)
@@ -538,32 +488,6 @@ class TestAddonModels(TestCase):
 
         # Should be v2 since we don't exclude anything.
         assert addon.find_latest_version(None, exclude=()).id == v2.id
-
-    @override_switch('beta-versions', active=True)
-    def test_find_latest_version_dont_exclude_anything_w_channel_w_beta(self):
-        addon = Addon.objects.get(pk=3615)
-
-        v1 = version_factory(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(3))
-
-        assert addon.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v1.id
-
-        v2 = version_factory(addon=addon, version='2.0',
-                             file_kw={'status': amo.STATUS_DISABLED})
-        v2.update(created=self.days_ago(2))
-
-        v3 = version_factory(addon=addon, version='3.0beta',
-                             file_kw={'status': amo.STATUS_BETA})
-        v2.update(created=self.days_ago(1))
-
-        version_factory(
-            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
-
-        # Should be v3 since we don't exclude anything, but do have a channel
-        # set to listed, and version 4.0 is unlisted.
-        assert addon.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v3.id
 
     def test_find_latest_version_dont_exclude_anything_with_channel(self):
         addon = Addon.objects.get(pk=3615)
@@ -594,15 +518,6 @@ class TestAddonModels(TestCase):
     def test_find_latest_version_unsaved(self):
         addon = Addon()
         assert addon.find_latest_version(None) is None
-
-    @override_switch('beta-versions', active=True)
-    def test_current_beta_version_with_beta(self):
-        addon = Addon.objects.get(pk=5299)
-        assert addon.current_beta_version.id == 50000
-
-    def test_current_beta_version(self):
-        addon = Addon.objects.get(pk=5299)
-        assert addon.current_beta_version is None
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
@@ -645,6 +560,20 @@ class TestAddonModels(TestCase):
         addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
         assert addon.guid is None  # Personas don't have GUIDs.
         self._delete(addon.pk)
+
+    @patch('olympia.addons.tasks.Preview.delete_preview_files')
+    @patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
+    def test_delete_deletes_preview_files(self, dpf_vesions_mock,
+                                          dpf_addons_mock):
+        addon = addon_factory()
+        addon_preview = Preview.objects.create(addon=addon)
+        version_preview = VersionPreview.objects.create(
+            version=addon.current_version)
+        addon.delete()
+        dpf_addons_mock.assert_called_with(
+            sender=None, instance=addon_preview)
+        dpf_vesions_mock.assert_called_with(
+            sender=None, instance=version_preview)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
@@ -698,6 +627,19 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=4594)
         a.delete('bye')
         assert len(mail.outbox) == 1
+
+    def test_delete_disabled_addon_is_added_to_deniedguids(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        self._delete(3615)
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
+
+    def test_delete_disabled_addon_when_guid_is_already_in_deniedguids(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        DeniedGuid.objects.create(guid=addon.guid)
+        addon.update(status=amo.STATUS_DISABLED)
+        self._delete(3615)
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
@@ -1221,22 +1163,6 @@ class TestAddonModels(TestCase):
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
 
-    def test_show_beta(self):
-        # Addon.current_beta_version will be empty, so show_beta is False.
-        a = Addon(status=amo.STATUS_PUBLIC)
-        assert not a.show_beta
-
-    @patch('olympia.addons.models.Addon.current_beta_version')
-    def test_show_beta_with_beta_version(self, beta_mock):
-        beta_mock.return_value = object()
-        # Fake current_beta_version to return something truthy.
-        a = Addon(status=amo.STATUS_PUBLIC)
-        assert a.show_beta
-
-        # We have a beta version but status has to be public.
-        a.status = amo.STATUS_NOMINATED
-        assert not a.show_beta
-
     def test_update_logs(self):
         addon = Addon.objects.get(id=3615)
         core.set_user(UserProfile.objects.all()[0])
@@ -1517,6 +1443,18 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_content_review=True)
         assert addon.needs_admin_content_review is True
 
+    def test_needs_admin_theme_review_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.needs_admin_theme_review is None
+        # Flag present, value is False (default): False.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.needs_admin_theme_review is False
+        assert addon.needs_admin_theme_review is False
+        # Flag present, value is True: True.
+        flags.update(needs_admin_theme_review=True)
+        assert addon.needs_admin_theme_review is True
+
     def test_pending_info_request_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
@@ -1648,20 +1586,6 @@ class TestAddonNomination(TestCase):
         assert v.nomination == old_ver.nomination
         ver += 1
 
-    @override_switch('beta-versions', active=True)
-    def test_beta_version_does_not_inherit_nomination(self):
-        a = Addon.objects.get(id=3615)
-        a.update(status=amo.STATUS_NULL)
-        v = Version.objects.create(addon=a, version='1.0')
-        v.nomination = None
-        v.save()
-        a.update(status=amo.STATUS_NOMINATED)
-        File.objects.create(version=v, status=amo.STATUS_BETA,
-                            filename='foobar.xpi')
-        v.version = '1.1'
-        v.save()
-        assert v.nomination is None
-
     def test_lone_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         Version.objects.all().delete()
@@ -1671,7 +1595,7 @@ class TestAddonNomination(TestCase):
     def test_reviewed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_NULL):
+        for st in (amo.STATUS_PUBLIC, amo.STATUS_NULL):
             a.update(status=st)
             v = Version.objects.create(addon=a, version=str(ver))
             assert v.nomination is None
@@ -2033,25 +1957,55 @@ class TestPersonaModel(TestCase):
         self.persona.footer = 'footer.png'
         self.persona.popularity = 12345
         self.persona.save()
-        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
-        self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
+
+    def _expected_url(self, img_name, modified_suffix):
+        return '/15663/%s?modified=%s' % (img_name, modified_suffix)
 
     def test_image_urls(self):
+        self.persona.persona_id = 0
+        self.persona.checksum = 'fakehash'
+        self.persona.save()
+        modified = 'fakehash'
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('icon.png', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
+
+    def test_image_urls_no_checksum(self):
         # AMO-uploaded themes have `persona_id=0`.
         self.persona.persona_id = 0
         self.persona.save()
-        assert self.persona.thumb_url.endswith(self.p('preview.png'))
-        assert self.persona.icon_url.endswith(self.p('icon.png'))
-        assert self.persona.preview_url.endswith(self.p('preview.png'))
-        assert self.persona.header_url.endswith(self.p('header.png'))
-        assert self.persona.footer_url.endswith(self.p('footer.png'))
+        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('icon.png', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview.png', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
 
     def test_old_image_urls(self):
-        assert self.persona.thumb_url.endswith(self.p('preview.jpg'))
-        assert self.persona.icon_url.endswith(self.p('preview_small.jpg'))
-        assert self.persona.preview_url.endswith(self.p('preview_large.jpg'))
-        assert self.persona.header_url.endswith(self.p('header.png'))
-        assert self.persona.footer_url.endswith(self.p('footer.png'))
+        self.persona.addon.modified = None
+        modified = 0
+        assert self.persona.thumb_url.endswith(
+            self._expected_url('preview.jpg', modified))
+        assert self.persona.icon_url.endswith(
+            self._expected_url('preview_small.jpg', modified))
+        assert self.persona.preview_url.endswith(
+            self._expected_url('preview_large.jpg', modified))
+        assert self.persona.header_url.endswith(
+            self._expected_url('header.png', modified))
+        assert self.persona.footer_url.endswith(
+            self._expected_url('footer.png', modified))
 
     def test_update_url(self):
         with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):
@@ -2150,46 +2104,11 @@ class TestPersonaModel(TestCase):
         assert addon.persona.theme_data['description'] is None
 
 
-class TestPreviewModel(TestCase):
+class TestPreviewModel(BasePreviewMixin, TestCase):
     fixtures = ['base/previews']
 
-    def test_as_dict(self):
-        expect = ['caption', 'full', 'thumbnail']
-        reality = sorted(Preview.objects.all()[0].as_dict().keys())
-        assert expect == reality
-
-    def test_filename(self):
-        preview = Preview.objects.get(pk=24)
-        assert 'png' in preview.thumbnail_path
-        assert 'png' in preview.image_path
-
-    def test_filename_in_url(self):
-        preview = Preview.objects.get(pk=24)
-        assert 'png' in preview.thumbnail_url
-        assert 'png' in preview.image_url
-
-    def check_delete(self, preview, filename):
-        """
-        Test that when the Preview object is deleted, its image and thumb
-        are deleted from the filesystem.
-        """
-        try:
-            with storage.open(filename, 'w') as f:
-                f.write('sample data\n')
-            assert storage.exists(filename)
-            preview.delete()
-            assert not storage.exists(filename)
-        finally:
-            if storage.exists(filename):
-                storage.delete(filename)
-
-    def test_delete_image(self):
-        preview = Preview.objects.get(pk=24)
-        self.check_delete(preview, preview.image_path)
-
-    def test_delete_thumbnail(self):
-        preview = Preview.objects.get(pk=24)
-        self.check_delete(preview, preview.thumbnail_path)
+    def get_object(self):
+        return Preview.objects.get(pk=24)
 
 
 class TestAddonDependencies(TestCase):
@@ -2257,6 +2176,10 @@ class TestAddonFromUpload(UploadTest):
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=1, version=version)
         self.addCleanup(translation.deactivate)
+        self.dummy_parsed_data = {
+            'guid': 'guid@xpi',
+            'version': '0.1'
+        }
 
     def manifest(self, basename):
         return os.path.join(
@@ -2264,32 +2187,35 @@ class TestAddonFromUpload(UploadTest):
             basename)
 
     def test_denied_guid(self):
-        """New deletions won't be added to DeniedGuid but legacy support
-        should still be tested."""
+        """Add-ons that have been disabled by Mozilla are added toDeniedGuid
+        in order to prevent resubmission after deletion """
         DeniedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
-            Addon.from_upload(self.get_upload('extension.xpi'),
-                              [self.platform])
+            parse_addon(self.get_upload('extension.xpi'), user=Mock())
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid(self):
         # Upload addon so we can delete it.
-        deleted = Addon.from_upload(self.get_upload('extension.xpi'),
-                                    [self.platform])
+        self.upload = self.get_upload('extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        deleted = Addon.from_upload(self.upload, [self.platform],
+                                    parsed_data=parsed_data)
         deleted.update(status=amo.STATUS_PUBLIC)
         deleted.delete()
         assert deleted.guid == 'guid@xpi'
 
         # Now upload the same add-on again (so same guid).
         with self.assertRaises(forms.ValidationError) as e:
-            Addon.from_upload(self.get_upload('extension.xpi'),
-                              [self.platform])
+            self.upload = self.get_upload('extension.xpi')
+            parse_addon(self.upload, user=Mock())
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
-        deleted = Addon.from_upload(self.get_upload('extension.xpi'),
-                                    [self.platform])
+        self.upload = self.get_upload('extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        deleted = Addon.from_upload(self.upload, [self.platform],
+                                    parsed_data=parsed_data)
         # Claim the add-on.
         AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
         deleted.update(status=amo.STATUS_PUBLIC)
@@ -2298,8 +2224,10 @@ class TestAddonFromUpload(UploadTest):
 
         # Now upload the same add-on again (so same guid), checking no
         # validationError is raised this time.
-        addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
+        self.upload = self.get_upload('extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        addon = Addon.from_upload(self.upload, [self.platform],
+                                  parsed_data=parsed_data)
         deleted.reload()
         assert addon.guid == 'guid@xpi'
         assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
@@ -2311,9 +2239,11 @@ class TestAddonFromUpload(UploadTest):
         See https://github.com/mozilla/addons-server/issues/1659."""
         # Upload a couple of addons so we can pretend they were soft deleted.
         deleted1 = Addon.from_upload(
-            self.get_upload('extension.xpi'), [self.platform])
+            self.get_upload('extension.xpi'), [self.platform],
+            parsed_data=self.dummy_parsed_data)
         deleted2 = Addon.from_upload(
-            self.get_upload('alt-rdf.xpi'), [self.platform])
+            self.get_upload('alt-rdf.xpi'), [self.platform],
+            parsed_data=self.dummy_parsed_data)
         AddonUser(addon=deleted1, user=UserProfile.objects.get(pk=999)).save()
         AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
 
@@ -2326,12 +2256,16 @@ class TestAddonFromUpload(UploadTest):
         # GUID is None, so it'll try to get the add-on that has a GUID which is
         # None, but many are returned. So make sure we're not trying to reclaim
         # the GUID.
+        self.upload = self.get_upload('search.xml')
+        parsed_data = parse_addon(self.upload, user=Mock())
         Addon.from_upload(
-            self.get_upload('search.xml'), [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
     def test_xpi_attributes(self):
-        addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
+        self.upload = self.get_upload('extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        addon = Addon.from_upload(self.upload, [self.platform],
+                                  parsed_data=parsed_data)
         assert addon.name == 'xpi name'
         assert addon.guid == 'guid@xpi'
         assert addon.type == amo.ADDON_EXTENSION
@@ -2343,23 +2277,27 @@ class TestAddonFromUpload(UploadTest):
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
-        v = addon.versions.get()
-        assert v.version == '0.1'
-        assert v.files.get().platform == self.platform
-        assert v.files.get().status == amo.STATUS_AWAITING_REVIEW
+                                  [self.platform],
+                                  parsed_data=self.dummy_parsed_data)
+        version = addon.versions.get()
+        assert version.version == '0.1'
+        assert version.files.get().platform == self.platform
+        assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 
     def test_xpi_for_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  platforms)
-        v = addon.versions.get()
-        assert sorted([f.platform for f in v.all_files]) == (
+                                  platforms,
+                                  parsed_data=self.dummy_parsed_data)
+        version = addon.versions.get()
+        assert sorted([file_.platform for file_ in version.all_files]) == (
             sorted(platforms))
 
     def test_search_attributes(self):
-        addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+        self.upload = self.get_upload('search.xml')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        addon = Addon.from_upload(self.upload, [self.platform],
+                                  parsed_data=parsed_data)
         assert addon.name == 'search tool'
         assert addon.guid is None
         assert addon.type == amo.ADDON_SEARCH
@@ -2370,33 +2308,40 @@ class TestAddonFromUpload(UploadTest):
         assert addon.summary == 'Search Engine for Firefox'
 
     def test_search_version(self):
-        addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
-        v = addon.versions.get()
-        assert v.version == datetime.now().strftime('%Y%m%d')
-        assert v.files.get().platform == amo.PLATFORM_ALL.id
-        assert v.files.get().status == amo.STATUS_AWAITING_REVIEW
+        self.upload = self.get_upload('search.xml')
+        parsed_data = parse_addon(self.upload, user=Mock())
+        addon = Addon.from_upload(self.upload,
+                                  [self.platform],
+                                  parsed_data=parsed_data)
+        version = addon.versions.get()
+        assert version.version == datetime.now().strftime('%Y%m%d')
+        assert version.files.get().platform == amo.PLATFORM_ALL.id
+        assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 
     def test_no_homepage(self):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
-                                  [self.platform])
+                                  [self.platform],
+                                  parsed_data=self.dummy_parsed_data)
         assert addon.homepage is None
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform],
+                                  parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'en-US'
 
         translation.activate('es')
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform],
+                                  parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'es'
 
     def test_validation_completes(self):
         upload = self.get_upload('extension.xpi')
         assert not upload.validation_timeout
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(
+            upload, [self.platform], parsed_data=self.dummy_parsed_data)
         assert not addon.needs_admin_code_review
 
     def test_validation_timeout(self):
@@ -2408,46 +2353,53 @@ class TestAddonFromUpload(UploadTest):
         validation['messages'] = [timeout_message] + validation['messages']
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(
+            upload, [self.platform], parsed_data=self.dummy_parsed_data)
         assert addon.needs_admin_code_review
 
     def test_webextension_generate_guid(self):
+        self.upload = self.get_upload('webextension_no_id.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('webextension_no_id.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid is not None
         assert addon.guid.startswith('{')
         assert addon.guid.endswith('}')
 
         # Uploading the same addon without a id works.
+        self.upload = self.get_upload('webextension_no_id.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         new_addon = Addon.from_upload(
-            self.get_upload('webextension_no_id.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
         assert addon.guid.startswith('{')
         assert addon.guid.endswith('}')
 
     def test_webextension_reuse_guid(self):
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid == '@webextension-guid'
 
         # Uploading the same addon with pre-existing id fails
         with self.assertRaises(forms.ValidationError) as e:
-            Addon.from_upload(self.get_upload('webextension.xpi'),
-                              [self.platform])
+            self.upload = self.get_upload('webextension.xpi')
+            parsed_data = parse_addon(self.upload, user=Mock())
+            Addon.from_upload(self.upload, [self.platform],
+                              parsed_data=parsed_data)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_basic_extension_is_marked_as_e10s_unknown(self):
         # extension.xpi does not have multiprocessCompatible set to true, so
         # it's marked as not-compatible.
+        self.upload = self.get_upload('extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2455,9 +2407,11 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.e10s == amo.E10S_UNKNOWN
 
     def test_extension_is_marked_as_e10s_incompatible(self):
+        self.upload = self.get_upload(
+            'multiprocess_incompatible_extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('multiprocess_incompatible_extension.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2465,9 +2419,11 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.e10s == amo.E10S_INCOMPATIBLE
 
     def test_multiprocess_extension_is_marked_as_e10s_compatible(self):
+        self.upload = self.get_upload(
+            'multiprocess_compatible_extension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('multiprocess_compatible_extension.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2475,9 +2431,10 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.e10s == amo.E10S_COMPATIBLE
 
     def test_webextension_is_marked_as_e10s_compatible(self):
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2485,9 +2442,10 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.e10s == amo.E10S_COMPATIBLE_WEBEXTENSION
 
     def test_webextension_resolve_translations(self):
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform])
+            self.upload, [self.platform], parsed_data=parsed_data)
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
@@ -2503,10 +2461,9 @@ class TestAddonFromUpload(UploadTest):
         assert addon.name == 'Meine Beispielerweiterung'
         assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
 
-    @patch('olympia.addons.models.parse_addon')
-    def test_webext_resolve_translations_corrects_locale(self, parse_addon):
+    def test_webext_resolve_translations_corrects_locale(self):
         """Make sure we correct invalid `default_locale` values"""
-        parse_addon.return_value = {
+        parsed_data = {
             'default_locale': u'sv',
             'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
@@ -2521,17 +2478,16 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform])
+            [self.platform], parsed_data=parsed_data)
 
         # Normalized from `sv` to `sv-SE`
         assert addon.default_locale == 'sv-SE'
 
-    @patch('olympia.addons.models.parse_addon')
-    def test_webext_resolve_translations_unknown_locale(self, parse_addon):
+    def test_webext_resolve_translations_unknown_locale(self):
         """Make sure we use our default language as default
         for invalid locales
         """
-        parse_addon.return_value = {
+        parsed_data = {
             'default_locale': u'xxx',
             'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
@@ -2546,7 +2502,7 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform])
+            [self.platform], parsed_data=parsed_data)
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
@@ -3065,3 +3021,24 @@ class TestAddonApprovalsCounter(TestCase):
         assert approval_counter.counter == 42
         self.assertCloseToNow(
             approval_counter.last_human_review, now=self.days_ago(10))
+
+
+class TestMigratedLWTModel(TestCase):
+    def setUp(self):
+        self.lwt = addon_factory(type=amo.ADDON_PERSONA)
+        self.lwt.persona.persona_id = 999
+        self.lwt.persona.save()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        MigratedLWT.objects.create(
+            lightweight_theme=self.lwt,
+            static_theme=self.static_theme)
+
+    def test_addon_id_lookup(self):
+        match = MigratedLWT.objects.get(lightweight_theme=self.lwt)
+        assert match.static_theme == self.static_theme
+        match = MigratedLWT.objects.get(lightweight_theme_id=self.lwt.id)
+        assert match.static_theme == self.static_theme
+
+    def test_getpersonas_id_lookup(self):
+        match = MigratedLWT.objects.get(getpersonas_id=999)
+        assert match.static_theme == self.static_theme

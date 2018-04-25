@@ -65,23 +65,6 @@ def permission_required(permission):
     return decorator
 
 
-def any_permission_required(permissions):
-    """
-    If any permission passes, call the function. Otherwise raise 403.
-    """
-    def decorator(f):
-        @functools.wraps(f)
-        @login_required
-        def wrapper(request, *args, **kw):
-            from olympia.access import acl
-            for permission in permissions:
-                if acl.action_allowed(request, permission):
-                    return f(request, *args, **kw)
-            raise PermissionDenied
-        return wrapper
-    return decorator
-
-
 def json_response(response, has_trans=False, status_code=200):
     """
     Return a response as JSON. If you are just wrapping a view,

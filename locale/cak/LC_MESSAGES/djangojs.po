@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2018-02-28 20:26+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,8 +112,8 @@ msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' tikirel"
-" nib'an pa ri jun chik xak)."
+"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' "
+"tikirel nib'an pa ri jun chik xak)."
 
 msgid "Add-on submission checklist"
 msgstr "Rucholb'al kijikib'anem kitaqik taq tz'aqat"

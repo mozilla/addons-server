@@ -64,59 +64,19 @@ of its versions.
 .. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable/
 
 
----------------------
-Disable Auto Approval
----------------------
+-----
+Flags
+-----
 
-This endpoint allows you to disable auto-approval for an add-on. When in this
-state, new versions for this add-on will make it appear in the regular reviewer
-queues instead of being auto-approved.
-
+This endpoint allows you to manipulate various reviewer-specific flags on an
+add-on.
     .. note::
        Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/disable-auto-approval/
+.. http:patch::/api/v3/reviewers/addon/(int:addon_id)/flags/
 
---------------------
-Enable Auto Approval
---------------------
-
-This endpoint allows you to re-enable auto-approval for an add-on. Note that it
-won't force a non-webextension version to be auto-approved, it still needs to
-follow the normal conditions.
-
-    .. note::
-        Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
-
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable-auto-approval/
-
------------------------
-Clear Admin Review Flag
------------------------
-
-This endpoint allows you to clear either the code or the content admin review
-flag that reviewers can set on an add-on.
-
-    .. note::
-        Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
-
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/clear_admin_review_flag/
-
-    :query string flag_type: The flag to clear. Can be either ``code`` or
-        ``content``.
-
-----------------------------------
-Clear Information Request Deadline
-----------------------------------
-
-This endpoint allows you to clear the request for more information deadline
-that reviewers can set on an add-on.
-
-    .. note::
-        Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
-
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/clear_pending_info_request/
+    :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
+    :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
+    :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
+    :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.

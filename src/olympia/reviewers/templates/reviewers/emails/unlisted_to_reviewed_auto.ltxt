@@ -1,12 +1,7 @@
-{% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Your add-on, {{ name }} {{ number }}, has passed our automatic tests and is now signed and ready for you to download at {{ dev_versions_url }} . Note that you need to be logged in as a developer of the add-on before downloading.
-{% include "reviewers/emails/files.ltxt" %}
-Reviewer:
-{{ reviewer }}
+Hi there,
 
-Comments:
-{{ comments }}
+Your add-on, {{ name }}, has passed our automatic tests. Version {{ number }} is now signed and ready for you to download at {{ dev_versions_url }}. Note that you need to be logged in as a developer of the add-on before downloading.
 
-{{ tested }}
-
-{% endblock %}
+-- 
+Mozilla Add-ons Team
+{{ SITE_URL }}

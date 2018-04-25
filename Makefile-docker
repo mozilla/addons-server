@@ -93,11 +93,13 @@ populate_data:
 	python manage.py update_permissions_from_mc
 
 install_python_dependencies:
+	# Can't use --progress-bar=off for system packages as long as our docker image
+	# doesn't have pip 10 by default.
 	pip install --no-deps --exists-action=w -r requirements/system.txt
-	pip install --no-deps --exists-action=w -r requirements/flake8.txt
-	pip install --no-deps --exists-action=w -r requirements/dev.txt
-	pip install --no-deps --exists-action=w -r requirements/docs.txt
-	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
@@ -128,7 +130,7 @@ update: update_deps update_db update_assets
 reindex:
 	python manage.py reindex $(ARGS)
 
-ui-tests:
+setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
 	python manage.py reset_db --noinput
@@ -147,12 +149,17 @@ ui-tests:
 	# Create a proper superuser that can be used to access the API
 	python manage.py waffle_switch super-create-accounts on --create
 	python manage.py waffle_switch activate-autograph-signing on --create
-	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia.test
+	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia-frontend.test
 
+ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
 
-	pip install --no-deps -r requirements/uitests.txt
+	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
+
+perf-tests: setup-ui-tests
+	pip install --progress-bar=off --no-deps -r requirements/perftests.txt
+	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
 initialize: update_deps initialize_db update_assets populate_data

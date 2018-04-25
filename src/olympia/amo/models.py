@@ -1,7 +1,10 @@
 import contextlib
+import os
 import threading
+import time
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.utils import translation
 from django.utils.encoding import force_text
@@ -12,6 +15,7 @@ import multidb.pinning
 
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 import olympia.lib.queryset_transform as queryset_transform
 
 from olympia.translations.hold import save_translations
@@ -19,8 +23,13 @@ from olympia.translations.hold import save_translations
 from . import search
 
 
+# Store whether we should be skipping cache-machine for this thread or not.
+# Note that because the value is initialized at import time, we can't use
+# override_settings() on CACHE_MACHINE_ENABLED.
 _locals = threading.local()
-_locals.skip_cache = False
+_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
+
+log = olympia.core.logger.getLogger('z.addons')
 
 
 @contextlib.contextmanager
@@ -37,7 +46,7 @@ def use_master():
 @contextlib.contextmanager
 def skip_cache():
     """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', False)
+    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
     _locals.skip_cache = True
     try:
         yield
@@ -459,3 +468,67 @@ class FakeEmail(ModelBase):
 
     class Meta:
         db_table = 'fake_email'
+
+
+class BasePreview(object):
+    thumbnail_url_template = 'thumbs/%s/%d.png?modified=%s'
+    image_url_template = 'full/%s/%d.png?modified=%s'
+    thumbnail_path_template = ('%s', 'thumbs', '%s', '%d.png')
+    image_path_template = ('%s', 'full', '%s', '%d.png')
+    original_path_template = ('%s', 'original', '%s', '%d.png')
+    media_folder = 'previews'
+
+    def _image_url(self, url_template):
+        from olympia.amo.templatetags.jinja_helpers import user_media_url
+        if self.modified is not None:
+            modified = int(time.mktime(self.modified.timetuple()))
+        else:
+            modified = 0
+        args = [self.id / 1000, self.id, modified]
+        return user_media_url(self.media_folder) + url_template % tuple(args)
+
+    def _image_path(self, url_template):
+        from olympia.amo.templatetags.jinja_helpers import user_media_path
+        args = [user_media_path(self.media_folder), self.id / 1000, self.id]
+        return url_template % tuple(args)
+
+    @property
+    def thumbnail_url(self):
+        return self._image_url(self.thumbnail_url_template)
+
+    @property
+    def image_url(self):
+        return self._image_url(self.image_url_template)
+
+    @property
+    def thumbnail_path(self):
+        return self._image_path(os.path.join(*self.thumbnail_path_template))
+
+    @property
+    def image_path(self):
+        return self._image_path(os.path.join(*self.image_path_template))
+
+    @property
+    def original_path(self):
+        return self._image_path(os.path.join(*self.original_path_template))
+
+    @property
+    def thumbnail_size(self):
+        return self.sizes.get('thumbnail', []) if self.sizes else []
+
+    @property
+    def image_size(self):
+        return self.sizes.get('image', []) if self.sizes else []
+
+    @classmethod
+    def delete_preview_files(cls, sender, instance, **kw):
+        """On delete of the Preview object from the database, unlink the image
+        and thumb on the file system """
+        for filename in [instance.image_path, instance.thumbnail_path]:
+            try:
+                log.info('Removing filename: %s for preview: %s'
+                         % (filename, instance.pk))
+                storage.delete(filename)
+            except Exception, e:
+                log.error(
+                    'Error deleting preview file (%s): %s' % (filename, e))

@@ -16,8 +16,10 @@ from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
+from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import (
+    ApplicationsVersions, License, Version, VersionPreview)
 
 from .models import (
     Addon, AddonFeatureCompatibility, CompatOverride, Persona, Preview,
@@ -60,6 +62,7 @@ class PreviewSerializer(serializers.ModelSerializer):
     thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
+        # Note: this serializer can also be used for VersionPreview.
         model = Preview
         fields = ('id', 'caption', 'image_size', 'image_url', 'thumbnail_size',
                   'thumbnail_url')
@@ -72,24 +75,17 @@ class PreviewSerializer(serializers.ModelSerializer):
 
 
 class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
-    # We could do this in ESAddonSerializer, but having a specific serializer
-    # that inherits from BaseESSerializer for previews allows us to handle
-    # translations more easily.
+    # Because we have translated fields and dates coming from ES, we can't use
+    # a regular PreviewSerializer to handle previews for ESAddonSerializer.
+    # Unfortunately we also need to get the class right (it can be either
+    # Preview or VersionPreview) so fake_object() implementation in this class
+    # does nothing, the instance has already been created by a parent
+    # serializer.
     datetime_fields = ('modified',)
     translated_fields = ('caption',)
 
     def fake_object(self, data):
-        """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
-
-        # Attach base attributes that have the same name/format in ES and in
-        # the model.
-        self._attach_fields(obj, data, ('modified',))
-
-        # Attach translations.
-        self._attach_translations(obj, data, self.translated_fields)
-
-        return obj
+        return data
 
 
 class LicenseSerializer(serializers.ModelSerializer):
@@ -144,11 +140,18 @@ class CompactLicenseSerializer(LicenseSerializer):
         fields = ('id', 'name', 'url')
 
 
-class SimpleVersionSerializer(serializers.ModelSerializer):
-    compatibility = serializers.SerializerMethodField()
-    is_strict_compatibility_enabled = serializers.SerializerMethodField()
-    edit_url = serializers.SerializerMethodField()
+class MinimalVersionSerializer(serializers.ModelSerializer):
     files = FileSerializer(source='all_files', many=True)
+
+    class Meta:
+        model = Version
+        fields = ('id', 'files', 'reviewed', 'version')
+
+
+class SimpleVersionSerializer(MinimalVersionSerializer):
+    compatibility = serializers.SerializerMethodField()
+    edit_url = serializers.SerializerMethodField()
+    is_strict_compatibility_enabled = serializers.SerializerMethodField()
     license = CompactLicenseSerializer()
     release_notes = TranslationSerializerField(source='releasenotes')
     url = serializers.SerializerMethodField()
@@ -166,13 +169,6 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             instance.license.version_instance = instance
         return super(SimpleVersionSerializer, self).to_representation(instance)
 
-    def get_url(self, obj):
-        return absolutify(obj.get_url_path())
-
-    def get_edit_url(self, obj):
-        return absolutify(obj.addon.get_dev_url(
-            'versions.edit', args=[obj.pk], prefix_only=True))
-
     def get_compatibility(self, obj):
         return {
             app.short: {
@@ -182,8 +178,15 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             } for app, compat in obj.compatible_apps.items()
         }
 
+    def get_edit_url(self, obj):
+        return absolutify(obj.addon.get_dev_url(
+            'versions.edit', args=[obj.pk], prefix_only=True))
+
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
+
+    def get_url(self, obj):
+        return absolutify(obj.get_url_path())
 
 
 class SimpleESVersionSerializer(SimpleVersionSerializer):
@@ -233,7 +236,6 @@ class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     contributions_url = serializers.URLField(source='contributions')
-    current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
@@ -246,8 +248,9 @@ class AddonSerializer(serializers.ModelSerializer):
     is_source_public = serializers.BooleanField(source='view_source')
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
-    previews = PreviewSerializer(many=True, source='all_previews')
+    previews = PreviewSerializer(many=True, source='current_previews')
     ratings = serializers.SerializerMethodField()
+    ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
     summary = TranslationSerializerField()
@@ -266,7 +269,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'average_daily_users',
             'categories',
             'contributions_url',
-            'current_beta_version',
             'current_version',
             'default_locale',
             'description',
@@ -324,12 +326,13 @@ class AddonSerializer(serializers.ModelSerializer):
         return data
 
     def outgoingify(self, data):
-        if isinstance(data, basestring):
-            return get_outgoing_url(data)
-        elif isinstance(data, dict):
-            return {key: get_outgoing_url(value) if value else None
-                    for key, value in data.items()}
-        # Probably None... don't bother.
+        if data:
+            if isinstance(data, basestring):
+                return get_outgoing_url(data)
+            elif isinstance(data, dict):
+                return {key: get_outgoing_url(value) if value else None
+                        for key, value in data.items()}
+        # None or empty string... don't bother.
         return data
 
     def get_categories(self, obj):
@@ -362,10 +365,16 @@ class AddonSerializer(serializers.ModelSerializer):
         return getattr(obj, 'tag_list', [])
 
     def get_url(self, obj):
-        return absolutify(obj.get_url_path())
+        # Use get_detail_url(), get_url_path() does an extra check on
+        # current_version that is annoying in subclasses which don't want to
+        # load that version.
+        return absolutify(obj.get_detail_url())
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())
+
+    def get_ratings_url(self, obj):
+        return absolutify(obj.ratings_url)
 
     def get_review_url(self, obj):
         return absolutify(reverse('reviewers.review', args=[obj.pk]))
@@ -437,13 +446,29 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     # data the same way than the regular serializer does (usually because we
     # some of the data is not indexed in ES).
     authors = BaseUserSerializer(many=True, source='listed_authors')
-    current_beta_version = SimpleESVersionSerializer()
     current_version = SimpleESVersionSerializer()
-    previews = ESPreviewSerializer(many=True, source='all_previews')
+    previews = ESPreviewSerializer(many=True, source='current_previews')
 
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'developer_comments',
                          'homepage', 'summary', 'support_email', 'support_url')
+
+    def fake_preview_object(self, obj, data, model_class=Preview):
+        # This is what ESPreviewSerializer.fake_object() would do, but we do
+        # it here and make that fake_object() method a no-op in order to have
+        # access to the right model_class to use - VersionPreview for static
+        # themes, Preview for the rest.
+        preview = model_class(id=data['id'], sizes=data.get('sizes', {}))
+        preview.addon = obj
+        preview.version = obj.current_version
+        preview_serializer = self.fields['previews'].child
+        # Attach base attributes that have the same name/format in ES and in
+        # the model.
+        preview_serializer._attach_fields(preview, data, ('modified',))
+        # Attach translations.
+        preview_serializer._attach_translations(
+            preview, data, preview_serializer.translated_fields)
+        return preview
 
     def fake_file_object(self, obj, data):
         file_ = File(
@@ -529,11 +554,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
-        # begins with an underscore. `current_beta_version` and
-        # `latest_unlisted_version` are writeable cached_property so we can
-        # directly write to them.
-        obj.current_beta_version = self.fake_version_object(
-            obj, data.get('current_beta_version'), amo.RELEASE_CHANNEL_LISTED)
+        # begins with an underscore. `latest_unlisted_version` is writeable
+        # cached_property so we can directly write to them.
         obj._current_version = self.fake_version_object(
             obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
         obj.latest_unlisted_version = self.fake_version_object(
@@ -549,10 +571,13 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for data_author in data_authors
         ]
 
-        # We set obj.all_previews to the raw preview data because
-        # ESPreviewSerializer will handle creating the fake Preview object
-        # for us when its to_representation() method is called.
-        obj.all_previews = data.get('previews', [])
+        is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
+        preview_model_class = VersionPreview if is_static_theme else Preview
+        obj.current_previews = [
+            self.fake_preview_object(
+                obj, preview_data, model_class=preview_model_class)
+            for preview_data in data.get('previews', [])
+        ]
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
@@ -632,12 +657,39 @@ class StaticCategorySerializer(serializers.Serializer):
 class LanguageToolsSerializer(AddonSerializer):
     target_locale = serializers.CharField()
     locale_disambiguation = serializers.CharField()
+    current_compatible_version = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
-        fields = ('id', 'default_locale', 'guid',
+        fields = ('id', 'current_compatible_version', 'default_locale', 'guid',
                   'locale_disambiguation', 'name', 'slug', 'target_locale',
                   'type', 'url', )
+
+    def get_current_compatible_version(self, obj):
+        compatible_versions = getattr(obj, 'compatible_versions', None)
+        if compatible_versions is not None:
+            data = MinimalVersionSerializer(
+                compatible_versions, many=True).data
+            try:
+                # 99% of the cases there will only be one result, since most
+                # language packs are automatically uploaded for a given app
+                # version. If there are more, pick the most recent one.
+                return data[0]
+            except IndexError:
+                # This should not happen, because the queryset in the view is
+                # supposed to filter results to only return add-ons that do
+                # have at least one compatible version, but let's not fail
+                # too loudly if the unthinkable happens...
+                pass
+        return None
+
+    def to_representation(self, obj):
+        data = super(LanguageToolsSerializer, self).to_representation(obj)
+        request = self.context['request']
+        if (AddonAppVersionQueryParam.query_param not in request.GET and
+                'current_compatible_version' in data):
+            data.pop('current_compatible_version')
+        return data
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):

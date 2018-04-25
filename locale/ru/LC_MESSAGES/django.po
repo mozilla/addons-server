@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-18 14:43+0000\n"
-"Last-Translator: SagePtr <sageptr@gmail.com>\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-03-08 22:18+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,9 @@ msgstr "Это имя пользователя уже используется."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
+
+msgid "Images cannot be animated."
+msgstr "Изображения не могут быть анимированы."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1032,17 +1035,21 @@ msgstr "Эта ссылка уже используется другой под�
 msgid "Icons must be either PNG or JPG."
 msgstr "Значки могут быть либо в PNG либо в JPG."
 
-#, fuzzy
+msgid "Icons cannot be animated."
+msgstr "Иконки не могут быть анимированы."
+
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Эта ссылка уже используется другой из ваших подборок."
+msgstr "Этот пользовательский URL уже используется в одной из ваших подборок."
 
 #, fuzzy
+msgid "Name cannot be empty."
+msgstr "Это имя не может быть использовано."
+
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Введите корректное имя, состоящее из букв, цифр, подчеркиваний или дефисов."
+msgstr "Этот пользовательский URL может состоять из букв, цифр, подчеркиваний или дефисов."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Это имя пользователя не может быть использовано."
+msgstr "Этот пользовательский URL не может быть использован."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Это дополнение уже используется другой подборкой"
@@ -2035,16 +2042,18 @@ msgid "Content rejected"
 msgstr "Содержимое отвергнуто"
 
 #, fuzzy
-msgid "{addon} information request removed."
-msgstr "Запрошено больше информации"
+msgid "{addon} information request altered or removed by admin."
+msgstr "Запрос информации для {addon} удалён."
 
 #, fuzzy
-msgid "Information request removed"
-msgstr "Запрошено больше информации"
+msgid "Information request altered"
+msgstr "Запрос информации удалён"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Ответ разработчика на {addon} {version}."
+msgstr "Запрос информации отклонён разработчиком {addon} {version}."
+
+msgid "Information request removed"
+msgstr "Запрос информации удалён"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2409,8 +2418,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Прил."
+#, fuzzy
+msgid "Static Theme"
+msgstr "Представить тему"
 
 msgid "Persona"
 msgstr "Обои"
@@ -2447,6 +2457,10 @@ msgstr "Проверка обновлённой локали"
 
 msgid "Theme Review"
 msgstr "Проверка темы"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Тема (статическая)"
 
 msgid "New Search Provider Review"
 msgstr "Проверка новой поисковой системы"
@@ -2768,12 +2782,6 @@ msgstr "Вы не можете представить дополнение с gu
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
-msgid "Icons cannot be animated."
-msgstr "Иконки не могут быть анимированы."
-
-msgid "Images cannot be animated."
-msgstr "Изображения не могут быть анимированы."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Изображения не могут быть больше %dKB."
@@ -3007,6 +3015,16 @@ msgstr "Изменить информацию"
 
 msgid "None"
 msgstr "Нет"
+
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Опубликованные версии"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "Управление авторами и лицензией"
@@ -3569,6 +3587,10 @@ msgstr "Вы сделали это!"
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Версия представлена"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
 
@@ -3704,7 +3726,8 @@ msgstr "Фон панели инструментов"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
 
-msgid "Toolbar area text icons"
+#, fuzzy
+msgid "Toolbar area text and icons"
 msgstr "Текст и значки в зоне панели инструментов"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -3873,13 +3896,11 @@ msgstr "Новости разработчиков"
 msgid "View the blog &#9658;"
 msgstr "Прочесть блог &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Запрошено больше информации"
+msgstr "Ожидающие запросы информации:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Эта версия не была проверена."
+msgstr "Это запрос информации был обработан"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код. Это относится только к опубликованным дополнениям."
@@ -4034,14 +4055,18 @@ msgstr "Появился новый, кроссбраузерный станда
 msgid "Learn How"
 msgstr "Узнайте как"
 
-msgid "What's New"
-msgstr "Что нового"
+msgid "Get Started"
+msgstr "Начать"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Готовы представить дополнение? Прочтите наше пошаговое руководство о процессе представления."
 
 msgid "See Tutorial"
 msgstr "Показать руководство"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4188,17 +4213,11 @@ msgstr "Ваш ранее представленный дизайн,  кото
 msgid "Pending Header"
 msgstr "Ожидающее верхнее изображение"
 
-msgid "Pending Footer"
-msgstr "Ожидающее нижнее изображение"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Вы можете обновить дизайн вашей темы здесь после того, как она будет одобрена."
 
 msgid "Header"
 msgstr "Верхнее изображение"
-
-msgid "Footer"
-msgstr "Нижнее изображение"
 
 msgid "Select colors for your Theme."
 msgstr "Выберите цвета для вашей темы."
@@ -4214,9 +4233,6 @@ msgstr "Фон"
 
 msgid "This is the color of the tabs."
 msgstr "Это цвет вкладок."
-
-msgid "Preview"
-msgstr "Предпросмотр"
 
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
@@ -4278,18 +4294,6 @@ msgstr "Максимум 300 КБ"
 
 msgid "PNG or JPG"
 msgstr "PNG или JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Выберите нижнее изображение для вашей темы."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 пикселей"
-
-msgid "Aligned to bottom-left"
-msgstr "Выровнена по левому нижнему краю"
-
-msgid "Select a different footer image"
-msgstr "Выберите другое нижнее изображение."
 
 msgid "Manage Version {0}"
 msgstr "Управление версией {0}"
@@ -4487,30 +4491,35 @@ msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокируйте рекламу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+#, fuzzy
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+#, fuzzy
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшите управление эмоджи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Десятки удивительных эмоджи — всегда на расстоянии одного щелчка."
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Работает с многими популярными видео-хостингами."
@@ -4863,9 +4872,6 @@ msgstr "Станьте лётчиком-испытателем"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Разблокируйте ранний доступ к экспериментальным возможностям браузера."
-
-msgid "Get Started"
-msgstr "Начать"
 
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"
@@ -5385,7 +5391,8 @@ msgstr "Отправленное не по назначению сообщени
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Другие (предоставляет всплывающий запрос для ввода информации)"
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+#, fuzzy
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "В настоящее время AMO не предоставляет механизма прямой связи с рецензентом."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6000,8 +6007,8 @@ msgstr "Нельзя оставить отзыв на свое дополнен�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
-msgid "This rating can't flagged because it has no review text."
-msgstr ""
+msgid "This rating can't be flagged because it has no review text."
+msgstr "Этот рейтинг невозможно отметить, потому что у него нет текста отзыва."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Спасибо; этот отзыв помечен и будет рассмотрен проверяющим."
@@ -6149,15 +6156,6 @@ msgstr "и"
 msgid "Filter by type/action"
 msgstr "Фильтр по типу/действию"
 
-msgid "Passed automatic validation"
-msgstr "Прошло автоматическую валидацию"
-
-msgid "Failed automatic validation"
-msgstr "Не прошло автоматическую валидацию"
-
-msgid "Filter by automatic validation"
-msgstr "Фильтр по автоматической валидации"
-
 msgid "containing"
 msgstr "содержащая"
 
@@ -6202,11 +6200,10 @@ msgid "Applications:"
 msgstr "Приложения:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Требует ответа разработчика в течение максимум…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 дней"
+msgstr "дней"
 
 msgid "Choose a canned response..."
 msgstr "Выберите стандартный ответ..."
@@ -6234,15 +6231,18 @@ msgstr "Пока пропустить"
 msgid "Needs Admin Content Review"
 msgstr "Требуется проверка содержимого админом"
 
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Требуется проверка кода админом"
+
 msgid "Jetpack Add-on"
 msgstr "Jetpack-дополнение"
 
 msgid "More Information Requested"
 msgstr "Запрошено больше информации"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Запрошено больше информации"
+msgstr "Истёк срок запроса информации"
 
 msgid "Contains Reviewer Comment"
 msgstr "Содержит комментарий редактора"
@@ -6319,9 +6319,8 @@ msgstr "Нет отзывов"
 msgid "Weight"
 msgstr "Вес"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Запрошено больше информации"
+msgstr "Срок запроса информации"
 
 msgid "Last Content Review"
 msgstr "Последняя проверка содержимого"
@@ -6365,29 +6364,48 @@ msgstr "Одобрить содержимое"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
+#, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Устаревшие дополнения"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Избранные темы"
+
 msgid "Legacy Add-ons"
 msgstr "Устаревшие дополнения"
 
-msgid "New Add-ons ({0})"
-msgstr "Новые дополнения ({0})"
+#, fuzzy
+msgid "New ({0})"
+msgstr "Новые темы ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "Обновления дополнений ({0})"
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "Обновление ({0})"
 
-msgid "Add-on Review Log"
-msgstr "Журнал проверок дополнений"
+#, fuzzy
+msgid "Review Log"
+msgstr "Замечание проверяющего"
 
-msgid "Signed Beta Files Log"
-msgstr "Лог подписанных файлов беты"
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Проверка дополнения"
 
-msgid "Review Guide"
-msgstr "Руководство по написанию отзывов"
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Очередь проверки тем"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматически одобренные дополнения"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Автоматически одобренные дополнения ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Журнал проверок дополнений"
+
+msgid "Review Guide"
+msgstr "Руководство по написанию отзывов"
 
 msgid "Content Review"
 msgstr "Проверка содержимого"
@@ -6407,8 +6425,9 @@ msgstr "Обновления тем ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Отмеченные темы ({0})"
 
-msgid "Themes Review Log"
-msgstr "Лог проверок тем"
+#, fuzzy
+msgid "Lightweight Themes Review Log"
+msgstr "Лёгкие темы"
 
 msgid "Deleted Themes Log"
 msgstr "Лог удалённых тем"
@@ -6437,9 +6456,8 @@ msgstr "Объявление"
 msgid "Update message of the day"
 msgstr "Обновить послание дня"
 
-#, fuzzy
-msgid "Add-ons with expired information requests"
-msgstr "Запрошено больше информации"
+msgid "Expired Information Requests ({0})"
+msgstr "Запросы информации с истёкшим сроком ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Произошла неизвестная ошибка"
@@ -6499,6 +6517,17 @@ msgstr "Отчёты о злоупотреблениях ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Плохие рейтинги пользователей ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "Имя темы"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Удалённые проверки"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Подробнее об этом дополнении"
 
@@ -6510,6 +6539,18 @@ msgstr "Здесь нечего смотреть!  Разработчик не �
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Вернуться на панель Инструментов редакторов"
+
+msgid "Reviewer Leaderboard"
+msgstr "Панель лидера редакторов"
+
+msgid "No review points awarded yet."
+msgstr "Очков за проверки пока не начислено."
+
+msgid "Rank"
+msgstr "Место"
+
+msgid "Score"
+msgstr "Счёт"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6551,18 +6592,6 @@ msgstr "Отзыв был отмечен до удаления."
 
 msgid "Undelete"
 msgstr "Восстановить"
-
-msgid "Reviewer Leaderboard"
-msgstr "Панель лидера редакторов"
-
-msgid "No review points awarded yet."
-msgstr "Очков за проверки пока не начислено."
-
-msgid "Rank"
-msgstr "Место"
-
-msgid "Score"
-msgstr "Счёт"
 
 msgid "Save"
 msgstr "Сохранить"
@@ -6734,15 +6763,18 @@ msgstr "Отключить автоодобрение"
 msgid "Enable Auto-Approval"
 msgstr "Включить автоодобрение"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Запрошено больше информации"
+msgstr "Отменить запрос информации"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Снять флаг проверки проверка кода админом"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Снять флаг проверки содержимого админом"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Снять флаг проверки проверка кода админом"
 
 msgid "(admin)"
 msgstr "(админ)"
@@ -6945,29 +6977,29 @@ msgstr "Отклонено или не проверено"
 msgid "[status:%s]"
 msgstr "[статус:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Новое дополнение ({0})"
-msgstr[1] "Новые дополнения ({0})"
-msgstr[2] "Новые дополнения ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Обновление ({0})"
 msgstr[1] "Обновления ({0})"
 msgstr[2] "Обновления ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Модерируемая проверка ({0})"
-msgstr[1] "Модерируемые проверки ({0})"
-msgstr[2] "Модерируемых проверок ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "Проверка рейтинга ({0})"
+msgstr[1] "Проверка рейтинга ({0})"
+msgstr[2] "Проверка рейтинга ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Автоматически утверждённые дополнения ({0})"
-msgstr[1] "Автоматически утверждённые дополнения ({0})"
-msgstr[2] "Автоматически утверждённые дополнения ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Автоматически одобренные ({0})"
+msgstr[1] "Автоматически одобренные ({0})"
+msgstr[2] "Автоматически одобренные ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Запросы информации с истёкшим сроком ({0})"
+msgstr[1] "Запросы информации с истёкшим сроком ({0})"
+msgstr[2] "Запросы информации с истёкшим сроком ({0})"
 
 msgid "Flagged"
 msgstr "Отмечено"

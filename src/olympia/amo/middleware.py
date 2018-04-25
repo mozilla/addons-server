@@ -7,6 +7,7 @@ import contextlib
 import re
 import socket
 import urllib
+import uuid
 
 from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
@@ -253,3 +254,24 @@ class ScrubRequestOnException(object):
             # Clearing out all cookies in request.META. They will already
             # be sent with request.COOKIES.
             request.META['HTTP_COOKIE'] = '******'
+
+
+class RequestIdMiddleware(object):
+    """Middleware that adds a unique request-id to every incoming request.
+
+    This can be used to track a request across different system layers,
+    e.g to correlate logs with sentry exceptions.
+
+    We are exposing this request id in the `X-AMO-Request-ID` response header.
+    """
+
+    def process_request(self, request):
+        request.request_id = uuid.uuid4().hex
+
+    def process_response(self, request, response):
+        request_id = getattr(request, 'request_id', None)
+
+        if request_id:
+            response['X-AMO-Request-ID'] = request.request_id
+
+        return response

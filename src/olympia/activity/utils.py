@@ -2,6 +2,7 @@ import re
 
 from datetime import datetime, timedelta
 from email.utils import formataddr
+from HTMLParser import HTMLParser
 
 from django.conf import settings
 from django.forms import ValidationError
@@ -72,7 +73,7 @@ class ActivityEmailParser(object):
     def _extra_email_reply_parse(self, email):
         """
         Adds an extra case to the email reply parser where the reply is
-        followed by headers like "From: amo-editors@mozilla.org" and
+        followed by headers like "From: nobody@mozilla.org" and
         strips that part out.
         """
         email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
@@ -226,6 +227,9 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # only so prevent language jumble by forcing into en-US.
         with no_translation():
             comments = '%s' % amo.LOG_BY_ID[note.action].short
+    else:
+        htmlparser = HTMLParser()
+        comments = htmlparser.unescape(comments)
 
     # Collect add-on authors (excl. the person who sent the email.) and build
     # the context for them.
@@ -381,5 +385,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient['EmailAddress']],
-        from_email=settings.REVIEWERS_EMAIL,
+        from_email=settings.NOBODY_EMAIL,
         use_deny_list=False)

@@ -1,6 +1,7 @@
 from django.utils.http import urlsafe_base64_encode
+from django.core.files.uploadedfile import SimpleUploadedFile
 
-from mock import Mock, patch
+from mock import Mock, patch, MagicMock
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
@@ -76,6 +77,16 @@ class TestUserEditForm(UserFormBase):
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == 'new-username'
+
+    def test_cannot_change_display_name_to_denied_ones(self):
+        assert self.user.display_name != 'Mozilla'
+        data = {'username': 'new-username',
+                'display_name': 'IE6Fan',
+                'email': 'jbalogh@mozilla.com'}
+        response = self.client.post(self.url, data)
+        msg = "This display name cannot be used."
+        self.assertFormError(response, 'form', 'display_name', msg)
+        assert self.user.reload().display_name != 'IE6Fan'
 
     def test_no_username_anonymous_does_not_change(self):
         """Test that username isn't required with auto-generated usernames and
@@ -161,6 +172,39 @@ class TestUserEditForm(UserFormBase):
 
         assert not form.is_valid()
         assert form.errors == {'photo': [u'Images cannot be animated.']}
+
+    @patch('olympia.amo.utils.ImageCheck.is_image')
+    @patch('olympia.amo.utils.ImageCheck.is_animated')
+    def test_photo_too_big(self, mock_is_image_check, mock_is_animated_check):
+        # Mock the ImageCheck object to pass checks on the uploaded image
+        mock_is_image_check.return_value = True
+        mock_is_image_check.return_value = False
+        mock_is_animated_check.returned_value = False
+
+        request = Mock()
+        request.user = self.user
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('transparent.png')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=request)
+
+        # Creating the mock object instead of the uploaded file,
+        # with a specific size over the limit
+        upload_mock = MagicMock(spec=SimpleUploadedFile)
+        upload_mock._name = 'transparent.png'
+        upload_mock.size = 4 * 1024 * 1024 + 1
+        upload_mock.content_type = 'image/png'
+
+        # Injecting the mock object
+        form.files['photo'] = upload_mock
+
+        assert not form.is_valid()
+        mock_is_image_check.assert_called()
+        mock_is_animated_check.assert_called()
+        assert form.errors == {
+            'photo': [u'Please use images smaller than 4MB.']
+        }
 
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')

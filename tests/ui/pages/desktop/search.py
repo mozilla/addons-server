@@ -1,54 +1,77 @@
-from pypom import Region
-from selenium.common.exceptions import NoSuchElementException
+from pypom import Page, Region
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as expected
 
-from base import Base
 
+class Search(Page):
 
-class SearchResultList(Base):
-    """Search page"""
-    _results_locator = (By.CSS_SELECTOR, 'div.items div.item.addon')
-    _search_text_locator = (By.CSS_SELECTOR, '.primary > h1')
+    _search_box_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
+    _submit_button_locator = (By.CLASS_NAME, 'AutoSearchInput-submit-button')
+    _search_filters_sort_locator = (By.ID, 'SearchFilters-Sort')
+    _search_filters_type_locator = (By.ID, 'SearchFilters-AddonType')
+    _search_filters_os_locator = (By.ID, 'SearchFilters-OperatingSystem')
 
     def wait_for_page_to_load(self):
-        self.wait.until(lambda _: self.find_element(
-            self._search_text_locator).is_displayed())
+        self.wait.until(
+            expected.invisibility_of_element_located(
+                (By.CLASS_NAME, 'LoadingText')))
         return self
 
     @property
-    def results(self):
-        """List of results"""
-        elements = self.selenium.find_elements(*self._results_locator)
-        return [self.SearchResultItem(self, el) for el in elements]
+    def result_list(self):
+        return self.SearchResultList(self)
 
-    def sort_by(self, category, attribute):
-        from pages.desktop.regions.sorter import Sorter
-        Sorter(self).sort_by(category)
+    def filter_by_sort(self, value):
+        self.find_element(*self._search_filters_sort_locator).click()
+        self.find_element(*self._search_filters_sort_locator).send_keys(value)
 
-    class SearchResultItem(Region):
-        """Represents individual results on the search page."""
-        _name_locator = (By.CSS_SELECTOR, 'h3 > a')
-        _rating_locator = (By.CSS_SELECTOR, '.rating .stars')
-        _users_sort_locator = (By.CSS_SELECTOR, '.vitals .adu')
+    def filter_by_type(self, value):
+        self.find_element(*self._search_filters_type_locator).click()
+        self.find_element(*self._search_filters_type_locator).send_keys(value)
 
-        @property
-        def name(self):
-            """Extension Name"""
-            return self.find_element(*self._name_locator).text
+    def filter_by_os(self, value):
+        self.find_element(*self._search_filters_os_locator).click()
+        self.find_element(*self._search_filters_os_locator).send_keys(value)
 
-        @property
-        def users(self):
-            """Extensions users"""
-            number = self.find_element(*self._users_sort_locator).text
-            if 'downloads' in number:
-                raise AssertionError('Found weekly downloads instead')
-            return int(number.split()[0].replace(',', ''))
+    class SearchResultList(Region):
+
+        _result_locator = (By.CLASS_NAME, 'SearchResult')
+        _theme_locator = (By.CLASS_NAME, 'SearchResult--theme')
+        _extension_locator = (By.CLASS_NAME, 'SearchResult-name')
 
         @property
-        def rating(self):
-            """Returns the rating"""
-            try:
-                rating = self.find_element(*self._rating_locator).text
+        def extensions(self):
+            items = self.find_elements(*self._result_locator)
+            return [self.ResultListItems(self, el) for el in items]
+
+        @property
+        def themes(self):
+            items = self.find_elements(*self._theme_locator)
+            return [self.ResultListItems(self, el) for el in items]
+
+        class ResultListItems(Region):
+
+            _rating_locator = (By.CSS_SELECTOR, '.Rating--small')
+            _search_item_name_locator = (By.CSS_SELECTOR,
+                                         '.SearchResult-contents > h2')
+            _users_locator = (By.CLASS_NAME, 'SearchResult-users-text')
+
+            @property
+            def name(self):
+                return self.find_element(*self._search_item_name_locator).text
+
+            def link(self):
+                self.find_element(*self._search_item_name_locator).click()
+
+            @property
+            def users(self):
+                users = self.find_element(*self._users_locator).text
+                return int(
+                    users.split()[0].replace(',', '').replace('users', ''))
+
+            @property
+            def rating(self):
+                """Returns the rating"""
+                rating = self.find_element(
+                    *self._rating_locator).get_property('title')
                 return int(rating.split()[1])
-            except NoSuchElementException:
-                return 0

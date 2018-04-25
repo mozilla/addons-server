@@ -33,59 +33,6 @@ def _touch(fname):
     os.utime(fname, None)
 
 
-def test_is_beta():
-    assert not utils.is_beta('1.2')
-
-    assert utils.is_beta('1.2a')
-    assert utils.is_beta('1.2a1')
-    assert utils.is_beta('1.2a123')
-    assert utils.is_beta('1.2a.1')
-    assert utils.is_beta('1.2a.123')
-    assert utils.is_beta('1.2a-1')
-    assert utils.is_beta('1.2a-123')
-
-    assert utils.is_beta('1.2alpha')
-    assert utils.is_beta('1.2alpha')
-    assert utils.is_beta('1.2alpha1')
-    assert utils.is_beta('1.2alpha123')
-    assert utils.is_beta('1.2alpha.1')
-    assert utils.is_beta('1.2alpha.123')
-    assert utils.is_beta('1.2alpha-1')
-    assert utils.is_beta('1.2alpha-123')
-
-    assert utils.is_beta('1.2b')
-    assert utils.is_beta('1.2b1')
-    assert utils.is_beta('1.2b123')
-    assert utils.is_beta('1.2b.1')
-    assert utils.is_beta('1.2b.123')
-    assert utils.is_beta('1.2b-1')
-    assert utils.is_beta('1.2b-123')
-
-    assert utils.is_beta('1.2beta')
-    assert utils.is_beta('1.2beta1')
-    assert utils.is_beta('1.2beta123')
-    assert utils.is_beta('1.2beta.1')
-    assert utils.is_beta('1.2beta.123')
-    assert utils.is_beta('1.2beta-1')
-    assert utils.is_beta('1.2beta-123')
-
-    assert utils.is_beta('1.2pre')
-    assert utils.is_beta('1.2pre1')
-    assert utils.is_beta('1.2pre123')
-    assert utils.is_beta('1.2pre.1')
-    assert utils.is_beta('1.2pre.123')
-    assert utils.is_beta('1.2pre-1')
-    assert utils.is_beta('1.2pre-123')
-
-    assert utils.is_beta('1.2rc')
-    assert utils.is_beta('1.2rc1')
-    assert utils.is_beta('1.2rc123')
-    assert utils.is_beta('1.2rc.1')
-    assert utils.is_beta('1.2rc.123')
-    assert utils.is_beta('1.2rc-1')
-    assert utils.is_beta('1.2rc-123')
-
-
 class TestExtractor(TestCase):
 
     def test_no_manifest(self):
@@ -298,6 +245,7 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_moz_signed_extension_no_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -305,12 +253,13 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
             assert not parsed['strict_compatibility']
 
     def test_moz_signed_extension_reuse_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -318,7 +267,7 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
 
             # We set `strictCompatibility` in install.rdf
@@ -918,3 +867,41 @@ def test_extract_header_img():
     utils.extract_header_img(file_obj, data, dest_path)
     assert default_storage.exists(header_file)
     assert default_storage.size(header_file) == 126447
+
+
+def test_extract_header_img_missing():
+    file_obj = os.path.join(
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    data = {'images': {'headerURL': 'missing_file.png'}}
+    dest_path = tempfile.mkdtemp()
+    header_file = dest_path + '/missing_file.png'
+    assert not default_storage.exists(header_file)
+
+    utils.extract_header_img(file_obj, data, dest_path)
+    assert not default_storage.exists(header_file)
+
+
+def test_extract_header_with_additional_imgs():
+    file_obj = os.path.join(
+        settings.ROOT,
+        'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+    data = {'images': {
+        'headerURL': 'empty.png',
+        'additional_backgrounds': [
+            'transparent.gif', 'missing_&_ignored.png', 'weta_for_tiling.png']
+    }}
+    dest_path = tempfile.mkdtemp()
+    header_file = dest_path + '/empty.png'
+    additional_file_1 = dest_path + '/transparent.gif'
+    additional_file_2 = dest_path + '/weta_for_tiling.png'
+    assert not default_storage.exists(header_file)
+    assert not default_storage.exists(additional_file_1)
+    assert not default_storage.exists(additional_file_2)
+
+    utils.extract_header_img(file_obj, data, dest_path)
+    assert default_storage.exists(header_file)
+    assert default_storage.size(header_file) == 332
+    assert default_storage.exists(additional_file_1)
+    assert default_storage.size(additional_file_1) == 42
+    assert default_storage.exists(additional_file_2)
+    assert default_storage.size(additional_file_2) == 93371

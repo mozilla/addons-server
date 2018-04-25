@@ -51,12 +51,10 @@ class ThemeReviewTestMixin(object):
         addon = addon_factory(type=amo.ADDON_PERSONA, status=status)
         if self.rereview:
             RereviewQueueTheme.objects.create(
-                theme=addon.persona, header='pending_header',
-                footer='pending_footer')
+                theme=addon.persona, header='pending_header')
         persona = addon.persona
         persona.persona_id = 0
         persona.header = 'header'
-        persona.footer = 'footer'
         persona.save()
         return addon
 
@@ -97,16 +95,14 @@ class ThemeReviewTestMixin(object):
 
     @pytest.mark.needs_locales_compilation
     @mock.patch('olympia.amo.messages.success')
-    @mock.patch('olympia.reviewers.tasks.reject_rereview')
-    @mock.patch('olympia.reviewers.tasks.approve_rereview')
+    @mock.patch('olympia.reviewers.tasks.theme_checksum')
     @mock.patch('olympia.addons.tasks.version_changed')
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_mock, create_preview_mock,
                     send_mail_jinja_mock, version_changed_mock,
-                    approve_rereview_mock, reject_rereview_mock,
-                    message_mock):
+                    theme_checksum_mock, message_mock):
         if self.flagged:
             # Feels redundant to test this for flagged queue.
             return
@@ -143,8 +139,7 @@ class ThemeReviewTestMixin(object):
 
         # Test edge case where pending theme also has re-review.
         for theme in (themes[3], themes[4]):
-            RereviewQueueTheme.objects.create(theme=theme, header='',
-                                              footer='')
+            RereviewQueueTheme.objects.create(theme=theme, header='')
 
         # Commit.
         # Activate another locale than en-US, and make sure emails to theme
@@ -159,13 +154,12 @@ class ThemeReviewTestMixin(object):
             for i in range(4):
                 assert themes[i].addon.status == amo.STATUS_PUBLIC
                 assert themes[i].header == 'header'
-                assert themes[i].footer == 'footer'
 
+            assert copy_mock.call_count == 1
             assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
             assert copy_mock.call_args_list[0][0][1].endswith('header')
-            assert copy_mock.call_args_list[1][0][0].endswith('pending_footer')
-            assert copy_mock.call_args_list[1][0][1].endswith('footer')
 
+            assert create_preview_mock.call_count == 1
             create_preview_args = create_preview_mock.call_args_list[0][1]
             assert create_preview_args['src'].endswith('header')
             assert create_preview_args['full_dst'][0].endswith('preview.png')
@@ -179,11 +173,17 @@ class ThemeReviewTestMixin(object):
             # Test version incremented.
             assert themes[4].addon.reload().current_version.version == (
                 str(float(old_version) + 1))
+
+            # Checksum was recalculated for that theme.
+            assert theme_checksum_mock.call_count == 1
+            assert theme_checksum_mock.call_args_list[0][0][0] == themes[4]
         else:
             assert themes[0].addon.reload().status == amo.STATUS_REVIEW_PENDING
             assert themes[1].addon.reload().status == amo.STATUS_REVIEW_PENDING
             assert themes[2].addon.reload().status == amo.STATUS_REJECTED
             assert themes[3].addon.reload().status == amo.STATUS_REJECTED
+
+            assert theme_checksum_mock.call_count == 0
         assert themes[4].addon.reload().status == amo.STATUS_PUBLIC
         assert ActivityLog.objects.count() == 4 if self.rereview else 5
 
@@ -241,13 +241,13 @@ class ThemeReviewTestMixin(object):
                 recipient_list=set([]))
         ]
         if self.rereview:
+            assert send_mail_jinja_mock.call_count == 4
             assert send_mail_jinja_mock.call_args_list[0] == expected_calls[0]
             assert send_mail_jinja_mock.call_args_list[1] == expected_calls[2]
             assert send_mail_jinja_mock.call_args_list[2] == expected_calls[3]
             assert send_mail_jinja_mock.call_args_list[3] == expected_calls[4]
         else:
-            assert not approve_rereview_mock.called
-            assert not reject_rereview_mock.called
+            assert send_mail_jinja_mock.call_count == 5
             assert send_mail_jinja_mock.call_args_list[0] == expected_calls[0]
             assert send_mail_jinja_mock.call_args_list[1] == expected_calls[1]
             assert send_mail_jinja_mock.call_args_list[2] == expected_calls[2]
@@ -495,13 +495,11 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         """
         # Normal RQT object.
         theme = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(header='', footer='',
-                                          theme=theme.persona)
+        RereviewQueueTheme.objects.create(header='', theme=theme.persona)
 
         # Deleted add-on RQT object.
         theme = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(header='', footer='',
-                                          theme=theme.persona)
+        RereviewQueueTheme.objects.create(header='', theme=theme.persona)
         theme.delete()
 
         self.login('persona_reviewer@mozilla.com')
@@ -539,11 +537,17 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         assert pq(response.content)('.theme').length == 0
 
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
+    @mock.patch('olympia.reviewers.tasks.theme_checksum')
     @mock.patch('olympia.reviewers.tasks.copy_stored_file')
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
-    def test_update_legacy_theme(self, copy_mock, prev_mock, copy_mock2,
-                                 noop3):
+    def test_update_legacy_theme(
+            self,
+            amo_copy_stored_file_mock,
+            create_persona_preview_mock,
+            copy_stored_filed_mock,
+            theme_checksum_mock,
+            send_mail_jinja_mock):
         """
         Test updating themes that were submitted from GetPersonas.
         STR the bug this test fixes:
@@ -552,19 +556,17 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         - On approving, it would make a preview image with the destination as
          'preview.png' and 'icon.png', but legacy themes use
          'preview.jpg' and 'preview_small.jpg'.
-        - Thus the preview images were not being updated, but the header/footer
+        - Thus the preview images were not being updated, but the header
           images were.
         """
         theme = self.theme_factory(status=amo.STATUS_PUBLIC).persona
         theme.header = 'Legacy-header3H.png'
-        theme.footer = 'Legacy-footer3H-Copy.jpg'
         theme.persona_id = 5
         theme.save()
         form_data = amo.tests.formset(initial_count=5, total_count=6)
 
         RereviewQueueTheme.objects.create(
-            theme=theme, header='pending_header.png',
-            footer='pending_footer.png')
+            theme=theme, header='pending_header.png')
 
         # Create lock.
         reviewer = self.create_and_become_reviewer()
@@ -580,31 +582,30 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
 
         # Check nothing has changed.
         assert theme.header == 'Legacy-header3H.png'
-        assert theme.footer == 'Legacy-footer3H-Copy.jpg'
         theme.thumb_path.endswith('preview.jpg')
         theme.icon_path.endswith('preview_small.jpg')
         theme.preview_path.endswith('preview_large.jpg')
 
         # Test calling create_persona_preview_images.
-        assert (prev_mock.call_args_list[0][1]['full_dst'][0]
+        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][0]
                 .endswith('preview.jpg'))
-        assert (prev_mock.call_args_list[0][1]['full_dst'][1]
+        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][1]
                 .endswith('preview_small.jpg'))
 
         # pending_header should be mv'ed to Legacy-header3H.png.
-        assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
-        assert (copy_mock.call_args_list[0][0][1]
+        assert (amo_copy_stored_file_mock.call_args_list[0][0][0]
+                .endswith('pending_header'))
+        assert (amo_copy_stored_file_mock.call_args_list[0][0][1]
                 .endswith('Legacy-header3H.png'))
-        # pending_footer should be mv'ed to Legacy-footer-Copy3H.png.
-        assert (copy_mock.call_args_list[1][0][0]
-                .endswith('pending_footer'))
-        assert (copy_mock.call_args_list[1][0][1]
-                .endswith('Legacy-footer3H-Copy.jpg'))
 
-        assert (copy_mock2.call_args_list[0][0][0]
+        assert (copy_stored_filed_mock.call_args_list[0][0][0]
                 .endswith('preview.jpg'))
-        assert (copy_mock2.call_args_list[0][0][1]
+        assert (copy_stored_filed_mock.call_args_list[0][0][1]
                 .endswith('preview_large.jpg'))
+
+        # We re-calculated the theme checksum from the newest data.
+        assert theme_checksum_mock.call_count == 1
+        assert theme_checksum_mock.call_args_list[0][0][0] == theme
 
     def test_single_rejected_reason_9_bug_1140346(self):
         """Can rereview an updated theme that was rejected for reason 9."""
@@ -612,8 +613,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         self.login(user)
         addon = self.theme_factory(status=amo.STATUS_REJECTED)
         RereviewQueueTheme.objects.create(
-            theme=addon.persona, header='pending_header.png',
-            footer='pending_footer.png')
+            theme=addon.persona, header='pending_header.png')
         AddonLog.objects.create(
             addon=addon,
             activity_log=ActivityLog.objects.create(
@@ -625,45 +625,6 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
             res = self.client.get(reverse('reviewers.themes.single',
                                           args=[addon.slug]))
         assert res.status_code == 200
-
-    @mock.patch('olympia.amo.utils.LocalFileStorage.delete')
-    def test_reject_theme_without_footer_bug_1142449(self, delete_mock):
-        """Don't fail on trying to deleted a non existent footer image."""
-        user = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
-        self.login(user)
-        theme = self.theme_factory().persona
-        reject_url = reverse('reviewers.themes.commit')
-
-        form_data = amo.tests.formset(initial_count=1, total_count=1)
-        form_data['form-0-theme'] = str(theme.pk)
-        form_data['form-0-action'] = str(amo.ACTION_REJECT)
-        form_data['form-0-reject_reason'] = 1
-
-        # With footer (RereviewQueueTheme created in theme_factory has one).
-        rereview = theme.rereviewqueuetheme_set.first()
-        ThemeLock.objects.create(theme=theme, reviewer=user,
-                                 expiry=self.days_ago(-1))
-
-        with self.settings(ALLOW_SELF_REVIEWS=True):
-            res = self.client.post(reject_url, form_data)
-        assert res.status_code == 302
-        assert delete_mock.call_count == 2  # Did try to delete the footer.
-        delete_mock.assert_any_call(rereview.header_path)
-        delete_mock.assert_any_call(rereview.footer_path)
-
-        delete_mock.reset_mock()  # Clean slate.
-
-        # Without footer.
-        rereview = RereviewQueueTheme.objects.create(
-            theme=theme, header='pending_header.png')
-        ThemeLock.objects.create(theme=theme, reviewer=user,
-                                 expiry=self.days_ago(-1))
-
-        with self.settings(ALLOW_SELF_REVIEWS=True):
-            res = self.client.post(reject_url, form_data)
-        assert res.status_code == 302
-        assert delete_mock.call_count == 1  # Didn't try to delete the footer.
-        delete_mock.assert_any_call(rereview.header_path)
 
 
 class TestDeletedThemeLookup(TestCase):
@@ -739,7 +700,6 @@ class TestXssOnThemeName(amo.tests.TestXss):
         persona = self.theme.persona
         persona.persona_id = 0
         persona.header = 'header'
-        persona.footer = 'footer'
         persona.save()
 
     def test_queue_page(self):

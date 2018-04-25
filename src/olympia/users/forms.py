@@ -187,7 +187,7 @@ class UserEditForm(forms.ModelForm):
 
         if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             msg = ugettext('Please use images smaller than %dMB.')
-            size_in_mb = settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1
+            size_in_mb = settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024
             raise forms.ValidationError(msg % size_in_mb)
 
         return photo

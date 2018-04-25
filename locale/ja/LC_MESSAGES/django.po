@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-23 23:59+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-23 07:23+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -38,6 +38,9 @@ msgstr "このユーザー名は既に使われています。"
 
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPG 形式でなければなりません。"
+
+msgid "Images cannot be animated."
+msgstr "アニメーションする画像は使用できません。"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -984,8 +987,14 @@ msgstr "この URL は他のコレクションで既に使われています"
 msgid "Icons must be either PNG or JPG."
 msgstr "アイコンは PNG か JPG 形式でなければなりません。"
 
+msgid "Icons cannot be animated."
+msgstr "アニメーションするアイコンは使用できません。"
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
+
+msgid "Name cannot be empty."
+msgstr "名前を空欄にすることはできません。"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "カスタム URL には、英数字、アンダーバー、ハイフンのみ使用できます。"
@@ -1946,14 +1955,17 @@ msgstr "{addon} {version} のコンテンツが却下されました。"
 msgid "Content rejected"
 msgstr "コンテンツが却下されました"
 
-msgid "{addon} information request removed."
-msgstr "{addon} の情報請求が削除されました。"
+msgid "{addon} information request altered or removed by admin."
+msgstr "{addon} の情報請求が管理者によって変更もしくは削除されました。"
 
-msgid "Information request removed"
-msgstr "情報請求が削除されました"
+msgid "Information request altered"
+msgstr "情報請求が変更されました"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "{addon} {version} に関する情報請求が開発者によって回答されました。"
+
+msgid "Information request removed"
+msgstr "情報請求が削除されました"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2318,8 +2330,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "アプリ"
+msgid "Static Theme"
+msgstr "静的テーマ"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2356,6 +2368,9 @@ msgstr "言語パックの更新審査"
 
 msgid "Theme Review"
 msgstr "テーマの審査"
+
+msgid "Theme (Static) Review"
+msgstr "テーマ (静的) の審査"
 
 msgid "New Search Provider Review"
 msgstr "新しい検索プロバイダーの審査"
@@ -2671,12 +2686,6 @@ msgstr "%s で終わる GUID が設定されたアドオンを投稿すること
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
-msgid "Icons cannot be animated."
-msgstr "アニメーションするアイコンは使用できません。"
-
-msgid "Images cannot be animated."
-msgstr "アニメーションする画像は使用できません。"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "画像は %d KB 未満でなければなりません。"
@@ -2900,6 +2909,15 @@ msgstr "情報を編集"
 
 msgid "None"
 msgstr "なし"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Preview of listed version"
+msgstr "公開バージョンのプレビュー"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
@@ -3418,6 +3436,9 @@ msgstr "完了！"
 msgid "Version Submitted for Review"
 msgstr "審査が申請されているバージョン"
 
+msgid "Preview of the version submitted"
+msgstr "投稿バージョンのプレビュー"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "設定完了！ このバージョンは審査終了後に公開されます。その際は通知をお送りします。"
 
@@ -3553,7 +3574,7 @@ msgstr "ツールバー領域の背景"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。マニフェストの該当項目は toolbar です。"
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr "ツールバー領域の文字とアイコン"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
@@ -3866,14 +3887,17 @@ msgstr "Firefox における拡張機能開発に新たなクロスブラウザ�
 msgid "Learn How"
 msgstr "手順を見る"
 
-msgid "What's New"
-msgstr "最新ニュース"
+msgid "Get Started"
+msgstr "ここからスタート"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "アドオンを登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "拡張機能を登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
 
 msgid "See Tutorial"
 msgstr "チュートリアルを見る"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4017,17 +4041,11 @@ msgstr "あなたが以前再投稿したデザインで、現在審査待ちと
 msgid "Pending Header"
 msgstr "保留中のヘッダー"
 
-msgid "Pending Footer"
-msgstr "保留中のフッター"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
 msgstr "ヘッダー"
-
-msgid "Footer"
-msgstr "フッター"
 
 msgid "Select colors for your Theme."
 msgstr "テーマの配色を選択してください。"
@@ -4043,9 +4061,6 @@ msgstr "背景"
 
 msgid "This is the color of the tabs."
 msgstr "これはタブの背景色です。"
-
-msgid "Preview"
-msgstr "プレビュー"
 
 msgid "Your Theme's Name"
 msgstr "テーマの名前"
@@ -4105,18 +4120,6 @@ msgstr "最大 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG または JPG 形式"
-
-msgid "Select a footer image for your Theme."
-msgstr "テーマのフッター画像を選択してください。"
-
-msgid "3000 &times; 100 pixels"
-msgstr "3,000 × 100 ピクセル"
-
-msgid "Aligned to bottom-left"
-msgstr "左下に位置合わせ"
-
-msgid "Select a different footer image"
-msgstr "別のフッター画像を選択"
 
 msgid "Manage Version {0}"
 msgstr "バージョン {0} を管理"
@@ -4301,29 +4304,32 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 簡単に翻訳"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook による追跡を拒否"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 逆画像検索"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 検索をシンプルに"
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック＆プライバシーを保護"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを楽しむ"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
@@ -4673,9 +4679,6 @@ msgstr "テストパイロットになる"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "実験的なブラウザー機能をいち早く試してみましょう。"
-
-msgid "Get Started"
-msgstr "ここからスタート"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"
@@ -5127,7 +5130,7 @@ msgstr "場違いなバグ報告またはサポートリクエスト"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "現在のところ、AMO はユーザーレビューの投稿者と直接連絡を取る方法を提供していません。"
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5672,7 +5675,7 @@ msgstr "自分自身のアドオンにレビューを残すことはできませ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "アドオンの同一バージョンに複数のレビューを残すことはできません。"
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -5811,15 +5814,6 @@ msgstr "と"
 msgid "Filter by type/action"
 msgstr "種類・アクションによる絞り込み"
 
-msgid "Passed automatic validation"
-msgstr "自動検証を通過しました"
-
-msgid "Failed automatic validation"
-msgstr "自動検証に失敗しました"
-
-msgid "Filter by automatic validation"
-msgstr "自動検証によるフィルター"
-
 msgid "containing"
 msgstr "含む"
 
@@ -5894,6 +5888,9 @@ msgstr "今はスキップ"
 
 msgid "Needs Admin Content Review"
 msgstr "管理者コンテンツ審査が必要"
+
+msgid "Needs Admin Static Theme Review"
+msgstr "管理者静的テーマ審査が必要"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack アドオン"
@@ -6018,29 +6015,41 @@ msgstr "コンテンツを承認"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
+msgid "Static Themes and Legacy Add-ons"
+msgstr "静的テーマと旧式アドオン"
+
+msgid "Static Themes"
+msgstr "静的テーマ"
+
 msgid "Legacy Add-ons"
 msgstr "旧式アドオン"
 
-msgid "New Add-ons ({0})"
-msgstr "新しいアドオン ({0})"
+msgid "New ({0})"
+msgstr "新規 ({0})"
 
-msgid "Add-on Updates ({0})"
-msgstr "アドオンの更新 ({0})"
+msgid "Updates ({0})"
+msgstr "更新 ({0})"
 
-msgid "Add-on Review Log"
-msgstr "アドオンの審査履歴"
+msgid "Review Log"
+msgstr "審査ログ"
 
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Add-on Review Guide"
+msgstr "アドオン審査ガイド"
 
-msgid "Review Guide"
-msgstr "審査ガイド"
+msgid "Theme Review Guide"
+msgstr "テーマ審査ガイド"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動承認されたアドオン"
 
 msgid "Auto Approved Add-ons ({0})"
 msgstr "自動承認されたアドオン ({0})"
+
+msgid "Add-on Review Log"
+msgstr "アドオンの審査履歴"
+
+msgid "Review Guide"
+msgstr "審査ガイド"
 
 msgid "Content Review"
 msgstr "コンテンツ審査"
@@ -6058,8 +6067,8 @@ msgstr "テーマの更新 ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "フラグ付きテーマ ({0})"
 
-msgid "Themes Review Log"
-msgstr "テーマの審査履歴"
+msgid "Lightweight Themes Review Log"
+msgstr "軽量テーマの審査ログ"
 
 msgid "Deleted Themes Log"
 msgstr "削除されたテーマログ"
@@ -6088,8 +6097,8 @@ msgstr "お知らせ"
 msgid "Update message of the day"
 msgstr "今日のメッセージを更新"
 
-msgid "Add-ons with expired information requests"
-msgstr "期限切れの情報請求を伴ったアドオン"
+msgid "Expired Information Requests ({0})"
+msgstr "期限切れとなった情報請求 ({0})"
 
 msgid "An unknown error occurred"
 msgstr "不明なエラーが発生しました"
@@ -6147,6 +6156,15 @@ msgstr "不正報告 ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "低いユーザー評価 ({num})"
 
+msgid "Theme Images"
+msgstr "テーマの画像"
+
+msgid "Rendered Preview"
+msgstr "描画プレビュー"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "このアドオンの詳細"
 
@@ -6158,6 +6176,18 @@ msgstr "表示できる情報が何もありません。開発者が詳細情報
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "審査担当者用ツールダッシュボードへ戻る"
+
+msgid "Reviewer Leaderboard"
+msgstr "審査担当者用ダッシュボード"
+
+msgid "No review points awarded yet."
+msgstr "レビューポイントはまだ付与されていません。"
+
+msgid "Rank"
+msgstr "ランク"
+
+msgid "Score"
+msgstr "スコア"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6199,18 +6229,6 @@ msgstr "レビューは削除前にフラグが立てられました。"
 
 msgid "Undelete"
 msgstr "削除を取り消し"
-
-msgid "Reviewer Leaderboard"
-msgstr "審査担当者用ダッシュボード"
-
-msgid "No review points awarded yet."
-msgstr "レビューポイントはまだ付与されていません。"
-
-msgid "Rank"
-msgstr "ランク"
-
-msgid "Score"
-msgstr "スコア"
 
 msgid "Save"
 msgstr "保存"
@@ -6390,6 +6408,9 @@ msgstr "管理者コード審査フラグをクリア"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "管理者コンテンツ審査フラグをクリア"
+
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "管理者静的テーマ審査フラグをクリア"
 
 msgid "(admin)"
 msgstr "(管理者)"
@@ -6592,21 +6613,21 @@ msgstr "却下もしくは未審査"
 msgid "[status:%s]"
 msgstr "[状態:%s]"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "新しいアドオン ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "更新 {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "管理者審査 ({0})"
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "レーティング審査 ({0})"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "自動承認されたアドオン ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "自動承認済み ({0})"
+
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "期限切れとなった情報請求 ({0})"
 
 msgid "Flagged"
 msgstr "フラグ付き"

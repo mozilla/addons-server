@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-01-29 17:53+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-04-06 06:56+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -669,7 +669,7 @@ msgid "Works with {app} {min} - {max}"
 msgstr "თავსებადია {app} ვერსიებთან: {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "თავსებადია {app}"
+msgstr "თავსებადია {app}-თან"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "მხოლოდ Firefox-ზე — ჩამოტვირთეთ Firefox!"
@@ -687,7 +687,7 @@ msgid "Add to Favorites"
 msgstr "რჩეულებში დამატება"
 
 msgid "Remove from Favorites"
-msgstr "რჩეულებიდან ამოღება"
+msgstr "რჩეულებიდან მოცილება"
 
 msgid "Pending"
 msgstr "დგინდება"
@@ -699,13 +699,13 @@ msgid "Comment"
 msgstr "კომენტარი"
 
 msgid "Remove this add-on from the collection"
-msgstr "ამ დამატების კრებულიდან ამოღება"
+msgstr "ამ დამატების კრებულიდან ამოშლა"
 
 msgid "Remove"
-msgstr "ამოღება"
+msgstr "ამოშლა"
 
 msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის მოხალისეებიდან ამოღება"
+msgstr "ამ მომხმარებლის მოხალისეებიდან ამოშლა"
 
 msgid "An email address is required."
 msgstr "ელფოსტის მისამართი საჭიროა."
@@ -720,7 +720,7 @@ msgid "Add to favorites"
 msgstr "რჩეულებში დამატება"
 
 msgid "Remove from favorites"
-msgstr "რჩეულებიდან ამოღება"
+msgstr "რჩეულებიდან მოცილება"
 
 msgid "Stop following"
 msgstr "გამოწერის გაუქმება"
@@ -763,7 +763,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს შესაძლებლობა დროებით გამორთულია. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "Remove this localization"
-msgstr "ამ ლოკალიზაციის წაშლა"
+msgstr "ამ თარგმანის ამოშლა"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} პირველმა მოინახულა ეს გვერდი."

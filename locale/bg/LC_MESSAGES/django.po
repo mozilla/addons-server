@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
-"PO-Revision-Date: 2018-02-02 13:41+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"PO-Revision-Date: 2018-03-28 12:47+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -38,6 +38,9 @@ msgstr "Това потребителско име вече съществува
 
 msgid "Images must be either PNG or JPG."
 msgstr "Картинките трябва да са PNG или JPG."
+
+msgid "Images cannot be animated."
+msgstr "Изображенията не могат да са анимирани."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -997,9 +1000,16 @@ msgstr "Това URL вече се използва от друг списък"
 msgid "Icons must be either PNG or JPG."
 msgstr "Иконките трябва да са PNG или JPG."
 
+msgid "Icons cannot be animated."
+msgstr "Иконките не могат да са анимирани."
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Това име вече се използва от друг ваш списък."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Това име не може да бъде използвано."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -1992,16 +2002,20 @@ msgid "Content rejected"
 msgstr "{addon} {version} отказана."
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Поискана е повече информация"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Поискана е повече информация"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Отговор от разработчик на {addon} {version}."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Поискана е повече информация"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2366,8 +2380,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Приложение"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Изпращане"
 
 msgid "Persona"
 msgstr "Декорация"
@@ -2404,6 +2419,10 @@ msgstr ""
 
 msgid "Theme Review"
 msgstr ""
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Модерирани рецензии"
 
 msgid "New Search Provider Review"
 msgstr ""
@@ -2730,12 +2749,6 @@ msgstr "Не може да публикувате добавки с guid, зав
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Icons cannot be animated."
-msgstr "Иконките не могат да са анимирани."
-
-msgid "Images cannot be animated."
-msgstr "Изображенията не могат да са анимирани."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Изображенията не трябва да са по-големи от %dKB."
@@ -2967,6 +2980,16 @@ msgstr "Редактиране"
 
 msgid "None"
 msgstr "Никакъв"
+
+msgid "Preview"
+msgstr "Преглед"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Публикувани версии"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "Автори и лицензи"
@@ -3505,6 +3528,10 @@ msgstr ""
 msgid "Version Submitted for Review"
 msgstr "Версията е изпратена за рецензия"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Версията е изпратена"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3649,7 +3676,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -3970,14 +3997,18 @@ msgstr "Има нов стандарт за разработка на добав
 msgid "Learn How"
 msgstr "Научете как"
 
-msgid "What's New"
-msgstr "Новото в това издание"
+msgid "Get Started"
+msgstr ""
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Имате готова добавка? Прочетете нашите инструкции за процеса на изпращане."
 
 msgid "See Tutorial"
 msgstr "Вижте уроците"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4123,16 +4154,10 @@ msgstr ""
 msgid "Pending Header"
 msgstr ""
 
-msgid "Pending Footer"
-msgstr ""
-
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
-
-msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4149,9 +4174,6 @@ msgstr ""
 
 msgid "This is the color of the tabs."
 msgstr "Това е цветът на разделите."
-
-msgid "Preview"
-msgstr "Преглед"
 
 msgid "Your Theme's Name"
 msgstr "Име на темата"
@@ -4211,18 +4233,6 @@ msgstr "максимално 300 КБ"
 
 msgid "PNG or JPG"
 msgstr "PNG или JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 пиксела"
-
-msgid "Aligned to bottom-left"
-msgstr ""
-
-msgid "Select a different footer image"
-msgstr ""
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4409,28 +4419,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -4782,9 +4795,6 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -5240,7 +5250,7 @@ msgstr ""
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5782,7 +5792,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -5922,15 +5932,6 @@ msgstr ""
 msgid "Filter by type/action"
 msgstr ""
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr ""
 
@@ -6010,6 +6011,10 @@ msgstr ""
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Изпращане на рецензия"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Административна рецензия"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6144,6 +6149,14 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Мои добавки"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Препоръчани теми"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Мои добавки"
 
@@ -6151,21 +6164,23 @@ msgstr "Мои добавки"
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "Нова добавка ({0})"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "Обновявания на добавката"
-
-msgid "Add-on Review Log"
-msgstr "Журнал на рецензиите"
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Updates ({0})"
+msgstr "Обновена ({0})"
 
 #, fuzzy
-msgid "Review Guide"
+msgid "Review Log"
+msgstr "Бележка от рецензията"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Рецензия на добавката"
+
+#, fuzzy
+msgid "Theme Review Guide"
 msgstr "Насоки за писане на отзиви"
 
 #, fuzzy
@@ -6178,6 +6193,13 @@ msgstr "Добавки за Andorid"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Нова добавка ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Журнал на рецензиите"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Насоки за писане на отзиви"
 
 #, fuzzy
 msgid "Content Review"
@@ -6204,8 +6226,8 @@ msgid "Flagged Themes ({0})"
 msgstr "Сигнализирани теми ({0})"
 
 #, fuzzy
-msgid "Themes Review Log"
-msgstr "Модерирани рецензии"
+msgid "Lightweight Themes Review Log"
+msgstr "Леки теми"
 
 #, fuzzy
 msgid "Deleted Themes Log"
@@ -6238,7 +6260,7 @@ msgid "Update message of the day"
 msgstr ""
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Поискана е повече информация"
 
 msgid "An unknown error occurred"
@@ -6299,6 +6321,17 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr "Лоши отзиви ({num})"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "Темата е изтрита."
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Изтрити рецензии"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Повече за добавката"
 
@@ -6309,6 +6342,18 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Тук няма нищо! Разработчикът не е дал допълнителна информация."
 
 msgid "Return to the Reviewer Tools dashboard"
+msgstr ""
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
 msgstr ""
 
 #. "Filter" is a button label (verb)
@@ -6350,18 +6395,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
 msgstr ""
 
 msgid "Save"
@@ -6444,9 +6477,8 @@ msgstr ""
 msgid "Add-on Policy"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Насоки за писане на отзиви"
+msgstr "Ръководство за рецензенти"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -6519,9 +6551,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr "Табло"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Още действия:"
+msgstr "Още действия"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -6549,6 +6580,10 @@ msgstr "Административна рецензия"
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
 msgstr "Изпращане на рецензия"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "Административна рецензия"
 
 msgid "(admin)"
 msgstr ""
@@ -6753,31 +6788,31 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Нова добавка ({0})"
-msgstr[1] "Нови добавки ({0})"
-
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Обновена ({0})"
 msgstr[1] "Обновени ({0})"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Модерирана рецензия ({0})"
 msgstr[1] "Модерирани рецензии ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "Нова добавка ({0})"
+msgstr[1] "Нова добавка ({0})"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Поискана е повече информация"
+msgstr[1] "Поискана е повече информация"
 
 # 80%
 # 100%
@@ -7224,9 +7259,8 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "запознайте се с <b>добавките</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Изтегляне"
+msgstr "Изтегляне на Firefox"
 
 #, fuzzy
 msgid "Android Browser"

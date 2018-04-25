@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-23 15:38+0000\n"
+"POT-Creation-Date: 2018-04-23 05:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -35,6 +35,9 @@ msgstr "Ово корисничко име је већ у употреби."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Слике морају бити или PNG или JPG формата."
+
+msgid "Images cannot be animated."
+msgstr "Слике не могу бити покретне."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1021,9 +1024,16 @@ msgstr "Овај url је у употреби од стране друге ко�
 msgid "Icons must be either PNG or JPG."
 msgstr "Иконице морају бити или PNG или JPG формата."
 
+msgid "Icons cannot be animated."
+msgstr "Иконице не могу бити покретне."
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Овај url је у употреби од стране друге колекције"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ово име не може бити употребљено."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2041,16 +2051,20 @@ msgid "Content rejected"
 msgstr "одбијено"
 
 #, fuzzy
-msgid "{addon} information request removed."
+msgid "{addon} information request altered or removed by admin."
 msgstr "Захтеване додатне информације"
 
 #, fuzzy
-msgid "Information request removed"
+msgid "Information request altered"
 msgstr "Захтеване додатне информације"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Коментар на {addon} {version}."
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "Захтеване додатне информације"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2448,8 +2462,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-msgid "App"
-msgstr "Апликација"
+#, fuzzy
+msgid "Static Theme"
+msgstr "Поднеси тему"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2489,6 +2504,10 @@ msgstr "Ажурирана рецензија језичког пакета"
 
 msgid "Theme Review"
 msgstr "Рецензија теме"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "Детаљи теме"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -2813,12 +2832,6 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Icons cannot be animated."
-msgstr "Иконице не могу бити покретне."
-
-msgid "Images cannot be animated."
-msgstr "Слике не могу бити покретне."
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Слике не могу бити веће од %dKB."
@@ -3052,6 +3065,16 @@ msgstr "Основне информације"
 
 msgid "None"
 msgstr "Нема"
+
+msgid "Preview"
+msgstr "Приказ"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "Погледајте друге верзије"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "Управљајте Ауторима и лиценцама"
@@ -3611,6 +3634,10 @@ msgstr "Готови сте!"
 msgid "Version Submitted for Review"
 msgstr "Белешке о верзији / Белешке за рецензента"
 
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "Белешке о верзији"
+
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
@@ -3769,7 +3796,7 @@ msgstr ""
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-msgid "Toolbar area text icons"
+msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
@@ -4116,15 +4143,18 @@ msgid "Learn How"
 msgstr "Сазнајте више"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Последња верзија:"
+msgid "Get Started"
+msgstr "Како почети"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Погледајте све"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4278,17 +4308,11 @@ msgstr "Ваш претходно поднет дизајн, који је на 
 msgid "Pending Header"
 msgstr "Нерешено заглавље"
 
-msgid "Pending Footer"
-msgstr "Подножје на чекању"
-
 msgid "You may update your theme design here once it has been approved."
 msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
 
 msgid "Header"
 msgstr "Заглавље"
-
-msgid "Footer"
-msgstr "Подножје"
 
 msgid "Select colors for your Theme."
 msgstr "Одаберите боје за Вашу тему."
@@ -4304,9 +4328,6 @@ msgstr "Позадина"
 
 msgid "This is the color of the tabs."
 msgstr "Ово је боја језичака."
-
-msgid "Preview"
-msgstr "Приказ"
 
 msgid "Your Theme's Name"
 msgstr "Име теме"
@@ -4366,18 +4387,6 @@ msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr "PNG или JPG"
-
-msgid "Select a footer image for your Theme."
-msgstr "Изаберите слику подножја за тему."
-
-msgid "3000 &times; 100 pixels"
-msgstr "3000 &times; 100 пиксела"
-
-msgid "Aligned to bottom-left"
-msgstr "Поравнато на доле-лево"
-
-msgid "Select a different footer image"
-msgstr "Изаберите другу слику за подножје"
 
 msgid "Manage Version {0}"
 msgstr "Управљај верзијом {0}"
@@ -4578,28 +4587,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "See an interesting picture on the Web and want to learn more about it? Try this image search tool."
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
@@ -4955,10 +4967,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Како почети"
 
 msgid "About Mozilla Add-ons"
 msgstr "О Mozilla додацима"
@@ -5440,7 +5448,7 @@ msgid "Other (provides a pop-up prompt for information)"
 msgstr "Остало (пружа искачућу линију за информације)"
 
 #, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Тренутно, AMO не обезбеђује механизам да директну комуникацију са рецензентом, али ова опција се истражује и разматра за будуће надоградње."
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -5993,7 +6001,7 @@ msgstr "неко пише рецензију на мој додатак"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Не можете више датотека отпремити за ову верзију."
 
-msgid "This rating can't flagged because it has no review text."
+msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 #, fuzzy
@@ -6132,15 +6140,6 @@ msgstr "и"
 msgid "Filter by type/action"
 msgstr "Филтрирај по типу/радњи"
 
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
 msgid "containing"
 msgstr "који садрже"
 
@@ -6221,6 +6220,10 @@ msgstr "Прескочи за сада"
 #, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "Извршити рецензију"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "Рецензија администратора"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack додатак"
@@ -6365,26 +6368,36 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
+msgid "Static Themes and Legacy Add-ons"
+msgstr "Моји додаци"
+
+#, fuzzy
+msgid "Static Themes"
+msgstr "Истакнуте теме"
+
+#, fuzzy
 msgid "Legacy Add-ons"
 msgstr "Моји додаци"
 
 #, fuzzy
-msgid "New Add-ons ({0})"
+msgid "New ({0})"
 msgstr "Сви моји додаци"
 
 #, fuzzy
-msgid "Add-on Updates ({0})"
-msgstr "Ажурирања додатка"
-
-msgid "Add-on Review Log"
-msgstr "Дневник рецензија додатка"
-
-msgid "Signed Beta Files Log"
-msgstr ""
+msgid "Updates ({0})"
+msgstr "Ажурирано {0}"
 
 #, fuzzy
-msgid "Review Guide"
-msgstr "Водич за рецензенте"
+msgid "Review Log"
+msgstr "Датум рецензије"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "Пуна рецензија додатка"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Ред прегледања тема"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6393,6 +6406,13 @@ msgstr "Додаци за Android"
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
 msgstr "Сви моји додаци"
+
+msgid "Add-on Review Log"
+msgstr "Дневник рецензија додатка"
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "Водич за рецензенте"
 
 #, fuzzy
 msgid "Content Review"
@@ -6417,7 +6437,7 @@ msgid "Flagged Themes ({0})"
 msgstr "Означене теме"
 
 #, fuzzy
-msgid "Themes Review Log"
+msgid "Lightweight Themes Review Log"
 msgstr "Рецензија теме"
 
 #, fuzzy
@@ -6452,7 +6472,7 @@ msgid "Update message of the day"
 msgstr "Ажурирај поруку дана"
 
 #, fuzzy
-msgid "Add-ons with expired information requests"
+msgid "Expired Information Requests ({0})"
 msgstr "Захтеване додатне информације"
 
 msgid "An unknown error occurred"
@@ -6517,6 +6537,17 @@ msgstr "Извештаји о злостављању за {addon} ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "({num}) уређена рецензија"
 
+#, fuzzy
+msgid "Theme Images"
+msgstr "назив теме"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "Обрисане критике"
+
+msgid "Background file {0} of {1} - {2}"
+msgstr ""
+
 msgid "More about this add-on"
 msgstr "Више о овом додатку"
 
@@ -6530,6 +6561,18 @@ msgstr "Ту нема ништа за видети! Програмер није 
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Врати се на почетну страницу Алатке уредника"
+
+msgid "Reviewer Leaderboard"
+msgstr "Табела лидере рецезената"
+
+msgid "No review points awarded yet."
+msgstr "Још нема награђених поена за рецензију."
+
+msgid "Rank"
+msgstr "Позиција"
+
+msgid "Score"
+msgstr "Резултат"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6572,18 +6615,6 @@ msgstr "Рецензија је означена пре брисања."
 
 msgid "Undelete"
 msgstr "Поништи брисање"
-
-msgid "Reviewer Leaderboard"
-msgstr "Табела лидере рецезената"
-
-msgid "No review points awarded yet."
-msgstr "Још нема награђених поена за рецензију."
-
-msgid "Rank"
-msgstr "Позиција"
-
-msgid "Score"
-msgstr "Резултат"
 
 msgid "Save"
 msgstr "Сачувај"
@@ -6775,6 +6806,10 @@ msgstr "Уклони ознаку за рецензију администрат
 
 #, fuzzy
 msgid "Clear Admin Content Review Flag"
+msgstr "Уклони ознаку за рецензију администратора"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
 msgstr "Уклони ознаку за рецензију администратора"
 
 msgid "(admin)"
@@ -6980,27 +7015,28 @@ msgid "[status:%s]"
 msgstr "Статус:"
 
 #, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Сви моји додаци"
-msgstr[1] "Сви моји додаци"
-
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Ажурирано {0}"
 msgstr[1] "Ажурирано {0}"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Конторлисан преглед ({0})"
 msgstr[1] "Конторлисана прегледа ({0})"
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
 msgstr[0] "Сви моји додаци"
 msgstr[1] "Сви моји додаци"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "Више тражених информација: {0}"
+msgstr[1] "Више тражених информација: {0}"
 
 msgid "Flagged"
 msgstr "Означено"

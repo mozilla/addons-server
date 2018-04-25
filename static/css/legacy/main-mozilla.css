@@ -2011,7 +2011,6 @@ h2.compat-heading a {
 
 
 /* Listed add-ons */
-.install-beta,
 .visit-listed {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -2041,29 +2040,6 @@ div.visit-listed-popup {
     background-color: #fff;
 }
 /* END Listed add-ons */
-
-/* Beta Channel */
-
-.install-beta {
-    width: 70%;
-    margin: 0 auto;
-}
-
-.install-beta dl {
-    display: table;
-    margin-bottom: 0;
-}
-
-.install-beta dt, .install-beta dd {
-    display: table-cell;
-    padding-right: 1em;
-}
-
-.install-beta {
-    display: none;
-}
-
-/* END Beta Channel */
 
 /* Homepage */
 .collections-sidebar > img {

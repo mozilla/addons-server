@@ -76,11 +76,9 @@ def _get_compiled_css_url(item):
     Compresses a preprocess file and returns its relative compressed URL.
 
     :param item:
-        Name of the less/sass/stylus file to compress into css.
+        Name of the less file to compress into css.
     """
-    if ((item.endswith('.less') and
-            getattr(settings, 'LESS_PREPROCESS', False)) or
-            item.endswith(('.sass', '.scss', '.styl'))):
+    if item.endswith('.less') and getattr(settings, 'LESS_PREPROCESS', False):
         compile_css(item)
         return item + '.css'
     return item
@@ -146,13 +144,6 @@ def compile_css(item):
         if item.endswith('.less'):
             with open(path_dst, 'w') as output:
                 subprocess.Popen([settings.LESS_BIN, path_src], stdout=output)
-        elif item.endswith(('.sass', '.scss')):
-            with open(path_dst, 'w') as output:
-                subprocess.Popen([settings.SASS_BIN, path_src], stdout=output)
-        elif item.endswith('.styl'):
-            subprocess.call('%s --include-css --include %s < %s > %s' %
-                            (settings.STYLUS_BIN, os.path.dirname(path_src),
-                             path_src, path_dst), shell=True)
 
 
 def build_ids(request):

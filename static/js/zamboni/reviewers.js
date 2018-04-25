@@ -35,6 +35,10 @@
         initExtraReviewActions();
     }
 
+    if ($('.background').length) {
+        initBackgroundImagesForTheme();
+    }
+
     if($('#monthly.highcharts-container').length) {
         initPerformanceStats();
     }
@@ -127,12 +131,13 @@ function initReviewActions() {
             $current.toggle(show);
 
             if(show) {
+              var title;
               if (d.is_user == 2) {
                 /* 2 is when the editor has reached the lock limit */
-                var title = d.current_name
+                title = d.current_name;
               } else {
-                var title = format(gettext('{name} was viewing this page first.'),
-                                           {name: d.current_name});
+                title = format(gettext('{name} was viewing this page first.'),
+                                       {name: d.current_name});
               }
               $current_div = $current.filter('div');
               $current_div.find('strong').remove();
@@ -142,7 +147,7 @@ function initReviewActions() {
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
     }
-    if (!(z.capabilities.localStorage && window.localStorage['dont_poll'])) {
+    if (!(z.capabilities.localStorage && window.localStorage.dont_poll)) {
         check_currently_viewing();
     }
 
@@ -193,11 +198,29 @@ function initReviewActions() {
     check_receipt();
 }
 
+function callReviewersAPI(apiUrl, method, data, successCallback) {
+    var apiToken = $('form.more-actions').data('api-token');
+    if (data) {
+        data = JSON.stringify(data);
+    }
+    $.ajax({
+        url: apiUrl,
+        data: data,
+        type: method,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", 'Bearer ' + apiToken);
+        },
+        processData: false,
+        contentType: 'application/json',
+        success: successCallback,
+     });
+}
+
 function initExtraReviewActions() {
     /* Inline actions that should trigger a XHR and modify the form element
      * accordingly.
      */
-    // Checkbox-style actions.
+    // Checkbox-style actions. Only for subscribe/unsubscribe.
     $('#notify_new_listed_versions').click(_pd(function() {
         var $input = $(this).prop('disabled', true);  // Prevent double-send.
         var checked = !$input.prop('checked');  // It's already changed.
@@ -207,47 +230,21 @@ function initExtraReviewActions() {
         } else {
             apiUrl = $input.data('api-url-subscribe');
         }
-        var token = $input.parents('form.more-actions').data('api-token');
-        $.ajax({
-            url: apiUrl,
-            type: 'post',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
-            },
-            processData: false,
-            contentType: 'application/json',
-            success: function() {
-                $input.prop('disabled', false);
-                $input.prop('checked', !checked)
-            },
-         });
+        callReviewersAPI(apiUrl, 'post', null, function() {
+            $input.prop('disabled', false);
+            $input.prop('checked', !checked);
+        });
     }));
 
-    // One-off-style buttons
+    // One-off-style buttons.
     $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request').click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
-        var token = $button.parents('form.more-actions').data('api-token');
-        var flagType = $button.data('api-flag');
-        var data = null;
-        if (flagType) {
-            data = JSON.stringify({
-                flag_type: flagType,
-            });
-        }
-        $.ajax({
-            url: apiUrl,
-            data: data,
-            type: 'post',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
-            },
-            processData: false,
-            contentType: 'application/json',
-            success: function() {
-                $button.remove();
-            },
-         });
+        var data = $button.data('api-data') || null;
+        var method = $button.data('api-method') || 'post';
+        callReviewersAPI(apiUrl, method, data, function() {
+            $button.remove();
+        });
     }));
 
     // Toggle-style buttons.
@@ -255,21 +252,25 @@ function initExtraReviewActions() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var $other_button = $($button.data('toggle-button-selector'));
         var apiUrl = $button.data('api-url');
-        var token = $button.parents('form.more-actions').data('api-token');
-        $.ajax({
-            url: apiUrl,
-            type: 'post',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader ("Authorization", 'Bearer ' + token);
-            },
-            processData: false,
-            contentType: 'application/json',
-            success: function() {
-                $button.prop('disabled', false).parents('li').addClass('hidden').hide();
-                $other_button.parents('li').removeClass('hidden').show();
-            },
+        var data = $button.data('api-data') || null;
+        var method = $button.data('api-method') || 'post';
+        callReviewersAPI(apiUrl, method, data, function() {
+            $button.prop('disabled', false).parents('li').addClass('hidden').hide();
+            $other_button.parents('li').removeClass('hidden').show();
          });
     }));
+}
+
+function initBackgroundImagesForTheme() {
+    /* $('div.zoombox').zoomBox(); */
+    $('div.background img').on('load', function(e) {
+        if (!e.target.complete) return;
+        var $target = $(e.target);
+        $target.attr('height', e.target.naturalHeight);
+        $target.attr('width', e.target.naturalWidth);
+        $target.parent().zoomBox();
+    });
+    $('div.background img').trigger('load');
 }
 
 function insertAtCursor(textarea, text) {
@@ -326,7 +327,7 @@ function initQueue() {
     var addon_ids = $.map($('.addon-row'), function(el) {
             return $(el).attr('data-addon');
         });
-    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+    if(!(('localStorage' in window) && window.localStorage.dont_poll)) {
         (function checkCurrentlyViewing() {
             $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
                 $('#addon-queue .locked').removeClass('locked')
@@ -381,7 +382,7 @@ function initQueue() {
                 }
             });
             return true;
-        };;
+        };
 
     $('.addon-version-notes a').each(function(i, el) {
         $(pop).popup(el, { pointTo: el, callback: loadNotes, width: 500});
@@ -394,7 +395,7 @@ function initQueue() {
 }
 
 function initQueueSearch(doc) {
-    $('.toggle-queue-search').click(_pd(function(e) {
+    $('.toggle-queue-search').click(_pd(function() {
         $('.advanced-search').slideToggle();
     }));
 
@@ -469,10 +470,10 @@ function initPerformanceStats() {
         });
 
         $.each(data, function(k, vals) {
-            labels.push(vals['label']);
+            labels.push(vals.label);
             $.each(vals, function(group, amount){
                 if(groups[group]){
-                    data_points[group]['data'].push(parseFloat(amount));
+                    data_points[group].data.push(parseFloat(amount));
                 }
             });
         });
@@ -481,8 +482,7 @@ function initPerformanceStats() {
             chart_series.push(vals);
         });
 
-        var $c = container,
-            chart = new Highcharts.Chart({
+        new Highcharts.Chart({
                 chart: {
                     renderTo: container[0],
                     defaultSeriesType: 'line',

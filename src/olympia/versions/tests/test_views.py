@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
@@ -35,45 +33,9 @@ class TestViews(TestCase):
             version_kw={'version': '1.0'})
         self.addon.current_version.update(created=self.days_ago(3))
         self.url_list = reverse('addons.versions', args=[self.addon.slug])
-        self.url_list_betas = reverse(
-            'addons.beta-versions', args=[self.addon.slug])
         self.url_detail = reverse(
             'addons.versions',
             args=[self.addon.slug, self.addon.current_version.version])
-
-    @mock.patch.object(views, 'PER_PAGE', 1)
-    @override_switch('beta-versions', active=True)
-    def test_version_detail_with_beta(self):
-        version = version_factory(addon=self.addon, version='2.0')
-        version.update(created=self.days_ago(2))
-        version = version_factory(addon=self.addon, version='2.1b',
-                                  file_kw={'status': amo.STATUS_BETA})
-        version.update(created=self.days_ago(1))
-        version_factory(addon=self.addon, version='2.2b',
-                        file_kw={'status': amo.STATUS_BETA})
-        urls = [(v.version, reverse('addons.versions',
-                                    args=[self.addon.slug, v.version]))
-                for v in self.addon.versions.all()]
-
-        version, url = urls[0]
-        assert version == '2.2b'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list_betas + '?page=1#version-%s' % version)
-
-        version, url = urls[1]
-        assert version == '2.1b'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list_betas + '?page=2#version-%s' % version)
-
-        version, url = urls[2]
-        assert version == '2.0'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
-
-        version, url = urls[3]
-        assert version == '1.0'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
 
     @mock.patch.object(views, 'PER_PAGE', 1)
     def test_version_detail(self):
@@ -106,9 +68,8 @@ class TestViews(TestCase):
                                            args=[self.addon.slug, bad_pk]))
         assert response.status_code == 404
 
-    def get_content(self, beta=False):
-        url = self.url_list_betas if beta else self.url_list
-        response = self.client.get(url)
+    def get_content(self):
+        response = self.client.get(self.url_list)
         assert response.status_code == 200
         return PyQuery(response.content)
 
@@ -164,35 +125,6 @@ class TestViews(TestCase):
         assert len(doc('.version')) == 1
         assert doc('.version').attr('id') == 'version-%s' % version
 
-    def test_version_list_does_not_show_betas_by_default(self):
-        version = self.addon.current_version.version
-        version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
-            version='2.1b')
-        doc = self.get_content()
-        assert len(doc('.version')) == 1
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    @override_switch('beta-versions', active=True)
-    def test_version_list_beta_without_any_beta_version(self):
-        doc = self.get_content(beta=True)
-        assert len(doc('.version')) == 0
-
-    @override_switch('beta-versions', active=True)
-    def test_version_list_beta_shows_beta_version(self):
-        version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
-            version='2.1b')
-        doc = self.get_content(beta=True)
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_version_list_beta_shows_nothing(self):
-        version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
-            version='2.1b')
-        doc = self.get_content(beta=True)
-        assert len(doc('.version')) == 0
-
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.make_addon_unlisted(self.addon)
@@ -226,12 +158,8 @@ class TestDownloadsBase(TestCase):
         super(TestDownloadsBase, self).setUp()
         self.addon = Addon.objects.get(id=5299)
         self.file = File.objects.get(id=33046)
-        self.beta_file = File.objects.get(id=64874)
         self.file_url = reverse('downloads.file', args=[self.file.id])
         self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
-        self.latest_beta_url = reverse('downloads.latest',
-                                       kwargs={'addon_id': self.addon.slug,
-                                               'beta': '-beta'})
 
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
@@ -266,10 +194,8 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     def setUp(self):
         super(TestDownloadsUnlistedVersions, self).setUp()
         self.make_addon_unlisted(self.addon)
-        # Remove the beta version or it's going to confuse things
-        self.addon.versions.filter(files__status=amo.STATUS_BETA)[0].delete()
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -278,7 +204,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: True)
@@ -287,7 +213,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         self.assert_served_internally(self.client.get(self.file_url), False)
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -296,7 +222,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -343,30 +269,10 @@ class TestDownloads(TestDownloadsBase):
         url = self.file_url + self.file.filename
         self.assert_served_by_cdn(self.client.get(url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
-    def test_beta_file(self):
-        url = reverse('downloads.file', args=[self.beta_file.id])
-        self.assert_served_by_cdn(self.client.get(url),
-                                  file_=self.beta_file)
-
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
-    @override_switch('beta-versions', active=True)
-    def test_public_addon_beta_file(self):
-        self.file.update(status=amo.STATUS_BETA)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        self.assert_served_by_cdn(self.client.get(self.file_url))
-
-    @override_switch('beta-versions', active=True)
-    def test_beta_addon_beta_file(self):
-        self.addon.update(status=amo.STATUS_BETA)
-        self.file.update(status=amo.STATUS_BETA)
-        self.assert_served_locally(self.client.get(self.file_url))
-
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
 
@@ -460,22 +366,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert self.addon.current_version
         self.assert_served_by_cdn(self.client.get(self.latest_url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
-    @override_switch('beta-versions', active=True)
-    def test_beta(self):
-        self.assert_served_by_cdn(self.client.get(self.latest_beta_url),
-                                  file_=self.beta_file)
-
-    def test_beta_unreviewed_addon(self):
-        self.addon.status = amo.STATUS_PENDING
-        self.addon.save()
-        assert self.client.get(self.latest_beta_url).status_code == 404
-
-    def test_beta_no_files(self):
-        self.beta_file.update(status=amo.STATUS_PUBLIC)
-        assert self.client.get(self.latest_beta_url).status_code == 404
-
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
@@ -590,7 +480,7 @@ class TestDownloadSource(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -599,7 +489,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: True)
@@ -608,7 +498,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
@@ -617,7 +507,7 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
