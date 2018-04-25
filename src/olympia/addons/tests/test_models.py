@@ -17,6 +17,7 @@ import pytest
 from mock import Mock, patch
 
 from olympia import amo, core
+from olympia.addons import models as addons_models
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
@@ -160,6 +161,9 @@ class TestCleanSlug(TestCase):
         b.clean_slug()
         assert b.slug.startswith('some-spaces-and'), b.slug
 
+    @patch.object(addons_models, 'MAX_SLUG_INCREMENT', 99)
+    @patch.object(
+        addons_models, 'SLUG_INCREMENT_SUFFIXES', set(range(1, 99 + 1)))
     def test_clean_slug_worst_case_scenario(self):
         long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
