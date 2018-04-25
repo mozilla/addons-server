@@ -39,23 +39,22 @@ urlpatterns = [
     # Personas are now Themes.
     url('^personas/(?P<category>[^ /]+)?$',
         views.legacy_theme_redirects),
-    # TODO (percona): Rename this to `browse.themes`.
-    url('^themes/(?P<category>[^ /]+)?$', views.personas,
+    url('^themes/(?:(?P<category>[^ /]+)/)?$', views.personas,
         name='browse.personas'),
 
     # Themes are now Complete Themes.
     url('^themes/(?P<category_name>[^/]+)/format:rss$',
         views.legacy_theme_redirects),
-    # TODO (percona): Rename this to `browse.complete-themes`.
     url('^complete-themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
     url('^complete-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ThemeCategoriesRss(), name='browse.themes.rss'),
 
     # This won't let you browse any themes but detail page needs the url.
-    url('^static-themes/(?P<category>[^/]+)?$',
+    url('^static-themes/(?:(?P<category>[^/]+)/)?$',
         lambda r, category: redirect(
-            reverse('browse.personas', kwargs={'category': category or ''})),
+            reverse('browse.personas',
+                    kwargs=({'category': category} if category else {}))),
         name='browse.static-themes'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
