@@ -38,7 +38,7 @@ ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
                    deleted=amo.LOG.DELETE_RATING)
 
 
-class RatingModerationLogForm(happyforms.Form):
+class RatingModerationLogForm(forms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False,
@@ -69,9 +69,6 @@ class BetaSignedLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
-=======
-class ReviewLogForm(happyforms.Form):
->>>>>>> upstream/master
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False, label=_(u'and'))
