@@ -744,7 +744,7 @@ class TestReviewerScore(TestCase):
         with self.assertNumQueries(0):
             ReviewerScore.get_recent(self.user)
 
-        with self.assertNumQueries(3):
+        with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(0):
             ReviewerScore.get_leaderboards(self.user)
@@ -761,7 +761,7 @@ class TestReviewerScore(TestCase):
             ReviewerScore.get_total(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
-        with self.assertNumQueries(3):
+        with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)

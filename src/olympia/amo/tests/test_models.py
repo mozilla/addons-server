@@ -1,6 +1,7 @@
 import mock
 import pytest
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 from mock import Mock
@@ -29,13 +30,21 @@ class ManualOrderTest(TestCase):
 
 
 def test_skip_cache():
-    assert not getattr(amo_models._locals, 'skip_cache', False)
+    assert (
+        getattr(amo_models._locals, 'skip_cache') is
+        not settings.CACHE_MACHINE_ENABLED)
+
+    setattr(amo_models._locals, 'skip_cache', False)
+
     with amo_models.skip_cache():
         assert amo_models._locals.skip_cache
         with amo_models.skip_cache():
             assert amo_models._locals.skip_cache
         assert amo_models._locals.skip_cache
+
     assert not amo_models._locals.skip_cache
+
+    setattr(amo_models._locals, 'skip_cache', settings.CACHE_MACHINE_ENABLED)
 
 
 def test_use_master():

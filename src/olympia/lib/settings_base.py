@@ -1006,6 +1006,8 @@ MINIFY_BUNDLES = {
 
 
 # Caching
+CACHE_MACHINE_ENABLED = True
+
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:%s:' % build_id
 KEY_PREFIX = CACHE_PREFIX
