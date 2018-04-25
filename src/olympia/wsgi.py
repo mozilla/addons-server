@@ -44,8 +44,9 @@ def application(env, start_response):
 
 # Initialize Newrelic if we configured it
 newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
+newrelic_uses_environment = os.environ.get('NEW_RELIC_LICENSE_KEY', None)
 
-if newrelic_ini:
+if newrelic_ini or newrelic_uses_environment:
     import newrelic.agent
     try:
         newrelic.agent.initialize(newrelic_ini)
