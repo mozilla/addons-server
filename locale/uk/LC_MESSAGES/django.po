@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-24 10:38+0000\n"
+"PO-Revision-Date: 2018-04-25 07:11+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2030,13 +2030,11 @@ msgstr "{addon} {version} вміст відхилено."
 msgid "Content rejected"
 msgstr "Вміст відхилено"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Запит інформації для {addon} вилучено."
+msgstr "Запит інформації для {addon} змінено або вилучено адміном."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Запит інформації вилучено"
+msgstr "Запит інформації змінено"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Запит інформації очищено розробником для {addon} {version}."
@@ -2405,9 +2403,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Представити тему"
+msgstr "Статична тема"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2445,9 +2442,8 @@ msgstr "Перевірка оновленого мовного пакету"
 msgid "Theme Review"
 msgstr "Перевірка теми"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Тема (Статична)"
+msgstr "Перегляд теми (Статична)"
 
 msgid "New Search Provider Review"
 msgstr "Нова перевірка провайдера пошуку"
@@ -3002,9 +2998,8 @@ msgstr "Жодного"
 msgid "Preview"
 msgstr "Попередній перегляд"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Опубліковані версії"
+msgstr "Перегляд оприлюдненої версії"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Попередній перегляд все ще генерується. Поверніться сюди згодом чи оновіть сторінку."
@@ -3563,9 +3558,8 @@ msgstr "Все готово!"
 msgid "Version Submitted for Review"
 msgstr "Версія подана для перевірки"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Версія надіслана"
+msgstr "Перегляд поданої версії"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Ця версія стане доступною після проходження перевірки. Ви отримаєте сповіщення про це."
@@ -3702,9 +3696,8 @@ msgstr "Тло області панелі інструментів"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки.  Поле маніфесту:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Піктограми текстової області панелі інструментів"
+msgstr "Піктограми і текст області панелі інструментів"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Колір тексту і піктограм в панелі інструментів та активній вкладці. Поле маніфесту:  toolbar_text."
@@ -4029,15 +4022,14 @@ msgstr "Дізнайтеся як"
 msgid "Get Started"
 msgstr "Початок роботи"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Готові надіслати додаток? Прочитайте нашу покрокову інструкцію про процес надсилання."
+msgstr "Готові представити розширення? Ознайомтеся з нашою покроковою інструкцією процесу представлення."
 
 msgid "See Tutorial"
 msgstr "Дивитися посібник"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Допоможіть користувачам дізнатися про ваше розширення, створивши гарний опис."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4447,30 +4439,26 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Не дозволяйте стеження Facebook {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Ізолюйте свою діяльність в Facebook в окремому \"контейнері\", ускладнюючи таким чином відстеження вас в інтернеті."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Реверсивний пошук зображень {start_sub_heading}з {addon_name}{end_sub_heading}"
+msgstr "Спростіть пошук {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Просто оберіть текст на будь-якій веб-сторінці для пошуку з багатьма засобами."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Блокування реклами і захист від стеження {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Просте налаштування дозволяє вам взяти під контроль рекламу, яку ви бачите, а також стеження в інтернеті."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Реверсивний пошук зображень {start_sub_heading}з {addon_name}{end_sub_heading}"
+msgstr "Змініть уявлення про вкладки {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "У вас повно відкритих вкладок? Організуйте їх в упорядкованій бічній панелі."
