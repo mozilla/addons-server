@@ -17,6 +17,7 @@ class Config(caching.base.CachingMixin, models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
     value = models.TextField()
+
     objects = caching.base.CachingManager()
 
     class Meta:

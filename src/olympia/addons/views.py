@@ -8,7 +8,6 @@ from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
-import caching.base as caching
 import session_csrf
 import waffle
 
@@ -45,6 +44,7 @@ from olympia.search.filters import (
     SearchParameterFilter, SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
+from olympia.lib.cache import cached
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
@@ -137,10 +137,10 @@ def extension_detail(request, addon):
 
 
 def _category_personas(qs, limit):
-    def f():
+    def fetch_personas():
         return randslice(qs, limit=limit)
     key = 'cat-personas:' + qs.query_key()
-    return caching.cached(f, key)
+    return cached(fetch_personas, key)
 
 
 @non_atomic_requests

@@ -16,8 +16,6 @@ from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
 
-import caching.base as caching
-
 import olympia.core.logger
 
 from olympia import amo, core
@@ -27,6 +25,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
+from olympia.lib.cache import cached
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -520,10 +519,10 @@ class DeniedName(ModelBase):
         name = name.lower()
         qs = cls.objects.all()
 
-        def f():
+        def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = caching.cached_with(qs, f, 'blocked')
+        blocked_list = cached(fetch_names, 'denied-name:blocked')
         return any(n in name for n in blocked_list)
 
 
