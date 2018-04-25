@@ -527,3 +527,24 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.
+
+
+---------------
+Recommendations
+---------------
+
+.. _addon-recommendations:
+
+This endpoint provides recommendations of other addons to install, fetched from the `recommendation service <https://github.com/mozilla/taar>`_.
+Four recommendations are fetched, but only valid, publicly available addons are shown (so max 4 will be returned, and possibly less).
+
+.. http:get:: /api/v3/addons/recommendations/
+
+    :query string guid: Fetch recommendations for this add-on guid.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string variant: This endpoint is part of an A/B test.  `a` is fetch recommendations from the recommendation service; `b` is return a fixed fallback.
+    :>json string a_b_outcome: The A/B test outcome.  Will be either: `taar` - responses from recommendation service; `timeout` - service timed out so returned fallback; `fallback` - `b` variant was requested so fallback returned.
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. The following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.

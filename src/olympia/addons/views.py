@@ -11,7 +11,7 @@ from django.views.decorators.vary import vary_on_headers
 import session_csrf
 import waffle
 
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from rest_framework.generics import GenericAPIView, ListAPIView
@@ -30,7 +30,8 @@ from olympia.amo.forms import AbuseForm
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
 from olympia.amo.utils import randslice, render
-from olympia.api.pagination import ESPageNumberPagination
+from olympia.api.pagination import (
+    ABESPageNumberPagination, ESPageNumberPagination)
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
@@ -55,7 +56,9 @@ from .serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
-from .utils import get_creatured_ids, get_featured_ids
+from .utils import (
+    get_addon_recommendations, get_creatured_ids, get_featured_ids,
+    TAAR_LITE_VARIANT_FALLBACK)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -952,3 +955,25 @@ class CompatOverrideView(ListAPIView):
                 'Empty, or no, guid parameter provided.')
         return queryset.filter(guid__in=guids).transform(
             CompatOverride.transformer).order_by('-pk')
+
+
+class AddonRecommendationView(AddonSearchView):
+    filter_backends = [ReviewedContentFilter]
+    pagination_class = ABESPageNumberPagination
+    ab_outcome = None
+
+    def get(self, request, *args, **kwargs):
+        self.pagination_class.view = self  # so paginator can add the outcome.
+        return super(AddonRecommendationView, self).get(
+            request, *args, **kwargs)
+
+    def filter_queryset(self, qs):
+        qs = super(AddonRecommendationView, self).filter_queryset(qs)
+        guid_param = self.request.GET.get('guid')
+        taar_enable = self.request.GET.get(
+            'variant', TAAR_LITE_VARIANT_FALLBACK)
+        guids, outcome = get_addon_recommendations(guid_param, taar_enable)
+        self.ab_outcome = outcome
+
+        log.debug(guids)
+        return qs.query(query.Bool(must=[Q('terms', guid=guids)]))

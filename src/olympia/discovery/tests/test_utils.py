@@ -21,7 +21,8 @@ from olympia.discovery.utils import (
 def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
     requests_get.side_effect = requests.exceptions.RequestException()
     # Check the exception in requests.get is handled okay.
-    assert call_recommendation_server('123456', {}) == []
+    assert call_recommendation_server(
+        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) == []
     statsd_incr.assert_called_with('services.recommendations.fail')
 
 
@@ -31,7 +32,8 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
 def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
     requests_get.return_value = HttpResponse(
         json.dumps({'results': ['@lolwut']}))
-    assert call_recommendation_server('123456', {}) == ['@lolwut']
+    assert call_recommendation_server(
+        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) == ['@lolwut']
     statsd_incr.assert_called_with('services.recommendations.success')
 
 
@@ -42,26 +44,27 @@ def test_call_recommendation_server_parameters(requests_get):
     requests_get.return_value = HttpResponse(
         json.dumps({'results': ['@lolwut']}))
     # No locale or platform
-    call_recommendation_server('123456', {})
+    call_recommendation_server('123456', {}, taar_url)
     requests_get.assert_called_with(taar_url + '123456/', timeout=taar_timeout)
     # locale no platform
-    call_recommendation_server('123456', {'locale': 'en-US'})
+    call_recommendation_server('123456', {'locale': 'en-US'}, taar_url)
     requests_get.assert_called_with(
         taar_url + '123456/?locale=en-US', timeout=taar_timeout)
     # platform no locale
-    call_recommendation_server('123456', {'platform': 'WINNT'})
+    call_recommendation_server('123456', {'platform': 'WINNT'}, taar_url)
     requests_get.assert_called_with(
         taar_url + '123456/?platform=WINNT', timeout=taar_timeout)
     # both locale and platform
-    call_recommendation_server('123456',
-                               {'locale': 'en-US', 'platform': 'WINNT'})
+    call_recommendation_server(
+        '123456', {'locale': 'en-US', 'platform': 'WINNT'}, taar_url)
     requests_get.assert_called_with(
         taar_url + '123456/?locale=en-US&platform=WINNT', timeout=taar_timeout)
     # and some extra parameters
     call_recommendation_server(
         '123456',
         {'locale': 'en-US', 'platform': 'WINNT', 'study': 'sch',
-         'branch': 'tree'})
+         'branch': 'tree'},
+        settings.RECOMMENDATION_ENGINE_URL)
     requests_get.assert_called_with(
         taar_url + '123456/?branch=tree&locale=en-US&platform=WINNT&study=sch',
         timeout=taar_timeout)

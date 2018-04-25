@@ -2,6 +2,7 @@ import random
 import uuid
 
 from django import forms
+from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
 from django.utils.translation import ugettext
@@ -11,6 +12,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
+from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.constants.categories import CATEGORIES_BY_ID
 
@@ -136,3 +138,31 @@ def verify_mozilla_trademark(name, user):
             raise LocaleValidationError(errors)
 
     return name
+
+
+TAAR_LITE_FALLBACKS = [
+    'enhancerforyoutube@maximerf.addons.mozilla.org',  # /enhancer-for-youtube/
+    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',          # /search_by_image/
+    'uBlock0@raymondhill.net',                         # /ublock-origin/
+    'newtaboverride@agenedia.com']                     # /new-tab-override/
+
+TAAR_LITE_VARIANT_REAL = 'a'
+TAAR_LITE_VARIANT_FALLBACK = 'b'
+TAAR_LITE_OUTCOME_REAL_SUCCESS = 'taar'
+TAAR_LITE_OUTCOME_REAL_FAIL = 'timeout'
+TAAR_LITE_OUTCOME_FALLBACK = 'fallback'
+
+
+def get_addon_recommendations(guid_param, taar_enable):
+    guids = []
+    if taar_enable == TAAR_LITE_VARIANT_REAL:
+        guids = call_recommendation_server(
+            guid_param, {},
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL)
+        outcome = (TAAR_LITE_OUTCOME_REAL_SUCCESS if guids
+                   else TAAR_LITE_OUTCOME_REAL_FAIL)
+    else:
+        outcome = TAAR_LITE_OUTCOME_FALLBACK
+    if not guids:
+        guids = TAAR_LITE_FALLBACKS
+    return guids, outcome

@@ -6,9 +6,9 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from olympia.activity.views import VersionReviewNotesViewSet
 
 from .views import (
-    AddonAutoCompleteSearchView, AddonFeaturedView, AddonSearchView,
-    AddonVersionViewSet, AddonViewSet, CompatOverrideView, LanguageToolsView,
-    ReplacementAddonView, StaticCategoryView)
+    AddonAutoCompleteSearchView, AddonFeaturedView, AddonRecommendationView,
+    AddonSearchView, AddonVersionViewSet, AddonViewSet, CompatOverrideView,
+    LanguageToolsView, ReplacementAddonView, StaticCategoryView)
 
 
 addons = SimpleRouter()
@@ -36,4 +36,6 @@ urlpatterns = [
         name='addon-replacement-addon'),
     url(r'^compat-override/$', CompatOverrideView.as_view(),
         name='addon-compat-override'),
+    url(r'^recommendations/$', AddonRecommendationView.as_view(),
+        name='addon-recommendations'),
 ]
