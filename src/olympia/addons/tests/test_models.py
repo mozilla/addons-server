@@ -17,6 +17,7 @@ import pytest
 from mock import Mock, patch
 
 from olympia import amo, core
+from olympia.addons import models as addons_models
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
@@ -133,7 +134,7 @@ class TestCleanSlug(TestCase):
 
         # If there's a clash, use the standard clash resolution.
         a = Addon.objects.create(slug=long_slug[:30])
-        assert a.slug == '%s1' % long_slug[:28]
+        assert a.slug == '%s1' % long_slug[:27]
 
     def test_clean_slug_long_slug(self):
         long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
@@ -145,7 +146,7 @@ class TestCleanSlug(TestCase):
         # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        assert b.slug == '%s1' % long_slug[:28]
+        assert b.slug == '%s1' % long_slug[:27]
 
     def test_clean_slug_always_slugify(self):
         illegal_chars = 'some spaces and !?@'
@@ -160,6 +161,9 @@ class TestCleanSlug(TestCase):
         b.clean_slug()
         assert b.slug.startswith('some-spaces-and'), b.slug
 
+    @patch.object(addons_models, 'MAX_SLUG_INCREMENT', 99)
+    @patch.object(
+        addons_models, 'SLUG_INCREMENT_SUFFIXES', set(range(1, 99 + 1)))
     def test_clean_slug_worst_case_scenario(self):
         long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
