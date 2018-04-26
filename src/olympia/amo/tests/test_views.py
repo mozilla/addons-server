@@ -344,7 +344,7 @@ class TestOtherStuff(TestCase):
         assert en != fr
 
         for content in (en, fr):
-            assert 'django.catalog = {' in content
+            assert 'django.catalog = ' in content
             assert '/* gettext identity library */' not in content
 
     def test_dictionaries_link(self):
