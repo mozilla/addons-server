@@ -120,7 +120,9 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
+        name = verify_mozilla_trademark(
+            self.cleaned_data['name'], user,
+            form=self)
 
         return name
 

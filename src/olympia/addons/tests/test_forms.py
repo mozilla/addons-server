@@ -70,7 +70,7 @@ class FormsTest(TestCase):
             instance=delicious)
 
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_firefox(self):
@@ -80,7 +80,7 @@ class FormsTest(TestCase):
             request=self.request,
             instance=delicious)
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_allowed_for_prefix(self):
