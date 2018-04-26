@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from olympia.amo.tests import TestCase
-from olympia.lib.queryset_transform import TransformQuerySet
+from olympia.lib.queryset_transform import TransformQuerySetMixin
 from olympia.zadmin.models import SiteEvent
 
 
@@ -21,7 +21,7 @@ class QuerysetTransformTestCase(TestCase):
         seen_by_second_transform = []
         with self.assertNumQueries(0):
             # No database hit yet, everything is still lazy.
-            qs = TransformQuerySet(SiteEvent)
+            qs = TransformQuerySetMixin(SiteEvent)
             qs = qs.exclude(description='').order_by('id')[1:3]
             qs = qs.transform(
                 lambda items: seen_by_first_transform.extend(list(items)))

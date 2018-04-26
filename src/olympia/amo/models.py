@@ -155,7 +155,7 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     """
     Base for all managers in AMO.
 
-    Returns TransformQuerySets from the queryset_transform project.
+    Returns TransformQuerySets from the queryset_transform lib.
 
     If a model has translated fields, they'll be attached through a transform
     function.
