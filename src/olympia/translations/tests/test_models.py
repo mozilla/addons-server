@@ -462,9 +462,12 @@ class TranslationMultiDbTests(TransactionTestCase):
         # Django does a separate SQL query once per connection on MySQL, see
         # https://code.djangoproject.com/ticket/16809 ; This pollutes the
         # queries counts, so we initialize a connection cursor early ourselves
-        # before resetting queries to avoid this.
+        # before resetting queries to avoid this. It also does a query once for
+        # the MySQL version and then stores it into a cached_property, so do
+        # that early as well.
         for con in django.db.connections:
             connections[con].cursor()
+            connections[con].mysql_version
         reset_queries()
 
     @property
