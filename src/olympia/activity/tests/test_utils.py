@@ -518,6 +518,36 @@ class TestLogAndNotify(TestCase):
                           'you are member of the activity email cc group.')
 
     @mock.patch('olympia.activity.utils.send_mail')
+    def test_staff_cc_group_needinfo_correct_subject(self, send_mail_mock):
+        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
+        action = amo.LOG.REQUEST_INFORMATION
+        comments = u'Thïs is á reply'
+        log_and_notify(action, comments, self.developer, self.version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        sender = '%s <notifications@%s>' % (
+            self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
+        subject = send_mail_mock.call_args_list[1][0][0]
+        assert subject == u'Mozilla Add-ons: %s %s' % (
+            self.addon.name, self.version.version)
+        assert len(recipients) == 2
+        # self.reviewers wasn't on the thread, but gets an email anyway.
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+        review_url = absolutify(
+            reverse('reviewers.review',
+                    kwargs={'addon_id': self.version.addon.pk,
+                            'channel': 'listed'},
+                    add_prefix=False))
+        self._check_email(send_mail_mock.call_args_list[1],
+                          review_url,
+                          'you are member of the activity email cc group.')
+
+    @mock.patch('olympia.activity.utils.send_mail')
     def test_task_user_doesnt_get_mail(self, send_mail_mock):
         """The task user account is used to auto-sign unlisted addons, amongst
         other things, but we don't want that user account to get mail."""
