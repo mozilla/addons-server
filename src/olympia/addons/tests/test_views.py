@@ -3673,8 +3673,6 @@ class TestAddonRecommendationView(ESTestCase):
             'olympia.addons.views.get_addon_recommendations')
         self.get_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
-        self.get_recommendations_mock.return_value = (
-            [], 'success')
 
     def tearDown(self):
         super(TestAddonRecommendationView, self).tearDown()
@@ -3695,13 +3693,14 @@ class TestAddonRecommendationView(ESTestCase):
         addon4 = addon_factory(id=104, guid='104@mozilla')
         self.get_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
-            'success')
+            'success', 'no_reason')
         self.refresh()
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'False'})
         self.get_recommendations_mock.assert_called_with('foo@baa', False)
-        assert data['a_b_outcome'] == 'success'
+        assert data['outcome'] == 'success'
+        assert data['fallback_reason'] == 'no_reason'
         assert data['count'] == 4
         assert len(data['results']) == 4
 
@@ -3719,6 +3718,8 @@ class TestAddonRecommendationView(ESTestCase):
         assert result['guid'] == '104@mozilla'
 
     def test_es_queries_made_no_results(self):
+        self.get_recommendations_mock.return_value = (
+            ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
@@ -3733,7 +3734,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
         self.get_recommendations_mock.return_value = (
-            ['@a', '@b'], 'success')
+            ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:

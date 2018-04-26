@@ -148,19 +148,25 @@ TAAR_LITE_FALLBACKS = [
 
 TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
 TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
-TAAR_LITE_OUTCOME_FALLBACK = 'curated'
+TAAR_LITE_OUTCOME_CURATED = 'curated'
+TAAR_LITE_FALLBACK_REASON_TIMEOUT = 'timeout'
+TAAR_LITE_FALLBACK_REASON_EMPTY = 'no_results'
 
 
 def get_addon_recommendations(guid_param, taar_enable):
-    guids = []
+    guids = None
+    fail_reason = None
     if taar_enable:
         guids = call_recommendation_server(
             guid_param, {},
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL)
         outcome = (TAAR_LITE_OUTCOME_REAL_SUCCESS if guids
                    else TAAR_LITE_OUTCOME_REAL_FAIL)
+        if not guids:
+            fail_reason = (TAAR_LITE_FALLBACK_REASON_EMPTY if guids == []
+                           else TAAR_LITE_FALLBACK_REASON_TIMEOUT)
     else:
-        outcome = TAAR_LITE_OUTCOME_FALLBACK
+        outcome = TAAR_LITE_OUTCOME_CURATED
     if not guids:
         guids = TAAR_LITE_FALLBACKS
-    return guids, outcome
+    return guids, outcome, fail_reason

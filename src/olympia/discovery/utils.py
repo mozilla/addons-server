@@ -34,16 +34,16 @@ def call_recommendation_server(id_or_guid, params, server):
     except requests.exceptions.RequestException as e:
         log.error(u'Calling recommendation engine failed: {0}'.format(e))
         statsd.incr('services.recommendations.fail')
-        return []
+        return None
     else:
         statsd.incr('services.recommendations.success')
-    return json.loads(response.content).get('results', [])
+    return json.loads(response.content).get('results', None)
 
 
 def get_recommendations(telemetry_id, params):
     from olympia.addons.models import Addon  # circular import
     guids = call_recommendation_server(
-        telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL)
+        telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL) or []
     ids = (Addon.objects.public().filter(guid__in=guids)
            .values_list('id', flat=True))
     return [data.DiscoItem(addon_id=id_, is_recommendation=True)

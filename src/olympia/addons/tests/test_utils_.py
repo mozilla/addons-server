@@ -7,7 +7,8 @@ from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
     get_addon_recommendations, get_creatured_ids, get_featured_ids,
-    TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_FALLBACK,
+    TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
+    TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
     TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
     verify_mozilla_trademark)
 from olympia.amo.tests import (
@@ -169,21 +170,32 @@ class TestGetAddonRecommendations(TestCase):
             self.recommendation_guids)
 
     def test_recommended(self):
-        recommendations, outcome = get_addon_recommendations(
+        recommendations, outcome, reason = get_addon_recommendations(
             'a@b', True)
         assert recommendations == self.recommendation_guids
         assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
+        assert reason is None
 
-    def test_recommended_fail(self):
+    def test_recommended_no_results(self):
         self.recommendation_server_mock.return_value = []
-        recommendations, outcome = get_addon_recommendations(
+        recommendations, outcome, reason = get_addon_recommendations(
             'a@b', True)
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
+
+    def test_recommended_timeout(self):
+        self.recommendation_server_mock.return_value = None
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
 
     def test_not_recommended(self):
-        recommendations, outcome = get_addon_recommendations(
+        recommendations, outcome, reason = get_addon_recommendations(
             'a@b', False)
         assert not self.recommendation_server_mock.called
         assert recommendations == TAAR_LITE_FALLBACKS
-        assert outcome == TAAR_LITE_OUTCOME_FALLBACK
+        assert outcome == TAAR_LITE_OUTCOME_CURATED
+        assert reason is None

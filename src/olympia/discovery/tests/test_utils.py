@@ -22,7 +22,7 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
     requests_get.side_effect = requests.exceptions.RequestException()
     # Check the exception in requests.get is handled okay.
     assert call_recommendation_server(
-        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) == []
+        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) is None
     statsd_incr.assert_called_with('services.recommendations.fail')
 
 
