@@ -1513,25 +1513,6 @@ class TestCollectionViewSetDetail(TestCase):
             unicode(addon.support_url))
 
 
-class TestCollectionViewSetDetailWithId(TestCollectionViewSetDetail):
-    def _get_url(self, user, collection):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': collection.id})
-
-    def test_404(self):
-        # Invalid user.
-        response = self.client.get(reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk + 66, 'slug': self.collection.id}))
-        assert response.status_code == 404
-        # Invalid collection.
-        response = self.client.get(reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': '123456'}))
-        assert response.status_code == 404
-
-
 class CollectionViewSetDataMixin(object):
     client_class = APITestClient
     data = {
@@ -1749,13 +1730,6 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 403
 
 
-class TestCollectionViewSetPatchWithId(TestCollectionViewSetPatch):
-    def get_url(self, user):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.id})
-
-
 class TestCollectionViewSetDelete(TestCase):
     client_class = APITestClient
 
@@ -1811,13 +1785,6 @@ class TestCollectionViewSetDelete(TestCase):
         # But can't delete it.
         response = self.client.delete(url)
         assert response.status_code == 403
-
-
-class TestCollectionViewSetDeleteWithId(TestCollectionViewSetDelete):
-    def get_url(self, user):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.id})
 
 
 class CollectionAddonViewSetMixin(object):
