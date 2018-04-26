@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
 
+import mock
 import pytest
 import waffle
 
@@ -31,7 +32,6 @@ from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     user_factory, version_factory)
-
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -3659,3 +3659,87 @@ class TestCompatOverrideView(TestCase):
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
+
+
+class TestAddonRecommendationView(ESTestCase):
+    client_class = APITestClient
+
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonRecommendationView, self).setUp()
+        self.url = reverse('addon-recommendations')
+        patcher = mock.patch(
+            'olympia.addons.views.get_addon_recommendations')
+        self.get_recommendations_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def tearDown(self):
+        super(TestAddonRecommendationView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status, response.content
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon1 = addon_factory(id=101, guid='101@mozilla')
+        addon2 = addon_factory(id=102, guid='102@mozilla')
+        addon3 = addon_factory(id=103, guid='103@mozilla')
+        addon4 = addon_factory(id=104, guid='104@mozilla')
+        self.get_recommendations_mock.return_value = (
+            ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
+            'success', 'no_reason')
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'False'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', False)
+        assert data['outcome'] == 'success'
+        assert data['fallback_reason'] == 'no_reason'
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon1.pk
+        assert result['guid'] == '101@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['guid'] == '102@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon3.pk
+        assert result['guid'] == '103@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon4.pk
+        assert result['guid'] == '104@mozilla'
+
+    def test_es_queries_made_no_results(self):
+        self.get_recommendations_mock.return_value = (
+            ['@a', '@b'], 'foo', 'baa')
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(self.url, data={'q': 'foo'})
+            assert data['count'] == 0
+            assert len(data['results']) == 0
+            assert search_mock.call_count == 1
+
+    def test_es_queries_made_some_result(self):
+        addon_factory(slug='foormidable', name=u'foo', guid='@a')
+        addon_factory(slug='foobar', name=u'foo', guid='@b')
+        self.refresh()
+
+        self.get_recommendations_mock.return_value = (
+            ['@a', '@b'], 'foo', 'baa')
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(
+                self.url, data={'q': 'foo'})
+            assert data['count'] == 2
+            assert len(data['results']) == 2
+            assert search_mock.call_count == 1
