@@ -147,7 +147,6 @@ class UncachedManagerBase(models.Manager):
             lang = translation.get_language() or '0'
             qs = qs.transform(transformer.get_trans)
             qs = qs.extra(where=['%s=%s'], params=[lang, lang])
-            print('AAATTACH EXTRA TO QUERY')
         return qs
 
     def transform(self, fn):

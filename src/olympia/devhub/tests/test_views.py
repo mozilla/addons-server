@@ -1225,7 +1225,6 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
-        print response.content
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 

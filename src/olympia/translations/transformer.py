@@ -66,7 +66,6 @@ def get_trans(items):
     if not items:
         return
 
-    print('CALLING get_trans', items)
     model = items[0].__class__
     # FIXME: if we knew which db the queryset we are transforming used, we
     # could make sure we are re-using the same one.
