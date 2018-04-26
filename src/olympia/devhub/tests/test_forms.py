@@ -275,7 +275,7 @@ class TestThemeForm(TestCase):
 
     def populate(self):
         self.cat = Category.objects.create(application=amo.FIREFOX.id,
-                                           type=amo.ADDON_PERSONA, name='xxxx')
+                                           type=amo.ADDON_PERSONA)
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
