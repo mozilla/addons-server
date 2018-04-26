@@ -75,6 +75,10 @@ class TransMulti(forms.widgets.MultiWidget):
             value = self.decompress(value)
 
         output = []
+
+        if attrs is None:
+            attrs = {}
+
         final_attrs = self.build_attrs(attrs)
         id_ = final_attrs.get('id', None)
         for i, widget in enumerate(self.widgets):
@@ -142,6 +146,9 @@ class _TransWidget(object):
 
     def render(self, name, value, attrs=None):
         from .fields import switch
+        if attrs is None:
+            attrs = {}
+
         attrs = self.build_attrs(attrs)
         lang = to_language(value.locale)
         attrs.update(lang=lang)
