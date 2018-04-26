@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 11:41+0000\n"
-"Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
+"PO-Revision-Date: 2018-04-24 01:09+0000\n"
+"Last-Translator: Mateus Generoso <mtsgeneroso@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -6392,24 +6392,20 @@ msgstr "Temas estáticos"
 msgid "Legacy Add-ons"
 msgstr "Extensões legadas"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Novos temas ({0})"
+msgstr "Novo ({0})"
 
 msgid "Updates ({0})"
 msgstr "Atualizações ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Nota de revisão"
+msgstr "Registo de revisão"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Análise da extensão"
+msgstr "Guia de revisão de extensão"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Fila de análise de temas"
+msgstr "Guia de revisão de temas"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
@@ -6541,9 +6537,8 @@ msgstr "Classificações negativas de usuários ({num})"
 msgid "Theme Images"
 msgstr "Imagens do tema"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Análises excluídas"
+msgstr "Pré-visualização renderizada"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""

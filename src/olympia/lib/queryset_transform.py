@@ -1,8 +1,5 @@
-from django.db import connection
 from django.db import models
 from django.db.models.query import ModelIterable
-
-from caching.base import CachingModelIterable
 
 
 """

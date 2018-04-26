@@ -161,7 +161,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             if not isinstance(value, self.field.related_model):
                 value = switch(value, self.field.related_model)
             super(TranslationDescriptor, self).__set__(instance, value)
-        elif getattr(instance, self.field.get_attname(), None) is None:
+        elif getattr(instance, self.field.column, None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
