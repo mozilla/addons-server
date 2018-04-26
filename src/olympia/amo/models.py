@@ -62,8 +62,12 @@ class UncachedBaseQuerySet(models.QuerySet):
     def _fetch_all(self):
         if self._result_cache is None:
             super(UncachedBaseQuerySet, self)._fetch_all()
-            for func in self._transform_fns:
-                func(self._result_cache)
+            # At this point, _result_cache should have been filled up. If we
+            # are dealing with a "regular" queryset (not values() etc) then we
+            # call the transformers.
+            if issubclass(self._iterable_class, ModelIterable):
+                for func in self._transform_fns:
+                    func(self._result_cache)
 
     def _clone(self, **kwargs):
         clone = super(UncachedBaseQuerySet, self)._clone(**kwargs)
