@@ -222,7 +222,7 @@ class TranslationTestCase(BaseTestCase):
         # Don't try checking that the model's name value is en-US.  It will be
         # one of the other locales, but we don't know which one.  You just set
         # the name to a dict, deal with it.
-        m = get_model()
+        m = TranslatedModel.objects.create(name='some name')
         m.name = strings
         m.save()
 
