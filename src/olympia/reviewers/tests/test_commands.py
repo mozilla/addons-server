@@ -447,7 +447,7 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
 
     def test_normal(self):
         addon = addon_factory()
-        author = user_factory(name=u'Authør')
+        author = user_factory(username=u'Authør')
         AddonUser.objects.create(addon=addon, user=author)
         # Add a pending info request expiring soon.
         flags = AddonReviewerFlags.objects.create(
@@ -456,12 +456,12 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
             notified_about_expiring_info_request=False)
         # Create reviewer and staff users, and create the request for info
         # activity. Neither the reviewer nor the staff user should be cc'ed.
-        reviewer = user_factory(name=u'Revièwer')
+        reviewer = user_factory(username=u'Revièwer')
         self.grant_permission(reviewer, 'Addons:Review')
         ActivityLog.create(
             amo.LOG.REQUEST_INFORMATION, addon, addon.current_version,
             user=reviewer, details={'comments': u'Fly you fôöls!'})
-        staff = user_factory(name=u'Staff Ûser')
+        staff = user_factory(username=u'Staff Ûser')
         self.grant_permission(staff, 'Some:Perm', name=ACTIVITY_MAIL_GROUP)
 
         # Fire the command.
