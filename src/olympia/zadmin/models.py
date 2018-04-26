@@ -207,3 +207,6 @@ class SiteEvent(models.Model):
 
     class Meta:
         db_table = 'zadmin_siteevent'
+
+    def __unicode__(self):
+        return self.description

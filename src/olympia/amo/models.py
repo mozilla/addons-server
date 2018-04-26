@@ -6,6 +6,7 @@ import time
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
+from django.db.models.query import ModelIterable
 from django.utils import translation
 from django.utils.encoding import force_text
 
@@ -16,7 +17,6 @@ import multidb.pinning
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-import olympia.lib.queryset_transform as queryset_transform
 
 from olympia.translations.hold import save_translations
 
@@ -54,7 +54,27 @@ def skip_cache():
         _locals.skip_cache = old
 
 
-class TransformQuerySetMixin(queryset_transform.TransformQuerySetMixin):
+class UncachedBaseQuerySet(models.QuerySet):
+    def __init__(self, *args, **kwargs):
+        super(UncachedBaseQuerySet, self).__init__(*args, **kwargs)
+        self._transform_fns = []
+
+    def _fetch_all(self):
+        if self._result_cache is None:
+            super(UncachedBaseQuerySet, self)._fetch_all()
+            for func in self._transform_fns:
+                func(self._result_cache)
+
+    def _clone(self, **kwargs):
+        clone = super(UncachedBaseQuerySet, self)._clone(**kwargs)
+        clone._transform_fns = self._transform_fns[:]
+        return clone
+
+    def transform(self, fn):
+        from . import decorators
+        clone = self._clone()
+        clone._transform_fns.append(decorators.skip_cache(fn))
+        return clone
 
     def pop_transforms(self):
         qs = self._clone()
@@ -72,18 +92,15 @@ class TransformQuerySetMixin(queryset_transform.TransformQuerySetMixin):
         return (self.no_transforms().extra(select={'_only_trans': 1})
                 .transform(transformer.get_trans))
 
-    def transform(self, fn):
-        from . import decorators
-        f = decorators.skip_cache(fn)
-        return super(TransformQuerySetMixin, self).transform(f)
 
+class BaseQuerySet(UncachedBaseQuerySet):
+    # FIXME: hack no_cache() and invalidate() to pretend cache-machine is still
+    # here.
+    def no_cache(self):
+        return self
 
-class BaseQuerySet(TransformQuerySetMixin, caching.base.CachingQuerySet):
-    pass
-
-
-class UncachedBaseQuerySet(TransformQuerySetMixin, models.QuerySet):
-    pass
+    def invalidate(self, *args):
+        pass
 
 
 class RawQuerySet(models.query.RawQuerySet):
@@ -113,6 +130,12 @@ class UncachedManagerBase(models.Manager):
         qs = self._with_translations(
             self._queryset_class(self.model, using=self._db))
         return qs
+
+    def no_cache(self):
+        return self.get_queryset()
+
+    def invalidate(self, *args):
+        pass
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
@@ -151,11 +174,11 @@ class UncachedManagerBase(models.Manager):
                 return self.create(**kw), True
 
 
-class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
+class ManagerBase(UncachedManagerBase):
     """
     Base for all managers in AMO.
 
-    Returns TransformQuerySets from the queryset_transform lib.
+    Returns BaseQuerySets.
 
     If a model has translated fields, they'll be attached through a transform
     function.
