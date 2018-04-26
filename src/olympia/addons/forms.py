@@ -121,8 +121,8 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         user = getattr(self.request, 'user', None)
 
         name = verify_mozilla_trademark(
-            self,
-            self.cleaned_data['name'], user)
+            self.cleaned_data['name'], user,
+            form=self)
 
         return name
 

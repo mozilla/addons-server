@@ -101,7 +101,7 @@ def get_creatured_ids(category, lang=None):
     return map(int, filter(None, per_locale + others))
 
 
-def verify_mozilla_trademark(form, name, user):
+def verify_mozilla_trademark(name, user, form=None):
     skip_trademark_check = (
         user and user.is_authenticated() and user.email and
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
@@ -128,9 +128,11 @@ def verify_mozilla_trademark(form, name, user):
                 try:
                     _check(localized_name)
                 except forms.ValidationError as exc:
-                    for message in exc.messages:
-                        form.add_error(
-                            'name',
-                            LocaleErrorMessage(message=message, locale=locale))
-
+                    if form is not None:
+                        for message in exc.messages:
+                            form.add_error(
+                                'name',
+                                LocaleErrorMessage(message=message, locale=locale))
+                    else:
+                        raise
     return name
