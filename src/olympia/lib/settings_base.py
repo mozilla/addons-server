@@ -1663,6 +1663,7 @@ JWT_AUTH = {
 DRF_API_GATES = {
     'v3': (
         'ratings-rating-shim',
+        'ratings-title-shim',
     ),
     'v4': (
     )

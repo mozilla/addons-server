@@ -79,7 +79,6 @@ class Rating(ModelBase):
         'self', null=True, related_name='reply', db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
-    title = TranslatedField(require_locale=False)
     body = TranslatedField(require_locale=False)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
@@ -108,8 +107,6 @@ class Rating(ModelBase):
         ordering = ('-created',)
 
     def __unicode__(self):
-        if self.title:
-            return unicode(self.title)
         return truncate(unicode(self.body), 10)
 
     def __init__(self, *args, **kwargs):
@@ -127,7 +124,6 @@ class Rating(ModelBase):
 
         activity.log_create(
             amo.LOG.APPROVE_RATING, self.addon, self, user=user, details=dict(
-                title=unicode(self.title),
                 body=unicode(self.body),
                 addon_id=self.addon.pk,
                 addon_title=unicode(self.addon.name),
@@ -155,7 +151,6 @@ class Rating(ModelBase):
             activity.log_create(
                 amo.LOG.DELETE_RATING, self.addon, self, user=user_responsible,
                 details=dict(
-                    title=unicode(self.title),
                     body=unicode(self.body),
                     addon_id=self.addon.pk,
                     addon_title=unicode(self.addon.name),
@@ -163,9 +158,9 @@ class Rating(ModelBase):
             for flag in self.ratingflag_set.all():
                 flag.delete()
 
-        log.info(u'Rating deleted: %s deleted id:%s by %s ("%s": "%s")',
+        log.info(u'Rating deleted: %s deleted id:%s by %s ("%s")',
                  user_responsible.name, self.pk, self.user.name,
-                 unicode(self.title), unicode(self.body))
+                 unicode(self.body))
         self.update(deleted=True)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
@@ -196,7 +191,6 @@ class Rating(ModelBase):
                 self.reply_to.pk, add_prefix=False)
             data = {
                 'name': self.addon.name,
-                'reply_title': self.title,
                 'reply': self.body,
                 'rating_url': jinja_helpers.absolutify(reply_url)
             }

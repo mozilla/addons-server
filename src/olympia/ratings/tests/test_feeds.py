@@ -22,7 +22,7 @@ class FeedTest(TestCase):
         self.user.name = self.u
 
         self.rating = mock.Mock()
-        self.rating.title = self.wut
+        self.rating.body = self.wut
         self.rating.rating = 4
         self.rating.user = self.user
 
@@ -32,10 +32,10 @@ class FeedTest(TestCase):
 
     def test_item_title(self):
         assert self.feed.item_title(self.rating) == (
-            'Rated %s out of 5 stars : %s' % (self.rating.rating, self.u))
+            'Rated %s out of 5 stars' % self.rating.rating)
 
         self.rating.rating = None
-        assert self.feed.item_title(self.rating) == self.u
+        assert self.feed.item_title(self.rating) == ''
 
     def test_item_author_name(self):
         assert self.feed.item_author_name(self.rating) == self.u

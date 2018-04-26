@@ -6,9 +6,6 @@
   <div class="article">
     {% for review in reviews %}
       <div class="review-detail">
-        {% if review.title %}
-          <h5>{{ review.title }}</h5>
-        {% endif %}
         <p class="description">{{ review.body|nl2br }}</p>
         <p>{{ review.rating|stars }}
           {% trans user=review.user|user_link, date=review.created|date %}

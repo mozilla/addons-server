@@ -44,14 +44,11 @@ class RatingsRss(NonAtomicFeed):
 
     def item_title(self, rating):
         """Title for particular rating (<item><title>)"""
-        tag_line = title = ''
+        title = ''
         if getattr(rating, 'rating', None):
             # L10n: This describes the number of stars given out of 5
             title = ugettext('Rated %d out of 5 stars') % rating.rating
-        if getattr(rating, 'title', None):
-            tag_line = rating.title
-        divider = ' : ' if title and tag_line else ''
-        return u'%s%s%s' % (title, divider, tag_line)
+        return title
 
     def item_description(self, rating):
         """Description for particular rating (<item><description>)"""

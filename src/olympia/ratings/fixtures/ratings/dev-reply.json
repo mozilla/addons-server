@@ -12,18 +12,6 @@
         }
     },
     {
-        "pk": 1107723,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-04-21 12:36:47",
-            "locale": "ru",
-            "modified": "2010-04-21 12:36:47",
-            "id": 1043704,
-            "localized_string": "I have weak komputer :("
-        }
-    },
-    {
         "pk": 5293223,
         "model": "users.userprofile",
         "fields": {
@@ -62,18 +50,6 @@
             "modified": "2010-04-22 22:42:45",
             "id": 1046853,
             "localized_string": "\u041d\u043e\u0432\u044b\u0435 \u0432\u0435\u0440\u0441\u0438\u0438 Firefox \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 *\u0431\u044b\u0441\u0442\u0440\u0435\u0435* \u0441\u0442\u0430\u0440\u044b\u0445. \u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0435 3.6 \u0438 \u043d\u0435 \u043c\u0430\u0439\u0442\u0435\u0441\u044c \u0434\u0443\u0440\u044c\u044e. Firefox 2.0 \u0443\u0436\u0435 \u0434\u0430\u0432\u043d\u043e \u043d\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044f, \u0442\u0430\u043c \u043c\u0430\u0441\u0441\u0430 \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0445 \u0434\u044b\u0440 \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0435\u0433\u043e \u043d\u0438 \u0432 \u043a\u043e\u0435\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435\u043b\u044c\u0437\u044f - \u0438\u043d\u0430\u0447\u0435 \"\u043c\u0435\u0434\u043b\u0435\u043d\u043d\u044b\u0439\" \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440 \u0441\u043a\u043e\u0440\u043e \u0441\u0442\u0430\u043d\u0435\u0442 \u0435\u0449\u0435 \u043c\u0435\u0434\u043b\u0435\u043d\u043d\u0435\u0439, \u0438\u0437-\u0437\u0430 \u0432\u0440\u0435\u0434\u043e\u043d\u043e\u0441\u043d\u044b\u0445 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c."
-        }
-    },
-    {
-        "pk": 1110931,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-04-22 22:42:44",
-            "locale": "en-US",
-            "modified": "2010-04-22 22:42:44",
-            "id": 1046852,
-            "localized_string": "Don't use Firefox 2.0!"
         }
     },
     {
@@ -196,7 +172,6 @@
             "rating": 4,
             "editorreview": false,
             "created": "2010-04-21 12:36:48",
-            "title": 1043704,
             "modified": "2010-06-15 15:21:14",
             "flag": false,
             "version": 90149,
@@ -214,7 +189,6 @@
             "rating": null,
             "editorreview": false,
             "created": "2010-04-22 22:42:45",
-            "title": 1046852,
             "modified": "2010-04-22 22:42:45",
             "flag": false,
             "version": 90149,

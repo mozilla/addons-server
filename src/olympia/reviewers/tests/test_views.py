@@ -72,7 +72,7 @@ class ReviewerTest(TestCase):
     def make_review(self, username='a'):
         u = UserProfile.objects.create(username=username)
         a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
-        return Rating.objects.create(user=u, addon=a, title='foo', body='bar')
+        return Rating.objects.create(user=u, addon=a, body='baa')
 
 
 class TestRatingsModerationLog(ReviewerTest):
@@ -1585,7 +1585,7 @@ class TestModeratedQueue(QueueTest):
 
         rows = doc('.review-flagged:not(.review-saved)')
         assert rows.length == 1
-        assert rows.find('h3').text() == ": Don't use Firefox 2.0!"
+        assert rows.find('h3').text() == ''
 
         # Default is "Skip."
         assert doc('#id_form-0-action_1:checked').length == 1
@@ -1594,6 +1594,16 @@ class TestModeratedQueue(QueueTest):
         reviewer = RatingFlag.objects.all()[0].user.name
         assert flagged.startswith('Flagged by %s' % reviewer), (
             'Unexpected text: %s' % flagged)
+
+        addon = Addon.objects.get(id=1865)
+        addon.name = u'náme'
+        addon.save()
+        response = self.client.get(self.url)
+        doc = pq(response.content)('#reviews-flagged')
+
+        rows = doc('.review-flagged:not(.review-saved)')
+        assert rows.length == 1
+        assert rows.find('h3').text() == u'náme'
 
     def setup_actions(self, action):
         response = self.client.get(self.url)
@@ -1713,7 +1723,7 @@ class TestModeratedQueue(QueueTest):
         # Add a review associated with an incomplete addon
         rating = Rating.objects.create(
             addon=addon_factory(status=amo.STATUS_NULL), user=user_factory(),
-            title='please', body='dont show me', editorreview=True)
+            body='dont show me', editorreview=True)
         RatingFlag.objects.create(rating=rating)
 
         # Add a review associated to an unlisted version
@@ -1722,7 +1732,7 @@ class TestModeratedQueue(QueueTest):
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         rating = Rating.objects.create(
             addon=addon_factory(), version=version, user=user_factory(),
-            title='please', body='dont show me either', editorreview=True)
+            body='dont show me either', editorreview=True)
         RatingFlag.objects.create(rating=rating)
 
         self._test_queue_layout('Rating Reviews',

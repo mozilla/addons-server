@@ -4,10 +4,7 @@
     {% set replies = get_replies(reviews) %}
     {% for review in reviews %}
       <div class="review">
-        <h3>
-          {% if review.title %}
-            <b>{{ review.title }}</b>
-          {% endif %}
+        <h3></h3>
           {{ review.rating|stars }}
         </h3>
         <p class="byline">
