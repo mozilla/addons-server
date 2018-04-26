@@ -373,6 +373,7 @@ class BaseTestCase(test.TestCase):
         self.client = self.client_class()
 
     def trans_eq(self, trans, localized_string, locale):
+        assert trans.id
         translation = Translation.objects.get(id=trans.id, locale=locale)
         assert translation.localized_string == localized_string
 
