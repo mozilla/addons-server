@@ -130,9 +130,9 @@ def verify_mozilla_trademark(name, user, form=None):
                 except forms.ValidationError as exc:
                     if form is not None:
                         for message in exc.messages:
-                            form.add_error(
-                                'name',
-                                LocaleErrorMessage(message=message, locale=locale))
+                            error_message = LocaleErrorMessage(
+                                message=message, locale=locale)
+                            form.add_error('name', error_message)
                     else:
                         raise
     return name
