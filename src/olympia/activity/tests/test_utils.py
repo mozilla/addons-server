@@ -533,7 +533,7 @@ class TestLogAndNotify(TestCase):
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         developer_subject = send_mail_mock.call_args_list[0][0][0]
         assert developer_subject == (
-            u'Mozilla Add-ons: Action required for '
+            u'Mozilla Add-ons: Action Required for '
             '%s %s' % (self.addon.name, self.version.version))
         reviewer_subject = send_mail_mock.call_args_list[1][0][0]
         assert reviewer_subject == u'Mozilla Add-ons: %s %s' % (
