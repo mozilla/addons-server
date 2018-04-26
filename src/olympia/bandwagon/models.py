@@ -61,6 +61,7 @@ class CollectionQuerySet(BaseQuerySet):
 
 
 class CollectionManager(UncachedManagerBase):
+    _queryset_class = CollectionQuerySet
 
     def get_queryset(self):
         qs = super(CollectionManager, self).get_queryset()
