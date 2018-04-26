@@ -11,7 +11,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
-# from olympia.translations.fields import LocaleList, LocaleValidationError
+from olympia.translations.fields import LocaleErrorMessage
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
@@ -101,7 +101,7 @@ def get_creatured_ids(category, lang=None):
     return map(int, filter(None, per_locale + others))
 
 
-def verify_mozilla_trademark(name, user):
+def verify_mozilla_trademark(form, name, user):
     skip_trademark_check = (
         user and user.is_authenticated() and user.email and
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
@@ -120,21 +120,17 @@ def verify_mozilla_trademark(name, user):
                     u'Add-on names cannot contain the Mozilla or '
                     u'Firefox trademarks.'))
 
-    # TODO: Deactivated for now
     if not skip_trademark_check:
-        pass
-    #     errors = LocaleList()
-
-    #     if not isinstance(name, dict):
-    #         _check(name)
-    #     else:
-    #         for locale, localized_name in name.items():
-    #             try:
-    #                 _check(localized_name)
-    #             except forms.ValidationError as exc:
-    #                 errors.extend(exc.messages, locale)
-
-    #     if errors:
-    #         raise LocaleValidationError(errors)
+        if not isinstance(name, dict):
+            _check(name)
+        else:
+            for locale, localized_name in name.items():
+                try:
+                    _check(localized_name)
+                except forms.ValidationError as exc:
+                    for message in exc.messages:
+                        form.add_error(
+                            'name',
+                            LocaleErrorMessage(message=message, locale=locale))
 
     return name
