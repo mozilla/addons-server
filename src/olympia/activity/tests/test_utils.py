@@ -518,7 +518,7 @@ class TestLogAndNotify(TestCase):
                           'you are member of the activity email cc group.')
 
     @mock.patch('olympia.activity.utils.send_mail')
-    def test_staff_cc_group_needinfo_correct_subject(self, send_mail_mock):
+    def test_mail_needinfo_correct_subject(self, send_mail_mock):
         self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
         action = amo.LOG.REQUEST_INFORMATION
         comments = u'Thïs is á reply'
@@ -531,8 +531,12 @@ class TestLogAndNotify(TestCase):
         sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        subject = send_mail_mock.call_args_list[1][0][0]
-        assert subject == u'Mozilla Add-ons: %s %s' % (
+        developer_subject = send_mail_mock.call_args_list[0][0][0]
+        assert developer_subject == (
+            u'Mozilla Add-ons: Action required for '
+            '%s %s' % (self.addon.name, self.version.version))
+        reviewer_subject = send_mail_mock.call_args_list[1][0][0]
+        assert reviewer_subject == u'Mozilla Add-ons: %s %s' % (
             self.addon.name, self.version.version)
         assert len(recipients) == 2
         # self.reviewers wasn't on the thread, but gets an email anyway.
