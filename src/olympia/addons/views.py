@@ -58,8 +58,7 @@ from .serializers import (
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import (
-    get_addon_recommendations, get_creatured_ids, get_featured_ids,
-    TAAR_LITE_VARIANT_FALLBACK)
+    get_addon_recommendations, get_creatured_ids, get_featured_ids)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -977,8 +976,7 @@ class AddonRecommendationView(AddonSearchView):
     def filter_queryset(self, qs):
         qs = super(AddonRecommendationView, self).filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
-        taar_enable = self.request.GET.get(
-            'variant', TAAR_LITE_VARIANT_FALLBACK)
+        taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
         guids, outcome = get_addon_recommendations(guid_param, taar_enable)
         self.ab_outcome = outcome
         return qs.query(query.Bool(must=[Q('terms', guid=guids)]))

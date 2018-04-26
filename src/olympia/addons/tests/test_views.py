@@ -3699,8 +3699,8 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
         data = self.perform_search(
-            self.url, {'guid': 'foo@baa', 'variant': 'b'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', 'b')
+            self.url, {'guid': 'foo@baa', 'recommended': 'False'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', False)
         assert data['a_b_outcome'] == 'success'
         assert data['count'] == 4
         assert len(data['results']) == 4

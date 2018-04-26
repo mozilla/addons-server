@@ -146,16 +146,14 @@ TAAR_LITE_FALLBACKS = [
     'uBlock0@raymondhill.net',                         # /ublock-origin/
     'newtaboverride@agenedia.com']                     # /new-tab-override/
 
-TAAR_LITE_VARIANT_REAL = 'a'
-TAAR_LITE_VARIANT_FALLBACK = 'b'
-TAAR_LITE_OUTCOME_REAL_SUCCESS = 'taar'
-TAAR_LITE_OUTCOME_REAL_FAIL = 'timeout'
-TAAR_LITE_OUTCOME_FALLBACK = 'fallback'
+TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
+TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
+TAAR_LITE_OUTCOME_FALLBACK = 'curated'
 
 
 def get_addon_recommendations(guid_param, taar_enable):
     guids = []
-    if taar_enable == TAAR_LITE_VARIANT_REAL:
+    if taar_enable:
         guids = call_recommendation_server(
             guid_param, {},
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL)

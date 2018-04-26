@@ -9,7 +9,6 @@ from olympia.addons.utils import (
     get_addon_recommendations, get_creatured_ids, get_featured_ids,
     TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_FALLBACK,
     TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
-    TAAR_LITE_VARIANT_FALLBACK, TAAR_LITE_VARIANT_REAL,
     verify_mozilla_trademark)
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory)
@@ -169,22 +168,22 @@ class TestGetAddonRecommendations(TestCase):
         self.recommendation_server_mock.return_value = (
             self.recommendation_guids)
 
-    def test_variant_real(self):
+    def test_recommended(self):
         recommendations, outcome = get_addon_recommendations(
-            'a@b', TAAR_LITE_VARIANT_REAL)
+            'a@b', True)
         assert recommendations == self.recommendation_guids
         assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
 
-    def test_variant_real_fail(self):
+    def test_recommended_fail(self):
         self.recommendation_server_mock.return_value = []
         recommendations, outcome = get_addon_recommendations(
-            'a@b', TAAR_LITE_VARIANT_REAL)
+            'a@b', True)
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
 
-    def test_fallback(self):
+    def test_not_recommended(self):
         recommendations, outcome = get_addon_recommendations(
-            'a@b', TAAR_LITE_VARIANT_FALLBACK)
+            'a@b', False)
         assert not self.recommendation_server_mock.called
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_FALLBACK
