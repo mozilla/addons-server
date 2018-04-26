@@ -165,18 +165,6 @@ class TestModelBase(TestCase):
         Addon.get_unfiltered_manager() == Addon.unfiltered
         UserProfile.get_unfiltered_manager() == UserProfile.objects
 
-    def test_measure_save_time(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        with mock.patch('olympia.amo.models.statsd.timer') as timer:
-            addon.save()
-        timer.assert_any_call('cache_machine.manager.post_save')
-
-    def test_measure_delete_time(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        with mock.patch('olympia.amo.models.statsd.timer') as timer:
-            addon.delete()
-        timer.assert_any_call('cache_machine.manager.post_delete')
-
 
 def test_cache_key():
     # Test that we are not taking the db into account when building our
