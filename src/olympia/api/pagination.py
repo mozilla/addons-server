@@ -10,26 +10,19 @@ class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 50
 
-    def get_extra_fields(self, data):
-        # Override to return a tuple of (pre, post) fields to be prepended and
-        # appended to the OrderedDict returned in the Response.
-        return [], []
-
     def get_paginated_response(self, data):
         # Like PageNumberPagination.get_paginated_response, but with
         # 'page_size' added to the top of the response data.
-        pre, post = self.get_extra_fields(data)
-        return Response(OrderedDict(
-            pre + [
-                # Note that self.page_size doesn't work, it contains the
-                # default page size.
-                ('page_size', self.page.paginator.per_page),
-                ('page_count', self.page.paginator.num_pages),
-                ('count', self.page.paginator.count),
-                ('next', self.get_next_link()),
-                ('previous', self.get_previous_link()),
-                ('results', data)
-            ] + post))
+        return Response(OrderedDict([
+            # Note that self.page_size doesn't work, it contains the
+            # default page size.
+            ('page_size', self.page.paginator.per_page),
+            ('page_count', self.page.paginator.num_pages),
+            ('count', self.page.paginator.count),
+            ('next', self.get_next_link()),
+            ('previous', self.get_previous_link()),
+            ('results', data)
+        ]))
 
 
 class ESPageNumberPagination(CustomPageNumberPagination):
@@ -56,10 +49,3 @@ class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
             ('previous', None),
             ('results', data)
         ]))
-
-
-class ABESPageNumberPagination(ESPageNumberPagination):
-    view = None
-
-    def get_extra_fields(self, data):
-        return [('a_b_outcome', self.view.ab_outcome if self.view else '')], []

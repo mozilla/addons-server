@@ -3738,7 +3738,7 @@ class TestAddonRecommendationView(ESTestCase):
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
             data = self.perform_search(
-                self.url, data={'q': 'foo', 'page_size': 1})
+                self.url, data={'q': 'foo'})
             assert data['count'] == 2
-            assert len(data['results']) == 1
+            assert len(data['results']) == 2
             assert search_mock.call_count == 1
