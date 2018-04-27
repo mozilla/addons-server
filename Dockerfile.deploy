@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
         bash-completion                  \
         build-essential                  \
         curl                             \
+        libcap-dev                       \
         libjpeg-dev                      \
+        libpcre3-dev                     \
         libsasl2-dev                     \
         libxml2-dev                      \
         libxslt-dev                      \
@@ -33,6 +35,7 @@ RUN apt-get update && apt-get install -y \
         python-pip                       \
         nodejs                           \
         npm                              \
+        uuid-dev                         \
         uwsgi                            \
         uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
@@ -59,6 +62,9 @@ ENV LC_ALL en_US.UTF-8
 COPY version.json /app/version.json
 COPY . /data/olympia
 WORKDIR /data/olympia
+
+# Installd uwsgi statsd exporter to collect metrics from uwsgi when deployed
+RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd
 
 # Install all python requires
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
