@@ -132,21 +132,22 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
-    def __get__(self, instance, instance_type=None):
+    def __get__(self, instance, cls=None):
         if instance is None:
             return self
 
         # If Django doesn't find find the value in the cache (which would only
         # happen if the field was set or accessed already), it does a db query
-        # to follow the foreign key.  We expect translations to be set by
+        # to follow the foreign key. We expect translations to be set by
         # queryset transforms, so doing a query is the wrong thing here.
         try:
-            return getattr(instance, self.field.get_cache_name())
+            return getattr(instance, self.cache_name)
         except AttributeError:
             return None
 
     def __set__(self, instance, value):
         lang = translation_utils.get_language()
+        #print('__set__', instance, instance.pk, value, lang)
         if isinstance(value, basestring):
             value = self.translation_from_string(instance, lang, value)
         elif hasattr(value, 'items'):
@@ -163,6 +164,12 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             super(TranslationDescriptor, self).__set__(instance, value)
         elif getattr(instance, self.field.column, None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
+
+        # print(
+        #     'after __set__',
+        #     getattr(instance, self.cache_name), instance, instance.pk, value,
+        #     lang)
+        # print()
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
@@ -212,12 +219,15 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
 
             # Set the Translation on the object because translation_from_string
             # doesn't expect Translations to be created but not attached.
+            print('set trans on instance', instance, trans)
             self.__set__(instance, trans)
 
             # If we're setting the current locale, set it to the object so
             # callers see the expected effect.
             if to_language(locale) == lang:
                 rv = trans
+
+        self.__set__(instance, rv)
         return rv
 
 

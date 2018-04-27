@@ -226,6 +226,9 @@ class TranslationTestCase(BaseTestCase):
         m.name = strings
         m.save()
 
+        assert m.name == 'some name'
+        assert m.name.localized_string == 'some name'
+
         # en-US was not touched.
         self.trans_eq(get_model().name, 'some name', 'en-US')
 

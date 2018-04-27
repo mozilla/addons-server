@@ -63,6 +63,7 @@ def build_query(model, connection):
 
 
 def get_trans(items):
+    print('XXXXXXXX', 'GET TRANS', items)
     if not items:
         return
 
