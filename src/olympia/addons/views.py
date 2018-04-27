@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django import http
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
@@ -10,7 +12,7 @@ from django.views.decorators.vary import vary_on_headers
 
 import waffle
 
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from rest_framework.generics import GenericAPIView, ListAPIView
@@ -54,7 +56,8 @@ from .serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
-from .utils import get_creatured_ids, get_featured_ids
+from .utils import (
+    get_addon_recommendations, get_creatured_ids, get_featured_ids)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -950,3 +953,30 @@ class CompatOverrideView(ListAPIView):
                 'Empty, or no, guid parameter provided.')
         return queryset.filter(guid__in=guids).transform(
             CompatOverride.transformer).order_by('-pk')
+
+
+class AddonRecommendationView(AddonSearchView):
+    filter_backends = [ReviewedContentFilter]
+    ab_outcome = None
+    fallback_reason = None
+
+    def get_paginated_response(self, data):
+        data = data[:4]  # taar is only supposed to return 4 anyway.
+        return Response(OrderedDict([
+            ('outcome', self.ab_outcome),
+            ('fallback_reason', self.fallback_reason),
+            ('page_size', 1),
+            ('page_count', 1),
+            ('count', len(data)),
+            ('next', None),
+            ('previous', None),
+            ('results', data),
+        ]))
+
+    def filter_queryset(self, qs):
+        qs = super(AddonRecommendationView, self).filter_queryset(qs)
+        guid_param = self.request.GET.get('guid')
+        taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
+        guids, self.ab_outcome, self.fallback_reason = (
+            get_addon_recommendations(guid_param, taar_enable))
+        return qs.query(query.Bool(must=[Q('terms', guid=guids)]))

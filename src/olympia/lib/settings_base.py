@@ -1791,6 +1791,10 @@ CRON_JOBS = {
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.dev.mozaws.net/api/recommendations/')
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'RECOMMENDATION_ENGINE_URL',
+    default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 

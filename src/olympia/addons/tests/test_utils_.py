@@ -1,10 +1,16 @@
+import mock
 import pytest
+
 from django.forms import ValidationError
 
 from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
-    get_creatured_ids, get_featured_ids, verify_mozilla_trademark)
+    get_addon_recommendations, get_creatured_ids, get_featured_ids,
+    TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
+    TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
+    TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
+    verify_mozilla_trademark)
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory)
 from olympia.bandwagon.models import FeaturedCollection
@@ -144,3 +150,52 @@ class TestGetCreaturedIds(TestCase):
     def test_shuffle(self):
         ids = get_creatured_ids(self.category_id, 'en-US')
         assert (ids[0],) == self.en_us_locale
+
+
+class TestGetAddonRecommendations(TestCase):
+    def setUp(self):
+        patcher = mock.patch(
+            'olympia.addons.utils.call_recommendation_server')
+        self.recommendation_server_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+        self.a101 = addon_factory(id=101, guid='101@mozilla')
+        addon_factory(id=102, guid='102@mozilla')
+        addon_factory(id=103, guid='103@mozilla')
+        addon_factory(id=104, guid='104@mozilla')
+
+        self.recommendation_guids = [
+            '101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'
+        ]
+        self.recommendation_server_mock.return_value = (
+            self.recommendation_guids)
+
+    def test_recommended(self):
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == self.recommendation_guids
+        assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
+        assert reason is None
+
+    def test_recommended_no_results(self):
+        self.recommendation_server_mock.return_value = []
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
+
+    def test_recommended_timeout(self):
+        self.recommendation_server_mock.return_value = None
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
+
+    def test_not_recommended(self):
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', False)
+        assert not self.recommendation_server_mock.called
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_CURATED
+        assert reason is None
