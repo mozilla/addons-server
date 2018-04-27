@@ -214,7 +214,7 @@ class TranslationTestCase(BaseTestCase):
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(pk=1)
+            return TranslatedModel.objects.get(pk=m.pk)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
