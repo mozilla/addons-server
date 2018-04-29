@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-24 05:30+0000\n"
+"PO-Revision-Date: 2018-04-29 11:04+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -195,7 +195,7 @@ msgid "for {0}"
 msgstr "pro {0}"
 
 msgid "View privacy policy"
-msgstr "Zobrazit zásady ochrany soukromí"
+msgstr "Zobrazit zásady ochrany osobních údajů"
 
 msgid "View End-User License Agreement"
 msgstr "Zobrazit Licenční smlouvu pro koncové uživatele"
@@ -381,11 +381,11 @@ msgstr[2] "{0} denních uživatelů"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr "Zásady ochrany soukromí pro {0}"
+msgstr "Zásady ochrany osobních údajů pro {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr "Zásady ochrany soukromí"
+msgstr "Zásady ochrany osobních údajů"
 
 msgid "Report Abuse"
 msgstr "Nahlásit zneužití"
@@ -2599,10 +2599,10 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Vyplňte prosím Licenční smlouvu pro koncové uživatele vašeho doplňku:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Doplněk má zásady ochrany soukromí"
+msgstr "Doplněk má zásady ochrany osobních údajů"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Zadejte prosím zásady ochrany soukromí vašeho doplňku:"
+msgstr "Zadejte prosím zásady ochrany osobních údajů pro váš doplněk:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {extensions}."
@@ -2820,8 +2820,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznáky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše oznámení o zásadách ochrany osobních "
-"údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
+"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznámky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše zásady ochrany osobních údajů, které "
+"vysvětlují, jak nakládáme s vašimi informacemi."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
@@ -3511,7 +3511,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Zvolte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke svému zdrojovému kódu."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany soukromí vysvětlit, jaká data jsou odesílána a jak jsou použita."
+msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany osobních údajů vysvětlit, jaká data jsou odesílána a jak jsou použita."
 
 msgid "Notes to Reviewer:"
 msgstr "Poznámky pro redaktora:"
@@ -3891,7 +3891,7 @@ msgstr ""
 "doplňku. Nezapomeňte, že EULA není totéž jako licence pro váš kód, jako jsou GPL nebo MPL. Relevantní pouze pro zveřejněné doplňky."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany soukromí vysvětlit, jaká data jsou odesílána a jak jsou použita. Relevantní pouze pro zveřejněné doplňky."
+msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany osobních údajů vysvětlit, jaká data jsou odesílána a jak jsou použita. Relevantní pouze pro zveřejněné doplňky."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Pokud váš doplněk obsahuje binární či obfuskovaný kód a nejedná se o známou knihovnu, nahrajte pro kontrolu jeho zdrojový kód."
@@ -4795,7 +4795,7 @@ msgid "Add-ons downloaded:"
 msgstr "Stažené doplňky:"
 
 msgid "View Privacy Policy"
-msgstr "Zobrazit zásady ochrany soukromí"
+msgstr "Zobrazit zásady ochrany osobních údajů"
 
 msgid "Active Users"
 msgstr "Aktivní uživatelé"
@@ -5150,7 +5150,7 @@ msgstr "Bere Mozilla informace o mém účtu jako soukromé?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Ano. Naše <a href=\"%(url)s\">zásady na ochranu soukromí</a> popisují, jak jsou vaše informace Mozillou spravovány."
+msgstr "Ano. Naše <a href=\"%(url)s\">zásady ochrany osobních údajů</a> popisují, jak jsou vaše informace Mozillou spravovány."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr "Co jsou \"nástroje pro vývojáře\" uvedené na AMO?"
@@ -5207,10 +5207,10 @@ msgid "Yes. You can specify a license agreement when submitting your add-on. You
 msgstr "Ano. Své vlastní licenční ujednání můžete určit při přidávání doplňku. Po přidání doplňků jej můžete kdykoliv přidat či aktualizovat na nástěnce nástrojů pro vývojáře."
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr "Mohu u svého doplňku uvést zásady ochrany soukromí?"
+msgstr "Mohu u svého doplňku uvést zásady ochrany osobních údajů?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Ano. Přidejte svou verzi zásad ochrany soukromí při přidávání svého doplňku. Můžete je též po přidání doplňku kdykoliv upravit v nástrojích pro vývojáře."
+msgstr "Ano. Přidejte svou verzi zásad při přidávání svého doplňku. Můžete je též po přidání doplňku kdykoliv upravit v nástrojích pro vývojáře."
 
 msgid "Must my add-on be reviewed?"
 msgstr "Musí být můj doplněk zkontrolován?"
