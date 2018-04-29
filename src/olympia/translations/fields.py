@@ -132,16 +132,16 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
-    def __get__(self, instance, instance_type=None):
+    def __get__(self, instance, cls=None):
         if instance is None:
             return self
 
         # If Django doesn't find find the value in the cache (which would only
         # happen if the field was set or accessed already), it does a db query
-        # to follow the foreign key.  We expect translations to be set by
+        # to follow the foreign key. We expect translations to be set by
         # queryset transforms, so doing a query is the wrong thing here.
         try:
-            return getattr(instance, self.field.get_cache_name())
+            return getattr(instance, self.cache_name)
         except AttributeError:
             return None
 
@@ -153,7 +153,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             value = self.translation_from_dict(instance, lang, value)
 
         # Don't let this be set to None, because Django will then blank out the
-        # foreign key for this object.  That's incorrect for translations.
+        # foreign key for this object. That's incorrect for translations.
         if value is not None:
             # We always get these back from the database as Translations, but
             # we may want them to be a more specific Purified/Linkified child
