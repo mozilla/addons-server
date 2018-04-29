@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-29 20:31+0000\n"
+"PO-Revision-Date: 2018-04-29 20:33+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6069,9 +6069,8 @@ msgstr "Kitz'ib'axik Nik'oxïk"
 msgid "Add-on Review Guide"
 msgstr "Rucholajem Runik'oxik Tz'aqat"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Rutzijoxik Wachinel"
+msgstr "Rucholajem Rutzijoxik Wachinel"
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -6102,9 +6101,8 @@ msgstr ""
 msgid "Flagged Themes ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Anin taq Wachinel"
+msgstr "Kitz'ib'axik Kinik'oxik Anin taq Wachinel"
 
 msgid "Deleted Themes Log"
 msgstr ""
@@ -6193,13 +6191,11 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Taq wachib'äl"
+msgstr "Kiwachib'al Wachinel"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Tiq'axäx choy pa ruwi' richin Nab'ey Tzub'al"
+msgstr "Nab'ey Rutzub'al Xb'an"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
