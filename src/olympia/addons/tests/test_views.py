@@ -940,6 +940,7 @@ class TestDetailPage(TestCase):
         license.builtin = 1
         license.name = 'License to Kill'
         license.url = g
+
         license.save()
         assert license.builtin == 1
         assert license.url == g
