@@ -274,7 +274,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField(default=None)
+    name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
