@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-03-01 20:18+0000\n"
+"PO-Revision-Date: 2018-04-30 16:52+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -108,19 +108,19 @@ msgstr "მისამართის დაბოლოება ვერ ი
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
+msgstr[0] "არასწორი ჭდე: {0}"
 msgstr[1] "არასწორი ჭდე: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] "\"{0}\" ნაჭდევი დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
+msgstr[0] "\"{0}\" ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
+msgstr[1] "\"{0}\" ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] "თქვენ დაშვებულზე {0} -ით მეტი ჭდე გაქვთ."
+msgstr[0] "თქვენ დაშვებულზე {0}-ით მეტი ჭდე გაქვთ."
+msgstr[1] "თქვენ დაშვებულზე {0}-ით მეტი ჭდე გაქვთ."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -128,7 +128,7 @@ msgstr "შეუსაბამო სიმბოლოების მოშ�
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
+msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
 msgstr[1] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
 
 #, python-format
@@ -141,7 +141,7 @@ msgstr "თქვენი დამატების ამ განაცხ
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
+msgstr[0] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 msgstr[1] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
@@ -255,13 +255,13 @@ msgstr "დამატების თარიღი {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s ჩამოტვირთვა ყოველკვირეულად"
 msgstr[1] "%(num)s ყოველკვირეული ჩამოტვირთვა"
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s მომხმარებელი"
 msgstr[1] "%(num)s მომხმარებელი"
 
 msgid "Requires Restart"
@@ -276,13 +276,13 @@ msgstr "თავსებადია Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] "{0} ყოველკვირეული ჩამოტვირთვა"
+msgstr[0] "{0} ჩამოტვირთვა ყოველკვირეულად"
+msgstr[1] "{0} ჩამოტვირთვა ყოველკვირეულად"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} მომხმარებელი"
 msgstr[1] "{0} მომხმარებელი"
 
 msgid "by"
@@ -332,7 +332,7 @@ msgstr "მიღებულია"
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> მომხმარებელი"
 msgstr[1] "<strong>{0}</strong> მომხმარებელი"
 
 msgid "Hover to Preview"
@@ -358,7 +358,7 @@ msgstr "<b>{0}</b> მომხმარებელი"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
+msgstr[0] "{0} მომხმარებელი დღეში"
 msgstr[1] "{0} მომხმარებელი დღეში"
 
 #. {0} is the name of the add-on.
@@ -435,8 +435,8 @@ msgstr "შემქმნელის პასუხის ჩვენებ�
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] "ნახეთ ყველა (%(cnt)s) მიმოხილვა, ამ დამატების შესახებ"
+msgstr[0] "იხილეთ ყველა მიმოხილვა, ამ დამატების შესახებ"
+msgstr[1] "იხილეთ ყველა (%(cnt)s) მიმოხილვა, ამ დამატების შესახებ"
 
 msgid "Tags"
 msgstr "ჭდეები"
@@ -478,13 +478,13 @@ msgstr "ამ კრებულების ნაწილი"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] "ავტორის სხვა დამატებები"
+msgstr[0] "%(author)s ავტორის სხვა დამატებები"
+msgstr[1] "ამ ავტორების სხვა დამატებები"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> მომხმარებლის მიმოხილვა"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> მომხმარებლის მიმოხილვა"
 
 msgid "View statistics"
@@ -615,7 +615,7 @@ msgstr "პირდაპირი ბმული"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
+msgstr[0] "მომხმარებლების ყველა მიმოხილვის ნახვა"
 msgstr[1] "მომხმარებლების ყველა (%(cnt)s) მიმოხილვის ნახვა"
 
 msgid "This add-on has not yet been reviewed."
@@ -664,7 +664,7 @@ msgstr "კრებულის შემდგენის შენიშვ�
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> ყოველკვირეული ჩამოტვირთვა"
 msgstr[1] "<strong>{0}</strong> ყოველკვირეული ჩამოტვირთვა"
 
 msgid "Not Reviewed"
@@ -1101,7 +1101,7 @@ msgstr "პირადული"
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(num)s</span> გამომწერი"
 msgstr[1] "<span>%(num)s</span> გამომწერი"
 
 msgid "About this Collection"
@@ -1131,13 +1131,13 @@ msgstr "კრებულის წაშლა"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s თემა ამ კრებულში"
 msgstr[1] "%(num)s თემა ამ კრებულში"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
+msgstr[0] "ამ კრებულში არის %(num)s დამატება"
 msgstr[1] "ამ კრებულში არის %(num)s დამატება"
 
 msgid "Go"
@@ -1178,13 +1178,13 @@ msgstr "ჩემი რჩეული დამატებები"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] "<span>%(addons)s</span>დამატება"
+msgstr[0] "<span>%(addons)s</span> დამატება"
+msgstr[1] "<span>%(addons)s</span> დამატება"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> გამომწერი"
 msgstr[1] "<span>%(followers)s</span> გამომწერი"
 
 #. People "follow" collections to get notified of updates.                    Like
@@ -1194,16 +1194,16 @@ msgstr[1] "<span>%(followers)s</span> გამომწერი"
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] "%(num)s ყოველკვირეული გამომწერი"
+msgstr[0] "%(num)s გამომწერი ყოველკვირეულად"
+msgstr[1] "%(num)s გამომწერი ყოველკვირეულად"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] "%(num)s ყოველთვიური გამომწერი"
+msgstr[0] "%(num)s გამომწერი ყოველთვიურად"
+msgstr[1] "%(num)s გამომწერი ყოველთვიურად"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1212,7 +1212,7 @@ msgstr[1] "%(num)s ყოველთვიური გამომწერი
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
+msgstr[0] "%(num)s გამომწერი"
 msgstr[1] "%(num)s გამომწერი"
 
 msgid "by {0}"

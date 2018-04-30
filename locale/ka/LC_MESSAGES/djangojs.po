@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2017-12-03 14:54+0000\n"
+"PO-Revision-Date: 2018-04-30 16:44+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "{0} ვარსკვლავი"
 msgstr[1] "{0} ვარსკვლავი"
 
 msgid "There was a problem contacting the server."
@@ -53,12 +53,12 @@ msgstr "თქვენი დამატებების დასამუ�
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "თქვენი დამატების შემოწმება ვერ მოხერხდა {0} შეცდომის გამო."
 msgstr[1] "თქვენი დამატების შემოწმება ვერ მოხერხდა {0} შეცდომის გამო."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip;და კიდევ {0}"
 msgstr[1] "&hellip;და კიდევ {0}"
 
 msgid "See full validation report"
@@ -84,12 +84,12 @@ msgstr "დამატების გადამოწმების დრ�
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 msgstr[1] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 msgstr[1] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 
 msgid "Your add-on was validated with no errors or warnings."
@@ -640,13 +640,13 @@ msgstr "დასაწყისისთვის აირჩიეთ პრ�
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] "მიუთითეთ {0} დამატებისთვის {1} ვერსიის უმაღლესი მნიშვნელობა და მიწერეთ ავტორებს."
+msgstr[0] "მიუთითეთ {0} დამატებისთვის {1} ვერსიის უმაღლესი მნიშვნელობა და მიწერეთ ავტორს."
+msgstr[1] "მიუთითეთ {0} დამატებისთვის {1} ვერსიის უმაღლესი მნიშვნელობა და მიწერეთ ავტორს."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] "შეტყობინების მიწერა ავტორისთვის, რომლის {2} დამატებამ ვერ გაიარა შემოწმება."
+msgstr[0] "შეტყობინების მიწერა ავტორისთვის, რომლის {2} დამატებაც ვერ შემოწმდა."
+msgstr[1] "შეტყობინების მიწერა ავტორისთვის, რომლის {2} დამატებაც ვერ შემოწმდა."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -746,12 +746,12 @@ msgstr "ფაილის ატვირთვისას წარმოი�
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} ფაილი"
 msgstr[1] "{files} ფაილი"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} მიმოხილვა"
 msgstr[1] "{reviews} მიმოხილვა"
 
 msgid "Image changes being processed"
@@ -766,7 +766,7 @@ msgstr "იტვირთება...."
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
+msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 msgstr[1] "დარჩენილია <b>{0}</b> სიმბოლო."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -870,17 +870,17 @@ msgstr "დამატებამ შემოწმება გაიარ�
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} შეცდომა"
 msgstr[1] "{0} შეცდომა"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} გაფრთხილება"
 msgstr[1] "{0} გაფრთხილება"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} შენიშვნა"
 msgstr[1] "{0} შენიშვნა"
 
 msgid "Validation task could not complete or completed with errors"
