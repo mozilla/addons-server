@@ -131,6 +131,12 @@
                   <input type="file" id="screenshot_upload" name="uploads" multiple
                          data-allowed-types="{{ supported_image_types }}"
                          data-upload-url="{{ url('devhub.addons.upload_preview', addon.slug) }}">
+                  <small>
+                    PNG and JPG supported. The maximum and recommended size for screenshots is
+                    1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller
+                    images. Having screenshots in your listing page greatly increases its chances of
+                    being installed and being featured in the homepage.
+                  </small>
                 </div>
               {% endif %}
             {% else %}
