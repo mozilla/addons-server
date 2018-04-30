@@ -832,8 +832,9 @@ def attach_trans_dict(model, objs):
             if not t_id or field_translations is None:
                 continue
 
-            obj.translations[t_id] = [get_locale_and_string(t, field.rel.to)
-                                      for t in field_translations]
+            obj.translations[t_id] = [
+                get_locale_and_string(t, field.remote_field.to)
+                for t in field_translations]
 
 
 def rm_local_tmp_dir(path):
