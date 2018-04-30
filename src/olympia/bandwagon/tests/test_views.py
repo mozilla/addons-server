@@ -1410,6 +1410,20 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
 
+    def test_no_id_lookup(self):
+        collection = collection_factory(author=self.user, slug='999')
+        id_url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': collection.id})
+        response = self.client.get(id_url)
+        assert response.status_code == 404
+        slug_url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': collection.slug})
+        response = self.client.get(slug_url)
+        assert response.status_code == 200
+        assert response.data['id'] == collection.id
+
     def test_not_listed(self):
         self.collection.update(listed=False)
 
@@ -1665,6 +1679,18 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         url = self.get_url(random_user)
         response = self.send(url=url)
         assert response.status_code == 403
+
+    def test_create_numeric_slug(self):
+        self.client.login_api(self.user)
+        data = {
+            'name': u'this',
+            'slug': u'1',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.name == data['name']
+        assert collection.slug == data['slug']
 
 
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
