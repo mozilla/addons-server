@@ -1410,6 +1410,20 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
 
+    def test_no_id_lookup(self):
+        collection = collection_factory(author=self.user, slug='999')
+        id_url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': collection.id})
+        response = self.client.get(id_url)
+        assert response.status_code == 404
+        slug_url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': collection.slug})
+        response = self.client.get(slug_url)
+        assert response.status_code == 200
+        assert response.data['id'] == collection.id
+
     def test_not_listed(self):
         self.collection.update(listed=False)
 
@@ -1511,25 +1525,6 @@ class TestCollectionViewSetDetail(TestCase):
         assert isinstance(addon_data['support_url'], basestring)
         assert addon_data['support_url'] == get_outgoing_url(
             unicode(addon.support_url))
-
-
-class TestCollectionViewSetDetailWithId(TestCollectionViewSetDetail):
-    def _get_url(self, user, collection):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': collection.id})
-
-    def test_404(self):
-        # Invalid user.
-        response = self.client.get(reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk + 66, 'slug': self.collection.id}))
-        assert response.status_code == 404
-        # Invalid collection.
-        response = self.client.get(reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': '123456'}))
-        assert response.status_code == 404
 
 
 class CollectionViewSetDataMixin(object):
@@ -1685,6 +1680,18 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 403
 
+    def test_create_numeric_slug(self):
+        self.client.login_api(self.user)
+        data = {
+            'name': u'this',
+            'slug': u'1',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.name == data['name']
+        assert collection.slug == data['slug']
+
 
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
@@ -1749,13 +1756,6 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 403
 
 
-class TestCollectionViewSetPatchWithId(TestCollectionViewSetPatch):
-    def get_url(self, user):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.id})
-
-
 class TestCollectionViewSetDelete(TestCase):
     client_class = APITestClient
 
@@ -1811,13 +1811,6 @@ class TestCollectionViewSetDelete(TestCase):
         # But can't delete it.
         response = self.client.delete(url)
         assert response.status_code == 403
-
-
-class TestCollectionViewSetDeleteWithId(TestCollectionViewSetDelete):
-    def get_url(self, user):
-        return reverse(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.id})
 
 
 class CollectionAddonViewSetMixin(object):
