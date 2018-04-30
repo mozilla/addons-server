@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-26 16:46+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2018-04-30 17:03+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2453,9 +2453,8 @@ msgstr "Проверка обновлённой локали"
 msgid "Theme Review"
 msgstr "Проверка темы"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Тема (статическая)"
+msgstr "Проверка темы (статической)"
 
 msgid "New Search Provider Review"
 msgstr "Проверка новой поисковой системы"
@@ -3011,12 +3010,11 @@ msgstr "Нет"
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Опубликованные версии"
+msgstr "Предпросмотр опубликованной версии"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Предварительный просмотр всё ещё генерируется - вернитесь сюда позже или обновите страницу."
 
 msgid "Manage Authors & License"
 msgstr "Управление авторами и лицензией"
@@ -3578,9 +3576,8 @@ msgstr "Вы сделали это!"
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Версия представлена"
+msgstr "Просмотр представленной версии"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
@@ -4049,15 +4046,14 @@ msgstr "Узнайте как"
 msgid "Get Started"
 msgstr "Начать"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Готовы представить дополнение? Прочтите наше пошаговое руководство о процессе представления."
+msgstr "Готовы представить расширение? Прочтите наше пошаговое руководство о процессе представления."
 
 msgid "See Tutorial"
 msgstr "Показать руководство"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Помогите пользователям узнать о вашем расширении, создав хорошее описание."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4481,33 +4477,29 @@ msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Остановите отслеживание Фейсбука {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Изолируйте свою деятельность в Фейсбуке в отдельном \"контейнере\", таким образом затрудняя для Фейсбука возможность отслеживания вас на других сайтах."
 
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Упростите поиск {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Просто выделите текст на любой веб-странице для поиска в множестве поисковых систем."
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Блокируйте рекламу и защищайте свою приватность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Простая настройка позволяет вам взять под контроль рекламу, которую вы видите, а также отслеживание вас в Интернете."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Переосмыслите вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "У вас тонны открытых вкладок? Организуйте их в удобной боковой панели."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -5379,9 +5371,8 @@ msgstr "Отправленное не по назначению сообщени
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Другие (предоставляет всплывающий запрос для ввода информации)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "В настоящее время AMO не предоставляет механизма прямой связи с рецензентом."
+msgstr "В настоящее время, AMO не предоставляет механизма прямой связи с автором отзыва."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Могу ли я попросить удалить отзыв, если он является негативным?"
@@ -6220,9 +6211,8 @@ msgstr "Пока пропустить"
 msgid "Needs Admin Content Review"
 msgstr "Требуется проверка содержимого админом"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Требуется проверка кода админом"
+msgstr "Требуется проверка статической темы администратором"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-дополнение"
@@ -6353,9 +6343,8 @@ msgstr "Одобрить содержимое"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Устаревшие дополнения"
+msgstr "Статические темы и устаревшие дополнения"
 
 msgid "Static Themes"
 msgstr "Статические темы"
@@ -6370,17 +6359,14 @@ msgstr "Новые темы ({0})"
 msgid "Updates ({0})"
 msgstr "Обновления ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Замечание проверяющего"
+msgstr "Лог проверки"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Проверка дополнения"
+msgstr "Руководство по проверке дополнений"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Очередь проверки тем"
+msgstr "Руководство по проверке тем"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматически одобренные дополнения"
@@ -6412,9 +6398,8 @@ msgstr "Обновления тем ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Отмеченные темы ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Лёгкие темы"
+msgstr "Лог проверки лёгких тем"
 
 msgid "Deleted Themes Log"
 msgstr "Лог удалённых тем"
@@ -6511,7 +6496,7 @@ msgid "Rendered Preview"
 msgstr "Предварительный Просмотр"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Файл изображения фона {0} из {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Подробнее об этом дополнении"
