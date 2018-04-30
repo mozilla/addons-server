@@ -170,7 +170,7 @@ class TranslatedField(models.ForeignKey):
             cls._meta.translated_fields = [self]
 
         # Set up a unique related name.  The + means it's hidden.
-        self.rel.related_name = '%s_%s_set+' % (cls.__name__, name)
+        self.remote_field.related_name = '%s_%s_set+' % (cls.__name__, name)
 
     def formfield(self, **kw):
         widget = TransInput if self.short else TransTextarea
