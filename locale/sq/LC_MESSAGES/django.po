@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-04-30 12:55+0000\n"
 "PO-Revision-Date: 2018-03-02 09:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -558,22 +558,6 @@ msgstr "Të dhëna Versioni"
 
 msgid "See complete version history"
 msgstr "Shihni historikun e plotë të versioneve"
-
-msgid "Development Channel"
-msgstr "Kanal Zhvillimesh"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Kanali i Zhvillimeve ju lejon të merrni në provë një version të ri eksperimental të kësaj shtese, përpara se ajo të hidhet në qarkullim për publikun e përgjithshëm. Pasi të instaloni versionin e "
-"zhvillimit, do të vazhdoni të merrni përditësime prej këtij kanali. Që të ndalni marrjen e përditësimeve nga zhvillimi, ri-instaloni versionin parazgjedhje prej lidhjes më sipër."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Kujdes:</strong> Versionet zhvillim të kësaj shtese s’janë të shqyrtuara prej Mozilla-s."
-
-msgid "See complete development channel history"
-msgstr "Shihni historikun e plotë të kanalit të zhvillimit"
 
 msgid "close"
 msgstr "mbylle"
@@ -2028,6 +2012,30 @@ msgstr "Nga zhvilluesi për {addon} {version} është hequr kërkesë të dhëna
 msgid "Information request removed"
 msgstr "Është hequr kërkesë të dhënash"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Për {addon} {version} u kërkua shqyrtim."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Është kërkuar supershqyrtim"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Për {addon} {version} u kërkua shqyrtim."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Është kërkuar supershqyrtim"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Për {addon} {version} u kërkua shqyrtim."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Është kërkuar shqyrtim"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2066,9 +2074,6 @@ msgstr "Në pritje të miratimit"
 
 msgid "Flagged for further review"
 msgstr "Iu vu shenjë për shqyrtim të mëtejshëm"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "E palistuar"
@@ -2610,9 +2615,6 @@ msgstr "Anashkaloje vleftësimin e dështuar"
 msgid "Submit my add-on for manual review."
 msgstr "Parashtoje shtesën time për shqyrtim dorazi."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Një kartelë me version që përfundon si a|alpha|b|beta|pre|rc dhe një numër opsional merret si beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "S’mund të ngarkoni më kartela për këtë version."
 
@@ -2746,16 +2748,6 @@ msgstr "Vleftëso Shtesën"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kontrolloni Përputhshmëri Shtese"
-
-msgid "You cannot submit this type of add-on"
-msgstr "S’mund të parashtroni këtë lloj shtojce"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3436,9 +3428,6 @@ msgstr "Përpara se të mund të parashtrohet për botim, kësaj shtese i mungoj
 msgid "This add-on doesn't have any versions."
 msgstr "Kjo shtesë s’ka ndonjë version."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Kjo shtesës’ka ndonjë version të miratuar, ndaj faqet publike për të (përfshi versione beta) janë të fshehur."
-
 msgid "Status:"
 msgstr "Gjendje:"
 
@@ -3619,9 +3608,6 @@ msgstr "Për ngarkimin e paketës së shtesës suaj përdorni fushat më poshtë
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Botoje këtë version vetëm te kanali im beta."
 
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
@@ -4553,6 +4539,19 @@ msgstr "Numrat e versioneve do të duhej të përmbanin vetëm shkronja, numra, 
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Ngarkimi i temave WebExtension hëpërhë nuk mbulohet."
+
+msgid "You cannot submit this type of add-on"
+msgstr "S’mund të parashtroni këtë lloj shtojce"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
+
+msgid "Unexpected error."
+msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5588,23 +5587,6 @@ msgid ""
 msgstr ""
 "Disa autorë shtesash u kërkojnë përdoruesve që e pëlqejnë shtesën të kontribuojnë te zhvillimi i saj përmes dhurimit të një shume parash. Këto kontribute shkojnë drejt e te zhvilluesi, veç në pastë "
 "treguar një palë të tretë, fjala vjen, fondacionin jofitimprurës Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Ç’janë shtesat beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Shtesat Beta janë versione të pashqyrtuara ende, të cilat përfaqësojnë punën së fundi të autorit të shtesës. Ndërkohë që autorë të ndryshëm kanë standarde të ndryshme për cilësinë e kodit beta, do "
-"të duhej ta merrnit të mirëqenë që këto shtesa janë më pak të qëndrueshme se sa qarkullimet e përgjithshme të shtesave."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Ju lutemi, mbani parasysh që kur instaloni një shtesë prej ndarjes \"Versione Beta\" te faqja e shtesës, do të vazhdoni të merrni përditësime rreth asaj shtese, sa herë që të ketë të tillë. Ashtu "
-"si versioni fillestar që instaluat, krejt hedhjet në qarkullim beta janë të pashqyrtuara nga Mozilla dhe mund të dëmtojnë kompjuterin tuaj."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Si të njoftoj për një shqyrtim përdoruesi të papërshtatshëm ose të pavlerë?"

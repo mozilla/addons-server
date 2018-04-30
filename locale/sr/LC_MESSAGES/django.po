@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-04-30 12:55+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -563,22 +563,6 @@ msgstr "Информације о верзији"
 
 msgid "See complete version history"
 msgstr "Погледај пуну историју верзија"
-
-msgid "Development Channel"
-msgstr "Канал за програмере"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Канал за програмере Вам допушта да тестирате нову пробну верзију овог додатка пре него што постане доступан широј јавности. Чим инсталирате развојну верзију, наставићете да добијате надоградње са "
-"овог канала. Да бисте прекинули примање новости, поново инсталирајте подразумевану верзију са горње везе."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "затвори"
@@ -2066,6 +2050,30 @@ msgstr "Коментар на {addon} {version}."
 msgid "Information request removed"
 msgstr "Захтеване додатне информације"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Захтевана супер рецензија"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Захтевана супер рецензија"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Захтевана рецензија"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2104,9 +2112,6 @@ msgstr "Одобрење у току"
 
 msgid "Flagged for further review"
 msgstr "Означено за даљу рецензију"
-
-msgid "Beta"
-msgstr "Бета верзија"
 
 msgid "Unlisted"
 msgstr ""
@@ -2689,9 +2694,6 @@ msgstr "Препис није прешао валидацију"
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Не можете више датотека отпремити за ову верзију."
 
@@ -2821,16 +2823,6 @@ msgstr "Оверите додатак"
 
 msgid "Check Add-on Compatibility"
 msgstr "Проверите компатибилност додатка"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3510,9 +3502,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Овај додатак није компатибилан са Вашом верзијом %(app)s-а."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Статус:"
 
@@ -3723,9 +3712,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
-
-msgid "Only publish this version to my beta channel."
-msgstr "Објави ову верзију само на мој бета канал."
 
 msgid "Administrative overrides"
 msgstr "Административна поништавања"
@@ -4699,6 +4685,19 @@ msgstr "Број верзије ви требало да садржи само �
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -5657,24 +5656,6 @@ msgid ""
 msgstr ""
 "Неки аутори додатка очекују од корисника који уживају у додатку да допринесу његовом развоју тако што ће направити мали новчани допринос. Ови доприноси иду директно програмеру, осим ако је треће "
 "лице назначено, као што је непрофитна Mozilla фондација."
-
-msgid "What are beta add-ons?"
-msgstr "Шта су бета додаци?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Бета додаци су верзије које нису прегледане и представљају најновије дело аутора додатака. Док различити аутори имају различите стандарде квалитета бета кода, треба претпоставити да су ови додаци "
-"мање стабилни од општег издања додатка."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Имајте на уму да када инсталирате додатак из \"бета верзије\" секције листинга додатка, Ви ће наставити да примате исправке за тај додатак, чим оне постану доступне. Као и почетна верзија коју сте "
-"инсталирали, сва бета издања су непрегледана и могу да нашкоде Вашем рачунару."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Како могу да пријавим неприкладан или спам коментар?"
