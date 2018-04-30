@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-30 16:52+0000\n"
+"PO-Revision-Date: 2018-04-30 17:00+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1520,7 +1520,7 @@ msgstr "{0} :: ძიების ხელსაწყოები"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> დამატება"
 msgstr[1] "<b>{0}</b> დამატება"
 
 msgid "Search Extensions"
@@ -1599,7 +1599,7 @@ msgstr "სრული თემები ზრდადი მოთხოვ
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "იხილეთ %(cnt)s გაფართოება, კატეგორიაში „%(name)s“ &raquo;"
 msgstr[1] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში „%(name)s“ &raquo;"
 
 msgid "{0} Themes"
@@ -1677,12 +1677,12 @@ msgstr "{addon} დამატების მოხსენებები �
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} მოხსენება წარმატების შესახებ"
 msgstr[1] "{0} მოხსენება წარმატების შესახებ"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} მოხსენება ხარვეზის შესახებ"
 msgstr[1] "{0} მოხსენება ხარვეზის შესახებ"
 
 msgid "View all"
@@ -2947,7 +2947,7 @@ msgstr "დამატებებთან დაკავშირებუ�
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> თემა"
 msgstr[1] "<b>{0}</b> თემა"
 
 msgid "Edit Information"
@@ -3044,7 +3044,7 @@ msgstr "ჭდეები ეხმარება მომხმარებ�
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
+msgstr[0] "მძიმით გამოყოფილი, არანაკლებ {0} სიმბოლოთი."
 msgstr[1] "მძიმით გამოყოფილი, არანაკლებ {0} სიმბოლოთი."
 
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -3052,7 +3052,7 @@ msgstr "მაგალითად: მუქი, კინო, თრილე
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "სათადარიგო ჭდეები:"
 msgstr[1] "სათადარიგო ჭდეები:"
 
 msgid "Contributions URL"
@@ -3412,7 +3412,7 @@ msgstr "<b>ადგილი რიგში:</b> %(pos)s (%(total)s-იდა�
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> მოქმედი მომხმარებელი"
 msgstr[1] "<strong>{0}</strong> მოქმედი მომხმარებელი"
 
 msgid "Submit a New File"
@@ -3828,7 +3828,7 @@ msgstr "პროგრამის ამოშლა"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
+msgstr[0] "მიუთითეთ <b> არაუმეტეს {0}</b> {1} კატეგორია, დამატებისთვის:"
 msgstr[1] "მიუთითეთ <b> არაუმეტეს {0}</b> {1} კატეგორია, დამატებისთვის:"
 
 msgid ""
@@ -4374,13 +4374,13 @@ msgstr "დამატების დოკუმენტაცია :: შ�
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} შეცდომა"
 msgstr[1] "{0} შეცდომა"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} გაფრთხილება"
 msgstr[1] "{0} გაფრთხილება"
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5927,7 +5927,7 @@ msgstr "ეს მიმოხილვა გაკეთებულია დ
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
+msgstr[0] "მომხმარებელს აქვს გაკეთებული <a href=\"%(user_review_url)s\">ადრინდელი მიმოხილვა</a>, ამ დამატების შესახებ."
 msgstr[1] "მომხმარებელს აქვს გაკეთებული <a href=\"%(user_review_url)s\">%(cnt)s ადრინდელი მიმოხილვა</a>, ამ დამატების შესახებ."
 
 #, python-format
@@ -5965,7 +5965,7 @@ msgstr "მიმოხილვები {0}-ის შესახებ"
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
 msgstr[1] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
 
 #. {0} is a developer's name.
@@ -5975,7 +5975,7 @@ msgstr "{0} შემმუშავებლის პასუხი"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
+msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
 msgstr[1] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
 
 msgid "No reviews found."
@@ -5993,7 +5993,7 @@ msgstr "დატოვეთ მიმოხილვა პირველმ�
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} მიმოხილვა"
 msgstr[1] "{num} მიმოხილვა"
 
 msgid "Rated {0} out of 5 stars"
@@ -6150,19 +6150,19 @@ msgstr "წინ"
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} წუთი"
 msgstr[1] "{0} წუთი"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} საათი"
 msgstr[1] "{0} საათი"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} დღე"
 msgstr[1] "{0} დღე"
 
 msgid "Last Review"
@@ -6263,7 +6263,7 @@ msgstr "შიგთავსის განხილვა"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
+msgstr[0] "შიგთავსის განხილვა ({0})"
 msgstr[1] "შიგთავსის განხილვა ({0})"
 
 msgid "New Themes ({0})"
@@ -6322,7 +6322,7 @@ msgstr "მიმოხილვის შეზღუდვის ზღვა�
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "{0} თემის მიმოხილვები წარმატებით დამუშავდა (+{1} ქულა, ჯამში {2})."
 msgstr[1] "{0} თემის მიმოხილვები წარმატებით დამუშავდა (+{1} ქულა, ჯამში {2})."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -6824,22 +6824,22 @@ msgstr "[მდგომარეობა:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
-msgstr[1] "განახლებები ({0})"
+msgstr[0] "განახლება ({0})"
+msgstr[1] "განახლება ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "მიმოხილვების შეფასება ({0})"
 msgstr[1] "მიმოხილვების შეფასება ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] ""
+msgstr[0] "ავტომატურად მიღებული ({0})"
 msgstr[1] "ავტომატურად მიღებული ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] ""
+msgstr[0] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 msgstr[1] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 
 msgid "Flagged"
@@ -6935,7 +6935,7 @@ msgstr "ძიების შედეგები \"{0}\" ნაჭდევ�
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> შედეგი"
 msgstr[1] "<b>{0}</b> შედეგი"
 
 msgid "Filter Results"
@@ -7719,13 +7719,13 @@ msgstr "{0} დამატება"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s თემა"
 msgstr[1] "%(num)s თემა"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s დამატება"
 msgstr[1] "%(num)s დამატება"
 
 msgid "Average rating of developer's add-ons"
@@ -7763,7 +7763,7 @@ msgstr "{0} ვერსიის ისტორია"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> ვერსია"
 msgstr[1] "<b>{0}</b> ვერსია"
 
 msgid "Be careful with old versions!"
