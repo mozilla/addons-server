@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-04-30 12:55+0000\n"
 "PO-Revision-Date: 2018-02-09 00:14+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -558,22 +558,6 @@ msgstr "Versionshistorik"
 
 msgid "See complete version history"
 msgstr "Se hele versionshistorikken"
-
-msgid "Development Channel"
-msgstr "Udviklingskanal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Udviklingskanalen giver dig mulighed for at teste en eksperimentel ny version af denne tilføjelse, før den udgives til den brede offentlighed. Når først du har installeret udviklingsversionen, vil "
-"du fortsætte med at få opdateringer fra denne kanal. For at stoppe modtagelsen af udviklingsopdateringer, skal du geninstallere standardversionen fra linket ovenover."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Advarsel:</strong> Udviklingsversioner af denne tilføjelse er ikke blevet godkendt af Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Se hele historikken for udviklingskanalen"
 
 msgid "close"
 msgstr "luk"
@@ -2022,6 +2006,29 @@ msgstr "Svar af udvikler på {addon} {version}."
 msgid "Information request removed"
 msgstr ""
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Endnu ingen anmeldelser af tilføjelsen."
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Ikke godkendt"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
+
+msgid "Admin theme-review requested"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2060,9 +2067,6 @@ msgstr ""
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr ""
@@ -2607,9 +2611,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
@@ -2735,16 +2736,6 @@ msgid "Validate Add-on"
 msgstr ""
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3401,9 +3392,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr ""
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3585,9 +3573,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4516,6 +4501,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5500,23 +5498,6 @@ msgid ""
 msgstr ""
 "Nogle udviklere af tilføjelser anmoder brugere, der godt kan lide en tilføjelse, om at bidrage til dens udvikling ved at give et økonomisk bidrag. Disse bidrag går direkte til udvikleren, medmindre "
 "tredjepart er angivet, såsom den almennyttige Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Hvad er beta-tilføjelser?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Beta-tilføjelser er ikke-godkendte versioner, som repræsenterer det seneste arbejde fra en udvikler. Udviklere har forskellige standarder for kvaliteten af beta-kode, men du bør gå ud fra, at disse "
-"tilføjelser er mindre stabile end de almindelige udgivelser."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Vær opmærksom på, at hvis du installerer en \"betaversion\" af en tilføjelse, vil du automatisk få den opdateret, når der udsendes nye betaversioner. Ligesom den oprindelige betaversion, du "
-"installerede, er efterfølgende betaversioner ikke blevet godkendt af Mozilla, og de kan derfor skade din computer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hvordan kan jeg rapportere en upassende brugeranmeldelse eller spam?"

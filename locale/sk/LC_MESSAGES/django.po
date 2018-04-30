@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-04-30 12:55+0000\n"
 "PO-Revision-Date: 2018-04-22 19:07+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -573,22 +573,6 @@ msgstr "Informácie o verzii"
 
 msgid "See complete version history"
 msgstr "Zobraziť celú históriu verzií"
-
-msgid "Development Channel"
-msgstr "Vývojársky kanál"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Kanál vývojových verzií vám umožňuje testovať experimentálne nové verzie tohto doplnku skôr ako budú verejne dostupné. Akonáhle nainštalujete vývojovú verziu, budete naďalej dostávať aktualizácie z "
-"tohto kanála. Na ukončenie získavania vývojových verzií si nainštalujte stabilnú verziu doplnku."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Upozornenie:</strong> Vývojové verzie tohto doplnku neboli skontrolované Mozillou."
-
-msgid "See complete development channel history"
-msgstr "Zobraziť celú históriu vývojových verzií"
 
 msgid "close"
 msgstr "zavrieť"
@@ -2072,6 +2056,30 @@ msgstr "Odpoveď od vývojára doplnku {addon} {version}."
 msgid "Information request removed"
 msgstr "Požadované dodatočné informácie"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Vyžiadaná super-kontrola"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Vyžiadaná super-kontrola"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Vyžiadaná kontrola"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2110,9 +2118,6 @@ msgstr "Čakajúci na schválenie"
 
 msgid "Flagged for further review"
 msgstr "Označené na ďalšiu kontrolu"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Mimo zoznamu"
@@ -2657,9 +2662,6 @@ msgstr "Prepísať neúspešnú kontrolu"
 msgid "Submit my add-on for manual review."
 msgstr "Odoslať doplnok na manuálnu kontrolu."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Súbory s verziou končiacou na a|alpha|b|beta|pre|rc a prípadne číslom sú považované ako betaverze."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Pre túto verziu nemôžete odoslať žiadne ďalšie súbory."
 
@@ -2787,16 +2789,6 @@ msgstr "Overiť doplnok"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kontrola kompatibility doplnku"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
-
-#, fuzzy, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Nemôžete nahrať doplnok s GUID končiacim na \"@mozilla.org\""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3480,9 +3472,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Tento doplnok nemá žiadne verzie."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Stav:"
 
@@ -3677,9 +3666,6 @@ msgstr "Pre načítanie balíčka so svojim doplnkom a výber cieľových platfo
 
 msgid "Which platforms is this file compatible with?"
 msgstr "S ktorými platformami je tento súbor kompatibilný?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Túto verziu publikovať len v mojom beta kanále."
 
 msgid "Administrative overrides"
 msgstr "Zmeny pri administrácií"
@@ -4635,6 +4621,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Číslo verzie môže obsahovať len čísla, písmená a nasledovné znaky: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
+
+#, fuzzy, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Nemôžete nahrať doplnok s GUID končiacim na \"@mozilla.org\""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5643,24 +5642,6 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr "Čo sú to verzie beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Doplnky vo verzii beta sú neprekontrolované verzie, ktoré odrážajú najnovšiu prácu vývojára doplnku. Pretože autori majú rôzne nároky na kvalitu kódu vo verzii beta, mali by ste očakávať, že tieto "
-"doplnky budú menej stabilné ako ich finálne verzie."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Zapamätajte si, že keď si nainštalujte doplnok vo \"verzii beta\", budete dostávať aj nasledujúce beta verzie daného doplnku, ak budú dostupné. Tak ako pôvodná verzia, ktorú si nainštalujete, aj "
-"všetky nasledujúce aktualizácie nebudú Mozillou prekontrolované a môžu spôsobiť poškodenie údajov vo vašom počítači."
 
 #, fuzzy
 msgid "How do I report an inappropriate or spam user review?"
