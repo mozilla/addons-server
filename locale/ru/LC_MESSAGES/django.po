@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-30 17:03+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2018-04-30 19:32+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -3714,7 +3714,6 @@ msgstr "Фон панели инструментов"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Текст и значки в зоне панели инструментов"
 
@@ -6352,9 +6351,8 @@ msgstr "Статические темы"
 msgid "Legacy Add-ons"
 msgstr "Устаревшие дополнения"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Новые темы ({0})"
+msgstr "Новое ({0})"
 
 msgid "Updates ({0})"
 msgstr "Обновления ({0})"
