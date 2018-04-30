@@ -24,7 +24,8 @@ from olympia.translations.models import (
     PurifiedTranslation, Translation, TranslationSequence)
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
-    FancyModel, TranslatedModel, UntranslatedModel)
+    FancyModel, TranslatedModel, UntranslatedModel,
+    TranslatedModelWithDefaultNull)
 
 
 pytestmark = pytest.mark.django_db
@@ -706,3 +707,66 @@ def test_cache_key():
         Translation._cache_key(1, 'default'))
     assert LinkifiedTranslation._cache_key(1, 'default') == (
         Translation._cache_key(1, 'default'))
+
+
+def test_translated_field_default_null():
+    assert Translation.objects.count() == 0
+    o = TranslatedModelWithDefaultNull.objects.create(name='english name')
+
+    def get_model():
+        return TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+
+    assert Translation.objects.count() == 1
+
+    # Make sure the translation id is stored on the model, not the autoid.
+    assert o.name.id == o.name_id
+
+    # Reload the object from database with a different locale activated.
+    # Its name should still be there, using the fallback...
+    translation.activate('de')
+    german = get_model()
+    assert german.name == 'english name'
+    assert german.name.locale == 'en-us'
+
+    # Check that a different locale creates a new row with the same id.
+    german.name = u'Gemütlichkeit name'
+    german.save()
+
+    assert Translation.objects.count() == 2  # New name *and* description.
+    assert german.name == u'Gemütlichkeit name'
+    assert german.name.locale == 'de'
+
+    # ids should be the same, autoids are different.
+    assert o.name.id == german.name.id
+    assert o.name.autoid != german.name.autoid
+
+    # Check that de finds the right translation.
+    fresh_german = get_model()
+    assert fresh_german.name == u'Gemütlichkeit name'
+
+    # Update!
+    translation.activate('en-us')
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    translation_id = o.name.autoid
+
+    o.name = 'new name'
+    o.save()
+
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    assert o.name == 'new name'
+    assert o.name.locale == 'en-us'
+    # Make sure it was an update, not an insert.
+    assert o.name.autoid == translation_id
+
+    # Set translations with a dict.
+    strings = {'en-us': 'right language', 'de': 'wrong language'}
+    o = TranslatedModelWithDefaultNull.objects.create(name=strings)
+
+    # Make sure we get the English text since we're in en-US.
+    assert o.name == 'right language'
+
+    # Check that de was set.
+    translation.activate('de')
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    assert o.name == 'wrong language'
+    assert o.name.locale == 'de'
