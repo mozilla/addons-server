@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-29 11:04+0000\n"
+"PO-Revision-Date: 2018-05-01 15:06+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4456,7 +4456,7 @@ msgid "A simple set-up lets you take control of the ads you see and how you’re
 msgstr "Jednoduché nastavení zobrazovaných reklamam a sledování na internetu."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšené své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr "Vylepšete své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
