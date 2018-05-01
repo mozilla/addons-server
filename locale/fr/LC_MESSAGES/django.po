@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-25 13:13+0000\n"
+"PO-Revision-Date: 2018-05-01 15:11+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1033,9 +1033,8 @@ msgstr "Les icônes ne peuvent pas être animées."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Ce nom ne peut être utilisé."
+msgstr "Le champ nom ne peut pas rester vide."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "L’adresse personnalisée doit être composée de lettres, nombres, soulignements ou traits d’union."
@@ -2022,13 +2021,11 @@ msgstr "Contenu rejeté pour {addon} {version}."
 msgid "Content rejected"
 msgstr "Contenu rejeté"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "La demande d’informations pour {addon} a été supprimée."
+msgstr "La demande d’informations pour {addon} a été modifiée ou supprimée par un administrateur."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Demande d’informations supprimée"
+msgstr "Demande d’informations modifiée"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Le développeur a répondu à cette demande d’informations pour {addon} {version}."
@@ -3558,9 +3555,8 @@ msgstr "C’est fait !"
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Version soumise"
+msgstr "Aperçu de la version envoyée"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site, une fois la revue effectuée. Vous recevrez une notification lorsque ce sera le cas."
@@ -3697,7 +3693,6 @@ msgstr "Arrière-plan de la barre d’outils"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "La couleur d’arrière-plan pour la barre de navigation, la barre personnelle et l’onglet sélectionné. Champ du manifeste : toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Texte et icônes de la barre d’outils"
 
@@ -4024,9 +4019,8 @@ msgstr "Découvrez comment"
 msgid "Get Started"
 msgstr "Lancez-vous"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Prêt à proposer un module complémentaire ? Lisez notre guide détaillé sur le processus d’envoi de modules."
+msgstr "Prêt à proposer une extension ? Lisez notre guide détaillé sur le processus d’envoi d’extensions."
 
 msgid "See Tutorial"
 msgstr "Voir le tutoriel"
@@ -6183,9 +6177,8 @@ msgstr "Passer pour le moment"
 msgid "Needs Admin Content Review"
 msgstr "Nécessite une revue du contenu par un administrateur"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Nécessite une revue du code par un administrateur"
+msgstr "Nécessite la revue du thème statique par un administrateur"
 
 msgid "Jetpack Add-on"
 msgstr "Module Jetpack"
@@ -6325,20 +6318,17 @@ msgstr "Modules obsolètes"
 msgid "New ({0})"
 msgstr "Nouveau ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Mise à jour ({0})"
+msgstr "Mises à jour ({0})"
 
 msgid "Review Log"
 msgstr "Journal des revues"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Critique du module"
+msgstr "Guide de revue des modules complémentaires"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "File d’attente des revues de thème"
+msgstr "Guide de revue des thèmes"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Modules approuvés automatiquement"
@@ -6716,9 +6706,8 @@ msgstr "Enlever le signalement de revue de code par un administrateur"
 msgid "Clear Admin Content Review Flag"
 msgstr "Enlever le signalement de revue de contenu par un administrateur"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Enlever le signalement de revue de code par un administrateur"
+msgstr "Enlever le signalement de revue de thème statique par un administrateur"
 
 msgid "(admin)"
 msgstr "(admin)"
