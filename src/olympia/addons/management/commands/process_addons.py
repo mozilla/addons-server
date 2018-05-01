@@ -7,7 +7,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_firefox57_tag, bump_appver_for_legacy_addons,
-    find_inconsistencies_between_es_and_db)
+    find_inconsistencies_between_es_and_db, migrate_lwts_to_static_themes)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
@@ -50,6 +50,12 @@ tasks = {
         ],
         'pre': lambda values_qs: values_qs.distinct(),
     },
+    'migrate_lwt': {
+        'method': migrate_lwts_to_static_themes,
+        'qs': [
+            Q(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+        ]
+    }
 }
 
 
@@ -82,6 +88,12 @@ class Command(BaseCommand):
             help='Include deleted add-ons when determining which '
                  'add-ons to process.')
 
+        parser.add_argument(
+            '--ids',
+            action='store',
+            dest='ids',
+            help='Only apply task to specific addon ids (comma-separated).')
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -91,6 +103,9 @@ class Command(BaseCommand):
             addon_manager = Addon.unfiltered
         else:
             addon_manager = Addon.objects
+        if options.get('ids'):
+            ids_list = options.get('ids').split(',')
+            addon_manager = addon_manager.filter(id__in=ids_list)
         pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))

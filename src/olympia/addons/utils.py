@@ -1,5 +1,8 @@
+import json
 import random
+import tempfile
 import uuid
+import zipfile
 
 from django import forms
 from django.conf import settings
@@ -12,9 +15,9 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleList, LocaleValidationError
-from olympia.constants.categories import CATEGORIES_BY_ID
 
 
 log = olympia.core.logger.getLogger('z.redis')
@@ -170,3 +173,34 @@ def get_addon_recommendations(guid_param, taar_enable):
     if not guids:
         guids = TAAR_LITE_FALLBACKS
     return guids, outcome, fail_reason
+
+
+def build_static_theme_xpi_from_lwt(lwt):
+    # create manifest
+    accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
+                   else amo.THEME_ACCENTCOLOR_DEFAULT)
+    textcolor = '#%s' % (lwt.persona.textcolor or '000')
+    manifest = {
+        "manifest_version": 2,
+        "name": unicode(lwt.name or lwt.slug),
+        "version": '1.0',
+        "theme": {
+            "images": {
+                "headerURL": lwt.persona.header
+            },
+            "colors": {
+                "accentcolor": accentcolor,
+                "textcolor": textcolor
+            }
+        }
+    }
+    if lwt.description:
+        manifest['description'] = unicode(lwt.description)
+
+    # build zip with manifest and background file
+    upload_zip = tempfile.NamedTemporaryFile(
+        suffix='.xpi', dir=settings.TMP_PATH, delete=False)
+    with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
+        dest.writestr('manifest.json', json.dumps(manifest))
+        dest.write(lwt.persona.header_path, arcname=lwt.persona.header)
+    return upload_zip

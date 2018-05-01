@@ -17,7 +17,7 @@ _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
 STATUS_REJECTED = 12  # This applies only to rejected personas.
-STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
+STATUS_REVIEW_PENDING = 14  # personas, needing further action.
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
@@ -234,6 +234,7 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 
 THEME_PREVIEW_SIZE = namedtuple('SizeTuple', 'width height')(680, 100)
+THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
