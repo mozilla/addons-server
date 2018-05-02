@@ -56,6 +56,14 @@ and email address and that's it.
             help='Sets the hostname of the credentials JSON file',
         )
 
+        parser.add_argument(
+            '--fxa_id',
+            type=str,
+            dest='fxa_id',
+            default=False,
+            help='Adds an fxa id to the superuser',
+        )
+
         CreateSuperUserCommand.add_arguments(self, parser)
 
     def handle(self, *args, **options):
@@ -81,6 +89,11 @@ and email address and that's it.
                 for field_name in self.required_fields
             }
 
+        if options.get('fxa_id', False):
+            field = self.UserModel._meta.get_field('fxa_id')
+            user_data['fxa_id'] = field.clean(
+                options['fxa_id'], None)
+
         user = get_user_model()._default_manager.create_superuser(**user_data)
 
         if options.get('add_to_supercreate_group', False):
@@ -97,7 +110,8 @@ and email address and that's it.
                 'username': user.username,
                 'email': user.email,
                 'api-key': apikey.key,
-                'api-secret': apikey.secret
+                'api-secret': apikey.secret,
+                'fxa-id': user.fxa_id,
             }))
 
         if options.get('save_api_credentials', False):
