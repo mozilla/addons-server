@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-02 04:52+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -570,20 +570,6 @@ msgstr "Weergawe-inligting"
 
 msgid "See complete version history"
 msgstr "Sien volledige weergawe-inligting"
-
-msgid "Development Channel"
-msgstr ""
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "sluit"
@@ -2088,6 +2074,30 @@ msgstr ""
 msgid "Information request removed"
 msgstr "Resensie"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} is gebou."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Resensie"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} is gebou."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Resensie"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} is gebou."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Resensie"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2126,9 +2136,6 @@ msgstr "Wag op goedkeuring"
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr ""
@@ -2681,9 +2688,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
@@ -2812,16 +2816,6 @@ msgid "Validate Add-on"
 msgstr ""
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3488,9 +3482,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Dié byvoeging het 'n privaatheidbeleid"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr ""
 
@@ -3690,9 +3681,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4649,6 +4637,19 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -5576,19 +5577,6 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr ""
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"

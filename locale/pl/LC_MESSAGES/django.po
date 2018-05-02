@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-02 04:52+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -568,22 +568,6 @@ msgstr "Informacje o wersji"
 
 msgid "See complete version history"
 msgstr "Zobacz całą historię wersji"
-
-msgid "Development Channel"
-msgstr "Kanał rozwoju"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Kanał rozwoju umożliwia testowanie eksperymentalnych, nowych wersji tego dodatku przed jego upublicznieniem. Po zainstalowaniu wersji rozwojowej będziesz automatycznie otrzymywać aktualizacje z "
-"tego kanału. Aby zakończyć otrzymywanie rozwojowych aktualizacji, zainstaluj na nowo domyślną wersję z odnośnika powyżej."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Uwaga:</strong> Wersje robocze tego dodatku nie zostały sprawdzone przez Mozillę."
-
-msgid "See complete development channel history"
-msgstr "Zobacz pełną historię kanału rozwojowego"
 
 msgid "close"
 msgstr "zamknij"
@@ -2077,6 +2061,30 @@ msgstr "Skomentuj dodatek {addon} {version}."
 msgid "Information request removed"
 msgstr "Poproszono o więcej informacji"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Poproszono o specjalne sprawdzenie"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Poproszono o specjalne sprawdzenie"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Poproszono o sprawdzenie"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2115,9 +2123,6 @@ msgstr "Oczekuje na akceptację"
 
 msgid "Flagged for further review"
 msgstr "Oznaczone do późniejszego sprawdzenia"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Niewyświetlany"
@@ -2675,9 +2680,6 @@ msgstr "Zastąp nieudane sprawdzenie"
 msgid "Submit my add-on for manual review."
 msgstr "Prześlij dodatek do ręcznego sprawdzenia."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Plik z wersją kończącą się na a|alpha|b|beta|pre|rc i opcjonalnym numerem jest wykrywany jako wersja beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Nie możesz przesłać więcej plików dla tej wersji."
 
@@ -2807,16 +2809,6 @@ msgstr "Sprawdzanie dodatku"
 
 msgid "Check Add-on Compatibility"
 msgstr "Sprawdź kompatybilność dodatku"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3512,9 +3504,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Ten dodatek nie jest kompatybilny z twoją wersją programu %(app)s."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3729,9 +3718,6 @@ msgstr "Użyj poniższego formularza, by przesłać spakowany plik dodatku i okr
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Z którymi systemami ten plik jest kompatybilny?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Opublikuj tę wersję tylko na moim kanale beta."
 
 msgid "Administrative overrides"
 msgstr "Administracyjne zastąpienia"
@@ -4708,6 +4694,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Numer wersji powinien zawierać tylko litery, cyfry i następujące znaki interpunkcyjne: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5738,24 +5737,6 @@ msgid ""
 msgstr ""
 "Niektórzy autorzy proszą użytkowników korzystających z ich dodatków o wsparcie finansowe dalszego rozwoju tych dodatków. Dotacje te są bezpośrednio przekazywane do autora, chyba że wskazał on inny "
 "podmiot w postaci organizacji pożytku publicznego, np. Fundację Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "Co to są dodatki „beta”?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Dodatki „beta” są niesprawdzonymi przez recenzentów wersjami rozwojowymi danego dodatku. Autorzy dodatków przyjmują różne standardy dla jakości kodu wersji „beta”. Należy przyjąć, że stabilność "
-"dodatków tego typu jest mniejsza niż wydań głównych."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Po zainstalowaniu dodatku z sekcji „Wersje beta” będziesz otrzymywać aktualizacje tego dodatku, gdy będą one dostępne. Tak jak wersja początkowa, wszystkie wersje „beta” nie są sprawdzane przez "
-"Mozillę i mogą uszkodzić twój komputer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Jak zgłosić opinię zawierającą spam lub niestosowną treść?"
