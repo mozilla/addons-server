@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 09:34+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-05-02 15:53+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1989,29 +1989,23 @@ msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
 msgid "Information request removed"
 msgstr "Informationsbegäran borttagen"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} granskning begärd."
+msgstr "{addon} {version} tilläggsgranskning av admin begärd."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Supergranskning begärd"
+msgstr "Tilläggsgranskning av admin begärd"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} granskning begärd."
+msgstr "{addon} {version} innehållsgranskning av admin begärd."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Supergranskning begärd"
+msgstr "Innehållsgranskning av admin begärd"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} granskning begärd."
+msgstr "{addon} {version} temagranskning av admin begärd."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Granskning begärd"
+msgstr "Temagranskning av admin begärd"
 
 msgid "Firefox"
 msgstr "Firefox"
