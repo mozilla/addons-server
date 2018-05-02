@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-02 04:52+0000\n"
 "PO-Revision-Date: 2018-02-07 11:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -583,22 +583,6 @@ msgstr "Informació de la versió"
 
 msgid "See complete version history"
 msgstr "Vegeu l'historial complet de versions"
-
-msgid "Development Channel"
-msgstr "Canal de desenvolupament"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"El Canal de desenvolupament us permet provar una versió experimental d'aquest complement abans que estigui disponible per al públic general. Un cop hagueu instal·lat la versió de desenvolupament, "
-"podreu obtenir actualitzacions a través d'aquest canal. Per deixar d'obtenir les actualitzacions de desenvolupament, torneu a instal·lar la versió per defecte fent servir l'enllaç de més amunt."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "tanca"
@@ -2089,6 +2073,30 @@ msgstr "Comentari sobre {addon} {version}."
 msgid "Information request removed"
 msgstr "S'ha sol·licitat més informació"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "S'ha demanat la revisió de la versió {addon} {version}"
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "S'ha sol·licitat una superrevisió"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "S'ha demanat la revisió de la versió {addon} {version}"
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "S'ha sol·licitat una superrevisió"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "S'ha demanat la revisió de la versió {addon} {version}"
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "S'ha sol·licitat la revisió"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2127,9 +2135,6 @@ msgstr "Pendent d'aprovació"
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr ""
@@ -2681,9 +2686,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "No podeu pujar més fitxers per a aquesta versió."
 
@@ -2814,16 +2816,6 @@ msgstr "Valida el complement"
 
 msgid "Check Add-on Compatibility"
 msgstr "Comprova la compatibilitat del complement"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3497,9 +3489,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Aquest complement no és compatible amb la vostra versió del %(app)s."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Estat:"
 
@@ -3714,9 +3703,6 @@ msgstr ""
 "automàtiques."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4683,6 +4669,19 @@ msgstr "El número de versió només permet lletres, números i els següents si
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -5634,24 +5633,6 @@ msgid ""
 msgstr ""
 "Alguns autors de complements demanen als seus usuaris si volen ajudar econòmicament i fer una petita contribució per al desenvolupament del complement. Aquesta contribució va directametn al "
 "desenvolupador a no ser que s'indiqui que ha d'anar a favor d'un tercer, com per exemple una organització sense ànim de lucre com la Fundació Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "Què són els complements Beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Els complements Beta són complements que encara no han estat revisats i que representen la última versió en què l'autor està treballant. Ja que cada autor tindrà una forma diferent de valorar "
-"l'estat de la qualitat, heu de tenir present que aquests complements són menys estables que una versió normal ben acabada."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Heu de tenir present que quan us instaŀleu un complement de la secció de versions beta, continuareu rebent actualitzacions del complement. Però de la mateixa manera que la versió beta no va ser "
-"revisada, les seves actualitzacions tampoc i poden fer malbé el vostre ordinador."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "How do I report an inappropriate or spam user review?"

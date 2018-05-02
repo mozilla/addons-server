@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-02 04:52+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -554,22 +554,6 @@ msgstr "ਵਰਜਨ ਜਾਣਕਾਰੀ"
 
 msgid "See complete version history"
 msgstr "ਵੇਖੋ ਸੰਪੂਰਨ ਵਰਜਨ ਇਤਿਹਾਸ"
-
-msgid "Development Channel"
-msgstr "ਵਿਕਾਸ ਚੈਨਲ"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"ਵਿਕਾਸ ਚੈਨਲ ਤੁਹਾਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਨਵੇਂ ਪ੍ਰਯੋਗਆਤਮਕ ਵਰਜਨ ਦੀ ਪਰਖ ਕਰਨ ਦਵੇਗਾ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਇਹ ਆਮ ਲੋਕਾਂ ਲਈ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ, ਤੁਹਾਡਾ ਇਸ ਚੈਨਲ ਤੋਂ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਬੰਦ "
-"ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "ਬੰਦ"
@@ -2053,6 +2037,30 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 msgid "Information request removed"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+
 msgid "Firefox"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ"
 
@@ -2091,9 +2099,6 @@ msgstr "ਮਨਜ਼ੂਰੀ ਬਕਾਇਆ"
 
 msgid "Flagged for further review"
 msgstr "ਹੋਰ ਸਮੀਖਿਆ ਲਈ ਫ਼ਲੈਗ ਕੀਤਾ"
-
-msgid "Beta"
-msgstr "ਬੀਟਾ"
 
 msgid "Unlisted"
 msgstr "ਅਣਸੂਚੀਬੱਧ"
@@ -2668,9 +2673,6 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 msgid "Submit my add-on for manual review."
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
-
 msgid "You cannot upload any more files for this version."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
@@ -2800,16 +2802,6 @@ msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
 
 msgid "Check Add-on Compatibility"
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਕਰੋ"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3490,9 +3482,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "ਦਰਜਾ:"
 
@@ -3705,9 +3694,6 @@ msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ 
 
 msgid "Which platforms is this file compatible with?"
 msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "ਕੇਵਲ ਇਸ ਵਰਜਨ ਨੂੰ ਮੇਰੇ ਬੀਟਾ ਚੈਨਲ ਵਿੱਚ ਜਾਰੀ ਕਰੋ।"
 
 msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
@@ -4675,6 +4661,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5678,22 +5677,6 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr "ਕੁੱਝ ਐਡ-ਆਨ ਲੇਖਕ ਉਪਭੋਗੀਆਂ ਨੂੰ ਜੋ ਐਡ-ਆਨ ਦਾ ਆਨੰਦ ਮਾਨ ਰਹੇ ਹੋਣ ਨੂੰ ਇਸ ਦੇ ਵਿਕਾਸ ਲਈ ਮਾਇਆ ਦੇ ਯੋਗਦਾਨ ਦੀ ਬੇਨਤੀ ਕਰਦੇ ਹਨ। ਇਹ ਯੋਗਦਾਨ ਸਿੱਧੇ ਡਿਵੈਲਪਰ ਨੂੰ ਜਾਂਦੇ ਹਨ ਜਦ ਤੱਕ ਕਿਸੇ ਤੀਜੀ ਧਿਰ ਬਾਰੇ ਨਾ ਦੱਸਿਆ ਹੋਵੇ, ਜਿਵੇਂ ਕਿ ਗੈਰ-ਮੁਨਾਫ਼ਾ ਮੌਜੀਲਾ ਸੰਸਥਾ।"
-
-msgid "What are beta add-ons?"
-msgstr "ਬੀਟਾ ਐਡ-ਆਨ ਕੀ ਹਨ?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr "ਬੀਟਾ ਐਡ-ਆਨ ਬਿਨਾਂ-ਸਮੀਖਿਆ ਵਾਲੇ ਵਰਜਨ ਹਨ ਜੋ ਐਡ-ਆਨ ਲੇਖਕ ਦਾ ਤਾਜ਼ਾ ਕੰਮ ਦੀ ਨੁਮਾਇੰਦਗੀ ਕਰਦੇ ਹਨ। ਜਦ ਕਿ ਵੱਖ-ਵੱਖ ਲੇਖਕਾਂ ਲਈ ਬੀਟਾ ਕੋਡ ਗੁਣਵੱਤਾ ਮਾਣਕ ਵੱਖ-ਵੱਖ ਹਨ, ਤੁਹਾਨੂੰ ਇਹ ਮੰਨਣਾ ਚਾਹੀਦਾ ਕੀ ਇਹ ਐਡ-ਆਨ ਜਾਰੀ ਹੋਏ ਆਮ ਐਡ-ਆਨਾਂ ਨਾਲੋਂ ਘੱਟ ਸਥਿਰ ਹਨ।"
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"ਕਿਰਪਾ ਕਰਕੇ ਨੋਟ ਕਰੋ ਜਦੋਂ ਤੁਸੀਂ ਐਡ-ਆਨ ਸੂਚੀ ਦੇ \"ਬੀਟਾ ਵਰਜਨ\" ਭਾਗ ਵਿੱਚੋਂ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰਦੇ ਹੋ, ਤੁਹਾਨੂੰ ਉਸ ਐਡ-ਆਨ ਲਈ ਲਗਾਤਾਰ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਹੁੰਦੀਆਂ ਰਹਿਣਗੀਆਂ ਜਿਵੇਂ ਹੀ ਉਹ ਉੱਪਲਬਧ ਹੋਣ। ਤੁਹਾਡੇ ਵੱਲੋਂ ਇੰਸਟਾਲ ਕੀਤੇ ਸ਼ੁਰੂਆਤੀ ਵਰਜਨ ਦੀ ਤਰ੍ਹਾਂ, ਬੀਟਾ ਰੀਲੀਜ਼ਾਂ ਦੀ "
-"ਮੌਜੀਲਾ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ ਅਤੇ ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਦਾ ਨੁਕਸਾਨ ਹੋ ਸਕਦਾ।"
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "ਮੈਂ ਇੱਕ ਗਲਤ ਅਤੇ ਸਪੈਮ ਉਪਭੋਗੀ ਸਮੀਖਿਆ ਬਾਰੇ ਸੂਚਨਾ ਕਿਵੇਂ ਦਿਆਂ?"
