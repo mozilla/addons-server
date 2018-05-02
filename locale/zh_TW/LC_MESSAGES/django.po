@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 06:31+0000\n"
+"PO-Revision-Date: 2018-05-02 06:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1956,10 +1956,10 @@ msgid "Information request removed"
 msgstr "已移除提供更多資訊的要求。"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} 已要求管理員審核。"
+msgstr "{addon} {version} 已要求管理員進行附加元件審核。"
 
 msgid "Admin add-on-review requested"
-msgstr "已要求管理員進行審核"
+msgstr "已要求管理員進行附加元件審核"
 
 msgid "{addon} {version} admin content-review requested."
 msgstr "{addon} {version} 已要求管理員內容審核。"
@@ -4431,7 +4431,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "未預期的錯誤。"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
