@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-05-02 01:50+0000\n"
+"PO-Revision-Date: 2018-05-02 02:02+0000\n"
 "Last-Translator: pirthi.d <pirthi.d@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2215,34 +2215,31 @@ msgid "Miscellaneous"
 msgstr "ਫ਼ੁਟਕਲ"
 
 msgid "Modern"
-msgstr ""
+msgstr "ਨਵੀਨ"
 
-#, fuzzy
 msgid "Nature"
-msgstr "ਪੇਸ਼ ਕੀਤਾ"
+msgstr "ਪ੍ਰਕਿਰਤੀ"
 
-#, fuzzy
 msgid "OS Integration"
-msgstr "ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
+msgstr "OS ਏਕੀਕਰਨ"
 
 msgid "Retro"
-msgstr ""
+msgstr "ਪੁਰਾਣਾ"
 
-#, fuzzy
 msgid "Sports"
 msgstr "ਸਹਿਯੋਗ"
 
 msgid "Abstract"
-msgstr ""
+msgstr "ਸੰਖੇਪ"
 
 msgid "Causes"
-msgstr ""
+msgstr "ਕਾਰਨ"
 
 msgid "Fashion"
-msgstr ""
+msgstr "ਫੈਸ਼ਨ"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "ਫਿਲਮ ਅਤੇ ਟੀਵੀ"
 
 msgid "Foxkeh"
 msgstr ""
