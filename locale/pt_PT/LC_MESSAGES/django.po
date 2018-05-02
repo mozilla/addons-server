@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 09:59+0000\n"
+"PO-Revision-Date: 2018-05-02 10:15+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1791,7 +1791,7 @@ msgid "Super review requested"
 msgstr "Super revisão solicitada"
 
 msgid "{addon} {version} review requested."
-msgstr "Solicitada uma análise para {addon} {version}."
+msgstr "Solicitada uma revisão para {addon} {version}."
 
 msgid "Review requested"
 msgstr "Revisão solicitada"
@@ -2002,29 +2002,23 @@ msgstr "Solicitação de informação limpa pelo programador em {addon} {version
 msgid "Information request removed"
 msgstr "Solicitação de informação removida"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Solicitada uma análise para {addon} {version}."
+msgstr "Solicitada uma add-on-review de admin para {addon} {version}."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Super revisão solicitada"
+msgstr "Add-on-review de admin solicitada"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Solicitada uma análise para {addon} {version}."
+msgstr "Solicitada uma content-review de admin para {addon} {version}."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Super revisão solicitada"
+msgstr "Content-review de admin solicitada"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Solicitada uma análise para {addon} {version}."
+msgstr "Solicitada uma theme-review de admin para {addon} {version}."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Revisão solicitada"
+msgstr "Theme-review de admin solicitada"
 
 msgid "Firefox"
 msgstr "Firefox"
