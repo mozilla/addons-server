@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 08:03+0000\n"
+"PO-Revision-Date: 2018-05-02 09:18+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2056,29 +2056,23 @@ msgstr "Zahtevo za informacije o {addon} {version} je razvijalec odstranil."
 msgid "Information request removed"
 msgstr "Zahteva za informacije odstranjena"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "za {addon} {version} zahtevan pregled."
+msgstr "za {addon} {version} zahtevan skrbniški pregled dodatka."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Zahteva se super pregled"
+msgstr "Zahtevan skrbniški pregled dodatka"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "za {addon} {version} zahtevan pregled."
+msgstr "za {addon} {version} zahtevan skrbniški pregled vsebine."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Zahteva se super pregled"
+msgstr "Zahtevan skrbniški pregled vsebine"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "za {addon} {version} zahtevan pregled."
+msgstr "za {addon} {version} zahtevan skrbniški pregled teme."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Zahtevan pregled"
+msgstr "Zahtevan skrbniški pregled teme"
 
 msgid "Firefox"
 msgstr "Firefox"
