@@ -52,6 +52,7 @@ class TestCreateSuperUser(TestCase):
             username='myusername',
             email='me@mozilla.org',
             add_to_supercreate_group=True,
+            fxa_id=000000,
             stdout=out)
 
         user = UserProfile.objects.get(username='myusername')
@@ -66,4 +67,5 @@ class TestCreateSuperUser(TestCase):
             'email': 'me@mozilla.org',
             'api-key': ANY,
             'api-secret': ANY
+            'fxa_id': ANY
         }
