@@ -69,5 +69,5 @@ class TestCreateSuperUser(TestCase):
             'email': 'me@mozilla.org',
             'api-key': ANY,
             'api-secret': ANY,
-            'fxa_id': '{}'.format(fxa_id),
+            'fxa-id': fxa_id,
         }
