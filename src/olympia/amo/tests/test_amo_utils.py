@@ -5,7 +5,6 @@ import tempfile
 from django.conf import settings
 from django.core.cache import cache
 from django.core.validators import ValidationError
-from django.utils import translation
 
 import mock
 import pytest
@@ -15,7 +14,7 @@ from product_details import product_details
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (
     LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
-    no_jinja_autoescape, no_translation, resize_image, rm_local_tmp_dir,
+    no_jinja_autoescape, resize_image, rm_local_tmp_dir,
     slug_validator, slugify, to_language)
 
 
@@ -133,25 +132,6 @@ def test_spotcheck():
 
     assert product_details.firefox_history_major_releases['1.0'] == (
         '2004-11-09')
-
-
-def test_no_translation():
-    """
-    `no_translation` provides a context where only the default
-    language is active.
-    """
-    old_lang = translation.get_language()
-    try:
-        translation.activate('pt-br')
-        with no_translation():
-            assert (translation.get_language().lower() ==
-                    settings.LANGUAGE_CODE.lower())
-        assert translation.get_language() == 'pt-br'
-        with no_translation('es'):
-            assert translation.get_language() == 'es'
-        assert translation.get_language() == 'pt-br'
-    finally:
-        translation.activate(old_lang)
 
 
 class TestLocalFileStorage(BaseTestCase):

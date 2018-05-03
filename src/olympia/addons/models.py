@@ -18,6 +18,7 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils.functional import cached_property
+from django.utils import translation
 from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
@@ -40,7 +41,7 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
-    no_translation, send_mail, slugify, sorted_groupby, timer, to_language)
+    send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -455,7 +456,7 @@ class Addon(OnChangeMixin, ModelBase):
             user = core.get_user()
 
             # Don't localize email to admins, use 'en-US' always.
-            with no_translation():
+            with translation.override(settings.LANGUAGE_CODE):
                 # The types are lazy translated in apps/constants/base.py.
                 atype = amo.ADDON_TYPE.get(self.type).upper()
             context = {
