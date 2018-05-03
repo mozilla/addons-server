@@ -358,6 +358,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
+    r'^devhub\/email\/submission_api_key_revocation.txt',
 
     # Django specific templates
     r'^registration\/',
@@ -1155,6 +1156,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
+    'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
