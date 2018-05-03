@@ -269,12 +269,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 }
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
-                with no_translation():
+                with translation.override(settings.LANGUAGE_CODE):
                     message_with_unsubscribe = text_template.render(context)
 
                 if html_message:
                     context['message'] = html_message
-                    with no_translation():
+                    with translation.override(settings.LANGUAGE_CODE):
                         html_with_unsubscribe = html_template.render(context)
                         result = send([recipient], message_with_unsubscribe,
                                       html_message=html_with_unsubscribe,
@@ -704,20 +704,6 @@ def get_email_backend(real_email=False):
     else:
         backend = 'olympia.amo.mail.DevEmailBackend'
     return django.core.mail.get_connection(backend)
-
-
-@contextlib.contextmanager
-def no_translation(lang=None):
-    """
-    Activate the settings lang, or lang provided, while in context.
-    """
-    old_lang = translation.trans_real.get_language()
-    if lang:
-        translation.activate(lang)
-    else:
-        translation.activate(settings.LANGUAGE_CODE)
-    yield
-    translation.activate(old_lang)
 
 
 def escape_all(v, linkify_only_full=False):
