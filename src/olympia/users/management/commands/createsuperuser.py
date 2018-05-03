@@ -52,7 +52,7 @@ and email address and that's it.
             '--hostname',
             type=str,
             dest='hostname',
-            default=False,
+            default=None,
             help='Sets the hostname of the credentials JSON file',
         )
 
@@ -60,7 +60,7 @@ and email address and that's it.
             '--fxa_id',
             type=str,
             dest='fxa_id',
-            default=False,
+            default=None,
             help='Adds an fxa id to the superuser',
         )
 
@@ -89,7 +89,7 @@ and email address and that's it.
                 for field_name in self.required_fields
             }
 
-        if options.get('fxa_id', False):
+        if options.get('fxa_id', None):
             field = self.UserModel._meta.get_field('fxa_id')
             user_data['fxa_id'] = field.clean(
                 options['fxa_id'], None)
@@ -116,7 +116,7 @@ and email address and that's it.
 
         if options.get('save_api_credentials', False):
             hostname = options.get('hostname', os.environ.get(
-                'PYTEST_BASE_URL', False))
+                'PYTEST_BASE_URL', None))
             # json object for variables file
             # set hostname to stdin or env variable
 
