@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 07:52+0000\n"
+"PO-Revision-Date: 2018-05-03 14:29+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2007,29 +2007,23 @@ msgstr "Az információs kérést törölte a fejlesztő ennél: {addon} {versio
 msgid "Information request removed"
 msgstr "Információkérés eltávolítva"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} értékelés-kérelem elküldve."
+msgstr "{addon} {version} adminisztrátori kiegészítőértékelése kérve."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Teljes értékelést kér"
+msgstr "Adminisztrátori kiegészítőértékelés kérve"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} értékelés-kérelem elküldve."
+msgstr "{addon} {version} adminisztrátori tartalomértékelése kérve."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Teljes értékelést kér"
+msgstr "Adminisztrátori tartalomértékelés kérve"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} értékelés-kérelem elküldve."
+msgstr "{addon} {version} adminisztrátori témaértékelése kérve."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Értékelést kér"
+msgstr "Adminisztrátori témaértékelés kérve"
 
 msgid "Firefox"
 msgstr "Firefox"
