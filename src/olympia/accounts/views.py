@@ -32,12 +32,14 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
+from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
 from olympia.users.models import UserNotification, UserProfile
-from olympia.users.notifications import NOTIFICATIONS
+from olympia.users.notifications import (
+    AMO_NOTIFICATIONS, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
 
 from . import verify
 from .serializers import (
@@ -530,16 +532,25 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             enabled=notification.default_checked)
 
     def get_queryset(self):
-        queryset = UserNotification.objects.filter(
-            user=self.get_account_viewset().get_object())
+        user = self.get_account_viewset().get_object()
+        newsletters = fetch_subscribed_newsletters(user)
+        queryset = UserNotification.objects.filter(user=user)
+
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
-        for notification in NOTIFICATIONS:
+        for notification in AMO_NOTIFICATIONS:
             out.append(set_notifications.get(
                 notification.short,  # It's been set by the user.
                 self._get_default_object(notification)))  # Otherwise, default.
+
+        by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
+        for basket_id, notification in by_basket_id.items():
+            notification = self._get_default_object(notification)
+            notification.enabled = notification.id in newsletters
+            out.append(notification)
+
         return out
 
     def create(self, request, *args, **kwargs):

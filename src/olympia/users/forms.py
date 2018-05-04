@@ -13,7 +13,9 @@ from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.utils import (
-    clean_nl, has_links, ImageCheck, slug_validator)
+    clean_nl, has_links, ImageCheck, slug_validator,
+    fetch_subscribed_newsletters, subscribe_newsletter,
+    unsubscribe_newsletter)
 from olympia.lib import happyforms
 from olympia.users import notifications
 
@@ -96,11 +98,21 @@ class UserEditForm(happyforms.ModelForm):
         self.fields['homepage'].error_messages = errors
 
         if self.instance:
-            default = dict((i, n.default_checked) for i, n
-                           in notifications.NOTIFICATIONS_BY_ID.items())
-            user = dict((n.notification_id, n.enabled) for n
-                        in self.instance.notifications.all())
+            self.newsletters = fetch_subscribed_newsletters(self.instance)
+            default = {
+                idx: notification.default_checked
+                for idx, notification
+                in notifications.NOTIFICATIONS_BY_ID.items()}
+            user = {
+                notification.notification_id: notification.enabled
+                for notification in self.instance.notifications.all()}
             default.update(user)
+
+            by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+            for basket_id, notification in by_basket_id.items():
+                subscribed = notification.id in self.newsletters
+                if subscribed:
+                    default[notification.id] = True
 
             # Add choices to Notification.
             choices = notifications.NOTIFICATIONS_CHOICES
@@ -226,6 +238,17 @@ class UserEditForm(happyforms.ModelForm):
             UserNotification.objects.update_or_create(
                 user=self.instance, notification_id=notification_id,
                 defaults={'enabled': enabled})
+
+        by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+        for basket_id, notification in by_basket_id.items():
+            needs_subscribe = str(notification.id) in data['notifications']
+            needs_unsubscribe = (
+                str(notification.id) not in data['notifications'])
+
+            if needs_subscribe:
+                subscribe_newsletter(self.instance, basket_id)
+            elif needs_unsubscribe:
+                unsubscribe_newsletter(self.instance, basket_id)
 
         log.debug(u'User (%s) updated their profile' % u)
 

@@ -11,10 +11,11 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
-    clean_nl, has_links, ImageCheck, slug_validator)
+    clean_nl, has_links, ImageCheck, slug_validator,
+    subscribe_newsletter, unsubscribe_newsletter)
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
-
+from olympia.users import notifications
 
 log = olympia.core.logger.getLogger('accounts')
 
@@ -207,7 +208,22 @@ class UserNotificationSerializer(serializers.Serializer):
                 'Attempting to set [%s] to %s. Mandatory notifications can\'t '
                 'be modified' %
                 (instance.notification.short, validated_data.get('enabled')))
-        if 'enabled' in validated_data:
+
+        enabled = validated_data['enabled']
+
+        request = self.context['request']
+        current_user = request.user
+
+        remote_by_id = notifications.REMOTE_NOTIFICATIONS_BY_ID
+        if instance.notification_id in remote_by_id:
+            notification = remote_by_id[instance.notification_id]
+            if not enabled:
+                unsubscribe_newsletter(
+                    current_user, notification.basket_newsletter_id)
+            elif enabled:
+                subscribe_newsletter(
+                    current_user, notification.basket_newsletter_id)
+        elif 'enabled' in validated_data:
             # Only save if non-mandatory and 'enabled' is set.
             # Ignore other fields.
             instance.enabled = validated_data['enabled']

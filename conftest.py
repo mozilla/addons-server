@@ -2,6 +2,7 @@ from django import http, test
 from django.core.cache import caches
 from django.utils import translation
 
+import responses
 import caching
 import pytest
 
@@ -36,6 +37,28 @@ def mock_elasticsearch():
     yield
 
     stop_es_mocks()
+
+
+@pytest.fixture(autouse=True)
+def mock_basket(settings):
+    """Mock Basket in tests by default.
+
+    Tests that do need basket to work should disable `responses`
+    and add a passthrough.
+    """
+    USER_TOKEN = u'13f64f64-1de7-42f6-8c7f-a19e2fae5021'
+    responses.add(
+        responses.GET,
+        settings.BASKET_URL + '/news/lookup-user/',
+        json={'status': 'ok', 'newsletters': [], 'token': USER_TOKEN})
+    responses.add(
+        responses.POST,
+        settings.BASKET_URL + '/news/subscribe/',
+        json={'status': 'ok', 'token': USER_TOKEN})
+    responses.add(
+        responses.POST,
+        settings.BASKET_URL + '/news/unsubscribe/{}/'.format(USER_TOKEN),
+        json={'status': 'ok', 'token': USER_TOKEN})
 
 
 @pytest.fixture(autouse=True)

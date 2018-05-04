@@ -4,7 +4,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from mock import Mock, patch, MagicMock
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import reverse
 from olympia.users.forms import AdminUserEditForm, UserEditForm
@@ -213,6 +213,99 @@ class TestUserEditForm(UserFormBase):
         assert form.is_valid()
         form.save()
         assert self.user.reload().email == 'me@example.com'
+
+    def test_only_show_notifications_user_has_permission_to(self):
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123', 'newsletters': []}
+
+            # 8 is the `announcements` notification, or about-addons newsletter
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        # It needs a developer account to subscribe to a newsletter
+        # So the `announcements` notification is not among the valid choices
+        # This isn't really user visible since the user doesn't have
+        # the ability to choose newsletters he doesn't have permis
+        assert len(form.fields['notifications'].choices) == 2
+        assert form.fields['notifications'].choices[0][0] == 3
+        assert form.fields['notifications'].choices[1][0] == 4
+
+        addon_factory(users=[self.user])
+
+        # Clear cache
+        del self.user.is_developer
+
+        form = UserEditForm({}, instance=self.user)
+        assert len(form.fields['notifications'].choices) == 10
+        assert [x[0] for x in form.fields['notifications'].choices] == [
+            3, 4, 5, 6, 7, 9, 10, 11, 12, 8
+        ]
+
+    def test_basket_unsubscribe_newsletter(self):
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+            assert form.is_valid()
+            form.save()
+
+        request_call.assert_called_with(
+            'post', 'unsubscribe',
+            data={
+                'newsletters': 'about-addons',
+                'email': u'jbalogh@mozilla.com'},
+            token='123')
+
+    def test_basket_subscribe_newsletter(self):
+        addon_factory(users=[self.user])
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+
+            # 8 is the `announcements` notification, or about-addons newsletter
+            form = UserEditForm(
+                {'notifications': [3, 4, 8]},
+                instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['about-addons']}
+
+            assert form.is_valid()
+            form.save()
+
+        request_call.assert_called_with(
+            'post', 'subscribe',
+            headers={'x-api-key': 'testkey'},
+            data={
+                'newsletters': 'about-addons',
+                'email': u'jbalogh@mozilla.com',
+                'sync': 'Y'})
 
 
 class TestAdminUserEditForm(UserFormBase):

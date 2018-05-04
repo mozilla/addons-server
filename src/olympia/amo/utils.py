@@ -39,6 +39,7 @@ import bleach
 import html5lib
 import jinja2
 import pytz
+import basket
 
 from babel import Locale
 from django_statsd.clients import statsd
@@ -323,6 +324,43 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
                     html_message=html_template.render(context), *args,
                     **kwargs)
     return msg
+
+
+def fetch_subscribed_newsletters(user_profile):
+    try:
+        data = basket.lookup_user(user_profile.email)
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+        return ()
+    return data['newsletters']
+
+
+def subscribe_newsletter(user_profile, basket_id):
+    try:
+        # Make a syncronize request to basket to
+        # a) ensure the user is really subscribed now and
+        # b) retrieve the basket token
+        response = basket.subscribe(
+            user_profile.email, basket_id, sync='Y')
+        user_profile.update(basket_token=response['token'])
+        return response['status'] == 'ok'
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+    return False
+
+
+def unsubscribe_newsletter(user_profile, basket_id):
+    if not user_profile.basket_token:
+        basket_data = basket.lookup_user(user_profile.email)
+        user_profile.update(basket_token=basket_data['token'])
+
+    try:
+        response = basket.unsubscribe(
+            user_profile.basket_token, user_profile.email, basket_id)
+        return response['status'] == 'ok'
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+    return False
 
 
 def chunked(seq, n):

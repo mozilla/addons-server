@@ -1266,6 +1266,7 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
+    'olympia.users.tasks.sync_user_with_basket': {'queue': 'users'},
 
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
@@ -1812,3 +1813,8 @@ AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 # For the Github webhook API.
 GITHUB_API_USER = env('GITHUB_API_USER', default='')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
+
+BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
+BASKET_API_KEY = env('BASKET_URL', default='')
+# Default is 10, the API usually answers in 0.5 - 1.5 seconds.
+BASKET_TIMEOUT = 5

@@ -5,9 +5,11 @@ from StringIO import StringIO
 
 from django.core.management import call_command
 
+import pytest
 from mock import ANY, patch
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory, addon_factory
+from olympia.addons.models import AddonUser
 from olympia.users.management.commands.createsuperuser import (
     Command as CreateSuperUser)
 from olympia.users.models import UserProfile
@@ -71,3 +73,41 @@ class TestCreateSuperUser(TestCase):
             'api-secret': ANY,
             'fxa-id': fxa_id,
         }
+
+
+@pytest.mark.django_db
+def test_sync_basket_no_developers():
+    """We only sync add-on developers with basket."""
+    user_factory()
+
+    assert UserProfile.objects.count() == 1
+    assert AddonUser.objects.count() == 0
+
+    with patch('basket.base.request', autospec=True) as request_call:
+        call_command('sync_basket')
+
+    assert not request_call.called
+
+
+@pytest.mark.django_db()
+def test_sync_basket_only_developers_synced():
+    """We only sync add-on developers with basket."""
+    user_factory()
+    developer = user_factory()
+    addon_factory(users=[developer])
+
+    assert UserProfile.objects.count() == 2
+    assert AddonUser.objects.count() == 1
+
+    with patch('basket.base.request', autospec=True) as request_call:
+        request_call.return_value = {
+            'status': 'ok', 'token': '123',
+            'newsletters': ['announcements']}
+
+        call_command('sync_basket')
+
+    assert request_call.called
+    request_call.assert_called_once_with(
+        'get', 'lookup-user',
+        headers={'x-api-key': 'testkey'},
+        params={'email': developer.email})
