@@ -664,7 +664,7 @@ class PreviewForm(happyforms.ModelForm):
                 upload_path = os.path.join(
                     settings.TMP_PATH, 'preview', upload_hash)
                 tasks.resize_preview.delay(
-                    upload_path, self.instance,
+                    upload_path, self.instance.pk,
                     set_modified_on=self.instance.serializable_reference())
 
     class Meta:

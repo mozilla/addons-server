@@ -126,7 +126,7 @@ class TestSetModifiedOn(TestCase):
     def test_set_modified_on(self):
         user = UserProfile.objects.latest('pk')
         self.some_method(
-            True, set_modified_on=user.get_serializable_reference())
+            True, set_modified_on=user.serializable_reference())
         assert UserProfile.objects.get(pk=user.pk).modified.date() == (
             datetime.today().date())
 
@@ -136,7 +136,7 @@ class TestSetModifiedOn(TestCase):
         qs.update(modified=yesterday)
         user = qs.latest('pk')
         self.some_method(
-            False, set_modified_on=user.get_serializable_reference())
+            False, set_modified_on=user.serializable_reference())
         date = UserProfile.objects.get(pk=user.pk).modified.date()
         assert date < datetime.today().date()
 

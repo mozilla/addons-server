@@ -506,7 +506,7 @@ class ThemeForm(ThemeFormBase):
         p.save()
 
         # Save header and preview images.
-        save_theme.delay(data['header_hash'], addon)
+        save_theme.delay(data['header_hash'], addon.pk)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -649,7 +649,7 @@ class EditThemeForm(AddonFormBase):
         # Theme reupload.
         if not addon.is_pending():
             if data['header_hash']:
-                save_theme_reupload.delay(data['header_hash'], addon)
+                save_theme_reupload.delay(data['header_hash'], addon.pk)
 
         return data
 

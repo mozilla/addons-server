@@ -783,10 +783,11 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
 
 @task
 @set_modified_on
-def resize_preview(src, instance, **kw):
+def resize_preview(src, preview_pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
+    preview = Preview.objects.get(pk=preview_pk)
     thumb_dst, full_dst, orig_dst = (
-        instance.thumbnail_path, instance.image_path, instance.original_path)
+        preview.thumbnail_path, preview.image_path, preview.original_path)
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
@@ -797,8 +798,8 @@ def resize_preview(src, instance, **kw):
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
-        instance.sizes = sizes
-        instance.save()
+        preview.sizes = sizes
+        preview.save()
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
