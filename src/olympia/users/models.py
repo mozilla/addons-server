@@ -99,11 +99,11 @@ class UserManager(BaseUserManager, ManagerBase):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email):
+    def create_superuser(self, username, email, fxa_id=None):
         """
         Creates and saves a superuser.
         """
-        user = self.create_user(username, email)
+        user = self.create_user(username, email, fxa_id)
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user

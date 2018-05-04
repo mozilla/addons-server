@@ -1,4 +1,5 @@
 import json
+import uuid
 
 from StringIO import StringIO
 
@@ -46,12 +47,14 @@ class TestCreateSuperUser(TestCase):
 
     def test_adds_supergroup(self):
         out = StringIO()
+        fxa_id = uuid.uuid4().hex
         call_command(
             'createsuperuser',
             interactive=False,
             username='myusername',
             email='me@mozilla.org',
             add_to_supercreate_group=True,
+            fxa_id=fxa_id,
             stdout=out)
 
         user = UserProfile.objects.get(username='myusername')
@@ -65,5 +68,6 @@ class TestCreateSuperUser(TestCase):
             'username': 'myusername',
             'email': 'me@mozilla.org',
             'api-key': ANY,
-            'api-secret': ANY
+            'api-secret': ANY,
+            'fxa-id': fxa_id,
         }
