@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 16:10+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"PO-Revision-Date: 2018-05-04 12:32+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2018,29 +2018,23 @@ msgstr "Richiesta informazioni risolta dallo sviluppatore su {addon} {version}."
 msgid "Information request removed"
 msgstr "Richiesta informazioni rimossa"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Richiesta revisione per {addon} {version}."
+msgstr "Richiesta revisione da parte di un amministratore per {addon} {version}."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Richiesta super revisione"
+msgstr "Richiesta revisione da parte di un amministratore per il componente aggiuntivo"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Richiesta revisione per {addon} {version}."
+msgstr "Richiesta revisione contenuti da parte di un amministratore per {addon} {version}."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Richiesta super revisione"
+msgstr "Richiesta revisione contenuti da parte di un amministratore"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Richiesta revisione per {addon} {version}."
+msgstr "Richiesta revisione tema da parte di un amministratore per {addon} {version}."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Richiesta revisione"
+msgstr "Richiesta revisione tema da parte di un amministratore"
 
 msgid "Firefox"
 msgstr "Firefox"
