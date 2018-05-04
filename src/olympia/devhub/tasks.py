@@ -466,8 +466,8 @@ def check_for_api_keys_in_file(results, upload):
             log.info('X-awagner check_for_api_keys_in_file : Getting key for '
                      'user %s' % user)
             key = APIKey.get_jwt_key(user_id=user.id)
-            log.info('X-awagner check_for_api_keys_in_file : Got key %s for '
-                     'user %s' % (user, key.key))
+            log.info(u'X-awagner check_for_api_keys_in_file : Got key %s for '
+                     'user %s' % (key.key, user))
             keys.append(key)
         except APIKey.DoesNotExist:
             log.info('X-awagner check_for_api_keys_in_file : Key for user %s '
