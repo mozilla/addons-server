@@ -1098,11 +1098,10 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 # Testing responsiveness without rate limits.
 CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
-# Continue serializing in pickle but also accept new JSON format
-# for forwards and backwards compatibility.
-CELERY_ACCEPT_CONTENT = ['pickle', 'json']
-CELERY_TASK_SERIALIZER = 'pickle'
-CELERY_RESULT_SERIALIZER = 'pickle'
+# Only serialize celery tasks using JSON.
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
