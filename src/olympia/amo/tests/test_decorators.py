@@ -124,21 +124,21 @@ class TestSetModifiedOn(TestCase):
         return worked
 
     def test_set_modified_on(self):
-        users = list(UserProfile.objects.all()[:3])
-        self.some_method(True, set_modified_on=users)
-        for user in users:
-            assert UserProfile.objects.get(pk=user.pk).modified.date() == (
-                datetime.today().date())
+        user = UserProfile.objects.latest('pk')
+        self.some_method(
+            True, set_modified_on=user.get_serializable_reference())
+        assert UserProfile.objects.get(pk=user.pk).modified.date() == (
+            datetime.today().date())
 
     def test_not_set_modified_on(self):
         yesterday = datetime.today() - timedelta(days=1)
         qs = UserProfile.objects.all()
         qs.update(modified=yesterday)
-        users = list(qs[:3])
-        self.some_method(False, set_modified_on=users)
-        for user in users:
-            date = UserProfile.objects.get(pk=user.pk).modified.date()
-            assert date < datetime.today().date()
+        user = qs.latest('pk')
+        self.some_method(
+            False, set_modified_on=user.get_serializable_reference())
+        date = UserProfile.objects.get(pk=user.pk).modified.date()
+        assert date < datetime.today().date()
 
 
 class TestPermissionRequired(TestCase):

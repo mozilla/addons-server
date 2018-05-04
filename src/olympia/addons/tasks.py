@@ -307,7 +307,7 @@ def save_theme(header, addon, **kw):
         create_persona_preview_images(
             src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
                                   os.path.join(dst_root, 'icon.png')],
-            set_modified_on=[addon])
+            set_modified_on=addon.serializable_reference())
         theme_checksum(addon.persona)
     except IOError:
         addon.delete()

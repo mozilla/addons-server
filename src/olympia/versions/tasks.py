@@ -48,7 +48,8 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
 
 @task
 @write
-def generate_static_theme_preview(theme_manifest, header_root, preview):
+def generate_static_theme_preview(theme_manifest, header_root, preview_pk):
+    preview = VersionPreview.objects.get(pk=preview_pk)
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = _build_static_theme_preview_context(theme_manifest, header_root)
@@ -73,6 +74,6 @@ def generate_static_theme_preview(theme_manifest, header_root, preview):
 
 
 @task
-def delete_preview_files(id, **kw):
+def delete_preview_files(pk, **kw):
     VersionPreview.delete_preview_files(
-        sender=None, instance=VersionPreview(id=id))
+        sender=None, instance=VersionPreview.objects.get(pk=pk))

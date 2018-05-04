@@ -237,8 +237,9 @@ class CollectionForm(happyforms.ModelForm):
             with storage.open(tmp_destination, 'w') as fh:
                 for chunk in icon.chunks():
                     fh.write(chunk)
-            tasks.resize_icon.delay(tmp_destination, destination,
-                                    set_modified_on=[collection])
+            tasks.resize_icon.delay(
+                tmp_destination, destination,
+                set_modified_on=collection.serializable_reference())
 
         return collection
 

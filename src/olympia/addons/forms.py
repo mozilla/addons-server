@@ -334,9 +334,9 @@ class AddonFormMedia(AddonFormBase):
             destination = os.path.join(dirname, '%s' % addon.id)
 
             remove_icons(destination)
-            devhub_tasks.resize_icon.delay(upload_path, destination,
-                                           amo.ADDON_ICON_SIZES,
-                                           set_modified_on=[addon])
+            devhub_tasks.resize_icon.delay(
+                upload_path, destination, amo.ADDON_ICON_SIZES,
+                set_modified_on=addon.serializable_reference())
 
         return super(AddonFormMedia, self).save(commit)
 

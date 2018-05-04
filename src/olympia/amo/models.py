@@ -433,6 +433,9 @@ class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
         key_parts = ('o', cls._meta, pk, 'default')
         return ':'.join(map(force_text, key_parts))
 
+    def serializable_reference(self):
+        return self._meta.app_label, self._meta.model_name, self.pk
+
 
 def manual_order(qs, pks, pk_name='id'):
     """

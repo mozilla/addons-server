@@ -235,8 +235,9 @@ class UserEditForm(happyforms.ModelForm):
                 for chunk in photo.chunks():
                     fh.write(chunk)
 
-            tasks.resize_photo.delay(tmp_destination, u.picture_path,
-                                     set_modified_on=[u])
+            tasks.resize_photo.delay(
+                tmp_destination, u.picture_path,
+                set_modified_on=u.serializable_reference())
 
         visible_notifications = (
             notifications.NOTIFICATIONS_BY_ID if self.instance.is_developer
