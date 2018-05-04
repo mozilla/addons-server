@@ -454,31 +454,34 @@ def check_for_api_keys_in_file(results, upload):
         except APIKey.DoesNotExist:
             pass
 
-    zipfile = SafeZip(source=upload.path)
-    for filepath in zipfile.filelist:
-        file_ = zipfile.read(filepath)
-        for key in keys:
-            if key.secret in file_.decode('unicode-escape'):
-                log.info('Developer API key for user %s found in '
-                         'submission.' % key.user)
-                if key.user == upload.user:
-                    msg = ugettext('Your developer API key was found in the '
-                                   'submitted file. To protect your account, '
-                                   'the key will be regenerated.')
-                else:
-                    msg = ugettext('The developer API key of a coauthor was '
-                                   'found in the submitted file. To protect '
-                                   'your addon, the key will be regenerated.')
-                insert_validation_message(
-                    results, type_='error',
-                    message=msg, msg_id='api_key_detected',
-                    compatibility_type=None)
+    if len(keys) > 0:
+        zipfile = SafeZip(source=upload.path)
+        for filepath in zipfile.filelist:
+            file_ = zipfile.read(filepath)
+            for key in keys:
+                if key.secret in file_.decode('unicode-escape'):
+                    log.info('Developer API key for user %s found in '
+                             'submission.' % key.user)
+                    if key.user == upload.user:
+                        msg = ugettext('Your developer API key was found in '
+                                       'the submitted file. To protect your '
+                                       'account, the key will be regenerated.')
+                    else:
+                        msg = ugettext('The developer API key of a coauthor '
+                                       'was found in the submitted file. To '
+                                       'protect your addon, the key will be '
+                                       'regenerated.')
+                    insert_validation_message(
+                        results, type_='error',
+                        message=msg, msg_id='api_key_detected',
+                        compatibility_type=None)
 
-                # Revoke and regenerate after 2 minutes to allow the developer
-                # to fetch the validation results
-                revoke_and_regenerate_api_key.apply_async(
-                    kwargs={'key_id': key.id}, countdown=120)
-    zipfile.close()
+                    # Revoke and regenerate after 2 minutes to allow the
+                    # developer to fetch the validation results
+                    revoke_and_regenerate_api_key.apply_async(
+                        kwargs={'key_id': key.id}, countdown=120)
+        zipfile.close()
+
     return results
 
 
