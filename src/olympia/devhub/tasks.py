@@ -481,11 +481,11 @@ def check_for_api_keys_in_file(results, upload):
              % zipfile)
     for filepath in zipfile.filelist:
         log.info('X-awagner check_for_api_keys_in_file : Reading file %s'
-                 % filepath)
+                 % filepath.filename)
         file_ = zipfile.read(filepath)
         for key in keys:
             log.info('X-awagner check_for_api_keys_in_file : Checking for key '
-                     '%s in file %s' % (key.key, filepath))
+                     '%s in file %s' % (key.key, filepath.filename))
 
             if key.secret in file_.decode('unicode-escape'):
                 log.info('X-awagner check_for_api_keys_in_file : '
