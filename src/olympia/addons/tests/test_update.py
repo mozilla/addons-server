@@ -6,6 +6,8 @@ from email import utils
 
 from django.db import connection
 
+from freezegun import freeze_time
+
 from services import update
 
 from olympia import amo
@@ -415,6 +417,32 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                         app_version=version, compat_mode=mode) ==
                     expected['-'.join([version, mode])]
                 )
+
+    @freeze_time('2018-05-04 11:27:00 UTC')
+    def test_end_to_end(self):
+        # Basic end-to-end test. It's not a django app, so it's a bit awkward
+        # to test this here, but we don't really have a better place to do it.
+        environ = {
+            'QUERY_STRING': ''
+        }
+        self.start_response_call_count = 0
+
+        def start_response_inspector(status, headers):
+            self.start_response_call_count += 1
+            assert status == '200 OK'
+            assert headers == [
+                ('Content-Type', 'application/json'),
+                ('Cache-Control', 'public, max-age=3600'),
+                ('Last-Modified', 'Fri, 04 May 2018 11:27:00 GMT'),
+                ('Expires', 'Fri, 04 May 2018 12:27:00 GMT'),
+                ('Content-Length', '2')
+            ]
+
+        output = update.application(environ, start_response_inspector)
+        assert self.start_response_call_count == 1
+        # Output is an array with a single string containing the body of the
+        # response - in this case an empty json dict.
+        assert output == ['{}']
 
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
