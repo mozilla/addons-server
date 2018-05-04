@@ -217,20 +217,11 @@ def handle_upload_validation_result(
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
-    log.info('X-awagner handle_upload_validation_result : About to verify zip')
     try:
         SafeZip(upload.path).is_valid()
-        log.info('X-awagner handle_upload_validation_result : About to check '
-                 ' for API keys')
         results = check_for_api_keys_in_file(results=results, upload=upload)
-        log.info('X-awagner handle_upload_validation_result : Returned from '
-                 'API key check')
     except BadZipfile:
-        log.info('X-awagner handle_upload_validation_result : Bad zip file')
         pass
-
-    log.info('X-awagner handle_upload_validation_result : All API key checks '
-             'done, moving on...')
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
@@ -451,45 +442,24 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
 
 
 def check_for_api_keys_in_file(results, upload):
-    log.info('X-awagner check_for_api_keys_in_file : Enter function')
-
     if upload.addon:
         users = upload.addon.authors.all()
     else:
         users = [upload.user] if upload.user else []
-    log.info('X-awagner check_for_api_keys_in_file : checking keys for users '
-             '%s' % users)
-
     keys = []
     for user in users:
         try:
-            log.info('X-awagner check_for_api_keys_in_file : Getting key for '
-                     'user %s' % user)
             key = APIKey.get_jwt_key(user_id=user.id)
-            log.info(u'X-awagner check_for_api_keys_in_file : Got key %s for '
-                     'user %s' % (key.key, user))
             keys.append(key)
         except APIKey.DoesNotExist:
-            log.info('X-awagner check_for_api_keys_in_file : Key for user %s '
-                     'does not exist' % user)
             pass
 
-    log.info('X-awagner check_for_api_keys_in_file : Trying to open zip at %s'
-             % upload.path)
     zipfile = SafeZip(source=upload.path)
-    log.info('X-awagner check_for_api_keys_in_file : Getting filelist for %s'
-             % zipfile)
     for filepath in zipfile.filelist:
-        log.info('X-awagner check_for_api_keys_in_file : Reading file %s'
-                 % filepath.filename)
         file_ = zipfile.read(filepath)
         for key in keys:
-            log.info('X-awagner check_for_api_keys_in_file : Checking for key '
-                     '%s in file %s' % (key.key, filepath.filename))
-
             if key.secret in file_.decode('unicode-escape'):
-                log.info('X-awagner check_for_api_keys_in_file : '
-                         'Developer API key for user %s found in '
+                log.info('Developer API key for user %s found in '
                          'submission.' % key.user)
                 if key.user == upload.user:
                     msg = ugettext('Your developer API key was found in the '
@@ -506,8 +476,6 @@ def check_for_api_keys_in_file(results, upload):
 
                 # Revoke and regenerate after 2 minutes to allow the developer
                 # to fetch the validation results
-                log.info('X-awagner check_for_api_keys_in_file : Calling '
-                         'revoke routine')
                 revoke_and_regenerate_api_key.apply_async(
                     kwargs={'key_id': key.id}, countdown=120)
     zipfile.close()
@@ -517,50 +485,28 @@ def check_for_api_keys_in_file(results, upload):
 @task
 @write
 def revoke_and_regenerate_api_key(key_id):
-    log.info('X-awagner revoke_and_regenerate_api_key : Enter function')
     try:
         # Fetch the original key, do not use `get_jwt_key`
         # so we get access to a user object for logging later.
-        log.info('X-awagner revoke_and_regenerate_api_key : Fetching orginal '
-                 'key with id %s' % key_id)
         original_key = APIKey.objects.get(
             type=SYMMETRIC_JWT_TYPE, id=key_id)
-        log.info('X-awagner revoke_and_regenerate_api_key : Original key '
-                 'retrieved: %s' % original_key.key)
         # Fetch the current key to compare to the original,
         # throws if the key has been revoked, which also means
         # `original_key` is not active.
-        log.info('X-awagner revoke_and_regenerate_api_key : Fetching current '
-                 'key for user %s' % original_key.user)
         current_key = APIKey.get_jwt_key(user_id=original_key.user.id)
-        log.info('X-awagner revoke_and_regenerate_api_key : Current key '
-                 'retrieved: %s' % current_key.key)
         if current_key.key != original_key.key:
-            log.info('X-awagner revoke_and_regenerate_api_key : '
-                     'User %s has already regenerated the key, nothing to be '
+            log.info('User %s has already regenerated the key, nothing to be '
                      'done.' % original_key.user)
         else:
-            log.info('X-awagner revoke_and_regenerate_api_key : Entering '
-                     'atomic transaction to revoke key %s for user %s'
-                     % (current_key.key, current_key.user))
             with transaction.atomic():
-                log.info('X-awagner revoke_and_regenerate_api_key : '
-                         'Revoking and regenerating key for user %s.'
+                log.info('Revoking and regenerating key for user %s.'
                          % current_key.user)
                 current_key.update(is_active=False)
-                log.info('X-awagner revoke_and_regenerate_api_key : '
-                         'Key %s revoked.'
-                         % current_key.key)
                 APIKey.new_jwt_credentials(user=current_key.user)
-                log.info('X-awagner revoke_and_regenerate_api_key : '
-                         'Key regenerated, sending email.')
                 send_api_key_revocation_email(emails=[current_key.user.email])
-                log.info('X-awagner revoke_and_regenerate_api_key : '
-                         'Email sent.')
 
     except APIKey.DoesNotExist:
-        log.info('X-awagner revoke_and_regenerate_api_key : '
-                 'User %s has already revoked the key, nothing to be '
+        log.info('User %s has already revoked the key, nothing to be '
                  'done.' % original_key.user)
         pass
 
