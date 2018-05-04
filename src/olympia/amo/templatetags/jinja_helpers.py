@@ -20,9 +20,10 @@ from django.utils.translation import (
 
 import jinja2
 import waffle
-
 from babel.support import Format
 from django_jinja import library
+from rest_framework.reverse import reverse as drf_reverse
+from rest_framework.settings import api_settings
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
@@ -90,6 +91,18 @@ def url(viewname, *args, **kwargs):
     if src:
         url = urlparams(url, src=src)
     return url
+
+
+@library.global_function
+@jinja2.contextfunction
+def drf_url(context, viewname, *args, **kwargs):
+    """Helper for DjangoRestFramework's ``reverse`` in templates."""
+    request = context.get('request')
+    if request:
+        scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.versioning_scheme = scheme
+        request.version = scheme.determine_version(request, *args, **kwargs)
+    return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
 @library.global_function

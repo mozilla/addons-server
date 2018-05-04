@@ -99,8 +99,9 @@ class VersionView(APIView):
                 {'error': exc.message},
                 status=exc.code or status.HTTP_400_BAD_REQUEST)
 
-        return Response(FileUploadSerializer(file_upload).data,
-                        status=status.HTTP_201_CREATED)
+        serializer = FileUploadSerializer(
+            file_upload, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @handle_read_only_mode
     @with_addon(allow_missing=True)
@@ -116,8 +117,9 @@ class VersionView(APIView):
         status_code = (
             status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED)
 
-        return Response(FileUploadSerializer(file_upload).data,
-                        status=status_code)
+        serializer = FileUploadSerializer(
+            file_upload, context={'request': request})
+        return Response(serializer.data, status=status_code)
 
     @write
     def handle_upload(self, request, addon, version_string, guid=None):
@@ -237,7 +239,8 @@ class VersionView(APIView):
         except Version.DoesNotExist:
             version = None
 
-        serializer = FileUploadSerializer(file_upload, version=version)
+        serializer = FileUploadSerializer(
+            file_upload, version=version, context={'request': request})
         return Response(serializer.data)
 
 

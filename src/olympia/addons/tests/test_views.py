@@ -1680,11 +1680,11 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         return result
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-detail', kwargs={'pk': param})
+        self.url = reverse('v3:addon-detail', kwargs={'pk': param})
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self.url = reverse('v3:addon-detail', kwargs={'pk': self.addon.slug})
         self._test_url()
 
     def test_hide_latest_unlisted_version_anonymous(self):
@@ -1775,11 +1775,11 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['version'] == self.version.version
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-version-detail', kwargs={
+        self.url = reverse('v3:addon-version-detail', kwargs={
             'addon_pk': param, 'pk': self.version.pk})
 
     def test_version_get_not_found(self):
-        self.url = reverse('addon-version-detail', kwargs={
+        self.url = reverse('v3:addon-version-detail', kwargs={
             'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -1958,7 +1958,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result_version['version'] == self.old_version.version
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-version-list', kwargs={'addon_pk': param})
+        self.url = reverse('v3:addon-version-list', kwargs={'addon_pk': param})
 
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})
@@ -2121,10 +2121,11 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(
-            'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
+            'v3:addon-feature-compatibility', kwargs={'pk': self.addon.pk})
 
     def test_url(self):
-        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        self.detail_url = reverse(
+            'v3:addon-detail', kwargs={'pk': self.addon.pk})
         assert self.url == '%s%s' % (self.detail_url, 'feature_compatibility/')
 
     def test_disabled_anonymous(self):
@@ -2155,10 +2156,11 @@ class TestAddonViewSetEulaPolicy(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(
-            'addon-eula-policy', kwargs={'pk': self.addon.pk})
+            'v3:addon-eula-policy', kwargs={'pk': self.addon.pk})
 
     def test_url(self):
-        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        self.detail_url = reverse(
+            'v3:addon-detail', kwargs={'pk': self.addon.pk})
         assert self.url == '%s%s' % (self.detail_url, 'eula_policy/')
 
     def test_disabled_anonymous(self):
@@ -2191,7 +2193,7 @@ class TestAddonSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonSearchView, self).setUp()
-        self.url = reverse('addon-search')
+        self.url = reverse('v3:addon-search')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -2859,7 +2861,7 @@ class TestAddonSearchView(ESTestCase):
 
         for locale in ('en-US', 'en-GB', 'es'):
             with self.activate(locale):
-                url = reverse('addon-search')
+                url = reverse('v3:addon-search')
 
                 data = self.perform_search(url, {'lang': locale})
 
@@ -2952,7 +2954,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
-        self.url = reverse('addon-autocomplete')
+        self.url = reverse('v3:addon-autocomplete')
 
     def tearDown(self):
         super(TestAddonAutoCompleteSearchView, self).tearDown()
@@ -3077,7 +3079,7 @@ class TestAddonFeaturedView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('addon-featured')
+        self.url = reverse('v3:addon-featured')
 
     def test_no_parameters(self):
         response = self.client.get(self.url)
@@ -3262,7 +3264,7 @@ class TestStaticCategoryView(TestCase):
 
     def setUp(self):
         super(TestStaticCategoryView, self).setUp()
-        self.url = reverse('category-list')
+        self.url = reverse('v3:category-list')
 
     def test_basic(self):
         with self.assertNumQueries(0):
@@ -3332,7 +3334,7 @@ class TestLanguageToolsView(TestCase):
 
     def setUp(self):
         super(TestLanguageToolsView, self).setUp()
-        self.url = reverse('addon-language-tools')
+        self.url = reverse('v3:addon-language-tools')
 
     def test_wrong_app_or_no_app(self):
         response = self.client.get(self.url)
@@ -3575,7 +3577,7 @@ class TestReplacementAddonView(TestCase):
             guid='notgonnawork@moz',
             path='/addon/áddonmissing/')
 
-        response = self.client.get(reverse('addon-replacement-addon'))
+        response = self.client.get(reverse('v3:addon-replacement-addon'))
         assert response.status_code == 200
         data = json.loads(response.content)
         results = data['results']
@@ -3604,7 +3606,8 @@ class TestCompatOverrideView(TestCase):
 
     def test_single_guid(self):
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': u'extrabad@thing'})
+            reverse('v3:addon-compat-override'),
+            data={'guid': u'extrabad@thing'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert len(data['results']) == 1
@@ -3615,7 +3618,7 @@ class TestCompatOverrideView(TestCase):
 
     def test_multiple_guid(self):
         response = self.client.get(
-            reverse('addon-compat-override'),
+            reverse('v3:addon-compat-override'),
             data={'guid': u'extrabad@thing,bad@thing'})
         assert response.status_code == 200
         data = json.loads(response.content)
@@ -3631,7 +3634,7 @@ class TestCompatOverrideView(TestCase):
 
         # Throw in some random invalid guids too that will be ignored.
         response = self.client.get(
-            reverse('addon-compat-override'),
+            reverse('v3:addon-compat-override'),
             data={'guid': (
                 u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
         assert response.status_code == 200
@@ -3643,19 +3646,20 @@ class TestCompatOverrideView(TestCase):
 
     def test_no_guid_param(self):
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': u'invalid@thing'})
+            reverse('v3:addon-compat-override'),
+            data={'guid': u'invalid@thing'})
         # Searching for non-matching guids, it should be an empty 200 response.
         assert response.status_code == 200
         assert len(json.loads(response.content)['results']) == 0
 
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': ''})
+            reverse('v3:addon-compat-override'), data={'guid': ''})
         # Empty query is a 400 because a guid is required for overrides.
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
 
         response = self.client.get(
-            reverse('addon-compat-override'))
+            reverse('v3:addon-compat-override'))
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
@@ -3668,7 +3672,7 @@ class TestAddonRecommendationView(ESTestCase):
 
     def setUp(self):
         super(TestAddonRecommendationView, self).setUp()
-        self.url = reverse('addon-recommendations')
+        self.url = reverse('v3:addon-recommendations')
         patcher = mock.patch(
             'olympia.addons.views.get_addon_recommendations')
         self.get_recommendations_mock = patcher.start()

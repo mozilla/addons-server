@@ -392,7 +392,7 @@ class TestCORS(TestCase):
         assert not response.has_header('Access-Control-Allow-Credentials')
 
     def test_cors_api_v3(self):
-        url = reverse('addon-detail', args=(3615,))
+        url = reverse('v3:addon-detail', args=(3615,))
         assert '/api/v3/' in url
         response = self.get(url)
         assert response.status_code == 200

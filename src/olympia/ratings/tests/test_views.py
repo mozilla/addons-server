@@ -720,7 +720,7 @@ class TestRatingViewSetGet(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('rating-list')
+        self.url = reverse('v3:rating-list')
 
     def test_list_addon(self, **kwargs):
         review1 = Rating.objects.create(
@@ -1153,7 +1153,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1166,7 +1166,7 @@ class TestRatingViewSetGet(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1176,7 +1176,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail_deleted(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
         review.delete()
 
         response = self.client.get(self.url)
@@ -1189,7 +1189,7 @@ class TestRatingViewSetGet(TestCase):
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
         reply.delete()
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1208,7 +1208,7 @@ class TestRatingViewSetGet(TestCase):
             reply_to=review)
         reply.delete()
         review.delete()
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1396,7 +1396,7 @@ class TestRatingViewSetDelete(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': self.rating.pk})
 
     def test_delete_anonymous(self):
         response = self.client.delete(self.url)
@@ -1458,7 +1458,7 @@ class TestRatingViewSetDelete(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, reply_to=self.rating,
             body=u'Reply that will be delêted...', user=addon_author)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
 
         response = self.client.delete(self.url)
         assert response.status_code == 204
@@ -1467,7 +1467,8 @@ class TestRatingViewSetDelete(TestCase):
 
     def test_delete_404(self):
         self.client.login_api(self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk + 42})
+        self.url = reverse(
+            'v3:rating-detail', kwargs={'pk': self.rating.pk + 42})
         response = self.client.delete(self.url)
         assert response.status_code == 404
         assert Rating.objects.count() == 1
@@ -1483,10 +1484,10 @@ class TestRatingViewSetDelete(TestCase):
         # And confirm we can rapidly delete them.
         self.client.login_api(self.user)
         response = self.client.delete(
-            reverse('rating-detail', kwargs={'pk': rating_a.pk}))
+            reverse('v3:rating-detail', kwargs={'pk': rating_a.pk}))
         assert response.status_code == 204
         response = self.client.delete(
-            reverse('rating-detail', kwargs={'pk': rating_b.pk}))
+            reverse('v3:rating-detail', kwargs={'pk': rating_b.pk}))
         assert response.status_code == 204
         assert Rating.objects.count() == 0
 
@@ -1501,7 +1502,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body=u'My revïew', title=u'Titlé', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': self.rating.pk})
 
     def test_edit_anonymous(self):
         response = self.client.patch(self.url, {'body': u'løl!'})
@@ -1609,7 +1610,7 @@ class TestRatingViewSetEdit(TestCase):
         reply = Rating.objects.create(
             reply_to=self.rating, body=u'This is â reply', user=addon_author,
             addon=self.addon)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
 
         response = self.client.patch(self.url, {'rating': 5})
         assert response.status_code == 200
@@ -1644,7 +1645,7 @@ class TestRatingViewSetPost(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('rating-list')
+        self.url = reverse('v3:rating-list')
 
     def test_post_anonymous(self):
         response = self.client.post(self.url, {
@@ -2011,7 +2012,7 @@ class TestRatingViewSetPost(TestCase):
             self.client.login_api(self.user)
 
             # Submit an abuse report
-            report_abuse_url = reverse('abusereportaddon-list')
+            report_abuse_url = reverse('v3:abusereportaddon-list')
             response = self.client.post(
                 report_abuse_url,
                 data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
@@ -2060,7 +2061,7 @@ class TestRatingViewSetFlag(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('rating-flag', kwargs={'pk': self.rating.pk})
+        self.url = reverse('v3:rating-flag', kwargs={'pk': self.rating.pk})
 
     def test_url(self):
         expected_url = '/api/v3/reviews/review/%d/flag/' % self.rating.pk
@@ -2198,7 +2199,7 @@ class TestRatingViewSetFlag(TestCase):
         rating_b = Rating.objects.create(
             addon=addon_b, version=addon_b.current_version, rating=2,
             body='My review', user=self.rating_user)
-        url_b = reverse('rating-flag', kwargs={'pk': rating_b.pk})
+        url_b = reverse('v3:rating-flag', kwargs={'pk': rating_b.pk})
 
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
@@ -2220,7 +2221,7 @@ class TestRatingViewSetReply(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk})
+        self.url = reverse('v3:rating-reply', kwargs={'pk': self.rating.pk})
 
     def test_url(self):
         expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
@@ -2246,7 +2247,8 @@ class TestRatingViewSetReply(TestCase):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         self.client.login_api(self.addon_author)
-        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk + 42})
+        self.url = reverse(
+            'v3:rating-reply', kwargs={'pk': self.rating.pk + 42})
         response = self.client.post(self.url, data={})
         assert response.status_code == 404
 

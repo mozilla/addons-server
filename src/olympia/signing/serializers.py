@@ -1,11 +1,13 @@
 import json
+import os
 
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse as dj_reverse
 
 from rest_framework import serializers
+from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.files.models import FileUpload
 
 
@@ -47,17 +49,24 @@ class FileUploadSerializer(serializers.ModelSerializer):
         super(FileUploadSerializer, self).__init__(*args, **kwargs)
 
     def get_url(self, instance):
-        return absolutify(reverse('signing.version', args=[instance.addon.guid,
-                                                           instance.version,
-                                                           instance.uuid.hex]))
+        return absolutify(drf_reverse(
+            'signing.version', request=self._context.get('request'),
+            args=[instance.addon.guid, instance.version, instance.uuid.hex]))
 
     def get_validation_url(self, instance):
-        return absolutify(reverse('devhub.upload_detail',
-                                  args=[instance.uuid.hex]))
+        return absolutify(
+            dj_reverse('devhub.upload_detail', args=[instance.uuid.hex]))
+
+    def _get_download_url(self, file_):
+        url = drf_reverse(
+            'signing.file', request=self._context.get('request'),
+            kwargs={'file_id': file_.id})
+        url = os.path.join(url, file_.filename)
+        return absolutify(urlparams(url, src='api'))
 
     def get_files(self, instance):
         if self.version is not None:
-            return [{'download_url': f.get_signed_url('api'),
+            return [{'download_url': self._get_download_url(f),
                      'hash': f.hash,
                      'signed': f.is_signed}
                     for f in self.version.files.all()]

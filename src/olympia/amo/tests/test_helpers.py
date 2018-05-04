@@ -7,6 +7,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
@@ -156,8 +157,18 @@ def test_url(mock_reverse):
 
 
 def test_url_src():
-    s = render('{{ url("addons.detail", "a3615", src="xxx") }}')
-    assert s.endswith('?src=xxx')
+    fragment = render('{{ url("addons.detail", "a3615", src="xxx") }}')
+    assert fragment.endswith('?src=xxx')
+
+
+def test_drf_url():
+    rf = RequestFactory()
+    request = rf.get('/hello/')
+    fragment = render('{{ drf_url("addon-detail", pk="a3615") }}',
+                      context={'request': request})
+    # without a /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
+    assert fragment == jinja_helpers.absolutify(
+        reverse('v4:addon-detail', args=['a3615'], add_prefix=False))
 
 
 def test_urlparams():
