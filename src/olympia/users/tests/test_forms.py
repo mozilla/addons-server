@@ -301,11 +301,10 @@ class TestUserEditForm(UserFormBase):
 
         request_call.assert_called_with(
             'post', 'subscribe',
-            headers={'x-api-key': 'testkey'},
+            headers={},
             data={
                 'newsletters': 'about-addons',
-                'email': u'jbalogh@mozilla.com',
-                'sync': 'Y'})
+                'email': u'jbalogh@mozilla.com'})
 
 
 class TestAdminUserEditForm(UserFormBase):

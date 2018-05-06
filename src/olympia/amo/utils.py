@@ -332,17 +332,15 @@ def fetch_subscribed_newsletters(user_profile):
     except (basket.BasketNetworkException, basket.BasketException):
         log.exception('basket exception')
         return ()
+
+    if not user_profile.basket_token:
+        user_profile.update(basket_token=data['token'])
     return data['newsletters']
 
 
 def subscribe_newsletter(user_profile, basket_id):
     try:
-        # Make a syncronize request to basket to
-        # a) ensure the user is really subscribed now and
-        # b) retrieve the basket token
-        response = basket.subscribe(
-            user_profile.email, basket_id, sync='Y')
-        user_profile.update(basket_token=response['token'])
+        response = basket.subscribe(user_profile.email, basket_id)
         return response['status'] == 'ok'
     except (basket.BasketNetworkException, basket.BasketException):
         log.exception('basket exception')
@@ -350,6 +348,9 @@ def subscribe_newsletter(user_profile, basket_id):
 
 
 def unsubscribe_newsletter(user_profile, basket_id):
+    # Security check, the basket token will be set by
+    # `fetche_subscribed_newsletters` but since we shouldn't simply error
+    # we just fetch it in case something went wrong.
     if not user_profile.basket_token:
         basket_data = basket.lookup_user(user_profile.email)
         user_profile.update(basket_token=basket_data['token'])
