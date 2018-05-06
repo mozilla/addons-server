@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 06:21+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-05-06 21:05+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -1779,7 +1779,7 @@ msgid "Categories edited for {addon}."
 msgstr "הקטגוריות עבור {addon} נערכו."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) נוסף אל {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
@@ -4448,7 +4448,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "עליך פשוט להדגיש טקסט בכל עמוד שהוא כדי לחפש את הביטוי מתוך מגוון מנועי חיפוש."
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
@@ -5517,6 +5517,8 @@ msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
+"אם קיבלת קישור ישיר לתוספת שטוענת שטרם נסקרה, משמעות הדבר היא שהיא ממתינה לסקירה על ידי Mozilla. יש לנקוט במשנה זהירות עם תוספות אלו כיוון שהן עשויות להזיק למחשב שלך או להפר את הפרטיות שלך. "
+"%(learnmore_link_open)sמידע נוסף על הליך הסקירה%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "כמה עולה לרכוש תוספות?"
@@ -5713,7 +5715,7 @@ msgid "Start Now"
 msgstr "להתחיל כעת"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "קרן Mozilla מעוניינת לדעת מה היא הדרך הטובה ביותר לשמור על ביטחונם של המשתמשים שלנו אם הם בוחרים להשתמש בתוכנה מצד שלישי כגון תוספים חיצוניים. השתתפות במחקר הזה תסייע לנו לגלות!"
 
 msgid "What will happen next"
 msgstr "מה יקרה הלאה"
@@ -6176,7 +6178,7 @@ msgid "Confirm Approval"
 msgstr "אימות האישור"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "הגרסה הציבורית העדכנית ביותר של תוסף זה אושרה אוטומטית. תהליך זה מתעד את אימות האישור של גרסה זו, מבלי להודיע למפתח."
 
 # 75%
 # 100%
@@ -7526,7 +7528,7 @@ msgstr "על ידי לחיצה על כפתור המחיקה, החשבון שלך
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "כניסה עם כתובת דוא״ל זו לתוך %(site)s פעם נוספת תיצור חשבון חדש שלא מקושר עם החשבון הזה בשום אופן."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "הסקירות והדירוגים שלך לא יימחקו, אך הם אינם יהיו משויכים אליך יותר."
