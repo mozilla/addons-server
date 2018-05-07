@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2733,6 +2733,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
@@ -2744,6 +2750,9 @@ msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹ
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
