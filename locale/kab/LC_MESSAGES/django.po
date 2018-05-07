@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2018-03-08 13:51+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2660,6 +2660,12 @@ msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s yerra-d awal s %s (%s)."
@@ -2671,6 +2677,9 @@ msgstr "Tuqqna ar \"%s\" tezri."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Ur izmir ara ad nermes asennetfteɣ di \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
