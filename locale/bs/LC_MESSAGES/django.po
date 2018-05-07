@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-04 07:14+0000\n"
+"PO-Revision-Date: 2018-05-07 06:42+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1999,21 +1999,21 @@ msgid "{addon} {version} admin add-on-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled dodatka"
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled sadržaja"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled teme"
 
 msgid "Firefox"
 msgstr ""
@@ -3781,10 +3781,10 @@ msgid "Compatibility Reports"
 msgstr "Izvještaji o kompatibilnosti"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} izvješća o neuspjehu"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} izvješća o uspjehu"
 
 msgid "Developer News"
 msgstr "Vijesti programera"
@@ -3965,10 +3965,10 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Pošaljite svoj prvi dodatak"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Pošaljite svoju prvu temu"
 
 msgid "Add-on Developer Hub"
 msgstr ""
