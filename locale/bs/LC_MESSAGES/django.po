@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-07 07:30+0000\n"
+"PO-Revision-Date: 2018-05-07 07:48+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -4163,14 +4163,14 @@ msgstr "Pružite više informacija o vašoj temi pomoću <a href=\"%(edit_url)s\
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Pregledajte i pretplatite se na <a href=\"%(feed_url)s\">kanal aktivnosti</a> vaše teme da ostanete u toku sa pregledima, kolekcijama i drugim aktivnostima."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Pridružite se razgovorima na našim <a href=\"%(forum_url)s\">forumima</a>."
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Odaberite sliku zaglavlja za vašu temu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksela"
@@ -4182,43 +4182,45 @@ msgid "PNG or JPG"
 msgstr "PNG ili JPG"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Upravljanje verzijom {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Upravljanje {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Datoteke"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Učitajte novu datoteku"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Napomene o verziji"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informacije o promjenama u ovoj verziji, novim mogućnostima, poznatim greškama i ostalim korisnim informacijama specifičnim za ovo izdanje/verziju. Ova informacija je također prikazana u Menadžeru "
+"dodataka kada se ažurira."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Status odobrenja"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Napomene za recenzente"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Neobavezno, unesite bilo koju informaciju koja može biti korisna recenzentu ovog dodatka, kao što je informacija o test računu."
 
 msgid "Source code"
-msgstr ""
+msgstr "Izvorni kod"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Ako vaš dodatak sadrži binarni ili skriveni kod, učinite izvor dostupnim ovdje za recenzente."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Datoteka {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
