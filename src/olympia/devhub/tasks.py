@@ -470,13 +470,12 @@ def check_for_api_keys_in_file(results, upload):
                             msg = ugettext('Your developer API key was found '
                                            'in the submitted file. To protect '
                                            'your account, the key will be '
-                                           'regenerated.')
+                                           'revoked.')
                         else:
                             msg = ugettext('The developer API key of a '
                                            'coauthor was found in the '
                                            'submitted file. To protect your '
-                                           'addon, the key will be '
-                                           'regenerated.')
+                                           'add-on, the key will be revoked.')
                         insert_validation_message(
                             results, type_='error',
                             message=msg, msg_id='api_key_detected',
@@ -484,7 +483,7 @@ def check_for_api_keys_in_file(results, upload):
 
                         # Revoke and regenerate after 2 minutes to allow the
                         # developer to fetch the validation results
-                        revoke_and_regenerate_api_key.apply_async(
+                        revoke_api_key.apply_async(
                             kwargs={'key_id': key.id}, countdown=120)
         zipfile.close()
 
@@ -493,7 +492,7 @@ def check_for_api_keys_in_file(results, upload):
 
 @task
 @write
-def revoke_and_regenerate_api_key(key_id):
+def revoke_api_key(key_id):
     try:
         # Fetch the original key, do not use `get_jwt_key`
         # so we get access to a user object for logging later.
@@ -508,10 +507,8 @@ def revoke_and_regenerate_api_key(key_id):
                      'done.' % original_key.user)
         else:
             with transaction.atomic():
-                log.info('Revoking and regenerating key for user %s.'
-                         % current_key.user)
+                log.info('Revoking key for user %s.' % current_key.user)
                 current_key.update(is_active=False)
-                APIKey.new_jwt_credentials(user=current_key.user)
                 send_api_key_revocation_email(emails=[current_key.user.email])
     except APIKey.DoesNotExist:
         log.info('User %s has already revoked the key, nothing to be done.'
