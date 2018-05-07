@@ -76,7 +76,7 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         modules = [x.text for x in doc('a.section')]
-        assert len(modules) == 15  # Increment as we add new admin modules.
+        assert len(modules) == 16  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()
@@ -911,21 +911,3 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assertLoginRedirects(
             self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
-
-
-class TestUserProfileAdmin(TestCase):
-
-    def setUp(self):
-        super(TestUserProfileAdmin, self).setUp()
-        self.user = user_factory(email='admin@mozilla.com')
-        self.grant_permission(self.user, '*:*')
-        self.login(self.user)
-
-    def test_delete_does_hard_delete(self):
-        user_to_delete = user_factory()
-        user_to_delete_pk = user_to_delete.pk
-        url = reverse('admin:users_userprofile_delete',
-                      args=[user_to_delete.pk])
-        response = self.client.post(url, data={'post': 'yes'}, follow=True)
-        assert response.status_code == 200
-        assert not UserProfile.objects.filter(id=user_to_delete_pk).exists()

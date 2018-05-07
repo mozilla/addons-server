@@ -88,4 +88,8 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
     'addons.delete_replacementaddon': ADMIN_CURATION,
+
+    'users.change_userprofile': USERS_EDIT,
+
+    'ratings.change_rating': RATINGS_MODERATE,
 })
