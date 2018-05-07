@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-07 07:07+0000\n"
+"PO-Revision-Date: 2018-05-07 07:30+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -4100,64 +4100,66 @@ msgid "Pending Header"
 msgstr "Zaglavlje na čekanju"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Možete da ažurirate dizajn vaše teme ovdje kada bude odobrena."
 
 msgid "Header"
-msgstr ""
+msgstr "Zaglavlje"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Odaberite boje za vašu temu."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Prednji tekst"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Ovo je boja teksta taba."
 
 msgid "Background"
-msgstr ""
+msgstr "Pozadina"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Ovo je boja tabova."
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Naziv vaše teme"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Kreirajte novu temu"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Pozadinske teme vam dopuštaju da jednostavno prilagodite izgled vašeg Firefoxa. Pošaljite vlastiti dizajn ispod ili <a href=\"%(submit_url)s\">saznajte kako ga napraviti</a>!"
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Dajte vašoj temi naziv."
 
 #, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
+"Slažem se sa %(agreement_link_open)sFirefoxovim sporazumom o distribuciji dodataka%(link_close)s i da se mojim informacijama upravlja onako kako je opisano u %(privacy_notice_link_open)sNapomeni o "
+"privatnosti za web stranice, komunikacije i kolačiće%(link_close)s."
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Pošaljite temu"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Završili ste!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Vaša tema je poslana i čeka na pregled. Dobit ćete email kada pregled bude gotov, obično u toku 24 sata."
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Sljedeći koraci:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Pružite više informacija o vašoj temi pomoću <a href=\"%(edit_url)s\">uređivanja njene objave</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
