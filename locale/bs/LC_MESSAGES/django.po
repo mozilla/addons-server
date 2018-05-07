@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-07 06:42+0000\n"
+"PO-Revision-Date: 2018-05-07 07:07+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -3971,7 +3971,7 @@ msgid "Submit Your First Theme"
 msgstr "Pošaljite svoju prvu temu"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Centar za programere dodatka"
 
 msgid "Docs"
 msgstr "Dokumenti"
@@ -3997,6 +3997,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Dodaci dozvoljavaju milionima Firefox korisnika da uvećaju njihovo iskustvo pretraživanja. Ako poznajete %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s i "
+"%(css_link_open)sCSS%(link_close)s, već imate sve neophodne vještine da napravite odličan dodatak."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučite kako napraviti dodatak"
@@ -4059,28 +4061,28 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mogu li ostali dijeliti vašu temu, dok god ste vi autor?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i izvode radove, uključujući i za komercijalne svrhe."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i izvode rad samo u nekomercijalne svrhe."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Mogu li ostali koristiti vašu temu u komercijalne svrhe?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Mogu li drugi da kreiraju derivativne radove iz vaše teme?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikaziju i izvode rad, kao i da stvaraju derivativne radove bazirane na tome."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju i transmituju samo neizmjenjene kopije rada — ne i prerađenih radova zasnovanih na tome."
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Vaša tema će biti objavljena pod sljedećom licencom:"
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Odaberite licencu za vašu temu."
 
 msgid "Theme Design"
 msgstr "Dizajn teme"
@@ -4089,13 +4091,13 @@ msgid "Upload New Design"
 msgstr "Učitaj novi dizajn"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Nakon uploada i slanja obrasca, AMO tim će pregledati vaš ažurirani dizajn. Vaš trenutni dizajn će još uvijek biti javan u međuvremenu."
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Vaš prethodno poslan dizajn, koji je u toku čekanja na pregled."
 
 msgid "Pending Header"
-msgstr ""
+msgstr "Zaglavlje na čekanju"
 
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
