@@ -1234,3 +1234,14 @@ class TestAPIKeyInSubmission(TestCase):
         assert upload.processed_validation['errors'] == 0
         assert upload.processed_validation['messages'] == []
         assert upload.valid
+
+    def test_webextension_containing_binary_content(self):
+        file_ = get_addon_file('webextension_containing_binary_files.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid

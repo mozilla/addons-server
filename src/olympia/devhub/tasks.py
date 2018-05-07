@@ -18,6 +18,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
 from django.utils.translation import ugettext
@@ -219,13 +220,12 @@ def handle_upload_validation_result(
     # Make sure it is extension-like, e.g. no LWT or search plugin
     log.info('X-awagner handle_upload_validation_result : About to verify zip')
     try:
-        SafeZip(upload.path).is_valid()
         log.info('X-awagner handle_upload_validation_result : About to check '
                  ' for API keys')
         results = check_for_api_keys_in_file(results=results, upload=upload)
         log.info('X-awagner handle_upload_validation_result : Returned from '
                  'API key check')
-    except BadZipfile:
+    except (ValidationError, BadZipfile, IOError):
         log.info('X-awagner handle_upload_validation_result : Bad zip file')
         pass
 
@@ -478,40 +478,46 @@ def check_for_api_keys_in_file(results, upload):
         log.info('X-awagner check_for_api_keys_in_file : Trying to open zip '
                  'at %s' % upload.path)
         zipfile = SafeZip(source=upload.path)
+        zipfile.is_valid()
         log.info('X-awagner check_for_api_keys_in_file : Getting filelist for '
                  '%s' % zipfile)
-        for filepath in zipfile.filelist:
-            log.info('X-awagner check_for_api_keys_in_file : Reading file %s'
-                     % filepath.filename)
-            file_ = zipfile.read(filepath)
-            for key in keys:
-                log.info('X-awagner check_for_api_keys_in_file : Checking for '
-                         'key %s in file %s' % (key.key, filepath.filename))
+        for zipinfo in zipfile.info_list:
+            if zipinfo.file_size > 0:
+                log.info('X-awagner check_for_api_keys_in_file : Reading file '
+                         '%s' % zipinfo.filename)
+                file_ = zipfile.read(zipinfo)
+                for key in keys:
+                    log.info('X-awagner check_for_api_keys_in_file : Checking '
+                             'for key %s in file %s'
+                             % (key.key, zipinfo.filename))
 
-                if key.secret in file_.decode('unicode-escape'):
-                    log.info('X-awagner check_for_api_keys_in_file : '
-                             'Developer API key for user %s found in '
-                             'submission.' % key.user)
-                    if key.user == upload.user:
-                        msg = ugettext('Your developer API key was found in '
-                                       'the submitted file. To protect your '
-                                       'account, the key will be regenerated.')
-                    else:
-                        msg = ugettext('The developer API key of a coauthor '
-                                       'was found in the submitted file. To '
-                                       'protect your addon, the key will be '
-                                       'regenerated.')
-                    insert_validation_message(
-                        results, type_='error',
-                        message=msg, msg_id='api_key_detected',
-                        compatibility_type=None)
+                    if key.secret in file_.decode(encoding='unicode-escape',
+                                                  errors="ignore"):
+                        log.info('X-awagner check_for_api_keys_in_file : '
+                                 'Developer API key for user %s found in '
+                                 'submission.' % key.user)
+                        if key.user == upload.user:
+                            msg = ugettext('Your developer API key was found '
+                                           'in the submitted file. To protect '
+                                           'your account, the key will be '
+                                           'regenerated.')
+                        else:
+                            msg = ugettext('The developer API key of a '
+                                           'coauthor was found in the '
+                                           'submitted file. To protect your '
+                                           'addon, the key will be '
+                                           'regenerated.')
+                        insert_validation_message(
+                            results, type_='error',
+                            message=msg, msg_id='api_key_detected',
+                            compatibility_type=None)
 
-                    # Revoke and regenerate after 2 minutes to allow the
-                    # developer to fetch the validation results
-                    log.info('X-awagner check_for_api_keys_in_file : Calling '
-                             'revoke routine')
-                    revoke_and_regenerate_api_key.apply_async(
-                        kwargs={'key_id': key.id}, countdown=120)
+                        # Revoke and regenerate after 2 minutes to allow the
+                        # developer to fetch the validation results
+                        log.info('X-awagner check_for_api_keys_in_file : '
+                                 'Calling revoke routine')
+                        revoke_and_regenerate_api_key.apply_async(
+                            kwargs={'key_id': key.id}, countdown=120)
         zipfile.close()
 
     return results
