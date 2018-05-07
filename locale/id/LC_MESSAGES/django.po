@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2018-03-20 03:31+0000\n"
 "Last-Translator: Kiki <kelimutu.rizki@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -546,22 +546,6 @@ msgstr "Informasi Versi"
 msgid "See complete version history"
 msgstr "Tampilkan riwayat versi selengkapnya"
 
-msgid "Development Channel"
-msgstr "Kanal Pengembangan"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Saluran Pengembangan memungkinkan anda mengetes versi baru yang eksperimental dari pengaya ini sebelum dirilis ke publik. Sekali anda memasang versi pengembangan, anda akan terus mendapatkan "
-"pembaruan dari saluran ini. Untuk berhenti mendapatkan pembaruan tersebut, pasang kembali versi tetap dari tautan di atas."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Awas:</strong> Versi pengembangan dari pengaya ini belum diulas oleh Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Lihat riwayat lengkap pengembangan kanal"
-
 msgid "close"
 msgstr "tutup"
 
@@ -1006,6 +990,10 @@ msgstr "Icon tidak dapat dijadikan animasi."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ini telah dipakai oleh koleksi lain"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Nama ini tidak dapat digunakan."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2021,6 +2009,30 @@ msgstr "Komentar untuk {addon} {version}."
 msgid "Information request removed"
 msgstr "Diperlukan lebih banyak informasi"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} ulasan dimintakan."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Ulasan super dimintakan"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} ulasan dimintakan."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Ulasan super dimintakan"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} ulasan dimintakan."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Ulasan diminta"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2059,9 +2071,6 @@ msgstr "Penundaan persetujuan"
 
 msgid "Flagged for further review"
 msgstr "Ditandai untuk ulasan lebih lanjut"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Tidak terdaftar"
@@ -2613,9 +2622,6 @@ msgstr "Validasi gagal dikesampingkan"
 msgid "Submit my add-on for manual review."
 msgstr "Kirimkan pengaya saya untuk diulas manual."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
 
@@ -2677,6 +2683,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s dijawab dengan %s (%s)."
@@ -2688,6 +2700,9 @@ msgstr "Koneksi ke \"%s\" habis waktu."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Tidak bisa menghubungi host di \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2746,16 +2761,6 @@ msgstr "Pengaya Divalidasi"
 
 msgid "Check Add-on Compatibility"
 msgstr "Memeriksa Kompatibilitas Pengaya"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3486,9 +3491,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Pengaya ini tidak memiliki versi apa pun."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3708,9 +3710,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Hanya publikasikan versi ini ke saluran beta saya."
 
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
@@ -4146,15 +4145,18 @@ msgid "Learn How"
 msgstr "Pelajari lebih Lanjut"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Versi Terbaru:"
+msgid "Get Started"
+msgstr "Memulai"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Lihat semuanya"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4719,6 +4721,19 @@ msgstr "Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda bac
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> pada install.rdf (%s) Anda tidak cocok dengan tipe Pengaya Anda pada AMO (%s)"
@@ -4986,10 +5001,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Memulai"
 
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"
@@ -5764,26 +5775,6 @@ msgstr ""
 "        berkontribusi pada pengembangannya dengan memberikan kontribusi uang. \n"
 "        Kontribusi semacam ini ditujukan langsung kepada pengembang kecuali ada indikasi\n"
 "        pihak ketiga, misalnya Mozilla Foundation yang bersifat nirlaba."
-
-msgid "What are beta add-ons?"
-msgstr "Apakah pengaya versi beta itu?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Pengaya beta adalah versi yang belum diulas yang mewakili\n"
-"        karya terbaru penulis pengaya. Meski penulis yang berbeda memiliki standar\n"
-"        berlainan untuk kualitas kode beta, anda harus berasumsi bahwa pengaya tersebut\n"
-"        kurang stabil dibandingkan rilis pengaya yang umum."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Harap dicatat bahwa ketika anda memasang pengaya dari bagian \"Versi Beta\" di daftar pengaya, anda akan terus menerima pembaruan untuk pengaya tersebut saat pengaya itu tersedia. Seperti versi "
-"awal yang anda pasang, seluruh rilisan beta tidak diulas oleh Mozilla dan mungkin berbahaya bagi komputer anda."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Bagaimana saya bisa melaporkan ulasan pengguna yang tidak pantas atau spam?"

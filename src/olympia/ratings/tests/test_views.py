@@ -789,20 +789,18 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 3
 
         cache.clear()
-        with self.assertNumQueries(7):
-            # 7 queries:
-            # - One for the reviews count
-            # - One for the reviews ids (cache-machine FETCH_BY_ID)
-            # - One for the reviews fields
-            # - One for the reviews translations
+        with self.assertNumQueries(6):
+            # 6 queries:
+            # - One for the ratings count (pagination)
+            # - One for the ratings themselves
+            # - One for the ratings translations
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result. In the real world those queries
-            # would often be in the cache.
+            # which would pollute the result.
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
@@ -840,15 +838,13 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 5
 
         cache.clear()
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(7):
             # 9 queries:
-            # - One for the reviews count
-            # - One for the reviews ids (cache-machine FETCH_BY_ID)
-            # - One for the reviews fields
-            # - One for the reviews translations
-            # - One for the replies ids
-            # - One for the replies fields
-            # - One for the replies translations
+            # - One for the ratings count
+            # - One for the ratings
+            # - One for the ratings translations
+            # - One for the ratings fields
+            # - One for the ratings translations
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #

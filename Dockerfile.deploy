@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
         bash-completion                  \
         build-essential                  \
         curl                             \
+        libcap-dev                       \
         libjpeg-dev                      \
+        libpcre3-dev                     \
         libsasl2-dev                     \
         libxml2-dev                      \
         libxslt-dev                      \
@@ -33,6 +35,7 @@ RUN apt-get update && apt-get install -y \
         python-pip                       \
         nodejs                           \
         npm                              \
+        uuid-dev                         \
         uwsgi                            \
         uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
@@ -52,6 +55,11 @@ RUN apt-get update && apt-get install -y \
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+
+# Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
+WORKDIR /usr/lib/uwsgi/plugins
+RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
+    rm -rf uwsgi-dogstatsd
 
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json

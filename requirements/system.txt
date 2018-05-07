@@ -74,17 +74,17 @@ idna==2.6 \
 ipaddress==1.0.21 \
     --hash=sha256:c65c59041d771a8f8996e3579015b14bf015bcfdcb7949c315e6e25b89a6e2a2 \
     --hash=sha256:82c964e8a387f3869774c9fd3ed7bf19f0e001de58f0f52fc17257b6bc5f515d
-ndg-httpsclient==0.4.4 \
-    --hash=sha256:0c48887887979f2cb30f3f341f33d02f7dd5167b3a9b417048e8e94f51a1527a \
-    --hash=sha256:e0c815950873a7ff13ff41c5fe585b2904e4b808c75f2aba587b73cc9fbfde67 \
-    --hash=sha256:fba4d4798dcac2965874f24afb6631b4326baa4bd02505744d34f690c354856a
+ndg-httpsclient==0.5.0 \
+    --hash=sha256:683b7a17e8b093e422562e8b089a3ad5d87e00f8f8765aac128791ab9140eef3 \
+    --hash=sha256:8647bb775de60e79fe795eeee602d705de4500a5b1a3d2224247c217dfa200a9 \
+    --hash=sha256:c009f5430790936b3a97eaf9f968516664d97e146ab2bda991f0caadb7cc088b
 # packaging is required by setuptools
 packaging==17.1 \
     --hash=sha256:e9215d2d2535d3ae866c3d6efc77d5b24a0192cce0ff20e42896cc0664f889c0 \
     --hash=sha256:f019b770dd64e585a99714f1fd5e01c7a8f11b45635aa953fd41c689a657375b
-pip==10.0.0 \
-    --hash=sha256:86a60a96d85e329962a9e6f6af612cbc11106293dbc83f119802b5bee9874cf3 \
-    --hash=sha256:f05a3eeea64bce94e85cc6671d679473d66288a4d37c3fcf983584954096b34f
+pip==10.0.1 \
+    --hash=sha256:717cdffb2833be8409433a93746744b59505f42146e8d37de6c62b430e25d6d7 \
+    --hash=sha256:f2bd08e0cd1b06e10218feaf6fef299f473ba706582eb3bd9d52203fdbd7ee68
 pyOpenSSL==17.5.0 \
     --hash=sha256:07a2de1a54de07448732a81e38a55df7da109b2f47f599f8bb35b0cbec69d4bd \
     --hash=sha256:2c10cfba46a52c0b0950118981d61e72c1e5b1aac451ca1bc77de1a679456773
@@ -113,9 +113,9 @@ pyparsing==2.2.0 \
     --hash=sha256:8f1e18d3fd36c6795bb7e02a39fd05c611ffc2596c1e0d995d34d67630426c18 \
     --hash=sha256:e4d45427c6e20a59bf4f88c639dcc03ce30d193112047f94012102f235853a58
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==39.0.1 \
-    --hash=sha256:8010754433e3211b9cdbbf784b50f30e80bf40fc6b05eb5f865fab83300599b8 \
-    --hash=sha256:bec7badf0f60e7fc8153fac47836edc41b74e5d541d7692e614e635720d6a7c7
+setuptools==39.1.0 \
+    --hash=sha256:0cb8b8625bfdcc2d43ea4b9cdba0b39b2b7befc04f3088897031082aa16ce186 \
+    --hash=sha256:c5484e13b89927b44fd15897f7ce19dded8e7f035466a4fa7b946c0bdd86edd7
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \

@@ -2,6 +2,7 @@ import random
 import uuid
 
 from django import forms
+from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
 from django.utils.translation import ugettext
@@ -11,6 +12,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
+from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.constants.categories import CATEGORIES_BY_ID
 
@@ -28,7 +30,7 @@ def clear_get_featured_ids_cache(*args, **kwargs):
 
 
 @memoize('addons:featured', time=60 * 10)
-def get_featured_ids(app=None, lang=None, type=None):
+def get_featured_ids(app=None, lang=None, type=None, types=None):
     from olympia.addons.models import Addon
     ids = []
     is_featured = Q(collections__featuredcollection__isnull=False)
@@ -38,6 +40,8 @@ def get_featured_ids(app=None, lang=None, type=None):
 
     if type:
         qs = qs.filter(type=type)
+    elif types:
+        qs = qs.filter(type__in=types)
     if lang:
         has_locale = qs.filter(
             is_featured &
@@ -134,3 +138,35 @@ def verify_mozilla_trademark(name, user):
             raise LocaleValidationError(errors)
 
     return name
+
+
+TAAR_LITE_FALLBACKS = [
+    'enhancerforyoutube@maximerf.addons.mozilla.org',  # /enhancer-for-youtube/
+    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',          # /search_by_image/
+    'uBlock0@raymondhill.net',                         # /ublock-origin/
+    'newtaboverride@agenedia.com']                     # /new-tab-override/
+
+TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
+TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
+TAAR_LITE_OUTCOME_CURATED = 'curated'
+TAAR_LITE_FALLBACK_REASON_TIMEOUT = 'timeout'
+TAAR_LITE_FALLBACK_REASON_EMPTY = 'no_results'
+
+
+def get_addon_recommendations(guid_param, taar_enable):
+    guids = None
+    fail_reason = None
+    if taar_enable:
+        guids = call_recommendation_server(
+            guid_param, {},
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL)
+        outcome = (TAAR_LITE_OUTCOME_REAL_SUCCESS if guids
+                   else TAAR_LITE_OUTCOME_REAL_FAIL)
+        if not guids:
+            fail_reason = (TAAR_LITE_FALLBACK_REASON_EMPTY if guids == []
+                           else TAAR_LITE_FALLBACK_REASON_TIMEOUT)
+    else:
+        outcome = TAAR_LITE_OUTCOME_CURATED
+    if not guids:
+        guids = TAAR_LITE_FALLBACKS
+    return guids, outcome, fail_reason

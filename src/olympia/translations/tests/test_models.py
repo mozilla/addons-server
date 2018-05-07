@@ -412,10 +412,10 @@ class TranslationTestCase(BaseTestCase):
 
         obj.description.delete()
 
-        obj = TranslatedModel.objects.no_cache().get(id=1)
+        obj = TranslatedModel.objects.get(id=1)
         assert obj.description_id is None
         assert obj.description is None
-        assert not Translation.objects.no_cache().filter(id=trans_id).exists()
+        assert not Translation.objects.filter(id=trans_id).exists()
 
     @patch.object(TranslatedModel, 'get_fallback', create=True)
     def test_delete_keep_other_translations(self, get_fallback):
@@ -431,9 +431,8 @@ class TranslationTestCase(BaseTestCase):
 
         obj.name.delete()
 
-        obj = TranslatedModel.objects.no_cache().get(id=1)
-        assert Translation.objects.no_cache().filter(
-            id=orig_name_id).count() == 1
+        obj = TranslatedModel.objects.get(id=1)
+        assert Translation.objects.filter(id=orig_name_id).count() == 1
 
         # We shouldn't have set name_id to None.
         assert obj.name_id == orig_name_id
@@ -481,7 +480,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         # Make sure we are in a clean environnement.
         self.reset_queries()
         TranslatedModel.objects.get(pk=1)
-        assert len(connections['default'].queries) == 3
+        assert len(connections['default'].queries) == 2
 
     @override_settings(DEBUG=True)
     @patch('multidb.get_slave', lambda: 'slave-2')
@@ -493,7 +492,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             TranslatedModel.objects.get(pk=1)
             assert len(connections['default'].queries) == 0
             assert len(connections['slave-1'].queries) == 0
-            assert len(connections['slave-2'].queries) == 3
+            assert len(connections['slave-2'].queries) == 2
 
     @override_settings(DEBUG=True)
     @patch('multidb.get_slave', lambda: 'slave-2')
@@ -505,7 +504,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 
             TranslatedModel.objects.using('slave-1').get(pk=1)
             assert len(connections['default'].queries) == 0
-            assert len(connections['slave-1'].queries) == 3
+            assert len(connections['slave-1'].queries) == 2
             assert len(connections['slave-2'].queries) == 0
 
     @override_settings(DEBUG=True)
@@ -517,7 +516,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 
             with multidb.pinning.use_master:
                 TranslatedModel.objects.get(pk=1)
-                assert len(connections['default'].queries) == 3
+                assert len(connections['default'].queries) == 2
                 assert len(connections['slave-1'].queries) == 0
                 assert len(connections['slave-2'].queries) == 0
 

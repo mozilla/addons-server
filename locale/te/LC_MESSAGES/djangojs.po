@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-01-23 09:56+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-03 05:01+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -73,10 +73,10 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "నిర్ధారించడం పూర్తి చేయబడింది {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "మీ పొడిగింత ధ్రువీకరణ సమయం ముగిసింది, ఇది మానవీయంగా సమీక్షించబడుతుంది."
@@ -104,7 +104,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "ఒక లెగసీ Firefox పొడిగింతను MDNకు పోర్ట్ చేస్తున్నాము"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
@@ -113,7 +113,7 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "పొడిగింతల సమర్పణ పరిశీలిత పట్టిక"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
@@ -185,7 +185,7 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Your input is required"
-msgstr ""
+msgstr "మీ ఇన్‌పుట్ అవసరం"
 
 msgid "Marked for deletion"
 msgstr "తొలగింపు కోసం గుర్తించబడింది"
@@ -245,7 +245,7 @@ msgid "Amount, in USD"
 msgstr "మొత్తం, USD లో"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "తోడ్పాటుల సంఖ్య"
 
 msgid "More Info..."
 msgstr "మరింత సమాచారం..."
@@ -273,13 +273,13 @@ msgid "Reviews Written"
 msgstr "సమీక్షలు వ్రాయబడ్డాయి"
 
 msgid "User Signups"
-msgstr ""
+msgstr "ఖాతాలు తెరచిన వాడుకరులు"
 
 msgid "Subscribers"
 msgstr "చందాచేరు"
 
 msgid "Ratings"
-msgstr ""
+msgstr "రేటింగులు"
 
 msgid "Sales"
 msgstr "అమ్మకాలు"
@@ -312,7 +312,7 @@ msgid "Homepage Promo"
 msgstr "నివాసపేజీ ప్రోమో"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "ముంగిలి పుటలో ప్రదర్శితం"
 
 msgid "Homepage Up and Coming"
 msgstr "నివాసపేజీ రాబోతోంది"
@@ -579,31 +579,31 @@ msgstr "{0} నుండి {1} వరకు సృష్టించబడి�
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "చందాదార్లు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు చందాదార్లు"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల రేటింగులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రేటింగులు"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల అమ్మకాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు అమ్మకాలు"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల స్థాపనలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -771,7 +771,7 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
 
 msgid "Receipt checked by app."
 msgstr ""
@@ -783,7 +783,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "వస్తోంది&hellip;"
 
 msgid "Version Notes"
 msgstr "వెర్షన్ గమనికలు"
@@ -795,19 +795,19 @@ msgid "No version notes found"
 msgstr "వెర్షన్ గమనికలు కనుగొనబడలేదు"
 
 msgid "Review Text"
-msgstr ""
+msgstr "సమీక్షా పాఠ్యం"
 
 msgid "Review notes found"
 msgstr ""
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "సగటు సమీక్షలు"
 
 msgid "Number of Reviews"
 msgstr "సమీక్షల సంఖ్య"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "అభ్యర్థించిన సమాచారం"
 
 msgid "Flagged"
 msgstr ""
@@ -882,4 +882,4 @@ msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "అంతర్గత సర్వర్ లోపం"

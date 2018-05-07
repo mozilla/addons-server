@@ -361,7 +361,7 @@ class ReviewerSubscription(ModelBase):
 
 
 def send_notifications(signal=None, sender=None, **kw):
-    if sender.is_beta or sender.channel != amo.RELEASE_CHANNEL_LISTED:
+    if sender.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
     subscribers = sender.addon.reviewersubscription_set.all()

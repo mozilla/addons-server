@@ -906,15 +906,6 @@ li#requires-restart {
     background-image: url(../../img/zamboni/icons/no-32x32.png);
 }
 
-.install-note .beta,
-.fxbeta .install-note .nobeta {
-    display: none;
-}
-
-.fxbeta .install-note .beta {
-    display: block;
-}
-
 .install-note {
     position: absolute;
     left: 35px;

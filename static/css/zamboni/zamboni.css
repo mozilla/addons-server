@@ -768,18 +768,6 @@ div.popup-shim {
     background-image: url(../../img/zamboni/icons/no-32x32.png);
 }
 
-.install-note .beta {
-    display: none;
-}
-
-.fxbeta .install-note .beta {
-    display: block;
-}
-
-.fxbeta .install-note .nobeta {
-    display: none;
-}
-
 .install-note,
 .popup,
 .modal {

@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.test.client import Client
 from django.utils.http import urlunquote
 
+import mock
 import pytest
 import waffle
 
@@ -31,7 +32,6 @@ from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     user_factory, version_factory)
-
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -418,29 +418,6 @@ class TestDetailPage(TestCase):
 
         assert doc('#more-about').length == 0
         assert doc('.article.userinput').length == 0
-
-    @override_switch('beta-versions', active=True)
-    def test_beta(self):
-        """Test add-on with a beta channel."""
-        def get_pq_content():
-            return pq(self.client.get(self.url, follow=True).content)
-
-        # Add a beta version and show it.
-        version_factory(file_kw={'status': amo.STATUS_BETA}, addon=self.addon)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        beta = get_pq_content()
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert beta('#beta-channel').length == 1
-
-        # Beta channel section should link to beta versions listing
-        versions_url = reverse('addons.beta-versions', args=[self.addon.slug])
-        assert beta('#beta-channel a.more-info').length == 1
-        assert beta('#beta-channel a.more-info').attr('href') == versions_url
-
-        # Now hide it.  Beta is only shown for STATUS_PUBLIC.
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        beta = get_pq_content()
-        assert beta('#beta-channel').length == 0
 
     def test_type_redirect(self):
         """
@@ -1801,14 +1778,6 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': param, 'pk': self.version.pk})
 
-    def test_bad_filter(self):
-        self.version.files.update(status=amo.STATUS_BETA)
-        # The filter is valid, but not for the 'list' action.
-        response = self.client.get(self.url, data={'filter': 'only_beta'})
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == ['The "filter" parameter is not valid in this context.']
-
     def test_version_get_not_found(self):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
@@ -2143,18 +2112,6 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
 
-    @override_switch('beta-versions', active=True)
-    def test_beta_version(self):
-        self.old_version.files.update(status=amo.STATUS_BETA)
-        self._test_url_only_contains_old_version(filter='only_beta')
-
-    def test_no_beta_version(self):
-        self.version.files.update(status=amo.STATUS_BETA)
-        response = self.client.get(self.url, data={'filter': 'only_beta'})
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == ['Invalid "filter" parameter specified.']
-
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
     client_class = APITestClient
@@ -2462,6 +2419,8 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         theme = addon_factory(slug='my-theme', name=u'My Thème',
                               type=amo.ADDON_THEME)
+        addon_factory(slug='my-search', name=u'My Seárch',
+                      type=amo.ADDON_SEARCH)
         self.refresh()
 
         data = self.perform_search(self.url, {'type': 'extension'})
@@ -2473,6 +2432,12 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
+
+        data = self.perform_search(self.url, {'type': 'theme,extension'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        result_ids = (data['results'][0]['id'], data['results'][1]['id'])
+        assert sorted(result_ids) == [addon.pk, theme.pk]
 
     @patch('olympia.addons.models.get_featured_ids')
     def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
@@ -2694,6 +2659,44 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
+
+    def test_filter_by_category_multiple_types(self):
+        def get_category(type_, name):
+            static_category = (
+                CATEGORIES[amo.FIREFOX.id][type_][name])
+            return Category.from_static_category(static_category, True)
+
+        addon_lwt = addon_factory(
+            slug='my-addon-lwt', name=u'My Addôn LWT',
+            category=get_category(amo.ADDON_PERSONA, 'holiday'),
+            type=amo.ADDON_PERSONA)
+        addon_st = addon_factory(
+            slug='my-addon-st', name=u'My Addôn ST',
+            category=get_category(amo.ADDON_STATICTHEME, 'holiday'),
+            type=amo.ADDON_STATICTHEME)
+
+        self.refresh()
+
+        # Create some add-ons in a different category.
+        addon_factory(
+            slug='different-addon-lwt', name=u'Diff Addôn LWT',
+            category=get_category(amo.ADDON_PERSONA, 'sports'),
+            type=amo.ADDON_PERSONA)
+        addon_factory(
+            slug='different-addon-st', name=u'Diff Addôn ST',
+            category=get_category(amo.ADDON_STATICTHEME, 'sports'),
+            type=amo.ADDON_STATICTHEME)
+
+        self.refresh()
+
+        # Search for add-ons in the first category. There should be two.
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'type': 'persona,statictheme',
+                                              'category': 'holiday'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        result_ids = (data['results'][0]['id'], data['results'][1]['id'])
+        assert sorted(result_ids) == [addon_lwt.pk, addon_st.pk]
 
     def test_filter_with_tags(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
@@ -2981,6 +2984,26 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
 
+    def test_type(self):
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION)
+        addon2 = addon_factory(
+            slug='my-second-addon', name=u'My second Addôn',
+            type=amo.ADDON_PERSONA)
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        addon_factory(
+            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'q': 'my', 'type': 'persona,extension'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
+
     def test_default_locale_fallback_still_works_for_translations(self):
         addon = addon_factory(default_locale='pt-BR', name='foobar')
         # Couple quick checks to make sure the add-on is in the right state
@@ -3073,7 +3096,7 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': None, 'lang': None})
+                {'types': None, 'lang': None})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3094,7 +3117,29 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': amo.ADDON_EXTENSION, 'lang': None})
+                {'types': [amo.ADDON_EXTENSION], 'lang': None})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon1.pk
+        assert data['results'][1]['id'] == addon2.pk
+
+    @patch('olympia.addons.views.get_featured_ids')
+    def test_app_and_types(self, get_featured_ids_mock):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
+
+        response = self.client.get(self.url, {
+            'app': 'firefox', 'type': 'extension,theme'
+        })
+        assert get_featured_ids_mock.call_count == 1
+        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
+                amo.FIREFOX)  # app
+        assert (get_featured_ids_mock.call_args_list[0][1] ==
+                {'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
+                 'lang': None})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3115,7 +3160,7 @@ class TestAddonFeaturedView(TestCase):
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'type': amo.ADDON_EXTENSION, 'lang': 'es'})
+                {'types': [amo.ADDON_EXTENSION], 'lang': 'es'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3162,6 +3207,28 @@ class TestAddonFeaturedView(TestCase):
         assert get_creatured_ids_mock.call_count == 1
         assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # category
         assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon1.pk
+        assert data['results'][1]['id'] == addon2.pk
+
+    @patch('olympia.addons.views.get_creatured_ids')
+    def test_category_with_multiple_types(self, get_creatured_ids_mock):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
+
+        response = self.client.get(self.url, {
+            'category': 'nature', 'app': 'firefox',
+            'type': 'persona,statictheme'
+        })
+        assert get_creatured_ids_mock.call_count == 2
+        assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
+        assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
+        assert get_creatured_ids_mock.call_args_list[1][0][0] == 302  # cat
+        assert get_creatured_ids_mock.call_args_list[1][0][1] is None  # lang
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3592,3 +3659,87 @@ class TestCompatOverrideView(TestCase):
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
+
+
+class TestAddonRecommendationView(ESTestCase):
+    client_class = APITestClient
+
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonRecommendationView, self).setUp()
+        self.url = reverse('addon-recommendations')
+        patcher = mock.patch(
+            'olympia.addons.views.get_addon_recommendations')
+        self.get_recommendations_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def tearDown(self):
+        super(TestAddonRecommendationView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status, response.content
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon1 = addon_factory(id=101, guid='101@mozilla')
+        addon2 = addon_factory(id=102, guid='102@mozilla')
+        addon3 = addon_factory(id=103, guid='103@mozilla')
+        addon4 = addon_factory(id=104, guid='104@mozilla')
+        self.get_recommendations_mock.return_value = (
+            ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
+            'success', 'no_reason')
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'False'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', False)
+        assert data['outcome'] == 'success'
+        assert data['fallback_reason'] == 'no_reason'
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon1.pk
+        assert result['guid'] == '101@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['guid'] == '102@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon3.pk
+        assert result['guid'] == '103@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon4.pk
+        assert result['guid'] == '104@mozilla'
+
+    def test_es_queries_made_no_results(self):
+        self.get_recommendations_mock.return_value = (
+            ['@a', '@b'], 'foo', 'baa')
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(self.url, data={'q': 'foo'})
+            assert data['count'] == 0
+            assert len(data['results']) == 0
+            assert search_mock.call_count == 1
+
+    def test_es_queries_made_some_result(self):
+        addon_factory(slug='foormidable', name=u'foo', guid='@a')
+        addon_factory(slug='foobar', name=u'foo', guid='@b')
+        self.refresh()
+
+        self.get_recommendations_mock.return_value = (
+            ['@a', '@b'], 'foo', 'baa')
+        with patch.object(
+                Elasticsearch, 'search',
+                wraps=amo.search.get_es().search) as search_mock:
+            data = self.perform_search(
+                self.url, data={'q': 'foo'})
+            assert data['count'] == 2
+            assert len(data['results']) == 2
+            assert search_mock.call_count == 1

@@ -21,11 +21,11 @@
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
     "jszip": "3.1.4",
-    "less": "3.0.1",
+    "less": "3.0.4",
     "source-map": "0.7.2",
     "raven-js": "3.24.2",
     "timeago": "1.6.2",
-    "uglify-js": "3.3.21",
+    "uglify-js": "3.3.22",
     "underscore": "1.9.0"
   },
   "devDependencies": {

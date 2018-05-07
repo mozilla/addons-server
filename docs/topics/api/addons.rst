@@ -59,7 +59,7 @@ This endpoint allows you to search through public add-ons.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` as well as ``picture_url`` from ``authors``.
 
 .. _addon-search-sort:
 
@@ -156,7 +156,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
-    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
@@ -210,7 +209,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-              beta  Beta (Valid for files only)
               lite  Preliminarily Reviewed
             public  Fully Reviewed
            deleted  Deleted
@@ -529,3 +527,25 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.
+
+
+---------------
+Recommendations
+---------------
+
+.. _addon-recommendations:
+
+This endpoint provides recommendations of other addons to install, fetched from the `recommendation service <https://github.com/mozilla/taar>`_.
+Four recommendations are fetched, but only valid, publicly available addons are shown (so max 4 will be returned, and possibly less).
+
+.. http:get:: /api/v3/addons/recommendations/
+
+    :query string guid: Fetch recommendations for this add-on guid.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.
+    :>json string outcome: Outcome of the response returned.  Will be either: ``recommended`` - responses from recommendation service; ``recommended_fallback`` - service timed out or returned empty results so we returned fallback; ``curated`` - ``recommended=False`` was requested so fallback returned.
+    :>json string|null fallback_reason: if ``outcome`` was ``recommended_fallback`` then the reason why.  Will be either: ``timeout`` or ``no_results``.
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. The following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.

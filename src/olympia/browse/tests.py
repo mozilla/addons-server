@@ -940,7 +940,11 @@ class TestLegacyRedirects(TestCase):
         cat = Category.objects.filter(slug='feeds-news-blogging')
         cat.update(type=amo.ADDON_THEME)
 
+        # without the slash there's an intermediate redirect
         self.redirects('/themes/feeds-news-blogging?sort=rating',
+                       '/themes/feeds-news-blogging/?sort=rating')
+        # which then redirects to the right place
+        self.redirects('/themes/feeds-news-blogging/?sort=rating',
                        '/complete-themes/feeds-news-blogging?sort=rating')
 
         self.redirects(
@@ -955,12 +959,12 @@ class TestLegacyRedirects(TestCase):
 
         # A former Persona category should now live at /themes/.
         self.redirects('/personas/feeds-news-blogging?sort=rating',
-                       '/themes/feeds-news-blogging?sort=rating')
+                       '/themes/feeds-news-blogging/?sort=rating')
 
-        # The trailing slash should get stripped, yeah. We're just
+        # The trailing slash should be added - We're just
         # testing that we don't redirect to /complete-themes/.
-        self.redirects('/themes/feeds-news-blogging/?sort=rating',
-                       '/themes/feeds-news-blogging?sort=rating')
+        self.redirects('/themes/feeds-news-blogging?sort=rating',
+                       '/themes/feeds-news-blogging/?sort=rating')
 
     def test_creatured(self):
         self.redirects('/extensions/feeds-news-blogging/featured',
@@ -1202,4 +1206,4 @@ class TestStaticThemeRedirects(TestCase):
 
     def test_redirects(self):
         self.redirects('/static-themes/', '/themes/')
-        self.redirects('/static-themes/abstract', '/themes/abstract')
+        self.redirects('/static-themes/abstract/', '/themes/abstract/')

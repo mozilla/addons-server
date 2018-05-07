@@ -32,6 +32,7 @@ class Base(Page):
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
+        self.wait.until(lambda _: self.logged_in)
 
     def logout(self):
         self.header.click_logout()
@@ -46,11 +47,12 @@ class Header(Region):
     _firefox_logo_locator = (By.CLASS_NAME, 'Header-title')
     _extensions_locator = (By.CSS_SELECTOR, '.SectionLinks \
                            > li:nth-child(2) > a:nth-child(1)')
-    _login_locator = (By.CSS_SELECTOR, '.Header-auth-button')
-    _logout_locator = (By.CSS_SELECTOR, '')
+    _login_locator = (By.CLASS_NAME, 'Header-authenticate-button')
+    _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
-    _user_locator = (By.CSS_SELECTOR, '')
+    _user_locator = (By.CSS_SELECTOR,
+                     '.Header-user-and-external-links .DropdownMenu-button-text')
     _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
     def click_explore(self):
@@ -71,15 +73,18 @@ class Header(Region):
     def click_login(self):
         self.find_element(*self._login_locator).click()
         from pages.desktop.login import Login
-        return Login(self.selenium, self.page.base_url, timeout=30)
+        return Login(self.selenium, self.page.base_url)
 
     def click_logout(self):
         user = self.find_element(*self._user_locator)
         logout = self.find_element(*self._logout_locator)
         action = ActionChains(self.selenium)
         action.move_to_element(user)
-        action.move_to_element(logout)
         action.click()
+        action.pause(2)
+        action.move_to_element(logout)
+        action.pause(2)
+        action.click(logout)
         action.perform()
         self.wait.until(lambda s: self.is_element_displayed(
             *self._login_locator))

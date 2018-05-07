@@ -63,9 +63,6 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC)) == 3
         assert len(self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_BETA)) == 3
-        assert len(self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED,
             file_status=amo.STATUS_DISABLED)) == 3
 

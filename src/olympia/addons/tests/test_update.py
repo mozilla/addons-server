@@ -205,10 +205,9 @@ class TestLookup(VersionCheckMixin, TestCase):
                                  self.app, self.platform)
         assert version == self.version_1_2_2
 
-    def test_public_not_beta(self):
+    def test_public(self):
         """
-        If the addon status is public and you are not asking
-        for a beta version, then you get a public version.
+        If the addon status is public then you get a public version.
         """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
         self.addon.reload()
@@ -216,15 +215,6 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
         assert version == self.version_1_2_1
-
-        # Make sure we don't return a beta if there is one.
-        self.change_version(self.version_1_2_1, '1.2beta')
-        self.change_status(self.version_1_2_1, amo.STATUS_BETA)
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
-        assert version == self.version_1_2_0
 
     def test_no_unlisted(self):
         """
@@ -235,43 +225,6 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
         version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
-        assert version == self.version_1_2_1
-
-    def test_installed_beta_no_newer_stable(self):
-        """
-        If the addon status is public, you are in beta and there is no
-        newer public version, you get the latest public version (no update).
-        """
-        self.change_version(self.version_1_2_2, '1.2beta')
-        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
-
-        version, file = self.get('1.2beta', self.version_int,
-                                 self.app, self.platform)
-        assert version == self.version_1_2_1
-
-    def test_beta_to_stable(self):
-        """
-        If the addon status is public, you are in beta, then you will be
-        migrated to the stable version
-        """
-        self.change_version(self.version_1_2_0, '1.2beta')
-        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
-
-        version, file = self.get('1.2beta', self.version_int,
-                                 self.app, self.platform)
-        assert version == self.version_1_2_2
-
-    def test_beta_updates_to_stable(self):
-        """
-        If the addon status is public, you are in beta, then you will be
-        migrated to the stable version, even if there are newer betas
-        """
-        self.change_version(self.version_1_2_0, '1.2beta')
-        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
-        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
-
-        version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
         assert version == self.version_1_2_1
 
@@ -320,21 +273,6 @@ class TestLookup(VersionCheckMixin, TestCase):
         assert dest.addon.status == amo.STATUS_PUBLIC
         assert dest.files.all()[0].status == amo.STATUS_PUBLIC
         assert version == dest.pk
-
-    def test_public_pending_not_exists(self):
-        """
-        If the addon status is public and you are asking
-        for a beta version we look up a version based on the
-        file version at that point. In this case, because the
-        file is pending, we are looking for a public version.
-        """
-        self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
-        self.change_version(self.version_1_2_0, '1.2beta')
-        self.change_status(self.version_1_2_2, amo.STATUS_BETA)
-
-        version, file = self.get('1.2beta', self.version_int,
-                                 self.app, self.platform)
-        assert version == self.version_1_2_1
 
     def test_not_public(self):
         """
@@ -649,32 +587,6 @@ class TestResponse(VersionCheckMixin, TestCase):
         assert up.data['row']['min'] == '2.0'
         assert up.data['row']['max'] == '4.0'
 
-    def test_beta_version(self):
-        file = File.objects.get(pk=67442)
-        file.status = amo.STATUS_BETA
-        file.save()
-
-        beta_version = '2.0.58 beta'
-
-        version = file.version
-        version.version = beta_version
-        version.save()
-
-        # Changing the status of the only reviewed file resets the
-        # add-on status to UNREVIEWED. Change it back to public.
-        version.addon.update(status=amo.STATUS_PUBLIC)
-
-        data = self.good_data.copy()
-        up = self.get(data)
-        up.is_valid()
-        assert not up.get_update()
-
-        data["version"] = beta_version
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        assert 'file_id' not in up.data['row']
-
     def test_no_app_version(self):
         data = self.good_data.copy()
         data['appVersion'] = '1.4'
@@ -736,22 +648,6 @@ class TestResponse(VersionCheckMixin, TestCase):
         up = self.get(self.good_data)
         up.get_rdf()
         assert up.data['row']['url'] == self.get_file_url()
-
-    def test_url_remote_beta(self):
-        file = File.objects.get(pk=67442)
-        file.status = amo.STATUS_BETA
-        file.save()
-
-        beta_version = '2.0.58 beta'
-        file.version.update(version=beta_version)
-
-        data = self.good_data.copy()
-        data["version"] = beta_version
-        up = self.get(data)
-        self.addon_one.status = amo.STATUS_PUBLIC
-        self.addon_one.save()
-        up.get_rdf()
-        assert 'file_id' not in up.data['row']
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()

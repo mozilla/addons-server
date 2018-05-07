@@ -84,6 +84,9 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
+# Disable cache-machine on dev to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
+
 CACHES = {
     'filesystem': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -92,7 +95,7 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery

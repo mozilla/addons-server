@@ -33,59 +33,6 @@ def _touch(fname):
     os.utime(fname, None)
 
 
-def test_is_beta():
-    assert not utils.is_beta('1.2')
-
-    assert utils.is_beta('1.2a')
-    assert utils.is_beta('1.2a1')
-    assert utils.is_beta('1.2a123')
-    assert utils.is_beta('1.2a.1')
-    assert utils.is_beta('1.2a.123')
-    assert utils.is_beta('1.2a-1')
-    assert utils.is_beta('1.2a-123')
-
-    assert utils.is_beta('1.2alpha')
-    assert utils.is_beta('1.2alpha')
-    assert utils.is_beta('1.2alpha1')
-    assert utils.is_beta('1.2alpha123')
-    assert utils.is_beta('1.2alpha.1')
-    assert utils.is_beta('1.2alpha.123')
-    assert utils.is_beta('1.2alpha-1')
-    assert utils.is_beta('1.2alpha-123')
-
-    assert utils.is_beta('1.2b')
-    assert utils.is_beta('1.2b1')
-    assert utils.is_beta('1.2b123')
-    assert utils.is_beta('1.2b.1')
-    assert utils.is_beta('1.2b.123')
-    assert utils.is_beta('1.2b-1')
-    assert utils.is_beta('1.2b-123')
-
-    assert utils.is_beta('1.2beta')
-    assert utils.is_beta('1.2beta1')
-    assert utils.is_beta('1.2beta123')
-    assert utils.is_beta('1.2beta.1')
-    assert utils.is_beta('1.2beta.123')
-    assert utils.is_beta('1.2beta-1')
-    assert utils.is_beta('1.2beta-123')
-
-    assert utils.is_beta('1.2pre')
-    assert utils.is_beta('1.2pre1')
-    assert utils.is_beta('1.2pre123')
-    assert utils.is_beta('1.2pre.1')
-    assert utils.is_beta('1.2pre.123')
-    assert utils.is_beta('1.2pre-1')
-    assert utils.is_beta('1.2pre-123')
-
-    assert utils.is_beta('1.2rc')
-    assert utils.is_beta('1.2rc1')
-    assert utils.is_beta('1.2rc123')
-    assert utils.is_beta('1.2rc.1')
-    assert utils.is_beta('1.2rc.123')
-    assert utils.is_beta('1.2rc-1')
-    assert utils.is_beta('1.2rc-123')
-
-
 class TestExtractor(TestCase):
 
     def test_no_manifest(self):
@@ -298,6 +245,7 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_moz_signed_extension_no_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -305,12 +253,13 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
             assert not parsed['strict_compatibility']
 
     def test_moz_signed_extension_reuse_strict_compat(self):
         addon = amo.tests.addon_factory()
+        user = amo.tests.user_factory(email='foo@mozilla.com')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -318,7 +267,7 @@ class TestManifestJSONExtractor(TestCase):
             'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path)
+            parsed = utils.parse_xpi(file_obj.file_path, user=user)
             assert parsed['is_mozilla_signed_extension']
 
             # We set `strictCompatibility` in install.rdf

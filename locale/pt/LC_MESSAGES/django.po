@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -557,22 +557,6 @@ msgstr "Informação da versão"
 msgid "See complete version history"
 msgstr "Ver o histórico completo da versão"
 
-msgid "Development Channel"
-msgstr "Canal de desenvolvimento"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"O Canal de Desenvolvimento permite que teste uma nova versão experimental deste extra antes deste ser lançado ao público em geral. Depois de instalar a versão de desenvolvimento, vai continuar a "
-"receber atualizações deste canal. Para parar de receber atualizações de desenvolvimento, reinstale a versão por omissão a partir da ligação acima."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Consulte o histórico completo do canal de desenvolvimento"
-
 msgid "close"
 msgstr "fechar"
 
@@ -1021,6 +1005,10 @@ msgstr "Os ícones não podem ser animados."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta url já está a ser utilizada por outra coleção"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Este nome não pode ser utilizado."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2053,6 +2041,30 @@ msgstr "Comentário a {addon} {version}."
 msgid "Information request removed"
 msgstr "Solicitada mais informação"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Solicitada análise a {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Solicitada uma super revisão"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Solicitada análise a {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Solicitada uma super revisão"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Solicitada análise a {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Solicitada análise"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2091,9 +2103,6 @@ msgstr "A aguardar pela aprovação"
 
 msgid "Flagged for further review"
 msgstr "Sinalizado para uma análise mais aprofundada"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Não listada"
@@ -2668,9 +2677,6 @@ msgstr "Sobrepor validação falhada"
 msgid "Submit my add-on for manual review."
 msgstr "Enviar o meu extra para revisão manual."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Um ficheiro com uma versão terminada com a|alpha|b|beta|pre|rc e com um número (opcional), é detetada como beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Não pode carregar mais ficheiros para esta versão."
 
@@ -2731,6 +2737,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s respondeu com %s (%s)."
@@ -2742,6 +2754,9 @@ msgstr "A ligação a \"%s\" expirou."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Não foi possível contactar o servidor em  \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2800,16 +2815,6 @@ msgstr "Validar extra"
 
 msgid "Check Add-on Compatibility"
 msgstr "Verifique a compatibilidade do extra"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3509,9 +3514,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Este extra não é compatível com a sua versão do %(app)s."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Estado:"
 
@@ -3729,9 +3731,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Publicar esta versão apenas para o meu canal beta."
 
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
@@ -4151,15 +4150,18 @@ msgid "Learn How"
 msgstr "Saiba mais"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Última versão:"
+msgid "Get Started"
+msgstr "Começar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Ver tudo"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4705,6 +4707,19 @@ msgstr "Os números de versão devem conter apenas letras, números e estes cara
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -4973,10 +4988,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Começar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos extras da Mozilla"
@@ -5745,24 +5756,6 @@ msgid ""
 msgstr ""
 "Alguns autores pedem aos utilizadores que gostaram do extra para contribuírem para o seu desenvolvimento fazendo uma contribuição monetária. Estas contribuições vão diretamente para o programador a "
 "menos que, uma outra entidade seja indicada, tal como a fundação sem fins lucrativos da Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "O que são os extras beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Os extras Beta são versões não avaliadas que representam o último trabalho do autor do extra. Enquanto diferentes autores têm diferentes standards para a qualidade do código beta, deve partir do "
-"princípio que estes extras são menos estáveis que as versões gerais."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Tenha em atenção que quando instala extras da secção \"versão Beta\" de uma listagem de extras, continua a receber atualizações assim que estas estejam disponíveis. Tal como a versão que instalou, "
-"todos os lançamentos beta não são revistos pela Mozilla e podem danificar o seu computador."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Como reporto um comentário de um utilizador como inapropriado ou spam?"

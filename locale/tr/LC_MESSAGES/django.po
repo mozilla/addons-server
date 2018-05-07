@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-01-02 14:05+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2017-12-07 14:39+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
@@ -112,15 +112,18 @@ msgstr "Kısa ad \"%(slug)s\" olmaz. Lütfen başka bir kısa ad seçin."
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Geçersiz etiket: {0}"
+msgstr[1] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" rezerve bir etikettir ve kullanılamaz."
+msgstr[1] ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "{0} fazla etiketiniz var."
+msgstr[1] ""
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -129,6 +132,7 @@ msgstr "Geçersiz karakterler çıkarıldıktan sonra tüm etiketler %s veya dah
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Tüm etiketler en az {0} karakter olmalıdır."
+msgstr[1] ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -141,6 +145,7 @@ msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değişti
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Yalnızca {0} kategoriniz olabilir."
+msgstr[1] ""
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Diğer kategorisi ekstra kategorilerle birlikte kullanılamaz."
@@ -166,10 +171,10 @@ msgid "Listed"
 msgstr "Listelenen"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Eklenti ve koleksiyon yolları \"/\" ile bitmelidir"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Eklenti adlarında Mozilla ve Firefox tescilli markaları kullanılamaz."
 
 msgid "Abuse reported."
 msgstr "İhlal rapor edildi."
@@ -262,11 +267,13 @@ msgstr "{0} tarihinde eklendi"
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s haftalık indirme"
+msgstr[1] ""
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s kullanıcı"
+msgstr[1] ""
 
 msgid "Requires Restart"
 msgstr "Yeniden başlatma gerektirir"
@@ -281,11 +288,13 @@ msgstr "Firefox 57+ ile uyumlu"
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "Haftalık {0} indirme"
+msgstr[1] ""
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} kullanıcı"
+msgstr[1] ""
 
 msgid "by"
 msgstr "geliştiren:"
@@ -336,6 +345,7 @@ msgstr "Onaylandı"
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> kullanıcı"
+msgstr[1] ""
 
 msgid "Hover to Preview"
 msgstr "Ön izleme için üstüne gelin"
@@ -361,6 +371,7 @@ msgstr "<b>{0}</b> kullanıcı"
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "Günlük {0} kullanıcı"
+msgstr[1] ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -439,6 +450,7 @@ msgstr "Geliştiricinin bu incelemeye yanıtını göster"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
+msgstr[1] ""
 
 # 100%
 msgid "Tags"
@@ -482,11 +494,13 @@ msgstr "Bu koleksiyonların bir parçası"
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Bu yazarların diğer eklentileri"
+msgstr[1] ""
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> kullanıcı değerlendirmesi"
+msgstr[1] ""
 
 msgid "View statistics"
 msgstr "İstatistikleri göster"
@@ -552,22 +566,6 @@ msgstr "Sürüm Bilgisi"
 msgid "See complete version history"
 msgstr "Tüm sürüm geçmişini görüntüle"
 
-msgid "Development Channel"
-msgstr "Geliştirme Kanalı"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Geliştirme Kanalı, bu eklentinin deneysel bir yeni sürümünü genel kullamına açılmadan önce test etmenizi sağlar. Geliştirme sürümünü bir kez kurduktan sonra bu kanaldaki güncellemeleri almaya devam "
-"edeceksiniz. Geliştirme güncellemelerini almayı durdurmak için yukarıdaki bağlantıdan varsayılan sürümü tekrar yükleyin."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Dikkat:</strong> Bu eklentinin geliştirme sürümleri henüz Mozilla tarafından incelenmedi."
-
-msgid "See complete development channel history"
-msgstr "Bütün gelişme kanalı geçmişini gör"
-
 msgid "close"
 msgstr "kapat"
 
@@ -617,6 +615,7 @@ msgstr "kalıcı bağlantı"
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "%(cnt)s kullanıcı incelemesinin tümünü gör"
+msgstr[1] ""
 
 msgid "This add-on has not yet been reviewed."
 msgstr "Bu eklenti henüz incelenmemiş."
@@ -667,6 +666,7 @@ msgstr "Koleksiyoncunun Notu"
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "Haftada <strong>{0}</strong> indirme"
+msgstr[1] ""
 
 msgid "Not Reviewed"
 msgstr "İncelenmemiş"
@@ -1023,6 +1023,10 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
 
 #, fuzzy
+msgid "Name cannot be empty."
+msgstr "Bu isim kullanılamaz."
+
+#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Harfler, rakamlar, alt çizgiler veya tirelerden oluşan geçerli bir kullanıcı adı girin."
 
@@ -1127,6 +1131,7 @@ msgstr "özel"
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> takipçi"
+msgstr[1] ""
 
 # 76%
 # 100%
@@ -1162,11 +1167,13 @@ msgstr "Koleksiyonu Sil"
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "Bu koleksiyonda %(num)s Tema"
+msgstr[1] ""
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "Bu koleksiyonda %(num)s eklenti var"
+msgstr[1] ""
 
 # 100%
 msgid "Go"
@@ -1204,11 +1211,13 @@ msgstr "En beğendiğim eklentiler"
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> eklenti"
+msgstr[1] ""
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> takipçi"
+msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1218,6 +1227,7 @@ msgstr[0] "<span>%(followers)s</span> takipçi"
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s haftalık takipçi"
+msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1225,6 +1235,7 @@ msgstr[0] "%(num)s haftalık takipçi"
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "Aylık %(num)s takipçi"
+msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1234,6 +1245,7 @@ msgstr[0] "Aylık %(num)s takipçi"
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s takipçi"
+msgstr[1] ""
 
 msgid "by {0}"
 msgstr "geliştiren: {0}"
@@ -1554,6 +1566,7 @@ msgstr "{0} :: Arama Araçları"
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> eklenti"
+msgstr[1] ""
 
 msgid "Search Extensions"
 msgstr "Arama Eklentileri"
@@ -1632,6 +1645,7 @@ msgstr ""
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "{0} Themes"
 msgstr "{0} Temaları"
@@ -1709,10 +1723,12 @@ msgstr "{addon} Uyumluluk Raporları"
 msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] "{0} başarı raporu"
+msgstr[1] ""
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} sorun raporu"
+msgstr[1] ""
 
 msgid "View all"
 msgstr "Tümünü göster"
@@ -2047,6 +2063,30 @@ msgstr ""
 msgid "Information request removed"
 msgstr "Daha fazla bilgi istendi"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} incelemesi talep edildi."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Süper inceleme talep edildi"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} incelemesi talep edildi."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Süper inceleme talep edildi"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} incelemesi talep edildi."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "İnceleme talep edildi"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2085,9 +2125,6 @@ msgstr "Onay bekliyor"
 
 msgid "Flagged for further review"
 msgstr "İleri inceleme için işaretlenmiş"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Listelenmemiş"
@@ -2640,9 +2677,6 @@ msgstr "Başarısız doğrulamayı geçersiz kıl"
 msgid "Submit my add-on for manual review."
 msgstr "Elle inceleme için eklentimi gönder."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Sürümü a|alpha|b|beta|pre|rc ve isteğe bağlı bir sayı ile biten bir dosya beta olarak algılanır."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
 
@@ -2702,6 +2736,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s, %s (%s) ile yanıt verdi."
@@ -2713,6 +2753,9 @@ msgstr "\"%s\" bağlantısı zaman aşımına uğradı."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\" adresindeki ana makineye ulaşılamadı."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2771,16 +2814,6 @@ msgstr "Eklentiyi doğrula"
 
 msgid "Check Add-on Compatibility"
 msgstr "Eklenti uyumluluğunu denetle"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Bu türden eklenti gönderemezsiniz"
-
-#, fuzzy, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3011,6 +3044,7 @@ msgstr "Eklentilerimin önceki etkinlikleri"
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
+msgstr[1] ""
 
 msgid "Edit Information"
 msgstr "Bilgileri düzenle"
@@ -3111,6 +3145,7 @@ msgstr "Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Virgülle ayrılmış, en az {0} karakter."
+msgstr[1] ""
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "Örnek: karanlık, sinema, siyah. Sınır 20."
@@ -3118,6 +3153,7 @@ msgstr "Örnek: karanlık, sinema, siyah. Sınır 20."
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Ayrılmış etiketler:"
+msgstr[1] ""
 
 # 81%
 # 100%
@@ -3464,9 +3500,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Bu eklentinin hiç sürümü yok."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Durum:"
 
@@ -3481,6 +3514,7 @@ msgstr "<b>Sıra:</b> %(pos)s / %(total)s"
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
+msgstr[1] ""
 
 msgid "Submit a New File"
 msgstr "Yeni dosya gönder"
@@ -3648,9 +3682,6 @@ msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın. Ka
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Bu dosya hangi platformlarla uyumlu?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Bu sürüm sadece beta kanalımda yayımlansın."
 
 msgid "Administrative overrides"
 msgstr "Yönetsel kural istisnaları"
@@ -3909,6 +3940,7 @@ msgstr "Bu uygulamayı kaldır"
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -4042,15 +4074,17 @@ msgstr ""
 msgid "Learn How"
 msgstr "Nasıl yapılacağını öğrenin"
 
-# 100%
-msgid "What's New"
-msgstr "Yeni neler var?"
+msgid "Get Started"
+msgstr "Başlarken"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Öğreticiyi gör"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4453,11 +4487,13 @@ msgstr "Eklenti Belgeleri :: Geliştirici Merkezi"
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} hata"
+msgstr[1] ""
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
+msgstr[1] ""
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4511,7 +4547,7 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "{name} verilerinize erişin"
 
 msgid "Access your data on the following websites:"
 msgstr "Aşağıdaki web sitelerindeki verilerinize erişme:"
@@ -4520,10 +4556,10 @@ msgid "Access your data for all websites"
 msgstr "Tüm web sitelerine ait verilerinize erişme"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID Firefox 47 ve altı için gereklidir."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "En düşük desteklenen \"strict_min_version\" 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
@@ -4571,6 +4607,19 @@ msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaret
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr "Bu türden eklenti gönderemezsiniz"
+
+#, fuzzy, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -4607,7 +4656,7 @@ msgid "Add-on file being processed, please wait."
 msgstr ""
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Doğrulama sonuçları getiriliyor..."
 
 msgid "Files:"
 msgstr "Dosyalar:"
@@ -4622,7 +4671,7 @@ msgid "Add-on SDK Version:"
 msgstr "Eklenti SDK Sürümü:"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Sekme durakları:"
 
 msgid "Up file"
 msgstr ""
@@ -4670,7 +4719,7 @@ msgstr "Bu dosya artık mevcut değil."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Dosya boyutu {0} sınırın üzerindedir."
 
 msgid "Problems decoding {0}."
 msgstr ""
@@ -4712,7 +4761,7 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr ""
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "St. Patrick&rsquo;s günü temaları"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Tarayıcınızı dekore ederek Saint Patrick Günü'nü kutlayın."
@@ -4754,16 +4803,16 @@ msgid "Worry-free browsing"
 msgstr "Dertsiz tasasız gezinti"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Çevrimiçi gizliliğinizi bu koleksiyondaki eklentilerle koruyun."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "İş, eğlence, gizlilik, üretkenlik ve hemen her şey için mükemmel eklentiler!"
 
 msgid "Games!"
 msgstr "Oyunlar!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Firefox'unuza daha fazla eğlence katın. Tarayıcınızdan düzinelerce oyun oynayın—bulmacalar, klasik arcade, aksiyon oyunları ve daha pek çok şey!"
 
 msgid "Must-Have Media"
 msgstr ""
@@ -4847,9 +4896,6 @@ msgstr "Test Pilotu olun"
 msgid "Unlock early access to experimental browser features."
 msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
 
-msgid "Get Started"
-msgstr "Başlarken"
-
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"
 
@@ -4870,7 +4916,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "AMO'da olup bitenleri nasıl takip edebilirim?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
@@ -5523,19 +5569,6 @@ msgid ""
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
 
-msgid "What are beta add-ons?"
-msgstr "Beta eklenti nedir?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-
 msgid "How do I report an inappropriate or spam user review?"
 msgstr ""
 
@@ -5634,7 +5667,7 @@ msgid "Give specific and helpful details. For example:"
 msgstr ""
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Eklenti beklediğiniz gibi çalıştı mı?"
 
 msgid "What features did you like or dislike?"
 msgstr ""
@@ -5906,6 +5939,7 @@ msgstr ""
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -5947,6 +5981,7 @@ msgstr "{0} incelemeleri"
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] "<b>{0}</b> eklenti"
+msgstr[1] ""
 
 #. {0} is a developer's name.
 #, fuzzy
@@ -5957,6 +5992,7 @@ msgstr "Geliştiricinin yanıtı"
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
+msgstr[1] ""
 
 msgid "No reviews found."
 msgstr "İnceleme bulunamadı."
@@ -5974,6 +6010,7 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} inceleme"
+msgstr[1] ""
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6151,16 +6188,19 @@ msgstr ""
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} dakika"
+msgstr[1] ""
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} saat"
+msgstr[1] ""
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} gün"
+msgstr[1] ""
 
 msgid "Last Review"
 msgstr "Son inceleme"
@@ -6281,6 +6321,7 @@ msgstr "İncelemeyi Tamamla"
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "İnceleme:"
+msgstr[1] ""
 
 msgid "New Themes ({0})"
 msgstr "Yeni Temalar ({0})"
@@ -6346,6 +6387,7 @@ msgstr ""
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
@@ -6885,21 +6927,25 @@ msgstr "[durum:%s]"
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Güncellemeler ({0})"
+msgstr[1] ""
 
 #, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
 msgstr[0] "İnceleme:"
+msgstr[1] ""
 
 #, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
 msgstr[0] "Yeni Eklentiler ({0})"
+msgstr[1] ""
 
 #, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Daha Fazla Bilgi İstendi: {0}"
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr "İşaretli"
@@ -7000,6 +7046,7 @@ msgstr ""
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "Eşleşen <b>{0}</b> sonuç"
+msgstr[1] ""
 
 msgid "Filter Results"
 msgstr "Sonuçları filtrele"
@@ -7734,7 +7781,7 @@ msgid "About me"
 msgstr "Hakkımda"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Biraz daha ayrıntı..."
 
 msgid "Add-ons I've created"
 msgstr "Geliştirdiğim eklentiler"
@@ -7816,11 +7863,13 @@ msgstr "{0} eklenti"
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s tema"
+msgstr[1] ""
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s eklenti"
+msgstr[1] ""
 
 msgid "Average rating of developer's add-ons"
 msgstr ""
@@ -7858,6 +7907,7 @@ msgstr "{0} Sürüm Geçmişi"
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> sürüm"
+msgstr[1] ""
 
 msgid "Be careful with old versions!"
 msgstr "Eski sürümleri dikkatli kullanın!"

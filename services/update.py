@@ -172,8 +172,6 @@ class Update(object):
             WHERE
                 versions.deleted = 0 AND
                 versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
-                -- We always return a public file since
-                -- listed beta files are no longer supported.
                 files.status = %(STATUS_PUBLIC)s
         """)
 

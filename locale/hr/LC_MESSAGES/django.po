@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -578,20 +578,6 @@ msgstr ""
 msgid "See complete version history"
 msgstr ""
 
-msgid "Development Channel"
-msgstr ""
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
-
 msgid "close"
 msgstr "zatvori"
 
@@ -1041,6 +1027,10 @@ msgstr "Ikonice ne smiju biti animirane."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ikonice ne smiju biti animirane."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -2083,6 +2073,30 @@ msgstr ""
 msgid "Information request removed"
 msgstr "Traženo više informacija"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} zatražio reviziju."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Zatražena iznimna revizija"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} zatražio reviziju."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Zatražena iznimna revizija"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} zatražio reviziju."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Zatražena revizija"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2121,9 +2135,6 @@ msgstr "Čeka se odobrenje"
 
 msgid "Flagged for further review"
 msgstr "Obilježeno za daljnji pregled"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr ""
@@ -2671,9 +2682,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
@@ -2732,6 +2740,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2742,6 +2756,9 @@ msgstr ""
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
@@ -2800,16 +2817,6 @@ msgid "Validate Add-on"
 msgstr ""
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3479,9 +3486,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr ""
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3683,9 +3687,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4093,15 +4094,18 @@ msgid "Learn How"
 msgstr ""
 
 #, fuzzy
-msgid "What's New"
-msgstr "Što je ovo?"
+msgid "Get Started"
+msgstr "Početak rada"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Vidi sve"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4631,6 +4635,19 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -4896,10 +4913,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Početak rada"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -5566,22 +5579,6 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr ""
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Imajte na umu da prilikom instaliranja dodatka iz \"Beta inačica\" dijela popisa dodatka, i dalje ćete primati ažuriranja za taj dodatak čim ona postanu dostupna. Kao i početna inačica koji ste "
-"instalirali, sva beta izdanja nisu pregledana od strane Mozille i mogu naštetiti Vašem računalu."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kako mogu prijaviti neprikladnu ili neželjenu korisničku reviziju?"

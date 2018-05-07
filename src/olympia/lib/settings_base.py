@@ -358,6 +358,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
+    r'^devhub\/email\/submission_api_key_revocation.txt',
 
     # Django specific templates
     r'^registration\/',
@@ -1006,6 +1007,8 @@ MINIFY_BUNDLES = {
 
 
 # Caching
+CACHE_MACHINE_ENABLED = True
+
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:%s:' % build_id
 KEY_PREFIX = CACHE_PREFIX
@@ -1153,6 +1156,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
+    'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1788,6 +1792,10 @@ CRON_JOBS = {
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.dev.mozaws.net/api/recommendations/')
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'RECOMMENDATION_ENGINE_URL',
+    default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 

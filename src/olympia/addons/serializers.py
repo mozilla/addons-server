@@ -236,7 +236,6 @@ class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     contributions_url = serializers.URLField(source='contributions')
-    current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
@@ -270,7 +269,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'average_daily_users',
             'categories',
             'contributions_url',
-            'current_beta_version',
             'current_version',
             'default_locale',
             'description',
@@ -448,7 +446,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     # data the same way than the regular serializer does (usually because we
     # some of the data is not indexed in ES).
     authors = BaseUserSerializer(many=True, source='listed_authors')
-    current_beta_version = SimpleESVersionSerializer()
     current_version = SimpleESVersionSerializer()
     previews = ESPreviewSerializer(many=True, source='current_previews')
 
@@ -557,11 +554,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
-        # begins with an underscore. `current_beta_version` and
-        # `latest_unlisted_version` are writeable cached_property so we can
-        # directly write to them.
-        obj.current_beta_version = self.fake_version_object(
-            obj, data.get('current_beta_version'), amo.RELEASE_CHANNEL_LISTED)
+        # begins with an underscore. `latest_unlisted_version` is writeable
+        # cached_property so we can directly write to them.
         obj._current_version = self.fake_version_object(
             obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
         obj.latest_unlisted_version = self.fake_version_object(

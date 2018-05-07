@@ -22,14 +22,14 @@ def mock_request(rf, db):  # rf is a RequestFactory provided by pytest-django.
 
 @pytest.fixture
 def addon_with_files(db):
-    """Return an add-on with one version and four files.
+    """Return an add-on with one version and three files.
 
-    By default the add-on is public, and the files are: beta, disabled,
+    By default the add-on is public, and the files are: disabled,
     unreviewed, unreviewed.
     """
     addon = Addon.objects.create(name='My Addon', slug='my-addon')
     version = Version.objects.create(addon=addon)
-    for status in [amo.STATUS_BETA, amo.STATUS_DISABLED,
+    for status in [amo.STATUS_DISABLED,
                    amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW]:
         File.objects.create(version=version, status=status)
     return addon
@@ -56,7 +56,7 @@ def addon_with_files(db):
          amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         ReviewFiles, 'pending', amo.STATUS_NOMINATED,
+         ReviewFiles, 'pending', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
     ])
 def test_review_scenario(mock_request, addon_with_files, review_action,
@@ -85,5 +85,4 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     # Check the final statuses.
     assert addon.reload().status == final_addon_status
     assert list(version.files.values_list('status', flat=True)) == (
-        [amo.STATUS_BETA, amo.STATUS_DISABLED, final_file_status,
-         final_file_status])
+        [amo.STATUS_DISABLED, final_file_status, final_file_status])

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-06 09:51+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-04-24 10:43+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -550,22 +550,6 @@ msgstr "Versjonsinformasjon"
 msgid "See complete version history"
 msgstr "Vis fullstendig versjonshistorikk"
 
-msgid "Development Channel"
-msgstr "Utviklingskanal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Utviklingskanalen lar deg teste ein eksperimentell versjon av denne utvidinga før ho vert utgjeven til offentlegheita. Etter du installerer ein utviklingsversjon vil du fortsetje å få oppdateringer "
-"frå denne kanalen. For å slutte å få utviklingsoppdateringar må du reinstallere standardversjonen frå lenka ovanfor."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Åtvaring:</strong> Utviklarvershonar av denne utvidinga er ikkje vurdert av Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Sjå komplett historikk for utviklingskanalen"
-
 msgid "close"
 msgstr "lat att"
 
@@ -1004,6 +988,10 @@ msgstr "Ikon kan ikkje vere animerte."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne sluggen vert allereie brukt av ei av samlingane dine."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Dette namnet kan ikkje brukast."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -1996,6 +1984,30 @@ msgstr "Svar frå utviklar på {addon} {version}."
 msgid "Information request removed"
 msgstr "Det er bedt om meir informasjon"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Det er bedt om ei vurdering av {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Det er bedt om ei supervurdering"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Det er bedt om ei vurdering av {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Det er bedt om ei supervurdering"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Det er bedt om ei vurdering av {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Det er bedt om ei vurdering"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2034,9 +2046,6 @@ msgstr "Ventar på godkjenning"
 
 msgid "Flagged for further review"
 msgstr "Flagga for vidare vurdering"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Ikkje oppført"
@@ -2501,7 +2510,7 @@ msgid "Online gambling"
 msgstr "Onlinespel"
 
 msgid "Spam content"
-msgstr "Inneheld spam (søppel)"
+msgstr "Spaminnhald (søppel)"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr "Lågkvalitet, strekt eller tomt bilde"
@@ -2576,9 +2585,6 @@ msgstr "Overkøyr mislykka validering"
 msgid "Submit my add-on for manual review."
 msgstr "Send inn utvidinga mi for manuell vurdering."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Ei fil med ein versjon som sluttar med a|alpha|b|beta|pre|rc og eit valfritt nummer er detektert som beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Du kan ikkje late opp fleire filer for denne versjonen."
 
@@ -2636,6 +2642,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s svarte med %s (%s)."
@@ -2647,6 +2659,9 @@ msgstr "Tilkoplinga til \"%s\" fekk tidsavbrot."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Klarte ikkje å kontakte verten på \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2705,16 +2720,6 @@ msgstr "Valider utvidinga"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kontroller kompatibliteten til utvidinga"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Du kan ikkje sende inn denne typen av utviding"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3373,9 +3378,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Denne utvidinga har ingen versjonar."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3554,9 +3556,6 @@ msgstr "Bruk feltet nedanfor for å laste opp utvidingspakken din. Etter opplast
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Kva for plattformer er denne fila kompatibel med?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Publiser denne versjonen berre på betakanalen min."
 
 msgid "Administrative overrides"
 msgstr "Administrative overstyringar"
@@ -3942,14 +3941,18 @@ msgstr "Det finst ein ny standard for utvidingsutvikling i Firefox. Du må oppda
 msgid "Learn How"
 msgstr "Lær deg korleis"
 
-msgid "What's New"
-msgstr "Kva er nytt"
+msgid "Get Started"
+msgstr "Kom i gang"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Er du klar for å sende inn ei utviding? Les steg-för-steg-rettleiinga vår for innsendingsprosessen."
 
 msgid "See Tutorial"
 msgstr "Vis rettleiing"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4476,6 +4479,19 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "You cannot submit this type of add-on"
+msgstr "Du kan ikkje sende inn denne typen av utviding"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
+
+msgid "Unexpected error."
+msgstr ""
+
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> i install.rdf (%s) din, matchar ikkje med di utvidingstype i AMO (%s)"
@@ -4739,9 +4755,6 @@ msgstr "Bli testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-msgid "Get Started"
-msgstr "Kom i gang"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-utvidingar"
@@ -5182,7 +5195,7 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Søppel (Spam) eller anna ikkje-vurderingsinnhald"
 
 #. part of a list (<li>)
 msgid "Inappropriate language/dialog"
@@ -5403,21 +5416,8 @@ msgid ""
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
 
-msgid "What are beta add-ons?"
-msgstr ""
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "Korleis rapporterer eg ei upassande brukarvurdering eller spam (søppel)?"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "

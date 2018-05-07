@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:538
+#: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:528
 msgid "See full validation report"
 msgstr ""
 
@@ -88,75 +88,75 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:378
+#: static/js/common/upload-addon.js:368
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:416
 msgid "Finished validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:432
+#: static/js/common/upload-addon.js:422
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:435
+#: static/js/common/upload-addon.js:425
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:440
+#: static/js/common/upload-addon.js:430
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:435
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:460
+#: static/js/common/upload-addon.js:450
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:466
+#: static/js/common/upload-addon.js:456
 msgid "WebExtension upgrade"
 msgstr ""
 
-#: static/js/common/upload-addon.js:467
+#: static/js/common/upload-addon.js:457
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:461
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
-#: static/js/common/upload-addon.js:482
+#: static/js/common/upload-addon.js:472
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:473
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:492
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:503
+#: static/js/common/upload-addon.js:493
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:505
+#: static/js/common/upload-addon.js:495
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known"
 " libraries) need to have their sources submitted separately for review. Make "
@@ -164,11 +164,11 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:523
+#: static/js/common/upload-addon.js:513
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:576
+#: static/js/common/upload-addon.js:566
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -883,11 +883,11 @@ msgstr ""
 msgid "Works with {app}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:278
+#: static/js/zamboni/buttons.js:277
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:322
+#: static/js/zamboni/buttons.js:321
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."
