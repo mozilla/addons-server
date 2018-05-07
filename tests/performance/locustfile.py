@@ -69,10 +69,7 @@ class UserBehavior(TaskSet):
 
         return submit_form(form, open_http=submit, extra_values=extra_values)
 
-    def login(self, account):
-        log.debug('creating fxa account')
-        fxa_account, email_account = helpers.get_fxa_account()
-
+    def login(self, fxa_account):
         log.debug('calling login/start to generate fxa_state')
         response = self.client.get(
             reverse('accounts.login_start'),
