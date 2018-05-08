@@ -1097,10 +1097,13 @@ class TestAPIKeyInSubmission(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.key = APIKey.objects.create(user=self.user,
-                                         type=SYMMETRIC_JWT_TYPE,
-                                         key='user:12345:678',
-                                         secret='ICantKeepSecrets!')
+
+        s = '656b16a8ab71686fcfcd04d574bc28be9a1d8252141f54cfb5041709262b84f4'
+        self.key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='user:12345:678',
+            secret=s)
         self.addon = addon_factory(users=[self.user],
                                    version_kw={'version': '0.1'},
                                    file_kw={'is_webextension': True})
