@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-07 11:55+0000\n"
+"PO-Revision-Date: 2018-05-08 07:02+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -4240,28 +4240,28 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Kreirano %(created)s i promijenjeno u %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status i verzije"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Uredi ovu verziju"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 datoteka"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Ponovo omogući verziju"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Zatvori historiju pregledanja"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Nije provjereno."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Provjeri sada."
 
 msgid "Request Review"
-msgstr ""
+msgstr "Zatraži pregled"
 
 msgid "Cancel Review Request"
 msgstr ""
