@@ -459,7 +459,7 @@ def check_for_api_keys_in_file(results, upload):
         zipfile = SafeZip(source=upload.path)
         zipfile.is_valid()
         for zipinfo in zipfile.info_list:
-            if zipinfo.file_size > 0:
+            if zipinfo.file_size >= 64:
                 file_ = zipfile.read(zipinfo)
                 for key in keys:
                     if key.secret in file_.decode(encoding='unicode-escape',
