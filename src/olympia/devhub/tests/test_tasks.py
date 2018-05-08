@@ -1235,7 +1235,7 @@ class TestAPIKeyInSubmission(TestCase):
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 
-    def test_webextension_containing_binary_content(self):
+    def test_validation_finishes_if_containing_binary_content(self):
         file_ = get_addon_file('webextension_containing_binary_files.xpi')
         upload = FileUpload.objects.create(path=file_, user=self.user)
         tasks.validate(upload, listed=True)
@@ -1245,3 +1245,17 @@ class TestAPIKeyInSubmission(TestCase):
         assert upload.processed_validation['errors'] == 0
         assert upload.processed_validation['messages'] == []
         assert upload.valid
+
+    def test_validation_finishes_if_containing_invalid_filename(self):
+        file_ = get_addon_file('invalid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        # https://github.com/mozilla/addons-server/issues/8208
+        # causes this to be 2 (and invalid) instead of 0 (and valid).
+        # The invalid filename error is caught and raised outside of this
+        # validation task.
+        assert upload.processed_validation['errors'] == 2
+        assert not upload.valid
