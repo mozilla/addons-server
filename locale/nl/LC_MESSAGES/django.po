@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-05 11:41+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2018-05-08 06:29+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2671,10 +2671,10 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgstr "Uw ontwikkelaars-API-sleutel is aangetroffen in het ingediende bestand. Om uw account te beschermen zal een nieuwe sleutel worden aangemaakt."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgstr "De ontwikkelaars-API-sleutel van een medeschrijver is aangetroffen in het ingediende bestand. Om uw add-on te beschermen zal de sleutel opnieuw worden aangemaakt."
 
 #, python-format
 msgid "%s responded with %s (%s)."
