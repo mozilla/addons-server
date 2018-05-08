@@ -1097,10 +1097,13 @@ class TestAPIKeyInSubmission(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.key = APIKey.objects.create(user=self.user,
-                                         type=SYMMETRIC_JWT_TYPE,
-                                         key='user:12345:678',
-                                         secret='ICantKeepSecrets!')
+
+        s = '656b16a8ab71686fcfcd04d574bc28be9a1d8252141f54cfb5041709262b84f4'
+        self.key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='user:12345:678',
+            secret=s)
         self.addon = addon_factory(users=[self.user],
                                    version_kw={'version': '0.1'},
                                    file_kw={'is_webextension': True})
@@ -1234,3 +1237,28 @@ class TestAPIKeyInSubmission(TestCase):
         assert upload.processed_validation['errors'] == 0
         assert upload.processed_validation['messages'] == []
         assert upload.valid
+
+    def test_validation_finishes_if_containing_binary_content(self):
+        file_ = get_addon_file('webextension_containing_binary_files.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_validation_finishes_if_containing_invalid_filename(self):
+        file_ = get_addon_file('invalid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        # https://github.com/mozilla/addons-server/issues/8208
+        # causes this to be 2 (and invalid) instead of 0 (and valid).
+        # The invalid filename error is caught and raised outside of this
+        # validation task.
+        assert upload.processed_validation['errors'] == 2
+        assert not upload.valid
