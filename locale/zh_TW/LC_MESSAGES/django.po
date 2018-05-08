@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-08 04:50+0000\n"
+"PO-Revision-Date: 2018-05-08 05:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2616,7 +2616,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "在您送出的檔案中發現開發者 API 金鑰。為了確保您的帳戶安全，將重新產生該金鑰。"
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgstr "在您送出的檔案中發現其他共同作者的 API 金鑰。為了確保您的附加元件，將重新產生該金鑰。"
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2631,7 +2631,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "無法連線至主機「%s」。"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
