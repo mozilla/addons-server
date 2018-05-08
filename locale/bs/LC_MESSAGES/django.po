@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-08 07:16+0000\n"
+"PO-Revision-Date: 2018-05-08 07:44+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -4270,22 +4270,22 @@ msgid "Loading Review History..."
 msgstr "Učitavanje historije pregleda..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Imali smo problem da dobijemo napomene za pregled"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Učitavanje starijeg..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Ostavite odgovor"
 
 msgid "Reply"
-msgstr ""
+msgstr "Odgovori"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Vidljivost oglasa"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Vidljivo:{label_close} Vidljivo svima na {site_url} i uključeno je u rezultate pretrage i stranice oglasa."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
