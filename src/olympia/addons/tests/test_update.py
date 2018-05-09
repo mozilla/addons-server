@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import mock
 
 from datetime import datetime, timedelta
 from email import utils
@@ -419,30 +420,36 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                 )
 
     @freeze_time('2018-05-04 11:27:00 UTC')
-    def test_end_to_end(self):
-        # Basic end-to-end test. It's not a django app, so it's a bit awkward
-        # to test this here, but we don't really have a better place to do it.
+    def test_application(self):
+        # Basic test making sure application() is returning the output of
+        # Update.get_output(). Have to mock Update(): otherwise, the real
+        # database would be hit, not the test one, because of how services
+        # use a different setting and database connection APIs.
         environ = {
             'QUERY_STRING': ''
         }
         self.start_response_call_count = 0
 
+        expected_headers = [
+            ('FakeHeader', 'FakeHeaderValue')
+        ]
+
+        expected_output = '{"fake": "output"}'
+
         def start_response_inspector(status, headers):
             self.start_response_call_count += 1
             assert status == '200 OK'
-            assert headers == [
-                ('Content-Type', 'application/json'),
-                ('Cache-Control', 'public, max-age=3600'),
-                ('Last-Modified', 'Fri, 04 May 2018 11:27:00 GMT'),
-                ('Expires', 'Fri, 04 May 2018 12:27:00 GMT'),
-                ('Content-Length', '2')
-            ]
+            assert headers == expected_headers
 
-        output = update.application(environ, start_response_inspector)
+        with mock.patch('services.update.Update') as UpdateMock:
+            update_instance = UpdateMock.return_value
+            update_instance.get_headers.return_value = expected_headers
+            update_instance.get_output.return_value = expected_output
+            output = update.application(environ, start_response_inspector)
         assert self.start_response_call_count == 1
         # Output is an array with a single string containing the body of the
-        # response - in this case an empty json dict.
-        assert output == ['{}']
+        # response.
+        assert output == [expected_output]
 
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
