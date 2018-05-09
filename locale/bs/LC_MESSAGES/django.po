@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-08 07:44+0000\n"
+"PO-Revision-Date: 2018-05-09 10:32+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -993,9 +993,8 @@ msgstr "Ikone ne mogu biti animirane."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ovaj prilagođeni URL već koristi druga vaša kolekcija."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Slike ne mogu biti animirane."
+msgstr "Naziv ne može biti prazan."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Priloženi URL mora se sastojati od slova, brojeva, donjih crtica ili crtica."
@@ -1994,23 +1993,20 @@ msgstr "Zahtjev za informacije o {addon} {version} je uklonio programer."
 msgid "Information request removed"
 msgstr "Zahtev za informaciju je uklonjen"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled dodatka {addon} {version}."
 
 msgid "Admin add-on-review requested"
 msgstr "Zatražen adminov pregled dodatka"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled sadržaja {addon} {version}."
 
 msgid "Admin content-review requested"
 msgstr "Zatražen adminov pregled sadržaja"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled teme {addon} {version}."
 
 msgid "Admin theme-review requested"
 msgstr "Zatražen adminov pregled teme"
@@ -4290,6 +4286,7 @@ msgstr "{label_open}Vidljivo:{label_close} Vidljivo svima na {site_url} i uklju�
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Nevidljivo:{label_close} Neće biti uključeno u rezultate pretrage, a stranica dodatka će označiti da ste je onemogućili. Nove verzije za dodatak neće biti prihvaćene u ovom statusu."
 
 msgid "Listed versions"
 msgstr "Navedene verzije"
@@ -4323,13 +4320,13 @@ msgstr "Izbriši verziju {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "Nastojite izbrisati trenutnu verziju vašeg dodatka. Ovo će možda proizrokovati da vaš dodatak promijeni status ili da izgubi javnu vidljivost ako je ovo jedina javna verzija vašeg dodatka."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Brisanje ove verzije će trajno izbrisati:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Važno:</strong> Jednom kada verzija bude izbrisana, možda nećete moći uploadovati novu verziju sa istim brojem."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Da li ste sigurni da želite izbrisati ovu verziju?"
