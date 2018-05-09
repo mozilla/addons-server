@@ -7,8 +7,6 @@ from email import utils
 
 from django.db import connection
 
-from freezegun import freeze_time
-
 from services import update
 
 from olympia import amo
@@ -419,7 +417,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                     expected['-'.join([version, mode])]
                 )
 
-    @freeze_time('2018-05-04 11:27:00 UTC')
     def test_application(self):
         # Basic test making sure application() is returning the output of
         # Update.get_output(). Have to mock Update(): otherwise, the real
