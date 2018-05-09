@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
 "PO-Revision-Date: 2018-05-04 12:32+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2679,10 +2679,10 @@ msgstr ""
 "Non puoi aggiornare un componente aggiuntivo basato su WebExtension con una versione che utilizza la vecchia piattaforma di sviluppo. Gli utenti non potranno utilizzare questa versione perché "
 "Firefox non supporta questo tipo di aggiornamento."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
@@ -4462,18 +4462,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avviso"
 msgstr[1] "{0} avvisi"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca il tracciamento di Facebook {start_sub_heading}grazie a {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isola la tua identità grazie a un \"contenitore\" che rende più difficile per Facebook tracciare i tuoi movimenti sul Web."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ricerca semplificata {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Basta evidenziare un testo da una qualsiasi pagina web per cercarlo su differenti motori di ricerca."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Protezione della privacy e blocco degli annunci pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
 
@@ -4485,6 +4473,20 @@ msgstr "Reinventa le schede {start_sub_heading}con {addon_name}{end_sub_heading}
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Tieni un sacco di schede aperte? Organizzale in una barra laterale ordinata."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blocca il tracciamento di Facebook {start_sub_heading}grazie a {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isola la tua identità grazie a un \"contenitore\" che rende più difficile per Facebook tracciare i tuoi movimenti sul Web."
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reinventa le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Basta evidenziare un testo da una qualsiasi pagina web per cercarlo su differenti motori di ricerca."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
