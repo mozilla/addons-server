@@ -6,6 +6,7 @@ import django  # noqa
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
+from django.core.files.storage import default_storage as storage
 
 import pytest
 
@@ -44,6 +45,17 @@ class TestUserProfile(TestCase):
 
     def test_delete(self):
         user = UserProfile.objects.get(pk=4043307)
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert storage.exists(user.picture_path_original)
+        assert storage.exists(user.picture_path)
+
         assert not user.deleted
         assert user.email == 'jbalogh@mozilla.com'
         assert user.auth_id
@@ -70,6 +82,8 @@ class TestUserProfile(TestCase):
         assert user.last_login_attempt is None
         assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
 
     def test_groups_list(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')

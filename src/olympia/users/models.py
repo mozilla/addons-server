@@ -15,6 +15,8 @@ from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
+from django.core.files.storage import default_storage as storage
+from celery.execute import send_task
 
 import olympia.core.logger
 
@@ -426,6 +428,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.last_login_attempt_ip = ''
             self.last_login_ip = ''
             self.save()
+
+        # Recursive import
+        from olympia.users.tasks import delete_photo
+
+        if storage.exists(self.picture_path):
+            delete_photo.delay(self.picture_path)
+
+        if storage.exists(self.picture_path_original):
+            delete_photo.delay(self.picture_path_original)
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
