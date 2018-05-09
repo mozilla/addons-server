@@ -79,8 +79,6 @@ SERVICES_URL = SITE_URL
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 
-ADDON_COLLECTOR_ID = 1
-
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
 

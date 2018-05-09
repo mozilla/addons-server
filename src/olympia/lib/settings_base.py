@@ -1626,9 +1626,6 @@ JINGO_MINIFY_USE_STATIC = True
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
 
-# Add on used to collect stats (!technical dept around!)
-ADDON_COLLECTOR_ID = 11950
-
 # Connection to the hive server.
 HIVE_CONNECTION = {
     'host': 'peach-gw.peach.metrics.scl3.mozilla.com',

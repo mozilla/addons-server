@@ -1,7 +1,6 @@
 import datetime
 import itertools
 
-from django.conf import settings
 from django.db import connection
 from django.db.models import Max, Sum
 
@@ -180,8 +179,6 @@ def _get_metrics_jobs(date=None):
     stats = {
         'addon_total_updatepings': lambda: UpdateCount.objects.filter(
             date=date).aggregate(sum=Sum('count'))['sum'],
-        'collector_updatepings': lambda: UpdateCount.objects.get(
-            addon=settings.ADDON_COLLECTOR_ID, date=date).count,
     }
 
     return stats
