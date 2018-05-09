@@ -1026,8 +1026,6 @@ JAVA_BIN = '/usr/bin/java'
 
 # File paths
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
-CA_CERT_BUNDLE_PATH = os.path.join(
-    ROOT, 'src/olympia/amo/certificates/roots.pem')
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
@@ -1270,8 +1268,6 @@ CELERY_TASK_ROUTES = {
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
@@ -1622,14 +1618,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
-
-# Language pack fetcher settings
-LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
-LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
-LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
-# E.g. https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/23.0/SHA512SUMS
-LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
-LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
