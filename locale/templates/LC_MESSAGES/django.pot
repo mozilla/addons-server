@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4011,34 +4011,34 @@ msgid ""
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:466
-msgid ""
-"Your developer API key was found in the submitted file. To protect your "
-"account, the key will be regenerated."
-msgstr ""
-
 #: src/olympia/devhub/tasks.py:470
 msgid ""
-"The developer API key of a coauthor was found in the submitted file. To "
-"protect your addon, the key will be regenerated."
+"Your developer API key was found in the submitted file. To protect your "
+"account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:842
+#: src/olympia/devhub/tasks.py:475
+msgid ""
+"The developer API key of a coauthor was found in the submitted file. To "
+"protect your add-on, the key will be revoked."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:844
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:846
+#: src/olympia/devhub/tasks.py:848
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:848
+#: src/olympia/devhub/tasks.py:850
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:890
+#: src/olympia/devhub/tasks.py:892
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -6632,75 +6632,73 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/discovery/data.py:36
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py:40
-msgid ""
-"Isolate your Facebook identity into a separate \"container\" that makes it "
-"harder for Facebook to track your movements around the web."
-msgstr ""
-
-#: src/olympia/discovery/data.py:48
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py:52
-msgid ""
-"Just highlight text on any web page to search the phrase from an array of "
-"engines."
-msgstr ""
-
-#: src/olympia/discovery/data.py:63
+#: src/olympia/discovery/data.py:35
 msgid ""
 "Ad blocking & privacy protection {start_sub_heading}with "
 "{addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:67
+#: src/olympia/discovery/data.py:39
 msgid ""
 "A simple set-up lets you take control of the ads you see and how you’re "
 "tracked on the internet."
 msgstr ""
 
-#: src/olympia/discovery/data.py:74
+#: src/olympia/discovery/data.py:46
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:78
+#: src/olympia/discovery/data.py:50
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
-#: src/olympia/discovery/data.py:98
+#: src/olympia/discovery/data.py:62
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:66
+msgid ""
+"Isolate your Facebook identity into a separate \"container\" that makes it "
+"harder for Facebook to track your movements around the web."
+msgstr ""
+
+#: src/olympia/discovery/data.py:74
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:78
+msgid " Perform reverse image searches from an array of engines."
+msgstr ""
+
+#: src/olympia/discovery/data.py:97
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:102
+#: src/olympia/discovery/data.py:101
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#: src/olympia/discovery/data.py:109
+#: src/olympia/discovery/data.py:108
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:113
+#: src/olympia/discovery/data.py:112
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#: src/olympia/discovery/data.py:123
+#: src/olympia/discovery/data.py:122
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:127
+#: src/olympia/discovery/data.py:126
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
-#: src/olympia/discovery/data.py:135
+#: src/olympia/discovery/data.py:134
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:139
+#: src/olympia/discovery/data.py:138
 msgid ""
 "More than just a basic screenshot tool, Awesome Screenshot Plus lets you "
 "annotate images with custom text and graphics, plus the ability to store and "

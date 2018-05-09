@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
 "PO-Revision-Date: 2018-05-02 09:47+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -2603,10 +2603,10 @@ msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "您不能用一个旧式附加组件更新 WebExtension 附加组件。您的用户将无法使用您的新版本，因为 Firefox 不支持此种更新。"
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
@@ -4299,18 +4299,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "简化搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "选中网页上的文本即可用多个搜索引擎快捷搜索。"
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "拦截广告并保护隐私 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
@@ -4322,6 +4310,20 @@ msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "您是否有一大堆打开的标签页？试试在整齐的侧栏中进行管理。"
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid " Perform reverse image searches from an array of engines."
+msgstr "选中网页上的文本即可用多个搜索引擎快捷搜索。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
