@@ -219,7 +219,6 @@ class TestUserEditForm(UserFormBase):
             request_call.return_value = {
                 'status': 'ok', 'token': '123', 'newsletters': []}
 
-            # 8 is the `announcements` notification, or about-addons newsletter
             form = UserEditForm({}, instance=self.user)
 
         request_call.assert_called_with(
@@ -230,7 +229,8 @@ class TestUserEditForm(UserFormBase):
         # It needs a developer account to subscribe to a newsletter
         # So the `announcements` notification is not among the valid choices
         # This isn't really user visible since the user doesn't have
-        # the ability to choose newsletters he doesn't have permis
+        # the ability to choose newsletters he doesn't have permissions
+        # to see.
         assert len(form.fields['notifications'].choices) == 2
         assert form.fields['notifications'].choices[0][0] == 3
         assert form.fields['notifications'].choices[1][0] == 4

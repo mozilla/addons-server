@@ -349,7 +349,7 @@ def subscribe_newsletter(user_profile, basket_id):
 
 def unsubscribe_newsletter(user_profile, basket_id):
     # Security check, the basket token will be set by
-    # `fetche_subscribed_newsletters` but since we shouldn't simply error
+    # `fetch_subscribed_newsletters` but since we shouldn't simply error
     # we just fetch it in case something went wrong.
     if not user_profile.basket_token:
         basket_data = basket.lookup_user(user_profile.email)

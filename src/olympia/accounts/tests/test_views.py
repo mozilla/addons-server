@@ -1454,4 +1454,4 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         request_call.assert_called_with(
             'post', 'unsubscribe',
             data={'newsletters': 'about-addons', 'email': self.user.email},
-            token='123')
+            token='13f64f64-1de7-42f6-8c7f-a19e2fae5021')

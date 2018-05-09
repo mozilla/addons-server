@@ -20,4 +20,4 @@ class Command(BaseCommand):
             sync_user_with_basket.delay(developer_id)
 
         self.stdout.write(
-            'Syncronizing %s developers with basket now' % len(developers))
+            'Synchronizing %s developers with basket now' % len(developers))
