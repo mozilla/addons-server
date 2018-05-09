@@ -1423,6 +1423,19 @@ class TestAccountNotificationViewSetUpdate(TestCase):
                 self.url,
                 data={'announcements': True})
 
+        # We haven't set the switch yet, so there are no calls.
+        assert request_call.call_count == 0
+
+        create_switch('activate-basket-sync')
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+            self.client.post(
+                self.url,
+                data={'announcements': True})
+
         request_call.assert_called_with(
             'post', 'subscribe',
             data={

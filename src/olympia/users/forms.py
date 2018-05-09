@@ -1,6 +1,8 @@
 import os
 import re
 
+import waffle
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -98,7 +100,12 @@ class UserEditForm(happyforms.ModelForm):
         self.fields['homepage'].error_messages = errors
 
         if self.instance:
-            self.newsletters = fetch_subscribed_newsletters(self.instance)
+            # We are fetching all `UserNotification` instances and then,
+            # if the waffle-switch is active overwrite their value with the
+            # data from basket. This simplifies the process of implementing
+            # the waffle-switch. Once we switched the integration "on" on prod
+            # all `UserNotification` instances that are now handled by basket
+            # can be deleted.
             default = {
                 idx: notification.default_checked
                 for idx, notification
@@ -108,11 +115,14 @@ class UserEditForm(happyforms.ModelForm):
                 for notification in self.instance.notifications.all()}
             default.update(user)
 
-            by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
-            for basket_id, notification in by_basket_id.items():
-                subscribed = notification.id in self.newsletters
-                if subscribed:
-                    default[notification.id] = True
+            if waffle.switch_is_active('activate-basket-sync'):
+                newsletters = fetch_subscribed_newsletters(self.instance)
+
+                by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+                for basket_id, notification in by_basket_id.items():
+                    subscribed = notification.id in newsletters
+                    if subscribed:
+                        default[notification.id] = True
 
             # Add choices to Notification.
             choices = notifications.NOTIFICATIONS_CHOICES
@@ -239,16 +249,17 @@ class UserEditForm(happyforms.ModelForm):
                 user=self.instance, notification_id=notification_id,
                 defaults={'enabled': enabled})
 
-        by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
-        for basket_id, notification in by_basket_id.items():
-            needs_subscribe = str(notification.id) in data['notifications']
-            needs_unsubscribe = (
-                str(notification.id) not in data['notifications'])
+        if waffle.switch_is_active('activate-basket-sync'):
+            by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+            for basket_id, notification in by_basket_id.items():
+                needs_subscribe = str(notification.id) in data['notifications']
+                needs_unsubscribe = (
+                    str(notification.id) not in data['notifications'])
 
-            if needs_subscribe:
-                subscribe_newsletter(self.instance, basket_id)
-            elif needs_unsubscribe:
-                unsubscribe_newsletter(self.instance, basket_id)
+                if needs_subscribe:
+                    subscribe_newsletter(self.instance, basket_id)
+                elif needs_unsubscribe:
+                    unsubscribe_newsletter(self.instance, basket_id)
 
         log.debug(u'User (%s) updated their profile' % u)
 

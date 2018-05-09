@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.translation import ugettext
 
+import waffle
+
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -215,7 +217,9 @@ class UserNotificationSerializer(serializers.Serializer):
         current_user = request.user
 
         remote_by_id = notifications.REMOTE_NOTIFICATIONS_BY_ID
-        if instance.notification_id in remote_by_id:
+        use_basket = waffle.switch_is_active('activate-basket-sync')
+
+        if use_basket and instance.notification_id in remote_by_id:
             notification = remote_by_id[instance.notification_id]
             if not enabled:
                 unsubscribe_newsletter(
