@@ -24,8 +24,7 @@ from olympia.zadmin.models import set_config
 
 
 class TestUserProfile(TestCase):
-    fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
-                'users/test_backends')
+    fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends')
 
     def test_is_developer(self):
         user = UserProfile.objects.get(id=4043307)
@@ -45,14 +44,32 @@ class TestUserProfile(TestCase):
 
     def test_delete(self):
         user = UserProfile.objects.get(pk=4043307)
+        assert not user.deleted
         assert user.email == 'jbalogh@mozilla.com'
-        assert user.auth_id is not None
+        assert user.auth_id
+        assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
+        assert user.username == 'jbalogh'
+        assert user.display_name
+        assert user.homepage
+        assert user.picture_type
+        assert user.last_login_attempt
+        assert user.last_login_attempt_ip
+        assert user.last_login_ip
+
         old_auth_id = user.auth_id
         user.delete()
         user = UserProfile.objects.get(pk=4043307)
         assert user.email is None
         assert user.auth_id
         assert user.auth_id != old_auth_id
+        assert user.fxa_id is None
+        assert user.username == 'Anonymous-%s' % user.id
+        assert user.display_name is None
+        assert user.homepage == ''
+        assert user.picture_type is None
+        assert user.last_login_attempt is None
+        assert user.last_login_attempt_ip == ''
+        assert user.last_login_ip == ''
 
     def test_groups_list(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')

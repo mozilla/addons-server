@@ -415,12 +415,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 u'User (%s: <%s>) is being anonymized.' % (self, self.email))
             self.email = None
             self.fxa_id = None
-            self.username = "Anonymous-%s" % self.id  # Can't be null
+            self.username = 'Anonymous-%s' % self.id  # Can't be null
             self.display_name = None
-            self.homepage = ""
+            self.homepage = ''
+            self.location = ''
             self.deleted = True
             self.picture_type = None
             self.auth_id = generate_auth_id()
+            self.last_login_attempt = None
+            self.last_login_attempt_ip = ''
+            self.last_login_ip = ''
             self.save()
 
     def set_unusable_password(self):
