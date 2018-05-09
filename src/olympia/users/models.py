@@ -120,7 +120,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     email = models.EmailField(unique=True, null=True, max_length=75)
 
     averagerating = models.FloatField(null=True)
-    # biography can (and does) contains html and other unsanitized content.
+    # biography can (and does) contain html and other unsanitized content.
     # It must be cleaned before display.
     biography = models.TextField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
@@ -158,6 +158,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # use) and django sessions. Should be changed if a user is known to have
     # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
+
+    # Token used to manage the users subscriptions in basket. Basket
+    # is proxying directly to Salesforce, e.g for the about-addons
+    # newsletter
+    basket_token = models.CharField(blank=True, default='', max_length=128)
 
     class Meta:
         db_table = 'users'
@@ -497,6 +502,14 @@ class UserNotification(ModelBase):
     @property
     def notification(self):
         return NOTIFICATIONS_BY_ID[self.notification_id]
+
+    def __str__(self):
+        return (
+            u'{user}, {notification}, enabled={enabled}'
+            .format(
+                user=self.user.display_name or self.user.email,
+                notification=self.notification.short,
+                enabled=self.enabled))
 
 
 class DeniedName(ModelBase):

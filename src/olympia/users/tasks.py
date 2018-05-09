@@ -1,5 +1,7 @@
 from django.core.files.storage import default_storage as storage
 
+import basket
+
 import olympia.core.logger
 
 from olympia.amo.celery import task
@@ -48,3 +50,25 @@ def update_user_ratings_task(data, **kw):
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(
             averagerating=round(rating, 2))
+
+
+@task(rate_limit='250/m')
+def sync_user_with_basket(user_profile_id):
+    user = UserProfile.objects.get(pk=user_profile_id)
+    if user.basket_token:
+        return
+
+    try:
+        data = basket.lookup_user(user.email)
+        user.update(basket_token=data['token'])
+        return True
+    except Exception as exc:
+        acceptable_errors = (
+            basket.errors.BASKET_INVALID_EMAIL,
+            basket.errors.BASKET_UNKNOWN_EMAIL)
+
+        if getattr(exc, 'code', None) not in acceptable_errors:
+            task_log.exception(
+                'sync_user_with_basket() failed with error: {}, retrying'
+                .format(exc))
+            return sync_user_with_basket.retry(exc=exc, max_retries=3)
