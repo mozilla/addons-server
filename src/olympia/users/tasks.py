@@ -15,7 +15,7 @@ from .models import UserProfile
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-@task(name='delete_user_photo')
+@task
 def delete_photo(dst, **kw):
     task_log.debug('[1@None] Deleting photo: %s.' % dst)
 
