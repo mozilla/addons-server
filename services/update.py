@@ -1,3 +1,4 @@
+import json
 import sys
 
 from django.utils.encoding import force_bytes
@@ -24,51 +25,6 @@ from utils import (
 
 # Go configure the log.
 log_configure()
-
-good_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s">
-        <em:updates>
-            <RDF:Seq>
-                <RDF:li resource="urn:mozilla:%(type)s:%(guid)s:%(version)s"/>
-            </RDF:Seq>
-        </em:updates>
-    </RDF:Description>
-
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s:%(version)s">
-        <em:version>%(version)s</em:version>
-        <em:targetApplication>
-            <RDF:Description>
-                <em:id>%(appguid)s</em:id>
-                <em:minVersion>%(min)s</em:minVersion>
-                <em:maxVersion>%(max)s</em:maxVersion>
-                <em:updateLink>%(url)s</em:updateLink>
-                %(if_update)s
-                %(if_hash)s
-            </RDF:Description>
-        </em:targetApplication>
-    </RDF:Description>
-</RDF:RDF>"""
-
-
-bad_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-</RDF:RDF>"""
-
-
-no_updates_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s">
-        <em:updates>
-            <RDF:Seq>
-            </RDF:Seq>
-        </em:updates>
-    </RDF:Description>
-</RDF:RDF>"""
-
 
 error_log = olympia.core.logger.getLogger('z.services')
 
@@ -135,14 +91,19 @@ class Update(object):
 
         sql = ["""
             SELECT
-                addons.guid as guid, addons.addontype_id as type,
-                addons.inactive as disabled_by_user, appmin.version as min,
-                appmax.version as max, files.id as file_id,
-                files.status as file_status, files.hash,
-                files.filename, versions.id as version_id,
-                files.datestatuschanged as datestatuschanged,
+                addons.guid as guid,
+                addons.addontype_id as type,
+                addons.inactive as disabled_by_user,
+                appmin.version as min,
+                appmax.version as max,
+                files.id as file_id,
+                files.status as file_status,
+                files.hash,
+                files.filename,
+                versions.id as version_id,
                 files.strict_compatibility as strict_compat,
-                versions.releasenotes, versions.version as version
+                versions.releasenotes,
+                versions.version as version
             FROM versions
             INNER JOIN addons
                 ON addons.id = versions.addon_id AND addons.id = %(id)s
@@ -210,19 +171,6 @@ class Update(object):
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')
 
-        # Special case for bug 1031516.
-        if data['guid'] == 'firefox-hotfix@mozilla.org':
-            app_version = data['version_int']
-            hotfix_version = data['version']
-            if version_int('10') <= app_version <= version_int('16.0.1'):
-                if hotfix_version < '20121019.01':
-                    sql.append("AND versions.version = '20121019.01' ")
-                elif hotfix_version < '20130826.01':
-                    sql.append("AND versions.version = '20130826.01' ")
-            elif version_int('16.0.2') <= app_version <= version_int('24.*'):
-                if hotfix_version < '20130826.01':
-                    sql.append("AND versions.version = '20130826.01' ")
-
         sql.append('ORDER BY versions.id DESC LIMIT 1;')
 
         self.cursor.execute(''.join(sql), data)
@@ -232,8 +180,7 @@ class Update(object):
             row = dict(zip([
                 'guid', 'type', 'disabled_by_user', 'min', 'max',
                 'file_id', 'file_status', 'hash', 'filename', 'version_id',
-                'datestatuschanged', 'strict_compat', 'releasenotes',
-                'version'],
+                'strict_compat', 'releasenotes', 'version'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
             row['url'] = get_cdn_url(data['id'], row)
@@ -243,47 +190,62 @@ class Update(object):
 
         return False
 
-    def get_bad_rdf(self):
-        return bad_rdf
-
-    def get_rdf(self):
+    def get_output(self):
         if self.is_valid():
             if self.get_update():
-                rdf = self.get_good_rdf()
+                output = self.get_success_output()
             else:
-                rdf = self.get_no_updates_rdf()
+                output = self.get_no_updates_output()
         else:
-            rdf = self.get_bad_rdf()
+            output = self.get_error_output()
         self.cursor.close()
         if self.conn:
             self.conn.close()
-        return rdf
+        return json.dumps(output)
 
-    def get_no_updates_rdf(self):
-        name = base.ADDON_SLUGS_UPDATE[self.data['type']]
-        return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
+    def get_error_output(self):
+        return {}
 
-    def get_good_rdf(self):
+    def get_no_updates_output(self):
+        return {
+            'addons': {
+                self.data['guid']: {
+                    'updates': []
+                }
+            }
+        }
+
+    def get_success_output(self):
         data = self.data['row']
-        data['if_hash'] = ''
+        update = {
+            'version': data['version'],
+            'update_link': data['url'],
+            'applications': {
+                'gecko': {
+                    'strict_min_version': data['min']
+                }
+            }
+        }
+        if data['strict_compat']:
+            update['applications']['gecko']['strict_max_version'] = data['max']
         if data['hash']:
-            data['if_hash'] = ('<em:updateHash>%s</em:updateHash>' %
-                               data['hash'])
-
-        data['if_update'] = ''
+            update['update_hash'] = data['hash']
         if data['releasenotes']:
-            data['if_update'] = ('<em:updateInfoURL>%s%s%s/%%APP_LOCALE%%/'
-                                 '</em:updateInfoURL>' %
-                                 (settings.SITE_URL, '/versions/updateInfo/',
-                                  data['version_id']))
-
-        return good_rdf % data
+            update['update_info_url'] = '%s%s%s/%%APP_LOCALE%%/' % (
+                settings.SITE_URL, '/versions/updateInfo/', data['version_id'])
+        return {
+            'addons': {
+                self.data['guid']: {
+                    'updates': [update]
+                }
+            }
+        }
 
     def format_date(self, secs):
         return '%s GMT' % formatdate(time() + secs)[:25]
 
     def get_headers(self, length):
-        return [('Content-Type', 'text/xml'),
+        return [('Content-Type', 'application/json'),
                 ('Cache-Control', 'public, max-age=3600'),
                 ('Last-Modified', self.format_date(0)),
                 ('Expires', self.format_date(3600)),
@@ -302,7 +264,7 @@ def application(environ, start_response):
         compat_mode = data.pop('compatMode', 'strict')
         try:
             update = Update(data, compat_mode)
-            output = force_bytes(update.get_rdf())
+            output = force_bytes(update.get_output())
             start_response(status, update.get_headers(len(output)))
         except Exception:
             log_exception(data)
