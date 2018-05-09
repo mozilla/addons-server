@@ -48,28 +48,6 @@ log = olympia.core.logger.getLogger('z.zadmin')
 
 
 @admin_required
-def langpacks(request):
-    if request.method == 'POST':
-        try:
-            tasks.fetch_langpacks.delay(request.POST['path'])
-        except ValueError:
-            messages.error(request, 'Invalid language pack sub-path provided.')
-
-        return redirect('zadmin.langpacks')
-
-    addons = (Addon.objects.no_cache()
-              .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
-                      type=amo.ADDON_LPAPP)
-              .order_by('name'))
-
-    data = {'addons': addons, 'base_url': settings.LANGPACK_DOWNLOAD_BASE,
-            'default_path': settings.LANGPACK_PATH_DEFAULT % (
-                'firefox', amo.FIREFOX.latest_version)}
-
-    return render(request, 'zadmin/langpack_update.html', data)
-
-
-@admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
     return render(request, 'zadmin/settings.html',
