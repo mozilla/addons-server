@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 19:23+0000\n"
+"PO-Revision-Date: 2018-05-09 19:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2698,10 +2698,10 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "Njemóžeće přidatk typa WebExtensions přez přidatk stareho typa aktualizować. Waši wužiwarjo njemóhli wašu nowu wersiju wužiwać, dokelž Firefox tutón typ aktualizacije njepodpěruje."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Waš wuwiwarski API-kluč je so w zapodatej dataji namakał. Zo by so waše konto škitało, budźe so kluč wotwołać."
+msgstr "Waš wuwiwarski API-kluč je so w zapodatej dataji namakał. Zo by so waše konto škitało, so kluč wotwoła."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Wuwiwarski API-kluč sobuawtora je so w zapodatej dataji namakał. Zo by so waš přidatk škitał, budźe so kluč wotwołać."
+msgstr "Wuwiwarski API-kluč sobuawtora je so w zapodatej dataji namakał. Zo by so waš přidatk škitał, so kluč wotwoła."
 
 #, python-format
 msgid "%s responded with %s (%s)."
