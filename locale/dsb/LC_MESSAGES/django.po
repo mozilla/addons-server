@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 19:32+0000\n"
+"PO-Revision-Date: 2018-05-09 19:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4464,9 +4464,8 @@ msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid " Perform reverse image searches from an array of engines."
-msgstr "Wuzwigniśo jadnorje tekst na někakem webboku, aby z pytnicu wuraz pytał."
+msgstr "Wuwjeźćo slědkpytanja wobrazow z rědom pytnicow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ześěgniśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
