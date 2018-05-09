@@ -215,6 +215,8 @@ class TestUserEditForm(UserFormBase):
         assert self.user.reload().email == 'me@example.com'
 
     def test_only_show_notifications_user_has_permission_to(self):
+        create_switch('activate-basket-sync')
+
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
                 'status': 'ok', 'token': '123', 'newsletters': []}
