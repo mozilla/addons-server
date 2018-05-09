@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 14:50+0000\n"
+"PO-Revision-Date: 2018-05-09 15:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2643,13 +2643,11 @@ msgstr "ჩვენ საშუალებას ვიძლევით დ
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "WebExtensions დამატების მოძველებული დამატებით განახლება, არ შეგიძლიათ. თქვენი მომხმარებლები ვერ ისარგებლებენ ახალი ვერსიით, რადგან Firefox-ში არაა მხარდაჭერილი, ასეთი სახის განახლება."
 
-#, fuzzy
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "თქვენი შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი ანგარიშის უსაფრთხოებისთვის, გასაღები ხელახლა შეიქმნება."
+msgstr "თქვენი შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი ანგარიშის უსაფრთხოებისთვის, ეს გასაღები გაუქმდება."
 
-#, fuzzy
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "თანაავტორის შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი დამატების უსაფრთხოებისთვის, გასაღები ხელახლა შეიქმნება."
+msgstr "თანაავტორის შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი დამატების უსაფრთხოებისთვის, ეს გასაღები გაუქმდება."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4392,9 +4390,8 @@ msgstr "Facebook თვალთვალის შეზღუდვა {start_
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "გამიჯნეთ თქვენი Facebook ვინაობა სხვა გვერდებისგან ცალკე „სათავსის“ საშუალებით, რაც გაურთულებს Facebook-ს ინტერნეტში თქვენს მოქმედებებზე თვალის მიდევნებას."
 
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩანართების გადაწყობა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name}დამატების დახმარებით{end_sub_heading}"
 
 #, fuzzy
 msgid " Perform reverse image searches from an array of engines."
