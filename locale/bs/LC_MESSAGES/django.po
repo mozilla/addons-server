@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-04 07:14+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-08 07:44+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -1999,21 +1999,21 @@ msgid "{addon} {version} admin add-on-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled dodatka"
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled sadržaja"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Sadržaj {addon} {version} je odbijen."
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "Zatražen adminov pregled teme"
 
 msgid "Firefox"
 msgstr ""
@@ -2650,6 +2650,12 @@ msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proc
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ne možete ažurirati WebExtensions dodatak sa naslijeđenim dodatkom. Vaši korisnici ne bi bili u mogućnosti koristiti vašu novu verziju jer Firefox ne podržava ove vrste ažuriranja."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s je odgovorio sa %s (%s)."
@@ -2661,6 +2667,9 @@ msgstr "Povezivanje na \"%s\" je isteklo."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Ne mogu kontaktirati host na \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -3781,10 +3790,10 @@ msgid "Compatibility Reports"
 msgstr "Izvještaji o kompatibilnosti"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} izvješća o neuspjehu"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} izvješća o uspjehu"
 
 msgid "Developer News"
 msgstr "Vijesti programera"
@@ -3965,13 +3974,13 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Pošaljite svoj prvi dodatak"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Pošaljite svoju prvu temu"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Centar za programere dodatka"
 
 msgid "Docs"
 msgstr "Dokumenti"
@@ -3997,6 +4006,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Dodaci dozvoljavaju milionima Firefox korisnika da uvećaju njihovo iskustvo pretraživanja. Ako poznajete %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s i "
+"%(css_link_open)sCSS%(link_close)s, već imate sve neophodne vještine da napravite odličan dodatak."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučite kako napraviti dodatak"
@@ -4059,28 +4070,28 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mogu li ostali dijeliti vašu temu, dok god ste vi autor?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i izvode radove, uključujući i za komercijalne svrhe."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikazuju i izvode rad samo u nekomercijalne svrhe."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Mogu li ostali koristiti vašu temu u komercijalne svrhe?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Mogu li drugi da kreiraju derivativne radove iz vaše teme?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju, prikaziju i izvode rad, kao i da stvaraju derivativne radove bazirane na tome."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Davalac licence dozvoljava drugima da kopiraju, distribuiraju i transmituju samo neizmjenjene kopije rada — ne i prerađenih radova zasnovanih na tome."
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Vaša tema će biti objavljena pod sljedećom licencom:"
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Odaberite licencu za vašu temu."
 
 msgid "Theme Design"
 msgstr "Dizajn teme"
@@ -4089,84 +4100,86 @@ msgid "Upload New Design"
 msgstr "Učitaj novi dizajn"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Nakon uploada i slanja obrasca, AMO tim će pregledati vaš ažurirani dizajn. Vaš trenutni dizajn će još uvijek biti javan u međuvremenu."
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Vaš prethodno poslan dizajn, koji je u toku čekanja na pregled."
 
 msgid "Pending Header"
-msgstr ""
+msgstr "Zaglavlje na čekanju"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Možete da ažurirate dizajn vaše teme ovdje kada bude odobrena."
 
 msgid "Header"
-msgstr ""
+msgstr "Zaglavlje"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Odaberite boje za vašu temu."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Prednji tekst"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Ovo je boja teksta taba."
 
 msgid "Background"
-msgstr ""
+msgstr "Pozadina"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Ovo je boja tabova."
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Naziv vaše teme"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Kreirajte novu temu"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Pozadinske teme vam dopuštaju da jednostavno prilagodite izgled vašeg Firefoxa. Pošaljite vlastiti dizajn ispod ili <a href=\"%(submit_url)s\">saznajte kako ga napraviti</a>!"
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Dajte vašoj temi naziv."
 
 #, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
+"Slažem se sa %(agreement_link_open)sFirefoxovim sporazumom o distribuciji dodataka%(link_close)s i da se mojim informacijama upravlja onako kako je opisano u %(privacy_notice_link_open)sNapomeni o "
+"privatnosti za web stranice, komunikacije i kolačiće%(link_close)s."
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Pošaljite temu"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Završili ste!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Vaša tema je poslana i čeka na pregled. Dobit ćete email kada pregled bude gotov, obično u toku 24 sata."
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Sljedeći koraci:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Pružite više informacija o vašoj temi pomoću <a href=\"%(edit_url)s\">uređivanja njene objave</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Pregledajte i pretplatite se na <a href=\"%(feed_url)s\">kanal aktivnosti</a> vaše teme da ostanete u toku sa pregledima, kolekcijama i drugim aktivnostima."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Pridružite se razgovorima na našim <a href=\"%(forum_url)s\">forumima</a>."
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Odaberite sliku zaglavlja za vašu temu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksela"
@@ -4178,99 +4191,101 @@ msgid "PNG or JPG"
 msgstr "PNG ili JPG"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Upravljanje verzijom {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Upravljanje {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Datoteke"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Učitajte novu datoteku"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Napomene o verziji"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informacije o promjenama u ovoj verziji, novim mogućnostima, poznatim greškama i ostalim korisnim informacijama specifičnim za ovo izdanje/verziju. Ova informacija je također prikazana u Menadžeru "
+"dodataka kada se ažurira."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Status odobrenja"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Napomene za recenzente"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Neobavezno, unesite bilo koju informaciju koja može biti korisna recenzentu ovog dodatka, kao što je informacija o test računu."
 
 msgid "Source code"
-msgstr ""
+msgstr "Izvorni kod"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Ako vaš dodatak sadrži binarni ili skriveni kod, učinite izvor dostupnim ovdje za recenzente."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Datoteka {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Kreirano %(created)s i promijenjeno u %(status)s dana %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Kreirano %(created)s i promijenjeno u %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status i verzije"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Uredi ovu verziju"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 datoteka"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Ponovo omogući verziju"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Zatvori historiju pregledanja"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Nije provjereno."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Provjeri sada."
 
 msgid "Request Review"
-msgstr ""
+msgstr "Zatraži pregled"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Otkaži zahtjev za pregled"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Učitavanje historije pregleda..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Imali smo problem da dobijemo napomene za pregled"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Učitavanje starijeg..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Ostavite odgovor"
 
 msgid "Reply"
-msgstr ""
+msgstr "Odgovori"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Vidljivost oglasa"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Vidljivo:{label_close} Vidljivo svima na {site_url} i uključeno je u rezultate pretrage i stranice oglasa."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."

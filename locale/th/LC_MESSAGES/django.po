@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-04 18:20+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-07 17:16+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2649,6 +2649,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2659,6 +2665,9 @@ msgstr "หมดเวลาในการเชื่อมต่อไปย
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
@@ -3076,11 +3085,11 @@ msgid "Images"
 msgstr "ภาพ"
 
 msgid "Support Information"
-msgstr ""
+msgstr "ข้อมูลการสนับสนุน"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "ข้อมูลการสนับสนุนสำหรับ {0}"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"

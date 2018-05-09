@@ -1097,10 +1097,13 @@ class TestAPIKeyInSubmission(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.key = APIKey.objects.create(user=self.user,
-                                         type=SYMMETRIC_JWT_TYPE,
-                                         key='user:12345:678',
-                                         secret='ICantKeepSecrets!')
+
+        s = '656b16a8ab71686fcfcd04d574bc28be9a1d8252141f54cfb5041709262b84f4'
+        self.key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='user:12345:678',
+            secret=s)
         self.addon = addon_factory(users=[self.user],
                                    version_kw={'version': '0.1'},
                                    file_kw={'is_webextension': True})
@@ -1121,9 +1124,10 @@ class TestAPIKeyInSubmission(TestCase):
                 'file.' in messages[0]['message'])
         assert not upload.valid
 
-        new_key = APIKey.get_jwt_key(user_id=self.user.id)
-        assert new_key.key != self.key.key
-        assert new_key.secret != self.key.secret
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
 
         assert len(mail.outbox) == 1
         assert ('Your AMO API credentials have been revoked'
@@ -1146,9 +1150,10 @@ class TestAPIKeyInSubmission(TestCase):
                 'file.' in messages[0]['message'])
         assert not upload.valid
 
-        new_key = APIKey.get_jwt_key(user_id=self.user.id)
-        assert new_key.key != self.key.key
-        assert new_key.secret != self.key.secret
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
 
         assert len(mail.outbox) == 1
         assert ('Your AMO API credentials have been revoked'
@@ -1174,9 +1179,10 @@ class TestAPIKeyInSubmission(TestCase):
                 'submitted file.' in messages[0]['message'])
         assert not upload.valid
 
-        new_key = APIKey.get_jwt_key(user_id=self.user.id)
-        assert new_key.key != self.key.key
-        assert new_key.secret != self.key.secret
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
 
         assert len(mail.outbox) == 1
         assert ('Your AMO API credentials have been revoked'
@@ -1187,7 +1193,7 @@ class TestAPIKeyInSubmission(TestCase):
 
     def test_api_key_already_revoked_by_developer(self):
         self.key.update(is_active=False)
-        tasks.revoke_and_regenerate_api_key(self.key.id)
+        tasks.revoke_api_key(self.key.id)
         # If the key has already been revoked, there is no active key,
         # so `get_jwt_key` raises `DoesNotExist`.
         with pytest.raises(APIKey.DoesNotExist):
@@ -1196,14 +1202,14 @@ class TestAPIKeyInSubmission(TestCase):
     def test_api_key_already_regenerated_by_developer(self):
         self.key.update(is_active=False)
         current_key = APIKey.new_jwt_credentials(user=self.user)
-        tasks.revoke_and_regenerate_api_key(self.key.id)
+        tasks.revoke_api_key(self.key.id)
         key_from_db = APIKey.get_jwt_key(user_id=self.user.id)
         assert current_key.key == key_from_db.key
         assert current_key.secret == key_from_db.secret
 
     def test_revoke_task_is_called(self):
-        mock_str = 'olympia.devhub.tasks.revoke_and_regenerate_api_key'
-        wrapped = tasks.revoke_and_regenerate_api_key
+        mock_str = 'olympia.devhub.tasks.revoke_api_key'
+        wrapped = tasks.revoke_api_key
         with mock.patch(mock_str, wraps=wrapped) as mock_revoke:
             upload = FileUpload.objects.create(path=self.file, user=self.user)
             tasks.validate(upload, listed=True)
@@ -1234,3 +1240,28 @@ class TestAPIKeyInSubmission(TestCase):
         assert upload.processed_validation['errors'] == 0
         assert upload.processed_validation['messages'] == []
         assert upload.valid
+
+    def test_validation_finishes_if_containing_binary_content(self):
+        file_ = get_addon_file('webextension_containing_binary_files.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_validation_finishes_if_containing_invalid_filename(self):
+        file_ = get_addon_file('invalid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        # https://github.com/mozilla/addons-server/issues/8208
+        # causes this to be 2 (and invalid) instead of 0 (and valid).
+        # The invalid filename error is caught and raised outside of this
+        # validation task.
+        assert upload.processed_validation['errors'] == 2
+        assert not upload.valid

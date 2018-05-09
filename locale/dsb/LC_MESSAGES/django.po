@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 18:17+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-07 18:11+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2697,6 +2697,12 @@ msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten pro
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Njamóžośo dodank typa WebExtensions pśez dodank starego typa aktualizěrowaś. Waše wužywarje njemógli wašu nowu wersiju wužywaś, dokulaž Firefox njepódpěra toś ten typ aktualizacije."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, buźo se kluc znowego generěrowaś."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr "Wuwijarski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, buźo se kluc znowego generěrowaś."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s jo z %s (%s) wótegronił."
@@ -2708,6 +2714,9 @@ msgstr "Zwisk z „%s“ jo cas pśekšocył."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Host na „%s“ njedajo se kontaktěrowaś."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Wěstotna powěźeńka Mozilla: Waše pśizjawjeńske daty za API AMO su se wótwołali"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."

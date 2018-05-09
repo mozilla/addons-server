@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: 2018-03-02 09:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2679,6 +2679,12 @@ msgstr ""
 "S’mund të përditësoni një shtesë WebExtensions me një shtesë nga të dikurshmet. Përdoruesit tuaj nuk do të jenë në gjendje të përdorin versionin tuaj të ri, ngaqë Firefox-i nuk e mbulon këtë lloj "
 "përditësimesh."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s u përgjigj me %s (%s)."
@@ -2690,6 +2696,9 @@ msgstr "Lidhjes me \"%s\" i mbaroi koha."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "S’u lidh dot me strehën te \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
