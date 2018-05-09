@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,11 +229,11 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: src/olympia/addons/models.py:1754 src/olympia/constants/base.py:84
+#: src/olympia/addons/models.py:1755 src/olympia/constants/base.py:84
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2154
+#: src/olympia/addons/models.py:2155
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -3987,43 +3987,59 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:342
+#: src/olympia/devhub/tasks.py:355
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:357
+#: src/olympia/devhub/tasks.py:370
 msgid ""
 "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion"
 " of 56.* or lower."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:394
+#: src/olympia/devhub/tasks.py:407
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:409
+#: src/olympia/devhub/tasks.py:422
 msgid ""
 "You cannot update a WebExtensions add-on with a legacy add-on. Your users "
 "would not be able to use your new version because Firefox does not support "
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:756
+#: src/olympia/devhub/tasks.py:466
+msgid ""
+"Your developer API key was found in the submitted file. To protect your "
+"account, the key will be regenerated."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:470
+msgid ""
+"The developer API key of a coauthor was found in the submitted file. To "
+"protect your addon, the key will be regenerated."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:842
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:760
+#: src/olympia/devhub/tasks.py:846
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:762
+#: src/olympia/devhub/tasks.py:848
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:890
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #: src/olympia/devhub/utils.py:92

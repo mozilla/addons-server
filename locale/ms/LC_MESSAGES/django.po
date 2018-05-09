@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2018-05-02 07:45+0000\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-07 13:16+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2614,6 +2614,12 @@ msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan pr
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgstr "Kunci API pembangun anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi akaun anda, kunci akan dijana semula."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgstr "Kunci API pembangun pengarang bersama anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi add-on anda, kunci akan dijana semula."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s memberi respons dengan %s (%s)."
@@ -2625,6 +2631,9 @@ msgstr "Sambungan ke \"%s\" tamat tempoh."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Tidak dapat menghubungi hos di\"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."

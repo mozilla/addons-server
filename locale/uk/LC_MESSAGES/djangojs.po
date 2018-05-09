@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-02 04:52+0000\n"
-"PO-Revision-Date: 2017-08-10 17:34+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"PO-Revision-Date: 2018-05-06 20:17+0000\n"
+"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Виберіть файл..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Розширення вашого додатку повинно бути .zip, .xpi, .crx, .jar або .xml"
+msgstr "Розширення вашого додатка повинно бути .zip, .xpi, .crx, .jar або .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -49,7 +49,7 @@ msgid "Error with {0}"
 msgstr "Помилка з {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Ми активували новий linter для обробки вашого додатку. При виявленні будь-яких проблем, повідомте про них на GitHub"
+msgstr "Ми активували новий інструмент для обробки вашого додатка. При виявленні будь-яких проблем, повідомте про них на GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -82,7 +82,7 @@ msgid "Finished validating {0}"
 msgstr "Завершена перевірка {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Час очікування затвердження вашого додатку завершився, він буде розглянутий вручну."
+msgstr "Час очікування затвердження вашого додатка завершився, він буде розглянутий вручну."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -118,7 +118,7 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
 msgid "Add-on submission checklist"
-msgstr "Контрольний перелік при представленні додатку"
+msgstr "Контрольний перелік при представленні додатка"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
@@ -648,7 +648,7 @@ msgstr[2] "Встановити {0} додаткам максимальну ве
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Надіслати лист автору {2} додатку, який не пройшов перевірку."
+msgstr[0] "Надіслати лист автору {2} додатка, який не пройшов перевірку."
 msgstr[1] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
 msgstr[2] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
 
