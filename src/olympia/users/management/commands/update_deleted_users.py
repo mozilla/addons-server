@@ -4,7 +4,7 @@ from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):
-    """Make sure we are correctly re-anonymizing deleted users."""
+    """Make sure we are correctly anonymizing deleted users."""
     help = 'Re-anonymize already deleted users.'
 
     def handle(self, *args, **options):
