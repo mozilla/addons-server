@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 16:03+0000\n"
+"PO-Revision-Date: 2018-05-09 18:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -161,7 +161,7 @@ msgid "Describe your Theme."
 msgstr "აღწერეთ თქვენი თემა."
 
 msgid "Enter a new author's email address"
-msgstr "შეიყვანეთ ავტორის ახალი ელფოსტის მისამართი"
+msgstr "შეიყვანეთ შემქმნელის ახალი ელფოსტის მისამართი"
 
 msgid "Listed"
 msgstr "სიაშია"
@@ -575,7 +575,7 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა შესაძლებლობასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
 
 msgid "This add-on has been removed by its author."
-msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
+msgstr "ეს დამატება ამოღებულია შემქმნელის მიერ."
 
 msgid "This add-on has been disabled by an administrator."
 msgstr "ეს დამატება შეზღუდულია ადმინისტრატორის მიერ."
@@ -718,7 +718,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-ის დამატებები"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "ვწუხვართ, მაგრამ თქვენ მიერ შეყვანილ მისამართზე, არაფერი მოიძებნა. თუ რომელიმე დამატების ბმულს მიჰყევით, შესაძლოა ეგ დამატება წაშლილი იყოს ავტორის მიერ."
+msgstr "ვწუხვართ, მაგრამ თქვენ მიერ შეყვანილ მისამართზე, არაფერი მოიძებნა. თუ რომელიმე დამატების ბმულს მიჰყევით, შესაძლოა ეგ დამატება წაშლილი იყოს შემქმნელის მიერ."
 
 msgid "Suggested Pages"
 msgstr "შემოთავაზებული გვერდები"
@@ -1328,7 +1328,7 @@ msgstr "გამოწერა"
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr "ავტორი: %(author_link)s"
+msgstr "შემქმნელი: %(author_link)s"
 
 msgid "Following"
 msgstr "გამოწერილი"
@@ -1866,7 +1866,7 @@ msgid "Application max version for {version} updated."
 msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელფოსტით."
+msgstr "{version}-ის თავსებადობის შესახებ, შემქმნელებს ეცნობებათ ელფოსტით."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr "დამატების თავსებადობის შესახებ შეტყობინება გაეგზავნა ავტორს."
@@ -2961,13 +2961,13 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "წინასწარი ვარიანტი ჯერ კიდევ იქმნება - შეამოწმეთ მოგვიანებით ან განაახლეთ გვერდი."
 
 msgid "Manage Authors & License"
-msgstr "ავტორების და ლიცენზიის მართვა"
+msgstr "ავტორებისა და ლიცენზიის მართვა"
 
 msgid "Authors"
 msgstr "ავტორები"
 
 msgid "About author roles"
-msgstr "მოვალეობები"
+msgstr "ავტორის მოვალეობის შესახებ"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
