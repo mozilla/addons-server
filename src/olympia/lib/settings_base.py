@@ -1815,6 +1815,6 @@ GITHUB_API_USER = env('GITHUB_API_USER', default='')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
 
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
-BASKET_API_KEY = env('BASKET_URL', default=None)
+BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
