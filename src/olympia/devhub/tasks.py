@@ -481,8 +481,8 @@ def check_for_api_keys_in_file(results, upload):
                             message=msg, msg_id='api_key_detected',
                             compatibility_type=None)
 
-                        # Revoke and regenerate after 2 minutes to allow the
-                        # developer to fetch the validation results
+                        # Revoke after 2 minutes to allow the developer to
+                        # fetch the validation results
                         revoke_api_key.apply_async(
                             kwargs={'key_id': key.id}, countdown=120)
         zipfile.close()
