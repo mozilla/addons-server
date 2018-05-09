@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 15:49+0000\n"
+"PO-Revision-Date: 2018-05-09 16:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4393,9 +4393,8 @@ msgstr "გამიჯნეთ თქვენი Facebook ვინაობ�
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name}დამატების დახმარებით{end_sub_heading}"
 
-#, fuzzy
 msgid " Perform reverse image searches from an array of engines."
-msgstr "უბრალოდ მონიშნეთ ტექსტი ნებისმიერ ვებგვერდზე, მთელ რიგ საძიებო სისტემებში მოსანახად."
+msgstr " მოიძიეთ სურათები მთელ რიგ საძიებო სისტემებში."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
