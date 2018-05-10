@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 14:51+0000\n"
+"PO-Revision-Date: 2018-05-10 19:18+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2713,10 +2713,10 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "Dodatka WebExtensions ne morete posodobiti s starejšim dodatkom. Uporabniki vašega dodatka ne bodo mogli uporabljati nove različice, ker Firefox ne podpira te vrste posodabljanja."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "V poslani datoteki je bil najden vaš razvijalski ključ API. Zaradi zaščite vašega računa bo ključ preklican."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "V poslani datoteki je bil najden razvijalski ključ API sorazvijalca. Zaradi zaščite vašega dodatka bo ključ preklican."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2731,7 +2731,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Ni prišlo do stika z gostiteljem na \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozillino varnostno obvestilo: Vaše poverilnice API za AMO so bile preklicane"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
