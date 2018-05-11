@@ -23,7 +23,12 @@ class APIKey(ModelBase):
     A developer's key/secret pair to access the API.
     """
     user = models.ForeignKey(UserProfile, related_name='api_keys')
-    is_active = models.BooleanField(default=True)
+
+    # A user can only have one active key at the same time, it's enforced by
+    # a unique db constraint. Since we keep old inactive keys though, nulls
+    # need to be allowed (and we need to always set is_active=None instead of
+    # is_active=False when revoking keys).
+    is_active = models.NullBooleanField(default=True)
     type = models.PositiveIntegerField(
         choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0)
     key = models.CharField(max_length=255, db_index=True, unique=True)
@@ -33,6 +38,7 @@ class APIKey(ModelBase):
 
     class Meta:
         db_table = 'api_key'
+        unique_together = (('user', 'is_active'),)
 
     def __unicode__(self):
         return (
@@ -41,15 +47,15 @@ class APIKey(ModelBase):
                     type=self.type, user=self.user))
 
     @classmethod
-    def get_jwt_key(cls, **query):
+    def get_jwt_key(cls, **kwargs):
         """
-        return a single APIKey instance for a JWT key matching the query.
+        Return a single active APIKey instance for a given user or key.
         """
-        query.setdefault('is_active', True)
-        return cls.objects.get(type=SYMMETRIC_JWT_TYPE, **query)
+        kwargs['is_active'] = True
+        return cls.objects.get(type=SYMMETRIC_JWT_TYPE, **kwargs)
 
     @classmethod
-    def new_jwt_credentials(cls, user, **attributes):
+    def new_jwt_credentials(cls, user):
         """
         Generates a new key/secret pair suitable for symmetric JWT signing.
 
@@ -59,7 +65,7 @@ class APIKey(ModelBase):
         key = cls.get_unique_key('user:{}:'.format(user.pk))
         return cls.objects.create(key=key, secret=cls.generate_secret(32),
                                   type=SYMMETRIC_JWT_TYPE, user=user,
-                                  is_active=True, **attributes)
+                                  is_active=True)
 
     @classmethod
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):

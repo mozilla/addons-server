@@ -508,7 +508,7 @@ def revoke_api_key(key_id):
         else:
             with transaction.atomic():
                 log.info('Revoking key for user %s.' % current_key.user)
-                current_key.update(is_active=False)
+                current_key.update(is_active=None)
                 send_api_key_revocation_email(emails=[current_key.user.email])
     except APIKey.DoesNotExist:
         log.info('User %s has already revoked the key, nothing to be done.'

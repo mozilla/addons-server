@@ -1192,7 +1192,7 @@ class TestAPIKeyInSubmission(TestCase):
         assert mail.outbox[0].to[0] == self.user.email
 
     def test_api_key_already_revoked_by_developer(self):
-        self.key.update(is_active=False)
+        self.key.update(is_active=None)
         tasks.revoke_api_key(self.key.id)
         # If the key has already been revoked, there is no active key,
         # so `get_jwt_key` raises `DoesNotExist`.
@@ -1200,7 +1200,7 @@ class TestAPIKeyInSubmission(TestCase):
             APIKey.get_jwt_key(user_id=self.user.id)
 
     def test_api_key_already_regenerated_by_developer(self):
-        self.key.update(is_active=False)
+        self.key.update(is_active=None)
         current_key = APIKey.new_jwt_credentials(user=self.user)
         tasks.revoke_api_key(self.key.id)
         key_from_db = APIKey.get_jwt_key(user_id=self.user.id)
