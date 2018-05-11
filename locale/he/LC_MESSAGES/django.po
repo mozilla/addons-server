@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 19:36+0000\n"
+"PO-Revision-Date: 2018-05-11 12:00+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2719,7 +2719,7 @@ msgstr ""
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "‏%s הגיב עם %s (‏%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
@@ -3025,7 +3025,7 @@ msgid "Preview of listed version"
 msgstr "גרסאות שמוצגות"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "התצוגה המקדימה עדיין נוצרת - נא לחזור בהמשך או לרענן את העמוד."
 
 msgid "Manage Authors & License"
 msgstr "ניהול יוצרים ורשיונות"
@@ -6549,7 +6549,7 @@ msgid "Review {0}"
 msgstr "סקירת {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "היסטוריית שינויי התוספת"
 
 msgid "Add-on History"
 msgstr "היסטוריית התוספת"
