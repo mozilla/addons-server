@@ -10,7 +10,7 @@ Logging is fun.  We all want to be lumberjacks.  My muscle-memory wants to put
 Plus, ``django-debug-toolbar`` can hijack the logger and show all the log
 statements generated during the last request.  When ``DEBUG = True``, all logs
 will be printed to the development console where you started the server.  In
-production, we're piping everything into ``syslog``.
+production, we're piping everything into ``mozlog``.
 
 
 Configuration
@@ -27,9 +27,6 @@ twiddle with these settings:
 
         import logging
         LOG_LEVEL = logging.WARN
-
-``USE_SYSLOG``
-    Set this to ``True`` if you want logging sent to syslog.
 
 ``USE_MOZLOG``
     Set this to ``True`` if you want logging sent to the console using mozlog

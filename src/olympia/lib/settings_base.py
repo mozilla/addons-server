@@ -1306,11 +1306,8 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-USE_SYSLOG = True
 USE_MOZLOG = True
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons2"
-MOZLOG_NAME = SYSLOG_TAG
+MOZLOG_NAME = "http_app_addons"
 # See PEP 391 and log_settings_base.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
 # log_settings_base.py. Handlers and log levels are set up automatically based
@@ -1327,7 +1324,6 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.reviewers.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }

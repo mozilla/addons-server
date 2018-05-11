@@ -34,8 +34,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
 
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons_timer"
 SYSLOG_CSP = "http_app_addons_csp"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')

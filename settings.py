@@ -46,8 +46,7 @@ CACHES = {
     }
 }
 
-# For local development, we don't need syslog and mozlog loggers.
-USE_SYSLOG = False
+# For local development, we don't need mozlog loggers.
 USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
