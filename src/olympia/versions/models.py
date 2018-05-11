@@ -298,12 +298,6 @@ class Version(OnChangeMixin, ModelBase):
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon,
                             str(self.version))
 
-        # Fetch previews before deleting the version instance, so that we can
-        # pass the list of files to delete to the delete_preview_files task
-        # after the version is deleted.
-        previews_pks = list(VersionPreview.objects.filter(version__id=self.id)
-                            .values_list('id', flat=True))
-
         if hard:
             super(Version, self).delete()
         else:
@@ -313,11 +307,12 @@ class Version(OnChangeMixin, ModelBase):
             self.deleted = True
             self.save()
 
-        for preview_pk in previews_pks:
-            # FIXME: oops that's a problem, the hard delete will have deleted
-            # the preview, so we can't get it from the db to delete the files.
-            # Need to be smarter.
-            delete_preview_files.delay(preview_pk)
+            previews_pks = list(
+                VersionPreview.objects.filter(version__id=self.id)
+                              .values_list('id', flat=True))
+
+            for preview_pk in previews_pks:
+                delete_preview_files.delay(preview_pk)
 
     @property
     def is_user_disabled(self):

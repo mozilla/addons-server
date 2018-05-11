@@ -156,7 +156,7 @@ class TestVersion(TestCase):
         delete_preview_files_mock.assert_called_with(
             sender=None, instance=version_preview)
 
-    @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
+    @mock.patch('olympia.versions.models.VersionPreview.delete_preview_files')
     def test_version_hard_delete(self, delete_preview_files_mock):
         version = Version.objects.get(pk=81551)
         version_preview = VersionPreview.objects.create(version=version)
