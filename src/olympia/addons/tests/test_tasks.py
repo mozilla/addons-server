@@ -18,6 +18,7 @@ from olympia.amo.utils import image_size
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
 from olympia.tags.models import Tag
+from olympia.users.models import UserProfile
 from olympia.versions.models import License
 
 
@@ -141,7 +142,6 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
     @override_switch('allow-static-theme-uploads', active=True)
     def test_add_static_theme_broken_lwt(self, build_static_theme_xpi_mock):
         """What if no author or license or category?"""
-        user_factory(id=settings.TASK_USER_ID)  # used when LWT has no author.
         xpi_path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         copy_path = os.path.join(
@@ -158,7 +158,9 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
 
         static_theme = add_static_theme_from_lwt(persona)
 
-        assert list(static_theme.authors.all()) == []
+        default_author = UserProfile.objects.get(
+            email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+        assert list(static_theme.authors.all()) == [default_author]
         assert static_theme.all_categories == [
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other']]
         assert list(static_theme.tags.all()) == []

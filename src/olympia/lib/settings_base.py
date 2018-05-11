@@ -1809,4 +1809,6 @@ AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 
 # For the Github webhook API.
 GITHUB_API_USER = env('GITHUB_API_USER', default='')
-GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
+GITHUB_API_TOKEN = env('GITHUB_acAPI_TOKEN', default='')
+
+MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'

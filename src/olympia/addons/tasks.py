@@ -33,7 +33,7 @@ from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
 from olympia.lib.es.utils import index_objects
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
-from olympia.users.utils import get_task_user
+from olympia.users.models import UserProfile
 from olympia.versions.models import License, Version
 
 
@@ -508,18 +508,27 @@ def bump_appver_for_legacy_addons(ids, **kw):
         index_addons.delay(addons_to_reindex)
 
 
+def _get_lwt_default_author():
+    try:
+        user = UserProfile.objects.get(
+            email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+    except UserProfile.DoesNotExist:
+        user = UserProfile.objects.create_user(
+            username=None, email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+    return user
+
+
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
     upload_zip = build_static_theme_xpi_from_lwt(lwt)
     # Try to handle LWT with no authors
-    author = (lwt.listed_authors or [None])[0]
-    upload_author = author or get_task_user()
+    author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
     upload = FileUpload.objects.create(
-        path=upload_zip.name, user=upload_author, valid=True)
+        path=upload_zip.name, user=author, valid=True)
 
     # Create addon + version
-    parsed_data = parse_addon(upload, user=upload_author)
+    parsed_data = parse_addon(upload, user=author)
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
     # Version.from_upload sorts out platforms for us.
@@ -550,7 +559,7 @@ def add_static_theme_from_lwt(lwt):
 
     # Logging
     activity.log_create(
-        amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=upload_author)
+        amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
     log.debug('New static theme %r created from %r' % (addon, lwt))
 
     # And finally update the statuses
