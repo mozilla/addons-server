@@ -410,6 +410,12 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
 
+    def serializable_reference(self):
+        """Return a tuple with app label, model name and pk to be used when we
+        need to pass a serializable reference to this instance without having
+        to serialize the whole object."""
+        return self._meta.app_label, self._meta.model_name, self.pk
+
 
 class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
     """
@@ -432,9 +438,6 @@ class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
         """
         key_parts = ('o', cls._meta, pk, 'default')
         return ':'.join(map(force_text, key_parts))
-
-    def serializable_reference(self):
-        return self._meta.app_label, self._meta.model_name, self.pk
 
 
 def manual_order(qs, pks, pk_name='id'):
