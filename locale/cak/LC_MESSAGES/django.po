@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-10 23:56+0000\n"
+"PO-Revision-Date: 2018-05-11 00:43+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3014,7 +3014,7 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Re tz'aqat re' nitojtob'ëx."
 
 msgid "This add-on is ready for general use."
 msgstr ""
