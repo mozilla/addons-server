@@ -23,6 +23,11 @@ class APIKey(ModelBase):
     A developer's key/secret pair to access the API.
     """
     user = models.ForeignKey(UserProfile, related_name='api_keys')
+
+    # A user can only have one active key at the same time, it's enforced by
+    # a unique db constraint. Since we keep old inactive keys though, nulls
+    # need to be allowed (and we need to always set is_active=None instead of
+    # is_active=False when revoking keys).
     is_active = models.NullBooleanField(default=True)
     type = models.PositiveIntegerField(
         choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0)
