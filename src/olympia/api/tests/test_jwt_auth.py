@@ -83,8 +83,8 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
         token = self.create_auth_token(api_key.user, api_key.key,
                                        api_key.secret)
 
-        decoy_api_key = self.create_api_key(
-            self.user, key='another-issuer', secret='another-secret')
+        decoy_api_key = APIKey(  # Don't save in database, it would conflict.
+            user=self.user, key=api_key.key, secret='another-secret')
 
         with self.assertRaises(jwt.DecodeError) as ctx:
             jwt_auth.jwt_decode_handler(
