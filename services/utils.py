@@ -96,10 +96,10 @@ def log_configure():
     cfg = {
         'version': 1,
         'filters': {},
-        'formatters': dict(prod=formatters['prod']),
-        'handlers': dict(syslog=handlers['syslog']),
+        'formatters': dict(json=formatters['json']),
+        'handlers': dict(mozlog=handlers['mozlog']),
         'loggers': {
-            'z': {'handlers': ['syslog'], 'level': logging.INFO},
+            'z': {'handlers': ['mozlog'], 'level': logging.INFO},
         },
         'root': {},
         # Since this configuration is applied at import time
