@@ -6,23 +6,12 @@ from django.conf import settings
 
 import olympia.core.logger
 
-
-base_fmt = ('%(name)s:%(levelname)s %(message)s '
-            ':%(pathname)s:%(lineno)s')
-error_fmt = ('%(name)s:%(levelname)s %(request_path)s %(message)s '
-             ':%(pathname)s:%(lineno)s')
-
 formatters = {
     'debug': {
         '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
-        'format': '%(asctime)s ' + base_fmt,
-    },
-    'error': {
-        '()': olympia.core.logger.Formatter,
-        'datefmt': '%H:%M:%S',
-        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.HOSTNAME, settings.MOZLOG_NAME, error_fmt)),
+        'format': ('%(asctime)s %(name)s:%(levelname)s %(message)s :'
+                   '%(pathname)s:%(lineno)s'),
     },
     'json': {
         '()': olympia.core.logger.JsonFormatter,
