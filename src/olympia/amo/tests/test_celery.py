@@ -8,10 +8,9 @@ from django.test.testcases import TransactionTestCase
 import mock
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
-from waffle.models import Switch
 
 from olympia.amo.celery import task
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 
