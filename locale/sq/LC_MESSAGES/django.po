@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-12 09:31+0000\n"
+"PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2020,13 +2020,11 @@ msgstr "Për {addon} {version} u kërkua shqyrtim lënde nga përgjegjësi."
 msgid "Admin content-review requested"
 msgstr "Është kërkuar shqyrtim lënde nga përgjegjësi"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim."
+msgstr "Për {addon} {version} u kërkua shqyrtim teme nga përgjegjësi."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Është kërkuar shqyrtim"
+msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4413,30 +4411,26 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shtoni bllokim & dhe mbrojtje privatësie {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Një sistemim i thjeshtë ju lejon të keni kontrollin e reklamave që shihni dhe se si ndiqeni në internet."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kthejeni së prapthi kërkimin e figurës {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Keni një thes me skeda të hapura? Sistemojini në një anështyllë të pastër."
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ndaleni gjurmimin nga Facebook-u, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Izoloni identitetin tuaj Facebook në një \"kontejner\" ndaras që e bën më të vështirë për Facebook-un të ndjekë lëvizjet tuaja nëpër internet."
 
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kthejeni së prapthi kërkimin e figurës {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Kërkoni për figura, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid " Perform reverse image searches from an array of engines."
 msgstr " Kryeni kërkime figurash së prapthi që nga një grup motorësh kërkimi."
@@ -5323,7 +5317,6 @@ msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Tjetër (ofron një fushë hapmbyll për informacion)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Hëpërhë, AMO s’ofron ndonjë mekanizëm për komunikim të drejtpërdrejtë me autorin e një shqyrtimi nga përdorues."
 
@@ -6135,9 +6128,8 @@ msgstr "Hëpërhë anashkaloje"
 msgid "Needs Admin Content Review"
 msgstr "Lyp Shqyrtim Lënde Nga Përgjegjës"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Lyp Shqyrtim Kodi Nga Një Përgjegjës"
+msgstr "Lyp Shqyrtim Teme Statike Nga Një Përgjegjës"
 
 msgid "Jetpack Add-on"
 msgstr "Shtesë Jetpack"
@@ -6664,9 +6656,8 @@ msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
 msgid "Clear Admin Content Review Flag"
 msgstr "Hiqja Shenjën për Shqyrtim Lënde Nga Përgjegjës"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
+msgstr "Hiqi Shenjën Për Shqyrtim Teme Statike Nga Një Përgjegjës"
 
 msgid "(admin)"
 msgstr "(admin)"
