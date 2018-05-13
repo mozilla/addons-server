@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 21:03+0000\n"
+"PO-Revision-Date: 2018-05-13 21:01+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -573,7 +573,7 @@ msgid "This add-on can:"
 msgstr "Este extra pode:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Alguns extras pedem permissão para desempenhar certas funções. Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
+msgstr "Alguns extras pedem permissão para realizar certas funções. Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Por favor note que este extra utiliza tecnologia de legado, que dá acesso a funções do navegador e dados sem solicitar a sua permissão."
@@ -4101,10 +4101,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe deem crédito?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "O licenciador permite que outros possam copiar, distribuir, mostrar e destacar o trabalho, incluindo fins comerciais."
+msgstr "O licenciador permite que outros possam copiar, distribuir, mostrar e realizar o trabalho, incluindo fins comerciais."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "o licenciador permite que outros copiem, distribuam e efectuem trabalho apenas para fins não comerciais."
+msgstr "O licenciador permite que outros copiem, distribuam e realizem o trabalho apenas para fins não comerciais."
 
 # 85%
 msgid "Can others make commercial use of your Theme?"
@@ -4115,7 +4115,7 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "O licenciador permite que outros copiem, distribuam,mostrem e executem o trabalho, bem como criar trabalhos derivados com base nele."
+msgstr "O licenciador permite que outros copiem, distribuam, mostrem e realizem o trabalho, bem como criar trabalhos derivados com base no mesmo."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "O licenciador permite que outros copiem, distribuam e transmitam apenas cópias inalteradas do trabalho - não trabalhos derivados com base nele."
@@ -4436,7 +4436,7 @@ msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pesquise imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid " Perform reverse image searches from an array of engines."
-msgstr " Execute pesquisas inversas de imagem a partir de uma matriz de motores."
+msgstr " Realize pesquisas inversas de imagem a partir de uma matriz de motores."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarregar vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
