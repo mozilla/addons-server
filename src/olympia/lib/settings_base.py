@@ -1692,13 +1692,18 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
+
+    'ALLOWED_VERSIONS': ['v3', 'v4'],
+    'DEFAULT_VERSION': 'v4',
+    'DEFAULT_VERSIONING_CLASS': (
+        'rest_framework.versioning.NamespaceVersioning'),
+
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.
     'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
 
     # Enable pagination
     'PAGE_SIZE': 25,
-
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
