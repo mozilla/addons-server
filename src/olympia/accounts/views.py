@@ -173,7 +173,7 @@ def parse_next_path(state_parts):
         try:
             next_path = base64.urlsafe_b64decode(
                 force_bytes(encoded_path)).decode('utf-8')
-        except TypeError:
+        except (TypeError, ValueError):
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
             pass

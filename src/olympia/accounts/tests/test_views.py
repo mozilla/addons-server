@@ -1220,6 +1220,14 @@ class TestParseNextPath(TestCase):
         assert next_path == (
             u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')
 
+    def test_path_with_unicodedecodeerror(self):
+        parts = [
+            '09aedd38eebd72e896250ae5b7ea9c0172542b6cec7683e58227e5670df12fb2',
+            'l2vulvvtl2rldmvsb3blcnmv'
+        ]
+        next_path = views.parse_next_path(parts)
+        assert next_path is None
+
 
 class TestSessionView(TestCase):
     def login_user(self, user):
