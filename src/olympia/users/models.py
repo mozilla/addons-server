@@ -15,6 +15,7 @@ from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
+from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 
@@ -408,6 +409,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return qs
 
     def delete(self, hard=False):
+        # Recursive import
+        from olympia.users.tasks import delete_photo
+
+        # Cache the values in case we do a hard delete and loose
+        # reference to the user-id.
+        picture_path = self.picture_path
+        original_picture_path = self.picture_path_original
+
         if hard:
             super(UserProfile, self).delete()
         else:
@@ -415,13 +424,23 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 u'User (%s: <%s>) is being anonymized.' % (self, self.email))
             self.email = None
             self.fxa_id = None
-            self.username = "Anonymous-%s" % self.id  # Can't be null
+            self.username = 'Anonymous-%s' % self.id  # Can't be null
             self.display_name = None
-            self.homepage = ""
+            self.homepage = ''
+            self.location = ''
             self.deleted = True
             self.picture_type = None
             self.auth_id = generate_auth_id()
+            self.last_login_attempt = None
+            self.last_login_attempt_ip = ''
+            self.last_login_ip = ''
             self.save()
+
+        if storage.exists(picture_path):
+            delete_photo.delay(picture_path)
+
+        if storage.exists(original_picture_path):
+            delete_photo.delay(original_picture_path)
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')

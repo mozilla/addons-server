@@ -100,7 +100,7 @@ class TestUserEditForm(UserFormBase):
         assert self.user.reload().username == username
 
     def test_fxa_id_cannot_be_set(self):
-        assert self.user.fxa_id is None
+        self.user.update(fxa_id=None)
         data = {'username': 'blah',
                 'email': 'jbalogh@mozilla.com',
                 'fxa_id': 'yo'}
