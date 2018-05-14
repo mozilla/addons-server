@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-14 21:11+0000\n"
+"PO-Revision-Date: 2018-05-14 21:12+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6317,9 +6317,8 @@ msgstr "Assaγ n uẓekker ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Iceggireni ddiri n useqdac ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "isem n usentel"
+msgstr "Tugniwin n usentel"
 
 #, fuzzy
 msgid "Rendered Preview"
