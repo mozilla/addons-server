@@ -37,8 +37,8 @@ A developer is defined as a user who is listed as a developer or owner of one or
     :>json string name: The name chosen by the user, or the username if not set.
     :>json int num_addons_listed: The number of addons the developer has listed on the website.
     :>json string|null occupation: The occupation of the user.
-    :>json string|null picture_type: the image type (only 'image/png' is supported) if a user photo has been uploaded, or none otherwise.
-    :>json string|null picture_url: URL to a photo of the user, or none if no photo has been uploaded.
+    :>json string|null picture_type: the image type (only 'image/png' is supported) if a user photo has been uploaded, or null otherwise.
+    :>json string|null picture_url: URL to a photo of the user, or null if no photo has been uploaded.
     :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
 
 
