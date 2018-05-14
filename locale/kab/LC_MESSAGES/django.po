@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-14 20:46+0000\n"
+"PO-Revision-Date: 2018-05-14 21:11+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3669,24 +3669,20 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(afrayan)"
+msgstr "afrayan"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Srifeg s ufella akken ad d-sekneḍ"
+msgstr "Taskant n yiminig"
 
 msgid "Back"
 msgstr ""
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Isental yettnernin"
+msgstr "Asali n usentel"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Isental"
+msgstr "Fak asentel"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
@@ -6247,9 +6243,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Asenqed n uzegrir yettwaleqmen"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Akk izegrar ur yettwabdren ara"
+msgstr "Izegrar ur d-yettwabedren ara"
 
 msgid "All Unlisted Add-ons"
 msgstr "Akk izegrar ur yettwabdren ara"
