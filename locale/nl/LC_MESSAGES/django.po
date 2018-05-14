@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-08 08:07+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2018-05-09 14:30+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2670,13 +2670,11 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
 
-#, fuzzy
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Uw ontwikkelaars-API-sleutel is aangetroffen in het ingediende bestand. Om uw account te beschermen zal een nieuwe sleutel worden aangemaakt."
+msgstr "In het ingediende bestand is uw ontwikkelaars-API-sleutel aangetroffen. Om uw account te beschermen, zal de sleutel worden ingetrokken."
 
-#, fuzzy
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "De ontwikkelaars-API-sleutel van een medeschrijver is aangetroffen in het ingediende bestand. Om uw add-on te beschermen zal de sleutel opnieuw worden aangemaakt."
+msgstr "In het ingediende bestand is de ontwikkelaars-API-sleutel van een medeschrijver aangetroffen. Om uw add-on te beschermen, zal de sleutel worden ingetrokken."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2692,7 +2690,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Kon geen verbinding maken met de host op ‘%s’."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla-beveiligingsmelding: uw API-referenties voor AMO zijn ingetrokken"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -3748,7 +3746,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Uw add-on wordt weergegeven in onze galerij en gebruikers ontvangen automatische updates."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Uw add-on is uitgeschakeld door een websitebeheerder en wordt niet meer weergegeven in onze galerij. Als u vragen hebt, stuur ze dan naar amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -4432,13 +4430,11 @@ msgstr "Stop volgen door Facebook {start_sub_heading}met {addon_name}{end_sub_he
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr "Isoleer uw Facebook-identiteit in een aparte ‘container’ die het voor Facebook moeilijker maakt om uw webbezoeken te volgen."
 
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tabbladen opnieuw uitgevonden {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid " Perform reverse image searches from an array of engines."
-msgstr "Markeer eenvoudigweg tekst op een webpagina om met een aantal zoekmachines naar de woordgroep te zoeken."
+msgstr " Omgekeerd afbeeldingen zoeken met een aantal zoekmachines."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
