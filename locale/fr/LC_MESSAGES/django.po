@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-09 12:10+0000\n"
-"PO-Revision-Date: 2018-05-09 13:56+0000\n"
+"PO-Revision-Date: 2018-05-14 02:06+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2996,12 +2996,11 @@ msgstr "Aucun"
 msgid "Preview"
 msgstr "Aperçu"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Versions publiées"
+msgstr "Aperçu de la version publiée"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "L’aperçu est toujours en cours de génération. Veuillez réessayer plus tard ou actualiser la page."
 
 msgid "Manage Authors & License"
 msgstr "Gérer les auteurs et la licence"
@@ -4021,7 +4020,7 @@ msgid "See Tutorial"
 msgstr "Voir le tutoriel"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Aidez les utilisateurs à découvrir votre extension en rédigeant une description attrayante."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
