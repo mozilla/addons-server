@@ -99,9 +99,10 @@ def drf_url(context, viewname, *args, **kwargs):
     """Helper for DjangoRestFramework's ``reverse`` in templates."""
     request = context.get('request')
     if request:
-        scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.versioning_scheme = scheme
-        request.version = scheme.determine_version(request, *args, **kwargs)
+        if not hasattr(request, 'versioning_scheme'):
+            request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = request.versioning_scheme.determine_version(
+            request, *args, **kwargs)
     return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
