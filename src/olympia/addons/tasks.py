@@ -509,12 +509,10 @@ def bump_appver_for_legacy_addons(ids, **kw):
 
 
 def _get_lwt_default_author():
-    try:
-        user = UserProfile.objects.get(
-            email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
-    except UserProfile.DoesNotExist:
-        user = UserProfile.objects.create_user(
-            username=None, email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+    user, created = UserProfile.objects.get_or_create(
+        email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+    if created:
+        user.anonymize_username()
     return user
 
 
