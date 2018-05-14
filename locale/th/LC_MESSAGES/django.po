@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-20 18:44+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-07 17:16+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -541,20 +541,6 @@ msgstr "ข้อมูลของรุ่น"
 
 msgid "See complete version history"
 msgstr "ดูประวัติของรุ่นแบบเต็ม"
-
-msgid "Development Channel"
-msgstr "ช่องการพัฒนา"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "ช่องการพัฒนาเชิญชวนให้คุณทดสอบรุ่นทดลองใหม่ของส่วนเสริมนี้ก่อนจะถูกปล่อยสู่สาธารณะ เมื่อคุณติดตั้งรุ่นพัฒนา คุณจะยังคงได้รับการปรับปรุงจากช่องนี้ เพื่อหยุดการปรับปรุงเป็นรุ่นพัฒนา ให้ติดตั้งรุ่นปกติจากลิงก์ด้านบน"
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "ปิด"
@@ -1999,6 +1985,30 @@ msgstr "ความคิดเห็นบน {addon} {version}"
 msgid "Information request removed"
 msgstr "บทวิจารณ์:"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "บทวิจารณ์:"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "บทวิจารณ์:"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "บทวิจารณ์:"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2036,9 +2046,6 @@ msgid "Pending approval"
 msgstr "กำลังรอการอนุมัติ"
 
 msgid "Flagged for further review"
-msgstr ""
-
-msgid "Beta"
 msgstr ""
 
 msgid "Unlisted"
@@ -2585,9 +2592,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "คุณไม่สามารถอัปโหลดไฟล์สำหรับรุ่นนี้เพิ่มเติมได้อีกแล้ว"
 
@@ -2645,6 +2649,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2655,6 +2665,9 @@ msgstr "หมดเวลาในการเชื่อมต่อไปย
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
@@ -2714,16 +2727,6 @@ msgstr ""
 
 msgid "Check Add-on Compatibility"
 msgstr "ตรวจสอบความเข้ากันได้ของส่วนเสริม"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3087,11 +3090,11 @@ msgid "Images"
 msgstr "ภาพ"
 
 msgid "Support Information"
-msgstr ""
+msgstr "ข้อมูลการสนับสนุน"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "ข้อมูลการสนับสนุนสำหรับ {0}"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
@@ -3382,9 +3385,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "ส่วนเสริมนี้ไม่เข้ากันกับรุ่นของ %(app)s ของคุณ"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "สถานะ:"
 
@@ -3578,9 +3578,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4391,18 +4388,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} คำเตือน"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4413,6 +4398,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4501,6 +4498,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5425,19 +5435,6 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr ""
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"
@@ -7411,7 +7408,7 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "ลบบัญชีผู้ใช้ของฉันตอนนี้"
 
 msgid "Delete User Photo"
 msgstr ""
@@ -7499,7 +7496,7 @@ msgid "User Login"
 msgstr ""
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "เข้าสู่ระบบด้วยบัญชี Firefox"
 
 msgid "Password Reset"
 msgstr ""

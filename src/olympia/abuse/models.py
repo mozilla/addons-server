@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import ugettext
+from django.utils import translation
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
-from olympia.amo.utils import no_translation, send_mail
+from olympia.amo.utils import send_mail
 from olympia.users.models import UserProfile
 
 
@@ -47,8 +47,8 @@ class AbuseReport(ModelBase):
 
     @property
     def type(self):
-        with no_translation():
-            type_ = (ugettext(amo.ADDON_TYPE[self.addon.type])
+        with translation.override(settings.LANGUAGE_CODE):
+            type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type])
                      if self.addon else 'User' if self.user else 'Addon')
         return type_
 

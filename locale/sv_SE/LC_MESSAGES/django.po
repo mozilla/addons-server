@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 15:34+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-13 20:23+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -548,22 +548,6 @@ msgstr "Versionsinformation"
 
 msgid "See complete version history"
 msgstr "Visa fullständig versionshistorik"
-
-msgid "Development Channel"
-msgstr "Utvecklingskanal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Utvecklingskanalen låter dig testa en experimentell ny version av detta tillägg innan det släpps till allmänheten. När du installerar utvecklingsversionen, kommer du att fortsätta att få "
-"uppdateringar från den här kanalen. För att sluta ta emot utvecklingsuppdateringar, installera om standardversionen från länken ovan."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Varning:</strong> Utvecklingsversioner av detta tillägg har inte granskats av Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Se komplett historik för utveklingskanal"
 
 msgid "close"
 msgstr "stäng"
@@ -2005,6 +1989,24 @@ msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
 msgid "Information request removed"
 msgstr "Informationsbegäran borttagen"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} tilläggsgranskning av admin begärd."
+
+msgid "Admin add-on-review requested"
+msgstr "Tilläggsgranskning av admin begärd"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} innehållsgranskning av admin begärd."
+
+msgid "Admin content-review requested"
+msgstr "Innehållsgranskning av admin begärd"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} temagranskning av admin begärd."
+
+msgid "Admin theme-review requested"
+msgstr "Temagranskning av admin begärd"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2043,9 +2045,6 @@ msgstr "Väntar på godkännande"
 
 msgid "Flagged for further review"
 msgstr "Flaggad för ytterligare granskning"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Olistad"
@@ -2583,9 +2582,6 @@ msgstr "Åsidosätt misslyckad validering"
 msgid "Submit my add-on for manual review."
 msgstr "Skicka in mitt tillägg för manuell granskning."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "En fil med en version som slutar med a|alpha|b|beta|pre|rc och ett valfritt nummer detekteras som beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Du kan inte ladda upp några fler filer för denna version."
 
@@ -2646,6 +2642,12 @@ msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denn
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Du kan inte uppdatera ett WebExtensions-tillägg med ett äldre tillägg. Användarna kan inte använda den nya versionen eftersom Firefox inte stöder denna typ av uppdatering."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Utvecklarens API-nyckel hittades i den inskickade filen. För att skydda ditt konto kommer nyckeln att återkallas."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Utvecklarens API-nyckel för en medförfattare hittades i den inskickade filen. För att skydda ditt tillägg, kommer nyckeln att återkallas."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s svarade med %s (%s)."
@@ -2657,6 +2659,9 @@ msgstr "Anslutning till \"%s\" gjorde timeout."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Mozilla säkerhetsmeddelande: Din AMO API-behörighet har återkallats"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2715,16 +2720,6 @@ msgstr "Validera tillägg"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kontrollera tilläggets kompatibilitet"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Du kan inte skicka in denna typ av tillägg"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3429,9 +3424,6 @@ msgstr "Detta tillägg saknar någon information som krävs innan det kan skicka
 msgid "This add-on doesn't have any versions."
 msgstr "Detta tillägg har inga versioner."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Detta tillägg har inte några godkända versioner, så dess publika sidor (inklusive betaversioner) är dolda."
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3611,9 +3603,6 @@ msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppl
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Vilka plattformar är denna fil kompatibel med?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Publicera endast denna version till min beta kanal."
 
 msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
@@ -4431,18 +4420,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förenkla sökning {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Markera endast text på vilken webbsida som helst för att söka frasen från en rad olika motorer."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Annonsblockering och integritetsskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
@@ -4454,6 +4431,18 @@ msgstr "Omvärdera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sök efter bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Utför omvänd bildsökning från en rad olika motorer."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
@@ -4542,6 +4531,19 @@ msgstr "Versionsnummer bör endast innehålla bokstäver, siffror och dessa skil
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Uppladdning av WebExtension teman stöds för närvarande inte."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Du kan inte skicka in denna typ av tillägg"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
+
+msgid "Unexpected error."
+msgstr "Oväntat fel."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5569,25 +5571,6 @@ msgstr ""
 "        bidra till dess utveckling genom att göra ett monetärt bidrag. Dessa\n"
 "        bidrag går direkt till utvecklaren om inte en tredje part är\n"
 "        angiven, såsom den ideella Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Vad är beta-tillägg?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Beta-tillägg är ej granskade versioner som representerar\n"
-"        det senaste arbetet av en tilläggsförfattare. Medan olika författare har olika\n"
-"        standarder för beta kodkvalitet, bör du anta att dessa tillägg\n"
-"        är mindre stabila än de allmänna tillägg som ges ut."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Observera att när du installerar ett tillägg från sektionen \"Betaversion\" i ett tilläggs listning, kommer du att fortsätta att ta emot uppdateringar för detta tillägg när de blir tillgängliga. Som"
-" den första versionen du installerat, alla betaversioner granskas inte av Mozilla och kan skada din dator."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hur gör jag rapportera en olämplig eller skräppost användarrecension?"

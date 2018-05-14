@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -607,20 +607,6 @@ msgstr "Eolas faoin Leagan"
 
 msgid "See complete version history"
 msgstr "Stair iomlán na leaganacha"
-
-msgid "Development Channel"
-msgstr "Cainéal Forbartha"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 # This refers to closing a small pop-up window
 msgid "close"
@@ -2125,6 +2111,30 @@ msgstr "Nóta tráchta ar {addon} {version}."
 msgid "Information request removed"
 msgstr "Ag Iarraidh Tuilleadh Eolais: {0}"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Diúltaíodh {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Iarradh Scrúdú Iomlán."
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Diúltaíodh {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Iarradh Scrúdú Iomlán."
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Diúltaíodh {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Iarradh Scrúdú Iomlán."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2170,9 +2180,6 @@ msgstr "Ag fanacht le ceadú"
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Béite"
 
 msgid "Unlisted"
 msgstr "Neamhliostaithe"
@@ -2725,9 +2732,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
 
@@ -2787,6 +2791,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2798,6 +2808,9 @@ msgstr "Ceangal le \"%s\" thar am."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2855,16 +2868,6 @@ msgid "Validate Add-on"
 msgstr "Bailíochtaigh Breiseán"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3537,9 +3540,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Níl an breiseán seo comhoiriúnach leis an leagan de %(app)s atá agat."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Stádas:"
 
@@ -3731,9 +3731,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4580,18 +4577,6 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4602,6 +4587,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4690,6 +4687,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -5618,19 +5628,6 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr "Cad is Breiseán Béite ann?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"

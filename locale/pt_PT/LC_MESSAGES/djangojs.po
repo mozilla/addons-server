@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2017-03-15 02:52+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-13 21:55+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -768,7 +768,7 @@ msgstr[0] "Falta <b>{0}</b> caractere."
 msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta funcionalidade está temporariamente desativada enquanto nós procedemos à manutenção do website. Por favor, verifique de novo mais tarde."
+msgstr "Esta funcionalidade está temporariamente desativada enquanto realizamos a manutenção do website. Por favor, verifique de novo mais tarde."
 
 msgid "Remove this localization"
 msgstr "Remover esta tradução"

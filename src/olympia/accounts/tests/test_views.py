@@ -1220,6 +1220,14 @@ class TestParseNextPath(TestCase):
         assert next_path == (
             u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')
 
+    def test_path_with_unicodedecodeerror(self):
+        parts = [
+            '09aedd38eebd72e896250ae5b7ea9c0172542b6cec7683e58227e5670df12fb2',
+            'l2vulvvtl2rldmvsb3blcnmv'
+        ]
+        next_path = views.parse_next_path(parts)
+        assert next_path is None
+
 
 class TestSessionView(TestCase):
     def login_user(self, user):
@@ -1407,3 +1415,51 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         un_obj = UserNotification.objects.get(
             user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id)
         assert not un_obj.enabled
+
+    def test_basket_integration(self):
+        self.client.login_api(self.user)
+
+        assert (
+            {'name': u'announcements', 'enabled': False, 'mandatory': False} in
+            self.client.get(self.list_url).data)
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+            self.client.post(
+                self.url,
+                data={'announcements': True})
+
+        # We haven't set the switch yet, so there are no calls.
+        assert request_call.call_count == 0
+
+        create_switch('activate-basket-sync')
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+            self.client.post(
+                self.url,
+                data={'announcements': True})
+
+        request_call.assert_called_with(
+            'post', 'subscribe',
+            data={
+                'newsletters': 'about-addons',
+                'email': self.user.email},
+            headers={})
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+            self.client.post(
+                self.url,
+                data={'announcements': False})
+
+        request_call.assert_called_with(
+            'post', 'unsubscribe',
+            data={'newsletters': 'about-addons', 'email': self.user.email},
+            token='123')

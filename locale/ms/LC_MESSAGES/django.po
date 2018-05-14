@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 07:39+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-11 07:33+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -535,22 +535,6 @@ msgstr "Maklumat Versi"
 
 msgid "See complete version history"
 msgstr "Lihat sejarah versi lengkap"
-
-msgid "Development Channel"
-msgstr "Saluran Pembangunan"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Saluran Pembangunan membolehkan anda menguji versi baru eksperimen add-on ini sebelum dikeluarkan kepada umum. Apabila memasang versi pembangunan, anda akan sentiasa mendapat kemas kini daripada "
-"saluran ini. Untuk berhenti menerima kemas kini, pasang semula versi piawai dari pautan di atas."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Amaran:</strong> Versi Pembangunan add-on ini masih belum disemak oleh Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Lihat sejarah saluran pembangunan lengkap"
 
 msgid "close"
 msgstr "tutup"
@@ -1978,6 +1962,24 @@ msgstr "Permintaan maklumat dibuang oleh pembangun {addon} {version}."
 msgid "Information request removed"
 msgstr "Permintaan maklumat dibuang"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} perlu semakan pentadbir."
+
+msgid "Admin add-on-review requested"
+msgstr "Perlu semakan pentadbir add-on"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} perlu semakan pentadbir kandungan."
+
+msgid "Admin content-review requested"
+msgstr "Perlu semakan pentadbir kandungan"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} perlu semakan pentadbir tema."
+
+msgid "Admin theme-review requested"
+msgstr "Perlu semakan pentadbir tema"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2016,9 +2018,6 @@ msgstr "Menunggu kelulusan"
 
 msgid "Flagged for further review"
 msgstr "Ditanda untuk semakan lanjut"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Tidak tersenarai"
@@ -2556,9 +2555,6 @@ msgstr "Pembatalan gagal pengesahan"
 msgid "Submit my add-on for manual review."
 msgstr "Kemukakan add-on saya untuk semakan manual."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Fail dengan versi yang berakhir dengan a|alpha|b|beta|pre|rc dan satu nombor pilihan akan dikesan sebagai beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Anda tidak boleh memuat naik lagi fail versi ini."
 
@@ -2618,6 +2614,12 @@ msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan pr
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Kunci API pembangun anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi akaun anda, kunci akan dijana semula."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Kunci API pembangun pengarang bersama anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi add-on anda, kunci akan dijana semula."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s memberi respons dengan %s (%s)."
@@ -2629,6 +2631,9 @@ msgstr "Sambungan ke \"%s\" tamat tempoh."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Tidak dapat menghubungi hos di\"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2687,16 +2692,6 @@ msgstr "Sahkan Add-on"
 
 msgid "Check Add-on Compatibility"
 msgstr "Semak Keserasian Add-on"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Anda tidak boleh kemukakan add-on jenis ini"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3364,9 +3359,6 @@ msgstr "Add-on ini hilang beberapa maklumat yang diperlukan sebelum boleh dihant
 msgid "This add-on doesn't have any versions."
 msgstr "Add-on ini tiada versi apa-apa."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Add-on ini tiada versi yang diluluskan, jadi halaman umumnya (termasuk versi beta) disorok."
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3544,9 +3536,6 @@ msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda. Selepas dimu
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform mana yang serasi dengan fail ini?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Hanya terbit versi ini ke saluran beta saya."
 
 msgid "Administrative overrides"
 msgstr "Terbalikkan pentadbiran"
@@ -4347,18 +4336,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hentikan Facebook menjejaki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudahkan carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Serlahkan sahaja teks dalam halaman web untuk mencari frasa dari tatasusunan enjin."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sekat iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -4370,6 +4347,18 @@ msgstr "Ubah suai tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Anda ada banyak tab terbuka? Susun dengan kemas dalam bar sisi."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Hentikan Facebook menjejaki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Laksanakan carian imej songsang daripada susunan enjin."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4458,6 +4447,19 @@ msgstr "Nombor versi perlu mengandungi hanya huruf, nombor, dan karakter tanda b
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Tema WebExtension yang dimuat tidak disokong buat masa ini."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Anda tidak boleh kemukakan add-on jenis ini"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
+
+msgid "Unexpected error."
+msgstr "Ralat tidak dijangka."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5481,23 +5483,6 @@ msgid ""
 msgstr ""
 "Beberapa pengarang add-on meminta pengguna yang menikmati add-on untuk memberi sumbang kepada pembangunannya dengan membuat sumbangan kewangan. Sumbangan akan disalurkan terus kepada pembangun "
 "kecuali dinyatakan pihak ketiga, seperti Yayasan bukan-untung Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "Apakah add-ons beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Add-ons beta ialah versi yang belum disemak yang mewakili kerja terbaru pengarang add-on. Walaupun setiap pengarang menetapkan piawaian kualiti kod beta yang berbeza, anda perlu sentiasa ingat "
-"bahawa add-ons ini kurang stabil berbanding add-on yang dikeluarkan kepada umum."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Sila ambil perhatian bahawa apabila anda pasang add-on dari bahagian \"Versi Beta\" penyenaraian add-on, anda akan menerima kemaskini untuk add-on berkenaan apabila sudah sedia. Seperti versi "
-"permulaaan yang anda pasang, semua keluaran versi beta tidak disemak oleh Mozilla dan boleh memudaratkan komputer anda."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Bagaimana boleh saya laporkan ulasan spam atau tidak sesuai oleh pengguna?"

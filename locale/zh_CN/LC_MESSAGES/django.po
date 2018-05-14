@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-26 12:34+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 16:40+0000\n"
+"Last-Translator: 新垣结衣 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -537,21 +537,6 @@ msgstr "版本信息"
 
 msgid "See complete version history"
 msgstr "查看完整的版本历史"
-
-msgid "Development Channel"
-msgstr "开发通道"
-
-# 本项译文为用户“wenke”提交，因操作方面的原因导致用户名记录为我的名下，致歉。
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更新，请从上面的链接重新安装默认版。"
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。"
-
-msgid "See complete development channel history"
-msgstr "查看完整的开发通道历史记录"
 
 msgid "close"
 msgstr "关闭"
@@ -1960,6 +1945,24 @@ msgstr "开发者已清除在 {addon} {version} 的信息请求。"
 msgid "Information request removed"
 msgstr "信息请求已移除"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} 已要求管理员进行附加组件审核。"
+
+msgid "Admin add-on-review requested"
+msgstr "已要求管理员进行附加组件审核"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} 已要求管理员进行内容审核。"
+
+msgid "Admin content-review requested"
+msgstr "已要求管理员进行内容审核"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} 已要求管理员进行主题审核。"
+
+msgid "Admin theme-review requested"
+msgstr "已要求管理员进行主题审核"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1998,9 +2001,6 @@ msgstr "等待审核"
 
 msgid "Flagged for further review"
 msgstr "已标记进一步审核"
-
-msgid "Beta"
-msgstr "公开测试版"
 
 msgid "Unlisted"
 msgstr "未上架"
@@ -2540,9 +2540,6 @@ msgstr "无视验证失败"
 msgid "Submit my add-on for manual review."
 msgstr "提交我的附加组件进行人工审核。"
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "文件中的版本以 a|alpha|b|beta|pre|rc 结尾（及可选的数字）将被检测为测试版（beta）。"
-
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
@@ -2599,6 +2596,12 @@ msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "您不能用一个旧式附加组件更新 WebExtension 附加组件。您的用户将无法使用您的新版本，因为 Firefox 不支持此种更新。"
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "在提交的文件中发现了您的开发者 API 密钥。为确保您的账户安全，将作废此密钥。"
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "在提交的文件中发现了合作者的开发者 API 密钥。为保护您的附加组件，将作废此密钥。"
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s 响应 %s（%s）。"
@@ -2610,6 +2613,9 @@ msgstr "连接“%s”超时。"
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "无法连接到主机“%s”。"
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Mozilla 安全通知：您的 AMO API 证书已被吊销"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2668,16 +2674,6 @@ msgstr "验证附加组件"
 
 msgid "Check Add-on Compatibility"
 msgstr "检查附加组件兼容性"
-
-msgid "You cannot submit this type of add-on"
-msgstr "您不能提交此类型的附加组件"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "您不能提交一个 Mozilla 签名的扩展"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3324,9 +3320,6 @@ msgstr "此附加组件缺少一些提交发布的必要信息。"
 msgid "This add-on doesn't have any versions."
 msgstr "此附加组件没有任何版本。"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "此附加组件没有任何已批准的版本，因此其公开页面（以及测试版本）为隐藏。"
-
 msgid "Status:"
 msgstr "状态："
 
@@ -3503,9 +3496,6 @@ msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，
 
 msgid "Which platforms is this file compatible with?"
 msgstr "此文件与哪个平台兼容？"
-
-msgid "Only publish this version to my beta channel."
-msgstr "仅发布此版本到我的测试通道。"
 
 msgid "Administrative overrides"
 msgstr "管理覆盖"
@@ -4294,18 +4284,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "简化搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "只需在任何网页上选中文本，就可从一系列引擎中搜索短语。"
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "拦截广告并保护隐私 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
@@ -4317,6 +4295,18 @@ msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "您是否有一大堆打开的标签页？试试在整齐的侧栏中进行管理。"
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "搜索图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "使用多组搜索引擎以图搜图。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -4405,6 +4395,19 @@ msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "目前暂不支持 WebExtension 主题的上传。"
+
+msgid "You cannot submit this type of add-on"
+msgstr "您不能提交此类型的附加组件"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "您不能提交一个 Mozilla 签名的扩展"
+
+msgid "Unexpected error."
+msgstr "意外错误。"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5336,19 +5339,6 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr "一些附加组件的作者希望用户在享用附加组件的同时也向附加组件捐一点款以帮助其发展。这些捐款会直接转给开发者，除非开发者明确指出了希望捐给其他单位（比如非营利性质的 Mozilla 基金会）。"
-
-msgid "What are beta add-ons?"
-msgstr "什么是测试版附加组件？"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr "测试版附加组件是未经审核的版本，体现了作者的最新工作成果。由于不同作者有不同的测试版代码质量标准，您应该假定这些附加组件的稳定性不如正式发布的版本。"
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr "请注意，当您从附加组件列表的“测试版”中安装附加组件的时候，您将会持续收到这个附加组件的可用更新。和您安装的初始版本一样，所有测试版都没有经过 Mozilla 的审核并且有可能伤害您的计算机。"
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "如何报告一个不适当的用户评价？"

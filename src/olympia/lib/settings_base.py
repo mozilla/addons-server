@@ -358,6 +358,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
+    r'^devhub\/email\/submission_api_key_revocation.txt',
 
     # Django specific templates
     r'^registration\/',
@@ -1025,8 +1026,6 @@ JAVA_BIN = '/usr/bin/java'
 
 # File paths
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
-CA_CERT_BUNDLE_PATH = os.path.join(
-    ROOT, 'src/olympia/amo/certificates/roots.pem')
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
@@ -1155,6 +1154,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
+    'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1264,12 +1264,11 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
+    'olympia.users.tasks.sync_user_with_basket': {'queue': 'users'},
 
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
@@ -1307,11 +1306,8 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-USE_SYSLOG = True
 USE_MOZLOG = True
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons2"
-MOZLOG_NAME = SYSLOG_TAG
+MOZLOG_NAME = "http_app_addons"
 # See PEP 391 and log_settings_base.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
 # log_settings_base.py. Handlers and log levels are set up automatically based
@@ -1328,7 +1324,6 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.reviewers.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }
@@ -1621,22 +1616,11 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# Language pack fetcher settings
-LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
-LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
-LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
-# E.g. https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/23.0/SHA512SUMS
-LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
-LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
-
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
-
-# Add on used to collect stats (!technical dept around!)
-ADDON_COLLECTOR_ID = 11950
 
 # Connection to the hive server.
 HIVE_CONNECTION = {
@@ -1812,3 +1796,8 @@ GITHUB_API_USER = env('GITHUB_API_USER', default='')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
 
 MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
+
+BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
+BASKET_API_KEY = env('BASKET_API_KEY', default=None)
+# Default is 10, the API usually answers in 0.5 - 1.5 seconds.
+BASKET_TIMEOUT = 5

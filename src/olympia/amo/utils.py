@@ -39,6 +39,7 @@ import bleach
 import html5lib
 import jinja2
 import pytz
+import basket
 
 from babel import Locale
 from django_statsd.clients import statsd
@@ -269,12 +270,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 }
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
-                with no_translation():
+                with translation.override(settings.LANGUAGE_CODE):
                     message_with_unsubscribe = text_template.render(context)
 
                 if html_message:
                     context['message'] = html_message
-                    with no_translation():
+                    with translation.override(settings.LANGUAGE_CODE):
                         html_with_unsubscribe = html_template.render(context)
                         result = send([recipient], message_with_unsubscribe,
                                       html_message=html_with_unsubscribe,
@@ -323,6 +324,44 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
                     html_message=html_template.render(context), *args,
                     **kwargs)
     return msg
+
+
+def fetch_subscribed_newsletters(user_profile):
+    try:
+        data = basket.lookup_user(user_profile.email)
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+        return ()
+
+    if not user_profile.basket_token:
+        user_profile.update(basket_token=data['token'])
+    return data['newsletters']
+
+
+def subscribe_newsletter(user_profile, basket_id):
+    try:
+        response = basket.subscribe(user_profile.email, basket_id)
+        return response['status'] == 'ok'
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+    return False
+
+
+def unsubscribe_newsletter(user_profile, basket_id):
+    # Security check, the basket token will be set by
+    # `fetch_subscribed_newsletters` but since we shouldn't simply error
+    # we just fetch it in case something went wrong.
+    if not user_profile.basket_token:
+        basket_data = basket.lookup_user(user_profile.email)
+        user_profile.update(basket_token=basket_data['token'])
+
+    try:
+        response = basket.unsubscribe(
+            user_profile.basket_token, user_profile.email, basket_id)
+        return response['status'] == 'ok'
+    except (basket.BasketNetworkException, basket.BasketException):
+        log.exception('basket exception')
+    return False
 
 
 def chunked(seq, n):
@@ -541,7 +580,9 @@ def resize_image(source, destination, size=None):
         if size:
             im = processors.scale_and_crop(im, size)
     with storage.open(destination, 'wb') as fp:
-        im.save(fp, 'png')
+        # Save the image to PNG in destination file path. Don't keep the ICC
+        # profile as it can mess up pngcrush badly (mozilla/addons/issues/697).
+        im.save(fp, 'png', icc_profile=None)
     pngcrush_image(destination)
     return (im.size, original_size)
 
@@ -704,20 +745,6 @@ def get_email_backend(real_email=False):
     else:
         backend = 'olympia.amo.mail.DevEmailBackend'
     return django.core.mail.get_connection(backend)
-
-
-@contextlib.contextmanager
-def no_translation(lang=None):
-    """
-    Activate the settings lang, or lang provided, while in context.
-    """
-    old_lang = translation.trans_real.get_language()
-    if lang:
-        translation.activate(lang)
-    else:
-        translation.activate(settings.LANGUAGE_CODE)
-    yield
-    translation.activate(old_lang)
 
 
 def escape_all(v, linkify_only_full=False):

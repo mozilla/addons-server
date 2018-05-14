@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 07:23+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 15:04+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -542,20 +542,6 @@ msgstr "バージョン情報"
 
 msgid "See complete version history"
 msgstr "すべてのバージョン履歴を見る"
-
-msgid "Development Channel"
-msgstr "開発チャンネル"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリンクから通常版を再インストールしてください。"
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>警告:</strong> このアドオンの開発版は Mozilla による審査を受けていません。"
-
-msgid "See complete development channel history"
-msgstr "開発チャンネルの完全な履歴を見る"
 
 msgid "close"
 msgstr "閉じる"
@@ -1967,6 +1953,24 @@ msgstr "{addon} {version} に関する情報請求が開発者によって回答
 msgid "Information request removed"
 msgstr "情報請求が削除されました"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} の管理者アドオン審査が申請されました。"
+
+msgid "Admin add-on-review requested"
+msgstr "管理者アドオン審査が申請されました"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} の管理者コンテンツ審査が申請されました。"
+
+msgid "Admin content-review requested"
+msgstr "管理者コンテンツ審査が申請されました"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} の管理者テーマ審査が申請されました。"
+
+msgid "Admin theme-review requested"
+msgstr "管理者テーマ審査が申請されました"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2005,9 +2009,6 @@ msgstr "承認保留中"
 
 msgid "Flagged for further review"
 msgstr "詳細審査待ち"
-
-msgid "Beta"
-msgstr "ベータ版"
 
 msgid "Unlisted"
 msgstr "リスト掲載中止"
@@ -2547,9 +2548,6 @@ msgstr "失敗した検証を上書き"
 msgid "Submit my add-on for manual review."
 msgstr "このアドオンの手作業による審査を申請します。"
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
-
 msgid "You cannot upload any more files for this version."
 msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
 
@@ -2606,6 +2604,12 @@ msgstr "私たちはアップグレードを許容し推奨していますが、
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "WebExtensions を旧式のアドオンへ更新することはできません。Firefox はそうした形での更新に対応していないため、ユーザーは新バージョンを使用できなくなります。"
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s が %s (%s) を返しました。"
@@ -2617,6 +2621,9 @@ msgstr "「%s」への接続がタイムアウトしました。"
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "ホスト「%s」へ接続できませんでした。"
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2675,16 +2682,6 @@ msgstr "アドオンの検証"
 
 msgid "Check Add-on Compatibility"
 msgstr "アドオンの互換性を確認"
-
-msgid "You cannot submit this type of add-on"
-msgstr "この種類のアドオンを送信することはできません"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "%s で終わる GUID が設定されたアドオンを投稿することはできません"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "あなたは Mozilla Signed Extension を登録できません"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3331,9 +3328,6 @@ msgstr "このアドオンは、公開のために必要な情報が不足して
 msgid "This add-on doesn't have any versions."
 msgstr "このアドオンには一切バージョンがありません。"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "このアドオンには承認済みのバージョンが一切ないため、(ベータ版を含む) 公開ページは非表示となっています。"
-
 msgid "Status:"
 msgstr "状態:"
 
@@ -3510,9 +3504,6 @@ msgstr "下のフォームを使ってアドオンのパッケージをアップ
 
 msgid "Which platforms is this file compatible with?"
 msgstr "このファイルの対応プラットフォーム"
-
-msgid "Only publish this version to my beta channel."
-msgstr "このバージョンをベータチャンネルでのみ公開"
 
 msgid "Administrative overrides"
 msgstr "管理者による上書き"
@@ -4304,18 +4295,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook による追跡を拒否"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 検索をシンプルに"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック＆プライバシーを保護"
 
@@ -4326,6 +4305,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook による追跡を拒否"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を検索"
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4415,6 +4406,19 @@ msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension テーマのアップロードには現時点では対応していません。"
+
+msgid "You cannot submit this type of add-on"
+msgstr "この種類のアドオンを送信することはできません"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "%s で終わる GUID が設定されたアドオンを投稿することはできません"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "あなたは Mozilla Signed Extension を登録できません"
+
+msgid "Unexpected error."
+msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5350,19 +5354,6 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr "ベータ版のアドオンとは？"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr "アドオン詳細ページの「ベータ版」セクションからアドオンをインストールした場合、そのアドオンの更新が登録されると同時にそれを受け取ることとなります。最初にインストールしたバージョンと同様に、すべてのベータ版は Mozilla による審査を経ておらず、コンピューターに悪影響を及ぼす可能性があります。"
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr ""

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 08:17+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 14:30+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -558,22 +558,6 @@ msgstr "Versie-informatie"
 
 msgid "See complete version history"
 msgstr "Volledige versiegeschiedenis bekijken"
-
-msgid "Development Channel"
-msgstr "Ontwikkelingskanaal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Via het Ontwikkelingskanaal kunt u een experimentele nieuwe versie van deze add-on testen voordat deze wordt vrijgegeven voor algemeen gebruik. Na installatie van de ontwikkelversie krijgt u "
-"voortaan updates via dit kanaal. Installeer de standaardversie via bovenstaande koppeling om geen ontwikkelupdates meer te ontvangen."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet beoordeeld door Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Volledige geschiedenis van ontwikkelingskanaal bekijken"
 
 msgid "close"
 msgstr "sluiten"
@@ -2026,6 +2010,24 @@ msgstr "Verzoek om informatie voor {addon} {version} gewist door ontwikkelaar."
 msgid "Information request removed"
 msgstr "Verzoek om informatie verwijderd"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Add-on-beoordeling door beheerder voor {addon} {version} aangevraagd."
+
+msgid "Admin add-on-review requested"
+msgstr "Add-on-beoordeling door beheerder aangevraagd"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Inhoudsbeoordeling door beheerder voor {addon} {version} aangevraagd."
+
+msgid "Admin content-review requested"
+msgstr "Inhoudsbeoordeling door beheerder aangevraagd"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Themabeoordeling door beheerder voor {addon} {version} aangevraagd."
+
+msgid "Admin theme-review requested"
+msgstr "Themabeoordeling door beheerder aangevraagd"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2064,9 +2066,6 @@ msgstr "Wacht op goedkeuring"
 
 msgid "Flagged for further review"
 msgstr "Gemarkeerd voor nadere beoordeling"
-
-msgid "Beta"
-msgstr "Bèta"
 
 msgid "Unlisted"
 msgstr "Niet vermeld"
@@ -2608,9 +2607,6 @@ msgstr "Mislukte validatie negeren"
 msgid "Submit my add-on for manual review."
 msgstr "Mijn add-on voor beoordeling indienen."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Een bestand met een versie die eindigt op a|alpha|b|beta|pre|rc en een optioneel cijfer wordt als bèta gedetecteerd."
-
 msgid "You cannot upload any more files for this version."
 msgstr "U kunt geen bestanden meer uploaden voor deze versie."
 
@@ -2674,6 +2670,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "In het ingediende bestand is uw ontwikkelaars-API-sleutel aangetroffen. Om uw account te beschermen, zal de sleutel worden ingetrokken."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "In het ingediende bestand is de ontwikkelaars-API-sleutel van een medeschrijver aangetroffen. Om uw add-on te beschermen, zal de sleutel worden ingetrokken."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s heeft geantwoord met %s (%s)."
@@ -2686,6 +2688,9 @@ msgstr "Wachttijd voor verbinding met ‘%s’ verstreken."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Kon geen verbinding maken met de host op ‘%s’."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Mozilla-beveiligingsmelding: uw API-referenties voor AMO zijn ingetrokken"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2744,16 +2749,6 @@ msgstr "Add-on valideren"
 
 msgid "Check Add-on Compatibility"
 msgstr "Add-on-compatibiliteit controleren"
-
-msgid "You cannot submit this type of add-on"
-msgstr "U kunt dit type add-on niet indienen"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3429,9 +3424,6 @@ msgstr "Deze add-on mist enige vereiste informatie voordat deze voor publicatie 
 msgid "This add-on doesn't have any versions."
 msgstr "Deze add-on heeft geen versies."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Deze add-on heeft geen goedgekeurde versies, dus de openbare pagina’s ervan (inclusief bètaversies) zijn verborgen."
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3612,9 +3604,6 @@ msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden. Na de upload
 msgid "Which platforms is this file compatible with?"
 msgstr "Met welke platformen is dit bestand compatibel?"
 
-msgid "Only publish this version to my beta channel."
-msgstr "Alleen deze versie op mijn bètakanaal publiceren."
-
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
 
@@ -3757,7 +3746,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Uw add-on wordt weergegeven in onze galerij en gebruikers ontvangen automatische updates."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr "Uw add-on is uitgeschakeld door een websitebeheerder en wordt niet meer weergegeven in onze galerij. Als u vragen heeft, stuur ze dan naar amo-admins@mozilla.org."
+msgstr "Uw add-on is uitgeschakeld door een websitebeheerder en wordt niet meer weergegeven in onze galerij. Als u vragen hebt, stuur ze dan naar amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -4423,18 +4412,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarschuwing"
 msgstr[1] "{0} waarschuwingen"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stop volgen door Facebook {start_sub_heading}met {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isoleer uw Facebook-identiteit in een aparte ‘container’ die het voor Facebook moeilijker maakt om uw webbezoeken te volgen."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vereenvoudig zoeken {start_sub_heading}met {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Markeer eenvoudigweg tekst op een webpagina om met een aantal zoekmachines naar de woordgroep te zoeken."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Advertenties blokkeren en privacybescherming {start_sub_heading}met {addon_name}{end_sub_heading}"
 
@@ -4446,6 +4423,18 @@ msgstr "Tabbladen opnieuw uitgevonden {start_sub_heading}met {addon_name}{end_su
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Het u een enorm aantal openstaande tabbladen? Organiseer ze in een kleine zijbalk."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stop volgen door Facebook {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isoleer uw Facebook-identiteit in een aparte ‘container’ die het voor Facebook moeilijker maakt om uw webbezoeken te volgen."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Omgekeerd afbeeldingen zoeken met een aantal zoekmachines."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
@@ -4535,6 +4524,19 @@ msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens b
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Uploads van WebExtension-thema’s worden momenteel niet ondersteund."
+
+msgid "You cannot submit this type of add-on"
+msgstr "U kunt dit type add-on niet indienen"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
+
+msgid "Unexpected error."
+msgstr "Onverwachte fout."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5559,23 +5561,6 @@ msgid ""
 msgstr ""
 "Sommige add-onschrijvers vragen tevreden gebruikers van een add-on om een geldelijke bijdrage aan de ontwikkeling. Deze bijdragen gaan rechtstreeks naar de ontwikkelaar, tenzij een derde partij "
 "wordt aangeduid, zoals de non-profit Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Wat zijn bèta-add-ons?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Bèta-add-ons zijn niet-beoordeelde versies die het laatste werk van een add-onschrijver weergeven. Hoewel verschillende schrijvers verschillende normen hanteren voor de kwaliteit van bètacode, dient"
-" u aan te nemen dat deze add-ons minder stabiel zijn dan normale uitgegeven versies."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Bedenk dat als u een add-on uit de sectie ‘bètaversie’ van een add-onpagina installeert, u updates voor die add-on zult blijven ontvangen zodra ze beschikbaar komen. Net als de oorspronkelijk "
-"geïnstalleerde versie zijn alle bètaversies niet door Mozilla beoordeeld en kunnen deze schade aan uw computer toebrengen."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hoe rapporteer ik een ongepaste gebruikersbeoordeling of een beoordeling met spam?"

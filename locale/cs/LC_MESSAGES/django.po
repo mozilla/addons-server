@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-29 11:04+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-12 06:57+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -574,22 +574,6 @@ msgstr "Informace o verzi"
 
 msgid "See complete version history"
 msgstr "Zobrazit celou historii verzí"
-
-msgid "Development Channel"
-msgstr "Kanál s vývojovými verzemi"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Kanál vývojových verzí vám umožňuje testovat experimentální nové verze tohoto doplňku dříve, než budou veřejně dostupné. Jakmile jednou nainstalujete vývojovou verzi, budete nadále dostávat "
-"aktualizace z tohoto kanálu. Pro ukončení získávání vývojových verzí si nainstalujte stabilní verzi odkázanou výše."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Varování:</strong> Vývojové verze tohoto doplňku nebyly zkontrolovány Mozillou."
-
-msgid "See complete development channel history"
-msgstr "Zobrazit úplnou historii vývoje"
 
 msgid "close"
 msgstr "zavřít"
@@ -2045,6 +2029,24 @@ msgstr "Požadavek na doplnění informací k doplňku {addon} {version} byl zru
 msgid "Information request removed"
 msgstr "Požadavek na doplnění informací zrušen"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} - vyžádána kontrola doplňku administrátorem."
+
+msgid "Admin add-on-review requested"
+msgstr "Vyžádána kontrola doplňku administrátorem"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} - vyžádána kontrola obsahu administrátorem."
+
+msgid "Admin content-review requested"
+msgstr "Vyžádána kontrola obsahu administrátorem"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} - vyžádána kontrola vzhledu administrátorem."
+
+msgid "Admin theme-review requested"
+msgstr "Vyžádána kontrola vzhledu administrátorem"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2083,9 +2085,6 @@ msgstr "Čeká na schválení"
 
 msgid "Flagged for further review"
 msgstr "Označeno pro budoucí kontrolu"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Není v seznamu"
@@ -2625,9 +2624,6 @@ msgstr "Přepsat nezdařenou validaci"
 msgid "Submit my add-on for manual review."
 msgstr "Odeslat doplněk k ruční kontrole."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Soubory s verzí končící na a|alpha|b|beta|pre|rc a případné číslem jsou detekovány jako betaverze."
-
 msgid "You cannot upload any more files for this version."
 msgstr "K této verzi nemůžete nahrát více souborů."
 
@@ -2692,6 +2688,12 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr ""
 "Starý typ doplňku nemůže být použit k aktualizaci doplňku typu WebExtensions. Jelikož nejnovější verze Firefoxu takovou aktualizaci nepodporují, vaši uživatelé by nemohli novou verzi používat."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Váš vývojářšký API klíč byl nalezen v nahraném souboru. Pro ochranu vašeho účtu bude tento klíč zneplatněn."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Vývojářšký API klíč spoluautora byl nalezen v nahraném souboru. Pro ochranu vašeho doplňku bude tento klíč zneplatněn."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s odpověděl(a) %s (%s)."
@@ -2703,6 +2705,9 @@ msgstr "Při připojování k \"%s\" vypršel čas spojení."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Nepodařilo se kontaktovat host \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API server AMO byly zneplatněny"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2761,16 +2766,6 @@ msgstr "Kontrola doplňku"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kontrola kompatibility doplňku"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Přidávání tohoto typu doplňku není povoleno"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3447,9 +3442,6 @@ msgstr "Tomuto doplňku chybí některé požadované informace, aby mohl být o
 msgid "This add-on doesn't have any versions."
 msgstr "Tento doplněk nemá žádné verze."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Tento doplněk nemá žádné schválené verze, takže jeho veřejné stránky (včetně beta verzí) jsou skryté."
-
 msgid "Status:"
 msgstr "Stav:"
 
@@ -3629,9 +3621,6 @@ msgstr "Pro nahrání balíčku se svým doplňkem použijte pole níže. Po nah
 
 msgid "Which platforms is this file compatible with?"
 msgstr "S kterými platformami je tento soubor kompatibilní?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Tuto verzi publikovat pouze v mém beta kanálu."
 
 msgid "Administrative overrides"
 msgstr "Změny při administraci"
@@ -4437,18 +4426,6 @@ msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}S doplňkem {addon_name}{end_sub_heading} se nemusíte nechat Facebookem sledovat"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snadné vyhledávání {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Označte text na jakékoliv webové stránce a vyberte si vyhledávač, kterým jej chcete vyhledat."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy a chraňte své soukromí {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
@@ -4456,10 +4433,22 @@ msgid "A simple set-up lets you take control of the ads you see and how you’re
 msgstr "Jednoduché nastavení zobrazovaných reklamam a sledování na internetu."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšené své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr "Vylepšete své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}S doplňkem {addon_name}{end_sub_heading} se nemusíte nechat Facebookem sledovat"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Dohledejte obrázky některý z široké nabídky vyhledávačů."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -4548,6 +4537,19 @@ msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a nás
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nahrávání vhledů WebExtension momentálně není podporováno."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Přidávání tohoto typu doplňku není povoleno"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
+
+msgid "Unexpected error."
+msgstr "Neočekávaná chyba."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5561,23 +5563,6 @@ msgid ""
 msgstr ""
 "Někteří autoři doplňků mohou žádat uživatele, kteří mají doplněk rádi, o finanční příspěvky na další vývoj. Tyto příspěvky jdou přímo vývojáři, pokud není uvedena třetí strana, například nezisková "
 "nadace Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Co jsou betaverze doplňků?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Betaverze doplňků jsou nekontrolované verze, které obsahují poslední novinky, které autor doplňku připravil. Každý autor pohlíží na kvalitu betaverzí rozdílně, ale obecně byste měli předpokládat, že"
-" tyto doplňky mají horší stabilitu než ty, které jsou standardně vydávány."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Mějte prosím na paměti, že když si nainstalujete doplněk ze sekce \"betaverze\" na stránce doplňku, budete i nadále dostávat aktualizace doplňku, jakmile budou dostupné. Obdobně jako v případě "
-"instalované verze nebudou ani další betaverze kontrolovány Mozillou a mohou tak poškodit váš počítač."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Jak mohu nahlásit nevhodnou recenzi uživatele či nevyžádaný příspěvek?"

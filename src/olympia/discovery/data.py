@@ -25,37 +25,9 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Spring is Here' theme.
+        # 'Distortion' theme.
         DiscoItem(
-            addon_id=368421, type=amo.ADDON_PERSONA,
-            addon_name=u'Spring is Here'),
-
-        # Facebook Container
-        DiscoItem(
-            addon_id=954390,
-            heading=_(u'Stop Facebook tracking {start_sub_heading}with '
-                      u'{addon_name}{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Isolate your Facebook identity into a separate '
-                  u'"container" that makes it harder for Facebook to track '
-                  u'your movements around the web.'),
-                '</blockquote>')),
-
-        # Swift Selection Search
-        DiscoItem(
-            addon_id=587410,
-            heading=_(u'Simplify search {start_sub_heading}with '
-                      u'{addon_name}{end_sub_heading}'),
-            description=string_concat(
-                '<blockquote>',
-                _(u'Just highlight text on any web page to search the phrase '
-                  u'from an array of engines.'),
-                '</blockquote>')),
-
-        # 'Dream of Waves' theme
-        DiscoItem(
-            addon_id=46638, type=amo.ADDON_PERSONA),
+            addon_id=16349, type=amo.ADDON_PERSONA),
 
         # Ghostery
         DiscoItem(
@@ -79,10 +51,37 @@ discopane_items = {
                   u'sidebar.'),
                 '</blockquote>')),
 
-        # 'Space Stars' theme.
+        # 'Sunset Over Water' theme
         DiscoItem(
-            addon_id=211644, type=amo.ADDON_PERSONA,
-            addon_name=u'Space Stars'),
+            addon_id=46852, type=amo.ADDON_PERSONA,
+            addon_name='Sunset Over Water'),
+
+        # Facebook Container
+        DiscoItem(
+            addon_id=954390,
+            heading=_(u'Stop Facebook tracking {start_sub_heading}'
+                      u'with {addon_name}{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u'Isolate your Facebook identity into a separate '
+                  u'"container" that makes it harder for Facebook to track '
+                  u'your movements around the web.'),
+                '</blockquote>')),
+
+        # Search Options
+        DiscoItem(
+            addon_id=93451,
+            heading=_(u'Search images {start_sub_heading}with {addon_name}'
+                      u'{end_sub_heading}'),
+            description=string_concat(
+                '<blockquote>',
+                _(u' Perform reverse image searches from an array of '
+                  u'engines.'),
+                '</blockquote>')),
+
+        # 'Crazy Cats Action' theme.
+        DiscoItem(
+            addon_id=963836, type=amo.ADDON_PERSONA),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.

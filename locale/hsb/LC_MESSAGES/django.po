@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 20:54+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 19:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -577,22 +577,6 @@ msgstr "Wersijowe informacije"
 
 msgid "See complete version history"
 msgstr "Dospołnu wersijowu historiju pokazać"
-
-msgid "Development Channel"
-msgstr "Wuwiwarski kanal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Wuwiwarski kanal wam zmóžnja, nowu eksperimentalnu wersiju tutoho přidatka testować, prjedy hač so powšitkownej zjawnosći přewostaji. Hdyž wuwiwarsku wersiju instalujeće, budźeće dale aktualizacije "
-"z tutoho kanala dóstawać. Zo njebyšće hižo žane wuwiwarske aktualizacije dóstał, instalujće strandardnu wersiju z wotkaza horjeka."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Kedźbu:</strong> Wuwiwarske wersije tutoho přidatka njebuchu přepruwowane wot Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Dospołnu historiju wuwiwarskeho kanala pokazać"
 
 msgid "close"
 msgstr "začinić"
@@ -2062,6 +2046,24 @@ msgstr "Próstwa wo informacije je so wot wuwiwarja w {addon} {version} zhašał
 msgid "Information request removed"
 msgstr "Próstwa wo informacije je so wotstroniła"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Přepruwowanje přidatka {addon} {version} wot administratora je so požadało."
+
+msgid "Admin add-on-review requested"
+msgstr "Přepruwowanje přidatka wot administratora je so požadało"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Přepruwowanje wobsaha přidatka {addon} {version} wot administratora je so požadało."
+
+msgid "Admin content-review requested"
+msgstr "Přepruwowanje wobsaha wot administratora je so požadało"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Přepruwowanje drasty přidatka {addon} {version} wot administratora je so požadało."
+
+msgid "Admin theme-review requested"
+msgstr "Přepruwowanje drasty wot administratora je so požadało"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2100,9 +2102,6 @@ msgstr "Čaka na schwalenje"
 
 msgid "Flagged for further review"
 msgstr "Za dalše přepruwowanje woznamjenjene"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "W lisćinje njepodate"
@@ -2640,9 +2639,6 @@ msgstr "Njeporadźene přepruwowanje přepisać"
 msgid "Submit my add-on for manual review."
 msgstr "Mój přidatk za manuelne přepruwowanje zapodać."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Dataja z wersiju, kotraž so na a|alpha|b|beta|pre|rc a opcionalnu ličbu kónči, ma so za beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Njemóžeće hižo dataje za tutu wersiju nahrać."
 
@@ -2701,6 +2697,12 @@ msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces př
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Njemóžeće přidatk typa WebExtensions přez přidatk stareho typa aktualizować. Waši wužiwarjo njemóhli wašu nowu wersiju wužiwać, dokelž Firefox tutón typ aktualizacije njepodpěruje."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Waš wuwiwarski API-kluč je so w zapodatej dataji namakał. Zo by so waše konto škitało, so kluč wotwoła."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Wuwiwarski API-kluč sobuawtora je so w zapodatej dataji namakał. Zo by so waš přidatk škitał, so kluč wotwoła."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s je z %s (%s) wotmołwił."
@@ -2712,6 +2714,9 @@ msgstr "Zwisk z „%s“ je čas překročił."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Host na „%s“ njeda so kontaktować."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Wěstotna zdźělenka Mozilla: Waše přizjewjenske daty za API AMO su so wotwołali"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2770,16 +2775,6 @@ msgstr "Přidatk přepruwować"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kompatibelnosć přidatka přepruwować"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Njemóžeće tutón přidatkowy typ zapodać"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3461,9 +3456,6 @@ msgstr "Tutón přidatk sej někotre trěbne informacije wužaduje, prjedy hač 
 msgid "This add-on doesn't have any versions."
 msgstr "Tutón přidatk wersije nima."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Tutón přidatk schwalene wersije nima, tohodla su jeho zjawne strony (inkluziwnje betawersije) schowane."
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3645,9 +3637,6 @@ msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahra�
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Z kotrymiž platformami je tuta dataja kompatibelna?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Tutu wersiju jenož na mojim betakanalu wozjewić."
 
 msgid "Administrative overrides"
 msgstr "Přepisanja wot administratorow"
@@ -4454,18 +4443,6 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zjednorće pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
@@ -4477,6 +4454,18 @@ msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_head
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pytajće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Wuwjedźće wróćopytanja wobrazow z rjadom pytawow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4566,6 +4555,19 @@ msgstr "Wersijowe čisła měli jenož pismiki, ličby a slědowace interpunkcis
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nahraća drastow WebExtension so tuchwilu njepodpěruja."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Njemóžeće tutón přidatkowy typ zapodać"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
+
+msgid "Unexpected error."
+msgstr "Njewočakowany zmylk."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5595,23 +5597,6 @@ msgid ""
 msgstr ""
 "Někotři awtorojo přidatkow proša wužiwarjow, kotrymž so přidatk spodoba, jeho wuwiwanje přez pjenježny dar podpěrać. Tute dary du direktnje k wuwiwarjej, chibazo třeći poskićowar je podaty, kaž na "
 "přikład powšitkownosći wužitna załožba Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Što su betapřidatki?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Betapřidatki su njepřepruwowane wersije, kotrež najnowše dźěło awtora přidatka reprezentuja. Hačrunjež druzy awtorojo maja druhe standardy za betakodowu kwalitu, wuńdźće wot toho, zo tute přidatki "
-"su mjenje stabilne hač powšitkowne wozjewjenja přidatkow."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Prošu dźiwajće na to, zo při instalowanju přidatka z kategorije „betawersija“ aktualizacije za tutón přidatk dale dóstawaće, hdyž su k dispoziciji. Runje tak kaž prěnja wersija, kotruž sće "
-"instalował, su tež wšě betawersije wot Mozilla njepřepruwowane a móža waš ličak wobškodźić."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kak móžu njepřihódne abo spamowe wužiwarske pohódnoćenje zdźělić?"

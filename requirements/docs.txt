@@ -42,9 +42,9 @@ requests==2.18.4 \
 sphinxcontrib-httpdomain==1.6.1 \
     --hash=sha256:2572c10bf84fab856999667369e3604eb209d8dda7321556bfee93fddcfc33b5 \
     --hash=sha256:029f596deb7b4246148a8e8a7d041764d0cad545cf4f3bb6252ac90c785ab221
-sphinx-rtd-theme==0.3.0 \
-    --hash=sha256:220dbf14814001c6475f0c6c25ac4129a18fb5e3681251a7c6ffb1646da5cc30 \
-    --hash=sha256:665135dfbdf8f1d218442458a18cf266444354b8c98eed93d1543f7e701cfdba
+sphinx-rtd-theme==0.3.1 \
+    --hash=sha256:32424dac2779f0840b4788fbccb032ba2496c1ca47a439ad2510c8b1e55dfd33 \
+    --hash=sha256:6d0481532b5f441b075127a2d755f430f1f8410a50112b1af6b069518548381d
 # typing is required by Sphinx
 typing==3.6.4 \
     --hash=sha256:b2c689d54e1144bbcfd191b0832980a21c2dbcf7b5ff7a66248a60c90e951eb8 \

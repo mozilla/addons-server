@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:32+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-03 05:01+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -73,10 +73,10 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "నిర్ధారించడం పూర్తి చేయబడింది {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "మీ పొడిగింత ధ్రువీకరణ సమయం ముగిసింది, ఇది మానవీయంగా సమీక్షించబడుతుంది."
@@ -104,7 +104,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "ఒక లెగసీ Firefox పొడిగింతను MDNకు పోర్ట్ చేస్తున్నాము"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
@@ -113,7 +113,7 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "పొడిగింతల సమర్పణ పరిశీలిత పట్టిక"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""

@@ -178,9 +178,10 @@ class TestEdit(UserViewBase):
         r = self.client.post(self.url, self.data)
         self.assert3xx(r, self.url, 302)
 
-        mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
+        mandatory = [n.id for n in email.NOTIFICATIONS_COMBINED if n.mandatory]
         total = len(self.data['notifications'] + mandatory)
-        assert UserNotification.objects.count() == len(email.NOTIFICATIONS)
+        assert UserNotification.objects.count() == len(
+            email.NOTIFICATIONS_COMBINED)
         assert UserNotification.objects.filter(enabled=True).count() == total
 
         doc = pq(self.client.get(self.url).content)
@@ -192,7 +193,7 @@ class TestEdit(UserViewBase):
     def test_edit_notifications_non_dev(self):
         choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
         notifications_not_dev = [
-            n for n in email.NOTIFICATIONS if n.group != 'dev']
+            n for n in email.NOTIFICATIONS_COMBINED if n.group != 'dev']
         self.check_default_choices(choices)
 
         self.data['notifications'] = []
@@ -321,7 +322,7 @@ class TestUnsubscribe(UserViewBase):
 
     def test_correct_url_update_notification(self):
         # Make sure the user is subscribed
-        perm_setting = email.NOTIFICATIONS[0]
+        perm_setting = email.NOTIFICATIONS_COMBINED[0]
         un = UserNotification.objects.create(notification_id=perm_setting.id,
                                              user=self.user,
                                              enabled=True)
@@ -351,7 +352,7 @@ class TestUnsubscribe(UserViewBase):
         assert not UserNotification.objects.count()
 
         # Create a URL
-        perm_setting = email.NOTIFICATIONS[0]
+        perm_setting = email.NOTIFICATIONS_COMBINED[0]
         token, hash = UnsubscribeCode.create(self.user.email)
         url = reverse('users.unsubscribe', args=[token, hash,
                                                  perm_setting.short])
@@ -372,7 +373,7 @@ class TestUnsubscribe(UserViewBase):
         assert not un.all()[0].enabled
 
     def test_wrong_url(self):
-        perm_setting = email.NOTIFICATIONS[0]
+        perm_setting = email.NOTIFICATIONS_COMBINED[0]
         token, hash = UnsubscribeCode.create(self.user.email)
         hash = hash[::-1]  # Reverse the hash, so it's wrong
 

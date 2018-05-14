@@ -43,7 +43,7 @@ class TestRevokeAPIKeys(TestCase):
             'ab2228544a061cb2af21af97f637cc58e1f8340196f1ddc3de329b5974694b26')
         apikey = APIKey.objects.create(
             key='user:{}:{}'.format(user.pk, '333'), secret=right_secret,
-            user=user, is_active=False)  # inactive APIKey.
+            user=user, is_active=None)  # inactive APIKey.
         stdout = StringIO()
         call_command('revoke_api_keys', self.csv_path, stdout=stdout)
         stdout.seek(0)
@@ -57,7 +57,7 @@ class TestRevokeAPIKeys(TestCase):
         # additional APIKeys.
         apikey.reload()
         assert apikey.secret == right_secret
-        assert not apikey.is_active
+        assert apikey.is_active is None
         assert APIKey.objects.filter(user=user).count() == 1
 
     def test_api_key_has_wrong_secret(self):
@@ -77,7 +77,7 @@ class TestRevokeAPIKeys(TestCase):
         assert output[1] == (
             'Ignoring APIKey user:67890:333, it does not exist.\n')
 
-        # APIKey is still active, secret hasn't changed, there are no
+        # API key is still active, secret hasn't changed, there are no
         # additional APIKeys.
         apikey.reload()
         assert apikey.secret == right_secret
@@ -105,10 +105,10 @@ class TestRevokeAPIKeys(TestCase):
         assert output[3] == (
             'Done. Revoked 1 keys out of 3 entries.\n')
 
-        # APIKey is still active, secret hasn't changed, there are no
-        # additional APIKeys.
+        # API key is now inactive, secret hasn't changed, the other user api
+        # key is still there, there are no additional APIKeys.
         apikey.reload()
         assert apikey.secret == right_secret
-        assert not apikey.is_active
+        assert apikey.is_active is None
         assert APIKey.objects.filter(user=user).count() == 2
         assert APIKey.objects.filter(user=user, is_active=True).count() == 1

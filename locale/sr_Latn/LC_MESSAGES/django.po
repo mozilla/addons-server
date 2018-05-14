@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -607,30 +607,6 @@ msgstr "Informacije o verziji"
 
 msgid "See complete version history"
 msgstr "Pogledaj punu istoriju verzija"
-
-msgid "Development Channel"
-msgstr "Kanal za programere"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this "
-"add-on before it's released to the general public. Once you install the "
-"development version, you will continue to get updates from this channel. To "
-"stop receiving development updates, reinstall the default version from the "
-"link above."
-msgstr ""
-"Kanal za programere Vam dopušta da testirate novu probnu verziju ovog "
-"dodatka pre nego što postane dostupan široj javnosti. Čim instalirate "
-"razvojnu verziju, nastavićete da dobijate nadogradnje sa ovog kanala. Da "
-"biste prekinuli primanje novosti, ponovo instalirajte podrazumevanu verziju "
-"sa gornje veze."
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been "
-"reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
 
 msgid "close"
 msgstr "zatvori"
@@ -2269,6 +2245,30 @@ msgstr "Komentar na {addon} {version}."
 msgid "Information request removed"
 msgstr "Zahtevane dodatne informacije"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Zahtevana je recenzija za {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Zahtevana super recenzija"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Zahtevana je recenzija za {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Zahtevana super recenzija"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Zahtevana je recenzija za {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Zahtevana recenzija"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2307,9 +2307,6 @@ msgstr "Odobrenje u toku"
 
 msgid "Flagged for further review"
 msgstr "Označeno za dalju recenziju"
-
-msgid "Beta"
-msgstr "Beta verzija"
 
 msgid "Unlisted"
 msgstr ""
@@ -2896,11 +2893,6 @@ msgstr "Prepis nije prešao validaciju"
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid ""
-"A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
-"number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Ne možete više datoteka otpremiti za ovu verziju."
 
@@ -2976,6 +2968,16 @@ msgid ""
 "this type of update."
 msgstr ""
 
+msgid ""
+"Your developer API key was found in the submitted file. To protect your "
+"account, the key will be revoked."
+msgstr ""
+
+msgid ""
+"The developer API key of a coauthor was found in the submitted file. To "
+"protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s je odgovorio sa %s (%s)."
@@ -2987,6 +2989,9 @@ msgstr "Konekcija na \"%s\" je istekla."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Nismo mogli kontaktirati host na \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3049,16 +3054,6 @@ msgstr "Overite dodatak"
 
 msgid "Check Add-on Compatibility"
 msgstr "Proverite kompatibilnost dodatka"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3844,11 +3839,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Ovaj dodatak nije kompatibilan sa Vašom verzijom %(app)s-a."
 
-msgid ""
-"This add-on doesn't have any approved versions, so its public pages "
-"(including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -4087,9 +4077,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
-
-msgid "Only publish this version to my beta channel."
-msgstr "Objavi ovu verziju samo na moj beta kanal."
 
 msgid "Administrative overrides"
 msgstr "Administrativna poništavanja"
@@ -5097,23 +5084,6 @@ msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 
 msgid ""
-"Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid ""
-"Isolate your Facebook identity into a separate \"container\" that makes it "
-"harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid ""
-"Just highlight text on any web page to search the phrase from an array of "
-"engines."
-msgstr ""
-
-msgid ""
 "Ad blocking & privacy protection {start_sub_heading}with {addon_name}"
 "{end_sub_heading}"
 msgstr ""
@@ -5127,6 +5097,21 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid ""
+"Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid ""
+"Isolate your Facebook identity into a separate \"container\" that makes it "
+"harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5229,6 +5214,19 @@ msgstr ""
 "_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -6530,33 +6528,6 @@ msgstr ""
 "njegovom razvoju tako što će napraviti mali novčani doprinos. Ovi doprinosi "
 "idu direktno programeru, osim ako je treće lice naznačeno, kao što je "
 "neprofitna Mozilla fondacija."
-
-msgid "What are beta add-ons?"
-msgstr "Šta su beta dodaci?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an "
-"add-on author. While different authors have different standards for beta "
-"code quality, you should assume that these add-ons are less stable than the "
-"general add-on releases."
-msgstr ""
-"Beta dodaci su verzije koje nisu pregledane i predstavljaju najnovije delo "
-"autora dodataka. Dok različiti autori imaju različite standarde kvaliteta "
-"beta koda, treba pretpostaviti da su ovi dodaci manje stabilni od opšteg "
-"izdanja dodatka."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" "
-"section of an add-on's listing, you will continue to receive updates for "
-"that add-on as they become available. Like the initial version you "
-"installed, all beta releases are not reviewed by Mozilla and may harm your "
-"computer."
-msgstr ""
-"Imajte na umu da kada instalirate dodatak iz \"beta verzije\" sekcije "
-"listinga dodatka, Vi će nastaviti da primate ispravke za taj dodatak, čim "
-"one postanu dostupne. Kao i početna verzija koju ste instalirali, sva beta "
-"izdanja su nepregledana i mogu da naškode Vašem računaru."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kako mogu da prijavim neprikladan ili spam komentar?"
