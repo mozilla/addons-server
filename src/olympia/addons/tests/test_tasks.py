@@ -1,6 +1,5 @@
 import mock
 import os
-import shutil
 import tempfile
 
 from django.conf import settings
@@ -12,6 +11,7 @@ from olympia.addons.models import AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
     migrate_lwts_to_static_themes, save_persona_image)
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
@@ -111,16 +111,18 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
             lightweight_theme=persona_b).static_theme == addon_b
         assert addon_b.slug == 'theme_b'
 
+    def _mock_xpi_side_effect(self, lwt, upload_path):
+        xpi_path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        copy_stored_file(xpi_path, upload_path)
+        assert not os.path.isdir(upload_path)
+        return mock.DEFAULT
+
     @mock.patch('olympia.addons.tasks.build_static_theme_xpi_from_lwt')
     @override_switch('allow-static-theme-uploads', active=True)
     def test_add_static_theme_from_lwt(self, build_static_theme_xpi_mock):
-        xpi_path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-        copy_path = os.path.join(
-            settings.TMP_PATH, 'static_theme.zip')
-        shutil.copy(xpi_path, copy_path)
         author = user_factory()
-        build_static_theme_xpi_mock.return_value = file(copy_path)
+        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
         persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
         persona.persona.license = licenses.LICENSE_CC_BY_ND.id
         Tag.objects.create(tag_text='themey').save_tag(persona)
@@ -142,12 +144,7 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
     @override_switch('allow-static-theme-uploads', active=True)
     def test_add_static_theme_broken_lwt(self, build_static_theme_xpi_mock):
         """What if no author or license or category?"""
-        xpi_path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-        copy_path = os.path.join(
-            settings.TMP_PATH, 'static_theme.zip')
-        shutil.copy(xpi_path, copy_path)
-        build_static_theme_xpi_mock.return_value = file(copy_path)
+        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
         persona = addon_factory(type=amo.ADDON_PERSONA)
 
         assert list(persona.authors.all()) == []  # no author

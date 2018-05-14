@@ -1,5 +1,6 @@
 import hashlib
 import os
+import uuid
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -518,12 +519,15 @@ def _get_lwt_default_author():
 
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
-    upload_zip = build_static_theme_xpi_from_lwt(lwt)
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
     upload = FileUpload.objects.create(
-        path=upload_zip.name, user=author, valid=True)
+        user=author, valid=True)
+    destination = os.path.join(
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    build_static_theme_xpi_from_lwt(lwt, destination)
+    upload.update(path=destination)
 
     # Create addon + version
     parsed_data = parse_addon(upload, user=author)

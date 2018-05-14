@@ -1,6 +1,5 @@
 import json
 import random
-import tempfile
 import uuid
 import zipfile
 
@@ -175,7 +174,7 @@ def get_addon_recommendations(guid_param, taar_enable):
     return guids, outcome, fail_reason
 
 
-def build_static_theme_xpi_from_lwt(lwt):
+def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     # create manifest
     accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
                    else amo.THEME_ACCENTCOLOR_DEFAULT)
@@ -198,9 +197,6 @@ def build_static_theme_xpi_from_lwt(lwt):
         manifest['description'] = unicode(lwt.description)
 
     # build zip with manifest and background file
-    upload_zip = tempfile.NamedTemporaryFile(
-        suffix='.xpi', dir=settings.TMP_PATH, delete=False)
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
         dest.writestr('manifest.json', json.dumps(manifest))
         dest.write(lwt.persona.header_path, arcname=lwt.persona.header)
-    return upload_zip

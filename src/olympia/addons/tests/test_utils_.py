@@ -3,6 +3,7 @@ import json
 import mock
 import os
 import pytest
+import tempfile
 import zipfile
 
 from django.conf import settings
@@ -222,7 +223,8 @@ class TestBuildStaticThemeXpiFromLwt(TestCase):
         lwt.persona.header = 'weta.png'
         lwt.persona.header_path = self.background_png  # It's a cached_property
 
-        static_xpi = build_static_theme_xpi_from_lwt(lwt)
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
 
         with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
             manifest = xpi.read('manifest.json')
@@ -247,7 +249,8 @@ class TestBuildStaticThemeXpiFromLwt(TestCase):
         lwt.persona.header = 'weta.png'
         lwt.persona.header_path = self.background_png  # It's a cached_property
 
-        static_xpi = build_static_theme_xpi_from_lwt(lwt)
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
 
         with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
             manifest = xpi.read('manifest.json')
