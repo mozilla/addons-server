@@ -51,8 +51,9 @@ def user_media_url(what):
     return getattr(settings, key, default)
 
 
-APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
-PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
+PLATFORM_NAMES_TO_CONSTANTS = {
+    platform.api_name: platform.id for platform in PLATFORMS.values()
+}
 
 ADDON_SLUGS_UPDATE = {
     1: 'extension',
