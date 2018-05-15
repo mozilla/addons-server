@@ -11,7 +11,9 @@
         {% endfor %}
       {% endif %}
       <li class="nomenu logout">
-        <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+         {% block user_logout_link %}
+         <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+         {% endblock %}
       </li>
     </ul>
   </li>
