@@ -10,7 +10,6 @@ from django.core.files.storage import default_storage as storage
 from PIL import Image
 
 import olympia.core.logger
-from olympia import amo
 
 
 log = olympia.core.logger.getLogger('z.versions.utils')
@@ -22,7 +21,6 @@ def write_svg_to_png(svg_content, out):
         temporary_svg.write(svg_content)
         temporary_svg.flush()
 
-        size = None
         try:
             if not os.path.exists(os.path.dirname(out)):
                 os.makedirs(out)
@@ -32,12 +30,13 @@ def write_svg_to_png(svg_content, out):
                 temporary_svg.name
             ]
             subprocess.check_call(command)
-            size = amo.THEME_PREVIEW_SIZE
         except IOError as io_error:
             log.debug(io_error)
+            return False
         except subprocess.CalledProcessError as process_error:
             log.debug(process_error)
-    return size
+            return False
+    return True
 
 
 def encode_header_image(path):
@@ -75,7 +74,7 @@ class AdditionalBackground(object):
     def __init__(self, path, alignment, tiling, header_root):
         # If there an unequal number of alignments or tiling to srcs the value
         # will be None so use defaults.
-        alignment = (alignment or 'left top').lower()
+        self.alignment = (alignment or 'left top').lower()
         tiling = (tiling or 'no-repeat').lower()
         self.src, self.width, self.height = encode_header_image(
             os.path.join(header_root, path))
@@ -83,17 +82,19 @@ class AdditionalBackground(object):
                               else '100%')
         self.pattern_height = (self.height if tiling in ['repeat', 'repeat-y']
                                else '100%')
-        align_x, align_y = self.split_alignment(alignment)
+
+    def calculate_pattern_offsets(self, svg_size):
+        align_x, align_y = self.split_alignment(self.alignment)
         if align_x == 'right':
-            self.pattern_x = amo.THEME_PREVIEW_SIZE.width - self.width
+            self.pattern_x = svg_size.width - self.width
         elif align_x == 'center':
-            self.pattern_x = (amo.THEME_PREVIEW_SIZE.width - self.width) / 2
+            self.pattern_x = (svg_size.width - self.width) / 2
         else:
             self.pattern_x = 0
         if align_y == 'bottom':
-            self.pattern_y = amo.THEME_PREVIEW_SIZE.height - self.height
+            self.pattern_y = svg_size.height - self.height
         elif align_y == 'center':
-            self.pattern_y = (amo.THEME_PREVIEW_SIZE.height - self.height) / 2
+            self.pattern_y = (svg_size.height - self.height) / 2
         else:
             self.pattern_y = 0
 

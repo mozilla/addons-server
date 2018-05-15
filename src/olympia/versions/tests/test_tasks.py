@@ -13,8 +13,37 @@ from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
 
 
+HEADER_ROOT = os.path.join(
+    settings.ROOT, 'src/olympia/versions/tests/static_themes/')
+
+
+def check_render(svg_content, header_url, header_height, preserve_aspect_ratio,
+                 mimetype, valid_img, colors, svg_width,
+                 svg_height, inner_width):
+    # check header is there.
+    assert 'width="%s" height="%s" xmlns="http://www.w3.org/2000/' % (
+        svg_width, svg_height) in svg_content
+    # check image xml is correct
+    image_tag = (
+        '<image id="svg-header-img" width="%s" height="%s" '
+        'preserveAspectRatio="%s"' % (
+            inner_width, header_height, preserve_aspect_ratio))
+    assert image_tag in svg_content, svg_content
+    # and image content is included and was encoded
+    if valid_img:
+        with storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
+            header_blob = header_file.read()
+            base_64_uri = 'data:%s;base64,%s' % (
+                mimetype, b64encode(header_blob))
+    else:
+        base_64_uri = ''
+    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content, svg_content
+    # check each of our colors above was included
+    for color in colors:
+        assert color in svg_content
+
+
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 @pytest.mark.parametrize(
@@ -28,10 +57,9 @@ from olympia.versions.tasks import generate_static_theme_preview
     )
 )
 def test_generate_static_theme_preview(
-        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,
+        write_svg_to_png_mock, pngcrush_image_mock,
         header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
-    write_svg_to_png_mock.return_value = (789, 101112)
-    resize_image_mock.return_value = (123, 456), (789, 101112)
+    write_svg_to_png_mock.return_value = True
     theme_manifest = {
         "images": {
         },
@@ -45,58 +73,43 @@ def test_generate_static_theme_preview(
     }
     if header_url is not None:
         theme_manifest['images']['headerURL'] = header_url
-    header_root = os.path.join(
-        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, header_root, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
 
-    write_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 1
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
+    write_svg_to_png_mock.call_count == 2
+    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
     assert png_path == preview.image_path
-    assert resize_image_mock.call_count == 1
-    assert resize_image_mock.call_args_list[0][0] == (
-        png_path,
-        preview.thumbnail_path,
-        amo.ADDON_PREVIEW_SIZES[0],
-    )
+    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
+    assert png_path == preview.thumbnail_path
+
+    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
+    assert pngcrush_image_mock.call_args_list[1][0][0] == (
+        preview.thumbnail_path)
 
     preview.reload()
-    assert preview.sizes == {'image': [789, 101112], 'thumbnail': [123, 456]}
+    assert preview.sizes == {
+        'image': list(amo.THEME_PREVIEW_SIZES['full']),
+        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
 
-    # check header is there.
-    assert 'width="680" height="100" xmlns="http://www.w3.org/2000/' in (
-        svg_content)
-    # check image xml is correct
-    image_tag = (
-        '<image id="svg-header-img" width="680" height="%s" '
-        'preserveAspectRatio="%s"' % (header_height, preserve_aspect_ratio))
-    assert image_tag in svg_content, svg_content
-    # and image content is included and was encoded
-    if valid_img:
-        with storage.open(header_root + header_url, 'rb') as header_file:
-            header_blob = header_file.read()
-            base_64_uri = 'data:%s;base64,%s' % (
-                mimetype, b64encode(header_blob))
-    else:
-        base_64_uri = ''
-    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content, svg_content
-    # check each of our colors above was included
-    for (key, color) in theme_manifest['colors'].items():
-        snippet = 'class="%s" fill="%s"' % (key, color)
-        assert snippet in svg_content
+    colors = ['class="%s" fill="%s"' % (key, color)
+              for (key, color) in theme_manifest['colors'].items()]
+
+    check_render(image_svg_content, header_url, header_height,
+                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 680, 92, 680)
+    check_render(thumb_svg_content, header_url, header_height,
+                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 670, 64, 963.125)
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_static_theme_preview_with_chrome_properties(
-        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock):
-    write_svg_to_png_mock.return_value = (789, 101112)
-    resize_image_mock.return_value = (123, 456), (789, 101112)
+        write_svg_to_png_mock, pngcrush_image_mock):
+    write_svg_to_png_mock.return_value = True
     theme_manifest = {
         "images": {
             "theme_frame": "transparent.gif"
@@ -107,34 +120,27 @@ def test_generate_static_theme_preview_with_chrome_properties(
             "bookmark_text": [0, 0, 0],  # 'toolbar_text'
         }
     }
-    header_root = os.path.join(
-        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, header_root, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
 
-    write_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 1
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
+    write_svg_to_png_mock.call_count == 2
+    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
     assert png_path == preview.image_path
-    assert resize_image_mock.call_count == 1
-    assert resize_image_mock.call_args_list[0][0] == (
-        png_path,
-        preview.thumbnail_path,
-        amo.ADDON_PREVIEW_SIZES[0],
-    )
+    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
+    assert png_path == preview.thumbnail_path
 
-    # check image xml is correct
-    image_tag = (
-        '<image id="svg-header-img" width="680" height="%s" '
-        'preserveAspectRatio="%s"' % (1, 'xMaxYMin meet'))
-    assert image_tag in svg_content, svg_content
-    # and image content is included and was encoded
-    with storage.open(header_root + 'transparent.gif', 'rb') as header_file:
-        header_blob = header_file.read()
-    base_64_uri = 'data:%s;base64,%s' % ('image/gif', b64encode(header_blob))
-    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
+    assert pngcrush_image_mock.call_args_list[1][0][0] == (
+        preview.thumbnail_path)
+
+    preview.reload()
+    assert preview.sizes == {
+        'image': list(amo.THEME_PREVIEW_SIZES['full']),
+        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
+
+    colors = []
     # check each of our colors above was converted to css codes
     chrome_colors = {
         'bookmark_text': 'toolbar_text',
@@ -144,18 +150,45 @@ def test_generate_static_theme_preview_with_chrome_properties(
     for (chrome_prop, firefox_prop) in chrome_colors.items():
         color_list = theme_manifest['colors'][chrome_prop]
         color = 'rgb(%s, %s, %s)' % tuple(color_list)
-        snippet = 'class="%s" fill="%s"' % (firefox_prop, color)
-        assert snippet in svg_content
+        colors.append('class="%s" fill="%s"' % (firefox_prop, color))
+
+    check_render(image_svg_content, 'transparent.gif', 1,
+                 'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
+    check_render(thumb_svg_content, 'transparent.gif', 1,
+                 'xMaxYMin meet', 'image/gif', True, colors, 670, 64, 963.125)
+
+
+def check_render_additional(svg_content, inner_svg_width):
+    # check additional background pattern is correct
+    image_width = 270
+    image_height = 200
+    pattern_x_offset = (inner_svg_width - image_width) / 2
+    pattern_tag = (
+        '<pattern id="AdditionalBackground1"\n'
+        '                   width="%s" height="%s"\n'
+        '                   x="%s" y="%s" patternUnits="userSpaceOnUse">' % (
+            image_width, '100%', pattern_x_offset, 0))
+    assert pattern_tag in svg_content, svg_content
+    image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
+    assert image_tag in svg_content, svg_content
+    rect_tag = (
+        '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)">'
+        '</rect>')
+    assert rect_tag in svg_content, svg_content
+    # and image content is included and was encoded
+    additional = os.path.join(HEADER_ROOT, 'weta_for_tiling.png')
+    with storage.open(additional, 'rb') as header_file:
+        header_blob = header_file.read()
+    base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
+    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
-        write_svg_to_png_mock, pngcrush_image_mock, resize_image_mock,):
-    write_svg_to_png_mock.return_value = (789, 101112)
-    resize_image_mock.return_value = (123, 456), (789, 101112)
+        write_svg_to_png_mock, pngcrush_image_mock):
+    write_svg_to_png_mock.return_value = True
 
     theme_manifest = {
         "images": {
@@ -171,46 +204,25 @@ def test_generate_preview_with_additional_backgrounds(
             "additional_backgrounds_tiling": ["repeat-x"],
         },
     }
-    header_root = os.path.join(
-        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, header_root, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
 
-    write_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 1
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    ((svg_content, png_path), _) = write_svg_to_png_mock.call_args
+    write_svg_to_png_mock.call_count == 2
+    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
     assert png_path == preview.image_path
-    assert resize_image_mock.call_count == 1
-    assert resize_image_mock.call_args_list[0][0] == (
-        png_path,
-        preview.thumbnail_path,
-        amo.ADDON_PREVIEW_SIZES[0],
-    )
+    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
+    assert png_path == preview.thumbnail_path
+
+    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
+    assert pngcrush_image_mock.call_args_list[1][0][0] == (
+        preview.thumbnail_path)
 
     preview.reload()
-    assert preview.sizes == {'image': [789, 101112], 'thumbnail': [123, 456]}
+    assert preview.sizes == {
+        'image': list(amo.THEME_PREVIEW_SIZES['full']),
+        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
 
-    # check additional background pattern is correct
-    image_width = 270
-    image_height = 200
-    pattern_x_offset = (680 - image_width) / 2
-    pattern_tag = (
-        '<pattern id="AdditionalBackground1"\n'
-        '                   width="%s" height="%s"\n'
-        '                   x="%s" y="%s" patternUnits="userSpaceOnUse">' % (
-            image_width, '100%', pattern_x_offset, 0))
-    assert pattern_tag in svg_content, svg_content
-    image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
-    assert image_tag in svg_content, svg_content
-    rect_tag = (
-        '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)">'
-        '</rect>')
-    assert rect_tag in svg_content, svg_content
-    # and image content is included and was encoded
-    additional = os.path.join(header_root, 'weta_for_tiling.png')
-    with storage.open(additional, 'rb') as header_file:
-        header_blob = header_file.read()
-    base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
-    assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    check_render_additional(image_svg_content, 680)
+    check_render_additional(thumb_svg_content, 963.125)

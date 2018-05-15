@@ -791,9 +791,9 @@ def resize_preview(src, instance, **kw):
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         (sizes['thumbnail'], sizes['original']) = resize_image(
-            src, thumb_dst, amo.ADDON_PREVIEW_SIZES[0])
+            src, thumb_dst, amo.ADDON_PREVIEW_SIZES['thumb'])
         (sizes['image'], _) = resize_image(
-            src, full_dst, amo.ADDON_PREVIEW_SIZES[1])
+            src, full_dst, amo.ADDON_PREVIEW_SIZES['full'])
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
