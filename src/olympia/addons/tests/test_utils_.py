@@ -1,11 +1,18 @@
+# -*- coding: utf-8 -*-
+import json
 import mock
+import os
 import pytest
+import tempfile
+import zipfile
 
+from django.conf import settings
 from django.forms import ValidationError
 
 from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
+    build_static_theme_xpi_from_lwt,
     get_addon_recommendations, get_creatured_ids, get_featured_ids,
     TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
     TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
@@ -199,3 +206,62 @@ class TestGetAddonRecommendations(TestCase):
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_CURATED
         assert reason is None
+
+
+class TestBuildStaticThemeXpiFromLwt(TestCase):
+    def setUp(self):
+        self.background_png = os.path.join(
+            settings.ROOT, 'src/olympia/versions/tests/static_themes/weta.png')
+
+    def test_lwt(self):
+        # Create our persona.
+        lwt = addon_factory(
+            type=amo.ADDON_PERSONA, persona_id=0, name=u'Amáze',
+            description=u'It does all d£ things')
+        lwt.persona.accentcolor, lwt.persona.textcolor = '123', '456789'
+        # Give it a background header file.
+        lwt.persona.header = 'weta.png'
+        lwt.persona.header_path = self.background_png  # It's a cached_property
+
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
+
+        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
+            manifest = xpi.read('manifest.json')
+            manifest_json = json.loads(manifest)
+            assert manifest_json['name'] == u'Amáze'
+            assert manifest_json['description'] == u'It does all d£ things'
+            assert manifest_json['theme']['images']['headerURL'] == (
+                u'weta.png')
+            assert manifest_json['theme']['colors']['accentcolor'] == (
+                u'#123')
+            assert manifest_json['theme']['colors']['textcolor'] == (
+                u'#456789')
+            assert (xpi.read('weta.png') ==
+                    open(self.background_png).read())
+
+    def test_lwt_missing_info(self):
+        # Create our persona.
+        lwt = addon_factory(
+            type=amo.ADDON_PERSONA, persona_id=0)
+        lwt.update(name='')
+        # Give it a background header file.
+        lwt.persona.header = 'weta.png'
+        lwt.persona.header_path = self.background_png  # It's a cached_property
+
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
+
+        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
+            manifest = xpi.read('manifest.json')
+            manifest_json = json.loads(manifest)
+            assert manifest_json['name'] == lwt.slug
+            assert 'description' not in manifest_json.keys()
+            assert manifest_json['theme']['images']['headerURL'] == (
+                u'weta.png')
+            assert manifest_json['theme']['colors']['accentcolor'] == (
+                amo.THEME_ACCENTCOLOR_DEFAULT)
+            assert manifest_json['theme']['colors']['textcolor'] == (
+                u'#000')
+            assert (xpi.read('weta.png') ==
+                    open(self.background_png).read())
