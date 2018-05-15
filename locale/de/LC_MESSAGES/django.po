@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-07 19:40+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 14:10+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2670,11 +2670,11 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Sie können ein WebExtensions-Add-on nicht mit einem Alt-Add-on aktualisieren. Ihre Nutzer könnten Ihre neue Version nicht verwenden, weil Firefox diese Art von Update nicht unterstützt."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr "Ihr Entwickler-API-Schlüssel wurde in der übermittelten Datei gefunden. Um Ihr Konto zu schützen wird der Schlüssel neu erzeugt."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Ihr Entwickler-API-Schlüssel wurde in der übermittelten Datei gefunden. Um Ihr Konto zu schützen wird der Schlüssel widerrufen."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr "Ihr Entwickler-API-Schlüssel eines Mitautors wurde in der übermittelten Datei gefunden. Um Ihr Add-on zu schützen wird der Schlüssel neu erzeugt."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Ihr Entwickler-API-Schlüssel eines Mitautors wurde in der übermittelten Datei gefunden. Um Ihr Add-on zu schützen wird der Schlüssel widerrufen."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4418,18 +4418,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppen Sie die Facebook-Verfolgung {start_sub_heading}mit {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolieren Sie Ihre Facebook-identität in einem separaten „Container“ der es Facebook erschwert, Ihre Aktivitäten im Internet zu verfolgen."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vereinfachte Suche {start_sub_heading}mit {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Markieren Sie einfach Text auf einer Website und suchen Sie mit einer von vielen Suchmaschinen nach dem Inhalt."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blockieren von Werbung & Datenschutz {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
@@ -4441,6 +4429,18 @@ msgstr "Denken Sie Tabs neu {start_sub_heading}mit {addon_name}{end_sub_heading}
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Haben Sie tonnenweise offene Tabs? Organisieren Sie sie in einer praktischen Seitenleiste."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppen Sie die Facebook-Verfolgung {start_sub_heading}mit {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolieren Sie Ihre Facebook-identität in einem separaten „Container“ der es Facebook erschwert, Ihre Aktivitäten im Internet zu verfolgen."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Suchen Sie Bilder {start_sub_heading}mit {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Bilder-Rückwärtssuche mit einer Reihe von Suchmaschinen."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"

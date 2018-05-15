@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-08 07:44+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-14 10:41+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -993,9 +993,8 @@ msgstr "Ikone ne mogu biti animirane."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ovaj prilagođeni URL već koristi druga vaša kolekcija."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Slike ne mogu biti animirane."
+msgstr "Naziv ne može biti prazan."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Priloženi URL mora se sastojati od slova, brojeva, donjih crtica ili crtica."
@@ -1994,23 +1993,20 @@ msgstr "Zahtjev za informacije o {addon} {version} je uklonio programer."
 msgid "Information request removed"
 msgstr "Zahtev za informaciju je uklonjen"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled dodatka {addon} {version}."
 
 msgid "Admin add-on-review requested"
 msgstr "Zatražen adminov pregled dodatka"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled sadržaja {addon} {version}."
 
 msgid "Admin content-review requested"
 msgstr "Zatražen adminov pregled sadržaja"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Sadržaj {addon} {version} je odbijen."
+msgstr "Zahtijevan je adminov pregled teme {addon} {version}."
 
 msgid "Admin theme-review requested"
 msgstr "Zatražen adminov pregled teme"
@@ -2650,10 +2646,10 @@ msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proc
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ne možete ažurirati WebExtensions dodatak sa naslijeđenim dodatkom. Vaši korisnici ne bi bili u mogućnosti koristiti vašu novu verziju jer Firefox ne podržava ove vrste ažuriranja."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
@@ -3971,7 +3967,7 @@ msgid "View All Submissions"
 msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Ovdje prikazujete i upravljate vašim dodacima i temama. Da objavite vaš prvi dodatak, kliknite \"Pošaljite vaš prvi dodatak\" ili \"Pošaljite vašu prvu temu\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Pošaljite svoj prvi dodatak"
@@ -4290,6 +4286,7 @@ msgstr "{label_open}Vidljivo:{label_close} Vidljivo svima na {site_url} i uklju�
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Nevidljivo:{label_close} Neće biti uključeno u rezultate pretrage, a stranica dodatka će označiti da ste je onemogućili. Nove verzije za dodatak neće biti prihvaćene u ovom statusu."
 
 msgid "Listed versions"
 msgstr "Navedene verzije"
@@ -4323,13 +4320,13 @@ msgstr "Izbriši verziju {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "Nastojite izbrisati trenutnu verziju vašeg dodatka. Ovo će možda proizrokovati da vaš dodatak promijeni status ili da izgubi javnu vidljivost ako je ovo jedina javna verzija vašeg dodatka."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Brisanje ove verzije će trajno izbrisati:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Važno:</strong> Jednom kada verzija bude izbrisana, možda nećete moći uploadovati novu verziju sa istim brojem."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Da li ste sigurni da želite izbrisati ovu verziju?"
@@ -4344,36 +4341,48 @@ msgid "Hide Add-on"
 msgstr "Sakrij dodatak"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Skrivanjem vašeg dodatka će spriječiti njegovo pojavljivanje bilo gdje u našoj galeriji i zaustavit će slanje automatskih ažuriranja korisnicima."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Datoteke koje čekaju recenziju će biti onemogućene i trebat ćete učitati nove verzije."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Da li ste sigurni da želite sakriti vaš dodatak?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Otkazivanjem zahtjeva za recenziju će označiti vaš dodatak nepotpunim, a svaka verzija na čekanju recenzije će biti onemogućena."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Da li ste sigurni da želite otkazati vaš zahtjev za recenziju?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Dokumentacija dodatka :: Razvojni centar"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} greška"
+msgstr[1] "{0} greške"
+msgstr[2] "{0} grešaka"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} upozorenje"
+msgstr[1] "{0} upozorenja"
+msgstr[2] "{0} upozorenja"
+
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_name}{end_sub_heading}"
+
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Jednostavno podešavanje vam dopušta preuzimanje kontrole nad reklamama koje vidite i kako ste praćeni na internetu."
+
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4381,22 +4390,10 @@ msgstr ""
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

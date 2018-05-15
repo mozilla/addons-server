@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-07 16:42+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-13 21:55+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -559,7 +559,7 @@ msgid "close"
 msgstr "fechar"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Alguns extras pedem permissão para desempenhar certas funções (exemplo: um extra de gestão de separadores irá pedir permissão para aceder ao sistema de separadores do seu navegador)."
+msgstr "Alguns extras pedem permissão para realizar certas funções (exemplo: um extra de gestão de separadores irá pedir permissão para aceder ao sistema de separadores do seu navegador)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -573,7 +573,7 @@ msgid "This add-on can:"
 msgstr "Este extra pode:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Alguns extras pedem permissão para desempenhar certas funções. Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
+msgstr "Alguns extras pedem permissão para realizar certas funções. Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Por favor note que este extra utiliza tecnologia de legado, que dá acesso a funções do navegador e dados sem solicitar a sua permissão."
@@ -2658,11 +2658,11 @@ msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter es
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Não pode atualizar uma extensão WebExtensions com um extra de legado. Os seus utilizadores não poderão utilizar a sua nova versão porque o Firefox não suporta este tipo de atualização."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr "A sua chave de API de programador foi encontrada no ficheiro submetido. Para proteger a sua conta, a chave irá ser regenerada."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "A sua chave de API de programador foi encontrada no ficheiro submetido. Para proteger a sua conta, a chave irá ser revogada."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr "A chave de API de programador de um coautor foi encontrada no ficheiro submetido. Para proteger o seu extra, a chave irá ser regenerada."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "A chave de API de programador de um coautor foi encontrada no ficheiro submetido. Para proteger o seu extra, a chave irá ser revogada."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4101,10 +4101,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe deem crédito?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "O licenciador permite que outros possam copiar, distribuir, mostrar e destacar o trabalho, incluindo fins comerciais."
+msgstr "O licenciador permite que outros possam copiar, distribuir, mostrar e realizar o trabalho, incluindo fins comerciais."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "o licenciador permite que outros copiem, distribuam e efectuem trabalho apenas para fins não comerciais."
+msgstr "O licenciador permite que outros copiem, distribuam e realizem o trabalho apenas para fins não comerciais."
 
 # 85%
 msgid "Can others make commercial use of your Theme?"
@@ -4115,7 +4115,7 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "O licenciador permite que outros copiem, distribuam,mostrem e executem o trabalho, bem como criar trabalhos derivados com base nele."
+msgstr "O licenciador permite que outros copiem, distribuam, mostrem e realizem o trabalho, bem como criar trabalhos derivados com base no mesmo."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "O licenciador permite que outros copiem, distribuam e transmitam apenas cópias inalteradas do trabalho - não trabalhos derivados com base nele."
@@ -4414,18 +4414,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isole a sua identidade do Facebook num \"contentor\" separado que faz mais difícil com que o Facebook monitorize os seus movimentos à volta da web."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifique a pesquisa {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Apenas destaque texto em qualquer página web para pesquisar a frase a partir de uma matriz de motores."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueio de anúncios e proteção de privacidade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
@@ -4437,6 +4425,18 @@ msgstr "Re-imagine os separadores {start_sub_heading}com {addon_name}{end_sub_he
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Tem uma tonelada de separadores abertos? Organize-os numa barra lateral arrumada."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isole a sua identidade do Facebook num \"contentor\" separado que faz mais difícil com que o Facebook monitorize os seus movimentos pela web."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pesquise imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Realize pesquisas inversas de imagem a partir de uma matriz de motores."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarregar vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"

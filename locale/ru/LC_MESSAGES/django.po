@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-08 13:15+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-12 08:03+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2691,11 +2691,11 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Вы не можете обновить WebExtensions дополнение на устаревшее. Ваши пользователи не смогут использовать вашу новую версию потому, что Firefox не поддерживает этот тип обновлений."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr "В загруженном файле найден ваш API-ключ разработчика. Чтобы защитить ваш аккаунт, ключ будет перегенерирован."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "В загруженном файле найден ваш API-ключ разработчика. Чтобы защитить ваш аккаунт, ключ будет отозван."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr "В загруженном файле найден API-ключ соавтора разработчика. Чтобы защитить ваше дополнение, ключ будет перегенерирован."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "В загруженном файле найден API-ключ соавтора разработчика. Чтобы защитить ваше дополнение, ключ будет отозван."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4465,18 +4465,6 @@ msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Остановите отслеживание Фейсбука {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Изолируйте свою деятельность в Фейсбуке в отдельном \"контейнере\", таким образом затрудняя для Фейсбука возможность отслеживания вас на других сайтах."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Упростите поиск {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Просто выделите текст на любой веб-странице для поиска в множестве поисковых систем."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокируйте рекламу и защищайте свою приватность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
@@ -4488,6 +4476,18 @@ msgstr "Переосмыслите вкладки {start_sub_heading}с помо
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "У вас тонны открытых вкладок? Организуйте их в удобной боковой панели."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Остановите отслеживание Фейсбука {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Изолируйте свою деятельность в Фейсбуке в отдельном \"контейнере\", таким образом затрудняя для Фейсбука возможность отслеживания вас на других сайтах."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ищите изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Выполняйте поиск по картинке в множестве поисковых систем."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"

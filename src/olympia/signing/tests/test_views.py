@@ -17,6 +17,7 @@ from rest_framework.response import Response
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
@@ -59,7 +60,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
             args = [guid, version]
         if pk is not None:
             args.append(pk)
-        return reverse('signing.version', args=args)
+        return reverse('v3:signing.version', args=args)
 
     def create_version(self, version):
         response = self.request('PUT', self.url(self.guid, version), version)
@@ -462,7 +463,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-webextension',
             version='1.0')
         assert response.status_code == 201
@@ -528,7 +529,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_optional_id_not_allowed_for_regular_addon(self):
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-version-no-id',
             version='1.0')
         assert response.status_code == 400
@@ -536,7 +537,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_webextension_reuse_guid(self):
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
 
@@ -551,14 +552,14 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 201
 
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 400
@@ -569,7 +570,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@create-webextension-with-guid-and-version',
             version='99.0')
         assert response.status_code == 201
@@ -584,7 +585,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
 
         response = self.request(
             'POST',
-            url=reverse('signing.version'),
+            url=reverse('v3:signing.version'),
             addon='@notify-link-clicks-i18n',
             version='1.0',
             filename=fname)
@@ -740,8 +741,9 @@ class TestCheckVersion(BaseUploadVersionCase):
         response = self.get(self.url(self.guid, version_string))
         assert response.status_code == 200
         file_ = qs.get()
-        assert response.data['files'][0]['download_url'] == \
-            file_.get_signed_url('api')
+        assert response.data['files'][0]['download_url'] == absolutify(
+            reverse('v3:signing.file', kwargs={'file_id': file_.id}) +
+            '/delicious_bookmarks-3.0-fx.xpi?src=api')
 
     def test_file_hash(self):
         version_string = '3.0'
@@ -773,7 +775,7 @@ class TestSignedFile(SigningAPITestCase):
         self.file_ = self.create_file()
 
     def url(self):
-        return reverse('signing.file', args=[self.file_.pk])
+        return reverse('v3:signing.file', args=[self.file_.pk])
 
     def create_file(self):
         addon = addon_factory(

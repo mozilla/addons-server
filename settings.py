@@ -46,8 +46,7 @@ CACHES = {
     }
 }
 
-# For local development, we don't need syslog and mozlog loggers.
-USE_SYSLOG = False
+# For local development, we don't need mozlog loggers.
 USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
@@ -78,8 +77,6 @@ SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
-
-ADDON_COLLECTOR_ID = 1
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968

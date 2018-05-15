@@ -7,11 +7,13 @@ from django.core.files import temp
 import mock
 
 from pyquery import PyQuery as pq
+from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, formset, initial, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -474,8 +476,9 @@ class TestVersion(TestCase):
         # Test review history
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
-        api_url = reverse(
-            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        api_url = absolutify(drf_reverse(
+            'v4:version-reviewnotes-list',
+            args=[self.addon.id, self.version.id]))
         assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
 

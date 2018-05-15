@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-07 18:11+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-09 19:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2697,11 +2697,11 @@ msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten pro
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Njamóžośo dodank typa WebExtensions pśez dodank starego typa aktualizěrowaś. Waše wužywarje njemógli wašu nowu wersiju wužywaś, dokulaž Firefox njepódpěra toś ten typ aktualizacije."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, buźo se kluc znowego generěrowaś."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, se kluc wótwołajo."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr "Wuwijarski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, buźo se kluc znowego generěrowaś."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Wuwijarski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, se kluc wótwołajo."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4443,18 +4443,6 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastajśo slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zjadnorśo pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Wuzwigniśo jadnorje tekst na někakem webboku, aby z pytnicu wuraz pytał."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokěrowanje wabjenja a šćit priwatnosći {start_sub_heading}z {addon_name}{end_sub_heading}"
 
@@ -4466,6 +4454,18 @@ msgstr "Pśemsyliśo rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_hea
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Maśo wjelgin wjele wócynjonych rejtarkow? Organizěrujśo je w praktiskej bocnicy."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zastajśo slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Wuwjeźćo slědkpytanja wobrazow z rědom pytnicow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ześěgniśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"

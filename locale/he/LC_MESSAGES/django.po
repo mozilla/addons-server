@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-07 11:18+0000\n"
+"POT-Creation-Date: 2018-05-09 12:10+0000\n"
+"PO-Revision-Date: 2018-05-11 12:00+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2711,15 +2711,15 @@ msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "‏%s הגיב עם %s (‏%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
@@ -3025,7 +3025,7 @@ msgid "Preview of listed version"
 msgstr "גרסאות שמוצגות"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "התצוגה המקדימה עדיין נוצרת - נא לחזור בהמשך או לרענן את העמוד."
 
 msgid "Manage Authors & License"
 msgstr "ניהול יוצרים ורשיונות"
@@ -4447,20 +4447,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "אזהרה אחת"
 msgstr[1] "{0} אזהרות"
 
-#, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "עליך פשוט להדגיש טקסט בכל עמוד שהוא כדי לחפש את הביטוי מתוך מגוון מנועי חיפוש."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
@@ -4473,6 +4459,20 @@ msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{en
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "יש לך כמות נכבדת של לשוניות פתוחות? ניתן לארגן אותן בסרגל צד מסודר."
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid " Perform reverse image searches from an array of engines."
+msgstr "עליך פשוט להדגיש טקסט בכל עמוד שהוא כדי לחפש את הביטוי מתוך מגוון מנועי חיפוש."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
@@ -5839,7 +5839,7 @@ msgstr "היסטוריית סקירות עבור תוספת זו"
 # %1 is the number of stars this add-on has
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr "מדורג %d מתוך 5 כוכבים"
+msgstr "דירוג %d מתוך 5 כוכבים"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "יש לספק הסבר קצר בעת בחירה ב־„אחר” כסיבה לסימון בדגל."
@@ -5990,11 +5990,11 @@ msgstr[0] "סקירה אחת"
 msgstr[1] "{num} סקירות"
 
 msgid "Rated {0} out of 5 stars"
-msgstr "מדורג {0} מתוך 5 כוכבים"
+msgstr "דירוג {0} מתוך 5 כוכבים"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "מדורג %(rating)s מתוך 5 כוכבים"
+msgstr "דירוג %(rating)s מתוך 5 כוכבים"
 
 msgid "Approved reviews"
 msgstr "סקירות שאושרו"
@@ -6549,7 +6549,7 @@ msgid "Review {0}"
 msgstr "סקירת {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "היסטוריית שינויי התוספת"
 
 msgid "Add-on History"
 msgstr "היסטוריית התוספת"
