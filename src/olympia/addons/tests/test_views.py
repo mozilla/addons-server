@@ -3439,6 +3439,17 @@ class TestLanguageToolsView(TestCase):
             file_kw={'strict_compatibility': True,
                      'status': amo.STATUS_DISABLED},
             min_app_version='58.0', max_app_version='58.*')
+        # And for the first pack, add a couple of versions that are also
+        # compatible. We should not use them though, because we only need to
+        # return the latest public version that is compatible.
+        extra_compatible_version_1 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_1.update(created=self.days_ago(3))
+        extra_compatible_version_2 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_2.update(created=self.days_ago(4))
 
         # Add a few of incompatible add-ons.
         incompatible_pack1 = addon_factory(
