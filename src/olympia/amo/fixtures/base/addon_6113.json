@@ -81,7 +81,6 @@
             "display_collections_fav": false,
             "display_collections": true,
             "averagerating": 4.33,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "",
@@ -93,8 +92,7 @@
             "display_name": "softcup \u0627\u0644\u062a\u0637\u0628",
             "created": "2007-03-05 13:09:37",
             "notes": null,
-            "modified": "2009-07-16 07:35:59",
-            "notifyevents": true
+            "modified": "2009-07-16 07:35:59"
         }
     },
     {

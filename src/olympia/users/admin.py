@@ -23,8 +23,7 @@ class UserAdmin(admin.ModelAdmin):
         }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',
-                       'display_collections_fav', 'is_public',
-                       'notifycompat', 'notifyevents'),
+                       'display_collections_fav', 'is_public'),
         }),
         ('Admin', {
             'fields': ('notes', 'picture_type'),

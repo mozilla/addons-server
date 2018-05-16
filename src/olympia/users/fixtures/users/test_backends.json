@@ -12,7 +12,6 @@
             "homepage": "http://jeffbalogh.org",
             "email": "jbalogh@mozilla.com",
             "fxa_id": "0824087ad88043e2a52bd41f51bbbe79",
-            "notifycompat": 1,
             "biography": null,
             "deleted": false,
             "username": "jbalogh",
@@ -20,7 +19,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 15:28:07",
-            "notifyevents": 1,
             "last_login_attempt": "2010-01-12 15:28:07",
             "last_login_attempt_ip": "192.168.1.100",
             "last_login_ip": "192.168.1.101",
@@ -39,7 +37,6 @@
             "averagerating": 3.73,
             "homepage": "http://www.fligtar.com",
             "email": "fligtar@gmail.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "fligtar",
@@ -47,7 +44,6 @@
             "created": "2007-03-05 13:09:37",
             "notes": "",
             "modified": "2009-09-24 20:11:30",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00"
         }
     },
@@ -63,15 +59,13 @@
             "averagerating": null,
             "homepage": "",
             "email": "testo@example.com",
-            "notifycompat": true,
             "biography": null,
             "deleted": false,
             "username": "barry",
             "display_name": "barry \u0627\u0644\u062a\u0637\u0628",
             "created": "2010-07-03 23:03:11",
             "notes": "",
-            "modified": "2010-07-23 00:37:10",
-            "notifyevents": true
+            "modified": "2010-07-23 00:37:10"
         }
     },
     {
@@ -113,7 +107,6 @@
             "averagerating": 3.73,
             "homepage": "http://example.com",
             "email": "alice@example.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "alice",
@@ -121,7 +114,6 @@
             "created": "2007-03-05 13:09:37",
             "notes": "",
             "modified": "2009-09-24 20:11:30",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00"
         }
     }

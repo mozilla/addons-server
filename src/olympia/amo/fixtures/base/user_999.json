@@ -9,7 +9,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "regular@mozilla.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "regularuser",
@@ -17,7 +16,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00"
         },
         "model": "users.userprofile",
