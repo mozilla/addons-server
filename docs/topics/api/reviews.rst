@@ -5,7 +5,8 @@ Reviews
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. The only authentication method available at
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 ------------
@@ -23,7 +24,7 @@ When ``addon``, ``user`` and ``version`` are passed on the same request,
 one review per version of a given add-on. This can be useful to find out if a
 user has already posted a review for the current version of an add-on.
 
-.. http:get:: /api/v3/reviews/review/
+.. http:get:: /api/v4/reviews/review/
 
     :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch reviews from. When passed, the reviews shown will always be the latest posted by each user on this particular add-on (which means there should only be one review per user in the results), unless the ``version`` parameter is also passed.
     :query string filter: The :ref:`filter(s) <review-filtering-param>` to apply.
@@ -63,7 +64,7 @@ Detail
 
 This endpoint allows you to fetch a review by its id.
 
-.. http:get:: /api/v3/reviews/review/(int:id)/
+.. http:get:: /api/v4/reviews/review/(int:id)/
 
     .. _review-detail-object:
 
@@ -96,7 +97,7 @@ If successful a :ref:`review object <review-detail-object>` is returned.
      Requires authentication.
 
 
-.. http:post:: /api/v3/reviews/review/
+.. http:post:: /api/v4/reviews/review/
 
     :<json string addon: The add-on id the review applies to (required).
     :<json string|null body: The text of the review.
@@ -119,7 +120,7 @@ If successful a :ref:`review object <review-detail-object>` is returned.
 
      Only body, title and rating are allowed for modification.
 
-.. http:patch:: /api/v3/reviews/review/(int:id)/
+.. http:patch:: /api/v4/reviews/review/(int:id)/
 
     :<json string|null body: The text of the review.
     :<json string|null title: The title of the review.
@@ -140,7 +141,7 @@ This endpoint allows you to delete an existing review by its id.
      not delete a review from somebody else if it was posted on an add-on they
      are listed as a developer of.
 
-.. http:delete:: /api/v3/reviews/review/(int:id)/
+.. http:delete:: /api/v4/reviews/review/(int:id)/
 
 
 -----
@@ -156,7 +157,7 @@ If successful a :ref:`review reply object <review-detail-object>` is returned.
      Requires authentication and either Addons:Edit permission or a user account
      listed as a developer of the add-on.
 
-.. http:post:: /api/v3/reviews/review/(int:id)/reply/
+.. http:post:: /api/v4/reviews/review/(int:id)/reply/
 
     :<json string body: The text of the reply (required).
     :<json string|null title: The title of the reply.
@@ -176,7 +177,7 @@ that something may be wrong with it.
      Requires authentication and a user account different from the one that
      posted the review.
 
-.. http:post:: /api/v3/reviews/review/(int:id)/flag/
+.. http:post:: /api/v4/reviews/review/(int:id)/flag/
 
     :<json string flag: A :ref:`constant<review-flag-constants>` describing the reason behind the flagging.
     :<json string|null note: A note to explain further the reason behind the flagging.

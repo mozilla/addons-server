@@ -3,16 +3,16 @@ External API
 ============
 
 This shows you how to use the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_
-API at ``/api/v3/`` which is hosted at the following URLs:
+API at ``/api/v4/`` which is hosted at the following URLs:
 
 .. _api-environments:
 
 ===========  =========================================
 Environment  URL
 ===========  =========================================
-Production   ``https://addons.mozilla.org/api/v3/``
-Staging      ``https://addons.allizom.org/api/v3/``
-Development  ``https://addons-dev.allizom.org/api/v3/``
+Production   ``https://addons.mozilla.org/api/v4/``
+Staging      ``https://addons.allizom.org/api/v4/``
+Development  ``https://addons-dev.allizom.org/api/v4/``
 ===========  =========================================
 
 Production
