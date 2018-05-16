@@ -12,7 +12,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "persona_reviewer@mozilla.com",
-            "notifycompat": true,
             "username": "persona_reviewer",
             "biography": null,
             "failed_login_attempts": 0,
@@ -24,7 +23,6 @@
             "notes": null,
             "modified": "2012-05-22 14:59:28",
             "last_login_ip": "127.0.0.1",
-            "notifyevents": true,
             "last_login": "2012-05-22 14:59:28"
         }
     },

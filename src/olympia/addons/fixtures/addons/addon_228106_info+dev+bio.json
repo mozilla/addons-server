@@ -134,7 +134,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "the-author@nowehere.com",
-            "notifycompat": false,
             "username": "theauthor",
             "biography": "Bio: This is line one.\n\nThis is line two",
             "failed_login_attempts": 0,
@@ -145,7 +144,6 @@
             "notes": "",
             "modified": "2010-09-12 07:34:47",
             "last_login_ip": "",
-            "notifyevents": false,
             "last_login": "2010-09-12 07:34:47"
         }
     },

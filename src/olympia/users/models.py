@@ -130,8 +130,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     homepage = models.URLField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)
-    notifycompat = models.BooleanField(default=True)
-    notifyevents = models.BooleanField(default=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
     picture_type = models.CharField(max_length=75, default=None, null=True,

@@ -100,7 +100,6 @@
             "display_collections": false,
             "averagerating": 4.24,
             "display_name": null,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "http://www.yoono.com/",
@@ -116,7 +115,6 @@
             "notes": null,
             "modified": "2010-05-12 16:10:49",
             "last_login_ip": "",
-            "notifyevents": true,
             "last_login": "2010-05-12 16:10:49"
         }
     },
