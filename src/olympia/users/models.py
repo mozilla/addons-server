@@ -422,7 +422,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 u'User (%s: <%s>) is being anonymized.' % (self, self.email))
             self.email = None
             self.fxa_id = None
-            self.username = 'Anonymous-%s' % self.id  # Can't be null
             self.display_name = None
             self.homepage = ''
             self.location = ''
@@ -432,6 +431,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.last_login_attempt = None
             self.last_login_attempt_ip = ''
             self.last_login_ip = ''
+            self.anonymize_username()
             self.save()
 
         if storage.exists(picture_path):
