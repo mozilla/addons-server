@@ -88,10 +88,8 @@ class Update(object):
         # because we've seen issues with Seamonkey and Thunderbird.
         # https://github.com/mozilla/addons-server/issues/7223
         app = applications.APP_GUIDS.get(self.data.get('appID'))
-        if app and app.id in (applications.FIREFOX.id,
-                              applications.ANDROID.id):
-            return True
-        return False
+        return app and app.id in (applications.FIREFOX.id,
+                                  applications.ANDROID.id)
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
