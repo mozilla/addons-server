@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-02 13:25+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-12 07:52+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -35,7 +35,7 @@ msgid "This username is already in use."
 msgstr "მომხმარებლის ეს სახელი უკვე გამოყენებულია."
 
 msgid "Images must be either PNG or JPG."
-msgstr "სურათი უნდა იყოს PNG, ან JPG ფორმატში."
+msgstr "სურათი უნდა იყოს PNG ან JPG ფორმატში."
 
 msgid "Images cannot be animated."
 msgstr "სურათი ვერ იმოძრავებს."
@@ -161,7 +161,7 @@ msgid "Describe your Theme."
 msgstr "აღწერეთ თქვენი თემა."
 
 msgid "Enter a new author's email address"
-msgstr "შეიყვანეთ ავტორის ახალი ელფოსტის მისამართი"
+msgstr "შეიყვანეთ შემქმნელის ახალი ელფოსტის მისამართი"
 
 msgid "Listed"
 msgstr "სიაშია"
@@ -170,7 +170,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს \"/\" სიმბოლოთი"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr "დამატების სახელში Mozilla-ს, ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
+msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
 
 msgid "Abuse reported."
 msgstr "შეტყობინება უკანონოდ გამოყენების შესახებ."
@@ -575,7 +575,7 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა შესაძლებლობასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
 
 msgid "This add-on has been removed by its author."
-msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
+msgstr "ეს დამატება ამოღებულია შემქმნელის მიერ."
 
 msgid "This add-on has been disabled by an administrator."
 msgstr "ეს დამატება შეზღუდულია ადმინისტრატორის მიერ."
@@ -718,7 +718,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-ის დამატებები"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "ვწუხვართ, მაგრამ თქვენ მიერ შეყვანილ მისამართზე, არაფერი მოიძებნა. თუ რომელიმე დამატების ბმულს მიჰყევით, შესაძლოა ეგ დამატება წაშლილი იყოს ავტორის მიერ."
+msgstr "ვწუხვართ, მაგრამ თქვენ მიერ შეყვანილ მისამართზე, არაფერი მოიძებნა. თუ რომელიმე დამატების ბმულს მიჰყევით, შესაძლოა ეგ დამატება წაშლილი იყოს შემქმნელის მიერ."
 
 msgid "Suggested Pages"
 msgstr "შემოთავაზებული გვერდები"
@@ -1256,7 +1256,7 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"ამ კრებულზე, მრავალი მოხალისის დამატება შეგიძლიათ. მოხალისეებს, შესაძლებლობა აქვთ კრებულში დამატებების შეტანის და ამოღების, მაგრამ არ შეუძლიათ სახელის ან აღწერის შეცვლა. მოხალისეების დასამატებლად, "
+"ამ კრებულზე, მრავალი მოხალისის დამატება შეგიძლიათ. მოხალისეებს, შესაძლებლობა აქვთ კრებულში დამატებების შეტანისა და ამოშლის, მაგრამ არ შეუძლიათ სახელის ან აღწერის შეცვლა. მოხალისეების დასამატებლად, "
 "შეიყვანეთ ელფოსტის მისამართი ქვემოთ მოცემულ ველში. მოხალისეებს, აუცილებლად უნდა ჰქონდეთ Mozilla დამატებების ანგარიში."
 
 msgid "User"
@@ -1328,7 +1328,7 @@ msgstr "გამოწერა"
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr "ავტორი: %(author_link)s"
+msgstr "შემქმნელი: %(author_link)s"
 
 msgid "Following"
 msgstr "გამოწერილი"
@@ -1376,7 +1376,7 @@ msgid "Add a comment"
 msgstr "კომენტარის დამატება"
 
 msgid "Remove this add-on from the collection"
-msgstr "ამ დამატების კრებულიდან ამოღება"
+msgstr "ამ დამატების კრებულიდან ამოშლა"
 
 msgid "Add a positive vote for this collection"
 msgstr "კრებულის დადებითად შეფასება"
@@ -1814,7 +1814,7 @@ msgid "{addon} added to {collection}."
 msgstr "{addon} დამატებულია {collection}-ში."
 
 msgid "{addon} removed from {collection}."
-msgstr "{addon} ამოღებულია {collection}-იდან."
+msgstr "{addon} ამოიშალა {collection}-იდან."
 
 msgid "{rating} for {addon} written."
 msgstr "{addon}-ის {rating} გაკეთებულია."
@@ -1866,7 +1866,7 @@ msgid "Application max version for {version} updated."
 msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელფოსტით."
+msgstr "{version}-ის თავსებადობის შესახებ, შემქმნელებს ეცნობებათ ელფოსტით."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr "დამატების თავსებადობის შესახებ შეტყობინება გაეგზავნა ავტორს."
@@ -2495,7 +2495,7 @@ msgid "Inappropriate or offensive content"
 msgstr "შუსაბამო ან უხამსი შინაარსის"
 
 msgid "Violence, war, or weaponry images"
-msgstr "ძალადობის, ომის, ან შეიარაღების ამსახველი სურათი"
+msgstr "ძალადობის, ომის ან შეიარაღების ამსახველი სურათი"
 
 msgid "Nazi or other hate content"
 msgstr "ფაშისტური ან სიძულვილის ენის შემცველი შინაარსი"
@@ -2510,7 +2510,7 @@ msgid "Spam content"
 msgstr "სარეკლამო შინაარსის"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr "უხარისხო, გაწელილი, ან ცარიელი სურათი"
+msgstr "უხარისხო, გაწელილი ან ცარიელი სურათი"
 
 msgid "Header image alignment problem"
 msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
@@ -2644,11 +2644,11 @@ msgstr "ჩვენ საშუალებას ვიძლევით დ
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "WebExtensions დამატების მოძველებული დამატებით განახლება, არ შეგიძლიათ. თქვენი მომხმარებლები ვერ ისარგებლებენ ახალი ვერსიით, რადგან Firefox-ში არაა მხარდაჭერილი, ასეთი სახის განახლება."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "თქვენი შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი ანგარიშის უსაფრთხოებისთვის, ეს გასაღები გაუქმდება."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "თანაავტორის შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი დამატების უსაფრთხოებისთვის, ეს გასაღები გაუქმდება."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2663,7 +2663,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\"-თან დაკავშირება ვერ ხერხდება."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla-ს უსაფრთხოების განაცხადი: თქვენი AMO API მონაცემები გაუქმებულია"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2964,13 +2964,13 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "წინასწარი ვარიანტი ჯერ კიდევ იქმნება - შეამოწმეთ მოგვიანებით ან განაახლეთ გვერდი."
 
 msgid "Manage Authors & License"
-msgstr "ავტორების და ლიცენზიის მართვა"
+msgstr "ავტორებისა და ლიცენზიის მართვა"
 
 msgid "Authors"
 msgstr "ავტორები"
 
 msgid "About author roles"
-msgstr "მოვალეობები"
+msgstr "ავტორის მოვალეობის შესახებ"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -4376,18 +4376,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 msgstr[1] "{0} გაფრთხილება"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Facebook თვალთვალის შეზღუდვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "გამიჯნეთ თქვენი Facebook ვინაობა სხვა გვერდებისგან ცალკე „სათავსის“ საშუალებით, რაც გაურთულებს Facebook-ს ინტერნეტში თქვენს მოქმედებებზე თვალის მიდევნებას."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაიმარტივეთ ძიება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "უბრალოდ მონიშნეთ ტექსტი ნებისმიერ ვებგვერდზე, მთელ რიგ საძიებო სისტემებში მოსანახად."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "რეკლამების შეზღუდვა და პირადულობის დაცვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
@@ -4399,6 +4387,18 @@ msgstr "ჩანართების გადაწყობა {start_sub_he
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "უამრავი ჩანართი გაქვთ გახსნილი? დაალაგეთ მოხერხებულად გვერდით ზოლზე."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Facebook თვალთვალის შეზღუდვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "გამიჯნეთ თქვენი Facebook ვინაობა სხვა გვერდებისგან ცალკე „სათავსის“ საშუალებით, რაც გაურთულებს Facebook-ს ინტერნეტში თქვენს მოქმედებებზე თვალის მიდევნებას."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name}დამატების დახმარებით{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " მოიძიეთ სურათები მთელ რიგ საძიებო სისტემებში."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -5780,7 +5780,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr "ეს მონაცემები დაკავშირებულია <a href=\"%(url)s\">Firefox ტელემეტრიასთან</a>."
 
 msgid "This particular Study"
-msgstr "სპეციფიკური კვლევა"
+msgstr "საგანგებო კვლევა"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr "Shield კვლევებით აღრიცხული მონაცემების გარდა, Mozilla აგროვებს შემდეგ მონაცემებს:"
@@ -7103,7 +7103,7 @@ msgid "365 days"
 msgstr "365 დღე"
 
 msgid "Custom..."
-msgstr "მითითებული..."
+msgstr "მითითება..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "სტატისტიკის დამუშავება ამჟამად შეჩერებულია, ასე რომ, უახლესი მონაცემები მიუწვდომელია. სტატისტიკური აღრიცხვა ჯერ კიდევ მიმდინარეობს და ეს გვერდიც მალე განახლდება გამოტოვებული მონაცემებით."

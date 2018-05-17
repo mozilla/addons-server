@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-02 06:32+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-09 14:19+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2622,11 +2622,11 @@ msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "無法用傳統附加元件來更新取代 WebExtensions 附加元件。因為 Firefox 不支援這樣的更新，您的使用者將無法使用新版本。"
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "在您送出的檔案中發現開發者 API 金鑰。為了確保您的帳戶安全，將註銷該金鑰。"
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "在您送出的檔案中發現其他共同作者的 API 金鑰。為了保護您的附加元件，將註銷該金鑰。"
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2641,7 +2641,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "無法連線至主機「%s」。"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4337,18 +4337,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}不讓 Facebook 追蹤{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}簡化搜尋{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，進行搜尋。"
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖廣告並保護隱私{end_sub_heading}"
 
@@ -4360,6 +4348,18 @@ msgstr "{addon_name} {start_sub_heading}重新發想分頁標籤{end_sub_heading
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "您還開著一大票分頁標籤嗎？用簡潔的側邊欄好好管理。"
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}不讓 Facebook 追蹤{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}搜尋圖片{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "使用多組搜尋引擎以圖找圖。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"

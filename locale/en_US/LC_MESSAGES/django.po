@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2765,10 +2765,12 @@ msgstr "We allow and encourage an upgrade but you cannot reverse this process. O
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+#, fuzzy
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+#, fuzzy
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
 
 #, python-format
@@ -4648,20 +4650,6 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Just highlight text on any web page to search the phrase from an array of engines."
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -4674,6 +4662,21 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Just highlight text on any web page to search the phrase from an array of engines."
 
 #, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

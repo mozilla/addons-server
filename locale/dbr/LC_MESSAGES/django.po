@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2638,11 +2638,11 @@ msgstr ".uo-ppɐ ʎɔɐƃǝʅ ɐ ʅʅɐʇsuı oʇ ǝʅqɐ ǝq ʇou ʅʅıʍ ʎǝ
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ".ǝʇɐpdn ɟo ǝdʎʇ sıɥʇ ʇɹoddns ʇou sǝop xoɟǝɹıℲ ǝsnɐɔǝq uoısɹǝʌ ʍǝu ɹnoʎ ǝsn oʇ ǝʅqɐ ǝq ʇou pʅnoʍ sɹǝsn ɹno⅄ .uo-ppɐ ʎɔɐƃǝʅ ɐ ɥʇıʍ uo-ppɐ suoısuǝʇxƎqǝＭ ɐ ǝʇɐpdn ʇouuɐɔ no⅄"
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ".pǝʇɐɹǝuǝƃǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´ʇunoɔɔɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ɹno⅄"
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´ʇunoɔɔɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ɹno⅄"
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ".pǝʇɐɹǝuǝƃǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´uoppɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ɹoɥʇnɐoɔ ɐ ɟo ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ǝɥ⊥"
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´uo-ppɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ɹoɥʇnɐoɔ ɐ ɟo ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ǝɥ⊥"
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4365,18 +4365,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʞɔɐɹʇ ʞooqǝɔɐℲ doʇS"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ".qǝʍ ǝɥʇ punoɹɐ sʇuǝɯǝʌoɯ ɹnoʎ ʞɔɐɹʇ oʇ ʞooqǝɔɐℲ ɹoɟ ɹǝpɹɐɥ ʇı sǝʞɐɯ ʇɐɥʇ „ɹǝuıɐʇuoɔ„ ǝʇɐɹɐdǝs ɐ oʇuı ʎʇıʇuǝpı ʞooqǝɔɐℲ ɹnoʎ ǝʇɐʅosI"
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ɥɔɹɐǝs ʎɟıʅdɯıS"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ ǝsɐɹɥd ǝɥʇ ɥɔɹɐǝs oʇ ǝƃɐd qǝʍ ʎuɐ uo ʇxǝʇ ʇɥƃıʅɥƃıɥ ʇsnſ"
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɔǝʇoɹd ʎɔɐʌıɹd ⅋ ƃuıʞɔoʅq p∀"
 
@@ -4388,6 +4376,18 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sqɐʇ ǝuıƃ
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ".ɹɐqǝpıs ʎpıʇ ɐ uı ɯǝɥʇ ǝzıuɐƃɹO ¿sqɐʇ uǝdo ɟo uoʇ ɐ ǝʌɐɥ noʎ oᗡ"
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʞɔɐɹʇ ʞooqǝɔɐℲ doʇS"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ".qǝʍ ǝɥʇ punoɹɐ sʇuǝɯǝʌoɯ ɹnoʎ ʞɔɐɹʇ oʇ ʞooqǝɔɐℲ ɹoɟ ɹǝpɹɐɥ ʇı sǝʞɐɯ ʇɐɥʇ „ɹǝuıɐʇuoɔ„ ǝʇɐɹɐdǝs ɐ oʇuı ʎʇıʇuǝpı ʞooqǝɔɐℲ ɹnoʎ ǝʇɐʅosI"
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐɯı ɥɔɹɐǝS"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ sǝɥɔɹɐǝs ǝƃɐɯı ǝsɹǝʌǝɹ ɯɹoɟɹǝԀ "
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"

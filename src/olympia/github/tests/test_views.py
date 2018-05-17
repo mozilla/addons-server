@@ -16,7 +16,7 @@ class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
 
     def setUp(self):
         super(TestGithubView, self).setUp()
-        self.url = reverse('github.validate')
+        self.url = reverse('v3:github.validate')
 
     def post(self, data, header=None, data_type=None):
         data_type = data_type or 'application/json'

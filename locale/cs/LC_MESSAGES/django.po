@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-02 17:10+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-12 06:57+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2689,11 +2689,11 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr ""
 "Starý typ doplňku nemůže být použit k aktualizaci doplňku typu WebExtensions. Jelikož nejnovější verze Firefoxu takovou aktualizaci nepodporují, vaši uživatelé by nemohli novou verzi používat."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Váš vývojářšký API klíč byl nalezen v nahraném souboru. Pro ochranu vašeho účtu bude tento klíč zneplatněn."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Vývojářšký API klíč spoluautora byl nalezen v nahraném souboru. Pro ochranu vašeho doplňku bude tento klíč zneplatněn."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2708,7 +2708,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Nepodařilo se kontaktovat host \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API server AMO byly zneplatněny"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4430,18 +4430,6 @@ msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}S doplňkem {addon_name}{end_sub_heading} se nemusíte nechat Facebookem sledovat"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snadné vyhledávání {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Označte text na jakékoliv webové stránce a vyberte si vyhledávač, kterým jej chcete vyhledat."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy a chraňte své soukromí {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
@@ -4453,6 +4441,18 @@ msgstr "Vylepšete své panely {start_sub_heading}s doplňkem {addon_name}{end_s
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}S doplňkem {addon_name}{end_sub_heading} se nemusíte nechat Facebookem sledovat"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Dohledejte obrázky některý z široké nabídky vyhledávačů."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"

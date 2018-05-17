@@ -11,7 +11,6 @@
             "averagerating": 4.09,
             "homepage": "http://www.chrisfinke.com/",
             "email": "dd+357b3dde1@davedash.com",
-            "notifycompat": true,
             "biography": null,
             "deleted": false,
             "username": "cfinke",
@@ -19,7 +18,6 @@
             "created": "2007-03-05 13:09:34",
             "notes": null,
             "modified": "2010-05-07 15:22:13",
-            "notifyevents": true,
             "last_login": "2007-03-05 13:09:34"
         }
     }

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-01 15:10+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-14 02:06+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2684,10 +2684,10 @@ msgstr ""
 "Vous ne pouvez pas remplacer un module WebExtensions par un module plus ancien. Vos utilisateurs ne seraient plus en mesure d’utiliser la nouvelle version car Firefox ne prend pas en charge ce type "
 "de mise à jour."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
@@ -2999,12 +2999,11 @@ msgstr "Aucun"
 msgid "Preview"
 msgstr "Aperçu"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Versions publiées"
+msgstr "Aperçu de la version publiée"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "L’aperçu est toujours en cours de génération. Veuillez réessayer plus tard ou actualiser la page."
 
 msgid "Manage Authors & License"
 msgstr "Gérer les auteurs et la licence"
@@ -4025,7 +4024,7 @@ msgid "See Tutorial"
 msgstr "Voir le tutoriel"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Aidez les utilisateurs à découvrir votre extension en rédigeant une description attrayante."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4444,18 +4443,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
 msgstr[1] "{0} avertissements"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez le pistage Facebook {start_sub_heading}avec {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolez votre identité Facebook dans un « contexte » séparé, afin d’empêcher Facebook de vous suivre à la trace sur le Web."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifiez les recherches {start_sub_heading}avec {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Surlignez du texte sur n’importe quelle page web pour effectuer une recherche sur une multitude de moteurs de recherche."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités et protégez votre vie privée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
@@ -4467,6 +4454,18 @@ msgstr "Les onglets, réimaginés {start_sub_heading}avec {addon_name}{end_sub_h
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Vous avez de nombreux onglets ouverts ? Organisez-les dans une barre latérale."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquez le pistage Facebook {start_sub_heading}avec {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolez votre identité Facebook dans un « contexte » séparé, afin d’empêcher Facebook de vous suivre à la trace sur le Web."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Recherchez des images {start_sub_heading}avec {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Effectuez des recherches inversées d’images depuis un ensemble de moteurs de recherche."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -4569,7 +4568,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Erreur inattendue."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"

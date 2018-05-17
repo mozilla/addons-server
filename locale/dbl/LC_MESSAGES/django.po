@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2637,11 +2637,11 @@ msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀ
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥḓȧŧḗ ȧ ẆḗƀḖẋŧḗƞşīǿƞş ȧḓḓ-ǿƞ ẇīŧħ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ. Ẏǿŭř ŭşḗřş ẇǿŭŀḓ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ ŭşḗ ẏǿŭř ƞḗẇ ṽḗřşīǿƞ ƀḗƈȧŭşḗ Ƒīřḗƒǿẋ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħīş ŧẏƥḗ ǿƒ ŭƥḓȧŧḗ."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr "Ẏǿŭř ḓḗṽḗŀǿƥḗř AƤĪ ķḗẏ ẇȧş ƒǿŭƞḓ īƞ ŧħḗ şŭƀḿīŧŧḗḓ ƒīŀḗ. Ŧǿ ƥřǿŧḗƈŧ ẏǿŭř ȧƈƈǿŭƞŧ, ŧħḗ ķḗẏ ẇīŀŀ ƀḗ řḗɠḗƞḗřȧŧḗḓ."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Ẏǿŭř ḓḗṽḗŀǿƥḗř AƤĪ ķḗẏ ẇȧş ƒǿŭƞḓ īƞ ŧħḗ şŭƀḿīŧŧḗḓ ƒīŀḗ. Ŧǿ ƥřǿŧḗƈŧ ẏǿŭř ȧƈƈǿŭƞŧ, ŧħḗ ķḗẏ ẇīŀŀ ƀḗ řḗṽǿķḗḓ."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř AƤĪ ķḗẏ ǿƒ ȧ ƈǿȧŭŧħǿř ẇȧş ƒǿŭƞḓ īƞ ŧħḗ şŭƀḿīŧŧḗḓ ƒīŀḗ. Ŧǿ ƥřǿŧḗƈŧ ẏǿŭř ȧḓḓǿƞ, ŧħḗ ķḗẏ ẇīŀŀ ƀḗ řḗɠḗƞḗřȧŧḗḓ."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř AƤĪ ķḗẏ ǿƒ ȧ ƈǿȧŭŧħǿř ẇȧş ƒǿŭƞḓ īƞ ŧħḗ şŭƀḿīŧŧḗḓ ƒīŀḗ. Ŧǿ ƥřǿŧḗƈŧ ẏǿŭř ȧḓḓ-ǿƞ, ŧħḗ ķḗẏ ẇīŀŀ ƀḗ řḗṽǿķḗḓ."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -4364,18 +4364,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Şŧǿƥ Ƒȧƈḗƀǿǿķ ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Īşǿŀȧŧḗ ẏǿŭř Ƒȧƈḗƀǿǿķ īḓḗƞŧīŧẏ īƞŧǿ ȧ şḗƥȧřȧŧḗ \"ƈǿƞŧȧīƞḗř\" ŧħȧŧ ḿȧķḗş īŧ ħȧřḓḗř ƒǿř Ƒȧƈḗƀǿǿķ ŧǿ ŧřȧƈķ ẏǿŭř ḿǿṽḗḿḗƞŧş ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Şīḿƥŀīƒẏ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Ĵŭşŧ ħīɠħŀīɠħŧ ŧḗẋŧ ǿƞ ȧƞẏ ẇḗƀ ƥȧɠḗ ŧǿ şḗȧřƈħ ŧħḗ ƥħřȧşḗ ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aḓ ƀŀǿƈķīƞɠ & ƥřīṽȧƈẏ ƥřǿŧḗƈŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
@@ -4387,6 +4375,18 @@ msgstr "Řḗ-īḿȧɠīƞḗ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Ḓǿ ẏǿŭ ħȧṽḗ ȧ ŧǿƞ ǿƒ ǿƥḗƞ ŧȧƀş? Ǿřɠȧƞīẑḗ ŧħḗḿ īƞ ȧ ŧīḓẏ şīḓḗƀȧř."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ Ƒȧƈḗƀǿǿķ ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Īşǿŀȧŧḗ ẏǿŭř Ƒȧƈḗƀǿǿķ īḓḗƞŧīŧẏ īƞŧǿ ȧ şḗƥȧřȧŧḗ \"ƈǿƞŧȧīƞḗř\" ŧħȧŧ ḿȧķḗş īŧ ħȧřḓḗř ƒǿř Ƒȧƈḗƀǿǿķ ŧǿ ŧřȧƈķ ẏǿŭř ḿǿṽḗḿḗƞŧş ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Ƥḗřƒǿřḿ řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħḗş ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"

@@ -136,9 +136,6 @@ class File(OnChangeMixin, ModelBase):
         return self._make_download_url(
             'downloads.file', src, attachment=attachment)
 
-    def get_signed_url(self, src):
-        return self._make_download_url('signing.file', src)
-
     def _make_download_url(self, view_name, src, attachment=False):
         kwargs = {
             'file_id': self.pk

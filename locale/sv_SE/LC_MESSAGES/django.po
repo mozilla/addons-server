@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-02 15:53+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-13 20:23+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2643,11 +2643,11 @@ msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denn
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Du kan inte uppdatera ett WebExtensions-tillägg med ett äldre tillägg. Användarna kan inte använda den nya versionen eftersom Firefox inte stöder denna typ av uppdatering."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Utvecklarens API-nyckel hittades i den inskickade filen. För att skydda ditt konto kommer nyckeln att återkallas."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Utvecklarens API-nyckel för en medförfattare hittades i den inskickade filen. För att skydda ditt tillägg, kommer nyckeln att återkallas."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2662,7 +2662,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla säkerhetsmeddelande: Din AMO API-behörighet har återkallats"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4424,18 +4424,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förenkla sökning {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Markera endast text på vilken webbsida som helst för att söka frasen från en rad olika motorer."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Annonsblockering och integritetsskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
@@ -4447,6 +4435,18 @@ msgstr "Omvärdera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sök efter bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Utför omvänd bildsökning från en rad olika motorer."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"

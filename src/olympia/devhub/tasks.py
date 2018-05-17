@@ -18,6 +18,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
 from django.utils.translation import ugettext
@@ -218,9 +219,8 @@ def handle_upload_validation_result(
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
     try:
-        SafeZip(upload.path).is_valid()
         results = check_for_api_keys_in_file(results=results, upload=upload)
-    except BadZipfile:
+    except (ValidationError, BadZipfile, IOError):
         pass
 
     # Annotate results with potential webext warnings on new versions.
@@ -446,6 +446,7 @@ def check_for_api_keys_in_file(results, upload):
         users = upload.addon.authors.all()
     else:
         users = [upload.user] if upload.user else []
+
     keys = []
     for user in users:
         try:
@@ -456,30 +457,34 @@ def check_for_api_keys_in_file(results, upload):
 
     if len(keys) > 0:
         zipfile = SafeZip(source=upload.path)
-        for filepath in zipfile.filelist:
-            file_ = zipfile.read(filepath)
-            for key in keys:
-                if key.secret in file_.decode('unicode-escape'):
-                    log.info('Developer API key for user %s found in '
-                             'submission.' % key.user)
-                    if key.user == upload.user:
-                        msg = ugettext('Your developer API key was found in '
-                                       'the submitted file. To protect your '
-                                       'account, the key will be regenerated.')
-                    else:
-                        msg = ugettext('The developer API key of a coauthor '
-                                       'was found in the submitted file. To '
-                                       'protect your addon, the key will be '
-                                       'regenerated.')
-                    insert_validation_message(
-                        results, type_='error',
-                        message=msg, msg_id='api_key_detected',
-                        compatibility_type=None)
+        zipfile.is_valid()
+        for zipinfo in zipfile.info_list:
+            if zipinfo.file_size >= 64:
+                file_ = zipfile.read(zipinfo)
+                for key in keys:
+                    if key.secret in file_.decode(encoding='unicode-escape',
+                                                  errors="ignore"):
+                        log.info('Developer API key for user %s found in '
+                                 'submission.' % key.user)
+                        if key.user == upload.user:
+                            msg = ugettext('Your developer API key was found '
+                                           'in the submitted file. To protect '
+                                           'your account, the key will be '
+                                           'revoked.')
+                        else:
+                            msg = ugettext('The developer API key of a '
+                                           'coauthor was found in the '
+                                           'submitted file. To protect your '
+                                           'add-on, the key will be revoked.')
+                        insert_validation_message(
+                            results, type_='error',
+                            message=msg, msg_id='api_key_detected',
+                            compatibility_type=None)
 
-                    # Revoke and regenerate after 2 minutes to allow the
-                    # developer to fetch the validation results
-                    revoke_and_regenerate_api_key.apply_async(
-                        kwargs={'key_id': key.id}, countdown=120)
+                        # Revoke after 2 minutes to allow the developer to
+                        # fetch the validation results
+                        revoke_api_key.apply_async(
+                            kwargs={'key_id': key.id}, countdown=120)
         zipfile.close()
 
     return results
@@ -487,7 +492,7 @@ def check_for_api_keys_in_file(results, upload):
 
 @task
 @write
-def revoke_and_regenerate_api_key(key_id):
+def revoke_api_key(key_id):
     try:
         # Fetch the original key, do not use `get_jwt_key`
         # so we get access to a user object for logging later.
@@ -502,15 +507,12 @@ def revoke_and_regenerate_api_key(key_id):
                      'done.' % original_key.user)
         else:
             with transaction.atomic():
-                log.info('Revoking and regenerating key for user %s.'
-                         % current_key.user)
-                current_key.update(is_active=False)
-                APIKey.new_jwt_credentials(user=current_key.user)
+                log.info('Revoking key for user %s.' % current_key.user)
+                current_key.update(is_active=None)
                 send_api_key_revocation_email(emails=[current_key.user.email])
-
     except APIKey.DoesNotExist:
-        log.info('User %s has already revoked the key, nothing to be '
-                 'done.' % original_key.user)
+        log.info('User %s has already revoked the key, nothing to be done.'
+                 % original_key.user)
         pass
 
 

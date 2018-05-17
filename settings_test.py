@@ -83,6 +83,8 @@ LOGGING = {
 # where we explicitly want to test pngcrush.
 PNGCRUSH_BIN = '/bin/true'
 
+BASKET_API_KEY = 'testkey'
+
 
 ###############################################################################
 # Only if running on a CI server.

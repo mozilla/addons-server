@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-04-29 20:33+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-11 00:43+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2652,11 +2652,11 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr ""
 "Man yatikïr ta nak'ëx jun WebExtensions tz'aqat rik'in legacy tz'aqat. Man xketikïr xtikokisaj ri k'ak'a' ruwäch ri okisanela' ruma chi ri Firefox man nuya' ta q'ij chi ke re kiwäch k'exoj re'."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Xilitäj ri API ewan atzij richin b'anonel pa ri yakb'äl xtaq. Richin nichajïx ri rub'i' ataqoya'l, xtiyuj ri ewan tzij."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Xilitäj ri API ewan rutzij b'anonel richin jun achb'anel pa ri yakb'äl xtaq. Richin nichajïx ri tz'aqat, xtiyuj ri ewan tzij."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2965,13 +2965,13 @@ msgid "None"
 msgstr "Majun"
 
 msgid "Preview"
-msgstr ""
+msgstr "Nab'ey tzub'al"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Nab'ey rutzub'al ri cholajin ruwäch"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Tajin nisamajïx ri nab'ey tzub'al - katzolin chik pe o tatzolij ri ruxaq."
 
 msgid "Manage Authors & License"
 msgstr "Kenuk'samajïx B'anel & Ya'öl Q'ij"
@@ -2986,6 +2986,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Ri taq tz'aqat tikirel e k'ïy yeb'ano ri tikirel 2 kisamaj:</p> <ul> <li><b>Rajaw:</b> Nitikïr nusamajij ronojel ri rub'anikil tz'aqat cholajin, achi'el yerutz'aqatisaj chuqa' yeruyüj ch'aqa' "
+"chik taq b'anel</li> <li><b>B'anonel:</b> Nitikïr nusamajij ronojel ri rub'anikil tz'aqat cholajin, man ke ta ri' richin yerutz'aqatisaj o yeruyüj ch'aqa' chik taq b'anel</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Ruk'u'x Etamab'äl"
@@ -2998,7 +3000,7 @@ msgid "Add-on URL"
 msgstr "Tz'aqat URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Tacha' jun ruyonil jeb'ël ruximob'al atz'aqat."
 
 msgid "View Listing"
 msgstr "Titz'et Cholb'äl"
@@ -3016,7 +3018,7 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Re tz'aqat re' nitojtob'ëx."
 
 msgid "This add-on is ready for general use."
 msgstr ""
@@ -4351,18 +4353,6 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4373,6 +4363,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

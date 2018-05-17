@@ -13,7 +13,7 @@
         {% endfor %}
     </defs>
     <rect id="SvgRect1008" width="{{ amo.THEME_PREVIEW_SIZE.width }}" height="{{ amo.THEME_PREVIEW_SIZE.height }}"
-          class="accentcolor" fill="{{ accentcolor|d('rgba(229,230,232,1)') }}" data-fill="rgba(229,230,232,1)"></rect>
+          class="accentcolor" fill="{{ accentcolor|d(amo.THEME_ACCENTCOLOR_DEFAULT) }}" data-fill="{{ amo.THEME_ACCENTCOLOR_DEFAULT }}"></rect>
     {% for background in additional_backgrounds %}
         <rect width="100%" height="100%" fill="url(#AdditionalBackground{{ loop.revindex }})"></rect>
     {% endfor %}

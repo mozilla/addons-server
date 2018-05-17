@@ -91,7 +91,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.88,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "http://www.takebacktheweb.org",
@@ -103,8 +102,7 @@
             "display_name": "Aronnax",
             "created": "2007-03-05 13:09:33",
             "notes": null,
-            "modified": "2009-08-19 07:35:43",
-            "notifyevents": true
+            "modified": "2009-08-19 07:35:43"
         }
     },
     {

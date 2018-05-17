@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-03-02 09:09+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1006,9 +1006,8 @@ msgstr "Ikonat s’mund të jenë të animuara."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Kjo URL vetjake përdoret tashmë nga një tjetër koleksion i juaji."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Ky emër s’përdoret dot."
+msgstr "Emri s’mund të jetë i zbrazët."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "URL-ja vetjake duhet të përbëhet nga shkronja, numra, nënvija ose vija ndarëse."
@@ -1998,13 +1997,11 @@ msgstr "Lënda për {addon} {version} u hodh tej."
 msgid "Content rejected"
 msgstr "Lënda u hodh tej"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Është hequr kërkesë të dhënash mbi {addon}."
+msgstr "Kërkesa për informacion mbi {addon} u ndryshua ose u hoq nga përgjegjësi."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Është hequr kërkesë të dhënash"
+msgstr "Kërkesa për informacion u ndryshua"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Nga zhvilluesi për {addon} {version} është hequr kërkesë të dhënash."
@@ -2012,29 +2009,23 @@ msgstr "Nga zhvilluesi për {addon} {version} është hequr kërkesë të dhëna
 msgid "Information request removed"
 msgstr "Është hequr kërkesë të dhënash"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim."
+msgstr "Për {addon} {version} u kërkua shqyrtim shtese nga përgjegjësi."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Është kërkuar supershqyrtim"
+msgstr "Është kërkuar shqyrtim shtese nga përgjegjësi"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim."
+msgstr "Për {addon} {version} u kërkua shqyrtim lënde nga përgjegjësi."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Është kërkuar supershqyrtim"
+msgstr "Është kërkuar shqyrtim lënde nga përgjegjësi"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim."
+msgstr "Për {addon} {version} u kërkua shqyrtim teme nga përgjegjësi."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Është kërkuar shqyrtim"
+msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2396,9 +2387,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Parashtrojeni Temën"
+msgstr "Temë Statike"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2436,9 +2426,8 @@ msgstr "Shqyrtimi i Paketës Gjuhësore u Përditësua"
 msgid "Theme Review"
 msgstr "Shqyrtim Teme"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Temë  (Statike)"
+msgstr "Shqyrtim Teme (Statike)"
 
 msgid "New Search Provider Review"
 msgstr "Shqyrtim Furnizuesi të Ri Kërkimesh"
@@ -2679,11 +2668,11 @@ msgstr ""
 "S’mund të përditësoni një shtesë WebExtensions me një shtesë nga të dikurshmet. Përdoruesit tuaj nuk do të jenë në gjendje të përdorin versionin tuaj të ri, ngaqë Firefox-i nuk e mbulon këtë lloj "
 "përditësimesh."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Kyçi juaj API zhvilluesish u gjet te kartela e parashtruar. Që të mbrohet llogaria juaj, kyçi do të shfuqizohet."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Kyçi API zhvilluesish i një bashkëautori u gjet te kartela e parashtruar. Që të mbrohet shtesa juaj, kyçi do të shfuqizohet."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2698,7 +2687,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "S’u lidh dot me strehën te \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Njoftim Sigurie nga Mozilla: Kredencialet tuaja API AMO janë shfuqizuar"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2995,12 +2984,11 @@ msgstr "Asnjë"
 msgid "Preview"
 msgstr "Paraparje"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Versione publike"
+msgstr "Paraparje e versionit të listës"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Paraparja është duke u krijuar - rikthehuni më vonë ose rifreskoni faqen."
 
 msgid "Manage Authors & License"
 msgstr "Administroni Autorë & Licenca"
@@ -3542,9 +3530,8 @@ msgstr "Kaq qe!"
 msgid "Version Submitted for Review"
 msgstr "Version i Parashtruar për Shqyrtim"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versioni u Parashtrua"
+msgstr "Paraparje e versionit të parashtruar"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Kaq qe! Ky version do të jetë i gatshëm pasi të kalojë etapën e shqyrtimit. Do të njoftoheni kur të jetë shqyrtuar."
@@ -3678,9 +3665,8 @@ msgstr "Sfond fushe paneli"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Ngjyra e sfondit për shtyllën e lëvizjeve, shtyllën e faqerojtësve dhe skedën e përzgjedhur.  Fushë manifesti:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Ikona teksti fushe paneli"
+msgstr "Tekst dhe ikona fushe paneli"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ngjyra e tekstit dhe ikonave te paneli dhe skeda aktive. Fushë manifesti:  toolbar_text."
@@ -4002,15 +3988,14 @@ msgstr "Mësoni Se Si"
 msgid "Get Started"
 msgstr "Nisjani"
 
-#, fuzzy
 msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Gati për parashtrimin e një shtesë? Lexoni përkujdesoren tonë mbi procesin e parashtrimeve, hap pas hapi."
+msgstr "Gati për parashtrimin e një zgjerimi? Lexoni përkujdesoren tonë mbi procesin e parashtrimeve,hap pas hapi."
 
 msgid "See Tutorial"
 msgstr "Shihni Përkujdesore"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Ndihmojini përdoruesit të zbulojnë zgjerimin tuaj duke krijuar një paraqitje tërheqëse."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4431,33 +4416,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kthejeni së prapthi kërkimin e figurës {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shtoni bllokim & dhe mbrojtje privatësie {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Një sistemim i thjeshtë ju lejon të keni kontrollin e reklamave që shihni dhe se si ndiqeni në internet."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kthejeni së prapthi kërkimin e figurës {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Keni një thes me skeda të hapura? Sistemojini në një anështyllë të pastër."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ndaleni gjurmimin nga Facebook-u, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izoloni identitetin tuaj Facebook në një \"kontejner\" ndaras që e bën më të vështirë për Facebook-un të ndjekë lëvizjet tuaja nëpër internet."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kërkoni për figura, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Kryeni kërkime figurash së prapthi që nga një grup motorësh kërkimi."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
@@ -4560,7 +4541,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Gabim i papritur."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5344,7 +5325,6 @@ msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Tjetër (ofron një fushë hapmbyll për informacion)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Hëpërhë, AMO s’ofron ndonjë mekanizëm për komunikim të drejtpërdrejtë me autorin e një shqyrtimi nga përdorues."
 
@@ -6156,9 +6136,8 @@ msgstr "Hëpërhë anashkaloje"
 msgid "Needs Admin Content Review"
 msgstr "Lyp Shqyrtim Lënde Nga Përgjegjës"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Lyp Shqyrtim Kodi Nga Një Përgjegjës"
+msgstr "Lyp Shqyrtim Teme Statike Nga Një Përgjegjës"
 
 msgid "Jetpack Add-on"
 msgstr "Shtesë Jetpack"
@@ -6286,36 +6265,29 @@ msgstr "Miratojeni Lëndën"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Kjo regjistron miratimin tuaj të lëndës së versionit më të ri publik, pa e njoftuar zhvilluesin."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Shtesa të Dikurshme"
+msgstr "Tema Statike dhe Shtesa të Dikurshme"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Tema të Zgjedhura"
+msgstr "Tema Statike"
 
 msgid "Legacy Add-ons"
 msgstr "Shtesa të Dikurshme"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Tema të Reja ({0})"
+msgstr "Të reja ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Përditësim ({0})"
+msgstr "Përditësime ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Shënim shqyrtimi"
+msgstr "Regjistër Shqyrtimesh"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Shqyrtim Shtese"
+msgstr "Udhërrëfyes Shqyrtimesh Shtesash"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Radhë Temash për Shqyrtim"
+msgstr "Udhërrëfyes Shqyrtimesh Temash"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Shtesa të Vetëmiratuara"
@@ -6346,9 +6318,8 @@ msgstr "Përditësime Temash ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Tema Me Shenjë ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Tema të Peshës së Lehtë"
+msgstr "Regjistër Shqyrtimesh Temash të Peshës së Lehtë"
 
 msgid "Deleted Themes Log"
 msgstr "Regjistër Temash të Fshira"
@@ -6439,16 +6410,15 @@ msgstr "Raporte Abuzimesh ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Shqyrtime të Këqija Përdoruesi ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Emër teme"
+msgstr "Figura Teme"
 
 #, fuzzy
 msgid "Rendered Preview"
 msgstr "Shqyrtime të fshira"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Kartelë sfondi {0} nga {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Më tepër rreth kësaj shtese"
@@ -6694,9 +6664,8 @@ msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
 msgid "Clear Admin Content Review Flag"
 msgstr "Hiqja Shenjën për Shqyrtim Lënde Nga Përgjegjës"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"
+msgstr "Hiqi Shenjën Për Shqyrtim Teme Statike Nga Një Përgjegjës"
 
 msgid "(admin)"
 msgstr "(admin)"

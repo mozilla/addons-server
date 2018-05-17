@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-04-27 23:58+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-08 07:30+0000\n"
+"Last-Translator: siparon <siparon@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -46,9 +46,8 @@ msgstr ""
 msgid "You are already logged in."
 msgstr "Ești deja autentificat."
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Contul tău Firefox nu poate fi găsit. Te rugăm să încerci din nou."
+msgstr "Încercarea ta de conectare nu a putut fi prelucrată. Te rugăm să încerci din nou."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "Contul tău Firefox nu poate fi găsit. Te rugăm să încerci din nou."
@@ -62,16 +61,14 @@ msgstr "Ai nevoie de ajutor?"
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
 
-#, fuzzy
 msgid "Review"
-msgstr "Review"
+msgstr "Verifică"
 
 msgid "Version {0}"
 msgstr "Versiunea {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "Review"
+msgstr "Notă de verificare"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -88,10 +85,9 @@ msgstr "Descarcă"
 msgid "Featured"
 msgstr "Deosebite"
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Review"
+msgstr "Neverificat"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -192,9 +188,8 @@ msgstr "Nicio versiune compatibilă"
 msgid "for {0}"
 msgstr ""
 
-#, fuzzy
 msgid "View privacy policy"
-msgstr "View privacy policy"
+msgstr "Vezi politica de confidențialitate"
 
 msgid "View End-User License Agreement"
 msgstr "Vezi acordul de licență pentru utilizatorul final"
@@ -400,9 +395,8 @@ msgstr ""
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#, fuzzy
 msgid "or"
-msgstr "or"
+msgstr "sau"
 
 msgid "Cancel"
 msgstr ""
@@ -426,9 +420,8 @@ msgstr "Evaluare:"
 msgid "Submit review"
 msgstr "Trimite recenzia"
 
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Vă rugăm să nu postați defecte în recenzii. Dezvoltatorii nu văd adresa dumneavoastră de email și nu vă pot contacta pentru a vă cere detalii."
+msgstr "Te rugăm să nu postezi defecte în recenzii. Dezvoltatorii nu văd adresa ta de email și nu te pot contacta pentru a cere detalii."
 
 #, python-format
 msgid ""
@@ -470,9 +463,8 @@ msgid "Download Anyway"
 msgstr "Descarcă oricum"
 
 # {0} is a number
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} avertisment"
+msgstr "[Avertizare]"
 
 msgid "Permissions"
 msgstr "Permisiuni"
@@ -515,11 +507,9 @@ msgstr ""
 msgid "Manage"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Review"
+msgstr "Recenzie supliment"
 
-#, fuzzy
 msgid "Admin Manage"
 msgstr "Setări administrative"
 
@@ -527,9 +517,8 @@ msgstr "Setări administrative"
 msgid "Icon of {0}"
 msgstr ""
 
-#, fuzzy
 msgid "Contribute"
-msgstr "Contribute"
+msgstr "Contribuie"
 
 msgid "Enjoy this add-on?"
 msgstr ""
@@ -610,13 +599,11 @@ msgstr ""
 msgid "Source Code License"
 msgstr ""
 
-#, fuzzy
 msgid "support section"
-msgstr "Suport"
+msgstr "secţiunea de suport"
 
-#, fuzzy
 msgid "support email"
-msgstr "Suport"
+msgstr "e-mail de suport"
 
 msgid "permalink"
 msgstr "link permanent"
@@ -961,9 +948,8 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Contributions"
+msgstr "Contribuitori"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1016,16 +1002,14 @@ msgstr ""
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Acest nume te utilizator nu poate fi folosit."
+msgstr "Numele nu poate fi gol."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Acest nume te utilizator nu poate fi folosit."
+msgstr "Acest URL personalizat nu poate fi folosit."
 
 msgid "This add-on already belongs to the collection"
 msgstr ""
@@ -1312,9 +1296,8 @@ msgstr "Setări administrative"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr ""
 
-#, fuzzy
 msgid "Continue"
-msgstr "Contribute"
+msgstr "Continuă"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1329,9 +1312,8 @@ msgstr ""
 msgid "Collections by {0}"
 msgstr ""
 
-#, fuzzy
 msgid "No collections found."
-msgstr "Colecție negăsită!"
+msgstr "Nici o colecţie găsită."
 
 msgid "Most-Followed Collections"
 msgstr "Colecțiile cele mai urmărite"
@@ -1413,13 +1395,11 @@ msgstr "Adaugă un vot pozitiv pentru această colecție"
 msgid "Add a negative vote for this collection"
 msgstr "Adaugă un vot negativ pentru această colecție"
 
-#, fuzzy
 msgid "Remove my vote for this collection"
-msgstr "Nu sunt recenzii în această perioadă."
+msgstr "Elimină votul meu pentru această colecţie"
 
-#, fuzzy
 msgid "Log in to vote for this collection"
-msgstr "Nu sunt recenzii în această perioadă."
+msgstr "Autentifică-te pentru a vota pentru această colecţie"
 
 msgid "Favorite"
 msgstr ""
@@ -1712,9 +1692,8 @@ msgstr ""
 msgid "Version"
 msgstr "Versiune"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "Versiuni de aplicație"
+msgstr "Versiune de aplicație"
 
 msgid "Application Build"
 msgstr ""
@@ -1722,9 +1701,8 @@ msgstr ""
 msgid "Platform"
 msgstr ""
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Dezactivat"
+msgstr "e10s activat"
 
 msgid "e10s Compatible"
 msgstr ""
@@ -1965,16 +1943,14 @@ msgstr ""
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Developer"
+msgstr "Răspunsul dezvoltatorului"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Developer"
+msgstr "Răspunsul recenzorului"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1991,9 +1967,8 @@ msgstr ""
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Ultima actualizare"
+msgstr "Auto-aprobare confirmată"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -2091,9 +2066,8 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
-#, fuzzy
 msgid "Developer"
-msgstr "Developer"
+msgstr "Dezvoltator"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -2299,13 +2273,11 @@ msgstr ""
 msgid "Feeds, News, & Blogging"
 msgstr "Fluxuri, ştiri şi blogging"
 
-#, fuzzy
 msgid "Performance"
-msgstr "Performance"
+msgstr "Performanță"
 
-#, fuzzy
 msgid "Photos & Media"
-msgstr "Foto, audio şi video"
+msgstr "Foto şi video"
 
 msgid "Security & Privacy"
 msgstr ""
@@ -2313,21 +2285,17 @@ msgstr ""
 msgid "Social Networking"
 msgstr ""
 
-#, fuzzy
 msgid "Sports & Games"
-msgstr "Fotografii şi imagini"
+msgstr "Jocuri şi sport"
 
-#, fuzzy
 msgid "User Interface"
-msgstr "User since"
+msgstr "Interfață utilizator"
 
-#, fuzzy
 msgid "Appearance and Customization"
-msgstr "Personalizarea interfeţei"
+msgstr "Aspect şi personalizare"
 
-#, fuzzy
 msgid "Calendar and Date/Time"
-msgstr "Îmbunătăţiri pentru calendar"
+msgstr "Calendar şi Data/Time"
 
 msgid "Chat and IM"
 msgstr ""
@@ -2426,9 +2394,8 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Review"
+msgstr "Recenzie de supliment nouă"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
@@ -2437,9 +2404,8 @@ msgid "Updated Add-on Review"
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Dicționare"
+msgstr "Recenzie de dicționar nouă"
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -2447,9 +2413,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Pachet lingvistic"
+msgstr "Recenzie de pachet lingvistic nouă"
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -2482,16 +2447,14 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Review"
+msgstr "Recenzie de supliment moderată"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Review"
+msgstr "Recenzie de conţinut supliment"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2596,9 +2559,8 @@ msgstr ""
 msgid "Slug incorrect."
 msgstr ""
 
-#, fuzzy
 msgid "Details"
-msgstr "Details"
+msgstr "Detalii"
 
 msgid "What is your license's name?"
 msgstr ""
@@ -2699,10 +2661,10 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
 #, python-format
@@ -2804,9 +2766,8 @@ msgstr ""
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Review"
+msgstr "Recenzie solicitată."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2831,9 +2792,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Review"
+msgstr "Politici şi norme a recenziilor"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -4442,20 +4402,6 @@ msgstr[1] "{0} avertismente"
 msgstr[2] "{0} de avertismente"
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
@@ -4467,6 +4413,20 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Căutare inversă de imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

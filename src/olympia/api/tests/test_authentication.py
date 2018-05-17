@@ -186,7 +186,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
         assert data['user_pk'] == self.user.pk
 
     def test_api_key_must_be_active(self):
-        api_key = self.create_api_key(self.user, is_active=False)
+        api_key = self.create_api_key(self.user, is_active=None)
         token = self.create_auth_token(api_key.user, api_key.key,
                                        api_key.secret)
         res = self.jwt_request(token, 'post', {})

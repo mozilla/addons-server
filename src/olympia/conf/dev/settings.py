@@ -45,10 +45,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
 
-SYSLOG_TAG = "http_app_addons_dev"
-MOZLOG_NAME = SYSLOG_TAG
-SYSLOG_TAG2 = "http_app_addons_dev_timer"
-SYSLOG_CSP = "http_app_addons_dev_csp"
+MOZLOG_NAME = "http_app_addons_dev"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'

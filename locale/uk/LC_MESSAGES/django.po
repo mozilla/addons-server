@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:56+0000\n"
-"PO-Revision-Date: 2018-05-06 20:19+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-07 13:59+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2680,11 +2680,13 @@ msgstr "Ми дозволяємо і заохочуємо оновлення, а
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ви не можете оновити додаток WebExtensions на застарілий додаток. Ваші користувачі не зможуть використовувати нову версію, тому що Firefox не підтримує цей тип оновлення."
 
-msgid "Your developer API key was found in the submitted file. To protect your account, the key will be regenerated."
-msgstr ""
+#, fuzzy
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Ваш API-ключ розробника було знайдено у відправленому файлі. Для захисту вашого облікового запису ключ буде повторно згенеровано."
 
-msgid "The developer API key of a coauthor was found in the submitted file. To protect your addon, the key will be regenerated."
-msgstr ""
+#, fuzzy
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "API-ключ розробника чи співавтора було знайдено у відправленому файлі. Для захисту вашого додатку ключ буде повторно згенеровано."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2699,7 +2701,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Не вдалося зв'язатись з хостом на \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Застереження безпеки від Mozilla: Ваші облікові дані AMO API було відкликано"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4432,18 +4434,6 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Не дозволяйте стеження Facebook {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Ізолюйте свою діяльність в Facebook в окремому \"контейнері\", ускладнюючи таким чином відстеження вас в інтернеті."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Спростіть пошук {start_sub_heading}разом з {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Просто оберіть текст на будь-якій веб-сторінці для пошуку з багатьма засобами."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокування реклами і захист від стеження {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
@@ -4455,6 +4445,20 @@ msgstr "Змініть уявлення про вкладки {start_sub_heading
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "У вас повно відкритих вкладок? Організуйте їх в упорядкованій бічній панелі."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Не дозволяйте стеження Facebook {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Ізолюйте свою діяльність в Facebook в окремому \"контейнері\", ускладнюючи таким чином відстеження вас в інтернеті."
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Змініть уявлення про вкладки {start_sub_heading}з {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Просто оберіть текст на будь-якій веб-сторінці для пошуку з багатьма засобами."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Завантажуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"

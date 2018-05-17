@@ -631,6 +631,13 @@ class REQUEST_ADMIN_REVIEW_THEME(_LOG):
     reviewer_review_action = True
 
 
+class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
+    id = 154
+    action_class = 'add'
+    format = _(u'{addon} was migrated from a lightweight theme.')
+    keep = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

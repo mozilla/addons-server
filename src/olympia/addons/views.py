@@ -910,7 +910,7 @@ class LanguageToolsView(ListAPIView):
             apps__max__version_int__gte=appversions['max'],
             channel=amo.RELEASE_CHANNEL_LISTED,
             files__status=amo.STATUS_PUBLIC,
-        ).no_transforms().transform(Version.transformer)
+        ).order_by('-created').no_transforms().transform(Version.transformer)
         qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
         return (
             qs.prefetch_related(Prefetch('versions',
@@ -921,6 +921,7 @@ class LanguageToolsView(ListAPIView):
                       versions__apps__max__version_int__gte=appversions['max'],
                       versions__channel=amo.RELEASE_CHANNEL_LISTED,
                       versions__files__status=amo.STATUS_PUBLIC)
+              .distinct()
         )
 
     @method_decorator(cache_page(60 * 60 * 24, cache='filesystem'))
