@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 from django import http
 from django.conf import settings
@@ -71,7 +72,7 @@ def handler403(request):
 
 @non_atomic_requests
 def handler404(request):
-    if request.path_info.startswith('/api/v3/'):
+    if re.match(settings.DRF_API_REGEX, request.path_info):
         return JsonResponse(
             {'detail': unicode(NotFound.default_detail)}, status=404)
     elif request.path_info.startswith('/api/'):

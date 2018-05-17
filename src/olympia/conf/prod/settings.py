@@ -154,8 +154,7 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['amo.addons.mozilla.org'],
-    internal=['addons-admin.prod.mozaws.net'],
+    ['amo.addons.mozilla.org']
 )
 
 VALIDATOR_TIMEOUT = 360

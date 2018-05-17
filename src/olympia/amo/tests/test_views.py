@@ -68,8 +68,14 @@ class Test404(TestCase):
         links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
         assert links.length == 4
 
-    def test_404_api(self):
+    def test_404_api_v3(self):
         response = self.client.get('/api/v3/lol')
+        assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == u'Not found.'
+
+    def test_404_api_v4(self):
+        response = self.client.get('/api/v4/lol')
         assert response.status_code == 404
         data = json.loads(response.content)
         assert data['detail'] == u'Not found.'
@@ -394,6 +400,14 @@ class TestCORS(TestCase):
     def test_cors_api_v3(self):
         url = reverse('v3:addon-detail', args=(3615,))
         assert '/api/v3/' in url
+        response = self.get(url)
+        assert response.status_code == 200
+        assert not response.has_header('Access-Control-Allow-Credentials')
+        assert response['Access-Control-Allow-Origin'] == '*'
+
+    def test_cors_api_v4(self):
+        url = reverse('v4:addon-detail', args=(3615,))
+        assert '/api/v4/' in url
         response = self.get(url)
         assert response.status_code == 200
         assert not response.has_header('Access-Control-Allow-Credentials')

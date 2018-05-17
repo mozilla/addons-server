@@ -87,37 +87,29 @@ THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
+DRF_API_VERSIONS = ['v3', 'v4']
+DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
+
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/v3/.*$'
+CORS_URLS_REGEX = DRF_API_REGEX
 
 
 # Sadly the term WHITELIST is used by the library
 # https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-# TODO(andym): see if I can get them to accept a patch for that.
-def cors_endpoint_overrides(internal, public):
+def cors_endpoint_overrides(list_):
     return [
-        (r'^/api/v3/internal/accounts/login/?$', {
+        ('%saccounts/login/?$' % DRF_API_REGEX, {
             'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': internal,
+            'CORS_ORIGIN_WHITELIST': list_,
             'CORS_ALLOW_CREDENTIALS': True,
-        }),
-        (r'^/api/v3/accounts/login/?$', {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': public,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
-        (r'^/api/v3/internal/.*$', {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': internal,
         }),
     ]
 
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['localhost:3000', 'olympia.test'],
-    internal=['localhost:3000'],
+    ['localhost:3000', 'olympia.test']
 )
 
 DATABASES = {
@@ -318,9 +310,7 @@ DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
 # path that isn't just one /, and doesn't require any locale or app.
-SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
-    'api/v3',
-)
+SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 
 # paths that don't require an app prefix
 # This needs to be kept in sync with addons-frontend's
@@ -1699,8 +1689,8 @@ REST_FRAMEWORK = {
         'olympia.api.parsers.MultiPartParser',
     ),
 
-    'ALLOWED_VERSIONS': ['v3', 'v4'],
-    'DEFAULT_VERSION': 'v3',
+    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    'DEFAULT_VERSION': 'v4',
     'DEFAULT_VERSIONING_CLASS': (
         'rest_framework.versioning.NamespaceVersioning'),
 
