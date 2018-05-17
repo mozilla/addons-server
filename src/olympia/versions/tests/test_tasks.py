@@ -101,7 +101,7 @@ def test_generate_static_theme_preview(
                  680, 92, 680)
     check_render(thumb_svg_content, header_url, header_height,
                  preserve_aspect_ratio, mimetype, valid_img, colors,
-                 670, 64, 963.125)
+                 670, 64, 963)
 
 
 @pytest.mark.django_db
@@ -155,7 +155,7 @@ def test_generate_static_theme_preview_with_chrome_properties(
     check_render(image_svg_content, 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
     check_render(thumb_svg_content, 'transparent.gif', 1,
-                 'xMaxYMin meet', 'image/gif', True, colors, 670, 64, 963.125)
+                 'xMaxYMin meet', 'image/gif', True, colors, 670, 64, 963)
 
 
 def check_render_additional(svg_content, inner_svg_width):
@@ -225,4 +225,4 @@ def test_generate_preview_with_additional_backgrounds(
         'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
 
     check_render_additional(image_svg_content, 680)
-    check_render_additional(thumb_svg_content, 963.125)
+    check_render_additional(thumb_svg_content, 963)

@@ -83,18 +83,18 @@ class AdditionalBackground(object):
         self.pattern_height = (self.height if tiling in ['repeat', 'repeat-y']
                                else '100%')
 
-    def calculate_pattern_offsets(self, svg_size):
+    def calculate_pattern_offsets(self, svg_width, svg_height):
         align_x, align_y = self.split_alignment(self.alignment)
         if align_x == 'right':
-            self.pattern_x = svg_size.width - self.width
+            self.pattern_x = svg_width - self.width
         elif align_x == 'center':
-            self.pattern_x = (svg_size.width - self.width) / 2
+            self.pattern_x = (svg_width - self.width) / 2
         else:
             self.pattern_x = 0
         if align_y == 'bottom':
-            self.pattern_y = svg_size.height - self.height
+            self.pattern_y = svg_height - self.height
         elif align_y == 'center':
-            self.pattern_y = (svg_size.height - self.height) / 2
+            self.pattern_y = (svg_height - self.height) / 2
         else:
             self.pattern_y = 0
 

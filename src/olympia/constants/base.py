@@ -243,6 +243,7 @@ THEME_PREVIEW_SIZES = {
     'full': _size_tuple(680, 92)
 }
 THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
+THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
