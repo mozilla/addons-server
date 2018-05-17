@@ -17,7 +17,6 @@ from olympia.lib.log_settings_base import formatters, handlers
 # Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
-from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
 
 
