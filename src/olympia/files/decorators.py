@@ -1,4 +1,5 @@
 import functools
+import traceback
 
 from datetime import datetime
 
@@ -68,8 +69,10 @@ def file_view(func, **kwargs):
         if result is not True:
             return result
         try:
-            obj = FileViewer(file_,)
+            obj = FileViewer(file_)
         except ObjectDoesNotExist:
+            log.error('Error 404 for file %s: %s' % (
+                file_id, traceback.format_exc()))
             raise http.Http404
 
         response = func(request, obj, *args, **kw)
