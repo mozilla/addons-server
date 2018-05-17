@@ -17,7 +17,6 @@ from olympia.lib.log_settings_base import formatters, handlers
 # Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
-from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
 
 
@@ -51,8 +50,9 @@ def user_media_url(what):
     return getattr(settings, key, default)
 
 
-APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
-PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
+PLATFORM_NAMES_TO_CONSTANTS = {
+    platform.api_name: platform.id for platform in PLATFORMS.values()
+}
 
 ADDON_SLUGS_UPDATE = {
     1: 'extension',
