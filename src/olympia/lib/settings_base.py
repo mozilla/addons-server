@@ -1264,7 +1264,6 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
-    'olympia.users.tasks.sync_user_with_basket': {'queue': 'users'},
 
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},

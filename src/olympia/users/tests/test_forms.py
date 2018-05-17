@@ -1,6 +1,8 @@
 from django.utils.http import urlsafe_base64_encode
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+import basket
+
 from mock import Mock, patch, MagicMock
 from pyquery import PyQuery as pq
 
@@ -276,6 +278,24 @@ class TestUserEditForm(UserFormBase):
                 'newsletters': 'about-addons',
                 'email': u'jbalogh@mozilla.com'},
             token='123')
+
+    def test_basket_unsubscribe_newsletter_no_basket_user(self):
+        """
+        Test that unsubscribing from a newsletter if user didn't exist yet
+        """
+        create_switch('activate-basket-sync')
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.side_effect = basket.base.BasketException(
+                'description', status_code=401,
+                code=basket.errors.BASKET_UNKNOWN_EMAIL)
+
+            UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
 
     def test_basket_subscribe_newsletter(self):
         create_switch('activate-basket-sync')
