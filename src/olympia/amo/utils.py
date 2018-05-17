@@ -355,12 +355,12 @@ def fetch_subscribed_newsletters(user_profile):
         data = sync_user_with_basket(user_profile)
     except (basket.BasketNetworkException, basket.BasketException):
         log.exception('basket exception')
-        return ()
+        return []
 
     if not user_profile.basket_token and data is not None:
         user_profile.update(basket_token=data['token'])
     elif data is None:
-        return ()
+        return []
     return data['newsletters']
 
 
@@ -382,7 +382,6 @@ def unsubscribe_newsletter(user_profile, basket_id):
             sync_user_with_basket(user_profile)
         except (basket.BasketNetworkException, basket.BasketException):
             log.exception('basket exception')
-            return ()
 
     # If we still don't have a basket token we can't unsubscribe.
     # This usually means the user doesn't exist in basket yet, which
