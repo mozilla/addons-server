@@ -326,15 +326,41 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     return msg
 
 
+def sync_user_with_basket(user):
+    """Syncronize a user with basket.
+
+    Returns the user data in case of a successful sync.
+    Returns `None` in case of an unsuccessful sync. This can happen
+    if the user does not exist in basket yet.
+
+    This raises an exception all other errors.
+    """
+    try:
+        data = basket.lookup_user(user.email)
+        user.update(basket_token=data['token'])
+        return data
+    except Exception as exc:
+        acceptable_errors = (
+            basket.errors.BASKET_INVALID_EMAIL,
+            basket.errors.BASKET_UNKNOWN_EMAIL)
+
+        if getattr(exc, 'code', None) in acceptable_errors:
+            return None
+        else:
+            raise
+
+
 def fetch_subscribed_newsletters(user_profile):
     try:
-        data = basket.lookup_user(user_profile.email)
+        data = sync_user_with_basket(user_profile)
     except (basket.BasketNetworkException, basket.BasketException):
         log.exception('basket exception')
-        return ()
+        return []
 
-    if not user_profile.basket_token:
+    if not user_profile.basket_token and data is not None:
         user_profile.update(basket_token=data['token'])
+    elif data is None:
+        return []
     return data['newsletters']
 
 
@@ -352,15 +378,22 @@ def unsubscribe_newsletter(user_profile, basket_id):
     # `fetch_subscribed_newsletters` but since we shouldn't simply error
     # we just fetch it in case something went wrong.
     if not user_profile.basket_token:
-        basket_data = basket.lookup_user(user_profile.email)
-        user_profile.update(basket_token=basket_data['token'])
+        try:
+            sync_user_with_basket(user_profile)
+        except (basket.BasketNetworkException, basket.BasketException):
+            log.exception('basket exception')
 
-    try:
-        response = basket.unsubscribe(
-            user_profile.basket_token, user_profile.email, basket_id)
-        return response['status'] == 'ok'
-    except (basket.BasketNetworkException, basket.BasketException):
-        log.exception('basket exception')
+    # If we still don't have a basket token we can't unsubscribe.
+    # This usually means the user doesn't exist in basket yet, which
+    # is more or less identical with not being subscribed to any
+    # newsletters.
+    if user_profile.basket_token:
+        try:
+            response = basket.unsubscribe(
+                user_profile.basket_token, user_profile.email, basket_id)
+            return response['status'] == 'ok'
+        except (basket.BasketNetworkException, basket.BasketException):
+            log.exception('basket exception')
     return False
 
 
