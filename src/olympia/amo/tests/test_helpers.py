@@ -169,7 +169,7 @@ def test_drf_url():
     rendered = render(fragment, context={'request': request})
     # As no /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
     assert rendered == jinja_helpers.absolutify(
-        reverse('v4:addon-detail', args=['a3615'], add_prefix=False))
+        reverse('v3:addon-detail', args=['a3615'], add_prefix=False))
 
     with pytest.raises(NoReverseMatch):
         # Without a request it can't resolve the name correctly.
