@@ -1693,7 +1693,7 @@ REST_FRAMEWORK = {
     ),
 
     'ALLOWED_VERSIONS': ['v3', 'v4'],
-    'DEFAULT_VERSION': 'v4',
+    'DEFAULT_VERSION': 'v3',
     'DEFAULT_VERSIONING_CLASS': (
         'rest_framework.versioning.NamespaceVersioning'),
 
