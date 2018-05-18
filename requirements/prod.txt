@@ -258,9 +258,9 @@ mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
 # natsort is required by amo-validator
-natsort==5.3.1 \
-    --hash=sha256:6f787fdc248bbd96f4bcdafd752b4f74f217c987b3acc6d526ac3d41a3298d72 \
-    --hash=sha256:0cefe7890a7a890bd9516738471d08d47e1ffbb3a9dd5abcd57af51f5cd187fe
+natsort==5.3.2 \
+    --hash=sha256:b06571dfe08c7649d7906392687381767f06e9002939afb71bd806685dbeb737 \
+    --hash=sha256:94056276c41be501d9fad3ade61d4eb4edf3b37fea53829b3294b75dc1d23708
 newrelic==3.2.1.93 \
     --hash=sha256:e60204f6d6b41741021d078ad5145414c759ff2482e2136ce22c9957654d9ca7
 nobot==0.4.1 \
