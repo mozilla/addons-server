@@ -171,7 +171,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'https://amo.addons-dev.allizom.org/fxa-authenticate',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
