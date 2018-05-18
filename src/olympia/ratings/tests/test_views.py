@@ -714,13 +714,13 @@ class TestEdit(ReviewTest):
         assert len(mail.outbox) == 0
 
 
-class TestRatingViewSetGet(TestCase):
+class BaseTestRatingViewSetGet(object):
     client_class = APITestClient
 
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('v3:rating-list')
+        self.url = reverse(self.list_url_name)
 
     def test_list_addon(self, **kwargs):
         review1 = Rating.objects.create(
@@ -1153,7 +1153,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1166,7 +1166,7 @@ class TestRatingViewSetGet(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
-        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1176,7 +1176,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail_deleted(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
         review.delete()
 
         response = self.client.get(self.url)
@@ -1189,7 +1189,7 @@ class TestRatingViewSetGet(TestCase):
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
         reply.delete()
-        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1208,7 +1208,7 @@ class TestRatingViewSetGet(TestCase):
             reply_to=review)
         reply.delete()
         review.delete()
-        self.url = reverse('v3:rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1386,7 +1386,7 @@ class TestRatingViewSetGet(TestCase):
         assert response.status_code == 200
 
 
-class TestRatingViewSetDelete(TestCase):
+class BaseTestRatingViewSetDelete(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -1396,7 +1396,7 @@ class TestRatingViewSetDelete(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.user)
-        self.url = reverse('v3:rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': self.rating.pk})
 
     def test_delete_anonymous(self):
         response = self.client.delete(self.url)
@@ -1458,7 +1458,7 @@ class TestRatingViewSetDelete(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, reply_to=self.rating,
             body=u'Reply that will be delêted...', user=addon_author)
-        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.delete(self.url)
         assert response.status_code == 204
@@ -1468,7 +1468,7 @@ class TestRatingViewSetDelete(TestCase):
     def test_delete_404(self):
         self.client.login_api(self.user)
         self.url = reverse(
-            'v3:rating-detail', kwargs={'pk': self.rating.pk + 42})
+            self.detail_url_name, kwargs={'pk': self.rating.pk + 42})
         response = self.client.delete(self.url)
         assert response.status_code == 404
         assert Rating.objects.count() == 1
@@ -1484,15 +1484,15 @@ class TestRatingViewSetDelete(TestCase):
         # And confirm we can rapidly delete them.
         self.client.login_api(self.user)
         response = self.client.delete(
-            reverse('v3:rating-detail', kwargs={'pk': rating_a.pk}))
+            reverse(self.detail_url_name, kwargs={'pk': rating_a.pk}))
         assert response.status_code == 204
         response = self.client.delete(
-            reverse('v3:rating-detail', kwargs={'pk': rating_b.pk}))
+            reverse(self.detail_url_name, kwargs={'pk': rating_b.pk}))
         assert response.status_code == 204
         assert Rating.objects.count() == 0
 
 
-class TestRatingViewSetEdit(TestCase):
+class BaseTestRatingViewSetEdit(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -1502,7 +1502,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body=u'My revïew', title=u'Titlé', user=self.user)
-        self.url = reverse('v3:rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': self.rating.pk})
 
     def test_edit_anonymous(self):
         response = self.client.patch(self.url, {'body': u'løl!'})
@@ -1610,7 +1610,7 @@ class TestRatingViewSetEdit(TestCase):
         reply = Rating.objects.create(
             reply_to=self.rating, body=u'This is â reply', user=addon_author,
             addon=self.addon)
-        self.url = reverse('v3:rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.patch(self.url, {'rating': 5})
         assert response.status_code == 200
@@ -1639,13 +1639,13 @@ class TestRatingViewSetEdit(TestCase):
         assert unicode(self.rating.body) == u'yés!'
 
 
-class TestRatingViewSetPost(TestCase):
+class BaseTestRatingViewSetPost(object):
     client_class = APITestClient
 
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('v3:rating-list')
+        self.url = reverse(self.list_url_name)
 
     def test_post_anonymous(self):
         response = self.client.post(self.url, {
@@ -2012,7 +2012,7 @@ class TestRatingViewSetPost(TestCase):
             self.client.login_api(self.user)
 
             # Submit an abuse report
-            report_abuse_url = reverse('v3:abusereportaddon-list')
+            report_abuse_url = reverse(self.abuse_report_url_name)
             response = self.client.post(
                 report_abuse_url,
                 data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
@@ -2051,7 +2051,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 201, response.content
 
 
-class TestRatingViewSetFlag(TestCase):
+class BaseTestRatingViewSetFlag(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -2061,11 +2061,7 @@ class TestRatingViewSetFlag(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('v3:rating-flag', kwargs={'pk': self.rating.pk})
-
-    def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/flag/' % self.rating.pk
-        assert self.url == expected_url
+        self.url = reverse(self.flag_url_name, kwargs={'pk': self.rating.pk})
 
     def test_flag_anonymous(self):
         response = self.client.post(self.url)
@@ -2199,7 +2195,7 @@ class TestRatingViewSetFlag(TestCase):
         rating_b = Rating.objects.create(
             addon=addon_b, version=addon_b.current_version, rating=2,
             body='My review', user=self.rating_user)
-        url_b = reverse('v3:rating-flag', kwargs={'pk': rating_b.pk})
+        url_b = reverse(self.flag_url_name, kwargs={'pk': rating_b.pk})
 
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
@@ -2211,7 +2207,7 @@ class TestRatingViewSetFlag(TestCase):
         assert RatingFlag.objects.count() == 2
 
 
-class TestRatingViewSetReply(TestCase):
+class BaseTestRatingViewSetReply(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -2221,11 +2217,7 @@ class TestRatingViewSetReply(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('v3:rating-reply', kwargs={'pk': self.rating.pk})
-
-    def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
-        assert self.url == expected_url
+        self.url = reverse(self.reply_url_name, kwargs={'pk': self.rating.pk})
 
     def test_get_method_not_allowed(self):
         self.addon_author = user_factory()
@@ -2248,7 +2240,7 @@ class TestRatingViewSetReply(TestCase):
         self.addon.addonuser_set.create(user=self.addon_author)
         self.client.login_api(self.addon_author)
         self.url = reverse(
-            'v3:rating-reply', kwargs={'pk': self.rating.pk + 42})
+            self.reply_url_name, kwargs={'pk': self.rating.pk + 42})
         response = self.client.post(self.url, data={})
         assert response.status_code == 404
 
@@ -2381,3 +2373,71 @@ class TestRatingViewSetReply(TestCase):
             'body': u'Another réply',
         })
         assert response.status_code == 429
+
+
+class TestRatingViewSetGetV3(BaseTestRatingViewSetGet, TestCase):
+    list_url_name = 'v3:rating-list'
+    detail_url_name = 'v3:rating-detail'
+
+
+class TestRatingViewSetGetV4(BaseTestRatingViewSetGet, TestCase):
+    list_url_name = 'v4:rating-list'
+    detail_url_name = 'v4:rating-detail'
+
+
+class TestRatingViewSetDeleteV3(BaseTestRatingViewSetDelete, TestCase):
+    detail_url_name = 'v3:rating-detail'
+
+
+class TestRatingViewSetDeleteV4(BaseTestRatingViewSetDelete, TestCase):
+    detail_url_name = 'v4:rating-detail'
+
+
+class TestRatingViewSetEditV3(BaseTestRatingViewSetEdit, TestCase):
+    detail_url_name = 'v3:rating-detail'
+
+
+class TestRatingViewSetEditV4(BaseTestRatingViewSetEdit, TestCase):
+    detail_url_name = 'v4:rating-detail'
+
+
+class TestRatingViewSetPostV3(BaseTestRatingViewSetPost, TestCase):
+    list_url_name = 'v3:rating-list'
+    abuse_report_url_name = 'v3:abusereportaddon-list'
+
+
+class TestRatingViewSetPostV4(BaseTestRatingViewSetPost, TestCase):
+    list_url_name = 'v4:rating-list'
+    abuse_report_url_name = 'v4:abusereportaddon-list'
+
+
+class TestRatingViewSetFlagV3(BaseTestRatingViewSetFlag, TestCase):
+    flag_url_name = 'v3:rating-flag'
+
+    def test_url(self):
+        expected_url = '/reviews/review/%d/flag/' % self.rating.pk
+        assert self.url.endswith(expected_url)
+
+
+class TestRatingViewSetFlagV4(BaseTestRatingViewSetFlag, TestCase):
+    flag_url_name = 'v4:rating-flag'
+
+    def test_url(self):
+        expected_url = '/ratings/rating/%d/flag/' % self.rating.pk
+        assert self.url.endswith(expected_url)
+
+
+class TestRatingViewSetReplyV3(BaseTestRatingViewSetReply, TestCase):
+    reply_url_name = 'v3:rating-reply'
+
+    def test_url(self):
+        expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
+        assert self.url.endswith(expected_url)
+
+
+class TestRatingViewSetReplyV4(BaseTestRatingViewSetReply, TestCase):
+    reply_url_name = 'v4:rating-reply'
+
+    def test_url(self):
+        expected_url = '/api/v4/ratings/rating/%d/reply/' % self.rating.pk
+        assert self.url.endswith(expected_url)
