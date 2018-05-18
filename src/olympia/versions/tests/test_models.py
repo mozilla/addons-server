@@ -156,10 +156,9 @@ class TestVersion(TestCase):
         delete_preview_files_mock.assert_called_with(
             sender=None, instance=version_preview)
 
-    @mock.patch('olympia.versions.models.VersionPreview.delete_preview_files')
-    def test_version_hard_delete(self, delete_preview_files_mock):
+    def test_version_hard_delete(self):
         version = Version.objects.get(pk=81551)
-        version_preview = VersionPreview.objects.create(version=version)
+        VersionPreview.objects.create(version=version)
         assert version.files.count() == 1
         version.delete(hard=True)
 
@@ -167,8 +166,7 @@ class TestVersion(TestCase):
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.unfiltered.filter(addon=addon).exists()
         assert version.files.count() == 0
-        delete_preview_files_mock.assert_called_with(
-            sender=None, instance=version_preview)
+        assert not VersionPreview.objects.filter(version=version).exists()
 
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)
