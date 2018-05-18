@@ -183,6 +183,15 @@ class TestOldContributionRedirects(TestCase):
         response = self.client.get(url, follow=True)
         self.assert3xx(response, self.detail_url, 301)
 
+    def test_contribute_status(self):
+        url = reverse('addons.contribute_status', args=['a592', 'complete'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
+
+        url = reverse('addons.contribute_status', args=['a592', 'cancel'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
+
     def test_meet(self):
         url = reverse('addons.meet', args=['a592'])
         response = self.client.get(url, follow=True)
