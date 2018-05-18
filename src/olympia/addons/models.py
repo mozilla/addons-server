@@ -1665,7 +1665,7 @@ class Persona(caching.CachingMixin, models.Model):
     def theme_data(self):
         """Theme JSON Data for Browser/extension preview."""
         def hexcolor(color):
-            return '#%s' % color
+            return ('#%s' % color) if color else None
 
         addon = self.addon
         return {
