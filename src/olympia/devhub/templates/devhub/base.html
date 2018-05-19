@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block user_login_include %}
+  {% with "true" as devhub_backlink %}
+    {% include "impala/user_login.html" %}
+  {% endwith %}
+{% endblock %}
+
 {% if addon %}
   {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
