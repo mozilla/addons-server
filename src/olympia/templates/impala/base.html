@@ -58,7 +58,9 @@
                 <nav id="aux-nav" role="navigation" class="menu-nav c">
                   <ul>
                     {% if not settings.READ_ONLY %}
-                      {% include "impala/user_login.html" %}
+                      {% block user_login_include %}
+                        {% include "impala/user_login.html" %}
+                      {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
                       <li>
