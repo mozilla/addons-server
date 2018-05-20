@@ -5917,7 +5917,7 @@ msgstr[1] "ამ მომხმარებელს ადრეც აქვ
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
+msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვებიც</a> დატოვებული, ამ დამატების შესახებ."
 
 msgid "Flagged for review"
 msgstr "მონიშნულია განსახილველად"
