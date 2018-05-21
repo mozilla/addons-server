@@ -714,13 +714,29 @@ class TestEdit(ReviewTest):
         assert len(mail.outbox) == 0
 
 
-class BaseTestRatingViewSetGet(object):
+class TestRatingViewSetGet(TestCase):
     client_class = APITestClient
+    list_url_name = 'v4:rating-list'
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(self.list_url_name)
+
+    def test_url_v3(self):
+        assert reverse('v3:rating-list').endswith('/v3/reviews/review/')
+        rating = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        detail_url = reverse('v3:rating-detail', kwargs={'pk': rating.pk})
+        assert detail_url.endswith('/v3/reviews/review/%d/' % rating.pk)
+
+    def test_url_default(self):
+        assert self.url.endswith('/v4/ratings/rating/')
+        rating = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        detail_url = reverse(self.detail_url_name, kwargs={'pk': rating.pk})
+        assert detail_url.endswith('/v4/ratings/rating/%d/' % rating.pk)
 
     def test_list_addon(self, **kwargs):
         review1 = Rating.objects.create(
@@ -1386,8 +1402,9 @@ class BaseTestRatingViewSetGet(object):
         assert response.status_code == 200
 
 
-class BaseTestRatingViewSetDelete(object):
+class TestRatingViewSetDelete(TestCase):
     client_class = APITestClient
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1492,8 +1509,9 @@ class BaseTestRatingViewSetDelete(object):
         assert Rating.objects.count() == 0
 
 
-class BaseTestRatingViewSetEdit(object):
+class TestRatingViewSetEdit(TestCase):
     client_class = APITestClient
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1639,8 +1657,10 @@ class BaseTestRatingViewSetEdit(object):
         assert unicode(self.rating.body) == u'yés!'
 
 
-class BaseTestRatingViewSetPost(object):
+class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
+    list_url_name = 'v4:rating-list'
+    abuse_report_url_name = 'v4:abusereportaddon-list'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2051,8 +2071,9 @@ class BaseTestRatingViewSetPost(object):
             assert response.status_code == 201, response.content
 
 
-class BaseTestRatingViewSetFlag(object):
+class TestRatingViewSetFlag(TestCase):
     client_class = APITestClient
+    flag_url_name = 'v4:rating-flag'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2062,6 +2083,15 @@ class BaseTestRatingViewSetFlag(object):
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
         self.url = reverse(self.flag_url_name, kwargs={'pk': self.rating.pk})
+
+    def test_url_v3(self):
+        expected_url = '/v3/reviews/review/%d/flag/' % self.rating.pk
+        v3_url = reverse('v3:rating-flag', kwargs={'pk': self.rating.pk})
+        assert v3_url.endswith(expected_url)
+
+    def test_url_default(self):
+        expected_url = '/v4/ratings/rating/%d/flag/' % self.rating.pk
+        assert self.url.endswith(expected_url)
 
     def test_flag_anonymous(self):
         response = self.client.post(self.url)
@@ -2207,8 +2237,9 @@ class BaseTestRatingViewSetFlag(object):
         assert RatingFlag.objects.count() == 2
 
 
-class BaseTestRatingViewSetReply(object):
+class TestRatingViewSetReply(TestCase):
     client_class = APITestClient
+    reply_url_name = 'v4:rating-reply'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2218,6 +2249,15 @@ class BaseTestRatingViewSetReply(object):
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
         self.url = reverse(self.reply_url_name, kwargs={'pk': self.rating.pk})
+
+    def test_url_v3(self):
+        v3_url = reverse('v3:rating-reply', kwargs={'pk': self.rating.pk})
+        expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
+        assert v3_url.endswith(expected_url)
+
+    def test_url_default(self):
+        expected_url = '/api/v4/ratings/rating/%d/reply/' % self.rating.pk
+        assert self.url.endswith(expected_url)
 
     def test_get_method_not_allowed(self):
         self.addon_author = user_factory()
@@ -2373,71 +2413,3 @@ class BaseTestRatingViewSetReply(object):
             'body': u'Another réply',
         })
         assert response.status_code == 429
-
-
-class TestRatingViewSetGetV3(BaseTestRatingViewSetGet, TestCase):
-    list_url_name = 'v3:rating-list'
-    detail_url_name = 'v3:rating-detail'
-
-
-class TestRatingViewSetGetV4(BaseTestRatingViewSetGet, TestCase):
-    list_url_name = 'v4:rating-list'
-    detail_url_name = 'v4:rating-detail'
-
-
-class TestRatingViewSetDeleteV3(BaseTestRatingViewSetDelete, TestCase):
-    detail_url_name = 'v3:rating-detail'
-
-
-class TestRatingViewSetDeleteV4(BaseTestRatingViewSetDelete, TestCase):
-    detail_url_name = 'v4:rating-detail'
-
-
-class TestRatingViewSetEditV3(BaseTestRatingViewSetEdit, TestCase):
-    detail_url_name = 'v3:rating-detail'
-
-
-class TestRatingViewSetEditV4(BaseTestRatingViewSetEdit, TestCase):
-    detail_url_name = 'v4:rating-detail'
-
-
-class TestRatingViewSetPostV3(BaseTestRatingViewSetPost, TestCase):
-    list_url_name = 'v3:rating-list'
-    abuse_report_url_name = 'v3:abusereportaddon-list'
-
-
-class TestRatingViewSetPostV4(BaseTestRatingViewSetPost, TestCase):
-    list_url_name = 'v4:rating-list'
-    abuse_report_url_name = 'v4:abusereportaddon-list'
-
-
-class TestRatingViewSetFlagV3(BaseTestRatingViewSetFlag, TestCase):
-    flag_url_name = 'v3:rating-flag'
-
-    def test_url(self):
-        expected_url = '/reviews/review/%d/flag/' % self.rating.pk
-        assert self.url.endswith(expected_url)
-
-
-class TestRatingViewSetFlagV4(BaseTestRatingViewSetFlag, TestCase):
-    flag_url_name = 'v4:rating-flag'
-
-    def test_url(self):
-        expected_url = '/ratings/rating/%d/flag/' % self.rating.pk
-        assert self.url.endswith(expected_url)
-
-
-class TestRatingViewSetReplyV3(BaseTestRatingViewSetReply, TestCase):
-    reply_url_name = 'v3:rating-reply'
-
-    def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
-        assert self.url.endswith(expected_url)
-
-
-class TestRatingViewSetReplyV4(BaseTestRatingViewSetReply, TestCase):
-    reply_url_name = 'v4:rating-reply'
-
-    def test_url(self):
-        expected_url = '/api/v4/ratings/rating/%d/reply/' % self.rating.pk
-        assert self.url.endswith(expected_url)
