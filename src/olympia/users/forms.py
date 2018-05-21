@@ -224,20 +224,20 @@ class UserEditForm(happyforms.ModelForm):
         return biography
 
     def save(self, log_for_developer=True):
-        u = super(UserEditForm, self).save(commit=False)
+        user = super(UserEditForm, self).save(commit=False)
         data = self.cleaned_data
         photo = data['photo']
         if photo:
-            u.picture_type = 'image/png'
-            tmp_destination = u.picture_path_original
+            user.picture_type = 'image/png'
+            tmp_destination = user.picture_path_original
 
             with storage.open(tmp_destination, 'wb') as fh:
                 for chunk in photo.chunks():
                     fh.write(chunk)
 
             tasks.resize_photo.delay(
-                tmp_destination, u.picture_path,
-                set_modified_on=u.serializable_reference())
+                tmp_destination, user.picture_path,
+                set_modified_on=user.serializable_reference())
 
         visible_notifications = (
             notifications.NOTIFICATIONS_BY_ID if self.instance.is_developer
@@ -262,10 +262,10 @@ class UserEditForm(happyforms.ModelForm):
                 elif needs_unsubscribe:
                     unsubscribe_newsletter(self.instance, basket_id)
 
-        log.debug(u'User (%s) updated their profile' % u)
+        log.debug(u'User (%s) updated their profile' % user)
 
-        u.save()
-        return u
+        user.save()
+        return user
 
 
 class AdminUserEditForm(UserEditForm):
