@@ -2091,6 +2091,23 @@ class TestPersonaModel(TestCase):
                 'https://vamo/fr/themes/update-check/' + id_)
             assert data['version'] == '1.0'
 
+    def test_json_data_missing_colors(self):
+        self.persona.accentcolor = ''
+        self.persona.textcolor = ''
+        self.persona.save()
+
+        data = self.persona.theme_data
+        assert data['accentcolor'] is None
+        assert data['textcolor'] is None
+
+        self.persona.accentcolor = None
+        self.persona.textcolor = None
+        self.persona.save()
+
+        data = self.persona.theme_data
+        assert data['accentcolor'] is None
+        assert data['textcolor'] is None
+
     def test_image_urls_without_footer(self):
         self.persona.footer = ''
         self.persona.save()
