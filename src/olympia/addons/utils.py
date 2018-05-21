@@ -153,6 +153,7 @@ TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
 TAAR_LITE_OUTCOME_CURATED = 'curated'
 TAAR_LITE_FALLBACK_REASON_TIMEOUT = 'timeout'
 TAAR_LITE_FALLBACK_REASON_EMPTY = 'no_results'
+TAAR_LITE_FALLBACK_REASON_INVALID = 'invalid_results'
 
 
 def get_addon_recommendations(guid_param, taar_enable):
@@ -172,6 +173,16 @@ def get_addon_recommendations(guid_param, taar_enable):
     if not guids:
         guids = TAAR_LITE_FALLBACKS
     return guids, outcome, fail_reason
+
+
+def is_outcome_recommended(outcome):
+    return outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
+
+
+def get_addon_recommendations_invalid():
+    return (
+        TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_REAL_FAIL,
+        TAAR_LITE_FALLBACK_REASON_INVALID)
 
 
 def build_static_theme_xpi_from_lwt(lwt, upload_zip):

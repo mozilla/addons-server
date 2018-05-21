@@ -544,8 +544,8 @@ Four recommendations are fetched, but only valid, publicly available addons are 
     :query string guid: Fetch recommendations for this add-on guid.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.
-    :>json string outcome: Outcome of the response returned.  Will be either: ``recommended`` - responses from recommendation service; ``recommended_fallback`` - service timed out or returned empty results so we returned fallback; ``curated`` - ``recommended=False`` was requested so fallback returned.
-    :>json string|null fallback_reason: if ``outcome`` was ``recommended_fallback`` then the reason why.  Will be either: ``timeout`` or ``no_results``.
+    :>json string outcome: Outcome of the response returned.  Will be either: ``recommended`` - responses from recommendation service; ``recommended_fallback`` - service timed out or returned empty or invalid results so we returned fallback; ``curated`` - ``recommended=False`` was requested so fallback returned.
+    :>json string|null fallback_reason: if ``outcome`` was ``recommended_fallback`` then the reason why.  Will be either: ``timeout``, ``no_results``, or ``invalid_results``.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
