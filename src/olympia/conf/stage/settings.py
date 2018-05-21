@@ -188,6 +188,11 @@ RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
 RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
+    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
+
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/142069644989/'
     'amo-account-change-stage')
