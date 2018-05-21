@@ -67,6 +67,7 @@ class TestUserProfile(TestCase):
         assert user.last_login_attempt
         assert user.last_login_attempt_ip
         assert user.last_login_ip
+        assert not user.has_anonymous_username
 
         old_auth_id = user.auth_id
         user.delete()
@@ -75,13 +76,13 @@ class TestUserProfile(TestCase):
         assert user.auth_id
         assert user.auth_id != old_auth_id
         assert user.fxa_id is None
-        assert user.username == 'Anonymous-%s' % user.id
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
         assert user.last_login_attempt is None
         assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
+        assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 
