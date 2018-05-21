@@ -3810,10 +3810,14 @@ class TestAddonRecommendationView(ESTestCase):
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(self.url, data={'guid': '@foo'})
-            assert data['count'] == 0
-            assert len(data['results']) == 0
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(self.url, data={'guid': '@foo'})
+                assert data['count'] == 0
+                assert len(data['results']) == 0
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0
 
     def test_es_queries_made_results(self):
         addon_factory(slug='foormidable', name=u'foo', guid='@a')
@@ -3827,8 +3831,12 @@ class TestAddonRecommendationView(ESTestCase):
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(
-                self.url, data={'guid': '@foo', 'recommended': 'true'})
-            assert data['count'] == 4
-            assert len(data['results']) == 4
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(
+                    self.url, data={'guid': '@foo', 'recommended': 'true'})
+                assert data['count'] == 4
+                assert len(data['results']) == 4
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0
