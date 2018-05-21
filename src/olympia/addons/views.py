@@ -963,6 +963,7 @@ class AddonRecommendationView(AddonSearchView):
     filter_backends = [ReviewedContentFilter]
     ab_outcome = None
     fallback_reason = None
+    pagination_class = None
 
     def get_paginated_response(self, data):
         data = data[:4]  # taar is only supposed to return 4 anyway.
@@ -985,8 +986,16 @@ class AddonRecommendationView(AddonSearchView):
             get_addon_recommendations(guid_param, taar_enable))
         results_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
 
-        if results_qs.count() != 4 and is_outcome_recommended(self.ab_outcome):
+        results = results_qs.execute()
+        if results.hits.total != 4 and is_outcome_recommended(self.ab_outcome):
             guids, self.ab_outcome, self.fallback_reason = (
                 get_addon_recommendations_invalid())
             return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
-        return results_qs
+        return results
+
+    def list(self, request, *args, **kwargs):
+        # override because we want get_paginated_response with no paginator.
+        queryset = self.filter_queryset(self.get_queryset())
+
+        serializer = self.get_serializer(queryset, many=True)
+        return self.get_paginated_response(serializer.data)
