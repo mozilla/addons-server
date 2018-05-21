@@ -1449,9 +1449,9 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         request_call.assert_called_with(
             'post', 'subscribe',
             data={
-                'newsletters': 'about-addons',
+                'newsletters': 'about-addons', 'sync': 'Y',
                 'email': self.user.email},
-            headers={})
+            headers={'x-api-key': 'testkey'})
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
