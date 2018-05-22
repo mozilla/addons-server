@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-22 12:42+0000\n"
+"PO-Revision-Date: 2018-05-22 13:17+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2711,10 +2711,10 @@ msgid "All Activity"
 msgstr "Вся активність"
 
 msgid "Add-on Updates"
-msgstr "Оновлення додатку"
+msgstr "Оновлення додатка"
 
 msgid "Add-on Status"
-msgstr "Статус додатку"
+msgstr "Статус додатка"
 
 msgid "User Collections"
 msgstr "Збірки користувача"
@@ -2744,19 +2744,19 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Неправильна назва URL. Додаток не був видалений."
 
 msgid "An author has been added to your add-on"
-msgstr "До Вашого додатку був доданий автор"
+msgstr "До вашого додатка був доданий автор"
 
 msgid "An author has a role changed on your add-on"
-msgstr "Автор змінив роль у Вашому додатку"
+msgstr "Автор змінив роль у вашому додатку"
 
 msgid "An author has been removed from your add-on"
-msgstr "Із Вашого додатку був видалений автор"
+msgstr "Із вашого додатка був видалений автор"
 
 msgid "Validate Add-on"
 msgstr "Валідувати додаток"
 
 msgid "Check Add-on Compatibility"
-msgstr "Перевірка сумісності додатку"
+msgstr "Перевірка сумісності додатка"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -2881,7 +2881,7 @@ msgid "Search"
 msgstr "Пошук"
 
 msgid "Use the field below to upload your add-on package."
-msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакет додатку."
+msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакунок додатка."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
@@ -2937,8 +2937,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Цей додаток несумісний з <b>%(app_name)s %(app_version)s</b>, останньою версією %(app_name)s. Будь ласка, розгляньте питання щодо оновлення інформації про сумісність Вашого додатку чи завантаження "
-"нової версії цього додатку."
+"Цей додаток несумісний з <b>%(app_name)s %(app_version)s</b>, останньою версією %(app_name)s. Будь ласка, розгляньте можливість оновлення інформації про сумісність вашого додатка чи завантаження "
+"його нової версії."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
