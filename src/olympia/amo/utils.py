@@ -351,11 +351,7 @@ def sync_user_with_basket(user):
 
 
 def fetch_subscribed_newsletters(user_profile):
-    try:
-        data = sync_user_with_basket(user_profile)
-    except (basket.BasketNetworkException, basket.BasketException):
-        log.exception('basket exception')
-        return []
+    data = sync_user_with_basket(user_profile)
 
     if not user_profile.basket_token and data is not None:
         user_profile.update(basket_token=data['token'])
@@ -365,11 +361,8 @@ def fetch_subscribed_newsletters(user_profile):
 
 
 def subscribe_newsletter(user_profile, basket_id):
-    try:
-        response = basket.subscribe(user_profile.email, basket_id)
-        return response['status'] == 'ok'
-    except (basket.BasketNetworkException, basket.BasketException):
-        log.exception('basket exception')
+    response = basket.subscribe(user_profile.email, basket_id, sync='Y')
+    return response['status'] == 'ok'
     return False
 
 
@@ -378,22 +371,16 @@ def unsubscribe_newsletter(user_profile, basket_id):
     # `fetch_subscribed_newsletters` but since we shouldn't simply error
     # we just fetch it in case something went wrong.
     if not user_profile.basket_token:
-        try:
-            sync_user_with_basket(user_profile)
-        except (basket.BasketNetworkException, basket.BasketException):
-            log.exception('basket exception')
+        sync_user_with_basket(user_profile)
 
     # If we still don't have a basket token we can't unsubscribe.
     # This usually means the user doesn't exist in basket yet, which
     # is more or less identical with not being subscribed to any
     # newsletters.
     if user_profile.basket_token:
-        try:
-            response = basket.unsubscribe(
-                user_profile.basket_token, user_profile.email, basket_id)
-            return response['status'] == 'ok'
-        except (basket.BasketNetworkException, basket.BasketException):
-            log.exception('basket exception')
+        response = basket.unsubscribe(
+            user_profile.basket_token, user_profile.email, basket_id)
+        return response['status'] == 'ok'
     return False
 
 

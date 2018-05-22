@@ -327,9 +327,9 @@ class TestUserEditForm(UserFormBase):
 
         request_call.assert_called_with(
             'post', 'subscribe',
-            headers={},
+            headers={'x-api-key': 'testkey'},
             data={
-                'newsletters': 'about-addons',
+                'newsletters': 'about-addons', 'sync': 'Y',
                 'email': u'jbalogh@mozilla.com'})
 
     def test_basket_sync_behind_flag(self):
