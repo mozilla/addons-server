@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-17 09:50+0000\n"
+"PO-Revision-Date: 2018-05-22 12:42+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -529,14 +529,14 @@ msgid "Enjoy this add-on?"
 msgstr "Подобається цей додаток?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Розробник цього додатку просить вас посприяти його подальшому розвитку, зробивши свій невеличкий внесок."
+msgstr "Розробник цього додатка просить вас посприяти його подальшому розвитку, зробивши свій невеличкий внесок."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr "Знімок екрану #{0} додатку"
+msgstr "Знімок екрану додатка #{0}"
 
 msgid "Add-on home page"
-msgstr "Домашня сторінка додатку"
+msgstr "Домашня сторінка додатка"
 
 msgid "Support site"
 msgstr "Сайт підтримки"
@@ -623,7 +623,7 @@ msgstr[1] "Дивитися всі %(cnt)s відгуки користувачі
 msgstr[2] "Дивитися всі %(cnt)s відгуків користувачів"
 
 msgid "This add-on has not yet been reviewed."
-msgstr "Досі не було відгуків для цього додатку."
+msgstr "Досі не було відгуків для цього додатка."
 
 msgid "Be the first!"
 msgstr "Станьте першим!"
@@ -645,7 +645,7 @@ msgstr "Мої теми"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr "Інформація додатку для {0}"
+msgstr "Інформація додатка для {0}"
 
 msgid "Edit Theme"
 msgstr "Редагувати тему"
@@ -1395,7 +1395,7 @@ msgid "Comment"
 msgstr "Коментар"
 
 msgid "Enter the name of the add-on to include"
-msgstr "Введіть назву додатку щоб включити"
+msgstr "Введіть назву додатка для включення"
 
 msgid "Add to Collection"
 msgstr "Додати до збірки"
@@ -1673,7 +1673,7 @@ msgid "All"
 msgstr "Всі"
 
 msgid "Add-on Compatibility Reports"
-msgstr "Звіти сумісності додатку"
+msgstr "Звіти сумісності додатка"
 
 #, python-format
 msgid ""
@@ -1720,7 +1720,7 @@ msgid "Application Version"
 msgstr "Версія програми"
 
 msgid "Application Build"
-msgstr "Збирання додатку"
+msgstr "Складання додатка"
 
 msgid "Platform"
 msgstr "Платформа"
@@ -1906,7 +1906,7 @@ msgid "Authors emailed about compatibility of {version}."
 msgstr "Авторам відправлено повідомлення про сумісність {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Повідомлення про сумісність додатку відправлено автору."
+msgstr "Повідомлення про сумісність додатка відправлено автору."
 
 msgid "Password changed."
 msgstr "Пароль змінено."
@@ -2463,25 +2463,25 @@ msgid "Updated Complete Theme Review"
 msgstr "Оновлена перевірка повної теми"
 
 msgid "Moderated Add-on Review"
-msgstr "Перевірка модерованого додатку"
+msgstr "Перевірка модерованого додатка"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr "Модерація відгуку на додаток повернена"
 
 msgid "Add-on Content Review"
-msgstr "Перевірка вмісту додатку"
+msgstr "Перевірка вмісту додатка"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Перевірка вже схваленого додатку (Найвищий ризик)"
+msgstr "Перевірка вже схваленого додатка (Найвищий ризик)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Перевірка вже схваленого додатку (Високий ризик)"
+msgstr "Перевірка вже схваленого додатка (Високий ризик)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Перевірка вже схваленого додатку (Середній ризик)"
+msgstr "Перевірка вже схваленого додатка (Середній ризик)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Перевірка вже схваленого додатку (Низький ризик)"
+msgstr "Перевірка вже схваленого додатка (Низький ризик)"
 
 msgid "Level 1"
 msgstr "Рівень 1"
@@ -2590,13 +2590,13 @@ msgid "This add-on has an End-User License Agreement"
 msgstr "Цей додаток має ліцензійну угоду з кінцевим користувачем"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Визначте ліцензійну угоду з кінцевим користувачем вашого додатку:"
+msgstr "Вкажіть ліцензійну угоду з кінцевим користувачем вашого додатка:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Цей додаток має політику приватності"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Визначте політику приватності вашого додатку:"
+msgstr "Вкажіть політику приватності вашого додатка:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Непідтримуваний тип файлу, вивантажте будь ласка файл архіву (розширення)."
@@ -2683,7 +2683,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "Ваш API-ключ розробника було знайдено у відправленому файлі. Для захисту вашого облікового запису ключ буде відкликано."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "API-ключ розробника чи співавтора було знайдено у відправленому файлі. Для захисту вашого додатку ключ буде відкликано."
+msgstr "API-ключ розробника чи співавтора було знайдено у відправленому файлі. Для захисту вашого додатка ключ буде відкликано."
 
 #, python-format
 msgid "%s responded with %s (%s)."
