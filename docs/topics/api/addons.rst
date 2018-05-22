@@ -262,18 +262,21 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
 
-        For backwards-compatibility reasons, the value for Theme is ``persona``.
-        ``theme`` refers to a Complete Theme.
+        For backwards-compatibility reasons, the value for type of Theme
+        currently live on production addons.mozilla.org is ``persona``
+        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme. 
+        New webextension packaged non-dynamic themes are ``statictheme`.
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-             theme  Complete Theme
+             theme  Theme (Complete Theme, XUL-based)
             search  Search Engine
-           persona  Theme
+           persona  Theme (Lightweight Theme, persona)
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary
+       statictheme  Theme (Static Theme)
     ==============  ==========================================================
 
 
