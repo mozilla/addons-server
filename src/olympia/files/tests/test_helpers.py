@@ -304,7 +304,8 @@ class TestFileViewer(TestCase):
     def test_delete_mid_tree(self, get_sha256):
         get_sha256.side_effect = IOError('ow')
         self.viewer.extract()
-        assert {} == self.viewer.get_files()
+        with self.assertRaises(IOError):
+            self.viewer.get_files()
 
     @patch('olympia.files.templatetags.jinja_helpers.os.fsync')
     def test_verify_files_doesnt_call_fsync_regularly(self, fsync):
