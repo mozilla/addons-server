@@ -963,7 +963,7 @@ class AddonRecommendationView(AddonSearchView):
     filter_backends = [ReviewedContentFilter]
     ab_outcome = None
     fallback_reason = None
-    _pagination_class = None  # added a _ to disable the disable
+    pagination_class = None
 
     def get_paginated_response(self, data):
         data = data[:4]  # taar is only supposed to return 4 anyway.
@@ -993,9 +993,6 @@ class AddonRecommendationView(AddonSearchView):
             return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
         return results_qs
 
-    def _list(self, request, *args, **kwargs):  # _ to disable the disable
-        # override because we want get_paginated_response with no paginator.
-        queryset = self.filter_queryset(self.get_queryset())
-
-        serializer = self.get_serializer(queryset, many=True)
-        return self.get_paginated_response(serializer.data)
+    def paginate_queryset(self, queryset):
+        # We don't need pagination for the fixed number of results.
+        return queryset
