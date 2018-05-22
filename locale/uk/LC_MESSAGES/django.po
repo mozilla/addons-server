@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-22 13:17+0000\n"
+"PO-Revision-Date: 2018-05-22 14:02+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3012,8 +3012,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатку, включаючи додавання і вилучення інших "
-"авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатку, за винятком додавання і вилучення інших авторів</li> </ul>"
+"<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатка, включаючи додавання і вилучення інших "
+"авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатка, за винятком додавання і вилучення інших авторів</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Основна інформація"
@@ -3035,7 +3035,7 @@ msgid "Summary"
 msgstr "Звіт"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Цей опис повинен чітко пояснювати, що робить ваш додаток. Він буде показаний на сторінці та в пошуку, а також буде використовуватись під час перевірки вашого додатку."
+msgstr "Цей опис повинен чітко пояснювати, що робить ваш додаток. Він буде показаний на сторінці та в пошуку, а також буде використовуватись під час перевірки вашого додатка."
 
 msgid "Experimental?"
 msgstr "Експериментальний?"
@@ -3122,8 +3122,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Якщо у вашого додатку є інша домашня сторінка, введіть тут її адресу. Якщо ваш сайт перекладений іншими мови, для цього поля можна додати кілька перекладів. Це стосується тільки додатків, що "
-"знаходяться в списку."
+"Якщо у вашого додатка є інша домашня сторінка, введіть її адресу тут. Якщо ваш сайт перекладений іншими мовами, для цього поля можна додати кілька перекладів. Це стосується тільки опублікованих "
+"додатків."
 
 msgid "Images"
 msgstr "Зображення"
@@ -3176,7 +3176,7 @@ msgid "Limit 3"
 msgstr "Обмеження 3"
 
 msgid "Add-on Flags"
-msgstr "Прапорці додатку"
+msgstr "Прапорці додатка"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
@@ -3195,10 +3195,10 @@ msgstr ""
 "                        засобі онлайн-перегляду. Це стосується лише опублікованих додатків."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "Програмний код цього додатку є загальнодоступним."
+msgstr "Програмний код цього додатка є загальнодоступним."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Програмний код цього додатку не є загальнодоступним."
+msgstr "Програмний код цього додатка не є загальнодоступним."
 
 msgid "Public Stats?"
 msgstr "Публічна статистика?"
@@ -3210,10 +3210,10 @@ msgstr ""
 "                        Це стосується лише опублікованих додатків."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr "Статистика цього додатку є загальнодоступною."
+msgstr "Статистика цього додатка є загальнодоступною."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Статистика цього додатку не є загальнодоступною."
+msgstr "Статистика цього додатка не є загальнодоступною."
 
 msgid "Upgrade SDK?"
 msgstr "Оновити SDK?"
@@ -3222,10 +3222,10 @@ msgid "If selected, we will try to automatically upgrade your add-on when a new 
 msgstr "Якщо вибрано, ми постараємося автоматично оновити ваш додаток, коли буде випущена нова версія SDK. Це стосується тільки додатків, що знаходяться в списку."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Цей додаток буде автоматично оновлений до нових версій SDK додатку."
+msgstr "Цей додаток буде автоматично оновлений до нових версій SDK додатка."
 
 msgid "No, this add-on will be upgraded manually."
-msgstr "Оновлення цього додатку буде проводитись вручну."
+msgstr "Оновлення цього додатка буде проводитись вручну."
 
 msgid "Universally unique identifier"
 msgstr "Універсальний унікальний ідентифікатор"
@@ -3234,7 +3234,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "UUID вашого додатку зазначений у його маніфесті установки і є його унікальним ідентифікатором. Після його відправлення ви не зможете змінити UUID."
+msgstr "UUID вашого додатка зазначений у його маніфесті встановлення і є його унікальним ідентифікатором. Після його відправлення ви не зможете змінити UUID."
 
 msgid "Whiteboard"
 msgstr "Панель огляду"
@@ -3243,20 +3243,20 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Панель огляду є місцем для надання редактору інформації стосовно вашого додатку, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатку, а також для розміщення будь-якої "
+"Панель огляду є місцем для надання редактору інформації стосовно вашого додатка, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатка, а також для розміщення будь-якої "
 "додаткової інформації, яка може допомогти. Ця панель також доступна для змін рецензентам."
 
 msgid "Remove this dependent add-on"
 msgstr "Видалити цей залежний додаток"
 
 msgid "Enter the name of an add-on"
-msgstr "Введіть ім'я додатку"
+msgstr "Введіть назву додатка"
 
 msgid "Add-on Media for {0}"
 msgstr "Медіа додаток для {0}"
 
 msgid "Add-on icon"
-msgstr "Іконка додатку"
+msgstr "Піктограма додатка"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3266,7 +3266,7 @@ msgstr ""
 "стосується тільки додатків, що знаходяться в списку."
 
 msgid "Select an icon for your add-on:"
-msgstr "Виберіть іконку для вашого додатку:"
+msgstr "Оберіть піктограму для вашого додатка:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -3282,7 +3282,7 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr "Використовується на сторінках опису додатку."
+msgstr "Використовується на сторінках опису додатка."
 
 msgid "Upload a Custom Icon..."
 msgstr "Вивантажити власну іконку..."
@@ -3294,7 +3294,7 @@ msgid "Screenshots"
 msgstr "Знімки екрану"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Будь ласка, надайте щонайменше один знімок екрану вашого додатку:"
+msgstr "Будь ласка, надайте принаймні один знімок екрану вашого додатка:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Будь ласка, додайте заголовок для вашого знімка екрану:"
@@ -3309,7 +3309,7 @@ msgid "Can others make commercial use of your Add-on?"
 msgstr "Чи можуть інші використовувати ваш додаток в комерційних цілях?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Чи можуть інші створювати похідні роботи на основі вашого додатку?"
+msgstr "Чи можуть інші створювати похідні роботи на основі вашого додатка?"
 
 msgid "Yes, as long as they share alike"
 msgstr "Так, якщо вони так само діляться"
