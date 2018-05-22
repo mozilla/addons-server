@@ -13,10 +13,12 @@ from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
     build_static_theme_xpi_from_lwt,
-    get_addon_recommendations, get_creatured_ids, get_featured_ids,
+    get_addon_recommendations, get_addon_recommendations_invalid,
+    get_creatured_ids, get_featured_ids, is_outcome_recommended,
     TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
     TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
     TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
+    TAAR_LITE_FALLBACK_REASON_INVALID,
     verify_mozilla_trademark)
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory)
@@ -206,6 +208,17 @@ class TestGetAddonRecommendations(TestCase):
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_CURATED
         assert reason is None
+
+    def test_invalid_fallback(self):
+        recommendations, outcome, reason = get_addon_recommendations_invalid()
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
+
+    def test_is_outcome_recommended(self):
+        assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
+        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
+        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
 
 
 class TestBuildStaticThemeXpiFromLwt(TestCase):

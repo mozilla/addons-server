@@ -3717,13 +3717,13 @@ class TestAddonRecommendationView(ESTestCase):
         addon4 = addon_factory(id=104, guid='104@mozilla')
         self.get_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
-            'success', 'no_reason')
+            'recommended', 'no_reason')
         self.refresh()
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'False'})
         self.get_recommendations_mock.assert_called_with('foo@baa', False)
-        assert data['outcome'] == 'success'
+        assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] == 'no_reason'
         assert data['count'] == 4
         assert len(data['results']) == 4
@@ -3741,29 +3741,102 @@ class TestAddonRecommendationView(ESTestCase):
         assert result['id'] == addon4.pk
         assert result['guid'] == '104@mozilla'
 
+    @mock.patch('olympia.addons.views.get_addon_recommendations_invalid')
+    def test_less_than_four_results(self, get_addon_recommendations_invalid):
+        addon1 = addon_factory(id=101, guid='101@mozilla')
+        addon2 = addon_factory(id=102, guid='102@mozilla')
+        addon3 = addon_factory(id=103, guid='103@mozilla')
+        addon4 = addon_factory(id=104, guid='104@mozilla')
+        addon5 = addon_factory(id=105, guid='105@mozilla')
+        addon6 = addon_factory(id=106, guid='106@mozilla')
+        addon7 = addon_factory(id=107, guid='107@mozilla')
+        addon8 = addon_factory(id=108, guid='108@mozilla')
+        self.get_recommendations_mock.return_value = (
+            ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
+            'recommended', None)
+        get_addon_recommendations_invalid.return_value = (
+            ['105@mozilla', '106@mozilla', '107@mozilla', '108@mozilla'],
+            'failed', 'invalid')
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        assert data['outcome'] == 'recommended'
+        assert data['fallback_reason'] is None
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon1.pk
+        assert result['guid'] == '101@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['guid'] == '102@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon3.pk
+        assert result['guid'] == '103@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon4.pk
+        assert result['guid'] == '104@mozilla'
+
+        # Delete one of the add-ons returned, making us use curated fallbacks
+        addon1.delete()
+        self.refresh()
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        assert data['outcome'] == 'failed'
+        assert data['fallback_reason'] == 'invalid'
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon5.pk
+        assert result['guid'] == '105@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon6.pk
+        assert result['guid'] == '106@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon7.pk
+        assert result['guid'] == '107@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon8.pk
+        assert result['guid'] == '108@mozilla'
+
     def test_es_queries_made_no_results(self):
         self.get_recommendations_mock.return_value = (
             ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(self.url, data={'q': 'foo'})
-            assert data['count'] == 0
-            assert len(data['results']) == 0
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(self.url, data={'guid': '@foo'})
+                assert data['count'] == 0
+                assert len(data['results']) == 0
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0
 
-    def test_es_queries_made_some_result(self):
+    def test_es_queries_made_results(self):
         addon_factory(slug='foormidable', name=u'foo', guid='@a')
         addon_factory(slug='foobar', name=u'foo', guid='@b')
+        addon_factory(slug='fbar', name=u'foo', guid='@c')
+        addon_factory(slug='fb', name=u'foo', guid='@d')
         self.refresh()
 
         self.get_recommendations_mock.return_value = (
-            ['@a', '@b'], 'foo', 'baa')
+            ['@a', '@b', '@c', '@d'], 'recommended', None)
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(
-                self.url, data={'q': 'foo'})
-            assert data['count'] == 2
-            assert len(data['results']) == 2
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(
+                    self.url, data={'guid': '@foo', 'recommended': 'true'})
+                assert data['count'] == 4
+                assert len(data['results']) == 4
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0

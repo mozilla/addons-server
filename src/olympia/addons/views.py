@@ -58,7 +58,8 @@ from .serializers import (
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import (
-    get_addon_recommendations, get_creatured_ids, get_featured_ids)
+    get_addon_recommendations, get_addon_recommendations_invalid,
+    get_creatured_ids, get_featured_ids, is_outcome_recommended)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -962,6 +963,7 @@ class AddonRecommendationView(AddonSearchView):
     filter_backends = [ReviewedContentFilter]
     ab_outcome = None
     fallback_reason = None
+    pagination_class = None
 
     def get_paginated_response(self, data):
         data = data[:4]  # taar is only supposed to return 4 anyway.
@@ -982,4 +984,15 @@ class AddonRecommendationView(AddonSearchView):
         taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
         guids, self.ab_outcome, self.fallback_reason = (
             get_addon_recommendations(guid_param, taar_enable))
-        return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+        results_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+
+        results_qs.execute()  # To cache the results.
+        if results_qs.count() != 4 and is_outcome_recommended(self.ab_outcome):
+            guids, self.ab_outcome, self.fallback_reason = (
+                get_addon_recommendations_invalid())
+            return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+        return results_qs
+
+    def paginate_queryset(self, queryset):
+        # We don't need pagination for the fixed number of results.
+        return queryset
