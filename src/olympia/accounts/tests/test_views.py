@@ -31,7 +31,8 @@ from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserNotification, UserProfile
-from olympia.users.notifications import NOTIFICATIONS_BY_ID
+from olympia.users.notifications import (
+    NOTIFICATIONS_BY_ID, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
 
 
 FXA_CONFIG = {
@@ -1297,6 +1298,50 @@ class TestAccountNotificationViewSetList(TestCase):
         assert len(response.data) == 10
         assert (
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
+            response.data)
+
+    def test_basket_integration(self):
+        create_switch('activate-basket-sync')
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['about-addons']}
+
+            response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        assert (
+            {'name': u'announcements', 'enabled': True, 'mandatory': False} in
+            response.data)
+
+    def test_basket_integration_ignore_db(self):
+        create_switch('activate-basket-sync')
+
+        # Add some old obsolete data in the database for a notification that
+        # is handled by basket: it should be ignored.
+        notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_id, enabled=True)
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['garbage']}
+
+            response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        assert (
+            {'name': u'announcements', 'enabled': False, 'mandatory': False} in
             response.data)
 
     def test_no_auth_fails(self):

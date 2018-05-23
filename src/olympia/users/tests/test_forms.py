@@ -10,7 +10,8 @@ from olympia.amo.tests import TestCase, addon_factory, create_switch
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import reverse
 from olympia.users.forms import AdminUserEditForm, UserEditForm
-from olympia.users.models import UserProfile
+from olympia.users.models import UserNotification, UserProfile
+from olympia.users.notifications import REMOTE_NOTIFICATIONS_BY_BASKET_ID
 
 
 class UserFormBase(TestCase):
@@ -278,6 +279,58 @@ class TestUserEditForm(UserFormBase):
                 'newsletters': 'about-addons',
                 'email': u'jbalogh@mozilla.com'},
             token='123')
+
+    def test_basket_data_is_used_for_initial_checkbox_state_subscribed(self):
+        # When using basket, what's in the database is ignored for the
+        # notification
+        create_switch('activate-basket-sync')
+
+        notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
+
+        # Add some old obsolete data in the database for a notification that
+        # is handled by basket: it should be ignored.
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_id, enabled=False)
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['about-addons']}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        assert notification_id in form.fields['notifications'].initial
+
+    def test_basket_data_is_used_for_initial_checkbox_state(self):
+        # When using basket, what's in the database is ignored for the
+        # notification
+        create_switch('activate-basket-sync')
+
+        notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
+
+        # Add some old obsolete data in the database for a notification that
+        # is handled by basket: it should be ignored.
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_id, enabled=True)
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        assert notification_id not in form.fields['notifications'].initial
 
     def test_basket_unsubscribe_newsletter_no_basket_user(self):
         """
