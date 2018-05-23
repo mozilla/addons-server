@@ -150,8 +150,9 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                 for chunk in photo.chunks():
                     temp_file.write(chunk)
             instance.update(picture_type=photo.content_type)
-            resize_photo.delay(tmp_destination, instance.picture_path,
-                               set_modified_on=[instance])
+            resize_photo.delay(
+                tmp_destination, instance.picture_path,
+                set_modified_on=instance.serializable_reference())
         return instance
 
 

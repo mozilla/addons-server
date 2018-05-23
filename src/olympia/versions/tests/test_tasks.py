@@ -75,7 +75,7 @@ def test_generate_static_theme_preview(
         theme_manifest['images']['headerURL'] = header_url
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
 
     write_svg_to_png_mock.call_count == 2
     (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
@@ -122,7 +122,7 @@ def test_generate_static_theme_preview_with_chrome_properties(
     }
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
 
     write_svg_to_png_mock.call_count == 2
     (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
@@ -206,7 +206,7 @@ def test_generate_preview_with_additional_backgrounds(
     }
     addon = addon_factory()
     preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview)
+    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
 
     write_svg_to_png_mock.call_count == 2
     (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]

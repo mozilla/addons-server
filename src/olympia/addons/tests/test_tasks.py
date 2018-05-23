@@ -36,7 +36,7 @@ class TestPersonaImageFunctions(TestCase):
         create_persona_preview_images(
             src=get_image_path('persona-header.jpg'),
             full_dst=[expected_dst1.name, expected_dst2.name],
-            set_modified_on=[addon],
+            set_modified_on=addon.serializable_reference(),
         )
         # pngcrush_image should have been called twice, once for each
         # destination thumbnail.

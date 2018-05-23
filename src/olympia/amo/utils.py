@@ -228,7 +228,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     headers['X-Auto-Response-Suppress'] = 'RN, NRN, OOF, AutoReply'
     headers['Auto-Submitted'] = 'auto-generated'
 
-    def send(recipient, message, **options):
+    def send(recipients, message, **options):
         kwargs = {
             'attachments': attachments,
             'cc': cc,
@@ -241,7 +241,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
-        args = (recipient, ' '.join(subject.splitlines()), message)
+        args = (list(recipients), ' '.join(subject.splitlines()), message)
         return send_email.delay(*args, **kwargs)
 
     if white_list:

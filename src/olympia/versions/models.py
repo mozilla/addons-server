@@ -228,7 +228,7 @@ class Version(OnChangeMixin, ModelBase):
                 version.all_files[0].file_path, theme_data, version_root)
             preview = VersionPreview.objects.create(version=version)
             generate_static_theme_preview(
-                theme_data, version_root, preview)
+                theme_data, version_root, preview.pk)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
@@ -298,12 +298,6 @@ class Version(OnChangeMixin, ModelBase):
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon,
                             str(self.version))
 
-        # Fetch previews before deleting the version instance, so that we can
-        # pass the list of files to delete to the delete_preview_files task
-        # after the version is deleted.
-        previews = list(VersionPreview.objects.filter(version__id=self.id)
-                        .values_list('id', flat=True))
-
         if hard:
             super(Version, self).delete()
         else:
@@ -313,8 +307,12 @@ class Version(OnChangeMixin, ModelBase):
             self.deleted = True
             self.save()
 
-        for preview in previews:
-            delete_preview_files.delay(preview)
+            previews_pks = list(
+                VersionPreview.objects.filter(version__id=self.id)
+                              .values_list('id', flat=True))
+
+            for preview_pk in previews_pks:
+                delete_preview_files.delay(preview_pk)
 
     @property
     def is_user_disabled(self):
@@ -669,13 +667,13 @@ class Version(OnChangeMixin, ModelBase):
         return out
 
 
-def generate_static_theme_preview(theme_data, version_root, preview):
+def generate_static_theme_preview(theme_data, version_root, preview_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
     needed, in tests."""
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(
-        theme_data, version_root, preview)
+        theme_data, version_root, preview_pk)
 
 
 class VersionPreview(BasePreview, ModelBase):

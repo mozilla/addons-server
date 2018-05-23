@@ -296,8 +296,9 @@ def rereviewqueuetheme_checksum(rqt, **kw):
 
 @task
 @write
-def save_theme(header, addon, **kw):
+def save_theme(header, addon_pk, **kw):
     """Save theme image and calculates checksum after theme save."""
+    addon = Addon.objects.get(pk=addon_pk)
     dst_root = os.path.join(user_media_path('addons'), str(addon.id))
     header = os.path.join(settings.TMP_PATH, 'persona_header', header)
     header_dst = os.path.join(dst_root, 'header.png')
@@ -307,7 +308,7 @@ def save_theme(header, addon, **kw):
         create_persona_preview_images(
             src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
                                   os.path.join(dst_root, 'icon.png')],
-            set_modified_on=[addon])
+            set_modified_on=addon.serializable_reference())
         theme_checksum(addon.persona)
     except IOError:
         addon.delete()
@@ -316,7 +317,8 @@ def save_theme(header, addon, **kw):
 
 @task
 @write
-def save_theme_reupload(header, addon, **kw):
+def save_theme_reupload(header, addon_pk, **kw):
+    addon = Addon.objects.get(pk=addon_pk)
     header_dst = None
     dst_root = os.path.join(user_media_path('addons'), str(addon.id))
 
