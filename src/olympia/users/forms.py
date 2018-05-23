@@ -120,9 +120,7 @@ class UserEditForm(happyforms.ModelForm):
 
                 by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
                 for basket_id, notification in by_basket_id.items():
-                    subscribed = notification.id in newsletters
-                    if subscribed:
-                        default[notification.id] = True
+                    default[notification.id] = basket_id in newsletters
 
             # Add choices to Notification.
             choices = notifications.NOTIFICATIONS_CHOICES

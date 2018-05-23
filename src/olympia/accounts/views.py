@@ -558,7 +558,7 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
             for basket_id, notification in by_basket_id.items():
                 notification = self._get_default_object(notification)
-                notification.enabled = notification.id in newsletters
+                notification.enabled = basket_id in newsletters
                 out.append(notification)
 
         return out
