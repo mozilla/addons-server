@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.test import override_settings
+
 from mock import Mock
 from rest_framework.test import APIRequestFactory
 
@@ -44,7 +46,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['title'] == unicode(self.rating.title)
         assert result['previous_count'] == int(self.rating.previous_count)
         assert result['is_latest'] == self.rating.is_latest
-        assert result['rating'] == int(self.rating.rating)
+        assert result['score'] == int(self.rating.rating)
         assert result['reply'] is None
         assert result['user'] == {
             'id': self.user.pk,
@@ -60,6 +62,20 @@ class TestBaseRatingSerializer(TestCase):
         self.rating.update(version=None)
         result = self.serialize()
         assert result['version'] is None
+
+    @override_settings(DRF_API_GATES={None: ('ratings-rating-shim',)})
+    def test_ratings_score_is_rating_with_gate(self):
+        addon = addon_factory()
+        self.view.get_addon_object.return_value = addon
+        self.rating = Rating.objects.create(
+            addon=addon, user=self.user, rating=4,
+            version=addon.current_version, body=u'This is my rëview. Like ît?',
+            title=u'My Review Titlé')
+
+        result = self.serialize()
+
+        assert result['id'] == self.rating.pk
+        assert result['rating'] == int(self.rating.rating)
 
     def test_url_for_yourself(self):
         addon = addon_factory()

@@ -1673,6 +1673,14 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': False,
 }
 
+DRF_API_GATES = {
+    'v3': (
+        'ratings-rating-shim',
+    ),
+    'v4': (
+    )
+}
+
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
     #   'rest_framework.renderers.BrowsableAPIRenderer'
