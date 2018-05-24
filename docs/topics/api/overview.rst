@@ -184,3 +184,10 @@ ESR60 is supported by Mozilla, i.e. at least June 30th 2019.
 The downside of using the `v3` API is, of course, no new cool features!
 
 The documentation for `v3` can be accessed at: http://addons-server.readthedocs.io/en/2018.05.17/topics/api/
+
+
+----------------
+v4 API changelog
+----------------
+
+* 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849
