@@ -1570,10 +1570,6 @@ DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 # We currently do not have any actual timeouts during the signing-process.
 SIGNING_SERVER_MONITORING_TIMEOUT = 10
 
-# Hotfix addons (don't sign those, they're already signed by Mozilla.
-HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
-                      'thunderbird-hotfix@mozilla.org']
-
 AUTOGRAPH_CONFIG = {
     'server_url': env(
         'AUTOGRAPH_SERVER_URL',
