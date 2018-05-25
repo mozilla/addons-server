@@ -7,7 +7,7 @@ from olympia.constants.applications import APP_GUIDS
 
 
 class Command(BaseCommand):
-    help = "Import the application versions created on addons.mozilla.org."""
+    help = 'Import the application versions created on addons.mozilla.org.'
 
     def handle(self, *args, **options):
         log = self.stdout.write
