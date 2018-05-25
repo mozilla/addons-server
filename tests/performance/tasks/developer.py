@@ -1,16 +1,14 @@
 import os
 import logging
-import time
 
-from olympia.amo.urlresolvers import reverse
-
+import gevent
 from django.conf import settings
 from locust import task
 import lxml.html
 from lxml.html import submit_form
 
 import helpers
-from .user import UserTaskSet
+from .user import BaseUserTaskSet
 
 log = logging.getLogger(__name__)
 
@@ -18,7 +16,7 @@ MAX_UPLOAD_POLL_ATTEMPTS = 200
 FXA_CONFIG = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 
 
-class DeveloperTaskSet(UserTaskSet):
+class DeveloperTaskSet(BaseUserTaskSet):
 
     def submit_form(self, form=None, url=None, extra_values=None):
         if form is None:
@@ -66,7 +64,7 @@ class DeveloperTaskSet(UserTaskSet):
 
         with helpers.get_xpi() as addon_file:
             response = self.client.post(
-                reverse('devhub.upload'),
+                '/en-US/developers/upload/',
                 {'csrfmiddlewaretoken': csrfmiddlewaretoken},
                 files={'upload': addon_file},
                 name='devhub.upload {}'.format(
@@ -76,7 +74,9 @@ class DeveloperTaskSet(UserTaskSet):
 
             if response.status_code == 302:
                 poll_url = response.headers['location']
-                upload_uuid = self.poll_upload_until_ready(poll_url)
+                upload_uuid = gevent.spawn(
+                    self.poll_upload_until_ready, poll_url
+                ).get()
                 if upload_uuid:
                     form.fields['upload'] = upload_uuid
                     self.submit_form(form=form, url=url)
@@ -98,7 +98,7 @@ class DeveloperTaskSet(UserTaskSet):
         for i in xrange(MAX_UPLOAD_POLL_ATTEMPTS):
             response = self.client.get(
                 url, allow_redirects=False,
-                name=reverse('devhub.upload_detail', args=(':uuid',)),
+                name='/en-US/developers/upload/:uuid',
                 catch_response=True)
 
             try:
@@ -114,11 +114,12 @@ class DeveloperTaskSet(UserTaskSet):
                     return response.failure('Unexpected error: {}'.format(
                         data['error']))
                 elif data['validation']:
+                    response.success()
                     return data['upload']
             else:
                 return response.failure('Unexpected status: {}'.format(
                     response.status_code))
-            time.sleep(1)
+            gevent.sleep(1)
         else:
             response.failure('Upload did not complete in {} tries'.format(
                 MAX_UPLOAD_POLL_ATTEMPTS))

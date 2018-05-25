@@ -20,12 +20,14 @@ helpers.install_event_markers()
 
 
 class WebsiteUser(HttpLocust):
+    weight = 1
     task_set = tasks.user.UserTaskSet
-    min_wait = 5000
-    max_wait = 9000
+    min_wait = 120
+    max_wait = 240
 
 
-class Developer(HttpLocust):
-    task_set = tasks.developer.DeveloperTaskSet
-    min_wait = 5000
-    max_wait = 9000
+# class Developer(HttpLocust):
+#     weight = 10
+#     task_set = tasks.developer.DeveloperTaskSet
+#     min_wait = 120
+#     max_wait = 240

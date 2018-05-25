@@ -2,8 +2,6 @@ import logging
 import urlparse
 import random
 
-from olympia.amo.urlresolvers import reverse
-
 from django.conf import settings
 from locust import TaskSet, task
 import lxml.html
@@ -17,7 +15,7 @@ MAX_UPLOAD_POLL_ATTEMPTS = 200
 FXA_CONFIG = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 
 
-class UserTaskSet(TaskSet):
+class BaseUserTaskSet(TaskSet):
 
     def on_start(self):
         self.fxa_account, self.email_account = helpers.get_fxa_account()
@@ -35,10 +33,10 @@ class UserTaskSet(TaskSet):
     def login(self, fxa_account):
         log.debug('calling login/start to generate fxa_state')
         response = self.client.get(
-            reverse('accounts.login_start'),
-            allow_redirects=False)
+            '/api/v3/accounts/login/start/',
+            allow_redirects=True)
 
-        params = dict(urlparse.parse_qsl(response.headers['Location']))
+        params = dict(urlparse.parse_qsl(response.url))
         fxa_state = params['state']
 
         log.debug('Get browser id session token')
@@ -54,34 +52,60 @@ class UserTaskSet(TaskSet):
         log.debug('convert browser id session token into oauth code')
         oauth_code = oauth_client.authorize_code(fxa_session, scope='profile')
 
-        # Now authenticate the user, this will verify the user on the
+        # Now authenticate the user, this will verify the user on the server
         response = self.client.get(
-            reverse('accounts.authenticate'),
+            '/api/v3/accounts/authenticate/',
             params={
                 'state': fxa_state,
                 'code': oauth_code,
-            }
+            },
+            name='/api/v3/accounts/authenticate/?state=:state'
         )
 
     def logout(self, account):
         log.debug('Logging out {}'.format(account))
-        self.client.get(reverse('users.logout'))
+        self.client.get('/en-US/firefox/users/logout/')
 
-    @task(5)
+
+class UserTaskSet(BaseUserTaskSet):
+    @task(8)
     def browse(self):
-        self.client.get(reverse('home'))
+        self.client.get('/en-US/firefox/')
 
         response = self.client.get(
-            reverse('browse.extensions'),
+            '/en-US/firefox/extensions/',
             allow_redirects=False, catch_response=True)
 
         if response.status_code == 200:
             html = lxml.html.fromstring(response.content)
-            addon_links = html.cssselect('.item.addon h3 a')
+            addon_links = html.cssselect('a.SearchResult-link')
             url = random.choice(addon_links).get('href')
             self.client.get(
                 url,
-                name=reverse('addons.detail', kwargs={'addon_id': ':slug'}))
+                name='/en-US/firefox/addon/:slug')
+        else:
+            response.failure('Unexpected status code {}'.format(
+                response.status_code))
+
+    @task(10)
+    def search(self):
+        term = ('Spam', 'Privacy', 'Download')
+        self.client.get('/en-US/firefox/search/?platform=linux&q={}'.format(
+            random.choice(term)))
+
+    @task(6)
+    def browse_and_download_addon(self):
+        response = self.client.get(
+            '/en-US/firefox/extensions/',
+            allow_redirects=False, catch_response=True)
+
+        if response.status_code == 200:
+            html = lxml.html.fromstring(response.content)
+            download_links = html.cssselect('a.SearchResult-link')
+            url = random.choice(download_links).get('href')
+            self.client.get(
+                url,
+                name='/en-US/firefox/downloads/:file_id/')
         else:
             response.failure('Unexpected status code {}'.format(
                 response.status_code))
