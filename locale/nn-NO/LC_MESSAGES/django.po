@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-25 09:09+0000\n"
+"PO-Revision-Date: 2018-05-25 09:27+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4486,7 +4486,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Uventa feil."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5627,7 +5627,7 @@ msgid "Your privacy"
 msgstr "Ditt personvern"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Alle Shield-Studia"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
