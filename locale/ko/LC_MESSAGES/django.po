@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2017-12-10 08:43+0000\n"
 "Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
 "Language-Team: none\n"
@@ -2043,6 +2043,10 @@ msgstr "{addon} {version}의 심사가 요청되었습니다."
 msgid "Admin theme-review requested"
 msgstr "심사 요청됨"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4076,30 +4080,27 @@ msgstr "부가 기능 관리하기"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "추천 확장 기능"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "{0}님, 어서오세요"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "더 알아보기"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "시작하기"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "전부 보기"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4935,6 +4936,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "시작하기"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2018-02-09 00:14+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -2029,6 +2029,9 @@ msgstr "Indholdet i {addon} {version} er blevet afvist."
 msgid "Admin theme-review requested"
 msgstr ""
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3960,27 +3963,26 @@ msgstr "Håndter din tilføjelse"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Log ind for at redigere og opdatere din tilføjelse"
 
-msgid "Update Your Legacy Extension"
-msgstr "Opdater din forældede udvidelse"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Der findes en ny standard, når det drejer sig om udvikling af tilføjelser til Firefox. Du skal opdatere dine gamle tilføjelser, så de vil være kompatible fremover."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Læs hvordan"
-
-msgid "Get Started"
-msgstr "Start"
+msgid "Take Survey"
+msgstr ""
 
 #, fuzzy
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Klar til at indsende en tilføjelse? Læs vores trin-for-trin-vejledning til hvordan du gør."
-
-msgid "See Tutorial"
-msgstr "Læs vejledning"
+msgid "Welcome Back"
+msgstr "Velkommen, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
+
+msgid "Learn How"
+msgstr "Læs hvordan"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4790,6 +4792,9 @@ msgstr "Bliv testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Få tidlig adgang til eksperimentelle browser-funktioner."
+
+msgid "Get Started"
+msgstr "Start"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-tilføjelser"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2002,6 +2002,9 @@ msgstr "{addon} {version} ȧḓḿīƞ ŧħḗḿḗ-řḗṽīḗẇ řḗɋŭ�
 msgid "Admin theme-review requested"
 msgstr "Aḓḿīƞ ŧħḗḿḗ-řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} ẇȧş ḿīɠřȧŧḗḓ ƒřǿḿ ȧ ŀīɠħŧẇḗīɠħŧ ŧħḗḿḗ."
+
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
@@ -3935,26 +3938,27 @@ msgstr "Ḿȧƞȧɠḗ Ẏǿŭř Aḓḓ-ǿƞ"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Şīɠƞ Īƞ ŧǿ Ḗḓīŧ ȧƞḓ Ŭƥḓȧŧḗ Ẏǿŭř Aḓḓ-ǿƞ"
 
-msgid "Update Your Legacy Extension"
-msgstr "Ŭƥḓȧŧḗ Ẏǿŭř Ŀḗɠȧƈẏ Ḗẋŧḗƞşīǿƞ"
+msgid "Help us improve the developer experience"
+msgstr "Ħḗŀƥ ŭş īḿƥřǿṽḗ ŧħḗ ḓḗṽḗŀǿƥḗř ḗẋƥḗřīḗƞƈḗ"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Ŧħḗřḗ īş ȧ ƞḗẇ, ƈřǿşş-ƀřǿẇşḗř şŧȧƞḓȧřḓ ƒǿř ḓḗṽḗŀǿƥīƞɠ ḗẋŧḗƞşīǿƞş īƞ Ƒīřḗƒǿẋ. Ẏǿŭ'ŀŀ ƞḗḗḓ ŧǿ ŭƥḓȧŧḗ ẏǿŭř ŀḗɠȧƈẏ ḗẋŧḗƞşīǿƞş ŧǿ şŧȧẏ ƈǿḿƥȧŧīƀŀḗ."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Ẇḗ’řḗ īƞŧḗřḗşŧḗḓ īƞ ẏǿŭř ƒḗḗḓƀȧƈķ ȧƀǿŭŧ ŧħḗ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ḗẋƥḗřīḗƞƈḗ! Ŧȧķḗ ǿŭř şħǿřŧ şŭřṽḗẏ ŧǿ ŀḗŧ ŭş ķƞǿẇ ẇħȧŧ ķīƞḓş ǿƒ ḓǿƈŭḿḗƞŧȧŧīǿƞ, AƤĪş, ȧƞḓ ŧǿǿŀş ẇǿŭŀḓ ƀḗ ḿǿşŧ ŭşḗƒŭŀ ŧǿ ẏǿŭř "
+"ḓḗṽḗŀǿƥḿḗƞŧ ẇǿřķ."
 
-msgid "Learn How"
-msgstr "Ŀḗȧřƞ Ħǿẇ"
+msgid "Take Survey"
+msgstr "Ŧȧķḗ Şŭřṽḗẏ"
 
-msgid "Get Started"
-msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ḗẋŧḗƞşīǿƞ? Řḗȧḓ ǿŭř şŧḗƥ-ƀẏ-şŧḗƥ ŧŭŧǿřīȧŀ ǿƞ ŧħḗ şŭƀḿīşşīǿƞ ƥřǿƈḗşş."
-
-msgid "See Tutorial"
-msgstr "Şḗḗ Ŧŭŧǿřīȧŀ"
+msgid "Welcome Back"
+msgstr "Ẇḗŀƈǿḿḗ Ɓȧƈķ"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿƞ ƀẏ ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ŀīşŧīƞɠ."
+
+msgid "Learn How"
+msgstr "Ŀḗȧřƞ Ħǿẇ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4752,6 +4756,9 @@ msgstr "Ɓḗƈǿḿḗ ȧ Ŧḗşŧ Ƥīŀǿŧ"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ŭƞŀǿƈķ ḗȧřŀẏ ȧƈƈḗşş ŧǿ ḗẋƥḗřīḿḗƞŧȧŀ ƀřǿẇşḗř ƒḗȧŧŭřḗş."
+
+msgid "Get Started"
+msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
 
 msgid "About Mozilla Add-ons"
 msgstr "Aƀǿŭŧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2082,6 +2082,10 @@ msgstr "{addon} {version} review requested."
 #, fuzzy
 msgid "Admin theme-review requested"
 msgstr "Review requested"
+
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} {version} given preliminary review."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4181,32 +4185,29 @@ msgstr "Managing Your Add-on"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Sign In to Edit and Update Your Add-on"
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Featured Extensions"
+msgid "Help us improve the developer experience"
+msgstr "Help us improve the developer experience"
+
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+
+msgid "Take Survey"
+msgstr "Take Survey"
 
 #, fuzzy
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgid "Welcome Back"
+msgstr "Welcome, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Help users discover your extension by creating an appealing listing."
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Learn More"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Getting Started"
-
-#, fuzzy
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "See all"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Help users discover your extension by creating an appealing listing."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -5052,6 +5053,10 @@ msgstr "Become a Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Unlock early access to experimental browser features."
+
+#, fuzzy
+msgid "Get Started"
+msgstr "Getting Started"
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"
