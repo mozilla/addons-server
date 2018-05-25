@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-09 15:04+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1996,6 +1996,10 @@ msgstr "{addon} {version} の管理者テーマ審査が申請されました。
 msgid "Admin theme-review requested"
 msgstr "管理者テーマ審査が申請されました"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} が事前審査から移動されました。"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3928,26 +3932,26 @@ msgstr "自分のアドオンを管理"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "ログインしてアドオンを編集・更新"
 
-msgid "Update Your Legacy Extension"
-msgstr "旧式拡張機能を更新"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Firefox における拡張機能開発に新たなクロスブラウザー規格が採用されました。互換性を保つため、あなたの旧式拡張機能を更新してください。"
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "手順を見る"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "ここからスタート"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "拡張機能を登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
-
-msgid "See Tutorial"
-msgstr "チュートリアルを見る"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "ようこそ {0} さん"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
+
+msgid "Learn How"
+msgstr "手順を見る"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4744,6 +4748,9 @@ msgstr "テストパイロットになる"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "実験的なブラウザー機能をいち早く試してみましょう。"
+
+msgid "Get Started"
+msgstr "ここからスタート"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"

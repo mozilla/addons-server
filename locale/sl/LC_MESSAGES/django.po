@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-10 19:18+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -2074,6 +2074,10 @@ msgstr "za {addon} {version} zahtevan skrbniški pregled teme."
 msgid "Admin theme-review requested"
 msgstr "Zahtevan skrbniški pregled teme"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} preseljen iz predhodnega."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4042,26 +4046,26 @@ msgstr "Upravljajte dodatek"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Prijavite se za urejanje in upravljanje dodatka"
 
-msgid "Update Your Legacy Extension"
-msgstr "Posodobite svojo zastarelo razširitev"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Ustvarjen je bil nov standard za razvoj dodatkov za Firefox, uporabnih v vseh brskalnikih. Da bodo vaše razširitve ostale združljive, jih boste morali posodobiti."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Več o tem"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "Začnite"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Ste pripravljeni na oddajo razširitve? Preberite naš podroben vodnik o postopku oddaje."
-
-msgid "See Tutorial"
-msgstr "Glej vodnik"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Dobrodošli, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Pomagajte uporabnikom odkriti vašo razširitev z ustvaritvijo privlačne strani."
+
+msgid "Learn How"
+msgstr "Več o tem"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4883,6 +4887,9 @@ msgstr "Postanite preskuševalec"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Odklenite zgodnji dostop do preskusnih lastnosti brskalnika."
+
+msgid "Get Started"
+msgstr "Začnite"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"
