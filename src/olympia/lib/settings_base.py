@@ -98,11 +98,11 @@ CORS_URLS_REGEX = DRF_API_REGEX
 
 # Sadly the term WHITELIST is used by the library
 # https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-def cors_endpoint_overrides(list_):
+def cors_endpoint_overrides(whitelist_endpoints):
     return [
         ('%saccounts/login/?$' % DRF_API_REGEX, {
             'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': list_,
+            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
             'CORS_ALLOW_CREDENTIALS': True,
         }),
     ]
