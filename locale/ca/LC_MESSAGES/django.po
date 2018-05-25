@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2018-02-07 11:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -2097,6 +2097,10 @@ msgstr "S'ha demanat la revisió de la versió {addon} {version}"
 msgid "Admin theme-review requested"
 msgstr "S'ha sol·licitat la revisió"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4114,30 +4118,27 @@ msgstr "Més complements"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Extensions destacades"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Benvingut, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Més informació"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Com començar"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "Mostra-ho tot"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4961,6 +4962,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "Com començar"
 
 msgid "About Mozilla Add-ons"
 msgstr ""

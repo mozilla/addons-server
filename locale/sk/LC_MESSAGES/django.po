@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2018-05-01 12:28+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2080,6 +2080,10 @@ msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola."
 msgid "Admin theme-review requested"
 msgstr "Vyžiadaná kontrola"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "Doplnok {addon} {version} bol predbežne skontrolovaný."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4071,26 +4075,26 @@ msgstr "Správa vášho doplnku"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Update Your Legacy Extension"
-msgstr "Aktualizujte svoje zastarané rozšírenie"
-
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Firefox odteraz podporuje nový štandard doplnkov, ktorý je kompatibilný naprieč prehliadačmi. Aby zostali vaše doplnky kompatibilné, musíte ich aktualizovať."
-
-msgid "Learn How"
-msgstr "Ďalšie informácie"
-
-msgid "Get Started"
-msgstr "Začíname"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgid "Help us improve the developer experience"
 msgstr ""
 
-msgid "See Tutorial"
-msgstr "Zobraziť návod"
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Vitajte, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
+
+msgid "Learn How"
+msgstr "Ďalšie informácie"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4914,6 +4918,9 @@ msgstr "Staňte sa testovacím pilotom"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Objavte experimentálne funkcie prehliadača medzi prvými."
+
+msgid "Get Started"
+msgstr "Začíname"
 
 msgid "About Mozilla Add-ons"
 msgstr "O stránke Doplnky Mozilly"

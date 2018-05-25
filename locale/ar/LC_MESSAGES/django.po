@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -2159,6 +2159,9 @@ msgstr ""
 msgid "Admin theme-review requested"
 msgstr "التعليق"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
+
 msgid "Firefox"
 msgstr "فَيَرفُكس"
 
@@ -4183,29 +4186,27 @@ msgstr "مزيد من الإضافات"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "امتدادات متميزة"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "مرحبا، {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "اعرف المزيد"
-
-msgid "Get Started"
-msgstr ""
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "عرض الكل"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -5040,6 +5041,9 @@ msgid "Become a Test Pilot"
 msgstr ""
 
 msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"

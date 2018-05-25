@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2018-05-14 07:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2025,6 +2025,10 @@ msgstr "Temabeoardieling troch admin foar {addon} {version} oanfrege."
 msgid "Admin theme-review requested"
 msgstr "Temabeoardieling troch admin oanfrege"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} migrearre fan foarearst ôf."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3976,26 +3980,26 @@ msgstr "Jo add-on beheare"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 
-msgid "Update Your Legacy Extension"
-msgstr "Wurkje jo ferâldere útwreiding by"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Der is in nije, browser-ûnôfhinklike standert foar it ûntwikkeljen fan útwreidingen yn Firefox. Jo moatte jo ferâldere útwreidingen bywurkje om kompatibel te bliuwen."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Mear ynfo"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "Fan start"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Klear om in útwreiding yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
-
-msgid "See Tutorial"
-msgstr "Hantlieding besjen"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Wolkom {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Help brûkers jo útwreiding te ûntdekken troch in útnûgjende tekst te meitsjen."
+
+msgid "Learn How"
+msgstr "Mear ynfo"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4803,6 +4807,9 @@ msgstr "Wurd in testpiloat"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Krij betiid tagong ta eksperimintele browserfunksjes."
+
+msgid "Get Started"
+msgstr "Fan start"
 
 msgid "About Mozilla Add-ons"
 msgstr "Oer Mozilla Add-ons"

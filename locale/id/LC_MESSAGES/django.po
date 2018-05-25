@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 05:57+0000\n"
 "PO-Revision-Date: 2018-03-20 03:31+0000\n"
 "Last-Translator: Kiki <kelimutu.rizki@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2032,6 +2032,10 @@ msgstr "{addon} {version} ulasan dimintakan."
 #, fuzzy
 msgid "Admin theme-review requested"
 msgstr "Ulasan diminta"
+
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} dimigrasi dari awal."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4133,30 +4137,27 @@ msgstr "Mengelola Pengaya Anda"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Ekstensi Unggulan"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Selamat Datang {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Pelajari lebih Lanjut"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Memulai"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "Lihat semuanya"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -5001,6 +5002,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "Memulai"
 
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"
