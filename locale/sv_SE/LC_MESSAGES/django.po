@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-13 20:23+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -2007,6 +2007,10 @@ msgstr "{addon} {version} temagranskning av admin begärd."
 msgid "Admin theme-review requested"
 msgstr "Temagranskning av admin begärd"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} migrerade från preliminär."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3986,26 +3990,26 @@ msgstr "Hantera ditt tillägg"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Logga in för att redigera och uppdatera ditt tillägg"
 
-msgid "Update Your Legacy Extension"
-msgstr "Uppdatera ditt äldre tillägg"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Det finns en ny standard för att utveckla tillägg i Firefox. Du måste uppdatera dina gamla tillägg för att hålla dig kompatibel."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Lär dig hur"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "Kom igång"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Klar för att skicka in ett tillägg? Läs vår steg-för-steg-handledning för inlämningsprocessen."
-
-msgid "See Tutorial"
-msgstr "Se handledning"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Välkommen, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Hjälp användare att upptäcka ditt tillägg genom att skapa en tilltalande lista."
+
+msgid "Learn How"
+msgstr "Lär dig hur"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4814,6 +4818,9 @@ msgstr "Bli en testpilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
+
+msgid "Get Started"
+msgstr "Kom igång"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla tillägg"

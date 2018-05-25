@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-09 19:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2066,6 +2066,10 @@ msgstr "Přepruwowanje drasty přidatka {addon} {version} wot administratora je 
 msgid "Admin theme-review requested"
 msgstr "Přepruwowanje drasty wot administratora je so požadało"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "Přidatk {addon} je so wot nachwilu přewzał."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4013,26 +4017,26 @@ msgstr "Waš přidatk rjadować"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přizjewće so, zo byšće swój přidatk wobdźěłował a aktualizował"
 
-msgid "Update Your Legacy Extension"
-msgstr "Aktualizujće swoje zestarjene rozšěrjenje"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Je nětko nowy standard za wuwiwanje přidatkow w Firefox, kotryž hodźi so za wšelake wobhladowak wužiwać. Dyrbiće swoje stare přidatki aktualizować, zo bychu kompatibelne wostali."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Zhońće, kak to dźe"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "Prěnje kroki"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Sće hotowy, rozšěrjenje zapodać? Čitajće naš nawod krok po kroku wo zapodawanskim procesu."
-
-msgid "See Tutorial"
-msgstr "Nawod pokazać"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Witajće, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Wutworće spodobny lisćinowy zapisk, zo byšće pomhał wužiwarjam, waše rozšěrjenje wotkryć."
+
+msgid "Learn How"
+msgstr "Zhońće, kak to dźe"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4840,6 +4844,9 @@ msgstr "Budźće testowy pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Dowolće zažny přistup k eksperimentelnym funkcijam wobhladowaka."
+
+msgid "Get Started"
+msgstr "Prěnje kroki"
 
 msgid "About Mozilla Add-ons"
 msgstr "Wo Mozilla Add-ons"

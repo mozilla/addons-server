@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2018,6 +2018,10 @@ msgstr "{addon} এর {version} এর পর্যালোচনা অনু
 msgid "Admin theme-review requested"
 msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
+
 msgid "Firefox"
 msgstr "ফায়ারফক্স"
 
@@ -3964,29 +3968,27 @@ msgstr "আরও অ্যাড-অন"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "নির্বাচিত এক্সটেনশনসমূহ"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "স্বাগতম, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "আরও জানুন"
-
-msgid "Get Started"
-msgstr "শুরু হয়েছে"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "সবগুলো দেখুন"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4788,6 +4790,9 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+msgid "Get Started"
+msgstr "শুরু হয়েছে"
 
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
