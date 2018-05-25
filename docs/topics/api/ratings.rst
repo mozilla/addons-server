@@ -73,7 +73,7 @@ This endpoint allows you to fetch a rating by its id.
     :>json string|null body: The text of the rating.
     :>json boolean is_latest: Boolean indicating whether the rating is the latest posted by the user on the same add-on.
     :>json int previous_count: The number of ratings posted by the user on the same add-on before this one.
-    :>json int rating: The score the user gave as part of the rating.
+    :>json int score: The score the user gave as part of the rating.
     :>json object|null reply: The rating object containing the developer reply to this rating, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
     :>json string|null title: The title of the rating.
     :>json int version.id: The add-on version id the rating applies to.
