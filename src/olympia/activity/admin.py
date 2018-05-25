@@ -3,12 +3,12 @@ from django.contrib import admin
 from .models import ActivityLog
 
 
-class HubNewsAdmin(admin.ModelAdmin):
-    list_display = ('created', 'user', 'action', 'arguments')
+class ActivityLogAdmin(admin.ModelAdmin):
+    list_display = ('created', 'user', '__unicode__',)
     raw_id_fields = ('user',)
-    list_filter = ('action',)
-    readonly_fields = ('created', 'user', 'action', '_arguments', '_details')
+    readonly_fields = ('created', 'user', '__unicode__',)
     date_hierarchy = 'created'
+    fields = ('user', 'created', '__unicode__',)
     raw_id_fields = ('user',)
 
     def has_add_permission(self, request):
@@ -18,4 +18,4 @@ class HubNewsAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(ActivityLog, HubNewsAdmin)
+admin.site.register(ActivityLog, ActivityLogAdmin)
