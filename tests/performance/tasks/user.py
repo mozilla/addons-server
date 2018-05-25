@@ -109,3 +109,33 @@ class UserTaskSet(BaseUserTaskSet):
         else:
             response.failure('Unexpected status code {}'.format(
                 response.status_code))
+
+    @task(5)
+    def browse_collections(self):
+        response = self.client.get(
+            '/en-US/firefox/',
+            allow_redirects=False, catch_response=True)
+
+        if response.status_code == 200:
+            html = lxml.html.fromstring(response.content)
+            collection_links = html.cssselect('a.Home-SubjectShelf-link')
+            url = random.choice(collection_links).get('href')
+            self.client.get(url)
+        else:
+            response.failure('Unexpected status code {}'.format(
+                response.status_code))
+
+    @task(4)
+    def browse_categories(self):
+        response = self.client.get(
+            '/en-US/firefox/extensions/',
+            allow_redirects=False, catch_response=True)
+
+        if response.status_code == 200:
+            html = lxml.html.fromstring(response.content)
+            categories_links = html.cssselect('a.Categories-link')
+            url = random.choice(categories_links).get('href')
+            self.client.get(url)
+        else:
+            response.failure('Unexpected status code {}'.format(
+                response.status_code))
