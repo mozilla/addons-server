@@ -4,6 +4,12 @@
 Overview
 ========
 
+.. note::
+
+    These APIs are experimental and are currently being worked on. Endpoints
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability.
+
 This describes the details of the requests and responses you can expect from
 the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_ API.
 
@@ -25,7 +31,7 @@ Status Codes
 
 There are some common API responses that you can expect to receive at times.
 
-.. http:get:: /api/v3/...
+.. http:get:: /api/v4/...
 
     :statuscode 200: Success.
     :statuscode 201: Creation successful.
@@ -162,3 +168,26 @@ specified.
 
 
 .. _`Cross-Origin Resource Sharing`: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
+
+.. _api-stable-v3:
+
+-------------
+Stable v3 API
+-------------
+
+All documentation here refers to the in-development `v4` APIs, which are
+experimental. Any consumer of the APIs that require stablity may consider using
+the `v3` API instead, which is frozen.  No new API endpoints will be added to
+`v3` and we aim to make no breaking changes.  (That's the aim - we can't
+guarantee 100% stability).  The `v3` API will be maintained for as long as Firefox
+ESR60 is supported by Mozilla, i.e. at least June 30th 2019.
+The downside of using the `v3` API is, of course, no new cool features!
+
+The documentation for `v3` can be accessed at: http://addons-server.readthedocs.io/en/2018.05.17/topics/api/
+
+
+----------------
+v4 API changelog
+----------------
+
+* 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849

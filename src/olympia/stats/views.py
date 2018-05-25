@@ -2,11 +2,10 @@ import cStringIO
 import csv
 import itertools
 import json
-import os
 import time
 
 from collections import OrderedDict
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from django import http
 from django.conf import settings
@@ -20,10 +19,6 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 
 from dateutil.parser import parse
 from product_details import product_details
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 import olympia.core.logger
 
@@ -36,7 +31,6 @@ from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
-from olympia.api.authentication import JWTKeyAuthentication
 from olympia.bandwagon.models import Collection
 from olympia.bandwagon.views import get_collection
 from olympia.stats.forms import DateForm
@@ -662,73 +656,3 @@ def render_json(request, addon, stats):
     json.dump(stats, response, cls=AMOJSONEncoder)
     fudge_headers(response, response.content != json.dumps([]))
     return response
-
-
-class ArchiveMixin(object):
-    """Provides common helper methods for all archive views."""
-    def get_addon(self, request, slug):
-        """Fetches an addon by `slug`"""
-        qset = Addon.objects.all()
-
-        addon = get_object_or_404(qset, slug=slug)
-
-        if not addon.has_listed_versions():
-            raise http.Http404
-        return addon
-
-
-class ArchiveListView(ArchiveMixin, APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request, slug, year, month):
-        addon = self.get_addon(request, slug)
-        check_stats_permission(request, addon)
-
-        data = []
-        path = u'{id}/{year}/{month}/'.format(
-            id=addon.id, year=year, month=month)
-
-        try:
-            files = storage.listdir(path)
-        except OSError:
-            return Response({
-                'error': 'No archived data for addon "%s" found.' % addon.slug,
-            }, status=status.HTTP_404_NOT_FOUND)
-
-        for file_ in files[1]:
-            file_name, _ = os.path.splitext(file_)
-            date_str, model_name = file_name.rsplit('_', 1)
-            day = datetime.strptime(date_str, '%Y_%m_%d').date()
-
-            data.append({
-                'addon_id': addon.id,
-                'date': day,
-                'model_name': model_name
-            })
-
-        return Response(data)
-
-
-class ArchiveView(ArchiveMixin, APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request, slug, year, month, day, model_name):
-        addon = self.get_addon(request, slug)
-        check_stats_permission(request, addon)
-
-        tm = '{id}/{year}/{month}/{year}_{month}_{day}_{model_name}.json'
-        path = tm.format(
-            id=addon.id, year=year, month=month, day=day,
-            model_name=model_name)
-
-        try:
-            with storage.open(path) as fobj:
-                data = json.load(fobj)
-        except (OSError, IOError):
-            return Response({
-                'error': 'No archived data for addon "%s" found.' % addon.slug,
-            }, status=status.HTTP_404_NOT_FOUND)
-
-        return Response(data)

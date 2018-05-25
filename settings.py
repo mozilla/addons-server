@@ -20,6 +20,9 @@ INSTALLED_APPS += (
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 
+# Disable cache-machine locally and in tests to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
+
 # Using locmem deadlocks in certain scenarios. This should all be fixed,
 # hopefully, in Django1.7. At that point, we may try again, and remove this to
 # not require memcache installation for newcomers.
@@ -43,8 +46,7 @@ CACHES = {
     }
 }
 
-# For local development, we don't need syslog and mozlog loggers.
-USE_SYSLOG = False
+# For local development, we don't need mozlog loggers.
 USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
@@ -75,8 +77,6 @@ SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
-
-ADDON_COLLECTOR_ID = 1
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
@@ -112,7 +112,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'http://localhost:3000/fxa-authenticate',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
         'client_id': '1778aef72d1adfb3',

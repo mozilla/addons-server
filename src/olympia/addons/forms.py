@@ -334,9 +334,9 @@ class AddonFormMedia(AddonFormBase):
             destination = os.path.join(dirname, '%s' % addon.id)
 
             remove_icons(destination)
-            devhub_tasks.resize_icon.delay(upload_path, destination,
-                                           amo.ADDON_ICON_SIZES,
-                                           set_modified_on=[addon])
+            devhub_tasks.resize_icon.delay(
+                upload_path, destination, amo.ADDON_ICON_SIZES,
+                set_modified_on=addon.serializable_reference())
 
         return super(AddonFormMedia, self).save(commit)
 
@@ -506,7 +506,7 @@ class ThemeForm(ThemeFormBase):
         p.save()
 
         # Save header and preview images.
-        save_theme.delay(data['header_hash'], addon)
+        save_theme.delay(data['header_hash'], addon.pk)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -649,7 +649,7 @@ class EditThemeForm(AddonFormBase):
         # Theme reupload.
         if not addon.is_pending():
             if data['header_hash']:
-                save_theme_reupload.delay(data['header_hash'], addon)
+                save_theme_reupload.delay(data['header_hash'], addon.pk)
 
         return data
 

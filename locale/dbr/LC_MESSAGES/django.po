@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,22 +548,6 @@ msgstr "uoıʇɐɯɹoɟuI uoısɹǝɅ"
 msgid "See complete version history"
 msgstr "ʎɹoʇsıɥ uoısɹǝʌ ǝʇǝʅdɯoɔ ǝǝS"
 
-msgid "Development Channel"
-msgstr "ʅǝuuɐɥↃ ʇuǝɯdoʅǝʌǝᗡ"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-".ǝʌoqɐ ʞuıʅ ǝɥʇ ɯoɹɟ uoısɹǝʌ ʇʅnɐɟǝp ǝɥʇ ʅʅɐʇsuıǝɹ ´sǝʇɐpdn ʇuǝɯdoʅǝʌǝp ƃuıʌıǝɔǝɹ doʇs o⊥ .ʅǝuuɐɥɔ sıɥʇ ɯoɹɟ sǝʇɐpdn ʇǝƃ oʇ ǝnuıʇuoɔ ʅʅıʍ noʎ ´uoısɹǝʌ ʇuǝɯdoʅǝʌǝp ǝɥʇ ʅʅɐʇsuı noʎ ǝɔuO .ɔıʅqnd "
-"ʅɐɹǝuǝƃ ǝɥʇ oʇ pǝsɐǝʅǝɹ s,ʇı ǝɹoɟǝq uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ʍǝu ʅɐʇuǝɯıɹǝdxǝ uɐ ʇsǝʇ noʎ sʇǝʅ ʅǝuuɐɥↃ ʇuǝɯdoʅǝʌǝᗡ ǝɥ⊥"
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ".ɐʅʅızoW ʎq pǝʍǝıʌǝɹ uǝǝq ʇou ǝʌɐɥ uo-ppɐ sıɥʇ ɟo suoısɹǝʌ ʇuǝɯdoʅǝʌǝᗡ <strong>:uoıʇnɐↃ</strong>"
-
-msgid "See complete development channel history"
-msgstr "ʎɹoʇsıɥ ʅǝuuɐɥɔ ʇuǝɯdoʅǝʌǝp ǝʇǝʅdɯoɔ ǝǝS"
-
 msgid "close"
 msgstr "ǝsoʅɔ"
 
@@ -1006,6 +990,9 @@ msgstr ".pǝʇɐɯıuɐ ǝq ʇouuɐɔ suoɔI"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ".suoıʇɔǝʅʅoɔ ɹnoʎ ɟo ǝuo ɹǝɥʇouɐ ʎq ǝsn uı ʎpɐǝɹʅɐ sı ⅂ᴚ∩ ɯoʇsnɔ sıɥ⊥"
+
+msgid "Name cannot be empty."
+msgstr ".ʎʇdɯǝ ǝq ʇouuɐɔ ǝɯɐN"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ".suǝɥdʎɥ ɹo sǝɹoɔsɹǝpun ´sɹǝqɯnu ´sɹǝʇʇǝʅ ɟo ʇsısuoɔ ʇsnɯ ⅂ᴚ∩ ɯoʇsnɔ ǝɥ⊥"
@@ -1998,6 +1985,24 @@ msgstr ".{version} {addon} uo ɹǝdoʅǝʌǝp ʎq pǝɹɐǝʅɔ ʇsǝnbǝɹ uoı
 msgid "Information request removed"
 msgstr "pǝʌoɯǝɹ ʇsǝnbǝɹ uoıʇɐɯɹoɟuI"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr ".pǝʇsǝnbǝɹ ʍǝıʌǝɹ-uo-ppɐ uıɯpɐ {version} {addon}"
+
+msgid "Admin add-on-review requested"
+msgstr "pǝʇsǝnbǝɹ ʍǝıʌǝɹ-uo-ppɐ uıɯp∀"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr ".pǝʇsǝnbǝɹ ʍǝıʌǝɹ-ʇuǝʇuoɔ uıɯpɐ {version} {addon}"
+
+msgid "Admin content-review requested"
+msgstr "pǝʇsǝnbǝɹ ʍǝıʌǝɹ-ʇuǝʇuoɔ uıɯp∀"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr ".pǝʇsǝnbǝɹ ʍǝıʌǝɹ-ǝɯǝɥʇ uıɯpɐ {version} {addon}"
+
+msgid "Admin theme-review requested"
+msgstr "pǝʇsǝnbǝɹ ʍǝıʌǝɹ-ǝɯǝɥʇ uıɯp∀"
+
 msgid "Firefox"
 msgstr "xoɟǝɹıℲ"
 
@@ -2036,9 +2041,6 @@ msgstr "ʅɐʌoɹddɐ ƃuıpuǝԀ"
 
 msgid "Flagged for further review"
 msgstr "ʍǝıʌǝɹ ɹǝɥʇɹnɟ ɹoɟ pǝƃƃɐʅℲ"
-
-msgid "Beta"
-msgstr "ɐʇǝԐ"
 
 msgid "Unlisted"
 msgstr "pǝʇsıʅu∩"
@@ -2576,9 +2578,6 @@ msgstr "uoıʇɐpıʅɐʌ pǝʅıɐɟ ǝpıɹɹǝʌO"
 msgid "Submit my add-on for manual review."
 msgstr ".ʍǝıʌǝɹ ʅɐnuɐɯ ɹoɟ uo-ppɐ ʎɯ ʇıɯqnS"
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ".ɐʇǝq sɐ pǝʇɔǝʇǝp sı ɹǝqɯnu ʅɐuoıʇdo uɐ puɐ ɔɹ|ǝɹd|ɐʇǝq|q|ɐɥdʅɐ|ɐ ɥʇıʍ ƃuıpuǝ uoısɹǝʌ ɐ ɥʇıʍ ǝʅıɟ ∀"
-
 msgid "You cannot upload any more files for this version."
 msgstr ".uoısɹǝʌ sıɥʇ ɹoɟ sǝʅıɟ ǝɹoɯ ʎuɐ pɐoʅdn ʇouuɐɔ no⅄"
 
@@ -2639,6 +2638,12 @@ msgstr ".uo-ppɐ ʎɔɐƃǝʅ ɐ ʅʅɐʇsuı oʇ ǝʅqɐ ǝq ʇou ʅʅıʍ ʎǝ
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ".ǝʇɐpdn ɟo ǝdʎʇ sıɥʇ ʇɹoddns ʇou sǝop xoɟǝɹıℲ ǝsnɐɔǝq uoısɹǝʌ ʍǝu ɹnoʎ ǝsn oʇ ǝʅqɐ ǝq ʇou pʅnoʍ sɹǝsn ɹno⅄ .uo-ppɐ ʎɔɐƃǝʅ ɐ ɥʇıʍ uo-ppɐ suoısuǝʇxƎqǝＭ ɐ ǝʇɐpdn ʇouuɐɔ no⅄"
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´ʇunoɔɔɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ɹno⅄"
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´uo-ppɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ɹoɥʇnɐoɔ ɐ ɟo ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ǝɥ⊥"
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ".(%s) %s ɥʇıʍ pǝpuodsǝɹ %s"
@@ -2650,6 +2655,9 @@ msgstr ".ʇno pǝɯıʇ „%s„ oʇ uoıʇɔǝuuoↃ"
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ".„%s„ ʇɐ ʇsoɥ ʇɔɐʇuoɔ ʇou pʅnoↃ"
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "pǝʞoʌǝɹ uǝǝq ǝʌɐɥ sʅɐıʇuǝpǝɹɔ IԀ∀ OW∀ ɹno⅄ :ǝɔıʇoN ʎʇıɹnɔǝS ɐʅʅızoW"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2708,16 +2716,6 @@ msgstr "uo-pp∀ ǝʇɐpıʅɐɅ"
 
 msgid "Check Add-on Compatibility"
 msgstr "ʎʇıʅıqıʇɐdɯoↃ uo-pp∀ ʞɔǝɥↃ"
-
-msgid "You cannot submit this type of add-on"
-msgstr "uo-ppɐ ɟo ǝdʎʇ sıɥʇ ʇıɯqns ʇouuɐɔ no⅄"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "%s ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "uoısuǝʇxƎ pǝuƃıS ɐʅʅızoW ɐ ʇıɯqns ʇouuɐɔ no⅄"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3393,9 +3391,6 @@ msgstr ".uoıʇɐɔıʅqnd ɹoɟ pǝʇʇıɯqns ǝq uɐɔ ʇı ǝɹoɟǝq uoıʇ
 msgid "This add-on doesn't have any versions."
 msgstr ".suoısɹǝʌ ʎuɐ ǝʌɐɥ ʇ,usǝop uo-ppɐ sıɥ⊥"
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ".uǝppıɥ ǝɹɐ (suoısɹǝʌ ɐʇǝq ƃuıpnʅɔuı) sǝƃɐd ɔıʅqnd sʇı os ´suoısɹǝʌ pǝʌoɹddɐ ʎuɐ ǝʌɐɥ ʇ,usǝop uo-ppɐ sıɥ⊥"
-
 msgid "Status:"
 msgstr ":snʇɐʇS"
 
@@ -3573,9 +3568,6 @@ msgstr ".ǝʅıɟ ɹnoʎ uo unɹ ǝq ʅʅıʍ sʇsǝʇ uoıʇɐpıʅɐʌ pǝʇɐ
 
 msgid "Which platforms is this file compatible with?"
 msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝʅıɟ sıɥʇ sı sɯɹoɟʇɐʅd ɥɔıɥＭ"
-
-msgid "Only publish this version to my beta channel."
-msgstr ".ʅǝuuɐɥɔ ɐʇǝq ʎɯ oʇ uoısɹǝʌ sıɥʇ ɥsıʅqnd ʎʅuO"
 
 msgid "Administrative overrides"
 msgstr "sǝpıɹɹǝʌo ǝʌıʇɐɹʇsıuıɯp∀"
@@ -3953,14 +3945,17 @@ msgstr ".ǝʅqıʇɐdɯoɔ ʎɐʇs oʇ suoısuǝʇxǝ ʎɔɐƃǝʅ ɹnoʎ ǝʇɐ
 msgid "Learn How"
 msgstr "ʍoH uɹɐǝ⅂"
 
-msgid "What's New"
-msgstr "ʍǝN s,ʇɐɥＭ"
+msgid "Get Started"
+msgstr "pǝʇɹɐʇS ʇǝ⅁"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ".ssǝɔoɹd uoıssıɯqns ǝɥʇ uo ʅɐıɹoʇnʇ dǝʇs-ʎq-dǝʇs ɹno pɐǝᴚ ¿uo-ppɐ uɐ ʇıɯqns oʇ ʎpɐǝᴚ"
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr ".ssǝɔoɹd uoıssıɯqns ǝɥʇ uo ʅɐıɹoʇnʇ dǝʇs-ʎq-dǝʇs ɹno pɐǝᴚ ¿uoısuǝʇxǝ uɐ ʇıɯqns oʇ ʎpɐǝᴚ"
 
 msgid "See Tutorial"
 msgstr "ʅɐıɹoʇn⊥ ǝǝS"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ".ƃuıʇsıʅ ƃuıʅɐǝddɐ uɐ ƃuıʇɐǝɹɔ ʎq uoısuǝʇxǝ ɹnoʎ ɹǝʌoɔsıp sɹǝsn dʅǝH"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4370,18 +4365,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʞɔɐɹʇ ʞooqǝɔɐℲ doʇS"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ".qǝʍ ǝɥʇ punoɹɐ sʇuǝɯǝʌoɯ ɹnoʎ ʞɔɐɹʇ oʇ ʞooqǝɔɐℲ ɹoɟ ɹǝpɹɐɥ ʇı sǝʞɐɯ ʇɐɥʇ „ɹǝuıɐʇuoɔ„ ǝʇɐɹɐdǝs ɐ oʇuı ʎʇıʇuǝpı ʞooqǝɔɐℲ ɹnoʎ ǝʇɐʅosI"
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ɥɔɹɐǝs ʎɟıʅdɯıS"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ ǝsɐɹɥd ǝɥʇ ɥɔɹɐǝs oʇ ǝƃɐd qǝʍ ʎuɐ uo ʇxǝʇ ʇɥƃıʅɥƃıɥ ʇsnſ"
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɔǝʇoɹd ʎɔɐʌıɹd ⅋ ƃuıʞɔoʅq p∀"
 
@@ -4393,6 +4376,18 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sqɐʇ ǝuıƃ
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ".ɹɐqǝpıs ʎpıʇ ɐ uı ɯǝɥʇ ǝzıuɐƃɹO ¿sqɐʇ uǝdo ɟo uoʇ ɐ ǝʌɐɥ noʎ oᗡ"
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʞɔɐɹʇ ʞooqǝɔɐℲ doʇS"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ".qǝʍ ǝɥʇ punoɹɐ sʇuǝɯǝʌoɯ ɹnoʎ ʞɔɐɹʇ oʇ ʞooqǝɔɐℲ ɹoɟ ɹǝpɹɐɥ ʇı sǝʞɐɯ ʇɐɥʇ „ɹǝuıɐʇuoɔ„ ǝʇɐɹɐdǝs ɐ oʇuı ʎʇıʇuǝpı ʞooqǝɔɐℲ ɹnoʎ ǝʇɐʅosI"
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐɯı ɥɔɹɐǝS"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ sǝɥɔɹɐǝs ǝƃɐɯı ǝsɹǝʌǝɹ ɯɹoɟɹǝԀ "
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
@@ -4481,6 +4476,19 @@ msgstr "._-.⁎+ :sɹǝʇɔɐɹɐɥɔ uoıʇɐnʇɔund ǝsǝɥʇ puɐ ´sɹǝqɯ
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ".pǝʇɹoddns ʇou ʎʅʇuǝɹɹnɔ ǝɹɐ spɐoʅdn ǝɯǝɥʇ uoısuǝʇxƎqǝＭ"
+
+msgid "You cannot submit this type of add-on"
+msgstr "uo-ppɐ ɟo ǝdʎʇ sıɥʇ ʇıɯqns ʇouuɐɔ no⅄"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "%s ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "uoısuǝʇxƎ pǝuƃıS ɐʅʅızoW ɐ ʇıɯqns ʇouuɐɔ no⅄"
+
+msgid "Unexpected error."
+msgstr ".ɹoɹɹǝ pǝʇɔǝdxǝu∩"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4745,9 +4753,6 @@ msgstr "ʇoʅıԀ ʇsǝ⊥ ɐ ǝɯoɔǝԐ"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ".sǝɹnʇɐǝɟ ɹǝsʍoɹq ʅɐʇuǝɯıɹǝdxǝ oʇ ssǝɔɔɐ ʎʅɹɐǝ ʞɔoʅu∩"
-
-msgid "Get Started"
-msgstr "pǝʇɹɐʇS ʇǝ⅁"
 
 msgid "About Mozilla Add-ons"
 msgstr "suo-pp∀ ɐʅʅızoW ʇnoq∀"
@@ -5499,23 +5504,6 @@ msgid ""
 msgstr ""
 ".uoıʇɐpunoℲ ɐʅʅızoW ʇıɟoɹd-uou ǝɥʇ sɐ ɥɔns ´pǝʇɐɔıpuı sı ʎʇɹɐd pɹıɥʇ ɐ ssǝʅun ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʎʅʇɔǝɹıp oƃ suoıʇnqıɹʇuoɔ ǝsǝɥ⊥ .uoıʇnqıɹʇuoɔ ʎɹɐʇǝuoɯ ɐ ƃuıʞɐɯ ʎq ʇuǝɯdoʅǝʌǝp sʇı oʇ ǝʇnqıɹʇuoɔ oʇ uo-"
 "ppɐ uɐ ʎoɾuǝ oɥʍ sɹǝsn ʇsǝnbǝɹ sɹoɥʇnɐ uo-ppɐ ǝɯoS"
-
-msgid "What are beta add-ons?"
-msgstr "¿suo-ppɐ ɐʇǝq ǝɹɐ ʇɐɥＭ"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-".sǝsɐǝʅǝɹ uo-ppɐ ʅɐɹǝuǝƃ ǝɥʇ uɐɥʇ ǝʅqɐʇs ssǝʅ ǝɹɐ suo-ppɐ ǝsǝɥʇ ʇɐɥʇ ǝɯnssɐ pʅnoɥs noʎ ´ʎʇıʅɐnb ǝpoɔ ɐʇǝq ɹoɟ spɹɐpuɐʇs ʇuǝɹǝɟɟıp ǝʌɐɥ sɹoɥʇnɐ ʇuǝɹǝɟɟıp ǝʅıɥＭ .ɹoɥʇnɐ uo-ppɐ uɐ ɟo ʞɹoʍ ʇsǝʇɐʅ ǝɥʇ "
-"ʇuǝsǝɹdǝɹ ɥɔıɥʍ suoısɹǝʌ pǝʍǝıʌǝɹun ǝɹɐ suo-ppɐ ɐʇǝԐ"
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-".ɹǝʇndɯoɔ ɹnoʎ ɯɹɐɥ ʎɐɯ puɐ ɐʅʅızoW ʎq pǝʍǝıʌǝɹ ʇou ǝɹɐ sǝsɐǝʅǝɹ ɐʇǝq ʅʅɐ ´pǝʅʅɐʇsuı noʎ uoısɹǝʌ ʅɐıʇıuı ǝɥʇ ǝʞı⅂ .ǝʅqɐʅıɐʌɐ ǝɯoɔǝq ʎǝɥʇ sɐ uo-ppɐ ʇɐɥʇ ɹoɟ sǝʇɐpdn ǝʌıǝɔǝɹ oʇ ǝnuıʇuoɔ ʅʅıʍ noʎ "
-"´ƃuıʇsıʅ s,uo-ppɐ uɐ ɟo uoıʇɔǝs „uoısɹǝɅ ɐʇǝԐ„ ǝɥʇ ɯoɹɟ uo-ppɐ uɐ ʅʅɐʇsuı noʎ uǝɥʍ ʇɐɥʇ ǝʇou ǝsɐǝʅԀ"
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "¿ʍǝıʌǝɹ ɹǝsn ɯɐds ɹo ǝʇɐıɹdoɹddɐuı uɐ ʇɹodǝɹ I op ʍoH"

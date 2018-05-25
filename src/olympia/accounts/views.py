@@ -13,6 +13,8 @@ from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import waffle
+
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
@@ -32,12 +34,14 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
+from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
 from olympia.users.models import UserNotification, UserProfile
-from olympia.users.notifications import NOTIFICATIONS
+from olympia.users.notifications import (
+    NOTIFICATIONS_COMBINED, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
 
 from . import verify
 from .serializers import (
@@ -169,7 +173,7 @@ def parse_next_path(state_parts):
         try:
             next_path = base64.urlsafe_b64decode(
                 force_bytes(encoded_path)).decode('utf-8')
-        except TypeError:
+        except (TypeError, ValueError):
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
             pass
@@ -530,16 +534,33 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             enabled=notification.default_checked)
 
     def get_queryset(self):
-        queryset = UserNotification.objects.filter(
-            user=self.get_account_viewset().get_object())
+        user = self.get_account_viewset().get_object()
+        queryset = UserNotification.objects.filter(user=user)
+
+        # Fetch all `UserNotification` instances and then, if the
+        # waffle-switch is active overwrite their value with the
+        # data from basket. Once we switched the integration "on" on prod
+        # all `UserNotification` instances that are now handled by basket
+        # can be deleted.
+
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
-        for notification in NOTIFICATIONS:
+        for notification in NOTIFICATIONS_COMBINED:
             out.append(set_notifications.get(
                 notification.short,  # It's been set by the user.
                 self._get_default_object(notification)))  # Otherwise, default.
+
+        if waffle.switch_is_active('activate-basket-sync'):
+            newsletters = fetch_subscribed_newsletters(user)
+
+            by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
+            for basket_id, notification in by_basket_id.items():
+                notification = self._get_default_object(notification)
+                notification.enabled = basket_id in newsletters
+                out.append(notification)
+
         return out
 
     def create(self, request, *args, **kwargs):

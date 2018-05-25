@@ -496,12 +496,6 @@ class NewUploadForm(AddonUploadForm):
         error_messages={'required': 'Need at least one platform.'}
     )
 
-    beta = forms.BooleanField(
-        required=False,
-        help_text=_(u'A file with a version ending with '
-                    u'a|alpha|b|beta|pre|rc and an optional number is '
-                    u'detected as beta.'))
-
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)
@@ -531,7 +525,9 @@ class NewUploadForm(AddonUploadForm):
 
         if not self.errors:
             self._clean_upload()
-            parsed_data = parse_addon(self.cleaned_data['upload'], self.addon)
+            parsed_data = parse_addon(
+                self.cleaned_data['upload'], self.addon,
+                user=self.request.user)
 
             if self.version:
                 if parsed_data['version'] != self.version.version:
@@ -665,10 +661,11 @@ class PreviewForm(happyforms.ModelForm):
             super(PreviewForm, self).save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = os.path.join(settings.TMP_PATH, 'preview',
-                                           upload_hash)
-                tasks.resize_preview.delay(upload_path, self.instance,
-                                           set_modified_on=[self.instance])
+                upload_path = os.path.join(
+                    settings.TMP_PATH, 'preview', upload_hash)
+                tasks.resize_preview.delay(
+                    upload_path, self.instance.pk,
+                    set_modified_on=self.instance.serializable_reference())
 
     class Meta:
         model = Preview

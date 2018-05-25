@@ -35,14 +35,12 @@
             "averagerating": null,
             "homepage": "http://povierennyy.hmarka.net/",
             "email": "root_x@ukr.net",
-            "notifycompat": true,
             "biography": null,
             "deleted": false,
             "username": "root_x",
             "created": "2010-04-21 12:29:12",
             "notes": null,
             "modified": "2010-05-12 17:48:13",
-            "notifyevents": true,
             "last_login": "2010-05-12 17:53:01"
         }
     },
@@ -90,14 +88,12 @@
             "averagerating": 4.70,
             "homepage": "http://adblockplus.org/",
             "email": "trev@adblockplus.org",
-            "notifycompat": true,
             "biography": null,
             "deleted": false,
             "username": "Wladimir Palant",
             "created": "2007-03-05 13:09:33",
             "notes": null,
             "modified": "2010-05-14 09:30:04",
-            "notifyevents": true,
             "last_login": "2010-05-14 09:30:04"
         }
     },

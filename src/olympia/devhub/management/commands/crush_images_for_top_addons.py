@@ -37,15 +37,17 @@ class Command(BaseCommand):
                 try:
                     if addon.persona.is_new():
                         pngcrush_existing_theme.delay(
-                            addon.persona.pk, set_modified_on=[addon])
+                            addon.persona.pk,
+                            set_modified_on=addon.serializable_reference())
                 except Persona.DoesNotExist:
                     pass
             else:
                 pngcrush_existing_icons.delay(
-                    addon.pk, set_modified_on=[addon])
+                    addon.pk, set_modified_on=addon.serializable_reference())
                 for preview in addon.previews.all():
                     pngcrush_existing_preview.delay(
-                        preview.pk, set_modified_on=[preview])
+                        preview.pk,
+                        set_modified_on=preview.serializable_reference())
 
     def fetch_addons(self):
         """

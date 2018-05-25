@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from waffle.testutils import override_switch
-
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -196,8 +194,6 @@ class AddonSerializerOutputTestMixin(object):
             'firefox': ['alerts-updates', 'bookmarks'],
             'thunderbird': ['calendar']}
 
-        assert result['current_beta_version'] is None
-
         # In this serializer latest_unlisted_version is omitted.
         assert 'latest_unlisted_version' not in result
 
@@ -361,28 +357,6 @@ class AddonSerializerOutputTestMixin(object):
             self.addon.latest_unlisted_version,
             result['latest_unlisted_version'])
         assert result['latest_unlisted_version']['url'] == absolutify('')
-
-    @override_switch('beta-versions', active=True)
-    def test_current_beta_version(self):
-        self.addon = addon_factory()
-
-        self.beta_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
-            version='1.1beta')
-
-        result = self.serialize()
-        assert result['current_beta_version']
-        self._test_version(self.beta_version, result['current_beta_version'], )
-        assert result['current_beta_version']['url'] == absolutify(
-            reverse('addons.versions',
-                    args=[self.addon.slug, self.beta_version.version])
-        )
-
-        # Just in case, test that current version is still present & different.
-        assert result['current_version']
-        assert result['current_version'] != result['current_beta_version']
-        self._test_version(
-            self.addon.current_version, result['current_version'])
 
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)

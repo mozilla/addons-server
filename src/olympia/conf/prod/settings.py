@@ -34,10 +34,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
 
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons_timer"
-SYSLOG_CSP = "http_app_addons_csp"
-
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
@@ -81,7 +77,7 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
@@ -174,6 +170,11 @@ RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.prod.mozaws.net/api/recommendations/')
+
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
+    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'

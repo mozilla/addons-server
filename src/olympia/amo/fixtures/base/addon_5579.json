@@ -126,7 +126,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.01,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "http://www.cooliris.com",
@@ -139,7 +138,6 @@
             "created": "2007-03-05 13:09:37",
             "notes": null,
             "modified": "2010-05-07 14:42:58",
-            "notifyevents": true,
             "last_login": "2010-05-07 14:42:58"
         }
     }

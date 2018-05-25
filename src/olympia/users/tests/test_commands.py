@@ -1,4 +1,5 @@
 import json
+import uuid
 
 from StringIO import StringIO
 
@@ -6,7 +7,7 @@ from django.core.management import call_command
 
 from mock import ANY, patch
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import (
     Command as CreateSuperUser)
 from olympia.users.models import UserProfile
@@ -46,12 +47,14 @@ class TestCreateSuperUser(TestCase):
 
     def test_adds_supergroup(self):
         out = StringIO()
+        fxa_id = uuid.uuid4().hex
         call_command(
             'createsuperuser',
             interactive=False,
             username='myusername',
             email='me@mozilla.org',
             add_to_supercreate_group=True,
+            fxa_id=fxa_id,
             stdout=out)
 
         user = UserProfile.objects.get(username='myusername')
@@ -65,5 +68,35 @@ class TestCreateSuperUser(TestCase):
             'username': 'myusername',
             'email': 'me@mozilla.org',
             'api-key': ANY,
-            'api-secret': ANY
+            'api-secret': ANY,
+            'fxa-id': fxa_id,
         }
+
+
+class TestUpdateDeletedUsers(TestCase):
+
+    def test_updates_deleted_metadata(self):
+        user = user_factory(fxa_id='foobar', last_login_ip='192.168.1.1')
+
+        call_command(
+            'update_deleted_users',
+            interactive=False)
+
+        # Nothing happened, the user wasn't deleted
+        user.refresh_from_db()
+        assert user.fxa_id == 'foobar'
+
+        user.delete()
+        assert user.fxa_id is None
+        assert user.last_login_ip == ''
+
+        # Now set something and make sure `.delete` get's called again
+        user.update(fxa_id='foobar', last_login_ip='192.168.1.1')
+
+        call_command(
+            'update_deleted_users',
+            interactive=False)
+
+        user.refresh_from_db()
+        assert user.fxa_id is None
+        assert user.last_login_ip == ''

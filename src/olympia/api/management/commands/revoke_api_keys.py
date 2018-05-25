@@ -28,7 +28,7 @@ class Command(BaseCommand):
                     continue
                 else:
                     with transaction.atomic():
-                        apikey.update(is_active=False)
+                        apikey.update(is_active=None)
                         APIKey.new_jwt_credentials(user=apikey.user)
                     revoked_count += 1
                     self.stdout.write(

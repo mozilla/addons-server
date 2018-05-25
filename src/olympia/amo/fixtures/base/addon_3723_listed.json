@@ -66,7 +66,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.75,
-            "notifycompat": false,
             "picture_type": "",
             "occupation": "",
             "homepage": "",
@@ -79,8 +78,7 @@
             "created": "2007-03-05 13:09:37",
             "notes": null,
             "modified": "2010-05-11 00:11:05",
-            "last_login": "2010-05-11 00:11:05",
-            "notifyevents": false
+            "last_login": "2010-05-11 00:11:05"
         }
     },
     {

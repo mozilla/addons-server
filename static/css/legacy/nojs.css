@@ -7,11 +7,6 @@
     display: none;
 }
 
-.install-beta {
-    display: block;
-}
-
-
 .install-button .button.platform {
     display: inherit;
 }

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-03-08 13:51+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-14 21:12+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -550,22 +550,6 @@ msgstr "Talɣut ɣef lqem"
 msgid "See complete version history"
 msgstr "Wali akk amazray n lqem"
 
-msgid "Development Channel"
-msgstr "Abadu n tneflit"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Abadu n tneflit ak-yeǧǧ ad teskeydeḍ lqem armitan n uzegrir-agi send ad yeffeɣ s wudem azayez. Ticki lqem n tneflit yebded, ad tkemleḍ armas n ileqman seg ubadu-agi. Akken ad tesḥebseḍ armas n "
-"ileqman, sebded lqem amezwer seg useɣwen daw-a."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Ɣur-k;:</strong> ileqman n tneflit n uzegrir-agi ur ttwaceggern ara sɣur Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Wali akk amazray n tneflit"
-
 msgid "close"
 msgstr "mdel"
 
@@ -1008,6 +992,10 @@ msgstr "Tignitin ur zmirent ara ad mbiwlent."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Isem agi ur yettwaseqdac ara."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2006,6 +1994,30 @@ msgstr "Tiririt n uneflay  ɣef {addon} {version}."
 msgid "Information request removed"
 msgstr "Ugar n telɣut tettusuter"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} acegger yettusuter."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Acegger leqqayen yettusuter"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} acegger yettusuter."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Acegger leqqayen yettusuter"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} acegger yettusuter."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Aceggir yettwasuter"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2044,9 +2056,6 @@ msgstr "Yettṛaǧu asentem"
 
 msgid "Flagged for further review"
 msgstr "Yettwasezmel i usenqed d-iteddun"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Ur d-yettwabder ara"
@@ -2588,9 +2597,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr "Azen azegrir-inu i ucegger s ufus."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta|pre|rc, yettwaḍfaṛen ahat s umḍan, yettwammel d lqem beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Ur tezmireḍ ara ad tesaliḍ afaylu i lqem-agi."
 
@@ -2654,6 +2660,12 @@ msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s yerra-d awal s %s (%s)."
@@ -2665,6 +2677,9 @@ msgstr "Tuqqna ar \"%s\" tezri."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Ur izmir ara ad nermes asennetfteɣ di \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2723,16 +2738,6 @@ msgstr "Sentem azegrir"
 
 msgid "Check Add-on Compatibility"
 msgstr "Senqed amṣada n uzegrir"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
-
-#, fuzzy, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3401,9 +3406,6 @@ msgstr "Azgrir-agi xussen-t kra n tilɣa yettwasran send ad yettwazen akken ad d
 msgid "This add-on doesn't have any versions."
 msgstr "Azegrir-agi ur imṣada xaṛsum akke yiwen seg ileqman-ik."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Addad:"
 
@@ -3587,9 +3589,6 @@ msgstr "Seqdec urtan da-a akken ad tazneḍ akemmus n uzegrir inek sakin fren ya
 msgid "Which platforms is this file compatible with?"
 msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
 
-msgid "Only publish this version to my beta channel."
-msgstr "Suffeɣ-d kan lqem-agi deg ubadu beta."
-
 msgid "Administrative overrides"
 msgstr ""
 
@@ -3627,7 +3626,7 @@ msgid "Image height should be 200 pixels"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG neɣ GIF (ur ttḥerriken ara)"
 
 msgid "Aligned to top-right"
 msgstr "Reyyec d asawen ayeffus"
@@ -3676,24 +3675,20 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(afrayan)"
+msgstr "afrayan"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Srifeg s ufella akken ad d-sekneḍ"
+msgstr "Taskant n yiminig"
 
 msgid "Back"
 msgstr ""
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Isental yettnernin"
+msgstr "Asali n usentel"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Isental"
+msgstr "Fak asentel"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
@@ -3981,14 +3976,17 @@ msgstr "WebExtensions uɣalen d tizeɣt i tneflit n izegrar di Firefox. Tesriḍ
 msgid "Learn How"
 msgstr "Issin amek"
 
-msgid "What's New"
-msgstr "D acu yellan d amaynut"
+msgid "Get Started"
+msgstr "Bdu"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Wali atiṭiriyal"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4394,20 +4392,6 @@ msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
@@ -4419,6 +4403,20 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 #, fuzzy
@@ -4511,6 +4509,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
+
+#, fuzzy, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4776,9 +4787,6 @@ msgstr "Uɣal d Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Rnu anekcum uzwir ar tmahilin tirmitantin n iminig."
-
-msgid "Get Started"
-msgstr "Bdu"
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"
@@ -5485,24 +5493,6 @@ msgid ""
 msgstr ""
 "Kra n imeskaren n uzegrir suturen ma yella iseqdacen iḥemlen azegrir ttekkin di tneflit s umuddu n tewsa. Attekki-agi ad iṛuḥ srid i uneflay aram kan yella wis kraḍ i d-yettwamlen, am tesbeddit "
 "Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "D acuten izegrar beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Ileqman beta d ileqman ur yettwaskeyden araicudden ar tneflit leqqayen n uneflayn uzegrir. Ɛas akken imeskaren ɣur-sen isebdaden n tɣara n tengalt beta, tzemreḍ ad tawiḍ izegrar-agi amzun "
-"rekdenugar n ileqman i d-yeffɣen."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Ma ulac aɣilif, wali ticki tsebdadeḍ azegrir si tgezmi \"lqem beta\" n uzegrir, ad tkemleḍ armas n ileman n uzegrir-agi. S tarrayt n lqem amezwaru ara tesbeddeḍ, akk ileqman beta ur ttwaskeyden ara "
-"sɣuṛ Mozilla udiq zemren ad sexsren tawila inek."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Amek ara ad d-mleɣ d akken awennit ur ilaq ara neɣ d aspam?"
@@ -6261,9 +6251,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Asenqed n uzegrir yettwaleqmen"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Akk izegrar ur yettwabdren ara"
+msgstr "Izegrar ur d-yettwabedren ara"
 
 msgid "All Unlisted Add-ons"
 msgstr "Akk izegrar ur yettwabdren ara"
@@ -6336,9 +6325,8 @@ msgstr "Assaγ n uẓekker ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Iceggireni ddiri n useqdac ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "isem n usentel"
+msgstr "Tugniwin n usentel"
 
 #, fuzzy
 msgid "Rendered Preview"

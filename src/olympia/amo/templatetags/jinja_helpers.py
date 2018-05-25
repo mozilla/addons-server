@@ -18,12 +18,12 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import (
     get_language, to_locale, trim_whitespace, ugettext)
 
-import caching.base as caching
 import jinja2
 import waffle
-
 from babel.support import Format
 from django_jinja import library
+from rest_framework.reverse import reverse as drf_reverse
+from rest_framework.settings import api_settings
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
@@ -31,6 +31,7 @@ from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, _get_compiled_css_url, get_css_urls, get_js_urls, get_path,
     is_external)
+from olympia.lib.cache import cached
 
 
 # Registering some utils as filters:
@@ -90,6 +91,19 @@ def url(viewname, *args, **kwargs):
     if src:
         url = urlparams(url, src=src)
     return url
+
+
+@library.global_function
+@jinja2.contextfunction
+def drf_url(context, viewname, *args, **kwargs):
+    """Helper for DjangoRestFramework's ``reverse`` in templates."""
+    request = context.get('request')
+    if request:
+        if not hasattr(request, 'versioning_scheme'):
+            request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = request.versioning_scheme.determine_version(
+            request, *args, **kwargs)
+    return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
 @library.global_function
@@ -357,8 +371,9 @@ def attrs(ctx, *args, **kw):
 def side_nav(context, addon_type, category=None):
     app = context['request'].APP.id
     cat = str(category.id) if category else 'all'
-    return caching.cached(lambda: _side_nav(context, addon_type, category),
-                          'side-nav-%s-%s-%s' % (app, addon_type, cat))
+    return cached(
+        lambda: _side_nav(context, addon_type, category),
+        'side-nav-%s-%s-%s' % (app, addon_type, cat))
 
 
 def _side_nav(context, addon_type, cat):
@@ -384,7 +399,7 @@ def _side_nav(context, addon_type, cat):
 @jinja2.contextfunction
 def site_nav(context):
     app = context['request'].APP.id
-    return caching.cached(lambda: _site_nav(context), 'site-nav-%s' % app)
+    return cached(lambda: _site_nav(context), 'site-nav-%s' % app)
 
 
 def _site_nav(context):

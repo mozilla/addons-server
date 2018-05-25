@@ -7,11 +7,13 @@ from django.core.files import temp
 import mock
 
 from pyquery import PyQuery as pq
+from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, formset, initial, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -454,15 +456,12 @@ class TestVersion(TestCase):
         self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        self._extra_version_and_file(amo.STATUS_BETA)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         show_links = doc('.review-history-show')
-        # Beta version does not have the link; so there will be 2 'Show' links
-        # and 1 link at the bottom of v1's history to reveal the reply field.
         assert show_links.length == 3
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
         assert not show_links[1].attrib.get('data-div')
@@ -477,8 +476,9 @@ class TestVersion(TestCase):
         # Test review history
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
-        api_url = reverse(
-            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        api_url = absolutify(drf_reverse(
+            'v3:version-reviewnotes-list',
+            args=[self.addon.id, self.version.id]))
         assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
 

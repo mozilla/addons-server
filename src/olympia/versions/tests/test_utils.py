@@ -9,24 +9,32 @@ import mock
 import pytest
 from PIL import Image, ImageChops
 
+from olympia import amo
 from olympia.versions.utils import (
     AdditionalBackground, process_color_value, write_svg_to_png)
 
 
-def test_write_svg_to_png():
+@pytest.mark.parametrize(
+    'filename', (('weta_theme_full'), ('weta_theme_list'))
+)
+def test_write_svg_to_png(filename):
+    # If you want to regenerate these, e.g. the svg template has significantly
+    # changed, easiest way is to patch write_svg_to_png to not delete the
+    # temporary file (delete:False in temp_args) and copy the svg out of /tmp.
+    # Output png files are in user-media/version-previews/full and /thumbs.
     out = tempfile.mktemp()
     svg_xml = os.path.join(
         settings.ROOT,
-        'src/olympia/versions/tests/static_themes/weta_theme.svg')
+        'src/olympia/versions/tests/static_themes/%s.svg' % filename)
     svg_png = os.path.join(
         settings.ROOT,
-        'src/olympia/versions/tests/static_themes/weta_theme.png')
+        'src/olympia/versions/tests/static_themes/%s.png' % filename)
     with storage.open(svg_xml, 'rb') as svgfile:
         svg = svgfile.read()
     write_svg_to_png(svg, out)
     assert storage.exists(out)
     # compare the image content. rms should be 0 but travis renders it
-    # different... 19 is the magic difference.
+    # different... 3 is the magic difference.
     svg_png_img = Image.open(svg_png)
     svg_out_img = Image.open(out)
     image_diff = ImageChops.difference(svg_png_img, svg_out_img)
@@ -36,7 +44,7 @@ def test_write_svg_to_png():
     rms = math.sqrt(
         sum_of_squares / float(svg_png_img.size[0] * svg_png_img.size[1]))
 
-    assert rms < 19
+    assert rms < 3
 
 
 @pytest.mark.parametrize(
@@ -56,14 +64,14 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
 @pytest.mark.parametrize(
     'alignment, tiling,'  # inputs
     'pattern_width, pattern_height, pattern_x, pattern_y', (
-        ('center bottom', 'no-repeat', '100%', '100%', 280, -350),
+        ('center bottom', 'no-repeat', '100%', '100%', 280, -358),
         ('top', 'repeat-x', 120, '100%', 280, 0),
-        ('center', 'repeat-y', '100%', 450, 280, -175),
+        ('center', 'repeat-y', '100%', 450, 280, -179),
         ('left top', 'repeat', 120, 450, 0, 0),
         # alignment=None is 'left top'
         (None, 'repeat', 120, 450, 0, 0),
         # tiling=None is 'no-repeat'
-        ('center', None, '100%', '100%', 280, -175),
+        ('center', None, '100%', '100%', 280, -179),
         (None, None, '100%', '100%', 0, 0),
     )
 )
@@ -80,6 +88,9 @@ def test_additional_background(encode_header_image, alignment, tiling,
     assert background.height == 450
     assert background.pattern_width == pattern_width
     assert background.pattern_height == pattern_height
+    background.calculate_pattern_offsets(
+        amo.THEME_PREVIEW_SIZES['full'].width,
+        amo.THEME_PREVIEW_SIZES['full'].height)
     assert background.pattern_x == pattern_x
     assert background.pattern_y == pattern_y
 

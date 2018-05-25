@@ -265,7 +265,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_exists(self):
         """Search by comment."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'hello'})
         assert response.status_code == 200
         assert pq(response.content)(
@@ -273,7 +274,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_case_exists(self):
         """Search by comment, with case."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'HeLlO'})
         assert response.status_code == 200
         assert pq(response.content)(
@@ -281,7 +283,8 @@ class TestReviewLog(ReviewerTest):
 
     def test_search_comment_doesnt_exist(self):
         """Search by comment, with no results."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE,
+                              comment='hello')
         response = self.client.get(self.url, {'search': 'bye'})
         assert response.status_code == 200
         assert pq(response.content)('.no-results').length == 1
@@ -290,7 +293,8 @@ class TestReviewLog(ReviewerTest):
         """Search by author."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer', comment='hi')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer',
+            comment='hi')
 
         response = self.client.get(self.url, {'search': 'reviewer'})
         assert response.status_code == 200
@@ -303,7 +307,8 @@ class TestReviewLog(ReviewerTest):
         """Search by author, with case."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer', comment='hi')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer',
+            comment='hi')
 
         response = self.client.get(self.url, {'search': 'ReviEwEr'})
         assert response.status_code == 200
@@ -316,7 +321,7 @@ class TestReviewLog(ReviewerTest):
         """Search by author, with no results."""
         self.make_approvals()
         self.make_an_approval(
-            amo.LOG.REQUEST_SUPER_REVIEW, username='reviewer')
+            amo.LOG.REQUEST_ADMIN_REVIEW_CODE, username='reviewer')
 
         response = self.client.get(self.url, {'search': 'wrong'})
         assert response.status_code == 200
@@ -368,11 +373,11 @@ class TestReviewLog(ReviewerTest):
             'More information requested')
 
     def test_super_review_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
+        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tr td a').eq(1).text() == (
-            'Super review requested')
+            'Admin add-on-review requested')
 
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
@@ -2946,28 +2951,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#review-files .no-activity').length == 1
 
-    def test_hide_beta(self):
-        version = self.addon.current_version
-        file_ = version.files.all()[0]
-        version.pk = None
-        version.version = '0.3beta'
-        version.save()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#review-files tr.listing-header').length == 2
-
-        file_.pk = None
-        file_.status = amo.STATUS_BETA
-        file_.version = version
-        file_.save()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#review-files tr.listing-header').length == 1
-
     def test_action_links(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4278,12 +4261,11 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
             '|')
 
-    def test_post_review_ignore_disabled_or_beta(self):
+    def test_post_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and
         # was auto-approved so the confirmation action is available.
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
-        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
         version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.grant_permission(self.reviewer, 'Addons:PostReview')
@@ -4296,12 +4278,11 @@ class TestReview(ReviewBase):
             [action[0] for action in response.context['actions']] ==
             expected_actions)
 
-    def test_content_review_ignore_disabled_or_beta(self):
+    def test_content_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and
         # was auto-approved so the content approval action is available.
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
-        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
         version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -4508,10 +4489,6 @@ class TestStatusFile(ReviewBase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.check_status('Approved')
 
-    def test_other(self):
-        self.addon.update(status=amo.STATUS_BETA)
-        self.check_status(unicode(File.STATUS_CHOICES[self.get_file().status]))
-
 
 class TestWhiteboard(ReviewBase):
     @property
@@ -4716,15 +4693,15 @@ class TestAddonReviewerViewSet(TestCase):
         self.user = user_factory()
         self.addon = addon_factory()
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         self.unsubscribe_url = reverse(
-            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
         self.enable_url = reverse(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk})
         self.disable_url = reverse(
-            'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-disable', kwargs={'pk': self.addon.pk})
         self.flags_url = reverse(
-            'reviewers-addon-flags', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-flags', kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -4739,7 +4716,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 404
 
@@ -4749,7 +4726,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
@@ -4758,7 +4735,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
@@ -4776,7 +4753,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.unsubscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 404
 
@@ -4784,7 +4761,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
@@ -4795,7 +4772,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
@@ -4812,7 +4789,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
         self.subscribe_url = reverse(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 2
@@ -4837,7 +4814,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.enable_url = reverse(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.enable_url)
         assert response.status_code == 404
 
@@ -4905,7 +4882,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.disable_url = reverse(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.disable_url)
         assert response.status_code == 404
 
@@ -4943,7 +4920,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.flags_url = reverse(
-            'reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42})
+            'v3:reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42})
         response = self.client.patch(
             self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 404

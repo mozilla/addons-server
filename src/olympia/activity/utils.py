@@ -21,7 +21,7 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import no_translation, send_mail
+from olympia.amo.utils import send_mail
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
@@ -224,7 +224,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # Just use the name of the action if no comments provided.  Alas we
         # can't know the locale of recipient, and our templates are English
         # only so prevent language jumble by forcing into en-US.
-        with no_translation():
+        with translation.override(settings.LANGUAGE_CODE):
             comments = '%s' % amo.LOG_BY_ID[note.action].short
     else:
         htmlparser = HTMLParser()
@@ -267,8 +267,10 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
                     author_context_dict['number_of_days_left'] = 'one (1) day'
             subject = u'Mozilla Add-ons: Action Required for %s %s' % (
                 addon.name, version.version)
+            reviewer_subject = u'Mozilla Add-ons: %s %s' % (
+                addon.name, version.version)
         else:
-            subject = u'Mozilla Add-ons: %s %s' % (
+            subject = reviewer_subject = u'Mozilla Add-ons: %s %s' % (
                 addon.name, version.version)
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
@@ -301,7 +303,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
                     }, add_prefix=False))
         reviewer_context_dict['email_reason'] = 'you reviewed this add-on'
         send_activity_mail(
-            subject, template.render(reviewer_context_dict),
+            reviewer_subject, template.render(reviewer_context_dict),
             version, reviewers, from_email, note.id, perm_setting)
 
     if send_to_staff:
@@ -315,7 +317,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         staff_cc_context_dict['email_reason'] = (
             'you are member of the activity email cc group')
         send_activity_mail(
-            subject, template.render(staff_cc_context_dict),
+            reviewer_subject, template.render(staff_cc_context_dict),
             version, staff_cc, from_email, note.id, perm_setting)
 
 

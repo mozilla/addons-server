@@ -146,7 +146,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "the-author1@nowehere.com",
-            "notifycompat": false,
             "username": "theauthor1",
             "biography": "Bio1: This is line one.\n\nThis is line two",
             "failed_login_attempts": 0,
@@ -157,7 +156,6 @@
             "notes": "",
             "modified": "2010-09-12 07:34:47",
             "last_login_ip": "",
-            "notifyevents": false,
             "last_login": "2010-09-12 07:34:47"
         }
     },
@@ -174,7 +172,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "the-author2@nowehere.com",
-            "notifycompat": false,
             "username": "theauthor2",
             "biography": "Bio2: This is line one.\n\nThis is line two",
             "failed_login_attempts": 0,
@@ -185,7 +182,6 @@
             "notes": "",
             "modified": "2010-09-12 07:34:47",
             "last_login_ip": "",
-            "notifyevents": false,
             "last_login": "2010-09-12 07:34:47"
         }
     },

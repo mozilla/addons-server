@@ -716,11 +716,27 @@ class TestEdit(ReviewTest):
 
 class TestRatingViewSetGet(TestCase):
     client_class = APITestClient
+    list_url_name = 'v4:rating-list'
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('rating-list')
+        self.url = reverse(self.list_url_name)
+
+    def test_url_v3(self):
+        assert reverse('v3:rating-list').endswith('/v3/reviews/review/')
+        rating = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        detail_url = reverse('v3:rating-detail', kwargs={'pk': rating.pk})
+        assert detail_url.endswith('/v3/reviews/review/%d/' % rating.pk)
+
+    def test_url_default(self):
+        assert self.url.endswith('/v4/ratings/rating/')
+        rating = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        detail_url = reverse(self.detail_url_name, kwargs={'pk': rating.pk})
+        assert detail_url.endswith('/v4/ratings/rating/%d/' % rating.pk)
 
     def test_list_addon(self, **kwargs):
         review1 = Rating.objects.create(
@@ -789,20 +805,18 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 3
 
         cache.clear()
-        with self.assertNumQueries(7):
-            # 7 queries:
-            # - One for the reviews count
-            # - One for the reviews ids (cache-machine FETCH_BY_ID)
-            # - One for the reviews fields
-            # - One for the reviews translations
+        with self.assertNumQueries(6):
+            # 6 queries:
+            # - One for the ratings count (pagination)
+            # - One for the ratings themselves
+            # - One for the ratings translations
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result. In the real world those queries
-            # would often be in the cache.
+            # which would pollute the result.
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
@@ -840,15 +854,13 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 5
 
         cache.clear()
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(7):
             # 9 queries:
-            # - One for the reviews count
-            # - One for the reviews ids (cache-machine FETCH_BY_ID)
-            # - One for the reviews fields
-            # - One for the reviews translations
-            # - One for the replies ids
-            # - One for the replies fields
-            # - One for the replies translations
+            # - One for the ratings count
+            # - One for the ratings
+            # - One for the ratings translations
+            # - One for the ratings fields
+            # - One for the ratings translations
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
@@ -1157,7 +1169,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1170,7 +1182,7 @@ class TestRatingViewSetGet(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1180,7 +1192,7 @@ class TestRatingViewSetGet(TestCase):
     def test_detail_deleted(self):
         review = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory())
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
         review.delete()
 
         response = self.client.get(self.url)
@@ -1193,7 +1205,7 @@ class TestRatingViewSetGet(TestCase):
             addon=self.addon, body='reply to review', user=user_factory(),
             reply_to=review)
         reply.delete()
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1212,7 +1224,7 @@ class TestRatingViewSetGet(TestCase):
             reply_to=review)
         reply.delete()
         review.delete()
-        self.url = reverse('rating-detail', kwargs={'pk': review.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': review.pk})
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1361,7 +1373,7 @@ class TestRatingViewSetGet(TestCase):
         # Do a post to add a review by this user.
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': u'blahé',
-            'rating': 5, 'version': self.addon.current_version.pk})
+            'score': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 201
 
         # Re-do the same get as before, should now find something since the
@@ -1392,6 +1404,7 @@ class TestRatingViewSetGet(TestCase):
 
 class TestRatingViewSetDelete(TestCase):
     client_class = APITestClient
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1400,7 +1413,7 @@ class TestRatingViewSetDelete(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': self.rating.pk})
 
     def test_delete_anonymous(self):
         response = self.client.delete(self.url)
@@ -1462,7 +1475,7 @@ class TestRatingViewSetDelete(TestCase):
         reply = Rating.objects.create(
             addon=self.addon, reply_to=self.rating,
             body=u'Reply that will be delêted...', user=addon_author)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.delete(self.url)
         assert response.status_code == 204
@@ -1471,7 +1484,8 @@ class TestRatingViewSetDelete(TestCase):
 
     def test_delete_404(self):
         self.client.login_api(self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk + 42})
+        self.url = reverse(
+            self.detail_url_name, kwargs={'pk': self.rating.pk + 42})
         response = self.client.delete(self.url)
         assert response.status_code == 404
         assert Rating.objects.count() == 1
@@ -1487,16 +1501,17 @@ class TestRatingViewSetDelete(TestCase):
         # And confirm we can rapidly delete them.
         self.client.login_api(self.user)
         response = self.client.delete(
-            reverse('rating-detail', kwargs={'pk': rating_a.pk}))
+            reverse(self.detail_url_name, kwargs={'pk': rating_a.pk}))
         assert response.status_code == 204
         response = self.client.delete(
-            reverse('rating-detail', kwargs={'pk': rating_b.pk}))
+            reverse(self.detail_url_name, kwargs={'pk': rating_b.pk}))
         assert response.status_code == 204
         assert Rating.objects.count() == 0
 
 
 class TestRatingViewSetEdit(TestCase):
     client_class = APITestClient
+    detail_url_name = 'v4:rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1505,7 +1520,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body=u'My revïew', title=u'Titlé', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': self.rating.pk})
 
     def test_edit_anonymous(self):
         response = self.client.patch(self.url, {'body': u'løl!'})
@@ -1538,13 +1553,13 @@ class TestRatingViewSetEdit(TestCase):
         original_created_date = self.days_ago(1)
         self.rating.update(created=original_created_date)
         self.client.login_api(self.user)
-        response = self.client.patch(self.url, {'rating': 2, 'body': u'løl!'})
+        response = self.client.patch(self.url, {'score': 2, 'body': u'løl!'})
         assert response.status_code == 200
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
         assert response.data['body'] == unicode(self.rating.body) == u'løl!'
         assert response.data['title'] == unicode(self.rating.title) == u'Titlé'
-        assert response.data['rating'] == self.rating.rating == 2
+        assert response.data['score'] == self.rating.rating == 2
         assert response.data['version'] == {
             'id': self.rating.version.id,
             'version': self.rating.version.version
@@ -1613,15 +1628,15 @@ class TestRatingViewSetEdit(TestCase):
         reply = Rating.objects.create(
             reply_to=self.rating, body=u'This is â reply', user=addon_author,
             addon=self.addon)
-        self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
+        self.url = reverse(self.detail_url_name, kwargs={'pk': reply.pk})
 
-        response = self.client.patch(self.url, {'rating': 5})
+        response = self.client.patch(self.url, {'score': 5})
         assert response.status_code == 200
         # Since the review we're editing was a reply, rating' was an unknown
         # parameter and was ignored.
         reply.reload()
         assert reply.rating is None
-        assert 'rating' not in response.data
+        assert 'score' not in response.data
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == addon_author
@@ -1632,11 +1647,11 @@ class TestRatingViewSetEdit(TestCase):
 
     def test_no_throttle(self):
         self.client.login_api(self.user)
-        response = self.client.patch(self.url, {'rating': 2, 'body': u'nó!'})
+        response = self.client.patch(self.url, {'score': 2, 'body': u'nó!'})
         assert response.status_code == 200
         self.rating.reload()
         assert unicode(self.rating.body) == u'nó!'
-        response = self.client.patch(self.url, {'rating': 3, 'body': u'yés!'})
+        response = self.client.patch(self.url, {'score': 3, 'body': u'yés!'})
         assert response.status_code == 200
         self.rating.reload()
         assert unicode(self.rating.body) == u'yés!'
@@ -1644,16 +1659,18 @@ class TestRatingViewSetEdit(TestCase):
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
+    list_url_name = 'v4:rating-list'
+    abuse_report_url_name = 'v4:abusereportaddon-list'
 
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('rating-list')
+        self.url = reverse(self.list_url_name)
 
     def test_post_anonymous(self):
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5})
+            'score': 5})
         assert response.status_code == 401
 
     def test_post_no_addon(self):
@@ -1661,7 +1678,7 @@ class TestRatingViewSetPost(TestCase):
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
-            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'body': u'test bodyé', 'title': None, 'score': 5,
             'version': self.addon.current_version.pk})
         assert response.status_code == 400
         assert response.data['addon'] == [u'This field is required.']
@@ -1672,7 +1689,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5})
+            'score': 5})
         assert response.status_code == 400
         assert response.data['version'] == [u'This field is required.']
 
@@ -1682,7 +1699,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': self.addon.current_version.version})
+            'score': 5, 'version': self.addon.current_version.version})
         assert response.status_code == 400
         assert response.data['version'] == [
             'Incorrect type. Expected pk value, received unicode.']
@@ -1695,13 +1712,13 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': u'blahé',
-            'rating': 5, 'version': self.addon.current_version.pk},
+            'score': 5, 'version': self.addon.current_version.pk},
             REMOTE_ADDR='213.225.312.5')
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
         assert unicode(review.body) == response.data['body'] == u'test bodyé'
-        assert review.rating == response.data['rating'] == 5
+        assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert unicode(review.title) == response.data['title'] == u'blahé'
         assert review.reply_to is None
@@ -1732,12 +1749,12 @@ class TestRatingViewSetPost(TestCase):
         cleaned_body = u'Trying to spam \n http://éxample.com'
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': body, 'title': u'blahé',
-            'rating': 5, 'version': self.addon.current_version.pk})
+            'score': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
         assert unicode(review.body) == response.data['body'] == cleaned_body
-        assert review.rating == response.data['rating'] == 5
+        assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert unicode(review.title) == response.data['title'] == u'blahé'
         assert review.reply_to is None
@@ -1756,9 +1773,9 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 4.5, 'version': self.addon.current_version.pk})
+            'score': 4.5, 'version': self.addon.current_version.pk})
         assert response.status_code == 400
-        assert response.data['rating'] == ['A valid integer is required.']
+        assert response.data['score'] == ['A valid integer is required.']
 
     def test_post_rating_too_big(self):
         self.user = user_factory()
@@ -1766,9 +1783,9 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 6, 'version': self.addon.current_version.pk})
+            'score': 6, 'version': self.addon.current_version.pk})
         assert response.status_code == 400
-        assert response.data['rating'] == [
+        assert response.data['score'] == [
             'Ensure this value is less than or equal to 5.']
 
     def test_post_rating_too_low(self):
@@ -1777,9 +1794,9 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 0, 'version': self.addon.current_version.pk})
+            'score': 0, 'version': self.addon.current_version.pk})
         assert response.status_code == 400
-        assert response.data['rating'] == [
+        assert response.data['score'] == [
             'Ensure this value is greater than or equal to 1.']
 
     def test_post_rating_no_title(self):
@@ -1788,12 +1805,12 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': self.addon.current_version.pk})
+            'score': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
         assert unicode(review.body) == response.data['body'] == u'test bodyé'
-        assert review.rating == response.data['rating'] == 5
+        assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.title is None
         assert response.data['title'] is None
@@ -1810,14 +1827,14 @@ class TestRatingViewSetPost(TestCase):
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
-            'addon': self.addon.pk, 'body': None, 'title': None, 'rating': 5,
+            'addon': self.addon.pk, 'body': None, 'title': None, 'score': 5,
             'version': self.addon.current_version.pk})
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
         assert review.body is None
         assert response.data['body'] is None
-        assert review.rating == response.data['rating'] == 5
+        assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.title is None
         assert response.data['title'] is None
@@ -1834,14 +1851,14 @@ class TestRatingViewSetPost(TestCase):
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
-            'addon': self.addon.pk, 'rating': 5,
+            'addon': self.addon.pk, 'score': 5,
             'version': self.addon.current_version.pk})
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
         assert review.body is None
         assert response.data['body'] is None
-        assert review.rating == response.data['rating'] == 5
+        assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.title is None
         assert response.data['title'] is None
@@ -1861,14 +1878,14 @@ class TestRatingViewSetPost(TestCase):
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
             'version': self.addon.current_version.pk})
         assert response.status_code == 400
-        assert response.data['rating'] == ['This field is required.']
+        assert response.data['score'] == ['This field is required.']
 
     def test_post_no_such_addon_id(self):
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.post(self.url, {
             'addon': self.addon.pk + 42, 'body': 'test body', 'title': None,
-            'rating': 5, 'version': self.addon.current_version.pk})
+            'score': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 404
 
     def test_post_version_not_linked_to_the_right_addon(self):
@@ -1877,7 +1894,7 @@ class TestRatingViewSetPost(TestCase):
         self.client.login_api(self.user)
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': 'test body', 'title': None,
-            'rating': 5, 'version': addon2.current_version.pk})
+            'score': 5, 'version': addon2.current_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
             u"This version of the add-on doesn't exist or isn't public."]
@@ -1890,7 +1907,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': version_pk})
+            'score': 5, 'version': version_pk})
         assert response.status_code == 404
 
     def test_post_deleted_version(self):
@@ -1908,7 +1925,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': old_version_pk})
+            'score': 5, 'version': old_version_pk})
         assert response.status_code == 400
         assert response.data['version'] == [
             u"This version of the add-on doesn't exist or isn't public."]
@@ -1926,7 +1943,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': old_version.pk})
+            'score': 5, 'version': old_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
             u"This version of the add-on doesn't exist or isn't public."]
@@ -1939,7 +1956,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': version_pk})
+            'score': 5, 'version': version_pk})
         assert response.status_code == 403
 
     def test_post_logged_in_but_is_addon_author(self):
@@ -1949,7 +1966,7 @@ class TestRatingViewSetPost(TestCase):
         assert not Rating.objects.exists()
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': None,
-            'rating': 5, 'version': self.addon.current_version.pk})
+            'score': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
             "You can't leave a review on your own add-on."]
@@ -1963,7 +1980,7 @@ class TestRatingViewSetPost(TestCase):
         second_version = version_factory(addon=self.addon)
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'My ôther review', 'title': None,
-            'rating': 2, 'version': second_version.pk})
+            'score': 2, 'version': second_version.pk})
         assert response.status_code == 201
         assert Rating.objects.count() == 2
 
@@ -1976,7 +1993,7 @@ class TestRatingViewSetPost(TestCase):
             body='My review', user=self.user)
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'My ôther review', 'title': None,
-            'rating': 2, 'version': self.addon.current_version.pk})
+            'score': 2, 'version': self.addon.current_version.pk})
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
             u"You can't leave more than one review for the same version of "
@@ -1989,7 +2006,7 @@ class TestRatingViewSetPost(TestCase):
             # First post, no problem.
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My réview', 'title': None,
-                'rating': 2, 'version': self.addon.current_version.pk})
+                'score': 2, 'version': self.addon.current_version.pk})
             assert response.status_code == 201
 
             # Add version so to avoid the one rating per version restriction.
@@ -1998,7 +2015,7 @@ class TestRatingViewSetPost(TestCase):
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My n3w réview',
                 'title': None,
-                'rating': 2, 'version': new_version.pk})
+                'score': 2, 'version': new_version.pk})
             assert response.status_code == 429
 
             # Throttle is 1 minute so check we can go again
@@ -2006,7 +2023,7 @@ class TestRatingViewSetPost(TestCase):
             # And we're good.
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My réview', 'title': None,
-                'rating': 2, 'version': new_version.pk})
+                'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
     def test_rating_throttle_separated_from_abuse_throttle(self):
@@ -2015,7 +2032,7 @@ class TestRatingViewSetPost(TestCase):
             self.client.login_api(self.user)
 
             # Submit an abuse report
-            report_abuse_url = reverse('abusereportaddon-list')
+            report_abuse_url = reverse(self.abuse_report_url_name)
             response = self.client.post(
                 report_abuse_url,
                 data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
@@ -2026,7 +2043,7 @@ class TestRatingViewSetPost(TestCase):
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My n3w réview',
                 'title': None,
-                'rating': 2, 'version': self.addon.current_version.pk})
+                'score': 2, 'version': self.addon.current_version.pk})
             assert response.status_code == 201
 
             # Add version so to avoid the one rating per version restriction.
@@ -2035,7 +2052,7 @@ class TestRatingViewSetPost(TestCase):
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My n3w réview',
                 'title': None,
-                'rating': 2, 'version': new_version.pk})
+                'score': 2, 'version': new_version.pk})
             assert response.status_code == 429
 
             # We can still report abuse, it's a different throttle.
@@ -2050,12 +2067,13 @@ class TestRatingViewSetPost(TestCase):
             # And we're good.
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My réview', 'title': None,
-                'rating': 2, 'version': new_version.pk})
+                'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
 
 class TestRatingViewSetFlag(TestCase):
     client_class = APITestClient
+    flag_url_name = 'v4:rating-flag'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2064,11 +2082,16 @@ class TestRatingViewSetFlag(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('rating-flag', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.flag_url_name, kwargs={'pk': self.rating.pk})
 
-    def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/flag/' % self.rating.pk
-        assert self.url == expected_url
+    def test_url_v3(self):
+        expected_url = '/v3/reviews/review/%d/flag/' % self.rating.pk
+        v3_url = reverse('v3:rating-flag', kwargs={'pk': self.rating.pk})
+        assert v3_url.endswith(expected_url)
+
+    def test_url_default(self):
+        expected_url = '/v4/ratings/rating/%d/flag/' % self.rating.pk
+        assert self.url.endswith(expected_url)
 
     def test_flag_anonymous(self):
         response = self.client.post(self.url)
@@ -2202,7 +2225,7 @@ class TestRatingViewSetFlag(TestCase):
         rating_b = Rating.objects.create(
             addon=addon_b, version=addon_b.current_version, rating=2,
             body='My review', user=self.rating_user)
-        url_b = reverse('rating-flag', kwargs={'pk': rating_b.pk})
+        url_b = reverse(self.flag_url_name, kwargs={'pk': rating_b.pk})
 
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
@@ -2216,6 +2239,7 @@ class TestRatingViewSetFlag(TestCase):
 
 class TestRatingViewSetReply(TestCase):
     client_class = APITestClient
+    reply_url_name = 'v4:rating-reply'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2224,11 +2248,16 @@ class TestRatingViewSetReply(TestCase):
         self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.rating_user)
-        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk})
+        self.url = reverse(self.reply_url_name, kwargs={'pk': self.rating.pk})
 
-    def test_url(self):
+    def test_url_v3(self):
+        v3_url = reverse('v3:rating-reply', kwargs={'pk': self.rating.pk})
         expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
-        assert self.url == expected_url
+        assert v3_url.endswith(expected_url)
+
+    def test_url_default(self):
+        expected_url = '/api/v4/ratings/rating/%d/reply/' % self.rating.pk
+        assert self.url.endswith(expected_url)
 
     def test_get_method_not_allowed(self):
         self.addon_author = user_factory()
@@ -2250,7 +2279,8 @@ class TestRatingViewSetReply(TestCase):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         self.client.login_api(self.addon_author)
-        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk + 42})
+        self.url = reverse(
+            self.reply_url_name, kwargs={'pk': self.rating.pk + 42})
         response = self.client.post(self.url, data={})
         assert response.status_code == 404
 
@@ -2266,7 +2296,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.pk == response.data['id']
         assert review.body == response.data['body'] == u'My âdmin réply...'
         assert review.rating is None
-        assert 'rating' not in response.data
+        assert 'score' not in response.data
         assert review.user == self.admin_user
         assert review.title is None
         assert response.data['title'] is None
@@ -2292,7 +2322,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.pk == response.data['id']
         assert review.body == response.data['body'] == u'My réply...'
         assert review.rating is None
-        assert 'rating' not in response.data
+        assert 'score' not in response.data
         assert review.user == self.addon_author
         assert review.title is None
         assert response.data['title'] is None

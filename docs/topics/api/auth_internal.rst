@@ -22,7 +22,7 @@ Fetching the token
 A fresh token, valid for 30 days, is automatically generated and added to the
 responses of the following endpoint:
 
-    * ``/api/v3/accounts/authenticate/``
+    * ``/api/v4/accounts/authenticate/``
 
 The token is available in two forms:
 

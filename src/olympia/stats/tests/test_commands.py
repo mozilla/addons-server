@@ -16,8 +16,7 @@ import mock
 from olympia import amo
 from olympia.addons.models import Persona
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.stats.management.commands import (
-    get_stats_data, save_stats_to_file, serialize_stats)
+from olympia.stats.management.commands import get_stats_data
 from olympia.stats.management.commands.download_counts_from_file import \
     is_valid_source  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
@@ -63,10 +62,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         super(TestADICommand, self).setUp()
         self.command = Command()
 
-    @mock.patch(
-        'olympia.stats.management.commands.update_counts_from_file.'
-        'save_stats_to_file')
-    def test_update_counts_from_file(self, mock_save_stats_to_file):
+    def test_update_counts_from_file(self):
         management.call_command('update_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert UpdateCount.objects.all().count() == 1
@@ -80,9 +76,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert update_count.applications[application] == {u'3.6': 18}
         assert update_count.oses == {u'WINNT': 5}
         assert update_count.locales == {u'en-us': 1, u'en-US': 4}
-
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(mock_save_stats_to_file.call_args[0][0], UpdateCount)
 
     def test_update_version(self):
         # Initialize the known addons and their versions.
@@ -181,10 +174,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         # Fits in the database, so no truncation.
         assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
-    @mock.patch(
-        'olympia.stats.management.commands.download_counts_from_file.'
-        'save_stats_to_file')
-    def test_download_counts_from_file(self, mock_save_stats_to_file):
+    def test_download_counts_from_file(self):
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
@@ -193,25 +183,17 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
 
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(
-            mock_save_stats_to_file.call_args[0][0], DownloadCount)
-
-    @mock.patch(
-        'olympia.stats.management.commands.download_counts_from_file.'
-        'save_stats_to_file')
     @mock.patch(
         'olympia.stats.management.commands.download_counts_from_file.'
         'close_old_connections')
     def test_download_counts_from_file_closes_old_connections(
-            self, close_old_connections_mock, mock_save_stats_to_file):
+            self, close_old_connections_mock):
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
         close_old_connections_mock.assert_called_once()
 
-    @mock.patch('olympia.stats.management.commands.save_stats_to_file')
-    def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
+    def test_theme_update_counts_from_file(self):
         management.call_command('theme_update_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
         assert ThemeUpdateCount.objects.all().count() == 1
@@ -220,12 +202,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         # "gp") and the "new" request on the addon_id 15663.
         tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
         assert tuc2.count == 15
-
-        assert mock_save_stats_to_file.call_count == 1
-
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(
-            mock_save_stats_to_file.call_args[0][0], ThemeUpdateCount)
 
     def test_update_theme_popularity_movers(self):
         # Create ThemeUpdateCount entries for the persona 559 with addon_id
@@ -291,11 +267,7 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
     source_folder = '1093699'
     stats_source = 'file'
 
-    @mock.patch(
-        'olympia.stats.management.commands.update_counts_from_file.'
-        'save_stats_to_file')
-    def test_update_counts_from_file_bug_1093699(self,
-                                                 mock_save_stats_to_file):
+    def test_update_counts_from_file_bug_1093699(self):
         addon_factory(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
                       type=amo.ADDON_THEME)
         management.call_command('update_counts_from_file', hive_folder,
@@ -314,64 +286,6 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
         assert uc.locales[u'es-ES'] == 20
         assert (uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'] ==
                 {u'2.0': 3})
-
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(mock_save_stats_to_file.call_args[0][0], UpdateCount)
-
-
-def test_stats_from_model_theme_update_count():
-    result = serialize_stats(
-        ThemeUpdateCount(addon_id=321, date='2016-01-18', count=123))
-    assert json.loads(result) == {
-        'date': '2016-01-18',
-        'addon': 321,
-        'count': 123}
-
-
-def test_stats_from_model_update_count():
-    result = serialize_stats(
-        UpdateCount(
-            addon_id=321, date='2016-01-18',
-            count=123,
-            versions={u'3.8': 2, u'3.7': 3},
-            statuses={u'userEnabled': 5},
-            applications={u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}':
-                          {u'3.6': 18}},
-            oses={u'WINNT': 5},
-            locales={u'en-us': 1, u'en-US': 4}))
-    assert json.loads(result) == {
-        'date': '2016-01-18',
-        'addon': 321,
-        'count': 123,
-        'versions': {'3.7': 3, '3.8': 2},
-        'oses': {'WINNT': 5},
-        'applications': {
-            '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'3.6': 18}},
-        'locales': {'en-US': 4, 'en-us': 1},
-        'statuses': {'userEnabled': 5}}
-
-
-def test_stats_from_model_download_count():
-    result = serialize_stats(
-        DownloadCount(
-            addon_id=321, date='2016-01-18', count=123,
-            sources={u'search': 1, u'collection': 1}))
-    assert json.loads(result) == {
-        'date': '2016-01-18',
-        'addon': 321,
-        'count': 123,
-        'sources': {'search': 1, 'collection': 1}}
-
-
-@mock.patch('olympia.stats.management.commands.storage.save')
-@mock.patch('olympia.stats.management.commands.ContentFile')
-def test_save_stats_to_file(mock_ContentFile, mock_storage):
-    mock_ContentFile.return_value = mock.sentinel.content
-    theme_update_count = ThemeUpdateCount(
-        addon_id=321, date='2016-01-18', count=123)
-    save_stats_to_file(theme_update_count)
-    mock_storage.assert_called_once_with(
-        '321/2016/01/2016_01_18_themeupdatecount.json', mock.sentinel.content)
 
 
 class TestADICommandS3(TransactionTestCase):
@@ -401,11 +315,8 @@ class TestADICommandS3(TransactionTestCase):
         self.stubber.deactivate()
 
     @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch(
-        'olympia.stats.management.commands.update_counts_from_file.'
-        'save_stats_to_file')
     @mock.patch('olympia.stats.management.commands.boto3')
-    def test_update_counts_from_s3(self, mock_boto3, mock_save_stats_to_file):
+    def test_update_counts_from_s3(self, mock_boto3):
         stats = ['app', 'locale', 'os', 'status', 'version']
 
         for x in range(2):
@@ -428,16 +339,9 @@ class TestADICommandS3(TransactionTestCase):
         assert update_count.oses == {u'WINNT': 5}
         assert update_count.locales == {u'en-us': 1, u'en-US': 4}
 
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(mock_save_stats_to_file.call_args[0][0], UpdateCount)
-
     @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch(
-        'olympia.stats.management.commands.download_counts_from_file.'
-        'save_stats_to_file')
     @mock.patch('olympia.stats.management.commands.boto3')
-    def test_download_counts_from_s3(self, mock_boto3,
-                                     mock_save_stats_to_file):
+    def test_download_counts_from_s3(self, mock_boto3):
         for x in range(2):
             self.add_response('download_counts')
 
@@ -451,17 +355,9 @@ class TestADICommandS3(TransactionTestCase):
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
 
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(
-            mock_save_stats_to_file.call_args[0][0], DownloadCount)
-
     @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch(
-        'olympia.stats.management.commands.theme_update_counts_from_file.'
-        'save_stats_to_file')
     @mock.patch('olympia.stats.management.commands.boto3')
-    def test_theme_update_counts_from_s3(self, mock_boto3,
-                                         mock_save_stats_to_file):
+    def test_theme_update_counts_from_s3(self, mock_boto3):
         for x in range(2):
             self.add_response('theme_update_counts')
 
@@ -474,9 +370,3 @@ class TestADICommandS3(TransactionTestCase):
         # "gp") and the "new" request on the addon_id 15663.
         tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
         assert tuc2.count == 15
-
-        assert mock_save_stats_to_file.call_count == 1
-
-        # save_stats_to_file is called with a non-saved model.
-        assert isinstance(
-            mock_save_stats_to_file.call_args[0][0], ThemeUpdateCount)

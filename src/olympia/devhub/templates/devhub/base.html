@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-
+{% block user_logout_link %}
+  <a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+{% endblock %}
 {% if addon %}
   {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}

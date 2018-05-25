@@ -102,7 +102,6 @@
             "display_collections_fav": true,
             "display_collections": true,
             "averagerating": 3.38,
-            "notifycompat": true,
             "picture_type": "image/jpeg",
             "occupation": "Internets",
             "homepage": "http://micropipes.com/blog/",
@@ -114,8 +113,7 @@
             "created": "2007-03-05 13:09:38",
             "notes": null,
             "modified": "2010-05-20 14:54:52",
-            "last_login": "2010-05-20 14:54:52",
-            "notifyevents": true
+            "last_login": "2010-05-20 14:54:52"
         }
     },
     {

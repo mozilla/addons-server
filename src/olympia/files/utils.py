@@ -34,10 +34,15 @@ from signing_clients.apps import get_signer_organizational_unit_name
 import olympia.core.logger
 
 from olympia import amo, core
+from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib.safe_xml import lxml
+from olympia.users.utils import (
+    mozilla_signed_extension_submission_allowed,
+    system_addon_submission_allowed)
+
 from olympia.versions.compare import version_int as vint
 
 
@@ -107,11 +112,6 @@ def make_xpi(files):
     z.close()
     f.seek(0)
     return f
-
-
-def is_beta(version):
-    """Return True if the version is believed to be a beta version."""
-    return bool(amo.VERSION_BETA.search(version))
 
 
 class Extractor(object):
@@ -805,7 +805,7 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, minimal=False):
+def parse_xpi(xpi, addon=None, minimal=False, user=None):
     """Extract and parse an XPI. Returns a dict with various properties
     describing the xpi.
 
@@ -836,10 +836,10 @@ def parse_xpi(xpi, addon=None, minimal=False):
 
     if minimal:
         return xpi_info
-    return check_xpi_info(xpi_info, addon, xpi)
+    return check_xpi_info(xpi_info, addon, xpi, user=user)
 
 
-def check_xpi_info(xpi_info, addon=None, xpi_file=None):
+def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
     guid = xpi_info['guid']
     is_webextension = xpi_info.get('is_webextension', False)
@@ -895,33 +895,64 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None):
             xpi_info.copy(), xpi_file)
         verify_mozilla_trademark(translations['name'], core.get_user())
 
+    # Parse the file to get and validate package data with the addon.
+    if not acl.submission_allowed(user, xpi_info):
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit this type of add-on'))
+
+    if not addon and not system_addon_submission_allowed(
+            user, xpi_info):
+        guids = ' or '.join(
+                '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit an add-on with a guid ending '
+                     u'%s' % guids))
+
+    if not mozilla_signed_extension_submission_allowed(user, xpi_info):
+        raise forms.ValidationError(
+            ugettext(u'You cannot submit a Mozilla Signed Extension'))
+
     return xpi_info
 
 
-def parse_addon(pkg, addon=None, minimal=False):
+def parse_addon(pkg, addon=None, user=None, minimal=False):
     """
     Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
     with various properties describing the add-on.
 
     Will raise ValidationError if something went wrong while parsing.
 
-    If minimal is True, it avoids validation as much as possible (still raising
-    ValidationError for hard errors like I/O or invalid json/rdf) and returns
-    only the minimal set of properties needed to decide what to do with the
-    add-on (the exact set depends on the add-on type, but it should always
-    contain at least guid, type, version and is_webextension.
+    `addon` parameter is mandatory if the file being parsed is going to be
+    attached to an existing Addon instance.
+
+    `user` parameter is mandatory unless minimal `parameter` is True. It should
+    point to the UserProfile responsible for the upload.
+
+    If `minimal` parameter is True, it avoids validation as much as possible
+    (still raising ValidationError for hard errors like I/O or invalid
+    json/rdf) and returns only the minimal set of properties needed to decide
+    what to do with the add-on (the exact set depends on the add-on type, but
+    it should always contain at least guid, type, version and is_webextension.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
-        parsed = parse_xpi(pkg, addon, minimal=minimal)
+        parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
 
-    if not minimal and addon and addon.type != parsed['type']:
-        msg = ugettext(
-            "<em:type> in your install.rdf (%s) "
-            "does not match the type of your add-on on AMO (%s)")
-        raise forms.ValidationError(msg % (parsed['type'], addon.type))
+    if not minimal:
+        if user is None:
+            # This should never happen and means there is a bug in
+            # addons-server itself.
+            raise forms.ValidationError(ugettext('Unexpected error.'))
+
+        # FIXME: do the checks depending on user here.
+
+        if addon and addon.type != parsed['type']:
+            msg = ugettext(
+                "<em:type> in your install.rdf (%s) "
+                "does not match the type of your add-on on AMO (%s)")
+            raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 
 

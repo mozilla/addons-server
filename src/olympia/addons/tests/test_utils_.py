@@ -1,10 +1,25 @@
+# -*- coding: utf-8 -*-
+import json
+import mock
+import os
 import pytest
+import tempfile
+import zipfile
+
+from django.conf import settings
 from django.forms import ValidationError
 
 from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
-    get_creatured_ids, get_featured_ids, verify_mozilla_trademark)
+    build_static_theme_xpi_from_lwt,
+    get_addon_recommendations, get_addon_recommendations_invalid,
+    get_creatured_ids, get_featured_ids, is_outcome_recommended,
+    TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
+    TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
+    TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
+    TAAR_LITE_FALLBACK_REASON_INVALID,
+    verify_mozilla_trademark)
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory)
 from olympia.bandwagon.models import FeaturedCollection
@@ -144,3 +159,122 @@ class TestGetCreaturedIds(TestCase):
     def test_shuffle(self):
         ids = get_creatured_ids(self.category_id, 'en-US')
         assert (ids[0],) == self.en_us_locale
+
+
+class TestGetAddonRecommendations(TestCase):
+    def setUp(self):
+        patcher = mock.patch(
+            'olympia.addons.utils.call_recommendation_server')
+        self.recommendation_server_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+        self.a101 = addon_factory(id=101, guid='101@mozilla')
+        addon_factory(id=102, guid='102@mozilla')
+        addon_factory(id=103, guid='103@mozilla')
+        addon_factory(id=104, guid='104@mozilla')
+
+        self.recommendation_guids = [
+            '101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'
+        ]
+        self.recommendation_server_mock.return_value = (
+            self.recommendation_guids)
+
+    def test_recommended(self):
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == self.recommendation_guids
+        assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
+        assert reason is None
+
+    def test_recommended_no_results(self):
+        self.recommendation_server_mock.return_value = []
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
+
+    def test_recommended_timeout(self):
+        self.recommendation_server_mock.return_value = None
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', True)
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
+
+    def test_not_recommended(self):
+        recommendations, outcome, reason = get_addon_recommendations(
+            'a@b', False)
+        assert not self.recommendation_server_mock.called
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_CURATED
+        assert reason is None
+
+    def test_invalid_fallback(self):
+        recommendations, outcome, reason = get_addon_recommendations_invalid()
+        assert recommendations == TAAR_LITE_FALLBACKS
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
+
+    def test_is_outcome_recommended(self):
+        assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
+        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
+        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
+
+
+class TestBuildStaticThemeXpiFromLwt(TestCase):
+    def setUp(self):
+        self.background_png = os.path.join(
+            settings.ROOT, 'src/olympia/versions/tests/static_themes/weta.png')
+
+    def test_lwt(self):
+        # Create our persona.
+        lwt = addon_factory(
+            type=amo.ADDON_PERSONA, persona_id=0, name=u'Amáze',
+            description=u'It does all d£ things')
+        lwt.persona.accentcolor, lwt.persona.textcolor = '123', '456789'
+        # Give it a background header file.
+        lwt.persona.header = 'weta.png'
+        lwt.persona.header_path = self.background_png  # It's a cached_property
+
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
+
+        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
+            manifest = xpi.read('manifest.json')
+            manifest_json = json.loads(manifest)
+            assert manifest_json['name'] == u'Amáze'
+            assert manifest_json['description'] == u'It does all d£ things'
+            assert manifest_json['theme']['images']['headerURL'] == (
+                u'weta.png')
+            assert manifest_json['theme']['colors']['accentcolor'] == (
+                u'#123')
+            assert manifest_json['theme']['colors']['textcolor'] == (
+                u'#456789')
+            assert (xpi.read('weta.png') ==
+                    open(self.background_png).read())
+
+    def test_lwt_missing_info(self):
+        # Create our persona.
+        lwt = addon_factory(
+            type=amo.ADDON_PERSONA, persona_id=0)
+        lwt.update(name='')
+        # Give it a background header file.
+        lwt.persona.header = 'weta.png'
+        lwt.persona.header_path = self.background_png  # It's a cached_property
+
+        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
+        build_static_theme_xpi_from_lwt(lwt, static_xpi)
+
+        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
+            manifest = xpi.read('manifest.json')
+            manifest_json = json.loads(manifest)
+            assert manifest_json['name'] == lwt.slug
+            assert 'description' not in manifest_json.keys()
+            assert manifest_json['theme']['images']['headerURL'] == (
+                u'weta.png')
+            assert manifest_json['theme']['colors']['accentcolor'] == (
+                amo.THEME_ACCENTCOLOR_DEFAULT)
+            assert manifest_json['theme']['colors']['textcolor'] == (
+                u'#000')
+            assert (xpi.read('weta.png') ==
+                    open(self.background_png).read())

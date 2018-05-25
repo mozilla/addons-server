@@ -23,8 +23,11 @@ from olympia.translations.hold import save_translations
 from . import search
 
 
+# Store whether we should be skipping cache-machine for this thread or not.
+# Note that because the value is initialized at import time, we can't use
+# override_settings() on CACHE_MACHINE_ENABLED.
 _locals = threading.local()
-_locals.skip_cache = False
+_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
 log = olympia.core.logger.getLogger('z.addons')
 
@@ -43,7 +46,7 @@ def use_master():
 @contextlib.contextmanager
 def skip_cache():
     """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', False)
+    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
     _locals.skip_cache = True
     try:
         yield
@@ -406,6 +409,12 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
+
+    def serializable_reference(self):
+        """Return a tuple with app label, model name and pk to be used when we
+        need to pass a serializable reference to this instance without having
+        to serialize the whole object."""
+        return self._meta.app_label, self._meta.model_name, self.pk
 
 
 class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):

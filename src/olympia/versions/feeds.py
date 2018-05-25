@@ -1,5 +1,3 @@
-import waffle
-
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
 from django.utils.translation import ugettext
@@ -44,16 +42,13 @@ class VersionsRss(NonAtomicFeed):
     feed_type = PagedFeed
     addon = None
 
-    def get_object(self, request, addon_id, beta=False):
+    def get_object(self, request, addon_id):
         """Get the Addon for which we are about to output
            the RSS feed of it Versions"""
         qs = Addon.objects
         self.addon = get_object_or_404(qs.id_or_slug(addon_id) & qs.valid())
 
-        status_list = ((amo.STATUS_BETA,)
-                       if beta and waffle.switch_is_active('beta-versions')
-                       else tuple(set(amo.VALID_FILE_STATUSES) -
-                                  set([amo.STATUS_BETA])))
+        status_list = amo.VALID_FILE_STATUSES
         items_qs = (self.addon.versions
                     .filter(files__status__in=status_list)
                     .distinct().order_by('-created'))

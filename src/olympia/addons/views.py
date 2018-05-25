@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django import http
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
@@ -8,11 +10,10 @@ from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
-import caching.base as caching
 import session_csrf
 import waffle
 
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from rest_framework.generics import GenericAPIView, ListAPIView
@@ -45,6 +46,7 @@ from olympia.search.filters import (
     SearchParameterFilter, SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
+from olympia.lib.cache import cached
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
@@ -55,7 +57,9 @@ from .serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
-from .utils import get_creatured_ids, get_featured_ids
+from .utils import (
+    get_addon_recommendations, get_addon_recommendations_invalid,
+    get_creatured_ids, get_featured_ids, is_outcome_recommended)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -137,10 +141,10 @@ def extension_detail(request, addon):
 
 
 def _category_personas(qs, limit):
-    def f():
+    def fetch_personas():
         return randslice(qs, limit=limit)
     key = 'cat-personas:' + qs.query_key()
-    return caching.cached(f, key)
+    return cached(fetch_personas, key)
 
 
 @non_atomic_requests
@@ -615,8 +619,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             'all_with_unlisted',
             'all_without_unlisted',
         )
-        if waffle.switch_is_active('beta-versions'):
-            valid_filters = valid_filters + ('only_beta',)
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
@@ -634,10 +636,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         elif requested == 'all_without_unlisted':
             queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
-        elif requested == 'only_beta':
-            queryset = Version.objects.filter(
-                channel=amo.RELEASE_CHANNEL_LISTED,
-                files__status=amo.STATUS_BETA).distinct()
         else:
             # By default, we rely on queryset filtering to hide
             # non-public/unlisted versions. get_queryset() might override this
@@ -748,11 +746,13 @@ class AddonFeaturedView(GenericAPIView):
             # AddonCategoryQueryParam parses the request parameters for us to
             # determine the category.
             try:
-                category = AddonCategoryQueryParam(self.request).get_value()
+                categories = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
-            ids = get_creatured_ids(category, lang)
+            ids = []
+            for category in categories:
+                ids.extend(get_creatured_ids(category, lang))
         else:
             # If no category is passed, only the app parameter is mandatory,
             # because get_featured_ids() needs it to find the right collection
@@ -761,13 +761,13 @@ class AddonFeaturedView(GenericAPIView):
             try:
                 app = AddonAppQueryParam(
                     self.request).get_object_from_reverse_dict()
-                type_ = None
+                types = None
                 if 'type' in self.request.GET:
-                    type_ = AddonTypeQueryParam(self.request).get_value()
+                    types = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
-            ids = get_featured_ids(app, lang=lang, type=type_)
+            ids = get_featured_ids(app, lang=lang, types=types)
         # ids is going to be a random list of ids, we just slice it to get
         # the number of add-ons that was requested. We do it before calling
         # manual_order(), since it'll use the ids as part of a id__in filter.
@@ -852,7 +852,8 @@ class LanguageToolsView(ListAPIView):
         # to filter by type if they want appversion filtering.
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
-                addon_types = (AddonTypeQueryParam(self.request).get_value(),)
+                addon_types = tuple(
+                    AddonTypeQueryParam(self.request).get_value())
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
@@ -910,7 +911,7 @@ class LanguageToolsView(ListAPIView):
             apps__max__version_int__gte=appversions['max'],
             channel=amo.RELEASE_CHANNEL_LISTED,
             files__status=amo.STATUS_PUBLIC,
-        ).no_transforms().transform(Version.transformer)
+        ).order_by('-created').no_transforms().transform(Version.transformer)
         qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
         return (
             qs.prefetch_related(Prefetch('versions',
@@ -921,6 +922,7 @@ class LanguageToolsView(ListAPIView):
                       versions__apps__max__version_int__gte=appversions['max'],
                       versions__channel=amo.RELEASE_CHANNEL_LISTED,
                       versions__files__status=amo.STATUS_PUBLIC)
+              .distinct()
         )
 
     @method_decorator(cache_page(60 * 60 * 24, cache='filesystem'))
@@ -954,4 +956,43 @@ class CompatOverrideView(ListAPIView):
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
         return queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer)
+            CompatOverride.transformer).order_by('-pk')
+
+
+class AddonRecommendationView(AddonSearchView):
+    filter_backends = [ReviewedContentFilter]
+    ab_outcome = None
+    fallback_reason = None
+    pagination_class = None
+
+    def get_paginated_response(self, data):
+        data = data[:4]  # taar is only supposed to return 4 anyway.
+        return Response(OrderedDict([
+            ('outcome', self.ab_outcome),
+            ('fallback_reason', self.fallback_reason),
+            ('page_size', 1),
+            ('page_count', 1),
+            ('count', len(data)),
+            ('next', None),
+            ('previous', None),
+            ('results', data),
+        ]))
+
+    def filter_queryset(self, qs):
+        qs = super(AddonRecommendationView, self).filter_queryset(qs)
+        guid_param = self.request.GET.get('guid')
+        taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
+        guids, self.ab_outcome, self.fallback_reason = (
+            get_addon_recommendations(guid_param, taar_enable))
+        results_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+
+        results_qs.execute()  # To cache the results.
+        if results_qs.count() != 4 and is_outcome_recommended(self.ab_outcome):
+            guids, self.ab_outcome, self.fallback_reason = (
+                get_addon_recommendations_invalid())
+            return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+        return results_qs
+
+    def paginate_queryset(self, queryset):
+        # We don't need pagination for the fixed number of results.
+        return queryset

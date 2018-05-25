@@ -74,36 +74,36 @@ idna==2.6 \
 ipaddress==1.0.21 \
     --hash=sha256:c65c59041d771a8f8996e3579015b14bf015bcfdcb7949c315e6e25b89a6e2a2 \
     --hash=sha256:82c964e8a387f3869774c9fd3ed7bf19f0e001de58f0f52fc17257b6bc5f515d
-ndg-httpsclient==0.4.4 \
-    --hash=sha256:0c48887887979f2cb30f3f341f33d02f7dd5167b3a9b417048e8e94f51a1527a \
-    --hash=sha256:e0c815950873a7ff13ff41c5fe585b2904e4b808c75f2aba587b73cc9fbfde67 \
-    --hash=sha256:fba4d4798dcac2965874f24afb6631b4326baa4bd02505744d34f690c354856a
+ndg-httpsclient==0.5.0 \
+    --hash=sha256:683b7a17e8b093e422562e8b089a3ad5d87e00f8f8765aac128791ab9140eef3 \
+    --hash=sha256:8647bb775de60e79fe795eeee602d705de4500a5b1a3d2224247c217dfa200a9 \
+    --hash=sha256:c009f5430790936b3a97eaf9f968516664d97e146ab2bda991f0caadb7cc088b
 # packaging is required by setuptools
 packaging==17.1 \
     --hash=sha256:e9215d2d2535d3ae866c3d6efc77d5b24a0192cce0ff20e42896cc0664f889c0 \
     --hash=sha256:f019b770dd64e585a99714f1fd5e01c7a8f11b45635aa953fd41c689a657375b
-pip==10.0.0 \
-    --hash=sha256:86a60a96d85e329962a9e6f6af612cbc11106293dbc83f119802b5bee9874cf3 \
-    --hash=sha256:f05a3eeea64bce94e85cc6671d679473d66288a4d37c3fcf983584954096b34f
-pyOpenSSL==17.5.0 \
-    --hash=sha256:07a2de1a54de07448732a81e38a55df7da109b2f47f599f8bb35b0cbec69d4bd \
-    --hash=sha256:2c10cfba46a52c0b0950118981d61e72c1e5b1aac451ca1bc77de1a679456773
+pip==10.0.1 \
+    --hash=sha256:717cdffb2833be8409433a93746744b59505f42146e8d37de6c62b430e25d6d7 \
+    --hash=sha256:f2bd08e0cd1b06e10218feaf6fef299f473ba706582eb3bd9d52203fdbd7ee68
+pyOpenSSL==18.0.0 \
+    --hash=sha256:26ff56a6b5ecaf3a2a59f132681e2a80afcc76b4f902f612f518f92c2a1bf854 \
+    --hash=sha256:6488f1423b00f73b7ad5167885312bb0ce410d3312eb212393795b53c8caa580
 # pycparser is required by cffi
 pycparser==2.18 \
     --hash=sha256:99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226
-pyasn1==0.4.2 \
-    --hash=sha256:f81c96761fca60d64b1c9b79ec2e40cf9495a745cf570613079ef324aeb9672b \
-    --hash=sha256:7d626683e3d792cccc608da02498aff37ab4f3dafd8905d6bf755d11f9b26b43 \
-    --hash=sha256:e85895087905c65b5b594eb91f7522664c85545b147d5f4d4e7b1b07da8dcbdc \
-    --hash=sha256:5a0db897b311d265cde49615cf783f1c78613138605cdd0f907ecfa5b2aba3ee \
-    --hash=sha256:d5cd6ed995dba16fad0c521cfe31cd2d68400b53fcc2bce93326829be73ab6d1 \
-    --hash=sha256:a7efe807c4b83a859e2735c692b92ed7b567cfddc4163763412920041d876c2b \
-    --hash=sha256:b5a9ca48055b9a20f6d1b3d68e38692e5431c86a0f99ea602e61294e891fee5b \
-    --hash=sha256:c07d6e587b2f928366b1f67c09bda026a3e6fcc99e80a744dc67f8fca3895626 \
-    --hash=sha256:d84c2aea3cf43780e9e6a19f4e4dddee9f6976519020e64e47c57e5c7a8c3dd2 \
-    --hash=sha256:758cb50abddc03e4563fd9e7f03db56e3e87b58c0bd01247360326e5c0c7ffa5 \
-    --hash=sha256:0d7f6e959fe53f3960a23d73f35e1fce61348b30915b6664309ca756de7c1f89 \
-    --hash=sha256:d258b0a71994f7770599835249cece1caef3c70def868c4915e6e5ca49b67d15
+pyasn1==0.4.3 \
+    --hash=sha256:9a15cc13ff6bf5ed29ac936ca941400be050dff19630d6cd1df3fb978ef4c5ad \
+    --hash=sha256:8fb265066eac1d3bb5015c6988981b009ccefd294008ff7973ed5f64335b0f2d \
+    --hash=sha256:ba77f1e8d7d58abc42bfeddd217b545fdab4c1eeb50fd37c2219810ad56303bf \
+    --hash=sha256:3651774ca1c9726307560792877db747ba5e8a844ea1a41feb7670b319800ab3 \
+    --hash=sha256:a66dcda18dbf6e4663bde70eb30af3fc4fe1acb2d14c4867a861681887a5f9a2 \
+    --hash=sha256:9334cb427609d2b1e195bb1e251f99636f817d7e3e1dffa150cb3365188fb992 \
+    --hash=sha256:d01fbba900c80b42af5c3fe1a999acf61e27bf0e452e0f1ef4619065e57622da \
+    --hash=sha256:2f57960dc7a2820ea5a1782b872d974b639aa3b448ac6628d1ecc5d0fe3986f2 \
+    --hash=sha256:602fda674355b4701acd7741b2be5ac188056594bf1eecf690816d944e52905e \
+    --hash=sha256:cdc8eb2eaafb56de66786afa6809cd9db2df1b3b595dcb25aa5b9dc61189d40a \
+    --hash=sha256:f281bf11fe204f05859225ec2e9da7a7c140b65deccd8a4eb0bc75d0bd6949e0 \
+    --hash=sha256:fb81622d8f3509f0026b0683fe90fea27be7284d3826a5f2edf97f69151ab0fc
 # pyparsing is required by packaging
 pyparsing==2.2.0 \
     --hash=sha256:fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010 \
@@ -113,9 +113,9 @@ pyparsing==2.2.0 \
     --hash=sha256:8f1e18d3fd36c6795bb7e02a39fd05c611ffc2596c1e0d995d34d67630426c18 \
     --hash=sha256:e4d45427c6e20a59bf4f88c639dcc03ce30d193112047f94012102f235853a58
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==39.0.1 \
-    --hash=sha256:8010754433e3211b9cdbbf784b50f30e80bf40fc6b05eb5f865fab83300599b8 \
-    --hash=sha256:bec7badf0f60e7fc8153fac47836edc41b74e5d541d7692e614e635720d6a7c7
+setuptools==39.2.0 \
+    --hash=sha256:8fca9275c89964f13da985c3656cb00ba029d7f3916b37990927ffdf264e7926 \
+    --hash=sha256:f7cddbb5f5c640311eb00eab6e849f7701fa70bf6a183fc8a2c33dd1d1672fb2
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \

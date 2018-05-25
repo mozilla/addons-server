@@ -2,7 +2,6 @@
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-import caching.base as caching
 import jinja2
 
 from olympia.addons.models import Addon
@@ -10,6 +9,7 @@ from olympia.bandwagon.models import (
     Collection, MonthlyPick as MonthlyPickModel)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
+from olympia.lib.cache import cached
 
 
 # The global registry for promo modules.  Managed through PromoModuleMeta.
@@ -119,10 +119,12 @@ class CollectionPromo(PromoModule):
             'compat_mode': self.compat_mode
         }
 
-        def _filter():
+        def fetch_and_filter_addons():
             return addon_filter(addons, **kw)
 
-        return caching.cached_with(addons, _filter, repr(kw))
+        return cached(
+            fetch_and_filter_addons,
+            'collections-promo-get-addons:{}'.format(repr(kw)))
 
     def render(self, module_context='discovery'):
         if module_context == 'home':

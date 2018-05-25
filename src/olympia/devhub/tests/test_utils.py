@@ -163,23 +163,6 @@ class TestValidatorListed(TestValidatorBase):
         self.check_file(version.files.get())
 
 
-class TestValidatorBeta(TestValidatorBase):
-    def setUp(self):
-        super(TestValidatorBeta, self).setUp()
-
-        self.xpi_version = '1.1b1'
-
-        parse_addon = self.patch('olympia.devhub.utils.parse_addon')
-        parse_addon.return_value = {
-            'version': self.xpi_version,
-            'guid': self.addon.guid,
-            'is_webextension': False,
-        }
-
-    def test_validate_upload(self):
-        self.check_upload(self.file_upload)
-
-
 class TestLimitValidationResults(TestCase):
     """Test that higher priority messages are truncated last."""
 

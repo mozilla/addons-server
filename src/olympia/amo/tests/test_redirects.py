@@ -11,10 +11,10 @@ class TestRedirects(TestCase):
     fixtures = ['ratings/test_models', 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
-        """`/personas/film and tv` should go to /themes/film-and-tv"""
+        """`/personas/film and tv/` should go to /themes/film-and-tv/"""
         r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
-            '/en-US/firefox/themes/film-and-tv')
+            '/en-US/firefox/themes/film-and-tv/')
 
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to

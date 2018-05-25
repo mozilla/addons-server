@@ -61,7 +61,7 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
         latest_version = version.addon.find_latest_version(
-            channel=version.channel, exclude=(amo.STATUS_BETA,))
+            channel=version.channel, exclude=())
         if version != latest_version:
             raise ParseError(ugettext(
                 'Only latest versions of addons can have notes added.'))

@@ -452,7 +452,7 @@ class TestThemeForm(TestCase):
             src=header_src,
             full_dst=[os.path.join(dst, 'preview.png'),
                       os.path.join(dst, 'icon.png')],
-            set_modified_on=[addon])
+            set_modified_on=addon.serializable_reference())
 
     @mock.patch('olympia.addons.tasks.create_persona_preview_images')
     @mock.patch('olympia.addons.tasks.save_persona_image')

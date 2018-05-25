@@ -12,12 +12,12 @@ STATUS_NOMINATED = 3  # Waiting for review.
 STATUS_PUBLIC = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7  # Beta file, only available on approved add-ons.
+_STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
 STATUS_REJECTED = 12  # This applies only to rejected personas.
-STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
+STATUS_REVIEW_PENDING = 14  # personas, needing further action.
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
@@ -42,7 +42,6 @@ STATUS_CHOICES_FILE = {
     STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
     STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_BETA: _(u'Beta'),
 }
 
 # We need to expose nice values that aren't localisable.
@@ -53,7 +52,6 @@ STATUS_CHOICES_API = {
     STATUS_NOMINATED: 'nominated',
     STATUS_PUBLIC: 'public',
     STATUS_DISABLED: 'disabled',
-    STATUS_BETA: 'beta',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_REVIEW_PENDING: 'review-pending',
@@ -66,7 +64,6 @@ STATUS_CHOICES_API_LOOKUP = {
     'nominated': STATUS_NOMINATED,
     'public': STATUS_PUBLIC,
     'disabled': STATUS_DISABLED,
-    'beta': STATUS_BETA,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
@@ -76,7 +73,7 @@ REVIEWED_STATUSES = (STATUS_PUBLIC,)
 UNREVIEWED_ADDON_STATUSES = (STATUS_NOMINATED,)
 UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
-VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC, STATUS_BETA)
+VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC)
 
 # Version channels
 RELEASE_CHANNEL_UNLISTED = 1
@@ -233,10 +230,20 @@ VALID_CONTRIBUTION_DOMAINS = (
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
-# Preview upload sizes [thumb, full]
-ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
+_size_tuple = namedtuple('SizeTuple', 'width height')
+# Preview upload sizes
+ADDON_PREVIEW_SIZES = {
+    'thumb': _size_tuple(200, 150),
+    'full': _size_tuple(700, 525)
+}
 
-THEME_PREVIEW_SIZE = namedtuple('SizeTuple', 'width height')(680, 100)
+# Static theme preview sizes
+THEME_PREVIEW_SIZES = {
+    'thumb': _size_tuple(670, 64),
+    'full': _size_tuple(680, 92)
+}
+THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
+THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
@@ -369,10 +376,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "ending_tier": 5,
 }
 
-VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
-                              (([\.-]\d)?\d*)         # followed by nothing
-                              $                       # or 123 or .123 or -123
-                              """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Types of SiteEvent

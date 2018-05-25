@@ -8,11 +8,10 @@ import datetime
 from django.conf import settings
 from django.core.cache import cache
 
-import waffle
-
 from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
+from kombu import serialization
 from post_request_task.task import PostRequestTask
 from raven import Client
 from raven.contrib.celery import register_logger_signal, register_signal
@@ -25,19 +24,31 @@ from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 log = olympia.core.logger.getLogger('z.task')
 
 
-class WaffleablePostRequestTask(PostRequestTask):
-    """Same as `PostRequestTask` only that this listens for a waffle-flag."""
+class AMOTask(PostRequestTask):
+    """A custom celery Task base class that inherits from `PostRequestTask`
+    to delay tasks and adds a special hack to still perform a serialization
+    roundtrip in eager mode, to mimic what happens in production in tests."""
     abstract = True
 
-    def apply_async(self, args=None, kwargs=None, **extrakw):
-        if waffle.switch_is_active('activate-django-post-request'):
-            return super(WaffleablePostRequestTask, self).apply_async(
-                args, kwargs, **extrakw)
+    def apply_async(self, args=None, kwargs=None, **options):
+        if app.conf.task_always_eager:
+            producer = options.get('producer')
+            with app.producer_or_acquire(producer) as eager_producer:
+                serializer = options.get(
+                    'serializer', eager_producer.serializer
+                )
+                body = args, kwargs
+                content_type, content_encoding, data = serialization.dumps(
+                    body, serializer
+                )
+                args, kwargs = serialization.loads(
+                    data, content_type, content_encoding
+                )
+        return super(AMOTask, self).apply_async(
+            args=args, kwargs=kwargs, **options)
 
-        return self.original_apply_async(args=args, kwargs=kwargs, **extrakw)
 
-
-app = Celery('olympia', task_cls=WaffleablePostRequestTask)
+app = Celery('olympia', task_cls=AMOTask)
 task = app.task
 
 app.config_from_object('django.conf:settings', namespace='CELERY')

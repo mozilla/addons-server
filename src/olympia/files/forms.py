@@ -90,8 +90,7 @@ class FileCompareForm(happyforms.Form):
         self.request = kw.pop('request')
         super(FileCompareForm, self).__init__(*args, **kw)
 
-        queryset = (File.objects.filter(version__addon=self.addon)
-                        .exclude(status=amo.STATUS_BETA))
+        queryset = File.objects.filter(version__addon=self.addon)
         if acl.check_unlisted_addons_reviewer(self.request):
             should_show_channel = (
                 queryset.filter(

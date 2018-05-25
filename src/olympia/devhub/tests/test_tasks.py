@@ -7,9 +7,8 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
+from django.core import mail
 
 import mock
 import pytest
@@ -17,11 +16,13 @@ import pytest
 from PIL import Image
 
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import image_size, utc_millesecs_from_epoch
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
@@ -620,33 +621,6 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'warning'
         assert validation['errors'] == 0
 
-    def test_only_consider_beta_for_downgrade_error_if_uploading_a_beta(self):
-        """Make sure we don't raise the webextension downgrade error when
-        uploading a public legacy version we have a beta webext."""
-        # Create a beta webext with a version number higher than the existing
-        # legacy, but lower than the legacy we're about to upload...
-        version_factory(addon=self.addon, version='1.0b1', file_kw={
-            'is_webextension': True, 'status': amo.STATUS_BETA,
-        })
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert upload.processed_validation['errors'] == 0
-        assert upload.valid
-
-        # Do consider previous betas when uploading a beta, though.
-        file_ = amo.tests.AMOPaths().file_fixture_path(
-            'beta-extension.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-        assert not upload.valid
-        expected = ['validation', 'messages', 'webext_downgrade']
-        assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['messages'][0]['type'] == 'error'
-
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
         """Make sure even deleting the previous version does not prevent
         the downgrade error."""
@@ -1030,14 +1004,17 @@ class TestCreateVersionForUpload(TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.create_version_for_upload = (
             tasks.create_version_for_upload.non_atomic)
-        patcher = mock.patch('olympia.devhub.tasks.Version.from_upload')
-        self.version__from_upload = patcher.start()
-        self.addCleanup(patcher.stop)
+        self.mocks = {}
+        for key in ['Version.from_upload', 'parse_addon']:
+            patcher = mock.patch('olympia.devhub.tasks.%s' % key)
+            self.mocks[key] = patcher.start()
+            self.addCleanup(patcher.stop)
+        self.user = user_factory()
 
     def create_upload(self, version='1.0'):
         return FileUpload.objects.create(
-            addon=self.addon, version=version, validation='{"errors":0}',
-            automated_signing=False)
+            addon=self.addon, version=version, user=self.user,
+            validation='{"errors":0}', automated_signing=False)
 
     def test_file_passed_all_validations_not_most_recent(self):
         upload = self.create_upload()
@@ -1047,14 +1024,15 @@ class TestCreateVersionForUpload(TestCase):
         # Check that the older file won't turn into a Version.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
         self.create_version_for_upload(self.addon, newer_upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['Version.from_upload'].assert_called_with(
             newer_upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_version_exists(self):
         upload = self.create_upload()
@@ -1063,7 +1041,7 @@ class TestCreateVersionForUpload(TestCase):
         # Check that the older file won't turn into a Version.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
         upload = self.create_upload()
@@ -1074,7 +1052,7 @@ class TestCreateVersionForUpload(TestCase):
 
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        assert not self.version__from_upload.called
+        assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
         upload = self.create_upload(version='1.0')
@@ -1085,32 +1063,205 @@ class TestCreateVersionForUpload(TestCase):
         # version_string.
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
-    @override_switch('beta-versions', active=True)
-    def test_file_passed_all_validations_beta(self):
-        upload = self.create_upload(version='1.0-beta1')
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=True)
-
-    @override_switch('beta-versions', active=False)
     def test_file_passed_all_validations_beta_string(self):
         upload = self.create_upload(version='1.0-beta1')
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_no_version(self):
         upload = self.create_upload(version=None)
         self.create_version_for_upload(self.addon, upload,
                                        amo.RELEASE_CHANNEL_LISTED)
-        self.version__from_upload.assert_called_with(
+        self.mocks['parse_addon'].assert_called_with(
+            upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id],
-            amo.RELEASE_CHANNEL_LISTED, is_beta=False)
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.mocks['parse_addon'].return_value)
+
+
+class TestAPIKeyInSubmission(TestCase):
+
+    def setUp(self):
+        self.user = user_factory()
+
+        s = '656b16a8ab71686fcfcd04d574bc28be9a1d8252141f54cfb5041709262b84f4'
+        self.key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='user:12345:678',
+            secret=s)
+        self.addon = addon_factory(users=[self.user],
+                                   version_kw={'version': '0.1'},
+                                   file_kw={'is_webextension': True})
+        self.file = get_addon_file('webextension_containing_api_key.xpi')
+
+    def test_api_key_in_new_submission_is_found(self):
+        upload = FileUpload.objects.create(path=self.file, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        messages = upload.processed_validation['messages']
+        assert len(messages) == 1
+        assert messages[0]['id'] == [
+            u'validation', u'messages', u'api_key_detected']
+        assert ('Your developer API key was found in the submitted '
+                'file.' in messages[0]['message'])
+        assert not upload.valid
+
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
+
+        assert len(mail.outbox) == 1
+        assert ('Your AMO API credentials have been revoked'
+                in mail.outbox[0].subject)
+        assert mail.outbox[0].to[0] == self.user.email
+
+    def test_api_key_in_submission_is_found(self):
+        upload = FileUpload.objects.create(path=self.file, addon=self.addon,
+                                           user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        messages = upload.processed_validation['messages']
+        assert len(messages) == 1
+        assert messages[0]['id'] == [
+            u'validation', u'messages', u'api_key_detected']
+        assert ('Your developer API key was found in the submitted '
+                'file.' in messages[0]['message'])
+        assert not upload.valid
+
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
+
+        assert len(mail.outbox) == 1
+        assert ('Your AMO API credentials have been revoked'
+                in mail.outbox[0].subject)
+        assert ('never share your credentials' in mail.outbox[0].body)
+        assert mail.outbox[0].to[0] == self.user.email
+
+    def test_coauthor_api_key_in_submission_is_found(self):
+        coauthor = user_factory()
+        AddonUser.objects.create(addon=self.addon, user_id=coauthor.id)
+        upload = FileUpload.objects.create(path=self.file, addon=self.addon,
+                                           user=coauthor)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        messages = upload.processed_validation['messages']
+        assert len(messages) == 1
+        assert messages[0]['id'] == [
+            u'validation', u'messages', u'api_key_detected']
+        assert ('The developer API key of a coauthor was found in the '
+                'submitted file.' in messages[0]['message'])
+        assert not upload.valid
+
+        # If the key has been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
+
+        assert len(mail.outbox) == 1
+        assert ('Your AMO API credentials have been revoked'
+                in mail.outbox[0].subject)
+        assert ('never share your credentials' in mail.outbox[0].body)
+        # We submit as the coauthor, the leaked key is the one from 'self.user'
+        assert mail.outbox[0].to[0] == self.user.email
+
+    def test_api_key_already_revoked_by_developer(self):
+        self.key.update(is_active=None)
+        tasks.revoke_api_key(self.key.id)
+        # If the key has already been revoked, there is no active key,
+        # so `get_jwt_key` raises `DoesNotExist`.
+        with pytest.raises(APIKey.DoesNotExist):
+            APIKey.get_jwt_key(user_id=self.user.id)
+
+    def test_api_key_already_regenerated_by_developer(self):
+        self.key.update(is_active=None)
+        current_key = APIKey.new_jwt_credentials(user=self.user)
+        tasks.revoke_api_key(self.key.id)
+        key_from_db = APIKey.get_jwt_key(user_id=self.user.id)
+        assert current_key.key == key_from_db.key
+        assert current_key.secret == key_from_db.secret
+
+    def test_revoke_task_is_called(self):
+        mock_str = 'olympia.devhub.tasks.revoke_api_key'
+        wrapped = tasks.revoke_api_key
+        with mock.patch(mock_str, wraps=wrapped) as mock_revoke:
+            upload = FileUpload.objects.create(path=self.file, user=self.user)
+            tasks.validate(upload, listed=True)
+            upload.refresh_from_db()
+            mock_revoke.apply_async.assert_called_with(
+                kwargs={'key_id': self.key.id}, countdown=120)
+
+        assert not upload.valid
+
+    def test_does_not_revoke_for_different_author(self):
+        different_author = user_factory()
+        upload = FileUpload.objects.create(path=self.file,
+                                           user=different_author)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.valid
+
+    def test_does_not_revoke_safe_webextension(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_validation_finishes_if_containing_binary_content(self):
+        file_ = get_addon_file('webextension_containing_binary_files.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_validation_finishes_if_containing_invalid_filename(self):
+        file_ = get_addon_file('invalid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, user=self.user)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        # https://github.com/mozilla/addons-server/issues/8208
+        # causes this to be 2 (and invalid) instead of 0 (and valid).
+        # The invalid filename error is caught and raised outside of this
+        # validation task.
+        assert upload.processed_validation['errors'] == 2
+        assert not upload.valid

@@ -14,8 +14,8 @@ class CustomPageNumberPagination(PageNumberPagination):
         # Like PageNumberPagination.get_paginated_response, but with
         # 'page_size' added to the top of the response data.
         return Response(OrderedDict([
-            # Note that self.page_size doesn't work, it contains the default
-            # page size.
+            # Note that self.page_size doesn't work, it contains the
+            # default page size.
             ('page_size', self.page.paginator.per_page),
             ('page_count', self.page.paginator.num_pages),
             ('count', self.page.paginator.count),

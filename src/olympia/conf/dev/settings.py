@@ -45,10 +45,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
 
-SYSLOG_TAG = "http_app_addons_dev"
-MOZLOG_NAME = SYSLOG_TAG
-SYSLOG_TAG2 = "http_app_addons_dev_timer"
-SYSLOG_CSP = "http_app_addons_dev_csp"
+MOZLOG_NAME = "http_app_addons_dev"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -84,6 +81,9 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
+# Disable cache-machine on dev to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
+
 CACHES = {
     'filesystem': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -92,7 +92,7 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
@@ -171,7 +171,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'https://amo.addons-dev.allizom.org/fxa-authenticate',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),

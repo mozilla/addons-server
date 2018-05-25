@@ -1,14 +1,17 @@
 from django.utils.http import urlsafe_base64_encode
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+import basket
+
 from mock import Mock, patch, MagicMock
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, addon_factory, create_switch
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import reverse
 from olympia.users.forms import AdminUserEditForm, UserEditForm
-from olympia.users.models import UserProfile
+from olympia.users.models import UserNotification, UserProfile
+from olympia.users.notifications import REMOTE_NOTIFICATIONS_BY_BASKET_ID
 
 
 class UserFormBase(TestCase):
@@ -100,7 +103,7 @@ class TestUserEditForm(UserFormBase):
         assert self.user.reload().username == username
 
     def test_fxa_id_cannot_be_set(self):
-        assert self.user.fxa_id is None
+        self.user.update(fxa_id=None)
         data = {'username': 'blah',
                 'email': 'jbalogh@mozilla.com',
                 'fxa_id': 'yo'}
@@ -213,6 +216,185 @@ class TestUserEditForm(UserFormBase):
         assert form.is_valid()
         form.save()
         assert self.user.reload().email == 'me@example.com'
+
+    def test_only_show_notifications_user_has_permission_to(self):
+        create_switch('activate-basket-sync')
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123', 'newsletters': []}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        # It needs a developer account to subscribe to a newsletter
+        # So the `announcements` notification is not among the valid choices
+        # This isn't really user visible since the user doesn't have
+        # the ability to choose newsletters he doesn't have permissions
+        # to see.
+        assert len(form.fields['notifications'].choices) == 2
+        assert form.fields['notifications'].choices[0][0] == 3
+        assert form.fields['notifications'].choices[1][0] == 4
+
+        addon_factory(users=[self.user])
+
+        # Clear cache
+        del self.user.is_developer
+
+        form = UserEditForm({}, instance=self.user)
+        assert len(form.fields['notifications'].choices) == 10
+        assert [x[0] for x in form.fields['notifications'].choices] == [
+            3, 4, 5, 6, 7, 9, 10, 11, 12, 8
+        ]
+
+    def test_basket_unsubscribe_newsletter(self):
+        create_switch('activate-basket-sync')
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+            assert form.is_valid()
+            form.save()
+
+        request_call.assert_called_with(
+            'post', 'unsubscribe',
+            data={
+                'newsletters': 'about-addons',
+                'email': u'jbalogh@mozilla.com'},
+            token='123')
+
+    def test_basket_data_is_used_for_initial_checkbox_state_subscribed(self):
+        # When using basket, what's in the database is ignored for the
+        # notification
+        create_switch('activate-basket-sync')
+
+        notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
+
+        # Add some old obsolete data in the database for a notification that
+        # is handled by basket: it should be ignored.
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_id, enabled=False)
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['about-addons']}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        assert notification_id in form.fields['notifications'].initial
+
+    def test_basket_data_is_used_for_initial_checkbox_state(self):
+        # When using basket, what's in the database is ignored for the
+        # notification
+        create_switch('activate-basket-sync')
+
+        notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
+
+        # Add some old obsolete data in the database for a notification that
+        # is handled by basket: it should be ignored.
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_id, enabled=True)
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+
+            form = UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        assert notification_id not in form.fields['notifications'].initial
+
+    def test_basket_unsubscribe_newsletter_no_basket_user(self):
+        """
+        Test that unsubscribing from a newsletter if user didn't exist yet
+        """
+        create_switch('activate-basket-sync')
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.side_effect = basket.base.BasketException(
+                'description', status_code=401,
+                code=basket.errors.BASKET_UNKNOWN_EMAIL)
+
+            UserEditForm({}, instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+    def test_basket_subscribe_newsletter(self):
+        create_switch('activate-basket-sync')
+
+        addon_factory(users=[self.user])
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': []}
+
+            # 8 is the `announcements` notification, or about-addons newsletter
+            form = UserEditForm(
+                {'notifications': [3, 4, 8]},
+                instance=self.user)
+
+        request_call.assert_called_with(
+            'get', 'lookup-user',
+            headers={'x-api-key': 'testkey'},
+            params={'email': u'jbalogh@mozilla.com'})
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['about-addons']}
+
+            assert form.is_valid()
+            form.save()
+
+        request_call.assert_called_with(
+            'post', 'subscribe',
+            headers={'x-api-key': 'testkey'},
+            data={
+                'newsletters': 'about-addons', 'sync': 'Y',
+                'email': u'jbalogh@mozilla.com'})
+
+    def test_basket_sync_behind_flag(self):
+
+        with patch('basket.base.request', autospec=True) as request_call:
+            request_call.return_value = {
+                'status': 'ok', 'token': '123',
+                'newsletters': ['announcements']}
+
+            UserEditForm({}, instance=self.user)
+
+        assert request_call.call_count == 0
 
 
 class TestAdminUserEditForm(UserFormBase):

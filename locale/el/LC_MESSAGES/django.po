@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -560,22 +560,6 @@ msgstr "Πληροφορίες έκδοσης"
 msgid "See complete version history"
 msgstr "Προβολή πλήρους ιστορικού έκδοσης"
 
-msgid "Development Channel"
-msgstr "Κανάλι ανάπτυξης"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Το Κανάλι Ανάπτυξης σας επιτρέπει να ελέγξετε μια δοκιμαστική νέα έκδοση αυτού του προσθέτου προτού αυτό διανεμηθεί στο ευρύ κοινό. Αφού εγκαταστήσετε την έκδοση ανάπτυξης, θα συνεχίσετε για να "
-"λάβετε ενημερώσεις από αυτό το κανάλι. Για να σταματήσετε να λαμβάνετε αναπτυξιακές ενημερώσεις, εγκαταστήστε ξανά την προεπιλεγμένη έκδοση από το σύνδεσμο παραπάνω."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Προσοχή:</strong> Οι εκδόσεις ανάπτυξης αυτού του προσθέτου δεν έχουν αξιολογηθεί από τη Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Δείτε το πλήρες ιστορικό του καναλιού ανάπτυξης"
-
 msgid "close"
 msgstr "κλείσιμο"
 
@@ -1032,6 +1016,10 @@ msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2055,6 +2043,30 @@ msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
 msgid "Information request removed"
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Ζητήθηκε υπερ αξιολόγηση"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Ζητήθηκε υπερ αξιολόγηση"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Ζητήθηκε αξιολόγηση"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2093,9 +2105,6 @@ msgstr "Σε αναμονή έγκρισης"
 
 msgid "Flagged for further review"
 msgstr "Επισημάνθηκε για περαιτέρω αξιολόγηση"
-
-msgid "Beta"
-msgstr "Δοκιμαστική έκδοση"
 
 msgid "Unlisted"
 msgstr "Δεν αναγράφεται"
@@ -2641,9 +2650,6 @@ msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 msgid "Submit my add-on for manual review."
 msgstr "Υποβολή του προσθέτου μου για χειροκίνητη αξιολόγηση."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Δεν μπορείτε να αποστείλετε περισσότερα αρχεία γι' αυτή την έκδοση."
 
@@ -2702,6 +2708,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s αποκρίθηκε με %s (%s)."
@@ -2713,6 +2725,9 @@ msgstr "Λήξη χρόνου σύνδεσης με «%s»."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Αδυναμία επικοινωνίας με «%s»."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2771,16 +2786,6 @@ msgstr "Επικύρωση πρόσθετου"
 
 msgid "Check Add-on Compatibility"
 msgstr "Έλεγχος συμβατότητας πρόσθετου"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3454,9 +3459,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Αυτό το πρόσθετο δεν έχει καμία έκδοση."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Κατάσταση:"
 
@@ -3639,9 +3641,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό το αρχείο;"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Δημοσίευση αυτής της έκδοσης μόνο στο κανάλι beta μου."
 
 msgid "Administrative overrides"
 msgstr "Διαχειριστική υπερίσχυση"
@@ -4032,14 +4031,17 @@ msgstr ""
 msgid "Learn How"
 msgstr "Μάθετε πώς"
 
-msgid "What's New"
-msgstr "Τι νέο υπάρχει"
+msgid "Get Started"
+msgstr "Ξεκινήστε"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 msgid "See Tutorial"
 msgstr "Προβολή οδηγού εκμάθησης"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4453,20 +4455,6 @@ msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
@@ -4478,6 +4466,20 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 #, fuzzy
@@ -4570,6 +4572,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Οι αριθμοί εκδόσεων μπορούν να περιλαμβάνουν μόνο αριθμούς, γράμματα και αυτά τα σύμβολα: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4837,9 +4852,6 @@ msgstr "Γίνετε ένας Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ξεκλειδώστε πρώιμη πρόσβαση σε πειραματικές λειτουργίες."
-
-msgid "Get Started"
-msgstr "Ξεκινήστε"
 
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"
@@ -5527,24 +5539,6 @@ msgid ""
 msgstr ""
 "Μερικοί δημιουργοί πρόσθετων, ζητούν από τους χρήστες που απολαμβάνουν τα πρόσθετα τους να ενισχύσουν την ανάπτυξη τους κάνοντας μια μικρή χρηματική δωρεά. Αυτές οι δωρεές κατατίθενται απευθείας "
 "στους δημιουργούς, εκτός κι αν έχει οριστεί κάποιο τρίτο μέρος σαν αποδέκτης, όπως πχ. το μη κερδοσκοπικό ίδρυμα Μozilla."
-
-msgid "What are beta add-ons?"
-msgstr "Τι είναι τα δοκιμαστικά πρόσθετα;"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Τα δοκιμαστικά (Beta) πρόσθετα, είναι εκδόσεις που δεν έχουν αξιολογηθεί και περιλαμβάνουν ό,τι πιο πρόσφατο έχει δημιουργήσει ο προγραμματιστής τους. Αν και κάθε δημιουργός έχει διαφορετικά "
-"πρότυπα για τον ορισμό μιας έκδοσης σαν δοκιμαστική, καλό θα είναι γενικότερα να θεωρείτε πως αυτά τα πρόσθετα είναι λιγότερο σταθερά από τις κανονικές εκδόσεις."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Παρακαλούμε σημειώστε πως όταν εγκαταστήσετε ένα πρόσθετο από το «δοκιμαστικό» τμήμα της σελίδας προβολής του, θα λαμβάνετε και τις διαθέσιμες ενημερώσεις επίσης από το ίδιο τμήμα. Όπως και με την "
-"αρχική δοκιμαστική έκδοση που εγκαταστήσατε, όλες οι δοκιμαστικές εκδόσεις δεν αξιολογούνται από τους συντάκτες του Μozilla και μπορεί να προκαλέσουν προβλήματα στο σύστημα σας."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Πως μπορώ να αναφέρω μια απρεπή η κακόβουλη και άσχετη αξιολόγηση χρήστη;"

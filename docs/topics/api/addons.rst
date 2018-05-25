@@ -5,7 +5,8 @@ Add-ons
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. The only authentication method available at
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 --------
@@ -20,7 +21,7 @@ are not accepted. The query parameter ``page_size`` is allowed but only serves
 to customize the number of results returned, clients can not request a specific
 page.
 
-.. http:get:: /api/v3/addons/featured/
+.. http:get:: /api/v4/addons/featured/
 
     :query string app: **Required**. Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
@@ -37,7 +38,7 @@ Search
 
 This endpoint allows you to search through public add-ons.
 
-.. http:get:: /api/v3/addons/search/
+.. http:get:: /api/v4/addons/search/
 
     :query string q: The search query. The maximum length allowed is 100 characters.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
@@ -59,7 +60,7 @@ This endpoint allows you to search through public add-ons.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` as well as ``picture_url`` from ``authors``.
 
 .. _addon-search-sort:
 
@@ -103,7 +104,7 @@ for autocomplete though, there are a couple key differences:
     results will be returned at all times.
   - Only a subset of fields are returned.
 
-.. http:get:: /api/v3/addons/autocomplete/
+.. http:get:: /api/v4/addons/autocomplete/
 
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
@@ -139,7 +140,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
             * ``is_disabled_by_developer``: boolean set to ``true`` when the add-on has been voluntarily disabled by its developer.
             * ``is_disabled_by_mozilla``: boolean set to ``true`` when the add-on has been disabled by Mozilla.
 
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
+.. http:get:: /api/v4/addons/addon/(int:id|string:slug|string:guid)/
 
     .. _addon-detail-object:
 
@@ -156,7 +157,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
-    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
@@ -210,7 +210,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-              beta  Beta (Valid for files only)
               lite  Preliminarily Reviewed
             public  Fully Reviewed
            deleted  Deleted
@@ -263,18 +262,21 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
 
-        For backwards-compatibility reasons, the value for Theme is ``persona``.
-        ``theme`` refers to a Complete Theme.
+        For backwards-compatibility reasons, the value for type of Theme
+        currently live on production addons.mozilla.org is ``persona``
+        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme. 
+        New webextension packaged non-dynamic themes are ``statictheme`.
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-             theme  Complete Theme
+             theme  Theme (Complete Theme, XUL-based)
             search  Search Engine
-           persona  Theme
+           persona  Theme (Lightweight Theme, persona)
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary
+       statictheme  Theme (Static Theme)
     ==============  ==========================================================
 
 
@@ -292,7 +294,7 @@ Versions List
 
 This endpoint allows you to list all versions belonging to a specific add-on.
 
-.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. note::
         Non-public add-ons and add-ons with only unlisted versions require both:
@@ -338,7 +340,7 @@ Version Detail
 
 This endpoint allows you to fetch a single version belonging to a specific add-on.
 
-.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
 
     .. _version-detail-object:
 
@@ -399,7 +401,7 @@ Add-on Feature Compatibility
 This endpoint allows you to fetch feature compatibility information for a
 a specific add-on by id, slug or guid.
 
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
+.. http:get:: /api/v4/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
 
     .. note::
         Non-public add-ons and add-ons with only unlisted versions require both:
@@ -426,7 +428,7 @@ Add-on EULA and Privacy Policy
 
 This endpoint allows you to fetch an add-on EULA and privacy policy.
 
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
+.. http:get:: /api/v4/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
     .. note::
         Non-public add-ons and add-ons with only unlisted versions require both:
@@ -447,7 +449,7 @@ Language Tools
 This endpoint allows you to list all public language tools add-ons available
 on AMO.
 
-.. http:get:: /api/v3/addons/language-tools/
+.. http:get:: /api/v4/addons/language-tools/
 
     .. note::
         Because this endpoint is intended to be used to feed a page that
@@ -487,7 +489,7 @@ Replacement Add-ons
 
 This endpoint returns a list of suggested replacements for legacy add-ons that are unsupported in Firefox 57.  Added to support the TAAR recommendation service.
 
-.. http:get:: /api/v3/addons/replacement-addon/
+.. http:get:: /api/v4/addons/replacement-addon/
 
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
@@ -508,7 +510,7 @@ Compat Override
 This endpoint allows compatibility overrides specified by AMO admins to be searched.
 Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
 
-.. http:get:: /api/v3/addons/compat-override/
+.. http:get:: /api/v4/addons/compat-override/
 
     :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified.
     :query int page: 1-based page number. Defaults to 1.
@@ -529,3 +531,25 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.
+
+
+---------------
+Recommendations
+---------------
+
+.. _addon-recommendations:
+
+This endpoint provides recommendations of other addons to install, fetched from the `recommendation service <https://github.com/mozilla/taar>`_.
+Four recommendations are fetched, but only valid, publicly available addons are shown (so max 4 will be returned, and possibly less).
+
+.. http:get:: /api/v4/addons/recommendations/
+
+    :query string guid: Fetch recommendations for this add-on guid.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.
+    :>json string outcome: Outcome of the response returned.  Will be either: ``recommended`` - responses from recommendation service; ``recommended_fallback`` - service timed out or returned empty or invalid results so we returned fallback; ``curated`` - ``recommended=False`` was requested so fallback returned.
+    :>json string|null fallback_reason: if ``outcome`` was ``recommended_fallback`` then the reason why.  Will be either: ``timeout``, ``no_results``, or ``invalid_results``.
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. The following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.

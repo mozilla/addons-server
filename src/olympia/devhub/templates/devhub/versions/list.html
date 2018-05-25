@@ -27,7 +27,7 @@
 {% endif %}
 
 {% macro version_details(version, full_info=False) %}
-  {% set latest_version_in_channel = version.addon.find_latest_version(channel=version.channel, exclude=(amo.STATUS_BETA,)) %}
+  {% set latest_version_in_channel = version.addon.find_latest_version(channel=version.channel, exclude=()) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -57,7 +57,6 @@
         </form>
         </div>
       {% endif %}
-      {% if not version.is_beta %}
       <div>
           <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history"
             id="review-history-show-{{ version.id }}" data-version="{{ version.id }}">{{ _('Review History') }}</a>
@@ -69,7 +68,6 @@
               {% endif %}
           {% endif %}
       </div>
-      {% endif %}
     </td>
     <td class="file-validation">
       <ul>
@@ -112,39 +110,37 @@
       </td>
     </tr>
   {% endif %}
-  {% if not version.is_beta %}
-    <tr>
-        <td colspan="4" id="{{ version.id }}-review-history" class="review-history hidden"
-             data-api-url="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
-             data-token="{{ token }}">
-            <div class="history-container">
-                <div class="review-entry-loading">{{ _('Loading Review History...') }}</div>
-                <div class="review-entry-failure hidden">{{ _('We had a problem retrieving review notes') }}</div>
-                <div class="review-entry-loadmore hidden">
-                    <p><a href="#" class="review-history-loadmore" data-div="#{{ version.id }}-review-history">{{ _('Load older...') }}</a></p>
-                </div>
-                <div class="review-entry-empty hidden">
-                    <p><span class="action">$action_label</span> {{ _('by') }}
-                    <a href="$user_profile">$user_name</a> <time class="timeago" datetime=$date>$date</time></p>
-                    <pre>$comments</pre>
-                </div>
+  <tr>
+      <td colspan="4" id="{{ version.id }}-review-history" class="review-history hidden"
+            data-api-url="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
+            data-token="{{ token }}">
+          <div class="history-container">
+              <div class="review-entry-loading">{{ _('Loading Review History...') }}</div>
+              <div class="review-entry-failure hidden">{{ _('We had a problem retrieving review notes') }}</div>
+              <div class="review-entry-loadmore hidden">
+                  <p><a href="#" class="review-history-loadmore" data-div="#{{ version.id }}-review-history">{{ _('Load older...') }}</a></p>
+              </div>
+              <div class="review-entry-empty hidden">
+                  <p><span class="action">$action_label</span> {{ _('by') }}
+                  <a href="$user_profile">$user_name</a> <time class="timeago" datetime=$date>$date</time></p>
+                  <pre>$comments</pre>
+              </div>
+          </div>
+          {% if latest_version_in_channel == version %}
+            <div class="dev-review-reply">
+              <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
+                    data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
+                  <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                  <button type="submit" class="submit" >{{ _('Reply') }}</button ty>
+              </form>
             </div>
-            {% if latest_version_in_channel == version %}
-              <div class="dev-review-reply">
-                <form class="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
-                      data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
-                    <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
-                    <button type="submit" class="submit" >{{ _('Reply') }}</button ty>
-                </form>
-              </div>
-            {% else %}
-              <div>
-                <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel.id }}">{{ _('Leave a reply') }}</a>
-              </div>
-            {% endif %}
-        </td>
-    </tr>
-  {% endif %}
+          {% else %}
+            <div>
+              <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel.id }}">{{ _('Leave a reply') }}</a>
+            </div>
+          {% endif %}
+      </td>
+  </tr>
 {% endmacro %}
 
 {% block content %}
@@ -238,7 +234,7 @@
           <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
 
-        {% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,)) %}
+        {% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=()) %}
         {% for version in versions.object_list %}
           {% if version != current_version and version != latest_listed_version %}
             {{ version_details(version, full_info=version==latest_listed_version_including_disabled) }}

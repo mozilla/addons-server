@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2018-04-17 17:38+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-13 15:57+0000\n"
+"Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -564,22 +564,6 @@ msgstr "Información de la versión"
 msgid "See complete version history"
 msgstr "Ver el historial completo de versiones"
 
-msgid "Development Channel"
-msgstr "Canal de desarrollo"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"El canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de su lanzamiento al público en general. Una vez que instales la versión de desarrollo, seguirás "
-"recibiendo actualizaciones de este canal. Para dejar de recibir actualizaciones de desarrollo, reinstala la versión predeterminada desde el enlace anterior."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Precaución:</strong> las versiones de desarrollo de este complemento no han sido revisadas por Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Ver el historial completo del canal de desarrollo"
-
 msgid "close"
 msgstr "cerrar"
 
@@ -1028,6 +1012,9 @@ msgstr "Los iconos no pueden ser animados."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
+
+msgid "Name cannot be empty."
+msgstr "El nombre no puede estar vacío."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "La URL personalizada debe incluir letras, números, guiones o guiones bajos."
@@ -2028,6 +2015,24 @@ msgstr "Solicitud de información resuelta por el desarrollador en {addon} {vers
 msgid "Information request removed"
 msgstr "Eliminada la solicitud de información"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Se ha solicitado la revisión de un administrador para {addon} {version}."
+
+msgid "Admin add-on-review requested"
+msgstr "Se ha solicitado la revisión del complemento por parte de un administrador"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Se ha solicitado la revisión de contenido de un administrador para {addon} {version}."
+
+msgid "Admin content-review requested"
+msgstr "Se ha solicitado la revisión de contenido de un administrador"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Se ha solicitado la revisión de tema de un administrador para {addon} {version}."
+
+msgid "Admin theme-review requested"
+msgstr "Se ha solicitado la revisión de tema de un administrador"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2066,9 +2071,6 @@ msgstr "Pendiente de aprobación"
 
 msgid "Flagged for further review"
 msgstr "Marcados para revisión posterior"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "No listado"
@@ -2432,9 +2434,8 @@ msgstr "Valoración actualizada del paquete de idioma"
 msgid "Theme Review"
 msgstr "Valoración del tema"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Tema (estático)"
+msgstr "Revisión de tema (estático)"
 
 msgid "New Search Provider Review"
 msgstr "Nueva valoración del proveedor de búsquedas"
@@ -2611,9 +2612,6 @@ msgstr "Ignorar error en la validación"
 msgid "Submit my add-on for manual review."
 msgstr "Enviar mi complemento para revisión manual."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Los archivos con una versión que termine con a|alpha|b|beta|pre|rc y un número opcional son detectados como beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "No puedes subir más archivos para esta versión."
 
@@ -2675,6 +2673,12 @@ msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. C
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "No puedes actualizar un complemento de WebExtensions con un complemento de enseñanza. Los usuarios no podrán utilizar la nueva versión porque Firefox no admite este tipo de actualización."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Se encontró tu llave API de desarrollador en el archivo enviado. Para proteger tu cuenta, se anulará la llave."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Se encontró la llave API de desarrollador de un coautor en el archivo enviado. Para proteger el complemento, se anulará la llave."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s ha respondido con %s (%s)."
@@ -2686,6 +2690,9 @@ msgstr "La conexión a \"%s\" ha caducado."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "No se ha podido contactar con el servidor en \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Aviso de seguridad de Mozilla: se han anulado tus credenciales API de AMO"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2744,16 +2751,6 @@ msgstr "Validar el complemento"
 
 msgid "Check Add-on Compatibility"
 msgstr "Comprobar la compatibilidad del complemento"
-
-msgid "You cannot submit this type of add-on"
-msgstr "No puedes enviar este tipo de complemento"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "No puedes enviar un complemento con un guid acabado en %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "No puedes enviar una extensión firmada de Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3468,9 +3465,6 @@ msgstr "Tienes que agregar cierta información obligatoria a este complemento an
 msgid "This add-on doesn't have any versions."
 msgstr "Este complemento no tiene ninguna versión."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Este complemento no tiene ninguna versión aprobada, por lo que se han ocultado sus páginas públicas (incluidas las versiones betas)."
-
 msgid "Status:"
 msgstr "Estado:"
 
@@ -3649,9 +3643,6 @@ msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se 
 msgid "Which platforms is this file compatible with?"
 msgstr "¿Con qué plataformas es compatible este archivo?"
 
-msgid "Only publish this version to my beta channel."
-msgstr "Solo publicar esta versión a mi canal beta."
-
 msgid "Administrative overrides"
 msgstr "Anulaciones administrativas"
 
@@ -3714,9 +3705,8 @@ msgstr "Fondo del área de la barra de herramientas"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Iconos del texto del área de la barra de herramientas"
+msgstr "Texto e iconos de la barra de herramientas"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "El color del texto y de los iconos en la barra de herramientas y la pestaña activa. Campo del manifiesto:  toolbar_field_text."
@@ -4046,14 +4036,17 @@ msgstr "Existe un nuevo estándar para desarrollar extensiones en Firefox. Tendr
 msgid "Learn How"
 msgstr "Descubre cómo"
 
-msgid "What's New"
-msgstr "Novedades"
+msgid "Get Started"
+msgstr "Comenzar"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "¿Preparado para enviar un complemento? Lee nuestro tutorial sobre el proceso de envío paso a paso."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgstr "¿Preparado para enviar una extensión? Lee nuestro tutorial sobre el proceso de envío paso a paso."
 
 msgid "See Tutorial"
 msgstr "Ver tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Crea una lista interesante y ayudarás a los usuarios a descubrir tu extensión."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4491,30 +4484,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Detén el rastreo de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifica las búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Protección de privacidad y bloqueo de publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Un simple ajuste te permite controlar los anuncios que ves y cómo te pueden rastrear en Internet."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Búsqueda relacionada de imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Reimagina las pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "¿Tienes muchas pestañas abiertas? Organízalas en una barra lateral."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén el rastreo de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Aísla tu identidad de Facebook en un \"contenedor\" separado para dificultar que Facebook rastree tus movimientos en la web."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Efectua búsquedas inversas de imágenes en un conjunto de motores de búsqueda."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarga vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4603,6 +4595,19 @@ msgstr "Los números de las versiones deben contener únicamente letras, número
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Por ahora no se admitem las subidas del tema WebExtension."
+
+msgid "You cannot submit this type of add-on"
+msgstr "No puedes enviar este tipo de complemento"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "No puedes enviar un complemento con un guid acabado en %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "No puedes enviar una extensión firmada de Mozilla"
+
+msgid "Unexpected error."
+msgstr "Error inesperado."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4871,9 +4876,6 @@ msgstr "Conviértete en un Piloto de pruebas"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Desbloquea el acceso temprano a las características experimentales del navegador."
-
-msgid "Get Started"
-msgstr "Comenzar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -5393,7 +5395,6 @@ msgstr "Informe de problema o petición de asistencia en una ubicación incorrec
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Otro (incluye información adicional en una ventana emergente)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr "Actualmente, AMO no incluye ningún sistema para contactar directamente con el autor de una valoración."
 
@@ -5659,25 +5660,6 @@ msgstr ""
 "        colaboren con el desarrollo haciendo donaciones. Estas donaciones van\n"
 "        directamente al desarrollador, excepto si aparece nombrado\n"
 "        un tercero, como la fundación sin ánimo de lucro Mozilla."
-
-msgid "What are beta add-ons?"
-msgstr "¿Qué son los complementos en fase beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Los complementos beta son versiones no revisadas de los últimos\n"
-"        avances del autor. Aunque los autores tienen distintos estándares \n"
-"        para medir la calidad del código beta, deberías asumir que es una \n"
-"        versión menos estable que las generales."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Por favor, ten en cuenta que cuando instalas un complemento de la sección \"Versiones beta\", seguirás recibiendo actualizaciones cuando estén disponibles. Como la versión inicial que instalaste, "
-"Mozilla no revisa ninguna de las versiones beta y pueden dañar tu equipo."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "¿Cómo informar de una reseña inapropiada o spam?"
@@ -6238,9 +6220,8 @@ msgstr "Saltar de momento"
 msgid "Needs Admin Content Review"
 msgstr "Se necesita revisión de contenido de administrador"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Se necesita revisión de código de administrador"
+msgstr "Necesita revisión de tema estático por parte de un administrador"
 
 msgid "Jetpack Add-on"
 msgstr "Complemento Jetpack"
@@ -6522,7 +6503,7 @@ msgid "Rendered Preview"
 msgstr "Vista previa generada"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Archivo de fondo {0} de {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Más sobre este complemento"
@@ -6770,9 +6751,8 @@ msgstr "Limpiar la etiqueta de revisión de código de administrador"
 msgid "Clear Admin Content Review Flag"
 msgstr "Limpiar la etiqueta de revisión de contenido de administrador"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Limpiar la etiqueta de revisión de código de administrador"
+msgstr "Limpiar la etiqueta de revisión de tema estático por parte de un administrador"
 
 msgid "(admin)"
 msgstr "(administrador)"

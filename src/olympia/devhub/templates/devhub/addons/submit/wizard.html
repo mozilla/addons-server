@@ -62,6 +62,7 @@
     <div>
         <h3>{{ _('Browser preview') }}</h3>
         <div id="browser-preview" dir="ltr">
+            {% set svg_render_size = amo.THEME_PREVIEW_SIZES['full'] %}
             {% include 'devhub/addons/includes/static_theme_preview_svg.xml' %}
         </div>
     </div>

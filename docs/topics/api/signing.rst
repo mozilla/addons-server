@@ -2,7 +2,11 @@
 Signing
 =======
 
-.. note:: This API requires :doc:`authentication <auth>`.
+.. note::
+
+    These APIs are experimental and are currently being worked on. Endpoints
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability.
 
 The following API endpoints help you get your add-on signed by Mozilla
 so it can be installed into Firefox without error. See
@@ -40,20 +44,18 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /api/v3/addons/[string:addon-id]/versions/[string:version]/
+.. http:put:: /api/v4/addons/[string:addon-id]/versions/[string:version]/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/"
+        curl "https://addons.mozilla.org/api/v4/addons/@my-addon/versions/1.0/"
             -g -XPUT --form "upload=@build/my-addon.xpi"
             -H "Authorization: JWT <jwt-token>"
 
     :param addon-id: The id for the add-on.
-    :param version: The version of the add-on. A version ending with
-        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
-        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :param version: The version of the add-on.
     :form upload: The add-on file being uploaded.
     :form channel: (optional) The channel this version should be uploaded to,
         which determines its visibility on the site. It can be either
@@ -89,20 +91,18 @@ Uploading without an ID
     endpoint to :ref:`upload a version <upload-version>`.
 
 
-.. http:post:: /api/v3/addons/
+.. http:post:: /api/v4/addons/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v3/addons/"
+        curl "https://addons.mozilla.org/api/v4/addons/"
             -g -XPOST -F "upload=@build/my-addon.xpi" -F "version=1.0"
             -H "Authorization: JWT <jwt-token>"
 
     :form upload: The add-on file being uploaded.
-    :form version: The version of the add-on. A version ending with
-        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
-        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :form version: The version of the add-on.
     :reqheader Content-Type: multipart/form-data
 
     **Response:**
@@ -147,13 +147,13 @@ automatically or after a manual review. Once review is complete then the
 ``reviewed`` property will be set and you can check the results with the
 ``passed_review`` property.
 
-.. http:get:: /api/v3/addons/[string:addon-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
+.. http:get:: /api/v4/addons/[string:addon-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/"
+        curl "https://addons.mozilla.org/api/v4/addons/@my-addon/versions/1.0/"
             -g -H "Authorization: JWT <jwt-token>"
 
     :param addon-id: the id for the add-on.
@@ -170,7 +170,7 @@ automatically or after a manual review. Once review is complete then the
                 "automated_signing": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-id.0-fx+an.xpi?src=api",
+                        "download_url": "https://addons.mozilla.org/api/v4/downloads/file/100/example-id.0-fx+an.xpi?src=api",
                         "hash": "sha256:1bb945266bf370170a656350d9b640cbcaf70e671cf753c410e604219cdd9267",
                         "signed": true
                     }
@@ -179,7 +179,7 @@ automatically or after a manual review. Once review is complete then the
                 "pk": "f68abbb3b1624c098fe979a409fe3ce9",
                 "processed": true,
                 "reviewed": true,
-                "url": "https://addons.mozilla.org/api/v3/addons/@example-id.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
+                "url": "https://addons.mozilla.org/api/v4/addons/@example-id.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
                 "valid": true,
                 "validation_results": {},
                 "validation_url": "https://addons.mozilla.org/en-US/developers/upload/f68abbb3b1624c098fe979a409fe3ce9",
@@ -224,13 +224,13 @@ When checking on your :ref:`request to sign a version <version-status>`,
 a successful response will give you an API URL to download the signed files.
 This endpoint returns the actual file data for download.
 
-.. http:get:: /api/v3/file/[int:file_id]/[string:base_filename]
+.. http:get:: /api/v4/file/[int:file_id]/[string:base_filename]
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v3/file/123/some-addon.xpi?src=api"
+        curl "https://addons.mozilla.org/api/v4/file/123/some-addon.xpi?src=api"
             -g -H "Authorization: JWT <jwt-token>"
 
     :param file_id: the primary key of the add-on file.

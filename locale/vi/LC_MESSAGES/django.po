@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
-"PO-Revision-Date: 2015-09-13 19:13+0000\n"
-"Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"PO-Revision-Date: 2018-05-04 04:36+0000\n"
+"Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -542,20 +542,6 @@ msgstr "Thông tin về Phiên bản"
 msgid "See complete version history"
 msgstr "Xem lịch sử phiên bản đầy đủ"
 
-msgid "Development Channel"
-msgstr "Kênh Phát triển"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr "Xem lịch sử kênh phát triển đầy đủ"
-
 msgid "close"
 msgstr ""
 
@@ -998,6 +984,10 @@ msgstr "Biểu tượng không được chuyển động."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Url này đã được dùng bởi bộ sưu tập khác"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Biểu tượng không được chuyển động."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -2008,6 +1998,30 @@ msgstr "{review} cho {addon} được viết."
 msgid "Information request removed"
 msgstr "Đã yêu cầu thêm thông tin"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} yêu cầu xét duyệt."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "{addon} {version} yêu cầu xét duyệt."
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} yêu cầu xét duyệt."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "{addon} {version} yêu cầu xét duyệt."
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} yêu cầu xét duyệt."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Yêu cầu Xét duyệt Đầy đủ."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2046,9 +2060,6 @@ msgstr "Đang chờ chấp thuận"
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr ""
@@ -2605,9 +2616,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Bạn không thể tải lên thêm tập tin cho phiên bản này."
 
@@ -2667,6 +2675,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2677,6 +2691,9 @@ msgstr ""
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
@@ -2735,16 +2752,6 @@ msgid "Validate Add-on"
 msgstr "Kiểm định Tiện ích"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3411,9 +3418,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Trạng thái:"
 
@@ -3617,9 +3621,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr "Dùng các trường bên dưới để tải lên gói tiện ích của bạn và chọn giới hạn nền tảng. Sau khi tải lên, một loạt bài kiểm định tự động sẽ được chạy trên tập tin của bạn."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4026,16 +4027,18 @@ msgstr ""
 msgid "Learn How"
 msgstr "Tìm hiểu Thêm"
 
-#, fuzzy
-msgid "What's New"
-msgstr "Đây là gì?"
+msgid "Get Started"
+msgstr "Bắt đầu"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Xem tất cả"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4061,9 +4064,8 @@ msgstr "Nhà phát triển Tiện ích"
 msgid "Docs"
 msgstr ""
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "Gửi lên Tiện ích"
+msgstr "Đăng xuất"
 
 msgid "No Photo"
 msgstr "Không có Ảnh"
@@ -4398,9 +4400,8 @@ msgstr ""
 msgid "Other versions"
 msgstr "Phiên bản cũ hơn"
 
-#, fuzzy
 msgid "All versions"
-msgstr "Phiên bản cũ hơn"
+msgstr "Tất cả phiên bản"
 
 msgid "Upload a New Version"
 msgstr "Tải lên một Phiên bản Mới"
@@ -4461,18 +4462,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4483,6 +4472,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4571,6 +4572,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Số phiên bản chỉ được chứa chữ cái, chữ số, và các kí tự chấm câu sau: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4839,9 +4853,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-msgid "Get Started"
-msgstr "Bắt đầu"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -5527,24 +5538,6 @@ msgid ""
 msgstr ""
 "Một số tác giả tiện ích đề nghị những người dùng thích tiện ích của họ hỗ trợ sự phát triển bằng một khoản tài chính nhỏ. Những khoản đóng góp này sẽ được gửi trực tiếp tới nhà phát triển trừ khi "
 "có bên thứ ba nào đó được chỉ định, ví dụ như Quỹ Mozilla phi lợi nhuận."
-
-msgid "What are beta add-ons?"
-msgstr "Tiện ích beta là gì?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Tiện ích beta là các phiên bản chưa được kiểm tra, đại diện cho thành quả mới nhất của tác giả tiện ích. Mặc dù các tác giả khác nhau sẽ có các chuẩn khác nhau đối với chất lượng của một đoạn mã "
-"beta, bạn nên cho rằng các tiện ích này sẽ ít ổn định hơn so với các bản phát hành thông thường."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Vui lòng lưu ý rằng khi bạn cài đặt một tiện ích từ phần \"Phiên bản Beta\" của trang liệt kê tiện ích, bạn sẽ tiếp tục nhận được cập nhật cho tiện ích đó. Giống như phiên bản ban đầu mà bạn cài, "
-"tất cả bản beta đều không được Mozilla xem xét và có thể gây ảnh hưởng tới máy tính của bạn."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Tôi có thể báo cáo một đánh giá spam hoặc không phù hợp bằng cách nào?"

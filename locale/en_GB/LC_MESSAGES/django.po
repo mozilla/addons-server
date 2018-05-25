@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -549,22 +549,6 @@ msgstr "Version Information"
 msgid "See complete version history"
 msgstr "See complete version history"
 
-msgid "Development Channel"
-msgstr "Development Channel"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-
-msgid "See complete development channel history"
-msgstr "See complete development channel history"
-
 msgid "close"
 msgstr "close"
 
@@ -1006,6 +990,10 @@ msgstr "Icons cannot be animated."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "This custom URL is already in use by another one of your collections."
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "This name cannot be used."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2000,6 +1988,30 @@ msgstr "Information request cleared by developer on {addon} {version}."
 msgid "Information request removed"
 msgstr "Information request removed"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} review requested."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Super review requested"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} review requested."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Super review requested"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} review requested."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Review requested"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2038,9 +2050,6 @@ msgstr "Pending approval"
 
 msgid "Flagged for further review"
 msgstr "Flagged for further review"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Unlisted"
@@ -2580,9 +2589,6 @@ msgstr "Override failed validation"
 msgid "Submit my add-on for manual review."
 msgstr "Submit my add-on for manual review."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "You cannot upload any more files for this version."
 
@@ -2643,6 +2649,12 @@ msgstr "We allow and encourage an upgrade but you cannot reverse this process. O
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s responded with %s (%s)."
@@ -2654,6 +2666,9 @@ msgstr "Connection to \"%s\" timed out."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Could not contact host at \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2712,16 +2727,6 @@ msgstr "Validate Add-on"
 
 msgid "Check Add-on Compatibility"
 msgstr "Check Add-on Compatibility"
-
-msgid "You cannot submit this type of add-on"
-msgstr "You cannot submit this type of add-on"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "You cannot submit an add-on with a guid ending %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "You cannot submit a Mozilla Signed Extension"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3429,9 +3434,6 @@ msgstr "This add-on is missing some required information before it can be submit
 msgid "This add-on doesn't have any versions."
 msgstr "This add-on doesn't have any versions."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -3610,9 +3612,6 @@ msgstr "Use the fields below to upload your add-on package. After upload, a seri
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Which platforms is this file compatible with?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Only publish this version to my beta channel."
 
 msgid "Administrative overrides"
 msgstr "Administrative overrides"
@@ -4002,14 +4001,18 @@ msgstr "There is a new, cross-browser standard for developing extensions in Fire
 msgid "Learn How"
 msgstr "Learn How"
 
-msgid "What's New"
-msgstr "What's New"
+msgid "Get Started"
+msgstr "Get Started"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+#, fuzzy
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 
 msgid "See Tutorial"
 msgstr "See Tutorial"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4426,20 +4429,6 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tab Customisation {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tab Customisation {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -4451,6 +4440,20 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tab Customisation {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#, fuzzy
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4540,6 +4543,19 @@ msgstr "Version numbers should only contain letters, numbers, and these punctuat
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension theme uploads are currently not supported."
+
+msgid "You cannot submit this type of add-on"
+msgstr "You cannot submit this type of add-on"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "You cannot submit an add-on with a guid ending %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "You cannot submit a Mozilla Signed Extension"
+
+msgid "Unexpected error."
+msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4804,9 +4820,6 @@ msgstr "Become a Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Unlock early access to experimental browser features."
-
-msgid "Get Started"
-msgstr "Get Started"
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"
@@ -5570,25 +5583,6 @@ msgstr ""
 "        contribute to its development by making a monetary contribution. These\n"
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "What are beta add-ons?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Beta add-ons are unreviewed versions which represent the\n"
-"        latest work of an add-on author. While different authors have different\n"
-"        standards for beta code quality, you should assume that these add-ons\n"
-"        are less stable than the general add-on releases."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "How do I report an inappropriate or spam user review?"

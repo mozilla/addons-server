@@ -6,39 +6,16 @@ from django.conf import settings
 
 import olympia.core.logger
 
-
-base_fmt = ('%(name)s:%(levelname)s %(message)s '
-            ':%(pathname)s:%(lineno)s')
-error_fmt = ('%(name)s:%(levelname)s %(request_path)s %(message)s '
-             ':%(pathname)s:%(lineno)s')
-
 formatters = {
     'debug': {
         '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
-        'format': '%(asctime)s ' + base_fmt,
-    },
-    'error': {
-        '()': olympia.core.logger.Formatter,
-        'datefmt': '%H:%M:%S',
-        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.HOSTNAME, settings.SYSLOG_TAG, error_fmt)),
+        'format': ('%(asctime)s %(name)s:%(levelname)s %(message)s :'
+                   '%(pathname)s:%(lineno)s'),
     },
     'json': {
         '()': olympia.core.logger.JsonFormatter,
         'logger_name': settings.MOZLOG_NAME
-    },
-    'prod': {
-        '()': olympia.core.logger.Formatter,
-        'datefmt': '%H:%M:%S',
-        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.HOSTNAME, settings.SYSLOG_TAG, base_fmt)),
-    },
-    'prod2': {
-        '()': olympia.core.logger.Formatter,
-        'datefmt': '%H:%M:%S',
-        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.HOSTNAME, settings.SYSLOG_TAG2, base_fmt)),
     },
 }
 
@@ -58,16 +35,6 @@ handlers = {
     'statsd': {
         'level': 'ERROR',
         'class': 'django_statsd.loggers.errors.StatsdHandler',
-    },
-    'syslog': {
-        'class': 'mozilla_logger.log.UnicodeHandler',
-        'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
-        'formatter': 'prod',
-    },
-    'syslog2': {
-        'class': 'mozilla_logger.log.UnicodeHandler',
-        'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
-        'formatter': 'prod2',
     },
 }
 
@@ -125,8 +92,6 @@ def log_configure():
         else:
             cfg[key] = value
 
-    if settings.USE_SYSLOG:
-        cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}
     if settings.USE_MOZLOG:
         # MozLog Application Request Summary. This is the logger
         # DockerflowMiddleware uses on every request. We don't currently use
@@ -136,13 +101,11 @@ def log_configure():
             'handlers': ['mozlog'],
             'level': 'DEBUG',
         }
-    # Enable syslog or mozlog handlers by default if the corresponding settings
+    # Enable mozlog handlers by default if the corresponding settings
     # are set, otherwise default to the raw basic console.
     default_handlers = []
     if settings.USE_MOZLOG:
         default_handlers.append('mozlog')
-    if settings.USE_SYSLOG:
-        default_handlers.append('syslog')
     if not default_handlers:
         default_handlers = ['console']
 

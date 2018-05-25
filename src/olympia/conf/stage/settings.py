@@ -43,9 +43,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.allizom.org')
 
-SYSLOG_TAG = "http_app_addons_stage"
-SYSLOG_TAG2 = "http_app_addons_stage_timer"
-SYSLOG_CSP = "http_app_addons_stage_csp"
+MOZLOG_NAME = "http_app_addons_stage"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -90,7 +88,7 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'caching.backends.memcached.MemcachedCache'
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
@@ -190,6 +188,11 @@ RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
 RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
+    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
+
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/142069644989/'
+    'https://sqs.us-west-2.amazonaws.com/361527076523/'
     'amo-account-change-stage')

@@ -14,15 +14,12 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.decorators import use_master
+from olympia.amo.decorators import write
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.signing.serializers import FileUploadSerializer
-from olympia.users.utils import (
-    mozilla_signed_extension_submission_allowed,
-    system_addon_submission_allowed)
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
@@ -102,8 +99,9 @@ class VersionView(APIView):
                 {'error': exc.message},
                 status=exc.code or status.HTTP_400_BAD_REQUEST)
 
-        return Response(FileUploadSerializer(file_upload).data,
-                        status=status.HTTP_201_CREATED)
+        serializer = FileUploadSerializer(
+            file_upload, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @handle_read_only_mode
     @with_addon(allow_missing=True)
@@ -119,9 +117,11 @@ class VersionView(APIView):
         status_code = (
             status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED)
 
-        return Response(FileUploadSerializer(file_upload).data,
-                        status=status_code)
+        serializer = FileUploadSerializer(
+            file_upload, context={'request': request})
+        return Response(serializer.data, status=status_code)
 
+    @write
     def handle_upload(self, request, addon, version_string, guid=None):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
@@ -130,25 +130,8 @@ class VersionView(APIView):
                 ugettext(u'Missing "upload" key in multipart file data.'),
                 status.HTTP_400_BAD_REQUEST)
 
-        # Parse the file to get and validate package data with the addon.
-        pkg = parse_addon(filedata, addon)
-        if not acl.submission_allowed(request.user, pkg):
-            raise forms.ValidationError(
-                ugettext(u'You cannot submit this type of add-on'),
-                status.HTTP_400_BAD_REQUEST)
-
-        if not addon and not system_addon_submission_allowed(
-                request.user, pkg):
-            guids = ' or '.join(
-                    '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
-            raise forms.ValidationError(
-                ugettext(u'You cannot submit an add-on with a guid ending '
-                         u'%s' % guids),
-                status.HTTP_400_BAD_REQUEST)
-
-        if not mozilla_signed_extension_submission_allowed(request.user, pkg):
-            raise forms.ValidationError(
-                ugettext(u'You cannot submit a Mozilla Signed Extension'))
+        # # Parse the file to get and validate package data with the addon.
+        pkg = parse_addon(filedata, addon, user=request.user)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = ugettext(
@@ -229,7 +212,7 @@ class VersionView(APIView):
 
         return file_upload, created
 
-    @use_master
+    @write
     @with_addon()
     def get(self, request, addon, version_string, uuid=None, guid=None):
         file_upload_qs = FileUpload.objects.filter(
@@ -256,7 +239,8 @@ class VersionView(APIView):
         except Version.DoesNotExist:
             version = None
 
-        serializer = FileUploadSerializer(file_upload, version=version)
+        serializer = FileUploadSerializer(
+            file_upload, version=version, context={'request': request})
         return Response(serializer.data)
 
 
@@ -264,6 +248,6 @@ class SignedFile(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @use_master
+    @write
     def get(self, request, file_id):
         return version_views.download_file(request, file_id)

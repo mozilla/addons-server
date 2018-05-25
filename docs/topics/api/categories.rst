@@ -5,7 +5,8 @@ Categories
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning.
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability.
 
 -------------
 Category List
@@ -19,7 +20,7 @@ can therefore be re-used for different categories.
 
 This endpoint is not paginated.
 
-.. http:get:: /api/v3/addons/categories/
+.. http:get:: /api/v4/addons/categories/
 
     :>json int id: The category id.
     :>json string name: The category name. Returns the already translated string.

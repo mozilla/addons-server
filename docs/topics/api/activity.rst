@@ -5,7 +5,8 @@ Activity
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. The only authentication method available at
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 
@@ -17,7 +18,7 @@ Review Notes List
 
 This endpoint allows you to list the approval/rejection review history for a version of an add-on.
 
-.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
 
     .. note::
         All add-ons require authentication and either
@@ -38,7 +39,7 @@ Review Notes Detail
 
 This endpoint allows you to fetch a single review note for a specific version of an add-on.
 
-.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
 
     .. _review-notes-version-detail-object:
 
@@ -80,7 +81,7 @@ This endpoint allows a mail server or similar to submit a json object containing
 The only type of email currently supported is a reply to an activity email (e.g an add-on review, or a reply to an add-on review).
 Any other content or invalid emails will be discarded.
 
-.. http:post:: /api/v3/activity/mail
+.. http:post:: /api/v4/activity/mail
 
     .. note::
         This API endpoint uses a custom authentication method.
@@ -91,4 +92,3 @@ Any other content or invalid emails will be discarded.
     :<json string Message.TextBody: The plain text body of the email.
     :<json array To: Array of To email addresses.  All will be parsed, and the first matching the correct format used.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
-

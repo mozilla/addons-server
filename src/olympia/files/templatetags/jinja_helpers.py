@@ -294,13 +294,8 @@ class FileViewer(object):
         if not self.is_extracted():
             return {}
 
-        # In case a cron job comes along and deletes the files
-        # mid tree building.
-        try:
-            self._files = self._get_files(locale=get_language())
-            return self._files
-        except (OSError, IOError):
-            return {}
+        self._files = self._get_files(locale=get_language())
+        return self._files
 
     def truncate(self, filename, pre_length=15,
                  post_length=10, ellipsis=u'..'):

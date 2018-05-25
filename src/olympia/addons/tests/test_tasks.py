@@ -4,11 +4,22 @@ import tempfile
 
 from django.conf import settings
 
+from waffle.testutils import override_switch
+
+from olympia import amo
+from olympia.addons.models import AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
-    create_persona_preview_images, save_persona_image)
-from olympia.amo.tests import addon_factory, TestCase
+    add_static_theme_from_lwt, create_persona_preview_images,
+    migrate_lwts_to_static_themes, save_persona_image)
+from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.constants import licenses
+from olympia.constants.categories import CATEGORIES
+from olympia.tags.models import Tag
+from olympia.users.models import UserProfile
+from olympia.versions.models import License
 
 
 class TestPersonaImageFunctions(TestCase):
@@ -25,7 +36,7 @@ class TestPersonaImageFunctions(TestCase):
         create_persona_preview_images(
             src=get_image_path('persona-header.jpg'),
             full_dst=[expected_dst1.name, expected_dst2.name],
-            set_modified_on=[addon],
+            set_modified_on=addon.serializable_reference(),
         )
         # pngcrush_image should have been called twice, once for each
         # destination thumbnail.
@@ -69,3 +80,89 @@ class TestPersonaImageFunctions(TestCase):
         assert pngcrush_image_mock.call_count == 0
         # the destination file should not have been written to.
         assert os.stat(expected_dst.name).st_size == 0
+
+
+class TestMigrateLightweightThemesToStaticThemes(TestCase):
+
+    @mock.patch('olympia.addons.tasks.add_static_theme_from_lwt')
+    def test_migrate_lwts(self, add_static_theme_from_lwt_mock):
+        persona_a = addon_factory(type=amo.ADDON_PERSONA, slug='theme_a')
+        persona_b = addon_factory(type=amo.ADDON_PERSONA, slug='theme_b')
+        addon_a = addon_factory(type=amo.ADDON_STATICTHEME)
+        addon_b = addon_factory(type=amo.ADDON_STATICTHEME)
+        add_static_theme_from_lwt_mock.side_effect = [addon_a, addon_b]
+
+        # call the migration task, as the command would:
+        migrate_lwts_to_static_themes([persona_a.id, persona_b.id])
+
+        assert MigratedLWT.objects.all().count() == 2
+
+        persona_a.reload()
+        addon_a.reload()
+        assert persona_a.status == amo.STATUS_DELETED
+        assert MigratedLWT.objects.get(
+            lightweight_theme=persona_a).static_theme == addon_a
+        assert addon_a.slug == 'theme_a'
+
+        persona_b.reload()
+        addon_a.reload()
+        assert persona_b.status == amo.STATUS_DELETED
+        assert MigratedLWT.objects.get(
+            lightweight_theme=persona_b).static_theme == addon_b
+        assert addon_b.slug == 'theme_b'
+
+    def _mock_xpi_side_effect(self, lwt, upload_path):
+        xpi_path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        copy_stored_file(xpi_path, upload_path)
+        assert not os.path.isdir(upload_path)
+        return mock.DEFAULT
+
+    @mock.patch('olympia.addons.tasks.build_static_theme_xpi_from_lwt')
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_add_static_theme_from_lwt(self, build_static_theme_xpi_mock):
+        author = user_factory()
+        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
+        persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
+        persona.persona.license = licenses.LICENSE_CC_BY_ND.id
+        Tag.objects.create(tag_text='themey').save_tag(persona)
+        License.objects.create(builtin=licenses.LICENSE_CC_BY_ND.builtin)
+
+        static_theme = add_static_theme_from_lwt(persona)
+
+        assert list(static_theme.authors.all()) == [author]
+        assert [cat.name for cat in static_theme.all_categories] == [
+            cat.name for cat in persona.all_categories]
+        assert list(static_theme.tags.all()) == list(persona.tags.all())
+        assert static_theme.current_version.license.builtin == (
+            licenses.LICENSE_CC_BY_ND.builtin)
+        assert static_theme.status == amo.STATUS_PUBLIC
+        assert static_theme.current_version.files.get().status == (
+            amo.STATUS_PUBLIC)
+
+    @mock.patch('olympia.addons.tasks.build_static_theme_xpi_from_lwt')
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_add_static_theme_broken_lwt(self, build_static_theme_xpi_mock):
+        """What if no author or license or category?"""
+        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
+        persona = addon_factory(type=amo.ADDON_PERSONA)
+
+        assert list(persona.authors.all()) == []  # no author
+        persona.persona.license = None  # no license
+        AddonCategory.objects.filter(addon=persona).delete()
+        assert persona.all_categories == []  # no category
+        License.objects.create(builtin=licenses.LICENSE_COPYRIGHT_AR.builtin)
+
+        static_theme = add_static_theme_from_lwt(persona)
+
+        default_author = UserProfile.objects.get(
+            email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+        assert list(static_theme.authors.all()) == [default_author]
+        assert static_theme.all_categories == [
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other']]
+        assert list(static_theme.tags.all()) == []
+        assert static_theme.current_version.license.builtin == (
+            licenses.LICENSE_COPYRIGHT_AR.builtin)
+        assert static_theme.status == amo.STATUS_PUBLIC
+        assert static_theme.current_version.files.get().status == (
+            amo.STATUS_PUBLIC)

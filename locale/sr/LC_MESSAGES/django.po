@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-16 09:58+0000\n"
+"POT-Creation-Date: 2018-05-15 05:57+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -564,22 +564,6 @@ msgstr "Информације о верзији"
 msgid "See complete version history"
 msgstr "Погледај пуну историју верзија"
 
-msgid "Development Channel"
-msgstr "Канал за програмере"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Канал за програмере Вам допушта да тестирате нову пробну верзију овог додатка пре него што постане доступан широј јавности. Чим инсталирате развојну верзију, наставићете да добијате надоградње са "
-"овог канала. Да бисте прекинули примање новости, поново инсталирајте подразумевану верзију са горње везе."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
-
 msgid "close"
 msgstr "затвори"
 
@@ -1030,6 +1014,10 @@ msgstr "Иконице не могу бити покретне."
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Овај url је у употреби од стране друге колекције"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "Ово име не може бити употребљено."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -2062,6 +2050,30 @@ msgstr "Коментар на {addon} {version}."
 msgid "Information request removed"
 msgstr "Захтеване додатне информације"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Захтевана супер рецензија"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Захтевана супер рецензија"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Захтевана је рецензија за {addon} {version}."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Захтевана рецензија"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2100,9 +2112,6 @@ msgstr "Одобрење у току"
 
 msgid "Flagged for further review"
 msgstr "Означено за даљу рецензију"
-
-msgid "Beta"
-msgstr "Бета верзија"
 
 msgid "Unlisted"
 msgstr ""
@@ -2685,9 +2694,6 @@ msgstr "Препис није прешао валидацију"
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr "Не можете више датотека отпремити за ову верзију."
 
@@ -2748,6 +2754,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s је одговорио са %s (%s)."
@@ -2759,6 +2771,9 @@ msgstr "Конекција на \"%s\" је истекла."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Нисмо могли контактирати хост на \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2817,16 +2832,6 @@ msgstr "Оверите додатак"
 
 msgid "Check Add-on Compatibility"
 msgstr "Проверите компатибилност додатка"
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3506,9 +3511,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Овај додатак није компатибилан са Вашом верзијом %(app)s-а."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "Статус:"
 
@@ -3719,9 +3721,6 @@ msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
-
-msgid "Only publish this version to my beta channel."
-msgstr "Објави ову верзију само на мој бета канал."
 
 msgid "Administrative overrides"
 msgstr "Административна поништавања"
@@ -4139,15 +4138,18 @@ msgid "Learn How"
 msgstr "Сазнајте више"
 
 #, fuzzy
-msgid "What's New"
-msgstr "Последња верзија:"
+msgid "Get Started"
+msgstr "Како почети"
 
-msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
 #, fuzzy
 msgid "See Tutorial"
 msgstr "Погледајте све"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4580,18 +4582,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4602,6 +4592,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4690,6 +4692,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Број верзије ви требало да садржи само слова, бројеве, и ове карактере: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4960,10 +4975,6 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Како почети"
 
 msgid "About Mozilla Add-ons"
 msgstr "О Mozilla додацима"
@@ -5654,24 +5665,6 @@ msgid ""
 msgstr ""
 "Неки аутори додатка очекују од корисника који уживају у додатку да допринесу његовом развоју тако што ће направити мали новчани допринос. Ови доприноси иду директно програмеру, осим ако је треће "
 "лице назначено, као што је непрофитна Mozilla фондација."
-
-msgid "What are beta add-ons?"
-msgstr "Шта су бета додаци?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"Бета додаци су верзије које нису прегледане и представљају најновије дело аутора додатака. Док различити аутори имају различите стандарде квалитета бета кода, треба претпоставити да су ови додаци "
-"мање стабилни од општег издања додатка."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Имајте на уму да када инсталирате додатак из \"бета верзије\" секције листинга додатка, Ви ће наставити да примате исправке за тај додатак, чим оне постану доступне. Као и почетна верзија коју сте "
-"инсталирали, сва бета издања су непрегледана и могу да нашкоде Вашем рачунару."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Како могу да пријавим неприкладан или спам коментар?"
