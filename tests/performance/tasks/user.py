@@ -186,10 +186,16 @@ class UserTaskSet(BaseUserTaskSet):
             '/{language}/firefox/extensions/language-support/format:rss',
 
             # App Version RSS Feed
-            '/{language}/firefox/pages/appversions/format:rss',
+            '/{language}/{app}/pages/appversions/format:rss',
 
             # Collection RSS Feed
             '/{language}/firefox/collections/Vivre/ploaia/format:rss',
+
+            # Featured Add-ons
+            '/{language}/{app}/featured/format:rss',
+
+            # Search tools RSS Feed
+            '/{language}/{app}/search-tools/format:rss',
         )
 
         self.client.get(self.get_url(random.choice(urls)))
