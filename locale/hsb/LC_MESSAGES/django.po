@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-26 15:49+0000\n"
+"PO-Revision-Date: 2018-05-26 15:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2064,9 +2064,8 @@ msgstr "Přepruwowanje drasty přidatka {addon} {version} wot administratora je 
 msgid "Admin theme-review requested"
 msgstr "Přepruwowanje drasty wot administratora je so požadało"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "Přidatk {addon} je so wot nachwilu přewzał."
+msgstr "{addon} je so wot lochkeje drasty přewzał."
 
 msgid "Firefox"
 msgstr "Firefox"
