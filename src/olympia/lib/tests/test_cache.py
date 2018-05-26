@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from django.test.utils import override_settings
 from django.utils import translation
-
 
 from olympia.lib.cache import cached, make_key
 
 
+@override_settings(KEY_PREFIX='amo:test:')
 def test_make_key():
+
     with translation.override('en-US'):
         assert make_key(u'é@øel') == 'eb7592119dace3b998755ef61d90b91b'
 
