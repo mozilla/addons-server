@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-04-14 07:56+0000\n"
+"PO-Revision-Date: 2018-05-26 06:43+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -342,7 +342,7 @@ msgid "Meet the Developer"
 msgstr "พบกับนักพัฒนา"
 
 msgid "User Profile"
-msgstr "ข้อมูลส่วนตัวผู้ใช้"
+msgstr "โปรไฟล์ผู้ใช้"
 
 msgid "Version History"
 msgstr "ประวัติรุ่น"
