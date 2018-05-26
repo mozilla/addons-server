@@ -24,6 +24,23 @@ class BaseUserTaskSet(TaskSet):
             'Created {account} for load-tests'
             .format(account=self.fxa_account))
 
+        # Slightly weighted
+        self.app = random.choice(
+            ['firefox'] * 20 +
+            ['thunderbird'] * 5 +
+            ['seamonkey'] * 1)
+
+        # Only take a sub-set of languages, doesn't really matter only
+        # increases variance and may circumvent some caches here and there
+        self.user_language = random.choice((
+            'af', 'de', 'dsb', 'en-US', 'hsb', 'ru', 'tr', 'zh-CN', 'zh-TW'
+        ))
+
+        self.is_legacy_page = self.app in ('thunderbird', 'seamonkey')
+
+    def get_url(self, url):
+        return url.format(app=self.app, language=self.user_language)
+
     def on_stop(self):
         log.info(
             'Cleaning up and destroying {account}'
@@ -68,74 +85,65 @@ class BaseUserTaskSet(TaskSet):
 
 
 class UserTaskSet(BaseUserTaskSet):
-    @task(8)
-    def browse(self):
-        self.client.get('/en-US/firefox/')
-
+    def _browse_listing_and_click_detail(self, listing_url, detail_selector,
+                                         legacy_selector=None, name=None):
         response = self.client.get(
-            '/en-US/firefox/extensions/',
+            self.get_url(listing_url),
             allow_redirects=False, catch_response=True)
+
+        if self.is_legacy_page and not legacy_selector:
+            return
 
         if response.status_code == 200:
             html = lxml.html.fromstring(response.content)
-            addon_links = html.cssselect('a.SearchResult-link')
-            url = random.choice(addon_links).get('href')
-            self.client.get(
-                url,
-                name='/en-US/firefox/addon/:slug')
+            collection_links = html.cssselect(detail_selector)
+            url = random.choice(collection_links).get('href')
+
+            kwargs = {}
+            if name is not None:
+                kwargs['name'] = name
+
+            self.client.get(url, **kwargs)
         else:
             response.failure('Unexpected status code {}'.format(
                 response.status_code))
+
+    @task(8)
+    def browse(self):
+        self.client.get(self.get_url('/{language}/{app}/'))
+
+        self._browse_listing_and_click_detail(
+            listing_url='/{language}/{app}/extensions/',
+            detail_selector='a.SearchResult-link',
+            legacy_selector=None,  # TODO
+            name='/:lang/:app/addon/:slug')
 
     @task(10)
     def search(self):
-        term = ('Spam', 'Privacy', 'Download')
-        self.client.get('/en-US/firefox/search/?platform=linux&q={}'.format(
-            random.choice(term)))
+        term_choices = ('Spam', 'Privacy', 'Download')
+        term = random.choice(term_choices)
+        self.client.get(
+            self.get_url(
+                '/{language}/{app}/search/?platform=linux&q=' + term))
 
     @task(6)
     def browse_and_download_addon(self):
-        response = self.client.get(
-            '/en-US/firefox/extensions/',
-            allow_redirects=False, catch_response=True)
-
-        if response.status_code == 200:
-            html = lxml.html.fromstring(response.content)
-            download_links = html.cssselect('a.SearchResult-link')
-            url = random.choice(download_links).get('href')
-            self.client.get(
-                url,
-                name='/en-US/firefox/downloads/:file_id/')
-        else:
-            response.failure('Unexpected status code {}'.format(
-                response.status_code))
+        self._browse_listing_and_click_detail(
+            listing_url='/{language}/{app}/extensions/',
+            detail_selector='a.SearchResult-link',
+            legacy_selector=None,  # TODO
+            name='/:lang/:app/downloads/:file_id/')
 
     @task(5)
     def browse_collections(self):
-        response = self.client.get(
-            '/en-US/firefox/',
-            allow_redirects=False, catch_response=True)
-
-        if response.status_code == 200:
-            html = lxml.html.fromstring(response.content)
-            collection_links = html.cssselect('a.Home-SubjectShelf-link')
-            url = random.choice(collection_links).get('href')
-            self.client.get(url)
-        else:
-            response.failure('Unexpected status code {}'.format(
-                response.status_code))
+        self._browse_listing_and_click_detail(
+            listing_url='/{language}/{app}/',
+            detail_selector='a.Home-SubjectShelf-link',
+            legacy_selector=None)  # TODO
 
     @task(4)
     def browse_categories(self):
-        response = self.client.get(
-            '/en-US/firefox/extensions/',
-            allow_redirects=False, catch_response=True)
-
-        if response.status_code == 200:
-            html = lxml.html.fromstring(response.content)
-            categories_links = html.cssselect('a.Categories-link')
-            url = random.choice(categories_links).get('href')
-            self.client.get(url)
-        else:
-            response.failure('Unexpected status code {}'.format(
-                response.status_code))
+        self._browse_listing_and_click_detail(
+            '/{language}/{app}/extensions/',
+            detail_selector='a.Categories-link',
+            legacy_selector=None) # TODO
