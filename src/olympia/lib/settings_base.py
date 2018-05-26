@@ -108,9 +108,7 @@ def cors_endpoint_overrides(whitelist_endpoints):
     ]
 
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    ['localhost:3000', 'olympia.test']
-)
+CORS_ENDPOINT_OVERRIDES = []
 
 DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')

@@ -179,10 +179,6 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    ['amo.addons.allizom.org']
-)
-
 RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
 RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
