@@ -6,6 +6,11 @@
 #   -e ATTACKED_HOST="https://addons.allizom.org" \
 #   amoloadtests:latest
 #   /code//tests/performance/run-locust.sh
+#
+# If you're running this against addons.allizom.org make sure to configure
+# the correct FxA environment variables:
+#
+# -e FXA_CLIENT_ID="..." -e FXA_CLIENT_SECRET="..."
 
 set -e
 LOCUST_MODE=${LOCUST_MODE:-standalone}
