@@ -92,15 +92,23 @@ class UserTaskSet(BaseUserTaskSet):
             allow_redirects=False, catch_response=True)
 
         if self.is_legacy_page and not legacy_selector:
+            log.warn(
+                'Received legacy url without legacy selector. {} :: {}'
+                .format(listing_url, detail_selector))
             return
 
         if response.status_code == 200:
             html = lxml.html.fromstring(response.content)
-            collection_links = html.cssselect(detail_selector)
+            selector = (
+                detail_selector
+                if not self.is_legacy_page else legacy_selector)
+            collection_links = html.cssselect(selector)
             url = random.choice(collection_links).get('href')
 
             kwargs = {}
             if name is not None:
+                if self.is_legacy_page:
+                    name = name.replace(':app', ':legacy_app')
                 kwargs['name'] = name
 
             self.client.get(url, **kwargs)
@@ -115,7 +123,7 @@ class UserTaskSet(BaseUserTaskSet):
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/extensions/',
             detail_selector='a.SearchResult-link',
-            legacy_selector=None,  # TODO
+            legacy_selector='.items .item.addon a',
             name='/:lang/:app/addon/:slug')
 
     @task(10)
@@ -131,19 +139,22 @@ class UserTaskSet(BaseUserTaskSet):
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/extensions/',
             detail_selector='a.SearchResult-link',
-            legacy_selector=None,  # TODO
+            legacy_selector='.items .item.addon a',
             name='/:lang/:app/downloads/:file_id/')
 
     @task(5)
     def browse_collections(self):
+        # detail and legacy selector match both, themes and regular add-ons
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/',
             detail_selector='a.Home-SubjectShelf-link',
-            legacy_selector=None)  # TODO
+            legacy_selector='.listing-grid .hovercard .summary>a',
+            name='/:lang/:app/addon/:slug')
 
     @task(4)
     def browse_categories(self):
         self._browse_listing_and_click_detail(
             '/{language}/{app}/extensions/',
             detail_selector='a.Categories-link',
-            legacy_selector=None)  # TODO
+            legacy_selector='ul#side-categories li a',
+            name='/:lang/:app/:extensions/:category_slug/')
