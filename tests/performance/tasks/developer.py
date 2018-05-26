@@ -95,7 +95,7 @@ class DeveloperTaskSet(BaseUserTaskSet):
         self.logout(self.fxa_account)
 
     def poll_upload_until_ready(self, url):
-        for i in xrange(MAX_UPLOAD_POLL_ATTEMPTS):
+        for i in range(MAX_UPLOAD_POLL_ATTEMPTS):
             response = self.client.get(
                 url, allow_redirects=False,
                 name='/en-US/developers/upload/:uuid',

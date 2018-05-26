@@ -146,4 +146,4 @@ class UserTaskSet(BaseUserTaskSet):
         self._browse_listing_and_click_detail(
             '/{language}/{app}/extensions/',
             detail_selector='a.Categories-link',
-            legacy_selector=None) # TODO
+            legacy_selector=None)  # TODO

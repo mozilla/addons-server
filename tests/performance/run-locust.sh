@@ -1,4 +1,11 @@
 #!/bin/sh
+# Example usage:
+#
+# $ docker build -t amoloadtests:latest -f Dockerfile.perftests
+# $ docker run -ti -e LOCUST_OPTS="-c 1 --no-web" \
+#   -e ATTACKED_HOST="https://addons.allizom.org" \
+#   amoloadtests:latest
+#   /code//tests/performance/run-locust.sh
 
 set -e
 LOCUST_MODE=${LOCUST_MODE:-standalone}
