@@ -175,3 +175,25 @@ class UserTaskSet(BaseUserTaskSet):
             detail_selector='a.SearchResult-link',
             legacy_selector='ul#side-categories li a',
             name='/:lang/:app/themes/:slug/')
+
+    @task(2)
+    def test_rss_feeds(self):
+        urls = (
+            # Add-on Category RSS Feed
+            '/{language}/firefox/extensions/alerts-updates/format:rss',
+            '/{language}/firefox/extensions/appearance/format:rss',
+            '/{language}/firefox/extensions/bookmarks/format:rss',
+            '/{language}/firefox/extensions/language-support/format:rss',
+
+            # App Version RSS Feed
+            '/{language}/firefox/pages/appversions/format:rss',
+
+            # Collection RSS Feed
+            '/{language}/firefox/collections/Vivre/ploaia/format:rss',
+        )
+
+        self.client.get(self.get_url(random.choice(urls)))
+
+    @task(1)
+    def test_browse_appversions(self):
+        self.client.get(self.get_url('/{language}/{app}/pages/appversions/'))
