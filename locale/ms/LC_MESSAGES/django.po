@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-25 22:50+0000\n"
+"PO-Revision-Date: 2018-05-26 03:29+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3918,7 +3918,7 @@ msgid ""
 msgstr ""
 
 msgid "Take Survey"
-msgstr ""
+msgstr "Sertai Kaji Selidik"
 
 #, fuzzy
 msgid "Welcome Back"
