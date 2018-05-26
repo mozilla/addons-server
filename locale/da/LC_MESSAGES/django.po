@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-26 09:53+0000\n"
+"PO-Revision-Date: 2018-05-26 21:00+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2699,13 +2699,13 @@ msgid "All My Add-ons"
 msgstr "Alle mine tilføjelser"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Alt aktivitet"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Opdatering af tilføjelser"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status for tilføjelser"
 
 msgid "User Collections"
 msgstr "Brugersamlinger"
@@ -2825,7 +2825,7 @@ msgstr "Tilbage til udviklercentralens hjemmeside"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Udviklercentral for <small>tilføjelser</small>"
 
 msgid "more add-ons..."
 msgstr "flere tilføjelser..."
@@ -2852,7 +2852,7 @@ msgid "Development Add-ons"
 msgstr "Development Add-ons"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Fællesskab & support"
 
 msgid "Add-ons Blog"
 msgstr "Add-ons Blog"
@@ -2899,11 +2899,11 @@ msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
-msgstr "Recent Activity for My Add-ons"
+msgstr "Seneste aktivitet for mine tilføjelser"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Recent Activity for {0}"
+msgstr "Seneste aktivitet for {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2913,10 +2913,10 @@ msgid "No results found."
 msgstr "Ingen resultater fundet."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Tilpas aktivitet"
 
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitet"
 
 msgid "Subscribe to this feed"
 msgstr "Abonner på dette feed"
@@ -2953,14 +2953,14 @@ msgid "Close"
 msgstr "Luk"
 
 msgid "Recent Activity"
-msgstr "Recent Activity"
+msgstr "Seneste aktivitet"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s af %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Ældre aktivitet for mine tilføjelser"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -3936,7 +3936,7 @@ msgid "Join us!"
 msgstr "Vær med!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Skriv noget kode"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -3995,7 +3995,7 @@ msgstr "Indsend dit første tema"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Udviklercentral for tilføjelser"
 
 msgid "Docs"
 msgstr ""
