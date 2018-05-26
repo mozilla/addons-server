@@ -86,12 +86,13 @@ class BaseUserTaskSet(TaskSet):
 
 class UserTaskSet(BaseUserTaskSet):
     def _browse_listing_and_click_detail(self, listing_url, detail_selector,
-                                         legacy_selector=None, name=None):
+                                         legacy_selector=None, name=None,
+                                         force_legacy=False):
         response = self.client.get(
             self.get_url(listing_url),
             allow_redirects=False, catch_response=True)
 
-        if self.is_legacy_page and not legacy_selector:
+        if (self.is_legacy_page or force_legacy) and not legacy_selector:
             log.warn(
                 'Received legacy url without legacy selector. {} :: {}'
                 .format(listing_url, detail_selector))
@@ -101,13 +102,14 @@ class UserTaskSet(BaseUserTaskSet):
             html = lxml.html.fromstring(response.content)
             selector = (
                 detail_selector
-                if not self.is_legacy_page else legacy_selector)
+                if not (self.is_legacy_page or force_legacy) else
+                legacy_selector)
             collection_links = html.cssselect(selector)
             url = random.choice(collection_links).get('href')
 
             kwargs = {}
             if name is not None:
-                if self.is_legacy_page:
+                if self.is_legacy_page or force_legacy:
                     name = name.replace(':app', ':legacy_app')
                 kwargs['name'] = name
 
@@ -158,3 +160,18 @@ class UserTaskSet(BaseUserTaskSet):
             detail_selector='a.Categories-link',
             legacy_selector='ul#side-categories li a',
             name='/:lang/:app/:extensions/:category_slug/')
+
+    @task(4)
+    def browse_theme_categories(self):
+        self._browse_listing_and_click_detail(
+            '/{language}/{app}/complete-themes/',
+            detail_selector=None,
+            legacy_selector='.listing-grid .hovercard>a',
+            name='/:lang/:app/complete-themes/:slug/',
+            force_legacy=True)
+
+        self._browse_listing_and_click_detail(
+            '/{language}/{app}/themes/',
+            detail_selector='a.SearchResult-link',
+            legacy_selector='ul#side-categories li a',
+            name='/:lang/:app/themes/:slug/')
