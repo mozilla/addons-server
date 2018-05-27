@@ -808,7 +808,7 @@ class Addon(OnChangeMixin, ModelBase):
                 log.info(u'Version changed from current: %s to %s '
                          u'for addon %s'
                          % tuple(diff + [self]))
-            except Exception, e:
+            except Exception as e:
                 log.error(u'Could not save version changes current: %s to %s '
                           u'for addon %s (%s)' %
                           tuple(diff + [self, e]))

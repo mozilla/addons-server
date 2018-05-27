@@ -527,6 +527,6 @@ class BasePreview(object):
                 log.info('Removing filename: %s for preview: %s'
                          % (filename, instance.pk))
                 storage.delete(filename)
-            except Exception, e:
+            except Exception as e:
                 log.error(
                     'Error deleting preview file (%s): %s' % (filename, e))

@@ -49,7 +49,7 @@ def resize_icon(src, dst, **kw):
     try:
         resize_image(src, dst, (32, 32))
         return True
-    except Exception, e:
+    except Exception as e:
         log.error("Error saving collection icon: %s" % e)
 
 
@@ -63,7 +63,7 @@ def delete_icon(dst, **kw):
 
     try:
         storage.delete(dst)
-    except Exception, e:
+    except Exception as e:
         log.error("Error deleting icon: %s" % e)
 
 
@@ -104,7 +104,7 @@ def collection_watchers(*ids, **kw):
                                          .count())
             Collection.objects.filter(pk=pk).update(subscribers=watchers)
             log.info('Updated collection watchers: %s' % pk)
-        except Exception, e:
+        except Exception as e:
             log.error('Updating collection watchers failed: %s, %s' % (pk, e))
 
 

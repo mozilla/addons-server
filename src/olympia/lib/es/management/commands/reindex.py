@@ -75,7 +75,7 @@ def index_data(alias, index):
 
     try:
         get_modules()[alias].reindex(index)
-    except Exception, exc:
+    except Exception as exc:
         index_data.retry(
             args=(alias, index), exc=exc, max_retries=3)
         raise

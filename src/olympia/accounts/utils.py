@@ -95,7 +95,7 @@ def process_fxa_event(raw_body, **kwargs):
         if not (event_type and uid and timestamp):
             raise ValueError(
                 'Properties event, uuid, and ts must all be non-empty')
-    except (ValueError, KeyError, TypeError), e:
+    except (ValueError, KeyError, TypeError) as e:
         log.exception('Invalid account message: %s' % e)
     else:
         if event_type == 'primaryEmailChanged':

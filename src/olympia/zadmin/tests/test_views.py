@@ -170,10 +170,9 @@ class TestEmailPreview(TestCase):
                             args=[self.topic.topic]))
         assert r.status_code == 200
         rdr = csv.reader(StringIO(r.content))
-        assert rdr.next() == ['from_email', 'recipient_list', 'subject',
-                              'body']
-        assert rdr.next() == ['admin@mozilla.org', 'funnyguy@mozilla.org',
-                              'the subject', 'Hello Ivan Krsti\xc4\x87']
+        assert next(rdr) == ['from_email', 'recipient_list', 'subject', 'body']
+        assert next(rdr) == ['admin@mozilla.org', 'funnyguy@mozilla.org',
+                             'the subject', 'Hello Ivan Krsti\xc4\x87']
 
 
 class TestMonthlyPick(TestCase):

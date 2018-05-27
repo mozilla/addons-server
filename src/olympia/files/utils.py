@@ -289,7 +289,7 @@ class RDFExtractor(object):
         if list(self.rdf.triples((manifest, None, None))):
             self.root = manifest
         else:
-            self.root = self.rdf.subjects(None, self.manifest).next()
+            self.root = next(self.rdf.subjects(None, self.manifest))
 
     def find(self, name, ctx=None):
         """Like $() for install.rdf, where name is the selector."""

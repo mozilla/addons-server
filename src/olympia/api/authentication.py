@@ -173,7 +173,7 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
 
         try:
             payload = jwt_auth.jwt_decode_handler(jwt_value)
-        except Exception, exc:
+        except Exception as exc:
             try:
                 # Log all exceptions
                 log.info('JWTKeyAuthentication failed; '

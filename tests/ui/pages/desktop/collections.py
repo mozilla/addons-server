@@ -1,7 +1,7 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
 
-from base import Base
+from .base import Base
 
 
 class Collections(Base):

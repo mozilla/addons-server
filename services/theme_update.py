@@ -45,7 +45,7 @@ class ThemeUpdate(object):
         try:
             with open(path, 'r') as f:
                 return base64.b64encode(f.read())
-        except IOError, e:
+        except IOError as e:
             if len(e.args) == 1:
                 log_exception('I/O error: {0}'.format(e[0]))
             else:

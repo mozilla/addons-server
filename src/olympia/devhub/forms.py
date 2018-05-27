@@ -813,7 +813,7 @@ class SingleCategoryForm(happyforms.Form):
         # support Firefox.  Hoping to unify per-app categories in the meantime.
         app = amo.FIREFOX
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
-                             key=lambda (slug, cat): slug)
+                             key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
             (c.id, c.name) for _, c in sorted_cats]
 

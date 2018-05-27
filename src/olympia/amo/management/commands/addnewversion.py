@@ -34,5 +34,5 @@ def do_addnewversion(application, version):
     try:
         AppVersion.objects.create(application=amo.APPS[application].id,
                                   version=version)
-    except IntegrityError, e:
+    except IntegrityError as e:
         raise CommandError('Version %r already exists: %r' % (version, e))
