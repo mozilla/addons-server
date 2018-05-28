@@ -56,7 +56,7 @@ def version_detail(request, addon, version_num):
     def f():
         return _find_version_page(qs, addon, version_num)
 
-    return cached(f, 'version-detail:{}:{}'.format(addon.id, version_num))
+    return cached(f, u'version-detail:{}:{}'.format(addon.id, version_num))
 
 
 def _find_version_page(qs, addon, version_num):
