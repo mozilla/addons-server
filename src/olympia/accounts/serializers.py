@@ -227,7 +227,7 @@ class UserNotificationSerializer(serializers.Serializer):
                     current_user, notification.basket_newsletter_id)
             elif enabled:
                 subscribe_newsletter(
-                    current_user, notification.basket_newsletter_id)
+                    request, current_user, notification.basket_newsletter_id)
         elif 'enabled' in validated_data:
             # Only save if non-mandatory and 'enabled' is set.
             # Ignore other fields.

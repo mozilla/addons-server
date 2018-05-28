@@ -360,10 +360,14 @@ def fetch_subscribed_newsletters(user_profile):
     return data['newsletters']
 
 
-def subscribe_newsletter(user_profile, basket_id):
-    response = basket.subscribe(user_profile.email, basket_id, sync='Y')
+def subscribe_newsletter(request, user_profile, basket_id):
+    response = basket.subscribe(
+        user_profile.email,
+        basket_id,
+        sync='Y',
+        source_url=request.build_absolute_uri() if request else None,
+        optin='Y')
     return response['status'] == 'ok'
-    return False
 
 
 def unsubscribe_newsletter(user_profile, basket_id):

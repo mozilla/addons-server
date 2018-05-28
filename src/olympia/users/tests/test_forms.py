@@ -1,5 +1,6 @@
 from django.utils.http import urlsafe_base64_encode
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import RequestFactory
 
 import basket
 
@@ -259,7 +260,9 @@ class TestUserEditForm(UserFormBase):
                 'status': 'ok', 'token': '123',
                 'newsletters': ['announcements']}
 
-            form = UserEditForm({}, instance=self.user)
+            form = UserEditForm(
+                {}, instance=self.user,
+                request=RequestFactory().get('/users/edit/'))
 
         request_call.assert_called_with(
             'get', 'lookup-user',
@@ -297,7 +300,9 @@ class TestUserEditForm(UserFormBase):
                 'status': 'ok', 'token': '123',
                 'newsletters': ['about-addons']}
 
-            form = UserEditForm({}, instance=self.user)
+            form = UserEditForm(
+                {}, instance=self.user,
+                request=RequestFactory().get('/users/edit/'))
 
         request_call.assert_called_with(
             'get', 'lookup-user',
@@ -323,7 +328,9 @@ class TestUserEditForm(UserFormBase):
                 'status': 'ok', 'token': '123',
                 'newsletters': []}
 
-            form = UserEditForm({}, instance=self.user)
+            form = UserEditForm(
+                {}, instance=self.user,
+                request=RequestFactory().get('/users/edit/'))
 
         request_call.assert_called_with(
             'get', 'lookup-user',
@@ -343,7 +350,9 @@ class TestUserEditForm(UserFormBase):
                 'description', status_code=401,
                 code=basket.errors.BASKET_UNKNOWN_EMAIL)
 
-            UserEditForm({}, instance=self.user)
+            UserEditForm(
+                {}, instance=self.user,
+                request=RequestFactory().get('/users/edit/'))
 
         request_call.assert_called_with(
             'get', 'lookup-user',
@@ -363,7 +372,8 @@ class TestUserEditForm(UserFormBase):
             # 8 is the `announcements` notification, or about-addons newsletter
             form = UserEditForm(
                 {'notifications': [3, 4, 8]},
-                instance=self.user)
+                instance=self.user,
+                request=RequestFactory().get('/users/edit/'))
 
         request_call.assert_called_with(
             'get', 'lookup-user',
@@ -383,6 +393,7 @@ class TestUserEditForm(UserFormBase):
             headers={'x-api-key': 'testkey'},
             data={
                 'newsletters': 'about-addons', 'sync': 'Y',
+                'optin': 'Y', 'source_url': 'http://testserver/users/edit/',
                 'email': u'jbalogh@mozilla.com'})
 
     def test_basket_sync_behind_flag(self):
