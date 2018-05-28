@@ -67,7 +67,7 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.debug(m % (count, pk))
             continue
 
-        addon.update(average_daily_users=count)
+        addon.update(average_daily_users=int(float(count)))
 
 
 def update_addon_download_totals():
