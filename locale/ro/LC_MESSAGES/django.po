@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-28 11:28+0000\n"
+"PO-Revision-Date: 2018-05-28 11:49+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -865,7 +865,7 @@ msgid "Jump to first page"
 msgstr "Sari la prima pagină"
 
 msgid "Previous"
-msgstr ""
+msgstr "Înapoi"
 
 msgid "Jump to last page"
 msgstr "Sari la ultima pagină"
@@ -1513,9 +1513,9 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> supliment"
+msgstr[1] "<b>{0}</b> suplimente"
+msgstr[2] "<b>{0}</b> de suplimente"
 
 msgid "Search Extensions"
 msgstr ""
@@ -2313,7 +2313,7 @@ msgid "Folders and Filters"
 msgstr ""
 
 msgid "Import/Export"
-msgstr ""
+msgstr "Importă/Exportă"
 
 msgid "Message and News Reading"
 msgstr "Citit mesaje"
@@ -2958,9 +2958,9 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> temă"
+msgstr[1] "<b>{0}</b> teme"
+msgstr[2] "<b>{0}</b> de teme"
 
 msgid "Edit Information"
 msgstr "Editează informaţille"
@@ -5954,7 +5954,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "zile"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6056,9 +6056,9 @@ msgstr[2] ""
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} zi"
+msgstr[1] "{0} zile"
+msgstr[2] "{0} de zile"
 
 msgid "Last Review"
 msgstr ""
@@ -6269,7 +6269,7 @@ msgid "Visible"
 msgstr ""
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Media de utilizatori zilnici"
 
 msgid "Abuse Reports"
 msgstr ""
@@ -6333,7 +6333,7 @@ msgid "Filter"
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Dată"
 
 msgid "Event"
 msgstr ""
@@ -6625,7 +6625,7 @@ msgid "No points awarded yet."
 msgstr ""
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Recenzenți de top (ultimele 7 zile)"
 
 msgid "No top reviewers yet."
 msgstr ""
@@ -6684,10 +6684,10 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 msgid "Next Theme"
-msgstr "Următoarea temă"
+msgstr "Tema următoare"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "Tema anterioară"
 
 msgid "Your Review History"
 msgstr ""
@@ -6884,9 +6884,9 @@ msgstr ""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> rezultat"
+msgstr[1] "<b>{0}</b> rezultate"
+msgstr[2] "<b>{0}</b> de rezultate"
 
 msgid "Filter Results"
 msgstr ""
@@ -7015,7 +7015,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "Exportă"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -7035,10 +7035,10 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "Opțiuni de control:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "resetează zoomul"
 
 msgid "Group by:"
 msgstr "Grupează după:"
@@ -7056,16 +7056,16 @@ msgid "For last:"
 msgstr "Pentru ultimele:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 zile"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 de zile"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 de zile"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 de zile"
 
 msgid "Custom..."
 msgstr "Personalizat..."
@@ -7089,25 +7089,25 @@ msgid "Change settings."
 msgstr ""
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Suplimente create în funcție de dată"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Suplimente descărcate în funcție de dată"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Suplimente în uz în funcție de dată"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Suplimente actualizate în funcție de dată"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Utilizarea aplicației în funcție de dată"
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Colecții create în funcție de dată"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Descărcări în funcție de dată"
 
 msgid "How are downloads counted?"
 msgstr ""
@@ -7121,16 +7121,16 @@ msgid "User languages by Date"
 msgstr "Limbile utilizatorilor în funcție de dată"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Utilizarea de platforme în funcție de dată"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> descărcări"
 
 msgid "Loading..."
 msgstr ""
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> utilizatori zilnici în medie"
 
 msgid "Top Applications"
 msgstr "Aplicaţii de top"
@@ -7197,7 +7197,7 @@ msgid "User Signups by Date"
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr "Versiunile aplicațiiei în funcție de dată"
+msgstr "Versiunile aplicației în funcție de dată"
 
 msgid "Mozilla Add-ons"
 msgstr "Suplimente Mozilla"
@@ -7542,7 +7542,7 @@ msgid "Delete Account"
 msgstr ""
 
 msgid "Update Account"
-msgstr ""
+msgstr "Actualizează contul"
 
 msgid "none"
 msgstr ""
