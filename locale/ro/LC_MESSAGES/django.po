@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-28 11:49+0000\n"
+"PO-Revision-Date: 2018-05-28 11:52+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1547,7 +1547,7 @@ msgid "Most Popular Extensions"
 msgstr ""
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Extensii în topul evaluărilor"
 
 msgid "Newest Extensions"
 msgstr "Cele mai noi extensii"
@@ -1573,7 +1573,7 @@ msgid "Most Popular Complete Themes"
 msgstr ""
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Teme complete în topul evaluărilor"
 
 msgid "Newest Complete Themes"
 msgstr "Cele mai noi teme complete"
@@ -1623,7 +1623,7 @@ msgid "View All Most Popular"
 msgstr ""
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Vezi toate în topul evaluărilor"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
