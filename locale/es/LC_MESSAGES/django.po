@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-13 15:57+0000\n"
-"Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"PO-Revision-Date: 2018-05-26 12:55+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -2033,6 +2033,9 @@ msgstr "Se ha solicitado la revisión de tema de un administrador para {addon} {
 msgid "Admin theme-review requested"
 msgstr "Se ha solicitado la revisión de tema de un administrador"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} se migró desde un tema ligero."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4027,26 +4030,25 @@ msgstr "Administrar tu complemento"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Inicia sesión para editar y actualizar tu complemento"
 
-msgid "Update Your Legacy Extension"
-msgstr "Actualizar la extensión"
+msgid "Help us improve the developer experience"
+msgstr "Ayúdanos a mejorar la experiencia del desarrollador"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Existe un nuevo estándar para desarrollar extensiones en Firefox. Tendrás que actualizar tus extensiones educativas para que sean compatibles."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Descubre cómo"
+msgid "Take Survey"
+msgstr "Rellenar encuesta"
 
-msgid "Get Started"
-msgstr "Comenzar"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "¿Preparado para enviar una extensión? Lee nuestro tutorial sobre el proceso de envío paso a paso."
-
-msgid "See Tutorial"
-msgstr "Ver tutorial"
+msgid "Welcome Back"
+msgstr "Bienvenido/a"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Crea una lista interesante y ayudarás a los usuarios a descubrir tu extensión."
+
+msgid "Learn How"
+msgstr "Descubre cómo"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4876,6 +4878,9 @@ msgstr "Conviértete en un Piloto de pruebas"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Desbloquea el acceso temprano a las características experimentales del navegador."
+
+msgid "Get Started"
+msgstr "Comenzar"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"

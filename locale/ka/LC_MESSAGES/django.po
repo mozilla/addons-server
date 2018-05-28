@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-20 06:51+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"PO-Revision-Date: 2018-05-25 22:06+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2007,6 +2007,9 @@ msgstr "{addon} {version} თემა საჭიროებს ადმი�
 msgid "Admin theme-review requested"
 msgstr "თემა საჭიროებს ადმინისტრატორის განხილვას"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} გადმოტანილია მსუბუქი თემიდან."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3940,26 +3943,27 @@ msgstr "დამატებების მართვა"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "შედით ანგარიშზე, თქვენი დამატებების ჩასასწორებლად და გასაახლებლად"
 
-msgid "Update Your Legacy Extension"
-msgstr "მოძველებული გაფართოების განახლება"
+msgid "Help us improve the developer experience"
+msgstr "დაგვეხმარეთ შემუშავების პირობების დახვეწაში"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Firefox-ს უკვე გააჩნია ახალი, მრავალ ბრაუზერთან თავსებადი გაფართოებების შემუშავების სტანდარტი. მოძველებული გაფართოებების განახლება აუცილებელია, თავსებადობის შესანარჩუნებლად."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"ჩვენ გვაინტერესებს თქვენი მოსაზრება გაფართოებების შემუშავების შესახებ! შეავსეთ ჩვენი მცირე კითხვარი და მოგვახსენეთ რა სახის მასალები, API-ები და ხელსაწყოებია თქვენთვის ყველაზე მეტად გამოსადეგი, "
+"მუშაობისას."
 
-msgid "Learn How"
-msgstr "გაიგეთ, როგორ"
+msgid "Take Survey"
+msgstr "კითხვარის შევსება"
 
-msgid "Get Started"
-msgstr "მუშაობის დაწყება"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "მზად ხართ გაფართოების წარსადგენად? გაეცანით ჩვენს ნაბიჯ-ნაბიჯ მითითებებს, წარდგენის პროცესის შესახებ."
-
-msgid "See Tutorial"
-msgstr "მითითებების ნახვა"
+msgid "Welcome Back"
+msgstr "კეთილი იყოს თქვენი დაბრუნება"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "დაეხმარეთ მომხმარებლებს თქვენი გაფართოების აღმოჩენაში, მიმზიდველი ჩამონათვალის შექმნით."
+
+msgid "Learn How"
+msgstr "გაიგეთ, როგორ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4764,6 +4768,9 @@ msgstr "გახდით გამომცდელი მფრინავ�
 
 msgid "Unlock early access to experimental browser features."
 msgstr "მიიღეთ წვდომა ბრაუზერის უახლეს, საცდელ შესაძლებლობებზე."
+
+msgid "Get Started"
+msgstr "მუშაობის დაწყება"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla-ს დამატების შესახებ"

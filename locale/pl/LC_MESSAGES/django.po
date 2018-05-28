@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2085,6 +2085,10 @@ msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
 msgid "Admin theme-review requested"
 msgstr "Poproszono o sprawdzenie"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "Dodatek {addon} {version} został wstępnie przejrzany."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4135,30 +4139,27 @@ msgstr "Zarządzanie swoim dodatkiem"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Polecane rozszerzenia"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Witaj, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Dowiedz się więcej"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Pierwsze kroki"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "Zobacz wszystkie"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4986,6 +4987,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "Pierwsze kroki"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozilla Add-ons"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2017-12-07 14:39+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -2087,6 +2087,9 @@ msgstr "{addon} {version} incelemesi talep edildi."
 msgid "Admin theme-review requested"
 msgstr "İnceleme talep edildi"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4065,26 +4068,26 @@ msgstr "Eklentinizi yönetin"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Eklentinizi düzenlemek ve güncellemek için giriş yapın"
 
-msgid "Update Your Legacy Extension"
-msgstr "Eski teknoloji eklentinizi güncelleyin"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Hoş geldin {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 msgid "Learn How"
 msgstr "Nasıl yapılacağını öğrenin"
-
-msgid "Get Started"
-msgstr "Başlarken"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-msgid "See Tutorial"
-msgstr "Öğreticiyi gör"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4895,6 +4898,9 @@ msgstr "Test Pilotu olun"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
+
+msgid "Get Started"
+msgstr "Başlarken"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"

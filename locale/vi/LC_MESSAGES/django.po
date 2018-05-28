@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-04 04:36+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -2022,6 +2022,10 @@ msgstr "{addon} {version} yêu cầu xét duyệt."
 msgid "Admin theme-review requested"
 msgstr "Yêu cầu Xét duyệt Đầy đủ."
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} {version} đã được xét duyệt sơ bộ."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4016,29 +4020,27 @@ msgstr "Thêm Tiện ích"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Phần mở rộng Chọn lọc"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Xin chào, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Tìm hiểu Thêm"
-
-msgid "Get Started"
-msgstr "Bắt đầu"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "Xem tất cả"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4853,6 +4855,9 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+msgid "Get Started"
+msgstr "Bắt đầu"
 
 msgid "About Mozilla Add-ons"
 msgstr ""

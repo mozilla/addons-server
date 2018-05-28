@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-24 12:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"PO-Revision-Date: 2018-05-27 08:03+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2044,6 +2044,9 @@ msgstr "{addon} {version} - запитано розгляд теми адмін�
 msgid "Admin theme-review requested"
 msgstr "Запитано розгляд теми адміном"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} мігрував з полегшеної теми."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3999,26 +4002,27 @@ msgstr "Керуйте своїм додатком"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Увійдіть, щоб змінювати й оновлювати свій додаток"
 
-msgid "Update Your Legacy Extension"
-msgstr "Оновіть ваше застаріле розширення"
+msgid "Help us improve the developer experience"
+msgstr "Допоможіть нам вдосконалити середовище для розробників"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "З'явився новий, крос-браузерний стандарт для розробки розширень для Firefox. Вам необхідно оновити ваші застарілі розширення для забезпечення сумісності."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Нам цікаво дізнатися про ваше враження щодо роботи з розробкою розширення! Пройдіть наше коротке опитування, щоб дозволити нам дізнатися, яка документація, API та інші засоби були б найбільш "
+"корисними вам для розробки."
 
-msgid "Learn How"
-msgstr "Дізнайтеся як"
+msgid "Take Survey"
+msgstr "Пройти опитування"
 
-msgid "Get Started"
-msgstr "Початок роботи"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Готові представити розширення? Ознайомтеся з нашою покроковою інструкцією процесу представлення."
-
-msgid "See Tutorial"
-msgstr "Дивитися посібник"
+msgid "Welcome Back"
+msgstr "З поверненням"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Допоможіть користувачам дізнатися про ваше розширення, створивши гарний опис."
+
+msgid "Learn How"
+msgstr "Дізнайтеся як"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4818,6 +4822,9 @@ msgstr "Приєднайтеся до Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Розблокуйте доступ до експериментальних функцій браузера."
+
+msgid "Get Started"
+msgstr "Початок роботи"
 
 msgid "About Mozilla Add-ons"
 msgstr "Про додатки Mozilla"

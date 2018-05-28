@@ -191,3 +191,4 @@ v4 API changelog
 ----------------
 
 * 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849
+* 2018-05-25: renamed rating.rating property to rating.score  https://github.com/mozilla/addons-server/pull/8332

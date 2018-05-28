@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-16 18:13+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"PO-Revision-Date: 2018-05-27 12:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2025,6 +2025,9 @@ msgstr "{addon} {version} adminisztrátori témaértékelése kérve."
 msgid "Admin theme-review requested"
 msgstr "Adminisztrátori témaértékelés kérve"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} migrálva lett egy könnyűsúlyú témából."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3973,26 +3976,27 @@ msgstr "Kiegészítő kezelése"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 
-msgid "Update Your Legacy Extension"
-msgstr "Frissítse az örökölt kiterjesztését"
+msgid "Help us improve the developer experience"
+msgstr "Segítsen a fejlesztői élmény javításában"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Létezik egy új, keresztplatformos szabvány a Firefox kiegészítők fejlesztésére. Frissítenie kell az örökölt kiegészítőit, hogy kompatibilisek maradjanak."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Érdekel minket a visszajelzése a kiterjesztés-fejlesztési tapasztalatáról. Töltse ki rövid kérdőívünket, és tudassa velünk, hogy milyen dokumentációk, API-k és eszközök lennének a leghasznosabbak a "
+"fejlesztői munkájában."
 
-msgid "Learn How"
-msgstr "Tudja meg hogyan"
+msgid "Take Survey"
+msgstr "Kérdőív kitöltése"
 
-msgid "Get Started"
-msgstr "Első lépések"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Készen áll a kiterjesztés beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
-
-msgid "See Tutorial"
-msgstr "Ismertető megtekintése"
+msgid "Welcome Back"
+msgstr "Üdvözöljük újra"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Segítsen a felhasználóknak felfedezni a kiterjesztését, azáltal hogy tetszetős listázást készít."
+
+msgid "Learn How"
+msgstr "Tudja meg hogyan"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4800,6 +4804,9 @@ msgstr "Legyen tesztpilóta"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
+
+msgid "Get Started"
+msgstr "Első lépések"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"

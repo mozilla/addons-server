@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2067,6 +2067,9 @@ msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {vers
 msgid "Admin theme-review requested"
 msgstr "Ζητήθηκε αξιολόγηση"
 
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -4021,27 +4024,26 @@ msgstr "Διαχείριση προσθέτου"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Συνδεθείτε για να επεξεργαστείτε και να ενημερώσετε το πρόσθετό σας"
 
-msgid "Update Your Legacy Extension"
-msgstr "Ενημερώστε την παλιά σας επέκταση"
-
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
-"Υπάρχει ένα νέο, κατάλληλο για όλα τα προγράμματα περιήγησης, πρότυπο για την ανάπτυξη επεκτάσεων στο Firefox. Θα χρειαστεί να ενημερώσετε τις παλιές σας επεκτάσεις για να παραμείνετε συμβατοί."
-
-msgid "Learn How"
-msgstr "Μάθετε πώς"
-
-msgid "Get Started"
-msgstr "Ξεκινήστε"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
+msgid "Help us improve the developer experience"
 msgstr ""
 
-msgid "See Tutorial"
-msgstr "Προβολή οδηγού εκμάθησης"
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Καλώς ορίσατε, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
+
+msgid "Learn How"
+msgstr "Μάθετε πώς"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4852,6 +4854,9 @@ msgstr "Γίνετε ένας Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Ξεκλειδώστε πρώιμη πρόσβαση σε πειραματικές λειτουργίες."
+
+msgid "Get Started"
+msgstr "Ξεκινήστε"
 
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"

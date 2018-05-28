@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
 "PO-Revision-Date: 2018-05-12 06:57+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2047,6 +2047,10 @@ msgstr "{addon} {version} - vyžádána kontrola vzhledu administrátorem."
 msgid "Admin theme-review requested"
 msgstr "Vyžádána kontrola vzhledu administrátorem"
 
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} byl přesunut z předběžných."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3996,26 +4000,26 @@ msgstr "Spravujte svůj doplněk"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přihlaste se pro editaci a aktualizaci svého doplňku"
 
-msgid "Update Your Legacy Extension"
-msgstr "Aktualizujte své zastaralé doplňky"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Firefox nyní podporujeme nový standard doplňků, který je kompatibilní napříč prohlížeči. Aby zůstaly vaše starší doplňky kompatibilní, budete je muset aktualizovat."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Zjistit více"
+msgid "Take Survey"
+msgstr ""
 
-msgid "Get Started"
-msgstr "Začínáme"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Jste připraveni rozšíření nahrát? Přečtěte si našeho průvodce, který vás celým procesem provede krok za krokem."
-
-msgid "See Tutorial"
-msgstr "Prohlédnout si průvoce"
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Vítejte uživateli {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Usnadněte uživatelům najít vaše rozšíření vytvořením atraktivní stránky."
+
+msgid "Learn How"
+msgstr "Zjistit více"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4820,6 +4824,9 @@ msgstr "Staňte se testovacím pilotem"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Objevte experimentální funkce prohlížeče jako první."
+
+msgid "Get Started"
+msgstr "Začínáme"
 
 msgid "About Mozilla Add-ons"
 msgstr "O serveru Doplňky Mozilly"

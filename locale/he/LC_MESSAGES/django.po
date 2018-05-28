@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-15 05:57+0000\n"
-"PO-Revision-Date: 2018-05-21 21:08+0000\n"
+"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"PO-Revision-Date: 2018-05-27 05:12+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1067,7 +1067,7 @@ msgstr "יצירת אוסף חדש"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "כפי שמופיע ב<a href=\"%(legal)s\">הצהרות המשפטיות</a> שלנו, סידורי אוספים פרטניים כפופים לתנאי הרישיון Creative Commons Attribution Share-Alike"
 
 msgid "Create Collection"
 msgstr "יצירת אוסף"
@@ -2071,6 +2071,9 @@ msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
 #, fuzzy
 msgid "Admin theme-review requested"
 msgstr "נוספה בקשה לסקירה"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4015,26 +4018,25 @@ msgstr "ניהול התוספת שלך"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "התחברות לעריכה ועדכון התוספת שלך"
 
-msgid "Update Your Legacy Extension"
-msgstr "עדכון ההרחבה מדור קודם שלך"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr "לקיחת סקר"
+
+msgid "Welcome Back"
+msgstr "ברוכים השבים"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 msgid "Learn How"
 msgstr "למדו כיצד"
-
-msgid "Get Started"
-msgstr "תחילת עבודה"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "ההרחבה שלך מוכנה להגשה? ניתן לקרוא את המדריך שלנו שמסביר שלב אחרי שלב על תהליך ההגשה."
-
-msgid "See Tutorial"
-msgstr "הצגת מדריך"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4840,6 +4842,9 @@ msgstr "הצטרפות ל־Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "קבלת גישה מוקדמת לתכונות ניסיוניות בדפדפן."
+
+msgid "Get Started"
+msgstr "תחילת עבודה"
 
 msgid "About Mozilla Add-ons"
 msgstr "על אודות Mozilla Add-ons"
