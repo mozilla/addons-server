@@ -27,25 +27,48 @@ log = olympia.core.logger.getLogger('z.task')
 class AMOTask(PostRequestTask):
     """A custom celery Task base class that inherits from `PostRequestTask`
     to delay tasks and adds a special hack to still perform a serialization
-    roundtrip in eager mode, to mimic what happens in production in tests."""
+    roundtrip in eager mode, to mimic what happens in production in tests.
+
+    The serialization is applied both to apply_async() and apply() to work
+    around the fact that celery groups have their own apply_async() method that
+    directly calls apply() on each task in eager mode.
+
+    Note that we should never somehow be using eager mode with actual workers,
+    that would cause them to try to serialize data that has already been
+    serialized...
+    """
     abstract = True
+
+    def _serialize_args_and_kwargs_for_eager_mode(
+            self, args=None, kwargs=None, **options):
+        producer = options.get('producer')
+        with app.producer_or_acquire(producer) as eager_producer:
+            serializer = options.get(
+                'serializer', eager_producer.serializer
+            )
+            body = args, kwargs
+            content_type, content_encoding, data = serialization.dumps(
+                body, serializer
+            )
+            args, kwargs = serialization.loads(
+                data, content_type, content_encoding
+            )
+        return args, kwargs
 
     def apply_async(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
-            producer = options.get('producer')
-            with app.producer_or_acquire(producer) as eager_producer:
-                serializer = options.get(
-                    'serializer', eager_producer.serializer
-                )
-                body = args, kwargs
-                content_type, content_encoding, data = serialization.dumps(
-                    body, serializer
-                )
-                args, kwargs = serialization.loads(
-                    data, content_type, content_encoding
-                )
+            args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
+                args=args, kwargs=kwargs, **options)
+
         return super(AMOTask, self).apply_async(
             args=args, kwargs=kwargs, **options)
+
+    def apply(self, args=None, kwargs=None, **options):
+        if app.conf.task_always_eager:
+            args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
+                args=args, kwargs=kwargs, **options)
+
+        return super(AMOTask, self).apply(args=args, kwargs=kwargs, **options)
 
 
 app = Celery('olympia', task_cls=AMOTask)
