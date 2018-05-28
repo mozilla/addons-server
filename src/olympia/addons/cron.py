@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections
-from django.db.models import Avg, F, Q
+from django.db.models import Avg, F, Q, Sum
 from django.utils.encoding import force_text
 
 import multidb
@@ -75,22 +75,15 @@ def update_addon_download_totals():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    cursor = connections[multidb.get_slave()].cursor()
-    # We need to use SQL for this until
-    # http://code.djangoproject.com/ticket/11003 is resolved
-    q = """SELECT addon_id, AVG(count), SUM(count)
-           FROM download_counts
-           USE KEY (`addon_and_count`)
-           JOIN addons ON download_counts.addon_id=addons.id
-           WHERE addons.status != %s
-           GROUP BY addon_id
-           ORDER BY addon_id"""
-    cursor.execute(q, [amo.STATUS_DELETED])
-    d = cursor.fetchall()
-    cursor.close()
-
+    qs = (
+        Addon.objects
+             .annotate(average_download_count=Avg('downloadcount__count'),
+                       sum_download_count=Sum('downloadcount__count'))
+             .values_list('id', 'average_download_count', 'sum_download_count')
+             .order_by('id')
+    )
     ts = [_update_addon_download_totals.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
+          for chunk in chunked(qs, 250)]
     group(ts).apply_async()
 
 
@@ -102,20 +95,23 @@ def _update_addon_download_totals(data, **kw):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    for pk, avg, sum in data:
+    for pk, average_download_counts, sum_download_counts in data:
         try:
             addon = Addon.objects.get(pk=pk)
-            # Don't trigger a save unless we have to. Since the query that
-            # sends us data doesn't filter out deleted addons, or the addon may
-            # be unpopular, this can reduce a lot of unnecessary save queries.
-            if (addon.average_daily_downloads != avg or
-                    addon.total_downloads != sum):
-                addon.update(average_daily_downloads=avg, total_downloads=sum)
+            # Don't trigger a save unless we have to (the counts may not have
+            # changed)
+            if (sum_download_counts and average_download_counts and
+                (addon.average_daily_downloads != average_download_counts or
+                 addon.total_downloads != sum_download_counts)):
+                addon.update(
+                    average_daily_downloads=average_download_counts,
+                    total_downloads=sum_download_counts)
         except Addon.DoesNotExist:
-            # The processing input comes from metrics which might be out of
-            # date in regards to currently existing add-ons.
+            # We exclude deleted add-ons in the cron, but an add-on could have
+            # been deleted by the time the task is processed.
             m = ("Got new download totals (total=%s,avg=%s) but the add-on"
-                 "doesn't exist (%s)" % (sum, avg, pk))
+                 "doesn't exist (%s)" % (
+                     sum_download_counts, average_download_counts, pk))
             task_log.debug(m)
 
 
