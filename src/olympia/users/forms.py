@@ -257,7 +257,7 @@ class UserEditForm(happyforms.ModelForm):
 
                 if needs_subscribe:
                     subscribe_newsletter(
-                        self.request, self.instance, basket_id)
+                        self.instance, basket_id, request=self.request)
                 elif needs_unsubscribe:
                     unsubscribe_newsletter(self.instance, basket_id)
 

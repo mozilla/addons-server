@@ -360,7 +360,7 @@ def fetch_subscribed_newsletters(user_profile):
     return data['newsletters']
 
 
-def subscribe_newsletter(request, user_profile, basket_id):
+def subscribe_newsletter(user_profile, basket_id, request=None):
     response = basket.subscribe(
         user_profile.email,
         basket_id,
