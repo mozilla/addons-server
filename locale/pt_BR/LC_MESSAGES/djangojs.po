@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-02-03 18:31+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2018-05-11 17:00+0000\n"
+"Last-Translator: gilsonjunior359 <gilsonjunior359@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} estrela"
 msgstr[1] "{0} estrelas"
 
 msgid "There was a problem contacting the server."
-msgstr "Houve um problema contatando o servidor."
+msgstr "Houve um problema ao contatar o servidor."
 
 msgid "Select a file..."
 msgstr "Selecione um arquivo..."
