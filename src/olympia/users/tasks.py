@@ -47,4 +47,4 @@ def update_user_ratings_task(data, **kw):
                   (len(data), update_user_ratings_task.rate_limit))
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(
-            averagerating=round(rating, 2))
+            averagerating=round(float(rating), 2))
