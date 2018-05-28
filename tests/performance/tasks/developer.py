@@ -48,6 +48,7 @@ class DeveloperTaskSet(BaseUserTaskSet):
             url, allow_redirects=False, catch_response=True)
 
         if response.status_code == 200:
+            response.success()
             html = lxml.html.fromstring(response.content)
             return html.get_element_by_id('create-addon')
         else:

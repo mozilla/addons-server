@@ -88,6 +88,7 @@ class UserTaskSet(BaseUserTaskSet):
     def _browse_listing_and_click_detail(self, listing_url, detail_selector,
                                          legacy_selector=None, name=None,
                                          force_legacy=False):
+        # TODO: This should hit pagination automatically if there is any
         response = self.client.get(
             self.get_url(listing_url),
             allow_redirects=False, catch_response=True)
@@ -99,6 +100,7 @@ class UserTaskSet(BaseUserTaskSet):
             return
 
         if response.status_code == 200:
+            response.success()
             html = lxml.html.fromstring(response.content)
             selector = (
                 detail_selector
