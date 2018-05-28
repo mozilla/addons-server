@@ -48,9 +48,10 @@ class TestGlobalStats(TestCase):
         global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
         assert global_stat.count == 1
 
-        # Should still work if the date is passed as an ISO string.
+        # Should still work if the date is passed as a datetime string (what
+        # celery serialization does).
         job = 'version_count_new'
-        tasks.update_global_totals(job, date.isoformat())
+        tasks.update_global_totals(job, datetime.datetime.now().isoformat())
         global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
         assert global_stat.count == 1
 

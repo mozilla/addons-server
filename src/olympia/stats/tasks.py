@@ -4,6 +4,7 @@ import itertools
 from django.db import connection
 from django.db.models import Max, Sum
 
+from dateutil.parser import parse as dateutil_parser
 from elasticsearch.helpers import bulk as bulk_index
 
 import olympia.core.logger
@@ -58,7 +59,7 @@ def update_global_totals(job, date, **kw):
     if isinstance(date, basestring):
         # Because of celery serialization, date is not date object, it has been
         # transformed into a string, we need the date object back.
-        date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S').date()
+        date = dateutil_parser(date).date()
 
     jobs = _get_daily_jobs(date)
     jobs.update(_get_metrics_jobs(date))
