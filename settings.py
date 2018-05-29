@@ -91,6 +91,10 @@ AES_KEYS = {
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
 }
 
+CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
+    ['localhost:3000', 'olympia.test']
+)
+
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
