@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
-from django.utils.translation import get_language, ugettext
+from django.utils.translation import ugettext
 
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (

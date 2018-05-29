@@ -1,6 +1,6 @@
 <p>
     <a href="{{ url('files.redirect', selected['id'], selected['short']) }}">
-        {{ _('Download {0}').format(selected['filename']) }}
+        {{- _('Download {0}').format(selected['filename']) -}}
     </a><br/>
     {% if selected['msg'] %}<b class="error">{{ selected['msg'] }}</b><br/>{% endif %}
     {% trans version=selected['version'], size=selected['size']|filesizeformat(binary=True),
