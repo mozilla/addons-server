@@ -1,8 +1,10 @@
 import mock
 import os
+import pytest
 import tempfile
 
 from django.conf import settings
+from django.test.utils import override_settings
 
 from waffle.testutils import override_switch
 
@@ -15,6 +17,7 @@ from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.applications.models import AppVersion
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
 from olympia.tags.models import Tag
@@ -82,34 +85,51 @@ class TestPersonaImageFunctions(TestCase):
         assert os.stat(expected_dst.name).st_size == 0
 
 
-class TestMigrateLightweightThemesToStaticThemes(TestCase):
+@pytest.mark.django_db
+@mock.patch('olympia.addons.tasks.add_static_theme_from_lwt')
+def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
+    persona_a = addon_factory(type=amo.ADDON_PERSONA, slug='theme_a')
+    persona_b = addon_factory(type=amo.ADDON_PERSONA, slug='theme_b')
+    addon_a = addon_factory(type=amo.ADDON_STATICTHEME)
+    addon_b = addon_factory(type=amo.ADDON_STATICTHEME)
+    add_static_theme_from_lwt_mock.side_effect = [addon_a, addon_b]
 
-    @mock.patch('olympia.addons.tasks.add_static_theme_from_lwt')
-    def test_migrate_lwts(self, add_static_theme_from_lwt_mock):
-        persona_a = addon_factory(type=amo.ADDON_PERSONA, slug='theme_a')
-        persona_b = addon_factory(type=amo.ADDON_PERSONA, slug='theme_b')
-        addon_a = addon_factory(type=amo.ADDON_STATICTHEME)
-        addon_b = addon_factory(type=amo.ADDON_STATICTHEME)
-        add_static_theme_from_lwt_mock.side_effect = [addon_a, addon_b]
+    # call the migration task, as the command would:
+    migrate_lwts_to_static_themes([persona_a.id, persona_b.id])
 
-        # call the migration task, as the command would:
-        migrate_lwts_to_static_themes([persona_a.id, persona_b.id])
+    assert MigratedLWT.objects.all().count() == 2
 
-        assert MigratedLWT.objects.all().count() == 2
+    persona_a.reload()
+    addon_a.reload()
+    assert persona_a.status == amo.STATUS_DELETED
+    assert MigratedLWT.objects.get(
+        lightweight_theme=persona_a).static_theme == addon_a
+    assert addon_a.slug == 'theme_a'
 
-        persona_a.reload()
-        addon_a.reload()
-        assert persona_a.status == amo.STATUS_DELETED
-        assert MigratedLWT.objects.get(
-            lightweight_theme=persona_a).static_theme == addon_a
-        assert addon_a.slug == 'theme_a'
+    persona_b.reload()
+    addon_a.reload()
+    assert persona_b.status == amo.STATUS_DELETED
+    assert MigratedLWT.objects.get(
+        lightweight_theme=persona_b).static_theme == addon_b
+    assert addon_b.slug == 'theme_b'
 
-        persona_b.reload()
-        addon_a.reload()
-        assert persona_b.status == amo.STATUS_DELETED
-        assert MigratedLWT.objects.get(
-            lightweight_theme=persona_b).static_theme == addon_b
-        assert addon_b.slug == 'theme_b'
+
+@override_switch('allow-static-theme-uploads', active=True)
+@override_settings(ENABLE_ADDON_SIGNING=True)
+class TestAddStaticThemeFromLwt(TestCase):
+
+    def setUp(self):
+        super(TestAddStaticThemeFromLwt, self).setUp()
+        self.call_signing_mock = self.patch(
+            'olympia.lib.crypto.packaged.call_signing')
+        self.build_mock = self.patch(
+            'olympia.addons.tasks.build_static_theme_xpi_from_lwt')
+        self.build_mock.side_effect = self._mock_xpi_side_effect
+        self.call_signing_mock.return_value = 'abcdefg1234'
+        AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='53.0')
+        AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='*')
 
     def _mock_xpi_side_effect(self, lwt, upload_path):
         xpi_path = os.path.join(
@@ -118,11 +138,8 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
         assert not os.path.isdir(upload_path)
         return mock.DEFAULT
 
-    @mock.patch('olympia.addons.tasks.build_static_theme_xpi_from_lwt')
-    @override_switch('allow-static-theme-uploads', active=True)
-    def test_add_static_theme_from_lwt(self, build_static_theme_xpi_mock):
+    def test_add_static_theme_from_lwt(self):
         author = user_factory()
-        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
         persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
         persona.persona.license = licenses.LICENSE_CC_BY_ND.id
         Tag.objects.create(tag_text='themey').save_tag(persona)
@@ -137,14 +154,13 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
         assert static_theme.current_version.license.builtin == (
             licenses.LICENSE_CC_BY_ND.builtin)
         assert static_theme.status == amo.STATUS_PUBLIC
-        assert static_theme.current_version.files.get().status == (
-            amo.STATUS_PUBLIC)
+        current_file = static_theme.current_version.files.get()
+        assert current_file.status == amo.STATUS_PUBLIC
+        self.call_signing_mock.assert_called_with(current_file)
+        assert current_file.cert_serial_num == 'abcdefg1234'
 
-    @mock.patch('olympia.addons.tasks.build_static_theme_xpi_from_lwt')
-    @override_switch('allow-static-theme-uploads', active=True)
-    def test_add_static_theme_broken_lwt(self, build_static_theme_xpi_mock):
+    def test_add_static_theme_broken_lwt(self):
         """What if no author or license or category?"""
-        build_static_theme_xpi_mock.side_effect = self._mock_xpi_side_effect
         persona = addon_factory(type=amo.ADDON_PERSONA)
 
         assert list(persona.authors.all()) == []  # no author
@@ -164,5 +180,8 @@ class TestMigrateLightweightThemesToStaticThemes(TestCase):
         assert static_theme.current_version.license.builtin == (
             licenses.LICENSE_COPYRIGHT_AR.builtin)
         assert static_theme.status == amo.STATUS_PUBLIC
-        assert static_theme.current_version.files.get().status == (
-            amo.STATUS_PUBLIC)
+        current_file = static_theme.current_version.files.get()
+        assert current_file.status == amo.STATUS_PUBLIC
+        print current_file.version.apps.all()
+        self.call_signing_mock.assert_called_with(current_file)
+        assert current_file.cert_serial_num == 'abcdefg1234'

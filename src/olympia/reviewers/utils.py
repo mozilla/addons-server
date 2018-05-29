@@ -861,7 +861,7 @@ class ReviewFiles(ReviewBase):
 class ReviewUnlisted(ReviewBase):
 
     def process_public(self):
-        """Set an unliste addon version files to public."""
+        """Set an unlisted addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
