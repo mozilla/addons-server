@@ -17,10 +17,8 @@ from mock import Mock, patch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
-from olympia.files.templatetags.jinja_helpers import (
-    DiffHelper, FileViewer, extract_file)
+from olympia.files.file_viewer import DiffHelper, FileViewer, extract_file
 from olympia.files.utils import SafeZip, get_all_files
 
 
@@ -173,8 +171,11 @@ class TestFileViewer(TestCase):
                       'somelongfilenam...somelonge..'],):
             assert truncate(x) == y
 
-    def test_get_files_not_extracted(self):
-        assert not self.viewer.get_files()
+    def test_get_files_not_extracted_runs_extraction(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+        assert not self.viewer.is_extracted()
+        self.viewer.get_files()
+        assert self.viewer.is_extracted()
 
     def test_get_files_size(self):
         self.viewer.extract()
@@ -188,25 +189,6 @@ class TestFileViewer(TestCase):
         assert not files['install.js']['binary']
         assert files['__MACOSX']['directory']
         assert not files['__MACOSX']['binary']
-
-    def test_url_file(self):
-        self.viewer.extract()
-        files = self.viewer.get_files()
-        url = reverse('files.list', args=[self.viewer.file.id,
-                                          'file', 'install.js'])
-        file_url = files['install.js']['url']
-        assert file_url == url
-        assert file_url.startswith('/en-US')
-
-        # Make sure that the locale is properly used (see bug 1168794).
-        with self.activate('fr'):
-            self.viewer._files = {}  # Reset the viewer's internal cache.
-            files = self.viewer.get_files()
-            url = reverse('files.list', args=[self.viewer.file.id,
-                                              'file', 'install.js'])
-            file_url = files['install.js']['url']
-            assert file_url == url
-            assert file_url.startswith('/fr')
 
     def test_get_files_depth(self):
         self.viewer.extract()
@@ -300,20 +282,20 @@ class TestFileViewer(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('olympia.files.templatetags.jinja_helpers.get_sha256')
+    @patch('olympia.files.file_viewer.get_sha256')
     def test_delete_mid_tree(self, get_sha256):
         get_sha256.side_effect = IOError('ow')
         self.viewer.extract()
         with self.assertRaises(IOError):
             self.viewer.get_files()
 
-    @patch('olympia.files.templatetags.jinja_helpers.os.fsync')
+    @patch('olympia.files.file_viewer.os.fsync')
     def test_verify_files_doesnt_call_fsync_regularly(self, fsync):
         self.viewer.extract()
 
         assert not fsync.called
 
-    @patch('olympia.files.templatetags.jinja_helpers.os.fsync')
+    @patch('olympia.files.file_viewer.os.fsync')
     def test_verify_files_calls_fsync_on_differences(self, fsync):
         self.viewer.extract()
 
@@ -322,7 +304,7 @@ class TestFileViewer(TestCase):
         files_to_verify = get_all_files(self.viewer.dest)
         files_to_verify.pop()
 
-        module_path = 'olympia.files.templatetags.jinja_helpers.get_all_files'
+        module_path = 'olympia.files.file_viewer.get_all_files'
         with patch(module_path) as get_all_files_mck:
             get_all_files_mck.return_value = files_to_verify
 
@@ -384,7 +366,7 @@ class TestDiffSearchEngine(TestCase):
         super(TestDiffSearchEngine, self).tearDown()
 
     @patch(
-        'olympia.files.templatetags.jinja_helpers.FileViewer.is_search_engine')
+        'olympia.files.file_viewer.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
         is_search_engine.return_value = True
         self.helper.extract()
