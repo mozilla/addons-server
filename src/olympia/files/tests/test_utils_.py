@@ -22,7 +22,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase, create_switch
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.tests.test_helpers import get_file
+from olympia.files.tests.test_file_viewer import get_file
 
 
 pytestmark = pytest.mark.django_db
