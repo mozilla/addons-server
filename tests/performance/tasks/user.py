@@ -100,13 +100,18 @@ class UserTaskSet(BaseUserTaskSet):
             return
 
         if response.status_code == 200:
-            response.success()
             html = lxml.html.fromstring(response.content)
             selector = (
                 detail_selector
                 if not (self.is_legacy_page or force_legacy) else
                 legacy_selector)
             collection_links = html.cssselect(selector)
+
+            if not collection_links:
+                log.warn(
+                    'No selectable links on page. {} :: {}'
+                    .format(listing_url, selector))
+
             url = random.choice(collection_links).get('href')
 
             kwargs = {}
@@ -116,6 +121,7 @@ class UserTaskSet(BaseUserTaskSet):
                 kwargs['name'] = name
 
             self.client.get(url, **kwargs)
+            response.success()
         else:
             response.failure('Unexpected status code {}'.format(
                 response.status_code))
@@ -177,6 +183,20 @@ class UserTaskSet(BaseUserTaskSet):
             detail_selector='a.SearchResult-link',
             legacy_selector='ul#side-categories li a',
             name='/:lang/:app/themes/:slug/')
+
+    @task(3)
+    def test_user_profile(self):
+        # TODO: Generalize by actually creating a user-profile and uploading
+        # some data.
+        usernames = (
+            'giorgio-maone', 'wot-services', 'onemen', 'gary-reyes',
+            'mozilla-labs5133025', 'gregglind',
+            # Has many ratings
+            'daveg')
+
+        for user in usernames:
+            self.client.get(self.get_url(
+                '/{language}/{app}/user/%s/' % user))
 
     @task(2)
     def test_rss_feeds(self):

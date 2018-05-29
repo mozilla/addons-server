@@ -5,7 +5,7 @@
 # $ docker run -ti -e LOCUST_OPTS="-c 1 --no-web" \
 #   -e ATTACKED_HOST="https://addons.allizom.org" \
 #   amoloadtests:latest
-#   /code//tests/performance/run-locust.sh
+#   /code/tests/performance/run-locust.sh
 #
 # If you're running this against addons.allizom.org make sure to configure
 # the correct FxA environment variables:
