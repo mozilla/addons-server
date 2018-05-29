@@ -14,7 +14,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
-from olympia.files.templatetags.jinja_helpers import extract_file
+from olympia.files.file_viewer import extract_file
 
 from . import forms
 
@@ -82,12 +82,14 @@ def check_compare_form(request, form):
 
 @csrf_exempt
 @file_view
-@condition(etag_func=etag, last_modified_func=last_modified)
+#@condition(etag_func=etag, last_modified_func=last_modified)
 @non_atomic_requests
 def browse(request, viewer, key=None, type='file'):
-    form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
-                                 initial={'left': viewer.file},
-                                 request=request)
+    form = forms.FileCompareForm(
+        request.POST or None,
+        addon=viewer.file.version.addon,
+        initial={'left': viewer.file},
+        request=request)
     response = check_compare_form(request, form)
     if response:
         return response
@@ -97,19 +99,15 @@ def browse(request, viewer, key=None, type='file'):
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
     data['form'] = form
 
-    if not viewer.is_extracted():
-        extract_file(viewer)
+    data.update({'status': True, 'files': viewer.get_files()})
+    key = viewer.get_default(key)
+    if key not in data['files']:
+        raise http.Http404
 
-    if viewer.is_extracted():
-        data.update({'status': True, 'files': viewer.get_files()})
-        key = viewer.get_default(key)
-        if key not in data['files']:
-            raise http.Http404
-
-        viewer.select(key)
-        data['key'] = key
-        if (not viewer.is_directory() and not viewer.is_binary()):
-            data['content'] = viewer.read_file()
+    viewer.select(key)
+    data['key'] = key
+    if (not viewer.is_directory() and not viewer.is_binary()):
+        data['content'] = viewer.read_file()
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)

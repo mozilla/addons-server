@@ -19,8 +19,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
-from olympia.files.templatetags.jinja_helpers import (
-    DiffHelper, FileViewer, extract_file)
+from olympia.files.file_viewer import DiffHelper, FileViewer, extract_file
 from olympia.files.utils import SafeZip, get_all_files
 
 
@@ -300,20 +299,20 @@ class TestFileViewer(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('olympia.files.templatetags.jinja_helpers.get_sha256')
+    @patch('olympia.files.file_viewer.get_sha256')
     def test_delete_mid_tree(self, get_sha256):
         get_sha256.side_effect = IOError('ow')
         self.viewer.extract()
         with self.assertRaises(IOError):
             self.viewer.get_files()
 
-    @patch('olympia.files.templatetags.jinja_helpers.os.fsync')
+    @patch('olympia.files.file_viewer.os.fsync')
     def test_verify_files_doesnt_call_fsync_regularly(self, fsync):
         self.viewer.extract()
 
         assert not fsync.called
 
-    @patch('olympia.files.templatetags.jinja_helpers.os.fsync')
+    @patch('olympia.files.file_viewer.os.fsync')
     def test_verify_files_calls_fsync_on_differences(self, fsync):
         self.viewer.extract()
 
@@ -322,7 +321,7 @@ class TestFileViewer(TestCase):
         files_to_verify = get_all_files(self.viewer.dest)
         files_to_verify.pop()
 
-        module_path = 'olympia.files.templatetags.jinja_helpers.get_all_files'
+        module_path = 'olympia.files.file_viewer.get_all_files'
         with patch(module_path) as get_all_files_mck:
             get_all_files_mck.return_value = files_to_verify
 
@@ -348,7 +347,6 @@ class TestSearchEngineHelper(TestCase):
                 f.write('some data\n')
 
     def tearDown(self):
-        self.viewer.cleanup()
         super(TestSearchEngineHelper, self).tearDown()
 
     def test_is_search_engine(self):
@@ -379,12 +377,8 @@ class TestDiffSearchEngine(TestCase):
         self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
                                  make_file(2, src, filename='search.xml'))
 
-    def tearDown(self):
-        self.helper.cleanup()
-        super(TestDiffSearchEngine, self).tearDown()
-
     @patch(
-        'olympia.files.templatetags.jinja_helpers.FileViewer.is_search_engine')
+        'olympia.files.file_viewer.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
         is_search_engine.return_value = True
         self.helper.extract()
@@ -400,10 +394,6 @@ class TestDiffHelper(TestCase):
         super(TestDiffHelper, self).setUp()
         src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
-
-    def tearDown(self):
-        self.helper.cleanup()
-        super(TestDiffHelper, self).tearDown()
 
     def test_files_not_extracted(self):
         assert not self.helper.is_extracted()

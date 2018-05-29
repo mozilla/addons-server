@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import shutil
 
 from django.core.files.storage import default_storage as storage
 
@@ -17,7 +18,6 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.tasks import compatibility_check
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.users.models import UserProfile
@@ -378,8 +378,9 @@ class TestValidateFile(BaseUploadTest):
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
         with storage.open(self.file.file_path, 'w') as dest:
-            copyfileobj(open(self.file_path('invalid-id-20101206.xpi')),
-                        dest)
+            shutil.copyfileobj(
+                open(self.file_path('invalid-id-20101206.xpi')),
+                dest)
         self.addon = self.file.version.addon
 
     def tearDown(self):
