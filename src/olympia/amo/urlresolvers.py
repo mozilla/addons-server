@@ -157,7 +157,7 @@ class Prefixer(object):
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
 
-        if not path.startswith(settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX):
+        if not re.match(settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX, path):
             if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
                 url_parts.append(self.locale or self.get_language())
 
