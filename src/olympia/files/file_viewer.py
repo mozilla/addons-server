@@ -132,8 +132,8 @@ class FileViewer(object):
 
     def __init__(self, file_obj):
         self.file = file_obj
-        #self.addon = self.file.version.addon
-        self.src = file_obj
+        self.addon = self.file.version.addon
+        self.src = file_obj.current_file_path
         self._files, self.selected, self.zip_file = None, None, None
 
     def __str__(self):

@@ -49,25 +49,8 @@ class TestFileViewer(TestCase):
         super(TestFileViewer, self).setUp()
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
-    def tearDown(self):
-        self.viewer.cleanup()
-        super(TestFileViewer, self).tearDown()
-
-    def test_files_not_extracted(self):
-        assert not self.viewer.is_extracted()
-
-    def test_files_extracted(self):
-        self.viewer.extract()
-        assert self.viewer.is_extracted()
-
-    def test_recurse_extract(self):
-        self.viewer.src = get_file('recurse.xpi')
-        self.viewer.extract()
-        assert self.viewer.is_extracted()
-
     def test_recurse_contents(self):
         self.viewer.src = get_file('recurse.xpi')
-        self.viewer.extract()
         files = self.viewer.get_files()
         file_list = [
             'recurse/recurse.xpi/chrome/test-root.txt',
@@ -79,7 +62,6 @@ class TestFileViewer(TestCase):
 
     def test_recurse_contents_of_zip(self):
         self.viewer.src = get_file('recurse.zip')
-        self.viewer.extract()
         files = self.viewer.get_files()
         file_list = [
             'recurse/recurse.xpi/chrome/test-root.txt',
