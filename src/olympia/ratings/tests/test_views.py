@@ -2414,13 +2414,14 @@ class TestRatingViewSetReply(TestCase):
             })
             assert response.status_code == 201
 
+            # Throttle is 1 per 5 seconds so after 4 seconds we have to wait
+            frozen_time.tick(delta=timedelta(seconds=4))
             # Second post, nope, have to wait a while.
             response = self.client.post(other_url, data={
                 'body': u'Another réply',
             })
             assert response.status_code == 429
 
-            # Throttle is 1 per 5 seconds so check we can go again
             frozen_time.tick(delta=timedelta(seconds=5))
             # And we're good.
             response = self.client.post(other_url, data={
