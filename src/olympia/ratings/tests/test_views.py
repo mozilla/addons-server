@@ -2400,16 +2400,31 @@ class TestRatingViewSetReply(TestCase):
     def test_throttle(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
-        self.client.login_api(self.addon_author)
+        other_rating = Rating.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=user_factory())
+        other_url = reverse(self.reply_url_name,
+                            kwargs={'pk': other_rating.pk})
 
-        # First post, no problem.
-        response = self.client.post(self.url, data={
-            'body': u'My réply...',
-        })
-        assert response.status_code == 201
+        with freeze_time('2017-11-01') as frozen_time:
+            self.client.login_api(self.addon_author)
+            # First post, no problem.
+            response = self.client.post(self.url, data={
+                'body': u'My réply...',
+            })
+            assert response.status_code == 201
 
-        # Second post, nope, have to wait a while.
-        response = self.client.post(self.url, {
-            'body': u'Another réply',
-        })
-        assert response.status_code == 429
+            # Throttle is 1 per 5 seconds so after 4 seconds we have to wait
+            frozen_time.tick(delta=timedelta(seconds=4))
+            # Second post, nope, have to wait a while.
+            response = self.client.post(other_url, data={
+                'body': u'Another réply',
+            })
+            assert response.status_code == 429
+
+            frozen_time.tick(delta=timedelta(seconds=5))
+            # And we're good.
+            response = self.client.post(other_url, data={
+                'body': u'Really réply!',
+            })
+            assert response.status_code == 201
