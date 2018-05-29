@@ -1494,7 +1494,10 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         request_call.assert_called_with(
             'post', 'subscribe',
             data={
-                'newsletters': 'about-addons', 'sync': 'Y',
+                'newsletters': 'about-addons', 'sync': 'Y', 'optin': 'Y',
+                'source_url': (
+                    'http://testserver/api/v3/accounts/account/'
+                    '{id}/notifications/').format(id=self.user.id),
                 'email': self.user.email},
             headers={'x-api-key': 'testkey'})
 
