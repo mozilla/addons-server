@@ -11,10 +11,10 @@ import mock
 from olympia import amo
 from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.files.models import File
 from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
-from olympia.stats.models import UpdateCount
+from olympia.stats.models import DownloadCount, UpdateCount
 from olympia.versions.models import Version
 
 
@@ -192,11 +192,11 @@ class TestUnhideDisabledFiles(TestCase):
             assert unhide_mock.called
 
 
-class AvgDailyUserCountTestCase(TestCase):
+class TestAvgDailyUserCountTestCase(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(AvgDailyUserCountTestCase, self).setUp()
+        super(TestAvgDailyUserCountTestCase, self).setUp()
         self.create_switch('local-statistics-processing')
 
     def test_13_day_window(self):
@@ -262,6 +262,43 @@ class AvgDailyUserCountTestCase(TestCase):
 
         addon = Addon.objects.get(pk=3615)
         assert addon.average_daily_users == 1234
+
+    def test_total_and_average_downloads(self):
+        addon = Addon.objects.get(pk=3615)
+        old_average_daily_downloads = addon.average_daily_downloads
+        old_total_downloads = addon.total_downloads
+        DownloadCount.objects.update_or_create(
+            addon=addon, date=datetime.date.today(), defaults={'count': 42})
+        DownloadCount.objects.update_or_create(
+            addon=addon,
+            date=datetime.date.today() - datetime.timedelta(days=1),
+            defaults={'count': 59})
+
+        addon_deleted = addon_factory()
+        addon_deleted.delete()
+        DownloadCount.objects.update_or_create(
+            addon=addon_deleted,
+            date=datetime.date.today(), defaults={'count': 666})
+
+        addon2 = addon_factory()
+        DownloadCount.objects.update_or_create(
+            addon=addon2,
+            date=datetime.date.today() - datetime.timedelta(days=366),
+            defaults={'count': 21})
+
+        addon_factory()  # No downloads for this add-on
+
+        cron.update_addon_download_totals()
+
+        addon.reload()
+        assert addon.average_daily_downloads != old_average_daily_downloads
+        assert addon.total_downloads != old_total_downloads
+        assert addon.average_daily_downloads == 50  # had to be cast to int.
+        assert addon.total_downloads == 101
+
+        addon2.reload()
+        assert addon2.average_daily_downloads == 21
+        assert addon2.total_downloads == 21
 
 
 class TestCleanupImageFiles(TestCase):

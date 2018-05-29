@@ -4,6 +4,7 @@ import itertools
 from django.db import connection
 from django.db.models import Max, Sum
 
+from dateutil.parser import parse as dateutil_parser
 from elasticsearch.helpers import bulk as bulk_index
 
 import olympia.core.logger
@@ -55,6 +56,11 @@ def update_collections_total(data, **kw):
 def update_global_totals(job, date, **kw):
     log.info('Updating global statistics totals (%s) for (%s)' % (job, date))
 
+    if isinstance(date, basestring):
+        # Because of celery serialization, date is not date object, it has been
+        # transformed into a string, we need the date object back.
+        date = dateutil_parser(date).date()
+
     jobs = _get_daily_jobs(date)
     jobs.update(_get_metrics_jobs(date))
 
@@ -88,14 +94,14 @@ def _get_daily_jobs(date=None):
     # Passing through a datetime would not generate an error,
     # but would pass and give incorrect values.
     if isinstance(date, datetime.datetime):
-        raise ValueError('This requires a valid date, not a datetime')
+        raise ValueError('This requires a valid date object, not a datetime')
 
     # Testing on lte created date doesn't get you todays date, you need to do
     # less than next date. That's because 2012-1-1 becomes 2012-1-1 00:00
     next_date = date + datetime.timedelta(days=1)
 
     date_str = date.strftime('%Y-%m-%d')
-    extra = dict(where=['DATE(created)=%s'], params=[date_str])
+    extra = {'where': ['DATE(created)=%s'], 'params': [date_str]}
 
     # If you're editing these, note that you are returning a function!  This
     # cheesy hackery was done so that we could pass the queries to celery
