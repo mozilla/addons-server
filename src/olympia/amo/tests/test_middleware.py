@@ -50,7 +50,11 @@ class TestMiddleware(TestCase):
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
         AuthenticationMiddlewareWithoutAPI().process_request(req)
-        assert process_request.called
+        assert process_request.call_count == 1
+
+        req = RequestFactory().get('/api/v4/accounts/authenticate/')
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert process_request.call_count == 2
 
 
 def test_redirect_with_unicode_get():
