@@ -170,6 +170,19 @@ class UserTaskSet(BaseUserTaskSet):
             name='/:lang/:app/:extensions/:category_slug/')
 
     @task(4)
+    def browse_reviews(self):
+        # TODO: Get add-ons more generalized by looking at collections
+        # pages but for now that'll suffice.
+        addons = (
+            'grammarly-spell-checker', 'clip-to-onenote',
+            'evernote-web-clipper', 'reader', 'fractal-summer-colors',
+            'abstract-splash', 'colorful-fractal', 'tab-mix-plus')
+
+        for addon in addons:
+            self.client.get(self.get_url(
+                '/{language}/{app}/addon/%s/reviews/' % addon))
+
+    @task(4)
     def browse_theme_categories(self):
         self._browse_listing_and_click_detail(
             '/{language}/{app}/complete-themes/',
