@@ -11,6 +11,9 @@
 # the correct FxA environment variables:
 #
 # -e FXA_CLIENT_ID="..." -e FXA_CLIENT_SECRET="..."
+#
+# To run this locally, use
+#   $ LOCUST_OPTS="-c 3 --no-web" ATTACKED_HOST="https://addons.allizom.org" tests/performance/run-locust.sh
 
 set -e
 LOCUST_MODE=${LOCUST_MODE:-standalone}
