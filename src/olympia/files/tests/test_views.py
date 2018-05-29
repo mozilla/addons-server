@@ -20,7 +20,7 @@ from olympia.amo.cache_nuggets import Message
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
-from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
+from olympia.files.file_viewer import DiffHelper, FileViewer
 from olympia.users.models import UserProfile
 
 

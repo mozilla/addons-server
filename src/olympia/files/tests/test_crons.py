@@ -5,7 +5,7 @@ import pytest
 from freezegun import freeze_time
 
 from olympia.files.cron import cleanup_extracted_file
-from olympia.files.templatetags.jinja_helpers import FileViewer
+from olympia.files.file_viewer import FileViewer
 from olympia.files.tests.test_helpers import get_file, make_file
 
 

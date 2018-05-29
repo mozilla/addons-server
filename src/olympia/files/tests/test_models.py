@@ -4,6 +4,7 @@ import json
 import os
 import tempfile
 import zipfile
+import shutil
 
 from datetime import datetime
 
@@ -25,7 +26,6 @@ from olympia.applications.models import AppVersion
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
     WebextPermissionDescription, nfd_str, track_file_status_change)
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import (
     Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
@@ -1074,7 +1074,7 @@ class TestFileFromUpload(UploadTest):
         fname = nfd_str(self.xpi_path(name))
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
-                copyfileobj(open(fname), fs)
+                shutil.copyfileobj(open(fname), fs)
         data = {
             'path': fname,
             'name': name,

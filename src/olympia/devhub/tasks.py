@@ -7,6 +7,7 @@ import socket
 import subprocess
 import tempfile
 import urllib2
+import shutil
 
 from copy import deepcopy
 from decimal import Decimal
@@ -43,7 +44,6 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import parse_addon, SafeZip
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
@@ -593,7 +593,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         if path and not os.path.exists(path) and storage.exists(path):
             # This file doesn't exist locally. Write it to our
             # currently-open temp file and switch to that path.
-            copyfileobj(storage.open(path), temp.file)
+            shutil.copyfileobj(storage.open(path), temp.file)
             path = temp.name
 
         with statsd.timer('devhub.validator'):
