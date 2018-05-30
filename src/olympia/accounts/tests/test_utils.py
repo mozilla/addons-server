@@ -192,7 +192,7 @@ class TestProcessFxAEvent(TestCase):
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
             'new-email@example.com', 'ABCDEF012345689',
-            self.email_changed_date)
+            totimestamp(self.email_changed_date))
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     def test_malformed_body_doesnt_throw(self, primary_email_change_event):
