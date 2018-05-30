@@ -98,9 +98,10 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
-        'client_id': 'f336377c014eacf0',
-        'client_secret':
-            '5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d',
+        'client_id': env('FXA_CLIENT_ID', default='f336377c014eacf0'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
@@ -108,9 +109,10 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
     'amo': {
-        'client_id': '0f95f6474c24c1dc',
-        'client_secret':
-            'ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
+        'client_id': env('FXA_CLIENT_ID', default='0f95f6474c24c1dc'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
@@ -118,9 +120,10 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
     'local': {
-        'client_id': '1778aef72d1adfb3',
-        'client_secret':
-            '3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18',
+        'client_id': env('FXA_CLIENT_ID', default='1778aef72d1adfb3'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
