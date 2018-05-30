@@ -1,4 +1,4 @@
-from dateutil.parser import parse as dateutil_parser
+from datetime import datetime
 
 import olympia.core.logger
 
@@ -16,15 +16,15 @@ def primary_email_change_event(email, uid, timestamp):
     """Process the primaryEmailChangedEvent."""
     try:
         profile = UserProfile.objects.get(fxa_id=uid)
-        timestamp = dateutil_parser(timestamp)
+        changed_date = datetime.fromtimestamp(timestamp)
         if (not profile.email_changed or
-                profile.email_changed < timestamp):
-            profile.update(email=email, email_changed=timestamp)
+                profile.email_changed < changed_date):
+            profile.update(email=email, email_changed=changed_date)
             log.info('Account [%s] email [%s] changed from FxA on %s' %
-                     (profile.id, email, timestamp))
+                     (profile.id, email, changed_date))
         else:
             log.warning('Account [%s] email updated ignored, %s > %s' %
-                        (profile.id, profile.email_changed, timestamp))
+                        (profile.id, profile.email_changed, changed_date))
     except ValueError as e:
         log.error(e)
     except UserProfile.MultipleObjectsReturned:

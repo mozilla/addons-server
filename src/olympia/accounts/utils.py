@@ -2,7 +2,6 @@ import json
 import os
 
 from base64 import urlsafe_b64encode
-from datetime import datetime
 from urllib import urlencode
 
 from django.conf import settings
@@ -91,7 +90,7 @@ def process_fxa_event(raw_body, **kwargs):
         event = json.loads(body['Message'])
         event_type = event.get('event')
         uid = event.get('uid')
-        timestamp = datetime.fromtimestamp(event.get('ts', ''))
+        timestamp = event.get('ts', 0)
         if not (event_type and uid and timestamp):
             raise ValueError(
                 'Properties event, uuid, and ts must all be non-empty')
