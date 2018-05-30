@@ -961,7 +961,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         'devhub/email/submission.txt',
         {'omg': 'yes'},
         recipient_list=['del@icio.us'],
-        from_email=settings.NOBODY_EMAIL,
+        from_email=settings.ADDONS_EMAIL,
         use_deny_list=False,
         perm_setting='individual_contact')
 

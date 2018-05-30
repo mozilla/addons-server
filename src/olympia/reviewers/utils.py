@@ -565,7 +565,7 @@ class ReviewBase(object):
             'reviewers/emails/%s.ltxt' % template).render(data)
         send_activity_mail(
             subject, message, version, self.addon.authors.all(),
-            settings.NOBODY_EMAIL, unique_id, perm_setting=perm_setting)
+            settings.ADDONS_EMAIL, unique_id, perm_setting=perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)

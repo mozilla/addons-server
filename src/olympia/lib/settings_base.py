@@ -85,7 +85,7 @@ PNGCRUSH_BIN = 'pngcrush'
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
-NOBODY_EMAIL = 'nobody@mozilla.org'
+ADDONS_EMAIL = 'nobody@mozilla.org'
 
 DRF_API_VERSIONS = ['v3', 'v4']
 DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
