@@ -187,7 +187,7 @@ class TestSendMail(BaseTestCase):
         text_template = 'devhub/email/submission.txt'
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
-                             from_email=settings.NOBODY_EMAIL,
+                             from_email=settings.ADDONS_EMAIL,
                              use_deny_list=False,
                              perm_setting='individual_contact')
 
@@ -196,7 +196,7 @@ class TestSendMail(BaseTestCase):
 
         assert msg.to == emails
         assert msg.subject == subject
-        assert msg.from_email == settings.NOBODY_EMAIL
+        assert msg.from_email == settings.ADDONS_EMAIL
 
         assert message.is_multipart()
         assert message.get_content_type() == 'multipart/alternative'

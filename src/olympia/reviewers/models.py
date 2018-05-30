@@ -356,7 +356,7 @@ class ReviewerSubscription(ModelBase):
         template = loader.get_template('reviewers/emails/notify_update.ltxt')
         send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
-                  from_email=settings.NOBODY_EMAIL,
+                  from_email=settings.ADDONS_EMAIL,
                   use_deny_list=False)
 
 

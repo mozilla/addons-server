@@ -386,5 +386,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient['EmailAddress']],
-        from_email=settings.NOBODY_EMAIL,
+        from_email=settings.ADDONS_EMAIL,
         use_deny_list=False)

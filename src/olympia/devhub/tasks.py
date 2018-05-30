@@ -883,7 +883,7 @@ def send_welcome_email(addon_pk, emails, context, **kw):
     text_template = 'devhub/email/submission.txt'
     return send_html_mail_jinja(subject, html_template, text_template,
                                 context, recipient_list=emails,
-                                from_email=settings.NOBODY_EMAIL,
+                                from_email=settings.ADDONS_EMAIL,
                                 use_deny_list=False,
                                 perm_setting='individual_contact')
 
@@ -898,7 +898,7 @@ def send_api_key_revocation_email(emails):
         'api_keys_url': reverse('devhub.api_key')
     }
     send_mail(subject, template.render(context),
-              from_email=settings.NOBODY_EMAIL,
+              from_email=settings.ADDONS_EMAIL,
               recipient_list=emails,
               use_deny_list=False,
               perm_setting='individual_contact')
