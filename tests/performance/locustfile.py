@@ -19,7 +19,7 @@ import lxml.html  # noqa
 from lxml.html import submit_form  # noqa
 from fxa import oauth as fxa_oauth  # noqa
 
-import helpers  # noqa
+from . import helpers  # noqa
 
 logging.Formatter.converter = time.gmtime
 

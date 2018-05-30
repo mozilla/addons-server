@@ -146,7 +146,7 @@ class TestEdit(UserViewBase):
         self.data.update(biography='<a href="https://google.com">google</a>')
         response = self.client.post(self.url, self.data, follow=True)
         assert response.status_code == 200
-        print response.context
+        print(response.context)
         self.assertFormError(response, 'form', 'biography',
                              u'No links are allowed.')
 

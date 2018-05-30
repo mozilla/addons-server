@@ -581,7 +581,7 @@ def pngcrush_image(src, **kw):
         log.info('Image optimization completed for: %s' % src)
         return True
 
-    except Exception, e:
+    except Exception as e:
         log.error('Error optimizing image: %s; %s' % (src, e))
     return False
 

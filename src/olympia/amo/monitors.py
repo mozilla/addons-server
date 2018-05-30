@@ -40,7 +40,7 @@ def memcache():
             try:
                 s = socket.socket()
                 s.connect((ip, int(port)))
-            except Exception, e:
+            except Exception as e:
                 result = False
                 status = 'Failed to connect to memcached (%s): %s' % (host, e)
                 monitor_log.critical(status)
@@ -69,7 +69,7 @@ def libraries():
     try:
         Image.new('RGB', (16, 16)).save(StringIO.StringIO(), 'JPEG')
         libraries_results.append(('PIL+JPEG', True, 'Got it!'))
-    except Exception, e:
+    except Exception as e:
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
@@ -143,7 +143,7 @@ def rabbitmq():
         try:
             broker.connect()
             rabbitmq_results.append((hostname, True))
-        except Exception, e:
+        except Exception as e:
             rabbitmq_results.append((hostname, False))
             status = 'Failed to chat with rabbitmq %s: %s' % (hostname, e)
             monitor_log.critical(status)
@@ -175,7 +175,7 @@ def redis():
                     host=host, port=port, db=db, password=password,
                     socket_timeout=socket_timeout)
                 redis_results[alias] = redis_connection.info()
-            except Exception, e:
+            except Exception as e:
                 redis_results[alias] = None
                 status.append('Failed to chat with redis:%s' % alias)
                 monitor_log.critical('Failed to chat with redis: (%s)' % e)

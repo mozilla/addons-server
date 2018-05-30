@@ -128,7 +128,7 @@ def delete_persona_image(dst, **kw):
         return
     try:
         storage.delete(dst)
-    except Exception, e:
+    except Exception as e:
         log.error('Error deleting persona image: %s' % e)
 
 

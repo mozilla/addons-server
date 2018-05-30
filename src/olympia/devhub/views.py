@@ -719,7 +719,7 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         try:
             pkg = parse_addon(upload, addon=addon, user=request.user)
-        except django_forms.ValidationError, exc:
+        except django_forms.ValidationError as exc:
             errors_before = result['validation'].get('errors', 0)
             # This doesn't guard against client-side tinkering, and is purely
             # to display those non-linter errors nicely in the frontend. What

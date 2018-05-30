@@ -45,7 +45,7 @@ def set_modified_on_object(app_label, model_name, pk, **kw):
     try:
         log.info('Setting modified on object: %s, %s' % (model_name, pk))
         obj.update(modified=datetime.datetime.now(), **kw)
-    except Exception, e:
+    except Exception as e:
         log.error('Failed to set modified on: %s, %s - %s' %
                   (model_name, pk, e))
 

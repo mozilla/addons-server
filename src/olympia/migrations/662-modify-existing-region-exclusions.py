@@ -20,17 +20,17 @@ def run():
     for aer in AddonExcludedRegion.objects.filter(region=18):
         try:
             aer.update(region=mkt.regions.MX.id)
-            print 'OK: %s New Mexico -> Old Mexico' % aer.id
+            print('OK: %s New Mexico -> Old Mexico' % aer.id)
         except (IntegrityError, ObjectDoesNotExist):
-            print 'SKIP: %s New Mexico -> Old Mexico' % aer.id
+            print('SKIP: %s New Mexico -> Old Mexico' % aer.id)
 
     # And the featured apps, if there were any.
     for far in FeaturedAppRegion.objects.filter(region=18):
         try:
             far.update(region=mkt.regions.MX.id)
-            print 'OK: %s New Mexico -> Old Mexico' % far.id
+            print('OK: %s New Mexico -> Old Mexico' % far.id)
         except (IntegrityError, ObjectDoesNotExist):
-            print 'SKIP: %s New Mexico -> Old Mexico' % far.id
+            print('SKIP: %s New Mexico -> Old Mexico' % far.id)
 
     # New regions were added.
     exclude_new_region([

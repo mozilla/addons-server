@@ -73,7 +73,7 @@ def update_global_totals(job, date, **kw):
     try:
         cursor = connection.cursor()
         cursor.execute(q, p)
-    except Exception, e:
+    except Exception as e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
     else:
         log.debug('Committed global stats details: (%s) has (%s) for (%s)'
@@ -204,7 +204,7 @@ def index_update_counts(ids, index=None, **kw):
             data.append(search.extract_update_count(update))
         bulk_index(es, data, index=index,
                    doc_type=UpdateCount.get_mapping_type(), refresh=True)
-    except Exception, exc:
+    except Exception as exc:
         index_update_counts.retry(args=[ids, index], exc=exc, **kw)
         raise
 
@@ -224,7 +224,7 @@ def index_download_counts(ids, index=None, **kw):
             data.append(search.extract_download_count(dl))
         bulk_index(es, data, index=index,
                    doc_type=DownloadCount.get_mapping_type(), refresh=True)
-    except Exception, exc:
+    except Exception as exc:
         index_download_counts.retry(args=[ids, index], exc=exc)
         raise
 
@@ -253,7 +253,7 @@ def index_collection_counts(ids, index=None, **kw):
         bulk_index(es, data, index=index,
                    doc_type=CollectionCount.get_mapping_type(),
                    refresh=True)
-    except Exception, exc:
+    except Exception as exc:
         index_collection_counts.retry(args=[ids], exc=exc)
         raise
 
@@ -275,6 +275,6 @@ def index_theme_user_counts(ids, index=None, **kw):
             data.append(search.extract_theme_user_count(user_count))
         bulk_index(es, data, index=index,
                    doc_type=ThemeUserCount.get_mapping_type(), refresh=True)
-    except Exception, exc:
+    except Exception as exc:
         index_theme_user_counts.retry(args=[ids], exc=exc, **kw)
         raise

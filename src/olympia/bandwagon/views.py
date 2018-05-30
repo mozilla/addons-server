@@ -479,7 +479,7 @@ def edit(request, collection, username, slug):
           .filter(collection=collection))
     meta = {c.addon_id: c for c in qs}
     addons = collection.addons.all()
-    comments = get_notes(collection, raw=True).next()
+    comments = next(get_notes(collection, raw=True))
 
     if is_admin:
         initial = {
