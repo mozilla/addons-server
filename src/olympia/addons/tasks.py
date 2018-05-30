@@ -536,6 +536,7 @@ def add_static_theme_from_lwt(lwt):
     parsed_data = parse_addon(upload, user=author)
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
+    addon_updates = {}
     # Version.from_upload sorts out platforms for us.
     version = Version.from_upload(
         upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
@@ -562,6 +563,19 @@ def add_static_theme_from_lwt(lwt):
     for addon_tag in AddonTag.objects.filter(addon=lwt):
         AddonTag.objects.create(addon=addon, tag=addon_tag.tag)
 
+    # Steal the ratings (even with soft delete they'll be deleted anyway)
+    addon_updates.update(
+        average_rating=lwt.average_rating,
+        bayesian_rating=lwt.bayesian_rating,
+        total_ratings=lwt.total_ratings,
+        text_ratings_count=lwt.text_ratings_count)
+    for rating in lwt.ratings.all():
+        rating.update(addon=addon, version=version)
+        # Recreate the activity log entry so it's there in devhub.
+        activity.log_create(
+            amo.LOG.ADD_RATING, addon, rating, user=rating.user,
+            created=rating.created)
+
     # Logging
     activity.log_create(
         amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
@@ -574,8 +588,9 @@ def add_static_theme_from_lwt(lwt):
             datestatuschanged=datetime.now(),
             reviewed=datetime.now(),
             status=amo.STATUS_PUBLIC)
-    addon.update(status=amo.STATUS_PUBLIC)
+    addon_updates['status'] = amo.STATUS_PUBLIC
 
+    addon.update(**addon_updates)
     return addon
 
 
