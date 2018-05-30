@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-25 11:44+0000\n"
-"PO-Revision-Date: 2018-05-28 11:34+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"PO-Revision-Date: 2018-05-30 16:57+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2036,9 +2036,8 @@ msgstr "Richiesta revisione tema da parte di un amministratore per {addon} {vers
 msgid "Admin theme-review requested"
 msgstr "Richiesta revisione tema da parte di un amministratore"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} è migrato dalla revisione preliminare."
+msgstr "{addon} ha effettuato la migrazione da tema leggero."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4019,12 +4018,14 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
 
 msgid "Help us improve the developer experience"
-msgstr ""
+msgstr "Aiutaci a migliorare l’esperienza di sviluppo"
 
 msgid ""
 "We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
 "development work."
 msgstr ""
+"Ci interessa la tua opinione riguardo l’esperienza di sviluppo di estensioni! Partecipa al nostro breve sondaggio per farci sapere che tipo di documentazione, API e strumenti sarebbero più utili al "
+"tuo lavoro di sviluppatore."
 
 msgid "Take Survey"
 msgstr "Partecipa al sondaggio"
