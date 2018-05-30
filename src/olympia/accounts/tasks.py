@@ -1,3 +1,5 @@
+from dateutil.parser import parse as dateutil_parser
+
 import olympia.core.logger
 
 from olympia.amo.celery import task
@@ -14,6 +16,7 @@ def primary_email_change_event(email, uid, timestamp):
     """Process the primaryEmailChangedEvent."""
     try:
         profile = UserProfile.objects.get(fxa_id=uid)
+        timestamp = dateutil_parser(timestamp)
         if (not profile.email_changed or
                 profile.email_changed < timestamp):
             profile.update(email=email, email_changed=timestamp)
