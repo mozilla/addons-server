@@ -44,7 +44,7 @@ class ReindexingManager(models.Manager):
         try:
             reindex = self.get(alias=index)
             # Yes. Let's reindex on both indexes.
-            return [idx for idx in reindex.new_index, reindex.old_index
+            return [idx for idx in (reindex.new_index, reindex.old_index)
                     if idx is not None]
         except Reindexing.DoesNotExist:
             return [index]

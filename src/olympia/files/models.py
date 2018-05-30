@@ -221,7 +221,7 @@ class File(OnChangeMixin, ModelBase):
             if name in zip_.namelist():
                 try:
                     opts = json.load(zip_.open(name))
-                except ValueError, exc:
+                except ValueError as exc:
                     log.info('Could not parse harness-options.json in %r: %s' %
                              (path, exc))
                 else:
@@ -356,7 +356,7 @@ class File(OnChangeMixin, ModelBase):
 
         try:
             manifest = zip.read('chrome.manifest')
-        except KeyError, e:
+        except KeyError as e:
             log.info('No file named: chrome.manifest in file: %s' % self.pk)
             return ''
 
@@ -370,10 +370,10 @@ class File(OnChangeMixin, ModelBase):
             if 'localepicker.properties' not in p:
                 p = os.path.join(p, 'localepicker.properties')
             res = zip.extract_from_manifest(p)
-        except (zipfile.BadZipfile, IOError), e:
+        except (zipfile.BadZipfile, IOError) as e:
             log.error('Error unzipping: %s, %s in file: %s' % (p, e, self.pk))
             return ''
-        except (ValueError, KeyError), e:
+        except (ValueError, KeyError) as e:
             log.error('No file named: %s in file: %s' % (e, self.pk))
             return ''
 

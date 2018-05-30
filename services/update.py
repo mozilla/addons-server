@@ -19,7 +19,7 @@ except ImportError:
 from olympia.constants import applications, base
 import olympia.core.logger
 
-from utils import get_cdn_url, log_configure, PLATFORM_NAMES_TO_CONSTANTS
+from .utils import get_cdn_url, log_configure, PLATFORM_NAMES_TO_CONSTANTS
 
 
 # Go configure the log.

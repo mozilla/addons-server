@@ -245,7 +245,7 @@ class _TransField(object):
                 if self.default_locale.lower() == locale:
                     super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
-            except forms.ValidationError, e:
+            except forms.ValidationError as e:
                 errors.extend(e.messages, locale)
 
         if errors:

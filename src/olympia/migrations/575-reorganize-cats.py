@@ -21,18 +21,18 @@ def run():
     try:
         entertainment = all_cats.filter(slug='entertainment-sports')[0]
     except IndexError:
-        print 'Could not find Category with slug="entertainment-sports"'
+        print('Could not find Category with slug="entertainment-sports"')
     else:
         # (a) Change name of the category to "Entertainment."
         entertainment.name = 'Entertainment'
         entertainment.slug = 'entertainment'
         entertainment.save()
-        print 'Renamed "Entertainment & Sports" to "Entertainment"'
+        print('Renamed "Entertainment & Sports" to "Entertainment"')
 
     # (b) Create a new category called "Sports."
     Category.objects.create(type=amo.ADDON_WEBAPP, slug='sports',
                             name='Sports')
-    print 'Created "Sports"'
+    print('Created "Sports"')
 
     # --
 
@@ -40,11 +40,11 @@ def run():
     try:
         music = all_cats.filter(slug='music')[0]
     except IndexError:
-        print 'Could not find Category with slug="music"'
+        print('Could not find Category with slug="music"')
     else:
         music.name = 'Music'
         music.save()
-        print 'Renamed "Music & Audio" to "Music"'
+        print('Renamed "Music & Audio" to "Music"')
 
     # --
 
@@ -52,11 +52,11 @@ def run():
     try:
         social = all_cats.filter(slug='social')[0]
     except IndexError:
-        print 'Could not find Category with slug="social"'
+        print('Could not find Category with slug="social"')
     else:
         social.name = 'Social'
         social.save()
-        print 'Renamed "Social & Communication" to "Social"'
+        print('Renamed "Social & Communication" to "Social"')
 
     # --
 
@@ -64,18 +64,18 @@ def run():
     try:
         books = all_cats.filter(slug='books-reference')[0]
     except IndexError:
-        print 'Could not find Category with slug="books-reference"'
+        print('Could not find Category with slug="books-reference"')
     else:
         # (a) Change name of the category to "Books.""
         books.name = 'Books'
         books.slug = 'books'
         books.save()
-        print 'Renamed "Books & Reference" to "Books"'
+        print('Renamed "Books & Reference" to "Books"')
 
     # (b) Create a new category called "Reference."
     Category.objects.create(type=amo.ADDON_WEBAPP, slug='reference',
                             name='Reference')
-    print 'Created "Reference"'
+    print('Created "Reference"')
 
     # --
 
@@ -83,16 +83,16 @@ def run():
     try:
         photos = all_cats.filter(slug='photos-media')[0]
     except IndexError:
-        print 'Could not find Category with slug="photos-media"'
+        print('Could not find Category with slug="photos-media"')
     else:
         photos.name = 'Photo & Video'
         photos.slug = 'photo-video'
         photos.save()
-        print 'Renamed "Photos & Media" to "Photo & Video"'
+        print('Renamed "Photos & Media" to "Photo & Video"')
 
     # --
 
     # (6) Add "Maps & Navigation."
     Category.objects.create(type=amo.ADDON_WEBAPP, slug='maps-navigation',
                             name='Maps & Navigation')
-    print 'Created "Maps & Navigation"'
+    print('Created "Maps & Navigation"')

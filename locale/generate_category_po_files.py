@@ -55,7 +55,7 @@ def main():
                'eg. ./locale/generate_category_po_files.py')
         return
 
-    print 'Loading translations JSON dump...'
+    print('Loading translations JSON dump...')
     all_translations = json.load(open('./locale/category_translations.json'))
 
     for locale in os.listdir('./locale/'):
@@ -66,18 +66,18 @@ def main():
 
         fname = os.path.join(directory, 'LC_MESSAGES', 'django.po')
         if not os.path.exists(fname):
-            print "Skipping %s since it doesn't contain a django.po file"
+            print("Skipping %s since it doesn't contain a django.po file")
             continue
 
         translations_for_this_locale = extract_translations_for_given_locale(
             all_translations, locale)
 
         if not translations_for_this_locale:
-            print 'Skipping locale %s, it has no translations :(' % locale
+            print('Skipping locale %s, it has no translations :(' % locale)
             continue
 
-        print "Writing %d translations to %s" % (
-            len(translations_for_this_locale), fname)
+        print("Writing %d translations to %s" % (
+            len(translations_for_this_locale), fname))
         write_po(fname, translations_for_this_locale)
 
 

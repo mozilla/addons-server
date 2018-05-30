@@ -13,6 +13,7 @@ from locust import HttpLocust  # noqa
 import tasks.user  # noqa
 import helpers  # noqa
 
+
 logging.Formatter.converter = time.gmtime
 
 log = logging.getLogger(__name__)

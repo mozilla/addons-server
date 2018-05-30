@@ -7,6 +7,7 @@ import socket
 import subprocess
 import tempfile
 import urllib2
+import shutil
 
 from copy import deepcopy
 from decimal import Decimal
@@ -43,7 +44,6 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import parse_addon, SafeZip
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
@@ -152,7 +152,7 @@ def validation_task(fn):
             data = fn(id_, hash_, *args, **kw)
             result = json.loads(data)
             return result
-        except Exception, e:
+        except Exception as e:
             log.exception('Unhandled error during validation: %r' % e)
 
             is_webextension = kw.get('is_webextension', False)
@@ -593,7 +593,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         if path and not os.path.exists(path) and storage.exists(path):
             # This file doesn't exist locally. Write it to our
             # currently-open temp file and switch to that path.
-            copyfileobj(storage.open(path), temp.file)
+            shutil.copyfileobj(storage.open(path), temp.file)
             path = temp.name
 
         with statsd.timer('devhub.validator'):
@@ -777,7 +777,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         return {
             'icon_hash': icon_hash
         }
-    except Exception, e:
+    except Exception as e:
         log.error("Error saving addon icon (%s): %s" % (dest_file, e))
 
 
@@ -801,7 +801,7 @@ def resize_preview(src, preview_pk, **kw):
         preview.sizes = sizes
         preview.save()
         return True
-    except Exception, e:
+    except Exception as e:
         log.error("Error saving preview: %s" % e)
 
 
@@ -823,7 +823,7 @@ def get_preview_sizes(ids, **kw):
                     'image': image_size(preview.image_path),
                 }
                 preview.update(sizes=sizes)
-            except Exception, err:
+            except Exception as err:
                 log.error('Failed to find size of preview: %s, error: %s'
                           % (addon.pk, err))
 
@@ -840,10 +840,10 @@ def failed_validation(*messages):
 def _fetch_content(url):
     try:
         return urllib2.urlopen(url, timeout=15)
-    except urllib2.HTTPError, e:
+    except urllib2.HTTPError as e:
         raise Exception(
             ugettext('%s responded with %s (%s).') % (url, e.code, e.msg))
-    except urllib2.URLError, e:
+    except urllib2.URLError as e:
         # Unpack the URLError to try and find a useful message.
         if isinstance(e.reason, socket.timeout):
             raise Exception(ugettext('Connection to "%s" timed out.') % url)
