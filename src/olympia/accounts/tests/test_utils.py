@@ -162,10 +162,12 @@ def totimestamp(datetime_obj):
 
 
 class TestProcessFxAEvent(TestCase):
-    body = json.dumps({'Message': json.dumps(
-        {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
-         'uid': 'ABCDEF012345689',
-         'ts': totimestamp(datetime(2017, 10, 11))})})
+    def setUp(self):
+        self.email_changed_date = self.days_ago(42)
+        self.body = json.dumps({'Message': json.dumps(
+            {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
+             'uid': 'ABCDEF012345689',
+             'ts': totimestamp(self.email_changed_date)})})
 
     def test_success_integration(self):
         user = user_factory(email='old-email@example.com',
@@ -173,14 +175,24 @@ class TestProcessFxAEvent(TestCase):
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
-        assert user.email_changed == datetime(2017, 10, 11, 0, 0)
+        assert user.email_changed == self.email_changed_date
+
+    def test_success_integration_previously_changed_once(self):
+        user = user_factory(email='old-email@example.com',
+                            fxa_id='ABCDEF012345689',
+                            email_changed=datetime(2017, 10, 11))
+        process_fxa_event(self.body)
+        user.reload()
+        assert user.email == 'new-email@example.com'
+        assert user.email_changed == self.email_changed_date
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     def test_success(self, primary_email_change_event):
         process_fxa_event(self.body)
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
-            'new-email@example.com', 'ABCDEF012345689', datetime(2017, 10, 11))
+            'new-email@example.com', 'ABCDEF012345689',
+            self.email_changed_date)
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     def test_malformed_body_doesnt_throw(self, primary_email_change_event):
