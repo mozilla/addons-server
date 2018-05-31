@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4471,6 +4471,30 @@ msgstr ""
 "Më shumë se sa një thjesht një mjet foto, Awesome Screenshot Plus ju lejon të bëni shënime mbi figura, me tekst dhe elementë grafikë tuajt, plus aftësinë për të depozituar dhe ndarë me të tjerët "
 "gjëra tuajat pamore."
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "Parësi i kartelave është i bllokuar, përftimi i %s mund të jetë në kryerje e sipër. Ju lutemi, riprovoni pas afërsisht 5 minutash."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Pati një gabim në përdorimin e kartelës %s."
+
+msgid "That file no longer exists."
+msgstr "Kjo kartelë s’ekziston më."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Madhësia e kartelës është tej kufirit prej {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Probleme me shkodimin e {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Kjo kartelë s’mund të shihet në linjë. Ju lutemi,shkarkojeni kartelën që t’i shihni lëndën."
+
+msgid "This file is a directory."
+msgstr "Kjo kartelë është drejtori."
+
 msgid "Cannot diff a version against itself"
 msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
 
@@ -4631,30 +4655,6 @@ msgstr "Pa kartela te kartela e ngarkuar."
 
 msgid "Fetching file."
 msgstr "Po sillet kartelë."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Parësi i kartelave është i bllokuar, përftimi i %s mund të jetë në kryerje e sipër. Ju lutemi, riprovoni pas afërsisht 5 minutash."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Pati një gabim në përdorimin e kartelës %s."
-
-msgid "That file no longer exists."
-msgstr "Kjo kartelë s’ekziston më."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Madhësia e kartelës është tej kufirit prej {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Probleme me shkodimin e {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Kjo kartelë s’mund të shihet në linjë. Ju lutemi,shkarkojeni kartelën që t’i shihni lëndën."
-
-msgid "This file is a directory."
-msgstr "Kjo kartelë është drejtori."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "Versioni API që po përdorni, {0:.1f}, s’është i vlefshëm. Ju lutemi, përmirësojeni me versionin e tanishëm API {1:.1f}."
@@ -7460,6 +7460,16 @@ msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo s
 msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
+msgid "Profile Photo"
+msgstr "Foto Profili"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Veprimtari"
+
 msgid "Email must be {email}."
 msgstr "Email-i duhet dtë jetë {email}."
 
@@ -7474,9 +7484,6 @@ msgstr "Punësim"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Përdoruesit e Llogarive Firefox, hëpërhë, s’mund të ndryshojnë adresën e tyre email."
-
-msgid "Profile Photo"
-msgstr "Foto Profili"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://example.com/my_page."

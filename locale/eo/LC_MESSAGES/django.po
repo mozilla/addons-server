@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4349,6 +4349,30 @@ msgstr ""
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
+msgstr ""
+
 msgid "Cannot diff a version against itself"
 msgstr ""
 
@@ -4508,30 +4532,6 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -7165,6 +7165,15 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+msgid "Profile Photo"
+msgstr ""
+
+msgid "Addons"
+msgstr ""
+
+msgid "Activity Logs"
+msgstr ""
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -7178,9 +7187,6 @@ msgid "Occupation"
 msgstr ""
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-msgid "Profile Photo"
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."

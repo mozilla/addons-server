@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.3\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: src/olympia/accounts/serializers.py:90 src/olympia/bandwagon/forms.py:179
 #: src/olympia/bandwagon/serializers.py:60 src/olympia/users/forms.py:221
@@ -1387,6 +1387,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:12
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2
+#: src/olympia/users/admin.py:88
 msgid "Collections"
 msgstr ""
 
@@ -5390,7 +5391,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:83
-#: src/olympia/files/templates/files/file.html:2
+#: src/olympia/files/templates/files/file.html:3
 msgid "Download {0}"
 msgstr ""
 
@@ -6706,6 +6707,41 @@ msgid ""
 "share your visuals."
 msgstr ""
 
+#: src/olympia/files/file_viewer.py:65
+#, python-format
+msgid ""
+"File viewer is locked, extraction for %s could be in progress. Please try "
+"again in approximately 5 minutes."
+msgstr ""
+
+#: src/olympia/files/file_viewer.py:71
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+#: src/olympia/files/file_viewer.py:195
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+#: src/olympia/files/file_viewer.py:204
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+#: src/olympia/files/file_viewer.py:218
+msgid "Problems decoding {0}."
+msgstr ""
+
+#: src/olympia/files/file_viewer.py:228
+msgid ""
+"This file is not viewable online. Please download the file to view the "
+"contents."
+msgstr ""
+
+#: src/olympia/files/file_viewer.py:236
+msgid "This file is a directory."
+msgstr ""
+
 #: src/olympia/files/forms.py:114
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -6830,7 +6866,7 @@ msgstr ""
 msgid "Back to add-on"
 msgstr ""
 
-#: src/olympia/files/templates/files/file.html:4
+#: src/olympia/files/templates/files/file.html:6
 #, python-format
 msgid ""
 "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s "
@@ -6940,41 +6976,6 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html:141
 msgid "Fetching file."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:97
-#, python-format
-msgid ""
-"File viewer is locked, extraction for %s could be in progress. Please try "
-"again in approximately 5 minutes."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:103
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:230
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-#: src/olympia/files/templatetags/jinja_helpers.py:239
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:253
-msgid "Problems decoding {0}."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:263
-msgid ""
-"This file is not viewable online. Please download the file to view the "
-"contents."
-msgstr ""
-
-#: src/olympia/files/templatetags/jinja_helpers.py:271
-msgid "This file is a directory."
 msgstr ""
 
 #: src/olympia/legacy_api/views.py:38
@@ -10303,6 +10304,7 @@ msgid "Subscribers"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html:12
+#: src/olympia/users/admin.py:97
 msgid "Ratings"
 msgstr ""
 
@@ -10823,6 +10825,19 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+#: src/olympia/users/admin.py:58 src/olympia/users/forms.py:77
+#: src/olympia/users/templates/users/edit.html:91
+msgid "Profile Photo"
+msgstr ""
+
+#: src/olympia/users/admin.py:93
+msgid "Addons"
+msgstr ""
+
+#: src/olympia/users/admin.py:101
+msgid "Activity Logs"
+msgstr ""
+
 #: src/olympia/users/forms.py:50
 msgid "Email must be {email}."
 msgstr ""
@@ -10845,21 +10860,17 @@ msgstr ""
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
 
-#: src/olympia/users/forms.py:77 src/olympia/users/templates/users/edit.html:91
-msgid "Profile Photo"
-msgstr ""
-
 #: src/olympia/users/forms.py:97
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
 
-#: src/olympia/users/forms.py:292
+#: src/olympia/users/forms.py:293
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
 
-#: src/olympia/users/forms.py:324
+#: src/olympia/users/forms.py:325
 msgid "Please enter at least one name to be denied."
 msgstr ""
 

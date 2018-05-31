@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4631,6 +4631,30 @@ msgstr ""
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Дошло је до грешке приликом приступања датотеци %s."
+
+msgid "That file no longer exists."
+msgstr "Та датотека више не постоји."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Величина датотеке прелази лимит од {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Проблеми дешифровања {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Ова датотека није видљива на интернету. Молимо Вас преузмите датотеку како би погледали њен садржај."
+
+msgid "This file is a directory."
+msgstr "Ова датотека је директоријум."
+
 msgid "Cannot diff a version against itself"
 msgstr ""
 
@@ -4794,30 +4818,6 @@ msgstr "Нема датотека из отпремљене датотеке."
 
 msgid "Fetching file."
 msgstr "Преузимање датотеке."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Дошло је до грешке приликом приступања датотеци %s."
-
-msgid "That file no longer exists."
-msgstr "Та датотека више не постоји."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Величина датотеке прелази лимит од {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Проблеми дешифровања {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Ова датотека није видљива на интернету. Молимо Вас преузмите датотеку како би погледали њен садржај."
-
-msgid "This file is a directory."
-msgstr "Ова датотека је директоријум."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -7596,6 +7596,16 @@ msgstr "Да ли сте сигурни да желите да уклоните 
 msgid "Delete Locale"
 msgstr "Избриши локал"
 
+msgid "Profile Photo"
+msgstr "Профилна слика"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Активност"
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -7610,9 +7620,6 @@ msgstr "Занимање"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-msgid "Profile Photo"
-msgstr "Профилна слика"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Овај URL је неисправног формата. Валидне URL адресе изгледају овако http://пример.com/моја_страна."

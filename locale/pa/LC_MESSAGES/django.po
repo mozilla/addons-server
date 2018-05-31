@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4609,6 +4609,30 @@ msgstr ""
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
+
+msgid "That file no longer exists."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
+
+msgid "Problems decoding {0}."
+msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
+
+msgid "This file is a directory."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
+
 msgid "Cannot diff a version against itself"
 msgstr "ਵਰਜਨ ਦਾ ਖੁਦ ਤੋਂ ਫ਼ਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ"
 
@@ -4772,30 +4796,6 @@ msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼�
 
 msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
-
-msgid "That file no longer exists."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
-
-msgid "Problems decoding {0}."
-msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "This file is a directory."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -7616,6 +7616,16 @@ msgstr "ਕੀ ਤੁਸੀਂ ਸਾਰੀਆਂ <b>{0}</b> ਟਰਾਂਸਲ�
 msgid "Delete Locale"
 msgstr "ਲੋਕੇਲ ਹਟਾਓ"
 
+msgid "Profile Photo"
+msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "ਸਰਗਰਮੀ"
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -7630,9 +7640,6 @@ msgstr "ਕਿੱਤਾ"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-msgid "Profile Photo"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "ਇਸ URL ਦਾ ਫ਼ਾਰਮੈਟ ਗਲਤ ਹੈ। ਸਹੀ URLs http://example.com/my_page ਦੀ ਤਰ੍ਹਾਂ ਵਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ।"
