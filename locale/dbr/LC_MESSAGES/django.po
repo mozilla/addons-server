@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Generated-By: Babel 2.5.3\n"
+"Generated-By: Babel 2.6.0\n"
 
 msgid "No links are allowed."
 msgstr ".pǝʍoʅʅɐ ǝɹɐ sʞuıʅ oN"
@@ -4417,6 +4417,30 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹ
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ".sʅɐnsıʌ ɹnoʎ ǝɹɐɥs puɐ ǝɹoʇs oʇ ʎʇıʅıqɐ ǝɥʇ snʅd ´sɔıɥdɐɹƃ puɐ ʇxǝʇ ɯoʇsnɔ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´ʅooʇ ʇoɥsuǝǝɹɔs ɔısɐq ɐ ʇsnɾ uɐɥʇ ǝɹoW"
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ".sǝʇnuıɯ 5 ʎʅǝʇɐɯıxoɹddɐ uı uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .ssǝɹƃoɹd uı ǝq pʅnoɔ %s ɹoɟ uoıʇɔɐɹʇxǝ ´pǝʞɔoʅ sı ɹǝʍǝıʌ ǝʅıℲ"
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ".%s ǝʅıɟ ƃuıssǝɔɔɐ ɹoɹɹǝ uɐ sɐʍ ǝɹǝɥ⊥"
+
+msgid "That file no longer exists."
+msgstr ".sʇsıxǝ ɹǝƃuoʅ ou ǝʅıɟ ʇɐɥ⊥"
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ".{0} ɟo ʇıɯıʅ ǝɥʇ ɹǝʌo sı ǝzıs ǝʅıℲ"
+
+msgid "Problems decoding {0}."
+msgstr ".{0} ƃuıpoɔǝp sɯǝʅqoɹԀ"
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ".sʇuǝʇuoɔ ǝɥʇ ʍǝıʌ oʇ ǝʅıɟ ǝɥʇ pɐoʅuʍop ǝsɐǝʅԀ .ǝuıʅuo ǝʅqɐʍǝıʌ ʇou sı ǝʅıɟ sıɥ⊥"
+
+msgid "This file is a directory."
+msgstr ".ʎɹoʇɔǝɹıp ɐ sı ǝʅıɟ sıɥ⊥"
+
 msgid "Cannot diff a version against itself"
 msgstr "ɟʅǝsʇı ʇsuıɐƃɐ uoısɹǝʌ ɐ ɟɟıp ʇouuɐↃ"
 
@@ -4577,30 +4601,6 @@ msgstr ".ǝʅıɟ pǝpɐoʅdn ǝɥʇ uı sǝʅıɟ oN"
 
 msgid "Fetching file."
 msgstr ".ǝʅıɟ ƃuıɥɔʇǝℲ"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ".sǝʇnuıɯ 5 ʎʅǝʇɐɯıxoɹddɐ uı uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .ssǝɹƃoɹd uı ǝq pʅnoɔ %s ɹoɟ uoıʇɔɐɹʇxǝ ´pǝʞɔoʅ sı ɹǝʍǝıʌ ǝʅıℲ"
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ".%s ǝʅıɟ ƃuıssǝɔɔɐ ɹoɹɹǝ uɐ sɐʍ ǝɹǝɥ⊥"
-
-msgid "That file no longer exists."
-msgstr ".sʇsıxǝ ɹǝƃuoʅ ou ǝʅıɟ ʇɐɥ⊥"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ".{0} ɟo ʇıɯıʅ ǝɥʇ ɹǝʌo sı ǝzıs ǝʅıℲ"
-
-msgid "Problems decoding {0}."
-msgstr ".{0} ƃuıpoɔǝp sɯǝʅqoɹԀ"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ".sʇuǝʇuoɔ ǝɥʇ ʍǝıʌ oʇ ǝʅıɟ ǝɥʇ pɐoʅuʍop ǝsɐǝʅԀ .ǝuıʅuo ǝʅqɐʍǝıʌ ʇou sı ǝʅıɟ sıɥ⊥"
-
-msgid "This file is a directory."
-msgstr ".ʎɹoʇɔǝɹıp ɐ sı ǝʅıɟ sıɥ⊥"
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ".IԀ∀ {1:.1f} uoısɹǝʌ ʇuǝɹɹnɔ ǝɥʇ oʇ ǝpɐɹƃdn ǝsɐǝʅԀ .pıʅɐʌ ʇou sı ƃuısn ǝɹɐ noʎ ´{0:.1f} ´uoısɹǝʌ IԀ∀ ǝɥ⊥"
@@ -7366,6 +7366,15 @@ msgstr ".ǝuopun ǝq ʇouuɐɔ sıɥ⊥ ¿suoıʇɐʅsuɐɹʇ <b>{0}</b> ʅʅɐ 
 msgid "Delete Locale"
 msgstr "ǝʅɐɔo⅂ ǝʇǝʅǝᗡ"
 
+msgid "Profile Photo"
+msgstr "oʇoɥԀ ǝʅıɟoɹԀ"
+
+msgid "Addons"
+msgstr "suopp∀"
+
+msgid "Activity Logs"
+msgstr "sƃo⅂ ʎʇıʌıʇɔ∀"
+
 msgid "Email must be {email}."
 msgstr ".{email} ǝq ʇsnɯ ʅıɐɯƎ"
 
@@ -7380,9 +7389,6 @@ msgstr "uoıʇɐdnɔɔO"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ".ssǝɹppɐ ʅıɐɯǝ ɹıǝɥʇ ǝƃuɐɥɔ ʎʅʇuǝɹɹnɔ ʇouuɐɔ sɹǝsn sʇunoɔɔ∀ xoɟǝɹıℲ"
-
-msgid "Profile Photo"
-msgstr "oʇoɥԀ ǝʅıɟoɹԀ"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ".ǝƃɐd_ʎɯ/ɯoɔ.ǝʅdɯɐxǝ//:dʇʇɥ ǝʞıʅ ʞooʅ s⅂ᴚ∩ pıʅɐɅ .ʇɐɯɹoɟ pıʅɐʌuı uɐ sɐɥ ⅂ᴚ∩ sıɥ⊥"

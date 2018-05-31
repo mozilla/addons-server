@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5140,6 +5140,36 @@ msgid ""
 "share your visuals."
 msgstr ""
 
+#, python-format
+msgid ""
+"File viewer is locked, extraction for %s could be in progress. Please try "
+"again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Došlo je do greške prilikom pristupanja datoteci %s."
+
+msgid "That file no longer exists."
+msgstr "Ta datoteka više ne postoji."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Veličina datoteke prelazi limit od {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Problemi dešifrovanja {0}."
+
+msgid ""
+"This file is not viewable online. Please download the file to view the "
+"contents."
+msgstr ""
+"Ova datoteka nije vidljiva na internetu. Molimo Vas preuzmite datoteku kako "
+"bi pogledali njen sadržaj."
+
+msgid "This file is a directory."
+msgstr "Ova datoteka je direktorijum."
+
 msgid "Cannot diff a version against itself"
 msgstr ""
 
@@ -5321,36 +5351,6 @@ msgstr "Nema datoteka iz otpremljene datoteke."
 
 msgid "Fetching file."
 msgstr "Preuzimanje datoteke."
-
-#, python-format
-msgid ""
-"File viewer is locked, extraction for %s could be in progress. Please try "
-"again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Došlo je do greške prilikom pristupanja datoteci %s."
-
-msgid "That file no longer exists."
-msgstr "Ta datoteka više ne postoji."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Veličina datoteke prelazi limit od {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problemi dešifrovanja {0}."
-
-msgid ""
-"This file is not viewable online. Please download the file to view the "
-"contents."
-msgstr ""
-"Ova datoteka nije vidljiva na internetu. Molimo Vas preuzmite datoteku kako "
-"bi pogledali njen sadržaj."
-
-msgid "This file is a directory."
-msgstr "Ova datoteka je direktorijum."
 
 msgid ""
 "The API version, {0:.1f}, you are using is not valid. Please upgrade to the "
@@ -8688,6 +8688,16 @@ msgstr ""
 msgid "Delete Locale"
 msgstr "Izbriši lokal"
 
+msgid "Profile Photo"
+msgstr "Profilna slika"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Aktivnost"
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -8702,9 +8712,6 @@ msgstr "Zanimanje"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-msgid "Profile Photo"
-msgstr "Profilna slika"
 
 msgid ""
 "This URL has an invalid format. Valid URLs look like http://example.com/"

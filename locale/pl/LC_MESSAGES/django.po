@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-25 11:44+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4642,6 +4642,30 @@ msgstr ""
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Wystąpił błąd w dostępie do pliku %s."
+
+msgid "That file no longer exists."
+msgstr "Ten plik już nie istnieje."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Rozmiar pliku przekracza limit {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Problemy z dekodowaniem {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Zawartości tego pliku nie można zobaczyć w trybie online. Pobierz plik, by zobaczyć jego zawartość."
+
+msgid "This file is a directory."
+msgstr "Ten plik jest katalogiem."
+
 msgid "Cannot diff a version against itself"
 msgstr "Nie można porównać wersji samej z sobą"
 
@@ -4805,30 +4829,6 @@ msgstr "Brak plików w przesyłanym pliku."
 
 msgid "Fetching file."
 msgstr "Pobieranie pliku."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Wystąpił błąd w dostępie do pliku %s."
-
-msgid "That file no longer exists."
-msgstr "Ten plik już nie istnieje."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Rozmiar pliku przekracza limit {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problemy z dekodowaniem {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Zawartości tego pliku nie można zobaczyć w trybie online. Pobierz plik, by zobaczyć jego zawartość."
-
-msgid "This file is a directory."
-msgstr "Ten plik jest katalogiem."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -7703,6 +7703,16 @@ msgstr "Czy na pewno chcesz usunąć wszystkie tłumaczenia <b>{0}</b>? Tej oper
 msgid "Delete Locale"
 msgstr "Usuń lokalizację"
 
+msgid "Profile Photo"
+msgstr "Zdjęcie do profilu"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Aktywność"
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -7717,9 +7727,6 @@ msgstr "Zawód"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-msgid "Profile Photo"
-msgstr "Zdjęcie do profilu"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Ten adres URL ma nieprawidłowy format. Poprawny adres URL wygląda jak: http://example.com/moja_strona."
