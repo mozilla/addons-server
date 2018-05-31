@@ -80,6 +80,9 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
+# Disable cache-machine on dev to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
+
 CACHES = {
     'filesystem': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
