@@ -33,6 +33,7 @@ from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -522,6 +523,7 @@ def _get_lwt_default_author():
 
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
+    from olympia.activity.models import AddonLog
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
@@ -569,12 +571,14 @@ def add_static_theme_from_lwt(lwt):
         bayesian_rating=lwt.bayesian_rating,
         total_ratings=lwt.total_ratings,
         text_ratings_count=lwt.text_ratings_count)
-    for rating in lwt.ratings.all():
+    rating_activity_log_ids = [
+        l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review']
+    for rating in Rating.unfiltered.filter(addon=lwt):
         rating.update(addon=addon, version=version)
-        # Recreate the activity log entry so it's there in devhub.
-        activity.log_create(
-            amo.LOG.ADD_RATING, addon, rating, user=rating.user,
-            created=rating.created)
+    # Modify the activity log entry too.
+    for alog in AddonLog.objects.filter(
+            addon=lwt, activity_log__action__in=rating_activity_log_ids):
+        alog.transfer(addon)
 
     # Logging
     activity.log_create(
