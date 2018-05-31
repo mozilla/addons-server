@@ -406,12 +406,25 @@ class ManifestJSONExtractor(object):
 
     def apps(self):
         """Get `AppVersion`s for the application."""
-        apps = (
-            (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
-            (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-        ) if self.type != amo.ADDON_STATICTHEME else (
-            (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
-        )
+        type_ = self.type
+        if type_ == amo.ADDON_LPAPP:
+            # Langpack are only compatible with Firefox desktop at the moment.
+            # https://github.com/mozilla/addons-server/issues/8381
+            # They are all strictly compatible with a specific version, so
+            # the default min version here doesn't matter much.
+            apps = (
+                (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+            )
+        elif type_ == amo.ADDON_STATICTHEME:
+            # Static themes are only compatible with Firefox desktop >= 53.
+            apps = (
+                (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
+            )
+        else:
+            apps = (
+                (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+                (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
+            )
 
         doesnt_support_no_id = (
             self.strict_min_version and
