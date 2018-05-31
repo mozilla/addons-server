@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 23:30+0000\n"
+"PO-Revision-Date: 2018-05-31 23:50+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -64,9 +64,8 @@ msgstr ""
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
 
-#, fuzzy
 msgid "Review"
-msgstr "Review"
+msgstr "Хянаж үзэх"
 
 msgid "Version {0}"
 msgstr ""
@@ -90,10 +89,9 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Нийт үнэлгээ"
+msgstr "Хараахан хянаж үзээгүй"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -396,9 +394,8 @@ msgstr ""
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#, fuzzy
 msgid "or"
-msgstr "or"
+msgstr "буюу"
 
 msgid "Cancel"
 msgstr "Цуцлах"
@@ -4056,9 +4053,8 @@ msgstr ""
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "Learn More"
+msgstr "Нэмэлт мэдээлэл"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4815,9 +4811,8 @@ msgstr "What are Add-ons?"
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
 
-#, fuzzy
 msgid "Learn More"
-msgstr "Learn More"
+msgstr "Нэмэлт мэдээлэл"
 
 msgid "Learn More About Add-ons"
 msgstr ""
@@ -4861,7 +4856,7 @@ msgid "Last Updated"
 msgstr "Сүүлд шинэчлэгдсэн"
 
 msgid "Cancel Installation"
-msgstr "Суулгацыг цуцал"
+msgstr "Суулгацыг цуцлах"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
@@ -5877,7 +5872,7 @@ msgstr ""
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "буюу <a href=\"%(url)s\">Болих</a>"
+msgstr "буюу <a href=\"%(url)s\">Цуцлах</a>"
 
 msgid "Please select a reason:"
 msgstr ""
@@ -7217,7 +7212,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "Ачаалж байна…"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
