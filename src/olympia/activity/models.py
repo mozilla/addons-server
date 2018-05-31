@@ -101,7 +101,7 @@ class AddonLog(ModelBase):
             else:
                 new_arguments.append(item)
 
-        self.activity_log._arguments = new_arguments
+        self.activity_log.update(_arguments=json.dumps(new_arguments))
         self.update(addon=new_addon)
 
 
@@ -299,8 +299,9 @@ class ActivityLog(ModelBase):
             # d is a structure:
             # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
-        except Exception:
+        except Exception as e:
             log.debug('unserializing data from addon_log failed: %s' % self.id)
+            log.debug(e)
             return None
 
         objs = []

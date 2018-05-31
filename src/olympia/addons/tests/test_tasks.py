@@ -155,7 +155,9 @@ class TestAddStaticThemeFromLwt(TestCase):
             action=amo.LOG.ADD_RATING.id, addonlog__addon=static_theme)
         assert log_entries.count() == len(ratings)
         for rating, log_entry in zip(ratings, log_entries):
-            assert rating in log_entry.arguments
+            arguments = log_entry.arguments
+            assert rating in arguments
+            assert static_theme in arguments
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
 
