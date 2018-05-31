@@ -31,6 +31,6 @@ Add-ons help personalize the web experience for millions of users who have insta
 Happy developing!
 
 
---
+-- 
 Mozilla Add-ons
 https://addons.mozilla.org
