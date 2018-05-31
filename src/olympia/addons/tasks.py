@@ -1,6 +1,7 @@
 import hashlib
 import os
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -11,7 +12,6 @@ from elasticsearch_dsl import Search
 from PIL import Image
 
 import olympia.core.logger
-
 from olympia import amo, activity
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -31,6 +31,7 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
@@ -566,8 +567,13 @@ def add_static_theme_from_lwt(lwt):
         amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
     log.debug('New static theme %r created from %r' % (addon, lwt))
 
-    # And finally update the statuses
-    version.all_files[0].update(status=amo.STATUS_PUBLIC)
+    # And finally sign the files (actually just one)
+    for file_ in version.all_files:
+        sign_file(file_)
+        file_.update(
+            datestatuschanged=datetime.now(),
+            reviewed=datetime.now(),
+            status=amo.STATUS_PUBLIC)
     addon.update(status=amo.STATUS_PUBLIC)
 
     return addon
