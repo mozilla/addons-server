@@ -182,6 +182,5 @@ class TestAddStaticThemeFromLwt(TestCase):
         assert static_theme.status == amo.STATUS_PUBLIC
         current_file = static_theme.current_version.files.get()
         assert current_file.status == amo.STATUS_PUBLIC
-        print current_file.version.apps.all()
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
