@@ -571,14 +571,13 @@ def add_static_theme_from_lwt(lwt):
         bayesian_rating=lwt.bayesian_rating,
         total_ratings=lwt.total_ratings,
         text_ratings_count=lwt.text_ratings_count)
+    Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
+    # Modify the activity log entry too.
     rating_activity_log_ids = [
         l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review']
-    for rating in Rating.unfiltered.filter(addon=lwt):
-        rating.update(addon=addon, version=version)
-    # Modify the activity log entry too.
-    for alog in AddonLog.objects.filter(
-            addon=lwt, activity_log__action__in=rating_activity_log_ids):
-        alog.transfer(addon)
+    addonlog_qs = AddonLog.objects.filter(
+        addon=lwt, activity_log__action__in=rating_activity_log_ids)
+    [alog.transfer(addon) for alog in addonlog_qs.iterator()]
 
     # Logging
     activity.log_create(
