@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 12:30+0000\n"
+"PO-Revision-Date: 2018-06-01 12:36+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4491,7 +4491,7 @@ msgstr[1] "{0} hata"
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
-msgstr[1] ""
+msgstr[1] "{0} uyarı"
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4608,7 +4608,7 @@ msgid "Invalid archive."
 msgstr "Geçersiz arşiv."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Manifest dosyası ayrıştırılamadı."
 
 msgid "Could not find an add-on ID."
 msgstr "Eklenti kimliği bulunamadı."
@@ -4627,7 +4627,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaretleri olmalı: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "WebExtension tema yüklemeleri şu anda desteklenmiyor."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
@@ -4637,10 +4637,10 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Mozilla imzalı bir eklenti gönderemezsiniz"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Beklenmeyen hata."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4675,7 +4675,7 @@ msgid "The output can be broken, please be careful and %(link_start)sreport an i
 msgstr ""
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Eklenti dosyası işleniyor. Lütfen bekleyin."
 
 msgid "Fetching validation results..."
 msgstr "Doğrulama sonuçları getiriliyor..."
@@ -5292,7 +5292,7 @@ msgid ""
 msgstr ""
 
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Eklentimin değerlendirilmesi ne kadar sürer?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
 msgstr ""
@@ -5314,7 +5314,7 @@ msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on 
 msgstr ""
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Eklentimin kaç kez indirildiğini nasıl görebilirim?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
@@ -5333,7 +5333,7 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr ""
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "Güncellememin incelemeciler tarafından incelenmesi gerekiyor mu?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr ""
@@ -5643,10 +5643,10 @@ msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support w
 msgstr ""
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Harika bir inceleme için bazı ipuçları"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "İncelemeler hakkında sıkça sorulan sorular"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -5660,7 +5660,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr ""
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "İncelemeleriniz kısa ve anlaşılması kolay olsun."
 
 msgid "Give specific and helpful details. For example:"
 msgstr ""
@@ -5718,7 +5718,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Sorunlu bir incelemeyi nasıl bildirebilirim?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -5726,14 +5726,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Ben bir eklenti yazarıyım, incelemelere yanıt verebilir miyim?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Ben bir eklenti yazarıyım, olumsuz incelemeleri veya puanları silebilir miyim?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -5778,7 +5778,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr ""
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Kaldır düğmesine tıklayın."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -6009,7 +6009,7 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} inceleme"
-msgstr[1] ""
+msgstr[1] "{num} inceleme"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6187,19 +6187,19 @@ msgstr ""
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} dakika"
-msgstr[1] ""
+msgstr[1] "{0} dakika"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} saat"
-msgstr[1] ""
+msgstr[1] "{0} saat"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} gün"
-msgstr[1] ""
+msgstr[1] "{0} gün"
 
 msgid "Last Review"
 msgstr "Son inceleme"
@@ -6316,11 +6316,10 @@ msgstr "İnceleme Yönergesi"
 msgid "Content Review"
 msgstr "İncelemeyi Tamamla"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "İnceleme:"
-msgstr[1] ""
+msgstr[0] ""
+msgstr[1] "İçerik İncelemesi ({0})"
 
 msgid "New Themes ({0})"
 msgstr "Yeni Temalar ({0})"
@@ -6493,7 +6492,7 @@ msgstr "İnceleme Geçmişi"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Eklenti Başlığı"
@@ -6622,7 +6621,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Sürüm %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Onaylandı)"
 
 msgid "Compatibility:"
 msgstr "Uyumluluk:"
@@ -6690,7 +6689,7 @@ msgid "Force-enable add-on"
 msgstr "Sürümü yeniden etkinleştir"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Otomatik onaylamayı devre dışı bırak"
 
 #, fuzzy
 msgid "Enable Auto-Approval"
@@ -7045,7 +7044,7 @@ msgstr ""
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "Eşleşen <b>{0}</b> sonuç"
-msgstr[1] ""
+msgstr[1] "Eşleşen <b>{0}</b> sonuç"
 
 msgid "Filter Results"
 msgstr "Sonuçları filtrele"
@@ -7869,16 +7868,16 @@ msgstr "{0} eklenti"
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s tema"
-msgstr[1] ""
+msgstr[1] "%(num)s tema"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s eklenti"
-msgstr[1] ""
+msgstr[1] "%(num)s eklenti"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Geliştiricinin eklentilerinin ortalama puanı"
 
 msgctxt "user_list_others"
 msgid "others"
@@ -7913,7 +7912,7 @@ msgstr "{0} Sürüm Geçmişi"
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> sürüm"
-msgstr[1] ""
+msgstr[1] "<b>{0}</b> sürüm"
 
 msgid "Be careful with old versions!"
 msgstr "Eski sürümleri dikkatli kullanın!"
