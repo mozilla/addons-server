@@ -263,8 +263,8 @@ msgstr ""
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num) долоо хоног тутмын татаж авсан файл"
-msgstr[1] "%(num) долоо хоног тутмын татаж авсан файл"
+msgstr[0] "%(num)s долоо хоног тутмын татаж авсан файл"
+msgstr[1] "%(num)s долоо хоног тутмын татаж авсан файл"
 
 #, python-format
 msgid "%(num)s user"
