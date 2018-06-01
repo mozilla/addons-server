@@ -24,7 +24,7 @@ from olympia.files.file_viewer import DiffHelper, FileViewer
 from olympia.users.models import UserProfile
 
 
-dictionary = 'src/olympia/files/fixtures/files/dictionary-test.xpi'
+file_fixtures = 'src/olympia/files/fixtures/files/'
 unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
 not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
@@ -48,22 +48,25 @@ class FilesBase(object):
 
         p = [amo.PLATFORM_LINUX.id, amo.PLATFORM_WIN.id, amo.PLATFORM_MAC.id]
 
-        self.file.update(platform=p[0])
+        self.file.update(platform=p[0], filename='dictionary-test.xpi')
 
         self.files = [self.file,
-                      File.objects.create(version=self.version,
-                                          platform=p[1],
-                                          hash='abc123',
-                                          filename='dictionary-test.xpi'),
-                      File.objects.create(version=self.version,
-                                          platform=p[2],
-                                          hash='abc123',
-                                          filename='dictionary-test.xpi')]
+                      File.objects.create(
+                          version=self.version,
+                          platform=p[1],
+                          hash='abc123',
+                          filename='dictionary-test.xpi'),
+                      File.objects.create(
+                          version=self.version,
+                          platform=p[2],
+                          hash='abc123',
+                          filename='dictionary-test-changed.xpi')]
 
         self.login_as_reviewer()
 
         for file_obj in self.files:
-            src = os.path.join(settings.ROOT, dictionary)
+            src = os.path.join(
+                settings.ROOT, file_fixtures, file_obj.filename)
             try:
                 os.makedirs(os.path.dirname(file_obj.file_path))
             except OSError:
@@ -639,3 +642,19 @@ class TestDiffViewer(FilesBase, TestCase):
             str(self.files[0].id))
         assert doc('#id_right option[selected]').attr('value') == (
             str(self.files[1].id))
+
+    def test_files_list_uses_correct_links(self):
+        res = self.client.get(reverse('files.compare',
+                                      args=(self.files[0].id,
+                                            self.files[2].id)))
+        doc = pq(res.content)
+
+        install_js_link = doc(
+            '#files-tree li a.file[data-short="install.js"]'
+        )[0].get('href')
+
+        expected = reverse(
+            'files.compare',
+            args=(self.files[0].id, self.files[2].id, 'file', 'install.js'))
+
+        assert install_js_link == expected
