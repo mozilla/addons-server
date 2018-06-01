@@ -24,10 +24,17 @@ from olympia.files.file_viewer import DiffHelper, FileViewer
 from olympia.users.models import UserProfile
 
 
-file_fixtures = 'src/olympia/files/fixtures/files/'
+files_fixtures = 'src/olympia/files/fixtures/files/'
 unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
 not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
+
+
+def create_directory(path):
+    try:
+        os.makedirs(path)
+    except OSError:
+        pass
 
 
 class FilesBase(object):
@@ -47,32 +54,38 @@ class FilesBase(object):
         self.file = self.version.all_files[0]
 
         p = [amo.PLATFORM_LINUX.id, amo.PLATFORM_WIN.id, amo.PLATFORM_MAC.id]
+        self.file.update(platform=p[0])
 
-        self.file.update(platform=p[0], filename='dictionary-test.xpi')
+        files = [
+            (
+                'dictionary-test.xpi',
+                self.file),
+            (
+                'dictionary-test.xpi',
+                File.objects.create(
+                    version=self.version,
+                    platform=p[1],
+                    hash='abc123',
+                    filename='dictionary-test.xpi')),
+            (
+                'dictionary-test-changed.xpi',
+                File.objects.create(
+                    version=self.version,
+                    platform=p[2],
+                    hash='abc123',
+                    filename='dictionary-test.xpi'))]
 
-        self.files = [self.file,
-                      File.objects.create(
-                          version=self.version,
-                          platform=p[1],
-                          hash='abc123',
-                          filename='dictionary-test.xpi'),
-                      File.objects.create(
-                          version=self.version,
-                          platform=p[2],
-                          hash='abc123',
-                          filename='dictionary-test-changed.xpi')]
+        fixtures_base_path = os.path.join(settings.ROOT, files_fixtures)
+
+        for xpi_file, file_obj in files:
+            create_directory(os.path.dirname(file_obj.file_path))
+            shutil.copyfile(
+                os.path.join(fixtures_base_path, xpi_file),
+                file_obj.file_path)
+
+        self.files = [x[1] for x in files]
 
         self.login_as_reviewer()
-
-        for file_obj in self.files:
-            src = os.path.join(
-                settings.ROOT, file_fixtures, file_obj.filename)
-            try:
-                os.makedirs(os.path.dirname(file_obj.file_path))
-            except OSError:
-                pass
-            shutil.copyfile(src, file_obj.file_path)
-
         self.file_viewer = FileViewer(self.file)
 
     def tearDown(self):
