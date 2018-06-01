@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 23:50+0000\n"
+"PO-Revision-Date: 2018-06-01 00:10+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -254,7 +254,7 @@ msgstr "Эрэмбэлэлт:"
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "{0} Шинэчлэгдлээ"
 
 #. {0} is a date.
 msgid "Added {0}"
@@ -313,9 +313,8 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#, fuzzy
 msgid "Updated"
-msgstr "Updated"
+msgstr "Шинэчлэгдлээ"
 
 msgid "Artist"
 msgstr ""
@@ -353,7 +352,7 @@ msgid "Add"
 msgstr ""
 
 msgid "Edit"
-msgstr ""
+msgstr "Засварлах"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -650,7 +649,7 @@ msgid "Add-on Information for {0}"
 msgstr ""
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "Зaгварыг засварлах"
 
 msgid "Approve / Reject"
 msgstr ""
@@ -1258,7 +1257,7 @@ msgstr ""
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0} Засварлах"
 
 msgid "Description"
 msgstr "Тодорхойлолт"
@@ -1482,7 +1481,7 @@ msgstr "Created"
 
 # 100%
 msgid "Downloads"
-msgstr "Татаж авалт"
+msgstr "Татаж авсан файлууд"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -3019,9 +3018,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "Developer Information"
+msgstr "Мэдээллийг засварлах"
 
 msgid "None"
 msgstr ""
@@ -3403,9 +3401,8 @@ msgstr ""
 msgid "Delete"
 msgstr "Устга"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "More about this add-on"
+msgstr "Энэ нэмэлт хэрэглүүрийн тухай мэдээллийг засварлах."
 
 msgid "Upload a new version of this add-on."
 msgstr ""
@@ -4331,7 +4328,7 @@ msgid "Status & Versions"
 msgstr ""
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Энэ хувилбарыг засварлах"
 
 msgid "0 files"
 msgstr ""
@@ -5905,10 +5902,10 @@ msgid "Reply to review"
 msgstr ""
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Хариулыг засварлах"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Тоймыг засварлах"
 
 msgid "Delete reply"
 msgstr ""
@@ -7209,7 +7206,7 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Татаж авсан файлууд"
 
 msgid "Loading..."
 msgstr "Ачаалж байна…"
@@ -7663,7 +7660,7 @@ msgid "User Info for {0}"
 msgstr "{0} хэрэглэгчийн мэдээлэл"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Профайлыг засварлах"
 
 msgid "Manage user"
 msgstr ""
