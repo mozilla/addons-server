@@ -1,7 +1,12 @@
+{% if value['diff'] %}
+    {%- set files_url = value['url'] %}
+{% else %}
+    {%- set files_url = url('files.list', value['id'], 'file', value['short']) %}
+{% endif %}
 <li>
     <a class="{% if value['filename'] != value['truncated'] %}tooltip{% endif %} {{ file_viewer_class(value, selected) }}"
         {% if value['filename'] != value['truncated'] %}title="{{ value['filename'] }}"{% endif %}
         data-delay="0"
-        href="{{ url('files.list', value['id'], 'file', value['short']) }}"
+        href="{{ files_url }}"
         data-short="{{ value['short'] }}"><span>{{ value['truncated'] }}</span></a>
 </li>
