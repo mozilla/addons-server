@@ -217,25 +217,25 @@ class TestUserProfile(TestCase):
     def test_review_replies(self):
         """
         Make sure that developer replies are not returned as if they were
-        original reviews.
+        original ratings.
         """
         addon = Addon.objects.get(id=3615)
-        u = UserProfile.objects.get(pk=2519)
+        user = UserProfile.objects.get(pk=2519)
         version = addon.find_latest_public_listed_version()
-        new_rating = Rating(version=version, user=u, rating=2, body='hello',
+        new_rating = Rating(version=version, user=user, rating=2, body='hello',
                             addon=addon)
         new_rating.save()
-        new_reply = Rating(version=version, user=u, reply_to=new_rating,
+        new_reply = Rating(version=version, user=user, reply_to=new_rating,
                            addon=addon, body='my reply')
         new_reply.save()
 
-        review_list = [r.pk for r in u.reviews]
+        review_list = [rating.pk for rating in user.ratings]
 
         assert len(review_list) == 1
         assert new_rating.pk in review_list, (
-            'Original review must show up in review list.')
+            'Original review must show up in ratings list.')
         assert new_reply.pk not in review_list, (
-            'Developer reply must not show up in review list.')
+            'Developer reply must not show up in ratings list.')
 
     def test_num_addons_listed(self):
         """Test that num_addons_listed is only considering add-ons for which

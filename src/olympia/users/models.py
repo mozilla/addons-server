@@ -410,12 +410,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return not self.display_name and self.has_anonymous_username
 
     @cached_property
-    def reviews(self):
-        """All reviews that are not dev replies."""
-        qs = self._ratings_all.filter(reply_to=None)
-        # Force the query to occur immediately. Several
-        # reviews-related tests hang if this isn't done.
-        return qs
+    def ratings(self):
+        """All ratings that are not dev replies."""
+        return self._ratings_all.filter(reply_to=None)
 
     def delete(self, hard=False):
         # Recursive import
