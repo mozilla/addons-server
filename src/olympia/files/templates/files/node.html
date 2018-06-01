@@ -1,7 +1,26 @@
+{#
+
+This file is being used in the `file_tree` template tag that get's used for
+compare and regular browse views. That's why this template needs to behave
+differently depending on whether value['diff'] is being set or not.
+
+We are generating the url in the file-viewer because we need the
+left and right part of the diff, which are only set in the file-viewers context.
+
+The regular browse url is generated here because of how the file-viewer caches
+the response values, it originally cached the URL too. The diff-view does that differently
+and calculates the urls *after* it stores it's caches.
+
+#}
+{% if value['diff'] %}
+    {%- set files_url = value['url'] %}
+{% else %}
+    {%- set files_url = url('files.list', value['id'], 'file', value['short']) %}
+{% endif %}
 <li>
     <a class="{% if value['filename'] != value['truncated'] %}tooltip{% endif %} {{ file_viewer_class(value, selected) }}"
         {% if value['filename'] != value['truncated'] %}title="{{ value['filename'] }}"{% endif %}
         data-delay="0"
-        href="{{ url('files.list', value['id'], 'file', value['short']) }}"
+        href="{{ files_url }}"
         data-short="{{ value['short'] }}"><span>{{ value['truncated'] }}</span></a>
 </li>
