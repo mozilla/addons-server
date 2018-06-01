@@ -24,22 +24,25 @@ class BaseUserTaskSet(TaskSet):
             'Created {account} for load-tests'
             .format(account=self.fxa_account))
 
+    def is_legacy_page(self, app):
+        return app in ('thunderbird', 'seamonkey')
+
+    def get_app(self):
         # Slightly weighted
-        self.app = random.choice(
+        app = random.choice(
             ['firefox'] * 20 +
             ['thunderbird'] * 5 +
             ['seamonkey'] * 1)
+        return app
 
+    def get_url(self, url, app):
         # Only take a sub-set of languages, doesn't really matter only
         # increases variance and may circumvent some caches here and there
-        self.user_language = random.choice((
+        user_language = random.choice((
             'af', 'de', 'dsb', 'en-US', 'hsb', 'ru', 'tr', 'zh-CN', 'zh-TW'
         ))
 
-        self.is_legacy_page = self.app in ('thunderbird', 'seamonkey')
-
-    def get_url(self, url):
-        return url.format(app=self.app, language=self.user_language)
+        return url.format(app=app, language=user_language)
 
     def on_stop(self):
         log.info(
@@ -85,15 +88,15 @@ class BaseUserTaskSet(TaskSet):
 
 
 class UserTaskSet(BaseUserTaskSet):
-    def _browse_listing_and_click_detail(self, listing_url, detail_selector,
-                                         legacy_selector=None, name=None,
-                                         force_legacy=False):
+    def _browse_listing_and_click_detail(self, listing_url, app,
+                                         detail_selector, legacy_selector=None,
+                                         name=None, force_legacy=False):
         # TODO: This should hit pagination automatically if there is any
         response = self.client.get(
-            self.get_url(listing_url),
+            self.get_url(listing_url, app),
             allow_redirects=False, catch_response=True)
 
-        if (self.is_legacy_page or force_legacy) and not legacy_selector:
+        if (self.is_legacy_page(app) or force_legacy) and not legacy_selector:
             log.warn(
                 'Received legacy url without legacy selector. {} :: {}'
                 .format(listing_url, detail_selector))
@@ -103,7 +106,7 @@ class UserTaskSet(BaseUserTaskSet):
             html = lxml.html.fromstring(response.content)
             selector = (
                 detail_selector
-                if not (self.is_legacy_page or force_legacy) else
+                if not (self.is_legacy_page(app) or force_legacy) else
                 legacy_selector)
             collection_links = html.cssselect(selector)
 
@@ -116,7 +119,7 @@ class UserTaskSet(BaseUserTaskSet):
 
             kwargs = {}
             if name is not None:
-                if self.is_legacy_page or force_legacy:
+                if self.is_legacy_page(app) or force_legacy:
                     name = name.replace(':app', ':legacy_app')
                 kwargs['name'] = name
 
@@ -128,49 +131,61 @@ class UserTaskSet(BaseUserTaskSet):
 
     @task(8)
     def browse(self):
-        self.client.get(self.get_url('/{language}/{app}/'))
+        app = self.get_app()
+        self.client.get(self.get_url('/{language}/{app}/', app))
 
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/extensions/',
+            app=app,
             detail_selector='a.SearchResult-link',
-            legacy_selector='.items .item.addon a',
-            name='/:lang/:app/addon/:slug')
+            legacy_selector='.items .item.addon a')
 
     @task(10)
     def search(self):
+        app = self.get_app()
+
         term_choices = ('Spam', 'Privacy', 'Download')
         term = random.choice(term_choices)
         self.client.get(
             self.get_url(
-                '/{language}/{app}/search/?platform=linux&q=' + term))
+                '/{language}/{app}/search/?platform=linux&q=' + term,
+                app))
 
     @task(6)
     def browse_and_download_addon(self):
+        app = self.get_app()
+
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/extensions/',
+            app=app,
             detail_selector='a.SearchResult-link',
-            legacy_selector='.items .item.addon a',
-            name='/:lang/:app/downloads/:file_id/')
+            legacy_selector='.items .item.addon a')
 
     @task(5)
     def browse_collections(self):
+        app = self.get_app()
+
         # detail and legacy selector match both, themes and regular add-ons
         self._browse_listing_and_click_detail(
             listing_url='/{language}/{app}/',
+            app=app,
             detail_selector='a.Home-SubjectShelf-link',
-            legacy_selector='.listing-grid .hovercard .summary>a',
-            name='/:lang/:app/addon/:slug')
+            legacy_selector='.listing-grid .hovercard .summary>a')
 
     @task(4)
     def browse_categories(self):
+        app = self.get_app()
+
         self._browse_listing_and_click_detail(
-            '/{language}/{app}/extensions/',
+            listing_url='/{language}/{app}/extensions/',
+            app=app,
             detail_selector='a.Categories-link',
-            legacy_selector='ul#side-categories li a',
-            name='/:lang/:app/:extensions/:category_slug/')
+            legacy_selector='ul#side-categories li a')
 
     @task(4)
     def browse_reviews(self):
+        app = self.get_app()
+
         # TODO: Get add-ons more generalized by looking at collections
         # pages but for now that'll suffice.
         addons = (
@@ -180,25 +195,31 @@ class UserTaskSet(BaseUserTaskSet):
 
         for addon in addons:
             self.client.get(self.get_url(
-                '/{language}/{app}/addon/%s/reviews/' % addon))
+                '/{language}/{app}/addon/%s/reviews/' % addon,
+                app))
 
     @task(4)
     def browse_theme_categories(self):
+        app = self.get_app()
         self._browse_listing_and_click_detail(
-            '/{language}/{app}/complete-themes/',
+            listing_url='/{language}/{app}/complete-themes/',
+            app=app,
             detail_selector=None,
             legacy_selector='.listing-grid .hovercard>a',
             name='/:lang/:app/complete-themes/:slug/',
             force_legacy=True)
 
         self._browse_listing_and_click_detail(
-            '/{language}/{app}/themes/',
+            listing_url='/{language}/{app}/themes/',
+            app=app,
             detail_selector='a.SearchResult-link',
             legacy_selector='ul#side-categories li a',
             name='/:lang/:app/themes/:slug/')
 
     @task(3)
     def test_user_profile(self):
+        app = self.get_app()
+
         # TODO: Generalize by actually creating a user-profile and uploading
         # some data.
         usernames = (
@@ -209,10 +230,13 @@ class UserTaskSet(BaseUserTaskSet):
 
         for user in usernames:
             self.client.get(self.get_url(
-                '/{language}/{app}/user/%s/' % user))
+                '/{language}/{app}/user/%s/' % user,
+                app))
 
     @task(2)
     def test_rss_feeds(self):
+        app = self.get_app()
+
         urls = (
             # Add-on Category RSS Feed
             '/{language}/firefox/extensions/alerts-updates/format:rss',
@@ -233,8 +257,11 @@ class UserTaskSet(BaseUserTaskSet):
             '/{language}/{app}/search-tools/format:rss',
         )
 
-        self.client.get(self.get_url(random.choice(urls)))
+        self.client.get(self.get_url(random.choice(urls), app))
 
     @task(1)
     def test_browse_appversions(self):
-        self.client.get(self.get_url('/{language}/{app}/pages/appversions/'))
+        app = self.get_app()
+
+        self.client.get(self.get_url(
+            '/{language}/{app}/pages/appversions/', app))
