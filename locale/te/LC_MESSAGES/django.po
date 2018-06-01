@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 13:31+0000\n"
+"PO-Revision-Date: 2018-06-01 13:34+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1917,16 +1917,16 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "డెవలపర్ ప్రత్యుత్తరం"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version}లో సమీక్షకులచే ప్రత్యుత్తరం ఇవ్వండి."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "సమీక్షకుడి ప్రత్యుత్తరం"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} కోసం ఆమోద గమనికలు మార్చబడ్డాయి."
 
 msgid "Approval notes changed"
 msgstr ""
@@ -2052,13 +2052,13 @@ msgid "Extension"
 msgstr "పొడిగింత"
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "పూర్తి అలంకారం"
 
 msgid "Search Engine"
 msgstr "శోధన యంత్రం"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "భాషా ప్యాక్ (అనువర్తనము)"
 
 msgid "Language Pack (Add-on)"
 msgstr "భాషా ప్యాక్ (పొడిగింత)"
@@ -2073,13 +2073,13 @@ msgid "Theme (Static)"
 msgstr "అలంకారం (అచలం)"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "పూర్తి అలంకారాలు"
 
 msgid "Dictionaries"
 msgstr "నిఘంటువులు"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "భాషా ప్యాక్‌లు (అనువర్తనాలు)"
 
 msgid "Language Packs (Add-on)"
 msgstr "భాషా ప్యాక్లు (పొడిగింత)"
@@ -2110,7 +2110,7 @@ msgid "Incompatible"
 msgstr "అననుకూల"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "హెచ్చరికలు మరియు నవీకరణలు"
 
 msgid "Appearance"
 msgstr "రూపురేఖలు"
@@ -2140,13 +2140,13 @@ msgid "Shopping"
 msgstr "కొనుగోలు"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "సామాజిక మరియు సమాచారవ్యవస్థ"
 
 msgid "Tabs"
 msgstr "ట్యాబులు"
 
 msgid "Web Development"
-msgstr ""
+msgstr "జాల అభివృద్ధి"
 
 msgid "Animals"
 msgstr "జంతువులు"
@@ -2167,7 +2167,7 @@ msgid "Nature"
 msgstr "ప్రకృతి"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "OS అనుసంధానం"
 
 msgid "Retro"
 msgstr "రెట్రో"
@@ -2215,7 +2215,7 @@ msgid "Business"
 msgstr "వ్యాపారం"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "నిఘంటువులు మరియు విజ్ఞాన సర్వస్వాలు"
 
 msgid "Kids"
 msgstr "చిన్న పిల్లలు"
@@ -2230,10 +2230,10 @@ msgid "Photos & Images"
 msgstr "ఫోటోలు మరియు చిత్రాలు"
 
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "షాపింగ్ మరియు ఇ-కామర్స్"
 
 msgid "Social & People"
-msgstr ""
+msgstr "సామాజిక మరియు ప్రజలు"
 
 msgid "Travel"
 msgstr "ప్రయాణం"
@@ -2242,13 +2242,13 @@ msgid "Video"
 msgstr "వీడియో"
 
 msgid "Device Features & Location"
-msgstr ""
+msgstr "పరికర ఫీచర్లు & స్థానం"
 
 msgid "Experimental"
 msgstr "ప్రయోగాత్మకం"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "ఫీడ్లు, వార్తలు, మరియు బ్లాగింగ్"
 
 msgid "Performance"
 msgstr "పనితనం"
@@ -2275,7 +2275,7 @@ msgid "Calendar and Date/Time"
 msgstr "క్యాలెండర్ మరియు తేదీ/Time"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "సంభాషణ మరియు IM"
 
 msgid "Message Composition"
 msgstr "సందేశ కూర్పు"
@@ -2390,13 +2390,13 @@ msgid "Updated Dictionary Review"
 msgstr "నవీకరించబడిన నిఘంటువు సమీక్ష"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "కొత్త భాష ప్యాక్‌ల సమీక్ష"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "ప్రాథమిక భాష ప్యాక్‌ల సమీక్ష"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "నవీకరించబడింది భాష ప్యాక్‌ల సమీక్ష"
 
 msgid "Theme Review"
 msgstr "అలంకారపు సమీక్ష"
@@ -2406,7 +2406,7 @@ msgid "Theme (Static) Review"
 msgstr "అలంకారం (అచలం)"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
 
 msgid "Preliminary Search Provider Review"
 msgstr ""
