@@ -6,7 +6,9 @@ import django  # noqa
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
+from django.contrib.auth import get_user
 from django.core.files.storage import default_storage as storage
+from django.test.client import RequestFactory
 
 import pytest
 
@@ -19,7 +21,7 @@ from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
 from olympia.zadmin.models import set_config
 
@@ -558,3 +560,19 @@ def test_user_foreign_key_field_deconstruct():
     new_field_instance = UserForeignKey()
 
     assert kwargs['to'] == new_field_instance.to
+
+
+@pytest.mark.django_db
+def test_get_session_auth_hash_is_used_for_session_auth():
+    user = user_factory()
+    client = amo.tests.TestClient()
+    assert not client.session.items()
+    assert client.login(email=user.email)
+    assert client.session.items()
+
+    request = RequestFactory().get('/')
+    request.session = client.session
+    assert get_user(request) == user
+
+    user.update(auth_id=generate_auth_id())
+    assert get_user(request) != user
