@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 00:10+0000\n"
+"PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -263,8 +263,8 @@ msgstr ""
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num) долоо хоног тутмын татаж авсан файл"
+msgstr[1] "%(num) долоо хоног тутмын татаж авсан файл"
 
 #, python-format
 msgid "%(num)s user"
@@ -284,8 +284,8 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} долоо хоног тутмын татаж авсан файл"
+msgstr[1] "{0} долоо хоног тутмын татаж авсан файл"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -669,8 +669,8 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> долоо хоног тутмын татаж авсан файл"
+msgstr[1] "<strong>{0}</strong> долоо хоног тутмын татаж авсан файл"
 
 msgid "Not Reviewed"
 msgstr ""
@@ -1280,7 +1280,7 @@ msgid "Remove this user as a contributor"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "Арилгах"
 
 msgid "Collection Contributors"
 msgstr ""
@@ -1466,7 +1466,7 @@ msgid "Most Users"
 msgstr ""
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Долоо хоног тутмын татаж авсан файлууд"
 
 msgid "Up & Coming"
 msgstr ""
@@ -6971,9 +6971,8 @@ msgstr[1] ""
 msgid "Filter Results"
 msgstr ""
 
-#, fuzzy
 msgid "Category"
-msgstr "Category"
+msgstr "Ангилал"
 
 msgid "Tag"
 msgstr ""
@@ -7304,7 +7303,7 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr "Төрөл сонгох"
+msgstr "Ангилал сонгох"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
