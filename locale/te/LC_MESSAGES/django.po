@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 13:10+0000\n"
+"PO-Revision-Date: 2018-06-01 13:31+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1185,13 +1185,13 @@ msgid "by {0}"
 msgstr "{0} ద్వారా"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "అనుసరించడం ఆపండి"
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "ఈ సేకరణను అనుసరించండి"
 
 msgid "Edit this Collection"
-msgstr ""
+msgstr "ఈ సేకరణని సవరించండి"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
@@ -1223,16 +1223,16 @@ msgid "Owner"
 msgstr "యజమాని"
 
 msgid "Make Owner"
-msgstr ""
+msgstr "యజమానిని చేయండి"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "ఈ వినియోగదారుని సహయకుడిగా తీసివేయండి"
 
 msgid "Remove"
 msgstr "తీసివేయి"
 
 msgid "Collection Contributors"
-msgstr ""
+msgstr "సేకరణ సహాయకులు"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
@@ -1321,19 +1321,19 @@ msgid "Collection Icon"
 msgstr ""
 
 msgid "Reset"
-msgstr ""
+msgstr "పునరుద్ధరించు"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "ఈ ఫారంలో లోపాలు ఉన్నాయి.  దయచేసి వాటిని క్రింద సరి చేయండి."
 
 msgid "Add-ons in Your Collection"
 msgstr "మీ సేకరణలోని పొడిగింతలు"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "ఈ సేకరణలో ఒక పొడిగింతను చేర్చడానికి, దిగువ పెట్టెలో దాని పేరును నమోదు చేసి తరువాత ఎంటర్ నొక్కండి."
 
 msgid "Add-on"
 msgstr "పొడగింతలు"
@@ -1388,12 +1388,12 @@ msgstr "విశేష పొడిగింతలు :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "మీరు %s అనుకూలీకరించడం ప్రారంభించడంలో సహాయపడటానికి మా అభిమాన పొడిగింతలలో కొన్ని."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "%sకు సంబంధించిన శోధన ఉపకరణాలు"
 
 msgid "Search tools and search-related extensions"
 msgstr ""
@@ -1438,7 +1438,7 @@ msgid "Install Dictionary"
 msgstr ""
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "భాష ప్యాక్ను స్థాపించండి"
 
 msgid "Download Dictionary"
 msgstr "నిఘంటువు దింపుకొను"
@@ -1513,7 +1513,7 @@ msgid "Most Popular Extensions"
 msgstr "అత్యధికంగా జనాదరణ పొందిన పొడిగింతలు"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "జనాదరణ పొందిన పొడిగింతలు"
 
 msgid "Newest Extensions"
 msgstr "సరికొత్త పొడగింతలు"
@@ -1539,7 +1539,7 @@ msgid "Most Popular Complete Themes"
 msgstr "అత్యంత జనాదరణ పొందిన పూర్తి అలంకారాలు"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "ఎక్కువ మన్నన పొందిన పూర్తి అలంకారాలు"
 
 msgid "Newest Complete Themes"
 msgstr "సరికొత్త పూర్తి అలంకారాలు"
@@ -1576,13 +1576,13 @@ msgid "Create Your Own Theme"
 msgstr "మీ సొంత అలంకారం సృష్టించండి"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "మీ బ్రౌజర్, మీ శైలి! మీ సొంత రూపకల్పనతో దాన్ని అలంకరించుకోండి!"
 
 msgid "Learn more"
 msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "ఇటీవల చేర్చబడినవన్ని చూడండి"
 
 msgid "View All Most Popular"
 msgstr ""
@@ -1597,7 +1597,7 @@ msgstr ""
 "ప్రారంభించండి</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "మరింత వ్యక్తిగతీకరణ కావాలి?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1618,7 +1618,7 @@ msgid "All"
 msgstr "అన్నీ"
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "పొడిగింతల యొక్క సమకులత నివేదిక"
 
 #, python-format
 msgid ""
@@ -1649,7 +1649,7 @@ msgid "View all"
 msgstr "అన్నిటినీ వీక్షించు"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "అనువర్తనం ద్వారా వడపోత"
 
 msgid "Report Type"
 msgstr "నివేదిక రకం"
@@ -1658,16 +1658,16 @@ msgid "Version"
 msgstr "వర్షన్"
 
 msgid "Application Version"
-msgstr ""
+msgstr "అనువర్తన వెర్షన్"
 
 msgid "Application Build"
-msgstr ""
+msgstr "అనువర్తనం నిర్మించు"
 
 msgid "Platform"
 msgstr "వేదిక"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s చెతనించబడింది"
 
 msgid "e10s Compatible"
 msgstr "e10s అనుకూలంగా"
@@ -1721,14 +1721,14 @@ msgid "{version} added to {addon}."
 msgstr "{version} {addon} కు జోడించబడింది."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} కోసం {version} సవరించబడింది."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} నుండి వెర్షన్ {0} తొలగించబడింది."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} యొక్క {version}కు {0.name} ఫైలు చేర్చబడింది."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు తొలగించబడింది."
@@ -1749,19 +1749,19 @@ msgid "{addon} {version} retained."
 msgstr "{addon} {version} నిలుపుకుంది."
 
 msgid "Retained"
-msgstr ""
+msgstr "ఉంచబడింది"
 
 msgid "{addon} {version} escalated."
 msgstr ""
 
 msgid "Super review requested"
-msgstr ""
+msgstr "ఉత్తమమైన సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
 msgid "Review requested"
-msgstr ""
+msgstr "సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} మరింత సమాచారం అభ్యర్ధించబడింది."
@@ -1770,7 +1770,7 @@ msgid "More information requested"
 msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} ఉత్తమమైన సమీక్ష అభ్యర్థించబడింది."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -1817,7 +1817,7 @@ msgstr "{0} {1} జోడించబడింది."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{addon} కోసం {0.name} పాత్ర {1} కు మార్చబడింది."
 
 #, fuzzy
 msgid "{addon} is now licensed under {0}."
@@ -1855,16 +1855,16 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr ""
+msgstr "సంకేతపదం మార్చబడింది."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} ఆమోదించబడింది కానీ బహిరంగపరచడానికి వేచి ఉంది."
 
 msgid "Approved but waiting"
 msgstr "ఆమోదించబడింది కానీ వేచి ఉంది"
 
 msgid "Account updated."
-msgstr ""
+msgstr "ఖాతా నవీకరించబడింది."
 
 msgid "Created: {0}."
 msgstr "రూపొందించబడింది: {0}."
@@ -1873,7 +1873,7 @@ msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "తొలగించినవి: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -1882,7 +1882,7 @@ msgid "User {user} anonymized."
 msgstr ""
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "వాడుకరి {user} పరిమితం చేయబడ్డాడు."
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
@@ -1901,10 +1901,10 @@ msgid "User {0.name} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} జాబితా చేయబడలేదు."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} సంతకం చేయబడింది."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
@@ -4292,16 +4292,16 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "మీరు ఖచ్చితంగా వెర్షన్ను తొలగించాలనుకుంటున్నారా?"
 
 msgid "Delete Version"
 msgstr "వెర్షన్ను తొలగించండి"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "వెర్షన్ను అచేతనం చేయి"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "పొడిగింతను దాచండి"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4390,7 +4390,7 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "ఈ ఫైలు యిక లేదు."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
@@ -4403,7 +4403,7 @@ msgid "This file is not viewable online. Please download the file to view the co
 msgstr ""
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "ఈ ఫైలు ఒక డైరెక్టరీ."
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -4412,7 +4412,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "కింది వెబ్సైట్లలో మీ డేటాను ప్రాప్యత చేయండి:"
 
 msgid "Access your data for all websites"
 msgstr "మీ డేటాను అన్ని వెబ్ సైట్లలో పొందండి"
