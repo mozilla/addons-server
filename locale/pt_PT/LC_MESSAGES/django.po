@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 09:14+0000\n"
+"PO-Revision-Date: 2018-06-02 12:50+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1418,7 +1418,7 @@ msgstr "Extras em destaque :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Aqui estão alguns dos nossos extras favoritos para o ajudar a começar a personalizar o %s."
+msgstr "Aqui estão alguns dos nossos extras favoritos para lhe ajudar a começar a personalizar o %s."
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1462,7 +1462,7 @@ msgstr "Extras em destaque"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Aqui estão alguns dos nossos extras favoritos para o ajudar a começar a personalizar %(app)s."
+msgstr "Aqui estão alguns dos nossos extras favoritos para lhe ajudar a começar a personalizar o %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Instalar dicionário"
