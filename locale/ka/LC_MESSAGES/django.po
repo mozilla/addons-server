@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 05:41+0000\n"
+"PO-Revision-Date: 2018-06-02 07:33+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5677,7 +5677,7 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "მცდარი მოსაზრებების წარმოდგენა, დამატების ავტორების დამცირება, ან მათთვის პირადი შეურაცხყოფის მიყენება."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "თქვენი საკუთარი, ან სხვისი ელფოსტის მისამართის, ტელეფონის ნომრის, ან სხვა პირადი მონაცემის მითითება."
+msgstr "თქვენი საკუთარი ან სხვისი ელფოსტის მისამართის, ტელეფონის ნომრის, ან სხვა პირადი მონაცემის მითითება."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "მიმოხილვებში საკუთარი თავის, ან ორგანიზაციის წარდგენა."
