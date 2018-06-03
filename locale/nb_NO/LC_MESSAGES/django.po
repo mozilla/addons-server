@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-03 10:49+0000\n"
+"PO-Revision-Date: 2018-06-03 11:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2115,7 +2115,7 @@ msgid "Language Pack (Application)"
 msgstr "Språkpakke (program)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Språkpakke (utvidelse)"
 
 msgid "Plugin"
 msgstr "Programtillegg"
@@ -2136,13 +2136,13 @@ msgid "Language Packs (Application)"
 msgstr "Språkpakke (program)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Språkpakker (utvidelse)"
 
 msgid "Plugins"
 msgstr "Programtillegg"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Temaer (statiske)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2873,7 +2873,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "flere utvidelser..."
 
 msgid "Documentation"
 msgstr "Dokumentasjon"
@@ -2894,16 +2894,16 @@ msgid "Add-on Compatibility Checker"
 msgstr ""
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Utviklingsutvidelser"
 
 msgid "Community & Support"
 msgstr ""
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Utvidelsesbloggen"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Utvidelsesforumet"
 
 msgid "More Resources"
 msgstr "Flere ressurser"
@@ -2935,7 +2935,7 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Valideringsresultater"
 
 msgid "Validated at:"
 msgstr ""
@@ -3021,7 +3021,7 @@ msgid "None"
 msgstr "Ingen"
 
 msgid "Preview"
-msgstr ""
+msgstr "Forhåndsvis"
 
 #, fuzzy
 msgid "Preview of listed version"
@@ -3052,7 +3052,7 @@ msgid "Basic Information for {0}"
 msgstr ""
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL for utvidelser"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -3127,7 +3127,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "Utvidelsesdetaljer"
 
 msgid "Add-on Details for {0}"
 msgstr ""
