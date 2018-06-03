@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-03 10:10+0000\n"
+"PO-Revision-Date: 2018-06-03 10:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2371,16 +2371,16 @@ msgid "Language Support and Translation"
 msgstr "Språkstøtte og oversetning"
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "Foto og media"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, nyheter og blogger"
 
 msgid "Site-specific"
 msgstr ""
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Web og utviklerverktøy"
 
 msgid "All Rights Reserved"
 msgstr "Med enerett"
@@ -2537,58 +2537,58 @@ msgid "Level 6"
 msgstr "Level 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Nivå 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Nivå 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Nivå 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Be om mer info"
 
 msgid "Flag"
-msgstr ""
+msgstr "Flagg"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliser"
 
 msgid "Reject"
-msgstr ""
+msgstr "Avvis"
 
 msgid "Approve"
-msgstr ""
+msgstr "Godkjenn"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksuelt eller pornografisk innhold"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Upassende eller støtende innhold"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Vold, krig eller våpenbilder"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazistisk eller annet hatinnhold"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Krenkende innhold"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Online-gambling"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Inneholder spam"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Lavkvalitet, strukket eller tomt bilde"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Justeringsproblem med toppbilde"
 
 msgid "Core"
-msgstr ""
+msgstr "Kjerne"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -2637,7 +2637,7 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "View current"
-msgstr ""
+msgstr "Vis gjeldende"
 
 msgid "Invalid version range."
 msgstr "Feil versjonsområde."
@@ -2742,19 +2742,19 @@ msgid "All My Add-ons"
 msgstr ""
 
 msgid "All Activity"
-msgstr ""
+msgstr "All aktivitet"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Tilleggsoppdateringer"
 
 msgid "Add-on Status"
 msgstr ""
 
 msgid "User Collections"
-msgstr ""
+msgstr "Brukersamlinger"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Brukervurderinger"
 
 msgid "Changes successfully saved."
 msgstr ""
@@ -2766,7 +2766,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema slettet."
 
 msgid "Add-on deleted."
 msgstr ""
@@ -2809,7 +2809,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Versjon %s slettet."
 
 #, python-format
 msgid "Version %s re-enabled."
@@ -2853,20 +2853,20 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Godta"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Tilbake til utvidelser"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} Utvidelser"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Gå tilbake til DevHub-hjemmesiden"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -2876,10 +2876,10 @@ msgid "more add-ons..."
 msgstr ""
 
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentasjon"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Utvidelsesutvikling"
 
 msgid "Lightweight Themes"
 msgstr ""
@@ -2906,13 +2906,13 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "Flere ressurser"
 
 msgid "Search Developer Docs"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2948,7 +2948,7 @@ msgstr ""
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Nylig aktivitet for {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2961,7 +2961,7 @@ msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitet"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -2980,45 +2980,45 @@ msgid "View and update application compatibility ranges."
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibilitet"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Oppdater kompatibilitet"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Støttede versjoner"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Legg til en annen applikasjon&hellip;"
 
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Nylig aktivitet"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s av %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Eldre aktivitet for utvidelsene mine"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> temaer"
 
 #, fuzzy
 msgid "Edit Information"
 msgstr "Versjonsinformasjon"
 
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 msgid "Preview"
 msgstr ""
@@ -3061,13 +3061,13 @@ msgid "View Listing"
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Sammendrag"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Eksperimentell?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -3142,7 +3142,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Hjemmeside"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -3150,7 +3150,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Bilder"
 
 msgid "Support Information"
 msgstr ""
@@ -3173,14 +3173,14 @@ msgid ""
 msgstr ""
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Tekniske detaljer"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Tekniske detaljer for {0}"
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "Utviklerkommentarer"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
@@ -3191,7 +3191,7 @@ msgid "Required Add-ons"
 msgstr "Påkrevde utvidelser"
 
 msgid "Limit 3"
-msgstr ""
+msgstr "Grense 3"
 
 msgid "Add-on Flags"
 msgstr ""
@@ -3203,7 +3203,7 @@ msgid "This add-on requires external software."
 msgstr ""
 
 msgid "View Source?"
-msgstr ""
+msgstr "Vise kildekode?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -3215,7 +3215,7 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr ""
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "Offentlige statistikker?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -3227,7 +3227,7 @@ msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Oppgradere SDK?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
@@ -3242,7 +3242,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
@@ -3259,13 +3259,13 @@ msgid "Remove this dependent add-on"
 msgstr ""
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Skriv inn navnet på en utvidelse"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Utvidelsesmedia for {0}"
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Utvidelsesikonet"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3326,26 +3326,26 @@ msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Velg en annen lisens."
 
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "Mer informasjon er forespurt"
 
 msgid "Tests"
-msgstr ""
+msgstr "Tester"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Generelle tester"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Sikkerhetstester"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Utvidelsestester"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Oversettelsestester"
 
 msgid "Compatibility Tests"
 msgstr ""
