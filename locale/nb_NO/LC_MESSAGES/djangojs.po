@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-06-13 10:42+0000\n"
-"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
+"PO-Revision-Date: 2017-11-13 12:16+0000\n"
+"Last-Translator: ConaN <omar.nawaz2000@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -31,9 +31,9 @@ msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Utvidelsen må ende på .xpi, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "{0} % fullført"
+msgstr "{0}% fullført"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -304,7 +304,7 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Søkeforslag"
 
 msgid "Search Results"
 msgstr "Søkeresultater"
@@ -343,7 +343,7 @@ msgid "Upsell"
 msgstr "Oppsalg"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Møt utvikleren"
 
 msgid "User Profile"
 msgstr "Brukerprofil"
@@ -804,10 +804,10 @@ msgid "Review notes found"
 msgstr "Fant ingen vurderingstekst"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Gjennomsnittlige vurderinger"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Antall vurderinger"
 
 msgid "Requested Info"
 msgstr "Forespurt info"
@@ -828,7 +828,7 @@ msgid "No results found"
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Reviewer"
 msgstr ""
