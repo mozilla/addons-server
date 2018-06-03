@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-03 10:30+0000\n"
+"PO-Revision-Date: 2018-06-03 10:49+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3348,7 +3348,7 @@ msgid "Localization Tests"
 msgstr "Oversettelsestester"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibilitetstester"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3357,13 +3357,13 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "Topp"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Slett temaet"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Slett utvidelsen"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3383,16 +3383,16 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "Handlinger"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Fortsett"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Slett denne utvidelsen."
 
 msgid "Delete"
 msgstr "Slett"
@@ -3402,10 +3402,10 @@ msgid "Edit information about this add-on."
 msgstr "Mer om denne utvidelsen"
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Last opp en ny versjon av denne utvidelsen."
 
 msgid "New Version"
-msgstr ""
+msgstr "Ny versjon"
 
 msgid "Daily statistics on downloads and users."
 msgstr ""
@@ -3451,7 +3451,7 @@ msgid "This add-on doesn't have any versions."
 msgstr "Denne utvidelsen er ikke kompatibel med din versjon av %(app)s."
 
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 msgid "Disabled"
 msgstr ""
@@ -3486,10 +3486,10 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "Oppsummering:"
 
 msgid "required"
-msgstr ""
+msgstr "påkrevd"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3622,7 +3622,7 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "Last opp fil"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3789,7 +3789,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Usynlig"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3838,23 +3838,23 @@ msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "Køplass:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s av %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Siste versjon:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Last opp ny versjon"
 
 msgid "View All"
 msgstr ""
@@ -3948,16 +3948,16 @@ msgid "Community"
 msgstr "Kommentar"
 
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blogg"
 
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt oss"
 
 msgid "Support"
 msgstr "Støtte"
@@ -3967,7 +3967,7 @@ msgid "Policies"
 msgstr "Gjennomgang er forespurt"
 
 msgid "FAQ"
-msgstr ""
+msgstr "Ofte stilte spørsmål"
 
 #, fuzzy
 msgid "Report Bug"
@@ -4378,7 +4378,7 @@ msgid "Leave a reply"
 msgstr ""
 
 msgid "Reply"
-msgstr ""
+msgstr "Svar"
 
 #, fuzzy
 msgid "Listing visibility"
@@ -4399,7 +4399,7 @@ msgid "Currently on AMO"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Validation"
 msgstr ""
@@ -4467,14 +4467,14 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} feil"
+msgstr[1] "{0} feil"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} advarsel"
+msgstr[1] "{0} advarsler"
 
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4613,7 +4613,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Du kan ikke sende inn denne typen utvidelse"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
@@ -5912,7 +5912,7 @@ msgid "Delete reply"
 msgstr ""
 
 msgid "Delete review"
-msgstr ""
+msgstr "Slett vurdering"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
@@ -6330,10 +6330,10 @@ msgid "Works with"
 msgstr "Virker med"
 
 msgid "Visibility"
-msgstr ""
+msgstr "Synlighet"
 
 msgid "Visible"
-msgstr ""
+msgstr "Synlig"
 
 msgid "Average Daily Users"
 msgstr "Gjennomsnittelig daglige brukere"
@@ -6627,50 +6627,50 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr "Ingen anmeldelser"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Administratorsside"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Vurder denne utvidelsen"
 
 msgid "More Information"
-msgstr ""
+msgstr "Mer informasjon"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Oppløsning"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Anmelder"
 
 msgid "Add-on has been deleted."
 msgstr ""
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Vis kommentarer"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Skjul kommentarer"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Ingen vurderinger funnet for denne perioden."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Avvis denne kunngjøringen"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Filer i denne versjonen:"
 
 msgid "Contents"
-msgstr ""
+msgstr "Innhold"
 
 msgid "Compare"
-msgstr ""
+msgstr "Sammenlign"
 
 #, fuzzy
 msgid "Permissions:"
@@ -6678,19 +6678,19 @@ msgstr "Versjoner"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Av %(user)s den %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Eldre"
 
 msgid "Newer"
-msgstr ""
+msgstr "Nyere"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Siste poeng"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Ingen poeng utdelt ennå."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr ""
@@ -6710,7 +6710,7 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr ""
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "Dato slettet"
 
 msgid "No deleted themes found for this period."
 msgstr ""
@@ -6719,16 +6719,16 @@ msgid "Theme Review History for {0}"
 msgstr ""
 
 msgid "Review Date"
-msgstr ""
+msgstr "Vurderingsdato"
 
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 msgid "Reason"
-msgstr ""
+msgstr "Grunn"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Det finnes for tiden ingen vurderinger."
 
 msgid "Flagged Themes"
 msgstr ""
@@ -6912,7 +6912,7 @@ msgid "Collection Search Results"
 msgstr ""
 
 msgid "Search Results"
-msgstr ""
+msgstr "Søkeresultater"
 
 msgid "Search Unavailable"
 msgstr ""
@@ -6929,11 +6929,11 @@ msgstr ""
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Søk"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Søkeresultater for \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
