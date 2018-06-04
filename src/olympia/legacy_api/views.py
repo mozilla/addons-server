@@ -380,43 +380,33 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        def _get_results():
-            results = []
-            qs = (
-                Addon.search()
-                .filter(**filters)
-                .filter_query_string(query)
-                [:limit])
+        results = []
+        qs = (
+            Addon.search()
+            .filter(**filters)
+            .filter_query_string(query)
+            [:limit])
 
-            for addon in qs:
-                compat_version = find_compatible_version(
-                    addon, app_id, params['version'], params['platform'],
-                    compat_mode)
-                # Specific case for Personas (bug 990768): if we search
-                # providing the Persona addon type (9), then don't look for a
-                # compatible version.
-                if compat_version or addon_type == '9':
-                    addon.compat_version = compat_version
-                    results.append(addon)
-                    if len(results) == limit:
-                        break
+        for addon in qs:
+            compat_version = find_compatible_version(
+                addon, app_id, params['version'], params['platform'],
+                compat_mode)
+            # Specific case for Personas (bug 990768): if we search
+            # providing the Persona addon type (9), then don't look for a
+            # compatible version.
+            if compat_version or addon_type == '9':
+                addon.compat_version = compat_version
+                results.append(addon)
+                if len(results) == limit:
+                    break
 
-            return self.render('legacy_api/search.xml', {
-                'results': results,
-                'total': len(results),
-                # For caching
-                'version': version,
-                'compat_mode': compat_mode,
-            })
-
-        args = (addon_type, limit, app_id, platform, version, compat_mode)
-
-        rendered_xml = cache_get_or_set(
-            'olympia.legacy_api.views:SearchView:{}'.format(
-                map(force_bytes, args)),
-            _get_results)
-
-        return rendered_xml
+        return self.render('legacy_api/search.xml', {
+            'results': results,
+            'total': len(results),
+            # For caching
+            'version': version,
+            'compat_mode': compat_mode,
+        })
 
 
 @json_view
