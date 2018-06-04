@@ -272,7 +272,6 @@ class AddonDetailView(APIView):
         return self.render_addon(addon)
 
     def render_addon(self, addon):
-        print('RRRRRRRRRRRRR', addon.current_version.license.url)
         return self.render('legacy_api/addon_detail.xml', {'addon': addon})
 
     def render_json(self, context):
@@ -381,8 +380,6 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        args = (addon_type, limit, app_id, platform, version, compat_mode)
-
         def _get_results():
             results = []
             qs = (
@@ -411,6 +408,8 @@ class SearchView(APIView):
                 'version': version,
                 'compat_mode': compat_mode,
             })
+
+        args = (addon_type, limit, app_id, platform, version, compat_mode)
 
         rendered_xml = cache_get_or_set(
             'olympia.legacy_api.views:SearchView:{}'.format(
@@ -471,13 +470,13 @@ class ListView(APIView):
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
-        args = (addon_type, limit, APP, platform, version, compat_mode,
+        args = (addon_type, limit, APP.id, platform, version, compat_mode,
                 shuffle)
 
-        addons = cache_get_or_set(
-            'olympia.views.legacy_api.views:ListView:{}'.format(
-                map(force_bytes, args)),
-            addons.all)
+        cache_key = 'olympia.views.legacy_api.views:ListView:{}'.format(
+            hashlib.sha256(':'.join(map(force_bytes, args))).hexdigest())
+
+        addons = cache_get_or_set(cache_key, lambda: list(addons.all()))
 
         return self.render('legacy_api/list.xml',
                            {'addons': addon_filter(addons, *args)})

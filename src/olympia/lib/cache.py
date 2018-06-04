@@ -35,9 +35,11 @@ def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
     Backport from Django 1.11.
     """
     val = cache.get(key, version=version)
+
     if val is None:
         if callable(default):
             default = default()
+
         if default is not None:
             cache.add(key, default, timeout=timeout, version=version)
             # Fetch the value again to avoid a race condition if another
