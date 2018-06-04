@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 08:46+0000\n"
+"PO-Revision-Date: 2018-06-04 07:44+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4029,7 +4029,7 @@ msgid "View All Submissions"
 msgstr "Переглянути всі подання"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Тут ви переглядаєте і керуєте своїми додатками й темами. Для публікації свого першого додатку чи теми, натисніть \"Опублікувати свій перший додаток\" чи \"Опублікувати свою першу тему\"."
+msgstr "Тут ви переглядаєте і керуєте своїми додатками й темами. Для публікації свого першого додатка чи теми, натисніть \"Опублікувати свій перший додаток\" чи \"Опублікувати свою першу тему\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Опублікувати свій перший додаток"
@@ -4065,7 +4065,7 @@ msgid ""
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знаєте %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s та "
-"%(css_link_open)sCSS%(link_close)s, у вас вже є всі необхідні навички для створення чудового додатку."
+"%(css_link_open)sCSS%(link_close)s, у вас вже є всі необхідні навички для створення чудового додатка."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Дізнайтеся, як створити додаток"
@@ -4095,7 +4095,7 @@ msgid "A command line tool to build, run, and test extensions."
 msgstr "Інструмент командного рядка для створення, виконання і тестування розширення."
 
 msgid "Automated code tests for your add-on."
-msgstr "Автоматизовані тести коду вашого додатку."
+msgstr "Автоматизовані тести коду вашого додатка."
 
 msgid "Compatibility Test"
 msgstr "Тест сумісності"
@@ -4277,7 +4277,7 @@ msgid "Notes for Reviewers"
 msgstr "Примітки для редакторів"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна для редактора цього додатку, наприклад, інформацію про тестовий обліковий запис."
+msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна для редактора цього додатка, наприклад, інформацію про тестовий обліковий запис."
 
 msgid "Source code"
 msgstr "Програмний код"
@@ -4339,7 +4339,7 @@ msgid "Reply"
 msgstr "Відповісти"
 
 msgid "Listing visibility"
-msgstr "Видимість додатку"
+msgstr "Видимість додатка"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr "{label_open}Видимий:{label_close} Видимий для всіх на {site_url}, а також включений в результати пошуку та опубліковані сторінки."
@@ -4364,7 +4364,7 @@ msgid "Delete/Disable"
 msgstr "Видалити/Вимкнути"
 
 msgid "Next version of this add-on"
-msgstr "Наступна версія цього додатку"
+msgstr "Наступна версія цього додатка"
 
 msgid "Other versions"
 msgstr "Інші версії"
@@ -4380,7 +4380,7 @@ msgstr "Видалити версію {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr "Ви збираєтесь видалити поточну версію свого додатку. Це може призвести до зміни статусу додатку чи втрати видимості його сторінки для публіки, якщо це єдина публічна версія вашого додатку."
+msgstr "Ви збираєтесь видалити поточну версію свого додатка. Це може призвести до зміни його статусу чи втрати видимості його сторінки, якщо це єдина публічна версія вашого додатка."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Видалення цієї версії назавжди видалить:"
@@ -4401,7 +4401,7 @@ msgid "Hide Add-on"
 msgstr "Приховати додаток"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Приховування вашого додатку дозволить запобігти його появі в будь-якому місці в нашій галереї і заборонити користувачам отримувати автоматичні оновлення."
+msgstr "Приховування вашого додатка дозволить запобігти його появі в будь-якому місці в нашій галереї і заборонить користувачам отримувати автоматичні оновлення."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "Файли, що очікують на перевірку, будуть відключені і вам треба буде завантажити нові версії."
@@ -4550,14 +4550,14 @@ msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
 msgid "Could not find an add-on ID."
-msgstr "Не вдалося знайти ID додатку."
+msgstr "Не вдалося знайти ID додатка."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Ідентифікатор додатку в файлі manifest.json або install.rdf (%s) не відповідає ідентифікатору вашого додатку на AMO (%s)"
+msgstr "Ідентифікатор додатка в файлі manifest.json або install.rdf (%s) не відповідає ідентифікатору вашого додатка на AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr "Знайдено дублікат ID додатку."
+msgstr "Знайдено дублікат ID додатка."
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Номери версій повинні мати менше, ніж 32 символи."
@@ -4583,13 +4583,13 @@ msgstr "Неочікувана помилка."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> у вашому файлі install.rdf (%s) не відповідає типу вашого додатку на AMO (%s)"
+msgstr "<em:type> у вашому файлі install.rdf (%s) не відповідає типу вашого додатка на AMO (%s)"
 
 msgid "Back to review"
 msgstr "Назад до огляду"
 
 msgid "Back to add-on"
-msgstr "Назад до додатку"
+msgstr "Назад до додатка"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4612,7 +4612,7 @@ msgid "The output can be broken, please be careful and %(link_start)sreport an i
 msgstr "Результат може бути пошкоджено. Будьте обережні та негайно %(link_start)sповідомте про проблему%(link_end)s!"
 
 msgid "Add-on file being processed, please wait."
-msgstr "Триває обробка файлу додатку, зачекайте будь ласка."
+msgstr "Триває обробка файлу додатка, зачекайте будь ласка."
 
 msgid "Fetching validation results..."
 msgstr "Отримання результатів перевірки..."
@@ -4627,7 +4627,7 @@ msgid "Hide known files"
 msgstr "Приховати відомі файли"
 
 msgid "Add-on SDK Version:"
-msgstr "Версія SDK додатку:"
+msgstr "Версія SDK додатка:"
 
 msgid "Tab stops:"
 msgstr "Позиції табуляції:"
@@ -4902,7 +4902,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "Беріть участь в наших <a href=\"%(url)s\">форумах</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "Залишайте відгуки для додатку на сайті. Автори додатку більш схильні до вдосконалення своїх додатків та написання нових, якщо вони знають, що люди цінять їх роботу."
+msgstr "Залишайте відгуки для додатка на сайті. Розробники більш схильні до вдосконалення своїх додатків та написання нових, якщо вони знають, що люди цінують їх роботу."
 
 msgid "I have a question"
 msgstr "У мене є питання"
@@ -4944,15 +4944,15 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"При початку веб-перегляду та використанні додатку старайтеся помітити все, що змінилося з моменту, коли ви востаннє його використовували. Це може бути збій відображення, такий як відсутній елемент "
-"меню, або щось більш серйозне, таке як непрацездатність додатку чи показ помилок."
+"При початку веб-перегляду та використанні додатка старайтеся помітити все, що змінилося з моменту, коли ви востаннє його використовували. Це може бути збій відображення, такий як відсутній елемент "
+"меню, або щось більш серйозне, таке як непрацездатність додатка чи показ помилок."
 
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
 "Як тільки ви дізналися, чи конкретний додаток працює належним чином або має проблеми, відкрийте менеджер додатків і натисніть на Сумісність поруч з додатком, щоб повідомити Mozilla про те, що ви "
-"знайшли під час свого тестування. Надсилання звіту допоможе нам повідомити розробника додатку про те, чи він працює належним чином в цій версії чи потребує певних виправлень."
+"знайшли під час свого тестування. Надсилання звіту допоможе нам повідомити розробника додатка про те, чи він працює належним чином в цій версії чи потребує певних виправлень."
 
 #, python-format
 msgid ""
@@ -4989,7 +4989,7 @@ msgstr "Редактори"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr "Більше {0} відгуків для додатку"
+msgstr "Більше {0} відгуків для додатка"
 
 msgid "Other Contributors"
 msgstr "Інші помічники"
@@ -5032,7 +5032,7 @@ msgid "Sections"
 msgstr "Секції"
 
 msgid "Developing an Add-on"
-msgstr "Розробка додатку"
+msgstr "Розробка додатка"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
@@ -7469,11 +7469,10 @@ msgid "Profile Photo"
 msgstr "Світлина профілю"
 
 msgid "Addons"
-msgstr ""
+msgstr "Додатки"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Активність"
+msgstr "Журнали активності"
 
 msgid "Email must be {email}."
 msgstr "Електронна пошта повинна бути як {email}."

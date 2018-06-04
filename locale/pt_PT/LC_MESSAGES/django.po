@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 09:14+0000\n"
+"PO-Revision-Date: 2018-06-02 19:40+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1418,7 +1418,7 @@ msgstr "Extras em destaque :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Aqui estão alguns dos nossos extras favoritos para o ajudar a começar a personalizar o %s."
+msgstr "Aqui estão alguns dos nossos extras favoritos para lhe ajudar a começar a personalizar o %s."
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1462,7 +1462,7 @@ msgstr "Extras em destaque"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Aqui estão alguns dos nossos extras favoritos para o ajudar a começar a personalizar %(app)s."
+msgstr "Aqui estão alguns dos nossos extras favoritos para lhe ajudar a começar a personalizar o %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Instalar dicionário"
@@ -3931,7 +3931,7 @@ msgid "Get Your Add-on Featured"
 msgstr "Ter o seu extra em destaque"
 
 msgid "\"Get The Add-on\" button"
-msgstr "Botão \"Obter o extra\""
+msgstr "Botão \"Get The Add-on\""
 
 msgid "Legal"
 msgstr "Informações legais"
@@ -7678,10 +7678,10 @@ msgid "Update Account"
 msgstr "Atualizar conta"
 
 msgid "none"
-msgstr "nenhum"
+msgstr "nenhuma"
 
 msgid "all"
-msgstr "tudo"
+msgstr "todas"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "O Extras da Mozilla transitou para Contas Firefox para início de sessão. Continue para completar o processo de início de sessão simples."
