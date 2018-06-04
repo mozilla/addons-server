@@ -84,6 +84,26 @@ class AddonLog(ModelBase):
         db_table = 'log_activity_addon'
         ordering = ('-created',)
 
+    def transfer(self, new_addon):
+        try:
+            # arguments is a structure:
+            # ``arguments = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
+            arguments = json.loads(self.activity_log._arguments)
+        except Exception:
+            log.debug('unserializing data from addon_log failed: %s' %
+                      self.activity_log.id)
+            return None
+
+        new_arguments = []
+        for item in arguments:
+            if item.get('addons.addon', 0) == self.addon.id:
+                new_arguments.append({'addons.addon': new_addon.id})
+            else:
+                new_arguments.append(item)
+
+        self.activity_log.update(_arguments=json.dumps(new_arguments))
+        self.update(addon=new_addon)
+
 
 class CommentLog(ModelBase):
     """
@@ -279,8 +299,9 @@ class ActivityLog(ModelBase):
             # d is a structure:
             # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
-        except Exception:
+        except Exception as e:
             log.debug('unserializing data from addon_log failed: %s' % self.id)
+            log.debug(e)
             return None
 
         objs = []
