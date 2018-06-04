@@ -380,12 +380,15 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        results = []
         qs = (
             Addon.search()
             .filter(**filters)
             .filter_query_string(query)
             [:limit])
+
+        results = []
+
+        total = qs.count()
 
         for addon in qs:
             compat_version = find_compatible_version(
@@ -402,7 +405,7 @@ class SearchView(APIView):
 
         return self.render('legacy_api/search.xml', {
             'results': results,
-            'total': len(results),
+            'total': total,
             # For caching
             'version': version,
             'compat_mode': compat_mode,

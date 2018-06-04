@@ -343,7 +343,6 @@ class APITest(TestCase):
         license.save()
         api_url = (
             '/en-US/firefox/api/%.1f/addon/3615' % legacy_api.CURRENT_VERSION)
-        print('aaaaaaaaaaaaaaaaaaaaaaaaaa')
         response = self.client.get(api_url)
         doc = pq(response.content)
         assert doc('license').length == 1
@@ -356,7 +355,6 @@ class APITest(TestCase):
         license.url = ''
         license.save()
         addon.save()
-        print('LLLLLLLLLLLLLLLLLLLLLLLLL')
         response = self.client.get(api_url)
         doc = pq(response.content)
         license_url = addon.current_version.license_url()

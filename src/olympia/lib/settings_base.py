@@ -349,9 +349,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 
     # Django specific templates
     r'^registration\/',
-
-    # Django Debug toolbar
-    r'^debug_toolbar\/',
 )
 
 TEMPLATES = [
