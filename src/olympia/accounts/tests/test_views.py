@@ -1413,10 +1413,10 @@ class TestAccountNotificationViewSetList(TestCase):
         assert (
             {'name': u'announcements', 'enabled': False, 'mandatory': False}
             in response.data)
-        # Check we didn't just include both in the response.
-        assert (
-            {'name': u'announcements', 'enabled': True, 'mandatory': False}
-            not in response.data)
+        # Check our response only contains one announcements notification.
+        assert len(
+            [nfn for nfn in response.data
+             if nfn['name'] == u'announcements']) == 1
 
     def test_no_auth_fails(self):
         response = self.client.get(self.url)
