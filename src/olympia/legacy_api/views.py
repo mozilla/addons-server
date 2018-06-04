@@ -401,6 +401,10 @@ class SearchView(APIView):
                 results.append(addon)
                 if len(results) == limit:
                     break
+            else:
+                # We're excluding this addon because there are no
+                # compatible versions. Decrement the total.
+                total -= 1
 
         return self.render('legacy_api/search.xml', {
             'results': results,
@@ -433,8 +437,8 @@ class ListView(APIView):
                         limit=10, platform='ALL', version=None,
                         compat_mode='strict'):
         """
-        Find a list of new or featured add-ons.  Filtering is done in Python
-        for cache-friendliness and to avoid heavy queries.
+        Find a list of new or featured add-ons. Filtering is done in Python
+        to avoid heavy queries.
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
