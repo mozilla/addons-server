@@ -1,4 +1,3 @@
-{% cache addon, extra=[api_version, version, compat_mode] %}
 {% set new_api = (api_version >= 1.5) %}
 {% if addon.compat_version %}
   {% set version = addon.compat_version %}
@@ -131,4 +130,3 @@
     {% endif %}
   {%- endif -%}
 </addon>
-{% endcache %}

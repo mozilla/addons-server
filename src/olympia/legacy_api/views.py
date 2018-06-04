@@ -301,7 +301,6 @@ def guid_search(request, api_version, guids):
             try:
                 # Only search through public (and not disabled) add-ons.
                 addon = Addon.objects.public().get(guid=guid)
-
             except Addon.DoesNotExist:
                 addons_xml[key] = ''
 
@@ -314,8 +313,9 @@ def guid_search(request, api_version, guids):
                     })
                 addons_xml[key] = addon_xml
 
-    cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
-                        if k in dirty_keys))
+    if dirty_keys:
+        cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
+                            if k in dirty_keys))
 
     compat = (CompatOverride.objects.filter(guid__in=guids)
               .transform(CompatOverride.transformer))
@@ -381,39 +381,43 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        qs = (
-            Addon.search()
-            .filter(**filters)
-            .filter_query_string(query)
-            [:limit])
+        args = (addon_type, limit, app_id, platform, version, compat_mode)
 
-        total = qs.count()
+        def _get_results():
+            results = []
+            qs = (
+                Addon.search()
+                .filter(**filters)
+                .filter_query_string(query)
+                [:limit])
 
-        results = []
-        for addon in qs:
-            compat_version = find_compatible_version(
-                addon, app_id, params['version'], params['platform'],
-                compat_mode)
-            # Specific case for Personas (bug 990768): if we search providing
-            # the Persona addon type (9), then don't look for a compatible
-            # version.
-            if compat_version or addon_type == '9':
-                addon.compat_version = compat_version
-                results.append(addon)
-                if len(results) == limit:
-                    break
-            else:
-                # We're excluding this addon because there are no
-                # compatible versions. Decrement the total.
-                total -= 1
+            for addon in qs:
+                compat_version = find_compatible_version(
+                    addon, app_id, params['version'], params['platform'],
+                    compat_mode)
+                # Specific case for Personas (bug 990768): if we search
+                # providing the Persona addon type (9), then don't look for a
+                # compatible version.
+                if compat_version or addon_type == '9':
+                    addon.compat_version = compat_version
+                    results.append(addon)
+                    if len(results) == limit:
+                        break
 
-        return self.render('legacy_api/search.xml', {
-            'results': results,
-            'total': total,
-            # For caching
-            'version': version,
-            'compat_mode': compat_mode,
-        })
+            return self.render('legacy_api/search.xml', {
+                'results': results,
+                'total': len(results),
+                # For caching
+                'version': version,
+                'compat_mode': compat_mode,
+            })
+
+        rendered_xml = cache_get_or_set(
+            'olympia.legacy_api.views:SearchView:{}'.format(
+                map(force_bytes, args)),
+            _get_results)
+
+        return rendered_xml
 
 
 @json_view
