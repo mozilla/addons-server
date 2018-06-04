@@ -104,8 +104,6 @@ REDIS_BACKENDS = {
     'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
 }
 
-CACHE_MACHINE_USE_REDIS = True
-
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
