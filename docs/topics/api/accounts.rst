@@ -203,7 +203,7 @@ Notifications List
     permission to list notifications on accounts other than your own.
 
 This endpoint allows you to list the account notifications set for the specified user.
-The result is an unpaginated list of the fields below. There are currently 11 notification types.
+The result is an unpaginated list of the fields below. There are currently 10 notification types.
 
 .. http:get:: /api/v4/accounts/account/(int:user_id|string:username)/notifications/
 

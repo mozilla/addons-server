@@ -547,11 +547,6 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
-        for notification in NOTIFICATIONS_COMBINED:
-            out.append(set_notifications.get(
-                notification.short,  # It's been set by the user.
-                self._get_default_object(notification)))  # Otherwise, default.
-
         if waffle.switch_is_active('activate-basket-sync'):
             newsletters = fetch_subscribed_newsletters(user)
 
@@ -560,7 +555,13 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
                 notification = self._get_default_object(notification)
                 notification.enabled = basket_id in newsletters
                 out.append(notification)
+                # If we have this notification in the db queryset, drop it.
+                set_notifications.pop(notification.notification.short, None)
 
+        for notification in NOTIFICATIONS_COMBINED:
+            out.append(set_notifications.get(
+                notification.short,  # It's been set by the user.
+                self._get_default_object(notification)))  # Otherwise, default.
         return out
 
     def create(self, request, *args, **kwargs):
