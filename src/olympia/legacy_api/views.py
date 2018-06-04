@@ -30,7 +30,6 @@ from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import addon_to_dict, find_compatible_version
 from olympia.search.views import AddonSuggestionsAjax, PersonaSuggestionsAjax
 from olympia.versions.compare import version_int
-from olympia.lib.cache import cache_get_or_set
 
 
 ERROR = 'error'
