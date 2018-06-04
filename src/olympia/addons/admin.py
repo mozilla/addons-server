@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.core import validators
 from django.core.urlresolvers import resolve
 from django.utils.html import format_html
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
@@ -23,12 +23,16 @@ class AddonAdmin(admin.ModelAdmin):
         js = ('js/admin/l10n.js',)
 
     exclude = ('authors',)
-    list_display = ('__unicode__', 'type', 'status', 'average_rating')
+    list_display = ('__unicode__', 'type', 'guid',
+                    'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
+
+    readonly_fields = ('status_with_admin_manage_link',)
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'guid', 'default_locale', 'type', 'status'),
+            'fields': ('name', 'slug', 'guid', 'default_locale', 'type',
+                       'status_with_admin_manage_link'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
@@ -55,6 +59,17 @@ class AddonAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         return models.Addon.unfiltered
+
+    def status_with_admin_manage_link(self, obj):
+        # We don't want admins to be able to change the status without logging
+        # that it happened. So, for now, instead of letting them change the
+        # status in the django admin, display it as readonly and link to the
+        # zadmin manage page, which does implement the logging part (and more).
+        # https://github.com/mozilla/addons-server/issues/7268
+        link = reverse('zadmin.addon_manage', args=(obj.slug,))
+        return format_html(u'<a href="{}">{}</a>',
+                           link, obj.get_status_display())
+    status_with_admin_manage_link.short_description = _(u'Status')
 
 
 class FeatureAdmin(admin.ModelAdmin):

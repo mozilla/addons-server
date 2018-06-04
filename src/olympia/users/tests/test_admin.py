@@ -1,5 +1,15 @@
 from django.conf import settings
+from django.contrib import admin
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.messages.storage import (
+    default_storage as default_messages_storage)
+from django.test import RequestFactory
 from django.utils.dateformat import DateFormat
+
+import mock
+
+from pyquery import PyQuery as pq
+
 
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
@@ -12,8 +22,6 @@ from olympia.ratings.models import Rating
 from olympia.users.admin import UserAdmin
 from olympia.users.models import UserProfile
 
-from pyquery import PyQuery as pq
-
 
 class TestUserAdmin(TestCase):
     def setUp(self):
@@ -21,6 +29,9 @@ class TestUserAdmin(TestCase):
         self.list_url = reverse('admin:users_userprofile_changelist')
         self.detail_url = reverse(
             'admin:users_userprofile_change', args=(self.user.pk,)
+        )
+        self.delete_url = reverse(
+            'admin:users_userprofile_delete', args=(self.user.pk, )
         )
 
     def test_can_not_edit_without_users_edit_permission(self):
@@ -37,10 +48,12 @@ class TestUserAdmin(TestCase):
         assert self.user.reload().username != 'foo'
 
     def test_can_edit_with_users_edit_permission(self):
+        old_username = self.user.username
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
+        core.set_user(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         response = self.client.post(
@@ -48,9 +61,174 @@ class TestUserAdmin(TestCase):
             follow=True)
         assert response.status_code == 200
         assert self.user.reload().username == 'foo'
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_EDITED.id
+        assert alog.arguments == [self.user]
+        assert alog.details == {'username': [old_username, 'foo']}
+
+    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    def test_can_not_delete_with_users_edit_permission(
+            self, delete_or_disable_related_content_mock):
+        user = user_factory()
+        assert not user.deleted
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(self.delete_url, {'post': 'yes'},
+                                    follow=True)
+        assert response.status_code == 403
+        user.reload()
+        assert not user.deleted
+        assert user.email
+        assert delete_or_disable_related_content_mock.call_count == 0
+
+    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    def test_can_delete_with_admin_advanced_permission(
+            self, delete_or_disable_related_content_mock):
+        user = user_factory()
+        assert not self.user.deleted
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        core.set_user(user)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+        response = self.client.post(self.delete_url, {'post': 'yes'},
+                                    follow=True)
+        assert response.status_code == 200
+        self.user.reload()
+        assert self.user.deleted
+        assert self.user.email is None
+        assert delete_or_disable_related_content_mock.call_count == 1
+        assert (
+            delete_or_disable_related_content_mock.call_args[1] ==
+            {'delete': True})
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
+        assert alog.arguments == [self.user]
+
+    def test_get_actions(self):
+        user_admin = UserAdmin(UserProfile, admin.site)
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        user_admin.get_actions(request) == []
+
+        request.user = user_factory()
+        self.grant_permission(request.user, 'Users:Edit')
+        user_admin.get_actions(request) == ['ban_action']
+
+    def test_ban_action(self):
+        another_user = user_factory()
+        a_third_user = user_factory()
+        users = UserProfile.objects.filter(
+            pk__in=(another_user.pk, self.user.pk))
+        user_admin = UserAdmin(UserProfile, admin.site)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        core.set_user(request.user)
+        request._messages = default_messages_storage(request)
+        user_admin.ban_action(request, users)
+        # Both users should be banned.
+        another_user.reload()
+        self.user.reload()
+        assert another_user.deleted
+        assert another_user.email
+        assert self.user.deleted
+        assert self.user.email
+        # The 3rd user should be unaffected.
+        assert not a_third_user.reload().deleted
+
+        # We should see 2 activity logs for banning.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_USER_BANNED.id).count() == 2
+
+    def test_ban_button_in_change_view(self):
+        ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert ban_url in response.content.decode('utf-8')
+
+    def test_delete_picture_button_in_change_view(self):
+        delete_picture_url = reverse('admin:users_userprofile_delete_picture',
+                                     args=(self.user.pk, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert delete_picture_url in response.content.decode('utf-8')
+
+    def test_ban(self):
+        ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk, ))
+        wrong_ban_url = reverse(
+            'admin:users_userprofile_ban', args=(self.user.pk + 42, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        core.set_user(user)
+        response = self.client.post(ban_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Edit')
+        response = self.client.get(ban_url, follow=True)
+        assert response.status_code == 405  # Wrong http method.
+        response = self.client.post(wrong_ban_url, follow=True)
+        assert response.status_code == 404  # Wrong pk.
+
+        self.user.reload()
+        assert not self.user.deleted
+
+        response = self.client.post(ban_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[0][0].endswith(self.detail_url)
+        assert response.redirect_chain[0][1] == 302
+        self.user.reload()
+        assert self.user.deleted
+        assert self.user.email
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_BANNED.id
+        assert alog.arguments == [self.user]
+
+    @mock.patch.object(UserProfile, 'delete_picture')
+    def test_delete_picture(self, delete_picture_mock):
+        delete_picture_url = reverse(
+            'admin:users_userprofile_delete_picture', args=(self.user.pk, ))
+        wrong_delete_picture_url = reverse(
+            'admin:users_userprofile_delete_picture',
+            args=(self.user.pk + 42, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        core.set_user(user)
+        response = self.client.post(delete_picture_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Edit')
+        response = self.client.get(delete_picture_url, follow=True)
+        assert response.status_code == 405  # Wrong http method.
+        response = self.client.post(wrong_delete_picture_url, follow=True)
+        assert response.status_code == 404  # Wrong pk.
+
+        assert delete_picture_mock.call_count == 0
+
+        response = self.client.post(delete_picture_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[0][0].endswith(self.detail_url)
+        assert response.redirect_chain[0][1] == 302
+
+        assert delete_picture_mock.call_count == 1
+
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_PICTURE_DELETED.id
+        assert alog.arguments == [self.user]
 
     def test_picture_img(self):
-        model_admin = UserAdmin(UserProfile, None)
+        model_admin = UserAdmin(UserProfile, admin.site)
         assert self.user.picture_url.endswith('anon_user.png')
         assert (
             model_admin.picture_img(self.user) ==
@@ -79,7 +257,7 @@ class TestUserAdmin(TestCase):
         Rating.objects.create(
             addon=dummy_addon,
             user=user_factory(), ip_address='255.255.0.0')
-        model_admin = UserAdmin(UserProfile, None)
+        model_admin = UserAdmin(UserProfile, admin.site)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
         assert len(result) == 4
@@ -90,7 +268,7 @@ class TestUserAdmin(TestCase):
         someone_else = user_factory(username='someone_else')
         addon = addon_factory()
 
-        model_admin = UserAdmin(UserProfile, None)
+        model_admin = UserAdmin(UserProfile, admin.site)
         assert (unicode(model_admin.last_known_activity_time(self.user)) ==
                 u'(None)')  # Nothing yet.
 
@@ -119,7 +297,7 @@ class TestUserAdmin(TestCase):
                 expected_result)
 
     def _call_related_content_method(self, method):
-        model_admin = UserAdmin(UserProfile, None)
+        model_admin = UserAdmin(UserProfile, admin.site)
         result = getattr(model_admin, method)(self.user)
         link = pq(result)('a')[0]
         return link.attrib['href'], link.text

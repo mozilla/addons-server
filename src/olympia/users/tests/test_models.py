@@ -10,6 +10,7 @@ from django.contrib.auth import get_user
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
+import mock
 import pytest
 
 import olympia  # noqa
@@ -99,6 +100,139 @@ class TestUserProfile(TestCase):
         assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
         assert user.has_anonymous_username
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    def test_ban_and_disable_related_content(
+            self, delete_or_disable_related_content_mock):
+        user = UserProfile.objects.get(pk=4043307)
+        user.ban_and_disable_related_content()
+        user.reload()
+        assert user.deleted
+        assert user.email == 'jbalogh@mozilla.com'
+        assert user.auth_id
+        assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
+
+        assert delete_or_disable_related_content_mock.call_count == 1
+        assert (
+            delete_or_disable_related_content_mock.call_args[1] ==
+            {'delete': False})
+
+    def test_delete_or_disable_related_content(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, disable/delete related content.
+        user.delete_or_disable_related_content()
+
+        assert user.addons.exists()
+        addon.reload()
+        assert addon.status == amo.STATUS_DISABLED
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def delete_or_disable_related_content_exclude_addons_with_other_devs(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+        AddonUser.objects.create(addon=addon, user=user_factory())
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, disable/delete related content.
+        user.delete_or_disable_related_content()
+
+        # The add-on should not have been touched, it has another dev.
+        assert user.addons.exists()
+        addon.reload()
+        assert addon.status == amo.STATUS_PUBLIC
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def delete_or_disable_related_content_actually_delete(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, delete related content.
+        user.delete_or_disable_related_content(delete=True)
+
+        assert not user.addons.exists()
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def test_delete_picture(self):
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        user.delete_picture()
+
+        user.reload()
+        assert user.picture_type is None
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 

@@ -424,6 +424,22 @@ class Addon(OnChangeMixin, ModelBase):
 
         clean_slug(self, slug_field)
 
+    def force_disable(self):
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_DISABLED)
+        log.info('Addon "%s" status changed to: %s',
+                 self.slug, amo.STATUS_DISABLED)
+        self.update(status=amo.STATUS_DISABLED)
+        self.update_version()
+
+    def force_enable(self):
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_PUBLIC)
+        log.info('Addon "%s" status changed to: %s',
+                 self.slug, amo.STATUS_PUBLIC)
+        self.update(status=amo.STATUS_PUBLIC)
+        # Call update_status() to fix the status if the add-on is not actually
+        # in a state that allows it to be public.
+        self.update_status()
+
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
 
