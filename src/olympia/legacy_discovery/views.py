@@ -90,7 +90,6 @@ def pane_promos(request, version, platform, compat_mode=None):
 
 @non_atomic_requests
 def pane_more_addons(request, section, version, platform, compat_mode=None):
-
     if not compat_mode:
         compat_mode = get_compat_mode(version)
 
@@ -103,7 +102,9 @@ def pane_more_addons(request, section, version, platform, compat_mode=None):
         ctx = {'featured_addons': from_api('featured')}
     elif section == 'up-and-coming':
         ctx = {'up_and_coming': from_api('hotness')}
-    return render(request, 'legacy_discovery/more_addons.html', ctx)
+
+    content = render(request, 'legacy_discovery/more_addons.html', ctx)
+    return content
 
 
 def get_modules(request, platform, version):

@@ -463,16 +463,11 @@ class ListView(APIView):
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
-        args = (addon_type, limit, APP.id, platform, version, compat_mode,
+        args = (addon_type, limit, APP, platform, version, compat_mode,
                 shuffle)
 
-        cache_key = 'olympia.views.legacy_api.views:ListView:{}'.format(
-            hashlib.sha256(':'.join(map(force_bytes, args))).hexdigest())
-
-        addons = cache_get_or_set(cache_key, lambda: list(addons.all()))
-
         return self.render('legacy_api/list.xml',
-                           {'addons': addon_filter(addons, *args)})
+                           {'addons': addon_filter(addons.all(), *args)})
 
     def render_json(self, context):
         return json.dumps([addon_to_dict(a) for a in context['addons']],
