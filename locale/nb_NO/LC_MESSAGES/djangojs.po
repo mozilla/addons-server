@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-03-22 10:29+0000\n"
-"Last-Translator: Pickledgarliclover <alvarkrampis@hotmail.com>\n"
+"PO-Revision-Date: 2018-06-04 08:11+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "Error with {0}"
 msgstr "Feil med {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Vi har aktivert en ny linter for å bearbeide din utvidelse. Pass på å rapportere eventuelle problem på GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -68,7 +68,7 @@ msgid "Validating {0}"
 msgstr "Validerer {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Utvidelsen din overstiger maksimumstørrelsen på {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Mottok en tom respons fra serveren; status: {0}"
@@ -80,23 +80,23 @@ msgid "Finished validating {0}"
 msgstr "Fullførte validering av {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Valideringen av din utvidelse har utløpt, den vil bli vurdert manuelt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din utvidelse ble validert som feilfri og med {0} advarsel."
+msgstr[1] "Din utvidelse ble validert som feilfri og med {0} advarsel."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din utvidelse ble validert som feilfri og {0} melding."
+msgstr[1] "Din utvidelse ble validert som feilfri og {0} meldinger."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Din utvidelse ble validert uten feil eller advarsler."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Bidraget ditt blir automatisk signert."
 
 msgid "WebExtension upgrade"
 msgstr "WebExtension-oppgradering"
@@ -105,27 +105,29 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Konverter en gammel Firefox-utvidelse på MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Hvis din utvidelse krever en konto på et nettsted for å kunne bli ordentlig testet, legg med et brukernavn og passord i notatene for anmelderen (dette kan bli gjort i det neste trinnet)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Sjekkliste for å sende inn utvidelser"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Verifiser de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under vurderingsprosessen:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Kompilerte binærfiler, så vel som minifiserte eller forvrengte skript (bortsett fra velkjente biblioteker) må ha kildene sine sendt inn til vurdering separat. Sørg for at du bruker "
+"opplastningsfeltet for kildekode for å unngå å få avslag på innsendingen din."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Valideringsprosessen oppdaget disse problemene som kan føre til avslag:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "Beklager, ingen støttet plattform har blitt funnet."
@@ -134,7 +136,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Filen din overskrider maksimumstørrelsen på {0}."
 
 msgid "You cancelled the upload."
 msgstr "Du avbrøt opplastingen."
@@ -295,13 +297,13 @@ msgid "Add-ons Manager"
 msgstr "Utvidelsesbehandler"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Utvidelsesbehandler promo"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Utvidelsesbehandler fremhevet"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Utvidelsesbehandler les mer"
 
 msgid "Search Suggestions"
 msgstr "Søkeforslag"
@@ -677,7 +679,7 @@ msgid "Works with {app}"
 msgstr "Virker med {app} {min} - {max}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Kun for Firefox — Last ned Firefox nå!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."

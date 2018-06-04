@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-03 11:14+0000\n"
-"Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
+"PO-Revision-Date: 2018-06-04 08:11+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Utvidelsen finnes ikke på AMO -"
 
 msgid "Download Now"
 msgstr "Last ned nå"
@@ -1006,7 +1006,7 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url-en er allerede i bruk av en annen samling"
 
 msgid "Name cannot be empty."
-msgstr "Navnet kan ikke være tomt."
+msgstr "Navn kan ikke være tomt."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -2882,7 +2882,7 @@ msgid "Extension Development"
 msgstr "Utvidelsesutvikling"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Lettvektstemaer"
 
 msgid "Add-on Policies"
 msgstr ""
@@ -2897,13 +2897,13 @@ msgid "Development Add-ons"
 msgstr "Utviklingsutvidelser"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Felleskap og brukerstøtte"
 
 msgid "Add-ons Blog"
-msgstr "Utvidelsesbloggen"
+msgstr "Blogg om utvidelser"
 
 msgid "Add-ons Forum"
-msgstr "Utvidelsesforumet"
+msgstr "Forum for utvidelser"
 
 msgid "More Resources"
 msgstr "Flere ressurser"
@@ -2935,10 +2935,10 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr "Valideringsresultater"
+msgstr "Valideringsresultat"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Validert den:"
 
 msgid "Tested for compatibility against:"
 msgstr ""
@@ -2952,7 +2952,7 @@ msgstr "Nylig aktivitet for {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> av %(user)s"
 
 msgid "No results found."
 msgstr "Ingen resultater."
@@ -2964,7 +2964,7 @@ msgid "Activity"
 msgstr "Aktivitet"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Abonner på denne RSS-kilden"
 
 #, python-format
 msgid ""
@@ -3296,7 +3296,7 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Skjermbilde"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
@@ -3305,7 +3305,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr ""
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Legg til et skjermbilde…"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
