@@ -13,9 +13,6 @@ from olympia.files.models import File
 from olympia.lib.cache import make_key
 
 
-UNSET = object()
-
-
 class Config(models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
@@ -36,15 +33,10 @@ class Config(models.Model):
 
 
 def get_config(conf):
-    cache_key = make_key('zadmin.config.get_config:{}'.format(conf))
-    value = cache.get(cache_key)
-
-    if value is not None:
-        return value
-
-    config = Config.objects.filter(key=conf).first()
-    value = config.value if config else UNSET
-    cache.set(make_key('zadmin.config.get_config:{}'.format(conf)), value)
+    try:
+        return Config.objects.get(key=conf).value
+    except Config.DoesNotExist:
+        return None
 
 
 def set_config(conf, value):
