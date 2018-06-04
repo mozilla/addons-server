@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 08:46+0000\n"
+"PO-Revision-Date: 2018-06-03 19:09+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -7469,11 +7469,10 @@ msgid "Profile Photo"
 msgstr "Світлина профілю"
 
 msgid "Addons"
-msgstr ""
+msgstr "Додатки"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Активність"
+msgstr "Журнали активності"
 
 msgid "Email must be {email}."
 msgstr "Електронна пошта повинна бути як {email}."
