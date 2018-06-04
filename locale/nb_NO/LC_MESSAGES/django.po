@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-04 08:11+0000\n"
+"PO-Revision-Date: 2018-06-04 08:25+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2843,7 +2843,7 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox distribusjonsavtale for utvidelser"
 
 #, fuzzy
 msgid "Review Policies and Rules"
@@ -2891,7 +2891,7 @@ msgid "Add-on Validator"
 msgstr ""
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Kompatiblitetskontroll for utvidelser"
 
 msgid "Development Add-ons"
 msgstr "Utviklingsutvidelser"
@@ -3417,7 +3417,7 @@ msgid "Manage Status & Versions"
 msgstr ""
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Vis utvidelsens oppføring"
 
 msgid "View Recent Changes"
 msgstr ""
@@ -3426,7 +3426,7 @@ msgid "Edit details about this theme's listing."
 msgstr ""
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "Rediger oppføringen"
 
 msgid "View the popularity of this theme over time."
 msgstr ""
@@ -3441,7 +3441,7 @@ msgid "Transfer Ownership"
 msgstr ""
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Slett dette temaet."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3454,7 +3454,7 @@ msgid "Status:"
 msgstr "Status:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Slått av"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -3463,8 +3463,8 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aktiv bruker"
+msgstr[1] "<strong>{0}</strong> aktive brukere"
 
 #, fuzzy
 msgid "Submit a New File"

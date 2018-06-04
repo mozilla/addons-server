@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-04 08:11+0000\n"
+"PO-Revision-Date: 2018-06-04 08:23+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -643,8 +643,8 @@ msgstr[1] "Sett {0} utvidelser til maksversjon {1} og send e-post til forfattern
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Send e-post til utvikleren av {2} utvidelse som feilet valideringen."
+msgstr[1] "Send e-post til utvikleren av {2} utvidelser som feilet valideringen."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -664,9 +664,8 @@ msgid "Not available for your platform"
 msgstr "Ikke tilgjengelig for plattformen din"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
+msgstr "Denne utvidelsen er ikke kompatibel med versjonen din av {0}."
 
 msgid "View other versions"
 msgstr "Vis andre versjoner"
