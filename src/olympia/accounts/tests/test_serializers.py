@@ -162,7 +162,6 @@ class PermissionsTestMixin(object):
         # Add a second group membership to test duplicates
         group2 = Group.objects.create(name='b', rules='Foo:Bar,Addons:Edit')
         GroupUser.objects.create(group=group2, user=self.user)
-        Group.objects.invalidate(*Group.objects.all())
         assert self.serializer(self.user).data['permissions'] == [
             'Addons:Edit', 'Addons:Review', 'Foo:Bar', 'Personas:Review']
 

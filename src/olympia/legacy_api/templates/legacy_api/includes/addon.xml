@@ -32,6 +32,7 @@
   <license>
     <name>{{ version.license.name }}</name>
     <url>
+      dada: {{ version.license.url }} dudu
       {%- if not version.license.url -%}
       {{ version.license_url()|absolutify }}
       {%- else -%}

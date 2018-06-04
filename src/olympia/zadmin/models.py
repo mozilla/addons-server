@@ -3,22 +3,23 @@ import json
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.cache import cache
 from django.db import models
-
-import caching
 
 from olympia import amo
 from olympia.amo.models import ModelBase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
+from olympia.lib.cache import make_key
 
 
-class Config(caching.base.CachingMixin, models.Model):
+UNSET = object()
+
+
+class Config(models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
     value = models.TextField()
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'config'
@@ -35,16 +36,22 @@ class Config(caching.base.CachingMixin, models.Model):
 
 
 def get_config(conf):
-    try:
-        return Config.objects.get(key=conf).value
-    except Config.DoesNotExist:
-        return
+    cache_key = make_key('zadmin.config.get_config:{}'.format(conf))
+    value = cache.get(cache_key)
+
+    if value is not None:
+        return value
+
+    config = Config.objects.filter(key=conf).first()
+    value = config.value if config else UNSET
+    cache.set(make_key('zadmin.config.get_config:{}'.format(conf)), value)
 
 
 def set_config(conf, value):
     cf, created = Config.objects.get_or_create(key=conf)
     cf.value = value
     cf.save()
+    cache.set(make_key('zadmin.config.get_config:{}'.format(conf)), value)
 
 
 class ValidationJob(ModelBase):

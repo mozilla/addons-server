@@ -1,7 +1,6 @@
 import mock
 import pytest
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 from mock import Mock
@@ -27,24 +26,6 @@ class ManualOrderTest(TestCase):
         addons = amo_models.manual_order(
             Addon.objects.all(), semi_arbitrary_order)
         assert semi_arbitrary_order == [addon.id for addon in addons]
-
-
-def test_skip_cache():
-    assert (
-        getattr(amo_models._locals, 'skip_cache') is
-        not settings.CACHE_MACHINE_ENABLED)
-
-    setattr(amo_models._locals, 'skip_cache', False)
-
-    with amo_models.skip_cache():
-        assert amo_models._locals.skip_cache
-        with amo_models.skip_cache():
-            assert amo_models._locals.skip_cache
-        assert amo_models._locals.skip_cache
-
-    assert not amo_models._locals.skip_cache
-
-    setattr(amo_models._locals, 'skip_cache', settings.CACHE_MACHINE_ENABLED)
 
 
 def test_use_master():
@@ -173,12 +154,6 @@ class TestModelBase(TestCase):
         with mock.patch('olympia.amo.models.statsd.timer') as timer:
             addon.delete()
         timer.assert_any_call('cache_machine.manager.post_delete')
-
-
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    assert Addon._cache_key(1, 'default') == Addon._cache_key(1, 'slave')
 
 
 class BasePreviewMixin(object):

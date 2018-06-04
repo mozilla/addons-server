@@ -16,7 +16,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.cache_nuggets import Message
+from olympia.lib.cache import Message
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File

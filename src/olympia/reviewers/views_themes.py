@@ -104,12 +104,12 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
         num, themes, locks = _get_rereview_themes(reviewer)
     else:
         # Pending and flagged themes.
-        locks = ThemeLock.objects.no_cache().filter(
+        locks = ThemeLock.objects.filter(
             reviewer=reviewer, theme__addon__status=status)
         num, themes = _calc_num_themes_checkout(locks)
         if themes:
             return themes
-        themes = Persona.objects.no_cache().filter(
+        themes = Persona.objects.filter(
             addon__status=status, themelock=None)
 
     # Don't allow self-reviews.
@@ -141,7 +141,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
             locks = expired_locks
 
     if rereview:
-        return (RereviewQueueTheme.objects.no_cache()
+        return (RereviewQueueTheme.objects
                 .filter(theme__themelock__reviewer=reviewer)
                 .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
@@ -247,7 +247,7 @@ def _calc_num_themes_checkout(locks):
 
 def _get_rereview_themes(reviewer):
     """Check out re-uploaded themes."""
-    locks = (ThemeLock.objects.select_related().no_cache()
+    locks = (ThemeLock.objects.select_related()
              .filter(reviewer=reviewer,
                      theme__rereviewqueuetheme__isnull=False)
              .exclude(theme__addon__status=amo.STATUS_REJECTED))
@@ -256,7 +256,7 @@ def _get_rereview_themes(reviewer):
     if updated_locks:
         locks = updated_locks
 
-    themes = (RereviewQueueTheme.objects.no_cache()
+    themes = (RereviewQueueTheme.objects
               .filter(theme__addon__isnull=False, theme__themelock=None)
               .exclude(theme__addon__status=amo.STATUS_REJECTED))
     return num, themes, locks

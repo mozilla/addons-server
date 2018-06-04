@@ -19,8 +19,6 @@ from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import waffle
 
-from caching.base import cached_with
-
 import olympia.core.logger
 
 from olympia import amo, legacy_api
@@ -32,6 +30,7 @@ from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import addon_to_dict, find_compatible_version
 from olympia.search.views import AddonSuggestionsAjax, PersonaSuggestionsAjax
 from olympia.versions.compare import version_int
+from olympia.lib.cache import cache_get_or_set
 
 
 ERROR = 'error'
@@ -273,6 +272,7 @@ class AddonDetailView(APIView):
         return self.render_addon(addon)
 
     def render_addon(self, addon):
+        print('RRRRRRRRRRRRR', addon.current_version.license.url)
         return self.render('legacy_api/addon_detail.xml', {'addon': addon})
 
     def render_json(self, context):
@@ -470,12 +470,11 @@ class ListView(APIView):
         args = (addon_type, limit, APP, platform, version, compat_mode,
                 shuffle)
 
-        def f():
-            return self._process(addons, *args)
+        addons = cache_get_or_set(
+            'olympia.views.legacy_api.views:ListView:{}'.format(
+                map(force_bytes, args)),
+            addons.all)
 
-        return cached_with(addons, f, map(force_bytes, args))
-
-    def _process(self, addons, *args):
         return self.render('legacy_api/list.xml',
                            {'addons': addon_filter(addons, *args)})
 

@@ -1066,9 +1066,7 @@ def version_edit(request, addon_id, addon, version_id):
                                   amo.permissions.REVIEWS_ADMIN)
 
     if addon.accepts_compatible_apps():
-        # We should be in no-caching land but this one stays cached for some
-        # reason.
-        qs = version.apps.all().no_cache()
+        qs = version.apps.all()
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs,
             form_kwargs={'version': version})

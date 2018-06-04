@@ -16,6 +16,7 @@ DEBUG = True
 # These apps are great during development.
 INSTALLED_APPS += (
     'olympia.landfill',
+    'debug_toolbar',
 )
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
@@ -37,7 +38,7 @@ CACHE_MACHINE_ENABLED = False
 #      'BACKEND': 'caching.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.MemcachedCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     },
     'filesystem': {

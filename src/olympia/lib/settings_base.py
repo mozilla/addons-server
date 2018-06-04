@@ -349,6 +349,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 
     # Django specific templates
     r'^registration\/',
+
+    # Django Debug toolbar
+    r'^debug_toolbar\/',
 )
 
 TEMPLATES = [
@@ -992,10 +995,6 @@ MINIFY_BUNDLES = {
     }
 }
 
-
-# Caching
-CACHE_MACHINE_ENABLED = True
-
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:%s:' % build_id
 KEY_PREFIX = CACHE_PREFIX
@@ -1303,8 +1302,6 @@ LOGGING = {
     'loggers': {
         'amo.validator': {'level': logging.WARNING},
         'amqplib': {'handlers': ['null']},
-        'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.ERROR},
         'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},

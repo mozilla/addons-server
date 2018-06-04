@@ -1,8 +1,6 @@
 
 from django.db import models
 
-import caching.base
-
 from olympia.amo.models import SearchMixin
 
 from .db import LargeStatsDictField, StatsDictField
@@ -138,12 +136,10 @@ class ThemeUpdateCountBulk(models.Model):
         db_table = 'theme_update_counts_bulk'
 
 
-class GlobalStat(caching.base.CachingMixin, models.Model):
+class GlobalStat(models.Model):
     name = models.CharField(max_length=255)
     count = models.IntegerField()
     date = models.DateField()
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = 'global_stats'

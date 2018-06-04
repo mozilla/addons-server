@@ -3,8 +3,6 @@ from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
-import caching.base as caching
-
 import olympia.core.logger
 
 from olympia import activity, amo
@@ -45,7 +43,7 @@ class WithoutRepliesRatingManager(ManagerBase):
         return qs.filter(reply_to__isnull=True)
 
 
-class RatingQuerySet(caching.CachingQuerySet):
+class RatingQuerySet(models.QuerySet):
     """
     A queryset modified for soft deletion.
     """

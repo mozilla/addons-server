@@ -7,7 +7,7 @@ from olympia.amo.utils import from_string
 pytestmark = pytest.mark.django_db
 
 
-@mock.patch('caching.ext.cache._cache_support')
+@mock.patch('olympia.amo.ext.cache._cache_support')
 def test_app_in_fragment_cache_key(cache_mock):
     cache_mock.return_value = ''
     request = mock.Mock()
@@ -18,7 +18,7 @@ def test_app_in_fragment_cache_key(cache_mock):
     assert cache_mock.call_args[0][0].endswith('<app>')
 
 
-@mock.patch('caching.ext.cache._cache_support')
+@mock.patch('olympia.amo.ext.cache._cache_support')
 def test_fragment_cache_key_no_app(cache_mock):
     cache_mock.return_value = 'xx'
     template = from_string('{% cache 1 %}{% endcache %}')
