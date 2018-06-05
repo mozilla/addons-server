@@ -524,13 +524,20 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(None) is None
 
     def test_transformer(self):
+        author = UserProfile.objects.get(pk=55021)
+        new_author = AddonUser.objects.create(
+            addon_id=3615, user=UserProfile.objects.create(username='abda'),
+            listed=True).user
+
         addon = Addon.objects.get(pk=3615)
+
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             assert addon.current_version
             # Use list() so that we evaluate a queryset in case the
             # transformer didn't attach the list directly
-            assert list(addon.listed_authors)
+            assert [u.pk for u in addon.listed_authors] == [
+                author.pk, new_author.pk]
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""

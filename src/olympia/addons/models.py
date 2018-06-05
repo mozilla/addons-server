@@ -1004,12 +1004,25 @@ class Addon(OnChangeMixin, ModelBase):
             addon_dict = dict((a.id, a) for a in addons)
 
         qs = (UserProfile.objects
-              .filter(addons__in=addons)
+              .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
-        for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
-            addon_dict[addon_id].listed_authors = list(users)
+
+        addons_with_authors = {
+            addon_id: list(users)
+            for addon_id, users in itertools.groupby(
+                qs, key=lambda u: u.addon_id
+            )
+        }
+
+        for addon_id, addon in addon_dict.items():
+            if addon_id in addons_with_authors:
+                users = addons_with_authors[addon_id]
+                addon_dict[addon_id].listed_authors = list(
+                    sorted(users, key=lambda author: author.position))
+            else:
+                addon_dict[addon_id].listed_authors = []
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
