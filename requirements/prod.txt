@@ -86,15 +86,15 @@ billiard==3.5.0.3 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.7.30 \
-    --hash=sha256:19d479abad241512051b11f681b93f37b1e6b03d8f2907daae94b4ca8d0da738 \
-    --hash=sha256:38a811f3335b08690182fdbddb07f0cb5e8f0b5bccbcf9ef606ed2a2508a9fd7
+boto3==1.7.32 \
+    --hash=sha256:75e6623e8ed65db0ae1f78191f236d44db36eb19b5389a22c5ff2621f5ee512e \
+    --hash=sha256:9f1b5261487c65adc881661d4362b64fa7e36451fd68ae59215ced48dce57655
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5
-botocore==1.10.30 \
-    --hash=sha256:8dac26094f3dbebd2849c0774f050daad3f1abf1b35fad7525916a36372fe009 \
-    --hash=sha256:1f6d0a135c9505e0840b675e6bd6b556c85df2e63212ac6850f77edf9f68311a
+botocore==1.10.32 \
+    --hash=sha256:43cf6187e0c2b23bf42664fcb30923d6414387b36291efdebc4ceaf81671e953 \
+    --hash=sha256:f5e98da30d9dbd88aff2717766b8715c1496c1329c0f61b37cf5464e82713e2e
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -281,9 +281,9 @@ pyquery==1.4.0 \
     --hash=sha256:07987c2ed2aed5cba29ff18af95e56e9eb04a2249f42ce47bddfb37f487229a3 \
     --hash=sha256:4771db76bd14352eba006463656aef990a0147a0eeaf094725097acfa90442bf
 # pytest is required by amo-validator
-pytest==3.6.0 \
-    --hash=sha256:c76e93f3145a44812955e8d46cdd302d8a45fbfc7bf22be24fe231f9d8d8853a \
-    --hash=sha256:39555d023af3200d004d09e51b4dd9fdd828baa863cded3fd6ba2f29f757ae2d
+pytest==3.6.1 \
+    --hash=sha256:26838b2bc58620e01675485491504c3aa7ee0faf335c37fcd5f8731ca4319591 \
+    --hash=sha256:32c49a69566aa7c333188149ad48b58ac11a426d5352ea3d8f6ce843f88199cb
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.7.3 \
     --hash=sha256:1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0 \

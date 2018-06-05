@@ -217,7 +217,8 @@ class UserNotificationSerializer(serializers.Serializer):
         request = self.context['request']
         current_user = request.user
 
-        remote_by_id = notifications.REMOTE_NOTIFICATIONS_BY_ID
+        remote_by_id = {
+            l.id: l for l in notifications.REMOTE_NOTIFICATIONS}
         use_basket = waffle.switch_is_active('activate-basket-sync')
 
         if use_basket and instance.notification_id in remote_by_id:

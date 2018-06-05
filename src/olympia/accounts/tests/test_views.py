@@ -1030,8 +1030,20 @@ class TestAccountViewSetDelete(TestCase):
 
     def test_delete(self):
         self.client.login_api(self.user)
+        # Also add api token and session cookies: they should be cleared when
+        # the user deletes their own account.
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = 'something'
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'somethingelse'
+        # Also add cookies that should be kept.
+        self.client.cookies['dontremoveme'] = 'keepme'
         response = self.client.delete(self.url)
         assert response.status_code == 204
+        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert response.cookies[settings.SESSION_COOKIE_NAME].value == ''
+        assert 'dontremoveme' not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''
+        assert self.client.cookies['dontremoveme'].value == 'keepme'
         assert self.user.reload().deleted
 
     def test_no_auth(self):
@@ -1044,29 +1056,43 @@ class TestAccountViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 403
 
-    def test_admin_patch(self):
+    def test_admin_delete(self):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
+        # Also add api token and session cookies: they should be *not* cleared
+        # when the admin deletes someone else's account.
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
         random_user = user_factory()
         url = reverse('v3:account-detail', kwargs={'pk': random_user.pk})
         response = self.client.delete(url)
         assert response.status_code == 204
         assert random_user.reload().deleted
+        assert views.API_TOKEN_COOKIE not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
     def test_developers_cant_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user])
         assert self.user.is_developer and self.user.is_addon_developer
 
+        # Also add api token and session cookies: they should be *not* cleared
+        # when the account has not been deleted.
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
+
         response = self.client.delete(self.url)
         assert response.status_code == 400
         assert 'You must delete all add-ons and themes' in response.content
         assert not self.user.reload().deleted
+        assert views.API_TOKEN_COOKIE not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
         addon.delete()
         response = self.client.delete(self.url)
         assert response.status_code == 204
         assert self.user.reload().deleted
+        # Account was deleted so the cookies should have been cleared this time
+        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
 
     def test_theme_developers_cant_delete(self):
         self.client.login_api(self.user)
@@ -1274,6 +1300,7 @@ class TestAccountNotificationViewSetList(TestCase):
 
     def setUp(self):
         self.user = user_factory()
+        addon_factory(users=[self.user])  # Developers get all notifications.
         self.url = reverse('v3:notification-list',
                            kwargs={'user_pk': self.user.pk})
         super(TestAccountNotificationViewSetList, self).setUp()
@@ -1287,6 +1314,16 @@ class TestAccountNotificationViewSetList(TestCase):
             {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
 
+    def test_defaults_non_dev(self):
+        self.user.addons.all().delete()
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 2
+        assert (
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
+            response.data)
+
     def test_user_set_notifications_included(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
@@ -1296,6 +1333,20 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 10
+        assert (
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
+            response.data)
+
+    def test_user_set_notifications_included_non_dev(self):
+        self.user.addons.all().delete()
+        reply_notification = NOTIFICATIONS_BY_ID[3]
+        UserNotification.objects.create(
+            user=self.user, notification_id=reply_notification.id,
+            enabled=False)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 2
         assert (
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
@@ -1319,6 +1370,25 @@ class TestAccountNotificationViewSetList(TestCase):
             {'name': u'announcements', 'enabled': True, 'mandatory': False} in
             response.data)
 
+    def test_basket_integration_non_dev(self):
+        self.user.addons.all().delete()
+        create_switch('activate-basket-sync')
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            response = self.client.get(self.url)
+            # Basket is a dev-only notification so it shouldn't be called.
+            assert not request_call.called
+
+        assert response.status_code == 200
+        # And the notification shoudn't be included either.
+        assert (
+            {'name': u'announcements', 'enabled': True, 'mandatory': False}
+            not in response.data)
+
     def test_basket_integration_ignore_db(self):
         create_switch('activate-basket-sync')
 
@@ -1341,8 +1411,12 @@ class TestAccountNotificationViewSetList(TestCase):
 
         assert response.status_code == 200
         assert (
-            {'name': u'announcements', 'enabled': False, 'mandatory': False} in
-            response.data)
+            {'name': u'announcements', 'enabled': False, 'mandatory': False}
+            in response.data)
+        # Check we didn't just include both in the response.
+        assert (
+            {'name': u'announcements', 'enabled': True, 'mandatory': False}
+            not in response.data)
 
     def test_no_auth_fails(self):
         response = self.client.get(self.url)
@@ -1377,6 +1451,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
     def setUp(self):
         self.user = user_factory()
+        addon_factory(users=[self.user])  # Developers get all notifications.
         self.url = reverse('v3:notification-list',
                            kwargs={'user_pk': self.user.pk})
         self.list_url = reverse('v3:notification-list',
