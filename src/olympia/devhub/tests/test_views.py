@@ -1275,6 +1275,27 @@ class TestQueuePosition(TestCase):
         version_files.platform = amo.PLATFORM_LINUX.id
         version_files.save()
 
+        # Add a second one also awaiting review in each queue
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # And some static themes that shouldn't be counted
+        addon_factory(
+            status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        addon_factory(
+            status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+
     def test_not_in_queue(self):
         response = self.client.get(self.addon.get_dev_url('versions'))
 
@@ -1286,15 +1307,11 @@ class TestQueuePosition(TestCase):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
-        for addon_status in statuses:
-            self.addon.status = addon_status[0]
-            self.addon.save()
-
+        for (addon_status, file_status) in statuses:
             latest_version = self.addon.find_latest_version(
                 amo.RELEASE_CHANNEL_LISTED)
-            file = latest_version.files.all()[0]
-            file.status = addon_status[1]
-            file.save()
+            latest_version.files.all()[0].update(status=file_status)
+            self.addon.update(status=addon_status)
 
             response = self.client.get(self.addon.get_dev_url('versions'))
             doc = pq(response.content)
@@ -1302,7 +1319,27 @@ class TestQueuePosition(TestCase):
             span = doc('.queue-position')
 
             assert span.length
-            assert "Queue Position: 1 of 1" in span.text()
+            assert "Queue Position: 1 of 2" in span.text()
+
+    def test_static_themes_in_queue(self):
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+
+        for (addon_status, file_status) in statuses:
+            latest_version = self.addon.find_latest_version(
+                amo.RELEASE_CHANNEL_LISTED)
+            latest_version.files.all()[0].update(status=file_status)
+            self.addon.update(status=addon_status)
+
+            response = self.client.get(self.addon.get_dev_url('versions'))
+            doc = pq(response.content)
+
+            span = doc('.queue-position')
+
+            assert span.length
+            assert "Queue Position: 1 of 3" in span.text()
 
 
 class TestVersionXSS(TestCase):
