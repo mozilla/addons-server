@@ -548,21 +548,25 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
         for notification in NOTIFICATIONS_COMBINED:
-            if not (notification.group == 'dev' and not user.is_developer):
-                out.append(set_notifications.get(
-                    notification.short,  # It's been set by the user.
-                    self._get_default_object(notification)))  # Or, default.
+            if notification.group == 'dev' and not user.is_developer:
+                # We only return dev notifications for developers.
+                continue
+            out.append(set_notifications.get(
+                notification.short,  # It's been set by the user.
+                self._get_default_object(notification)))  # Or, default.
 
         if waffle.switch_is_active('activate-basket-sync'):
-            newsletters = None
+            newsletters = None  # Lazy - fetch the first time needed.
             by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
             for basket_id, notification in by_basket_id.items():
-                if not (notification.group == 'dev' and not user.is_developer):
-                    if newsletters is None:  # Lazy - don't fetch until we need
-                        newsletters = fetch_subscribed_newsletters(user)
-                    notification = self._get_default_object(notification)
-                    notification.enabled = basket_id in newsletters
-                    out.append(notification)
+                if notification.group == 'dev' and not user.is_developer:
+                    # We only return dev notifications for developers.
+                    continue
+                if newsletters is None:
+                    newsletters = fetch_subscribed_newsletters(user)
+                notification = self._get_default_object(notification)
+                notification.enabled = basket_id in newsletters
+                out.append(notification)
 
         return out
 
