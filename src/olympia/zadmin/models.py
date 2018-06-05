@@ -43,7 +43,6 @@ def set_config(conf, value):
     cf, created = Config.objects.get_or_create(key=conf)
     cf.value = value
     cf.save()
-    cache.set(make_key('zadmin.config.get_config:{}'.format(conf)), value)
 
 
 class ValidationJob(ModelBase):
