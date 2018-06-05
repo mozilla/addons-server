@@ -8,7 +8,6 @@ import waffle
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
-from olympia.zadmin.models import get_config
 
 
 def app(request):

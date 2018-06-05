@@ -3,14 +3,12 @@ import json
 from decimal import Decimal
 
 from django.conf import settings
-from django.core.cache import cache
 from django.db import models
 
 from olympia import amo
 from olympia.amo.models import ModelBase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
-from olympia.lib.cache import make_key
 
 
 class Config(models.Model):

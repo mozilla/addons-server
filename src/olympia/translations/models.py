@@ -1,6 +1,5 @@
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
-from django.utils.encoding import force_text
 
 import bleach
 
