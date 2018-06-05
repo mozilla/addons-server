@@ -23,6 +23,7 @@ from rest_framework.mixins import (
 from rest_framework.permissions import (
     AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
@@ -37,8 +38,8 @@ from olympia.amo.decorators import write
 from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_COMBINED, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
@@ -423,6 +424,14 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 u'account. You must delete all add-ons and themes linked to '
                 u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        response = Response(status=HTTP_204_NO_CONTENT)
+        if instance == request.user:
+            logout_user(request, response)
+        return response
 
     @detail_route(
         methods=['delete'], permission_classes=[

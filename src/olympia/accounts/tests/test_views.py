@@ -1030,8 +1030,20 @@ class TestAccountViewSetDelete(TestCase):
 
     def test_delete(self):
         self.client.login_api(self.user)
+        # Also add api token and session cookies: they should be cleared when
+        # the user deletes their own account.
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = 'something'
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'somethingelse'
+        # Also add cookies that should be kept.
+        self.client.cookies['dontremoveme'] = 'keepme'
         response = self.client.delete(self.url)
         assert response.status_code == 204
+        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert response.cookies[settings.SESSION_COOKIE_NAME].value == ''
+        assert 'dontremoveme' not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''
+        assert self.client.cookies['dontremoveme'].value == 'keepme'
         assert self.user.reload().deleted
 
     def test_no_auth(self):
@@ -1044,29 +1056,43 @@ class TestAccountViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 403
 
-    def test_admin_patch(self):
+    def test_admin_delete(self):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
+        # Also add api token and session cookies: they should be *not* cleared
+        # when the admin deletes someone else's account.
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
         random_user = user_factory()
         url = reverse('v3:account-detail', kwargs={'pk': random_user.pk})
         response = self.client.delete(url)
         assert response.status_code == 204
         assert random_user.reload().deleted
+        assert views.API_TOKEN_COOKIE not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
     def test_developers_cant_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user])
         assert self.user.is_developer and self.user.is_addon_developer
 
+        # Also add api token and session cookies: they should be *not* cleared
+        # when the account has not been deleted.
+        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
+
         response = self.client.delete(self.url)
         assert response.status_code == 400
         assert 'You must delete all add-ons and themes' in response.content
         assert not self.user.reload().deleted
+        assert views.API_TOKEN_COOKIE not in response.cookies
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
         addon.delete()
         response = self.client.delete(self.url)
         assert response.status_code == 204
         assert self.user.reload().deleted
+        # Account was deleted so the cookies should have been cleared this time
+        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
 
     def test_theme_developers_cant_delete(self):
         self.client.login_api(self.user)
