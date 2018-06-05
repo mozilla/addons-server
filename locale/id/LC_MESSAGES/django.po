@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 15:32+0000\n"
+"PO-Revision-Date: 2018-06-05 15:49+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2719,7 +2719,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Tidak bisa menghubungi host di \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Pemberitahuan Keamanan Mozilla: Kredensial AMO API Anda telah dicabut"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2810,7 +2810,7 @@ msgid "Review requested."
 msgstr "Ulasan diminta"
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Anda harus memberikan keterangan terinci untuk melanjutkan."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "Keterangan pengenal anda yang lama telah dicabut dan tidak lagi berlaku. Pastikan memperbarui semua klien API dengan keterangan pengenal yang baru."
@@ -2840,10 +2840,10 @@ msgid "Review Policies and Rules"
 msgstr "Catatan ulasan"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Saya telah membaca dan menerima Perjanjian, Aturan serta Kebijakan ini"
 
 msgid "Accept"
-msgstr ""
+msgstr "Setuju"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "or <a href=\"{0}\">Batal</a>"
@@ -3079,10 +3079,10 @@ msgid "Requires Payment?"
 msgstr "Perlu Mulai Ulang"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Centang kotak ini jika fitur inti pengaya memerlukan beberapa bentuk pembayaran di muka atau setelah masa percobaan agar dapat bekerja."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Pengaya ini memerlukan pembayaran, layanan atau perangkat lunak berbayar, atau perangkat keras tambahan."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Pengaya ini tidak memerlukan pembayaran tambahan, layanan berbayar atau perangkat lunak, atau perangkat keras tambahan."
@@ -3422,6 +3422,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
+"orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
 
 #, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
@@ -3496,7 +3498,7 @@ msgid "Delete this theme."
 msgstr "Hapus tema ini."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Pengaya ini kekurangan sejumlah informasi yang diperlukan sebelum dapat dikirim untuk dipublikasikan."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Pengaya ini tidak memiliki versi apa pun."
@@ -3578,7 +3580,7 @@ msgid "Notes to Reviewer:"
 msgstr "Catatan untuk Pengulas:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Apakah ada sesuatu yang harus diingat peninjau kami ketika meninjau pengaya ini?"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Catatan ini hanya akan terlihat oleh Anda dan pengulas kami."
@@ -3600,13 +3602,13 @@ msgid "Release Notes:"
 msgstr "Rilis"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Biarkan pengguna tahu apa yang baru dan apa yang berubah dalam versi ini."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Catatan ini akan muncul pada halaman rincian."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Cara Mendistribusikan Versi ini"
 
 #, fuzzy
 msgid "More information on Add-on Distribution and Signing"
@@ -3635,23 +3637,23 @@ msgid "Version Submitted"
 msgstr "Catatan Versi"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Selesai! Versi ini akan segera tersedia di situs kami."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Selesai! Versi ini telah dikirim untuk ditinjau. Anda akan diberitahu bila peninjauan telah selesai, atau jika peninjau kami memiliki pertanyaan tentang pengajuan Anda."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Daftar Anda akan lebih berhasil dengan menambahkan keterangan rinci. Siapkan daftar untuk diterbitkan:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Daftar anda akan lebih sukses dengan menambahkan penjelasan rinci dan tangkapan layar. Pastikan daftar Anda siap dipublikasikan:"
 
 #, fuzzy
 msgid "Manage Listing"
 msgstr "Tampilkan pada Daftar"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Anda juga dapat menyunting versi ini untuk menambahkan versi catatan, atau kode sumber jika pengajuan Anda menyertakan kode yang dikecilkan, dikaburkan atau dikompilasi."
 
 msgid "Edit version {0}"
 msgstr "Ubah versi {0}"
@@ -3676,7 +3678,7 @@ msgid "Download {0}"
 msgstr "Unduh {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Anda hanya memilih sebagian platform yang tersedia untuk pengajuan ini. Anda dapat mengunggah lebih banyak berkas yang menarget platform lain:"
 
 msgid "Upload File"
 msgstr "Unggah Berkas"
@@ -3751,7 +3753,7 @@ msgid "Image height should be 200 pixels"
 msgstr "Tinggi gambar harus 200 pixels"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG, atau GIF (tidak digerakkan)"
 
 msgid "Aligned to top-right"
 msgstr "Diluruskan ke kanan atas"
@@ -3764,38 +3766,38 @@ msgid "Select colors for your theme"
 msgstr "Pilih warna untuk Tema anda."
 
 msgid "Header area background"
-msgstr ""
+msgstr "Latar area header"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang tampil:  accentcolor."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Teks dan ikon area header"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang tampil:  textcolor."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Latar area bilah alat"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang tampil:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Teks dan ikon area bilah alat"
 
 #, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ini adalah warna tab teks."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Latar area bidang bilah alat"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Teks area bidang bilah alat"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -3809,7 +3811,7 @@ msgid "Browser preview"
 msgstr "Layangkan untuk Pratinjau"
 
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #, fuzzy
 msgid "Uploading Theme"
@@ -3827,7 +3829,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Untuk instruksi yang lebih rinci, lihat <a href=\"%(docs_url)s\">dokumentasi API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Menjaga kunci API tetap rahasia dan <strong>jangan pernah dibagi dengan siapa pun</strong>, termasuk kontributor Mozilla."
 
 msgid "JWT issuer"
 msgstr "Penerbit JWT"
@@ -3856,10 +3858,10 @@ msgid "Generate new credentials"
 msgstr "Menghasilkan keterangan pengenal baru"
 
 msgid "Invisible"
-msgstr ""
+msgstr "Tak terlihat"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Lengkapi Pengaya Anda dengan menambahkan versi atau metadata yang hilang."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Anda akan menerima surel saat ulasan telah lengkap. Hingga saat itu, pengaya anda tidak terdaftar dalam galeri kami namun bisa diakses langsung dari laman rinciannya. "
@@ -3876,7 +3878,7 @@ msgstr ""
 "                             silakan menghubungi amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Pengaya Anda tidak akan disertakan dalam hasil pencarian, dan halaman daftar yang akan menunjukkan Anda menonaktifkannya. Versi pengajuan baru untuk daftar tidak akan diterima di negara ini."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
