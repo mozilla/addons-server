@@ -1274,6 +1274,7 @@ class TestAccountNotificationViewSetList(TestCase):
 
     def setUp(self):
         self.user = user_factory()
+        addon_factory(users=[self.user])  # Developers get all notifications.
         self.url = reverse('v3:notification-list',
                            kwargs={'user_pk': self.user.pk})
         super(TestAccountNotificationViewSetList, self).setUp()
@@ -1287,6 +1288,16 @@ class TestAccountNotificationViewSetList(TestCase):
             {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
 
+    def test_defaults_non_dev(self):
+        self.user.addons.all().delete()
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 2
+        assert (
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
+            response.data)
+
     def test_user_set_notifications_included(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
@@ -1296,6 +1307,20 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 10
+        assert (
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
+            response.data)
+
+    def test_user_set_notifications_included_non_dev(self):
+        self.user.addons.all().delete()
+        reply_notification = NOTIFICATIONS_BY_ID[3]
+        UserNotification.objects.create(
+            user=self.user, notification_id=reply_notification.id,
+            enabled=False)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 2
         assert (
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
@@ -1318,6 +1343,25 @@ class TestAccountNotificationViewSetList(TestCase):
         assert (
             {'name': u'announcements', 'enabled': True, 'mandatory': False} in
             response.data)
+
+    def test_basket_integration_non_dev(self):
+        self.user.addons.all().delete()
+        create_switch('activate-basket-sync')
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        with mock.patch('basket.base.request', autospec=True) as request_call:
+            response = self.client.get(self.url)
+            # Basket is a dev-only notification so it shouldn't be called.
+            assert not request_call.called
+
+        assert response.status_code == 200
+        # And the notification shoudn't be included either.
+        assert (
+            {'name': u'announcements', 'enabled': True, 'mandatory': False}
+            not in response.data)
 
     def test_basket_integration_ignore_db(self):
         create_switch('activate-basket-sync')
@@ -1381,6 +1425,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
     def setUp(self):
         self.user = user_factory()
+        addon_factory(users=[self.user])  # Developers get all notifications.
         self.url = reverse('v3:notification-list',
                            kwargs={'user_pk': self.user.pk})
         self.list_url = reverse('v3:notification-list',
