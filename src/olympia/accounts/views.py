@@ -571,11 +571,6 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             out.append(set_notifications.get(
                 notification.short,  # It's been set by the user.
                 self._get_default_object(notification)))  # Or, default.
-
-        for notification in NOTIFICATIONS_COMBINED:
-            out.append(set_notifications.get(
-                notification.short,  # It's been set by the user.
-                self._get_default_object(notification)))  # Otherwise, default.
         return out
 
     def create(self, request, *args, **kwargs):
