@@ -90,8 +90,6 @@ class TestHomepage(TestCase):
         response = self.client.get(self.url)
         assert 'ETag' in response
 
-        print('LLLLLLLLLLLLLLLLL', response['ETag'])
-
         response = self.client.get(self.url,
                                    HTTP_IF_NONE_MATCH=response['ETag'])
         assert response.status_code == 304
