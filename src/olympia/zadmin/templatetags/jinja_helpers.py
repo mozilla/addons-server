@@ -1,6 +1,7 @@
 from django_jinja import library
 
 from olympia.amo.urlresolvers import reverse
+from olympia.zadmin.models import get_config as zadmin_get_config
 
 
 @library.global_function
@@ -35,3 +36,8 @@ def admin_site_links():
              reverse('admin:activity_activitylog_changelist')),
         ],
     }
+
+
+@library.global_function
+def get_config(key):
+    return zadmin_get_config(key)
