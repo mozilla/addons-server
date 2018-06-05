@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 13:47+0000\n"
+"PO-Revision-Date: 2018-06-05 14:11+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -63,7 +63,7 @@ msgid "Need help?"
 msgstr "Perlu bantuan?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Pengembang pengaya atau tema tidak dapat menghapus akun mereka. Anda harus menghapus semua pengaya dan tema yang terhubung ke akun ini, atau mentransfernya ke pengguna lain."
 
 msgid "Review"
 msgstr "Ulasan"
@@ -131,7 +131,7 @@ msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
@@ -165,10 +165,10 @@ msgid "Listed"
 msgstr "Terdaftar"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Pengaya dan jalur koleksi perlu diakhiri dengan \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
 msgid "Abuse reported."
 msgstr "Penyalahgunaan dilaporkan."
@@ -267,10 +267,10 @@ msgid "Requires Restart"
 msgstr "Perlu Mulai Ulang"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Pengaya ini dibangun dengan teknologi baru yang selaras dengan Firefox 57 dan yang lebih baru."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Selaras dengan Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -3763,7 +3763,7 @@ msgid "Toolbar area background"
 msgstr ""
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang tampil:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr ""
