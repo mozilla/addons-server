@@ -106,16 +106,6 @@ class Translation(ModelBase):
     delete.alters_data = True
 
     @classmethod
-    def _cache_key(cls, pk, db):
-        # Hard-coding the class name here so that subclasses don't try to cache
-        # themselves under something like "o:translations.purifiedtranslation".
-        #
-        # Like in ModelBase, we avoid putting the real db in the key because it
-        # does us more harm than good.
-        key_parts = ('o', 'translations.translation', pk, 'default')
-        return ':'.join(map(force_text, key_parts))
-
-    @classmethod
     def new(cls, string, locale, id=None):
         """
         Jumps through all the right hoops to create a new translation.
