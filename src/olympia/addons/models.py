@@ -1004,14 +1004,12 @@ class Addon(OnChangeMixin, ModelBase):
             addon_dict = dict((a.id, a) for a in addons)
 
         qs = (UserProfile.objects
-              .filter(addons__in=addons, addonuser__listed=True)
+              .filter(addons__in=addons)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors.
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
@@ -1058,14 +1056,14 @@ class Addon(OnChangeMixin, ModelBase):
         # displayed in detail page / API.
         Addon.attach_static_categories(addons, addon_dict=addon_dict)
 
+        # Set _current_version and attach listed authors.
+        # Do this before splitting off personas and addons because
+        # it needs to be attached to both.
+        Addon.attach_related_versions(addons, addon_dict=addon_dict)
+        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
+
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
-        # Set _current_version.
-        Addon.attach_related_versions(addons, addon_dict=addon_dict)
-
-        # Attach listed authors.
-        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
 
         # Persona-specific stuff
         for persona in Persona.objects.filter(addon__in=personas):

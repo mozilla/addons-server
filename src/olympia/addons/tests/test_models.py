@@ -528,6 +528,9 @@ class TestAddonModels(TestCase):
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             assert addon.current_version
+            # Use list() so that we evaluate a queryset in case the
+            # transformer didn't attach the list directly
+            assert list(addon.listed_authors)
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
