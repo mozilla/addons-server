@@ -733,7 +733,7 @@ msgstr "Beranda pengaya"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Jika Anda mengikuti tautan dari suatu tempat, harap%(open_bug_link)kirimkan masalah%(close_bug_link)s. Beritahu kami dari mana Anda berasal dan apa yang Anda cari, kami akan melakukan yang terbaik "
+"Jika Anda mengikuti tautan dari suatu tempat, harap%(open_bug_link)skirimkan masalah%(close_bug_link)s. Beritahu kami dari mana Anda berasal dan apa yang Anda cari, kami akan melakukan yang terbaik "
 "untuk memperbaikinya."
 
 msgid "Not Found"
