@@ -38,7 +38,8 @@ from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import (
+    ApplicationsVersions, Version, VersionPreview)
 from olympia.zadmin.models import set_config
 
 
@@ -53,18 +54,17 @@ class HubTest(TestCase):
         self.user_profile = UserProfile.objects.get(id=999)
 
     def clone_addon(self, num, addon_id=3615):
-        ids = []
+        addons = []
+        source = Addon.objects.get(id=addon_id)
         for i in range(num):
-            addon = Addon.objects.get(id=addon_id)
             data = {
-                'type': addon.type,
-                'status': addon.status,
-                'name': 'cloned-addon-%s-%s' % (addon_id, i)
+                'type': source.type,
+                'status': source.status,
+                'name': 'cloned-addon-%s-%s' % (addon_id, i),
+                'users': [self.user_profile],
             }
-            new_addon = addon_factory(**data)
-            new_addon.addonuser_set.create(user=self.user_profile)
-            ids.append(new_addon.id)
-        return ids
+            addons.append(addon_factory(**data))
+        return addons
 
 
 class TestDashboard(HubTest):
@@ -106,13 +106,16 @@ class TestDashboard(HubTest):
 
         """
         # Create 10 add-ons.  We going to make the existing one from the setUp
-        # a static theme which shouldn't show up as an addon in this list.
-        self.clone_addon(10)
+        # and a static theme which shouldn't show up as an addon in this list.
+        addons = self.clone_addon(10)
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
+        assert len(doc('.item .info.extension')) == 10
         assert doc('nav.paginator').length == 0
+        for addon in addons:
+            assert addon.get_icon_url(64) in doc('.item .info h3 a').html()
 
         # Create 5 add-ons -have to change self.addon back to clone extensions.
         self.addon.update(type=amo.ADDON_EXTENSION)
@@ -126,16 +129,29 @@ class TestDashboard(HubTest):
     def test_themes(self):
         """Check themes show on dashboard."""
         # Create 2 themes.
+        lwts = []
         for x in range(2):
-            addon = addon_factory(type=amo.ADDON_PERSONA)
-            addon.addonuser_set.create(user=self.user_profile)
+            addon = addon_factory(
+                type=amo.ADDON_PERSONA, users=[self.user_profile])
+            lwts.append(addon)
         # And 2 static themes.
+        staticthemes = []
         for x in range(2):
-            addon = addon_factory(type=amo.ADDON_STATICTHEME)
-            addon.addonuser_set.create(user=self.user_profile)
+            addon = addon_factory(
+                type=amo.ADDON_STATICTHEME, users=[self.user_profile])
+            VersionPreview.objects.create(version=addon.current_version)
+            staticthemes.append(addon)
         response = self.client.get(self.themes_url)
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 4
+        assert len(doc('.item .info.persona')) == 2
+        assert len(doc('.item .info.statictheme')) == 2
+        for addon in lwts:
+            assert addon.persona.preview_url in [
+                img.attrib['src'] for img in doc('.item .info.persona h3 img')]
+        for addon in staticthemes:
+            assert addon.current_previews[0].thumbnail_url in [
+                img.attrib['src'] for img in doc('.info.statictheme h3 img')]
 
     @override_switch('disable-lwt-uploads', active=False)
     def test_disable_lwt_uploads_waffle_disabled(self):
@@ -575,6 +591,11 @@ class TestHome(TestCase):
             assert (
                 addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
                 self.addon.get_dev_url('edit'))
+            if self.addon.type != amo.ADDON_STATICTHEME:
+                assert self.addon.get_icon_url(64) in addon_item.html()
+            else:
+                assert self.addon.current_previews[0].thumbnail_url in (
+                    addon_item.html())
 
             assert (
                 status_str ==
@@ -583,6 +604,11 @@ class TestHome(TestCase):
         Addon.objects.all().delete()
         assert self.get_pq()(
             '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
+
+    def test_my_addons_with_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        VersionPreview.objects.create(version=self.addon.current_version)
+        self.test_my_addons()
 
     def test_my_addons_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)

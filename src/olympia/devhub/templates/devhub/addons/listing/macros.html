@@ -2,7 +2,14 @@
   <h3>
     {% set is_complete = addon.has_complete_metadata() or addon.status != amo.STATUS_NULL %}
     {% if is_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}
-    <img class="icon" src="{{ addon.get_icon_url(64) }}" alt="">
+    {% if addon.type == amo.ADDON_STATICTHEME and addon.current_previews %}
+      {% set icon_url = addon.current_previews[0].thumbnail_url %}
+    {% elif addon.type == amo.ADDON_PERSONA %}
+      {% set icon_url = addon.persona.preview_url %}
+    {% else %}
+      {% set icon_url = addon.get_icon_url(64) %}
+    {% endif %}
+    <img class="icon" src="{{ icon_url }}" alt="">
     {{ addon.name }}{% if is_complete %}</a>{% endif %}
   </h3>
 {% endmacro %}

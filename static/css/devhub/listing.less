@@ -73,11 +73,30 @@
             color: @dark-gray;
         }
     }
+    .info.statictheme, .info.persona {
+        padding-left: 148px;
+        h3 img {
+            left: 10px;
+            height: 64px;
+            width: auto;
+            max-width: 128px;
+            object-fit: cover;
+            object-position: left;
+        }
+    }
+    .info.persona h3 img {
+         object-position: right;
+    }
 }
 
 .html-rtl .listing .item {
     .info {
+        padding-left: 0px;
         padding-right: 102px;
+    }
+    .info.statictheme, .info.persona {
+        padding-left: 0px;
+        padding-right: 148px;
     }
     .item-info {
         float: left;
