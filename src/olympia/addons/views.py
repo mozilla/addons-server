@@ -448,11 +448,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):
-        """Return queryset to be used for the view. We implement our own that
-        does not depend on self.queryset to avoid cache-machine caching the
-        queryset too agressively (mozilla/addons-frontend#2497)."""
-        # TODO: Test and see how that still applies. (cgrebs)
-
+        """Return queryset to be used for the view."""
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
