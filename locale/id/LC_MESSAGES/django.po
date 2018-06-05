@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 16:13+0000\n"
+"PO-Revision-Date: 2018-06-05 20:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4236,7 +4236,7 @@ msgid "Sign In"
 msgstr "Memasukkan Pengaya"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4511,6 +4511,8 @@ msgstr "Dapat dilihat semua orang di {0} dan dimasukkan ke dalam hasil pencarian
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open} Tak terlihat:{label_close} Tidak akan disertakan dalam hasil penelusuran, dan laman daftarnya akan menunjukkan bahwa Anda yang menonaktifkannya. Pengajuan versi baru untuk daftar tidak "
+"akan diterima dalam keadaan ini."
 
 #, fuzzy
 msgid "Listed versions"
@@ -4641,7 +4643,7 @@ msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Atur halaman yang Anda lihat tiap kali membuka tab baru."
 
 #, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4659,7 +4661,7 @@ msgstr ""
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Penampil berkas terkunci, ekstraksi untuk %s boleh jadi sedang berlangsung. Silakan coba lagi dalam waktu sekitar 5 menit."
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -4685,13 +4687,13 @@ msgid "Cannot diff a version against itself"
 msgstr "Tidak bisa melakukan diff sebuah versi atas dirinya sendiri"
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Mengakses data Anda untuk {name}"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Mengkses data Anda pada situs berikut:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Mengakses data Anda untuk semua situs"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
@@ -4743,7 +4745,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda baca ini: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Pengunggahan tema WebExtension saat ini belum didukung."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
@@ -4753,10 +4755,10 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Anda tidak dapat mengajukan Ekstensi Resmi Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Kesalahan tidak terduga."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
