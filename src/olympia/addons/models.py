@@ -1043,9 +1043,11 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        qs = AddonCategory.objects.values_list(
-            'addon', 'category').filter(addon__in=addon_dict)
-        qs = sorted(qs, key=lambda x: (x[0], x[1]))
+        qs = (
+            AddonCategory.objects
+            .filter(addon__in=addon_dict.values())
+            .values_list('addon_id', 'category_id'))
+
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
             # we want.
