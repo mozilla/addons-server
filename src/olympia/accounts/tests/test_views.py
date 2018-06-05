@@ -1411,8 +1411,12 @@ class TestAccountNotificationViewSetList(TestCase):
 
         assert response.status_code == 200
         assert (
-            {'name': u'announcements', 'enabled': False, 'mandatory': False} in
-            response.data)
+            {'name': u'announcements', 'enabled': False, 'mandatory': False}
+            in response.data)
+        # Check we didn't just include both in the response.
+        assert (
+            {'name': u'announcements', 'enabled': True, 'mandatory': False}
+            not in response.data)
 
     def test_no_auth_fails(self):
         response = self.client.get(self.url)
