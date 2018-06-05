@@ -5,7 +5,7 @@ import re
 import uuid
 from contextlib import contextmanager
 
-from django.core.cache import cache
+from django.core.cache import cache, caches
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.utils import encoding, translation
 from django.conf import settings
@@ -221,8 +221,8 @@ class CacheStatTracker(BaseCache):
 
 
 @contextmanager
-def assert_cache_requests(num):
-    cache_using = cache.caches['default']
+def assert_cache_requests(num, alias='default'):
+    cache_using = caches[alias]
     cache_using.clear_log()
 
     yield
