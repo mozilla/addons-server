@@ -591,6 +591,7 @@ class TestReviewerScore(TestCase):
         score = ReviewerScore.objects.get(user=self.user)
         assert score.score == amo.REVIEWED_SCORES[
             amo.REVIEWED_EXTENSION_HIGH_RISK]
+        assert score.version == self.addon.current_version
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
@@ -598,6 +599,7 @@ class TestReviewerScore(TestCase):
         assert score.score == (
             amo.REVIEWED_SCORES.get(amo.REVIEWED_ADDON_REVIEW))
         assert score.note_key == amo.REVIEWED_ADDON_REVIEW
+        assert not score.version
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
