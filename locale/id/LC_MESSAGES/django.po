@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 14:51+0000\n"
+"PO-Revision-Date: 2018-06-05 15:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -733,6 +733,8 @@ msgstr "Beranda pengaya"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Jika Anda mengikuti tautan dari suatu tempat, harap%(open_bug_link)kirimkan masalah%(close_bug_link)s. Beritahu kami dari mana Anda berasal dan apa yang Anda cari, kami akan melakukan yang terbaik "
+"untuk memperbaikinya."
 
 msgid "Not Found"
 msgstr "Tidak Ditemukan"
@@ -907,7 +909,7 @@ msgstr "Kode bahasa {lang_code} tidak valid."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Pk atau slug tidak valid \"%s\" - objek tidak ada."
 
 msgid "Application Versions"
 msgstr "Versi Aplikasi"
@@ -925,7 +927,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Harap perhatikan bahwa WebExtensions tidak akan menerima \"*\" pada %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1473,6 +1475,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Pemasangan pengaya kamus akan menambah opsi bahasa baru pada pemeriksa ejaan %(app_name)s Anda, yang akan memeriksa ejaan saat Anda mengisi formulir Web. Pengaya paket bahasa akan mengubah bahasa "
+"aplikasi secara keseluruhan."
 
 msgid "Available in your locale"
 msgstr "Tersedia dalam pelokalan Anda"
@@ -1529,7 +1533,7 @@ msgstr "Temukan lebih banyak penyedia pencarian di <a href=\"http://mycroftproje
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sCiptakan sendiri%(amo_mdn_link_close)s alat pencarian Anda"
 
 msgid "Most Popular Extensions"
 msgstr "Ekstensi Paling Populer"
@@ -1793,6 +1797,8 @@ msgstr "{addon} {version} ulasan super dimintakan."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Pengaya telah ditandai untuk Tinjauan Admin.  Pengaya ini masih dalam antrean, tetapi akan perlu diperiksa oleh salah satu admin pengulas kami. Tinjauan mungkin memakan waktu lebih lama dari "
+"biasanya."
 
 msgid "Comment on {addon} {version}."
 msgstr "Komentar untuk {addon} {version}."
@@ -1953,7 +1959,7 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr "Komentar untuk {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Catatan persetujuan berubah"
 
 #, fuzzy
 msgid "Source code uploaded for {addon} {version}."
@@ -2481,16 +2487,16 @@ msgid "Add-on Content Review"
 msgstr "Melakukan Ulasan"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Tinjauan Pengaya Pascapersetujuan (Risiko Tertinggi)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Tinjauan Pengaya Pascapersetujuan (Risiko Tinggi)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Tinjauan Pengaya Pascapersetujuan (Risiko Sedang)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Tinjauan Pengaya Pascapersetujuan (Risiko Rendah)"
 
 msgid "Level 1"
 msgstr "Tingkat 1"
@@ -2643,7 +2649,7 @@ msgid "Version {version} already exists."
 msgstr "Versi yang sudah ada."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Lanjutkan saja dengan unggahan yang ada?"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platform Semua tidak bisa digabungkan dengan platform yang spesifik."
@@ -2668,25 +2674,31 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"Di situs ini. <span class=\"helptext\">Kiriman Anda akan terdaftar di situs ini dan Pengelola Pengaya Firefox bagi jutaan pengguna, setelah melewati peninjauan kode. Pembaruan otomatis ditangani "
+"oleh situs ini. Pengaya ini juga harus dipertimbangkan untuk Mozilla promosi dan kontes. Pendistribusian mandiri berkas yang telah ditinjau juga dimungkinkan.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"Anda sendiri. <Span class=\"helptext\"> Pengajuan Anda akan segera ditandatangani untuk pendistribusian mandiri. Pembaruan harus ditangani oleh Anda melalui updateURL atau aplikasi pembaruan "
+"eksternal. </Span>"
 
 #, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Sejak Firefox 53, pengaya baru pada situs ini hanya dapat berupa WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Pengaya peninggalan tidak selaras dengan Firefox 57 atau versi lebih tinggi. gunakan maxVersion 56.* atau lebih rendah."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Kami memperbolehkan dan mendorong peningkatan tetapi Anda tidak dapat membalik proses ini. Setelah pengguna memiliki WebExtension yang terpasang, mereka tidak akan dapat memasang pengaya "
+"peninggalan."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Anda tidak dapat memperbarui WebExtensions pengaya dengan pengaya peninggalan. Pengguna Anda tidak akan dapat menggunakan versi baru Anda karena Firefox tidak mendukung jenis pembaruan."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pengembang Anda ditemukan dalam berkas terkirim. Untuk melindungi akun Anda, kunci itu akan dicabut."
