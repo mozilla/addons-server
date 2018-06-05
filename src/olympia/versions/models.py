@@ -403,8 +403,11 @@ class Version(OnChangeMixin, ModelBase):
     def is_compatible_by_default(self):
         """Returns whether or not the add-on is considered compatible by
         default."""
-        return not self.files.filter(
-            Q(binary_components=True) | Q(strict_compatibility=True)).exists()
+        # Use self.all_files directly since that's cached and more potentially
+        # prefetched through a transformer already
+        return not any([
+            file for file in self.all_files
+            if file.binary_components or file.strict_compatibility])
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
