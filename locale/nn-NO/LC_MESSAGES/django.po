@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-04 08:12+0000\n"
-"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
+"PO-Revision-Date: 2018-06-05 14:53+0000\n"
+"Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
 "MIME-Version: 1.0\n"
@@ -6083,13 +6083,11 @@ msgstr "Framheva tema"
 msgid "Legacy Add-ons"
 msgstr "Forelda utvidingar"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nye tema ({0})"
+msgstr "Nye ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Oppdatering ({0})"
+msgstr "Oppdateringar ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -6224,9 +6222,8 @@ msgstr "Misbruksrapportar ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Dårlege brukarvurderingar ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Temanamn"
+msgstr "Temabilde"
 
 #, fuzzy
 msgid "Rendered Preview"
@@ -7256,9 +7253,8 @@ msgstr "Profilfoto"
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktivitet"
+msgstr "Aktivitetsloggar"
 
 msgid "Email must be {email}."
 msgstr "E-post må vere {email}."
