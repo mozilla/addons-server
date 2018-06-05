@@ -423,12 +423,12 @@ class Version(OnChangeMixin, ModelBase):
         the app version ranges that this particular version is incompatible
         with.
         """
-        from olympia.addons.models import CompatOverride
-        cos = CompatOverride.objects.filter(addon=self.addon)
-        if not cos:
+        overrides = self.addon.compatoverride_set.all()
+
+        if not overrides:
             return []
         app_versions = []
-        for co in cos:
+        for co in overrides:
             for range in co.collapsed_ranges():
                 if (version_int(range.min) <= version_int(self.version) <=
                         version_int(range.max)):
