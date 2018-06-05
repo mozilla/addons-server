@@ -214,6 +214,8 @@ class SetRemoteAddrFromForwardedFor(object):
     def process_request(self, request):
         ips = []
 
+        print('XXXXXXXXXXXXXX', request.META['REMOTE_ADDR'])
+
         if 'HTTP_X_FORWARDED_FOR' in request.META:
             xff = [i.strip() for i in
                    request.META['HTTP_X_FORWARDED_FOR'].split(',')]

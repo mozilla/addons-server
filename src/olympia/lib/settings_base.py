@@ -349,6 +349,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 
     # Django specific templates
     r'^registration\/',
+
+    # Django Debug toolbar
+    r'^debug_toolbar\/',
 )
 
 TEMPLATES = [
@@ -430,6 +433,8 @@ MIDDLEWARE_CLASSES = (
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
     'olympia.api.middleware.GZipMiddlewareForAPIOnly',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's

@@ -1010,7 +1010,7 @@ class Addon(OnChangeMixin, ModelBase):
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
 
         addons_with_authors = {
-            addon_id: list(users)
+            addon_id: sorted(users, key=lambda author: author.position)
             for addon_id, users in itertools.groupby(
                 qs, key=lambda u: u.addon_id
             )
@@ -1019,8 +1019,7 @@ class Addon(OnChangeMixin, ModelBase):
         for addon_id, addon in addon_dict.items():
             if addon_id in addons_with_authors:
                 users = addons_with_authors[addon_id]
-                addon_dict[addon_id].listed_authors = list(
-                    sorted(users, key=lambda author: author.position))
+                addon_dict[addon_id].listed_authors = users
             else:
                 addon_dict[addon_id].listed_authors = []
 
