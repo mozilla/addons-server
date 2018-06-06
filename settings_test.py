@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import logging
+
 from settings import *  # noqa
 
 # Make sure the app needed to test translations is present.
@@ -76,6 +78,8 @@ LOGGING = {
 }
 
 USE_MOZLOG = False
+
+LOG_LEVEL = logging.WARNING
 
 # To speed tests up, crushing uploaded images is disabled in tests except
 # where we explicitly want to test pngcrush.
