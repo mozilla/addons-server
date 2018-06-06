@@ -75,6 +75,8 @@ LOGGING = {
     'loggers': {}
 }
 
+USE_MOZLOG = False
+
 # To speed tests up, crushing uploaded images is disabled in tests except
 # where we explicitly want to test pngcrush.
 PNGCRUSH_BIN = '/bin/true'
@@ -89,17 +91,6 @@ BASKET_API_KEY = 'testkey'
 if os.environ.get('RUNNING_IN_CI'):
     import product_details
     from datetime import datetime
-
-    LOGGING['loggers'].update({
-        'amqp': {'level': logging.WARNING},
-        'raven': {'level': logging.WARNING},
-        'requests': {'level': logging.WARNING},
-        'z.addons': {'level': logging.INFO},
-        'z.task': {'level': logging.WARNING},
-        'z.redis': {'level': logging.WARNING},
-        'z.pool': {'level': logging.ERROR},
-        'http_app_addons': {'level': logging.WARNING},
-    })
 
     class MockProductDetails:
         """Main information we need in tests.
