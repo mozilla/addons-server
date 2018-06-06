@@ -28,7 +28,7 @@ class Command(BaseCommand):
             log.info(
                 u'%s tokens (%s) expired' % (len(done), ','.join(token_uuids)))
             if version_pk:
-                print 'Warning: --version_id ignored as tokens provided too'
+                print('Warning: --version_id ignored as tokens provided too')
         elif version_pk:
             done = [t.expire() for t in ActivityLogToken.objects.filter(
                 version__pk=version_pk)]

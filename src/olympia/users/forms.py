@@ -1,6 +1,8 @@
 import os
 import re
 
+import waffle
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -13,7 +15,9 @@ from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.utils import (
-    clean_nl, has_links, ImageCheck, slug_validator)
+    clean_nl, has_links, ImageCheck, slug_validator,
+    fetch_subscribed_newsletters, subscribe_newsletter,
+    unsubscribe_newsletter)
 from olympia.users import notifications
 
 from . import tasks
@@ -95,16 +99,38 @@ class UserEditForm(forms.ModelForm):
         self.fields['homepage'].error_messages = errors
 
         if self.instance:
-            default = dict((i, n.default_checked) for i, n
-                           in notifications.NOTIFICATIONS_BY_ID.items())
-            user = dict((n.notification_id, n.enabled) for n
-                        in self.instance.notifications.all())
+            # We are fetching all `UserNotification` instances and then,
+            # if the waffle-switch is active overwrite their value with the
+            # data from basket. This simplifies the process of implementing
+            # the waffle-switch. Once we switched the integration "on" on prod
+            # all `UserNotification` instances that are now handled by basket
+            # can be deleted.
+            default = {
+                idx: notification.default_checked
+                for idx, notification
+                in notifications.NOTIFICATIONS_BY_ID.items()}
+            user = {
+                notification.notification_id: notification.enabled
+                for notification in self.instance.notifications.all()}
             default.update(user)
 
+            if waffle.switch_is_active('activate-basket-sync'):
+                newsletters = fetch_subscribed_newsletters(self.instance)
+
+                by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+                for basket_id, notification in by_basket_id.items():
+                    default[notification.id] = basket_id in newsletters
+
             # Add choices to Notification.
-            choices = notifications.NOTIFICATIONS_CHOICES
-            if not self.instance.is_developer:
-                choices = notifications.NOTIFICATIONS_CHOICES_NOT_DEV
+            if self.instance.is_developer:
+                choices = [
+                    (l.id, l.label)
+                    for l in notifications.NOTIFICATIONS_COMBINED]
+            else:
+                choices = [
+                    (l.id, l.label)
+                    for l in notifications.NOTIFICATIONS_COMBINED
+                    if l.group != 'dev']
 
             # Append a "NEW" message to new notification options.
             saved = self.instance.notifications.values_list('notification_id',
@@ -201,19 +227,20 @@ class UserEditForm(forms.ModelForm):
         return biography
 
     def save(self, log_for_developer=True):
-        u = super(UserEditForm, self).save(commit=False)
+        user = super(UserEditForm, self).save(commit=False)
         data = self.cleaned_data
         photo = data['photo']
         if photo:
-            u.picture_type = 'image/png'
-            tmp_destination = u.picture_path_original
+            user.picture_type = 'image/png'
+            tmp_destination = user.picture_path_original
 
             with storage.open(tmp_destination, 'wb') as fh:
                 for chunk in photo.chunks():
                     fh.write(chunk)
 
-            tasks.resize_photo.delay(tmp_destination, u.picture_path,
-                                     set_modified_on=[u])
+            tasks.resize_photo.delay(
+                tmp_destination, user.picture_path,
+                set_modified_on=user.serializable_reference())
 
         visible_notifications = (
             notifications.NOTIFICATIONS_BY_ID if self.instance.is_developer
@@ -226,10 +253,23 @@ class UserEditForm(forms.ModelForm):
                 user=self.instance, notification_id=notification_id,
                 defaults={'enabled': enabled})
 
-        log.debug(u'User (%s) updated their profile' % u)
+        if waffle.switch_is_active('activate-basket-sync'):
+            by_basket_id = notifications.REMOTE_NOTIFICATIONS_BY_BASKET_ID
+            for basket_id, notification in by_basket_id.items():
+                needs_subscribe = str(notification.id) in data['notifications']
+                needs_unsubscribe = (
+                    str(notification.id) not in data['notifications'])
 
-        u.save()
-        return u
+                if needs_subscribe:
+                    subscribe_newsletter(
+                        self.instance, basket_id, request=self.request)
+                elif needs_unsubscribe:
+                    unsubscribe_newsletter(self.instance, basket_id)
+
+        log.debug(u'User (%s) updated their profile' % user)
+
+        user.save()
+        return user
 
 
 class AdminUserEditForm(UserEditForm):

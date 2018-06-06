@@ -145,25 +145,26 @@ def set_modified_on(f):
 
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        objs = kw.pop('set_modified_on', None)
+        obj_info = kw.pop('set_modified_on', None)
+        # obj_info is a tuple in the form of (app_label, model_name, pk)
         result = f(*args, **kw)
-        if objs and result:
-            for obj in objs:
-                # If the function returned a dict, pass that dict down as
-                # kwargs to the set_modified_on_object task. Useful to set
-                # things like icon hashes.
-                kwargs_from_result = result if isinstance(result, dict) else {}
-                task_log.info('Delaying setting modified on object: %s, %s' %
-                              (obj.__class__.__name__, obj.pk))
-                # Execute set_modified_on_object in NFS_LAG_DELAY seconds. This
-                # allows us to make sure any changes have been written to disk
-                # before changing modification date and/or image hashes stored
-                # on objects - otherwise we could end up caching an old version
-                # of an image on CDNs/clients for a very long time.
-                set_modified_on_object.apply_async(
-                    args=[obj], kwargs=kwargs_from_result,
-                    eta=(datetime.datetime.now() +
-                         datetime.timedelta(seconds=settings.NFS_LAG_DELAY)))
+        if obj_info and result:
+            # If the function returned a dict, pass that dict down as
+            # kwargs to the set_modified_on_object task. Useful to set
+            # things like icon hashes.
+            kwargs_from_result = result if isinstance(result, dict) else {}
+            task_log.info('Delaying setting modified on object: %s, %s' %
+                          (obj_info[0], obj_info[1]))
+            # Execute set_modified_on_object in NFS_LAG_DELAY seconds. This
+            # allows us to make sure any changes have been written to disk
+            # before changing modification date and/or image hashes stored
+            # on objects - otherwise we could end up caching an old version
+            # of an image on CDNs/clients for a very long time.
+            set_modified_on_object.apply_async(
+                args=obj_info,
+                kwargs=kwargs_from_result,
+                eta=(datetime.datetime.now() +
+                     datetime.timedelta(seconds=settings.NFS_LAG_DELAY)))
         return result
     return wrapper
 

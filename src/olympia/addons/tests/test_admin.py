@@ -13,6 +13,7 @@ class TestReplacementAddonForm(TestCase):
         form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
             {'guid': 'foo', 'path': '/addon/bar/'})
         assert form.is_valid(), form.errors
+        assert form.cleaned_data['path'] == '/addon/bar/'
 
     def test_invalid(self):
         form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
@@ -25,11 +26,13 @@ class TestReplacementAddonForm(TestCase):
         form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
             {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
         assert form.is_valid(), form.errors
+        assert form.cleaned_data['path'] == '/collections/bagpuss/stuff/'
 
     def test_url(self):
         form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
             {'guid': 'foo', 'path': 'https://google.com/'})
         assert form.is_valid()
+        assert form.cleaned_data['path'] == 'https://google.com/'
 
     def test_invalid_urls(self):
         assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(

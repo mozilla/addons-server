@@ -146,7 +146,6 @@
             "display_collections": false,
             "averagerating": 4.84,
             "display_name": "ditman",
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "http://www.ditman.net",
@@ -162,7 +161,6 @@
             "notes": null,
             "modified": "2009-01-19 15:19:53",
             "last_login_ip": "",
-            "notifyevents": true,
             "last_login": "2009-01-19 15:19:53"
         }
     },

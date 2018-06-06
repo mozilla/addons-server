@@ -1,20 +1,24 @@
 import hashlib
 import os
+import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.utils import translation
 
 from elasticsearch_dsl import Search
 from PIL import Image
 
 import olympia.core.logger
-
-from olympia import amo
+from olympia import amo, activity
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AppSupport, CompatOverride, IncompatibleVersions, Persona, Preview,
-    attach_tags, attach_translations)
+    Addon, AddonCategory, AppSupport, Category, CompatOverride,
+    IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
+    attach_translations)
+from olympia.addons.utils import build_static_theme_xpi_from_lwt
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.storage_utils import rm_stored_dir
@@ -22,11 +26,18 @@ from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
     ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image)
 from olympia.applications.models import AppVersion
-from olympia.files.utils import RDFExtractor, get_file, SafeZip
+from olympia.constants.categories import CATEGORIES
+from olympia.constants.licenses import (
+    LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
+from olympia.files.models import FileUpload
+from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
-from olympia.tags.models import Tag
-from olympia.versions.models import Version
+from olympia.tags.models import AddonTag, Tag
+from olympia.users.models import UserProfile
+from olympia.versions.models import License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -119,7 +130,7 @@ def delete_persona_image(dst, **kw):
         return
     try:
         storage.delete(dst)
-    except Exception, e:
+    except Exception as e:
         log.error('Error deleting persona image: %s' % e)
 
 
@@ -287,8 +298,9 @@ def rereviewqueuetheme_checksum(rqt, **kw):
 
 @task
 @write
-def save_theme(header, addon, **kw):
+def save_theme(header, addon_pk, **kw):
     """Save theme image and calculates checksum after theme save."""
+    addon = Addon.objects.get(pk=addon_pk)
     dst_root = os.path.join(user_media_path('addons'), str(addon.id))
     header = os.path.join(settings.TMP_PATH, 'persona_header', header)
     header_dst = os.path.join(dst_root, 'header.png')
@@ -298,7 +310,7 @@ def save_theme(header, addon, **kw):
         create_persona_preview_images(
             src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
                                   os.path.join(dst_root, 'icon.png')],
-            set_modified_on=[addon])
+            set_modified_on=addon.serializable_reference())
         theme_checksum(addon.persona)
     except IOError:
         addon.delete()
@@ -307,7 +319,8 @@ def save_theme(header, addon, **kw):
 
 @task
 @write
-def save_theme_reupload(header, addon, **kw):
+def save_theme_reupload(header, addon_pk, **kw):
+    addon = Addon.objects.get(pk=addon_pk)
     header_dst = None
     dst_root = os.path.join(user_media_path('addons'), str(addon.id))
 
@@ -498,3 +511,116 @@ def bump_appver_for_legacy_addons(ids, **kw):
                 addons_to_reindex.append(addon.pk)
     if addons_to_reindex:
         index_addons.delay(addons_to_reindex)
+
+
+def _get_lwt_default_author():
+    user, created = UserProfile.objects.get_or_create(
+        email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+    if created:
+        user.anonymize_username()
+    return user
+
+
+@transaction.atomic
+def add_static_theme_from_lwt(lwt):
+    from olympia.activity.models import AddonLog
+    # Try to handle LWT with no authors
+    author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
+    # Wrap zip in FileUpload for Addon/Version from_upload to consume.
+    upload = FileUpload.objects.create(
+        user=author, valid=True)
+    destination = os.path.join(
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    build_static_theme_xpi_from_lwt(lwt, destination)
+    upload.update(path=destination)
+
+    # Create addon + version
+    parsed_data = parse_addon(upload, user=author)
+    addon = Addon.initialize_addon_from_upload(
+        parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
+    addon_updates = {}
+    # Version.from_upload sorts out platforms for us.
+    version = Version.from_upload(
+        upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
+        parsed_data=parsed_data)
+
+    # Set category
+    static_theme_categories = CATEGORIES.get(amo.FIREFOX.id, []).get(
+        amo.ADDON_STATICTHEME, [])
+    lwt_category = (lwt.categories.all() or [None])[0]  # lwt only have 1 cat.
+    lwt_category_slug = lwt_category.slug if lwt_category else 'other'
+    static_category = static_theme_categories.get(
+        lwt_category_slug, static_theme_categories.get('other'))
+    AddonCategory.objects.create(
+        addon=addon,
+        category=Category.from_static_category(static_category, True))
+
+    # Set license
+    lwt_license = PERSONA_LICENSES_IDS.get(
+        lwt.persona.license, LICENSE_COPYRIGHT_AR)  # default to full copyright
+    static_license = License.objects.get(builtin=lwt_license.builtin)
+    version.update(license=static_license)
+
+    # Set tags
+    for addon_tag in AddonTag.objects.filter(addon=lwt):
+        AddonTag.objects.create(addon=addon, tag=addon_tag.tag)
+
+    # Steal the ratings (even with soft delete they'll be deleted anyway)
+    addon_updates.update(
+        average_rating=lwt.average_rating,
+        bayesian_rating=lwt.bayesian_rating,
+        total_ratings=lwt.total_ratings,
+        text_ratings_count=lwt.text_ratings_count)
+    Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
+    # Modify the activity log entry too.
+    rating_activity_log_ids = [
+        l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review']
+    addonlog_qs = AddonLog.objects.filter(
+        addon=lwt, activity_log__action__in=rating_activity_log_ids)
+    [alog.transfer(addon) for alog in addonlog_qs.iterator()]
+
+    # Logging
+    activity.log_create(
+        amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
+    log.debug('New static theme %r created from %r' % (addon, lwt))
+
+    # And finally sign the files (actually just one)
+    for file_ in version.all_files:
+        sign_file(file_)
+        file_.update(
+            datestatuschanged=datetime.now(),
+            reviewed=datetime.now(),
+            status=amo.STATUS_PUBLIC)
+    addon_updates['status'] = amo.STATUS_PUBLIC
+
+    addon.update(**addon_updates)
+    return addon
+
+
+@task
+@write
+def migrate_lwts_to_static_themes(ids, **kw):
+    """With the specified ids, create new static themes based on an existing
+    lightweight themes (personas), and delete the lightweight themes after."""
+    log.info(
+        'Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1], len(ids))
+
+    # Incoming ids should already by type=persona only
+    lwts = Addon.objects.filter(id__in=ids)
+    for lwt in lwts:
+        static = None
+        try:
+            with translation.override(lwt.default_locale):
+                static = add_static_theme_from_lwt(lwt)
+        except Exception as e:
+            # If something went wrong, don't migrate - we need to debug.
+            log.debug(e)
+        if not static:
+            continue
+        MigratedLWT.objects.create(
+            lightweight_theme=lwt, getpersonas_id=lwt.persona.persona_id,
+            static_theme=static)
+        # Steal the lwt's slug after it's deleted.
+        slug = lwt.slug
+        lwt.delete()
+        static.update(slug=slug)

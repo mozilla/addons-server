@@ -15,7 +15,7 @@ class ESPaginator(Paginator):
 
     :param use_elasticsearch_dsl:
         Used to activate support for our elasticsearch-dsl based pagination
-        implementation. elasticsearch-dsl is being used in the v3 API while
+        implementation. elasticsearch-dsl is being used in the v3+ API while
         we have our own wrapper implementation in :mod:`olympia.amo.search`.
     """
 

@@ -39,6 +39,7 @@ import bleach
 import html5lib
 import jinja2
 import pytz
+import basket
 
 from babel import Locale
 from django_statsd.clients import statsd
@@ -227,7 +228,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     headers['X-Auto-Response-Suppress'] = 'RN, NRN, OOF, AutoReply'
     headers['Auto-Submitted'] = 'auto-generated'
 
-    def send(recipient, message, **options):
+    def send(recipients, message, **options):
         kwargs = {
             'attachments': attachments,
             'cc': cc,
@@ -240,7 +241,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
-        args = (recipient, ' '.join(subject.splitlines()), message)
+        args = (list(recipients), ' '.join(subject.splitlines()), message)
         return send_email.delay(*args, **kwargs)
 
     if white_list:
@@ -269,12 +270,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 }
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
-                with no_translation():
+                with translation.override(settings.LANGUAGE_CODE):
                     message_with_unsubscribe = text_template.render(context)
 
                 if html_message:
                     context['message'] = html_message
-                    with no_translation():
+                    with translation.override(settings.LANGUAGE_CODE):
                         html_with_unsubscribe = html_template.render(context)
                         result = send([recipient], message_with_unsubscribe,
                                       html_message=html_with_unsubscribe,
@@ -323,6 +324,68 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
                     html_message=html_template.render(context), *args,
                     **kwargs)
     return msg
+
+
+def sync_user_with_basket(user):
+    """Syncronize a user with basket.
+
+    Returns the user data in case of a successful sync.
+    Returns `None` in case of an unsuccessful sync. This can happen
+    if the user does not exist in basket yet.
+
+    This raises an exception all other errors.
+    """
+    try:
+        data = basket.lookup_user(user.email)
+        user.update(basket_token=data['token'])
+        return data
+    except Exception as exc:
+        acceptable_errors = (
+            basket.errors.BASKET_INVALID_EMAIL,
+            basket.errors.BASKET_UNKNOWN_EMAIL)
+
+        if getattr(exc, 'code', None) in acceptable_errors:
+            return None
+        else:
+            raise
+
+
+def fetch_subscribed_newsletters(user_profile):
+    data = sync_user_with_basket(user_profile)
+
+    if not user_profile.basket_token and data is not None:
+        user_profile.update(basket_token=data['token'])
+    elif data is None:
+        return []
+    return data['newsletters']
+
+
+def subscribe_newsletter(user_profile, basket_id, request=None):
+    response = basket.subscribe(
+        user_profile.email,
+        basket_id,
+        sync='Y',
+        source_url=request.build_absolute_uri() if request else None,
+        optin='Y')
+    return response['status'] == 'ok'
+
+
+def unsubscribe_newsletter(user_profile, basket_id):
+    # Security check, the basket token will be set by
+    # `fetch_subscribed_newsletters` but since we shouldn't simply error
+    # we just fetch it in case something went wrong.
+    if not user_profile.basket_token:
+        sync_user_with_basket(user_profile)
+
+    # If we still don't have a basket token we can't unsubscribe.
+    # This usually means the user doesn't exist in basket yet, which
+    # is more or less identical with not being subscribed to any
+    # newsletters.
+    if user_profile.basket_token:
+        response = basket.unsubscribe(
+            user_profile.basket_token, user_profile.email, basket_id)
+        return response['status'] == 'ok'
+    return False
 
 
 def chunked(seq, n):
@@ -518,7 +581,7 @@ def pngcrush_image(src, **kw):
         log.info('Image optimization completed for: %s' % src)
         return True
 
-    except Exception, e:
+    except Exception as e:
         log.error('Error optimizing image: %s; %s' % (src, e))
     return False
 
@@ -541,7 +604,9 @@ def resize_image(source, destination, size=None):
         if size:
             im = processors.scale_and_crop(im, size)
     with storage.open(destination, 'wb') as fp:
-        im.save(fp, 'png')
+        # Save the image to PNG in destination file path. Don't keep the ICC
+        # profile as it can mess up pngcrush badly (mozilla/addons/issues/697).
+        im.save(fp, 'png', icc_profile=None)
     pngcrush_image(destination)
     return (im.size, original_size)
 
@@ -704,20 +769,6 @@ def get_email_backend(real_email=False):
     else:
         backend = 'olympia.amo.mail.DevEmailBackend'
     return django.core.mail.get_connection(backend)
-
-
-@contextlib.contextmanager
-def no_translation(lang=None):
-    """
-    Activate the settings lang, or lang provided, while in context.
-    """
-    old_lang = translation.trans_real.get_language()
-    if lang:
-        translation.activate(lang)
-    else:
-        translation.activate(settings.LANGUAGE_CODE)
-    yield
-    translation.activate(old_lang)
 
 
 def escape_all(v, linkify_only_full=False):

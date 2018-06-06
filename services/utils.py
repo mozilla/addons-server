@@ -17,7 +17,6 @@ from olympia.lib.log_settings_base import formatters, handlers
 # Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
-from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
 
 
@@ -51,8 +50,9 @@ def user_media_url(what):
     return getattr(settings, key, default)
 
 
-APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
-PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
+PLATFORM_NAMES_TO_CONSTANTS = {
+    platform.api_name: platform.id for platform in PLATFORMS.values()
+}
 
 ADDON_SLUGS_UPDATE = {
     1: 'extension',
@@ -96,10 +96,10 @@ def log_configure():
     cfg = {
         'version': 1,
         'filters': {},
-        'formatters': dict(prod=formatters['prod']),
-        'handlers': dict(syslog=handlers['syslog']),
+        'formatters': dict(json=formatters['json']),
+        'handlers': dict(mozlog=handlers['mozlog']),
         'loggers': {
-            'z': {'handlers': ['syslog'], 'level': logging.INFO},
+            'z': {'handlers': ['mozlog'], 'level': logging.INFO},
         },
         'root': {},
         # Since this configuration is applied at import time

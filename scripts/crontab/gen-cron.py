@@ -36,7 +36,7 @@ def main():
     # Needs to stay below the opts.user injection.
     ctx['python'] = opts.python
 
-    print TEMPLATE % ctx
+    print(TEMPLATE % ctx)
 
 
 if __name__ == "__main__":

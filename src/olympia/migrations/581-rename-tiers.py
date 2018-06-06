@@ -33,9 +33,9 @@ def run():
         try:
             tier = Price.objects.get(price=Decimal(amount))
         except Price.DoesNotExist:
-            print 'Tier not found: %s' % amount
+            print('Tier not found: %s' % amount)
             continue
 
         tier.name = name
         tier.save()
-        print 'Tier changed: %s to %s' % (amount, name)
+        print('Tier changed: %s to %s' % (amount, name))

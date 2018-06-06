@@ -43,9 +43,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.allizom.org')
 
-SYSLOG_TAG = "http_app_addons_stage"
-SYSLOG_TAG2 = "http_app_addons_stage_timer"
-SYSLOG_CSP = "http_app_addons_stage_csp"
+MOZLOG_NAME = "http_app_addons_stage"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -81,6 +79,9 @@ SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
 SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
+
+# Disable cache-machine on dev to prepare for its removal.
+CACHE_MACHINE_ENABLED = False
 
 CACHES = {
     'filesystem': {
@@ -181,15 +182,15 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['amo.addons.allizom.org'],
-    internal=['addons-admin.stage.mozaws.net'],
-)
-
 RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
 RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
+    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
+
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/142069644989/'
+    'https://sqs.us-west-2.amazonaws.com/361527076523/'
     'amo-account-change-stage')

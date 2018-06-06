@@ -9,6 +9,7 @@ from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleVersionSerializer
+from olympia.api.utils import is_gate_active
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import Rating
 from olympia.versions.models import Version
@@ -135,13 +136,21 @@ class RatingVersionSerializer(SimpleVersionSerializer):
 
 class RatingSerializer(BaseRatingSerializer):
     reply = RatingSerializerReply(read_only=True)
-    rating = serializers.IntegerField(min_value=1, max_value=5)
     version = RatingVersionSerializer()
+    score = serializers.IntegerField(min_value=1, max_value=5, source='rating')
 
     class Meta:
         model = Rating
         fields = BaseRatingSerializer.Meta.fields + (
-            'rating', 'reply', 'version')
+            'score', 'reply', 'version')
+
+    def __init__(self, *args, **kwargs):
+        super(RatingSerializer, self).__init__(*args, **kwargs)
+        request = kwargs.get('context', {}).get('request')
+        if request and is_gate_active(request, 'ratings-rating-shim'):
+            score_field = self.fields.pop('score')
+            score_field.source = None  # drf complains if we specifiy source.
+            self.fields['rating'] = score_field
 
     def validate_version(self, version):
         if self.partial:

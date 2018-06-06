@@ -46,8 +46,7 @@ CACHES = {
     }
 }
 
-# For local development, we don't need syslog and mozlog loggers.
-USE_SYSLOG = False
+# For local development, we don't need mozlog loggers.
 USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
@@ -79,8 +78,6 @@ SERVICES_URL = SITE_URL
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 
-ADDON_COLLECTOR_ID = 1
-
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
 
@@ -94,12 +91,17 @@ AES_KEYS = {
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
 }
 
+CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
+    ['localhost:3000', 'olympia.test']
+)
+
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
-        'client_id': 'f336377c014eacf0',
-        'client_secret':
-            '5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d',
+        'client_id': env('FXA_CLIENT_ID', default='f336377c014eacf0'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
@@ -107,20 +109,21 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
     'amo': {
-        'client_id': '0f95f6474c24c1dc',
-        'client_secret':
-            'ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
+        'client_id': env('FXA_CLIENT_ID', default='0f95f6474c24c1dc'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'http://localhost:3000/fxa-authenticate',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
-        'client_id': '1778aef72d1adfb3',
-        'client_secret':
-            '3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18',
+        'client_id': env('FXA_CLIENT_ID', default='1778aef72d1adfb3'),
+        'client_secret': env(
+            'FXA_CLIENT_SECRET',
+            default='3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
@@ -146,5 +149,9 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa
-except ImportError:
-    pass
+except ImportError as exc:
+    import warnings
+    import traceback
+
+    warnings.warn('Could not import local_settings module. {}'.format(
+        traceback.format_exc()))

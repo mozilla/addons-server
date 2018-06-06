@@ -22,7 +22,7 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import no_translation, send_mail
+from olympia.amo.utils import send_mail
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
@@ -225,7 +225,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # Just use the name of the action if no comments provided.  Alas we
         # can't know the locale of recipient, and our templates are English
         # only so prevent language jumble by forcing into en-US.
-        with no_translation():
+        with translation.override(settings.LANGUAGE_CODE):
             comments = '%s' % amo.LOG_BY_ID[note.action].short
     else:
         htmlparser = HTMLParser()
@@ -387,5 +387,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient['EmailAddress']],
-        from_email=settings.NOBODY_EMAIL,
+        from_email=settings.ADDONS_EMAIL,
         use_deny_list=False)

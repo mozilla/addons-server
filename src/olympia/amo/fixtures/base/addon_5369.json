@@ -86,7 +86,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 3.11,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "http://www.yahoo.com/",
@@ -99,8 +98,7 @@
             "created": "2007-03-05 13:09:56",
             "notes": null,
             "modified": "2010-05-19 16:41:22",
-            "last_login": "2010-05-19 16:41:22",
-            "notifyevents": true
+            "last_login": "2010-05-19 16:41:22"
         }
     },
     {

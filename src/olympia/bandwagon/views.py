@@ -479,7 +479,7 @@ def edit(request, collection, username, slug):
           .filter(collection=collection))
     meta = {c.addon_id: c for c in qs}
     addons = collection.addons.all()
-    comments = get_notes(collection, raw=True).next()
+    comments = next(get_notes(collection, raw=True))
 
     if is_admin:
         initial = {
@@ -667,17 +667,7 @@ class CollectionViewSet(ModelViewSet):
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),
     ]
-    lookup_url_kwarg = 'slug'
-
-    @property
-    def lookup_field(self):
-        identifier = self.kwargs.get(self.lookup_url_kwarg)
-        if identifier and identifier.isdigit():
-            lookup_field = 'pk'
-        else:
-            # If the identifier is anything other than a digit, it's the slug.
-            lookup_field = 'slug'
-        return lookup_field
+    lookup_field = 'slug'
 
     def get_account_viewset(self):
         if not hasattr(self, 'account_viewset'):

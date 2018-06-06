@@ -101,7 +101,7 @@ class ReplacementAddonForm(forms.ModelForm):
             raise validation_error
         except Exception:
             raise forms.ValidationError('Path [%s] is not valid' % path)
-        return super(ReplacementAddonForm, self).clean()
+        return path
 
 
 class ReplacementAddonAdmin(admin.ModelAdmin):

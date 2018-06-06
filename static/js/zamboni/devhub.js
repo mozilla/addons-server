@@ -215,6 +215,14 @@ $(document).ready(function() {
             }
         });
     });
+
+    // API credentials page
+    $('.api-credentials').on('submit', function() {
+        // Disallow double-submit. Don't actually disable the buttons, because
+        // then the correct one would not be submitted, but set the class to
+        // emulate that.
+        $(this).find('button').addClass('disabled');
+    });
 });
 
 function initPlatformChooser() {

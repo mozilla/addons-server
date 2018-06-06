@@ -3,6 +3,7 @@ import datetime
 from django.core.management import call_command
 
 import mock
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
@@ -17,7 +18,6 @@ class TestGlobalStats(TestCase):
     fixtures = ['stats/test_models']
 
     def test_stats_for_date(self):
-
         date = datetime.date(2009, 6, 1)
         job = 'addon_total_downloads'
 
@@ -48,9 +48,43 @@ class TestGlobalStats(TestCase):
         global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
         assert global_stat.count == 1
 
+        # Should still work if the date is passed as a datetime string (what
+        # celery serialization does).
         job = 'version_count_new'
-        tasks.update_global_totals(job, date)
+        tasks.update_global_totals(job, datetime.datetime.now().isoformat())
         global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        assert global_stat.count == 1
+
+    def test_through_cron(self):
+        # Yesterday, create some stuff.
+        with freeze_time(datetime.datetime.now() - datetime.timedelta(days=1)):
+            yesterday = datetime.date.today()
+
+            # Add a listed add-on, it should show up in "addon_count_new".
+            listed_addon = addon_factory()
+
+            # Add an unlisted version to that add-on, it should *not* increase
+            # the "version_count_new" count.
+            version_factory(
+                addon=listed_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+            # Add an unlisted add-on, it should not show up in either
+            # "addon_count_new" or "version_count_new".
+            addon_factory(version_kw={
+                'channel': amo.RELEASE_CHANNEL_UNLISTED
+            })
+
+        # Launch the cron.
+        cron.update_global_totals()
+
+        job = 'addon_count_new'
+        global_stat = GlobalStat.objects.no_cache().get(
+            date=yesterday, name=job)
+        assert global_stat.count == 1
+
+        job = 'version_count_new'
+        global_stat = GlobalStat.objects.no_cache().get(
+            date=yesterday, name=job)
         assert global_stat.count == 1
 
     def test_input(self):

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 07:57+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-06-01 11:53+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -561,22 +561,6 @@ msgid "Version Information"
 msgstr "Verzióinformációk"
 
 msgid "See complete version history"
-msgstr "Teljes verziótörténet megtekintése"
-
-msgid "Development Channel"
-msgstr "Fejlesztői csatorna"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"A Fejlesztői csatorna segítségével a hivatalos megjelenés előtt kipróbálhatja a kiegészítő legfrissebb verzióját. A fejlesztői verzió telepítését követően folyamatosan érkeznek a frissítések erről a"
-" csatornáról. Amennyiben nem kíván több fejlesztői frissítést kapni, telepítse újra a hivatalos verziót a fenti hivatkozás segítségével."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Figyelmeztetés:</strong> Ezen kiegészítő fejlesztői verzióit a Mozilla nem vizsgálta."
-
-msgid "See complete development channel history"
 msgstr "Teljes verziótörténet megtekintése"
 
 msgid "close"
@@ -2023,6 +2007,27 @@ msgstr "Az információs kérést törölte a fejlesztő ennél: {addon} {versio
 msgid "Information request removed"
 msgstr "Információkérés eltávolítva"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version} adminisztrátori kiegészítőértékelése kérve."
+
+msgid "Admin add-on-review requested"
+msgstr "Adminisztrátori kiegészítőértékelés kérve"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version} adminisztrátori tartalomértékelése kérve."
+
+msgid "Admin content-review requested"
+msgstr "Adminisztrátori tartalomértékelés kérve"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version} adminisztrátori témaértékelése kérve."
+
+msgid "Admin theme-review requested"
+msgstr "Adminisztrátori témaértékelés kérve"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} migrálva lett egy könnyűsúlyú témából."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2061,9 +2066,6 @@ msgstr "Vizsgálatra vár"
 
 msgid "Flagged for further review"
 msgstr "Megjelölve további értékelésre"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Titkos"
@@ -2603,9 +2605,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 msgid "Submit my add-on for manual review."
 msgstr "Kiegészítő kézi értékelésre benyújtása."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "A(z) a|alpha|b|beta|pre|rc és egy elhagyható számmal végződő verziójú fájlok béta verzióként értelmeződnek."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
 
@@ -2666,6 +2665,12 @@ msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem vissza
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Nem frissítheti a WebExtension kiegészítőket örökölt kiegészítőkkel. A felhasználók nem fogják tudni használni az új verzióját, mert a Firefox nem támogatja az ilyen frissítéseket."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "A fejlesztői API kulcsa megtalálható a beküldött fájlban. A fiókja biztonsága érdekében a kulcs vissza lesz vonva."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Egy társszerző fejlesztői API kulcsa megtalálható a beküldött fájlban. A kiegészítő biztonsága érdekében, a kulcs vissza lesz vonva."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s így válaszolt: %s (%s)."
@@ -2677,6 +2682,9 @@ msgstr "Időtúllépés miatt a kapcsolat megszakadt ezzel: „%s”."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Nem lehet csatlakozni ehhez a kiszolgálóhoz: \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Mozilla biztonsági közlemény: Az AMO API engedélyei vissza lettek vonva"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2735,16 +2743,6 @@ msgstr "Kiegészítő ellenőrzése"
 
 msgid "Check Add-on Compatibility"
 msgstr "Kiegészítő kompatibilitásának ellenőrzése"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Ilyen típusú kiegészítőt nem küldhet be"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3422,9 +3420,6 @@ msgstr "Ehhez a kiegészítőhöz további információk szükségesek, mielőtt
 msgid "This add-on doesn't have any versions."
 msgstr "Ennek a kiegészítőnek nincs egyetlen verziója sem."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Ennek a kiegészítőnek nincs egyetlen jóváhagyott verziója sem, így a nyilvános oldalai (beleértve a béta verziókat is) rejtettek."
-
 msgid "Status:"
 msgstr "Állapot:"
 
@@ -3606,9 +3601,6 @@ msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez. A felt�
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Mely platformokkal kompatibilis a fájl?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "A verzió közzététele csak a béta csatornán."
 
 msgid "Administrative overrides"
 msgstr "Adminisztrációs felülbírálások"
@@ -3984,26 +3976,27 @@ msgstr "Kiegészítő kezelése"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 
-msgid "Update Your Legacy Extension"
-msgstr "Frissítse az örökölt kiterjesztését"
+msgid "Help us improve the developer experience"
+msgstr "Segítsen a fejlesztői élmény javításában"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Létezik egy új, keresztplatformos szabvány a Firefox kiegészítők fejlesztésére. Frissítenie kell az örökölt kiegészítőit, hogy kompatibilisek maradjanak."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Érdekel minket a visszajelzése a kiterjesztés-fejlesztési tapasztalatáról. Töltse ki rövid kérdőívünket, és tudassa velünk, hogy milyen dokumentációk, API-k és eszközök lennének a leghasznosabbak a "
+"fejlesztői munkájában."
 
-msgid "Learn How"
-msgstr "Tudja meg hogyan"
+msgid "Take Survey"
+msgstr "Kérdőív kitöltése"
 
-msgid "Get Started"
-msgstr "Első lépések"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Készen áll a kiterjesztés beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
-
-msgid "See Tutorial"
-msgstr "Ismertető megtekintése"
+msgid "Welcome Back"
+msgstr "Üdvözöljük újra"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Segítsen a felhasználóknak felfedezni a kiterjesztését, azáltal hogy tetszetős listázást készít."
+
+msgid "Learn How"
+msgstr "Tudja meg hogyan"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4419,18 +4412,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Facebook követés megállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Izolálja a Facebook személyazonosságát egy külön „konténerbe”, így nehezebbé téve, hogy a Facebook kövesse a mozgását a weben."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "A keresés egyszerűsítése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Jelöljön ki egy szöveget egy tetszőleges weboldalon, és keressen a kifejezésre számos keresőszolgáltatás egyikében."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reklámblokkolás és adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
@@ -4442,6 +4423,18 @@ msgstr "A lapok újragondolása {start_sub_heading}a(z) {addon_name} kiegészít
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Sok nyitott lapja van? Rendszerezze őket egy rendezett oldalsávon."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Facebook követés megállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Izolálja a Facebook személyazonosságát egy külön „konténerbe”, így nehezebbé téve, hogy a Facebook kövesse a mozgását a weben."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Képek keresése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Fordított képkeresés számos keresőszolgáltatás segítségével."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -4466,6 +4459,30 @@ msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kieg
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr "Több, mint egyszerű képernyőkép eszköz, az Awesome Screenshot Plus lehetővé teszi a képek feliratozását egyéni szöveggel és grafikákkal, valamint a képek tárolását és megosztását is megoldja."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "A fájlmegjelenítő zárolva van, a(z) %s kibontása lehet folyamatban. Próbálja újra körülbelül 5 perc múlva."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Hiba történt a(z) %s fájl elérésekor."
+
+msgid "That file no longer exists."
+msgstr "Ez fájl már nem érhető el."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "A fájlméret a(z) {0} korlát felett van."
+
+msgid "Problems decoding {0}."
+msgstr "Problémák a(z) {0} dekódolása során."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Ez a fájl nem érhető el online. Töltse le a fájlt, ha meg kívánja tekinteni a tartalmát."
+
+msgid "This file is a directory."
+msgstr "Ez a fájl egy könyvtár."
 
 msgid "Cannot diff a version against itself"
 msgstr "Nem hasonlítható össze egy verzió saját magával"
@@ -4530,6 +4547,19 @@ msgstr "A verziószámok kizárólag betűket, számokat és a következő karak
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "A WebExtension téma feltöltések jelenleg nem támogatottak."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Ilyen típusú kiegészítőt nem küldhet be"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
+
+msgid "Unexpected error."
+msgstr "Váratlan hiba."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4616,30 +4646,6 @@ msgstr "Nincsenek fájlok a feltöltött fájlban."
 
 msgid "Fetching file."
 msgstr "Fájl feldolgozása."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "A fájlmegjelenítő zárolva van, a(z) %s kibontása lehet folyamatban. Próbálja újra körülbelül 5 perc múlva."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Hiba történt a(z) %s fájl elérésekor."
-
-msgid "That file no longer exists."
-msgstr "Ez fájl már nem érhető el."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "A fájlméret a(z) {0} korlát felett van."
-
-msgid "Problems decoding {0}."
-msgstr "Problémák a(z) {0} dekódolása során."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Ez a fájl nem érhető el online. Töltse le a fájlt, ha meg kívánja tekinteni a tartalmát."
-
-msgid "This file is a directory."
-msgstr "Ez a fájl egy könyvtár."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "Az API verzió, amit használ ({0:.1f}), érvénytelen. Frissítsen a jelenlegi, {1:.1f} API verzióra."
@@ -4798,6 +4804,9 @@ msgstr "Legyen tesztpilóta"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
+
+msgid "Get Started"
+msgstr "Első lépések"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"
@@ -5563,23 +5572,6 @@ msgid ""
 msgstr ""
 "Néhány kiegészítőfejlesztő támogatást kér a kiegészítőjének fejlesztéséhez. Ez a támogatás közvetlenül a fejlesztőhöz megy, kivéve, ha azt a fejlesztő harmadik félnek nem ajánlotta fel, például a "
 "nonprofit Mozilla Foundation számára."
-
-msgid "What are beta add-ons?"
-msgstr "Mik azok a beta kiegészítők?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"A béta kiegészítők nem ellenőrzött változatok, amelyek a fejlesztők legfrissebb munkáját tartalmazza. Különböző szerzők, különböző módon értelmezik a béta kód minőségét, de mindenképpen elmondható, "
-"hogy ezek a kiegészítők kevésbé stabilak, mint általában."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Vegye figyelembe, hogy ha egy kiegészítőt a „Béta verzió” részből telepít, akkor folyamatosan érkezni fognak a frissítések, amint azok megjelennek. Ahogy az első telepített verziónál, úgy az összes "
-"béta kiadásnál sem értékeli a Mozilla, és ezek kárt okozhatnak a rendszerében."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hogyan lehet bejelenti a nem megfelelő tartalmú vagy spam értékelést?"
@@ -7455,6 +7447,15 @@ msgstr "Biztosan el akarja távolítani az összes <b>{0}</b> fordítást? Az m�
 msgid "Delete Locale"
 msgstr "Területi beállítás törlése"
 
+msgid "Profile Photo"
+msgstr "Profilkép"
+
+msgid "Addons"
+msgstr "Kiegészítők"
+
+msgid "Activity Logs"
+msgstr "Tevékenységnaplók"
+
 msgid "Email must be {email}."
 msgstr "Az e-mailnek ennek kell lennie: {email}."
 
@@ -7469,9 +7470,6 @@ msgstr "Foglalkozás"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "A Firefox Fiókok felhasználói jelenleg nem módosíthatják az e-mail címüket."
-
-msgid "Profile Photo"
-msgstr "Profilkép"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Ez az URL érvénytelen formátumban van. Az érvényes URL-ek formátuma ehhez hasonló: http://pelda.hu/sajat_oldal."
@@ -7611,7 +7609,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Adjon meg némi információt Önről. Ezek a mező nem kötelezőek, de segítenek más felhasználóknak jobban megismerni Önt."
+msgstr "Adjon meg némi információt Önről. Ezek a mezők nem kötelezőek, de segítenek más felhasználóknak jobban megismerni Önt."
 
 msgid "This URL will only be visible if you are a developer."
 msgstr "Ez az URL csak akkor fog látszani, ha Ön fejlesztő."

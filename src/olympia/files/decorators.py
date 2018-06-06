@@ -1,4 +1,5 @@
 import functools
+import traceback
 
 from datetime import datetime
 
@@ -14,7 +15,7 @@ from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.amo.cache_nuggets import Token
 from olympia.files.models import File
-from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
+from olympia.files.file_viewer import DiffHelper, FileViewer
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -71,8 +72,10 @@ def file_view(func, **kwargs):
         if result is not True:
             return result
         try:
-            obj = FileViewer(file_,)
+            obj = FileViewer(file_)
         except ObjectDoesNotExist:
+            log.error('Error 404 for file %s: %s' % (
+                file_id, traceback.format_exc()))
             raise http.Http404
 
         response = func(request, obj, *args, **kw)

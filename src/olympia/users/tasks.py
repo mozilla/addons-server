@@ -24,7 +24,7 @@ def delete_photo(dst, **kw):
 
     try:
         storage.delete(dst)
-    except Exception, e:
+    except Exception as e:
         task_log.error("Error deleting userpic: %s" % e)
 
 
@@ -37,7 +37,7 @@ def resize_photo(src, dst, locally=False, **kw):
     try:
         resize_image(src, dst, (200, 200))
         return True
-    except Exception, e:
+    except Exception as e:
         task_log.error("Error saving userpic: %s" % e)
 
 
@@ -47,4 +47,4 @@ def update_user_ratings_task(data, **kw):
                   (len(data), update_user_ratings_task.rate_limit))
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(
-            averagerating=round(rating, 2))
+            averagerating=round(float(rating), 2))

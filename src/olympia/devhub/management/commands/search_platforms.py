@@ -34,7 +34,7 @@ def change():
                      .filter(version__addon__type=amo.ADDON_SEARCH)
                      .exclude(platform=amo.PLATFORM_ALL.id))
     k = 0
-    print 'Changing %s files' % len(files)
+    print('Changing %s files' % len(files))
     for chunk in chunked(files, 100):
         for file in File.objects.no_cache().filter(pk__in=chunk):
             file.platform = amo.PLATFORM_ALL.id
@@ -43,7 +43,7 @@ def change():
             file.save()
             k += 1
             if not k % 50:
-                print '... done %s' % k
+                print('... done %s' % k)
 
 
 def report():
@@ -53,18 +53,16 @@ def report():
                            .filter(files_count__gt=1))
     for chunk in chunked(versions, 100):
         for version in Version.objects.no_cache().filter(pk__in=chunk):
-            print 'Addon: %s, %s' % (version.addon.pk,
-                                     version.addon.name)
-            print 'Version: %s - %s files' % (version.pk,
-                                              version.files.count())
-            print 'URL: %s' % reverse('devhub.versions.edit',
+            print('Addon: %s, %s' % (version.addon.pk,
+                                     version.addon.name))
+            print('Version: %s - %s files' % (version.pk,
+                                              version.files.count()))
+            print('URL: %s' % reverse('devhub.versions.edit',
                                       args=[version.addon.slug,
-                                            version.pk])
+                                            version.pk]))
             hashes = []
             for file in version.all_files:
-                print 'File: %s, %s' % (file.filename, file.hash)
+                print('File: %s, %s' % (file.filename, file.hash))
                 if file.hash in hashes:
-                    print '...this hash is repeated, same file?'
+                    print('...this hash is repeated, same file?')
                 hashes.append(file.hash)
-
-            print

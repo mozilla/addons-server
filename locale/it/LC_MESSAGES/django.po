@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-26 12:53+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-06-03 08:52+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -560,22 +560,6 @@ msgstr "Informazioni sulla versione"
 
 msgid "See complete version history"
 msgstr "Visualizza cronologia completa"
-
-msgid "Development Channel"
-msgstr "Canale di sviluppo"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Il canale di sviluppo ti permette di provare una versione sperimentale di questo componente aggiuntivo prima che venga rilasciata al pubblico. Una volta installata questa versione, continuerai a "
-"ricevere gli aggiornamenti dal canale di sviluppo. Per non ricevere più questo tipo di aggiornamenti, reinstalla la versione normale utilizzando il link precedente."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Attenzione:</strong> le versioni di sviluppo di questo componente aggiuntivo non sono state verificate da Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Visualizza la cronologia completa del canale di sviluppo"
 
 msgid "close"
 msgstr "chiudi"
@@ -2034,6 +2018,27 @@ msgstr "Richiesta informazioni risolta dallo sviluppatore su {addon} {version}."
 msgid "Information request removed"
 msgstr "Richiesta informazioni rimossa"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Richiesta revisione da parte di un amministratore per {addon} {version}."
+
+msgid "Admin add-on-review requested"
+msgstr "Richiesta revisione da parte di un amministratore per il componente aggiuntivo"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Richiesta revisione contenuti da parte di un amministratore per {addon} {version}."
+
+msgid "Admin content-review requested"
+msgstr "Richiesta revisione contenuti da parte di un amministratore"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Richiesta revisione tema da parte di un amministratore per {addon} {version}."
+
+msgid "Admin theme-review requested"
+msgstr "Richiesta revisione tema da parte di un amministratore"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} ha effettuato la migrazione da tema leggero."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2072,9 +2077,6 @@ msgstr "Approvazione in sospeso"
 
 msgid "Flagged for further review"
 msgstr "Contrassegnato per un’ulteriore revisione"
-
-msgid "Beta"
-msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "Esterno"
@@ -2614,9 +2616,6 @@ msgstr "Il tentativo di sostituzione forzata è fallito"
 msgid "Submit my add-on for manual review."
 msgstr "Carica il componente aggiuntivo per sottoporlo a una revisione manuale."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "I file il cui numero di versione termina con a|alpha|b|beta|pre|rc più numero facoltativo vengono identificati come versione beta."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Non è possibile caricare ulteriori file per questa versione."
 
@@ -2682,6 +2681,12 @@ msgstr ""
 "Non puoi aggiornare un componente aggiuntivo basato su WebExtension con una versione che utilizza la vecchia piattaforma di sviluppo. Gli utenti non potranno utilizzare questa versione perché "
 "Firefox non supporta questo tipo di aggiornamento."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "La tua chiave API di sviluppatore è stata trovata nel file inviato. Per proteggere l'account, la chiave verrà revocata."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "La chiave API di sviluppatore di un coautore è stata trovata nel file inviato. Per proteggere il tuo componente aggiuntivo, la chiave verrà revocata."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s ha risposto con %s (%s)."
@@ -2693,6 +2698,9 @@ msgstr "Tempo per la connessione a \"%s\" esaurito."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Impossibile contattare l’host “%s”."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Avviso di sicurezza di Mozilla: le tue credenziali API su AMO sono state revocate"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2753,16 +2761,6 @@ msgstr "Valida componente aggiuntivo"
 
 msgid "Check Add-on Compatibility"
 msgstr "Verifica compatibilità componente aggiuntivo"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina in %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3456,9 +3454,6 @@ msgstr "Per completare la pubblicazione del componente aggiuntivo sul sito aggiu
 msgid "This add-on doesn't have any versions."
 msgstr "Non sono disponibili versioni per questo componente aggiuntivo."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Non ci sono versioni pubbliche approvate per questo componente aggiuntivo. Ciò comporta che le pagine di presentazione delle versioni (comprese quelle beta) non siano mostrate ai visitatori."
-
 msgid "Status:"
 msgstr "Stato:"
 
@@ -3644,9 +3639,6 @@ msgstr "Utilizza i seguenti campi per caricare il pacchetto del tuo componente a
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Con quali piattaforme è compatibile il file?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Pubblica questa versione unicamente sul mio canale beta."
 
 msgid "Administrative overrides"
 msgstr "Sostituzioni amministrative"
@@ -4025,28 +4017,27 @@ msgstr "Gestione componenti aggiuntivi"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
 
-msgid "Update Your Legacy Extension"
-msgstr "Aggiorna una vecchia estensione"
+msgid "Help us improve the developer experience"
+msgstr "Aiutaci a migliorare l’esperienza di sviluppo"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
 msgstr ""
-"Esiste una nuova tecnologia, compatibile con tutti i browser, per realizzare estensioni per Firefox. Se hai realizzato dei componenti aggiuntivi utilizzando vecchie tecnologie, dovrai aggiornarli "
-"affinché rimangano compatibili."
+"Ci interessa la tua opinione riguardo l’esperienza di sviluppo di estensioni! Partecipa al nostro breve sondaggio per farci sapere che tipo di documentazione, API e strumenti sarebbero più utili al "
+"tuo lavoro di sviluppatore."
 
-msgid "Learn How"
-msgstr "Scopri come fare"
+msgid "Take Survey"
+msgstr "Partecipa al sondaggio"
 
-msgid "Get Started"
-msgstr "Per iniziare"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Sei pronto a caricare un'estensione? Segui i passaggi della guida per il processo di caricamento."
-
-msgid "See Tutorial"
-msgstr "Segui il tutorial"
+msgid "Welcome Back"
+msgstr "Bentornato"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Aiuta gli utenti a scoprire le tue estensioni scrivendo una descrizione accattivante."
+
+msgid "Learn How"
+msgstr "Scopri come fare"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4468,18 +4459,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avviso"
 msgstr[1] "{0} avvisi"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca il tracciamento di Facebook {start_sub_heading}grazie a {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isola la tua identità grazie a un \"contenitore\" che rende più difficile per Facebook tracciare i tuoi movimenti sul Web."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ricerca semplificata {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Basta evidenziare un testo da una qualsiasi pagina web per cercarlo su differenti motori di ricerca."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Protezione della privacy e blocco degli annunci pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
 
@@ -4491,6 +4470,18 @@ msgstr "Reinventa le schede {start_sub_heading}con {addon_name}{end_sub_heading}
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Tieni un sacco di schede aperte? Organizzale in una barra laterale ordinata."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blocca il tracciamento di Facebook {start_sub_heading}grazie a {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isola la tua identità grazie a un \"contenitore\" che rende più difficile per Facebook tracciare i tuoi movimenti sul Web."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ricerca immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr "Esegui ricerche inverse di immagini da una serie di motori."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4517,6 +4508,30 @@ msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you 
 msgstr ""
 "Awesome Screenshot Plus è molto più di un semplice strumento per scattare istantanee: consente di aggiungere annotazioni e effetti decorativi all’immagine, archiviare sul Web e condividere i tuoi "
 "screenshot."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "Il visualizzatore file non è disponibile, è probabile che sia in corso l’estrazione del file %s. Riprova fra circa 5 minuti."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Si è verificato un errore durante l’accesso al file %s."
+
+msgid "That file no longer exists."
+msgstr "Il file non è più presente."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Le dimensioni del file superano il limite di {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Si sono verificati dei problemi durante la decodifica di {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Questo file non può essere visualizzato online. Scarica il file per visualizzarne il contenuto."
+
+msgid "This file is a directory."
+msgstr "Questo file è una directory."
 
 msgid "Cannot diff a version against itself"
 msgstr "Non è possibile comparare una versione con se stessa"
@@ -4583,6 +4598,19 @@ msgstr "I numeri di versione possono contenere solo lettere, numeri e i seguenti
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "I temi WebExtension non sono supportati al momento."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina in %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
+
+msgid "Unexpected error."
+msgstr "Errore inaspettato."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4667,30 +4695,6 @@ msgstr "Nessun file nell’oggetto caricato."
 
 msgid "Fetching file."
 msgstr "Recupero file in corso."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Il visualizzatore file non è disponibile, è probabile che sia in corso l’estrazione del file %s. Riprova fra circa 5 minuti."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Si è verificato un errore durante l’accesso al file %s."
-
-msgid "That file no longer exists."
-msgstr "Il file non è più presente."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Le dimensioni del file superano il limite di {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Si sono verificati dei problemi durante la decodifica di {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Questo file non può essere visualizzato online. Scarica il file per visualizzarne il contenuto."
-
-msgid "This file is a directory."
-msgstr "Questo file è una directory."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "La versione {0:.1f} delle API in uso non è più valida. Aggiorna il codice utilizzando la versione {1:.1f}."
@@ -4849,6 +4853,9 @@ msgstr "Diventa collaudatore delle nuove funzioni"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Spalanca le porte a nuove caratteristiche sperimentali del browser."
+
+msgid "Get Started"
+msgstr "Per iniziare"
 
 msgid "About Mozilla Add-ons"
 msgstr "Informazioni su Mozilla Add-ons"
@@ -5627,23 +5634,6 @@ msgid ""
 msgstr ""
 "Alcuni autori di estensioni richiedono agli utenti di contribuire allo sviluppo dei componenti aggiuntivi con delle donazioni. Questi contributi vanno direttamente allo sviluppatore, a meno che non "
 "sia indicato un altro soggetto (ad esempio l’organizzazione senza fini di lucro Mozilla Foundation)."
-
-msgid "What are beta add-ons?"
-msgstr "Che cosa sono i componenti aggiuntivi beta?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"I componenti aggiuntivi “beta” sono versioni non verificate e rappresentano il lavoro più aggiornato di uno sviluppatore. Ogni autore utilizza criteri diversi per quanto riguarda la qualità del "
-"codice di una versione beta, in ogni caso è opportuno ipotizzare che queste estensioni siano meno stabili rispetto alle versioni definitive."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Tieni presente che installando un componente aggiuntivo dalla sezione \"Versioni beta\", continuerai a ricevere aggiornamenti per il canale beta del componente. Come la versione beta che hai "
-"installato, anche i successivi aggiornamenti non sono stati verificati da Mozilla e pertanto potrebbero danneggiare il tuo computer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Come posso segnalare una recensione inappropriata o contenente spam?"
@@ -7531,6 +7521,15 @@ msgstr "Rimuovere tutte le <b>{0}</b> traduzioni? Questa operazione non può ess
 msgid "Delete Locale"
 msgstr "Elimina locale"
 
+msgid "Profile Photo"
+msgstr "Immagine del profilo"
+
+msgid "Addons"
+msgstr "Componenti aggiuntivi"
+
+msgid "Activity Logs"
+msgstr "Registri attività"
+
 msgid "Email must be {email}."
 msgstr "L’indirizzo email deve essere {email}."
 
@@ -7545,9 +7544,6 @@ msgstr "Lavoro"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Al momento gli utenti che accedono con l’account Firefox non possono modificare l’indirizzo email."
-
-msgid "Profile Photo"
-msgstr "Immagine del profilo"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Questo URL è in formato non valido. Un URL valido deve avere una struttura del tipo http://example.com/my_page."

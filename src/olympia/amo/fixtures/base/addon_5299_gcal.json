@@ -122,7 +122,6 @@
             "display_collections_fav": true,
             "display_collections": true,
             "averagerating": 3.86,
-            "notifycompat": true,
             "picture_type": "image/jpeg",
             "occupation": "",
             "homepage": "http://ginatrapani.org",
@@ -134,7 +133,6 @@
             "notes": null,
             "created": "2007-03-05 13:09:58",
             "modified": "2010-05-17 13:53:12",
-            "notifyevents": true,
             "last_login": "2010-05-21 10:36:25"
         }
     },

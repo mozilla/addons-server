@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-26 16:46+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-06-02 15:10+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -575,22 +575,6 @@ msgstr "Информация о версии "
 
 msgid "See complete version history"
 msgstr "Показать всю историю версий"
-
-msgid "Development Channel"
-msgstr "Канал разработки"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Канал разработки позволяет вам тестировать экспериментальную новую версию этого дополнения перед его релизом для широкой публики. После установки вами разрабатываемой версии, вы будете продолжать "
-"получать обновления по этому каналу. Чтобы перестать получать обновления разрабатываемой версии, переустановите версию по умолчанию по ссылке выше."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Внимание:</strong> Разрабатываемые версии этого дополнения не были проверены Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Показать всю историю канала разработки"
 
 msgid "close"
 msgstr "закрыть"
@@ -2051,6 +2035,27 @@ msgstr "Запрос информации отклонён разработчи�
 msgid "Information request removed"
 msgstr "Запрос информации удалён"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Запрошена проверка дополнения {addon} {version} администратором."
+
+msgid "Admin add-on-review requested"
+msgstr "Запрошена проверка дополнения администратором"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Запрошена проверка содержимого дополнения {addon} {version} администатором."
+
+msgid "Admin content-review requested"
+msgstr "Запрошена проверка содержимого дополнения администратором"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Запрошена проверка темы {addon} {version} администратором."
+
+msgid "Admin theme-review requested"
+msgstr "Запрошена проверка темы администратором"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} прошло миграцию с лёгкой темы."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2089,9 +2094,6 @@ msgstr "В ожидании одобрения"
 
 msgid "Flagged for further review"
 msgstr "Отмечено для дополнительной проверки"
-
-msgid "Beta"
-msgstr "Бета"
 
 msgid "Unlisted"
 msgstr "Скрытое"
@@ -2453,9 +2455,8 @@ msgstr "Проверка обновлённой локали"
 msgid "Theme Review"
 msgstr "Проверка темы"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Тема (статическая)"
+msgstr "Проверка темы (статической)"
 
 msgid "New Search Provider Review"
 msgstr "Проверка новой поисковой системы"
@@ -2632,9 +2633,6 @@ msgstr "Игнорировать неудавшуюся валидацию"
 msgid "Submit my add-on for manual review."
 msgstr "Представить моё дополнение на проверку вручную."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "Файл с версией, заканчивающейся на a|alpha|b|beta|pre|rc и необязательным числом, определяется как бета."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Вы не можете загрузить больше файлов для этой версии."
 
@@ -2696,6 +2694,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Вы не можете обновить WebExtensions дополнение на устаревшее. Ваши пользователи не смогут использовать вашу новую версию потому, что Firefox не поддерживает этот тип обновлений."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "В загруженном файле найден ваш API-ключ разработчика. Чтобы защитить ваш аккаунт, ключ будет отозван."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "В загруженном файле найден API-ключ соавтора разработчика. Чтобы защитить ваше дополнение, ключ будет отозван."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s ответил с %s (%s)."
@@ -2707,6 +2711,9 @@ msgstr "Время ожидание соединения с \"%s\" истекл�
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Не удалось связаться с хостом на \"%s\"."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Оповещение безопасности Mozilla: Ваши полномочия API AMO были отозваны"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2765,16 +2772,6 @@ msgstr "Валидировать дополнение"
 
 msgid "Check Add-on Compatibility"
 msgstr "Проверка совместимости дополнений"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Вы не можете загрузить этот тип дополнения"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Вы не можете представить дополнение с guid, оканчивающимся на %s"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3011,12 +3008,11 @@ msgstr "Нет"
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Опубликованные версии"
+msgstr "Предпросмотр опубликованной версии"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Предварительный просмотр всё ещё генерируется - вернитесь сюда позже или обновите страницу."
 
 msgid "Manage Authors & License"
 msgstr "Управление авторами и лицензией"
@@ -3469,9 +3465,6 @@ msgstr "В этом дополнении отсутствует некотора
 msgid "This add-on doesn't have any versions."
 msgstr "У этого дополнения нет каких-либо версий."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "У этого дополнения нет каких-либо утверждённых версий, так что его публичные страницы (включая бета-версии) скрыты."
-
 msgid "Status:"
 msgstr "Статус:"
 
@@ -3578,9 +3571,8 @@ msgstr "Вы сделали это!"
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Версия представлена"
+msgstr "Просмотр представленной версии"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
@@ -3654,9 +3646,6 @@ msgstr "Для загрузки своего пакета дополнения �
 msgid "Which platforms is this file compatible with?"
 msgstr "С какими платформами совместим этот файл?"
 
-msgid "Only publish this version to my beta channel."
-msgstr "Опубликовать эту версию только на моём бета-канале."
-
 msgid "Administrative overrides"
 msgstr "Административные действия"
 
@@ -3717,7 +3706,6 @@ msgstr "Фон панели инструментов"
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
 
-#, fuzzy
 msgid "Toolbar area text and icons"
 msgstr "Текст и значки в зоне панели инструментов"
 
@@ -4037,27 +4025,27 @@ msgstr "Управление вашим дополнением"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Войдите для редактирования и обновления вашего дополнения"
 
-msgid "Update Your Legacy Extension"
-msgstr "Обновите ваше устаревшее расширение"
+msgid "Help us improve the developer experience"
+msgstr "Помогите нам усовершенствовать работу для разработчиков"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Появился новый, кроссбраузерный стандарт для разработки расширений для Firefox. Вам необходимо обновить ваши устаревшие расширения для обеспечения совместимости."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Нам интересно узнать о ваших впечатлениях в процессе разработки расширений! Пройдите наш короткий опрос, чтобы позволить нам узнать, какая документация, API и другие средства были бы наиболее "
+"полезными вам при разработке."
+
+msgid "Take Survey"
+msgstr "Пройдите опрос"
+
+msgid "Welcome Back"
+msgstr "С возвращением"
+
+msgid "Help users discover your extension by creating an appealing listing."
+msgstr "Помогите пользователям узнать о вашем расширении, создав хорошее описание."
 
 msgid "Learn How"
 msgstr "Узнайте как"
-
-msgid "Get Started"
-msgstr "Начать"
-
-#, fuzzy
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Готовы представить дополнение? Прочтите наше пошаговое руководство о процессе представления."
-
-msgid "See Tutorial"
-msgstr "Показать руководство"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4481,33 +4469,29 @@ msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-#, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Блокируйте рекламу и защищайте свою приватность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Простая настройка позволяет вам взять под контроль рекламу, которую вы видите, а также отслеживание вас в Интернете."
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите по картинкам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Переосмыслите вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "У вас тонны открытых вкладок? Организуйте их в удобной боковой панели."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Остановите отслеживание Фейсбука {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Изолируйте свою деятельность в Фейсбуке в отдельном \"контейнере\", таким образом затрудняя для Фейсбука возможность отслеживания вас на других сайтах."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ищите изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Выполняйте поиск по картинке в множестве поисковых систем."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -4533,6 +4517,30 @@ msgstr "Делайте скриншоты {start_sub_heading}с помощью {
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 "Больше, чем просто инструмент создания скриншотов, Awesome Screenshot Plus позволяет вам добавлять на ваши изображения текст и графику, а также предоставляет возможность хранить и делиться ими."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "Просмотр файлов заблокирован, извлечение %s может быть в процессе. Пожалуйста, попробуйте ещё раз примерно через 5 минут."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Ошибка при доступе к файлу %s."
+
+msgid "That file no longer exists."
+msgstr "Этот файл более не существует."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Размер файла превышает лимит в {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Проблемы декодирования {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Этот файл невозможно просмотреть в Интернете. Пожалуйста, загрузите файл для просмотра содержимого."
+
+msgid "This file is a directory."
+msgstr "Этот файл является каталогом."
 
 msgid "Cannot diff a version against itself"
 msgstr "Нельзя сделать diff версии против самой себя"
@@ -4597,6 +4605,19 @@ msgstr "Номера версий могут состоять только из 
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Загрузка тем WebExtension в настоящее время не поддерживается."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Вы не можете загрузить этот тип дополнения"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Вы не можете представить дополнение с guid, оканчивающимся на %s"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Вы не можете отправить расширение, подписанное Mozilla"
+
+msgid "Unexpected error."
+msgstr "Неожиданная ошибка."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4681,30 +4702,6 @@ msgstr "В загруженном файле нет файлов."
 
 msgid "Fetching file."
 msgstr "Получение файла."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Просмотр файлов заблокирован, извлечение %s может быть в процессе. Пожалуйста, попробуйте ещё раз примерно через 5 минут."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Ошибка при доступе к файлу %s."
-
-msgid "That file no longer exists."
-msgstr "Этот файл более не существует."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Размер файла превышает лимит в {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Проблемы декодирования {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Этот файл невозможно просмотреть в Интернете. Пожалуйста, загрузите файл для просмотра содержимого."
-
-msgid "This file is a directory."
-msgstr "Этот файл является каталогом."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "Версия API {0:.1f}, которую вы используете, неверна. Пожалуйста, обновите текущую версию API до {1:.1f}."
@@ -4863,6 +4860,9 @@ msgstr "Станьте лётчиком-испытателем"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Разблокируйте ранний доступ к экспериментальным возможностям браузера."
+
+msgid "Get Started"
+msgstr "Начать"
 
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"
@@ -5379,9 +5379,8 @@ msgstr "Отправленное не по назначению сообщени
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Другие (предоставляет всплывающий запрос для ввода информации)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "В настоящее время AMO не предоставляет механизма прямой связи с рецензентом."
+msgstr "В настоящее время, AMO не предоставляет механизма прямой связи с автором отзыва."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Могу ли я попросить удалить отзыв, если он является негативным?"
@@ -5635,23 +5634,6 @@ msgid ""
 msgstr ""
 "Некоторые авторы дополнений просят пользователей, которым нравится их дополнения, внести свой вклад в его развитие, сделав денежный взнос. Эти взносы идут напрямую разработчику, если только не "
 "указана третья сторона, такая как некоммерческая Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Что такое бета-дополнения?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Бета-версии дополнений это непроверенные версии дополнений, которые представляют собой последнюю сборку выпущенную автором дополнения. Хотя разные авторы имеют разные стандарты качества для кода "
-"бета-версии, вам следует предполагать, что эти дополнения менее стабильны, чем обычные релизы дополнений."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Пожалуйста, обратите внимание, что когда вы установите дополнение из раздела \"Бета-версия\" страницы дополнения, вы будете продолжать получать обновления для этого дополнения, как только они станут"
-" доступны. Как и в случае первоначальной установленной вами версии, все бета-версии не проверены Mozilla и могут нанести вред вашему компьютеру."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Как мне сообщить о неприемлемом отзыве пользователя или спаме?"
@@ -6220,9 +6202,8 @@ msgstr "Пока пропустить"
 msgid "Needs Admin Content Review"
 msgstr "Требуется проверка содержимого админом"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Требуется проверка кода админом"
+msgstr "Требуется проверка статической темы администратором"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-дополнение"
@@ -6353,9 +6334,8 @@ msgstr "Одобрить содержимое"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Устаревшие дополнения"
+msgstr "Статические темы и устаревшие дополнения"
 
 msgid "Static Themes"
 msgstr "Статические темы"
@@ -6363,24 +6343,20 @@ msgstr "Статические темы"
 msgid "Legacy Add-ons"
 msgstr "Устаревшие дополнения"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Новые темы ({0})"
+msgstr "Новое ({0})"
 
 msgid "Updates ({0})"
 msgstr "Обновления ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Замечание проверяющего"
+msgstr "Лог проверки"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Проверка дополнения"
+msgstr "Руководство по проверке дополнений"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Очередь проверки тем"
+msgstr "Руководство по проверке тем"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматически одобренные дополнения"
@@ -6412,9 +6388,8 @@ msgstr "Обновления тем ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Отмеченные темы ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Лёгкие темы"
+msgstr "Лог проверки лёгких тем"
 
 msgid "Deleted Themes Log"
 msgstr "Лог удалённых тем"
@@ -6511,7 +6486,7 @@ msgid "Rendered Preview"
 msgstr "Предварительный Просмотр"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Файл изображения фона {0} из {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Подробнее об этом дополнении"
@@ -7550,6 +7525,15 @@ msgstr "Вы уверены что вы хотите удалить все <b>{0
 msgid "Delete Locale"
 msgstr "Удалить локаль"
 
+msgid "Profile Photo"
+msgstr "Фото профиля"
+
+msgid "Addons"
+msgstr "Дополнения"
+
+msgid "Activity Logs"
+msgstr "Логи активности"
+
 msgid "Email must be {email}."
 msgstr "Адрес электронной почты должен быть {email}."
 
@@ -7564,9 +7548,6 @@ msgstr "Род деятельности"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Пользователи Firefox аккаунтов в настоящий момент не могут изменять их адреса электронной почты."
-
-msgid "Profile Photo"
-msgstr "Фото профиля"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."

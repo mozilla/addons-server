@@ -7,7 +7,8 @@ Reviewers
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. The only authentication method available at
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 ---------
@@ -21,7 +22,7 @@ sent when a new listed version is submitted on a particular add-on.
         Requires authentication and the current user to have any
         reviewer-related permission.
 
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/subscribe/
+.. http:post::/api/v4/reviewers/addon/(int:addon_id)/subscribe/
 
 -----------
 Unsubscribe
@@ -34,7 +35,7 @@ sent when a new listed version is submitted on a particular add-on.
         Requires authentication and the current user to have any
         reviewer-related permission.
 
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/unsubscribe/
+.. http:post::/api/v4/reviewers/addon/(int:addon_id)/unsubscribe/
 
 -------
 Disable
@@ -46,7 +47,7 @@ This endpoint allows you to disable the public listing for an add-on.
        Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/disable/
+.. http:post::/api/v4/reviewers/addon/(int:addon_id)/disable/
 
 ------
 Enable
@@ -61,7 +62,7 @@ of its versions.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post::/api/v3/reviewers/addon/(int:addon_id)/enable/
+.. http:post::/api/v4/reviewers/addon/(int:addon_id)/enable/
 
 
 -----
@@ -70,11 +71,12 @@ Flags
 
 This endpoint allows you to manipulate various reviewer-specific flags on an
 add-on.
+
     .. note::
        Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
+       permission.
 
-.. http:patch::/api/v3/reviewers/addon/(int:addon_id)/flags/
+.. http:patch::/api/v4/reviewers/addon/(int:addon_id)/flags/
 
     :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
     :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.

@@ -565,7 +565,7 @@ class ReviewBase(object):
             'reviewers/emails/%s.ltxt' % template).render(data)
         send_activity_mail(
             subject, message, version, self.addon.authors.all(),
-            settings.NOBODY_EMAIL, unique_id, perm_setting=perm_setting)
+            settings.ADDONS_EMAIL, unique_id, perm_setting=perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
@@ -861,7 +861,7 @@ class ReviewFiles(ReviewBase):
 class ReviewUnlisted(ReviewBase):
 
     def process_public(self):
-        """Set an unliste addon version files to public."""
+        """Set an unlisted addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.

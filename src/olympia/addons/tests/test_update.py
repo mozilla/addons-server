@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+import json
+import mock
+
 from datetime import datetime, timedelta
 from email import utils
+
+import rdflib
 
 from django.db import connection
 
@@ -17,10 +22,10 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 class VersionCheckMixin(object):
 
-    def get(self, data):
-        up = update.Update(data)
-        up.cursor = connection.cursor()
-        return up
+    def get_update_instance(self, data):
+        instance = update.Update(data)
+        instance.cursor = connection.cursor()
+        return instance
 
 
 class TestDataValidate(VersionCheckMixin, TestCase):
@@ -28,7 +33,7 @@ class TestDataValidate(VersionCheckMixin, TestCase):
 
     def setUp(self):
         super(TestDataValidate, self).setUp()
-        self.good_data = {
+        self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
             'reqVersion': 1,
@@ -37,74 +42,74 @@ class TestDataValidate(VersionCheckMixin, TestCase):
         }
 
     def test_app_os(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
-        form = self.get(data)
-        assert form.is_valid()
-        assert form.data['appOS'] == amo.PLATFORM_LINUX.id
+        instance = self.get_update_instance(data)
+        assert instance.is_valid()
+        assert instance.data['appOS'] == amo.PLATFORM_LINUX.id
 
     def test_app_version_fails(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         del data['appID']
-        form = self.get(data)
-        assert not form.is_valid()
+        instance = self.get_update_instance(data)
+        assert not instance.is_valid()
 
     def test_app_version_wrong(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appVersion'] = '67.7'
-        form = self.get(data)
+        instance = self.get_update_instance(data)
         # If you pass through the wrong version that's fine
         # you will just end up with no updates because your
         # version_int will be out.
-        assert form.is_valid()
+        assert instance.is_valid()
 
     def test_app_version(self):
-        data = self.good_data.copy()
-        form = self.get(data)
-        assert form.is_valid()
-        assert form.data['version_int'] == 3070000001000
+        data = self.data.copy()
+        instance = self.get_update_instance(data)
+        assert instance.is_valid()
+        assert instance.data['version_int'] == 3070000001000
 
     def test_sql_injection(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['id'] = "'"
-        up = self.get(data)
-        assert not up.is_valid()
+        instance = self.get_update_instance(data)
+        assert not instance.is_valid()
 
     def test_inactive(self):
         addon = Addon.objects.get(pk=3615)
         addon.update(disabled_by_user=True)
 
-        up = self.get(self.good_data)
-        assert not up.is_valid()
+        instance = self.get_update_instance(self.data)
+        assert not instance.is_valid()
 
     def test_soft_deleted(self):
         addon = Addon.objects.get(pk=3615)
         addon.update(status=amo.STATUS_DELETED)
 
-        up = self.get(self.good_data)
-        assert not up.is_valid()
+        instance = self.get_update_instance(self.data)
+        assert not instance.is_valid()
 
     def test_disabled(self):
         addon = Addon.objects.get(pk=3615)
         addon.update(status=amo.STATUS_DISABLED)
 
-        up = self.get(self.good_data)
-        assert not up.is_valid()
+        instance = self.get_update_instance(self.data)
+        assert not instance.is_valid()
 
     def test_no_version(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         del data['version']
-        up = self.get(data)
-        assert up.is_valid()
+        instance = self.get_update_instance(data)
+        assert instance.is_valid()
 
     def test_unlisted_addon(self):
         """Add-ons with only unlisted versions are valid, they just don't
-        receive any updates (See TestLookup.test_no_unlisted below)."""
+        receive any updates (See TestLookinstance.test_no_unlisted below)."""
         addon = Addon.objects.get(pk=3615)
         self.make_addon_unlisted(addon)
 
-        up = self.get(self.good_data)
-        assert up.is_valid()
+        instance = self.get_update_instance(self.data)
+        assert instance.is_valid()
 
 
 class TestLookup(VersionCheckMixin, TestCase):
@@ -123,7 +128,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.version_1_2_1 = 112396
         self.version_1_2_2 = 115509
 
-    def get(self, *args):
+    def get_update_instance(self, *args):
         data = {
             'id': self.addon.guid,
             'appID': args[2].guid,
@@ -134,12 +139,12 @@ class TestLookup(VersionCheckMixin, TestCase):
         # Allow version to be optional.
         if args[0]:
             data['version'] = args[0]
-        up = super(TestLookup, self).get(data)
-        assert up.is_valid()
-        up.data['version_int'] = args[1]
-        up.get_update()
-        return (up.data['row'].get('version_id'),
-                up.data['row'].get('file_id'))
+        instance = super(TestLookup, self).get_update_instance(data)
+        assert instance.is_valid()
+        instance.data['version_int'] = args[1]
+        instance.get_update()
+        return (instance.data['row'].get('version_id'),
+                instance.data['row'].get('file_id'))
 
     def change_status(self, version, status):
         version = Version.objects.get(pk=version)
@@ -156,8 +161,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         Version 3.0a1 of Firefox is 3000000001100 and version 1.0.2 of the
         add-on is returned.
         """
-        version, file = self.get('', '3000000001100',
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '', '3000000001100', self.app, self.platform)
         assert version == self.version_1_0_2
 
     def test_new_client(self):
@@ -165,8 +170,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         Version 3.0.12 of Firefox is 3069900200100 and version 1.2.2 of the
         add-on is returned.
         """
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_2
 
     def test_min_client(self):
@@ -180,8 +185,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             appversion.min = AppVersion.objects.get(pk=325)  # 3.7a5
             appversion.save()
 
-        version, file = self.get('', '3070000005000',  # 3.7a5pre
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '', '3070000005000', self.app, self.platform)  # 3.7a5pre
         assert version == self.version_1_1_3
 
     def test_new_client_ordering(self):
@@ -201,8 +206,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         application_version.max_id = 329
         application_version.save()
 
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_2
 
     def test_public(self):
@@ -212,8 +217,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
 
     def test_no_unlisted(self):
@@ -224,8 +229,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
 
     def test_can_downgrade(self):
@@ -236,8 +241,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
         for v in Version.objects.filter(pk__gte=self.version_1_2_1):
             v.delete()
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, self.platform)
 
         assert version == self.version_1_1_3
 
@@ -252,8 +257,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
         self.change_version(self.version_1_2_0, '1.2beta')
 
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, self.platform)
 
         assert version == self.version_1_2_1
 
@@ -267,8 +272,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_version(self.version_1_2_0, '1.2beta')
         Version.objects.get(pk=self.version_1_2_0).files.all().delete()
 
-        version, file = self.get('1.2beta', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2beta', self.version_int, self.app, self.platform)
         dest = Version.objects.get(pk=self.version_1_2_2)
         assert dest.addon.status == amo.STATUS_PUBLIC
         assert dest.files.all()[0].status == amo.STATUS_PUBLIC
@@ -281,8 +286,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         self.change_status(self.version_1_2_2, amo.STATUS_NULL)
         self.addon.update(status=amo.STATUS_NULL)
-        version, file = self.get('1.2.1', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2.1', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
 
     def test_platform_does_not_exist(self):
@@ -292,8 +297,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             file.platform = amo.PLATFORM_LINUX.id
             file.save()
 
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, self.platform)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
 
     def test_platform_exists(self):
@@ -303,8 +308,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             file.platform = amo.PLATFORM_LINUX.id
             file.save()
 
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, amo.PLATFORM_LINUX)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX)
         assert version == self.version_1_2_2
 
     def test_file_for_platform(self):
@@ -318,13 +323,13 @@ class TestLookup(VersionCheckMixin, TestCase):
                         platform=amo.PLATFORM_WIN.id,
                         status=amo.STATUS_PUBLIC)
         file_two.save()
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, amo.PLATFORM_LINUX)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX)
         assert version == self.version_1_2_2
         assert file == file_one.pk
 
-        version, file = self.get('1.2', self.version_int,
-                                 self.app, amo.PLATFORM_WIN)
+        version, file = self.get_update_instance(
+            '1.2', self.version_int, self.app, amo.PLATFORM_WIN)
         assert version == self.version_1_2_2
         assert file == file_two.pk
 
@@ -385,18 +390,18 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             for file in version.files.all():
                 file.update(**kw)
 
-    def get(self, **kw):
-        up = super(TestDefaultToCompat, self).get({
+    def get_update_instance(self, **kw):
+        instance = super(TestDefaultToCompat, self).get_update_instance({
             'reqVersion': 1,
             'id': self.addon.guid,
             'version': kw.get('item_version', '1.0'),
             'appID': self.app.guid,
             'appVersion': kw.get('app_version', '3.0'),
         })
-        assert up.is_valid()
-        up.compat_mode = kw.get('compat_mode', 'strict')
-        up.get_update()
-        return up.data['row'].get('version_id')
+        assert instance.is_valid()
+        instance.compat_mode = kw.get('compat_mode', 'strict')
+        instance.get_update()
+        return instance.data['row'].get('version_id')
 
     def check(self, expected):
         """
@@ -408,8 +413,42 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
         for version in versions:
             for mode in modes:
-                assert self.get(app_version=version, compat_mode=mode) == (
-                    expected['-'.join([version, mode])])
+                assert (
+                    self.get_update_instance(
+                        app_version=version, compat_mode=mode) ==
+                    expected['-'.join([version, mode])]
+                )
+
+    def test_application(self):
+        # Basic test making sure application() is returning the output of
+        # Update.get_output(). Have to mock Update(): otherwise, the real
+        # database would be hit, not the test one, because of how services
+        # use a different setting and database connection APIs.
+        environ = {
+            'QUERY_STRING': ''
+        }
+        self.start_response_call_count = 0
+
+        expected_headers = [
+            ('FakeHeader', 'FakeHeaderValue')
+        ]
+
+        expected_output = '{"fake": "output"}'
+
+        def start_response_inspector(status, headers):
+            self.start_response_call_count += 1
+            assert status == '200 OK'
+            assert headers == expected_headers
+
+        with mock.patch('services.update.Update') as UpdateMock:
+            update_instance = UpdateMock.return_value
+            update_instance.get_headers.return_value = expected_headers
+            update_instance.get_output.return_value = expected_output
+            output = update.application(environ, start_response_inspector)
+        assert self.start_response_call_count == 1
+        # Output is an array with a single string containing the body of the
+        # response.
+        assert output == [expected_output]
 
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
@@ -523,7 +562,7 @@ class TestResponse(VersionCheckMixin, TestCase):
     def setUp(self):
         super(TestResponse, self).setUp()
         self.addon_one = Addon.objects.get(pk=3615)
-        self.good_data = {
+        self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
             'reqVersion': 1,
@@ -535,25 +574,35 @@ class TestResponse(VersionCheckMixin, TestCase):
         self.win = amo.PLATFORM_WIN
 
     def test_bad_guid(self):
-        data = self.good_data.copy()
-        data["id"] = "garbage"
-        up = self.get(data)
-        assert up.get_rdf() == up.get_bad_rdf()
+        self.data['id'] = 'garbage'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
+        assert json.loads(instance.get_output()) == instance.get_error_output()
+
+        # Seamonkey should have a rdf version of 'error ouput'.
+        self.data['appID'] = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is False
+        result = instance.get_output()
+        assert result == instance.get_error_output()
+        rdflib.Graph().parse(data=result)
 
     def test_no_platform(self):
         file = File.objects.get(pk=67442)
         file.platform = self.win.id
         file.save()
 
-        data = self.good_data.copy()
-        data["appOS"] = self.win.api_name
-        up = self.get(data)
-        assert up.get_rdf()
-        assert up.data['row']['file_id'] == file.pk
+        data = self.data.copy()
+        data['appOS'] = self.win.api_name
+        instance = self.get_update_instance(data)
+        assert instance.get_output()
+        assert instance.data['row']['file_id'] == file.pk
 
-        data["appOS"] = self.mac.api_name
-        up = self.get(data)
-        assert up.get_rdf() == up.get_no_updates_rdf()
+        data['appOS'] = self.mac.api_name
+        instance = self.get_update_instance(data)
+        assert (
+            json.loads(instance.get_output()) ==
+            instance.get_no_updates_output())
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
@@ -566,70 +615,67 @@ class TestResponse(VersionCheckMixin, TestCase):
         file.save()
         mac_file_pk = file.pk
 
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appOS'] = self.win.api_name
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['file_id'] == file_pk
+        instance = self.get_update_instance(data)
+        instance.is_valid()
+        instance.get_update()
+        assert instance.data['row']['file_id'] == file_pk
 
         data['appOS'] = self.mac.api_name
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['file_id'] == mac_file_pk
+        instance = self.get_update_instance(data)
+        instance.is_valid()
+        instance.get_update()
+        assert instance.data['row']['file_id'] == mac_file_pk
 
     def test_good_version(self):
-        up = self.get(self.good_data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        assert up.data['row']['min'] == '2.0'
-        assert up.data['row']['max'] == '4.0'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
+        instance.is_valid()
+        instance.get_update()
+        assert instance.data['row']['hash'].startswith('sha256:3808b13e')
+        assert instance.data['row']['min'] == '2.0'
+        assert instance.data['row']['max'] == '4.0'
 
     def test_no_app_version(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appVersion'] = '1.4'
-        up = self.get(data)
-        up.is_valid()
-        assert not up.get_update()
+        instance = self.get_update_instance(data)
+        instance.is_valid()
+        assert not instance.get_update()
 
     def test_low_app_version(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appVersion'] = '2.0'
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        assert up.data['row']['min'] == '2.0'
-        assert up.data['row']['max'] == '4.0'
+        instance = self.get_update_instance(data)
+        instance.is_valid()
+        instance.get_update()
+        assert instance.data['row']['hash'].startswith('sha256:3808b13e')
+        assert instance.data['row']['min'] == '2.0'
+        assert instance.data['row']['max'] == '4.0'
 
     def test_content_type(self):
-        up = self.get(self.good_data)
-        ('Content-Type', 'text/xml') in up.get_headers(1)
+        instance = self.get_update_instance(self.data)
+        ('Content-Type', 'text/xml') in instance.get_headers(1)
 
     def test_cache_control(self):
-        up = self.get(self.good_data)
-        ('Cache-Control', 'public, max-age=3600') in up.get_headers(1)
+        instance = self.get_update_instance(self.data)
+        ('Cache-Control', 'public, max-age=3600') in instance.get_headers(1)
 
     def test_length(self):
-        up = self.get(self.good_data)
-        ('Cache-Length', '1') in up.get_headers(1)
+        instance = self.get_update_instance(self.data)
+        ('Cache-Length', '1') in instance.get_headers(1)
 
     def test_expires(self):
         """Check there are these headers and that expires is 3600 later."""
         # We aren't bother going to test the actual time in expires, that
         # way lies pain with broken tests later.
-        up = self.get(self.good_data)
-        hdrs = dict(up.get_headers(1))
-        lm = datetime(*utils.parsedate_tz(hdrs['Last-Modified'])[:7])
-        exp = datetime(*utils.parsedate_tz(hdrs['Expires'])[:7])
-        assert (exp - lm).seconds == 3600
-
-    def test_appguid(self):
-        up = self.get(self.good_data)
-        rdf = up.get_rdf()
-        assert rdf.find(self.good_data['appID']) > -1
+        instance = self.get_update_instance(self.data)
+        headers = dict(instance.get_headers(1))
+        last_modified = datetime(
+            *utils.parsedate_tz(headers['Last-Modified'])[:7])
+        expires = datetime(*utils.parsedate_tz(headers['Expires'])[:7])
+        assert (expires - last_modified).seconds == 3600
 
     def get_file_url(self):
         """Return the file url with the hash as parameter."""
@@ -638,39 +684,47 @@ class TestResponse(VersionCheckMixin, TestCase):
                 'e09fef55f2673458bc31f')
 
     def test_url(self):
-        up = self.get(self.good_data)
-        up.get_rdf()
-        assert up.data['row']['url'] == self.get_file_url()
+        instance = self.get_update_instance(self.data)
+        instance.get_output()
+        assert instance.data['row']['url'] == self.get_file_url()
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
-        up = self.get(self.good_data)
-        up.get_rdf()
-        assert up.data['row']['url'] == self.get_file_url()
+        instance = self.get_update_instance(self.data)
+        instance.get_output()
+        assert instance.data['row']['url'] == self.get_file_url()
 
     def test_hash(self):
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateHash') > -1
+        content = self.get_update_instance(self.data).get_output()
+        data = json.loads(content)
+
+        file = File.objects.get(pk=67442)
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        assert data['addons'][guid]['updates'][0]['update_hash'] == file.hash
 
         file = File.objects.get(pk=67442)
         file.hash = ''
         file.save()
 
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateHash') == -1
+        content = self.get_update_instance(self.data).get_output()
+        data = json.loads(content)
+        assert 'update_hash' not in data['addons'][guid]['updates'][0]
 
     def test_releasenotes(self):
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateInfoURL') > -1
+        content = self.get_update_instance(self.data).get_output()
+        data = json.loads(content)
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        assert data['addons'][guid]['updates'][0]['update_info_url']
 
         version = Version.objects.get(pk=81551)
         version.update(releasenotes=None)
 
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateInfoURL') == -1
+        content = self.get_update_instance(self.data).get_output()
+        data = json.loads(content)
+        assert 'update_info_url' not in data['addons'][guid]['updates'][0]
 
-    def test_sea_monkey(self):
+    def test_seamonkey_serve_rdf(self):
         data = {
             'id': 'bettergmail2@ginatrapani.org',
             'version': '1',
@@ -678,107 +732,35 @@ class TestResponse(VersionCheckMixin, TestCase):
             'reqVersion': 1,
             'appVersion': '1.0',
         }
-        up = self.get(data)
-        rdf = up.get_rdf()
-        assert up.data['row']['hash'].startswith('sha256:9d9a389')
-        assert up.data['row']['min'] == '1.0'
-        assert up.data['row']['version'] == '0.5.2'
-        assert rdf.find(data['appID']) > -1
+        instance = self.get_update_instance(data)
+        result = instance.get_output()
+        assert instance.data['row']['hash'].startswith('sha256:9d9a389')
+        assert instance.data['row']['min'] == '1.0'
+        assert instance.data['row']['version'] == '0.5.2'
+
+        # Result should be a valid rdf.
+        rdflib.Graph().parse(data=result)
 
     def test_no_updates_at_all(self):
         self.addon_one.versions.all().delete()
-        upd = self.get(self.good_data)
-        assert upd.get_rdf() == upd.get_no_updates_rdf()
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
+        assert (
+            json.loads(instance.get_output()) ==
+            instance.get_no_updates_output())
+
+        # Seamonkey should have a rdf version of 'no updates'.
+        self.data['appID'] = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is False
+        result = instance.get_output()
+        assert result == instance.get_no_updates_output()
+        rdflib.Graph().parse(data=result)
 
     def test_no_updates_my_fx(self):
-        data = self.good_data.copy()
+        data = self.data.copy()
         data['appVersion'] = '5.0.1'
-        upd = self.get(data)
-        assert upd.get_rdf() == upd.get_no_updates_rdf()
-
-
-class TestFirefoxHotfix(VersionCheckMixin, TestCase):
-
-    def setUp(self):
-        """Create a "firefox hotfix" addon with a few versions.
-
-        Check bug 1031516 for more info.
-
-        """
-        super(TestFirefoxHotfix, self).setUp()
-        self.addon = amo.tests.addon_factory(guid='firefox-hotfix@mozilla.org')
-
-        # First signature changing hotfix.
-        amo.tests.version_factory(addon=self.addon, version='20121019.01',
-                                  min_app_version='10.0',
-                                  max_app_version='16.*')
-
-        # Second signature changing hotfix.
-        amo.tests.version_factory(addon=self.addon, version='20130826.01',
-                                  min_app_version='10.0',
-                                  max_app_version='24.*')
-
-        # Newest version compatible with any Firefox.
-        amo.tests.version_factory(addon=self.addon, version='20202020.01',
-                                  min_app_version='10.0',
-                                  max_app_version='30.*')
-
-        self.data = {
-            'id': 'firefox-hotfix@mozilla.org',
-            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'reqVersion': '2',
-        }
-
-    def test_10_16_first_hotfix(self):
-        """The first hotfix changing the signature should be served."""
-        self.data['version'] = ''
-        self.data['appVersion'] = '16.0.1'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20121019.01') > -1
-
-    def test_10_16_second_hotfix(self):
-        """The second hotfix changing the signature should be served."""
-        self.data['version'] = '20121019.01'
-        self.data['appVersion'] = '16.0.1'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20130826.01') > -1
-
-    def test_10_16_newest_hotfix(self):
-        """The newest hotfix should be served."""
-        self.data['version'] = '20130826.01'
-        self.data['appVersion'] = '16.0.1'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20202020.01') > -1
-
-    def test_16_24_second_hotfix(self):
-        """The second hotfix changing the signature should be served."""
-        self.data['version'] = ''
-        self.data['appVersion'] = '16.0.2'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20130826.01') > -1
-
-    def test_16_24_newest_hotfix(self):
-        """The newest hotfix should be served."""
-        self.data['version'] = '20130826.01'
-        self.data['appVersion'] = '16.0.2'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20202020.01') > -1
-
-    def test_above_24_latest_version(self):
-        """The newest hotfix should be served."""
-        self.data['version'] = ''
-        self.data['appVersion'] = '28.0'
-
-        up = self.get(self.data)
-        rdf = up.get_rdf()
-        assert rdf.find('20202020.01') > -1
+        instance = self.get_update_instance(data)
+        assert (
+            json.loads(instance.get_output()) ==
+            instance.get_no_updates_output())

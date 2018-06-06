@@ -784,7 +784,7 @@ class TestAPIKeyPage(TestCase):
         self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
-        assert not old_key.is_active
+        assert old_key.is_active is None
 
         new_key = APIKey.get_jwt_key(user=self.user)
         assert new_key.key != old_key.key
@@ -799,7 +799,7 @@ class TestAPIKeyPage(TestCase):
         self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
-        assert not old_key.is_active
+        assert old_key.is_active is None
 
         assert len(mail.outbox) == 1
         assert 'revoked' in mail.outbox[0].body

@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.translation import ugettext
 
+import waffle
+
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -11,10 +13,11 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
-    clean_nl, has_links, ImageCheck, slug_validator)
+    clean_nl, has_links, ImageCheck, slug_validator,
+    subscribe_newsletter, unsubscribe_newsletter)
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
-
+from olympia.users import notifications
 
 log = olympia.core.logger.getLogger('accounts')
 
@@ -147,8 +150,9 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                 for chunk in photo.chunks():
                     temp_file.write(chunk)
             instance.update(picture_type=photo.content_type)
-            resize_photo.delay(tmp_destination, instance.picture_path,
-                               set_modified_on=[instance])
+            resize_photo.delay(
+                tmp_destination, instance.picture_path,
+                set_modified_on=instance.serializable_reference())
         return instance
 
 
@@ -207,7 +211,26 @@ class UserNotificationSerializer(serializers.Serializer):
                 'Attempting to set [%s] to %s. Mandatory notifications can\'t '
                 'be modified' %
                 (instance.notification.short, validated_data.get('enabled')))
-        if 'enabled' in validated_data:
+
+        enabled = validated_data['enabled']
+
+        request = self.context['request']
+        current_user = request.user
+
+        remote_by_id = {
+            l.id: l for l in notifications.REMOTE_NOTIFICATIONS}
+        use_basket = waffle.switch_is_active('activate-basket-sync')
+
+        if use_basket and instance.notification_id in remote_by_id:
+            notification = remote_by_id[instance.notification_id]
+            if not enabled:
+                unsubscribe_newsletter(
+                    current_user, notification.basket_newsletter_id)
+            elif enabled:
+                subscribe_newsletter(
+                    current_user, notification.basket_newsletter_id,
+                    request=request)
+        elif 'enabled' in validated_data:
             # Only save if non-mandatory and 'enabled' is set.
             # Ignore other fields.
             instance.enabled = validated_data['enabled']

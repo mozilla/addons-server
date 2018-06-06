@@ -11,7 +11,6 @@
             "averagerating": null,
             "homepage": "http://jeffbalogh.org",
             "email": "dd+605fa45e4@davedash.com",
-            "notifycompat": true,
             "biography": null,
             "deleted": false,
             "username": "jbalogh",
@@ -19,7 +18,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": null,
             "modified": "2010-02-02 22:33:40",
-            "notifyevents": true,
             "last_login": "2010-02-02 22:33:40"
         }
     }

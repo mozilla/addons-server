@@ -29,7 +29,7 @@ def get_random():
 
 
 def submit_url(step):
-    return '/en-US/developers/addon/submit/{step}'.format(step=step)
+    return '/en-US/developers/addon/submit/{step}/'.format(step=step)
 
 
 def get_xpi():

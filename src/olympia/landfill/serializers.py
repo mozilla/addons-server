@@ -23,7 +23,7 @@ from olympia.constants.base import (
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
 from olympia.landfill.user import generate_user
-from olympia.files.tests.test_helpers import get_file
+from olympia.files.tests.test_file_viewer import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload

@@ -24,7 +24,7 @@ def generate_addon_preview(addon):
     p = Preview.objects.create(addon=addon, caption='Screenshot 1', position=1)
     f = tempfile.NamedTemporaryFile(dir=settings.TMP_PATH)
     im.save(f, 'png')
-    resize_preview(f.name, p)
+    resize_preview(f.name, p.pk)
 
 
 def create_theme_images(theme, placement, hash_):
@@ -55,4 +55,4 @@ def generate_theme_images(theme):
     persona = theme.persona
     persona.header = header_hash
     persona.save()
-    save_theme(header_hash, theme)
+    save_theme(header_hash, theme.pk)

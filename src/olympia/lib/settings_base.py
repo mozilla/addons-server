@@ -85,40 +85,29 @@ PNGCRUSH_BIN = 'pngcrush'
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
-NOBODY_EMAIL = 'nobody@mozilla.org'
+
+DRF_API_VERSIONS = ['v3', 'v4']
+DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/v3/.*$'
+CORS_URLS_REGEX = DRF_API_REGEX
 
 
 # Sadly the term WHITELIST is used by the library
 # https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-# TODO(andym): see if I can get them to accept a patch for that.
-def cors_endpoint_overrides(internal, public):
+def cors_endpoint_overrides(whitelist_endpoints):
     return [
-        (r'^/api/v3/internal/accounts/login/?$', {
+        ('%saccounts/login/?$' % DRF_API_REGEX, {
             'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': internal,
+            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
             'CORS_ALLOW_CREDENTIALS': True,
-        }),
-        (r'^/api/v3/accounts/login/?$', {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': public,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
-        (r'^/api/v3/internal/.*$', {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': internal,
         }),
     ]
 
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['localhost:3000', 'olympia.test'],
-    internal=['localhost:3000'],
-)
+CORS_ENDPOINT_OVERRIDES = []
 
 DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
@@ -320,9 +309,7 @@ DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
 # path that isn't just one /, and doesn't require any locale or app.
-SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
-    'api/v3',
-)
+SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 
 # paths that don't require an app prefix
 # This needs to be kept in sync with addons-frontend's
@@ -360,6 +347,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
+    r'^devhub\/email\/submission_api_key_revocation.txt',
 
     # Django specific templates
     r'^registration\/',
@@ -1025,8 +1013,6 @@ JAVA_BIN = '/usr/bin/java'
 
 # File paths
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
-CA_CERT_BUNDLE_PATH = os.path.join(
-    ROOT, 'src/olympia/amo/certificates/roots.pem')
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
@@ -1099,11 +1085,10 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 # Testing responsiveness without rate limits.
 CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
-# Continue serializing in pickle but also accept new JSON format
-# for forwards and backwards compatibility.
-CELERY_ACCEPT_CONTENT = ['pickle', 'json']
-CELERY_TASK_SERIALIZER = 'pickle'
-CELERY_RESULT_SERIALIZER = 'pickle'
+# Only serialize celery tasks using JSON.
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
@@ -1155,6 +1140,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
+    'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1268,8 +1254,6 @@ CELERY_TASK_ROUTES = {
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
@@ -1307,11 +1291,8 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-USE_SYSLOG = True
 USE_MOZLOG = True
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons2"
-MOZLOG_NAME = SYSLOG_TAG
+MOZLOG_NAME = "http_app_addons"
 # See PEP 391 and log_settings_base.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
 # log_settings_base.py. Handlers and log levels are set up automatically based
@@ -1328,7 +1309,6 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.reviewers.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }
@@ -1622,22 +1602,11 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# Language pack fetcher settings
-LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
-LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
-LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
-# E.g. https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/23.0/SHA512SUMS
-LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
-LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
-
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
-
-# Add on used to collect stats (!technical dept around!)
-ADDON_COLLECTOR_ID = 11950
 
 # Connection to the hive server.
 HIVE_CONNECTION = {
@@ -1692,6 +1661,14 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': False,
 }
 
+DRF_API_GATES = {
+    'v3': (
+        'ratings-rating-shim',
+    ),
+    'v4': (
+    )
+}
+
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
     #   'rest_framework.renderers.BrowsableAPIRenderer'
@@ -1709,13 +1686,18 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
+
+    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    'DEFAULT_VERSION': 'v4',
+    'DEFAULT_VERSIONING_CLASS': (
+        'rest_framework.versioning.NamespaceVersioning'),
+
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.
     'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
 
     # Enable pagination
     'PAGE_SIZE': 25,
-
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
@@ -1792,7 +1774,7 @@ RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.dev.mozaws.net/api/recommendations/')
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
-    'RECOMMENDATION_ENGINE_URL',
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
     default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
              'addon_recommendations/'))
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
@@ -1811,3 +1793,10 @@ AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 # For the Github webhook API.
 GITHUB_API_USER = env('GITHUB_API_USER', default='')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
+
+MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
+
+BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
+BASKET_API_KEY = env('BASKET_API_KEY', default=None)
+# Default is 10, the API usually answers in 0.5 - 1.5 seconds.
+BASKET_TIMEOUT = 5

@@ -39,7 +39,7 @@ def cleanup(master, slave):
             buffer = []
             for _ in xrange(CHUNK):
                 try:
-                    buffer.append(ks.next())
+                    buffer.append(next(ks))
                 except StopIteration:
                     yield buffer
                     return
@@ -54,7 +54,7 @@ def cleanup(master, slave):
             drop = [k for k, size in zip(ks, pipe.execute())
                     if not k.startswith(settings.CACHE_PREFIX) or
                     0 < size < MIN or size > MAX]
-        except RedisError, err:
+        except RedisError as err:
             log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
         num += len(ks)
@@ -66,7 +66,7 @@ def cleanup(master, slave):
             pipe.expire(k, EXPIRE)
         try:
             pipe.execute()
-        except RedisError, err:
+        except RedisError as err:
             log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
         time.sleep(1)  # Poor man's rate limiting.

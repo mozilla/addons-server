@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import tempfile
+import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -14,7 +15,6 @@ from olympia.addons.models import Addon, Category
 from olympia.amo.tests import TestCase, addon_factory, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
@@ -315,7 +315,7 @@ class TestIconForm(TestCase):
 
         dest = os.path.join(self.icon_path, name)
         with storage.open(dest, 'w') as f:
-            copyfileobj(open(get_image_path(name)), f)
+            shutil.copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon=self.addon)
         assert update_mock.called

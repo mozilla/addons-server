@@ -137,11 +137,6 @@ div.popup input[type="text"] {
     height: 13px;
 }
 
-#admin-fetch-langpacks {
-    text-align: center;
-    margin-bottom: 1.5em;
-}
-
 a.headerlink {
     color: #ccc;
     font-size: 1.1em;

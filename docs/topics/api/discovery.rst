@@ -3,8 +3,10 @@ Discovery
 =========
 
 .. note::
+
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning.
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability.
 
 -----------------
 Discovery Content
@@ -15,7 +17,7 @@ Discovery Content
 This endpoint allows you to fetch content for the new Discovery Pane in
 Firefox (about:addons).
 
- .. http:get:: /api/v3/discovery/
+ .. http:get:: /api/v4/discovery/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query string edition: Return content for a specific edition of Firefox.  Currently only ``china`` is supported.
@@ -48,7 +50,7 @@ be replaced. The API will still return a total of 7 items.
     is ignored and standard discovery response returned.
 
 
- .. http:get:: /api/v3/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef
+ .. http:get:: /api/v4/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef
 
     :query string telemetry-client-id: The telemetry client ID to be passed to the TAAR service.
     :query string lang: In addition to activating translations (see :ref:`Discovery Content <disco-content>`), this will be passed as `locale` to TAAR.

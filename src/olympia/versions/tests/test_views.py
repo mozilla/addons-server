@@ -49,21 +49,29 @@ class TestViews(TestCase):
 
         version, url = urls[0]
         assert version == '2.1'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, self.url_list + '?page=1#version-%s' % version)
 
         version, url = urls[1]
         assert version == '2.0'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, self.url_list + '?page=2#version-%s' % version)
 
         version, url = urls[2]
         assert version == '1.0'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url_list + '?page=3#version-%s' % version)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, self.url_list + '?page=3#version-%s' % version)
 
     def test_version_detail_404(self):
         bad_pk = self.addon.current_version.pk + 42
+        response = self.client.get(reverse('addons.versions',
+                                           args=[self.addon.slug, bad_pk]))
+        assert response.status_code == 404
+
+        bad_pk = u'lolé'
         response = self.client.get(reverse('addons.versions',
                                            args=[self.addon.slug, bad_pk]))
         assert response.status_code == 404

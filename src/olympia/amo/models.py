@@ -444,6 +444,12 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
 
+    def serializable_reference(self):
+        """Return a tuple with app label, model name and pk to be used when we
+        need to pass a serializable reference to this instance without having
+        to serialize the whole object."""
+        return self._meta.app_label, self._meta.model_name, self.pk
+
 
 class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
     """
@@ -555,6 +561,6 @@ class BasePreview(object):
                 log.info('Removing filename: %s for preview: %s'
                          % (filename, instance.pk))
                 storage.delete(filename)
-            except Exception, e:
+            except Exception as e:
                 log.error(
                     'Error deleting preview file (%s): %s' % (filename, e))
