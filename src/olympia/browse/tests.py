@@ -862,9 +862,8 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         foxy.type = amo.ADDON_SEARCH
         foxy.save()
         bookmarks = Category.objects.get(slug='bookmarks')
-        bookmarks.addoncategory_set.add(
-            AddonCategory(addon=foxy, feature=False))
-        bookmarks.save()
+        AddonCategory.objects.create(
+            addon=foxy, category=bookmarks, feature=False)
 
         url = reverse('browse.search-tools.rss',
                       args=('bookmarks',)) + '?sort=popular'
