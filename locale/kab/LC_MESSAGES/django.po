@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 22:51+0000\n"
+"PO-Revision-Date: 2018-06-06 23:09+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2005,9 +2005,8 @@ msgstr "acegger n usentel unedbal n {addon} {version} yettwasuter."
 msgid "Admin theme-review requested"
 msgstr "acegger n usentel n unedbal yettwasuter."
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} yussa-d si lqem amezwaru."
+msgstr "{addon} yekka-d seg usentel afessas."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2427,13 +2426,11 @@ msgstr "Acegger amezwaru n usentel yemden"
 msgid "Updated Complete Theme Review"
 msgstr "Acegger n usentel yemden yettwaleqmen"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Asenqed n uzegrir yettwaleqmen"
+msgstr "Awennit n uzegrir yettwasenqed"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Timellit n imcegger n uzegrir"
+msgstr "Aceggir n uzegrir yefsex deg ucegger"
 
 msgid "Add-on Content Review"
 msgstr "Asentem n ugbur n uzegrir"
@@ -2607,9 +2604,8 @@ msgstr "Tawennaṭ Akk ur tezmir ara ad tettwafren akked d tayeḍ."
 msgid "A platform can only be chosen once."
 msgstr "Tawennaṭ ad tettwafren kan yiwet n tikelt."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Tasureft"
+msgstr "Tisellet"
 
 msgid "Application"
 msgstr "Asnas"
@@ -2631,9 +2627,8 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 "Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
+msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Si lqem 53 d asawen n Firefox, izegrar imaynuten n usmel-agi ad ilinkan WebExtensions. "
@@ -2956,9 +2951,8 @@ msgstr "Ulac"
 msgid "Preview"
 msgstr "Taskant"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Ileqman yettwabedren"
+msgstr "Taskant n lqem teffeɣ-d"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -3241,17 +3235,14 @@ msgstr "Ma ulac aɣilif, mudd-d aglam i uzegrir inek:"
 msgid "Add a Screenshot..."
 msgstr "Rnu tuṭṭfa n ugdil"
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
+msgstr "Wiyaḍ zemren ad bḍun azegrir-ik, ma yella nnan-d d kečč i d ameskar?"
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
+msgstr "Zemren wiyaḍ ad zenzen azegrir-ik?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
+msgstr "Zemren wiyaḍ ad sqedcen azegrir-ik akken ad d-snufun wiyaḍ ?"
 
 msgid "Yes, as long as they share alike"
 msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
@@ -6514,9 +6505,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Rmed tikelt nniḍen lqem-agi"
+msgstr "Ḥettem armad n uzegrir"
 
 msgid "Disable Auto-Approval"
 msgstr ""
