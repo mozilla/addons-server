@@ -269,8 +269,7 @@ class TestUserAdmin(TestCase):
         addon = addon_factory()
 
         model_admin = UserAdmin(UserProfile, admin.site)
-        assert (unicode(model_admin.last_known_activity_time(self.user)) ==
-                u'(None)')  # Nothing yet.
+        assert unicode(model_admin.last_known_activity_time(self.user)) == ''
 
         # Add various activities. They will be attached to whatever user is
         # set in the thread global at the time, so set that in advance.
