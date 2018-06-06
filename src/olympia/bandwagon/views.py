@@ -83,7 +83,13 @@ def legacy_redirect(request, uuid, edit=False):
     collection = get_object_or_404(Collection.objects, **{key: uuid})
     if edit:
         return http.HttpResponseRedirect(collection.edit_url())
-    to = collection.get_url_path() + '?' + request.GET.urlencode()
+
+    to = collection.get_url_path()
+    params = request.GET.urlencode()
+
+    if params:
+        to += '?' + params
+
     return http.HttpResponseRedirect(to)
 
 
