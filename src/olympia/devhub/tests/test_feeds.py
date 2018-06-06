@@ -59,6 +59,7 @@ class TestActivity(HubTest):
             ActivityLog.create(amo.LOG.ADD_RATING, self.addon, rating)
 
     def get_response(self, **kwargs):
+        follow = kwargs.pop('follow', True)
         url = reverse('devhub.feed_all')
         if 'addon' in kwargs:
             url = reverse('devhub.feed', args=(kwargs['addon'],))
@@ -66,7 +67,7 @@ class TestActivity(HubTest):
         if kwargs:
             url += '?' + urlencode(kwargs)
 
-        return self.client.get(url, follow=True)
+        return self.client.get(url, follow=follow)
 
     def get_pq(self, **kwargs):
         return pq(self.get_response(**kwargs).content)
@@ -217,8 +218,8 @@ class TestActivity(HubTest):
 
     def test_logged_out(self):
         self.client.logout()
-        r = self.get_response()
-        assert r.redirect_chain[0][1] == 302
+        r = self.get_response(follow=False)
+        assert r.status_code == 302
 
     def test_xss_addon(self):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
