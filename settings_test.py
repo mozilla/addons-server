@@ -98,6 +98,7 @@ if os.environ.get('RUNNING_IN_CI'):
         'z.task': {'level': logging.WARNING},
         'z.redis': {'level': logging.WARNING},
         'z.pool': {'level': logging.ERROR},
+        'http_app_addons': {'level': logging.WARNING},
     })
 
     class MockProductDetails:
