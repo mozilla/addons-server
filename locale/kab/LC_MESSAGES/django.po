@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 21:56+0000\n"
+"PO-Revision-Date: 2018-06-06 22:51+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3578,9 +3578,8 @@ msgstr ""
 msgid "Create a Theme Version"
 msgstr "Rnu asentel amaynut"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Rnu asentel amaynut"
+msgstr "Rnu asentel"
 
 msgid "Submit File"
 msgstr "Azen afaylu"
@@ -3588,21 +3587,17 @@ msgstr "Azen afaylu"
 msgid "Sign Add-on"
 msgstr "Zmel azegrir"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Asentel yettwakkes."
+msgstr "Sirew asentel"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Turagt n usentel"
+msgstr "Asaraw n usentel"
 
-#, fuzzy
 msgid "Theme name"
 msgstr "isem n usentel"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Fren tugna n uqeṛṛu i usentel inek."
+msgstr "Fren tugna n uqeṛṛu i usentel-ik."
 
 msgid "Image height should be 200 pixels"
 msgstr ""
@@ -3616,9 +3611,8 @@ msgstr "Reyyec d asawen ayeffus"
 msgid "Select a different header image"
 msgstr "Fren tugna nniḍen n uqeṛṛu"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Fren initeni usentel inek."
+msgstr "Fren initen i usentel-ik"
 
 msgid "Header area background"
 msgstr "Tallunt n ugerru"
@@ -3856,9 +3850,8 @@ msgstr "Ɣeṛ ugar deg ublug nneɣ"
 msgid "Resources"
 msgstr "Tiγbula"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Asezmel"
+msgstr "Awway"
 
 msgid "Community"
 msgstr "Tamezdagnut"
@@ -3958,9 +3951,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr "Eg aḥedqis"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Anṣuf, {0}"
+msgstr "Anṣuf ar tuɣalin"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -6141,29 +6133,23 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "Izegrar-iw"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Isental itran"
+msgstr "Isental usbiḍen"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Izegrar-iw"
+msgstr "Izegrar iqbuṛen"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Azegrir amaynut ({0})"
+msgstr "Amaynut ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Lqem ({0})"
+msgstr "Ileqman ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Tazmilt n uɛawed n tmuɣli"
+msgstr "Aɣmis n yiceggiren"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Acegger n uzegrir"
+msgstr "Amnir n ucegger n uzegrir"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -6192,25 +6178,20 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Agbur ittwacegger ({0})"
 msgstr[1] "Agbur ittwacegger ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Azegrir amaynut ({0})"
+msgstr "Asentel amaynut ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Lqem ({0})"
+msgstr "Ileqman n yisental ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Isental yettwacegren"
+msgstr "Isental yettwacegren ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Isental fessusen"
+msgstr "Aɣmis n ucegger n yIsental fessusen"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Kkes asentel"
+msgstr "Aɣmis n yisental yettwakksen"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6237,9 +6218,8 @@ msgstr "Tullɣa"
 msgid "Update message of the day"
 msgstr "Snifel izen n wass"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Isutar n telɣut yemmuten ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Taḍra-d tuccda tarussint"
@@ -6295,16 +6275,14 @@ msgstr "Azemz aneggaru n waqbal"
 msgid "Abuse Reports ({num})"
 msgstr "Assaγ n uẓekker ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Iceggireni ddiri n useqdac ({num})"
+msgstr "Yir iceggireni n useqdac ({num})"
 
 msgid "Theme Images"
 msgstr "Tugniwin n usentel"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Iceggiren yettwaksen"
+msgstr "Taskant n wudem"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
@@ -6318,9 +6296,8 @@ msgstr "Timidelt n tugniwin"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
+msgstr "Uɣal ar tfelwit n usenqed n yifecka n yimcegger"
 
 msgid "Reviewer Leaderboard"
 msgstr "Agzul n umaẓrag"
@@ -6455,9 +6432,8 @@ msgstr "Iseɣwan iwulmen:"
 msgid "Add-on Policy"
 msgstr "Tasertit n uzegrir"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Amnir n ucegger"
+msgstr "Amnir n yimcegger"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6529,9 +6505,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr "Snifel tafelwit tamellalt"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Ugar n tigawin:"
+msgstr "Ugar n tigawin"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -6546,25 +6521,20 @@ msgstr "Rmed tikelt nniḍen lqem-agi"
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Aqbal awurman yentem"
+msgstr "Rmed aqbal awurman"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Sfeḍ asuter n telɣut"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Acegger n unedbal"
+msgstr "Sfeḍ tummla n ucegger n tengalt n unedbal"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Asentem n ugbur n uzegrir"
+msgstr "Sfeḍ tummla n ucegger n ugbur n unedbal"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Acegger n unedbal"
+msgstr "Sfeḍ tummla n ucegger n usentel usbiḍ n unedbal"
 
 msgid "(admin)"
 msgstr "(anedbal)"
@@ -6772,23 +6742,20 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Lqem ({0})"
 msgstr[1] "Ilqeman ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Agbur ittwacegger ({0})"
-msgstr[1] "Agbur ittwacegger ({0})"
+msgstr[0] "Acegger n tezmilt ({0})"
+msgstr[1] "Acegger n tezmilt ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Qbel s wudem awurman azegrir ({0})"
-msgstr[1] "Qbel s wudem awurman izegrar ({0})"
+msgstr[0] "Yettwaqbel s wudem awurman ({0})"
+msgstr[1] "Yettwaqbel s wudem awurman ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Ugar n telɣut tettusuter: {0}"
-msgstr[1] "Ugar n telɣut tettusuter: {0}"
+msgstr[0] "Asuter n telɣut yemmut {0}"
+msgstr[1] "Asuter n telɣut yemmut {0}"
 
 msgid "Flagged"
 msgstr "Yettwasezmel"
@@ -7340,9 +7307,8 @@ msgstr "Tawlaft n umaɣnu"
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Armud"
+msgstr "Iɣmisen n urmud"
 
 msgid "Email must be {email}."
 msgstr "Yessefk imayl ad yili {email}."
