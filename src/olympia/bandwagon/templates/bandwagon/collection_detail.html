@@ -29,65 +29,64 @@
     {% endif %}
   </hgroup>
 <div class="primary">
-<div class="featured">
-  <div class="featured-inner object-lead">
-    <div class="meta">
-      <ul>
-        {% if c.listed %}
-          <li>{{ barometer(collection) }}</li>
-          <li class="followers">
-            {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
-              <span>{{ num }}</span> follower {% pluralize %} <span>{{ num }}</span> followers
-            {% endtrans %}
-          </li>
-        {% endif %}
-        <li>{{ _('Updated {0}')|format_html(c.modified|date) }}</li>
-      </ul>
-    </div>
-    <div class='object-details'>
-      <h3>{{ _('About this Collection') }}</h3>
-      {% if c.type == amo.COLLECTION_FAVORITES %}
-        {{ favorites_description() }}
-      {% elif c.description %}
-        <p>{{ c.description|no_links }}</p>
-      {% elif c.type == amo.COLLECTION_MOBILE %}
-        <p>{{ _('Add-ons synced to my Mobile Firefox') }}</p>
-      {% endif %}
-      {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(user) %}
-        <ul id="collection-favorites-opts">
-          <li>
-            <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
-              {% csrf_token %}
-              <button type="submit">
-                {% if c.listed %}
-                  {{ _('Make this Collection Private') }}
-                {% else %}
-                  {{ _('Make this Collection Public') }}
-                {% endif %}
-              </button>
-            </form>
-          </li>
-          <li>
-            <a href="{{ url('pages.faq') }}#collections">
-              {{ _('Learn about collections') }}</a>
-          </li>
+  <div class="featured">
+    <div class="featured-inner object-lead">
+      <div class="meta">
+        <ul>
+          {% if c.listed %}
+            <li>{{ barometer(collection) }}</li>
+            <li class="followers">
+              {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
+                <span>{{ num }}</span> follower {% pluralize %} <span>{{ num }}</span> followers
+              {% endtrans %}
+            </li>
+          {% endif %}
+          <li>{{ _('Updated {0}')|format_html(c.modified|date) }}</li>
         </ul>
-      {% endif %}
-      {{ collection_widgets(c) }}
-      {% if request.check_ownership(c) %}
-        <p class="highlight collection-admin">
-          {{ _('More Options:') }}
-            <a class="edit" href="{{ c.edit_url() }}">{{ _('Edit Collection') }}</a>
-            {% if request.check_ownership(c, require_owner=True) %}
-              <a class="delete" href="{{ c.delete_url() }}">{{ _('Delete Collection') }}</a>
-            {% endif %}
-        </p>
-      {% endif %}
+      </div>
+      <div class='object-details'>
+        <h3>{{ _('About this Collection') }}</h3>
+        {% if c.type == amo.COLLECTION_FAVORITES %}
+          {{ favorites_description() }}
+        {% elif c.description %}
+          <p>{{ c.description|no_links }}</p>
+        {% elif c.type == amo.COLLECTION_MOBILE %}
+          <p>{{ _('Add-ons synced to my Mobile Firefox') }}</p>
+        {% endif %}
+        {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(user) %}
+          <ul id="collection-favorites-opts">
+            <li>
+              <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
+                {% csrf_token %}
+                <button type="submit">
+                  {% if c.listed %}
+                    {{ _('Make this Collection Private') }}
+                  {% else %}
+                    {{ _('Make this Collection Public') }}
+                  {% endif %}
+                </button>
+              </form>
+            </li>
+            <li>
+              <a href="{{ url('pages.faq') }}#collections">
+                {{ _('Learn about collections') }}</a>
+            </li>
+          </ul>
+        {% endif %}
+        {{ collection_widgets(c) }}
+        {% if request.check_ownership(c) %}
+          <p class="highlight collection-admin">
+            {{ _('More Options:') }}
+              <a class="edit" href="{{ c.edit_url() }}">{{ _('Edit Collection') }}</a>
+              {% if request.check_ownership(c, require_owner=True) %}
+                <a class="delete" href="{{ c.delete_url() }}">{{ _('Delete Collection') }}</a>
+              {% endif %}
+          </p>
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
 
-{% cache addons.object_list %}
   {% if c.all_personas %}
     <div class='collections-personas'>
       <h3>
@@ -122,7 +121,6 @@
     </div>
   {% endif %}
   {{ addons|paginator }}
-{% endcache %}
 </div> {# primary #}
 
 <div class="secondary">

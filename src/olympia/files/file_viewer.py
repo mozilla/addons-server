@@ -20,10 +20,10 @@ from validator.testcases.packagelayout import (
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.cache_nuggets import Message
+from olympia.lib.cache import Message
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import rm_local_tmp_dir
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 from olympia.files.utils import (
     atomic_lock, extract_xpi, get_all_files, get_sha256)
 
@@ -259,7 +259,7 @@ class FileViewer(object):
         if not self.is_extracted():
             extract_file(self)
 
-        self._files = cached(self._get_files, self._cache_key())
+        self._files = cache_get_or_set(self._cache_key(), self._get_files)
         return self._files
 
     def truncate(self, filename, pre_length=15,

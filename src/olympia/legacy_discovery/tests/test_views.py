@@ -30,7 +30,7 @@ class TestModuleAdmin(TestCase):
             modules = qs.values_list('module', flat=True)
             assert set(modules) == set(registry.keys())
 
-        qs = DiscoveryModule.objects.no_cache().filter(app=1)
+        qs = DiscoveryModule.objects.filter(app=1)
         assert qs.count() == 0
 
         # All our modules get added.

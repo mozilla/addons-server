@@ -81,9 +81,6 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-# Disable cache-machine on dev to prepare for its removal.
-CACHE_MACHINE_ENABLED = False
-
 CACHES = {
     'filesystem': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -117,8 +114,6 @@ REDIS_BACKENDS = {
     'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
     'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
 }
-
-CACHE_MACHINE_USE_REDIS = True
 
 csp = 'csp.middleware.CSPMiddleware'
 

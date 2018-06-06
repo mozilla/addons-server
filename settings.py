@@ -20,9 +20,6 @@ INSTALLED_APPS += (
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 
-# Disable cache-machine locally and in tests to prepare for its removal.
-CACHE_MACHINE_ENABLED = False
-
 # Using locmem deadlocks in certain scenarios. This should all be fixed,
 # hopefully, in Django1.7. At that point, we may try again, and remove this to
 # not require memcache installation for newcomers.
@@ -37,7 +34,7 @@ CACHE_MACHINE_ENABLED = False
 #      'BACKEND': 'caching.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.MemcachedCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     },
     'filesystem': {

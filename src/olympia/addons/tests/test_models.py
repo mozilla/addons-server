@@ -524,10 +524,20 @@ class TestAddonModels(TestCase):
         assert addon.find_latest_version(None) is None
 
     def test_transformer(self):
+        author = UserProfile.objects.get(pk=55021)
+        new_author = AddonUser.objects.create(
+            addon_id=3615, user=UserProfile.objects.create(username='abda'),
+            listed=True).user
+
         addon = Addon.objects.get(pk=3615)
+
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             assert addon.current_version
+            # Use list() so that we evaluate a queryset in case the
+            # transformer didn't attach the list directly
+            assert [u.pk for u in addon.listed_authors] == [
+                author.pk, new_author.pk]
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
@@ -1758,10 +1768,10 @@ class TestUpdateStatus(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         Version.objects.create(addon=addon)
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_no_valid_file_ends_with_NULL(self):
@@ -1771,22 +1781,22 @@ class TestUpdateStatus(TestCase):
                                 version=version)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         f.status = amo.STATUS_DISABLED
         f.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_unlisted_versions_ignored(self):
         addon = addon_factory(status=amo.STATUS_PUBLIC)
         addon.update_status()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_PUBLIC)
 
         addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # update_status will have been called via versions.models.update_status
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)  # No listed versions so now NULL
 
 

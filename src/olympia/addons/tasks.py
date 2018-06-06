@@ -78,7 +78,7 @@ def update_last_updated(addon_id):
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
-    addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
+    addons = Addon.objects.filter(id__in=ids).no_transforms()
     support = []
     for addon in addons:
         for app, appver in addon.compatible_apps.items():
@@ -97,9 +97,6 @@ def update_appsupport(ids):
     with transaction.atomic():
         AppSupport.objects.filter(addon__id__in=ids).delete()
         AppSupport.objects.bulk_create(support)
-
-    # All our updates were sql, so invalidate manually.
-    Addon.objects.invalidate(*addons)
 
 
 @task

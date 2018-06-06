@@ -176,7 +176,7 @@ class RatingSerializer(BaseRatingSerializer):
                 raise serializers.ValidationError(
                     ugettext(u'You can\'t leave a review on your own add-on.'))
 
-            rating_exists_on_this_version = Rating.objects.no_cache().filter(
+            rating_exists_on_this_version = Rating.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).using('default').exists()
             if rating_exists_on_this_version:

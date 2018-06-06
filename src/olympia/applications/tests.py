@@ -87,9 +87,9 @@ class TestCommands(TestCase):
                 '.PyQuery', spec=True)
     def test_import_prod_versions(self, pyquery_mock):
         assert not AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.0').no_cache().exists()
+            application=amo.FIREFOX.id, version='53.0').exists()
         assert not AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.*').no_cache().exists()
+            application=amo.FIREFOX.id, version='53.*').exists()
 
         # Result of PyQuery()
         MockedDoc = mock.Mock()
@@ -108,6 +108,6 @@ class TestCommands(TestCase):
         call_command('import_prod_versions')
 
         assert AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.0').no_cache().exists()
+            application=amo.FIREFOX.id, version='53.0').exists()
         assert AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.*').no_cache().exists()
+            application=amo.FIREFOX.id, version='53.*').exists()

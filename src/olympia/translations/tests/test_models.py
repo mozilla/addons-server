@@ -684,17 +684,3 @@ def test_comparison_with_lazy():
     lazy_u = lazy(lambda x: x, unicode)
     x == lazy_u('xxx')
     lazy_u('xxx') == x
-
-
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    assert Translation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'slave'))
-
-    # Test that we are using the same cache no matter what Translation class
-    # we use.
-    assert PurifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
-    assert LinkifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
