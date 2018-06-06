@@ -229,6 +229,7 @@ class SetRemoteAddrFromForwardedFor(object):
 
         known = getattr(settings, 'KNOWN_PROXIES', [])
         ips.reverse()
+
         for ip in ips:
             request.META['REMOTE_ADDR'] = ip
             if ip not in known:

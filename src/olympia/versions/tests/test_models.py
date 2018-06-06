@@ -149,7 +149,7 @@ class TestVersion(TestCase):
         assert version.files.count() == 1
         version.delete()
 
-        addon = Addon.objects.no_cache().get(pk=3615)
+        addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert Version.unfiltered.filter(addon=addon).exists()
         assert version.files.count() == 1
@@ -162,7 +162,7 @@ class TestVersion(TestCase):
         assert version.files.count() == 1
         version.delete(hard=True)
 
-        addon = Addon.objects.no_cache().get(pk=3615)
+        addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.unfiltered.filter(addon=addon).exists()
         assert version.files.count() == 0
@@ -226,7 +226,7 @@ class TestVersion(TestCase):
         file = File(platform=amo.PLATFORM_MAC.id, version=version)
         file.save()
         # The transform don't know bout my new files.
-        version = Version.objects.no_cache().get(pk=81551)
+        version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
     def test_version_is_not_allowed_upload_full(self):

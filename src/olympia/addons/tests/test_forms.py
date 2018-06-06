@@ -159,7 +159,7 @@ class TestTagsForm(TestCase):
         return form
 
     def get_tag_text(self):
-        return [t.tag_text for t in self.addon.tags.no_cache().all()]
+        return [t.tag_text for t in self.addon.tags.all()]
 
     def test_tags(self):
         self.add_tags('foo, bar')

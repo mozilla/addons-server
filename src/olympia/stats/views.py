@@ -26,7 +26,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
-from olympia.amo.cache_nuggets import memoize
+from olympia.lib.cache import memoize
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
@@ -444,7 +444,7 @@ _KEYS = {
 _CACHED_KEYS = sorted(_KEYS.values())
 
 
-@memoize(prefix='global_stats', time=60 * 60)
+@memoize(prefix='global_stats', timeout=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
     with connection.cursor() as cursor:
         # Let MySQL make this fast. Make sure we prevent SQL injection with the

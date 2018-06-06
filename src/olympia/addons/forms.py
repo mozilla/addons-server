@@ -557,7 +557,7 @@ class EditThemeForm(AddonFormBase):
 
         super(AddonFormBase, self).__init__(*args, **kw)
 
-        addon = Addon.objects.no_cache().get(id=self.instance.id)
+        addon = Addon.objects.get(id=self.instance.id)
         persona = addon.persona
 
         # Allow theme artists to localize Name and Description.

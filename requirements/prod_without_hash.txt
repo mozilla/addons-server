@@ -1,2 +1,0 @@
-## Forked but very much based on v1.0, only needs one more minor patch to land upstream
--e git+https://github.com/EnTeQuAk/django-cache-machine@e46f4d106faa62df928468961654f1d4fa56bb4d#egg=django-cache-machine

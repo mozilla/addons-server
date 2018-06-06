@@ -26,7 +26,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -327,20 +327,31 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return user_media_url('userpics') + path
 
     @cached_property
+    def cached_developer_status(self):
+        qset = list(
+            self.addonuser_set
+            .exclude(addon__status=amo.STATUS_DELETED)
+            .values_list('addon__type', flat=True))
+
+        return {
+            'is_developer': bool(qset),
+            'is_addon_developer': bool(
+                [t for t in qset if t != amo.ADDON_PERSONA]),
+            'is_artist': bool([t for t in qset if t == amo.ADDON_PERSONA])
+        }
+
+    @property
     def is_developer(self):
-        return self.addonuser_set.exclude(
-            addon__status=amo.STATUS_DELETED).exists()
+        return self.cached_developer_status['is_developer']
 
-    @cached_property
+    @property
     def is_addon_developer(self):
-        return self.addonuser_set.exclude(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_addon_developer']
 
-    @cached_property
+    @property
     def is_artist(self):
         """Is this user a Personas Artist?"""
-        return self.addonuser_set.filter(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_artist']
 
     @write
     def update_is_public(self):
@@ -349,7 +360,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.addonuser_set.filter(
                 role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
                 listed=True,
-                addon__status=amo.STATUS_PUBLIC).no_cache().exists())
+                addon__status=amo.STATUS_PUBLIC).exists())
         if is_public != pre:
             log.info('Updating %s.is_public from %s to %s' % (
                 self.pk, pre, is_public))
@@ -552,7 +563,7 @@ class DeniedName(ModelBase):
         def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = cached(fetch_names, 'denied-name:blocked')
+        blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
 
 

@@ -99,7 +99,6 @@ install_python_dependencies:
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js

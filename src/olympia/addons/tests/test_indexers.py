@@ -155,7 +155,7 @@ class TestAddonIndexer(TestCase):
             if 'index' in prop)
 
     def _extract(self):
-        qs = Addon.unfiltered.filter(id__in=[self.addon.pk]).no_cache()
+        qs = Addon.unfiltered.filter(id__in=[self.addon.pk])
         for t in self.transforms:
             qs = qs.transform(t)
         self.addon = list(qs)[0]

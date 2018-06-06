@@ -90,10 +90,11 @@
                   {{ site_nav() }}
                   {% endblock %}
                 </div>
-                {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+                {% set admin_message = get_config('site_notice') %}
+                {% if admin_message or settings.READ_ONLY %}
                   <div class="site-balloon" id="site-notice">
-                    {% if ADMIN_MESSAGE %}
-                      <p>{{ ADMIN_MESSAGE|safe }}</p>
+                    {% if admin_message %}
+                      <p>{{ admin_message|safe }}</p>
                     {% endif %}
                     {% if settings.READ_ONLY %}
                       <p>{% trans %}

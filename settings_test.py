@@ -26,10 +26,6 @@ PAYPAL_PERMISSIONS_URL = ''
 
 SITE_URL = 'http://testserver'
 
-# COUNT() caching can't be invalidated, it just expires after x seconds. This
-# is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
-
 # We don't want to share cache state between processes. Always use the local
 # memcache backend for tests.
 #
@@ -41,7 +37,7 @@ CACHES = {
     'default': {
         # `CacheStatTracker` is required for `assert_cache_requests` to work
         # properly
-        'BACKEND': 'olympia.amo.cache_nuggets.CacheStatTracker',
+        'BACKEND': 'olympia.lib.cache.CacheStatTracker',
         'LOCATION': 'olympia',
         'OPTIONS': {
             'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
