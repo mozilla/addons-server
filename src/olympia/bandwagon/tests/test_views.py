@@ -82,6 +82,7 @@ class TestViews(TestCase):
              url),
             ('/collections/view/wut/', 301, url),
             ('/collection/404', 404)]
+
         for test in tests:
             self.check_response(*test)
 
