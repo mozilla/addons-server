@@ -515,11 +515,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
 
     @cached_property
-    def has_favorite_addons(self):
-        return self.addons_for_collection_type(
-            amo.COLLECTION_FAVORITES).exists()
-
-    @cached_property
     def watching(self):
         return self.collectionwatcher_set.values_list('collection', flat=True)
 

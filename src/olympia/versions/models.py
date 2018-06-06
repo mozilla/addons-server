@@ -425,10 +425,11 @@ class Version(OnChangeMixin, ModelBase):
         the app version ranges that this particular version is incompatible
         with.
         """
-        overrides = self.addon.compatoverride_set.all()
+        overrides = list(self.addon.compatoverride_set.all())
 
         if not overrides:
             return []
+
         app_versions = []
         for co in overrides:
             for range in co.collapsed_ranges():
@@ -544,10 +545,10 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and files to the versions."""
-        ids = set(v.id for v in versions)
         if not versions:
             return
 
+        ids = set(v.id for v in versions)
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
                .select_related('min', 'max'))
         files = File.objects.filter(version__in=ids)
