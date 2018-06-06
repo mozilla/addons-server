@@ -327,20 +327,31 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return user_media_url('userpics') + path
 
     @cached_property
+    def cached_developer_status(self):
+        qset = list(
+            self.addonuser_set
+            .exclude(addon__status=amo.STATUS_DELETED)
+            .values_list('addon__type', flat=True))
+
+        return {
+            'is_developer': bool(qset),
+            'is_addon_developer': bool(
+                [t for t in qset if t != amo.ADDON_PERSONA]),
+            'is_artist': bool([t for t in qset if t == amo.ADDON_PERSONA])
+        }
+
+    @property
     def is_developer(self):
-        return self.addonuser_set.exclude(
-            addon__status=amo.STATUS_DELETED).exists()
+        return self.cached_developer_status['is_developer']
 
-    @cached_property
+    @property
     def is_addon_developer(self):
-        return self.addonuser_set.exclude(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_addon_developer']
 
-    @cached_property
+    @property
     def is_artist(self):
         """Is this user a Personas Artist?"""
-        return self.addonuser_set.filter(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_artist']
 
     @write
     def update_is_public(self):
@@ -502,6 +513,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @cached_property
     def favorite_addons(self):
         return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
+
+    @cached_property
+    def has_favorite_addons(self):
+        return self.addons_for_collection_type(
+            amo.COLLECTION_FAVORITES).exists()
 
     @cached_property
     def watching(self):

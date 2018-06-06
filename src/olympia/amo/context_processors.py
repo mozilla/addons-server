@@ -53,7 +53,7 @@ def global_settings(request):
             'text': ugettext('My Collections'),
             'href': reverse('collections.user', args=[request.user.username])})
 
-        if request.user.favorite_addons:
+        if request.user.has_favorite_addons:
             account_links.append(
                 {'text': ugettext('My Favorites'),
                  'href': reverse('collections.detail',
