@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 21:50+0000\n"
+"PO-Revision-Date: 2018-06-06 21:56+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5440,24 +5440,24 @@ msgstr "Agimen n izegrar llan, yella meṛṛa i wayen tesriḍ. Ma tebɣid ad t
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "D acu d anamek ma yella azegrir d \"armitan\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
-"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen nsen ur ttagen ara i tugett n yemdanen. Ur ttwasneqdecn ara sɣuṛ imazragen-nneɣ akken ad walin ma ulac deg-sen uguren n tɣellist, acu kan zemren ad gebren"
-" tuccḍiwin neq ahat ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-iten ma tufid-d ugur. <a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
+"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen-nsen d akken ur ttwagen ara i tugett n yemdanen. Yezmer gebren ibugen neɣ ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-"
+"iten ma tufid-d ugur. %(learnmore_link_open)s Issin ugar ɣef ukala n ucegger%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "D acu d anamek ma yella azegrir \"ur ittwacegger ara\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
-"Ma yella akk izegrar ttbanen di tmidelt-nneɣ ttwasneqden sɣuṛ amaẓrag, tzemreḍ ad d-remseḍ aseɣwen srid ar uzegrir ur yettwasneqden ara. Ɣur-k ticki tessebdadeḍ izegrar-agi, acku zemren ad sexṣṛen "
-"tawila neɣ ur ttqadaṛen ara tudert inek tusligt. Ihi ur sebdad ala izegrar yettwasneqden.<a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
+"Ma tremsed-d aseɣwen ar uzegrir yeqqaṛen d akken ur yettwacegger ara, ayagi yemmal-d d akken yettraǧu acegger sɣur Mozilla. Ɣur-k ticki tessebdadeḍ izegrar-agi, acku zemren ad sexṣṛen tawila neɣ ur "
+"ttqadaṛen ara tudert-ik tusligt. %(learnmore_link_open)s Issin ugar ɣef ukala n ucegger %(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Acḥal yeswa uzegrir i tiɣin?"
@@ -5478,13 +5478,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Amek ara ad d-mleɣ d akken awennit ur ilaq ara neɣ d aspam?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ n"
-" teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
+"Akken ad tazneḍ acegger n uzgrir, kcem s umiḍan-ik sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣef \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ n teẓrigt ad "
+"tessenqed acegger sakin ad twali acu ara texdem."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Amek ara d-azneɣ abug neɣ ad nermseɣ tarbaɛt n Mozilla?"
