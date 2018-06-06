@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 20:32+0000\n"
+"PO-Revision-Date: 2018-06-06 07:09+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4786,7 +4786,7 @@ msgid "Validation failed:"
 msgstr "Validasi gagal:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Konten berkas tidak didukung untuk sorotan sintaksis"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
