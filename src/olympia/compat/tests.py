@@ -466,4 +466,4 @@ class TestCompatibilityReportCron(
         self.run_compatibility_report()
 
         assert CompatTotals.objects.count() == 1
-        assert CompatTotals.objects.no_cache().get().total == 70
+        assert CompatTotals.objects.get().total == 70

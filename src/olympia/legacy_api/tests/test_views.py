@@ -1028,7 +1028,7 @@ class SearchTest(ESTestCase):
         # Make add-on opt into strict compatibility.
         file = addon.current_version.files.all()[0]
         file.update(strict_compatibility=True)
-        assert File.objects.no_cache().get(pk=file.id).strict_compatibility
+        assert File.objects.get(pk=file.id).strict_compatibility
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
 
@@ -1055,7 +1055,7 @@ class SearchTest(ESTestCase):
         # Make add-on contain binary components.
         file = addon.current_version.files.all()[0]
         file.update(binary_components=True)
-        assert File.objects.no_cache().get(pk=file.id).binary_components
+        assert File.objects.get(pk=file.id).binary_components
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
 
