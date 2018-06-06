@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 23:09+0000\n"
+"PO-Revision-Date: 2018-06-06 23:19+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2765,18 +2765,18 @@ msgstr "Tasarutt API tamaynut tettwarna"
 msgid "API key revoked"
 msgstr "Tasarutt API tettwaḥwi"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n izegrar n Firefox. Ayagi yegber aseqwen ar tsertit n tbaḍnit id-yemmalen amek ad nsefrek taɣut icudden ɣur-k."
+msgstr ""
+"Send ad tebduḍ, ɣeṛ daɣen qbel ma ulac aɣilif amtawa n uzuzer n izegrar n Firefox akked tsertit tabaḍnit d yilugan n ucegger. Amtawa n uzuzer i yizegrar Firefox yegber aseɣwen ar tsertit-nneq "
+"tabaḍnit i d-yessegzayen amek i nessefrak talɣut i k-yeɛnan."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Amtawa n uzuzer n uzegrir n Firefox"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Tasertit n ucegger"
+msgstr "Ilugan d yinsayen n ucegger"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ɣriɣ yerna qebleɣ amtawa-agi akk d walugen d tsertiyin"
@@ -3250,16 +3250,14 @@ msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
+msgstr "Azegrir-ik ad d-yeffeɣ ddaw n turagt-agi:"
 
 msgid "Select a different license."
 msgstr "Fren turagt nniḍen."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Ugar n telɣut ɣef turagin Creative Commons"
 
 msgid "Tests"
 msgstr "Ikayaden"
@@ -3422,9 +3420,8 @@ msgstr "Azegrir-agi d armitan"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Kren <b>arma d {0}</b> {1} n taggayt i uzegrir-agi:"
+msgstr "Fren taggayt i uzegrir-agi:"
 
 msgid "Support email:"
 msgstr "Imayl n tallalt:"
@@ -3435,9 +3432,8 @@ msgstr "Asmel n tallalt:"
 msgid "License:"
 msgstr "Turagt:"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Ma ulac aɣilif, fren turagt ilaqen i yizerfan i tebɣiḍ ad tsedduḍ i tengalt inek aɣbalu."
+msgstr "Ma ulac aɣilif, fren turagt ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Ma yella azegrir inek yettazen isefka seg uselkim n useqdac, tasertit n tbaḍnit tettwasra akken ad tsegzuḍ anwa isefka ara yettwaznen udiɣ amek ara ttwasqedcen."
@@ -3484,13 +3480,11 @@ msgstr "D ayen ifuk!"
 msgid "Version Submitted for Review"
 msgstr "Lqem yettwazen akken ad ittucegger"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Lqem yettwazmel"
+msgstr "Taskant n lqem tettwazen"
 
-#, fuzzy
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yili deg usmel-nneɣ."
+msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yili deg usmel-nneɣ, ticki yettwacegger. Ad tizmireḍ ad tremseḍ alɣu ticki yeḍra-d."
 
 msgid "Version Submitted"
 msgstr "Lqem yettwazmel"
@@ -3555,9 +3549,8 @@ msgstr "Anda ara yezdeɣ lqem"
 msgid "Upload Version"
 msgstr "Sali lqem"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "Seqdec urtan da-a akken ad tazneḍ akemmus n uzegrir inek sakin fren yal azeyyeṛ icudden ar unagraw. Seld tuzna, amazrar n ikayaden iwurmanen ad ttwagen ɣef ufaylu inek."
+msgstr "Seqdec urtan ddaw-a akken ad tazneḍ akemmus n uzegrir-ik. Seld tuzna, ikayaden n usentem iwurmanen ad ttwaselkmen ɣef ufaylu-ik."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
@@ -3565,9 +3558,8 @@ msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Rnu asentel amaynut"
+msgstr "Rnu Lqem n usentel"
 
 msgid "Create a Theme"
 msgstr "Rnu asentel"
@@ -3626,9 +3618,8 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Wagi d ini n uḍris n yiccer."
+msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr ""
