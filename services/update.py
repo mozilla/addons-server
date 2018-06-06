@@ -6,7 +6,8 @@ from email.Utils import formatdate
 from time import time
 from urlparse import parse_qsl
 
-from services.utils import mypool, settings
+from services.utils import (
+    get_cdn_url, log_configure, mypool, settings, PLATFORM_NAMES_TO_CONSTANTS)
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -18,8 +19,6 @@ except ImportError:
 
 from olympia.constants import applications, base
 import olympia.core.logger
-
-from services.utils import get_cdn_url, log_configure, PLATFORM_NAMES_TO_CONSTANTS
 
 
 # Go configure the log.
