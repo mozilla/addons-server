@@ -52,6 +52,11 @@ class BaseQuerySet(models.QuerySet):
         clone._transform_fns = self._transform_fns[:]
         return clone
 
+    def transform(self, fn):
+        clone = self._clone()
+        clone._transform_fns.append(fn)
+        return clone
+
     def pop_transforms(self):
         qs = self._clone()
         transforms = qs._transform_fns
