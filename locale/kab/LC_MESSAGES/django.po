@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-03 03:24+0000\n"
+"PO-Revision-Date: 2018-06-06 19:47+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -990,25 +990,20 @@ msgstr "Tiginitin zemrent kan ad ilint PNG neɣ JPG."
 msgid "Icons cannot be animated."
 msgstr "Tignitin ur zmirent ara ad mbiwlent."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
+msgstr "Tansa-agi URLA tudmawant tesseqdac-itt yakan yiwet seg tigrummiwin-ik."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Isem agi ur yettwaseqdac ara."
+msgstr "Isem ur yezmir ara ad yili d ilem."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Sekcem isem useqdac ameγtu isεan iskilen, uṭṭunen, ijeriden."
+msgstr "Yessefk tansa URL ad tegber kan isekkilen, iwzilen, ijerriḍ nwadda neɣ tizdit."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Isem-agi n useqdac ur izmir ara ad ittuseqdec."
+msgstr "Tansa-agi URL ur tezmir ara ad tettwaseqdec."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
+msgstr "Azegrir-agi ittekkayakan ar tegrumma"
 
 msgid "Name"
 msgstr "Isem"
@@ -1738,9 +1733,8 @@ msgid "{addon} enabled."
 msgstr "{addon} yettwarmed."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Addad n {addon} yettusnifel ar {0}."
+msgstr "Addad n {addon} yuɣal ar {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} yettwarna ɣer {addon}."
@@ -1979,25 +1973,20 @@ msgstr "agbur n {addon} {version} yettwagi."
 msgid "Content rejected"
 msgstr "Agbur yettwagi"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Asuter n telɣut i {addon} ibeddel-it neɣ yekkes-it unedbal."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Asuter n telɣut ibeddel"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Tiririt n uneflay  ɣef {addon} {version}."
+msgstr "Aneflay yerr-ad ɣef usuter n telqut i {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Asuter n telɣut yettwakkes"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} acegger yettusuter."
+msgstr "acegger n unedbal n {addon} {version} yettwasuter."
 
 #, fuzzy
 msgid "Admin add-on-review requested"
