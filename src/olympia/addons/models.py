@@ -1020,8 +1020,6 @@ class Addon(OnChangeMixin, ModelBase):
             if addon_id in addons_with_authors:
                 users = addons_with_authors[addon_id]
                 addon_dict[addon_id].listed_authors = users
-            else:
-                addon_dict[addon_id].listed_authors = []
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
