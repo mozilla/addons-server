@@ -1285,7 +1285,7 @@ CELERY_TASK_EAGER_PROPAGATES = True
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
-LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.INFO
 USE_MOZLOG = True
 MOZLOG_NAME = "http_app_addons"
 # See PEP 391 and log_settings_base.py for formatting help.  Each section of
