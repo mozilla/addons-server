@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 19:47+0000\n"
+"PO-Revision-Date: 2018-06-06 21:50+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -907,7 +907,7 @@ msgstr "Tangalt n tutlayt {lang_code} mačči d tameɣtut."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Tasarut tamezwarut neɣ asulay ilulen \"%s\" mačči d ameɣtu. Taɣawsa ulmac-itt."
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -1471,6 +1471,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Asebded n usiɣzef n umawal ad yernu aɣewwaṛ n tutlayt tamaynut ar imseɣti n tira %(app_name)s, ayen ara yesneqden tira-ik ticki tettaruḍ di tiferkit Web. Izegrar n ukemmus n tutlayt ttbeddilen "
+"tutlayt n usnas meṛṛa."
 
 msgid "Available in your locale"
 msgstr "Yella di tutlayt inek"
@@ -1988,25 +1990,20 @@ msgstr "Asuter n telɣut yettwakkes"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "acegger n unedbal n {addon} {version} yettwasuter."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Acegger leqqayen yettusuter"
+msgstr "acegger n uzegrir n unedbal yettwasuter."
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} acegger yettusuter."
+msgstr "acegger n ugbur unedbal n {addon} {version} yettwasuter."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Acegger leqqayen yettusuter"
+msgstr "acegger n ugbur n unedbal yettwasuter."
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} acegger yettusuter."
+msgstr "acegger n usentel unedbal n {addon} {version} yettwasuter."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Aceggir yettwasuter"
+msgstr "acegger n usentel n unedbal yettwasuter."
 
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
@@ -2206,7 +2203,7 @@ msgid "Music"
 msgstr "Aẓawan"
 
 msgid "Scenery"
-msgstr ""
+msgstr "Iẓir"
 
 msgid "Seasonal"
 msgstr "Asemhay"
@@ -2370,9 +2367,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Azen asentel"
+msgstr "Asentel usbiḍ"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2410,9 +2406,8 @@ msgstr "Acegger n ukemmus utlayan yettwaleqmen"
 msgid "Theme Review"
 msgstr "Acegger n usentel"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Asentel (Static)"
+msgstr "Acegger n usentel (usbiḍ)"
 
 msgid "New Search Provider Review"
 msgstr "Acegger n umsedday n unadi amaynut"
@@ -2444,16 +2439,16 @@ msgid "Add-on Content Review"
 msgstr "Asentem n ugbur n uzegrir"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Asentem send aqbal (tamijewt meqqren ugar)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Asentem send aqbal (tamijewt meqqren)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Asentem send aqbal (tamijewt alemmas)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Asentem send aqbal (tamijewt meẓẓiyen)"
 
 msgid "Level 1"
 msgstr "Aswir 1"
@@ -2498,7 +2493,7 @@ msgid "Approve"
 msgstr "Qbel"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Agbuṛ azfan neɣ apuṛnugṛafik "
 
 msgid "Inappropriate or offensive content"
 msgstr "D agbur ur nlaq neɣ yessefjaεen"
@@ -2597,9 +2592,8 @@ msgstr "Ur tezmireḍ ara ad tesaliḍ afaylu i lqem-agi."
 msgid "Version doesn't match"
 msgstr "Lqem ur imṣada ara"
 
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Lqem {version} yella yakan, neɣ yuli-d yakan."
+msgstr "Lqem {version} yuli yakan sakin yettwakkes"
 
 msgid "Version {version} already exists."
 msgstr "Lqem {version} yella yakan."
@@ -5313,16 +5307,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Izegrar ad ddun akked iminig inu neɣ asnas inu?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
-"yemmal-d anwa isnasen neq ileqman anida iteddu, am Firefox 2.0 - 3.6.*. deg izegrar n Firefox, tiqeffalin n usebded mmalent-d ma yella azegrir yemṣada neɣ ala."
+"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox i Android</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acu kan, mačči akk izegrar teddun deg yiwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal "
+"azegrir yemmal-d anwa isnasen neq ileqman anida iteddu, am Firefox 50.0 - 52.*. Deg izegrar n Firefox, tiqeffalin n usebded mmalent-d ma yella azegrir yemṣada neɣ ala."
 
 msgid "What are the different types of add-ons?"
 msgstr "Acu-ten wanawen izergrar?"
@@ -5437,11 +5431,11 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Ma yella ur uffiɣ ara azegrir i ttnadiɣ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr "Agimen n izegrar llan, yella yak i wayen tesriḍ. Ma tebɣid ad tnadiḍ azegrir ur tufiḍ ara, nadi deg ismal nniḍen neɣ aru-d izen deg <a href=\"%(forum_url)s\">unmager n izegrar</a>."
+msgstr "Agimen n izegrar llan, yella meṛṛa i wayen tesriḍ. Ma tebɣid ad tnadiḍ azegrir ur tufiḍ ara, nadi deg ismal-nniḍen neɣ aru-d izen deg <a href=\"%(forum_url)s\">unmager n izegrar</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "D acu d anamek ma yella azegrir d \"armitan\"?"
@@ -5537,13 +5531,13 @@ msgstr "Izegrar izirazen"
 msgid "What are mobile add-ons?"
 msgstr "D acu-ten izegrar izirazen?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i uziraz</a> udiɣ rennun neɣ snifilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i Uziraz"
-" di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
+"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i Android </a> udiɣ rennun neɣ ttbeddilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i "
+"Android di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
 
 msgid "Developer Topics"
 msgstr "Isental n uneflay"
@@ -5947,16 +5941,14 @@ msgid "end"
 msgstr "tagara"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "azegrir, amaẓrag neɣ awennit"
+msgstr "azegrir, imcegger neɣ awennit"
 
 msgid "Search by add-on name / author email"
 msgstr "Nadi s yisem n uzegrir / imayl n umeskar"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Acegger n unedbal"
+msgstr "Yesra acegger n tengalt n unedbal"
 
 msgid "yes"
 msgstr "ih"
@@ -5985,9 +5977,8 @@ msgstr "Isnasen:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 wussan"
+msgstr "ussan"
 
 msgid "Choose a canned response..."
 msgstr "Fren tiririt yettwakelsen..."
@@ -6003,9 +5994,8 @@ msgstr "Yella win nniden yettceggiren asentel-agi."
 msgid "theme, reviewer, or comment"
 msgstr "asentel, imcegger, neɣ awennit"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Tafelwit tamellalt"
+msgstr "Tafelwit tamellalt tusligt"
 
 msgid "Keep review; remove flags"
 msgstr ""
@@ -6013,13 +6003,11 @@ msgstr ""
 msgid "Skip for now"
 msgstr "Suref akka tura"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Asentem n ugbur n uzegrir"
+msgstr "Yesra acegger n ugbur n unedbal"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Acegger n unedbal"
+msgstr "Yesra acegger n usentel usbiḍ n unedbal"
 
 msgid "Jetpack Add-on"
 msgstr "Azegrir Jetpack"
