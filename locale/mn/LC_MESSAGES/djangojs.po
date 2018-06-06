@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 21:06+0000\n"
+"PO-Revision-Date: 2018-06-06 21:14+0000\n"
 "Last-Translator: Patrick CHEW <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
@@ -648,7 +648,7 @@ msgid "Accept and Install"
 msgstr ""
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0}-д/т нэмэх"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -686,7 +686,7 @@ msgid "Removing Favorite&hellip;"
 msgstr ""
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Дуртай зүйлст нэмэх"
 
 msgid "Remove from Favorites"
 msgstr ""
