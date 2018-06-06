@@ -90,7 +90,15 @@ if os.environ.get('RUNNING_IN_CI'):
     import product_details
     from datetime import datetime
 
-    LOG_LEVEL = logging.ERROR
+    LOGGING['loggers'].update({
+        'amqp': {'level': logging.WARNING},
+        'raven': {'level': logging.WARNING},
+        'requests': {'level': logging.WARNING},
+        'z.addons': {'level': logging.INFO},
+        'z.task': {'level': logging.WARNING},
+        'z.redis': {'level': logging.WARNING},
+        'z.pool': {'level': logging.ERROR},
+    })
 
     class MockProductDetails:
         """Main information we need in tests.
