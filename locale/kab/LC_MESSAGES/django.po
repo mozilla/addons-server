@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 00:11+0000\n"
+"PO-Revision-Date: 2018-06-07 00:19+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4361,37 +4361,32 @@ msgstr "Sewḥel aḍfaṛ n Facebook {start_sub_heading}s {addon_name} {end_sub
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4487,9 +4482,9 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
+msgstr "Ur tezmireḍ ara ad tazneḍ azegrir yettfakan s %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
@@ -4756,13 +4751,12 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Anwa i d-yesnulfan izegrar-agi?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Izegrar i d-yettwaseknen dagi rnan-ten ineflayen n tmezdagnut ama d imdanen yeffe q lḥir neɣ tikebbaniyin. Akk izegrar yellan s wudem azayez sneqden-ten trebbaɛ n imaẓragen seld ad d-ffɣen. Izegrar "
-"irmitanen ur ttwasenqden ara ihi ɣur-k ticki ad ten-tesbeddeḍ."
+"Izegrar i d-yettwaseknen dagi rnan-ten imeyyaten n yineflayen ama n terbe qt-nneɣ, neɣ d imdanen yeffeɣ ilelliyen yesneflayen si sya ar da neɣ tikebbaniyin meqqren. Akk izegrar yellan s wudem azayez"
+" sneqden-ten trebbaɛ n imaẓragen seld ad d-ffɣen. Izegrar irmitanen ur ttwasenqden ara ihi ɣur-k ticki ad ten-tesbeddeḍ."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Amek ara qqimeɣ deg umaynut ɣef ayen iḍerrun di AMO ?"
@@ -5983,9 +5977,8 @@ msgstr "Azegrir Jetpack"
 msgid "More Information Requested"
 msgstr "Ugar n telɣut tettusuter"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Asuter n telɣut yemmut"
 
 msgid "Contains Reviewer Comment"
 msgstr "Igber awennit n imcegger"
@@ -6059,9 +6052,8 @@ msgstr "Ulac iceggiren"
 msgid "Weight"
 msgstr "Taẓayt"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Tagara n usuter n telɣut"
 
 msgid "Last Content Review"
 msgstr "Acegger aneggaru n ugbur"
@@ -6081,9 +6073,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Aggwi aṭas n ilqman"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
+msgstr "Tigawt-agi ad tagi ileqman izuyaz yettwafernen. Iwenniten ad ttwaznen i uneflay."
 
 msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
@@ -6106,9 +6097,8 @@ msgstr "Qbel agbur"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Izegrar-iw"
+msgstr "ISental usbiḍen akked izegrar iqbuṛen"
 
 msgid "Static Themes"
 msgstr "Isental usbiḍen"
@@ -6128,22 +6118,18 @@ msgstr "Aɣmis n yiceggiren"
 msgid "Add-on Review Guide"
 msgstr "Amnir n ucegger n uzegrir"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Acegger n usentel"
+msgstr "Amnir n ucegger n usentel"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Qbel s wudem awurman izegrar"
+msgstr "Izegrar yettwaqeblen s wudem awurman"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Qbel s wudem awurman azegrir ({0})"
+msgstr "Izegrar yettwaqeblen s wudem awurman ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Aɣmis n ucegger n uzegrir"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "Amnir n ucegger"
 
@@ -6179,9 +6165,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Asenqed n uzegrir yettwaleqmen"
+msgstr "Amnir n usenqed"
 
 msgid "Unlisted Add-ons"
 msgstr "Izegrar ur d-yettwabedren ara"
@@ -6478,7 +6463,6 @@ msgstr ""
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
 msgstr "Snifel tafelwit tamellalt"
 
