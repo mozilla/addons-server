@@ -40,8 +40,13 @@
         ('toolbar_field_text', _('Toolbar field area text'), _('The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text.'), false)] %}
 
       <ul class="colors">
+        {% set property_list = ['textcolor','toolbar_text', 'toolbar_field_text'] %}
         {% for (property, label, tip, val_default) in colors %}
-        <li class="row">
+          {% if property in property_list  %}
+            <li class="row left">
+          {% else %}
+            <li class="row">
+          {% endif %}
           <label class="row" for="{{ property }}">
             {{ label }}
             <span>
