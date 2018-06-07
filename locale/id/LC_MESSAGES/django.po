@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 15:28+0000\n"
+"PO-Revision-Date: 2018-06-07 16:14+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4154,7 +4154,7 @@ msgid "View All Submissions"
 msgstr "Tampilkan Semua Versi"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Ini adalah di mana Anda melihat dan mengelola pengaya dan tema. Untuk mempublikasikan pengaya pertama Anda, klik \"Ajukan Pengaya Pertama Anda\" atau \"Ajukan Tema Pertama Anda\"."
+msgstr "Ini adalah di mana Anda melihat dan mengelola pengaya dan tema. Untuk menayangkan pengaya pertama Anda, klik \"Ajukan Pengaya Pertama Anda\" atau \"Ajukan Tema Pertama Anda\"."
 
 #, fuzzy
 msgid "Submit Your First Add-on"
@@ -4214,9 +4214,8 @@ msgstr ""
 "Firefox mendukung API WebExtension, yang biasanya selaras dengan ekstensi API yang didukung oleh Chrome, Opera dan Edge, sehingga ekstensi Anda akan berjalan di Firefox hanya dengan sedikit "
 "perubahan."
 
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Terbitkan pengaya anda!"
+msgstr "Tayangkan Pengaya Anda!"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Punya pengaya siap pakai? Ajukan ekstensi atau tema Anda agar terdaftar di addons.mozilla.org atau tandai dan distribusikan ekstensi Anda sendiri."
@@ -6433,7 +6432,7 @@ msgid "Last Content Review"
 msgstr "Ulasan Terakhir"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Ini akan menyetujui, menandai, dan menerbitkan versi ini. Komentar akan dikirim ke pengembang."
+msgstr "Ini akan menyetujui, menandai, dan menayangkan versi ini. Komentar akan dikirim ke pengembang."
 
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
