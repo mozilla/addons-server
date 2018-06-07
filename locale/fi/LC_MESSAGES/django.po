@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 18:21+0000\n"
+"PO-Revision-Date: 2018-05-02 15:57+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4465,9 +4465,8 @@ msgstr ""
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
-#, fuzzy
 msgid "Load older..."
-msgstr "Ladataan..."
+msgstr "Lataa aikaisempi..."
 
 msgid "Leave a reply"
 msgstr ""
@@ -7460,9 +7459,8 @@ msgstr "Valitse luokka"
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Näytä mobiilisivu"
+msgstr "Näytä uusi sivusto"
 
 #, fuzzy
 msgid "Report a bug"
@@ -7627,9 +7625,8 @@ msgstr ""
 
 # 83%
 # 100%
-#, fuzzy
 msgid "My Mobile Add-ons"
-msgstr "Hae lisäosia mobiiliin"
+msgstr "Mobiililisäosani"
 
 msgid "an add-on developer replies to my review"
 msgstr ""
