@@ -393,7 +393,6 @@ TEMPLATES = [
                 'django_jinja.builtins.extensions.StaticFilesExtension',
                 'django_jinja.builtins.extensions.TimezoneExtension',
                 'django_jinja.builtins.extensions.UrlsExtension',
-                'olympia.amo.ext.cache',
                 'puente.ext.i18n',
                 'waffle.jinja.WaffleExtension',
             ),

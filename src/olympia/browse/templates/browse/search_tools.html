@@ -73,14 +73,12 @@
         <h4>{{ _('Find new providers for your search bar') }}</h4>
       </hgroup>
       <ul>
-      {% cache categories %}
       {% for cat in categories %}
         <li id="p-{{ cat.id }}">
           <a href="{{ url('browse.search-tools', cat.slug) }}">
             {{ cat.name }}</a>
         </li>
       {% endfor %}
-      {% endcache %}
       </ul>
     </div>
   {% endif %}

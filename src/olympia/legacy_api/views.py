@@ -314,8 +314,9 @@ def guid_search(request, api_version, guids):
                     })
                 addons_xml[key] = addon_xml
 
-    cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
-                        if k in dirty_keys))
+    if dirty_keys:
+        cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
+                            if k in dirty_keys))
 
     compat = (CompatOverride.objects.filter(guid__in=guids)
               .transform(CompatOverride.transformer))

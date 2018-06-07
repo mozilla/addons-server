@@ -1009,11 +1009,18 @@ class Addon(OnChangeMixin, ModelBase):
               .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
-        qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
-        for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
-            addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors.
+
+        addons_with_authors = {
+            addon_id: sorted(users, key=lambda author: author.position)
+            for addon_id, users in itertools.groupby(
+                qs, key=lambda u: u.addon_id
+            )
+        }
+
+        for addon_id, addon in addon_dict.items():
+            if addon_id in addons_with_authors:
+                users = addons_with_authors[addon_id]
+                addon_dict[addon_id].listed_authors = users
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
@@ -1034,13 +1041,16 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        qs = AddonCategory.objects.values_list(
-            'addon', 'category').filter(addon__in=addon_dict)
-        qs = sorted(qs, key=lambda x: (x[0], x[1]))
+        qs = (
+            AddonCategory.objects
+            .filter(addon__in=addon_dict.values())
+            .values_list('addon_id', 'category_id'))
+
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
             # we want.
-            addon_dict[addon_id].category_ids = [c[1] for c in cats_iter]
+            addon_dict[addon_id].category_ids = sorted(
+                [c[1] for c in cats_iter])
             addon_dict[addon_id].all_categories = [
                 CATEGORIES_BY_ID[cat_id] for cat_id
                 in addon_dict[addon_id].category_ids
@@ -1060,14 +1070,14 @@ class Addon(OnChangeMixin, ModelBase):
         # displayed in detail page / API.
         Addon.attach_static_categories(addons, addon_dict=addon_dict)
 
+        # Set _current_version and attach listed authors.
+        # Do this before splitting off personas and addons because
+        # it needs to be attached to both.
+        Addon.attach_related_versions(addons, addon_dict=addon_dict)
+        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
+
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
-        # Set _current_version.
-        Addon.attach_related_versions(addons, addon_dict=addon_dict)
-
-        # Attach listed authors.
-        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
 
         # Persona-specific stuff
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
