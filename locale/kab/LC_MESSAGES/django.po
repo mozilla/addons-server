@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-06 23:19+0000\n"
+"PO-Revision-Date: 2018-06-07 00:11+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3775,13 +3775,11 @@ msgstr "Isallen n uneflay"
 msgid "View the blog &#9658;"
 msgstr "Wali ablug &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Ugar n telɣut tettusuter"
+msgstr "Asuter n telqut yettragun:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Lqem-agi ur yettwacegger ara yakan."
+msgstr "Asuter-agi n telɣut yefra"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
@@ -3977,13 +3975,13 @@ msgstr "<a href=\"%(register)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
 msgid "Customize Firefox"
 msgstr "Sagen Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>,ɣur-k"
-" abrid yeldi akken ad teggeḍ azegrir meqqṛen."
+"Izegrar ttaǧǧan imelyan n yiseqdacen n Firefox ad sneflin tarmit-nsen n tunigin. Ma telliḍ d aneflay wed daɣen tessneḍ %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s,"
+" akked %(css_link_open)sCSS%(link_close)s, ɣur-k abrid yeldi akken ad tegeḍ azegrir meqqṛen."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Issin amek ara tesniflid azegrir"
@@ -4120,13 +4118,13 @@ msgstr "Isental n ugilal ak-eǧǧen ad tmuddeɣ udem i Firefox inek. Azen ayla-k
 msgid "Give your Theme a name."
 msgstr "Mudd isem i usentel inek."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Qebleɣ  <a href=\"%(agreement_url)s\">Amtawat n uzuzer n izegrar Firefox </a> udiq qeble d akken talɣut icudden ɣur-s ad tettwasesfer am akken d-ittummel di <a href=\"%(privacy_notice_url)s\"> "
-"tserstit n tbadnit icudden ar ismal web, ar teɣwalt akked inagan n tuqqna</a>."
+"Qebleɣ  <%(agreement_link_open)s Amtawat n uzuzer n izegrar Firefox %(link_close)s daɣen qebleɣ d akken talɣut icudden ɣur-s ad tettwasesfer am akken yettwammel di %(privacy_notice_link_open)s "
+"tserstit n tbadnit icudden ar ismal web, ar teɣwalt akked inagan n tuqqna%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Azen asentel"
@@ -4345,23 +4343,20 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Asewḥel n udellel & ummesten n tbaḍnit {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Accaṛen, ttwafeṣlen s wudem amaynut {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Sewḥel aḍfaṛ n Facebook {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
