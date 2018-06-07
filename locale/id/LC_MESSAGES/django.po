@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 17:34+0000\n"
+"PO-Revision-Date: 2018-06-07 17:37+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2066,9 +2066,8 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Detil Tema"
+msgstr "Tema (Statis)"
 
 msgid "Complete Themes"
 msgstr "Tema Komplet"
@@ -2087,9 +2086,8 @@ msgstr "Paket Bahasa (Pengaya)"
 msgid "Plugins"
 msgstr "Модулі"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Seniman Tema"
+msgstr "Tema (Statis)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2362,9 +2360,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Memasukkan Tema"
+msgstr "Tema Statis"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2372,9 +2369,8 @@ msgstr "Persona"
 msgid "Manual Reviewer Points"
 msgstr "Poin Pengulas Manual"
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Ulasan Lengkap Pengaya"
+msgstr "Ulasan Pengaya Baru"
 
 msgid "Preliminary Add-on Review"
 msgstr "Ulasan Pendahuluan Pengaya"
@@ -2382,9 +2378,8 @@ msgstr "Ulasan Pendahuluan Pengaya"
 msgid "Updated Add-on Review"
 msgstr "Ulasan Pengaya yang Diperbarui"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Ulasan Lengkap Kamus"
+msgstr "Ulasan Kamus Baru"
 
 msgid "Preliminary Dictionary Review"
 msgstr "Ulasan Pendahuluan Kamus"
@@ -2392,9 +2387,8 @@ msgstr "Ulasan Pendahuluan Kamus"
 msgid "Updated Dictionary Review"
 msgstr "Ulasan Kamus yang Diperbarui"
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Ulasan Lengkap Paket Bahasa"
+msgstr "Ulasan Paket Bahasa Baru"
 
 msgid "Preliminary Language Pack Review"
 msgstr "Ulasan Pendahuluan Paket Bahasa"
@@ -2405,13 +2399,11 @@ msgstr "Ulasan Paket Bahasa yang Diperbarui"
 msgid "Theme Review"
 msgstr "Ulasan Tema"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Detil Tema"
+msgstr "Ulasan Tema (Statis)"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Ulasan Lengkap Penyedia Pencarian"
+msgstr "Ulasan Penyedia Pencarian Baru"
 
 msgid "Preliminary Search Provider Review"
 msgstr "Ulasan Pendahuluan Penyedia Pencarian"
@@ -2419,9 +2411,8 @@ msgstr "Ulasan Pendahuluan Penyedia Pencarian"
 msgid "Updated Search Provider Review"
 msgstr "Ulasan Penyedia Pencarian yang Diperbarui"
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Ulasan Tema Komplet"
+msgstr "Ulasan Tema Komplet Baru"
 
 msgid "Preliminary Complete Theme Review"
 msgstr "Ulasan Pendahuluan Tema Komplet"
@@ -2429,9 +2420,8 @@ msgstr "Ulasan Pendahuluan Tema Komplet"
 msgid "Updated Complete Theme Review"
 msgstr "Ulasan Tema Komplet yang Diperbarui"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Ulasan Pengaya Dimoderasi"
+msgstr "Ulasan Pengaya Termoderasi"
 
 #, fuzzy
 msgid "Add-on Review Moderation Reverted"
