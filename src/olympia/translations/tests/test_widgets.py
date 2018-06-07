@@ -64,3 +64,9 @@ class TestWidget(TestCase):
             '<textarea class="trans-init hidden" cols="40" lang="init" '
             'name="foo_init" rows="10">\r\n</textarea></div>')
         assert widget.render('foo', 666) == expected_output
+
+    def test_value_from_datadict(self):
+        data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
+        actual = widgets.TransInput().value_from_datadict(data, [], 'f')
+        expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
+        assert actual == expected
