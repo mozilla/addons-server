@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 16:27+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2018-05-02 15:51+0000\n"
+"Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -2347,9 +2347,8 @@ msgstr "Video"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "Suositellut kokoelmat"
+msgstr "Laitteen ominaisuudet ja sijainti"
 
 msgid "Experimental"
 msgstr "Kokeellinen"
@@ -2799,9 +2798,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "User Collections"
-msgstr "Kokoelmani"
+msgstr "Käyttäjän kokoelmat"
 
 msgid "User Reviews"
 msgstr ""
