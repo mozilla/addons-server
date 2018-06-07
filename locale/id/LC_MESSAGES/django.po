@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 08:51+0000\n"
+"PO-Revision-Date: 2018-06-07 14:50+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5978,60 +5978,63 @@ msgstr "Mulai Sekarang"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla ingin tahu cara terbaik menjaga pengguna agar tetap aman jika mereka memilih memakai perangkat lunak pihak ketiga seperti plugin. Berpartisipasi dalam studi ini akan membantu kami mencari "
+"tahu!"
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Apa yang akan terjadi selanjutnya"
 
 #, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Rata-rata</strong> (%(total)s)"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Kami dapat menambahkan fitur kendali keamanan dan plugin ke Firefox untuk meningkatkan keamanan dan kinerja daring."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Terus gunakan Firefox seperti biasa. Bergantung pada bagaimana Anda menggunakan Web, Anda mungkin tidak melihat adanya perubahan."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Setelah beberapa minggu, penelitian ini akan berakhir dengan sendirinya. Firefox Anda akan kembali normal."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Kami akan meminta Anda mengisi survei opsional singkat untuk memberi tahu kami tentang pengalaman Anda. Survei akan memerlukan kurang dari 5 menit untuk dilengkapi."
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Meninggalkan studi"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Studi ini akan berakhir dengan sendirinya dalam beberapa minggu. Anda bisa meninggalkan studi ini lebih awal. Untuk melakukannya, ikuti langkah berikut:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Ketik about:addons dalam bilah lokasi, dan tekan enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Temukan Plugin Safety dalam daftar pengaya."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klik tombol hapus."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
+"Jika Anda memilih keluar dari studi lebih awal, kami akan meminta Anda mengisi survei. Kami tertarik untuk mendengar pengalaman Anda, bahkan jika Anda tidak berpartisipasi dalam keseluruhan studi."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Keluar dari satu studi tidak menghalangi Anda berpartisipasi dalam studi lain di masa depan."
 
 #, fuzzy
 msgid "Your privacy"
 msgstr "Privasi:"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Semua Studi Tameng"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Setiap Studi Tameng mengumpulkan data tentang peristiwa penting dalam studi, seperti pemasangan, pelepasan, penggunaan sehari-hari, dan akhir studi. Studi juga mencakup survei opsional."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Data ini terkait dengan <a href=\"%(url)s\">koleksi Telemetri Firefox</a>."
 
 msgid "This particular Study"
 msgstr ""
