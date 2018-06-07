@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 14:50+0000\n"
+"PO-Revision-Date: 2018-06-07 15:12+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6037,34 +6037,36 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr "Data ini terkait dengan <a href=\"%(url)s\">koleksi Telemetri Firefox</a>."
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Khusus Studi ini"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Selain data yang didapat oleh semua Studi Tameng, Mozilla akan mengumpulkan informasi tentang:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Situs yang Anda kunjungi yang mencoba menggunakan plugin, dan konten apa dalam situs itu yang memerlukan plugin;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Bagaimana Anda berinteraksi dengan konten plugin di situs tersebut, termasuk apakah dan bagaimana Anda memilih untuk mengizinkan plugin berjalan."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla akan menyimpan rapat informasi ini; data apa pun hanya akan dibagi dalam bentuk agregat atau anonim."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Anda dapat mempelajari lebih lanjut tentang pengumpulan data untuk studi ini <a href=\"%(url)s\">di sini</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Anda Membantu Membuat Firefox Lebih Baik"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Di Mozilla, kami berbangga karena membangun produk untuk Anda, pengguna! Itu sebabnya kami membutuhkan bantuan. Dengan berpartisipasi dalam studi ini, Anda akan membantu kami membuat keputusan yang "
+"lebih baik atas nama Anda dan secara langsung membentuk masa depan Firefox!"
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Dipersembahkan oleh:"
 
 msgid "Sunbird has retired"
 msgstr "Sunbird telah dipensiunkan"
@@ -6096,7 +6098,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Peringkat %d dari 5 bintang"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Penjelasan singkat harus disediakan saat memilih \"Lainnya\" sebagai alasan melaporkan sesuatu."
 
 msgid "Other (please specify)"
 msgstr "Lainnya (isi sendiri)"
@@ -6110,13 +6112,13 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr "Anda bisa memperbarui tema desain anda di sini saat telah disetujui."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Anda tidak bisa membalas tinjauan yang merupakan balasan."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Anda tidak dapat mengubah versi pengaya yang ditinjau setelah tinjauan dibuat."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Versi pengaya ini tidak ada atau tidak tersedia untuk umum."
 
 #, fuzzy
 msgid "You can't leave a review on your own add-on."
@@ -6430,7 +6432,7 @@ msgid "No Reviews"
 msgstr "Tanpa Ulasan"
 
 msgid "Weight"
-msgstr ""
+msgstr "Berat"
 
 #, fuzzy
 msgid "Information Request Deadline"
@@ -6441,7 +6443,7 @@ msgid "Last Content Review"
 msgstr "Ulasan Terakhir"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ini akan menyetujui, menandai, dan menerbitkan versi ini. Komentar akan dikirim ke pengembang."
 
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
@@ -6720,7 +6722,7 @@ msgstr "Riwayat Ulasan"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Judul Pengaya"
@@ -6842,7 +6844,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Terkonfirmasi)"
 
 msgid "Compatibility:"
 msgstr "Kompatibilitas:"
@@ -6864,13 +6866,13 @@ msgid "Not Auto Approved Because"
 msgstr "Pengaya Android"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Skrip Persetujuan Otomatis belum berjalan di versi ini."
 
 msgid "This version has not been reviewed."
 msgstr "Versi ini belum diulas."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Silakan pilih satu atau beberapa versi dalam daftar di atas."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Anda masih bisa memasukkan formulir ini, bagaimanapun hanya lakukan jika anda mengetahui ini tidak akan berbenturan."
@@ -6906,14 +6908,14 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Nonaktifkan-paksa pengaya"
 
 #, fuzzy
 msgid "Force-enable add-on"
 msgstr "Versi yang dihidupkan kembali"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Nonaktifkan Persetujuan Otomatis"
 
 #, fuzzy
 msgid "Enable Auto-Approval"
@@ -6967,7 +6969,7 @@ msgstr "Tidak ada ulasan ditemukan untuk rentang waktu ini."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] dilaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"
@@ -7287,7 +7289,7 @@ msgstr "Kehilangan kunci \"unggah\" dalam berkas data yang terdiri dari beberapa
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Anda tidak dapat menambahkan versi pada pengaya yang berstatus: %s ."
 
 msgid "Version does not match the manifest file."
 msgstr "Versi ini tidak cocok dengan berkas manifest."
@@ -7302,10 +7304,10 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID tidak valid dalam URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Anda tidak dapat menambahkan versi terdaftar untuk pengaya ini melalui API karena kurang metadata. Harap kirimkan melalui situs"
 
 msgid "No uploaded file for that addon and version."
 msgstr "Tidak ada berkas yang diunggah untuk pengaya dan versi tadi."
@@ -7585,7 +7587,7 @@ msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "Kunjungi situs baru"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Untuk membuat koleksi Anda sendiri, Anda harus memiliki akun Pengaya Mozilla."
