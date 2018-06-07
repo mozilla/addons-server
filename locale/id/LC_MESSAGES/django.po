@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 16:12+0000\n"
+"PO-Revision-Date: 2018-06-07 17:34+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1318,9 +1318,9 @@ msgstr "Koleksi adalah sekelompok pengaya terkait yang dapat dibuat dan dibagi o
 msgid "Subscribe"
 msgstr "Berlangganan"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "oleh %(users)s"
+msgstr "oleh %(author_link)s"
 
 msgid "Following"
 msgstr "Mengikuti"
@@ -1514,9 +1514,8 @@ msgid "Additional Resources"
 msgstr "Sumber Daya Lainnya"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Pelajari lebih lanjut mengenai <a href=\"http://support.mozilla.com/kb/Search+bar\">batang pencarian</a> di {0}"
+msgstr "Pelajari lebih lanjut mengenai <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">bilah pencarian</a> di {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Temukan lebih banyak penyedia pencarian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -1726,9 +1725,8 @@ msgid "{addon} enabled."
 msgstr "{addon} diaktifkan."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} status diubah menjadi {0}."
+msgstr "{addon} status diubah menjadi {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} ditambahkan ke {addon}."
@@ -1808,9 +1806,8 @@ msgstr "{addon} ditambahkan ke {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} dihapus dari {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} untuk {addon} ditulis."
+msgstr "{rating} untuk {addon} yang ditulis."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1834,9 +1831,8 @@ msgstr "{0} {1} ditambahkan."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} sekarang berlisensi di bawah {0.name}."
+msgstr "{addon} kini berlisensi di bawah {0}."
 
 msgid "{addon} policy changed."
 msgstr "{addon} kebijakan diubah."
@@ -1844,21 +1840,17 @@ msgstr "{addon} kebijakan diubah."
 msgid "{addon} icon changed."
 msgstr "Ikon {addon} diganti."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} untuk {addon} disetujui."
+msgstr "{rating} untuk {addon} yang disetujui."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} menyetujui {review} untuk {addon}."
+msgstr "{user} menyetujui {rating} untuk {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Ulasan {review} untuk {addon} dihapus."
+msgstr "Ulasan {rating} untuk {addon} dihapus."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} menghapus {review} untuk {addon}."
+msgstr "{user} menghapus {rating} untuk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versi aplikasi maksimal untuk {version} diperbarui."
@@ -1902,9 +1894,8 @@ msgstr "Pengguna {user} dibatasi."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Admin {0} memperlihatkan catatan aktivitas untuk {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} untuk {addon} diperbarui."
+msgstr "{rating} untuk {addon} yang diperbarui."
 
 msgid "{addon} reviewed."
 msgstr "{addon} diulas."
@@ -1928,112 +1919,86 @@ msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} dimigrasi dari awal."
 
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Balasan oleh pengembang di {addon} {version}."
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Berita Pengembang"
+msgstr "Balasan Pengembang"
 
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Balasan oleh pengulas di {addon} {version}."
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Berita Pengembang"
+msgstr "Balasan Pengulas"
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Catatan persetujuan diubah untuk {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr "Catatan persetujuan berubah"
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Kode sumber diunggah untuk {addon} {version}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Kode sumber"
+msgstr "KOde sumber diunggah"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Persetujuan Otomatis terkonfirmasi untuk {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Status Persetujuan"
+msgstr "Persetujuan Otomatis terkonfirmasi"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ditolak."
+msgstr "{addon} {version} diaktifkan kembali."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} dieskalasi."
+msgstr "{addon} {version} dinonaktifkan."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} disetujui."
+msgstr "Konten {addon} {version} disetujui."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "telah disetujui"
+msgstr "Konten disetujui"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} ditolak."
+msgstr "Konten {addon} {version} ditolak."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "ditolak"
+msgstr "Konten ditolak"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "{addon} permintaan informasi diubah atau dihapus oleh admin."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "Permintaan informasi diubah"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
+msgstr "Permintaan informasi dikosongkan oleh pengembang di {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "Permintaan informasi dihapus"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} ulasan dimintakan."
+msgstr "{addon} {version} ulasan pengaya oleh admin dimintakan."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Ulasan super dimintakan"
+msgstr "Ulasan pengaya oleh admin dimintakan"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} ulasan dimintakan."
+msgstr "{addon} {version} ulasan konten oleh admin dimintakan."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Ulasan super dimintakan"
+msgstr "Ulasan konten oleh admin dimintakan"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} ulasan dimintakan."
+msgstr "{addon} {version} ulasan tema oleh admin dimintakan."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Ulasan diminta"
+msgstr "Ulasan tema oleh admin dimintakan"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} dimigrasi dari awal."
+msgstr "{addon} telah dipindahkan dari tema yang ringan."
 
 msgid "Firefox"
 msgstr "Firefox"
