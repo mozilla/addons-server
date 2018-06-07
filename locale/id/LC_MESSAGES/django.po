@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 15:12+0000\n"
+"PO-Revision-Date: 2018-06-07 15:28+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -103,9 +103,9 @@ msgstr "Tambahkan ke {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Slug ini tidak dapat \"%s\". Silakan pilih yang lain."
+msgstr "Slug ini tidak dapat \"%(slug)s\". Silakan pilih yang lain."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -367,13 +367,13 @@ msgstr "Kebijakan Privasi"
 msgid "Report Abuse"
 msgstr "Laporkan Penyalahgunaan"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Jika Anda menduga pengaya ini melanggar <a href=\"%(url)s\">kebijakan kami</a> atau menyebabkan masalah keamanan atau privasi, gunakan formulir di bawah ini untuk menjelaskan alasan Anda. Jangan "
-"gunakan formulir ini untuk alasan lainnya."
+"Jika Anda menduga pengaya ini melanggar %(amo_policy_link_open)skebijakan kami%(link_close)s atau mengandung masalah keamanan atau privasi, gunakan formulir di bawah ini untuk menjelaskan "
+"kekhawatiran Anda. Jangan gunakan formulir ini untuk alasan lainnya."
 
 msgid "Send Report"
 msgstr "Kirim Laporan"
@@ -492,9 +492,8 @@ msgstr "Kelola"
 msgid "Add-on Review"
 msgstr "Tinjauan Pengaya"
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Admin Laman"
+msgstr "Kelola Admin"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -718,17 +717,14 @@ msgstr "Maaf, tapi kami tidak dapat menemukan apapun di alamat yang Anda masukka
 msgid "Suggested Pages"
 msgstr "Halaman yang Disarankan"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Переглянути всі додатки"
+msgstr "Telusuri semua ekstensi"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Переглянути всі додатки"
+msgstr "Telusuri semua tema"
 
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Beranda pengaya"
+msgstr "Beranda Pengaya"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -935,13 +931,14 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versi"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Jika aplikasi anda yang didukung tidak memerlukan berkas keterangan, anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan <a href=\"%(url)s\">di sini</a>."
+msgstr ""
+"Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi "
+"sini%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
 msgstr "Kontributor"
 
@@ -993,25 +990,20 @@ msgstr "Ikon harus dalam PNG atau JPG."
 msgid "Icons cannot be animated."
 msgstr "Icon tidak dapat dijadikan animasi."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "URL ini telah dipakai oleh koleksi lain"
+msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Nama ini tidak dapat digunakan."
+msgstr "Nama tidak boleh kosong."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Masukkan nama pengguna yang benar, terdiri dari huruf, angka, garis bawah atau tanda hubung."
+msgstr "URL ubahsuai ini harus terdiri dari huruf, angka, garis bawah atau tanda hubung."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Nama pengguna ini tidak dapat digunakan."
+msgstr "URL ubahsuai ini tidak dapat digunakan."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "URL ini telah dipakai oleh koleksi lain"
+msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
 msgid "Name"
 msgstr "Nama"
@@ -1154,13 +1146,12 @@ msgstr ""
 "Pengaya yang anda tandai sebagai favorit menggunakan fitur <b>Tambahkan ke Favorit</b> yang muncul di bawah ini. Koleksi ini saat ini diatur <b>umum</b>, yang berarti semua bisa melihatnya. Jika "
 "anda ingin menyembunyikannya dari pandangan publik, klik tombol di bawah ini untuk membuatnya privat."
 
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Pengaya yang anda tandai sebagai favorit menggunakan fitur <b>Tambahkan ke Favorit</b> yang muncul di bawah ini. Koleksi ini sedang ditampilkan sebagai <b>privat</b>, artinya hanya anda yang dapat "
-"melihatnya.  Jika anda ingin semua orang bisa melihat pengaya favorit anda, klik tombol di bawah ini untuk menjadikannya publik."
+"Pengaya yang Anda tandai sebagai favorit menggunakan fitur <b>Tambahkan ke Favorit</b> yang muncul di bawah ini. Koleksi ini sedang ditampilkan sebagai <b>privat</b>, artinya hanya Anda yang dapat "
+"melihatnya. Jika Anda ingin semua orang bisa melihat favorit Anda, klik tombol di bawah ini untuk menjadikannya publik."
 
 msgid "My favorite add-ons"
 msgstr "Pengaya favorit saya"
@@ -1254,13 +1245,12 @@ msgstr "Hapus"
 msgid "Collection Contributors"
 msgstr "Koleksi Kontributor"
 
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Anda bisa menambahkan kontributor di koleksi ini.  Seorang kontributor bisa menambah dan menghapus pengaya dari koleksi ini, namun tidak dapat mengubah nama atau deskripsinya.  Untuk menambahkan "
-"seorang kontributor, masukkan alamat surel mereka ke dalam kotak di bawah ini. Kontributor harus memiliki akun Pengaya Mozilla."
+"Anda bisa menambahkan banyak kontributor di koleksi ini. Seorang kontributor bisa menambah dan menghapus pengaya dari koleksi ini, namun tidak dapat mengubah nama atau deskripsinya. Untuk menambah "
+"kontributor, masukkan alamat surel mereka ke dalam kotak di bawah ini. Kontributor harus memiliki akun Pengaya Mozilla."
 
 msgid "User"
 msgstr "Pengguna"
@@ -7599,7 +7589,7 @@ msgid "Choose a category"
 msgstr "Pilih kategori"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Situs baru ini mendukung gawai seluler maupun desktop"
 
 #, fuzzy
 msgid "View the new site"
@@ -7628,13 +7618,13 @@ msgid "Android Browser"
 msgstr "Pengaya Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Peramban iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Peramban Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Peramban Desktop"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -7728,7 +7718,7 @@ msgid "Profile Photo"
 msgstr "Foto Profil"
 
 msgid "Addons"
-msgstr ""
+msgstr "Pengaya"
 
 #, fuzzy
 msgid "Activity Logs"
