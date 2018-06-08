@@ -804,11 +804,10 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 3
 
         cache.clear()
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(5):
             # 6 queries:
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
-            # - One for the ratings translations
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
             # - Two for opening and closing a transaction/savepoint
@@ -853,13 +852,11 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 5
 
         cache.clear()
-        with self.assertNumQueries(7):
+        with self.assertNumQueries(5):
             # 9 queries:
             # - One for the ratings count
             # - One for the ratings
-            # - One for the ratings translations
             # - One for the ratings fields
-            # - One for the ratings translations
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
