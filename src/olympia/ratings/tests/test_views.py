@@ -715,8 +715,8 @@ class TestEdit(ReviewTest):
 
 class TestRatingViewSetGet(TestCase):
     client_class = APITestClient
-    list_url_name = 'v4:rating-list'
-    detail_url_name = 'v4:rating-detail'
+    list_url_name = 'rating-list'
+    detail_url_name = 'rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1404,7 +1404,7 @@ class TestRatingViewSetGet(TestCase):
 
 class TestRatingViewSetDelete(TestCase):
     client_class = APITestClient
-    detail_url_name = 'v4:rating-detail'
+    detail_url_name = 'rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1511,7 +1511,7 @@ class TestRatingViewSetDelete(TestCase):
 
 class TestRatingViewSetEdit(TestCase):
     client_class = APITestClient
-    detail_url_name = 'v4:rating-detail'
+    detail_url_name = 'rating-detail'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -1657,8 +1657,8 @@ class TestRatingViewSetEdit(TestCase):
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
-    list_url_name = 'v4:rating-list'
-    abuse_report_url_name = 'v4:abusereportaddon-list'
+    list_url_name = 'rating-list'
+    abuse_report_url_name = 'abusereportaddon-list'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2073,7 +2073,7 @@ class TestRatingViewSetPost(TestCase):
 
 class TestRatingViewSetFlag(TestCase):
     client_class = APITestClient
-    flag_url_name = 'v4:rating-flag'
+    flag_url_name = 'rating-flag'
 
     def setUp(self):
         self.addon = addon_factory(
@@ -2239,7 +2239,7 @@ class TestRatingViewSetFlag(TestCase):
 
 class TestRatingViewSetReply(TestCase):
     client_class = APITestClient
-    reply_url_name = 'v4:rating-reply'
+    reply_url_name = 'rating-reply'
 
     def setUp(self):
         self.addon = addon_factory(

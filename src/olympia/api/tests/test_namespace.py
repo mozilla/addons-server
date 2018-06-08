@@ -24,7 +24,7 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
         both_url = url(
             r'yay', EmptyViewSet.as_view(actions={'get': 'list'}), name='yay')
         v3_url = url(r'v3/', include([v3_only_url, both_url], namespace='v3'))
-        v4_url = url(r'v4/', include([v4_only_url, both_url], namespace='v4'))
+        v4_url = url(r'v4/', include([v4_only_url, both_url]))
         self.endpoint(
             include([v3_url, v4_url]),
             url_regex=r'^api/')
@@ -51,27 +51,27 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
         with self.assertRaises(NoReverseMatch):
             reverse('v3:baa')
 
-    def test_v4(self):
+    def test_default_version(self):
         # The unique view
         response = self.client.get(
             'api/v4/baa', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.content == '{"version":"v4"}'
-        url_ = reverse('v4:baa')
+        url_ = reverse('baa')
         assert '/api/v4/' in url_
         # And the common one
         response = self.client.get(
             'api/v4/yay', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.content == '{"version":"v4"}'
-        url_ = reverse('v4:yay')
+        url_ = reverse('yay')
         assert '/api/v4/' in url_
         # But no foo in v4
         response = self.client.get(
             'api/v4/foo', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 404
         with self.assertRaises(NoReverseMatch):
-            reverse('v4:foo')
+            reverse('foo')
 
     def test_v5(self):
         # There isn't a v5 API, so this should fail
@@ -92,7 +92,7 @@ class TestRealAPIRouting(TestCase):
         assert response
 
     def test_v4(self):
-        url = reverse('v4:addon-detail', args=('foo',))
+        url = reverse('addon-detail', args=('foo',))
         assert '/api/v4/' in url
         response = self.client.get(url, HTTP_ORIGIN='testserver')
         assert response.status_code == 200

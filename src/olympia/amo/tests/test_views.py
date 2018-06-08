@@ -406,7 +406,7 @@ class TestCORS(TestCase):
         assert response['Access-Control-Allow-Origin'] == '*'
 
     def test_cors_api_v4(self):
-        url = reverse('v4:addon-detail', args=(3615,))
+        url = reverse('addon-detail', args=(3615,))
         assert '/api/v4/' in url
         response = self.get(url)
         assert response.status_code == 200
