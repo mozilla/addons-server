@@ -55,7 +55,12 @@
           {% set addon = item.addon %}
 
           <div class="DevHub-MyAddons-item">
-            <img class="DevHub-MyAddons-item-icon" src="{{ addon.get_icon_url(64) }}" alt="">
+            {% if addon.type == amo.ADDON_STATICTHEME and addon.current_previews %}
+              {% set icon_url = addon.current_previews[0].thumbnail_url %}
+            {% else %}
+              {% set icon_url = addon.get_icon_url(64) %}
+            {% endif %}
+            <img class="DevHub-MyAddons-item-icon" src="{{ icon_url }}" alt="">
             <div class="DevHub-MyAddons-item-details">
               <span class="DevHub-MyAddons-item-name">
                 {{ addon.name }}
