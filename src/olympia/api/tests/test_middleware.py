@@ -45,7 +45,7 @@ class TestGzipMiddleware(TestCase):
     def test_api_endpoint_gzipped(self):
         """Test a simple API endpoint to make sure gzip is active there."""
         addon = addon_factory()
-        url = reverse('v3:addon-detail', kwargs={'pk': addon.pk})
+        url = reverse('addon-detail', kwargs={'pk': addon.pk})
         response = self.client.get(url)
         assert response.status_code == 200
         assert response.content

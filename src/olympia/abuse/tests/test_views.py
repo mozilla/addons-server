@@ -13,7 +13,7 @@ class AddonAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('v3:abusereportaddon-list')
+        self.url = reverse('abusereportaddon-list')
 
     def check_reporter(self, report):
         raise NotImplementedError
@@ -157,7 +157,7 @@ class UserAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('v3:abusereportuser-list')
+        self.url = reverse('abusereportuser-list')
 
     def check_reporter(self, report):
         raise NotImplementedError
