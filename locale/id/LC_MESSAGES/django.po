@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 17:37+0000\n"
+"PO-Revision-Date: 2018-06-08 01:50+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2423,13 +2423,11 @@ msgstr "Ulasan Tema Komplet yang Diperbarui"
 msgid "Moderated Add-on Review"
 msgstr "Ulasan Pengaya Termoderasi"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
 msgstr "Moderasi Ulasan Pengaya Dikembalikan"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Melakukan Ulasan"
+msgstr "Ulasan Konten Pengaya"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr "Tinjauan Pengaya Pascapersetujuan (Risiko Tertinggi)"
@@ -2585,13 +2583,11 @@ msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
 msgid "Version doesn't match"
 msgstr "Versi tidak cocok"
 
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Versi %s sudah ada, atau sudah diunggah sebelumnya."
+msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "Versi yang sudah ada."
+msgstr "Versi {version} sudah ada."
 
 msgid "Continue with existing upload instead?"
 msgstr "Lanjutkan saja dengan unggahan yang ada?"
@@ -2602,9 +2598,8 @@ msgstr "Platform Semua tidak bisa digabungkan dengan platform yang spesifik."
 msgid "A platform can only be chosen once."
 msgstr "Sebuah platform hanya bisa dipilih sekali."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Resolusi"
+msgstr "Reputasi"
 
 msgid "Application"
 msgstr "Програма"
@@ -2627,9 +2622,8 @@ msgstr ""
 "Anda sendiri. <Span class=\"helptext\"> Pengajuan Anda akan segera ditandatangani untuk pendistribusian mandiri. Pembaruan harus ditangani oleh Anda melalui updateURL atau aplikasi pembaruan "
 "eksternal. </Span>"
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
+msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Sejak Firefox 53, pengaya baru pada situs ini hanya dapat berupa WebExtensions."
@@ -2750,9 +2744,8 @@ msgstr "Versi %s dihidupkan lagi."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Unggahan ini telah gagal divalidasi, dan boleh jadi tidak memiliki hasil validasi yang lengkap. Silakan berhati-hati saat mengulasnya."
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Ulasan diminta"
+msgstr "Ulasan diminta."
 
 msgid "You must provide further details to proceed."
 msgstr "Anda harus memberikan keterangan terinci untuk melanjutkan."
@@ -2769,20 +2762,18 @@ msgstr "Kunci API baru dibuat"
 msgid "API key revoked"
 msgstr "Kunci API dicabut"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Sebelum memulai, harap membaca dan menerima Kesepakatan Distribusi Pengaya Firefox. Ini juga akan berhubungan dengan Pemberitahuan Privasi kami yang menerangkan bagaimana kami menangani informasi "
-"anda."
+"Sebelum memulai, baca dan terima Perjanjian Distribusi Pengaya Firefox serta Kebijakan dan juga Aturan Peninjauan kami. Perjanjian Distribusi Pengaya Firefox juga terhubung ke Pemberitahuan Privasi "
+"kami yang menjelaskan bagaimana kami menangani informasi Anda."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Catatan ulasan"
+msgstr "Kebijakan dan Ketentuan Ulasan"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Saya telah membaca dan menerima Perjanjian, Aturan serta Kebijakan ini"
@@ -2960,9 +2951,8 @@ msgstr "Жодного"
 msgid "Preview"
 msgstr "Pratinjau"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Lihat versi lain"
+msgstr "Pratinjau versi terdaftar"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Pratinjau sedang disiapkan - kembalilah nanti atau perbarui laman."
@@ -3019,9 +3009,8 @@ msgstr "Pengaya ini merupakan percobaan."
 msgid "This add-on is ready for general use."
 msgstr "Pengaya ini siap untuk digunakan secara umum."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Perlu Mulai Ulang"
+msgstr "Membutuhkan Pembayaran?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Centang kotak ini jika fitur inti pengaya memerlukan beberapa bentuk pembayaran di muka atau setelah masa percobaan agar dapat bekerja."
@@ -3066,9 +3055,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Tag dicadangkan:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Sumbangan"
+msgstr "URL Kontribusi"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "Jika Anda ingin meminta kontribusi uang dari pengguna, aturlah hal ini dalam laman di mana mereka bisa melakukannya."
@@ -3463,17 +3451,14 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Memasukkan Tema Baru"
+msgstr "Mengajukan berkas baru"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Memasukkan Pengaya Baru"
+msgstr "Mengajukan Versi Baru"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Опишіть свій додаток"
+msgstr "Menjelaskan Pengaya"
 
 msgid "Add-on URL:"
 msgstr "URL Pengaya:"
@@ -3481,9 +3466,8 @@ msgstr "URL Pengaya:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Harap hanya menggunakan huruf, angka, garis bawah, dan garis sambung dalam URL anda."
 
-#, fuzzy
 msgid "Summary:"
-msgstr "Звіт"
+msgstr "Rangkuman:"
 
 msgid "required"
 msgstr "wajib diisi"
@@ -3496,9 +3480,8 @@ msgstr ""
 "Periksa opsi ini jika pengaya anda masih bersifat eksperimental atau dinyatakan tidak siap untuk penggunaan umum.  Pengaya akan masuk dalam daftar namun dikurangi visibilitasnya.  Anda dapat "
 "mengubah pengaturan ini nanti."
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Pilih <b>hingga {0}</b> {1} kategori untuk pengaya ini:"
+msgstr "Pilih kategori untuk pengaya ini:"
 
 msgid "Support email:"
 msgstr "Surel dukungan:"
@@ -3530,21 +3513,17 @@ msgstr "Apakah ada sesuatu yang harus diingat peninjau kami ketika meninjau peng
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Catatan ini hanya akan terlihat oleh Anda dan pengulas kami."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Versi yang dihidupkan kembali"
+msgstr "Batalkan dan Nonaktifkan Versi"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Memasukkan Pengaya Baru"
+msgstr "Mengajukan Versi"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "Mematikan Versi"
+msgstr "Menjelaskan Versi"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Rilis"
+msgstr "Catatan Rilis:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "Biarkan pengguna tahu apa yang baru dan apa yang berubah dalam versi ini."
@@ -3562,24 +3541,20 @@ msgstr "Kesepakatan Distribusi Pengaya Firefox"
 msgid "Submission Complete"
 msgstr "Penyerahan Lengkap"
 
-#, fuzzy
 msgid "You’re done!"
 msgstr "Selesai!"
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Catatan Versi / Catatan untuk Pengulas"
+msgstr "Versi Diajukan untuk Peninjauan"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Catatan Versi"
+msgstr "Pratinjau versi yang diajukan"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Selesai! Versi ini akan tersedia setelah melewati peninjauan. Anda akan diberi tahu setelah selesai ditinjau."
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Catatan Versi"
+msgstr "Pengajuan Versi"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Selesai! Versi ini akan segera tersedia di situs kami."
@@ -3593,9 +3568,8 @@ msgstr "Daftar Anda akan lebih berhasil dengan menambahkan keterangan rinci. Sia
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Daftar anda akan lebih sukses dengan menambahkan penjelasan rinci dan tangkapan layar. Pastikan daftar Anda siap dipublikasikan:"
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Tampilkan pada Daftar"
+msgstr "Kelola Daftar"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "Anda juga dapat menyunting versi ini untuk menambahkan versi catatan, atau kode sumber jika pengajuan Anda menyertakan kode yang dikecilkan, dikaburkan atau dikompilasi."
