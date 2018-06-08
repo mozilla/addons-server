@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-08 01:50+0000\n"
+"PO-Revision-Date: 2018-06-08 11:48+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3577,17 +3577,15 @@ msgstr "Anda juga dapat menyunting versi ini untuk menambahkan versi catatan, at
 msgid "Edit version {0}"
 msgstr "Ubah versi {0}"
 
-#, fuzzy
 msgid "File Signed"
-msgstr "Catatan Versi"
+msgstr "File Ditandatangani"
 
 #, fuzzy
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr "Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di sini:"
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "Catatan Versi"
+msgstr "Versi Bertandatangan"
 
 #, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -3602,13 +3600,11 @@ msgstr "Anda hanya memilih sebagian platform yang tersedia untuk pengajuan ini. 
 msgid "Upload File"
 msgstr "Unggah Berkas"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Pengajuan Saya"
+msgstr "Menuju Pengajuan Saya"
 
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Kesepakatan Distribusi Pengaya Firefox"
+msgstr "Perjanjian Distribusi Pengaya"
 
 msgid "Upload Add-on"
 msgstr "Unggah Pengaya"
@@ -3621,9 +3617,8 @@ msgstr "Versi Target"
 msgid "Where to Host Version"
 msgstr "Versi Target"
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "Unggah Versi Baru"
+msgstr "Unggah Versi"
 
 #, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
@@ -3636,21 +3631,17 @@ msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Membuat Tema Baru"
+msgstr "Membuat Tema Versi"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Membuat Tema Baru"
+msgstr "Membuat Tema"
 
-#, fuzzy
 msgid "Submit File"
-msgstr "Memasukkan Tema Baru"
+msgstr "Mengajukan Berkas"
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Memasukkan Pengaya"
+msgstr "Tandai Pengaya"
 
 #, fuzzy
 msgid "Theme generate"
@@ -3660,13 +3651,11 @@ msgstr "Tema dihapus."
 msgid "Theme generator"
 msgstr "Lisensi Tema"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "nama tema"
+msgstr "Nama tema"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Pilih gambar judul untuk Tema Anda."
+msgstr "Pilih gambar header untuk tema Anda"
 
 msgid "Image height should be 200 pixels"
 msgstr "Tinggi gambar harus 200 pixels"
@@ -3680,9 +3669,8 @@ msgstr "Diluruskan ke kanan atas"
 msgid "Select a different header image"
 msgstr "Pilih gambar judul yang berbeda"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Pilih warna untuk Tema anda."
+msgstr "Pilih warna untuk tema Anda"
 
 msgid "Header area background"
 msgstr "Latar area header"
@@ -3725,9 +3713,8 @@ msgstr ""
 msgid "optional"
 msgstr "(opsional)"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Layangkan untuk Pratinjau"
+msgstr "Pratinjau peramban"
 
 msgid "Back"
 msgstr "Kembali"
@@ -3736,9 +3723,8 @@ msgstr "Kembali"
 msgid "Uploading Theme"
 msgstr "Tema Yang Akan Datang"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Tema"
+msgstr "Akhiri Tema"
 
 msgid "API Credentials"
 msgstr "Keterangan Pengenal API"
@@ -3804,9 +3790,8 @@ msgid "Created:"
 msgstr "Dibuat:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Status Multi Proses:"
+msgstr "Status Multi Proses Pengaya:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
@@ -3814,9 +3799,8 @@ msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Akan tercantum di situs ini setelah melewati peninjauan kode. Pembaruan otomatis ditangani oleh situs ini."
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Versi Terbaru:"
+msgstr "Versi Terdaftar:"
 
 #, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
@@ -3956,9 +3940,8 @@ msgstr "Lebih Banyak Sumber Daya"
 msgid "Porting"
 msgstr "Peringkat"
 
-#, fuzzy
 msgid "Community"
-msgstr "Komentar"
+msgstr "Komunitas"
 
 msgid "About"
 msgstr "Tentang"
@@ -3970,16 +3953,14 @@ msgstr "Forum"
 msgid "Blog"
 msgstr "Blog"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "Buku Alamat & Kontak"
+msgstr "Hubungi Kami"
 
 msgid "Support"
 msgstr "Dukungan"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Правила додатків"
+msgstr "Kebijakan"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4034,13 +4015,11 @@ msgstr "Tulis Sejumlah Kode"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Bantu membuat pengaya jadi lebih baik dengan menyumbangkan keterampilan Anda menulis kode."
 
-#, fuzzy
 msgid "Get started"
-msgstr "Memulai"
+msgstr "Bersiap"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Більше можливостей до налаштування"
+msgstr "Banyak Cara untuk Berpartisipasi"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr "Anda tidak perlu keterampilan menulis kode untuk membantu menjadikan Firefox tetap sebagai peramban yang paling bisa disesuaikan!"
@@ -4048,7 +4027,6 @@ msgstr "Anda tidak perlu keterampilan menulis kode untuk membantu menjadikan Fir
 msgid "See how"
 msgstr "Lihat bagaimana"
 
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "Mengelola Pengaya Anda"
 
@@ -4066,9 +4044,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr "Ikuti Survei"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Selamat Datang {0}"
+msgstr "Selamat Datang Kembali"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
