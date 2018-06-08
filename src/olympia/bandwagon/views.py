@@ -717,9 +717,8 @@ class TranslationAwareOrderingAliasFilter(OrderingAliasFilter):
 
         order_by = ordering[0]
 
-        if order_by.lstrip('-') == 'addon__name':
-            prefix = '-' if order_by.startswith('-') else ''
-            return order_by_translation(queryset, prefix + 'name', Addon)
+        if order_by in ('name', '-name'):
+            return order_by_translation(queryset, order_by, Addon)
 
         sup = super(TranslationAwareOrderingAliasFilter, self)
         return sup.filter_queryset(request, queryset, view)
@@ -732,7 +731,7 @@ class CollectionAddonViewSet(ModelViewSet):
     filter_backends = (TranslationAwareOrderingAliasFilter,)
     ordering_fields = ()
     ordering_field_aliases = {'popularity': 'addon__weekly_downloads',
-                              'name': 'addon__name',
+                              'name': 'name',
                               'added': 'created'}
     ordering = ('-addon__weekly_downloads',)
 
