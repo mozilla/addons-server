@@ -1,4 +1,6 @@
-/* Add the new column.*/
+/* Add the new column.
+Ideally we'd call this column "body", like the django model field name, but
+"body" is already taken by the fk we're migrating from. */
 ALTER TABLE `reviews`
     ADD COLUMN `text_body` longtext NULL;
 
