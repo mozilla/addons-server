@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-08 11:48+0000\n"
+"PO-Revision-Date: 2018-06-08 12:07+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4050,25 +4050,21 @@ msgstr "Selamat Datang Kembali"
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "Pelajari lebih Lanjut"
+msgstr "Pelajari Caranya"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Tampilkan Semua Versi"
+msgstr "Tampilkan Semua Pengajuan"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Ini adalah di mana Anda melihat dan mengelola pengaya dan tema. Untuk menayangkan pengaya pertama Anda, klik \"Ajukan Pengaya Pertama Anda\" atau \"Ajukan Tema Pertama Anda\"."
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Memasukkan Pengaya"
+msgstr "Ajukan Pengaya Pertama Anda"
 
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Memasukkan Tema"
+msgstr "Ajukan Tema Pertama Anda"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -4078,16 +4074,14 @@ msgstr "Pengembang Pengaya"
 msgid "Docs"
 msgstr "Dokumen"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "Memasukkan Pengaya"
+msgstr "Keluar"
 
 msgid "No Photo"
 msgstr "Tidak Ada Foto"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Hapus Foto Pengguna"
+msgstr "Foto Pengguna"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4126,9 +4120,8 @@ msgstr "Publikasikan Pengaya Anda!"
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Punya pengaya siap pakai? Ajukan ekstensi atau tema Anda agar terdaftar di addons.mozilla.org atau tandai dan distribusikan ekstensi Anda sendiri."
 
-#, fuzzy
 msgid "Sign In"
-msgstr "Memasukkan Pengaya"
+msgstr "Masuk"
 
 msgid "Web-Ext"
 msgstr "Web-Ext"
@@ -6556,9 +6549,8 @@ msgstr "Laporan Penyalahgunaan untuk {addon} ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Ulasan Dimoderasi ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "nama tema"
+msgstr "Gambar Tema"
 
 #, fuzzy
 msgid "Rendered Preview"
@@ -6715,9 +6707,8 @@ msgstr "Tautan yang Berguna:"
 msgid "Add-on Policy"
 msgstr "Kebijakan Pengaya"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Panduan Pengulas"
+msgstr "Panduan Peninjau"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -6878,9 +6869,8 @@ msgstr "Isi"
 msgid "Compare"
 msgstr "Bandingkan"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Hak Akses"
+msgstr "Hak Akses:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7514,13 +7504,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>pengaya</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Unduh berkas"
+msgstr "Unduh Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Pengaya Android"
+msgstr "Peramban Android"
 
 msgid "iOS Browser"
 msgstr "Peramban iOS"
@@ -7625,9 +7613,8 @@ msgstr "Foto Profil"
 msgid "Addons"
 msgstr "Pengaya"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktivitas"
+msgstr "Log Aktivitas"
 
 msgid "Email must be {email}."
 msgstr "Surel harus {email}."
