@@ -25,6 +25,7 @@ from django.template import loader
 from django.utils.translation import ugettext
 
 import validator
+import waffle
 
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
@@ -331,6 +332,10 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         set(target_apps.keys()).intersection(('firefox', 'android')) ==
         set(target_apps.keys())
     )
+    is_targeting_thunderbird_or_seamonkey_only = (
+        set(target_apps.keys()).intersection(('thunderbird', 'seamonkey')) ==
+        set(target_apps.keys())
+    )
     is_targeting_firefox_lower_than_53_only = (
         metadata.get('strict_compatibility') is True and
         # version_int('') is actually 200100. If strict compatibility is true,
@@ -343,11 +348,22 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         max_target_firefox_version >= 57000000000000 and
         max_target_firefox_version < 99000000000000)
 
+    # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
+    if (waffle.switch_is_active('disallow-thunderbird-and-seamonkey') and
+            is_targeting_thunderbird_or_seamonkey_only):
+        msg = ugettext(
+            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+            u'maintained on addons.thunderbird.net. You can use the same '
+            u'account to update your add-ons on the new site.')
+
+        insert_validation_message(
+            results, message=msg, msg_id='thunderbird_and_seamonkey_migration')
+
     # New legacy add-ons targeting Firefox only must target Firefox 53 or
     # lower, strictly. Extensions targeting multiple other apps are exempt from
     # this.
-    if (is_new_upload and
-        is_extension_or_complete_theme and
+    elif (is_new_upload and
+            is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefoxes_only and
             not is_targeting_firefox_lower_than_53_only):

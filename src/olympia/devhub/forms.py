@@ -10,6 +10,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.access import acl
@@ -403,8 +404,12 @@ class BaseCompatFormSet(BaseModelFormSet):
         qs = kwargs['queryset'].values_list('application', flat=True)
         version = self.form_kwargs.get('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
-        available_apps = (amo.APP_USAGE if not static_theme
-                          else amo.APP_USAGE_STATICTHEME)
+        if static_theme:
+            available_apps = amo.APP_USAGE_STATICTHEME
+        elif waffle.switch_is_active('disallow-thunderbird-and-seamonkey'):
+            available_apps = amo.APP_USAGE_FIREFOXES_ONLY
+        else:
+            available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
         apps = [a for a in available_apps if a.id not in qs]
         self.initial = ([{} for _ in qs] +
