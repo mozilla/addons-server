@@ -139,13 +139,15 @@ def login_user(request, user, identity):
     login(request, user)
 
 
-def fxa_error_message(message):
-    login_help_url = (
-        'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
+def fxa_error_message(message, login_help_url):
     return format_html(
         u'{error} <a href="{url}">{help_text}</a>',
         url=login_help_url, help_text=_(u'Need help?'),
         error=message)
+
+
+LOGIN_HELP_URL = (
+    'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
 
 
 def render_error(request, error, next_path=None, format=None):
@@ -156,7 +158,8 @@ def render_error(request, error, next_path=None, format=None):
         if not is_safe_url(next_path):
             next_path = None
         messages.error(
-            request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
+            request,
+            fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
             extra_tags='fxa')
         if next_path is None:
             response = HttpResponseRedirect(reverse('users.login'))
