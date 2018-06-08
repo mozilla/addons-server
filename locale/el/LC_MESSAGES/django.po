@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2017-12-23 15:29+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -401,9 +401,6 @@ msgstr "Πώς σας φαίνεται;"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Παρακαλούμε <a href=\"%(login)s\">συνδεθείτε</a> για να υποβάλετε αξιολογήσεις."
-
-msgid "Title:"
-msgstr "Τίτλος:"
 
 msgid "Review:"
 msgstr "Αξιολόγηση:"
@@ -6460,9 +6457,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Τίτλος προσθέτου"
-
-msgid "Review Title"
-msgstr "Τίτλος κριτικής"
 
 msgid "Review Text"
 msgstr "Κείμενο κριτικής"

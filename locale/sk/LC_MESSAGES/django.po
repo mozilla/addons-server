@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2018-05-01 12:28+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -412,9 +412,6 @@ msgstr "Čo si myslíte?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Ak chcete odoslať recenziu, musíte sa <a href=\"%(login)s\">prihlásiť</a>"
-
-msgid "Title:"
-msgstr "Nadpis:"
 
 msgid "Review:"
 msgstr "Recenzia:"
@@ -6607,9 +6604,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Názov doplnku"
-
-msgid "Review Title"
-msgstr "Názov recenzie"
 
 msgid "Review Text"
 msgstr "Text recenzie"

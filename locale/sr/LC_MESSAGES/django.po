@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -403,9 +403,6 @@ msgstr "Шта мислите?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Молимо Вас, <a href=\"%(login)s\">пријавите се</a> како бисте послали коментар"
-
-msgid "Title:"
-msgstr "Наслов:"
 
 msgid "Review:"
 msgstr "Коментар:"
@@ -6598,9 +6595,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "Наслов додатка"
-
-msgid "Review Title"
-msgstr "Прегледај наслов"
 
 msgid "Review Text"
 msgstr "Прегледај текст"

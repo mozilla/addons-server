@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2017-12-10 08:43+0000\n"
 "Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
 "Language-Team: none\n"
@@ -392,9 +392,6 @@ msgstr "당신은 어떻게 생각하세요?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "평가를 작성하려면 <a href=\"%(login)s\">로그인</a> 하세요"
-
-msgid "Title:"
-msgstr "제목:"
 
 msgid "Review:"
 msgstr "평가:"
@@ -6593,9 +6590,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "부가 기능 제목"
-
-msgid "Review Title"
-msgstr "검토 제목"
 
 msgid "Review Text"
 msgstr "검토 내용"

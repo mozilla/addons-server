@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -409,9 +409,6 @@ msgstr "Co sądzisz o tym dodatku?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Aby wysłać opinię, musisz się <a href=\"%(login)s\">zalogować</a>,"
-
-msgid "Title:"
-msgstr "Tytuł:"
 
 msgid "Review:"
 msgstr "Opinia:"
@@ -6700,9 +6697,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "Nazwa dodatku"
-
-msgid "Review Title"
-msgstr "Tytuł opinii"
 
 msgid "Review Text"
 msgstr "Treść opinii"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -395,9 +395,6 @@ msgstr "ਤੁਹਾਨੂੰ ਕੀ ਲੱਗਦਾ ਹੈ?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮੀਖਿਆ ਭੇਜਣ ਲਈ <a href=\"%(login)s\">ਲਾਗ ਇਨ</a> ਕਰੋ।"
-
-msgid "Title:"
-msgstr "ਸਿਰਲੇਖ:"
 
 msgid "Review:"
 msgstr "ਸਮੀਖਿਆ:"
@@ -6625,9 +6622,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "ਐਡ-ਆਨ ਸਿਰਲੇਖ"
-
-msgid "Review Title"
-msgstr "ਸਮੀਖਿਆ ਸਿਰਲੇਖ"
 
 msgid "Review Text"
 msgstr "ਸਮੀਖਿਆ ਟੈਕਸਟ"

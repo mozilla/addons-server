@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2018-05-04 04:36+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -387,9 +387,6 @@ msgstr "Bạn nghĩ sao?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Vui lòng <a href=\"%(login)s\">đăng nhập</a> để gửi đánh giá"
-
-msgid "Title:"
-msgstr "Tiêu đề:"
 
 msgid "Review:"
 msgstr "Đánh giá:"
@@ -6456,9 +6453,6 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Title"
 msgstr ""
 
 msgid "Review Text"

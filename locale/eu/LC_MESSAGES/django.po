@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -406,9 +406,6 @@ msgstr "Zer deritzozu?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "<a href=\"%(login)s\">Hasi saioa</a> berrikuspen bat bidaltzeko"
-
-msgid "Title:"
-msgstr "Izenburua:"
 
 msgid "Review:"
 msgstr "Berrikuspena:"
@@ -6503,9 +6500,6 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Title"
 msgstr ""
 
 msgid "Review Text"

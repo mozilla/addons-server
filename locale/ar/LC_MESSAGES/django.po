@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2017-11-25 14:55+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -456,9 +456,6 @@ msgstr "ما رأيك؟"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "يرجى <a href=\"%(login)s\">الولوج</a> لإرسال التعليق"
-
-msgid "Title:"
-msgstr "العنوان:"
 
 msgid "Review:"
 msgstr "التعليق:"
@@ -6656,9 +6653,6 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Title"
 msgstr ""
 
 msgid "Review Text"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -392,9 +392,6 @@ msgstr "Ẇħȧŧ ḓǿ ẏǿŭ ŧħīƞķ?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Ƥŀḗȧşḗ <a href=\"%(login)s\">ŀǿɠ īƞ</a> ŧǿ şŭƀḿīŧ ȧ řḗṽīḗẇ"
-
-msgid "Title:"
-msgstr "Ŧīŧŀḗ:"
 
 msgid "Review:"
 msgstr "Řḗṽīḗẇ:"
@@ -6395,9 +6392,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Aḓḓ-ǿƞ Ŧīŧŀḗ"
-
-msgid "Review Title"
-msgstr "Řḗṽīḗẇ Ŧīŧŀḗ"
 
 msgid "Review Text"
 msgstr "Řḗṽīḗẇ Ŧḗẋŧ"

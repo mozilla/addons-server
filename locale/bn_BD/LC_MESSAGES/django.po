@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -395,9 +395,6 @@ msgstr "আপনি কি মনে করেন?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "পর্যালোচনা জমা দেওয়ার জন্য অনুগ্রহ করে <a href=\"%(login)s\">লগ ইন</a> করুন"
-
-msgid "Title:"
-msgstr "শিরোনাম:"
 
 msgid "Review:"
 msgstr "পর্যালোচনা:"
@@ -6356,9 +6353,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "এড-অন শিরোনাম"
-
-msgid "Review Title"
-msgstr ""
 
 msgid "Review Text"
 msgstr ""

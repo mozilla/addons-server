@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -393,9 +393,6 @@ msgstr "What do you think?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Please <a href=\"%(login)s\">log in</a> to submit a review"
-
-msgid "Title:"
-msgstr "Title:"
 
 msgid "Review:"
 msgstr "Review:"
@@ -6484,9 +6481,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Add-on Title"
-
-msgid "Review Title"
-msgstr "Review Title"
 
 msgid "Review Text"
 msgstr "Review Text"

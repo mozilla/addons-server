@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-08 07:17+0000\n"
 "PO-Revision-Date: 2015-10-17 12:11+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -406,9 +406,6 @@ msgstr "Qu’en pensez-vous ?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Veuillez vous <a href=\"%(login)s\">connecter</a> pour envoyer une critique"
-
-msgid "Title:"
-msgstr "Titre :"
 
 msgid "Review:"
 msgstr "Critique :"
@@ -6516,9 +6513,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Titre du module"
-
-msgid "Review Title"
-msgstr "Titre de la revue"
 
 msgid "Review Text"
 msgstr "Texte de la revue"
