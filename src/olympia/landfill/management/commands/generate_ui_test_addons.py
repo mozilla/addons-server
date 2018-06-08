@@ -50,8 +50,7 @@ hero_addons = [
     u'page-translate',
     u'image-search-options',
     u'forget_me_not',
-    u'turbo-download-manager',
-    
+    u'turbo-download-manager',    
 ]
 
 
