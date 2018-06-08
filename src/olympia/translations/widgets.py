@@ -107,7 +107,8 @@ class TransMulti(forms.widgets.MultiWidget):
         # Gather output for all widgets as normal...
         rendered_widgets = super(TransMulti, self).format_output(widgets)
         # ...But also add a widget that'll be cloned for when we want to add
-        # a new translation. Hide it by default.
+        # a new translation. Hide it by default, it's only used in devhub, not
+        # the admin (which doesn't need to add new translations).
         init = self.widget().render(self.name + '_',
                                     Translation(locale='init'),
                                     {'class': 'trans-init hidden'})
