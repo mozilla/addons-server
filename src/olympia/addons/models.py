@@ -311,7 +311,6 @@ class Addon(OnChangeMixin, ModelBase):
         default=0, db_column='totaldownloads')
     hotness = models.FloatField(default=0, db_index=True)
 
-    average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
 
     last_updated = models.DateTimeField(

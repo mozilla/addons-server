@@ -36,7 +36,7 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('average_rating', 'bayesian_rating', 'total_ratings',
                        'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
-                       'average_daily_downloads', 'average_daily_users'),
+                       'average_daily_users'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
