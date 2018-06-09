@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 02:30+0000\n"
+"PO-Revision-Date: 2018-06-09 02:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3030,13 +3030,11 @@ msgstr "Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika terdapat alasan mengapa Anda perlu mengubah kategori."
 
-#, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
-"Tag membantu pengguna menemukan pengaya anda dan harus berisi \n"
-"                        gambaran pendek berisi tab, toolbar, atau twitter.  Anda\n"
-"                        bisa memiliki maksimum {0} tag. Ini hanya relevan\n"
-"                        untuk pengaya terdaftar."
+"Tag membantu pengguna menemukan pengaya Anda dan harus berisi \n"
+"                        gambaran pendek berisi tab, bilah alat, atau twitter.  Anda\n"
+"                        bisa memiliki maksimum {0} tag."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3214,13 +3212,12 @@ msgstr "UUID pengaya anda disebutkan secara spesifik dalam manifest pemasanganny
 msgid "Whiteboard"
 msgstr "Papan tulis"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Papan tulis adalah tempat untuk menyediakan informasi yang relevan untuk pengaya anda, apapun versinya, kepada penyunting. Gunakan untuk menyediakan cara menguji pengaya, dan tambahan informasi "
-"lainnya yang bisa membantu. Papan tulis ini juga bisa diedit oleh penyunting."
+"Papan tulis adalah tempat untuk menyediakan informasi yang relevan bagi pengaya Anda, apapun versinya, kepada peninjau. Gunakan untuk menyediakan cara menguji pengaya, dan tambahan informasi lainnya"
+" yang bisa membantu. Papan tulis ini juga bisa disunting oleh peninjau."
 
 msgid "Remove this dependent add-on"
 msgstr "Hapus pengaya yang tergantung ini"
@@ -3280,17 +3277,14 @@ msgstr "Harap menyediakan keterangan untuk tangkapan layar ini:"
 msgid "Add a Screenshot..."
 msgstr "Tambahkan Tangkapan layar..."
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Dapatkah orang lain membagikan Tema anda, asalkan anda diberi kreditasi?"
+msgstr "Dapatkah orang lain membagikan Pengaya Anda, asalkan Anda diberi akreditasi?"
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Bisakah orang lain menggunakan Tema anda secara komersial?"
+msgstr "Dapatkah orang lain menggunakan Pengaya Anda secara komersial?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Dapatkah orang lain membuat karya derivatif dari Tema anda?"
+msgstr "Dapatkah orang lain membuat karya turunan dari Pengaya Anda?"
 
 msgid "Yes, as long as they share alike"
 msgstr "Iya, sepanjang yang mereka bagi mirip"
@@ -3298,16 +3292,14 @@ msgstr "Iya, sepanjang yang mereka bagi mirip"
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Pemberi lisensi mengizinkan orang lain untuk mendistribusikan karya turunan hanya di bawah lisensi yang sama atau yang cocok dengan yang mengatur karya pemberi lisensi."
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Tema anda akan dirilis di bawah lisensi berikut:"
+msgstr "Pengaya Anda akan dirilis dengan lisensi berikut:"
 
 msgid "Select a different license."
 msgstr "Pilih lisensi yang berbeda."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "Informasi lebih lanjut mengenai lisensi Creative Commons"
 
 msgid "Tests"
 msgstr "Tes"
@@ -3352,11 +3344,8 @@ msgstr ""
 "Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
 "orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
 
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-"Masukkan teks berikut ini untuk mengkonfirmasi keputusan anda:\n"
-"           {slug}"
+msgstr "Masukkan teks berikut ini untuk mengkonfirmasi keputusan Anda: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Beritahu kami mengapa Anda menghapus tema Anda:"
@@ -3486,17 +3475,11 @@ msgstr "Situs dukungan:"
 msgid "License:"
 msgstr "Lisensi:"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
-"Harap memilih lisensi yang tepat bagi hak yang ingin anda berikan untuk kode sumber anda.\n"
-"                  Hanya relevan untuk pengaya yang terdaftar."
+msgstr "Harap memilih lisensi yang tepat bagi hak yang Anda izinkan."
 
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Jika pengaya anda memancarkan data apapun dari komputer pengguna, diperlukan sebuah kebijakan privasi yang menjelaskan data apa yang dikirim dan bagaimana itu digunakan.\n"
-"                Hanya relevan untuk pengaya yang terdaftar."
+msgstr "Jika pengaya Anda mentransmisikan data dari komputer pengguna, diperlukan kebijakan privasi yang menjelaskan data apa yang dikirim dan bagaimana penggunaannya."
 
 msgid "Notes to Reviewer:"
 msgstr "Catatan untuk Pengulas:"
@@ -3528,9 +3511,8 @@ msgstr "Catatan ini akan muncul pada halaman rincian."
 msgid "How to Distribute this Version"
 msgstr "Cara Mendistribusikan Versi ini"
 
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Kesepakatan Distribusi Pengaya Firefox"
+msgstr "Informasi lebih lanjut tentang Penandatanganan dan Distribusi Pengaya"
 
 msgid "Submission Complete"
 msgstr "Penyerahan Lengkap"
@@ -3574,9 +3556,8 @@ msgstr "Ubah versi {0}"
 msgid "File Signed"
 msgstr "File Ditandatangani"
 
-#, fuzzy
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di sini:"
+msgstr "Selesai! File ini ditandatangani dan siap untuk didistribusikan mandiri. Anda dapat mengunduhnya dengan mengklik tombol di bawah ini."
 
 msgid "Version Signed"
 msgstr "Versi Bertandatangan"
