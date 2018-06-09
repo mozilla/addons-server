@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 02:52+0000\n"
+"PO-Revision-Date: 2018-06-09 04:39+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3583,21 +3583,17 @@ msgstr "Perjanjian Distribusi Pengaya"
 msgid "Upload Add-on"
 msgstr "Unggah Pengaya"
 
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Versi Target"
+msgstr "Di Mana Berkas Ditampung"
 
-#, fuzzy
 msgid "Where to Host Version"
-msgstr "Versi Target"
+msgstr "Di Mana Versi Ditampung"
 
 msgid "Upload Version"
 msgstr "Unggah Versi"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas anda."
+msgstr "Gunakan bidang di bawah ini untuk mengungggah paket pengaya Anda. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas Anda."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
