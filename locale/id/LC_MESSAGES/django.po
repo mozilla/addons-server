@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 10:09+0000\n"
+"PO-Revision-Date: 2018-06-09 10:31+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2897,8 +2897,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Pengaya ini tidak kompatibel dengan <b>%(app_name)s %(app_version)s</b>, rilis terakhir dari %(app_name)s. Harap mempertimbangkan untuk memperbarui info kompatibilitas pengaya anda, atau mengunggah "
-"versi terbaru pengaya ini."
+"Pengaya ini tidak selaras dengan <b>%(app_name)s %(app_version)s</b>, rilis terakhir dari %(app_name)s. Harap mempertimbangkan untuk memperbarui info keselarasan pengaya anda, atau mengunggah versi "
+"terbaru pengaya ini."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2993,7 +2993,7 @@ msgid "Summary"
 msgstr "Звіт"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Ringkasan ini harus dengan jelas menerangkan apa yang pengaya Anda lakukan. Hal ini akan ditampilkan dalam daftar dan pencarian, dan akan digunakan para pengulas untuk menguji pengaya Anda."
+msgstr "Ringkasan ini harus dengan jelas menerangkan apa yang pengaya Anda lakukan. Hal ini akan ditampilkan dalam daftar dan pencarian, dan akan digunakan para peninjau untuk menguji pengaya Anda."
 
 msgid "Experimental?"
 msgstr "Percobaan?"
@@ -3302,13 +3302,13 @@ msgid "More information on Creative Commons licenses"
 msgstr "Informasi lebih lanjut mengenai lisensi Creative Commons"
 
 msgid "Tests"
-msgstr "Tes"
+msgstr "Pengujian"
 
 msgid "General Tests"
-msgstr "Tes Umum"
+msgstr "Pengujian Umum"
 
 msgid "Security Tests"
-msgstr "Tes Keamanan"
+msgstr "Uji Keamanan"
 
 msgid "Extension Tests"
 msgstr "Tes Ekstensi"
@@ -3923,16 +3923,14 @@ msgstr "Status Situs "
 msgid "Web-Ext: build & test extensions"
 msgstr ""
 
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Pengecek Kompatibilitas Pengaya"
+msgstr "Pemeriksa Kompatibilitas"
 
 msgid "Promote"
 msgstr "Promosi"
 
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Mengelola Pengaya Anda"
+msgstr "Buatlah Pengaya Anda Diunggulkan"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Tombol \"Dapatkan Pengaya\""
@@ -3946,9 +3944,8 @@ msgstr "Laporkan Penyalahgunaan Merek Dagang"
 msgid "Legal Notices"
 msgstr "Pernyataan Hukum"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Ulas Pengaya Ini"
+msgstr "Peninjauan Pengaya"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr "Relawan peninjau membantu menjaga pengaya aman dan dapat diandalkan. Mereka juga menikmati banyak tambahan fasilitas!"
@@ -4014,9 +4011,8 @@ msgid "Submit Your First Theme"
 msgstr "Ajukan Tema Pertama Anda"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Pengembang Pengaya"
+msgstr "Pusat Pengembang Pengaya"
 
 msgid "Docs"
 msgstr "Dokumen"
@@ -4030,30 +4026,26 @@ msgstr "Tidak Ada Foto"
 msgid "User Photo"
 msgstr "Foto Pengguna"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Masuk</a>"
+msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Masuk</a>"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Tema yang mudah digunakan untuk Firefox"
+msgstr "Ubahsuaikan Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua keterampilan yang diperlukan untuk membuat pengaya yang hebat."
+"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan pengalaman jelajah mereka. Jika Anda mengetahui %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, dan "
+"%(css_link_open)sCSS%(link_close)s, Anda sudah memiliki seluruh keterampilan yang diperlukan untuk menciptakan pengaya yang hebat."
 
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Pelajari Lebih Lanjut Tentang Pengaya"
+msgstr "Pelajari Cara Membuat Pengaya"
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Ekstensi Populer"
+msgstr "Pindahkan Ekstensi Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -4076,13 +4068,11 @@ msgstr "Web-Ext"
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
 
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Silahkan lengkapi pengaya Anda."
+msgstr "Uji kode otomatis untuk pengaya Anda."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Tes Kompatibilitas"
+msgstr "Uji Keselarasan"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
@@ -4192,13 +4182,13 @@ msgstr "Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda 
 msgid "Give your Theme a name."
 msgstr "Beri nama Tema Anda."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Saya menyetujui  <a href=\"%(agreement_url)s\">Perjanjian Distribusi Pengaya Firefox</a> dan mengenai penanganan informasi seperti dijelaskan pada <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"Saya menyetujui %(agreement_link_open)sPerjanjian Distribusi Pengaya Firefox%(link_close)s dan penanganan informasi saya sebagaimana dijelaskan dalam %(privacy_notice_link_open)sPemberitahuan "
+"Privasi Situs Web, Komunikasi, dan Kuki%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Memasukkan Tema"
@@ -4268,12 +4258,8 @@ msgstr "Status Persetujuan"
 msgid "Notes for Reviewers"
 msgstr "Catatan untuk Pengulas"
 
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
-"Silakan memilih, masukkan informasi apapun yang bisa berguna\n"
-"                              kepada Penyunting yang mengulas pengaya ini, seperti\n"
-"                              uji informasi akun."
+msgstr "Silakan pilih, masukkan informasi apapun yang bisa berguna untuk Peninjau pengaya ini, misalnya uji informasi akun."
 
 msgid "Source code"
 msgstr "Kode sumber"
