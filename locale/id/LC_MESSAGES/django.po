@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 04:39+0000\n"
+"PO-Revision-Date: 2018-06-09 10:09+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3661,25 +3661,23 @@ msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang t
 msgid "Toolbar area text and icons"
 msgstr "Teks dan ikon area bilah alat"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Ini adalah warna tab teks."
+msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang tampil:  toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr "Latar area bidang bilah alat"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Warna latar untuk bidang pada bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field."
 
 msgid "Toolbar field area text"
 msgstr "Teks area bidang bilah alat"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Warna teks pada bidang dalam bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field_text."
 
-#, fuzzy
 msgid "optional"
-msgstr "(opsional)"
+msgstr "opsional"
 
 msgid "Browser preview"
 msgstr "Pratinjau peramban"
@@ -3769,13 +3767,8 @@ msgstr "Akan tercantum di situs ini setelah melewati peninjauan kode. Pembaruan 
 msgid "Listed Version:"
 msgstr "Versi Terdaftar:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
-"Ini adalah versi pengaya anda yang akan\n"
-"                                           dipasang jika seseorang mengklik tombol\n"
-"                                           Pasang di addons.mozilla.org. Hanya relevan\n"
-"                                           untuk pengaya yang terdaftar."
+msgstr "Ini adalah versi pengaya Anda yang akan dipasang jika seseorang mengklik tombol pasang di addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Versi Terdaftar Berikutnya:"
@@ -3801,11 +3794,8 @@ msgstr "Ditandatangani untuk pendistribusian mandiri. Pembaruan ditangani oleh A
 msgid "Latest Version:"
 msgstr "Versi Terbaru:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
-"Ini adalah versi terbaru yang sudah diunggah, namun\n"
-"                                          ini belum ditampilkan di situs."
+msgstr "Ini adalah versi terbaru yang sudah diunggah dan tak terdaftar."
 
 msgid "Upload New Version"
 msgstr "Unggah Versi Baru"
@@ -3813,13 +3803,11 @@ msgstr "Unggah Versi Baru"
 msgid "View All"
 msgstr "Tampilkan Semua"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Ulasan Terakhir"
+msgstr "Laman Tinjauan Terdaftar"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Antrean Tidak Terdaftar"
+msgstr "Laman Tinjauan Tak Terdaftar"
 
 msgid "View Statistics Dashboard"
 msgstr "Tampilkan Papan Statistik"
@@ -3839,13 +3827,11 @@ msgstr "Berita Pengembang"
 msgid "View the blog &#9658;"
 msgstr "Lihat blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "Permintaan informasi tertunda:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Versi ini belum diulas."
+msgstr "Permintaan informasi ini telah diselesaikan"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3890,21 +3876,17 @@ msgstr "Sertakan instruksi tentang bagaimana cara mereproduksi berkas final peng
 msgid "Read more about the source code review policy."
 msgstr "Baca lebih lanjut mengenai kebijakan mengulas kode sumber."
 
-#, fuzzy
 msgid "Latest News"
-msgstr "Versi Terbaru:"
+msgstr "Berita Terbaru"
 
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "perlu lebih banyak informasi"
+msgstr "Baca lebih lanjut di Blog kami"
 
-#, fuzzy
 msgid "Resources"
-msgstr "Lebih Banyak Sumber Daya"
+msgstr "Sumber daya"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Peringkat"
+msgstr "Pemindahan"
 
 msgid "Community"
 msgstr "Komunitas"
@@ -3932,9 +3914,8 @@ msgstr "Kebijakan"
 msgid "FAQ"
 msgstr "FAQ"
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "Laporkan Penyalahgunaan"
+msgstr "Laporkan Bug"
 
 msgid "Site Status"
 msgstr "Status Situs "
@@ -7150,7 +7131,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Hanya WebExtensions yang diperbolehkan menghilangkan GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Harap memperjelas GUID Pengaya Anda dalam manifest jika panjangnya lebih dari 64 karakter."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID tidak valid dalam URL"
