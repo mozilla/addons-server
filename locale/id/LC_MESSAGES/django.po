@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-08 12:07+0000\n"
+"PO-Revision-Date: 2018-06-09 02:30+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2966,14 +2966,12 @@ msgstr "Penyusun"
 msgid "About author roles"
 msgstr "Tentang peran penulis"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Pengaya bisa memiliki sejumlah penulis dengan 3 peran yang memungkinkan:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola semua aspek pendaftaran pengaya, termasuk menambahkan dan menghapus penulis "
-"lainnya</li> <li><b>Pengembang:</b> Dapat mengelola semua aspek pendaftaran pengaya, kecuali menambahkan dan menghapus penulsi lain dan mengelola pembayaran</li> <li><b>Pengamat:</b> Dapat melihat "
-"pengaturan dan statistik pengaya, tetapi tidak bisa membuat perubahan apapun </li> </ul>"
+"<p>Pengaya bisa memiliki sejumlah penulis dengan 2 kemungkinan peran:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, termasuk menambahkan dan menghapus penulis "
+"lainnya</li> <li><b>Pengembang:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, kecuali menambahkan dan menghapus penulis lainnya</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Informasi Dasar"
@@ -3021,20 +3019,16 @@ msgstr "Pengaya ini memerlukan pembayaran, layanan atau perangkat lunak berbayar
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Pengaya ini tidak memerlukan pembayaran tambahan, layanan berbayar atau perangkat lunak, atau perangkat keras tambahan."
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
-"Kategori adalah cara utama pengguna menelusuri pengaya.\n"
-"                        Pilihlah pengaya mana saja yang sesuai dengan fungsinya\n"
-"                        untuk mendapatkan eksposure paling besar. Hanya relevan untuk pengaya terdaftar."
+msgstr "Kategori adalah cara utama bagi pengguna untuk menelusuri pengaya. Pilih mana saja yang sesuai dengan fungsionalitas pengaya Anda untuk pendedahan terbaik."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
+msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika terdapat alasan mengapa Anda perlu mengubah kategori."
 
 #, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -3643,13 +3637,11 @@ msgstr "Mengajukan Berkas"
 msgid "Sign Add-on"
 msgstr "Tandai Pengaya"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Tema dihapus."
+msgstr "Tema dihasilkan"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Lisensi Tema"
+msgstr "Penghasil tema"
 
 msgid "Theme name"
 msgstr "Nama tema"
@@ -3719,9 +3711,8 @@ msgstr "Pratinjau peramban"
 msgid "Back"
 msgstr "Kembali"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Tema Yang Akan Datang"
+msgstr "Mengunggah Tema"
 
 msgid "Finish Theme"
 msgstr "Akhiri Tema"
@@ -3810,9 +3801,8 @@ msgstr ""
 "                                           Pasang di addons.mozilla.org. Hanya relevan\n"
 "                                           untuk pengaya yang terdaftar."
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Versi Berikutnya:"
+msgstr "Versi Terdaftar Berikutnya:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
@@ -7033,15 +7023,13 @@ msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Ulasan Dimoderasi ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
+msgstr[0] "Disetujui Otomatis ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Info yang Paling Banyak Diminta: {0}"
+msgstr[0] "Permintaan Info Kedaluwarsa: {0}"
 
 msgid "Flagged"
 msgstr "Ditandai"
@@ -7486,9 +7474,8 @@ msgstr "Pilih kategori"
 msgid "The new website supports mobile and desktop clients"
 msgstr "Situs baru ini mendukung gawai seluler maupun desktop"
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Tampilkan Situs Seluler"
+msgstr "Tampilkan situs yang baru"
 
 msgid "Report a bug"
 msgstr "Laporkan masalah"
@@ -7676,7 +7663,6 @@ msgstr "kecocokan pengaya saya tidak bisa ditingkatkan"
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr "pengaya berdasarkan sdk saya tidak bisa ditingkatkan"
 
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "pengaya saya diulas oleh seorang penyunting"
 
@@ -7755,9 +7741,8 @@ msgstr "Harap menetapkan nama yang ditampilkan"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Silakan menetapkan nama yang ditampilkan atau nama pengguna untuk melengkapi proses registrasi."
 
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Mengelola informasi akun dasar, misalnya nama pengguna dan alamat surel."
+msgstr "Mengelola informasi akun dasar, misalnya nama pengguna dan setelan Firefox Accounts Anda."
 
 msgid "Username"
 msgstr "Nama pengguna"
@@ -7786,9 +7771,9 @@ msgstr "Hapus foto sekarang ini"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Jika suka, perkenalkan diri Anda ke komunitas. Teks ini akan tampil pada laman info pengguna Anda untuk umum."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Diperbolehkan HTML: {0}. Tautan ini terlarang."
+msgstr " HTML: %(html)s diperbolehkan. Tautan ini terlarang."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Tentukan koleksi apa yang sebaiknya ditampilkan dalam profil anda."
@@ -7914,11 +7899,9 @@ msgstr "sunting profil anda"
 msgid "We could not unsubscribe you"
 msgstr "Anda tidak akan menghentikan langganan anda"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-"Sayang sekali, kami tidak bisa menghentikan langganan anda.  Tautan yang anda klik sudah tidak berlaku. Namun demikian, anda bisa berhenti berlangganan di <a href=\"%(edit_url)s\">laman edit "
-"profil</a>."
+msgstr "Sayangnya, kami tidak bisa menghentikan langganan Anda. Tautan yang Anda klik sudah tidak berlaku. Namun, Anda tetap dapat berhenti berlangganan di <a href=\"%(edit_url)s\">laman edit profil</a>."
 
 msgid "Developer Information"
 msgstr "Informasi Pengembang"
