@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 02:47+0000\n"
+"PO-Revision-Date: 2018-06-09 02:52+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3557,14 +3557,13 @@ msgid "File Signed"
 msgstr "File Ditandatangani"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Selesai! File ini ditandatangani dan siap untuk didistribusikan mandiri. Anda dapat mengunduhnya dengan mengklik tombol di bawah ini."
+msgstr "Selesai! File ini telah ditandatangani dan siap untuk didistribusikan mandiri. Anda dapat mengunduhnya dengan mengklik tombol di bawah ini."
 
 msgid "Version Signed"
 msgstr "Versi Bertandatangan"
 
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di sini:"
+msgstr "Selesai! Versi ini telah ditandatangani dan siap untuk didistribusikan mandiri. Anda dapat mengunduhnya dengan mengklik tombol di bawah ini."
 
 msgid "Download {0}"
 msgstr "Unduh {0}"
