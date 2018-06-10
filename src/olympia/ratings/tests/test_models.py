@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.core import mail
-from django.utils import translation
 
 import mock
 
@@ -16,27 +15,6 @@ from olympia.users.models import UserProfile
 
 class TestRatingModel(TestCase):
     fixtures = ['ratings/test_models']
-
-    def test_translations(self):
-        translation.activate('en-US')
-
-        # There's en-US and de translations.  We should get en-US.
-        r1 = Rating.objects.get(id=1)
-        self.trans_eq(r1.title, 'r1 title en', 'en-US')
-
-        # There's only a de translation, so we get that.
-        r2 = Rating.objects.get(id=2)
-        self.trans_eq(r2.title, 'r2 title de', 'de')
-
-        translation.activate('de')
-
-        # en and de exist, we get de.
-        r1 = Rating.objects.get(id=1)
-        self.trans_eq(r1.title, 'r1 title de', 'de')
-
-        # There's only a de translation, so we get that.
-        r2 = Rating.objects.get(id=2)
-        self.trans_eq(r2.title, 'r2 title de', 'de')
 
     def test_soft_delete(self):
         assert Rating.objects.count() == 2
@@ -59,12 +37,11 @@ class TestRatingModel(TestCase):
         rating.delete(user_responsible=user_responsible)
         assert log_mock.info.call_count == 1
         assert (log_mock.info.call_args[0][0] ==
-                'Rating deleted: %s deleted id:%s by %s ("%s": "%s")')
+                'Rating deleted: %s deleted id:%s by %s ("%s")')
         assert log_mock.info.call_args[0][1] == user_responsible.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
-        assert log_mock.info.call_args[0][4] == unicode(rating.title)
-        assert log_mock.info.call_args[0][5] == unicode(rating.body)
+        assert log_mock.info.call_args[0][4] == unicode(rating.body)
 
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
@@ -130,11 +107,10 @@ class TestRatingModel(TestCase):
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
-            'body': 'None',
+            'body': 'r1 body',
             'is_flagged': True,
             'addon_title': 'my addon name',
             'addon_id': 4,
-            'title': 'r1 title en'
         }
         assert activity_log.user == moderator
         assert activity_log.action == amo.LOG.DELETE_RATING.id
@@ -142,12 +118,11 @@ class TestRatingModel(TestCase):
 
         assert log_mock.info.call_count == 1
         assert (log_mock.info.call_args[0][0] ==
-                'Rating deleted: %s deleted id:%s by %s ("%s": "%s")')
+                'Rating deleted: %s deleted id:%s by %s ("%s")')
         assert log_mock.info.call_args[0][1] == moderator.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
-        assert log_mock.info.call_args[0][4] == unicode(rating.title)
-        assert log_mock.info.call_args[0][5] == unicode(rating.body)
+        assert log_mock.info.call_args[0][4] == unicode(rating.body)
 
     def test_moderator_approve(self):
         moderator = user_factory()
@@ -163,11 +138,10 @@ class TestRatingModel(TestCase):
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
-            'body': 'None',
+            'body': 'r1 body',
             'is_flagged': True,
             'addon_title': 'my addon name',
             'addon_id': 4,
-            'title': 'r1 title en'
         }
         assert activity_log.user == moderator
         assert activity_log.action == amo.LOG.APPROVE_RATING.id

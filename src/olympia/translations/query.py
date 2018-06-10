@@ -8,7 +8,7 @@ from django.db.models.sql.datastructures import Join
 from django.utils import translation as translation_utils
 
 
-def order_by_translation(qs, fieldname):
+def order_by_translation(qs, fieldname, model=None):
     """
     Order the QuerySet by the translated field, honoring the current and
     fallback locales.  Returns a new QuerySet.
@@ -23,7 +23,7 @@ def order_by_translation(qs, fieldname):
         desc = False
 
     qs = qs.all()
-    model = qs.model
+    model = model or qs.model
     field = model._meta.get_field(fieldname)
 
     # Doing the manual joins is flying under Django's radar, so we need to make

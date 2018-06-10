@@ -316,11 +316,11 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 # validClientAppUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'contribute.json', 'credits',
-    'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
+    'about', 'admin', 'apps', 'contribute.json',
+    'developer_agreement', 'developers', 'editors',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
     'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
-    'services', 'sunbird', 'static', 'user-media', '__version__',
+    'services', 'static', 'user-media', '__version__',
 )
 DEFAULT_APP = 'firefox'
 
@@ -1657,6 +1657,7 @@ JWT_AUTH = {
 DRF_API_GATES = {
     'v3': (
         'ratings-rating-shim',
+        'ratings-title-shim',
     ),
     'v4': (
     )

@@ -1,49 +1,32 @@
 {% set reviews = reviews[:3] %}
+{% set replies = get_replies(reviews) %}
 {% if reviews %}
-  {% set replies = get_replies(reviews) %}
+<h3 id="reviews">{{ _('Reviews') }}</h3>
+<div class="article">
   {% for review in reviews %}
-    <div class="review">
-      <h3>
-        {% if review.title %}
-          <b>{{ review.title }}</b>
-        {% endif %}
-        {{ review.rating|stars }}
-      </h3>
-      <p class="byline">
+    <div class="review-detail">
+      <p class="description">{{ review.body|nl2br }}</p>
+      <p>{{ review.rating|stars }}
         {% trans user=review.user|user_link, date=review.created|date %}
           by {{ user }} on {{ date }}
         {% endtrans %}
-        &middot;
-        <a class="permalink"
-           href="{{ url('addons.ratings.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
+        {% if replies[review.id] %}
+          <a class="show-more" href="{{ replies[review.id].get_url_path() }}">
+            {{ _("Show the developer's reply to this review") }}</a>
+        {% endif %}
       </p>
-      <p class="description">{{ review.body|nl2br }}</p>
-      {% if replies[review.id] %}
-        <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
-          {{ _("Show the developer's reply to this review") }}</a>
-      {% endif %}
     </div>
   {% endfor %}
   {% if addon %}
     <p>
-      <a class="more-info" href="{{ addon.ratings_url }}">
+      <a class="more-info" href="{{ url('addons.ratings.list', addon.slug) }}">
         {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
-          See all user reviews
+          See all reviews of this add-on
         {% pluralize %}
-          See all {{ cnt }} user reviews
+          See all {{ cnt }} reviews of this add-on
         {% endtrans %}
       </a>
     </p>
   {% endif %}
-{% else %}
-  <div class="review no-reviews">
-    <h3>
-      {{ _('This add-on has not yet been reviewed.') }}
-      {% if addon.can_review(user) %}
-        <a id="add-first-review" href="{{ url('addons.ratings.add', addon.slug) }}">
-          {{ _('Be the first!') }}
-        </a>
-      {% endif %}
-    </h3>
-  </div>
+</div>
 {% endif %}

@@ -14,9 +14,9 @@ featured_collections = [
     u'good-time-tabs',
     u'wikipedia-boosters',
     u'social-media-customization',
-    u'change-up-your-tabs',
-    u'essential-extensions',
     u'translation-tools',
+    u'privacy-matters',
+    u'change-up-your-tabs',
 ]
 
 #  Featured collections on the homepage.
@@ -40,16 +40,17 @@ hero_addons = [
     u'worldwide-radio',
     u'black-menu-google',
     u'container',
-    u'envify',
-    u'the-laser-cat',
-    u's3download-statusbar',
-    u'foxy-gestures',
+    u'tabless',
+    u'share-backported',
+    u'veiw-page-archive',
+    u'groupspeeddial',
     u'swift-selection-search',
     u'web-security',
     u'vertical-tabs-reloaded',
     u'page-translate',
     u'image-search-options',
     u'forget_me_not',
+    u'turbo-download-manager',
 ]
 
 

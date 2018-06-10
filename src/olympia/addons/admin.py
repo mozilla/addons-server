@@ -16,6 +16,12 @@ from . import models
 
 
 class AddonAdmin(admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/l10n.css',)
+        }
+        js = ('js/admin/l10n.js',)
+
     exclude = ('authors',)
     list_display = ('__unicode__', 'type', 'status', 'average_rating')
     list_filter = ('type', 'status')

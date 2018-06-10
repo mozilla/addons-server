@@ -1,8 +1,6 @@
-<div id="review-add-box" class="modal">
-{% if addon.can_review(user) %}
-  <a class="close" href="#">{{ _('close') }}</a>
-  <h2>{{ _('What do you think?') }}</h2>
-  <div id="review-box" class="c">
+{% if not addon.has_author(user) %}
+  <h3>{{ _('What do you think?') }}</h3>
+  <div id="review-box" class="highlight">
     {% if not user.is_authenticated() %}
       <p>
         {% trans login=login_link() %}
@@ -11,13 +9,12 @@
       </p>
     {% endif %}
 
-    <form method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
+    <form disabled method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
       {{ csrf_input }}
-      {{ field(review_form.title, _('Title:'), **attrs) }}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}
-      <p><input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}></p>
+      <input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}>
     </form>
 
     <div>
@@ -29,20 +26,15 @@
         {% endtrans %}
       </p>
       {% if addon.support_url or addon.support_email %}
-        <p>
-          See this add-on's
-          {% if addon.support_url %}
-            <a class="support" href="{{ addon.support_url|external_url }}">{{ _('support section') }}</a>
-          {% elif addon.support_email %}
-            {{ emaillink(addon.support_email.localized_string, _('support email')) }}
-          {% endif %}
-          to find out if assistance is available.
+      <p>
+        {% trans support='#support' %}
+          See this add-on's <a href="{{ support }}">support section</a> to find out if assistance is available.
           You can also try asking the <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
-        </p>
+        {% endtrans %}
+      </p>
       {% endif %}
       <p><a href="{{ url('pages.review_guide') }}">{{ _('Review Guidelines') }}</a></p>
     </div>
 
   </div>{# /#review-box #}
 {% endif %}{# /is_author #}
-</div>

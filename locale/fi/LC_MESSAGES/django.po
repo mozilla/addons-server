@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-02 15:47+0000\n"
+"PO-Revision-Date: 2018-05-02 15:51+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -63,6 +63,7 @@ msgstr "Tarvitsetko apua?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
+"Aktiivisten lisäosien tai teemojen kehittäjät eivät voi poistaa tiliään. Jos haluat poistaa tilisi, sinun on joko poistettava kaikki lisäosasi ja teemasi tai siirrettävä ne toiselle käyttäjälle."
 
 # 85%
 msgid "Review"
@@ -175,7 +176,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Lisäosan nimi ei voi sisältää Mozillan tai Firefoxin tavaramerkkejä."
 
 msgid "Abuse reported."
 msgstr "Väärinkäyttö ilmoitettu."
@@ -201,7 +202,7 @@ msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn m
 msgstr "Mozilla ei ole tarkastanut tätä lisäosaa. <a href=\"%(url)s\">Lue lisää</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Tämän lisäosan kehittäjät ovat merkinneet sen kokeelliseksi."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -266,8 +267,8 @@ msgstr "Lisätty {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s viikoittainen lataus"
+msgstr[1] "%(num)s viikoittaista latausta"
 
 #, python-format
 msgid "%(num)s user"
@@ -279,7 +280,7 @@ msgid "Requires Restart"
 msgstr "Vaatii uudelleenkäynnistyksen"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Tämä lisäosa on tehty uudella teknologialla, joka on yhteensopiva Firefoxin version 57 ja uudempien kanssa."
 
 msgid "Compatible with Firefox 57+"
 msgstr "Yhteensopiva Firefox 57+:n kanssa"
@@ -429,7 +430,7 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Tarkastamisen pääperiaatteet"
 
 msgid "Reviews"
 msgstr "Arviot"
@@ -468,10 +469,10 @@ msgid "Permissions"
 msgstr "Oikeudet"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Tämän lisäosan kehittäjät ovat merkinneet sen kokeelliseksi"
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Tämä lisäosa vaatii toimiakseen seuraavat lisäosat:"
 
 msgid "Average"
 msgstr "Keskiarvo"
@@ -503,9 +504,8 @@ msgstr "Näytä tilastoja"
 msgid "Manage"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
+msgstr "Lisäosan arviointi"
 
 msgid "Admin Manage"
 msgstr ""
@@ -575,7 +575,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "Tämä lisäosa voi:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -699,9 +699,8 @@ msgstr "Kehityskeskus"
 msgid "Manage API Keys"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Arvioijat"
+msgstr "Tarkastajan työkalut"
 
 msgid "Admin Tools"
 msgstr "Ylläpitotyökalut"
@@ -729,9 +728,8 @@ msgstr "Sivua ei löydy"
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Lisää lisäosia"
+msgstr "Firefox-lisäosat"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -1742,9 +1740,8 @@ msgid "Version"
 msgstr "Versio"
 
 # 76%
-#, fuzzy
 msgid "Application Version"
-msgstr "Ohjelmaversiot"
+msgstr "Ohjelmaversio"
 
 msgid "Application Build"
 msgstr ""
@@ -2350,9 +2347,8 @@ msgstr "Video"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "Suositellut kokoelmat"
+msgstr "Laitteen ominaisuudet ja sijainti"
 
 msgid "Experimental"
 msgstr "Kokeellinen"
@@ -2372,9 +2368,8 @@ msgstr ""
 msgid "Social Networking"
 msgstr ""
 
-#, fuzzy
 msgid "Sports & Games"
-msgstr "Kuvat"
+msgstr "Urheilu ja pelit"
 
 msgid "User Interface"
 msgstr "Käyttöliittymä"
@@ -2803,9 +2798,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "User Collections"
-msgstr "Kokoelmani"
+msgstr "Käyttäjän kokoelmat"
 
 msgid "User Reviews"
 msgstr ""
@@ -4467,9 +4461,8 @@ msgstr ""
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
-#, fuzzy
 msgid "Load older..."
-msgstr "Ladataan..."
+msgstr "Lataa aikaisempi..."
 
 msgid "Leave a reply"
 msgstr ""
@@ -6298,9 +6291,8 @@ msgstr "Löydä lisäosia"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Kehitysuutiset"
+msgstr "Tarkastajan vastaus"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -7462,9 +7454,8 @@ msgstr "Valitse luokka"
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Näytä mobiilisivu"
+msgstr "Näytä uusi sivusto"
 
 #, fuzzy
 msgid "Report a bug"
@@ -7629,9 +7620,8 @@ msgstr ""
 
 # 83%
 # 100%
-#, fuzzy
 msgid "My Mobile Add-ons"
-msgstr "Hae lisäosia mobiiliin"
+msgstr "Mobiililisäosani"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

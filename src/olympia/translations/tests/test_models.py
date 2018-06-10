@@ -18,7 +18,6 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import BaseTestCase
-from olympia.translations import widgets
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
     PurifiedTranslation, Translation, TranslationSequence)
@@ -679,13 +678,6 @@ def test_translation_unicode():
 
     assert unicode(t('hello')) == 'hello'
     assert unicode(t(None)) == ''
-
-
-def test_widget_value_from_datadict():
-    data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
-    actual = widgets.TransMulti().value_from_datadict(data, [], 'f')
-    expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
-    assert actual == expected
 
 
 def test_comparison_with_lazy():
