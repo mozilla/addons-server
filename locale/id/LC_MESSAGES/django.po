@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 05:29+0000\n"
+"PO-Revision-Date: 2018-06-10 08:10+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6695,13 +6695,11 @@ msgstr "Pengaya yang dihidupkan paksa"
 msgid "Disable Auto-Approval"
 msgstr "Nonaktifkan Persetujuan Otomatis"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Status Persetujuan"
+msgstr "Persetujuan Otomatis Diaktifkan"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Diperlukan lebih banyak informasi"
+msgstr "Bersihkan permintaan informasi"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
