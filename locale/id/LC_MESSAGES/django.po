@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-09 15:24+0000\n"
+"PO-Revision-Date: 2018-06-10 02:29+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4320,9 +4320,8 @@ msgstr "Tinggalkan balasan"
 msgid "Reply"
 msgstr "Balas"
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Visibilitas pengaya"
+msgstr "Visibilitas daftar"
 
 #, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
