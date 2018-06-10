@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 16:25+0000\n"
+"PO-Revision-Date: 2018-06-10 16:49+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5389,17 +5389,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Akankah pengaya bekerja dengan peramban atau aplikasi saya?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Pengaya yang terdaftar dalam galeri ini hanya bekerja dengan aplikasi berbasis Mozilla, misalnya <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dan <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Namun demikian tidak semua pengaya bekerja dengan tiap aplikasi itu atau setiap versi dari "
-"aplikasi tersebut. Tiap pengaya merinci aplikasi mana dan di version mana pengaya itu bisa bekerja, misalnya Firefox 2.0 - 3.6.*. Untuk pengaya Firefox, tombol pemasangan akan mengindikasikan apakah"
-" pengaya ini cocok atau tidak."
+"Pengaya yang terdaftar dalam galeri ini hanya bekerja dengan aplikasi berbasis Mozilla, misalnya <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox untuk Android</a>, "
+"<a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dan <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Namun demikian tidak semua pengaya bekerja dengan masing-masing aplikasi itu atau setiap versi"
+" dari aplikasi tersebut. Tiap pengaya merinci aplikasi mana dan pada versi apa pengaya itu bisa bekerja, misalnya Firefox 50.0 - 52.*. Untuk pengaya Firefox, tombol pemasangan akan mengindikasikan "
+"apakah pengaya ini selaras atau tidak."
 
 msgid "What are the different types of add-ons?"
 msgstr "Apa sajakah tipe pengaya yang berbeda?"
@@ -5524,37 +5524,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Bagaimana seandainya saya tidak bisa menemukan pengaya yang saya cari?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"Dengan ribuan pengaya yang tersedia, ada sesuatu untuk tiap orang. Namun jika anda mencari pengaya tertentu dan tak dapat menemukannya, anda bisa mencoba mencari di situs lain atau menulis tentang "
+"Dengan ribuan pengaya yang tersedia, ada sesuatu untuk tiap orang. Namun jika Anda mencari pengaya tertentu dan tak dapat menemukannya, Anda bisa mencoba mencari di situs lain atau menulis tentang "
 "itu dalam <a href=\"%(forum_url)s\">forum Pengaya </a>."
 
-#, fuzzy
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Apakah artinya jika sebuah pengaya \"belum diulas\"?"
+msgstr "Apakah artinya jika sebuah pengaya disebut \"eksperimental\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
-"Pengaya eksperimental telah dicek oleh penyunting kami untuk memastikan mereka tidak memiliki persoalan keamanan, namun pengaya tersebut mungkin masih mengandung bug atau tidak bekerja selayaknya. "
-"Berhati-hatilah saat memasang pengaya eksperimental dan melepas pengaya secepatnya jika anda menemui masalah. <a href=\"%(url)s\">Pelajari lebih lanjut tentang proses ulasan kami</a></dd>"
+"Pengaya eksperimental oleh peninjau kami telah ditandai karena tidak tepat untuk audiens yang luas.  Karena boleh jadi mengandung bug atau tidak bekerja selayaknya. Waspadalah saat memasang pengaya "
+"eksperimental dan segeralah melepas pengaya itu jika Anda menemui masalah. %(learnmore_link_open)sPelajari lebih lanjut tentang proses peninjauan kami%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Apakah artinya jika sebuah pengaya \"belum diulas\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
-"Meskipun semua pengaya yang tersedia secara publik di galeri kami diulas oleh penyunting, boleh jadi anda menerima tautan langsung ke sebuah pengaya yang belum diulas. Berhati-hatilah saat memasang "
-"pengaya ini, karena mereka bisa membahayakan komputer anda atau melanggar privasi anda. Kami merekomendasikan anda untuk hanya memasang pengaya yang sudah diulas. <a href=\"%(url)s\">Pelajari lebih "
-"lanjut mengenai proses ulasan kami</a></dd>"
+"Jika Anda mendapati tautan langsung menuju pengaya yang disebut belum ditinjau, artinya pengaya ini masih menunggu peninjauan Mozilla. Waspadalah jika memasang pengaya semacam ini, karena dapat "
+"membahayakan komputer Anda atau melanggar privasi Anda. %(learnmore_link_open)sPelajari lebih lanjut mengenai proses peninjauan kami%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Berapakah harga pengaya?"
@@ -5579,15 +5577,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Bagaimana saya bisa melaporkan ulasan pengguna yang tidak pantas atau spam?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Untuk melaporkan ulasan pengguna atas sebuah pengaya, masuk log dengan akun anda\n"
-"    dan kunjungi laman ulasan pengaya. Temukan ulasan yang ingin anda laporkan,\n"
-"    klik \"Laporkan ulasan ini\" dan pilih satu alasan. Tim penyunting kami akan\n"
-"    menyelidiki ulasan tersebut dan mengambil tindakan yang seharusnya."
+"Untuk melapirkan tinjauan pengguna tentang sebuah pengaya, masuklah menggunakan akun Anda dan kunjungi laman tinjauan pengaya. Cari tinjauan yang ingin Anda laporkan, klik \"Laporkan tinjauan ini\" "
+"dan pilih satu alasan. Tim peninjau kami akan menyelidiki tinjauan bersangkutan dan mengambil langkah yang tepat. "
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Bagaimana saya bisa melaporkan bug atau menghubungi tim Pengaya Mozilla?"
@@ -5636,13 +5631,13 @@ msgstr "Pengaya Seluler"
 msgid "What are mobile add-ons?"
 msgstr "Apakah pengaya bergerak itu?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Pengaya Mozilla bekerja dengan <a href=\"%(mobile_url)s\">Firefox untuk Ponsel</a> dan menambah atau mengubah fungsi seperti pada pengaya di desktop. Anda bisa menemukan pengaya yang bekerja dengan "
-"Firefox untuk Ponsel dalam <a href=\"%(gallery_url)s\">galeri</a>."
+"Pengaya bergerak bekerja dengan <a href=\"%(mobile_url)s\">Firefox untuk Android</a> dan menambah atau mengubah fungsionalitas seperti pengaya desktop. Anda bisa menemukan pengaya yang bekerja "
+"dengan Firefox untu Android dalam <a href=\"%(gallery_url)s\">gallery</a> kami."
 
 msgid "Developer Topics"
 msgstr "Topik Pengembang"
@@ -5779,9 +5774,8 @@ msgstr ""
 msgid "What will happen next"
 msgstr "Apa yang akan terjadi selanjutnya"
 
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Rata-rata</strong> (%(total)s)"
+msgstr "<strong>Jika Anda setuju</strong> untuk berpartisipasi:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr "Kami dapat menambahkan fitur kendali keamanan dan plugin ke Firefox untuk meningkatkan keamanan dan kinerja daring."
@@ -6072,16 +6066,14 @@ msgid "end"
 msgstr "akhir"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "pengaya, penyunting atau komentar"
+msgstr "pengaya, peninjau atau komentar"
 
 msgid "Search by add-on name / author email"
 msgstr "Pencarian berdasarkan nama pengaya / surel penulis"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Ulasan Admin"
+msgstr "Perlu Tinjauan Kode Admin"
 
 msgid "yes"
 msgstr "ya"
