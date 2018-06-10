@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 03:05+0000\n"
+"PO-Revision-Date: 2018-06-10 05:29+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4396,9 +4396,8 @@ msgstr "Berkas yang menunggu ulasan akan dimatikan dan anda akan perlu mengungga
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Anda yakin ingin menyembunyikan pengaya Anda?"
 
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Membatalkan permintaan ulasan anda akan menandai pengaya sebagai tak lengkap. Jika anda tidak melengkapi pengaya setelah beberapa hari dengan meminta ulasan ulang, ia akan dihapus."
+msgstr "Membatalkan permintaan peninjauan Anda akan membuat pengaya Anda ditandai tidak lengkap, dan setiap versi yang menunggu peninjauan akan dinonaktifkan."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Apakah anda ingin membatalkan permintaan ulasan anda?"
@@ -6613,9 +6612,8 @@ msgid "Reviewer's Guide"
 msgstr "Panduan Peninjau"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Ulasan {0}"
+msgstr "Tinjauan Konten {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -6649,9 +6647,8 @@ msgstr "Pengembang telah menyediakan kode sumber."
 msgid "Weight:"
 msgstr ""
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Pengaya Android"
+msgstr "Tidak Disetujui Otomatis Karena"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Skrip Persetujuan Otomatis belum berjalan di versi ini."
@@ -6674,21 +6671,15 @@ msgstr "Diuji pada:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Perhatian!</strong> Pengguna lain sedang menyaksikan laman ini sebelum anda."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-"Papan tulis adalah tempat bertukar informasi yang relevan untuk \n"
-"               pengaya ini (apapun versinya), antara para pengaya dan\n"
-"               penyunting. Ini dapat dilihat dan disunting oleh kedua belah pihak."
+msgstr "Papan tulis adalah tempat bertukar informasi yang relevan untuk pengaya ini (apa pun versinya), antara pengembang dan peninjau. Hal ini terlihat dan dapat disunting oleh keduanya."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
 msgstr "Perbarui papan tulis"
 
-#, fuzzy
 msgid "More Actions"
 msgstr "Tindakan Lainnya:"
 
@@ -6698,9 +6689,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr "Nonaktifkan-paksa pengaya"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Versi yang dihidupkan kembali"
+msgstr "Pengaya yang dihidupkan paksa"
 
 msgid "Disable Auto-Approval"
 msgstr "Nonaktifkan Persetujuan Otomatis"
