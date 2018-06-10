@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 08:10+0000\n"
+"PO-Revision-Date: 2018-06-10 08:30+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4417,58 +4417,50 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} pesan peringatan"
 
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pemblokiran iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Gambarkan ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hentikan pelacakan Facebook {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Cari gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Atur halaman yang Anda lihat tiap kali membuka tab baru."
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4518,9 +4510,9 @@ msgstr ""
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Tidak bisa menemukan versi min/maks. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandung versi yang tidak didukung?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Tidak dapat mengurai berkas yang diunggah."
+msgstr "Tidak dapat mengurai berkas yang diunggah, kurang atau tak ada elemen <%s>"
 
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat mengurai berkas yang diunggah."
@@ -4584,17 +4576,15 @@ msgstr "Kembali ke ulasan"
 msgid "Back to add-on"
 msgstr "Kembali ke pengaya"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Versi: %(version)s &bull; Ukuran: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+msgstr "Versi: %(version)s &bull; Ukuran: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Perbandingan Berkas :: Alat penyunting"
+msgstr "Membandingkan Berkas :: Alat peninjau"
 
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Penampil Berkas :: Perlengkapan penyunting"
+msgstr "Penampil Berkas :: Alat peninjau"
 
 msgid "Validation failed:"
 msgstr "Validasi gagal:"
@@ -4837,13 +4827,12 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Siapakah yang membuat pengaya ini?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Pengaya yang terdaftar di sini telah dibuat oleh ribuan pengembang dari negara kami, mulai dari pehobi individu sampai perusahaan besar. Semua pengaya yang terdaftar secara publik diulas oleh tim "
-"penyunting sebelum dirilis. Pengaya yang ditandai Eksperimental belum diulas dan hanya bisa dipasang dengan kewaspadaan."
+"Pengaya yang terdaftar di sini telah dibuat oleh ribuan pengembang dari komunitas kami, mulai dari pehobi individu sampai perusahaan besar. Semua pengaya yang terdaftar secara publik diulas oleh tim"
+" peninjau sebelum dirilis. Pengaya yang ditandai Eksperimental belum ditinjau dan sebaiknya hanya dipasang dengan kewaspadaan."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Bagaimana saya bisa tetap mengikuti hal-hal yang terjadi di AMO?"
@@ -4873,13 +4862,13 @@ msgstr "Ada banyak cara untuk bisa bergabung. Jika anda memiliki sisi teknis:"
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr "<a href=\"%(url)s\">Buat pengayamu sendiri</a>. Kami menyediakan fasilitas hosting gratis dan layanan yang diperbarui dan bisa membantu anda menjangkau pengguna dalam jumlah besar."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Jika anda memiliki pengalaman mengembangkan pengaya, <a href=\"%(url)s\"> jadilah penyunting </a>! Penyunting kami adalah penggemar pengaya dengan latar belakang teknis yang mengulas pengaya "
-"berdasarkan stabilitas dan kualitas kodenya."
+"Jika anda memiliki pengalaman mengembangkan pengaya, <a href=\"%(url)s\"> jadilah Peninjau Pengaya </a>! Peninjau kami adalah penggemar pengaya dengan latar belakang teknis yang meninjau pengaya "
+"berdasarkan kestabilan dan mutu kodenya."
 
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
@@ -5049,7 +5038,7 @@ msgstr "Referensi untuk Lisensi Sumber Terbuka"
 msgid "Add-on Developer FAQ"
 msgstr "FAQ Pengembang Pengaya"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui <a href=\"%(url)s\">Jejaring Pengembang Mozilla</a>. </p>"
 
@@ -5127,14 +5116,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Bisakah saya memuat pengaya saya sendiri?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
-"Ya. Banyak pengembang yang memilih memuat pengaya mereka sendiri. Meski demikian, memilih untuk memuat pengaya di <a href=\"%(amo_url)s\">situs pengaya Mozilla</a>, memungkinkan eksposur yang jauh "
-"lebih besar pada pengaya anda karena jumlah pengunjung yang besar ke situs.  <a href=\"%(md_url)s\">mozdev.org</a> menawarkan pemuatan proyek gratis untuk aplikasi dan ekstensi Mozilla yang memberi "
-"pengembang perangkat untuk membantu mengelola kode sumber, versi kendali, pelacakan bug dan dokumentasi."
+"Ya. Banyak pengembang memilih memuat pengaya mereka sendiri. Meski demikian, memilih untuk memuat pengaya di <a href=\"%(amo_url)s\">situs pengaya Mozilla</a>, memungkinkan ekspose yang jauh lebih "
+"besar pada pengaya Anda karena jumlah pengunjung yang besar ke situs itu."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Bisakah Mozilla memuat pengaya saya?"
@@ -5173,13 +5161,13 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Apakah Mozilla memiliki kebijakan yang ditetapkan mengenai penyampaian apakah yang dapat diterima?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ya.  <a href=\"%(p_url)s\">Kebijakan Pengaya</a> Mozilla menjelaskan apa yang dianggap penyampaian yang dapat diterima. Kebijakan ini dapat diubah tanpa pemberitahuan sebelumnya. Selain itu, tim "
-"editorial AMO menggunakan <a href=\"%(g_url)s\">Panduan Tinjauan Editor</a> untuk memastikan bahwa pengaya anda memenuhi panduan spesifik tertentu untuk fungsi dan keamanan."
+"Ya. %(policy_link_open)sKebijakan Peninjauan Pengaya%(link_close)s Mozilla menjelaskan pengajuan yang dapat diterima. Kebijakan ini dapat diubah tanpa pemberitahuan sebelumnya. Selain itu, Tim "
+"Peninjau Pengaya menggunakan %(guide_link_open)sPanduan Tinjauan Pengaya%(link_close)s untuk memastikan bahwa pengaya Anda memenuhi panduan spesifik tertentu terkait fungsionalitas dan keamanannya."
 
 msgid "How do I submit my add-on?"
 msgstr "Bagaimana saya mengajukan pengaya saya?"
@@ -6125,9 +6113,8 @@ msgstr "Aplikasi:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 hari"
+msgstr "hari"
 
 msgid "Choose a canned response..."
 msgstr "Pilih respon yang direkam..."
@@ -6143,9 +6130,8 @@ msgstr "Orang lain mengulas tema ini."
 msgid "theme, reviewer, or comment"
 msgstr "tema, pengulas, atau komentar"
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Papan tulis"
+msgstr "Papan Tulis Privat"
 
 msgid "Keep review; remove flags"
 msgstr "Terus mengulas; hilangkan penanda"
@@ -6153,13 +6139,11 @@ msgstr "Terus mengulas; hilangkan penanda"
 msgid "Skip for now"
 msgstr "Lewatkan untuk sekarang"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Melakukan Ulasan"
+msgstr "Perlu Tinjauan Konten Admin"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Ulasan Admin"
+msgstr "Perlu Tinjauan Tema Statis Admin"
 
 msgid "Jetpack Add-on"
 msgstr "Pengaya Jetpack"
@@ -6167,13 +6151,11 @@ msgstr "Pengaya Jetpack"
 msgid "More Information Requested"
 msgstr "Diperlukan Lebih Banyak Informasi"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Diperlukan Lebih Banyak Informasi"
+msgstr "Permintaan Informasi Kedaluwarsa"
 
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Mengandung Komentar Editor"
+msgstr "Mengandung Komen Peninjau"
 
 msgid "Sources provided"
 msgstr "Sumber disediakan"
@@ -6181,9 +6163,8 @@ msgstr "Sumber disediakan"
 msgid "WebExtension"
 msgstr "WebExtension"
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "pengaya saya diulas oleh seorang penyunting"
+msgstr "Dikunci oleh peninjau."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
@@ -6242,9 +6223,8 @@ msgstr "Tanpa Ulasan"
 msgid "Weight"
 msgstr "Berat"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Diperlukan Lebih Banyak Informasi"
+msgstr "Tenggat Permintaan Informasi"
 
 #, fuzzy
 msgid "Last Content Review"
@@ -6701,17 +6681,14 @@ msgstr "Persetujuan Otomatis Diaktifkan"
 msgid "Clear information request"
 msgstr "Bersihkan permintaan informasi"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Bersihkan Penandaan Ulasan Admin"
+msgstr "Bersihkan Penandaan Kode Tinjauan Admin"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Bersihkan Penandaan Ulasan Admin"
+msgstr "Bersihkan Penandaan Tinjauan Konten Admin"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Bersihkan Penandaan Ulasan Admin"
+msgstr "Bersihkan Penandaan Tinjauan Tema Statis Admin"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6918,10 +6895,9 @@ msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "Pembaruan ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ulasan Dimoderasi ({0})"
+msgstr[0] "Peringkat Tinjauan ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
@@ -7380,13 +7356,12 @@ msgstr "Tampilkan situs yang baru"
 msgid "Report a bug"
 msgstr "Laporkan masalah"
 
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Terkecuali saat <a href=\"http://www.mozilla.org/about/legal.html#site\">dicatat sebaliknya</a>, konten dalam situs ini dilisensikan di bawah <br /> <a href=\"http://creativecommons.org/licenses/by-"
-"sa/3.0/\"> Lisensi Atribusi Share-Alike Creative Commons v3.0 </a> atau versi berikutnya yang lain."
+"Terkecuali saat <a href=\"http://www.mozilla.org/about/legal.html#site\">dicatat sebaliknya</a>, konten dalam situs ini dilisensikan pada <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Lisensi Atribusi Share-Alike Creative Commons v3.0 </a> atau versi berikutnya."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>pengaya</b>"
@@ -7524,9 +7499,8 @@ msgstr "URL ini formatnya tidak valid. Contoh URL yang valid adalah http://examp
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Untuk menjadi anonim, masukkan alasan perubahan, tapi jangan mengubah bagian lainnya."
 
-#, fuzzy
 msgid "Please enter at least one name to be denied."
-msgstr "Silakan masukkan sekurangnya satu nama untuk mendaftarhitamkan."
+msgstr "Silakan masukkan sekurangnya satu nama untuk dicekal."
 
 msgid "No user with that email."
 msgstr "Tidak ada pengguna dengan email tersebut."
