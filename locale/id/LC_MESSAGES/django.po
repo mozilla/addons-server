@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 08:30+0000\n"
+"PO-Revision-Date: 2018-06-10 08:37+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6226,31 +6226,26 @@ msgstr "Berat"
 msgid "Information Request Deadline"
 msgstr "Tenggat Permintaan Informasi"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Ulasan Terakhir"
+msgstr "Tinjauan Konten Terakhir"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ini akan menyetujui, menandai, dan menayangkan versi ini. Komentar akan dikirim ke pengembang."
 
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
+msgstr "Hal ini akan menolak versi ini dan menghapusnya dari antrian. Komentar akan dikirim pada pengembang."
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Penundaan persetujuan"
+msgstr "Konfirmasi Persetujuan"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Versi publik terakhir pengaya ini telah disetujui secara otomatis. Hal ini merekam konfirmasi Anda atas persetujuan versi ini, tanpa memberi tahu pengembangnya."
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Versi yang dihidupkan kembali"
+msgstr "Tolak Beberapa Versi"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
+msgstr "Hal ini akan menolak versi publik yang dipilih. Komentar akan dikirim ke pengembang."
 
 msgid "Reviewer reply"
 msgstr "Balasan pengulas"
@@ -6261,11 +6256,8 @@ msgstr "Langkah ini akan mengirim pesan ke pengembang. Anda akan diberi tahu saa
 msgid "Request super-review"
 msgstr "Meminta ulasan-super"
 
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Jika Anda memiliki kekhawatiran mengenai keamanan pengaya ini, masalah hak cipta, atau kekhawatiran lainnya yang harus diperiksa administrator, masukkan komentar Anda pada area di bawah ini. Semua "
-"akan dikirimkan kepada administrator, bukan penulis."
+msgstr "Jika Anda memiliki kekhawatiran yang harus diketahui oleh admin peninjau tentang pengaya ini, masukkan komentar Anda di area di bawah ini. Komentar Anda tidak akan dikirim ke pengembang."
 
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
