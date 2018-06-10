@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 02:35+0000\n"
+"PO-Revision-Date: 2018-06-10 03:05+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6276,9 +6276,8 @@ msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 msgid "Reviewer reply"
 msgstr "Balasan pengulas"
 
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Gunakan formulir ini untuk meminta informasi tambahan dari penulis. Mereka akan menerima surel dan akan bisa menjawab di sini. Anda akan diberi tahu menggunakan surel saat mereka membalas."
+msgstr "Langkah ini akan mengirim pesan ke pengembang. Anda akan diberi tahu saat mereka membalas."
 
 msgid "Request super-review"
 msgstr "Meminta ulasan-super"
@@ -6293,80 +6292,63 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Berikan komentar untuk versi ini.  Penulis tidak akan dapat melihatnya."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Setujui / Tolak"
+msgstr "Setujui Konten"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini merekam persetujuan konten atas versi publik terakhir, tanpa memberi tahu pengembangnya. "
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Pengayaku"
+msgstr "Tema Statis dan Pengaya Peninggalan"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Tema Unggulan"
+msgstr "Tema Statis"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Pengayaku"
+msgstr "Pengaya Peninggalan"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Semua Pengaya Tak Terdaftar ({0})"
+msgstr "Baru ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Diperbarui pada tanggal {0}"
+msgstr "Pembaruan ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Catatan ulasan"
+msgstr "Log Tinjauan"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Tinjauan Pengaya"
+msgstr "Panduan Ulasan Pengaya"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Antrean Ulasan Tema"
+msgstr "Panduan Ulasan Tema"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Pengaya Android"
+msgstr "Pengaya Disetujui Otomatis"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Semua Pengaya Tak Terdaftar ({0})"
+msgstr "Pengaya Disetujui Otomatis ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Log Ulasan Pengaya"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Panduan Pengulas"
+msgstr "Panduan Ulasan"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Melakukan Ulasan"
+msgstr "Ulasan Konten"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Ulasan Dimoderasi ({0})"
+msgstr[0] "Ulasan Konten ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Semua Pengaya Tak Terdaftar ({0})"
+msgstr "Tema Baru ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Diperbarui pada tanggal {0}"
+msgstr "Pembaruan Tema {0}"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Tema Ditandai"
+msgstr "Tema Ditandai  ({0})"
 
 #, fuzzy
 msgid "Lightweight Themes Review Log"
