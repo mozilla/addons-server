@@ -66,12 +66,11 @@
   {% endif %}
 
   {% if addon.is_unreviewed() %}
-    <p class="warning">{% trans url=url('pages.faq') + "#unreviewed" %}
+    <p class="warning">{% trans %}
       This add-on has not been reviewed by Mozilla.
-      <a href="{{ url }}">Learn more</a>
     {% endtrans %} </p>
   {% elif button.experimental %}
-    <p class="warning">{% trans url=url('pages.faq') + "#experimental" %}
+    <p class="warning">{% trans %}
       This add-on has been marked as experimental by its developers.
     {% endtrans %} </p>
   {% endif %}

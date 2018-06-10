@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 13:34+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"PO-Revision-Date: 2018-06-07 11:02+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -3924,9 +3924,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "స్వాగతం, {0}"
+msgstr "పునఃస్వాగతం"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -7227,9 +7226,8 @@ msgstr "ప్రొఫైల్ ఫోటో"
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "కార్యాచరణ"
+msgstr "కార్యాచరణ చిట్టాలు"
 
 msgid "Email must be {email}."
 msgstr ""

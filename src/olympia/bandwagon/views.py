@@ -14,6 +14,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 
 from django_statsd.clients import statsd
+from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
@@ -703,14 +704,34 @@ class CollectionViewSet(ModelViewSet):
         return qs.order_by(sort)[:limit]
 
 
+class TranslationAwareOrderingAliasFilter(OrderingAliasFilter):
+    def filter_queryset(self, request, queryset, view):
+        ordering = self.get_ordering(request, queryset, view)
+
+        if len(ordering) > 1:
+            # We can't support multiple orderings easily because of
+            # how order_by_translation works.
+            raise serializers.ValidationError(
+                'You can only specify one "sort" argument. Multiple '
+                'orderings are not supported')
+
+        order_by = ordering[0]
+
+        if order_by in ('name', '-name'):
+            return order_by_translation(queryset, order_by, Addon)
+
+        sup = super(TranslationAwareOrderingAliasFilter, self)
+        return sup.filter_queryset(request, queryset, view)
+
+
 class CollectionAddonViewSet(ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
-    filter_backends = (OrderingAliasFilter,)
+    filter_backends = (TranslationAwareOrderingAliasFilter,)
     ordering_fields = ()
     ordering_field_aliases = {'popularity': 'addon__weekly_downloads',
-                              'name': 'addon__name__localized_string',
+                              'name': 'name',
                               'added': 'created'}
     ordering = ('-addon__weekly_downloads',)
 
@@ -740,6 +761,7 @@ class CollectionAddonViewSet(ModelViewSet):
                                     self.action != 'list')
         # If deleted addons are requested, that implies all addons.
         include_all = filter_param == 'all' or include_all_with_deleted
+
         if not include_all:
             qs = qs.filter(
                 addon__status=amo.STATUS_PUBLIC, addon__disabled_by_user=False)
