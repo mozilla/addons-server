@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 08:37+0000\n"
+"PO-Revision-Date: 2018-06-10 16:25+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5214,26 +5214,26 @@ msgstr ""
 msgid "Must my add-on be reviewed?"
 msgstr "Haruskah pengaya saya diulas?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Semua pengaya yang didaftarkan, baik baru atau dieprbarui, harus diulas untuk memastikan bahwa pengguna Mozilla mendapatkan pengalaman yang stabil dan aman. Seluruh pendaftaran pengaya diulas "
-"menggunakan panduan yang ditulis dalam <a href=\"%(url)s\">Panduan Pengulasan Penyunting</a>."
+"Pengaya baru dan yang diperbarui boleh jadi harus ditinjau untuk memastikan bahwa pengguna Mozilla mendapatkan pengalaman yang stabil dan aman. Panduan yang digariskan dalam <a "
+"href=\"%(url)s\">Panduan Pengulasan Penyunting</a> digunakan untuk meninjau pengajuan pengaya."
 
 msgid "Who reviews my add-on?"
 msgstr "Siapa yang mengulas pengaya saya?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Semua pengaya diulas oleh Penyunting AMO, sekelompok pengembang berbakat yang secara sukarela membantu proyek Mozilla dengan mengulas pengaya untuk memastikan pengalaman yang stabil dan aman untuk "
-"pengguna Mozilla. Saat berkomunikasi dengan penyunting, harap sopan, sabar dan menghormati karena mereka bekerja keras untuk memastikan pengaya anda dipasang dengan benar dan mengikuri panduan yang "
-"digariskan di <a href=\"%(url)s\">Panduan Ulasan Penyunting</a>."
+"Semua pengaya diulas oleh Peninjau Pengaya, sekelompok pengembang berbakat yang secara sukarela membantu proyek Mozilla dengan meninjau pengaya untuk memastikan pengalaman yang stabil dan aman untuk"
+" pengguna Mozilla. Saat berkomunikasi dengan peninjau, harap sopan, sabar dan menghormati karena mereka bekerja keras untuk memastikan pengaya Anda dipasang dengan benar dan mengikuri panduan yang "
+"digariskan dalam <a href=\"%(url)s\">Panduan Ulasan Penyunting</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Apakah panduan yang digunakan untuk mengulas pengaya saya?"
@@ -5287,9 +5287,8 @@ msgstr "Bagaimana saya memasukkan pembaruan pengaya saya?"
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr "Anda bisa memasukkan pembaruan pengaya melalui papan Perangkat Pengembang dengan memilih \"Unggah versi baru\" dan mengunggah berkas .xpi baru untuk pengaya anda."
 
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Apakah pembaruan yang saya buat perlu diulas oleh penyunting?"
+msgstr "Apakah pembaruan yang saya buat perlu ditinjau oleh peninjau?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr "Pembaruan pengaya mungkin akan ditinjau sama seperti pengajuan baru."
@@ -5316,9 +5315,8 @@ msgstr "Laporan bug atau permintaan dukungan yang tidak pada tempatnya"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Lainnya (memberi bagian yang muncul dengan cepat untuk memberi informasi)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Saat ini, AMO tidak menyediakan mekanisme untuk berkomunikasi secara langsung dengan pengulas namun fitur ini sedang diselidiki dan dipertimbangkan untuk pembaruan di masa depan."
+msgstr "Saat ini, AMO tidak menyediakan mekanisme untuk berkomunikasi secara langsung dengan pengarang tinjauan pengguna."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Bisakah saya meminta sebuah ulasan dihapus jika ulasan tersebut negatif?"
@@ -5763,13 +5761,12 @@ msgstr ""
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Saya adalah penulis pengaya, bisakah saya menghapus ulasan atau peringkat yang kurang bagus?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"Secara umum, tidak. Namun jika ulasan tidak memenuhi panduan di atas, anda bisa mengklik \"Melaporkan ulasan ini\" agar ulasan tersebut dimoderasi. Jika sebuah ulasan menyertakan keluhan yang tidak "
-"lagi benar disebabkan rilisan baru pengaya anda, kami akan mempertimbangkan untuk menghapus ulasan. Kirimkan permintaan terinci anda ke amo-editors@mozilla.org."
+"Secara umum, tidak. Namun jika tinjauan tidak memenuhi panduan di atas, Anda bisa mengklik \"Melaporkan tinjauan ini\" agar dimoderasi. Jika sebuah tinjauan menyertakan keluhan yang tidak lagi benar"
+" disebabkan rilisan baru pengaya Anda, kami akan mempertimbangkan untuk menghapus tinjauan itu."
 
 msgid "Start Now"
 msgstr "Mulai Sekarang"
@@ -6259,9 +6256,8 @@ msgstr "Meminta ulasan-super"
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "Jika Anda memiliki kekhawatiran yang harus diketahui oleh admin peninjau tentang pengaya ini, masukkan komentar Anda di area di bawah ini. Komentar Anda tidak akan dikirim ke pengembang."
 
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Berikan komentar untuk versi ini.  Penulis tidak akan dapat melihatnya."
+msgstr "Berikan komentar untuk versi ini. Pengembang tidak akan dapat melihatnya."
 
 msgid "Approve Content"
 msgstr "Setujui Konten"
@@ -6321,13 +6317,11 @@ msgstr "Pembaruan Tema {0}"
 msgid "Flagged Themes ({0})"
 msgstr "Tema Ditandai  ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Tema Ringan"
+msgstr "Log Tinjauan Tema Ringan"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Hapus tema"
+msgstr "Log Tema yang Dihapus"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6338,13 +6332,11 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr "Log Ulasan Dimoderasi"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Aksi moderasi:"
+msgstr "Panduan Moderasi"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Semua Pengaya Tak Terdaftar"
+msgstr "Pengaya Tak Terdaftar"
 
 msgid "All Unlisted Add-ons"
 msgstr "Semua Pengaya Tak Terdaftar"
@@ -6355,9 +6347,8 @@ msgstr "Pengumuman"
 msgid "Update message of the day"
 msgstr "Perbarui pesan hari ini"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Diperlukan Lebih Banyak Informasi"
+msgstr "Permintaan Informasi Kedaluwarsa ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Terjadi masalah yang tidak diketahui"
@@ -6383,9 +6374,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Laporan Penyalahgunaan"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Laporan Penyalahgunaan untuk {addon} ({num})"
+msgstr "Laporan Penyalahgunaan untuk {addon} dan pengembangnya ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6403,31 +6393,26 @@ msgstr "Rata-rata Pengguna Harian"
 msgid "Abuse Reports"
 msgstr "Laporan Penyalahgunaan"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Perlu Mulai Ulang"
+msgstr "Memerlukan Pembayaran"
 
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Status Persetujuan"
+msgstr "Tanggal Persetujuan Terakhir"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Laporan Penyalahgunaan untuk {addon} ({num})"
+msgstr "Laporan Penyalahgunaan ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Ulasan Dimoderasi ({num})"
+msgstr "Peringkat Pengguna Buruk ({num})"
 
 msgid "Theme Images"
 msgstr "Gambar Tema"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Ulasan dihapus"
+msgstr "Pratinjau Diberikan"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
@@ -6441,9 +6426,8 @@ msgstr "Galeri Gambar"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tidak ada yang bisa dilihat di sini!  Pengembang tidak menyertakan rincian apapun."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Kembali ke beranda Perangkat Penyunting"
+msgstr "Kembali ke beranda Alat Peninjau"
 
 msgid "Reviewer Leaderboard"
 msgstr "Papan Pimpinan Pengulas"
@@ -6476,9 +6460,8 @@ msgstr "Tidak ada acara yang ditemukan dalam rentang waktu ini."
 msgid "Log details"
 msgstr "Rincian log"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Riwayat Ulasan"
+msgstr "Pengarang Tinjauan"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6502,9 +6485,8 @@ msgstr "Tidak dihapus"
 msgid "Save"
 msgstr "Simpan"
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Performa Penyunting Pengaya"
+msgstr "Performa Peninjau Pengaya"
 
 msgid "View statistics for user"
 msgstr "Tampilkan statistik untuk pengguna"
