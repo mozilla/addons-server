@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 02:29+0000\n"
+"PO-Revision-Date: 2018-06-10 02:35+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4323,9 +4323,8 @@ msgstr "Balas"
 msgid "Listing visibility"
 msgstr "Visibilitas daftar"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Dapat dilihat semua orang di {0} dan dimasukkan ke dalam hasil pencarian dan laman daftar"
+msgstr "{label_open} Terlihat: {label_close} Terlihat untuk semua orang di {site_url} dan disertakan dalam hasil pencarian dan daftar halaman."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4333,9 +4332,8 @@ msgstr ""
 "{label_open} Tak terlihat:{label_close} Tidak akan disertakan dalam hasil penelusuran, dan laman daftarnya akan menunjukkan bahwa Anda yang menonaktifkannya. Pengajuan versi baru untuk daftar tidak "
 "akan diterima dalam keadaan ini."
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "Lihat versi lain"
+msgstr "Versi terdaftar"
 
 msgid "Currently on AMO"
 msgstr "Saat ini di AMO"
@@ -4353,13 +4351,11 @@ msgstr "Hapus/Matikan"
 msgid "Next version of this add-on"
 msgstr "Versi selanjutnya dari pengaya ini"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Versi sebelumnya"
+msgstr "Versi lain"
 
-#, fuzzy
 msgid "All versions"
-msgstr "Versi sebelumnya"
+msgstr "Semua versi"
 
 msgid "Upload a New Version"
 msgstr "Unggah Versi Baru"
@@ -4823,9 +4819,8 @@ msgstr "Menjadi Penguji Rintisan"
 msgid "Unlock early access to experimental browser features."
 msgstr "Membuka akses dini untuk fitur peramban eksperimental."
 
-#, fuzzy
 msgid "Get Started"
-msgstr "Memulai"
+msgstr "Bersiap"
 
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"
@@ -5187,9 +5182,8 @@ msgstr ""
 "Ya.  <a href=\"%(p_url)s\">Kebijakan Pengaya</a> Mozilla menjelaskan apa yang dianggap penyampaian yang dapat diterima. Kebijakan ini dapat diubah tanpa pemberitahuan sebelumnya. Selain itu, tim "
 "editorial AMO menggunakan <a href=\"%(g_url)s\">Panduan Tinjauan Editor</a> untuk memastikan bahwa pengaya anda memenuhi panduan spesifik tertentu untuk fungsi dan keamanan."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Bagaimana saya memasukkan pengaya untuk diulas?"
+msgstr "Bagaimana saya mengajukan pengaya saya?"
 
 #, fuzzy, python-format
 msgid ""
@@ -5230,9 +5224,8 @@ msgid "Yes. You can specify a privacy policy when submitting your add-on. You ca
 msgstr ""
 "Bisa. Anda bisa merinci kebijakan privasi saat memasukkan pengaya. Anda juga bisa menambah atau memperbarui kebijakan privasi melalui papan Perangkat Pengembang setelah pengaya anda didaftarkan."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Mengapa pengaya saya harus diulas?"
+msgstr "Haruskah pengaya saya diulas?"
 
 #, fuzzy, python-format
 msgid ""
@@ -5840,9 +5833,8 @@ msgstr ""
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr "Keluar dari satu studi tidak menghalangi Anda berpartisipasi dalam studi lain di masa depan."
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "Privasi:"
+msgstr "Privasi Anda:"
 
 msgid "All Shield Studies"
 msgstr "Semua Studi Tameng"
@@ -5921,9 +5913,8 @@ msgstr "Penjelasan singkat harus disediakan saat memilih \"Lainnya\" sebagai ala
 msgid "Other (please specify)"
 msgstr "Lainnya (isi sendiri)"
 
-#, fuzzy
 msgid "This field is required."
-msgstr "Bidang yang diminta"
+msgstr "Bidang ini wajib diisi."
 
 #, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
@@ -6282,9 +6273,8 @@ msgstr "Versi yang dihidupkan kembali"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Berita Pengembang"
+msgstr "Balasan pengulas"
 
 #, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
