@@ -134,7 +134,7 @@ class TransMulti(forms.widgets.MultiWidget):
 
     def format_output(self, widgets):
         # Gather output for all widgets as normal...
-        rendered_widgets = super(TransMulti, self).format_output(widgets)
+        formatted = ''.join(widgets)
         # ...But also add a widget that'll be cloned for when we want to add
         # a new translation. Hide it by default, it's only used in devhub, not
         # the admin (which doesn't need to add new translations).
@@ -143,7 +143,7 @@ class TransMulti(forms.widgets.MultiWidget):
                                     {'class': 'trans-init hidden'})
         # Wrap it all inside a div that the javascript will look for.
         return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
-            self.name, self.name, rendered_widgets, init)
+            self.name, self.name, formatted, init)
 
 
 class _TransWidget(object):
