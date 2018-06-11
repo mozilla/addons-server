@@ -502,6 +502,7 @@ class TestDetailPage(TestCase):
             description=u'Exchange messages with programs other than Firefox')
 
         response = self.client.get(self.url)
+
         doc = pq(response.content)
         # The link next to the button
         assert doc('a.webext-permissions').length == 1

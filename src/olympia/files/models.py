@@ -393,7 +393,7 @@ class File(OnChangeMixin, ModelBase):
         3) other known permissions in alphabetical order
         """
         knowns = list(WebextPermissionDescription.objects.filter(
-            name__in=self.webext_permissions_list).iterator())
+            name__in=self.webext_permissions_list))
 
         urls = []
         match_url = None
@@ -769,9 +769,12 @@ class WebextPermissionDescription(ModelBase):
     name = models.CharField(max_length=255, unique=True)
     description = TranslatedField()
 
-    class Meta:
+    class Meta(ModelBase.Meta):
         db_table = 'webext_permission_descriptions'
         ordering = ['name']
+
+    def __repr__(self):
+        return '<WebextPermissionDescription "{}">'.format(self.name)
 
 
 def nfd_str(u):
