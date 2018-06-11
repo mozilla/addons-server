@@ -453,7 +453,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
 
     def assertLoginRedirects(self, response, to, status_code=302):
         fxa_url = fxa_login_link(response, to)
-        assert self.assertRedirects(
+        self.assert3xx(
             response=response,
             expected_url=fxa_url,
             status_code=status_code)
