@@ -24,7 +24,7 @@ from olympia.translations.models import (
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
     FancyModel, TranslatedModel, UntranslatedModel,
-    TranslatedModelWithDefaultNull)
+    TranslatedModelWithDefaultNull, TranslatedModelLinkedAsForeignKey)
 
 
 pytestmark = pytest.mark.django_db
@@ -748,3 +748,49 @@ def test_translated_field_default_null():
     o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
     assert o.name == 'wrong language'
     assert o.name.locale == 'de'
+
+
+def test_translated_field_fk_lookups():
+    assert Translation.objects.count() == 0
+    assert TranslatedModelLinkedAsForeignKey.objects.count() == 0
+    obj = TranslatedModelLinkedAsForeignKey.objects.create(name='english name')
+
+    def get_model():
+        return TranslatedModelLinkedAsForeignKey.objects.get(pk=obj.pk)
+
+    assert Translation.objects.count() == 1
+
+    # Make sure the translation id is stored on the model, not the autoid.
+    assert obj.name.id == obj.name_id
+
+    # Reload the object from database with a different locale activated.
+    # Its name should still be there, using the fallback...
+    translation.activate('de')
+    german = get_model()
+    assert german.name == 'english name'
+    assert german.name.locale == 'en-us'
+
+    # Check that a different locale creates a new row with the same id.
+    german.name = u'Gemütlichkeit name'
+    german.save()
+
+    assert Translation.objects.count() == 2  # New name *and* description.
+    assert german.name == u'Gemütlichkeit name'
+    assert german.name.locale == 'de'
+
+    # Now fetch the parent `TranslatedModel` and make sure that
+    # all the relevant translations from `TranslatedModelLinkedAsForeignKey`
+    # are properly loaded.
+    parent = TranslatedModel.objects.create(name='parent')
+    parent.translated_through_fk = obj
+    parent.save()
+
+    # This still works, simply attaching the model
+    assert parent.translated_through_fk.name_id == obj.name_id
+    assert parent.translated_through_fk.name is not None
+
+    # This fails... I have no idea yet
+    fresh_parent = TranslatedModel.objects.get(pk=parent.pk)
+    assert fresh_parent.translated_through_fk.name_id == obj.name_id
+    # Boom!
+    assert fresh_parent.translated_through_fk.name is not None
