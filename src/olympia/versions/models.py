@@ -805,8 +805,8 @@ class LicenseManager(ManagerBase):
 class License(ModelBase):
     OTHER = 0
 
-    name = TranslatedField(db_column='name')
-    url = models.URLField(null=True, db_column='url')
+    name = TranslatedField()
+    url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(
