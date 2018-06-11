@@ -821,7 +821,7 @@ class License(ModelBase):
 
     objects = LicenseManager()
 
-    class Meta:
+    class Meta(ModelBase.Meta):
         db_table = 'licenses'
 
     def __unicode__(self):
