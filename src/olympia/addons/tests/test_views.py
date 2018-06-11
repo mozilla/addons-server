@@ -308,7 +308,7 @@ class TestICloudRedirect(TestCase):
     def test_redirect_with_waffle(self):
         r = self.client.get('/en-US/firefox/addon/icloud-bookmarks/')
         assert r.status_code == 302
-        assert r.get('location') == '%s/blocked/i1214/' % settings.SITE_URL
+        assert r.get('location') == '/blocked/i1214/'
 
     @override_switch('icloud_bookmarks_redirect', active=False)
     def test_redirect_without_waffle(self):
