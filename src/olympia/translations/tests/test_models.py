@@ -24,7 +24,7 @@ from olympia.translations.models import (
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
     FancyModel, TranslatedModel, UntranslatedModel,
-    TranslatedModelWithDefaultNull)
+    TranslatedModelWithDefaultNull, TranslatedModelLinkedAsForeignKey)
 
 
 pytestmark = pytest.mark.django_db
@@ -800,6 +800,8 @@ def test_translated_field_fk_lookups():
     assert parent.translated_through_fk.name_id == obj.name_id
     assert parent.translated_through_fk.name is not None
 
+    # Now make sure that the translation is properly set when fetching
+    # the object
     fresh_parent = TranslatedModel.objects.get(pk=parent.pk)
     assert fresh_parent.translated_through_fk.name_id == obj.name_id
     assert fresh_parent.translated_through_fk.name is not None
