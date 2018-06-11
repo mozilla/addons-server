@@ -103,7 +103,7 @@ class TestHomeAndIndex(TestCase):
 
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
-        response = self.client.get(url)
+        response = self.client.get(url, follow=True)
         assert response.status_code == 200
 
 
