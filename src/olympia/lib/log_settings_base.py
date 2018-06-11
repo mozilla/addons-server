@@ -45,7 +45,7 @@ loggers = {
         'level': 'ERROR',
         'propagate': True,
     },
-    'django.request': {
+    'django': {
         'handlers': ['statsd'],
         'level': 'ERROR',
         'propagate': True,
