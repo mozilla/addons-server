@@ -1338,7 +1338,7 @@ LOGGING = {
             'level': logging.DEBUG,
             'propagate': False
         },
-        'django.request': {
+        'django': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
             'propagate': True,
