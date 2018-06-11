@@ -751,6 +751,14 @@ def test_translated_field_default_null():
 
 
 def test_translated_field_fk_lookups():
+    """
+    Test that translations are properly resolved even through models
+    that are one foreign-key layer away
+    (e.g Version -> License -> Translation).
+
+    The problem here was, that we did not set `base_manager_name` on
+    the `ModelBase`. This superseeded setting `use_for_related_fields`.
+    """
     assert Translation.objects.count() == 0
     assert TranslatedModelLinkedAsForeignKey.objects.count() == 0
     obj = TranslatedModelLinkedAsForeignKey.objects.create(name='english name')
@@ -781,6 +789,7 @@ def test_translated_field_fk_lookups():
     # Now fetch the parent `TranslatedModel` and make sure that
     # all the relevant translations from `TranslatedModelLinkedAsForeignKey`
     # are properly loaded.
+    print('-------------------------------------------------------------')
     parent = TranslatedModel.objects.create(name='parent')
     parent.translated_through_fk = obj
     parent.save()
@@ -789,6 +798,7 @@ def test_translated_field_fk_lookups():
     assert parent.translated_through_fk.name_id == obj.name_id
     assert parent.translated_through_fk.name is not None
 
+    print('.............................................................')
     # This fails... I have no idea yet
     fresh_parent = TranslatedModel.objects.get(pk=parent.pk)
     assert fresh_parent.translated_through_fk.name_id == obj.name_id

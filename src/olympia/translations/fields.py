@@ -208,18 +208,6 @@ def switch(obj, new_model):
     return new_model(**dict(fields))
 
 
-def save_on_signal(obj, trans):
-    """Connect signals so the translation gets saved during obj.save()."""
-    signal = models.signals.pre_save
-
-    def cb(sender, instance, **kw):
-        if instance is obj:
-            is_new = trans.autoid is None
-            trans.save(force_insert=is_new, force_update=not is_new)
-            signal.disconnect(cb)
-    signal.connect(cb, sender=obj.__class__, weak=False)
-
-
 class _TransField(object):
 
     def __init__(self, *args, **kwargs):
