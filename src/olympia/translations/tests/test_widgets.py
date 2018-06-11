@@ -36,13 +36,11 @@ class TestWidget(TestCase):
         widget = widgets.TransInput()
         assert not widget.is_hidden
         expected_output = (
-            '<div id="trans-foo" class="trans" data-name="foo">'
-            '<input lang="en-us" name="foo_en-us" type="text"'
-            ' value="test value en" />'
-            '<input lang="fr" name="foo_fr" type="text"'
-            ' value="test value fr" />'
-            '<input class="trans-init hidden" lang="init" name="foo_init" '
-            'type="text" value="" /></div>')
+            '<div id="trans-foo" class="trans" data-name="foo"><input '
+            'type="text" name="foo_en-us" value="test value en" lang="en-us" '
+            '/><input type="text" name="foo_fr" value="test value fr" '
+            'lang="fr" /><input type="text" name="foo_init" value="" '
+            'lang="init" class="trans-init hidden" /></div>')
         assert widget.render('foo', 666) == expected_output
 
     def test_transtextarea(self):
@@ -56,13 +54,13 @@ class TestWidget(TestCase):
         widget = widgets.TransTextarea()
         assert not widget.is_hidden
         expected_output = (
-            '<div id="trans-foo" class="trans" data-name="foo">'
-            '<textarea cols="40" lang="en-us" name="foo_en-us" rows="10">\r\n'
-            'test value en</textarea>'
-            '<textarea cols="40" lang="fr" name="foo_fr" rows="10">\r\n'
-            'test value fr</textarea>'
-            '<textarea class="trans-init hidden" cols="40" lang="init" '
-            'name="foo_init" rows="10">\r\n</textarea></div>')
+            '<div id="trans-foo" class="trans" data-name="foo"><textarea '
+            'name="foo_en-us" lang="en-us" rows="10" cols="40">\ntest value en'
+            '</textarea><textarea name="foo_fr" lang="fr" rows="10" cols="40">'
+            '\ntest value fr</textarea><textarea name="foo_init" lang="init" '
+            'rows="10" cols="40" class="trans-init hidden">\n</textarea>'
+            '</div>')
+
         assert widget.render('foo', 666) == expected_output
 
     def test_value_from_datadict(self):
