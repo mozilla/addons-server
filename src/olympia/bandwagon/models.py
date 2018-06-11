@@ -510,8 +510,9 @@ class MonthlyPick(ModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()
-    locale = models.CharField(max_length=10, unique=True, null=True,
-                              blank=True)
+    locale = models.CharField(
+        max_length=10, unique=True, null=True, default='',
+        blank=True)
 
     class Meta:
         db_table = 'monthly_pick'

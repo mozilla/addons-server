@@ -434,7 +434,7 @@ class TestAddonAdmin(TestCase):
         rows = doc('#result_list tbody tr')
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/')
+            '/en-US/admin/models/addons/addon/3615/change/')
 
 
 class TestAddonManagement(TestCase):
