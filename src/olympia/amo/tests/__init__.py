@@ -454,9 +454,16 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
 
     def assertLoginRedirects(self, response, to, status_code=302):
         fxa_url = fxa_login_link(response, to)
-        return self.assert3xx(response, fxa_url, status_code)
+        self.assert3xx(
+            response=response,
+            expected_url=fxa_url,
+            status_code=status_code)
 
     def assert3xx(self, *args, **kwargs):
+        """
+        Same as Django's assertRedirects but skips the final GET verification
+        step for performance reasons and backwards compatibility.
+        """
         kwargs.setdefault('fetch_redirect_response', False)
         return self.assertRedirects(*args, **kwargs)
 
