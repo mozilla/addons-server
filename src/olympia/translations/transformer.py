@@ -67,6 +67,7 @@ def get_trans(items):
         return
 
     model = items[0].__class__
+
     # FIXME: if we knew which db the queryset we are transforming used, we
     # could make sure we are re-using the same one.
     dbname = router.db_for_read(model)

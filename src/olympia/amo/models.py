@@ -380,6 +380,13 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         # do with `addons.models:Addon`
         base_manager_name = 'objects'
 
+        # This is important: Setting this to `objects` makes sure
+        # that Django is using the manager set as `objects` on this
+        # instance reather than the `_default_manager` or even
+        # `_base_manager`. That's the only way currently to reliably
+        # tell Django to resolve translation objects / call transformers
+        base_manager_name = 'objects'
+
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
 
