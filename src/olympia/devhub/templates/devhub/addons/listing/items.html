@@ -3,7 +3,7 @@
 {% set username = request.user.username if request.user.is_authenticated() else '' %}
 {% for addon in addons %}
   <div class="item addon ignore-compatibility" data-addonid="{{ addon.id }}">
-    <div class="info">
+    <div class="info {{ amo.ADDON_TYPE_CHOICES_API.get(addon.type) }}">
       {{ dev_heading(addon, amo) }}
       {% if addon.status == amo.STATUS_NULL and not addon.has_complete_metadata() %}
         <p class="incomplete">

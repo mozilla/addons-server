@@ -1869,6 +1869,17 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_deleted = addon_factory(name=u'buffalo_deleted')
         self.addon_pending = addon_factory(name=u'pelican_pending')
 
+        # Set a few more languages on our add-ons to test sorting
+        # a bit better. https://github.com/mozilla/addons-server/issues/8354
+        self.addon_a.name = {'de': u'Ameisenbär'}
+        self.addon_a.save()
+
+        self.addon_b.name = {'de': u'Pavian'}
+        self.addon_b.save()
+
+        self.addon_c.name = {'de': u'Gepard'}
+        self.addon_c.save()
+
         self.collection.add_addon(self.addon_a)
         self.collection.add_addon(self.addon_disabled)
         self.collection.add_addon(self.addon_b)
@@ -1919,14 +1930,17 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_c.update(weekly_downloads=100)
 
         self.client.login_api(self.user)
+
         # First default sort
         self.check_result_order(
             self.client.get(self.url),
             self.addon_b, self.addon_a, self.addon_c)
+
         # Popularity ascending
         self.check_result_order(
             self.client.get(self.url + '?sort=popularity'),
             self.addon_c, self.addon_a, self.addon_b)
+
         # Popularity descending (same as default)
         self.check_result_order(
             self.client.get(self.url + '?sort=-popularity'),
@@ -1946,6 +1960,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.check_result_order(
             self.client.get(self.url + '?sort=added'),
             self.addon_b, self.addon_c, self.addon_a)
+
         # Added descending
         self.check_result_order(
             self.client.get(self.url + '?sort=-added'),
@@ -1955,10 +1970,29 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.check_result_order(
             self.client.get(self.url + '?sort=name'),
             self.addon_a, self.addon_b, self.addon_c)
+
         # Name descending
         self.check_result_order(
             self.client.get(self.url + '?sort=-name'),
             self.addon_c, self.addon_b, self.addon_a)
+
+        # Name ascending, German
+        self.check_result_order(
+            self.client.get(self.url + '?sort=name&lang=de'),
+            self.addon_a, self.addon_c, self.addon_b)
+
+        # Name descending, German
+        self.check_result_order(
+            self.client.get(self.url + '?sort=-name&lang=de'),
+            self.addon_b, self.addon_c, self.addon_a)
+
+    def test_only_one_sort_parameter_supported(self):
+        response = self.client.get(self.url + '?sort=popularity,name')
+
+        assert response.status_code == 400
+        assert response.data == [
+            'You can only specify one "sort" argument. Multiple orderings '
+            'are not supported']
 
     def test_with_deleted_or_with_hidden(self):
         response = self.send(self.url)
