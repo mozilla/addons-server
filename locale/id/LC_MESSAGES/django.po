@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-11 03:36+0000\n"
+"PO-Revision-Date: 2018-06-12 07:46+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4056,7 +4056,7 @@ msgstr ""
 "perubahan."
 
 msgid "Publish Your Add-on"
-msgstr "Publikasikan Pengaya Anda!"
+msgstr "Tayangkan Pengaya Anda!"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Punya pengaya siap pakai? Ajukan ekstensi atau tema Anda agar terdaftar di addons.mozilla.org atau tandai dan distribusikan ekstensi Anda sendiri."
@@ -4429,7 +4429,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gambarkan ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Anda memiliki banyak tab terbuka? Atur semuanya pada bilah samping yang rapi."
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hentikan pelacakan Facebook {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4447,7 +4447,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Kerja berjalan lancar dengan situs video paling populer."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4466,6 +4466,8 @@ msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_hea
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
+"Lebih dari sekedar alat tangkapan layar, Awesome Screenshot Plus memungkinkan Anda memberi keterangan gambar dengan teks dan grafis yang bisa diatur, ditambah kemampuan menyimpan dan membagikan "
+"hasilnya."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5042,7 +5044,7 @@ msgstr "FAQ Pengembang Pengaya"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui <a href=\"%(url)s\">Jejaring Pengembang Mozilla</a>. </p>"
+msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui %(addons_link_open)sJejaring Pengembang Mozilla%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Apakah berkas \".xpi\" itu?"
@@ -7298,7 +7300,7 @@ msgid "Other Applications"
 msgstr "Aplikasi Lainnya"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO mendapatkan tampilan baru. Anda ingin melihatnya?"
 
 msgid "Visit the new site"
 msgstr "Kunjungi situs baru"
@@ -7347,7 +7349,7 @@ msgid "Desktop Browser"
 msgstr "Peramban Desktop"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Bahasa lainnya"
@@ -7554,7 +7556,7 @@ msgstr "Dengan mengklik \"hapus\" akun anda akan <strong>dihapus secara permanen
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Masuk dengan alamat surel ini lagi ke %(site)s akan menimbulkan akun baru yang sama sekali tidak terkait dengan akun ini."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan peringkat anda tidak akan dihapus, tapi semuanya tidak akan diasosiasikan dengan anda lagi."
