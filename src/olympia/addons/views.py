@@ -296,18 +296,21 @@ class ESBaseFilter(BaseFilter):
 
 @non_atomic_requests
 def home(request):
+    addons = Addon.objects
+
     # Add-ons.
-    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
+    base = addons.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
+
     # This is lame for performance. Kill it with ES.
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
     # We want to display 6 Featured Extensions, Up & Coming Extensions and
     # Featured Themes.
-    featured = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_EXTENSION)[:6]
+    featured = addons.featured(
+        request.APP, request.LANG, amo.ADDON_EXTENSION)[:6]
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:6]
-    personas = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_PERSONA)[:6]
+    personas = addons.featured(
+        request.APP, request.LANG, amo.ADDON_PERSONA)[:6]
 
     # Most Popular extensions is a simple links list, we display slightly more.
     popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]

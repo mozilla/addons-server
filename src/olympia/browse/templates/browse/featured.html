@@ -17,11 +17,9 @@
     {% endtrans %}
   </p>
 
-  {% cache addons %}
   <div class="featured listing">
     <div class="featured-inner">
       {{ addon_listing_items(addons, src="recommended") }}
     </div>
   </div>
-  {% endcache %}
 {% endblock content %}

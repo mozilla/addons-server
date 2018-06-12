@@ -27,9 +27,6 @@
   {{ impala_review_list_box(addon=addon, reviews=reviews) }}
 </section>
 
-{# Cache all of this against the addon because the data doesn't change much
-   and it all depends on the addon in some way. #}
-{% cache addon %}
 <aside id="related" class="secondary metadata c">
   {% with categories = addon.categories.filter(application=APP.id) %}
     {% if categories %}
@@ -74,5 +71,3 @@
     {% endif %}
   </section>
 {% endif %}
-
-{% endcache %} {# cache addon #}
