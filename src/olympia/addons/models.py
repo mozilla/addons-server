@@ -1010,17 +1010,10 @@ class Addon(OnChangeMixin, ModelBase):
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
 
-        addons_with_authors = {
-            addon_id: sorted(users, key=lambda author: author.position)
-            for addon_id, users in itertools.groupby(
-                qs, key=lambda u: u.addon_id
-            )
-        }
-
-        for addon_id, addon in addon_dict.items():
-            if addon_id in addons_with_authors:
-                users = addons_with_authors[addon_id]
-                addon_dict[addon_id].listed_authors = users
+        qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
+            addon_dict[addon_id].listed_authors = list(users)
+        # FIXME: set listed_authors to empty list on addons without listed
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
