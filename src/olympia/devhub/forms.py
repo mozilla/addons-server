@@ -108,7 +108,8 @@ class LicenseRadioSelect(forms.RadioSelect):
 
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
-            context['label'] = mark_safe(unicode(context['label']) + ' ' + details)
+            context['label'] = mark_safe(
+                unicode(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
             context['attrs']['data-cc'] = license.icons
         context['attrs']['data-name'] = unicode(license)
