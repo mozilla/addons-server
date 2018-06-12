@@ -220,7 +220,7 @@ class TestMonthlyPick(TestCase):
         data = formset(initial(self.f), dupe, initial_count=1)
         self.client.post(self.url, data)
         assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].locale == ''
+        assert MonthlyPick.objects.all()[1].locale is None
 
     def test_insert_long_blurb(self):
         dupe = initial(self.f)
