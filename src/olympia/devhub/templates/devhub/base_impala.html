@@ -1,7 +1,7 @@
 {% extends "impala/base.html" %}
  
 {% block user_login_include %}
-  {% with "true" as devhub_backlink %}
+  {% with devhub_backlink="True" %} 
     {% include "impala/user_login.html" %}
   {% endwith %}
 {% endblock %}
