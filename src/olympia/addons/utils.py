@@ -12,11 +12,11 @@ from django.utils.translation import ugettext
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.amo.utils import normalize_string
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleList, LocaleValidationError
+from olympia.lib.cache import memoize, memoize_key
 
 
 log = olympia.core.logger.getLogger('z.redis')
