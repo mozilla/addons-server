@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-10 16:49+0000\n"
+"PO-Revision-Date: 2018-06-12 07:46+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3978,12 +3978,14 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Masuk ke Sunting dan Perbarui Pengaya Anda"
 
 msgid "Help us improve the developer experience"
-msgstr ""
+msgstr "Bantu kami meningkatkan pengalaman pengembang"
 
 msgid ""
 "We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
 "development work."
 msgstr ""
+"Kami tertarik dengan masukan Anda mengenai pengalaman pengembangan ekstensi! Ikuti survei singkat untuk memberi tahu kami dokumentasi, APIs, dan alat apa saja yang sekiranya paling berguna untuk "
+"kerja pengembangan Anda."
 
 msgid "Take Survey"
 msgstr "Ikuti Survei"
@@ -3992,7 +3994,7 @@ msgid "Welcome Back"
 msgstr "Selamat Datang Kembali"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Bantu pengguna menemukan ekstensi Anda dengan membuat daftar yang menarik."
 
 msgid "Learn How"
 msgstr "Pelajari Caranya"
@@ -4054,7 +4056,7 @@ msgstr ""
 "perubahan."
 
 msgid "Publish Your Add-on"
-msgstr "Publikasikan Pengaya Anda!"
+msgstr "Tayangkan Pengaya Anda!"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Punya pengaya siap pakai? Ajukan ekstensi atau tema Anda agar terdaftar di addons.mozilla.org atau tandai dan distribusikan ekstensi Anda sendiri."
@@ -4075,7 +4077,7 @@ msgid "Compatibility Test"
 msgstr "Uji Keselarasan"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Periksa apakah ekstensi Anda selaras dengan Firefox."
 
 msgid "Transfer ownership"
 msgstr "Pengalihan kepemilikan"
@@ -4427,7 +4429,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gambarkan ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Anda memiliki banyak tab terbuka? Atur semuanya pada bilah samping yang rapi."
 
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hentikan pelacakan Facebook {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4445,7 +4447,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "Kerja berjalan lancar dengan situs video paling populer."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4464,6 +4466,8 @@ msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_hea
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
+"Lebih dari sekedar alat tangkapan layar, Awesome Screenshot Plus memungkinkan Anda memberi keterangan gambar dengan teks dan grafis yang bisa diatur, ditambah kemampuan menyimpan dan membagikan "
+"hasilnya."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5040,7 +5044,7 @@ msgstr "FAQ Pengembang Pengaya"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui <a href=\"%(url)s\">Jejaring Pengembang Mozilla</a>. </p>"
+msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui %(addons_link_open)sJejaring Pengembang Mozilla%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Apakah berkas \".xpi\" itu?"
@@ -5894,9 +5898,8 @@ msgstr "Lainnya (isi sendiri)"
 msgid "This field is required."
 msgstr "Bidang ini wajib diisi."
 
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Anda bisa memperbarui tema desain anda di sini saat telah disetujui."
+msgstr "Anda tidak bisa mengubah pengaya dalam sebuah tinjauan setelah tinjauan itu selesat dibuat."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr "Anda tidak bisa membalas tinjauan yang merupakan balasan."
@@ -5907,25 +5910,22 @@ msgstr "Anda tidak dapat mengubah versi pengaya yang ditinjau setelah tinjauan d
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Versi pengaya ini tidak ada atau tidak tersedia untuk umum."
 
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "seseorang menulis ulasan pengaya saya"
+msgstr "Anda tidak dapat meninggalkan tinjauan pada pengaya Anda sendiri."
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
+msgstr "Anda tidak bisa meninggalkan lebih dari satu tinjauan untuk versi pengaya yang sama. "
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Terima kasih, ulasan ini telah ditandai untuk persetujuan editor."
+msgstr "Terima kasih, tinjauan ini telah ditandai untuk persetujuan peninjau."
 
 msgid "Add a review for {0}"
 msgstr "Tambahkan ulasan untuk {0}"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -5936,10 +5936,11 @@ msgid ""
 msgstr ""
 "<h2>Ingatlah hal ini:</h2> <ul> <li> Menulislah seperti saat Anda menceritakan pengalaman menggunakan pengaya ini pada teman Anda. Berikan rincian yang spesifik dan membantu, misalnya fitur yang "
 "anda sukai dan/atau tidak sukai, betapa mudah penggunaannya, dan kekurangan apapun yang dimilikinya. Hindari bahasa umum misalnya \"Hebat\" atau \"Jelek\" terkecuali jika Anda bisa memberikan alasan"
-" mengapa Anda berpendapat demikian. </li> <li> Harap jangan melaporkan bug di ulasan. Kami tidak membuat alamat surel Anda tersedia bagi pengembang pengaya dan barangkali mereka perlu menghubungi "
-"Anda untuk memecahkan masalah Anda. Lihat <a href=\"%(support)s\">bagian dukungan</a> untuk mencari tahu bagaimana cara mendapatkan bantuan bagi pengaya ini. </li> <li>Harap jaga agar ulasan tetap "
-"bersih, hindari penggunaan bahasa yang tidak pantas dan jangan memasukkan informasi pribadi apapun </li> </ul> <p>Harap membaca <a href=\"%(guide)s\">Panduan Ulasan</a> untuk rincian lebih lanjut "
-"mengenai ulasan pengguna.</p>"
+" mengapa Anda berpendapat demikian. </li> <li> Harap jangan melaporkan bug di ulasan. Kami tidak membuat alamat surel Anda tersedia bagi pengembang pengaya, supaya mereka tidak dapat menghubungi "
+"Anda untuk memecahkan masalah Anda. Lihat <a href=\"%(support)s\">bagian dukungan</a> pengaya ini untuk mencari tahu apakah ada bantuan. Anda juga bisa mencoba menghubungi <a "
+"href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">komunitas pengaya</a> untuk meminta bantuan. </li> <li>Harao tetap menjaga tinjauan bersih, hindari penggunaan bahasa yang "
+"tidak pantas dan jangan menyebutkan informasi personal apa pun. </li> </ul> <p>Silakan membaca <a href=\"%(guide)s\">Panduan Tinjauan</a> untuk informasi lebih lanjut tentang tinjauan pengguna "
+"pengaya.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Membalas ulasan oleh {0}"
@@ -7299,7 +7300,7 @@ msgid "Other Applications"
 msgstr "Aplikasi Lainnya"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO mendapatkan tampilan baru. Anda ingin melihatnya?"
 
 msgid "Visit the new site"
 msgstr "Kunjungi situs baru"
@@ -7348,7 +7349,7 @@ msgid "Desktop Browser"
 msgstr "Peramban Desktop"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Bahasa lainnya"
@@ -7555,7 +7556,7 @@ msgstr "Dengan mengklik \"hapus\" akun anda akan <strong>dihapus secara permanen
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Masuk dengan alamat surel ini lagi ke %(site)s akan menimbulkan akun baru yang sama sekali tidak terkait dengan akun ini."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan peringkat anda tidak akan dihapus, tapi semuanya tidak akan diasosiasikan dengan anda lagi."
