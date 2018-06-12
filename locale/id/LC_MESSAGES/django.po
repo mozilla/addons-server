@@ -5044,7 +5044,7 @@ msgstr "FAQ Pengembang Pengaya"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui <a href=\"%(url)s\">Jejaring Pengembang Mozilla</a>. </p>"
+msgstr "<h3>Bagaimana cara membangun Pengaya?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana membangun pengaya melalui %(addons_link_open)sJejaring Pengembang Mozilla%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Apakah berkas \".xpi\" itu?"
