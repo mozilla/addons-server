@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-12 07:09+0000\n"
+"PO-Revision-Date: 2018-06-12 07:46+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7556,7 +7556,7 @@ msgstr "Dengan mengklik \"hapus\" akun anda akan <strong>dihapus secara permanen
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Masuk dengan alamat surel ini lagi ke %(site)s akan menimbulkan akun baru yang sama sekali tidak terkait dengan akun ini."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan peringkat anda tidak akan dihapus, tapi semuanya tidak akan diasosiasikan dengan anda lagi."
