@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.safestring import mark_safe
 
 import jinja2
 import waffle
@@ -94,7 +95,26 @@ class DeleteForm(forms.Form):
 
 
 class LicenseRadioSelect(forms.RadioSelect):
-    pass
+
+    def create_option(self, name, value, label, selected, index,
+                      subindex=None, attrs=None):
+        context = super(LicenseRadioSelect, self).create_option(
+            name=name, value=value, label=label, selected=selected,
+            index=index, subindex=subindex, attrs=attrs)
+
+        link = (u'<a class="xx extra" href="%s" target="_blank" '
+                u'rel="noopener noreferrer">%s</a>')
+
+        license = self.choices[index][1]
+
+        if hasattr(license, 'url') and license.url:
+            details = link % (license.url, ugettext('Details'))
+            context['label'] = mark_safe(unicode(context['label']) + ' ' + details)
+        if hasattr(license, 'icons'):
+            context['attrs']['data-cc'] = license.icons
+        context['attrs']['data-name'] = unicode(license)
+
+        return context
 
 
 class LicenseForm(AMOModelForm):
