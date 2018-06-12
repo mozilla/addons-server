@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.core import mail
-from django.utils import translation
 
 import mock
 
@@ -16,27 +15,6 @@ from olympia.users.models import UserProfile
 
 class TestRatingModel(TestCase):
     fixtures = ['ratings/test_models']
-
-    def test_translations(self):
-        translation.activate('en-US')
-
-        # There's en-US and de translations.  We should get en-US.
-        r1 = Rating.objects.get(id=1)
-        self.trans_eq(r1.body, 'r1 body en', 'en-US')
-
-        # There's only a de translation, so we get that.
-        r2 = Rating.objects.get(id=2)
-        self.trans_eq(r2.body, 'r2 body de', 'de')
-
-        translation.activate('de')
-
-        # en and de exist, we get de.
-        r1 = Rating.objects.get(id=1)
-        self.trans_eq(r1.body, 'r1 body de', 'de')
-
-        # There's only a de translation, so we get that.
-        r2 = Rating.objects.get(id=2)
-        self.trans_eq(r2.body, 'r2 body de', 'de')
 
     def test_soft_delete(self):
         assert Rating.objects.count() == 2
@@ -129,7 +107,7 @@ class TestRatingModel(TestCase):
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
-            'body': 'r1 body en',
+            'body': 'r1 body',
             'is_flagged': True,
             'addon_title': 'my addon name',
             'addon_id': 4,
@@ -160,7 +138,7 @@ class TestRatingModel(TestCase):
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
-            'body': 'r1 body en',
+            'body': 'r1 body',
             'is_flagged': True,
             'addon_title': 'my addon name',
             'addon_id': 4,

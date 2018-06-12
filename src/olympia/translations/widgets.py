@@ -47,9 +47,14 @@ class TransMulti(forms.widgets.MultiWidget):
     choices = None  # Django expects widgets to have a choices attribute.
 
     def __init__(self, attrs=None):
-        # We set up the widgets in render since every Translation needs a
-        # different number of widgets.
-        super(TransMulti, self).__init__(widgets=[], attrs=attrs)
+        # Parent implementation for MultiWidget would instantiate self.widgets,
+        # but in our case it hasn't been set yet, because we need the value
+        # which contains all the translations, which is only passed at render()
+        # time.
+        # We do need self.widgets to be non-empty in order for is_hidden to
+        # work, so we create a dummy one. It will also serve as fallback when
+        # there is no value set already.
+        super(TransMulti, self).__init__(widgets=[self.widget()], attrs=attrs)
 
     def render(self, name, value, attrs=None):
         self.name = name
@@ -57,10 +62,8 @@ class TransMulti(forms.widgets.MultiWidget):
         if value:
             self.widgets = [self.widget() for _ in value]
         else:
-            # Give an empty widget in the default locale.
             default_locale = getattr(self, 'default_locale',
                                      translation.get_language())
-            self.widgets = [self.widget()]
             value = [Translation(locale=default_locale)]
         return super(TransMulti, self).render(name, value, attrs)
 
@@ -101,12 +104,17 @@ class TransMulti(forms.widgets.MultiWidget):
         return rv
 
     def format_output(self, widgets):
-        s = super(TransMulti, self).format_output(widgets)
+        # Gather output for all widgets as normal...
+        rendered_widgets = super(TransMulti, self).format_output(widgets)
+        # ...But also add a widget that'll be cloned for when we want to add
+        # a new translation. Hide it by default, it's only used in devhub, not
+        # the admin (which doesn't need to add new translations).
         init = self.widget().render(self.name + '_',
                                     Translation(locale='init'),
-                                    {'class': 'trans-init'})
+                                    {'class': 'trans-init hidden'})
+        # Wrap it all inside a div that the javascript will look for.
         return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
-            self.name, self.name, s, init)
+            self.name, self.name, rendered_widgets, init)
 
 
 class _TransWidget(object):

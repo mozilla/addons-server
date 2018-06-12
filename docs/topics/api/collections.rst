@@ -179,6 +179,7 @@ This endpoint lists the add-ons in a collection, together with collector's notes
 
 All sort parameters can be reversed, e.g. '-added' for descending dates.
 The default sorting is by popularity, descending ('-popularity').
+There can only be one sort parameter, multiple orderings are not supported.
 
 
 .. _collection-addon-filtering-param:

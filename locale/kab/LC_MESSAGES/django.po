@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-07 00:19+0000\n"
+"PO-Revision-Date: 2018-06-11 17:36+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2915,7 +2915,7 @@ msgid "Update Compatibility"
 msgstr "Aleqqem n umṣada"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Aseggem n telɣut n yisnasen dagi ad yeǧǧ iseqdacen ad sbedden azegrir-ik, ɣas akken ameskan n usebeddi deg ukemmus yemmal-d d akken azegrir ur yemṣada ara."
 
 msgid "Supported Versions"
 msgstr "Ileqman yettwasefraken"
@@ -2955,7 +2955,7 @@ msgid "Preview of listed version"
 msgstr "Taskant n lqem teffeɣ-d"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Taskant tezga deg usirew. Ma ulac aɣilif, ales aɛraḍ tikelt-nniḍen neɣ smiren asebter."
 
 msgid "Manage Authors & License"
 msgstr "Sefrek imeskaren & iselkinen"
@@ -2970,6 +2970,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> <li><b>Aneflay "
+":</b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Talγut tazadurt"
@@ -3864,7 +3866,7 @@ msgid "Site Status"
 msgstr "Addad n usmel"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext : sefruri & sekyed isiɣzaf"
 
 msgid "Compatibility Checker"
 msgstr "Asenqad n umṣada"
@@ -3921,7 +3923,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Kcem akken ad tẓergeḍ neɣ ad tleqmeḍ azegrir inek"
 
 msgid "Help us improve the developer experience"
-msgstr ""
+msgstr "Mudd afus ad nernerni tarmit n uneflay"
 
 msgid ""
 "We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
@@ -4252,7 +4254,7 @@ msgid "Reply"
 msgstr "Err"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Tuman n uzegrir"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr ""
@@ -4455,7 +4457,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Yir aɣbaṛ"
 
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
@@ -4490,24 +4492,24 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Tuccḍa tarussint."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "Uɣal ar ucegger"
 
 msgid "Back to add-on"
 msgstr "Uɣal ar uzegrir"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Lqem: %(version)s &bull; Teɣzi: %(size)s &bull; SHA256 adsil: %(sha256)s &bull; Anaw Mime: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Takanit n yifuyla: Ifecka n imsekyaden"
 
 msgid "File Viewer :: Reviewer tools"
 msgstr "Ameskan n ufaylu :: Ifecka n imcegger"
@@ -4516,7 +4518,7 @@ msgid "Validation failed:"
 msgstr "Asentem ur yeddi ara:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Agbur n ufaylu ur yettwasefrak ara i usebṛureq n tseddast"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -4541,7 +4543,7 @@ msgid "Add-on SDK Version:"
 msgstr "Lqem n SDK n uzegrir:"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Aseḥbes n usiẓi:"
 
 msgid "Up file"
 msgstr "Sali afaylu"
@@ -4568,7 +4570,7 @@ msgid "Hide or unhide tree"
 msgstr "Ffer neq sken aseklu"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Uɣal neq ala ar izirig"
 
 msgid "No files in the uploaded file."
 msgstr "Ulac ifuyla deg ufaylu yulin."
@@ -5203,7 +5205,7 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Wayeḍ (ad d-yefk asfaylu udhim i wugar n telɣut)"
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
 msgstr ""
@@ -5620,7 +5622,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Acu ara yeḍrun ar zdat"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Ma tqebleḍd</strong> ad tettekiḍ:"
@@ -5638,7 +5640,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Ffeɣ si tezrawt"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""

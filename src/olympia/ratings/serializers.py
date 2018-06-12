@@ -16,11 +16,6 @@ from olympia.versions.models import Version
 
 
 class BaseRatingSerializer(serializers.ModelSerializer):
-    # body is a TranslatedField, but there is never more than one translation
-    # for each review - it's essentially useless. Lolno, actually some Ratings
-    # *do* have additional translations, but it's unsupported behavior anyway.
-    # Because of that we use a simple CharField in the API, hiding the fact
-    # that it's a TranslatedField underneath.
     addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
     is_latest = serializers.BooleanField(read_only=True)
