@@ -511,7 +511,7 @@ class MonthlyPick(ModelBase):
     blurb = models.TextField()
     image = models.URLField()
     locale = models.CharField(
-        max_length=10, unique=True, null=True, default='',
+        max_length=10, unique=True, null=True, default=None,
         blank=True)
 
     class Meta:
