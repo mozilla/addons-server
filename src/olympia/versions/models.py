@@ -7,7 +7,6 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
@@ -404,8 +403,11 @@ class Version(OnChangeMixin, ModelBase):
     def is_compatible_by_default(self):
         """Returns whether or not the add-on is considered compatible by
         default."""
-        return not self.files.filter(
-            Q(binary_components=True) | Q(strict_compatibility=True)).exists()
+        # Use self.all_files directly since that's cached and more potentially
+        # prefetched through a transformer already
+        return not any([
+            file for file in self.all_files
+            if file.binary_components or file.strict_compatibility])
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
@@ -424,12 +426,13 @@ class Version(OnChangeMixin, ModelBase):
         the app version ranges that this particular version is incompatible
         with.
         """
-        from olympia.addons.models import CompatOverride
-        cos = CompatOverride.objects.filter(addon=self.addon)
-        if not cos:
+        overrides = list(self.addon.compatoverride_set.all())
+
+        if not overrides:
             return []
+
         app_versions = []
-        for co in cos:
+        for co in overrides:
             for range in co.collapsed_ranges():
                 if (version_int(range.min) <= version_int(self.version) <=
                         version_int(range.max)):
@@ -543,10 +546,10 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and files to the versions."""
-        ids = set(v.id for v in versions)
         if not versions:
             return
 
+        ids = set(v.id for v in versions)
         # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
                .select_related('min', 'max')

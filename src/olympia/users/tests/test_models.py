@@ -36,12 +36,26 @@ class TestUserProfile(TestCase):
         addon.addonuser_set.create(user=user)
 
         assert not user.is_developer  # it's a cached property...
-        del user.is_developer  # ... let's reset it and try again.
+        del user.cached_developer_status  # ... let's reset it and try again.
         assert user.is_developer
 
         addon.delete()
-        del user.is_developer
+        del user.cached_developer_status
         assert not user.is_developer
+
+    def test_is_addon_developer(self):
+        user = UserProfile.objects.get(pk=4043307)
+        assert not user.addonuser_set.exists()
+        assert not user.is_addon_developer
+        addon = Addon.objects.get(pk=3615)
+        addon.addonuser_set.create(user=user)
+
+        del user.cached_developer_status
+        assert user.is_addon_developer
+
+        addon.delete()
+        del user.cached_developer_status
+        assert not user.is_addon_developer
 
     def test_delete(self):
         user = UserProfile.objects.get(pk=4043307)

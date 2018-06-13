@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-05 14:53+0000\n"
+"PO-Revision-Date: 2018-06-13 11:06+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6230,7 +6230,7 @@ msgid "Rendered Preview"
 msgstr "Sletta vurderingar"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Bakgrunnsfil {0} av {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "Meir om denne utvidinga"
@@ -6775,10 +6775,10 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Tema-søkjeresultat for {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Tema-søkjeresultat"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
@@ -6794,7 +6794,7 @@ msgstr "{0} :: Tagg"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Søkjresultat for merkelappen \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
@@ -7251,7 +7251,7 @@ msgid "Profile Photo"
 msgstr "Profilfoto"
 
 msgid "Addons"
-msgstr ""
+msgstr "Tillegg"
 
 msgid "Activity Logs"
 msgstr "Aktivitetsloggar"
