@@ -53,10 +53,10 @@ class ThemeUpdate(object):
             return ''
 
     def get_headers(self, length):
-        return [('Cache-Control', 'public, max-age=3600'),
+        return [('Cache-Control', 'public, max-age=86400'),
                 ('Content-Length', str(length)),
                 ('Content-Type', 'application/json'),
-                ('Expires', format_date_time(time() + 3600)),
+                ('Expires', format_date_time(time() + 86400)),
                 ('Last-Modified', format_date_time(time()))]
 
     def get_update(self):
