@@ -26,7 +26,7 @@ from jinja2 import escape as jinja2_escape
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize
+from olympia.lib.cache import memoize
 from olympia.amo.decorators import use_master
 from olympia.amo.models import ModelBase, OnChangeMixin, UncachedManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file

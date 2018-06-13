@@ -3,7 +3,7 @@ import pytest
 from django.core.cache import cache
 
 from olympia.zadmin.models import set_config, Config
-from olympia.amo.cache_nuggets import assert_cache_requests
+from olympia.lib.cache import assert_cache_requests
 
 
 @pytest.mark.django_db

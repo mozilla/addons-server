@@ -26,7 +26,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
-from olympia.amo.cache_nuggets import memoize
+from olympia.lib.cache import memoize
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
