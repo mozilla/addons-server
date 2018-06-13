@@ -1,6 +1,4 @@
-import base64
 import json
-import os
 import posixpath
 import re
 from time import time
@@ -9,7 +7,7 @@ from wsgiref.handlers import format_date_time
 from olympia.constants import base
 
 from services.utils import log_configure, log_exception, mypool
-from services.utils import settings, user_media_path, user_media_url
+from services.utils import settings, user_media_url
 
 # This has to be imported after the settings (utils).
 from django_statsd.clients import statsd
@@ -36,21 +34,6 @@ class ThemeUpdate(object):
         if not self.cursor:
             self.conn = mypool.connect()
             self.cursor = self.conn.cursor()
-
-    def base64_icon(self, addon_id):
-        path = self.image_path('icon.jpg')
-        if not os.path.isfile(path):
-            return ''
-
-        try:
-            with open(path, 'r') as f:
-                return base64.b64encode(f.read())
-        except IOError as e:
-            if len(e.args) == 1:
-                log_exception('I/O error: {0}'.format(e[0]))
-            else:
-                log_exception('I/O error({0}): {1}'.format(e[0], e[1]))
-            return ''
 
     def get_headers(self, length):
         return [('Cache-Control', 'public, max-age=86400'),
@@ -148,7 +131,6 @@ class ThemeUpdate(object):
                                          '/addon/%s/' % row['slug']),
             'previewURL': self.image_url('preview.png'),
             'iconURL': self.image_url('icon.png'),
-            'dataurl': self.base64_icon(row['addon_id']),
             'accentcolor': '#%s' % accent if accent else None,
             'textcolor': '#%s' % text if text else None,
             'updateURL': self.locale_url(settings.VAMO_URL,
@@ -163,19 +145,6 @@ class ThemeUpdate(object):
             data['updateURL'] += '?src=gp'
 
         return json.dumps(data)
-
-    def image_path(self, filename):
-        row = self.data['row']
-
-        # Special cased for non-AMO-uploaded themes imported from getpersonas.
-        if row['persona_id'] != 0:
-            if filename == 'preview.png':
-                filename = 'preview.jpg'
-            elif filename == 'icon.png':
-                filename = 'preview_small.jpg'
-
-        return os.path.join(user_media_path('addons'), str(row['addon_id']),
-                            filename)
 
     def image_url(self, filename):
         row = self.data['row']
