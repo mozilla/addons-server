@@ -76,6 +76,7 @@ ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
 LOGGING = {
+    'version': 1,
     'loggers': {}
 }
 
