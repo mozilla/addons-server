@@ -68,7 +68,7 @@ script:
       if [[ $TOXENV == "amo-locales-and-signing" ]]; then
          ./scripts/start-autograph.sh
       fi
-      RUNNING_IN_CI=True tox -v
+      RUNNING_IN_CI=True tox
     fi
   - |
     if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
