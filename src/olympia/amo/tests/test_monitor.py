@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.test.utils import override_settings
 
+import pytest
 import responses
 
 from mock import Mock, patch
@@ -88,6 +89,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert redis_results == {'master': mocked_redis_info}
 
+    @pytest.mark.signing
     @responses.activate
     def test_signer(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])

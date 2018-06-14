@@ -24,6 +24,7 @@ from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
 
+@pytest.mark.signing
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestPackaged(TestCase):
 

@@ -8,17 +8,35 @@ env:
   global:
     - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
     - AUTOGRAPH_SERVER_URL: http://localhost:5500
-  matrix:
-  - TOXENV=codestyle
-  - TOXENV=docs
-  - TOXENV=assets
-  - TOXENV=es
-  - TOXENV=addons
-  - TOXENV=devhub
-  - TOXENV=reviewers
-  - TOXENV=amo-locales-and-signing
-  - TOXENV=users-and-accounts
-  - TOXENV=main
+    - PYTHONPATH: src
+    - ADDONS_LINTER_BIN: $TRAVIS_BUILD_DIR/node_modules/.bin/addons-linter
+    - DJANGO_SETTINGS_MODULE: settings_test
+    - RUNNING_IN_CI: True
+
+stages:
+  - name: codestyle
+  - name: docs
+  - name: assets
+  - name: elasticsearch
+    if: type IN (pull_request, push)
+    script: |
+      make -f Makefile-docker update_deps
+      pytest -m "es_tests and not needs_locales_compilation" src/
+  - &run-pytest
+    if: type IN (pull_request, push)
+    stage: test
+    script: |
+      make -f Makefile-docker update_deps
+      pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
+  - <<: *run-pytest
+    env: TEST_GROUP=1
+  # - <<: *test-signing
+  #   script: ./scripts/start-autograph.sh
+  # - name: locale-dependend-tests
+  #   -m 'needs_locales_compilation'
+  - name: extract-locales
+    if: type = cron AND branch = master
+    script: bash scripts/travis-extract-l10n.sh
 
 cache:
   pip: true
@@ -54,30 +72,13 @@ install:
   - nvm deactivate
   - nvm install 6
   - nvm use 6
-  - pip install --upgrade pip wheel setuptools tox==2.9.1
+  - pip install --upgrade pip wheel setuptools pytest-test-groups
 
 before_script:
   - mysql --version
   - node --version
   - java -version
   - curl -v http://localhost:9200/
-
-script:
-  - |
-    if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
-      if [[ $TOXENV == "amo-locales-and-signing" ]]; then
-         ./scripts/start-autograph.sh
-      fi
-      RUNNING_IN_CI=True tox -v
-    fi
-  - |
-    if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
-      # Only run the extraction on "main" environment to avoid creating
-      # 8 pull requests for each tox environment.
-      if [[ $TOXENV == "main" ]]; then
-          bash scripts/travis-extract-l10n.sh
-      fi
-    fi
 
 notifications:
   irc:
