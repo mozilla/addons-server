@@ -19,21 +19,23 @@ aliases:
     stage: main tests
     script: |
       make -f Makefile-docker update_deps
-      pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
+      pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=$PYTEST_TEST_GROUP src/
 
 
 jobs:
   include:
     - stage: main tests
-      name: Flake8
+      env: TEST=flake8
       script: |
         pip install -r requirements/flake8.txt
         make flake8
     - stage: main tests
+      env: TEST=docs
       script: |
         pip install -r requirements/docs.txt
         make -f Makefile-docker docs SPHINXOPTS='-nW'
     - stage: main tests
+      env: TEST=assets
       script: |
         make -f Makefile-docker update_deps
         make -f Makefile-docker update_assets
@@ -43,11 +45,25 @@ jobs:
         make -f Makefile-docker update_deps
         pytest -m "es_tests and not needs_locales_compilation" src/
     - <<: *run-pytest
-      env: TEST_GROUP=1
+      env: PYTEST_TEST_GROUP=1
     - <<: *run-pytest
-      env: TEST_GROUP=2
+      env: PYTEST_TEST_GROUP=2
     - <<: *run-pytest
-      env: TEST_GROUP=3
+      env: PYTEST_TEST_GROUP=3
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=4
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=5
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=6
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=7
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=8
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=9
+    - <<: *run-pytest
+      env: PYTEST_TEST_GROUP=10
 
   # # - <<: *test-signing
   # #   script: ./scripts/start-autograph.sh
