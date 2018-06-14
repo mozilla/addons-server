@@ -19,7 +19,7 @@ aliases:
     stage: main tests
     script: |
       make -f Makefile-docker update_deps
-      pytest -n 2 -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=$PYTEST_TEST_GROUP src/
+      pytest -n 2 -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=8 --test-group=$PYTEST_TEST_GROUP src/
 
 
 jobs:
@@ -61,10 +61,6 @@ jobs:
       env: PYTEST_TEST_GROUP=7
     - <<: *run-pytest
       env: PYTEST_TEST_GROUP=8
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=9
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=10
 
   # # - <<: *test-signing
   # #   script: ./scripts/start-autograph.sh
