@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 16:01+0000\n"
+"PO-Revision-Date: 2018-06-14 16:25+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4412,7 +4412,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Pemblokiran iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Persiapan sederhana memberikan Anda kendali atas iklan yang Anda lihat dan bagaimana Anda dilacak di Indonesia."
 
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gambarkan ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4430,7 +4430,7 @@ msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cari gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid " Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr " Melakukan pencarian gambar terbalik dari serangkaian mesin-mesin."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4448,7 +4448,7 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Lusinan emoji keren untuk setiap kebutuhan—hanya tinggal sekali klik saja."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -4498,7 +4498,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Dukungan terendah \"strict_min_version\" adalah 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Tidak bisa menemukan versi min/maks. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandung versi yang tidak didukung?"
@@ -4512,7 +4512,7 @@ msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Nama berkas di dalam berkas tidak valid. Mohon pastikan semua nama berkas adalah terenkode utf-8 atau latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4551,7 +4551,7 @@ msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Anda tidak dapat memasukkan pengaya dengan akhiran guid %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak dapat mengajukan Ekstensi Resmi Mozilla"
@@ -5154,7 +5154,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak bisa meninggalkan lebih dari satu tinjauan untuk versi pengaya yang sama. "
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Penilaian ini tidak dapat ditandai karena tidak ada teks ulasan sama sekali."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Terima kasih, tinjauan ini telah ditandai untuk persetujuan peninjau."
@@ -5338,7 +5338,7 @@ msgid "Applications:"
 msgstr "Aplikasi:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Membutuhkan pengembang untuk merespon kurang dari…"
 
 msgid "days"
 msgstr "hari"
@@ -5394,7 +5394,7 @@ msgid "Is locked by a reviewer."
 msgstr "Dikunci oleh peninjau."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Memiliki set penandaan tidak aktif persetujuan otomatis."
 
 msgid "Duplicate Submission"
 msgstr "Menggandakan Pendaftaran"
@@ -5554,10 +5554,10 @@ msgid "Deleted Themes Log"
 msgstr "Log Tema yang Dihapus"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderasi Penilaian Pengguna"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Penilaian yang Perlu Dimoderasi ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Log Ulasan Dimoderasi"
@@ -5826,7 +5826,7 @@ msgid "The developer has provided source code."
 msgstr "Pengembang telah menyediakan kode sumber."
 
 msgid "Weight:"
-msgstr ""
+msgstr "Beban:"
 
 msgid "Not Auto Approved Because"
 msgstr "Tidak Disetujui Otomatis Karena"
@@ -5856,7 +5856,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Papan tulis adalah tempat bertukar informasi yang relevan untuk pengaya ini (apa pun versinya), antara pengembang dan peninjau. Hal ini terlihat dan dapat disunting oleh keduanya."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Papan tulis privat digunakan untuk pertukaran informasi antar pengulas yang independen terhadap versi. Mohon menjaga bahasa agar tetap obyektif. Ini hanya dapat dilihat oleh pengulas."
 
 msgid "Update whiteboards"
 msgstr "Perbarui papan tulis"
@@ -6115,7 +6115,7 @@ msgid "Updates"
 msgstr "Pembaruan"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Melebihi batas panjang maksimum kueri."
 
 msgid "Most popular this week"
 msgstr "Paling populer minggu ini"
@@ -6692,7 +6692,7 @@ msgid "Occupation"
 msgstr "Pekerjaan"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Anda dapat mengubah alamat suret Anda di Firefox Accounts."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL ini formatnya tidak valid. Contoh URL yang valid adalah http://example.com/namahalaman."
@@ -6730,7 +6730,7 @@ msgid "someone writes a review of my add-on"
 msgstr "seseorang menulis ulasan pengaya saya"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "dapatkan kabar dan kegiatan terbaru tentang pengembang pengaya (termasuk nawala about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kecocokan pengaya saya tidak bisa ditingkatkan"
