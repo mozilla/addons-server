@@ -15,19 +15,19 @@ env:
 
 jobs:
   include:
-    - stage: codestyle
+    - stage: main tests
       script: |
         pip install -r requirements/flake8.txt
         make flake8
-    - stage: docs
+    - stage: main tests
       script: |
         pip install -r requirements/docs.txt
         make -f Makefile-docker docs SPHINXOPTS='-nW'
-    - stage: assets
+    - stage: main tests
       script: |
         make -f Makefile-docker update_deps
         make -f Makefile-docker update_assets
-    - stage: elasticsearch
+    - stage: main tests
       if: type IN (pull_request, push)
       script: |
         make -f Makefile-docker update_deps
