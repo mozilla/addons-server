@@ -12,7 +12,7 @@ import sqlalchemy.pool as pool
 from services.settings import settings
 
 import olympia.core.logger
-from olympia.lib.log_settings_base import formatters, handlers
+# from olympia.lib.log_settings_base import formatters, handlers
 
 # Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
@@ -93,21 +93,22 @@ mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 def log_configure():
     """You have to call this to explicitly configure logging."""
-    cfg = {
-        'version': 1,
-        'filters': {},
-        'formatters': dict(json=formatters['json']),
-        'handlers': dict(mozlog=handlers['mozlog']),
-        'loggers': {
-            'z': {'handlers': ['mozlog'], 'level': logging.INFO},
-        },
-        'root': {},
-        # Since this configuration is applied at import time
-        # in verify.py we don't want it to clobber other logs
-        # when imported into the marketplace Django app.
-        'disable_existing_loggers': False,
-    }
-    logging.config.dictConfig(cfg)
+    return
+    # cfg = {
+    #     'version': 1,
+    #     'filters': {},
+    #     'formatters': dict(json=formatters['json']),
+    #     'handlers': dict(mozlog=handlers['mozlog']),
+    #     'loggers': {
+    #         'z': {'handlers': ['mozlog'], 'level': logging.INFO},
+    #     },
+    #     'root': {},
+    #     # Since this configuration is applied at import time
+    #     # in verify.py we don't want it to clobber other logs
+    #     # when imported into the marketplace Django app.
+    #     'disable_existing_loggers': False,
+    # }
+    # logging.config.dictConfig(cfg)
 
 
 def log_exception(data):
