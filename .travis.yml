@@ -13,30 +13,42 @@ env:
     - DJANGO_SETTINGS_MODULE: settings_test
     - RUNNING_IN_CI: True
 
-stages:
-  - name: codestyle
-  - name: docs
-  - name: assets
-  - name: elasticsearch
-    if: type IN (pull_request, push)
-    script: |
-      make -f Makefile-docker update_deps
-      pytest -m "es_tests and not needs_locales_compilation" src/
-  - &run-pytest
-    if: type IN (pull_request, push)
-    stage: test
-    script: |
-      make -f Makefile-docker update_deps
-      pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
-  - <<: *run-pytest
-    env: TEST_GROUP=1
-  # - <<: *test-signing
-  #   script: ./scripts/start-autograph.sh
-  # - name: locale-dependend-tests
-  #   -m 'needs_locales_compilation'
-  - name: extract-locales
-    if: type = cron AND branch = master
-    script: bash scripts/travis-extract-l10n.sh
+jobs:
+  include:
+    - stage: codestyle
+      script: |
+        pip install -r requirements/flake8.txt
+        make flake8
+    - stage: docs
+      script: |
+        pip install -r requirements/docs.txt
+        make -f Makefile-docker docs SPHINXOPTS='-nW'
+    - stage: assets
+      script: |
+        make -f Makefile-docker update_deps
+        make -f Makefile-docker update_assets
+
+#stages:
+  # - name: elasticsearch
+  #   if: type IN (pull_request, push)
+  #   script: |
+  #     make -f Makefile-docker update_deps
+  #     pytest -m "es_tests and not needs_locales_compilation" src/
+  # - &run-pytest
+  #   if: type IN (pull_request, push)
+  #   stage: test
+  #   script: |
+  #     make -f Makefile-docker update_deps
+  #     pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
+  # - <<: *run-pytest
+  #   env: TEST_GROUP=1
+  # # - <<: *test-signing
+  # #   script: ./scripts/start-autograph.sh
+  # # - name: locale-dependend-tests
+  # #   -m 'needs_locales_compilation'
+  # - name: extract-locales
+  #   if: type = cron AND branch = master
+  #   script: bash scripts/travis-extract-l10n.sh
 
 cache:
   pip: true
