@@ -13,9 +13,19 @@ env:
     - DJANGO_SETTINGS_MODULE: settings_test
     - RUNNING_IN_CI: True
 
+aliases:
+  - &run-pytest
+    if: type IN (pull_request, push)
+    stage: main tests
+    script: |
+      make -f Makefile-docker update_deps
+      pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
+
+
 jobs:
   include:
     - stage: main tests
+      name: Flake8
       script: |
         pip install -r requirements/flake8.txt
         make flake8
@@ -32,12 +42,6 @@ jobs:
       script: |
         make -f Makefile-docker update_deps
         pytest -m "es_tests and not needs_locales_compilation" src/
-    - &run-pytest
-      if: type IN (pull_request, push)
-      stage: main tests
-      script: |
-        make -f Makefile-docker update_deps
-        pytest -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=10 --test-group=1 src/
     - <<: *run-pytest
       env: TEST_GROUP=1
     - <<: *run-pytest
