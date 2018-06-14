@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 15:31+0000\n"
+"PO-Revision-Date: 2018-06-14 15:32+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4896,11 +4896,8 @@ msgstr "Jika anda benar-benar ingin menghubungi seseorang dari tim Mozilla, sila
 msgid "Who works on this website?"
 msgstr "Siapa yang mengerjakan situs ini?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Selama bertahun-tahun, banyak orang telah berkontribusi untuk situs ini, termasuk para relawan dari komunitas dan tim tetap AMO. Daftar kontributor yang signifikan dapat ditemukan di laman<a "
-"href=\"%(url)s\"> Site Credits</a> ."
+msgstr "Selama bertahun-tahun, banyak orang telah berkontribusi untuk situs ini, termasuk para relawan dari komunitas dan tim tetap AMO."
 
 msgid "Sections"
 msgstr "Bagian"
