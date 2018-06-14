@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 11:39+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-06-14 23:31+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4887,11 +4887,9 @@ msgstr "Granska tillägg på webbplatsen. Det är med sannolikt att upphovsmän 
 msgid "I have a question"
 msgstr "Jag har en fråga"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Ett bra ställe att börja är vår <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Om du inte hittar ett svar där, kan du <a href=\"%(forum_url)s\"> fråga på vårt "
-"forum</a>."
+msgstr "Ett bra ställe att börja på är <a href=\"%(sumo_url)s\">Support</a> Mozilla. Om du inte hittar ett svar där, kan du <a href=\"%(forum_url)s\"> fråga på vårt forum</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4900,11 +4898,8 @@ msgstr "Om du verkligen behöver kontakta någon från Mozillas grupp, se vår <
 msgid "Who works on this website?"
 msgstr "Som arbetar på denna webbplats?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Genom åren har många bidragit till denna webbplats, inklusive både volontärer från gemenskapen och särskilda AMO-medlemmar. En lista över betydande bidragsgivare kan hittas på vår <a "
-"href=\"%(url)s\">medarbetarsida</a>."
+msgstr "Genom åren har många bidragit till denna webbplats, inklusive både volontärer från gemenskapen och särskilda AMO-medlemmar."
 
 msgid "Sections"
 msgstr "Avdelningar"
@@ -6700,7 +6695,7 @@ msgid "Occupation"
 msgstr "Yrke"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Du kan ändra din e-postadress i ditt Firefox-konto."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URLen har ett ogiltigt format. Giltiga URLer ser ut som http://example.com/my_page."
