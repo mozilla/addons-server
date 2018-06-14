@@ -296,7 +296,7 @@ class ESBaseFilter(BaseFilter):
 
 @non_atomic_requests
 def home(request):
-    addons = Addon.objects.prefetch_related('compatoverride_set')
+    addons = Addon.objects
 
     # Add-ons.
     base = addons.listed(request.APP).filter(type=amo.ADDON_EXTENSION)

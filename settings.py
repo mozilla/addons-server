@@ -16,7 +16,6 @@ DEBUG = True
 # These apps are great during development.
 INSTALLED_APPS += (
     'olympia.landfill',
-    'debug_toolbar',
 )
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
