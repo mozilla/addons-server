@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 11:55+0000\n"
+"PO-Revision-Date: 2018-06-14 13:01+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4954,11 +4954,9 @@ msgstr "Preglejte dodatke na strani. Avtorji dodatkov bodo verjetno izboljševal
 msgid "I have a question"
 msgstr "Imam vprašanje"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Mesto, kjer lahko najdete odgovor, je <a href=\"%(faq_url)s\"><abbr title=\"Pogosto zastavljena vprašanja\">FAQ</abbr></a>. Če tam ne najdete odgovora, lahko <a href=\"%(forum_url)s\">zastavite "
-"vprašanje na naših forumih</a>."
+msgstr "Dobro mesto za začetek je Mozillina <a href=\"%(sumo_url)s\">Podpora</a>. Če tam ne najdete odgovora, lahko <a href=\"%(forum_url)s\">zastavite vprašanje na naših forumih</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6818,7 +6816,7 @@ msgid "Occupation"
 msgstr "Poklic"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Svoj e-poštni naslov lahko spremenite v Firefox Računih."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Oblika tega spletnega naslova je neveljavna. Veljaven URL je videti takole: http://primer.com/moja_stran."
