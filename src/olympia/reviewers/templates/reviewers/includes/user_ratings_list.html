@@ -7,7 +7,7 @@
       {% endtrans %}
     {% endwith %}
     <blockquote>
-      <strong>{{ rating.title }}</strong> {{ rating.rating|stars }}<br/>
+      {{ rating.rating|stars }}<br/>
       {{ rating.body }}</blockquote>
   </li>
   {% endfor %}

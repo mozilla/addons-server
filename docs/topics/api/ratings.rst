@@ -75,7 +75,6 @@ This endpoint allows you to fetch a rating by its id.
     :>json int previous_count: The number of ratings posted by the user on the same add-on before this one.
     :>json int score: The score the user gave as part of the rating.
     :>json object|null reply: The rating object containing the developer reply to this rating, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
-    :>json string|null title: The title of the rating.
     :>json int version.id: The add-on version id the rating applies to.
     :>json string version.version: The add-on version string the rating applies to.
     :>json object user: Object holding information about the user who posted the rating.
@@ -101,8 +100,7 @@ If successful a :ref:`rating object <rating-detail-object>` is returned.
 
     :<json string addon: The add-on id the rating applies to (required).
     :<json string|null body: The text of the rating.
-    :<json string|null title: The title of the rating.
-    :<json int rating: The rating the user wants to give as part of the rating (required).
+    :<json int score: The score the user wants to give as part of the rating (required).
     :<json int version: The add-on version id the rating applies to (required).
 
 ----
@@ -118,13 +116,12 @@ If successful a :ref:`rating object <rating-detail-object>` is returned.
      Requires authentication and Addons:Edit permissions or the user
      account that posted the rating.
 
-     Only body, title and rating are allowed for modification.
+     Only body and score are allowed for modification.
 
 .. http:patch:: /api/v4/ratings/rating/(int:id)/
 
     :<json string|null body: The text of the rating.
-    :<json string|null title: The title of the rating.
-    :<json int rating: The rating the user wants to give as part of the rating.
+    :<json int score: The score the user wants to give as part of the rating.
 
 
 ------
@@ -160,7 +157,6 @@ If successful a :ref:`rating reply object <rating-detail-object>` is returned.
 .. http:post:: /api/v4/ratings/rating/(int:id)/reply/
 
     :<json string body: The text of the reply (required).
-    :<json string|null title: The title of the reply.
 
 
 ----

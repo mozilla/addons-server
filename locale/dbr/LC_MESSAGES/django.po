@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-14 06:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,9 +188,8 @@ msgstr "ʎɔıʅod ʎɔɐʌıɹd ʍǝıɅ"
 msgid "View End-User License Agreement"
 msgstr "ʇuǝɯǝǝɹƃ∀ ǝsuǝɔı⅂ ɹǝs∩-puƎ ʍǝıɅ"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "<a href=\"%(url)s\">ǝɹoɯ uɹɐǝ⅂</a> .ɐʅʅızoW ʎq pǝʍǝıʌǝɹ uǝǝq ʇou sɐɥ uo-ppɐ sıɥ⊥"
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr ".ɐʅʅızoW ʎq pǝʍǝıʌǝɹ uǝǝq ʇou sɐɥ uo-ppɐ sıɥ⊥"
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr ".sɹǝdoʅǝʌǝp sʇı ʎq ʅɐʇuǝɯıɹǝdxǝ sɐ pǝʞɹɐɯ uǝǝq sɐɥ uo-ppɐ sıɥ⊥"
@@ -392,9 +391,6 @@ msgstr "¿ʞuıɥʇ noʎ op ʇɐɥＭ"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "ʍǝıʌǝɹ ɐ ʇıɯqns oʇ <a href=\"%(login)s\">uı ƃoʅ</a> ǝsɐǝʅԀ"
-
-msgid "Title:"
-msgstr ":ǝʅʇı⊥"
 
 msgid "Review:"
 msgstr ":ʍǝıʌǝᴚ"
@@ -1097,9 +1093,6 @@ msgstr "ǝʇɐʌıɹԀ uoıʇɔǝʅʅoↃ sıɥʇ ǝʞɐW"
 
 msgid "Make this Collection Public"
 msgstr "ɔıʅqnԀ uoıʇɔǝʅʅoↃ sıɥʇ ǝʞɐW"
-
-msgid "Learn about collections"
-msgstr "suoıʇɔǝʅʅoɔ ʇnoqɐ uɹɐǝ⅂"
 
 msgid "More Options:"
 msgstr ":suoıʇdO ǝɹoW"
@@ -3873,9 +3866,6 @@ msgstr "ʇɹoddnS"
 msgid "Policies"
 msgstr "sǝıɔıʅoԀ"
 
-msgid "FAQ"
-msgstr "Ò∀Ⅎ"
-
 msgid "Report Bug"
 msgstr "ƃnԐ ʇɹodǝᴚ"
 
@@ -4843,12 +4833,8 @@ msgid "I have a question"
 msgstr "uoıʇsǝnb ɐ ǝʌɐɥ I"
 
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
-msgstr ""
-".<a href=\"%(forum_url)s\">sɯnɹoɟ ɹno uo ʞsɐ </a> uɐɔ noʎ ´ǝɹǝɥʇ ɹǝʍsuɐ uɐ puıɟ ʇ,uop noʎ ɟI .<a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">Ò∀Ⅎ</abbr></a> ɹno sı ʇɹɐʇs oʇ ǝɔɐʅd "
-"pooƃ ∀"
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgstr ".<a href=\"%(forum_url)s\">sɯnɹoɟ ɹno uo ʞsɐ </a> uɐɔ noʎ ´ǝɹǝɥʇ ɹǝʍsuɐ uɐ puıɟ ʇ,uop noʎ ɟI .ɐʅʅızoW <a href=\"%(sumo_url)s\">ʇɹoddnS</a> sı ʇɹɐʇs oʇ ǝɔɐʅd pooƃ ∀"
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4857,737 +4843,11 @@ msgstr ".ǝƃɐd <a href=\"%(url)s\">uoıʇɐɯɹoɟuı ʇɔɐʇuoɔ </a> ɹno �
 msgid "Who works on this website?"
 msgstr "¿ǝʇısqǝʍ sıɥʇ uo sʞɹoʍ oɥＭ"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
-msgstr ""
-".ǝƃɐd <a href=\"%(url)s\">sʇıpǝɹↃ ǝʇıS </a> ɹno uo punoɟ ǝq uɐɔ sɹoʇnqıɹʇuoɔ ʇuɐɔıɟıuƃıs ɟo ʇsıʅ ∀ .ɯɐǝʇ OW∀ pǝʇɐɔıpǝp ɐ puɐ ʎʇıunɯɯoɔ ǝɥʇ ɯoɹɟ sɹǝǝʇunʅoʌ ɥʇoq ƃuıpnʅɔuı ´ǝʇısqǝʍ sıɥʇ oʇ "
-"pǝʇnqıɹʇuoɔ ǝʌɐɥ ǝʅdoǝd ʎuɐɯ ´sɹɐǝʎ ǝɥʇ ɹǝʌO"
-
-msgid "Add-on Compatibility Reporter"
-msgstr "ɹǝʇɹodǝᴚ ʎʇıʅıqıʇɐdɯoↃ uo-pp∀"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "pǝʅʅɐʇsuı uǝǝq sɐɥ ɹǝʇɹodǝᴚ ʎʇıʅıqıʇɐdɯoↃ uo-pp∀"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ".xoɟǝɹıℲ ɟo uoısɹǝʌ ʇxǝu ǝɥʇ ɟo ǝsɐǝʅǝɹ ǝɥʇ ɹoɟ ǝɯıʇ uı pǝʇɐpdn ǝɹɐ suo-ppɐ ǝɹns ǝʞɐɯ sn dʅǝɥ oʇ ʎsɐǝ s’ʇI"
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ":ʎʇıʅıqıʇɐdɯoɔ uo-ppɐ ƃuıʇɹodǝɹ pǝʇɹɐʇs ʇǝƃ oʇ ʍoɥ s’ǝɹǝH"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-".sɹoɹɹǝ ƃuıʍoɥs ɹo ʅʅɐ ʇɐ ƃuıʞɹoʍ ʇou uo-ppɐ ǝɥʇ ǝʞıʅ ´snoıɹǝs ǝɹoɯ ƃuıɥʇǝɯos ɹo ´ƃuıssıɯ ɯǝʇı nuǝɯ ɐ sɐ ɥɔns ´ɥɔʇıʅƃ ʎɐʅdsıp ɐ ǝq ʇɥƃıɯ sıɥ⊥ .uoısuǝʇxǝ ǝɥʇ pǝsn ʇsɐʅ noʎ uǝɥʍ ɯoɹɟ ʇuǝɹǝɟɟıp sɯǝǝs "
-"ʇɐɥʇ ƃuıɥʇʎuɐ ɟo ǝʇou ʅnɟǝɹɐɔ ǝʞɐʇ ´suo-ppɐ ɹnoʎ ƃuısn puɐ ƃuısʍoɹq ʇɹɐʇs noʎ s∀"
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-".sǝxıɟ ǝɯos pǝǝu ʇɥƃıɯ ɹo uoısɹǝʌ sıɥʇ uı ʎʅɹǝdoɹd ƃuıʞɹoʍ sı uo-ppɐ ɹıǝɥʇ ɹǝɥʇǝɥʍ ɹǝdoʅǝʌǝp uo-ppɐ ǝɥʇ ʅʅǝʇ sn dʅǝɥ ʅʅıʍ ʇɹodǝɹ ɐ ƃuıʇʇıɯqnS .ƃuıʇsǝʇ ɹnoʎ uı punoɟ noʎ ʇɐɥʍ ʍouʞ ɐʅʅızoW ʇǝʅ oʇ uo-"
-"ppɐ ǝɥʇ oʇ ʇxǝu ʎʇıʅıqıʇɐdɯoↃ ʞɔıʅɔ puɐ ɹǝƃɐuɐW suo-pp∀ ǝɥʇ uǝdo ´sɯǝʅqoɹd sɐɥ ɹo ʎʅɹǝdoɹd sʞɹoʍ uo-ppɐ ɹɐʅnɔıʇɹɐd ɐ ɹǝɥʇǝɥʍ ʍouʞ noʎ ǝɔuO"
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-".<a href=\"%(url)s\">sɯnɹoɟ ɹno</a> uı ʞsɐ ǝsɐǝʅd ´suoıʇsǝnb ʎuɐ ǝʌɐɥ noʎ ɟI .uoısɹǝʌ ʍǝu ǝɥʇ ʇsǝʇ oʇ noʎ ʍoʅʅɐ oʇ uǝppıɥ ǝq ʅʅıʍ suoısɹǝʌ pʅo ǝɥʇ ɹoɟ sʇɹodǝɹ ɹnoʎ ´suo-ppɐ ɹnoʎ ǝʇɐpdn ɹo xoɟǝɹıℲ "
-"ɟo uoısɹǝʌ ʍǝu ɐ oʇ ǝpɐɹƃdn noʎ ɟI"
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-".ǝɔuǝıɹǝdxǝ ɹǝsn ʇɐǝɹƃ ɐ ǝpıʌoɹd oʇ ǝʌıɹʇs ǝʍ sɐ ʅnɟǝsn ʎɐʇs suo-ppɐ ǝsǝɥʇ ǝɹns ǝʞɐɯ sn sdʅǝɥ ƃuıʇsǝʇ ʎʇıʅıqıʇɐdɯoɔ ɥʇıʍ ǝɔuɐʇsıssɐ ɹnoʎ puɐ ´ɹɐǝʎ ʎɹǝʌǝ ʎʇıunɯɯoɔ ɹno ʎq ǝpɐɯ ǝɹɐ suo-ppɐ ɟo "
-"spuɐsnoɥ⊥"
-
-msgid "Thank you!"
-msgstr "¡noʎ ʞuɐɥ⊥"
-
-msgid "Site Credits"
-msgstr "sʇıpǝɹↃ ǝʇıS"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ":sɹɐǝʎ ǝɥʇ ɹǝʌo ʇɔǝɾoɹd ƃɹo.ɐʅʅızoɯ.suoppɐ ǝɥʇ oʇ suoıʇnqıɹʇuoɔ ɹıǝɥʇ ɹoɟ ǝʅdoǝd ƃuıʍoʅʅoɟ ǝɥʇ ʞuɐɥʇ oʇ ǝʞıʅ pʅnoʍ ɐʅʅızoW"
-
-msgid "Developers &amp; Administrators"
-msgstr "sɹoʇɐɹʇsıuıɯp∀ &amp; sɹǝdoʅǝʌǝᗡ"
-
-msgid "Localizers"
-msgstr "sɹǝzıʅɐɔo⅂"
-
-msgid "Reviewers"
-msgstr "sɹǝʍǝıʌǝᴚ"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "sʍǝıʌǝɹ uo-ppɐ {0} uɐɥʇ ǝɹoW"
-
-msgid "Other Contributors"
-msgstr "sɹoʇnqıɹʇuoↃ ɹǝɥʇO"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "sɹoʇɐɹʇsıuıɯp∀ &amp; sɹǝdoʅǝʌǝᗡ ʇsɐԀ"
-
-msgid "Software and Images"
-msgstr "sǝƃɐɯI puɐ ǝɹɐʍʇɟoS"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-".<a href=\"http://creativecommons.org/licenses/by/2.5/\">ǝsuǝɔı⅂ 5.2 uoıʇnqıɹʇʇ∀ suoɯɯoↃ ǝʌıʇɐǝɹↃ</a> ɐ ɹǝpun pǝsuǝɔıʅ ´<a href=\"http://www.famfamfam.com/lab/icons/silk/\">ʇǝS uoɔI ʞʅıS ɯɐɟɯɐɟɯɐɟ</"
-"a> ǝɥʇ ɯoɹɟ ǝɹɐ pǝsn suoɔı ǝɯoS"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-".<a href=\"http://creativecommons.org/licenses/by/3.0/us/\">ǝsuǝɔı⅂ 0.3 uoıʇnqıɹʇʇ∀ suoɯɯoↃ ǝʌıʇɐǝɹↃ</a> ɐ ɹǝpun pǝsuǝɔıʅ ´<a href=\"http://www.fatcow.com/free-icons/\">ʇǝS suoɔI qǝＭ ɥsǝɹℲ-ɯɹɐℲ "
-"ʍoↃʇɐℲ</a> ǝɥʇ ɯoɹɟ ǝɹɐ pǝsn suoɔı ǝɯoS"
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-".<a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">ǝsuǝɔı⅂ 0.3 ʅɐıɔɹǝɯɯoↃuoN-uoıʇnqıɹʇʇ∀ suoɯɯoↃ ǝʌıʇɐǝɹↃ</a> ɐ ɹǝpun pǝsuǝɔıʅ ´(ʅɐıɔɹǝɯɯoɔ-uou) <a href=\"http://shop.highsoft.com/"
-"highcharts.html\">sʇɹɐɥɔɥƃıH</a> ɟo sʇuǝɯǝʅǝ ǝsn sǝƃɐd ǝɯoS"
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ".<a href=\"%(url)s\">ǝƃɐd ıʞıʍ</a> ɹno ǝǝs ǝsɐǝʅd ´ƃuıʇnqıɹʇuoɔ uo uoıʇɐɯɹoɟuı ɹoℲ"
-
-msgid "Developer FAQ"
-msgstr "Ò∀Ⅎ ɹǝdoʅǝʌǝᗡ"
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
+msgstr ".ɯɐǝʇ OW∀ pǝʇɐɔıpǝp ɐ puɐ ʎʇıunɯɯoɔ ǝɥʇ ɯoɹɟ sɹǝǝʇunʅoʌ ɥʇoq ƃuıpnʅɔuı ´ǝʇısqǝʍ sıɥʇ oʇ pǝʇnqıɹʇuoɔ ǝʌɐɥ ǝʅdoǝd ʎuɐɯ ´sɹɐǝʎ ǝɥʇ ɹǝʌO"
 
 msgid "Sections"
 msgstr "suoıʇɔǝS"
-
-msgid "Developing an Add-on"
-msgstr "uo-pp∀ uɐ ƃuıdoʅǝʌǝᗡ"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "sǝɔɹnosǝᴚ ʇɹoddnS"
-
-msgid "Contributing your Add-on"
-msgstr "uo-pp∀ ɹnoʎ ƃuıʇnqıɹʇuoↃ"
-
-msgid "Add-on Review Process"
-msgstr "ssǝɔoɹԀ ʍǝıʌǝᴚ uo-pp∀"
-
-msgid "Managing Your Add-on"
-msgstr "uo-pp∀ ɹno⅄ ƃuıƃɐuɐW"
-
-msgid "References for Open Source Licenses"
-msgstr "sǝsuǝɔı⅂ ǝɔɹnoS uǝdO ɹoɟ sǝɔuǝɹǝɟǝᴚ"
-
-msgid "Add-on Developer FAQ"
-msgstr "Ò∀Ⅎ ɹǝdoʅǝʌǝᗡ uo-pp∀"
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>¿uo-pp∀ uɐ pʅınq I op ʍoH</h3> <p> .%(link_close)sʞɹoʍʇǝN ɹǝdoʅǝʌǝᗡ ɐʅʅızoW%(addons_link_open)s ǝɥʇ ɐıʌ uo-ppɐ uɐ pʅınq oʇ ʍoɥ uo uoıʇɐʇuǝɯnɔop sǝpıʌoɹd ɐʅʅızoW </p>"
-
-msgid "What is a \".xpi\" file?"
-msgstr "¿ǝʅıɟ „ıdx.„ ɐ sı ʇɐɥＭ"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ".uoısuǝʇxǝ ǝʅıɟ („ʎddız„ pǝɔunouoɹd) IԀX ǝɥʇ ɥʇıʍ ´sǝʅpunԐ ɹo sǝʅıɟ ԀIZ uı pǝʇnqıɹʇsıp puɐ pǝƃɐʞɔɐd ǝɹɐ suoısuǝʇxƎ"
-
-msgid "What is XUL?"
-msgstr "¿⅂∩X sı ʇɐɥＭ"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-".I∩ ɹǝsʍoɹq ǝɥʇ ɟo sʇɹɐd ƃuıʎɟıpoɯ ʎq suo-ppɐ ǝɔuɐɥuǝ oʇ pǝsn ǝq uɐɔ ʇɐɥʇ ɔʇǝ ´sǝǝɹʇ ´sɹɐqʅooʇ ´snuǝɯ ´suoʇʇnq ǝʞıʅ sʇǝƃpıʍ ǝɔɐɟɹǝʇuı ɹǝsn sǝpıʌoɹd ʇI .suoıʇɐɔıʅddɐ ɯɹoɟʇɐʅd ssoɹɔ ɥɔıɹ-ǝɹnʇɐǝɟ "
-"pʅınq noʎ sʇǝʅ ʇɐɥʇ ǝƃɐnƃuɐʅ pǝsɐq-⅂WX s,ɐʅʅızoW sı (ǝƃɐnƃuɐ⅂ ǝɔɐɟɹǝʇuI ɹǝs∩ ⅂WX) ⅂∩X"
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
-"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
-"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-".%(link_close)suo-ppɐ xoɟǝɹıℲ ʎɔɐƃǝʅ ɐ ƃuıʇɹoԀ%(portlegacy_link_open)s ʇısıʌ ǝsɐǝʅd ´uo-ppɐ ʎɔɐƃǝʅ ɐ ƃuıʇɐɹƃıɯ uo uoıʇɐɯɹoɟuı ɹoℲ .suoısuǝʇxƎqǝＭ oʇ ʇı ƃuıʇɐɹƃıɯ ɹǝpısuoɔ ´uo-ppɐ ʎɔɐƃǝʅ ɐ ǝʌɐɥ noʎ "
-"ɟI .suo-ppɐ ʍǝu doʅǝʌǝp oʇ sIԀ∀ %(link_close)ssuoısuǝʇxƎqǝＭ%(webext_link_open)s ǝsn ǝsɐǝʅԀ .75 xoɟǝɹıℲ ɯoɹɟ ƃuıʇɹɐʇs pɐoʅ ɹǝƃuoʅ ou ʅʅıʍ ⅂∩X ƃuısn suo-ppɐ puɐ ´xoɟǝɹıℲ uı ʎƃoʅouɥɔǝʇ ʎɔɐƃǝʅ ɐ "
-"pǝɹǝpısuoɔ sı ⅂∩X <strong>:ǝʇoN</strong>"
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "¿ǝɹɐʍʇɟos ɐʅʅızoW ɟo uoısɹǝʌ ʇsǝʇɐʅ ǝɥʇ ɥʇıʍ ʎʇıʅıqıʇɐdɯoɔ ɹoɟ ʇsǝʇ I op ʍoH"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-".ǝɹɐʍʇɟos ɐʅʅızoW ɟo ǝsɐǝʅǝɹ ʅɐuıɟ uodn pǝʇɔɐdɯı ʎʅǝʌıʇɐƃǝu ʇou ǝɹɐ sɹǝsn uo-ppɐ ɹnoʎ ʇɐɥʇ ǝɹnsuǝ oʇ ssǝɔoɹd ɐʇǝq ǝɥʇ uı pǝʌʅoʌuı ʎʅǝʌıʇɔɐ ǝq oʇ ʇuɐʇɹodɯı s,ʇı ´uo-ppɐ ɹnoʎ ɟo ʎʇıʅɐuoıʇɔunɟ ǝɥʇ "
-"ʇɔɐdɯı ʎɐɯ ʇɐɥʇ sǝƃuɐɥɔ ʅɐɹnʇɔǝʇıɥɔɹɐ ǝɔnpoɹʇuı sǝɯıʇ ʇɐ sǝsɐǝʅǝɹ ǝsǝɥʇ ǝɔuıS .pǝʇɔǝdxǝ sɐ ƃuıuoıʇɔunɟ ʅʅıʇs sı ʇı ʇɐɥʇ ǝɹnsuǝ oʇ uo-ppɐ ɹnoʎ ʇsǝʇ puɐ ǝʅqɐʅıɐʌɐ ǝɯoɔǝq ʎǝɥʇ sɐ sǝʇɐpdn pɐoʅuʍop oʇ "
-"ʇuɐʇɹodɯı s,ʇı ´ǝɹɐʍʇɟos ɐʅʅızoW ʇsǝʇɐʅ ǝɥʇ ɥʇıʍ ʎʇıʅıqıʇɐdɯoɔ ǝɹnsuǝ o⊥"
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "¿dʅǝɥ puıɟ I uɐɔ ǝɹǝɥＭ .uo-ppɐ ʎɯ ƃuıpʅınq ǝɔıʌpɐ ǝɯos pǝǝu I"
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr "(suoıssnɔsıp ʇuǝɯdoʅǝʌǝp uo-ppɐ ɹoɟ) ʌǝpʇxǝ#"
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "(OW∀ uo uo-ppɐ ɹnoʎ ƃuıʇsoɥ oʇ ƃuıʇɐʅǝɹ ʇɹoddns ɹoɟ) oɯɐ#"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr "(suoısuǝʇxƎqǝＭ oʇ ƃuıʇɹod puɐ ƃuıdoʅǝʌǝp ʇnoqɐ suoıssnɔsıp ɹoɟ) suoısuǝʇxǝqǝʍ#"
-
-msgid "Add-ons forum"
-msgstr "ɯnɹoɟ suo-pp∀"
-
-msgid "Does Mozilla offer development services?"
-msgstr "¿sǝɔıʌɹǝs ʇuǝɯdoʅǝʌǝp ɹǝɟɟo ɐʅʅızoW sǝoᗡ"
-
-msgid "No."
-msgstr ".oN"
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "¿uo-ppɐ ʎɯ pʅınq oʇ ǝɹıɥ uɐɔ I ʇɐɥʇ sɹǝdoʅǝʌǝp ʎʇɹɐd pɹ3 ǝɹǝɥʇ ǝɹ∀"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-".suoıʇɐpuǝɯɯoɔǝɹ ɹǝdoʅǝʌǝp ɹǝɟɟo ʇou sǝop ɐʅʅızoW ʇɐɥʇ ǝʇou ǝsɐǝʅԀ .<a href=\"%(wiki_url)s\">ıʞıＭ ɐʅʅızoW ǝɥʇ</a> ɹo <a href=\"%(mz_url)s\">sɯnɹoɟ ǝuıZɐʅʅızoɯ</a> ´<a href=\"%(list_url)s\">ʇsıʅ "
-"sqoɾ.ɐʅʅızoɯ</a> ´<a href=\"%(forum_url)s\">ɯnɹoɟ suo-pp∀</a> ǝɥʇ ɐıʌ sɹǝdoʅǝʌǝp ʎʇɹɐd pɹ3 puıɟ ʎɐɯ no⅄ .sǝ⅄"
-
-msgid "Can I host my own add-on?"
-msgstr "¿uo-ppɐ uʍo ʎɯ ʇsoɥ I uɐↃ"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-".ǝʇıs ǝɥʇ oʇ sɹoʇısıʌ ɟo ǝɯnʅoʌ ǝƃɹɐʅ ǝɥʇ oʇ ǝnp uo-ppɐ ɹnoʎ oʇ ǝɹnsodxǝ ɹǝʇɐǝɹƃ ɥɔnɯ ɹoɟ sʍoʅʅɐ ´ɥƃnoɥʇ ´<a href=\"%(amo_url)s\">ǝʇıs uo-ppɐ s,ɐʅʅızoW</a> uo uo-ppɐ ɹnoʎ ʇsoɥ oʇ ƃuısooɥↃ .suo-ppɐ "
-"uʍo ɹıǝɥʇ ʇsoɥ oʇ ǝsooɥɔ sɹǝdoʅǝʌǝp ʎuɐW .sǝ⅄"
-
-msgid "Can Mozilla host my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ʇsoɥ ɐʅʅızoW uɐↃ"
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ".<a href=\"%(url)s\">ǝʇısqǝʍ uo-ppɐ s,ɐʅʅızoW</a> uo uo-ppɐ ɹnoʎ ʇsoɥ uɐɔ no⅄ .sǝ⅄"
-
-msgid "What is AMO?"
-msgstr "¿OW∀ sı ʇɐɥＭ"
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-".sɹǝsn ɐʅʅızoW ɟo ǝsɐq ǝʌıssɐɯ ɐ oʇ uo-ppɐ ɹnoʎ ǝsodxǝ puɐ ʇsoɥ ´ǝƃɐuɐɯ oʇ ʎɹɐssǝɔǝu ǝɹnʇɔnɹʇsɐɹɟuı puɐ sʅooʇ ǝɥʇ noʎ sǝpıʌoɹd ʇI .ɐʅʅızoW ʎq pǝɹǝʍod sʇɔnpoɹd ɹǝɯnsuoɔ ɔıʇsɐʇuɐɟ ʇɹoddns puɐ "
-"´ǝʇnqıɹʇsıp ´pʅınq sɹǝdoʅǝʌǝp sdʅǝɥ ʇɐɥʇ ɹoʇɐqnɔuı ǝɥʇ sı (<a href=\"https://addons.mozilla.org\">ƃɹo.ɐʅʅızoɯ.suoppɐ//:sdʇʇɥ</a>) OW∀ s,ɐʅʅızoW"
-
-msgid "Does Mozilla keep my account information private?"
-msgstr "¿ǝʇɐʌıɹd uoıʇɐɯɹoɟuı ʇunoɔɔɐ ʎɯ dǝǝʞ ɐʅʅızoW sǝoᗡ"
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ".ɐʅʅızoW ʎq pǝƃɐuɐɯ sı uoıʇɐɯɹoɟuı ɹnoʎ ʍoɥ sǝqıɹɔsǝp <a href=\"%(url)s\">ʎɔıʅoԀ ʎɔɐʌıɹԀ</a> ɹnO .sǝ⅄"
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "¿OW∀ uo pǝʇsıʅ „sʅooʇ ɹǝdoʅǝʌǝp„ ǝɥʇ ǝɹɐ ʇɐɥＭ"
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-".sɔıʇsıʇɐʇs ʍǝıʌǝɹ puɐ ´uoıʇɐɯɹoɟuı uo-ppɐ ǝƃɐuɐɯ ´OW∀ oʇ suo-ppɐ ɹnoʎ ʇıɯqns oʇ ʎɹɐssǝɔǝu ʎʇıʅɐuoıʇɔunɟ ǝɥʇ sǝpıʌoɹd ʇI .suo-ppɐ ɹnoʎ ǝƃɐuɐɯ ʎʅʅnɟssǝɔɔns oʇ sʅooʇ ǝɥʇ noʎ sǝpıʌoɹd ʇɐɥʇ ɐǝɹɐ ǝɥʇ sı "
-"pɹɐoqɥsɐp „sʅoo⊥ ɹǝdoʅǝʌǝᗡ„ ǝɥ⊥"
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "¿uoıssıɯqns ǝʅqɐʇdǝɔɔɐ uɐ sı ʇɐɥʍ oʇ sɐ ǝɔɐʅd uı ʎɔıʅod ɐ ǝʌɐɥ ɐʅʅızoW sǝoᗡ"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-".ʎʇıɹnɔǝs puɐ ʎʇıʅɐuoıʇɔunɟ ɹoɟ sǝuıʅǝpınƃ ɔıɟıɔǝds sʇǝǝɯ uo-ppɐ ɹnoʎ ʇɐɥʇ ǝɹnsuǝ oʇ %(link_close)sǝpın⅁ ʍǝıʌǝᴚ uo-pp∀%(guide_link_open)s ǝɥʇ sǝsn ɯɐǝ⊥ ɹǝʍǝıʌǝᴚ uo-pp∀ ǝɥʇ ´uoıʇıppɐ uI .ǝɔıʇou "
-"ʇnoɥʇıʍ ǝƃuɐɥɔ oʇ ʇɔǝɾqns sı ʎɔıʅod sıɥ⊥ .uoıssıɯqns ǝʅqɐʇdǝɔɔɐ uɐ sı ʇɐɥʍ ǝqıɹɔsǝp %(link_close)ssǝıɔıʅoԀ ʍǝıʌǝᴚ uo-pp∀%(policy_link_open)s s,ɐʅʅızoW .sǝ⅄"
-
-msgid "How do I submit my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ʇıɯqns I op ʍoH"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-".sǝuıʅǝpınƃ ɹno ʇǝɯ sɐɥ uo-ppɐ ɹnoʎ ʇɐɥʇ ǝɹnsuǝ oʇ %(link_close)ssǝıɔıʅoԀ ʍǝıʌǝᴚ uo-pp∀%(review_policy_link_open)s ǝɥʇ pɐǝɹ ǝʌɐɥ noʎ oʇ ǝɹns ǝq uo-ppɐ ɹnoʎ ƃuıʇʇıɯqns ǝɹoɟǝԐ .uo-ppɐ uɐ ʇıɯqns uɐɔ "
-"noʎ ǝɹoɟǝq ɹǝsn OW∀ pǝɹǝʇsıƃǝɹ ɐ ǝq ʇsnɯ no⅄ .OW∀ oʇ suo-ppɐ ʇıɯqns puɐ pɐoʅdn oʇ noʎ ʍoʅʅɐ ʅʅıʍ pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥ⊥"
-
-msgid "What operating system do I choose for my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ɹoɟ ǝsooɥɔ I op ɯǝʇsʎs ƃuıʇɐɹǝdo ʇɐɥＭ"
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ".uoıʇɔunɟ ʎʅʅnɟssǝɔɔns ʅʅıʍ uo-ppɐ ɹnoʎ ɥɔıɥʍ uo sɯǝʇsʎs ƃuıʇɐɹǝdo ǝɥʇ ǝsooɥɔ ʇsnɯ no⅄"
-
-msgid "What category do I choose for my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ɹoɟ ǝsooɥɔ I op ʎɹoƃǝʇɐɔ ʇɐɥＭ"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-".ʎɹoƃǝʇɐɔ ʇuǝɹǝɟɟıp ɐ uı pǝʇıns ɹǝʇʇǝq s,ʇı ʇɐɥʇ pǝuıɯɹǝʇǝp s,ʇı ɟı uo-ppɐ ɹnoʎ ǝzıɹoƃǝʇɐɔ-ǝɹ ʎɐɯ ɯɐǝʇ OW∀ ǝɥ⊥ .„ɹǝɥʇO„ ǝsooɥɔ ǝsɐǝʅd ´oʇuı sʅʅɐɟ uo-ppɐ ɹnoʎ ʎɹoƃǝʇɐɔ ɥɔıɥʍ ɟo ǝɹnsun ǝɹ,noʎ ɟI .uo-"
-"ppɐ ɹnoʎ ɟo ʎʇıʅɐuoıʇɔunɟ ǝɥʇ puɐ ƃuıʇǝƃɹɐʇ ǝɹɐ noʎ ǝɔuǝıpnɐ ɟo ǝdʎʇ ʇɐɥʍ uo ʇuǝpuǝdǝp sı ʎɹoƃǝʇɐɔ ɟo ǝɔıoɥɔ ǝɥ⊥"
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ƃuısn ɹoɟ ʇuǝɯǝǝɹƃɐ ǝsuǝɔıʅ ɐ ʎɟıɔǝds I uɐↃ"
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ".pǝʇʇıɯqns uǝǝq sɐɥ uo-ppɐ ɹnoʎ ɹǝʇɟɐ pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥʇ ɐıʌ ʇuǝɯǝǝɹƃɐ ǝsuǝɔıʅ ɐ ǝʇɐpdn ɹo ppɐ osʅɐ uɐɔ no⅄ .uo-ppɐ ɹnoʎ ƃuıʇʇıɯqns uǝɥʍ ʇuǝɯǝǝɹƃɐ ǝsuǝɔıʅ ɐ ʎɟıɔǝds uɐɔ no⅄ .sǝ⅄"
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ɹoɟ ʎɔıʅod ʎɔɐʌıɹd ɐ ǝpnʅɔuı I uɐↃ"
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ".pǝʇʇıɯqns uǝǝq sɐɥ uo-ppɐ ɹnoʎ ɹǝʇɟɐ pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥʇ ɐıʌ ʎɔıʅod ʎɔɐʌıɹd ɐ ǝʇɐpdn ɹo ppɐ osʅɐ uɐɔ no⅄ .uo-ppɐ ɹnoʎ ƃuıʇʇıɯqns uǝɥʍ ʎɔıʅod ʎɔɐʌıɹd ɐ ʎɟıɔǝds uɐɔ no⅄ .sǝ⅄"
-
-msgid "Must my add-on be reviewed?"
-msgstr "¿pǝʍǝıʌǝɹ ǝq uo-ppɐ ʎɯ ʇsnW"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-".suoıssıɯqns uo-ppɐ ʍǝıʌǝɹ oʇ pǝsn ǝɹɐ <a href=\"%(url)s\">ǝpın⅁ ʍǝıʌǝᴚ uo-pp∀</a> ǝɥʇ uı pǝuıʅʇno sǝuıʅǝpınƃ ǝɥ⊥ .ǝɔuǝıɹǝdxǝ ǝɟɐs puɐ ǝʅqɐʇs ɐ ǝʌɐɥ sɹǝsn ɐʅʅızoW ʇɐɥʇ ǝɹnsuǝ oʇ pǝʍǝıʌǝɹ oʇ ʇɔǝɾns "
-"ǝq ʎɐɯ suo-ppɐ pǝʇɐpdn puɐ ʍǝN"
-
-msgid "Who reviews my add-on?"
-msgstr "¿uo-ppɐ ʎɯ sʍǝıʌǝɹ oɥＭ"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-".<a href=\"%(url)s\">ǝpın⅁ ʍǝıʌǝᴚ uo-pp∀</a> ǝɥʇ uı pǝuıʅʇno sǝuıʅǝpınƃ ǝɥʇ sʍoʅʅoɟ puɐ ʎʅʇɔǝɹɹoɔ dn ʇǝs sı uo-ppɐ ɹnoʎ ʇɐɥʇ ǝɹnsuǝ oʇ pɹɐɥ ƃuıʞɹoʍ ǝɹɐ ʎǝɥʇ sɐ ʅnɟʇɔǝdsǝɹ puɐ ʇuǝıʇɐd ´snoǝʇɹnoɔ ǝq "
-"ǝsɐǝʅd ´ɹǝʍǝıʌǝɹ ɐ ɥʇıʍ ƃuıʇɐɔıunɯɯoɔ uǝɥＭ .sɹǝsn ɐʅʅızoW ɹoɟ ǝɔuǝıɹǝdxǝ ǝɟɐs puɐ ǝʅqɐʇs ɐ ǝɹnsuǝ oʇ suo-ppɐ ƃuıʍǝıʌǝɹ ʎq ʇɔǝɾoɹd ɐʅʅızoW ǝɥʇ dʅǝɥ oʇ ɹǝǝʇunʅoʌ ʇɐɥʇ sɹǝdoʅǝʌǝp pǝʇuǝʅɐʇ ɟo dnoɹƃ ɐ "
-"´sɹǝʍǝıʌǝᴚ uo-pp∀ ǝɥʇ ʎq pǝʍǝıʌǝɹ ǝɹɐ suo-pp∀"
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ʍǝıʌǝɹ oʇ pǝsn sǝuıʅǝpınƃ ǝɥʇ ǝɹɐ ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-".sǝnssı ʍǝıʌǝɹ ƃuıpıoʌɐ uı ʇsıssɐ ʎʅʇɐǝɹƃ ʅʅıʍ sıɥ⊥ .uo-ppɐ ɹıǝɥʇ ƃuıʇʇıɯqns oʇ ɹoıɹd pǝssǝɹppɐ ǝɹɐ sɐǝɹɐ ɯǝʅqoɹd uoɯɯoɔ ʇɐɥʇ ǝɹnsuǝ oʇ ǝpınƃ sıɥʇ ʍǝıʌǝɹ sɹǝdoʅǝʌǝp uo-ppɐ ʇɐɥʇ ʇuɐʇɹodɯı sı ʇI .uo-"
-"ppɐ uɐ ƃuıʇsǝʇ uǝɥʍ <a href=\"%(url)s\">ǝpın⅁ ʍǝıʌǝᴚ uo-pp∀</a> ǝɥʇ sʍoʅʅoɟ ɯɐǝ⊥ ɹǝʍǝıʌǝᴚ uo-pp∀ ǝɥ⊥"
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "¿pǝʍǝıʌǝɹ ǝq oʇ uo-ppɐ ʎɯ ɹoɟ ǝʞɐʇ ʇı ʅʅıʍ ƃuoʅ ʍoH"
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ":ǝɥʇ ƃuıpnʅɔuı ǝɯıʇ ǝɥʇ ʇɔǝɟɟɐ sɹoʇɔɐɟ ʎuɐW .pǝʍǝıʌǝɹ sı uo-ppɐ uɐ ǝɹoɟǝq ǝʞɐʇ ʅʅıʍ ʇı ƃuoʅ ʍoɥ oʇ sɐ ǝʇɐɯıʇsǝ ǝɯıʇ ɐ ǝʌıƃ ʇouuɐɔ ǝＭ"
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr "suoıssıɯqns uo-ppɐ ɟo ɹǝqɯnu"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "ǝpoɔ s’uo-ppɐ uɐ ɟo ʎʇıxǝʅdɯoɔ"
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr "pǝɹǝʌoɔsıp sɐǝɹɐ ɯǝʅqoɹd ɟo ɹǝqɯnu"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ".pǝʇɔǝdxǝ sɐ dnʇǝs sı uo-ppɐ ɹnoʎ ʇɐɥʇ ǝɹnsuǝ oʇ <a href=\"%(g_url)s\">ǝpın⅁ ʍǝıʌǝᴚ uo-pp∀</a> ǝɥʇ pɐǝɹ oʇ ʇuɐʇɹodɯı ʎɹǝʌ s,ʇı ʎɥʍ sı sıɥ⊥"
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "¿pǝpɐoʅuʍop uǝǝq sɐɥ uo-ppɐ ʎɯ sǝɯıʇ ʎuɐɯ ʍoɥ ǝǝs I uɐɔ ʍoH"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ".OW∀ oʇ ʇı pǝʇʇıɯqns ǝʌ,noʎ ǝɔuıs spɐoʅuʍop uo-ppɐ ɹnoʎ ǝuıɯɹǝʇǝp noʎ dʅǝɥ uɐɔ ʇɐɥʇ uoıʇɐɯɹoɟuı sǝpıʌoɹd pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥʇ uı punoɟ pɹɐoqɥsɐᗡ sɔıʇsıʇɐʇS ǝɥ⊥"
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ƃuısn ǝɹɐ sɹǝsn ǝʌıʇɔɐ ʎuɐɯ ʍoɥ ǝǝs I uɐɔ ʍoH"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-".OW∀ oʇ ʇı pǝʇʇıɯqns ǝʌ,noʎ ǝɔuıs uo-ppɐ ɹnoʎ ƃuısn ʎʅǝʌıʇɔɐ uǝǝq ǝʌɐɥ sɹǝsn ʎuɐɯ ʍoɥ ǝuıɯɹǝʇǝp noʎ dʅǝɥ uɐɔ ʇɐɥʇ uoıʇɐɯɹoɟuı sǝpıʌoɹd pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥʇ uı punoɟ pɹɐoqɥsɐᗡ sɔıʇsıʇɐʇS ǝɥ⊥"
-
-msgid "How do I submit an update for my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ɹoɟ ǝʇɐpdn uɐ ʇıɯqns I op ʍoH"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ".uo-ppɐ ɹnoʎ ɹoɟ ǝʅıɟ ıdx. ʍǝu ɐ ƃuıpɐoʅdn puɐ „uoısɹǝʌ ʍǝu ɐ pɐoʅd∩„ uoıʇdo ǝɥʇ ƃuısooɥɔ ʎq pɹɐoqɥsɐp sʅoo⊥ ɹǝdoʅǝʌǝᗡ ǝɥʇ ɐıʌ uo-ppɐ ɹnoʎ ɹoɟ ǝʇɐpdn uɐ ʇıɯqns uɐɔ no⅄"
-
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "¿sɹǝʍǝıʌǝɹ ʎq pǝʍǝıʌǝɹ ǝq oʇ pǝǝu ǝʇɐpdn ʎɯ sǝoᗡ"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ".suoıssıɯqns ʍǝu sɐ ǝɯɐs ǝɥʇ ʇsnɾ ʍǝıʌǝɹ oʇ ʇɔǝɾqns ǝq ʎɐɯ sǝʇɐpdn uo-pp∀"
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "¿uo-ppɐ ʎɯ ɟo ʍǝıʌǝɹ ǝʌıʇɐƃǝu ɐ pǝʇsod sɐɥ oɥʍ ɹǝsn ɐ oʇ ʎʅdǝɹ I op ʍoH"
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ":sɐ ʍǝıʌǝɹ ɐ ƃɐʅɟ uɐɔ ɹǝsn ʎuɐ ´uoıʇıppɐ uI .OW∀ oʇuı pǝƃƃoʅ ǝɹɐ ʎǝɥʇ sɐ ƃuoʅ sɐ uo-ppɐ ɹıǝɥʇ oʇ pǝʇsod ʍǝıʌǝɹ ʎuɐ oʇ ʎʅdǝɹ ʎɐɯ ɹǝdoʅǝʌǝp ∀"
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "ʇuǝʇuoɔ ʍǝıʌǝɹ-uou ǝsıʍɹǝɥʇo ɹo ɯɐdS"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "ƃoʅɐıp/ǝƃɐnƃuɐʅ ǝʇɐıɹdoɹddɐuI"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "ʇsǝnbǝɹ ʇɹoddns ɹo ʇɹodǝɹ ƃnq pǝɔɐʅdsıW"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "(uoıʇɐɯɹoɟuı ɹoɟ ʇdɯoɹd dn-dod ɐ sǝpıʌoɹd) ɹǝɥʇO"
-
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr ".ʍǝıʌǝɹ ɹǝsn ɐ ɟo ɹoɥʇnɐ ǝɥʇ ɥʇıʍ ǝʇɐɔıunɯɯoɔ ʎʅʇɔǝɹıp oʇ ɯsıuɐɥɔǝɯ ɐ ǝpıʌoɹd ʇou sǝop OW∀ ´ʎʅʇuǝɹɹnↃ"
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "¿ǝʌıʇɐƃǝu sı ʍǝıʌǝɹ ǝɥʇ ɟı pǝʌoɯǝɹ ǝq ʍǝıʌǝɹ ɐ ʇɐɥʇ ʇsǝnbǝɹ I uɐↃ"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ".ǝsʅɐɟ ǝq oʇ punoɟ ǝɹɐ ʎǝɥʇ ssǝʅun suo-ppɐ ɯoɹɟ sʍǝıʌǝɹ ǝʌıʇɐƃǝu ǝʌoɯǝɹ ʇou op ǝＭ .oN"
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "¿ǝʇɐɹnɔɔɐuı sı ʍǝıʌǝɹ ǝɥʇ ɟı pǝʌoɯǝɹ ǝq ʍǝıʌǝɹ ɐ ʇɐɥʇ ʇsǝnbǝɹ I uɐↃ"
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ".ʇı ƃuıʌoɯǝɹ ɹǝpısuoɔ puɐ ʇsod ǝɥʇ ʍǝıʌǝɹ ʅʅıʍ ǝʍ ´pǝʌoɯǝɹ ǝq oʇ uoıʇɐɯɹoɟuı ǝʇɐɹnɔɔɐuı ɹo ǝsʅɐɟ ƃuıuıɐʇuoɔ ʍǝıʌǝɹ ɐ ɹoɟ sʞsɐ puɐ sn sʇɔɐʇuoɔ ɹoɥʇnɐ uɐ ɟI"
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-".ʇuǝʇuoɔ ɥɔns uo ǝɔuɐıʅǝɹ ɹnoʎ ɹo sǝʇıs ǝsǝɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɹoɟ ǝʅqısuodsǝɹ sı ɹou sǝǝʇuɐɹɐnƃ ɹǝɥʇıǝu ɐʅʅızoW .ǝɔıʌpɐ ɥɔns ɟo nǝıʅ uı pǝsn ǝq ʎǝɥʇ pʅnoɥs ɹou ǝɔıʌpɐ ʅɐƃǝʅ ǝʇnʇıʇsuoɔ ʇou op "
-"sǝɔɹnosǝɹ ǝsǝɥ⊥ .ǝsn ʅɐuosɹǝd ɹnoʎ ɹoɟ ǝɔuǝɹǝɟǝɹ ɐ sɐ puɐ ǝɔuǝıuǝʌuoɔ ɹnoʎ ɹoɟ ʎʅǝʅos pǝpıʌoɹd ƃuıǝq ǝɹɐ sǝʇıs ǝsǝɥ⊥ .ɯǝɥʇ uǝǝʍʇǝq sǝɔuǝɹǝɟɟıp ǝɥʇ ʇno ʇɹos noʎ dʅǝɥ ʎɐɯ ʇɐɥʇ sǝsuǝɔıʅ ǝɔɹnos uǝdo "
-"ʎǝʞ ǝɥʇ ɟo ǝɯos ʇnoqɐ uoıʇɐɯɹoɟuı uıɐʇuoɔ ʇɐɥʇ sǝʇıs ǝɯos ǝɹɐ ʍoʅǝq ´ǝsuǝɔıʅ ɐ ɟo sɯɹǝʇ ʅʅnɟ ǝɥʇ ƃuıpɐǝɹ sǝɔɐʅdǝɹ ƃuıɥʇou ǝʅıɥＭ ¿ʇuɐɹƃ ǝsuǝɔıʅ ɔıɟıɔǝds ɐ sǝop sʇɥƃıɹ ʇɐɥＭ ¿ʇɔǝʅǝs pʅnoɥs noʎ "
-"ǝsuǝɔıʅ ɥɔıɥʍ oʇ sɐ pǝsnɟuoɔ noʎ ǝɹ∀ ¿sǝsuǝɔıʅ ǝɔɹnos uǝdo snoıɹɐʌ ǝɥʇ ʇnoqɐ uoıʇɐɯɹoɟuı ǝɹoɯ pǝǝu noʎ oᗡ"
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-".ʇı ɹǝpun pǝsuǝɔıʅ ǝpoɔ ǝʇnqıɹʇsıp ɹo ǝsn oʇ ʇuɐʍ noʎ ɟı noʎ dʅǝɥ oʇ <abbr title=\"Frequently Asked Questions\">Ò∀Ⅎ</abbr> uɐ puɐ ⅂ԀW ǝɥʇ ɟo uoısɹǝʌ pǝʇɐʇouuɐ uɐ sǝpıʌoɹd osʅɐ sıɥʇ ´(„⅂ԀW„)ǝsuǝɔı⅂ "
-"ɔıʅqnԀ ɐʅʅızoW ǝɥʇ ɟo ʇxǝʇ ʅʅnɟ ǝɥʇ oʇ uoıʇıppɐ uI"
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr ".sǝƃuɐɥɔ ɥʇıʍ ǝpoɔ ɟo uoıʇnqıɹʇsıpǝɹ puɐ ´ƃuıʞuıʅ ǝɹɐʍʇɟos ʎɹɐʇǝıɹdoɹd ´suoıʇnqıɹʇsıp ʇɐǝɹʇ sǝsuǝɔıʅ ǝɔɹnos uǝdo ʎǝʞ ǝɥʇ ɟo ǝɯos ʍoɥ ƃuıɹɐdɯoɔ puɐ ƃuızıɹɐɯɯns ǝʅqɐʇ ∀"
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-"(.ʅʅǝʍ sɐ ǝǝɹɟ ǝq oʇ ɯɐɹƃoɹd ǝɥʇ ɟo suoısɹǝʌ pǝpuǝʇxǝ puɐ pǝıɟıpoɯ ʅʅɐ ƃuıɹınbǝɹ puɐ ´ǝǝɹɟ ʞɹoʍ ɹǝɥʇo ɹo ɯɐɹƃoɹd ɐ ƃuıʞɐɯ ɹoɟ poɥʇǝɯ ʅɐɹǝuǝƃ ɐ sı ǝsuǝɔıʅ ʇɟǝʅʎdoↃ ɐ ´.ƃ.ǝ) ǝsuǝɔıʅ ʇɟǝʅʎdoɔ ɐ ɹo "
-"ǝsuǝɔıʅ ǝɹɐʍʇɟos ǝǝɹɟ ɐ sǝʇnʇıʇsuoɔ ʇɐɥʍ ɟo uoıssnɔsıp ɐ sǝpnʅɔuı osʅ∀ .ǝsuǝɔıʅ ʇɟǝʅʎdoɔ ɐ ɹo ǝsuǝɔıʅ ǝɹɐʍʇɟos ǝǝɹɟ ɐ sɐ sǝıɟıʅɐnb ǝsuǝɔıʅ ǝɥʇ ɹǝɥʇǝɥʍ ƃuıpnʅɔuı ´sǝsuǝɔıʅ ǝɔɹnos uǝdo ʎǝʞ ǝɥʇ ɟo "
-"sǝıɹɐɯɯns ʇɹoɥs sǝpıʌoɹd uoıʇɐpunoℲ ǝɹɐʍʇɟoS ǝǝɹℲ"
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ".sǝsuǝɔıʅ ǝɔɹnos uǝdo ʎǝʞ ǝɥʇ ɟo ǝɯos ɟo sɯɹǝʇ ǝɥʇ sǝpıʌoɹd ǝʌıʇɐıʇıuI ǝɔɹnoS uǝdO"
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ".ɐıpǝdıʞıＭ uo sǝsuǝɔıʅ ǝɔɹnos uǝdo uʍouʞ ɟo uosıɹɐdɯoɔ ∀"
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ".ʇɔǝɾoɹd ǝɔɹnos uǝdo ɹnoʎ ɹoɟ ǝsuǝɔıʅ ɐ ƃuısooɥɔ uo ǝɔuɐpınƃ ʅɐʇuǝɯƃpnɾ-uou ǝpıʌoɹd oʇ ǝʇıs ∀"
-
-msgid "Frequently Asked Questions"
-msgstr "suoıʇsǝnÒ pǝʞs∀ ʎʅʇuǝnbǝɹℲ"
-
-msgid "Using Add-ons"
-msgstr "suo-pp∀ ƃuıs∩"
-
-msgid "What is an add-on?"
-msgstr "¿uo-ppɐ uɐ sı ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"<a href=\"%(learnmore_url)s\">uoıʇɐzıɯoʇsnɔ ʇnoqɐ ǝɹoɯ uɹɐǝ⅂</a> .sǝʇsɐʇ puɐ spǝǝu ɹnoʎ ʇǝǝɯ oʇ %(app_name)s ǝzıɯoʇsnɔ uɐɔ noʎ ´suo-ppɐ ɥƃnoɹɥ⊥ .ǝɔuɐɹɐǝddɐ ʅɐnsıʌ sʇı ǝƃuɐɥɔ ɹo ´sǝıɹɐuoıʇɔıp "
-"ǝƃɐnƃuɐʅ uƃıǝɹoɟ ´sǝɹnʇɐǝɟ ʍǝu ɥʇıʍ %(app_name)s ʇuǝɯƃnɐ uɐɔ suo-pp∀ .%(app_name)s ɟo uoıʇɐʅʅɐʇsuı ɹnoʎ oʇ ʎʇıʅɐuoıʇɔunɟ ɹo sǝɹnʇɐǝɟ ʍǝu ppɐ ʇɐɥʇ ǝɹɐʍʇɟos ɟo sǝɔǝıd ʅʅɐɯs ǝɹɐ suo-pp∀"
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "¿uoıʇɐɔıʅddɐ ɹo ɹǝsʍoɹq qǝʍ ʎɯ ɥʇıʍ ʞɹoʍ suo-ppɐ ʅʅıＭ"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr ""
-".ʇou ɹo ǝʅqıʇɐdɯoɔ sı uo-ppɐ ǝɥʇ ɹǝɥʇǝɥʍ ǝʇɐɔıpuı ʅʅıʍ suoʇʇnq ʅʅɐʇsuı ǝɥʇ ´suo-ppɐ xoɟǝɹıℲ ɹoℲ .⁎.25 - 0.05 xoɟǝɹıℲ sɐ ɥɔns ´ɥʇıʍ sʞɹoʍ ʇı suoısɹǝʌ puɐ suoıʇɐɔıʅddɐ ɥɔıɥʍ sǝıɟıɔǝds uo-ppɐ ɥɔɐƎ ."
-"suoıʇɐɔıʅddɐ ǝsoɥʇ ɟo uoısɹǝʌ ʎɹǝʌǝ ɹo suoıʇɐɔıʅddɐ ǝsoɥʇ ɟo ɥɔɐǝ ɥʇıʍ ʞɹoʍ suo-ppɐ ʅʅɐ ʇou ´ɹǝʌǝʍoH .<a href=\"%(getthunderbird_url)s\">pɹıqɹǝpunɥ⊥</a> puɐ ´<a href=\"%(getseamonkey_url)s"
-"\">ʎǝʞuoWɐǝS</a> ´<a href=\"%(getmobile_url)s\">pıoɹpu∀ ɹoɟ xoɟǝɹıℲ</a> ´<a href=\"%(getfirefox_url)s\">xoɟǝɹıℲ</a> sɐ ɥɔns ´suoıʇɐɔıʅddɐ pǝsɐq-ɐʅʅızoW ɥʇıʍ ʞɹoʍ ʎʅuo ʎɹǝʅʅɐƃ sıɥʇ uı pǝʇsıʅ suo-pp∀"
-
-msgid "What are the different types of add-ons?"
-msgstr "¿suo-ppɐ ɟo sǝdʎʇ ʇuǝɹǝɟɟıp ǝɥʇ ǝɹɐ ʇɐɥＭ"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ":sʎɐʍ ʇuǝɹǝɟɟıp uı %(app_name)s ǝzıɯoʇsnɔ ʇɐɥʇ suo-ppɐ ɟo spuıʞ ʅɐɹǝʌǝs ǝɹɐ ǝɹǝɥ⊥"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-".suoıʇɐɔıʅddɐ ɹǝɥʇo uı ǝǝs noʎ sǝɹnʇɐǝɟ ppɐ puɐ ´sǝʇısqǝʍ ʅɐıɔos ɥʇıʍ ʎʅǝsoʅɔ ǝɹoɯ ǝʇɐɹƃǝʇuı ´sǝʇısqǝʍ ɯoɹɟ soǝpıʌ pɐoʅuʍop ´sʇuǝɯǝsıʇɹǝʌpɐ ʞɔoʅq oʇ noʎ ʍoʅʅɐ ʇɐɥʇ suoısuǝʇxǝ ǝɹɐ ǝɹǝɥ⊥ ."
-"ʎʇıʅɐuoıʇɔunɟ ƃuıʇsıxǝ ʎɟıpoɯ ɹo %(app_name)s oʇ sǝɹnʇɐǝɟ ʍǝu ppɐ <strong><a href=\"%(browse_url)s\">suoısuǝʇxƎ</a></strong>"
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ".sǝʅʎʇs ʅɐnsıʌ ɹǝɥʇo puɐ ´sƃoʅɐıp ´sɹoʅoɔ ´suoɔı ƃuıpnʅɔuı ʎʅʅɐnsn ´%(app_name)s ɟo ǝɔuɐɹɐǝddɐ ǝɹıʇuǝ ǝɥʇ ǝƃuɐɥɔ <strong><a href=\"%(browse_url)s\">sǝɯǝɥ⊥ ǝʇǝʅdɯoↃ</a></strong>"
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ".sɹɐqʅooʇ %(app_name)s ɹnoʎ ǝzıɯoʇsnɔ oʇ sǝƃɐɯı punoɹƃʞɔɐq ǝsn ʇɐɥʇ sǝɯǝɥʇ ʇɥƃıǝʍʇɥƃıʅ ǝɹɐ <strong><a href=\"%(browse_url)s\">sǝɯǝɥ⊥</a></strong>"
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ".ǝʇısqǝʍ ʎuɐ ɥɔɹɐǝs ʎʅʞɔınb oʇ noʎ ʍoʅʅɐ sɹǝpıʌoɹd ǝsǝɥ⊥ .uʍopdoɹp xoq ɥɔɹɐǝs ǝɥʇ oʇ sǝɔıoɥɔ ʅɐuoıʇıppɐ ppɐ <strong><a href=\"%(browse_url)s\">sɹǝpıʌoɹԀ ɥɔɹɐǝS</a> </strong>"
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ".%(app_name)s oʇ sǝƃɐnƃuɐʅ ʅɐuoıʇıppɐ ɹoɟ ʇɹoddns ppɐ <strong><a href=\"%(browse_url)s\">sʞɔɐԀ ǝƃɐnƃuɐ⅂ ⅋ sǝıɹɐuoıʇɔıᗡ</a></strong>"
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "¿uo-ppɐ uɐ ǝʌoɯǝɹ ɹo ´ǝƃɐuɐɯ ´ʅʅɐʇsuı I op ʍoH"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-".<a href=\"%(troubleshooting_url)s\">sǝɯǝɥ⊥ puɐ suoısuǝʇxƎ ƃuıʇooɥsǝʅqnoɹ⊥</a> ǝǝs ´suo-ppɐ ƃuıʅʅɐʇsuı ʎʇʅnɔıɟɟıp ǝʌɐɥ noʎ ɟI .<a href=\"%(theme_url)s\">sǝɯǝɥ⊥ ǝʇǝʅdɯoↃ puɐ sǝɯǝɥ⊥ ɹoɟ ǝuo sıɥʇ</a> "
-"ɹo <a href=\"%(extension_url)s\">suoısuǝʇxǝ uo ǝʅɔıʇɹɐ sıɥʇ</a> pɐǝɹ ´suoıʇɔnɹʇsuı pǝʅıɐʇǝp ǝɹoɯ ɹoℲ .%(app_name)s uı ɹǝƃɐuɐW suo-pp∀ ǝɥʇ ɯoɹɟ pǝʅʅɐʇsuıun ɹo ´pǝʅqɐsıp ´pǝƃɐuɐɯ ǝq uɐɔ suo-pp∀ ."
-"pǝpıʌoɹd uoʇʇnq ʅʅɐʇsuı ǝɥʇ ƃuıʞɔıʅɔ ʎʅdɯıs ʎq pǝʅʅɐʇsuı ǝq uɐɔ suo-ppɐ ´sǝsɐɔ ʇsoɯ uI"
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "¿ǝʇɐp-oʇ-dn suo-ppɐ dǝǝʞ I op ʍoH"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr " .ʇʅnɐɟǝp ʎq pǝʅʅɐʇsuı ʎʅʅɐɔıʇɐɯoʇnɐ ǝɹɐ sǝʇɐpdn ´xoɟǝɹıℲ uI .ʎɐp ʎɹǝʌǝ ǝɔuo sǝʇɐpdn ɹoɟ pǝʞɔǝɥɔ ʎʅʅɐɔıʇɐɯoʇnɐ ǝɹɐ suo-pp∀"
-
-msgid "Are add-ons safe to install?"
-msgstr "¿ʅʅɐʇsuı oʇ ǝɟɐs suo-ppɐ ǝɹ∀"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"%(link_close)sssǝɔoɹd ʍǝıʌǝɹ ɹno ʇnoqɐ ǝɹoɯ uɹɐǝ⅂%(learnmore_link_open)s .ʅʅɐʇsuı oʇ ǝɟɐs ǝq ʎʅʅɐɹǝuǝƃ pʅnoɥs ʎǝɥʇ os ´pǝɹoʇıuoɯ ʎʅǝsoʅɔ sı ʞɔɐqpǝǝɟ ɹǝsn puɐ ´sɹǝʍǝıʌǝɹ ɟo ɯɐǝʇ s,ɐʅʅızoW ʎq ʍǝıʌǝɹ "
-"oʇ ʇɔǝɾqns ǝq ʎɐɯ ǝʇıs sıɥʇ ɯoɹɟ ǝʅqɐʅıɐʌɐ suo-pp∀ .ʎɔɐʌıɹd ɹnoʎ ǝʇɐʅoıʌ ɹo ɹǝʇndɯoɔ ɹnoʎ ɯɹɐɥ ʎɐɯ ʎǝɥʇ sɐ ´suo-ppɐ ƃuıʅʅɐʇsuı uǝɥʍ uoıʇnɐɔ ǝs∩"
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "¿ɹǝʍoʅs %(app_name)s ǝʞɐɯ suo-ppɐ uɐↃ"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-".ʇı ƃuıʅqɐsıp ʎɹʇ ´ʍoʅs ǝq oʇ %(app_name)s ƃuısnɐɔ sı uo-ppɐ uɐ ʇɔǝdsns noʎ ɟI .sʇɔǝɟɟǝ ǝsɹǝʌpɐ ǝʌɐɥ ʎɐɯ ɹǝqɯnu ǝʌıssǝɔxǝ uɐ ƃuıʅʅɐʇsuı ɥƃnoɥʇ ´%(app_name)s uı ǝsɐǝɹɔǝp ǝɔuɐɯɹoɟɹǝd ǝʅqɐʌıǝɔɹǝd ɐ "
-"ǝsnɐɔ ʇou op suo-ppɐ ʇsoW"
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "¿ʇı ǝsn ʅʅıʇs uɐɔ I ʎɐʍ ɐ ǝɹǝɥʇ sI .ǝʅqıʇɐdɯoɔ ʇ,usı uo-ppɐ uɐ ǝɯ pʅoʇ %(app_name)s"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-".ʎʇıʅıqıʇɐdɯoɔ ɹıǝɥʇ ǝʇɐpdn sɹǝdoʅǝʌǝp uo-ppɐ dʅǝɥ oʇ <a href=\"%(acr_url)s\">ɹǝʇɹodǝᴚ ʎʇıʅıqıʇɐdɯoↃ uo-pp∀</a> ǝɥʇ ɹǝɟɟo ǝʍ ´xoɟǝɹıℲ ɟo suoısɹǝʌ ɐʇǝq ɹo ɐɥdʅɐ ʇno ƃuıʇsǝʇ ǝɹɐ oɥʍ sɹǝsn ɹoℲ .ɐʇɐp "
-"ɟo ssoʅ sǝsɐɔ ǝɯos uı ɹo ʎʇıʅıqɐʇsuı ɹǝsʍoɹq oʇ pɐǝʅ uɐɔ ʎǝɥʇ sɐ ´sʞɔǝɥɔ ʎʇıʅıqıʇɐdɯoɔ ǝsǝɥʇ ʇuǝʌɯnɔɹıɔ oʇ ƃuıʎɹʇ puǝɯɯoɔǝɹ ʇou sǝop ɐʅʅızoW .ƃuısn ǝɹɐ noʎ uoısɹǝʌ ɹǝʍǝu ɐ ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝq oʇ uo-"
-"ppɐ ǝɥʇ pǝʇɐpdn ʇǝʎ ʇou sɐɥ ɹoɥʇnɐ uo-ppɐ ǝɥʇ ɹo pǝʇɐpʇno sı %(app_name)s ɟo uoısɹǝʌ ɹnoʎ ǝsnɐɔǝq ɹǝɥʇıǝ ʎʅʅɐnsn sı ʇı ´%(app_name)s ɟo uoısɹǝʌ ɹnoʎ ɥʇıʍ ǝʅqıʇɐdɯoɔ ʇ,usı uo-ppɐ uɐ ɟI"
-
-msgid "What if I have problems with an add-on?"
-msgstr "¿uo-ppɐ uɐ ɥʇıʍ sɯǝʅqoɹd ǝʌɐɥ I ɟı ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-".sdıʇ ƃuıʇooɥsǝʅqnoɹʇ ɹoɟ <a href=\"%(troubleshooting_url)s\">ǝʅɔıʇɹɐ ʇɹoddns sıɥʇ ʇısıʌ</a> ´pǝʅʅɐʇsuı ǝʌɐɥ noʎ suo-ppɐ oʇ pǝʇɐʅǝɹ ǝɹɐ ʇɔǝdsns noʎ ʇɐɥʇ %(app_name)s ɥʇıʍ sǝnssı ƃuıʌɐɥ ǝɹɐ noʎ ɟI ."
-"ɹǝdoʅǝʌǝp ǝɥʇ ʇɔɐʇuoɔ ɹo ǝƃɐdǝɯoɥ s,uo-ppɐ ǝɥʇ uo sʞuıʅ ʇɹoddns ɹoɟ ʞooʅ oʇ sı uo-ppɐ uɐ ɥʇıʍ dʅǝɥ ʇǝƃ oʇ ʎɐʍ ʇsǝq ǝɥʇ os ´pʅɹoʍ ǝɥʇ punoɹɐ ɯoɹɟ sɹǝdoʅǝʌǝp ʎʇɹɐd-pɹıɥʇ ʎq pǝʇɐǝɹɔ ʎʅʅɐnsn ǝɹɐ suo-pp∀"
-
-msgid "Add-on Gallery"
-msgstr "ʎɹǝʅʅɐ⅁ uo-pp∀"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "¿ƃuıɥʇ ǝɯɐs ǝɥʇ op oʇ ɯǝǝs ʇɐɥʇ suo-ppɐ uǝǝʍʇǝq ǝsooɥɔ I op ʍoH"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-".ɹǝʇʇǝq ǝʞıʅ noʎ ɥɔıɥʍ ǝǝs puɐ ɥʇoq ʇno ʎɹʇ ʇsnɾ osʅɐ uɐɔ noʎ ʇɐɥʇ ɹǝqɯǝɯǝᴚ .sɹǝsn ɹǝɥʇo ʎq pǝʞıʅ ʇsoɯ sı ɥɔıɥʍ ǝǝs oʇ sɔıʇsıʇɐʇs puɐ ´sʍǝıʌǝɹ ɹǝsn ´sƃuıʇɐɹ s,uo-ppɐ ǝɥʇ ɥƃnoɹɥʇ pɐǝɹ ´ƃuıuunɹ ǝɥʇ "
-"uı ʅɐɹǝʌǝs ʅʅıʇs ǝɹɐ ǝɹǝɥʇ ɟI .sʇoɥsuǝǝɹɔs sʇı ʍǝıʌ puɐ uo-ppɐ ǝɥʇ ɟo uoıʇdıɹɔsǝp ǝɹıʇuǝ ǝɥʇ pɐǝɹ ´noʎ ɹoɟ ʇɥƃıɹ sı ɥɔıɥʍ ʇno ǝɹnƃıɟ o⊥ .sǝɹnʇɐǝɟ ɹɐʅıɯıs ǝʌɐɥ ʇɐɥʇ suo-ppɐ ʅɐɹǝʌǝs uǝʇɟo ǝɹɐ ǝɹǝɥ⊥"
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "¿ɹoɟ ƃuıʞooʅ ɯ,I uo-ppɐ uɐ puıɟ ʇ,uɐɔ I ɟı ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-".<a href=\"%(forum_url)s\">ɯnɹoɟ suo-pp∀</a> ɹno uı ʇı ʇnoqɐ ƃuıʇsod ɹo sǝʇıs ɹǝɥʇo uo ƃuıɥɔɹɐǝs ʎɹʇ ʇɥƃıɯ noʎ ´ʇı puıɟ ʇ,uɐɔ puɐ uo-ppɐ ɹɐʅnɔıʇɹɐd ɐ ɹoɟ ƃuıʞooʅ ǝɹ,noʎ ɟı ʇnԐ .ǝuoʎɹǝʌǝ ɹoɟ "
-"ƃuıɥʇǝɯos s,ǝɹǝɥʇ ´ǝʅqɐʅıɐʌɐ suo-ppɐ ɟo spuɐsnoɥʇ ɥʇıＭ"
-
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "¿„ʅɐʇuǝɯıɹǝdxǝ„ sı uo-ppɐ uɐ ɟı uɐǝɯ ʇı sǝop ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"%(link_close)sssǝɔoɹd ʍǝıʌǝɹ ɹno ʇnoqɐ ǝɹoɯ uɹɐǝ⅂%(learnmore_link_open)s .sɯǝʅqoɹd ǝɔıʇou noʎ ɟı ʎʅǝʇɐıpǝɯɯı uo-ppɐ ǝɥʇ ʅʅɐʇsuıun puɐ suo-ppɐ ʅɐʇuǝɯıɹǝdxǝ ƃuıʅʅɐʇsuı uǝɥʍ uoıʇnɐɔ ǝs∩ .ʎʅɹǝdoɹd ʞɹoʍ "
-"ʇou ɹo sƃnq ǝʌɐɥ ʎɐɯ ʎǝɥ⊥  .ǝɔuǝıpnɐ ǝpıʍ ɐ ɹoɟ ǝʅqɐʇıns ʇou sɐ sɹǝdoʅǝʌǝp ɹıǝɥʇ ʎq pǝʞɹɐɯ uǝǝq ǝʌɐɥ suo-ppɐ ʅɐʇuǝɯıɹǝdxƎ"
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "¿„pǝʍǝıʌǝɹ ʇou„ sı uo-ppɐ uɐ ɟı uɐǝɯ ʇı sǝop ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-"%(link_close)sssǝɔoɹd ʍǝıʌǝɹ ɹno ʇnoqɐ ǝɹoɯ uɹɐǝ⅂%(learnmore_link_open)s .ʎɔɐʌıɹd ɹnoʎ ǝʇɐʅoıʌ ɹo ɹǝʇndɯoɔ ɹnoʎ ɯɹɐɥ pʅnoɔ ʎǝɥʇ sɐ ´suo-ppɐ ǝsǝɥʇ ƃuıʅʅɐʇsuı uǝɥʍ uoıʇnɐɔ ǝs∩ .ɐʅʅızoW ʎq ʍǝıʌǝɹ "
-"ƃuıʇıɐʍɐ ʎʅʇuǝɹɹnɔ s,ʇı suɐǝɯ ʇı ´pǝʍǝıʌǝɹ uǝǝq ʇǝʎ ʇ,usɐɥ ʇı sʎɐs ʇɐɥʇ uo-ppɐ uɐ oʇ ʞuıʅ ʇɔǝɹıp ɐ ǝʌıǝɔǝɹ noʎ ɟI"
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "¿ǝsɐɥɔɹnd oʇ ʇsoɔ suo-ppɐ op ɥɔnɯ ʍoH"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ".ǝsıʍɹǝɥʇo pǝʞɹɐɯ ʎʅɹɐǝʅɔ ssǝʅun ǝǝɹɟ ǝɹɐ ʎɹǝʅʅɐƃ ɹno uı pǝʇsoɥ suo-pp∀"
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "¿suoıʇnqıɹʇuoɔ ɹoɟ sʞsɐ uo-ppɐ uɐ uǝɥʍ uɐǝɯ ʇı sǝop ʇɐɥＭ"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-".uoıʇɐpunoℲ ɐʅʅızoW ʇıɟoɹd-uou ǝɥʇ sɐ ɥɔns ´pǝʇɐɔıpuı sı ʎʇɹɐd pɹıɥʇ ɐ ssǝʅun ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʎʅʇɔǝɹıp oƃ suoıʇnqıɹʇuoɔ ǝsǝɥ⊥ .uoıʇnqıɹʇuoɔ ʎɹɐʇǝuoɯ ɐ ƃuıʞɐɯ ʎq ʇuǝɯdoʅǝʌǝp sʇı oʇ ǝʇnqıɹʇuoɔ oʇ uo-"
-"ppɐ uɐ ʎoɾuǝ oɥʍ sɹǝsn ʇsǝnbǝɹ sɹoɥʇnɐ uo-ppɐ ǝɯoS"
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "¿ʍǝıʌǝɹ ɹǝsn ɯɐds ɹo ǝʇɐıɹdoɹddɐuı uɐ ʇɹodǝɹ I op ʍoH"
-
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-".uoıʇɔɐ ǝʇɐıɹdoɹddɐ ǝʞɐʇ puɐ ʍǝıʌǝɹ ǝɥʇ ǝʇɐƃıʇsǝʌuı ʅʅıʍ ɯɐǝʇ sɹǝʍǝıʌǝɹ ɹnO .uosɐǝɹ ɐ ʇɔǝʅǝs puɐ „ʍǝıʌǝɹ sıɥʇ ʇɹodǝᴚ„ ʞɔıʅɔ ´ʇɹodǝɹ oʇ ɥsıʍ noʎ ʍǝıʌǝɹ ǝɥʇ puıℲ .ǝƃɐd sʍǝıʌǝɹ s,uo-ppɐ ǝɥʇ ʇısıʌ puɐ "
-"ʇunoɔɔɐ ɹnoʎ ɥʇıʍ uı ƃoʅ ´uo-ppɐ uɐ ɟo ʍǝıʌǝɹ ɹǝsn ɐ ʇɹodǝɹ o⊥"
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "¿ɯɐǝʇ suo-pp∀ ɐʅʅızoW ǝɥʇ ʇɔɐʇuoɔ ɹo ƃnq ɐ ʇɹodǝɹ I op ʍoH"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ".<a href=\"%(contact_url)s\">ǝƃɐd ʇɔɐʇuoↃ</a> ɹno ʇısıʌ ǝsɐǝʅԀ"
-
-msgid "What is a Source Code License?"
-msgstr "¿ǝsuǝɔı⅂ ǝpoↃ ǝɔɹnoS ɐ sı ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-".uʍo ɹıǝɥʇ dn ƃuıʞɐɯ ɟo pɐǝʇsuı sǝsuǝɔıʅ ᗡSԐ ɹo ⅂Ԁ⅁ ǝɥʇ ǝʞıʅ sǝsuǝɔıʅ ǝɔɹnos uǝdo uʍouʞ ʎʅǝpıʍ ǝsooɥɔ sɹoɥʇnɐ ʇsoW .ɹoɥʇnɐ ǝɥʇ ʎq pǝuıɯɹǝʇǝp suoıʇıpuoɔ ɹǝpun ǝsnǝɹ puɐ ʎdoɔ ɹoɟ ǝʅqɐʅıɐʌɐ ʎʅɔıʅqnd "
-"ǝpoɔ ǝɔɹnos ǝɥʇ ǝʞɐɯ ʇɐɥʇ <a href=\"%(url)s\" lang=\"en\">sǝsuǝɔıʅ ǝɔɹnos uǝdo</a> ǝʌɐɥ ǝʇıs sıɥʇ uo suo-ppɐ ʎuɐW .ǝsuǝɔıʅ ǝpoɔ ǝɔɹnos ɐ uı pǝɹɐʅɔǝp ǝsıʍɹǝɥʇo ssǝʅun ´ɹoɥʇnɐ uo-ppɐ ǝɥʇ ɟo ʇɥƃıɹʎdoɔ "
-"ǝʌısnʅɔxǝ uɐ sı uo-ppɐ uɐ ǝʇɐǝɹɔ oʇ pǝsn ǝpoɔ ǝɔɹnos ǝɥ⊥"
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ".<a href=\"%(url)s\">ǝɔɹnos uǝdo</a> ǝɹɐ ǝɹɐʍʇɟos ɐʅʅızoW ɹǝɥʇo puɐ xoɟǝɹıℲ"
-
-msgid "Collections and Favorites"
-msgstr "sǝʇıɹoʌɐℲ puɐ suoıʇɔǝʅʅoↃ"
-
-msgid "What is a collection?"
-msgstr "¿uoıʇɔǝʅʅoɔ ɐ sı ʇɐɥＭ"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr ".ǝɹɐɥs oʇ sɹǝsn ʎq pǝʇɐǝɹɔ suo-ppɐ pǝʇɐʅǝɹ ɟo sdnoɹƃ ǝɹɐ suoıʇɔǝʅʅoↃ"
-
-msgid "What is the My Favorites collection?"
-msgstr "¿uoıʇɔǝʅʅoɔ sǝʇıɹoʌɐℲ ʎW ǝɥʇ sı ʇɐɥＭ"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ".ǝƃɐd sʅıɐʇǝp sʇı uo „sǝʇıɹoʌɐɟ oʇ pp∀„ ƃuıʞɔıʅɔ ʎq uoıʇɔǝʅʅoɔ sǝʇıɹoʌɐɟ ɹnoʎ oʇ uo-ppɐ uɐ ppɐ uɐɔ no⅄ .ɹǝʇɐʅ oʇ ʞɔɐq ʇǝƃ ʎʅısɐǝ oʇ pǝʞɹɐɯʞooq ǝʌɐɥ noʎ ʇɐɥʇ suo-ppɐ ǝɹɐ suo-ppɐ ǝʇıɹoʌɐℲ"
-
-msgid "Mobile Add-ons"
-msgstr "suo-pp∀ ǝʅıqoW"
-
-msgid "What are mobile add-ons?"
-msgstr "¿suo-ppɐ ǝʅıqoɯ ǝɹɐ ʇɐɥＭ"
-
-#, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-".<a href=\"%(gallery_url)s\">ʎɹǝʅʅɐƃ</a> ɹno uı pıoɹpu∀ ɹoɟ xoɟǝɹıℲ ɥʇıʍ ʞɹoʍ ʇɐɥʇ suo-ppɐ puıɟ uɐɔ no⅄ .suo-ppɐ doʇʞsǝp ǝʞıʅ ʇsnɾ ʎʇıʅɐuoıʇɔunɟ ʎɟıpoɯ ɹo ppɐ puɐ <a href=\"%(mobile_url)s\">pıoɹpu∀ "
-"ɹoɟ xoɟǝɹıℲ</a> ɥʇıʍ ʞɹoʍ suo-ppɐ ǝʅıqoW"
-
-msgid "Developer Topics"
-msgstr "sɔıdo⊥ ɹǝdoʅǝʌǝᗡ"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ".suoıʇsǝnb pǝʇɐʅǝɹ-ɹǝdoʅǝʌǝp uo-ppɐ oʇ sɹǝʍsuɐ ɹoɟ <a href=\"%(hub_url)s\">qnH ɹǝdoʅǝʌǝᗡ</a> puɐ <a href=\"%(faq_url)s\">Ò∀Ⅎ ɹǝdoʅǝʌǝᗡ</a> ɹno ǝǝs ǝsɐǝʅԀ"
-
-msgid "Still have questions?"
-msgstr "¿suoıʇsǝnb ǝʌɐɥ ʅʅıʇS"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ".<a href=\"%(forum_url)s\">ɯnɹoɟ</a> ɹno ʇısıʌ ´suoıʇsǝnb ǝʇısqǝʍ puɐ uo-ppɐ ʅɐɹǝuǝƃ ɹoℲ .<a href=\"%(sumo_url)s\">ǝʇısqǝʍ ʇɹoddns</a> ɹno ʇısıʌ ´ʇɹoddns xoɟǝɹıℲ ʅɐɹǝuǝƃ ɹoℲ"
 
 msgid "Some tips for writing a great review"
 msgstr "ʍǝıʌǝɹ ʇɐǝɹƃ ɐ ƃuıʇıɹʍ ɹoɟ sdıʇ ǝɯoS"
@@ -5787,23 +5047,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ":ʎq noʎ oʇ ʇɥƃnoɹԐ"
 
-msgid "Sunbird has retired"
-msgstr "pǝɹıʇǝɹ sɐɥ pɹıqunS"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-".suo-ppɐ ǝɥʇ ɹoɟ ʇɹoddns ɹno pǝʅqɐsıp ǝʌɐɥ ǝʍ pǝuıɐʇuıɐɯ ɹǝƃuoʅ ou sı ʇɔǝɾoɹd ǝɥʇ sɐ ʇnq ǝʇıs sıɥʇ uo suo-ppɐ pɹıqunS ʇsoɥ oʇ pnoɹd uǝǝq ǝʌ,ǝＭ .0102 ´03 ɥɔɹɐW uo sɐʍ ǝsɐǝʅǝɹ ʅɐuıɟ sʇı puɐ pǝʇʅɐɥ "
-"sɐɥ ʇɔǝɾoɹd pɹıqunS ǝɥʇ uo ʇuǝɯdoʅǝʌǝᗡ"
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ".<a href=\"%(lightning_url)s\">ƃuıuʇɥƃı⅂</a> puɐ <a href=\"%(tb_url)s\">pɹıqɹǝpunɥ⊥</a> oʇ ƃuıpɐɹƃdn puǝɯɯoɔǝɹ ǝＭ"
-
-msgid "Read more about Sunbird"
-msgstr "pɹıqunS ʇnoqɐ ǝɹoɯ pɐǝᴚ"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "%s ɹoɟ sʍǝıʌǝᴚ"
@@ -5818,6 +5061,15 @@ msgstr "sɹɐʇs 5 ɟo ʇno %d pǝʇɐᴚ"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ".uosɐǝɹ ƃɐʅɟ ɐ sɐ „ɹǝɥʇO„ ƃuıʇɔǝʅǝs uǝɥʍ pǝpıʌoɹd ǝq ʇsnɯ uoıʇɐuɐʅdxǝ ʇɹoɥs ∀"
+
+msgid "Spam or otherwise non-review content"
+msgstr "ʇuǝʇuoɔ ʍǝıʌǝɹ-uou ǝsıʍɹǝɥʇo ɹo ɯɐdS"
+
+msgid "Inappropriate language/dialog"
+msgstr "ƃoʅɐıp/ǝƃɐnƃuɐʅ ǝʇɐıɹdoɹddɐuI"
+
+msgid "Misplaced bug report or support request"
+msgstr "ʇsǝnbǝɹ ʇɹoddns ɹo ʇɹodǝɹ ƃnq pǝɔɐʅdsıW"
 
 msgid "Other (please specify)"
 msgstr "(ʎɟıɔǝds ǝsɐǝʅd) ɹǝɥʇO"
@@ -6395,9 +5647,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "ǝʅʇı⊥ uo-pp∀"
-
-msgid "Review Title"
-msgstr "ǝʅʇı⊥ ʍǝıʌǝᴚ"
 
 msgid "Review Text"
 msgstr "ʇxǝ⊥ ʍǝıʌǝᴚ"
@@ -7387,8 +6636,8 @@ msgstr "uoıʇɐɔo⅂"
 msgid "Occupation"
 msgstr "uoıʇɐdnɔɔO"
 
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ".ssǝɹppɐ ʅıɐɯǝ ɹıǝɥʇ ǝƃuɐɥɔ ʎʅʇuǝɹɹnɔ ʇouuɐɔ sɹǝsn sʇunoɔɔ∀ xoɟǝɹıℲ"
+msgid "You can change your email address on Firefox Accounts."
+msgstr ".sʇunoɔɔ∀ xoɟǝɹıℲ uo ssǝɹppɐ ʅıɐɯǝ ɹnoʎ ǝƃuɐɥɔ uɐɔ no⅄"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ".ǝƃɐd_ʎɯ/ɯoɔ.ǝʅdɯɐxǝ//:dʇʇɥ ǝʞıʅ ʞooʅ s⅂ᴚ∩ pıʅɐɅ .ʇɐɯɹoɟ pıʅɐʌuı uɐ sɐɥ ⅂ᴚ∩ sıɥ⊥"

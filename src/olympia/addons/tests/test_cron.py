@@ -265,7 +265,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
     def test_total_and_average_downloads(self):
         addon = Addon.objects.get(pk=3615)
-        old_average_daily_downloads = addon.average_daily_downloads
         old_total_downloads = addon.total_downloads
         DownloadCount.objects.update_or_create(
             addon=addon, date=datetime.date.today(), defaults={'count': 42})
@@ -291,13 +290,10 @@ class TestAvgDailyUserCountTestCase(TestCase):
         cron.update_addon_download_totals()
 
         addon.reload()
-        assert addon.average_daily_downloads != old_average_daily_downloads
         assert addon.total_downloads != old_total_downloads
-        assert addon.average_daily_downloads == 50  # had to be cast to int.
         assert addon.total_downloads == 101
 
         addon2.reload()
-        assert addon2.average_daily_downloads == 21
         assert addon2.total_downloads == 21
 
 

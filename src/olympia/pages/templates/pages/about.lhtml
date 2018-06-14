@@ -64,8 +64,10 @@ are still ways to help:{% endtrans %}</p>
 </ul>
 
 <h3>{{ _('I have a question') }}</h3>
-<p>{% trans faq_url=url('pages.faq'), forum_url="https://discourse.mozilla-community.org/c/add-ons" %}A good place
-to start is our <a href="{{ faq_url }}"><abbr title="Frequently Asked Questions">FAQ</abbr></a>.
+<p>{% trans sumo_url="https://support.mozilla.org/products/firefox/manage-preferences-and-add-ons-firefox/install-and-manage-add-ons",
+            forum_url="https://discourse.mozilla-community.org/c/add-ons"
+    %}A good place
+to start is <a href="{{ sumo_url }}">Support</a> Mozilla.
 If you don't find an answer there, you can <a href="{{ forum_url }}"> ask on our
 forums</a>.{% endtrans %}</p>
 
@@ -74,10 +76,9 @@ contact someone from the Mozilla team, please see our <a href="{{ url }}">
 contact information</a> page.{% endtrans %}</p>
 
 <h3>{{ _('Who works on this website?') }}</h3>
-<p>{% trans url="/pages/credits" %}Over the years, many people have contributed
+<p>{% trans %}Over the years, many people have contributed
 to this website, including both volunteers from the community and a dedicated
-AMO team. A list of significant contributors can be found on our <a href="{{ url }}">
-Site Credits</a> page.{% endtrans %}</p>
+AMO team. {% endtrans %}</p>
 
 </div>
 {% endblock %}

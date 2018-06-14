@@ -1,38 +1,5 @@
 [
     {
-        "pk": 2,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "en-US",
-            "created": "2009-12-22 20:12:06",
-            "id": 2,
-            "modified": "2009-12-22 20:12:06",
-            "localized_string": "r1 title en"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "de",
-            "created": "2009-12-22 20:12:06",
-            "id": 2,
-            "modified": "2009-12-22 20:12:06",
-            "localized_string": "r1 title de"
-        }
-    },
-    {
-        "pk": 4,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "de",
-            "created": "2009-12-22 20:12:06",
-            "id": 3,
-            "modified": "2009-12-22 20:12:06",
-            "localized_string": "r2 title de"
-        }
-    },
-    {
         "pk": 5,
         "model": "translations.translation",
         "fields": {
@@ -90,9 +57,8 @@
         "pk": 1,
         "model": "ratings.rating",
         "fields": {
-            "body": null,
+            "body": "r1 body",
             "rating": 4,
-            "title": 2,
             "created": "2009-12-22 20:12:06",
             "modified": "2009-12-22 20:12:06",
             "version": 5,
@@ -105,9 +71,8 @@
         "pk": 2,
         "model": "ratings.rating",
         "fields": {
-            "body": null,
+            "body": "r2 body",
             "rating": 4,
-            "title": 3,
             "created": "2009-12-22 20:12:06",
             "modified": "2009-12-22 20:12:06",
             "version": 5,

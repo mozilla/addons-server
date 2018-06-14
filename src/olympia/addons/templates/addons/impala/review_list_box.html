@@ -4,9 +4,6 @@
   {% for review in reviews %}
     <div class="review">
       <h3>
-        {% if review.title %}
-          <b>{{ review.title }}</b>
-        {% endif %}
         {{ review.rating|stars }}
       </h3>
       <p class="byline">
