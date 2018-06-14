@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-14 06:00+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -192,9 +192,9 @@ msgstr "Погледај полису приватности"
 msgid "View End-User License Agreement"
 msgstr "Погледајте Уговор о лиценци софтвера за крајњег корисника"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Овај додатак није прегледан од стране Mozilla фонтације. <a href=\"%(url)s\">Сазнај вишe</a>"
+#, fuzzy
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "Овај додатак још нема рецензију."
 
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers."
@@ -403,9 +403,6 @@ msgstr "Шта мислите?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Молимо Вас, <a href=\"%(login)s\">пријавите се</a> како бисте послали коментар"
-
-msgid "Title:"
-msgstr "Наслов:"
 
 msgid "Review:"
 msgstr "Коментар:"
@@ -1125,9 +1122,6 @@ msgstr "Направи ову колекцију приватном"
 
 msgid "Make this Collection Public"
 msgstr "Направи ову колекцију јавном"
-
-msgid "Learn about collections"
-msgstr "Сазнајте о колекцијама"
 
 msgid "More Options:"
 msgstr "Још опција:"
@@ -4055,10 +4049,6 @@ msgstr "Подршка"
 msgid "Policies"
 msgstr "Полисе додатака"
 
-# Link text to the Frequently Asked Questions page.
-msgid "FAQ"
-msgstr "ЧПП"
-
 #, fuzzy
 msgid "Report Bug"
 msgstr "Пријави злоупотребу"
@@ -5061,10 +5051,8 @@ msgstr "Преглдајте додатке на сајту. Аутори дод
 msgid "I have a question"
 msgstr "Имам питање"
 
-#, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+#, fuzzy, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Добро место за почетак је наш <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">ЧПП</abbr></a>. Ако не пронађете одговор тамо, можете <a href=\"%(forum_url)s\"> питати на форуму</"
 "a>."
@@ -5076,677 +5064,14 @@ msgstr "Ако стварно морате да контактирате нек�
 msgid "Who works on this website?"
 msgstr "Ко ради на интернет страници?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+#, fuzzy
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
 "Током година, многи људи су допринели овој интернет страници, укључујући и волонтере из заједнице и посвећени АМО тим. Листу наших значајних сарадника можете пронаћи на <a href=\"%(url)s\"> "
 "Заслуге</a> страници."
 
-msgid "Add-on Compatibility Reporter"
-msgstr "Извештач компатибилности додатка"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Compatibility Reporter за додатке је инсталиран"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "Лако нам можете помоћи да се уверимо да су додаци ажурирани на време за издање нове верзије Firefox-а."
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Ево како можете почети са извештајима о компатибилности додатака:"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"Када почнете да истражујете и користите Ваше додатке, пажљиво бележите било шта што Вам се чини другачијим од последње коришћене екстензије. То могу бити грешке приликом приказивања, као што су "
-"ставке менија које недостају, или нешто много озбиљније, као на пример да додатак не функционише уопште или приказује неке грешке."
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Ако надоградите на нову верзију Firefox-а или ажурирате своје додатке, Ваши извештаји за старе верзије ће бити сакривени да би Вам омогућили да тестирате нову верзију. Уколико имате било каквих "
-"питања, молимо питајте на <a href=\"%(url)s\">нашин форумима</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-"Хиљаде додатака прави наша заједница сваке године, и Ваша помоћ са тестирањем компатибилности помаже нам да будемо сигурни да ови додаци остају корисни и настојимо да пружимо сјајно корисничко "
-"искуство."
-
-msgid "Thank you!"
-msgstr "Хвала!"
-
-msgid "Site Credits"
-msgstr "Заслуге сајта"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla жели да се захвали следећим људима за њихов допринос addons.mozilla.org пројекту током свих година:"
-
-msgid "Developers &amp; Administrators"
-msgstr "Програмери &amp; Администратори"
-
-msgid "Localizers"
-msgstr "Локализатори"
-
-msgid "Reviewers"
-msgstr "Рецензенти"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "Више од {0} прегледа додатака"
-
-msgid "Other Contributors"
-msgstr "Остали доприноси"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "Претходни Програмери &amp; Администратори"
-
-msgid "Software and Images"
-msgstr "Софтвер и слике"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"Неке иконице које су са <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, lсу линценциране под <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 лиценцом</a>."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"Неке иконице које су са <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, су линценциране под <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 лиценцом</a>."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"Неке странице користе елементе из <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (нису комерцијални), лиценцирани под <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 лиценцом</a>."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "За информације о доприносу, погледајте нашу <a href=\"%(url)s\">wiki страницу</a>."
-
-msgid "Developer FAQ"
-msgstr "ЧПП програмера"
-
 msgid "Sections"
 msgstr "Секције"
-
-msgid "Developing an Add-on"
-msgstr "Развој додатка"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "Ресурси подршке"
-
-msgid "Contributing your Add-on"
-msgstr "Доприношење Вашем додатку"
-
-msgid "Add-on Review Process"
-msgstr "Процес прегледа додатка"
-
-msgid "Managing Your Add-on"
-msgstr "Управљање Вашим додатком"
-
-msgid "References for Open Source Licenses"
-msgstr "Референце на лиценце отвореног извора"
-
-# The title for a user if they are a developer
-msgid "Add-on Developer FAQ"
-msgstr "ЧПП програмера додатка"
-
-#, fuzzy, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Како направити додатак?</h3> <p> Mozilla пружа документацију како да направите додатак на сајту <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-
-msgid "What is a \".xpi\" file?"
-msgstr "Шта је \".xpi\" датотека?"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "Екстензије су упаковане и дистрибуиране у ZIP датотекама или пакетима, са XPI (изговара се \"zippy\") екстензијом датотеке."
-
-msgid "What is XUL?"
-msgstr "Шта је XUL?"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
-"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
-"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "Како да тестирам компатибилност са најновијом верзијом Mozilla софтвера?"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "Треба ми савет око прављења додатака. Где могу да га добијем?"
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr "#extdev (за дискусију о разоју додатака)"
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "#amo (за подршку у вези са хостовањем Вашег додатка на AMO)"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
-
-msgid "Add-ons forum"
-msgstr "Форум за додатке"
-
-msgid "Does Mozilla offer development services?"
-msgstr "Да ли Mozilla нуди услуге за развој?"
-
-msgid "No."
-msgstr "Не."
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Да ли постоје програмери других компанија које могу запослити да направе мој додатак?"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-"Да. Можете наћи програмере преко <a href=\"%(forum_url)s\">Форума за додатке</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine форума</a> или <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Имајте у виду да Mozilla не даје препоруке програмера."
-
-msgid "Can I host my own add-on?"
-msgstr "Да ли могу да хостујем мој додатак?"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-
-msgid "Can Mozilla host my add-on?"
-msgstr "Да ли Mozilla може да хостује мој додатак?"
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Да. Можете да хостујете Ваш додатак на <a href=\"%(url)s\">Mozilla-ином веб сајту додатака</a>."
-
-msgid "What is AMO?"
-msgstr "Шта је AMO?"
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-
-msgid "Does Mozilla keep my account information private?"
-msgstr "Да ли Mozilla држи моје информације налога приватним?"
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Да. Наша <a href=\"%(url)s\">полиса приватности</a> описује како Mozilla управља са Вашим информацијама."
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Зашто су \"developer tools\" наведени на AMO?"
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "Да ли Mozilla има полису о томе каква подношења су прихватљива?"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-
-#, fuzzy
-msgid "How do I submit my add-on?"
-msgstr "Како да поднесем мој додатак на рецензију?"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-
-msgid "What operating system do I choose for my add-on?"
-msgstr "Који оперативни систем да изаберем за мој додатак?"
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "Морате изабрати оперативне системе на којима ће Ваш додатак да функционише."
-
-msgid "What category do I choose for my add-on?"
-msgstr "Коју категорију да изаберем за мој додатак?"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "Да ли могу да прецизирам споразум о лиценци за коришћење мог додатка?"
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Да. Можете одредити споразум о лиценцирању приликом слања додатка. Такође можете да додате или ажурирате уговор о лиценци преко Developer Tools табле након што је поднет Ваш додатак."
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "Да ли могу да укључим полису приватности за мој додатак?"
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Да. Можете да наведете полису приватности приликом слања додатка. Такође можете да додате или ажурирате полису приватности преко Developer Tools табле након што је поднет Ваш додатак."
-
-#, fuzzy
-msgid "Must my add-on be reviewed?"
-msgstr "Зашто мој додатак мора поново да се прегледа?"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-
-msgid "Who reviews my add-on?"
-msgstr "Ко прегледава мој додатак?"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr "Које су смернице које се користе за преглед мог додатка?"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "Колико дуго је потребно да се додатак прегледа?"
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "Ми Вам не можемо дати процену времена колико ће бити потребно пре него што се прегледа додатак. Многи фактори утичу на време, укључујући:"
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr "број поднесених додатака"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "сложеност кода додатака"
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr "број проблематичних области које су откривене"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Како могу да видим колико је пута преузет мој додатак?"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "Контролна табла статистика која можете наћи у Developer Tools табли пружа информације које Вам могу помоћи да утврдите преузимања Ваших додатака пошто сте га поднели на AMO."
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr "Како могу да видим колико активних корисника користи мој додатак?"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-
-msgid "How do I submit an update for my add-on?"
-msgstr "Како да поднесем надоградњу за мој додатак?"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-
-#, fuzzy
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Да ли моја надоградња мора да буде прегледана од стране уредника?"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Како могу да одговорим кориснику који је објавио негативан коментар на мој додатак?"
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "Спам или други садржај не-рецензентног типа"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "Неприкладан језик/дијалог"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "Погрешно постављен извештај о грешци или захтев за подршку"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "Остало (пружа искачућу линију за информације)"
-
-#, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Тренутно, AMO не обезбеђује механизам да директну комуникацију са рецензентом, али ова опција се истражује и разматра за будуће надоградње."
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Да ли могу тражити да се преглед уклони уколико је преглед био негативан?"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Не. Ми не уклањамо негативне критике од додатака, осим ако се утврди да су лажне."
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Да ли могу тражити да се преглед уклони уколико је преглед био нетачан?"
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "Ако нас аутор контактира и тражи да се уклони ревизија која садржи лажне или нетачне информације, ми ћемо је прегледати и размислит ћемо о томе да је уклонимо."
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr ""
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr "Иницијатива отвореног извора безбеђује услове неких од кључних лиценци отвореног кода."
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
-
-msgid "Frequently Asked Questions"
-msgstr "Често постављена питања"
-
-msgid "Using Add-ons"
-msgstr "Коришћење додатака"
-
-msgid "What is an add-on?"
-msgstr "Шта је додатак?"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "Да ли ће додатак радити на мом веб прегледачу или апликацији?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr ""
-
-msgid "What are the different types of add-ons?"
-msgstr "Који су различити типови додатака?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr "Постоји неколико врста додатака које можете да прилагодите %(app_name)s на различите начине:"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Комплетне теме</a></strong> мењају цео изглед %(app_name)s, обично укључујући иконице, боје, дијалоге и друге визуелне стилова."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Теме</a></strong> су лагане теме које користе слике у позадини да прилагоде Ваш %(app_name)s са траком са алаткама."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">Претраживачи</a> </strong> додају додатне изборе у падајућем менију поља за претрагу . Ови провајдери омогућавају Вам да брзо претраживање било који сајт."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Речници и пакети језика</a></strong> додају подршку %(app_name)s за додатне језике."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "Како да инсталирам, управљам или уклоним додатак?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "Како да одржим додатке ажурираним?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
-
-msgid "Are add-ons safe to install?"
-msgstr "Да ли су додаци безбедни за инсталацију?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Да ли додаци могу успорити %(app_name)s?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s ми је рекао да додатак није компатибилан. Да ли постоји начин да га и даље користим?"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-
-msgid "What if I have problems with an add-on?"
-msgstr "Шта да радим ако имам проблема са додатком?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-
-msgid "Add-on Gallery"
-msgstr "Галерија додатака"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "Како да се одлучим између додатака који раде исту ствар?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "Шта ако не могу наћи додатак који тражим?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-
-#, fuzzy
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Шта значи ако додатак \"није прегледан\"?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Шта значи ако додатак \"није прегледан\"?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "Која је цена додатака?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "Додаци који су хостовани у нашој галерији су бесплатни осим ако није назначено другачије."
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Шта значи када додатак тражи доприносе?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"Неки аутори додатка очекују од корисника који уживају у додатку да допринесу његовом развоју тако што ће направити мали новчани допринос. Ови доприноси иду директно програмеру, осим ако је треће "
-"лице назначено, као што је непрофитна Mozilla фондација."
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "Како могу да пријавим неприкладан или спам коментар?"
-
-#, fuzzy
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"Да бисте пријавили коментар додатка, улогујте се на Ваш налог и посетите страницу за рецензију додатка. Нађите рецензију коју желите да пријавите, кликните на \"Пријави ову рецензију\" и изаберите "
-"разлог. Тим уредника ће испитати рецензију и предузети одговарајуће мере."
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Како да пријавим грешку или контактирам Mozilla тим за додатке?"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "Молимо Вас да посетите нашу <a href=\"%(contact_url)s\">контакт страницу</a>."
-
-msgid "What is a Source Code License?"
-msgstr "Шта је лиценца изворног кода?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox и други Mozilla софтвер су <a href=\"%(url)s\">отвореног кода</a>."
-
-msgid "Collections and Favorites"
-msgstr "Колекције и Омиљени"
-
-msgid "What is a collection?"
-msgstr "Шта је колекција?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Колекције су групе сродних додатака креираних од стране корисника да би се делили."
-
-msgid "What is the My Favorites collection?"
-msgstr "Шта је Моја омиљена колекција?"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Омиљени додаци су додаци које сте забележили да би сте их лако нашли касније. Можете да додате додатак у омиљене колекцију тако што ћете кликнути на \"Додај у омиљене\" на својој страници са "
-"детаљима."
-
-msgid "Mobile Add-ons"
-msgstr "Додаци за мобилни"
-
-msgid "What are mobile add-ons?"
-msgstr "Шта је мобилни додатак?"
-
-#, fuzzy, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Мобилни додаци раде на <a href=\"%(mobile_url)s\">Firefox-у за мобилни </a> и они додају или мењају функционалност као додаци за десктоп. Можете наћи додатке који ради на Firefox-у за мобилни у "
-"нашој <a href=\"%(gallery_url)s\">галерији</a>."
-
-msgid "Developer Topics"
-msgstr "Програмерске теме"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Погледајте наша <a href=\"%(faq_url)s\">ЧПП за програмере </a> и <a href=\"%(hub_url)s\">Developer Hub</a> за одговоре на питања које се односе на развој додатака."
-
-msgid "Still have questions?"
-msgstr "Још увек имате питања?"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr "За општу Firefox подршку, посетите наш <a href=\"%(sumo_url)s\">сајт за подршку</a>. За општа питања о додацима или опцијама веб сајта, посетите наш <a href=\"%(forum_url)s\">форум</a>."
 
 msgid "Some tips for writing a great review"
 msgstr "Неки савети за писање добрих рецензија"
@@ -5936,23 +5261,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
-msgid "Sunbird has retired"
-msgstr "Sunbird је пензионисан"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Развој Sunbird пројекта је заустављен и последња верзија је изашла 30. марта 2010. године. Били смо поносни да хостујемо Sunbird додатке на овом сајту, али пошто се пројекат више не одржава и ми "
-"смо онемогућили нашу подршку за додатке."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "Ми препоручујемо да се надоградите на <a href=\"%(tb_url)s\">Thunderbird</a> и <a href=\"%(lightning_url)s\">Lightning</a>."
-
-msgid "Read more about Sunbird"
-msgstr "Читајте више о Sunbird"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Рецензије за %s"
@@ -5967,6 +5275,15 @@ msgstr "Оцењено са %d од 5 звездица"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
+
+msgid "Spam or otherwise non-review content"
+msgstr "Спам или други садржај не-рецензентног типа"
+
+msgid "Inappropriate language/dialog"
+msgstr "Неприкладан језик/дијалог"
+
+msgid "Misplaced bug report or support request"
+msgstr "Погрешно постављен извештај о грешци или захтев за подршку"
 
 msgid "Other (please specify)"
 msgstr "Друго (молимо наведите)"
@@ -6598,9 +5915,6 @@ msgstr ""
 
 msgid "Add-on Title"
 msgstr "Наслов додатка"
-
-msgid "Review Title"
-msgstr "Прегледај наслов"
 
 msgid "Review Text"
 msgstr "Прегледај текст"
@@ -7618,7 +6932,7 @@ msgstr "Локација"
 msgid "Occupation"
 msgstr "Занимање"
 
-msgid "Firefox Accounts users cannot currently change their email address."
+msgid "You can change your email address on Firefox Accounts."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."

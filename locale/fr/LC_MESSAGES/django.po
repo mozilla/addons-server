@@ -5,12 +5,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-14 06:00+0000\n"
 "PO-Revision-Date: 2018-06-10 02:43+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -197,9 +197,9 @@ msgstr "Afficher la politique de confidentialité"
 msgid "View End-User License Agreement"
 msgstr "Voir les conditions générales d’utilisation"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Ce module n’a pas été vérifié par Mozilla. <a href=\"%(url)s\">En savoir plus</a>"
+#, fuzzy
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "Ce module n’a pas encore été critiqué."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Ce module a été marqué comme expérimental par ses développeurs."
@@ -407,9 +407,6 @@ msgstr "Qu’en pensez-vous ?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Veuillez vous <a href=\"%(login)s\">connecter</a> pour envoyer une critique"
 
-msgid "Title:"
-msgstr "Titre :"
-
 msgid "Review:"
 msgstr "Critique :"
 
@@ -429,8 +426,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Consultez la <a href=\"%(support)s\">section d’assistance</a> du module pour trouver si de l’aide est disponible. Vous pouvez également essayer de demander de l’aide à la <a href=\"https://discourse"
-".mozilla-community.org/c/add-ons/add-on-support\">communauté des modules</a>."
+"Consultez la <a href=\"%(support)s\">section d’assistance</a> du module pour trouver si de l’aide est disponible. Vous pouvez également essayer de demander de l’aide à la <a href=\"https://"
+"discourse.mozilla-community.org/c/add-ons/add-on-support\">communauté des modules</a>."
 
 msgid "Review Guidelines"
 msgstr "Instructions pour les critiques"
@@ -572,8 +569,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches (par exemple, un module de gestion des onglets vous demandera d’accéder à la liste de vos onglets)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Puisque vous avez le contrôle de votre navigateur Firefox, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra les performances ou la sécurité de "
 "votre navigateur que dans de rares cas."
@@ -758,17 +755,17 @@ msgstr "Non trouvé"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n’a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
-" le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
-"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. "
-"</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
+"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a href=\"https://github.com/"
+"mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> </ul> "
+"<p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a href="
+"\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. </li> <li> Si vous préférez "
+"recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oups"
@@ -817,8 +814,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" "
-"id=\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de défi</a> à la place. </p>"
+"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" id="
+"\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de défi</a> à la place. </p>"
 
 msgid "Top Rated"
 msgstr "Les mieux notés"
@@ -957,11 +954,11 @@ msgstr "Versions"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié "
-"%(amo_manifests_mdn_link_open)sici%(amo_manifests_mdn_link_close)s."
+"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié %(amo_manifests_mdn_link_open)sici"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "Contributors"
 msgstr "Contributeurs"
@@ -1124,9 +1121,6 @@ msgstr "Rendre cette collection privée"
 msgid "Make this Collection Public"
 msgstr "Rendre cette collection publique"
 
-msgid "Learn about collections"
-msgstr "En savoir plus sur les collections"
-
 msgid "More Options:"
 msgstr "Plus d’options :"
 
@@ -1172,8 +1166,8 @@ msgid ""
 msgstr "Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>publique</b>."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est actuellement <b>privée</b>, ce qui signifie que vous seul "
 "pouvez la voir. Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
@@ -1279,8 +1273,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Vous pouvez ajouter plusieurs contributeurs à cette collection. Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description. Pour"
-" ajouter un contributeur, saisissez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
+"Vous pouvez ajouter plusieurs contributeurs à cette collection. Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description. "
+"Pour ajouter un contributeur, saisissez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
 
 msgid "User"
 msgstr "Utilisateur"
@@ -1494,11 +1488,11 @@ msgstr "Télécharger le paquetage linguistique"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
-"Installer un module de type dictionnaire ajoutera une nouvelle langue pour le correcteur orthographique de %(app_name)s qui sert à vérifier l’orthographe lorsque vous remplissez des formulaires web."
-" Les paquetages linguistiques changeront la langue pour l’ensemble de l’application."
+"Installer un module de type dictionnaire ajoutera une nouvelle langue pour le correcteur orthographique de %(app_name)s qui sert à vérifier l’orthographe lorsque vous remplissez des formulaires "
+"web. Les paquetages linguistiques changeront la langue pour l’ensemble de l’application."
 
 msgid "Available in your locale"
 msgstr "Disponible dans votre langue"
@@ -1650,8 +1644,8 @@ msgstr "Vous voulez plus de personnalisation ?"
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
-"Les thèmes complets transforment l’apparence de votre navigateur avec des styles pour les bords de fenêtres, la barre d’adresse, les boutons, les onglets et les menus. <a href=\"%(url)s\" class"
-"=\"more-info\">Commencez l’exploration</a>"
+"Les thèmes complets transforment l’apparence de votre navigateur avec des styles pour les bords de fenêtres, la barre d’adresse, les boutons, les onglets et les menus. <a href=\"%(url)s\" class="
+"\"more-info\">Commencez l’exploration</a>"
 
 msgid "Up & Coming Themes"
 msgstr "Thèmes en progression"
@@ -1670,11 +1664,11 @@ msgstr "Rapports de compatibilité du module"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Les rapports qui nous sont transmis via le <a href=\"%(url_)s\">Rapporteur de compatibilité de module</a> sont collectés ici pour que les développeurs puissent les voir. Ces rapports nous aident"
-" à déterminer quels modules auront besoin d’aide pour une prochaine version de Firefox. </p>"
+"<p> Les rapports qui nous sont transmis via le <a href=\"%(url_)s\">Rapporteur de compatibilité de module</a> sont collectés ici pour que les développeurs puissent les voir. Ces rapports nous "
+"aident à déterminer quels modules auront besoin d’aide pour une prochaine version de Firefox. </p>"
 
 msgid "Reports for your Add-ons"
 msgstr "Rapports pour vos modules"
@@ -2656,7 +2650,8 @@ msgstr ""
 "effectuée. Les mises à jour automatiques seront gérées par ce site. Ce module sera également pris en considération pour que Mozilla en fasse la promotion et pour les concours. La distribution "
 "personnelle des fichiers revus est aussi possible.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Gestion personnelle. <span class=\"helptext\">Votre envoi sera immédiatement signé pour une distribution personnelle. Vous devrez gérer les mises à jour via une updateURL ou des mises à jour "
 "d’application externe.</span>"
@@ -2804,11 +2799,11 @@ msgid "API key revoked"
 msgstr "Clé d’API révoquée"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
-"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour les"
-" modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
+"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour "
+"les modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Accord de distribution des modules complémentaires Firefox"
@@ -2942,7 +2937,9 @@ msgstr ""
 "envoyer une nouvelle version."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Mettre à jour la compatibilité</a> <a href=\"%(version_url)s\" class=\"button\">Envoyer une nouvelle version</a> ou <a "
 "href=\"#\" class=\"close\">Ignorer</a>"
@@ -3069,7 +3066,8 @@ msgstr ""
 "visibilité maximale."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Les catégories ne peuvent être changées pendant que votre module est en vedette pour cette application. Merci d’envoyer un courriel à <a href=\"mailto:%(email)s\">%(email)s</a> s’il y a une raison "
 "nécessitant de changer vos catégories."
@@ -3077,8 +3075,8 @@ msgstr ""
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Les catégories ne peuvent être changées pendant que votre module est mis en avant. Merci d’envoyer un courriel à <a href=\"mailto:%(email)s\">%(email)s</a> s’il y a une raison nécessitant de changer"
-" vos catégories."
+"Les catégories ne peuvent être changées pendant que votre module est mis en avant. Merci d’envoyer un courriel à <a href=\"mailto:%(email)s\">%(email)s</a> s’il y a une raison nécessitant de "
+"changer vos catégories."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Les étiquettes aident les utilisateurs à trouver votre module. Ce sont des descripteurs courts tels que twitter, onglets, barre d’outils. Vous pouvez utiliser {0} étiquettes au maximum."
@@ -3127,8 +3125,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce champ"
-" n’est utile que pour les modules répertoriés."
+"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce "
+"champ n’est utile que pour les modules répertoriés."
 
 msgid "Images"
 msgstr "Images"
@@ -3141,8 +3139,8 @@ msgid "Support Information for {0}"
 msgstr "Informations d’assistance pour {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Si vous souhaitez afficher une adresse électronique pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes "
 "traductions de ce champ. Ce champ n’est utile que pour les modules répertoriés."
@@ -3262,8 +3260,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L’icône est affichée à presque tous les endroits où apparaît votre module. Le type de l’image transférée doit être .png ou "
-".jpg. L’envoi d’icône ne s’applique qu’aux modules répertoriés."
+"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L’icône est affichée à presque tous les endroits où apparaît votre module. Le type de l’image transférée doit être .png "
+"ou .jpg. L’envoi d’icône ne s’applique qu’aux modules répertoriés."
 
 msgid "Select an icon for your add-on:"
 msgstr "Sélectionnez une icône pour votre module :"
@@ -3735,8 +3733,8 @@ msgstr "Secret JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Pour effectuer des requêtes sur l’API, envoyez un <a href=\"%(jwt_url)s\">jeton web JSON (JWT pour <i>JSON Web Token</i>)</a> dans l’en-tête d’autorisation. Vous devrez générer un JWT pour chaque "
 "requête, comme indiqué dans <a href=\"%(docs_url)s\">la documentation d’API</a>."
@@ -3931,10 +3929,6 @@ msgstr "Assistance"
 msgid "Policies"
 msgstr "Politiques"
 
-# Link text to the Frequently Asked Questions page.
-msgid "FAQ"
-msgstr "FAQ"
-
 msgid "Report Bug"
 msgstr "Signaler un problème"
 
@@ -4057,8 +4051,8 @@ msgstr "Personnalisez Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez "
 "%(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s et %(css_link_open)sCSS%(link_close)s, vous avez toutes les cartes en main pour créer un super module."
@@ -4072,8 +4066,8 @@ msgstr "Effectuez le portage d’une extension Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox prend en charge les API WebExtension, qui sont la plupart du temps compatibles avec les API d’extensions prises en charge par Chrome, Opera et Edge, si bien que vos extensions ne demanderont"
-" que des changements minimes pour fonctionner avec Firefox."
+"Firefox prend en charge les API WebExtension, qui sont la plupart du temps compatibles avec les API d’extensions prises en charge par Chrome, Opera et Edge, si bien que vos extensions ne "
+"demanderont que des changements minimes pour fonctionner avec Firefox."
 
 msgid "Publish Your Add-on"
 msgstr "Publiez votre module"
@@ -4195,15 +4189,16 @@ msgstr "Créer un nouveau thème"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Les thèmes d’arrière-plan vous permettent de facilement personnaliser l’apparence de votre Firefox. Envoyez le vôtre ci-dessous, ou <a href=\"%(submit_url)s\">apprenez comment en créer un</a> !"
+msgstr ""
+"Les thèmes d’arrière-plan vous permettent de facilement personnaliser l’apparence de votre Firefox. Envoyez le vôtre ci-dessous, ou <a href=\"%(submit_url)s\">apprenez comment en créer un</a> !"
 
 msgid "Give your Theme a name."
 msgstr "Donnez un nom à votre thème."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "J’accepte %(agreement_link_open)sl’accord de distribution des modules Firefox%(link_close)s et j’accepte que les informations qui me sont relatives soient traitées comme le décrit "
 "%(privacy_notice_link_open)sla politique de confidentialité relative aux sites web, aux communications et aux cookies%(link_close)s."
@@ -4247,8 +4242,8 @@ msgstr "PNG ou JPG"
 msgid "Manage Version {0}"
 msgstr "Gérer la version {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Gérer {0}"
 
@@ -4421,15 +4416,15 @@ msgstr "Voulez-vous vraiment annuler votre requête de revue ?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentation Module :: Pôle développeurs"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erreur"
 msgstr[1] "{0} erreurs"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
@@ -4851,9 +4846,9 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Les modules répertoriés ici ont été développés par des milliers de développeurs du monde entier, que ce soit des personnes qui codent sur leur temps libre ou de grandes entreprises. Tous les modules"
-" disponibles publiquement ont été vérifiés par une équipe de testeurs avant d’être mis à disposition. Les modules signalés comme étant expérimentaux n’ont pas été vérifiés et doivent être installés "
-"avec précaution."
+"Les modules répertoriés ici ont été développés par des milliers de développeurs du monde entier, que ce soit des personnes qui codent sur leur temps libre ou de grandes entreprises. Tous les "
+"modules disponibles publiquement ont été vérifiés par une équipe de testeurs avant d’être mis à disposition. Les modules signalés comme étant expérimentaux n’ont pas été vérifiés et doivent être "
+"installés avec précaution."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Comment me tenir à jour à propos de ce qui se passe sur AMO ?"
@@ -4892,7 +4887,8 @@ msgstr ""
 "vérifier la qualité du code et la stabilité."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Vous pouvez nous aider à améliorer ce site. Celui-ci est <i>open source</i>, vous pouvez rapporter des bogues et proposer des correctifs. <a href=\"%(url)s\">GitHub</a> liste les bogues actuels, "
 "Bugzilla contient les bogues historiques."
@@ -4913,8 +4909,8 @@ msgstr "Testez les modules du site. Les auteurs sont plus enclins à améliorer 
 msgid "I have a question"
 msgstr "J’ai une question"
 
-#, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+#, fuzzy, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Un bon point de départ est notre <a href=\"%(faq_url)s\"><abbr title=\"Foire Aux Questions\">FAQ</abbr></a>. Si vous n’y trouvez pas votre réponse, vous pouvez toujours <a href=\"%(forum_url)s\"> "
 "demander dans nos forums</a>."
@@ -4926,768 +4922,14 @@ msgstr "Si vous avez besoin de prendre contact avec quelqu’un de l’équipe M
 msgid "Who works on this website?"
 msgstr "Qui travaille sur ce site ?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+#, fuzzy
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
 "Au travers des années, de nombreuses personnes ont contribué à ce site, à la fois des volontaires de la communauté et une équipe dédiée de Mozilla. Une liste des contributeurs importants peut être "
 "obtenue sur notre page <a href=\"%(url)s\">crédits</a>."
 
-msgid "Add-on Compatibility Reporter"
-msgstr "Rapporteur de compatibilité de module"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Le rapporteur de compatibilité de module a été installé"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "C’est facile de nous aider à nous assurer que les modules sont mis à jour à temps pour les sorties des versions prochaines de Firefox."
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Voici comment se lancer dans la vérification de compatibilité d’un module :"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"Dès que vous commencez à naviguer et à utiliser vos modules, prenez attentivement des notes sur ce qui semble différent de la dernière fois que vous avez utilisé l’extension. Cela peut être une "
-"erreur d’affichage, comme un élément de menu manquant, ou quelque chose de plus grave, par exemple le module ne fonctionnant plus du tout ou affichant des erreurs."
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"Une fois que vous savez qu’un module précis fonctionne bien ou a des soucis, ouvrez le gestionnaire de modules complémentaires, et cliquez sur « Compatibilité » situé à côté du module pour indiquer "
-"à Mozilla ce que vous avez découvert pendant vos tests. Envoyer un rapport nous aidera à tenir au courant le développeur de module quant au bon fonctionnement de son module."
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Si vous mettez à jour vers une nouvelle version de Firefox ou de vos modules, vos rapports pour les anciennes versions seront masqués pour vous permettre de tester la nouvelle version. Pour toute "
-"question, merci de demander dans <a href=\"%(url)s\">nos forums</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-"Des milliers de modules sont faits par notre communauté toute l’année, et votre aide pour vérifier la compatibilité nous aide à nous assurer que les modules continuent à être utilisables pendant que"
-" nous nous efforçons de fournir une expérience utilisateur toujours améliorée."
-
-msgid "Thank you!"
-msgstr "Merci !"
-
-msgid "Site Credits"
-msgstr "Crédits du site"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla aimerait remercier les personnes suivantes pour leur contribution au projet addons.mozilla.org durant toutes ces années :"
-
-msgid "Developers &amp; Administrators"
-msgstr "Développeurs et administrateurs"
-
-msgid "Localizers"
-msgstr "Traducteurs"
-
-msgid "Reviewers"
-msgstr "Testeurs"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "Plus de {0} tests de modules"
-
-msgid "Other Contributors"
-msgstr "Autres contributeurs"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "Anciens développeurs et administrateurs"
-
-msgid "Software and Images"
-msgstr "Logiciel et images"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"Certaines icônes utilisées proviennent du <a href=\"http://www.famfamfam.com/lab/icons/silk/\">jeu d’icônes famfamfam Silk</a> sous licence <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"Certaines icônes utilisées proviennent du <a href=\"http://www.fatcow.com/free-icons/\">jeu d’icônes FatCow Farm-Fresh Web</a> sous licence <a "
-"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0</a>."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"Certaines pages utilisent des éléments de <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), sous licence <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "Pour plus d’informations sur la manière de contribuer, merci de consulter le <a href=\"%(url)s\">wiki</a>."
-
-msgid "Developer FAQ"
-msgstr "FAQ du développeur"
-
 msgid "Sections"
 msgstr "Sections"
-
-msgid "Developing an Add-on"
-msgstr "Développer un module"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "Ressources d’assistance"
-
-msgid "Contributing your Add-on"
-msgstr "Contribuer votre module"
-
-msgid "Add-on Review Process"
-msgstr "Processus de revue de module"
-
-msgid "Managing Your Add-on"
-msgstr "Gérer votre module"
-
-msgid "References for Open Source Licenses"
-msgstr "Références pour les licences libres"
-
-msgid "Add-on Developer FAQ"
-msgstr "FAQ du développeur de module"
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr ""
-"<h3>Comment créer un module complémentaire ?</h3> <p> Mozilla fournit de la documentation sur %(addons_link_open)sMozilla Developer Network%(link_close)s qui explique comment créer un module. </p>"
-
-msgid "What is a \".xpi\" file?"
-msgstr "Qu’est-ce qu’un fichier « .xpi » ?"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "Les extensions sont empaquetées et distribuées dans des fichiers Zip ou Bundles, avec l’extension XPI (prononcer « zippy »)"
-
-msgid "What is XUL?"
-msgstr "Qu’est-ce que XUL ?"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-"XUL (XML User Interface Language) est le langage basé sur XML de Mozilla qui vous permet de construire des applications multi-plateformes riches. Il met à disposition des éléments d’interface "
-"utilisateur comme des boutons, des menus, des barres d’outils, des arbres, etc., pouvant être utilisés pour améliorer les modules en modifiant des parties de l’interface utilisateur du navigateur."
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
-"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
-" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-"<strong>Note :</strong> XUL est une technologie obsolète de Firefox et les modules complémentaires utilisant XUL ne seront plus pris en charge à partir de Firefox 57. Veillez à utiliser "
-"%(webext_link_open)sles API WebExtensions%(link_close)s pour développer de nouveaux modules. Si vous maintenez un module complémentaire qui va devenir obsolète, pensez à le migrer vers les "
-"WebExtensions. Pour plus d’informations sur la migration vers les WebExtensions, jetez-un œil à %(portlegacy_link_open)sPortage d’un module Firefox obsolète%(link_close)s."
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "Comment puis-je tester la compatibilité avec la dernière version du logiciel Mozilla ?"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-"Afin d’assurer la compatibilité avec les derniers logiciels Mozilla, il est important de télécharger les mises à jour dès qu’elles sont disponibles et de tester votre module pour vous assurer qu’il "
-"continue de fonctionner correctement. Parfois, des modifications importantes sont introduites et affectent les fonctionnalités de votre module, il est donc important de s’impliquer activement dans "
-"les tests des versions bêta afin que les utilisateurs de votre module ne soient pas affectés de façon négative lors du lancement de la version finale du logiciel Mozilla."
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "J’ai besoin d’aide pour construire mon module. Où puis-je en trouver ?"
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr "#extdev (pour discuter du développement de modules)"
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "#amo (pour l’assistance liée à l’hébergement de votre module sur AMO)"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr "#webextensions (pour les discussions relatives au développement et au portage vers les WebExtensions)"
-
-msgid "Add-ons forum"
-msgstr "Forum sur les modules complémentaires"
-
-msgid "Does Mozilla offer development services?"
-msgstr "Est-ce que Mozilla propose des services de développement ?"
-
-msgid "No."
-msgstr "Non."
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Est-ce que je peux embaucher un développeur tiers pour faire mon module ?"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-"Oui. Vous pouvez trouver des développeurs tiers sur <a href=\"%(forum_url)s\">le forum dédié aux modules</a>, <a href=\"%(list_url)s\">la liste de diffusion mozilla.jobs</a>, <a "
-"href=\"%(mz_url)s\">les forums mozillaZine</a> ou sur <a href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note : Mozilla ne recommande aucun développeur en particulier."
-
-msgid "Can I host my own add-on?"
-msgstr "Est-ce que je peux héberger mon propre module ?"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-"Oui. Beaucoup de développeurs choisissent d’héberger leurs propres modules. Choisir d’héberger son module sur le <a href=\"%(amo_url)s\">site des modules de Mozilla</a> permet néanmoins de "
-"bénéficier de l’exposition liée au volume important de visiteurs sur le site."
-
-msgid "Can Mozilla host my add-on?"
-msgstr "Est-ce que Mozilla peut héberger mon module ?"
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Oui. Vous pouvez héberger votre module sur le <a href=\"%(url)s\">site des modules Mozilla</a>."
-
-msgid "What is AMO?"
-msgstr "Qu’est-ce qu’AMO ?"
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-"AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) est l’incubateur qui aide les développeurs à construire, distribuer et proposer des produits fantastiques aux "
-"consommateurs, soutenu par Mozilla. Il met à disposition les outils et l’infrastructure nécessaire pour gérer, héberger et rendre visible votre module à une large base d’utilisateurs Mozilla."
-
-msgid "Does Mozilla keep my account information private?"
-msgstr "Est-ce que Mozilla garde secrètes les informations de mon compte ?"
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Oui. Notre <a href=\"%(url)s\">politique de confidentialité</a> décrit comment vos informations sont gérées par Mozilla."
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Quels sont les « outils de développement » listés sur AMO ?"
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-"Le tableau de bord « Outils du développeur » est une zone qui met à votre disposition les outils pour gérer vos modules avec succès. Il fournit les fonctionnalités nécessaires pour envoyer vos "
-"modules sur AMO, gérer les informations du module, et voir les statistiques."
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "Est-ce que Mozilla a une politique en place sur ce qu’est une proposition acceptable ?"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-"Oui. La %(policy_link_open)spolitique de module%(link_close)s de Mozilla décrit ce qu’est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, "
-"l’équipe des testeurs d’AMO utilise le %(guide_link_open)sguide de revue des testeurs%(link_close)s pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux "
-"fonctionnalités et à la sécurité."
-
-msgid "How do I submit my add-on?"
-msgstr "Comment puis-je soumettre mon module ?"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-"Le tableau de bord des outils du développeur vous permet de charger et envoyer vos modules sur AMO. Vous devez être un utilisateur inscrit sur AMO avant de proposer un module. Avant l’envoi de votre"
-" module, assurez-vous d’avoir lu le %(review_policy_link_open)sguide de revue des testeurs%(link_close)s pour être sûr que votre module correspond à la ligne de conduite utilisée par les testeurs "
-"pour évaluer les modules."
-
-msgid "What operating system do I choose for my add-on?"
-msgstr "Quel système d’exploitation dois-je choisir pour mon module ?"
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "Vous devez choisir les systèmes d’exploitation sur lesquels votre module fonctionnera avec succès."
-
-msgid "What category do I choose for my add-on?"
-msgstr "Quelle catégorie dois-je choisir pour mon module ?"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-"Le choix de la catégorie dépend du type d’audience que vous visez et des fonctionnalités de votre module. Si vous n’êtes pas certain de la catégorie à laquelle votre module doit appartenir, merci de"
-" choisir « Autres ». L’équipe AMO se garde le droit de recatégoriser votre module s’il correspond mieux à une autre catégorie."
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "Puis-je préciser une licence particulière pour utiliser mon module ?"
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"Oui. Vous pouvez préciser une licence particulière lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une licence via le tableau de bord outils du développeur après envoi"
-" de votre module."
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "Puis-je inclure une politique de vie privée pour mon module ?"
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"Oui. Vous pouvez préciser une politique de vie privée lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une politique de vie privée via le tableau de bord outils du "
-"développeur après envoi de votre module."
-
-msgid "Must my add-on be reviewed?"
-msgstr "Mon module doit-il être revu ?"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-"Tous les modules envoyés, qu’ils soient nouveaux ou mis à jour, sont vérifiés pour s’assurer que les utilisateurs de Mozilla puisse profiter d’une expérience stable et sécurisée. Tous les envois de "
-"modules sont vérifiés suivant les directives du <a href=\"%(url)s\">guide de revue des testeurs</a>."
-
-msgid "Who reviews my add-on?"
-msgstr "Qui fait la revue de mon module ?"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
-" href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-"Les modules sont revus par les testeurs AMO, un groupe de talentueux développeurs volontaires qui aident le projet Mozilla en vérifiant les modules complémentaires afin que les utilisateurs "
-"bénéficient de logiciels stables et sécurisés. Lorsque vous discutez avec les testeurs, veillez à être poli, patient et respectueux. Les testeurs travaillent dur pour s’assurer que votre module "
-"puisse être installé correctement et respecte les règles indiquées dans le <a href=\"%(url)s\">guide de revue des testeurs</a>."
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr "Quelles sont les lignes directrices utilisées pour vérifier mon module ?"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-"Lorsqu’elle vérifie la conformité d’un module pour AMO, l’équipe des testeurs de modules suit le <a href=\"%(url)s\">guide de revue des testeurs</a>. Il est important que les développeurs de modules"
-" lisent ce guide avant d’envoyer un module pour mieux résoudre les éventuels problèmes. Cela aidera à accélérer le processus de revue."
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "Combien de temps compter pour la revue de mon module ?"
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "Nous ne pouvons pas donner une estimation du temps nécessaire à la revue d’un module. Beaucoup de facteurs ont une incidence, dont :"
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr "nombre d’envoi de modules"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "complexité du code d’un module"
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr "nombre de problèmes découverts"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr "C’est pourquoi il est essentiel de lire le <a href=\"%(g_url)s\">guide de révisions des modules complémentaires</a> pour vous assurer que votre module est correctement configuré."
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Comment voir combien de fois mon module a été téléchargé ?"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
-"Le tableau de bord des statistiques peut être trouvé dans le tableau de bord des outils du développeur et contient des informations qui vous permettent de savoir le nombre de téléchargements de "
-"votre module depuis qu’il a été envoyé sur AMO."
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr "Comment voir combien d’utilisateurs actifs utilisent mon module ?"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-"Le tableau de bord des statistiques peut être trouvé dans le tableau de bord des outils du développeur et contient des informations qui vous permettent de connaître le nombre d’utilisateurs actifs "
-"de votre module depuis qu’il a été envoyé sur AMO."
-
-msgid "How do I submit an update for my add-on?"
-msgstr "Comment puis-je envoyer une mise à jour pour mon module ?"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-"Vous pouvez envoyer une mise à jour de votre module via le tableau de bord des outils du développeur en choisissant l’option « Envoyer une nouvelle version » et en envoyant un nouveau fichier .xpi "
-"pour votre module."
-
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Ma mise à jour a-t-elle besoin d’être vérifiée par les testeurs ?"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr "Les mises à jour de modules complémentaires existants peuvent être soumises à une revue, comme le sont les nouveaux modules."
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Comment puis-je répondre à un utilisateur qui a publié un commentaire négatif sur mon module ?"
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Un développeur peut répondre à tout commentaire publié sur son module du moment qu’il est connecté sur AMO. En plus, tout utilisateur peut étiqueter un commentaire comme :"
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "Spam ou contenu qui n’est pas une critique du module"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "Langage inapproprié"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "Autre (fournit une fenêtre surgissante pour fournir plus d’informations)"
-
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Actuellement, AMO ne propose pas de mécanisme pour directement communiquer avec l’auteur d’une critique."
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Puis-je demander le retrait d’un commentaire négatif ?"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Non. Nous ne supprimons pas les commentaires négatifs des modules à moins qu’ils s’avèrent qu’ils soient faux."
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Puis-je demander le retrait d’un commentaire qui est inexact ?"
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "Si un auteur nous contacte et nous demande le retrait d’un commentaire faux ou inexact, nous vérifierons celui-ci et pourrons éventuellement le retirer."
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-"Vous avez besoin d’aide au sujet de la variété de licences open source ? Vous êtes perdus quant à la licence à adopter ? Quels sont les droits qu’une licence précise donne ? Bien que rien ne "
-"remplacera la lecture attentive de tous les termes de la licence, ci-dessous vous trouverez quelques sites qui contiennent des informations à propos des licences open source principales et pourront "
-"vous aider à faire votre choix. Ces sites sont donnés à titre indicatif pour votre utilisation personnelle. Ces ressources ne sont en aucun cas des conseils ayant valeur légale et ne devraient pas "
-"être utilisées comme telles. Mozilla ne garantit ni n’est responsable pour le contenu de ces sites ou votre confiance dans ce contenu."
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-"En plus du texte complet de la Mozilla Public License (« MPL »), ceci fournit également une version annotée de la MPL et une <abbr title=\"Foire Aux Questions\">FAQ</abbr> pour vous aider si vous "
-"voulez utiliser ou distribuer du code sous cette licence."
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr ""
-"Un tableau résumant et comparant comment certaines des licences open source principales traitent la distribution, le lien avec les logiciels propriétaires et la redistribution du code avec des "
-"changements."
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-"La Free Software Foundation propose un court résumé des licences open source, incluant la qualification de licence logiciel libre ou licence copyleft. Cela inclut une discussion sur ce qui constitue"
-" une licence logiciel libre ou une licence copyleft (par exemple, une licence copyleft est une méthode générale pour rendre un programme ou autre création libre, et imposer que toute version "
-"modifiée et étendue de celui-ci soit libre également)."
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr "L’Open Source Initiative donne les termes de certaines des licences open source principales."
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr "Une comparaison des licences <i>open source</i> sur Wikipédia."
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr "Un site objectif pour vous aider à choisir une licence pour votre projet <i>open source</i>."
-
-msgid "Frequently Asked Questions"
-msgstr "Foire Aux Questions"
-
-msgid "Using Add-ons"
-msgstr "Utiliser des modules"
-
-msgid "What is an add-on?"
-msgstr "Qu’est-ce qu’un module ?"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"Les modules sont de petits morceaux de logiciel qui ajoutent de nouvelles fonctionnalités à votre installation de %(app_name)s. Les modules peuvent améliorer %(app_name)s en proposant de nouvelles "
-"fonctionnalités, des dictionnaires de langues étrangères ou en changeant son apparence. Grâce aux modules, vous pouvez personnaliser %(app_name)s conformément à vos goûts et besoins. <a "
-"href=\"%(learnmore_url)s\">En savoir plus sur la personnalisation</a>"
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "Les modules fonctionnent-ils avec mon navigateur web ou mon application ?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
-msgstr ""
-"Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox pour Android</a>,"
-" <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, et <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, certains modules peuvent ne pas fonctionner sur une de ces applications ou "
-"certaines versions de ces dernières. Chaque module spécifie les applications et versions pour lesquelles il fonctionne, comme par exemple Firefox 50.0 - 52.*. Pour les modules complémentaires "
-"Firefox, le bouton d’installation indiquera si le module est compatible ou non."
-
-msgid "What are the different types of add-ons?"
-msgstr "Quels sont les différents types de modules ?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr "Il y a plusieurs types de modules pour personnaliser %(app_name)s de différentes manières :"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> pour ajouter de nouvelles fonctionnalités à %(app_name)s ou modifier les fonctionnalités existantes. Il existe des extensions qui "
-"permettent de bloquer les publicités, télécharger des vidéos depuis des sites web, permettre une plus grande intégration aux sites web sociaux, et ajouter des fonctionnalités présentes dans d’autres"
-" applications."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Thèmes complets</a></strong> pour changer complètement l’apparence de %(app_name)s, notamment les icônes, couleurs, dialogues, et autres éléments visuels."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Thèmes</a></strong> sont des thèmes légers qui utilisent une image d’arrière-plan pour personnaliser vos barres d’outils dans %(app_name)s."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Moteurs de recherche</a> </strong> pour ajouter de nouveaux choix à la sélection des moteurs de recherche. Ces fournisseurs vous permettent de rechercher "
-"simplement n’importe quel site."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Dictionnaires et paquetages de langue</a></strong> pour ajouter de nouvelles langues à %(app_name)s."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "Comment installer, gérer ou supprimer un module ?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-"Dans la plupart des cas, les modules peuvent être simplement installés en cliquant sur le bouton d’installation fourni. Les modules peuvent être gérés, désactivés ou désinstallés depuis le "
-"gestionnaire de modules de %(app_name)s. Pour des instructions plus détaillées, référez-vous à <a href=\"%(extension_url)s\">cet article sur les extensions</a> ou <a href=\"%(theme_url)s\">celui-ci "
-"pour les thèmes et les thèmes complets</a>. Si vous rencontrez des difficultés à installer des modules, consultez <a href=\"%(troubleshooting_url)s\">Résolutions des problèmes d’extensions et de "
-"thèmes</a>."
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "Comment garder à jour les modules ?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr "La mise à jour des modules est effectuée quotidiennement et de façon automatique. Dans Firefox, les mises à jour sont automatiquement installées par défaut. "
-
-msgid "Are add-ons safe to install?"
-msgstr "Est-ce que les modules sont sûrs à installer ?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Faites attention lorsque vous utilisez des modules complémentaires, ces derniers pourraient endommager votre ordinateur ou compromettre votre vie privée. Les modules disponibles sur ce site sont "
-"susceptibles d’être validés par l’équipe de testeurs Mozilla. Les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
-"être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le processus de validation%(link_close)s"
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Est-ce que les modules peuvent rendre %(app_name)s plus lent ?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-"La plupart des modules ne diminuent pas les performances de façon sensible dans %(app_name)s. En revanche, installer un nombre excessif de modules peut avoir des effets indésirables. Si vous pensez "
-"qu’un module ralentit %(app_name)s, essayez de le désactiver."
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s m’indique qu’un module n’est pas compatible. Existe-t-il une solution pour que je puisse continuer à l’utiliser ?"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-"Si un module n’est pas compatible avec votre version de %(app_name)s, c’est souvent soit parce que votre version de %(app_name)s n’est pas à jour ou parce que l’auteur du module ne l’a pas encore "
-"mis à jour pour être compatible avec votre nouvelle version. Mozilla ne vous encourage pas à essayer de circonvenir ces tests de compatibilité, puisque cela peut entraîner une instabilité ou dans "
-"certains cas des pertes de données. Pour les utilisateurs qui testent des versions alpha ou bêta de Firefox, nous proposons le <a href=\"%(acr_url)s\">module rapporteur de compatibilité</a> pour "
-"aider les développeurs de modules à se mettre à jour."
-
-msgid "What if I have problems with an add-on?"
-msgstr "Et si j’ai un problème avec un module ?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-"Les modules sont généralement créés par des développeurs tiers provenant du monde entier. Le meilleur moyen de trouver de l’aide à propos d’un module est de chercher des liens pour l’assistance sur "
-"la page d’accueil du module ou de contacter son développeur. Si vous avez des problèmes avec %(app_name)s que vous soupçonnez être liés à des modules que vous avez installés, <a "
-"href=\"%(troubleshooting_url)s\">rendez-vous sur cette page d’assistance</a>."
-
-msgid "Add-on Gallery"
-msgstr "Galerie de modules"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "Comment choisir entre des modules qui semblent faire la même chose ?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-"Il y a souvent plusieurs modules avec des fonctionnalités similaires. Pour déterminer lequel vous convient, lisez la description complète de chaque module et regardez ses captures d’écran. S’il y a "
-"toujours plusieurs modules qui retiennent votre attention, lisez les commentaires des utilisateurs, leurs notes, et les statistiques pour voir lequel est le plus apprécié par les autres "
-"utilisateurs. Rappelez-vous également que vous pouvez aussi les essayer tous et voir lequel vous convient le mieux."
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "Et si je ne trouve pas un module que je cherche ?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-"Des milliers de modules sont disponibles, il y en a pour tous les goûts. Si vous cherchez un module en particulier et que vous ne le trouvez pas, recherchez sur d’autres sites ou rédigez un message "
-"sur <a href=\"%(forum_url)s\">le forum dédié aux modules</a>."
-
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Qu’est-ce que cela signifie lorsqu’un module est « expérimental » ?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Les modules expérimentaux ont été marqués par leurs développeurs comme n’étant pas destinés au plus grand nombre. Ils ont été vérifiés par nos éditeurs pour s’assurer qu’ils ne présentent pas de "
-"problème de sécurité, mais ils peuvent toujours contenir des défauts ou ne pas fonctionner correctement. Faites attention lorsque vous installez des modules expérimentaux et désinstallez-les "
-"immédiatement si vous remarquez des problèmes. %(learnmore_link_open)sEn savoir plus sur notre processus de revue%(link_close)s"
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Qu’est-ce que cela signifie lorsqu’un module n’est « pas vérifié » ?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-"Bien que tous les modules visibles dans notre galerie aient été vérifiés par un éditeur, vous pouvez recevoir un lien direct vers un module qui n’a pas été vérifié. Faites attention lorsque vous "
-"installez ces modules, étant donné qu’ils pourraient altérer votre configuration ou ne pas respecter votre vie privée. Nous vous recommandons de n’installer que des modules vérifiés. "
-"%(learnmore_link_open)sEn savoir plus sur notre processus de revue%(link_close)s</dd>"
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "Combien coûtent les modules ?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "Les modules hébergés dans notre galerie sont gratuits, sauf mention contraire."
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Qu’est-ce que cela signifie lorsqu’un module demande une contribution ?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"Certains auteurs de module demandent à ce que les utilisateurs qui apprécient un module contribuent à son développement par un don. Ces contributions vont directement au développeur sauf si une "
-"tierce partie est indiquée, comme la fondation à but non lucratif Mozilla."
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "Comment notifier un commentaire inapproprié ou spam ?"
-
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"Pour signaler une critique utilisateur d’un module, connectez-vous avec votre compte et visitez la page de critiques du module. Trouvez la critique que vous souhaitez signaler, et cliquez sur « "
-"Signaler un problème avec cette critique », puis choisissez une raison. Notre équipe éditoriale vérifiera la critique et prendra les mesures appropriées."
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Comment rapporter un problème ou contacter l’équipe Mozilla Add-ons ?"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "Merci de consulter notre <a href=\"%(contact_url)s\">page de contact</a>."
-
-msgid "What is a Source Code License?"
-msgstr "Qu’est-ce qu’une licence de code source ?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
-msgstr ""
-"Le code source utilisé pour créer un module est sous le droit d’auteur exclusif de ce dernier, sauf mention contraire dans la licence. De nombreux modules sur ce site ont une <a href=\"%(url)s\" "
-"lang=\"en\">licence libre</a> qui rend le code source publiquement disponible pour la copie et la réutilisation sous des conditions déterminées par l’auteur. La majorité des auteurs utilisent des "
-"licences libres connues telles que la GPL ou la BSD, plutôt que de créer la leur."
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox et les autres logiciels de Mozilla sont <a href=\"%(url)s\">des logiciels libres</a>."
-
-msgid "Collections and Favorites"
-msgstr "Collections et favoris"
-
-msgid "What is a collection?"
-msgstr "Qu’est-ce qu’une collection ?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Les collections sont des groupes de modules liés entre eux créés par les utilisateurs pour les partager."
-
-msgid "What is the My Favorites collection?"
-msgstr "Qu’est-ce que ma collection favorite ?"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Les modules favoris sont des modules dont vous gardez trace pour y revenir facilement plus tard. Vous pouvez ajouter un module à votre collection de favoris en cliquant « Ajouter aux favoris » sur "
-"sa page des détails."
-
-msgid "Mobile Add-ons"
-msgstr "Modules mobiles"
-
-msgid "What are mobile add-ons?"
-msgstr "Que sont les modules mobiles ?"
-
-#, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Les modules mobiles fonctionnent avec <a href=\"%(mobile_url)s\">Firefox pour Android</a> et ajoutent ou modifient des fonctionnalités de la même manière que les modules pour Firefox. Vous pouvez "
-"trouver des modules compatibles avec Firefox pour Android dans notre <a href=\"%(gallery_url)s\">galerie</a>."
-
-msgid "Developer Topics"
-msgstr "Sujets développeurs"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Merci de consulter notre <a href=\"%(faq_url)s\">FAQ développeurs</a> et le <a href=\"%(hub_url)s\">pôle développeurs</a> pour des réponses aux questions des développeurs de modules."
-
-msgid "Still have questions?"
-msgstr "Vous avez toujours des questions ?"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Pour une assistance générale sur Firefox, visitez notre <a href=\"%(sumo_url)s\">site web d’assistance</a>. Pour des questions générales sur les modules et le site web, visitez notre <a "
-"href=\"%(forum_url)s\">forum</a>."
 
 msgid "Some tips for writing a great review"
 msgstr "Quelques astuces pour une bonne critique"
@@ -5696,8 +4938,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Foire aux questions à propos des commentaires"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Les commentaires vous permettent de partager votre opinion sur les modules que vous avez installés et utilisés. Notre équipe de modération se réserve le droit de refuser ou de supprimer tout "
 "commentaire qui ne respecterait pas ces règles."
@@ -5742,8 +4984,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Postez des questions techniques, des demandes d’aide ou des suggestions de fonctionnalité. Utilisez les options d’aide disponibles pour chaque module, le cas échéant. Vous pouvez les trouver dans la"
-" colonne à côté de la section À propos du module."
+"Postez des questions techniques, des demandes d’aide ou des suggestions de fonctionnalité. Utilisez les options d’aide disponibles pour chaque module, le cas échéant. Vous pouvez les trouver dans "
+"la colonne à côté de la section À propos du module."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Écrire des commentaires sur des modules que vous n’avez pas utilisé personnellement."
@@ -5767,8 +5009,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d’un module pour afficher des publicités ou nécessitant la collecte de données, lorsque c’est"
-" l’objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
+"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d’un module pour afficher des publicités ou nécessitant la collecte de données, lorsque "
+"c’est l’objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
 
 msgid "How can I report a problematic review?"
 msgstr "Comment puis-je rapporter un commentaire problématique ?"
@@ -5892,23 +5134,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Proposé par :"
 
-msgid "Sunbird has retired"
-msgstr "Sunbird a pris sa retraite"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Le développement du projet Sunbird s’est arrêté et la dernière version a été publiée le 30 mars 2010. Nous avons été fiers d’héberger les modules Sunbird sur ce site, mais étant donné que le projet "
-"n’est plus maintenu nous avons désactivé toute assistance pour les modules."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "Il est conseillé de passer à <a href=\"%(tb_url)s\">Thunderbird</a> avec <a href=\"%(lightning_url)s\">Lightning</a>."
-
-msgid "Read more about Sunbird"
-msgstr "En savoir plus à propos de Sunbird"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Critiques de %s"
@@ -5923,6 +5148,15 @@ msgstr "Évalué à %d sur 5 étoiles"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "Une courte explication doit être fournie lorsque vous sélectionnez « Autre » comme motif de signalement."
+
+msgid "Spam or otherwise non-review content"
+msgstr "Spam ou contenu qui n’est pas une critique du module"
+
+msgid "Inappropriate language/dialog"
+msgstr "Langage inapproprié"
+
+msgid "Misplaced bug report or support request"
+msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
 
 msgid "Other (please specify)"
 msgstr "Autre (veuillez préciser)"
@@ -5961,15 +5195,15 @@ msgstr "Ajouter une critique sur {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Gardez ces conseils en tête :</h2> <ul> <li> Décrivez votre impression de ce module comme si vous écriviez à un ami. Fournissez des informations spécifiques et des détails utiles comme les "
-"fonctionnalités que vous avez appréciées ou que vous n’avez pas aimées, la simplicité d’utilisation, les inconvénients. Évitez d’utiliser des tournures trop génériques comme « C’est génial » ou « "
-"Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les critiques pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci ne "
-"sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
+"fonctionnalités que vous avez appréciées ou que vous n’avez pas aimées, la simplicité d’utilisation, les inconvénients. Évitez d’utiliser des tournures trop génériques comme « C’est génial » ou "
+"« Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les critiques pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci "
+"ne sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
 "l’assistance </a> afin de connaître les modalités d’assistance pour ce module. </li> <li>Merci de ne pas utiliser de langage injurieux et de ne pas diffuser d’informations personnelles. </li> </ul> "
 "<p>Pour plus d’informations sur les retours utilisateur à propos des modules, veuillez lire <a href=\"%(guide)s\">les recommandations pour les critiques des utilisateurs</a>.</p>"
 
@@ -6502,9 +5736,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Titre du module"
-
-msgid "Review Title"
-msgstr "Titre de la revue"
 
 msgid "Review Text"
 msgstr "Texte de la revue"
@@ -7295,17 +6526,17 @@ msgstr "À propos du suivi des sources externes…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Suivi des sources externes</h2> <p> Si vous faites un lien vers la page de détails de votre module ou directement sur le fichier depuis un site externe, comme votre blog, vous pouvez ajouter un "
 "paramètre à suivre comme source additionnelle de téléchargements. Par exemple, les liens suivants apparaitront comme étant sourcés depuis votre blog : <dl> <dt>Page de détails du module</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé "
-"pour décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</"
+"b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé pour "
+"décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "État du module par Date"
@@ -7330,9 +6561,9 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l’existence de mises à jour une fois par jour. Le nombre total de ces notifications est utilisé"
-" pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d’exploitation, l’état du module, l’application et"
-" la langue.</p>"
+"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l’existence de mises à jour une fois par jour. Le nombre total de ces notifications est utilisé "
+"pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d’exploitation, l’état du module, l’application et "
+"la langue.</p>"
 
 msgid "User Signups by Date"
 msgstr "Connexions de l’utilisateur par date"
@@ -7508,8 +6739,8 @@ msgstr "Pays"
 msgid "Occupation"
 msgstr "Profession"
 
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Les utilisateurs de comptes Firefox ne peuvent pas actuellement modifier leur adresse électronique."
+msgid "You can change your email address on Firefox Accounts."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Cette URL a un format non valide. Une URL valide ressemble à ceci : http://exemple.com/ma_page."
@@ -7600,8 +6831,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Vous ne pouvez pas supprimer votre compte si vous êtes listés en tant <a href=\"%(link)s\">qu’auteur de l’un de ces modules</a>. Pour supprimer votre compte, faites en sorte qu’une autre personne de"
-" l’équipe de développement de ces modules vous retire de la liste des auteurs. Une fois ceci réalisé, vous pourrez supprimer votre compte."
+"Vous ne pouvez pas supprimer votre compte si vous êtes listés en tant <a href=\"%(link)s\">qu’auteur de l’un de ces modules</a>. Pour supprimer votre compte, faites en sorte qu’une autre personne "
+"de l’équipe de développement de ces modules vous retire de la liste des auteurs. Une fois ceci réalisé, vous pourrez supprimer votre compte."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "En cliquant sur « supprimer », votre compte sera <strong>supprimé de façon permanente</strong>. Cela signifie que :"
@@ -7795,8 +7026,8 @@ msgstr "Nous n’avons pas pu vous désinscrire"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Malheureusement, nous n’avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a "
-"href=\"%(edit_url)s\">page d’édition du profil</a>."
+"Malheureusement, nous n’avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a href="
+"\"%(edit_url)s\">page d’édition du profil</a>."
 
 msgid "Developer Information"
 msgstr "Information développeur"
@@ -7856,8 +7087,8 @@ msgstr "Publié {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Code source disponible sous la licence <a href=\"%(url)s\">%(name)s</a>"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "Historique de version de {0}"
 
