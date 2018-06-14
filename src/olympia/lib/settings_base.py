@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for addons-server project.
 
+import environ
 import logging
 import os
 import socket
@@ -8,9 +9,9 @@ import socket
 from django.core.urlresolvers import reverse_lazy
 from django.utils.functional import lazy
 
-import environ
-
 from kombu import Queue
+
+import olympia.core.logger
 
 
 env = environ.Env()
@@ -1290,25 +1291,71 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-USE_MOZLOG = True
-MOZLOG_NAME = "http_app_addons"
-# See PEP 391 and log_settings_base.py for formatting help.  Each section of
-# LOGGING will get merged into the corresponding section of
-# log_settings_base.py. Handlers and log levels are set up automatically based
-# on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
-# propagate through a logger unless propagate: True is set.
-LOGGING_CONFIG = None
+# FIXME: MOZLOG_NAME was removed, instead of overriding it, update LOGGING['formatters']['json']['logger_name'] in the various settings files
+# See PEP 391 and log_settings_base.py for formatting help.
 LOGGING = {
+    'version': 1,
+    'filters': {},
+    'formatters': {
+        'json': {
+            '()': olympia.core.logger.JsonFormatter,
+            'logger_name': 'http_app_addons'
+        },
+    },
+    'handlers': {
+        'mozlog': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'json'
+        },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+        'statsd': {
+            'level': 'ERROR',
+            'class': 'django_statsd.loggers.errors.StatsdHandler',
+        },
+    },
+    'root': {},
     'loggers': {
-        'amo.validator': {'level': logging.WARNING},
+        'amo': {},
+        'amo.validator': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.ERROR},
-        'elasticsearch': {'handlers': ['null']},
-        'rdflib': {'handlers': ['null']},
-        'z.task': {'level': logging.INFO},
-        'z.es': {'level': logging.INFO},
+        'caching': {
+            'level': logging.ERROR,
+        },
+        'django.request': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'elasticsearch': {
+            'handlers': ['null']
+        },
+        'newrelic': {
+            'level': logging.WARNING,
+        },
+        'post_request_task': {
+            # Ignore INFO or DEBUG from post-request-task, it logs too much.
+            'level': logging.WARNING,
+        },
+        'rdflib': {
+            'handlers': ['null']
+        },
         's.client': {'level': logging.INFO},
+        'z': {},
+        'z.celery': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'z.es': {'level': logging.INFO},
+        'z.task': {'level': logging.INFO},
     },
 }
 
