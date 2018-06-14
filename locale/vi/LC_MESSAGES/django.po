@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 02:11+0000\n"
+"PO-Revision-Date: 2018-06-14 02:17+0000\n"
 "Last-Translator: Cát Thành <catthanh192@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -22,7 +22,7 @@ msgid "This display name cannot be used."
 msgstr "Không thể sử dụng tên hiển thị này."
 
 msgid "Usernames cannot contain only digits."
-msgstr "Tên người dùng không thể chỉ chứa các chữ số."
+msgstr "Tên người dùng không được chứa mỗi chữ số."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Nhập một tên người dùng hợp lệ bao gồm các chữ cái, số, dấu gạch dưới hoặc dấu gạch ngang."
@@ -31,20 +31,20 @@ msgid "This username cannot be used."
 msgstr "Không thể sử dụng tên người dùng này."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "Tên người dùng này đã được dùng."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Hình ảnh phải là PNG hoặc JPG."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Hình ảnh không được chuyển động."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Vui lòng dùng hình ảnh nhỏ hơn %dMB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Bạn đã đăng nhập từ trước."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
@@ -65,7 +65,7 @@ msgid "Review"
 msgstr "Đánh giá"
 
 msgid "Version {0}"
-msgstr ""
+msgstr "Phiên bản {0}"
 
 msgid "Review note"
 msgstr "Ghi chú review"
@@ -316,10 +316,10 @@ msgid "Awaiting Review"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "Từ chối"
 
 msgid "Approved"
-msgstr ""
+msgstr "Chấp thuận"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -362,13 +362,13 @@ msgstr "Chính sách Riêng tư"
 msgid "Report Abuse"
 msgstr "Báo cáo Lạm dụng"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Nếu bạn nghi ngờ tiện ích này vi phạm <a href=\"%(url)s\">chính sách của chúng tôi</a> hoặc có vấn đề về bảo mật hoặc tính riêng tư, vui lòng dùng biểu mẫu bên dưới để mô tả sự lo ngại của bạn. Vui "
-"lòng không dùng biểu mẫu này cho bất kì lí do nào khác."
+"Nếu bạn nghi ngờ tiện ích này vi phạm %(amo_policy_link_open)schính sách của chúng tôi%(link_close)s hoặc có vấn đề về bảo mật hoặc tính riêng tư, vui lòng dùng biểu mẫu bên dưới để mô tả sự lo ngại"
+" của bạn. Vui lòng không dùng biểu mẫu này cho bất kì lí do nào khác."
 
 msgid "Send Report"
 msgstr "Gửi báo cáo"
@@ -400,9 +400,8 @@ msgstr "Xếp hạng:"
 msgid "Submit review"
 msgstr "Gửi đánh giá"
 
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Vui lòng đừng báo lỗi trong phần đánh giá. Chúng tôi không cho nhà phát triển tiện ích thấy địa chỉ email của bạn, trong khi họ có thể cần liên lạc riêng với bạn để giải quyết vấn đề."
+msgstr "Vui lòng không báo lỗi ở đây. Chúng tôi không cho phép các tiện ích của các phát triển thấy địa chỉ email của bạn, vậy nên họ không thể liên hệ với bạn để giải quyết vấn đề bạn gặp phải."
 
 #, python-format
 msgid ""
@@ -486,9 +485,8 @@ msgstr "Quản lý"
 msgid "Add-on Review"
 msgstr "Quản trị Xét duyệt"
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Cờ quản trị"
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -543,7 +541,7 @@ msgid "See complete version history"
 msgstr "Xem lịch sử phiên bản đầy đủ"
 
 msgid "close"
-msgstr ""
+msgstr "đóng"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -596,7 +594,7 @@ msgid "This add-on has not yet been reviewed."
 msgstr ""
 
 msgid "Be the first!"
-msgstr ""
+msgstr "Hãy là người đầu tiên!"
 
 msgid "{0} users"
 msgstr "{0} người dùng"
@@ -674,11 +672,10 @@ msgid "Developer Hub"
 msgstr "Trung tâm Nhà phát triển"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Quản lý khóa API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Trả lời nhà phát triển của {0}"
+msgstr ""
 
 msgid "Admin Tools"
 msgstr "Công cụ Quản trị"
