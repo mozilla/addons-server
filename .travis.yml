@@ -17,22 +17,20 @@ aliases:
   - &run-pytest
     if: type IN (pull_request, push)
     stage: main tests
-    script: |
-      make -f Makefile-docker update_deps
-      pytest -n 2 -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=8 --test-group=$PYTEST_TEST_GROUP src/
-
+    install: make -f Makefile-docker update_deps
+    script:
+      pytest -n 2 -m 'not (es_tests or needs_locales_compilation or signing)' --test-group-count=4 --test-group=$PYTEST_TEST_GROUP src/
 
 jobs:
   include:
     - stage: main tests
       env: TEST=flake8
-      script: |
-        pip install -r requirements/flake8.txt
-        make flake8
+      install: pip install -r requirements/flake8.txt
+      script: make flake8
     - stage: main tests
       env: TEST=docs
-      script: |
-        pip install -r requirements/docs.txt
+      install: pip install -r requirements/docs.txt
+      script:
         make -f Makefile-docker docs SPHINXOPTS='-nW'
     - stage: main tests
       env: TEST=assets
@@ -42,9 +40,19 @@ jobs:
     - stage: main tests
       env: TEST=elasticsearch
       if: type IN (pull_request, push)
-      script: |
-        make -f Makefile-docker update_deps
-        pytest -n 2 -m "es_tests and not needs_locales_compilation" src/
+      install: make -f Makefile-docker update_deps
+      script: pytest -n 2 -m "es_tests" src/
+    - stage: main tests
+      env: TEST=signing
+      if: type IN (pull_request, push)
+      install: make -f Makefile-docker update_deps
+      before_script: ./scripts/start-autograph.sh
+      script: pytest -n 2 -m "signing" src/
+    - name: main tests
+      env: TEST=locale-dependend-tests
+      if: type IN (pull_request, push)
+      install: make -f Makefile-docker update_deps
+      script: pytest -n 2 -m "needs_locales_compilation" src/
     - <<: *run-pytest
       env: PYTEST_TEST_GROUP=1
     - <<: *run-pytest
@@ -53,22 +61,9 @@ jobs:
       env: PYTEST_TEST_GROUP=3
     - <<: *run-pytest
       env: PYTEST_TEST_GROUP=4
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=5
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=6
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=7
-    - <<: *run-pytest
-      env: PYTEST_TEST_GROUP=8
-
-  # # - <<: *test-signing
-  # #   script: ./scripts/start-autograph.sh
-  # # - name: locale-dependend-tests
-  # #   -m 'needs_locales_compilation'
-  # - name: extract-locales
-  #   if: type = cron AND branch = master
-  #   script: bash scripts/travis-extract-l10n.sh
+    - name: extract-locales
+      if: type = cron AND branch = master
+      script: bash scripts/travis-extract-l10n.sh
 
 cache:
   pip: true
@@ -98,8 +93,6 @@ before_install:
   - mysql -e 'create database olympia;'
   - export GOPATH=$HOME/go
   - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
-
-install:
   - nvm current
   - nvm deactivate
   - nvm install 8
