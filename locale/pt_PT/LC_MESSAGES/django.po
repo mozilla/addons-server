@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 22:31+0000\n"
+"PO-Revision-Date: 2018-06-14 22:32+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4895,11 +4895,8 @@ msgstr "Se precisar mesmo de contactar alguém na equipa da Mozilla, por favor v
 msgid "Who works on this website?"
 msgstr "Quem trabalha neste website?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Ao longo dos anos, muitas pessoas contribuíram para este website, incluindo voluntários da comunidade e uma equipa dedicada do AMO. Uma lista dos contribuidores mais significativos pode ser "
-"encontrada na nossa página de <a href=\"%(url)s\">créditos do site</a>."
+msgstr "Ao longo dos anos, muitas pessoas contribuíram para este website, incluindo voluntários da comunidade e uma equipa dedicada do AMO."
 
 # 75%
 msgid "Sections"
@@ -6719,7 +6716,7 @@ msgid "Occupation"
 msgstr "Ocupação"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Pode alterar o seu endereço de email no Contas Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Este URL tem um formato inválido. Os URLs válidos são do tipo http://example.com/my_page."
