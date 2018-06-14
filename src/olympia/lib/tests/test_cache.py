@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.core.cache import cache
+from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import translation
+from django.core.cache import cache
 
-from unittest import TestCase
 from olympia.lib.cache import (
     Message, Token, memoize, memoize_get, get_memoize_cache_key,
     cache_get_or_set, make_key)

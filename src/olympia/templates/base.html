@@ -18,9 +18,6 @@
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 
-    {% block tabzilla_css %}
-      <link href="{{ STATIC_URL }}css/tabzilla/tabzilla.css" rel="stylesheet" />
-    {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
     {% endblock %}
@@ -74,12 +71,13 @@
         {% block site_header %}
           <div class="header-bg">
             <div class="amo-header-wrapper">
-              {% include "tabzilla.html" %}
               <div class="amo-header">
                 <nav id="aux-nav" role="navigation" class="menu-nav c">
                   <ul>
                     {% if not settings.READ_ONLY %}
-                      {% include "impala/user_login.html" %}
+                      {% block user_login_include %}
+                        {% include "impala/user_login.html" %}
+                      {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
                       <li>

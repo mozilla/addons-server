@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-14 06:00+0000\n"
 "PO-Revision-Date: 2018-06-07 03:34+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,9 +191,9 @@ msgstr "გაეცანით პირადი მონაცემებ�
 msgid "View End-User License Agreement"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმების ნახვა"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "ეს დამატება არ არის განხილული Mozilla-ს მიერ. <a href=\"%(url)s\">დაწვრილებით</a>"
+#, fuzzy
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "ამ დამატების მიმოხილვა, ჯერ არავის გაუკეთებია."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "შემმუშავებლების მიერ აღნიშნულია, რომ ეს დამატება არის საცდელი."
@@ -396,9 +396,6 @@ msgstr "არ აზრის ხართ?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "მიმოხილვის გასაგზავნათ, გთხოვთ <a href=\"%(login)s\">შედით</a> ანგარიშში"
 
-msgid "Title:"
-msgstr "სათაური:"
-
 msgid "Review:"
 msgstr "მიმოხილვა:"
 
@@ -416,8 +413,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"იხილეთ, ამ დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილება</a> რომ გაარკვიოთ, შესაძლებელია თუ არა დახმარების მიღება. ასევე, შეგიძლიათ ეწვიოთ <a href=\"https://discourse.mozilla-"
-"community.org/c/add-ons/add-on-support\">დამატებების ფორუმსაც</a>."
+"იხილეთ, ამ დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილება</a> რომ გაარკვიოთ, შესაძლებელია თუ არა დახმარების მიღება. ასევე, შეგიძლიათ ეწვიოთ <a href=\"https://discourse.mozilla-community."
+"org/c/add-ons/add-on-support\">დამატებების ფორუმსაც</a>."
 
 msgid "Review Guidelines"
 msgstr "მითითებები მიმოხილვის გასაკეთებლად"
@@ -558,8 +555,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "დამატებების ნაწილი ითხოვს ნებართვებს, გარკვეული მოქმედებებისთვის (მაგალითად: ჩანართების მმართველი დამატება, მოითხოვს ბრაუზერის ჩანართების სისტემასთან წვდომას და ა.შ.)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, დათანხმდებით თუ უარყოფთ, მოთხოვნილი უფლებების მინიჭებას. ნებართვებზე თანხმობა, არსებითად არ იმოქმედებს თქვენი ბრაუზერის წარმადობაზე "
 "ან უსაფრთხოებაზე უარყოფითი კუთხით, მაგრამ იშვიათ შემთხვევებში, შეიძლება არსებობდეს ამის საფრთხეც."
@@ -742,8 +739,8 @@ msgstr "ვერ მოიძებნა"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
@@ -796,8 +793,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> გთხოვთ შეიყვანოთ <strong>ყველა სიტყვა</strong> ქვემოთ, <strong>ადგილების გამოტოვებით, საჭიროებისამებრ</strong>. </p> <p> თუ რთულად წასაკითხია, შეგიძლიათ <a href=\"#\" "
-"id=\"recaptcha_different\">სხვა სიტყვები სცადოთ,</a> ან <a href=\"#\" id=\"recaptcha_audio\">მთლიანად შეცვალოთ გამოსახულება</a>. </p>"
+"<p> გთხოვთ შეიყვანოთ <strong>ყველა სიტყვა</strong> ქვემოთ, <strong>ადგილების გამოტოვებით, საჭიროებისამებრ</strong>. </p> <p> თუ რთულად წასაკითხია, შეგიძლიათ <a href=\"#\" id=\"recaptcha_different"
+"\">სხვა სიტყვები სცადოთ,</a> ან <a href=\"#\" id=\"recaptcha_audio\">მთლიანად შეცვალოთ გამოსახულება</a>. </p>"
 
 msgid "Top Rated"
 msgstr "საუკეთესოდ შეფასებული"
@@ -935,8 +932,8 @@ msgstr "ვერსიები"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტის ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
 
 msgid "Contributors"
@@ -1100,9 +1097,6 @@ msgstr "კრებულის დამალვა"
 msgid "Make this Collection Public"
 msgstr "კრებულის გასაჯაროება"
 
-msgid "Learn about collections"
-msgstr "გაიგეთ კრებულების შესახებ"
-
 msgid "More Options:"
 msgstr "დამატებითი პარამეტრები:"
 
@@ -1150,8 +1144,8 @@ msgstr ""
 "ღილაკზე და გახადეთ პირადი."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "დამატებები, რომლებიც მოინიშნება ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>პირადია</b>, რაც ნიშნავს, რომ მხოლოდ თქვენთვისაა ხილული. თუ გსურთ ყველას შეეძლოს მისი ნახვა, "
 "დააწკაპეთ ქვემოთ არსებულ ღილაკზე და გახადეთ საჯარო."
@@ -1320,8 +1314,8 @@ msgstr "ბოლო დროს სასურველი კრებულ
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-"კრებულები არის, ნებისმიერი მომხმარებლის მიერ, გარკვეული ნიშნის მიხედვით დაჯგუფებული დამატებები, სხვებისთვის გასაზიარებლად. დაათვალიერეთ სხვა მომხმარებლების მიერ შექმნილი კრებულები, ან <a "
-"href=\"%(url)s\">თავად შექმენით საკუთარი</a>."
+"კრებულები არის, ნებისმიერი მომხმარებლის მიერ, გარკვეული ნიშნის მიხედვით დაჯგუფებული დამატებები, სხვებისთვის გასაზიარებლად. დაათვალიერეთ სხვა მომხმარებლების მიერ შექმნილი კრებულები, ან <a href="
+"\"%(url)s\">თავად შექმენით საკუთარი</a>."
 
 msgid "Subscribe"
 msgstr "გამოწერა"
@@ -1470,8 +1464,8 @@ msgstr "ენის პაკეტის ჩამოტვირთვა"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 "ლექსიკონის დამატების ჩადგმით, თქვენს %(app_name)s-ის მართლწერის შემმოწმებელს დაემატება ახალი ენა, რომელიც შეამოწმებს ვებგვერდებზე არსებულ ველებში შეყვანილ ტექსტს. ენის პაკეტის დამატება კი მთლიანად "
 "შეცვლის პროგრამის ენას."
@@ -1644,8 +1638,8 @@ msgstr "მოხსენებები დამატებების თ�
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> <a href=\"%(url_)s\">დამატებების თავსებადობის მომხსენებლის</a> მიერ გადმოგზავნილი მოხსენებები, იკრიბება და გადაეცემა შემმუშავებლებს განსახილველად. ეს მოხსენებები, გვეხმარება დამატებების "
 "თავსებადობის ხარვეზების დადგენაში, Firefox-ის ახალ ვერსიასთან მიმართებაში. </p>"
@@ -2626,7 +2620,8 @@ msgstr ""
 "განახლებების მართვა, საიტიდანვე არის შესაძლებელი. დამატება ასევე ჩაერთვება Mozilla-ს სარეკლამო აქციებსა და შეჯიბრებებში. ამასთან, ნებადართულია შემოწმებული დამატების საკუთარი საშუალებებით "
 "გავრცელებაც.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "საკუთარი ძალისხმევით. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება დამოწმებისთანავე, შეგეძლებათ თავადვე გაავრცელოთ. განახლებების სამართავად საჭირო იქნება updateURL, ან ცალკე პროგრამა "
 "განახლებებისთვის.</span>"
@@ -2770,8 +2765,8 @@ msgid "API key revoked"
 msgstr "API გასაღები გაუქმებულია"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ Firefox დამატებების გავრცელების შესახებ შეთანხმებას, ისევე როგორც ჩვენი მიმოხილვის დებულებებს და წესებს. შეთანხმებას Firefox დამატებების გავრცელების "
 "შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
@@ -2906,7 +2901,9 @@ msgid ""
 msgstr "ეს დამატება არათავსებადია <b>%(app_name)s %(app_version)s</b>-სთან, %(app_name)s-ის უახლეს ვერსიასთან. გთხოვთ განაახლოთ თქვენი დამატების თავსებადობის მონაცემები, ან ატვირთოთ ახალი ვერსია."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">თავსებადობის განახლება</a> <a href=\"%(version_url)s\" class=\"button\">ახალი ვერსიის ატვირთვა</a> ან <a href=\"#\" "
 "class=\"close\">უგულებელყოფა</a>"
@@ -3030,7 +3027,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "კატეგორიები, მომხმარებლისთვის არის მთავარი საშუალება დამატებების მოსაძიებლად. აირჩიეთ ის, რომელიც ყველაზე უკეთ ერგება თქვენი დამატების დანიშნულებას."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "კატეგორიის შეცვლა შეუძლებელია, როცა დამატება რჩეულადაა მიჩნეული. გთხოვთ მოგვწეროთ ელფოსტაზე <a href=\"mailto:%(email)s\">%(email)s</a> მიზეზი, თუ რატომაა საჭირო კატეგორიის შეცვლა."
 
 #, python-format
@@ -3095,8 +3093,8 @@ msgid "Support Information for {0}"
 msgstr "დამხმარე ინფორმაცია {0}-ისთვის"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "თუ გსურთ, ელფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა.შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
 "გამოქვეყნებულ დამატებებს."
@@ -3685,11 +3683,11 @@ msgstr "JWT საიდუმლო კოდი"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"API მოთხოვნის გასაკეთებლად, გაგზავნეთ <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ავტორიზაციის თავსართად. JWT-ს შექმნა დაგჭირდებათ ყოველ ჯერზე მოთხოვნის გაგზავნისას, როგორც ახსნილია <a "
-"href=\"%(docs_url)s\">API დოკუმენტაციაში</a>."
+"API მოთხოვნის გასაკეთებლად, გაგზავნეთ <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ავტორიზაციის თავსართად. JWT-ს შექმნა დაგჭირდებათ ყოველ ჯერზე მოთხოვნის გაგზავნისას, როგორც ახსნილია <a href="
+"\"%(docs_url)s\">API დოკუმენტაციაში</a>."
 
 msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
@@ -3877,9 +3875,6 @@ msgstr "მხარდაჭერა"
 msgid "Policies"
 msgstr "დებულებები"
 
-msgid "FAQ"
-msgstr "ხ.დ.კ."
-
 msgid "Report Bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
 
@@ -4002,11 +3997,11 @@ msgstr "Firefox-ის მორგება"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გააფართოვონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ %(html_link_open)sHTML%(link_close)s, "
-"%(js_link_open)sJavaScript%(link_close)s და %(css_link_open)sCSS%(link_close)s-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
+"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გააფართოვონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
+"%(link_close)s და %(css_link_open)sCSS%(link_close)s-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
 
 msgid "Learn How to Make an Add-on"
 msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
@@ -4149,8 +4144,8 @@ msgstr "დაარქვით თემას სახელი."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "ვუერთდები %(agreement_link_open)sFirefox დამატებების გავრცელების თაობაზე შეთანხმებას%(link_close)s და თანახმა ვარ ჩემი მონაცემები დამუშავდეს, %(privacy_notice_link_open)sპირადი მონაცემების დაცვის "
 "დებულების%(link_close)s შესაბამისად."
@@ -4833,10 +4828,11 @@ msgstr ""
 "დამატებების კოდის ხარისხსა და მდგრადობას."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
-"დაგვეხმარეთ ვებსაიტის გაუმჯობესებაში. ეს საიტი ღია წყაროს მქონეა, ასე რომ თავისუფლად შეგიძლიათ ხარვეზების კვლევა და მათი გამოსწორება. მიმდინარე ხარვეზებზე ინფორმაცია ახლდება <a "
-"href=\"%(url)s\">GitHub</a> საიტზე, ხოლო ძველ ხარვეზებზე ინფორმაცია, შეგიძლიათ მოიძიოთ Bugzilla-ზე."
+"დაგვეხმარეთ ვებსაიტის გაუმჯობესებაში. ეს საიტი ღია წყაროს მქონეა, ასე რომ თავისუფლად შეგიძლიათ ხარვეზების კვლევა და მათი გამოსწორება. მიმდინარე ხარვეზებზე ინფორმაცია ახლდება <a href=\"%(url)s"
+"\">GitHub</a> საიტზე, ხოლო ძველ ხარვეზებზე ინფორმაცია, შეგიძლიათ მოიძიოთ Bugzilla-ზე."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr "თუ დაინტერესებული ხართ დამატებებით, მაგრამ არ გაქვთ საკმარისი ტექნიკური ცოდნა, კიდევ არსებობს სხვა გზები დასახმარებლად:"
@@ -4854,8 +4850,8 @@ msgstr "მიმოიხილეთ დამატებები საი�
 msgid "I have a question"
 msgstr "კითხვა მაქვს"
 
-#, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+#, fuzzy, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "დასაწყისისთვის, ინფორმაციის მისაღებად საუკეთესო ადგილია ჩვენი <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">ხ.დ.კ.</abbr></a> გვერდი. თუ თქვენს კითხვაზე მანდ ვერ იპოვით პასუხს, "
 "შეგიძლიათ <a href=\"%(forum_url)s\">ჩვენს ფორუმებზე დასვათ კითხვა</a>."
@@ -4867,746 +4863,14 @@ msgstr "თუ ნამდვილად გესაჭიროებათ 
 msgid "Who works on this website?"
 msgstr "ვინ მუშაობს ამ ვებსაიტზე?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+#, fuzzy
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
 "წლების განმავლობაში, მრავალ ადამიანს აქვს ამ საიტის სრულყოფაში შეტანილი წვლილი, როგორც მოხალისეებს ჩვენი ერთობიდან, ასევე AMO-ს ცალკეულ გუნდს. ღირსშესანიშნავი მონაწილეების ჩამონათვალი, შეგიძლიათ "
 "იხილოთ ჩვენს <a href=\"%(url)s\">საიტზე მომუშავეების</a> გვერდზე."
 
-msgid "Add-on Compatibility Reporter"
-msgstr "დამატების თავსებადობის მომხსენებელი"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "დამატების თავსებადობის მომხსენებელი დაყენებულია"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "მარტივად შეგიძლიათ დაგვეხმაროთ დადგენაში, განახლებულია თუ არა დამატებები, Firefox-ის მომდევნო ვერსიის გამოშვების დროისთვის."
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "მითითებები, დამატების თავსებადობის შესახებ, მოხსენების გამოსაგზავნად:"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"გვერდების მონახულებისა და დამატებებით სარგებლობის დაწყების შემდეგ, ყურადღებით ჩაინიშნეთ ყველა საეჭვო ცვლილება, მისი ბოლო გამოყენების შემდგომ. ეს შესაძლოა იყოს ხარვეზები ჩვენებისას, მენიუს "
-"ელემენტების გაქრობა ან რამე უფრო სერიოზული, როგორიცაა დამატების მუშაობის შეჩერება ან შეცდომების ამოყრა."
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"როგორც კი დაადგენთ, რომ რომელიმე დამატება მუშაობს გამართულად, ან ხარვეზები აქვს, გახსნით დამატებების მმართველს და დააჭერთ თავსობადობას ამ დამატების გვერდით, Mozilla-სთვის შედეგების მოსახსენებლად. "
-"თქვენი მოსაზრება, დაეხმარება დამატების შემმუშავებელს გაიგოს, ესაჭიროება არსებულ ვერსიას ხარვეზების გამოსასწორებლად განახლებები, თუ არა."
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr "Firefox ვერსიის ან დამატებების განახლებისას, მოხსენებები ძველ ვერსიებზე დაიმალება, ახალი ვერსიის გამოცდის მიზნით. დამატებითი კითხვებისთვის ეწვიეთ <a href=\"%(url)s\">ჩვენს ფორუმს</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-"ათასობით დამატება იქმნება ჩვენი ერთობის მიერ, ყოველ წელიწადს და თქვენი მონაწილეობა თავსებადობის შემოწმებაში, გვეხმარება ამ დამატებებით, მომხმარებლებისთვის, სასარგებლო და სათანადო ხარისხის "
-"მომსახურების მიწოდებაში."
-
-msgid "Thank you!"
-msgstr "გმადლობთ!"
-
-msgid "Site Credits"
-msgstr "საიტის შემქმნელები"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla-ს სურს მადლობა გადაუხადოს თითოეულ ამ ადამიანს, addons.mozilla.org პროექტში თავიანთი წვლილის შეტანისთვის, წლების განმავლობაში:"
-
-msgid "Developers &amp; Administrators"
-msgstr "შემმუშავებლები და ადმინისტრატორები"
-
-msgid "Localizers"
-msgstr "მთარგმნელები"
-
-msgid "Reviewers"
-msgstr "მიმომხილველები"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "დამატებას გააჩნია {0}-ზე მეტი მიმოხილვა"
-
-msgid "Other Contributors"
-msgstr "სხვა შემოწირულობები"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "წინა შემმუშავებლები და ადმინისტრატორები"
-
-msgid "Software and Images"
-msgstr "პროგრამა და სურათები"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"ზოგიერთი ხატულა <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk ხატულების კრებულიდან</a>, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 (ავტორის მითითებით)</a>."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"ზოგიერთი ხატულა <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh ვებხატულების კრებულიდან</a>, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 (ავტორის მითითებით)</a>."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"ზოგიერთ გვერდზე გამოყენებული <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts-ის</a> (არაკომერციული) ელემენტები, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)</a>."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "შემოწირულობის შესახებ ინფორმაციის მისაღებად, ეწვიეთ ჩვენს <a href=\"%(url)s\">wiki გვერდს</a>."
-
-msgid "Developer FAQ"
-msgstr "შემმუშავებლის ხ.დ.კ."
-
 msgid "Sections"
 msgstr "განყოფილებები"
-
-msgid "Developing an Add-on"
-msgstr "დამატების შემუშავება"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "სასარგებლო ბმულები"
-
-msgid "Contributing your Add-on"
-msgstr "დამატების შემოწირულობა"
-
-msgid "Add-on Review Process"
-msgstr "დამატების მიმოხილვის მიმდინარეობა"
-
-msgid "Managing Your Add-on"
-msgstr "დამატების მართვა"
-
-msgid "References for Open Source Licenses"
-msgstr "ღია წყაროს ლიცენზიების ბმულები"
-
-msgid "Add-on Developer FAQ"
-msgstr "დამატების შემმუშავებლის ხ.დ.კ."
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>როგორ შევქმნა დამატება?</h3> <p>Mozilla გთავაზობთ დოკუმენტაციას, დამატების შექმნის შესახებ %(addons_link_open)sMozilla შემმუშავებლების გვერდზე%(link_close)s. </p>"
-
-msgid "What is a \".xpi\" file?"
-msgstr "რა არის \".xpi\" ფაილი?"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "გაფართოებები შეკრულია ZIP არქივად (გამოითქმის როგორც \"ზიპი\"), რომელსაც გააჩნია XPI ფაილის დაბოლოება."
-
-msgid "What is XUL?"
-msgstr "რა არის XUL?"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-"XUL (XML სამომხმარებლო გარემოს დაპროგრამების ენა) არის Mozilla-ს XML-ზე დაფუძნებული ენა, რომელიც საშუალებას გაძლევთ შექმნათ მრავალი შესაძლებლობის მქონე, მრავალპლატფორმული პროგრამები. მისი მეშვეობით "
-"შესაძლებელია სამომხმარებლო გარემოს ისეთი ელემენტების შეცვლა, როგორიცაა ღილაკები, მენიუები, ხელსაწყოთა ზოლები, ფორმები და ა.შ. რაც გაზრდის დამატებების შესაძლებლობებს, ბრაუზერის იერსახის შესაცვლელად."
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
-"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
-" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-"<strong>გაითვალისწინეთ:</strong> XUL მიჩნეულია მოძველებულ ტექნოლოგიად და დამატებები, რომლებიც იყენებს XUL-ს, აღარ იმუშავებს Firefox 57 ვერსიიდან მოყოლებული. გთხოვთ გამოიყენოთ "
-"%(webext_link_open)sWebExtensions%(link_close)s API-ები ახალი დამატებების შესაქმნელად. თუ დარჩენილი გაქვთ ძველი დამატება, გთხოვთ გადაიტანოთ WebExtensions-ზე. ინფორმაციის მისაღებად, თუ როგორ ხდება "
-"ძველი დამატების ახალ ტექნოლოგიაზე მორგება, გაეცანით %(portlegacy_link_open)sFirefox-ის ძველი დამატების გადატანის ინსტრუქციას%(link_close)s."
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "როგორ შევამოწმო თავსებადობა, Mozilla-ს პროგრამის ბოლო ვერსიასთან?"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-"Mozilla-ს უახლეს პროგრამასთან თავსებადობის დასადგენად, აუცილებელია განახლებების გამოსვლისთანავე ჩამოტვირთვა და დამატებების შემოწმება, ისევ გამართულად მუშაობს თუ არა. როცა ახალი გამოშვებები მოიცავს "
-"არქიტექტურულ ცვლილებებსაც, ამას შესაძლოა გავლენა ჰქონდეს თქვენი დამატების მუშაობაზე. ამიტომ მნიშვნელოვანია, ბეტა ტესტირებაში აქტიური მონაწილეობა, რითიც შესაძლებელი იქნება მომხმარებლების მხრიდან, "
-"უარყოფითი შეფასებების თავიდან არიდება, Mozilla-ს პროგრამის საბოლოო ვერსიის გამოშვების შემდეგ."
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "სად ვნახო რჩევები, დამატების შექმნის შესახებ?"
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr "#extdev (განხილვები, დამატებების შექმნის შესახებ)"
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "#amo (დახმარება, დამატებების AMO საიტზე განთავსებასთან დაკავშირებით)"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr "#webextensions (განხილვები, დამატებების შექმნის და WebExtensions-ზე გადატანის თაობაზე)"
-
-msgid "Add-ons forum"
-msgstr "დამატებების ფორუმი"
-
-msgid "Does Mozilla offer development services?"
-msgstr "Mozilla სთავაზობს მომხმარებლებს მომსახურებას პროგრამების შემუშავების სახით?"
-
-msgid "No."
-msgstr "არა."
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "შემიძლია დავიქირავო მე-3 მხარის შემმუშავებლები, ჩემი დამატების შესაქმნელად?"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-"დიახ. ცალკეული შემმუშავებლები შეგიძლიათ მოიძიოთ <a href=\"%(forum_url)s\">დამატებების ფორუმის</a>, <a href=\"%(list_url)s\">mozilla.jobs სიის</a>, <a href=\"%(mz_url)s\">mozillaZine ფორუმების</a>, "
-"ან <a href=\"%(wiki_url)s\">Mozilla Wiki-ის</a> საშუალებით. გთხოვთ გაითვალისწინოთ, რომ Mozilla არ უწევს შემმუშავებლებს რეკომენდაციებს."
-
-msgid "Can I host my own add-on?"
-msgstr "შემიძლია საკუთარი დამატების სასურველ საიტზე განთავსება?"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-"დიახ. ბევრი შემმუშავებელი არჩევს, რომ საკუთარ საიტზე განათავსოს თავისი დამატებები. <a href=\"%(amo_url)s\">Mozilla-ს დამატებების საიტზე</a> თქვენი დამატებების განთავსებით, გაცილებით მეტი "
-"მომხმარებლისთვის გახდით მას ხელმისაწვდომს, გამომდინარე იქიდან, რომ დიდი რაოდენობით ხალხი შემოდის ამ საიტზე."
-
-msgid "Can Mozilla host my add-on?"
-msgstr "Mozilla-ს შეუძლია ჩემი დამატებების საიტზე განთავსება?"
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "დიახ. თქვენ შეგიძლიათ თქვენი დამატება განათავსოთ <a href=\"%(url)s\">Mozilla-ს დამატებების ვებსაიტზე</a>."
-
-msgid "What is AMO?"
-msgstr "რა არის AMO?"
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-"Mozilla-ს AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) წარმოადგენს საშუალებების და ხელსაწყოების ნაკრებს, რომელიც ეხმარება შემმუშავებლებს შექმნან, გაავრცელონ და "
-"შეიტანონ წვლილი, Mozilla-ს საოცარი პროგრამების შემუშავებაში. ასევე საიტი შესაძლებლობას იძლევა საკუთარი დამატებების შექმნის, მართვის, განთავსების და ფართო საზოგადოებისთვის წარდგენის."
-
-msgid "Does Mozilla keep my account information private?"
-msgstr "Mozilla ინახავს ჩემი ანგარიშის მონაცემებს საიდუმლოდ?"
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "დიახ. ჩვენი <a href=\"%(url)s\">პირადი მონაცემების დაცვის დებულებაში</a> განმარტებულია, როგორ გამოიყენება ეს მონაცემები Mozilla-ს მიერ."
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "რას წარმოადგენს AMO საიტზე არსებული \"შემმუშავებლის ხელსაწყოები\"?"
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-"\"შემმუშავებლის ხელსაწყოები\" არის იმ საშუალებების ნაკრები, რომლითაც მარტივად შეგიძლიათ თქვენი დამატებების მართვა. მისი დახმარებით შეგიძლიათ დამატების AMO საიტზე წარსადგენად მომზადება, დამატების "
-"შესახებ ინფორმაციის მითითება და სტატისტიკური მონაცემების შემოწმება."
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "გააჩნია Mozilla-ს დებულება, რომელის მიხედვითაც განსაზღვრავს წარდგენის დასაშვებობას?"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-"დიახ. Mozilla-ს %(policy_link_open)sდამატების მიმოხილვის დებულებები%(link_close)s აღწერს რა შემთხვევებში ხდება წარდგენის დაშვება. ეს დებულება შეიძლება შეიცვალოს წინასწარი შეტყობინების გარეშე. "
-"ამასთან, დამატების მიმომხილველთა გუნდი სარგებლობს %(guide_link_open)sდამატების მიმოხილვის სახელმძღვანელოთი%(link_close)s, რომლის მეშვეობითაც დგინდება თქვენი დამატების ფუნქციონალი და უსაფრთხოების "
-"ნორმებთან შესაბამისობა."
-
-msgid "How do I submit my add-on?"
-msgstr "როგორ წარვადგინო დამატება?"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-"შემმუშავებლის ხელსაწყოთა გვერდი საშუალებას გაძლევთ დამატებების AMO საიტზე ატვირთვისა და წარდგენის. ამისთვის, უნდა იყო AMO საიტზე დარეგისტრებული. სანამ წარადგენთ დამატებას, გაეცანით "
-"%(review_policy_link_open)sდამატების მიმოხილვის დებულებებს%(link_close)s, რომ დარწმუნდეთ, თქვენი დამატების დადგენილ ნორმებთან შესაბამისობაში."
-
-msgid "What operating system do I choose for my add-on?"
-msgstr "რომელი საოპერაციო სისტემა უნდა ავირჩიო ჩემი დამატებისთვის?"
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "უნდა აირჩიოთ ის სისტემები, რომლებზეც თქვენი დამატება წარმატებით მუშაობს."
-
-msgid "What category do I choose for my add-on?"
-msgstr "რომელი კატეგორია უნდა შევუსაბამო ჩემს დამატებას?"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-"კატეგორიის შერჩევა ხდება იმის გათვალისწინებით, თუ რომელ მომხმარებელზეა გათვლილი დამატება და რა ფუნქციონალი გააჩნია. თუ ზუსტად არ იცით, რომელ კატეგორიას მიაკუთვნოთ თქვენი დამატება, გთხოვთ მიუთითოთ "
-"\"სხვა\". AMO გუნდი ხელახლა მიანიჭებს დამატებას სხვა კატეგორიას, თუ აღმოჩნდება, რომ მას უკეთ შეესაბამება."
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "შემიძლია სალიცენზიო შეთანხმების მითითება, ჩემს დამატებაზე?"
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "დიახ. შეგიძლიათ დაურთოთ სალიცენზიო შეთანხმება დამატებას, წარდგენის დროს. ასევე, შეგიძლიათ მისი განახლება შემმუშავებლის ხელსაწყოების გვერდიდან, დამატების წარდგენის შემდეგაც."
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "შემიძლია დამატებისთვის პირადი მონაცემების დაცვის დებულების განსაზღვრა?"
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "დიახ. პირადი მონაცემების დაცვის დებულების მითითება შეგიძლიათ დამატების წარდგენისას. მისი მითითება და განახლება, ასევე შემმუშავებლის ხელსაწყოების გვერდიდანაც შეგიძლიათ, წარდგენის შემდეგაც."
-
-msgid "Must my add-on be reviewed?"
-msgstr "ჩემი დამატება განსახილველია?"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-"ახალ და განახლებულ დამატებებს, შესაძლოა დასჭირდეთ განხილვის გავლა, რომ Mozilla-ს მომხმარებლებმა, მდგრადი და უსაფრთხო პროდუქტი მიიღონ. წარდგენილი დამატებების განხილვა ხდება <a "
-"href=\"%(url)s\">დამატების მიმოხილვის სახელმძღვანელოს</a> შესაბამისად, მოცემული მითითებების საფუძველზე."
-
-msgid "Who reviews my add-on?"
-msgstr "როგორ ხდება ჩემი დამატების განხილვა?"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
-" href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-"დამატებებს განიხილავენ დამატებების მიმომხილველები, ნიჭიერი შემმუშავებლებისგან შემდგარი მოხალისეების გუნდი, რომელიც ეხმარება Mozilla-ს დამატებების მდგრადობისა და უსაფრთხოების შემოწმებაში, Mozilla "
-"მომხმარებლებისთვის. მიმომხილველთან ურთიერთობისას, გთხოვთ გამოიჩინოთ თავაზიანობა, მოთმინება და პატივისცემა, რადგან ისინი ბევრს მუშაობენ რომ კარგად შეამოწმონ თქვენი დამატება, გამართულია თუ არა <a "
-"href=\"%(url)s\">დამატების მიმოხილვის სახელმძღვანელოს</a> მიხედვით."
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr "რომელი სახელმძღვანელო გამოიყენება ჩემი დამატების განხილვისას?"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-"დამატების მიმომხილველთა გუნდი სარგებლობს <a href=\"%(url)s\">დამატებების მიმოხილვის სახელმძღვანელოთი</a>, დამატებების შესამოწმებლად. მნიშვნელოვანია დამატების შემმუშავებლებისთვის, ამ სახელმძღვანელოს "
-"მითითებების გათვალისწინება, ცნობილი ხარვეზების ასარიდებლად, წარდგენის დროს."
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "რამდენ ხანს გაგრძელდება ჩემი დამატების განხილვა?"
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "ჩვენ ვერ გეტყვით წინასწარ მიახლოებით დროს. რადგან ბევრმა ფაქტორმა შეიძლება იმოქმედოს განხილვის პროცესზე:"
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr "წარსადგენი დამატებების რაოდენობამ"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "დამატების კოდის სირთულემ"
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr "აღმოჩენილი ხარვეზების რაოდენობამ"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr "სწორედ ამიტომაც, მეტად მნიშვნელოვანია <a href=\"%(g_url)s\">დამატების მიმოხილვის სახელმძღვანელოს</a> წაკითხვა და დამატების სათანადოდ გამართვა."
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "როგორ ვნახო, ჩემი დამატების ჩამოტვირთვების რაოდენობა?"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
-"სტატისტიკური მონაცემების განყოფილება, შემმუშავებლის ხელსაწყოების გვერდზე, გთავაზობთ ინფორმაციას, რომელიც დაგეხმარებათ თქვენი დამატებების ჩამოტვირთვების რაოდენობის დადგენაში, AMO საიტზე წარდგენის "
-"დროიდან მოყოლებული."
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr "როგორ ვნახო, ჩემი დამატებების მოქმედი მომხმარებლების რაოდენობა?"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-"სტატისტიკური მონაცემების განყოფილება, შემმუშავებლის ხელსაწყოების გვერდზე, გთავაზობთ ინფორმაციას, რომელიც დაგეხმარებათ თქვენი დამატებების მოქმედი მომხმარებლების რაოდენობის დადგენაში, AMO საიტზე "
-"წარდგენის დროიდან მოყოლებული."
-
-msgid "How do I submit an update for my add-on?"
-msgstr "როგორ წარვადგინო განახლება, ჩემი დამატებისთვის?"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "დამატების განახლების წარდგენა შეგიძლიათ შემმუშავებლის ხელსაწყოებიდან, ბმულით „ახალი ვერსიის ატვირთვა“, სადაც მიუთითებთ ახალ .xpi ფაილს, თქვენი დამატებისთვის."
-
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "ესაჭიროება ჩემს განახლებას მიმოხილვის გავლა?"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr "დამატების განახლებები შესაძლოა განხილული იყოს ისევე, როგორც ახალი წარდგენილი."
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "როგორ გამოვეხმაურო მომხმარებელს, რომელიც უარყოფით მიმოხილვას დატოვებს, ჩემი დამატების შესახებ?"
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "შემმუშავებელს, ნებისმიერ მიმოხილვაზე შეუძლია პასუხის გაცემა, AMO საიტის ანგარიშზე შესვლის შემთხვევაში. დამატებით, ნებისმიერ მომხმარებელს, შეუძლია მიმოხილვა მონიშნოს, როგორც:"
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "სარეკლამო ან შეუსაბამო შიგთავსი"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "შეუფერებელი ლექსიკა/დიალოგი"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "არასწორი მოხსენება ან მხარდაჭერის მოთხოვნა"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "სხვა (დამატებითი მონაცემების მითითებით)"
-
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "ამჟამად, AMO არ იძლევა პირდაპირი კავშირის შესაძლებლობას, მიმოხილვის ავტორთან."
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "შემიძლია უარყოფითი მიმოხილვის წაშლის მოთხოვნა?"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "არა. დამატებაზე უარყოფით მიმოხილვებს არ ვშლით, თუ მცდარი არ აღმოჩნდება."
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "შემიძლია შეუსაბამო მიმოხილვის წაშლის მოთხოვნა?"
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "თუ ავტორი მოგვახსენებს, რომ მიმოხილვა შეიცავს მცდარ, ან შეუსაბამო ინფორმაციას და სურს წაიშალოს, ჩვენ გადავხედავთ ამ მიმოხილვას და საჭიროებისამებრ გადავწყვეტთ, წაიშალოს თუ არა."
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-"გსურთ დამატებითი ინფორმაციის მოძიება, სხვადასხვა ღია წყაროს ლიცენზიებზე? დაიბენით და ვერ გაგირკვევიათ, რომელი ლიცენზია უნდა მიუთითოთ? არ იცით, თითოეული ლიცენზია რა უფლებებს იძლევა? მიუხედავად იმისა,"
-" რომ ლიცენზიის სრული ტექსტის გაცნობას, ვერაფერი შეცვლის, ქვემოთ მოცემულია რამდენიმე საიტი, რომელიც შეიცავს ძირითად ინფორმაციას, ღია წყაროს ლიცენზიების შესახებ, რომელიც შეიძლება დაგეხმაროთ მთავარი "
-"განსხვავებების დადგენაში. ეს საიტები, მხოლოდ სარეკომენდაციო ხასიათისაა და განკუთვნილია პირადი მოხმარებისთვის. მოცემული ინფორმაცია გამოდგება რჩევის სახით გამოსაყენებლად და არა სამართლებრივი "
-"გადაწყვეტილებების მისაღებად. Mozilla სრულად იხსნის ყოველგვარ პასუხისმგებლობას ამ საიტების შიგთავსის სანდოობასა და მისი გამოყენებით გამოწვეულ შედეგებზე."
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-"Mozilla საზოგადოებრივი ლიცენზიის (\"MPL\") სრული ტექსტის გარდა, შეგიძლიათ გაეცნოთ MPL-ს ანოტირებულ ვერსიასაც <abbr title=\"Frequently Asked Questions\">ხ.დ.კ.</abbr> საიტზე, თუ გსურთ მისი გამოყენება"
-" თქვენი კოდის ლიცენზირებისთვის."
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr "ცხრილში შეჯამებული და შედარებულია ღია წყაროს ლიცენზიები როგორ განსაზღვრავს პროდუქტის გავრცელების, საკუთრების უფლებისა და კოდის ცვლილებით გადამუშავების პირობებს."
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-"Free Software Foundation გთავაზობთ მოკლე შეჯამებას ღია ლიცენზიების შესახებ, მათ შორის იმის თაობაზე, მოცემული ლიცენზია შეესაბამება თუ არა free software, ან copyleft ლიცენზიის კრიტერიუმებს. ასევე, "
-"საიტზე განხილულია, თუ რას განსაზღვრავს და რისთვის გამოიყენება free software და copyleft ლიცენზიები (მაგ. Copyleft ლიცენზია წარმოადგენს საშუალებას, პროგრამის, ან სხვა სამუშაოს უფასოდ გავრცელების იმ "
-"პირობით, რომ მისი გადამუშავებული, ან შეცვლილი ვერსიებიც, აუცილებლად უნდა გავრცელდეს უფასოდ.)"
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr "Open Source Initiative წარმოგიდგენთ ღია წყაროს ლიცენზიის ტერმინებს."
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr "ღია წყაროს ცნობილი ლიცენზიების შედარება ვიკიპედიაზე."
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr "ეს საიტი გთავაზობთ არასამართლებრივ სახელმძღვანელოს, ლიცენზიების არჩევის შესახებ, თქვენი ღია წყაროს მქონე პროექტებისთვის."
-
-msgid "Frequently Asked Questions"
-msgstr "ხშირად დასმული კითხვები"
-
-msgid "Using Add-ons"
-msgstr "დამატებებით სარგებლობა"
-
-msgid "What is an add-on?"
-msgstr "რა არის დამატებები?"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"დამატებები პატარა პროგრამული ნაწილებია, რომელიც ამატებს ახალ შესაძლებლობებს და ფუნქციონალს %(app_name)s-ს. დამატებებს შეუძლია შემატოს %(app_name)s-ს ახალი შესაძლებლობები, უცხო ენის ლექსიკონები, ან "
-"შეცვალოს მისი იერსახე. დამატებების საშუალებით, შეგიძლიათ სრულად მოარგოთ %(app_name)s, თქვენს მოთხოვნილებებსა და გემოვნებას. <a href=\"%(learnmore_url)s\">შეიტყვეთ მეტი, მორგების შესახებ</a>"
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "იმუშავებს დამატებები ჩემს ბრაუზერთან ან სხვა პროგრამასთან?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
-msgstr ""
-"აქ მოცემული დამატებები, მხოლოდ იმუშავებს Mozilla-ს შექმნილ პროგრამებთან, როგორიცაა <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Android-ისთვის</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a> და <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. ამასთან, ყველა დამატება არ იმუშავებს თითოეულ ამ პროგრამასთან და არც ამ პროგრამების ყველა "
-"ვერსიასთან. თითოეულ დამატებას მითითებული აქვს, რომელ პროგრამასთან და მის რომელ ვერსიასთანაა თავსებადი, მაგალითად: Firefox 50.0 - 52.*. Firefox-ის შემთხვევაში, საიტზე არსებული ჩადგმის ღილაკიც "
-"მიუთითებს, არის თუ არა დამატება თავსებადი, მოცემულ ვერსიასთან და შეიძლება თუ არა მისი დაყენება."
-
-msgid "What are the different types of add-ons?"
-msgstr "რა განსხვავებაა სხვადასხვა სახის დამატებებს შორის?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr "რამდენიმე სახის დამატება არსებობს, რომელიც სხვადასხვა გზით ცვლის %(app_name)s-ს:"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong> მატებს ახალ შესაძლებლობებს %(app_name)s-ს, ან ცვლის მის არსებულ ფუნქციონალს. გაფართოებები გამოიყენება რეკლამების შეზღუდვისთვის, "
-"საიტებიდან ვიდეოების ჩამოსატვირთად, სოციალურ ქსელებთან მჭირდო კავშირისთვის და იმ შესაძლებლობების დასამატებლად, რაც სხვა პროგრამებში გხვდებათ."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">სრული თემები</a></strong> მთლიანად ცვლის %(app_name)s-ის იერსახეს, ხატულებს, ფერებს, ფანჯრებს და გაფორმების სხვა დეტალებს."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">თემებით</a></strong> იერსახის მსუბუქი ცვლილება ხდება, ძირითადად ფონის სურათების და %(app_name)s-ის ხელსაწყოთა ზოლის."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">საძიებო სისტემების</a> </strong> დამატება იძლევა მეტი არჩევანის საშუალებას, ძიების ველის ჩამოშლისას. ეს სისტემები დაგეხმარებათ საიტების სწრაფად მოძიებაში."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">ლექსიკონები და ენის პაკეტები</a></strong> %(app_name)s-ს ამატებს სხვადასხვა ენების მხარდაჭერას."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "როგორ უნდა დავაყენო, ვმართო და წავშალო დამატებები?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-"უმეტეს შემთხვევაში, დამატებების დაყენება ხდება საიტზე მოცემული ჩადგმის ღილაკით. დამატებების მართვა, გათიშვა, ან ამოშლა კი შესაძლებელია %(app_name)s-ში არსებული დამატებების სამართავი გვერდიდან. უფრო "
-"ვრცლად, იხილეთ <a href=\"%(extension_url)s\">სტატია გაფართოებებზე</a>, ან <a href=\"%(theme_url)s\">ეს სტატია, გაფორმებებსა და სრულ თემებზე</a>. თუ დამატებების დაყენებისას სიძნელეებს წააწყდებით, "
-"გაეცანით მითითებებს, <a href=\"%(troubleshooting_url)s\">გაფართოებებსა და თემებთან დაკავშირებული ხარვეზების აღმოსაფხვრელად</a>."
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "როგორ უნდა განვაახლო დამატებები?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr "დამატებები თავისთავად მოწმდება განახლებებზე ყოველდღიურად. Firefox-ში ნაგულისხმევად მითითებულია, რომ განახლებები ავტომატურად დაყენდეს. "
-
-msgid "Are add-ons safe to install?"
-msgstr "უსაფრთხოა დამატებების დაყენება?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"ყურადღებით იყავით, დამატებების დაყენებისას, რადგან მათი საშუალებით შესაძლებელია სისტემის დაზიანება, ან პირადი მონაცემების ხელყოფა. ამ საიტზე ხელმისაწვდომი დამატებები, Mozilla-ს მიმომხილველთა გუნდისა"
-" და მომხმარებელთა გამოხმაურებების შედეგად, მკაცრად კონტროლდება, ასე რომ უმეტესობა მათგანი უსაფრთხოა დასაყენებლად. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "დამატებებს შეუძლია შეანელოს %(app_name)s?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-"დამატებების უმეტესობა, არ ამცირებს %(app_name)s-ის წარმადობას, თუმცა ჭარბი რაოდენობით დაყენებამ, შესაძლოა უარყოფითი ზეგავლენა მოახდინოს მუშაობის სისწრაფეზე. თუ ეჭვობთ, რომ დამატება ანელებს "
-"%(app_name)s-ს, სცადეთ მისი დროებით გამორთვა."
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s მეუბნება, რომ დამატება არაა თავსებადი. შემიძლია, მაინც გამოვიყენო?"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-"თუ დამატება არაა თავსებადი %(app_name)s-ის თქვენს ვერსიასთან, ჩვეულებრივ იმის შედეგია, რომ %(app_name)s-ის ეგ ვერსია გასაახლებელია, ან დამატების ავტორს, ჯერ არ განუახლებია თავისი დამატება, რომ "
-"თავსებადი ყოფილიყო იმ ახალ ვერსიასთან, რომელსაც იყენებთ. Mozilla არ გირჩევთ უგულებელყოთ ეს შეტყობინება, რადგან ამან შესაძლოა გამოიწვიოს ბრაუზერის არამდგრადობა და ზოგიერთ შემთხვევაში, მონაცემების "
-"დაკარგვაც. მომხმარებლებმა კი, რომლებიც ამოწმებენ Firefox-ის alpha და beta ვერსიებს, სასურველია გამოიყენონ <a href=\"%(acr_url)s\">დამატების თავსებადობის მომხსენებელი</a>, რაც დაეხმარება დამატებების "
-"შემმუშავებლებს, გამოასწორონ თავსებადობის ხარვეზები."
-
-msgid "What if I have problems with an add-on?"
-msgstr "როგორ მოვიქცე, თუ დამატებებს ხარვეზები აქვს მუშაობისას?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-"დამატებები, უმეტესად შექმნილია ცალკეული შემმუშავებლების მიერ, მსოფლიოს ყველა კუთხიდან, ასე რომ, საუკეთესო გზა დახმარების მისაღებად, დამატებების მხარდასაჭერ ბმულებზე გადასვლა, ან ავტორთან "
-"დაკავშირებაა. თუ ხარვეზებია %(app_name)s-ის მუშაობაში და ეჭვობთ, რომ ეს გამოწვეულია დაყენებული დამატებების შედეგად, <a href=\"%(troubleshooting_url)s\">იხილეთ ამ სტატიაში მოცემული მითითებები</a> "
-"ხარვეზების აღმოსაფხვრელად."
-
-msgid "Add-on Gallery"
-msgstr "დამატებების გალერეა"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "როგორ ავარჩიო მსგავსი დამატებებიდან საუკეთესო?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-"მსგავსი დამატებები, ბევრი შეიძლება იყოს. იმის გამოსარკვევად, თუ რომელი უკეთ ერგება თქვენს მოთხოვნებს, გაეცანით მის სრულ აღწერას და დაათვალიერეთ სურათები. ასევე გადახედეთ დამატების შეფასებებს, "
-"მიმოხილვებს, გადმოწერების რაოდენობას, რითიც დაადგენთ, თუ რომელი უფრო მეტად სასურველია, სხვა მომხმარებლებისათვის. ასევე, შეგიძლიათ თავადვე გამოსცადოთ რიგრიგობით თითოეული და რომელიც მეტად მოგეწონებათ,"
-" ის დაიტოვოთ."
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "როგორ მოვიქცე, თუ საჭირო დამატებას ვერ ვპოულობ?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-"საიტზე ათასობით დამატებაა ხელმისაწვდომი და წესით, უნდა მიაგნოთ სასურველს. თუმცა, თუ რამე განსაკუთრებულს ეძებთ და ვერ პოულობთ, შეგიძლიათ სხვადასხვა საიტებზე მონახოთ, ან ამის შესახებ დაწეროთ ჩვენს <a "
-"href=\"%(forum_url)s\">დამატებების ფორუმზე</a>."
-
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "რას ნიშნავს, როცა დამატება არის \"საცდელი\"?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"საცდელი დამატებები გულისხმობს, რომ შემმუშავებლის აზრით, არაა განკუთვნილი მომხმარებელთა ფართო წრისთვის. ასეთ დამატებებს შეიძლება გარკვეული ხარვეზები გააჩნდეს და გამართულად არ იმუშაოს. ყურადღება "
-"გამოიჩინეთ საცდელი დამატების დაყენებისას და დაუყოვნებლივ ამოშალეთ, თუკი შეამჩნევთ ხარვეზებს. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "რას ნიშნავს, როცა დამატება \"განუხილველია\"?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-"თუ დამატების პირდაპირ ბმულზე გადასვლისას მითითებულია, რომ ჯერ განუხილველია, ეს ნიშნავს, რომ ელოდება Mozilla-სგან დამოწმებას. ყურადღება გამოიჩინეთ, მსგავსი დამატებების დაყენებისას, რადგან შესაძლოა "
-"თქვენი სისტემა დააზიანოს, ან ხელყოს პირადი მონაცემები. %(learnmore_link_open)sშეიტყვეთ მეტი, მიმოხილვის შესახებ%(link_close)s</dd>"
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "რა ღირს დამატებები?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "ჩვენს საიტზე მოცემული ყველა დამატება უფასოა, გარდა იმ შემთხვევებისა, როცა ნათლად არის საპირისპირო მითითებული."
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "რას ნიშნავს, როდესაც დამატება ითხოვს შემოწირულობებს?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"ზოგიერთი დამატების ავტორი, მისი პროდუქტით მოხიბლულ მომხმარებლებს, სამუშაოს დასაფინანსებლად შემოწირულობების სახით, დახმარების გაწევას სთხოვს ხოლმე. ეს შემოწირულობები, პირდაპირ ერიცხება "
-"შემმუშავებლებს, გარდა იმ შემთხვევისა, როცა სხვა მხარეც არის მითითებული, მაგალითად როგორიცაა არამომგებიანი Mozilla ფონდი."
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "როგორ უნდა გამოვგზავნო მოხსენება, მომხმარებლის მიერ დაწერილი შეუფერებელი, ან სარეკლამო ხასიათის მიმოხილვის შესახებ?"
-
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"დამატებაზე, მომხმარებლის მიმოხილვის შესახებ მოხსენების გამოსაგზავნად, შედით თქვენს ანგარიშზე და გადადით დამატების მიმოხილვების გვერდზე. მონახეთ სასურველი მიმოხილვა, დააწკაპეთ ბმულზე \"მოხსენება ამ "
-"მიმოხილვაზე\" და მიუთითეთ მიზეზი. ჩვენი სარედაქციო გუნდი გადახედავს მიმოხილვის ტექსტს და მიიღებს საჭირო ზომებს."
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "როგორ გამოვგზავნო მოხსენება ხარვეზის შესახებ, ან როგორ დავუკავშირდე Mozilla-ს დამატებების გუნდს?"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "გთხოვთ ეწვიოთ ჩვენს <a href=\"%(contact_url)s\">საკონტაქტო გვერდს</a>."
-
-msgid "What is a Source Code License?"
-msgstr "რა არის პირველწყარო კოდის ლიცენზია?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
-msgstr ""
-"დამატების პირველწყარო კოდზე, შემქმნელს გააჩნია ექსკლუზიური საავტორო უფლებები, თუ სხვაგვარად არ არის განსაზღვრული პირველწყარო კოდის ლიცენზიაში. ამ საიტზე არსებული დამატებების უმეტესობას გააჩნია <a "
-"href=\"%(url)s\" lang=\"en\">ღია წყაროს ლიცენზია</a>, რაც ნიშნავს, რომ პირველწყარო კოდი საჯაროდაა ხელმისაწვდომი და ავტორის მიერ დადგენილი პირობებით, შესაძლებელია მისი გავრცელება და ხელახლა "
-"გამოყენება. ავტორების უმეტესობა, საკუთარის შექმნის ნაცვლად ირჩევს ხოლმე, უკვე ფართოდ გავრცელებულ ღია წყაროს ლიცენზიებს, როგორიცაა GPL და BSD ლიცენზიები."
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox და Mozilla-ს სხვა პროგრამები არის <a href=\"%(url)s\">ღია წყაროს კოდის მქონე</a>."
-
-msgid "Collections and Favorites"
-msgstr "კრებულები და რჩეულები"
-
-msgid "What is a collection?"
-msgstr "რა არის კრებული?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "კრებული არის, ნებისმიერი მომხმარებლის მიერ, გარკვეული ნიშნის მიხედვით დაჯგუფებული დამატებები, სხვებისთვის გასაზიარებლად."
-
-msgid "What is the My Favorites collection?"
-msgstr "რა იგულისხმება ჩემს რჩეულ კრებულებში?"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr "რჩეული დამატებები არის დამატებები, რომლებიც ჩანიშნული გაქვთ, მარტივად წვდომისთვის. დამატების რჩეულ კრებულში შეტანა შეგიძლიათ, გაფართოების გვერდზე არსებული ღილაკით \"რჩეულებში დამატება\"."
-
-msgid "Mobile Add-ons"
-msgstr "დამატებები მობილურისთვის"
-
-msgid "What are mobile add-ons?"
-msgstr "რას არის დამატებები მობილურისთვის?"
-
-#, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"დამატებები მობილურისთვის მუშაობს <a href=\"%(mobile_url)s\">Firefox Android ვერსიაზე</a> და შეუძლია მასზე სხვადასხვა შესაძლებლობების დამატება, ან შეცვლა, სამაგიდო ვერსიის მსგავსად. იმ დამატებების "
-"მოძიება, რომელიც მუშაობს Firefox Android ვერსიაზე, შეგიძლიათ ჩვენს <a href=\"%(gallery_url)s\">გალერეაში</a>."
-
-msgid "Developer Topics"
-msgstr "ინფორმაცია შემმუშავებლებისთვის"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "გთხოვთ გაეცნოთ ჩვენს <a href=\"%(faq_url)s\">შემმუშავებლის ხ.დ.კ.</a> და <a href=\"%(hub_url)s\">შემმუშავებლების</a> გვერდებს, დამატებების შემუშავებასთან დაკავშირებულ კითხვებზე პასუხის მისაღებად."
-
-msgid "Still have questions?"
-msgstr "კიდევ გაქვთ კითხვები?"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Firefox-თან დაკავშირებით დახმარების მისაღებად, ეწვიეთ <a href=\"%(sumo_url)s\">მხარდაჭერის საიტს</a>. დამატებებთან და საიტთან დაკავშირებით ზოგადი კითხვებისთვის კი გამოიყენეთ ჩვენი <a "
-"href=\"%(forum_url)s\">ფორუმი</a>."
 
 msgid "Some tips for writing a great review"
 msgstr "მითითებები, სრულყოფილი მიმოხილვის გასაკეთებლად"
@@ -5615,8 +4879,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "ხშირად დასმული კითხვები, მიმოხილვის შესახებ"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "დამატების მიმოხილვა არის საშუალება, თქვენი მოსაზრების გამოსახატად დამატების შესახებ. მიმოხილვის შემმოწმებელთა გუნდი იტოვებს უფლებას უარყოს ან წაშალოს ნებისმიერი მიმოხილვა, რომელიც არ შეესაბამება "
 "წესდებას."
@@ -5810,23 +5074,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "წარმდგენი:"
 
-msgid "Sunbird has retired"
-msgstr "Sunbird პროექტზე მუშაობა შეწყვეტილია"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Sunbird პროექტის შემუშავება შეწყვეტილია და მისი ბოლო გამოშვების თარიღია 30 მარტი, 2010 წელი. საიტზე ინახება Sunbird-ის დამატებები, მაგრამ რადგან პროექტი შეჩერდა, ამ დამატებების მხარდაჭერაც "
-"შეჩერებულია."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "გირჩევთ, მის ნაცვლად გამოიყენოთ <a href=\"%(tb_url)s\">Thunderbird</a> და <a href=\"%(lightning_url)s\">Lightning</a>."
-
-msgid "Read more about Sunbird"
-msgstr "იხილეთ ვრცლად, Sunbird-ის შესახებ"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "%s-ის მიმოხილვები"
@@ -5841,6 +5088,15 @@ msgstr "%d შეფასება 5 ვარსკვლავიდან"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
+
+msgid "Spam or otherwise non-review content"
+msgstr "სარეკლამო ან შეუსაბამო შიგთავსი"
+
+msgid "Inappropriate language/dialog"
+msgstr "შეუფერებელი ლექსიკა/დიალოგი"
+
+msgid "Misplaced bug report or support request"
+msgstr "არასწორი მოხსენება ან მხარდაჭერის მოთხოვნა"
 
 msgid "Other (please specify)"
 msgstr "სხვა (გთხოვთ მიუთითოთ)"
@@ -5879,14 +5135,14 @@ msgstr "{0}-ზე მიმოხილვის დატოვება"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
-"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან "
-"\"ცუდია\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
+"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან \"ცუდია"
+"\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
 "მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
 "შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
 "გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
@@ -6418,9 +5674,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "დამატების სათაური"
-
-msgid "Review Title"
-msgstr "მიმოხილვის სათაური"
 
 msgid "Review Text"
 msgstr "მიმოხილვის ტექსტი"
@@ -7200,17 +6453,17 @@ msgstr "გარე წყაროების აღრიცხვის შ
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>გარე წყაროების აღრიცხვა</h2> <p> თუ თქვენ დამატების მთავარი გვერდის, ან უშუალოდ ფაილის ბმულს განათავსებთ სხვა საიტზე, როგორიცაა ბლოგი, ან საკუთარი ვებგვერდი, შეგიძლიათ საჭირო პარამეტრების "
-"მითითება, რითიც შეძლებთ, მაგ საიტიდან ჩამოტვირთვების აღრიცხვას. მაგალითად, შემდეგი ბმულის წყაროდ გამოჩნდება თქვენი ბლოგი: <dl> <dt>დამატებების მთავარი გვერდი</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>ფაილის პირდაპირი ბმული</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
-">external-blog</b></dd> </dl> <p> მხოლოდ აღირიცხება ის src პარამეტრები, რომელიც დაიწყება \"external-\" წინსართით, არაუმეტეს 61 სიმბოლომდე. ნებისმიერი ტექსტი \"external-\" წინსართის შემდეგ, გამოდგება"
-" წყაროს აღსაწერად შემდეგნაირად: \"external-blog\", \"external-sidebar\", \"external-campaign225\" და ა.შ. დაშვებულია შემდეგი URL-უსაფრთხო სიმბოლოები: <code>a-z A-Z - . _ ~ %% +</code>"
+"მითითება, რითიც შეძლებთ, მაგ საიტიდან ჩამოტვირთვების აღრიცხვას. მაგალითად, შემდეგი ბმულის წყაროდ გამოჩნდება თქვენი ბლოგი: <dl> <dt>დამატებების მთავარი გვერდი</dt> <dd>https://addons.mozilla.org/"
+"addon/%(slug)s?src=<b>external-blog</b></dd> <dt>ფაილის პირდაპირი ბმული</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> "
+"მხოლოდ აღირიცხება ის src პარამეტრები, რომელიც დაიწყება \"external-\" წინსართით, არაუმეტეს 61 სიმბოლომდე. ნებისმიერი ტექსტი \"external-\" წინსართის შემდეგ, გამოდგება წყაროს აღსაწერად შემდეგნაირად: "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\" და ა.შ. დაშვებულია შემდეგი URL-უსაფრთხო სიმბოლოები: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "დამატების მდგომარეობა თარიღის მიხედვით"
@@ -7410,8 +6663,8 @@ msgstr "მდებარეობა"
 msgid "Occupation"
 msgstr "საქმიანობა"
 
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Firefox ანგარიშის მომხმარებლებს, ამჟამად ელფოსტის მისამართის შეცვლა არ შეუძლიათ."
+msgid "You can change your email address on Firefox Accounts."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "ეს URL ბმული არასწორი ფორმატისაა. მართებული URL ბმულები გამოიყურება შემდეგნაირად: http://example.com/my_page."

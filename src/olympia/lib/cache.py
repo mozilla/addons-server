@@ -5,12 +5,10 @@ import re
 import uuid
 from contextlib import contextmanager
 
-from django.core.cache import cache, caches
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.core.cache import cache, _create_cache, caches
+from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
 from django.utils import encoding, translation
 from django.conf import settings
-from django.core.cache import _create_cache
-from django.core.cache.backends.base import BaseCache
 
 
 def make_key(key=None, with_locale=True):
@@ -106,7 +104,7 @@ def memoize(prefix, timeout=60):
     return decorator
 
 
-class Message:
+class Message(object):
     """
     A simple class to store an item in memcache, given a key.
     """
@@ -126,7 +124,7 @@ class Message:
         return res
 
 
-class Token:
+class Token(object):
     """
     A simple token stored in the cache.
     """

@@ -1,7 +1,11 @@
 {% extends "impala/base.html" %}
-{% block user_logout_link %}
-  <a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+ 
+{% block user_login_include %}
+  {% with devhub_backlink="True" %} 
+    {% include "impala/user_login.html" %}
+  {% endwith %}
 {% endblock %}
+
 {% if addon %}
   {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}

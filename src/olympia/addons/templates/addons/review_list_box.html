@@ -1,32 +1,32 @@
 {% set reviews = reviews[:3] %}
 {% set replies = get_replies(reviews) %}
 {% if reviews %}
-<h3 id="reviews">{{ _('Reviews') }}</h3>
-<div class="article">
-  {% for review in reviews %}
-    <div class="review-detail">
-      <p class="description">{{ review.body|nl2br }}</p>
-      <p>{{ review.rating|stars }}
-        {% trans user=review.user|user_link, date=review.created|date %}
-          by {{ user }} on {{ date }}
-        {% endtrans %}
-        {% if replies[review.id] %}
-          <a class="show-more" href="{{ replies[review.id].get_url_path() }}">
-            {{ _("Show the developer's reply to this review") }}</a>
-        {% endif %}
+  <h3 id="reviews">{{ _('Reviews') }}</h3>
+  <div class="article">
+    {% for review in reviews %}
+      <div class="review-detail">
+        <p class="description">{{ review.body|nl2br }}</p>
+        <p>{{ review.rating|stars }}
+          {% trans user=review.user|user_link, date=review.created|date %}
+            by {{ user }} on {{ date }}
+          {% endtrans %}
+          {% if replies[review.id] %}
+            <a class="show-more" href="{{ replies[review.id].get_url_path() }}">
+              {{ _("Show the developer's reply to this review") }}</a>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+    {% if addon %}
+      <p>
+        <a class="more-info" href="{{ url('addons.ratings.list', addon.slug) }}">
+          {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
+            See all reviews of this add-on
+          {% pluralize %}
+            See all {{ cnt }} reviews of this add-on
+          {% endtrans %}
+        </a>
       </p>
-    </div>
-  {% endfor %}
-  {% if addon %}
-    <p>
-      <a class="more-info" href="{{ url('addons.ratings.list', addon.slug) }}">
-        {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
-          See all reviews of this add-on
-        {% pluralize %}
-          See all {{ cnt }} reviews of this add-on
-        {% endtrans %}
-      </a>
-    </p>
-  {% endif %}
-</div>
+    {% endif %}
+  </div>
 {% endif %}
