@@ -1289,10 +1289,7 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # a separate, shorter timeout for validation tasks.
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-# Logging
-LOG_LEVEL = logging.DEBUG
-# FIXME: MOZLOG_NAME was removed, instead of overriding it, update LOGGING['formatters']['json']['logger_name'] in the various settings files
-# See PEP 391 and log_settings_base.py for formatting help.
+# See PEP 391 for formatting help.
 LOGGING = {
     'version': 1,
     'filters': {},

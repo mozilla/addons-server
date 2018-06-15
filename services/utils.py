@@ -12,7 +12,6 @@ import sqlalchemy.pool as pool
 from services.settings import settings
 
 import olympia.core.logger
-from olympia.lib.log_settings_base import formatters, handlers
 
 # Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
@@ -96,16 +95,19 @@ def log_configure():
     cfg = {
         'version': 1,
         'filters': {},
-        'formatters': dict(json=formatters['json']),
-        'handlers': dict(mozlog=handlers['mozlog']),
-        'loggers': {
-            'z': {'handlers': ['mozlog'], 'level': logging.INFO},
+        'handlers': {
+            'mozlog': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'json'
+            },
         },
-        'root': {},
-        # Since this configuration is applied at import time
-        # in verify.py we don't want it to clobber other logs
-        # when imported into the marketplace Django app.
-        'disable_existing_loggers': False,
+        'formatters': {
+            'json': {
+                '()': olympia.core.logger.JsonFormatter,
+                'logger_name': 'http_app_addons'
+            },
+        },
     }
     logging.config.dictConfig(cfg)
 
