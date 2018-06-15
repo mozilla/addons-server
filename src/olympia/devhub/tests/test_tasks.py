@@ -950,6 +950,66 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_addons_max_version']
 
+    def test_allow_upgrade_submission_targeting_firefox_and_thunderbird(self):
+        # This should work regardless of whether the
+        # disallow-thunderbird-and-seamonkey waffle is enabled, because it also
+        # targets Firefox (it's a legacy one, but it targets Firefox < 57).
+        data = {
+            'messages': [],
+            'errors': 0,
+            'detected_type': 'extension',
+            'metadata': {
+                'is_webextension': False,
+                'is_extension': True,
+                'applications': {
+                    'firefox': {
+                        'max': '56.0'
+                    },
+                    'thunderbird': {
+                        'max': '45.0'
+                    }
+                }
+            }
+        }
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=False)
+        assert results['errors'] == 0
+
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=False)
+        assert results['errors'] == 0
+
+    def test_disallow_thunderbird_seamonkey_waffle(self):
+        # The disallow-thunderbird-and-seamonkey waffle is not enabled so it
+        # should still work, even though it's only targeting Thunderbird.
+        data = {
+            'messages': [],
+            'errors': 0,
+            'detected_type': 'extension',
+            'metadata': {
+                'is_webextension': False,
+                'is_extension': True,
+                'applications': {
+                    'thunderbird': {
+                        'max': '45.0'
+                    }
+                }
+            }
+        }
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=True)
+        assert results['errors'] == 0
+
+        # With the waffle enabled however, it should be blocked.
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=True)
+        assert results['errors'] == 1
+        assert len(results['messages']) > 0
+        assert results['messages'][0]['id'] == [
+            'validation', 'messages', 'thunderbird_and_seamonkey_migration']
+
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
