@@ -1313,18 +1313,32 @@ LOGGING = {
             'class': 'django_statsd.loggers.errors.StatsdHandler',
         },
     },
-    'root': {},
+    'root': {'handlers': ['mozlog'], 'level': logging.DEBUG},
     'loggers': {
-        'amo': {},
-        'amo.validator': {
-            'handlers': ['statsd'],
-            'level': logging.ERROR,
-            'propagate': True,
+        'amo': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
         },
-        'amqplib': {'handlers': ['null']},
-        'caching.invalidation': {'handlers': ['null']},
+        'amo.validator': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'amqplib': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
         'caching': {
+            'handlers': ['mozlog'],
             'level': logging.ERROR,
+            'propagate': False
+        },
+        'caching.invalidation': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
         },
         'django.request': {
             'handlers': ['statsd'],
@@ -1332,27 +1346,66 @@ LOGGING = {
             'propagate': True,
         },
         'elasticsearch': {
-            'handlers': ['null']
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
         },
         'newrelic': {
+            'handlers': ['mozlog'],
             'level': logging.WARNING,
+            'propagate': False,
         },
         'post_request_task': {
+            'handlers': ['mozlog'],
             # Ignore INFO or DEBUG from post-request-task, it logs too much.
             'level': logging.WARNING,
+            'propagate': False,
         },
         'rdflib': {
-            'handlers': ['null']
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
         },
-        's.client': {'level': logging.INFO},
-        'z': {},
+        'request.summary': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        's.client': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
         'z.celery': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
             'propagate': True,
         },
-        'z.es': {'level': logging.INFO},
-        'z.task': {'level': logging.INFO},
+        'z.es': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z.pool': {
+            'handlers': ['mozlog'],
+            'level': logging.ERROR,
+            'propagate': False
+        },
+        'z.redis': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'z.task': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        }
     },
 }
 
