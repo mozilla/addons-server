@@ -8,13 +8,13 @@ from django.views.decorators.http import condition
 import olympia.core.logger
 
 from olympia.access import acl
-from olympia.amo.cache_nuggets import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
+from olympia.lib.cache import Message, Token
 
 from . import forms
 

@@ -20,10 +20,9 @@ from validator.testcases.packagelayout import (
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.cache_nuggets import Message
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import rm_local_tmp_dir
-from olympia.lib.cache import cached
+from olympia.lib.cache import cached, Message
 from olympia.files.utils import (
     atomic_lock, extract_xpi, get_all_files, get_sha256)
 

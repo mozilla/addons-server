@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
 "PO-Revision-Date: 2018-05-01 12:28+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -197,9 +197,9 @@ msgstr "Zobraziť zásady ochrany súkromia"
 msgid "View End-User License Agreement"
 msgstr "Zobraziť licenčnú zmluvu koncového používateľa"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Tento doplnok nebol skontrolovaný Mozillou. <a href=\"%(url)s\">Ďalšie informácie</a>"
+#, fuzzy
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "Tento doplnok ešte nebol ohodnotený."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tento doplnok bol jeho vývojármi označený ako experimentálny."
@@ -412,9 +412,6 @@ msgstr "Čo si myslíte?"
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Ak chcete odoslať recenziu, musíte sa <a href=\"%(login)s\">prihlásiť</a>"
-
-msgid "Title:"
-msgstr "Nadpis:"
 
 msgid "Review:"
 msgstr "Recenzia:"
@@ -1132,9 +1129,6 @@ msgstr "Nastaviť túto kolekciu ako Súkromná"
 
 msgid "Make this Collection Public"
 msgstr "Nastaviť túto kolekciu ako Verejná"
-
-msgid "Learn about collections"
-msgstr "Ďalšie informácie o kolekciách"
 
 msgid "More Options:"
 msgstr "Ďalšie možnosti:"
@@ -2712,6 +2706,9 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebExtensions."
 
@@ -4001,10 +3998,6 @@ msgstr "Podpora"
 msgid "Policies"
 msgstr "Zásady"
 
-# Link text to the Frequently Asked Questions page.
-msgid "FAQ"
-msgstr "Často kladené otázky"
-
 msgid "Report Bug"
 msgstr "Nahlásiť chybu"
 
@@ -4521,29 +4514,32 @@ msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy a chráňte svoje súkromie {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
-
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zastavte vaše sledovanie Facebookom {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Vylepšite svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4996,11 +4992,9 @@ msgstr ""
 msgid "I have a question"
 msgstr "Mám otázku"
 
-#, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
-msgstr ""
+#, fuzzy, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgstr "Pro obecnou podporu Firefoxu navšivte naše <a href=\"%(sumo_url)s\">stránky podpory</a>. Pro obecné otázky týkající se doplňků a tohoto webu navšivte <a href=\"%(forum_url)s\">naše fórum</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -5009,736 +5003,12 @@ msgstr ""
 msgid "Who works on this website?"
 msgstr "Kto na tejto stránke pracuje?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
-
-# 93%
-#, fuzzy
-msgid "Add-on Compatibility Reporter"
-msgstr "Rozšírenie Add-on Compatibility Reporter"
-
-#, fuzzy
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Add-on Compatibility Reporter byl nainstalován"
-
-#, fuzzy
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "Je snadné nám pomoci se ujistit, že jsou doplňky v době vydání další verze Firefoxu aktualizované."
-
-#, fuzzy
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Zde si můžete přečíst, jak se zapojit do nahlašování kompatibility doplňků:"
-
-#, fuzzy
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"Jakmile začnete prohlížet web a používat vaše doplňky, všímejte si všech věcí, které jsou odlišné od situace, kdy jste naposledy rozšíření používali. Mohou to být problémy se zobrazováním, některé "
-"položky nebudou vidět či dokonce závažnější věci - doplněk nefunguje či neustále zobrazuje chyby."
-
-#, fuzzy
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"Jakmile budete vědět, zda konkrétní doplněk funguje korektně či má problémy, otevřete Správce doplňků a klepněte na tlačítko Kompatibilita, které je umístěno u doplňku a dejte Mozille vědět, co "
-"jste při testování našli. Odeslání reportu nám pomůže říci vývojářům doplňků, zda jejich doplněk nefunguje v této verzi aplikace korektně či potřebuje některé opravy."
-
-#, fuzzy, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Jakmile aktualizujete na novou verzi Firefoxu či aktualizujete svůj doplněk, vaše reporty pro staré verze budou skryté a vy budete moci vyzkoušet novou verzi. Pokud máte jakékoliv otázky, zeptejte "
-"se v <a href=\"%(url)s\">našem fóru</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-
-msgid "Thank you!"
-msgstr "Ďakujeme!"
-
-msgid "Site Credits"
-msgstr "Tvorcovia stránky"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla ďakuje nasledujúcim ľuďom za ich prácu na projekte addons.mozilla.org za posledných niekoľko rokov:"
-
-msgid "Developers &amp; Administrators"
-msgstr "Vývojári a administrátori"
-
-msgid "Localizers"
-msgstr "Lokalizátori"
-
-msgid "Reviewers"
-msgstr "Redaktori"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "Viac ako {0} recenzií doplnkov"
-
-msgid "Other Contributors"
-msgstr "Ostatní prispievatelia"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "Predchádzajúci vývojári a administrátori"
-
-msgid "Software and Images"
-msgstr "Softvér a obrázky"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/by/2.5/"
-"\">Creative Commons Attribution 2.5</a>."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"Niektoré použité ikony pochádzajú zo <a href=\"http://www.fatcow.com/free-icons/\">sady webových ikon FatCow Farm-Fresh</a>, uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/"
-"by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"Niektoré stránky používajú prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerčné), uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "Ďalšie informácie o prispievaní do projektu nájdete na našej <a href=\"%(url)s\">wiki stránke</a>."
-
-# 76%
-msgid "Developer FAQ"
-msgstr "Často kladené otázky pre vývojárov"
 
 # 75%
 msgid "Sections"
 msgstr "Sekcie"
-
-msgid "Developing an Add-on"
-msgstr "Vývoj doplnkov"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "Kde hľadať podporu"
-
-msgid "Contributing your Add-on"
-msgstr "Prispievanie vašim doplnkom"
-
-msgid "Add-on Review Process"
-msgstr "Proces schvaľovania doplnku"
-
-# 82%
-msgid "Managing Your Add-on"
-msgstr "Správa vášho doplnku"
-
-msgid "References for Open Source Licenses"
-msgstr "Odkazy na open source licencie"
-
-# The title for a user if they are a developer
-# 75%
-msgid "Add-on Developer FAQ"
-msgstr "Často kladené otázky pre vývojárov doplnkov"
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr ""
-
-msgid "What is a \".xpi\" file?"
-msgstr "Čo je súbor s koncovkou \".xpi\"?"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
-
-msgid "What is XUL?"
-msgstr "Čo je XUL?"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
-"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
-"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-
-#, fuzzy
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "Jak mohu otestovat kompatibilitu s poslední verzí software od Mozilly?"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-
-#, fuzzy
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "V souvislosti s tvorbou doplňku potřebuji pomoc. Kde se mohu zeptat?"
-
-#. #extdev is the name of the IRC channel.  do not change.
-#, fuzzy
-msgid "#extdev (for add-on development discussions)"
-msgstr "#extdev (pro diskusi o vývoji doplňků)"
-
-#. #amo is the name of the IRC channel.  do not change.
-#, fuzzy
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "#amo (pro podporu související s hostováním doplňků na AMO)"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
-
-msgid "Add-ons forum"
-msgstr "Fórum o doplnkoch"
-
-msgid "Does Mozilla offer development services?"
-msgstr "Ponúka Mozilla služby súvisiace s vývojom?"
-
-msgid "No."
-msgstr "Nie."
-
-#, fuzzy
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Jsou nějací vývojáři třetích stran, které mohu zaměstnat pro vývoj mého doplňku?"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-
-#, fuzzy
-msgid "Can I host my own add-on?"
-msgstr "Mohu zde hostovat svůj doplněk?"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-
-#, fuzzy
-msgid "Can Mozilla host my add-on?"
-msgstr "Může Mozilla hostovat můj doplněk?"
-
-#, fuzzy, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Ano. Můžete hostovat svuj doplněk na webu <a href=\"%(url)s\">Doplňky Mozilly</a>."
-
-msgid "What is AMO?"
-msgstr "Čo je AMO?"
-
-#, fuzzy
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-"AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) je inkubátor, který pomáhá vývojářům vytvářet, distribuovat a podporovat fantastické produkty založené na Mozille. "
-"Poskytuje jim nástroje a infrastrukturu nutnou pro správu, hostování a vystavování doplňků velkému množství uživatelů produktů Mozilla."
-
-#, fuzzy
-msgid "Does Mozilla keep my account information private?"
-msgstr "Bere Mozilla informace o mém účtu jako soukromé?"
-
-#, fuzzy, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Ano. Naše <a href=\"%(url)s\">zásady na ochranu soukromí</a> popisují, jak jsou vaše informace Mozillou spravovány."
-
-#, fuzzy
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Co jsou \"nástroje pro vývojáře\" uvedené na AMO?"
-
-#, fuzzy
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-" \"Nástroje pro vývojáře\" je místo na webu, které vám poskytuje nástroje na správu vašich doplňků. Poskytuje funkcionalitu nutnou pro odeslání vašich doplňků na AMO, správu informací o nich a "
-"statistiky o recenzích."
-
-#, fuzzy
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "Má Mozilla někde uvedeny zásady, které musí splňovat doplněk, aby mohl být schválen?"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-
-#, fuzzy
-msgid "How do I submit my add-on?"
-msgstr "Jak odešlu můj doplněk na kontrolu?"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-
-#, fuzzy
-msgid "What operating system do I choose for my add-on?"
-msgstr "Jaký operační systém mám pro můj doplněk zvolit?"
-
-#, fuzzy
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "Musíte zvolit operační systémy, pod kterými bude váš doplněk úspěšně fungovat."
-
-#, fuzzy
-msgid "What category do I choose for my add-on?"
-msgstr "Jakou kategorii mam pro svůj doplněk zvolit?"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-
-#, fuzzy
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "Mohu si pro svůj doplněk určit licenční ujednání?"
-
-#, fuzzy
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Ano. Své vlastní licenční ujednání můžete určit při přidávání doplňku. Po přidání doplňků jej můžete kdykoliv přidat či aktualizovat na nástěnce nástrojů pro vývojáře."
-
-#, fuzzy
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "Mohu u svého doplňku uvést zásady ochrany soukromí?"
-
-#, fuzzy
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Ano. Přidejte svou verzi zásad ochrany soukromí při přidávání svého doplňku. Můžete je též po přidání doplňku kdykoliv upravit v nástrojích pro vývojáře."
-
-#, fuzzy
-msgid "Must my add-on be reviewed?"
-msgstr "Proč musí být můj doplněk zkontrolován?"
-
-#, fuzzy, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-"Všechny přidané doplňky, jedno zda nové či jen aktualizované, musí být zkontrolovány, aby se Mozilla ujistila, že jsou pro uživatele stabilní a bezpečné. Všechny přidané doplňky jsou zkontrolované "
-"proti dokumentu <a href=\"%(url)s\">Editors Reviewing Guide</a>."
-
-msgid "Who reviews my add-on?"
-msgstr "Kto kontroluje môj doplnok?"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-
-#, fuzzy
-msgid "What are the guidelines used to review my add-on?"
-msgstr "Jaké body jsou kontrolovány u doplňku?"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-
-#, fuzzy
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "Za jak dlouho bude můj doplněk zkontrolován?"
-
-#, fuzzy
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "Nejsme schopni vám říci, za jak dlouho bude váš doplněk zkontrolován. Záleží na mnoha faktorech, jako například jsou:"
-
-#. part of a list (<li>)
-#, fuzzy
-msgid "number of add-on submissions"
-msgstr "počet doplňků ve frontě na schválení"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "zložitosť zdrojového kódu doplnku"
-
-#. part of a list (<li>)
-#, fuzzy
-msgid "number of problem areas discovered"
-msgstr "počet problémů, které se objeví"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
-
-#, fuzzy
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Kde mohu vidět, kolikrát byl můj doplněk stažen?"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
-
-#, fuzzy
-msgid "How can I see how many active users are using my add-on?"
-msgstr "Jak se mohu podívat, kolik aktivních uživatelů používá můj doplněk?"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-
-#, fuzzy
-msgid "How do I submit an update for my add-on?"
-msgstr "Jak přidám aktualizaci mého doplňku?"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-
-#, fuzzy
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Musí být aktualizace mého doplňku schválena redaktorem?"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
-
-#, fuzzy
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Jak mohu odpovědět uživateli, který přidal k mému doplňku negativní recenzi?"
-
-#, fuzzy
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Vývojář může odpovědět na jakoukoliv recenzi přidanou k jeho doplňku v situaci, kdy je k AMO přihlášen. Navíc může jakoukoliv recenzi označit jako:"
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "Spam alebo iný neschválený obsah"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "Nevhodný jazyk/dialóg"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "Nevhodne umiestnená správa o chybe alebo žiadosť o podporu"
-
-#. part of a list (<li>)
-#, fuzzy
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "Jiný (zobrazí se okno pro možnost zadání dalších informací)"
-
-#, fuzzy
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "V současné době AMO nenabízí možnost přímé komunikace s redaktorem, ale tato funkčnost je zvažována a může se v budoucnu objevit."
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Môžem požiadať o odstránenie recenzie, ak je negatívna?"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Môžem požiadať o odstránenie recenzie, ktorá je nepravdivá?"
-
-#, fuzzy
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "Pokud nás autor kontaktuje s žádosti o kontrolu recenze, která obsahuje chybné či nepravdivé informace, provedeme její kontrolu a rozhodneme, zda ji smažeme či nikoliv."
-
-#, fuzzy
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-"Potřebujete více informací o různých open-source licencích? Nevíte, kterou licenci byste si měli zvolit? Jaká práva která licence poskytuje? Ačkoliv nic nenahradí kompletní přečtení licence, níže "
-"jsou některé weby, které obsahují informace o některých nejpoužívanějších open-source licencích, které vám mohou pomoci si zvolit tu správnou. Tyto stránky jsou odkazovány pro vaše pohodlí a jsou "
-"určeny pro vaše osobní použití. Tyto zdroje vám nedají odpovědi na konkrétní právní otázky, ty byste měli konzultovat s právníkem. Mozilla není odpovědná za obsah, které tyto weby nabízí."
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-
-#, fuzzy
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr "Tabulka, která shrnuje a porovnává některé klíčové open-source licence z hlediska distribuce, přibalování k proprietárnímu software a redistribuci kódu se změnami."
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-
-#, fuzzy
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr "Open Source Initiative poskytuje informace o některých nejrozšířenějších open-source licencích."
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
-
-msgid "Frequently Asked Questions"
-msgstr "Často kladené otázky"
-
-msgid "Using Add-ons"
-msgstr "Používame doplnky"
-
-msgid "What is an add-on?"
-msgstr "Čo sú to doplnky?"
-
-#, fuzzy, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"Doplňky jsou malé kousky software, které přidávají nové vlastnosti či funkce do vaší instalace aplikace %(app_name)s. Doplňky mohou rozšířit aplikaci %(app_name)s o nové vlastnosti, slovníky na "
-"kontrolu pravopisu či změnit její vzhled. Pomocí doplňků můžete přizpůsobit aplikaci %(app_name)s dle svých potřeb. <a href=\"%(learnmore_url)s\">Dozvědět se více o možnostech přizpůsobení</a>"
-
-#, fuzzy
-msgid "Will add-ons work with my web browser or application?"
-msgstr "Budou doplňky fungovat s mým webovým prohlížečem či aplikací?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr ""
-
-msgid "What are the different types of add-ons?"
-msgstr "Aké typy doplnkov sú dostupné?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Rozšírenia</a></strong> pridávajú do aplikácie %(app_name)s nové funkcie či upravujú tie existujúce. Existujú rozšírenia, ktoré vám umožňujú blokovať reklamu, "
-"preberať videá z webových stránok, či také, ktoré ponúkajú lepšiu integráciu so sociálnymi sieťami. Rozšírenia taktiež pridávajú funkcie, ktoré ste videli v iných aplikáciách."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Témy</a></strong> sú odľahčené vzhľady, ktoré umožňujú zmeniť obrázok na pozadí panelov aplikácie %(app_name)s."
-
-#, fuzzy, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">Vyhledávací moduly</a> </strong> přidávají další možnosti vyhledávání. Moduly umožňují rychle vyhledávat na libovolné webové stránce."
-
-#, fuzzy, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Slovníky a jazykové balíčky</a></strong> přidávají do aplikace %(app_name)s podporu pro další jazyky."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "Ako môžem nainštalovať, spravovať alebo odstrániť doplnok?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "Ako zaistím, že budem mať aktuálnu verziu doplnkov?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
-
-msgid "Are add-ons safe to install?"
-msgstr "Je bezpečné inštalovať doplnky?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Môžu doplnky spomaliť %(app_name)s?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-
-msgid "What if I have problems with an add-on?"
-msgstr "Čo ak mám problémy s doplnkom?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-
-msgid "Add-on Gallery"
-msgstr "Galéria doplnkov"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "Jak si mám vybrat mezi doplňky, které dělají tu samou věc?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-
-#, fuzzy
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "Co mám dělat, když nemohu nalézt doplněk, který hledám?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-
-#, fuzzy
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-
-#, fuzzy
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "Koľko doplnky stoja?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "Pokud není jasně řečeno jinak, jsou hostované doplňky dostupné zdarma."
-
-#, fuzzy
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Co znamená, když autor doplňku žádá o příspěvek?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-
-#, fuzzy
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "Jak mohu nahlásit nevhodnou recenzi uživatele či nevyžádaný příspěvek?"
-
-#, fuzzy
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"Pro nahlášení uživatelské recenze doplňku se přihlaste ke svému účtu a navštivte stránku s recenzemi doplňku. Nalezněte recenzi, kterou si přejete nahlásit, klepněte na odkaz \"Nahlásit recenzi\" a "
-"zvolte důvod. Náš tým redaktorů se poté bude touto recenzí zabývat a provede odpovídající reakci."
-
-#, fuzzy
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Jak mohu nahlásit chybu či kontaktovat tým serveru Doplňky Mozilly?"
-
-#, fuzzy, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "Navštivte prosím naši <a href=\"%(contact_url)s\">kontaktní stránku</a>."
-
-#, fuzzy
-msgid "What is a Source Code License?"
-msgstr "Pod jakou licencí je zdrojový kód dostupný?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox a ostatní aplikace Mozilla jsou <a href=\"%(url)s\">open source</a>."
-
-msgid "Collections and Favorites"
-msgstr "Kolekcie a obľúbené"
-
-msgid "What is a collection?"
-msgstr "Čo je kolekcia?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Kolekcie sú skupiny podobných doplnkov, ktoré boli vytvorené používateľmi za účelom ich zdieľania."
-
-msgid "What is the My Favorites collection?"
-msgstr "Čo je kolekcia Moje obľúbené doplnky?"
-
-#, fuzzy
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Oblíbené doplňky jsou doplňky, které jste si přidali do záložek pro pozdější snadné nalezení. Doplněk můžete přidat do své oblíbené sbírky klepnutím na \"Přidat do oblíbených\" na stránce doplňku."
-
-msgid "Mobile Add-ons"
-msgstr "Doplnky pre mobilný Firefox"
-
-msgid "What are mobile add-ons?"
-msgstr "Čo sú to mobilné doplnky?"
-
-#, fuzzy, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Mobilní doplňky fungují ve <a href=\"%(mobile_url)s\">Firefoxu pro mobilní zařízení</a> a přidávají či upravují funkcionalitu stejným způsobem, jako doplňky pro desktopovou verzi. Doplňky, které "
-"fungují ve Firefoxu pro mobilní zařízení, můžete nalézt v <a href=\"%(gallery_url)s\">naší galerii</a>."
-
-msgid "Developer Topics"
-msgstr "Témy pre vývojárov"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
-
-msgid "Still have questions?"
-msgstr "Máte ďalšie otázky?"
-
-#, fuzzy, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr "Pro obecnou podporu Firefoxu navšivte naše <a href=\"%(sumo_url)s\">stránky podpory</a>. Pro obecné otázky týkající se doplňků a tohoto webu navšivte <a href=\"%(forum_url)s\">naše fórum</a>."
 
 #, fuzzy
 msgid "Some tips for writing a great review"
@@ -5935,23 +5205,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
-msgid "Sunbird has retired"
-msgstr "Vývoj Sunbirdu bol ukončený"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Vývoj projektu Sunbird bol ukončený a jeho finálna verzia vyšla 30. marca 2010. Sme pyšní, že sme mohli hosťovať doplnky Sunbirdu na tomto webe, ale projekt už nie je dlhodobo spravovaný, takže sme "
-"podporu pre doplnky tohto projektu ukončili."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "Doporučujeme aktualizovať na <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(lightning_url)s\">Lightning</a>."
-
-msgid "Read more about Sunbird"
-msgstr "Dozvedieť sa viac o Sunbirde"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Recenzie pre %s"
@@ -5966,6 +5219,15 @@ msgstr "Hodnotené počtom %d z 5 hviezdičiek"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
+
+msgid "Spam or otherwise non-review content"
+msgstr "Spam alebo iný neschválený obsah"
+
+msgid "Inappropriate language/dialog"
+msgstr "Nevhodný jazyk/dialóg"
+
+msgid "Misplaced bug report or support request"
+msgstr "Nevhodne umiestnená správa o chybe alebo žiadosť o podporu"
 
 msgid "Other (please specify)"
 msgstr "Iný (popíšte)"
@@ -6607,9 +5869,6 @@ msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Názov doplnku"
-
-msgid "Review Title"
-msgstr "Názov recenzie"
 
 msgid "Review Text"
 msgstr "Text recenzie"
@@ -7631,7 +6890,7 @@ msgstr "Umiestnenie"
 msgid "Occupation"
 msgstr "Povolenie"
 
-msgid "Firefox Accounts users cannot currently change their email address."
+msgid "You can change your email address on Firefox Accounts."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
