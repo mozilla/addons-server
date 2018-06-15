@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-15 19:30+0000\n"
+"PO-Revision-Date: 2018-06-15 19:34+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4373,19 +4373,19 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "გაიძვერა მეთვალყურეების შეზღუდვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr " შეზღუდეთ ფარული მეთვალყურე და მოთვალთვალე საიტები, რომლებიც თან დაგყვებათ მთელ ინტერნეტში."
 
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "მოირგეთ ახალი ჩანართის გვერდი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "ისიამოვნეთ ულამაზესი ახალი გვერდით, მორგებული ფონებით, ადგილობრივი ამინდის მონაცემებით და ა.შ."
 
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "თარგმნეთ მარტივად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა დაწკაპებით თარგმნეთ მყისიერად."
 
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name}დამატების დახმარებით{end_sub_heading}"
