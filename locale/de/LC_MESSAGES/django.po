@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-15 19:51+0000\n"
+"PO-Revision-Date: 2018-06-15 19:52+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4428,18 +4428,15 @@ msgstr "Anpassung von Neuer-Tab-Seiten {start_sub_heading}mit {addon_name}{end_s
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Genießen Sie eine schöne neue Seite mit anpassbaren Hintergründen, lokalen Wetterinfos und mehr."
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Denken Sie Tabs neu {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Einfaches Übersetzen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Text hervorheben, rechtsklicken und direkt übersetzen."
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Suchen Sie Bilder {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Bilder-Rückwärtssuche mit einer Reihe von Suchmaschinen."
 
