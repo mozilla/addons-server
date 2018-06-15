@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-15 07:39+0000\n"
+"PO-Revision-Date: 2018-06-15 16:42+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -99,7 +99,7 @@ msgid "Add to {0}"
 msgstr "{0}-ში ჩადგმა"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "ეს იდენტიფიკატორი უკვე გამოიყენება. გთხოვთ აარჩიეთ სხვა."
+msgstr "ეს დაბოლოება უკვე გამოიყენება. გთხოვთ, შეარჩიოთ სხვა."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
