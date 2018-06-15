@@ -350,7 +350,7 @@ class File(OnChangeMixin, ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeZip(self.file_path, raise_on_failure=False)
+        zip = SafeZip(self.file_path)
         if not zip.is_valid():
             return ''
 
