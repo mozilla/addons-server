@@ -23,7 +23,8 @@ from olympia.translations.models import (
     PurifiedTranslation, Translation, TranslationSequence)
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
-    FancyModel, TranslatedModel, UntranslatedModel)
+    FancyModel, TranslatedModel, UntranslatedModel,
+    TranslatedModelWithDefaultNull, TranslatedModelLinkedAsForeignKey)
 
 
 pytestmark = pytest.mark.django_db
@@ -105,46 +106,51 @@ class TranslationTestCase(BaseTestCase):
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         self.trans_eq(o.name, 'some name', 'en-US')
         self.trans_eq(o.description, 'some description', 'en-US')
 
     def test_fetch_no_translations(self):
         """Make sure models with no translations aren't harmed."""
-        o = UntranslatedModel.objects.get(id=1)
+        o = UntranslatedModel.objects.get(pk=1)
         assert o.number == 17
 
     def test_fetch_translation_de_locale(self):
         """Check that locale fallbacks work."""
         try:
             translation.activate('de')
-            o = TranslatedModel.objects.get(id=1)
+            o = TranslatedModel.objects.get(pk=1)
             self.trans_eq(o.name, 'German!! (unst unst)', 'de')
             self.trans_eq(o.description, 'some description', 'en-US')
         finally:
             translation.deactivate()
 
     def test_create_translation(self):
+        assert Translation.objects.count() == 9
         o = TranslatedModel.objects.create(name='english name')
 
         def get_model():
-            return TranslatedModel.objects.get(id=o.id)
+            return TranslatedModel.objects.get(pk=o.pk)
 
+        assert Translation.objects.count() == 10
         self.trans_eq(o.name, 'english name', 'en-US')
         assert o.description is None
 
         # Make sure the translation id is stored on the model, not the autoid.
         assert o.name.id == o.name_id
 
-        # Check that a different locale creates a new row with the same id.
+        # Reload the object from database with a different locale activated.
+        # Its name should still be there, using the fallback...
         translation.activate('de')
         german = get_model()
-        self.trans_eq(o.name, 'english name', 'en-US')
+        self.trans_eq(german.name, 'english name', 'en-US')
 
+        # Check that a different locale creates a new row with the same id.
         german.name = u'Gemütlichkeit name'
         german.description = u'clöüserw description'
         german.save()
 
+        assert Translation.objects.count() == 12  # New name *and* description.
         self.trans_eq(german.name, u'Gemütlichkeit name', 'de')
         self.trans_eq(german.description, u'clöüserw description', 'de')
 
@@ -173,13 +179,13 @@ class TranslationTestCase(BaseTestCase):
         assert fresh_english.description.id == fresh_german.description.id
 
     def test_update_translation(self):
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         translation_id = o.name.autoid
 
         o.name = 'new name'
         o.save()
 
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         self.trans_eq(o.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
         assert o.name.autoid == translation_id
@@ -194,7 +200,7 @@ class TranslationTestCase(BaseTestCase):
 
         # Check that de was set.
         translation.activate('de')
-        o = TranslatedModel.objects.get(id=o.id)
+        o = TranslatedModel.objects.get(pk=o.id)
         self.trans_eq(o.name, 'wrong language', 'de')
 
         # We're in de scope, so we should see the de text.
@@ -203,12 +209,12 @@ class TranslationTestCase(BaseTestCase):
 
         # Make sure en-US was still set.
         translation.deactivate()
-        o = TranslatedModel.objects.get(id=de.id)
+        o = TranslatedModel.objects.get(pk=de.id)
         self.trans_eq(o.name, 'right language', 'en-US')
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(id=1)
+            return TranslatedModel.objects.get(pk=m.pk)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
@@ -216,7 +222,7 @@ class TranslationTestCase(BaseTestCase):
         # Don't try checking that the model's name value is en-US.  It will be
         # one of the other locales, but we don't know which one.  You just set
         # the name to a dict, deal with it.
-        m = get_model()
+        m = TranslatedModel.objects.create(name='some name')
         m.name = strings
         m.save()
 
@@ -232,7 +238,7 @@ class TranslationTestCase(BaseTestCase):
         self.trans_eq(get_model().name, 'oui', 'fr')
 
     def test_dict_bad_locale(self):
-        m = TranslatedModel.objects.get(id=1)
+        m = TranslatedModel.objects.get(pk=1)
         m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
         m.save()
 
@@ -388,7 +394,7 @@ class TranslationTestCase(BaseTestCase):
             assert m.linkified.localized_string == s
 
     def test_require_locale(self):
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         assert unicode(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'en-US'
 
@@ -396,7 +402,7 @@ class TranslationTestCase(BaseTestCase):
         obj.no_locale.locale = 'fr'
         obj.no_locale.save()
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         assert unicode(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'fr'
 
@@ -405,7 +411,7 @@ class TranslationTestCase(BaseTestCase):
         Test that deleting a translation sets the corresponding FK to NULL,
         if it was the only translation for this field.
         """
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         trans_id = obj.description.id
         assert Translation.objects.filter(id=trans_id).count() == 1
 
@@ -422,7 +428,7 @@ class TranslationTestCase(BaseTestCase):
         # fallback to the second locale, which is 'de'.
         get_fallback.return_value = 'de'
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
 
         orig_name_id = obj.name.id
         assert obj.name.locale.lower() == 'en-us'
@@ -456,9 +462,12 @@ class TranslationMultiDbTests(TransactionTestCase):
         # Django does a separate SQL query once per connection on MySQL, see
         # https://code.djangoproject.com/ticket/16809 ; This pollutes the
         # queries counts, so we initialize a connection cursor early ourselves
-        # before resetting queries to avoid this.
+        # before resetting queries to avoid this. It also does a query once for
+        # the MySQL version and then stores it into a cached_property, so do
+        # that early as well.
         for con in django.db.connections:
             connections[con].cursor()
+            connections[con].mysql_version
         reset_queries()
 
     @property
@@ -678,15 +687,120 @@ def test_comparison_with_lazy():
     lazy_u('xxx') == x
 
 
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    assert Translation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'slave'))
+def test_translated_field_default_null():
+    assert Translation.objects.count() == 0
+    o = TranslatedModelWithDefaultNull.objects.create(name='english name')
 
-    # Test that we are using the same cache no matter what Translation class
-    # we use.
-    assert PurifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
-    assert LinkifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
+    def get_model():
+        return TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+
+    assert Translation.objects.count() == 1
+
+    # Make sure the translation id is stored on the model, not the autoid.
+    assert o.name.id == o.name_id
+
+    # Reload the object from database with a different locale activated.
+    # Its name should still be there, using the fallback...
+    translation.activate('de')
+    german = get_model()
+    assert german.name == 'english name'
+    assert german.name.locale == 'en-us'
+
+    # Check that a different locale creates a new row with the same id.
+    german.name = u'Gemütlichkeit name'
+    german.save()
+
+    assert Translation.objects.count() == 2  # New name *and* description.
+    assert german.name == u'Gemütlichkeit name'
+    assert german.name.locale == 'de'
+
+    # ids should be the same, autoids are different.
+    assert o.name.id == german.name.id
+    assert o.name.autoid != german.name.autoid
+
+    # Check that de finds the right translation.
+    fresh_german = get_model()
+    assert fresh_german.name == u'Gemütlichkeit name'
+
+    # Update!
+    translation.activate('en-us')
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    translation_id = o.name.autoid
+
+    o.name = 'new name'
+    o.save()
+
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    assert o.name == 'new name'
+    assert o.name.locale == 'en-us'
+    # Make sure it was an update, not an insert.
+    assert o.name.autoid == translation_id
+
+    # Set translations with a dict.
+    strings = {'en-us': 'right language', 'de': 'wrong language'}
+    o = TranslatedModelWithDefaultNull.objects.create(name=strings)
+
+    # Make sure we get the English text since we're in en-US.
+    assert o.name == 'right language'
+
+    # Check that de was set.
+    translation.activate('de')
+    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+    assert o.name == 'wrong language'
+    assert o.name.locale == 'de'
+
+
+def test_translated_field_fk_lookups():
+    """
+    Test that translations are properly resolved even through models
+    that are one foreign-key layer away
+    (e.g Version -> License -> Translation).
+
+    The problem here was, that we did not set `base_manager_name` on
+    the `ModelBase`. This superseeded setting `use_for_related_fields`.
+    """
+    assert Translation.objects.count() == 0
+    assert TranslatedModelLinkedAsForeignKey.objects.count() == 0
+    obj = TranslatedModelLinkedAsForeignKey.objects.create(name='english name')
+
+    def get_model():
+        return TranslatedModelLinkedAsForeignKey.objects.get(pk=obj.pk)
+
+    assert Translation.objects.count() == 1
+
+    # Make sure the translation id is stored on the model, not the autoid.
+    assert obj.name.id == obj.name_id
+
+    # Reload the object from database with a different locale activated.
+    # Its name should still be there, using the fallback...
+    translation.activate('de')
+    german = get_model()
+    assert german.name == 'english name'
+    assert german.name.locale == 'en-us'
+
+    # Check that a different locale creates a new row with the same id.
+    german.name = u'Gemütlichkeit name'
+    german.save()
+
+    assert Translation.objects.count() == 2  # New name *and* description.
+    assert german.name == u'Gemütlichkeit name'
+    assert german.name.locale == 'de'
+
+    # Now fetch the parent `TranslatedModel` and make sure that
+    # all the relevant translations from `TranslatedModelLinkedAsForeignKey`
+    # are properly loaded.
+    print('-------------------------------------------------------------')
+    parent = TranslatedModel.objects.create(name='parent')
+    parent.translated_through_fk = obj
+    parent.save()
+
+    # This still works, simply attaching the model
+    assert parent.translated_through_fk.name_id == obj.name_id
+    assert parent.translated_through_fk.name is not None
+
+    print('.............................................................')
+    # This fails... I have no idea yet
+    fresh_parent = TranslatedModel.objects.get(pk=parent.pk)
+    assert fresh_parent.translated_through_fk.name_id == obj.name_id
+    # Boom!
+    assert fresh_parent.translated_through_fk.name is not None

@@ -34,7 +34,7 @@
 </hgroup>
 
 <form method="POST" action="#review-actions" class="review-form">
-  {% csrf_token %}
+  {{ csrf_input }}
   <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
 
   {% include 'reviewers/addon_details_box.html' %}
@@ -268,7 +268,7 @@
 
 {% if whiteboard_form %}
 <form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
-  {% csrf_token %}
+  {{ csrf_input }}
   <div class="whiteboard">
     <div class="whiteboard-inner">
       <label for="id_whiteboard">{{ whiteboard_form.public.label }}</label>

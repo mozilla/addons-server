@@ -20,7 +20,7 @@ wrapped around each callback in the urlconf as if you had @decorator above the
 function.
 
 """
-from django.core.urlresolvers import RegexURLPattern, RegexURLResolver
+from django.urls import RegexURLPattern, RegexURLResolver
 
 
 def decorate(decorator, urlconf):

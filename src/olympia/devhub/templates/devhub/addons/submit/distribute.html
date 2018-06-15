@@ -5,7 +5,7 @@
 {% block primary %}
 
 <form method="post" class="item addon-submit-distribute">
-  {% csrf_token %}
+  {{ csrf_input }}
   <h3>{{ _('How to Distribute this Version') }}</h3>
     <div>
         {{ distribution_form.channel }}

@@ -8,8 +8,9 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
+from importlib import import_module
 from tempfile import NamedTemporaryFile
-from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
+from urlparse import parse_qs, urlparse
 
 from django import forms, test
 from django.conf import settings
@@ -23,7 +24,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.importlib import import_module
+from django.utils.encoding import force_str
 
 import mock
 import pytest
@@ -372,6 +373,7 @@ class BaseTestCase(test.TestCase):
         self.client = self.client_class()
 
     def trans_eq(self, trans, localized_string, locale):
+        assert trans.id
         translation = Translation.objects.get(id=trans.id, locale=locale)
         assert translation.localized_string == localized_string
 
@@ -392,54 +394,6 @@ def fxa_login_link(response=None, to=None, request=None):
         state=state,
         next_path=to,
         action='signin')
-
-
-def assertLoginRedirects(response, to, status_code=302):
-    fxa_url = fxa_login_link(response, to)
-    assert3xx(response, fxa_url, status_code)
-
-
-def assert3xx(response, expected_url, status_code=302, target_status_code=200):
-    """Asserts redirect and final redirect matches expected URL.
-
-    Similar to Django's `assertRedirects` but skips the final GET
-    verification for speed.
-
-    """
-    if hasattr(response, 'redirect_chain'):
-        # The request was a followed redirect
-        assert \
-            len(response.redirect_chain) > 0, \
-            ("Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
-
-        url, status_code = response.redirect_chain[-1]
-
-        assert response.status_code == target_status_code, \
-            ("Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" % (response.status_code,
-                                                         target_status_code))
-
-    else:
-        # Not a followed redirect
-        assert response.status_code == status_code, \
-            ("Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
-        url = response['Location']
-
-    scheme, netloc, path, query, fragment = urlsplit(url)
-    e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
-        expected_url)
-    if (scheme and not e_scheme) and (netloc and not e_netloc):
-        expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
-                                   e_fragment))
-
-    msg = (
-        "Response redirected to '%s', expected '%s'" %
-        (url, expected_url))
-    assert url == expected_url, msg
 
 
 class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
@@ -497,11 +451,20 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
                     if hasattr(v, 'non_form_errors'):
                         assert v.non_form_errors() == []
 
-    def assertLoginRedirects(self, *args, **kwargs):
-        return assertLoginRedirects(*args, **kwargs)
+    def assertLoginRedirects(self, response, to, status_code=302):
+        fxa_url = fxa_login_link(response, to)
+        self.assert3xx(
+            response=response,
+            expected_url=fxa_url,
+            status_code=status_code)
 
     def assert3xx(self, *args, **kwargs):
-        return assert3xx(*args, **kwargs)
+        """
+        Same as Django's assertRedirects but skips the final GET verification
+        step for performance reasons and backwards compatibility.
+        """
+        kwargs.setdefault('fetch_redirect_response', False)
+        return self.assertRedirects(*args, **kwargs)
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -1040,7 +1003,7 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     """
     locals_ = locals_ or {}
     try:
-        exec(string, globals_ or globals(), locals_)
+        exec(force_str(string), globals_ or globals(), locals_)
     except Exception as e:
         if value:
             raise AssertionError(

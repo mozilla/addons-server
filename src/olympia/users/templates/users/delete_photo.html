@@ -9,7 +9,7 @@
     <h1>{{ _('Delete User Photo') }}</h1>
     <form method="post" action="{{ url('users.delete_photo', target_user.id) }}"
           class="object-lead user-input">
-      {% csrf_token %}
+      {{ csrf_input }}
       <div class="fm-control">
         <button type="submit">{{ _('Delete my user picture now') }}</button>
       </div>

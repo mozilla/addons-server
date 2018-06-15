@@ -9,9 +9,9 @@ from os import path
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
-from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 
 import mock
 

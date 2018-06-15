@@ -5,7 +5,7 @@ from datetime import timedelta
 
 from django.core import mail
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 import mock
 
@@ -1344,9 +1344,6 @@ class TestRatingViewSetGet(TestCase):
         data = json.loads(response.content)
         assert data == {'detail': 'version parameter should be an integer.'}
 
-    # settings_test sets CACHE_COUNT_TIMEOUT to -1 and it's too late to
-    # override it, so instead mock the TIMEOUT property in cache-machine.
-    @mock.patch('caching.config.TIMEOUT', 300)
     def test_get_then_post_then_get_any_caching_is_cleared(self):
         """Make sure there is no overzealous caching going on when requesting
         the list of reviews for a given user+addon+version combination.

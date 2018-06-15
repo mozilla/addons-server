@@ -7,7 +7,7 @@
   <h2>{{ title }}</h2>
 </header>
 <form method="post" id="create-addon" class="item new-addon-file">
-  {% csrf_token %}
+  {{ csrf_input }}
   <p>
   {% trans %}
     Use the field below to upload your add-on package.

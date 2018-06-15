@@ -182,6 +182,7 @@ class TestReplacementAddonList(TestCase):
         self.client.login(email=user.email)
         # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
         ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')
+
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert '@foofoo&amp;foo' in response.content
@@ -189,6 +190,7 @@ class TestReplacementAddonList(TestCase):
         test_url = str('<a href="%s">Test</a>' % (
             reverse('addons.find_replacement') + '?guid=%40foofoo%26foo'))
         assert test_url in response.content, response.content
+
         # guid is not on AMO so no slug to show
         assert '- Add-on not on AMO -' in response.content
         # show the slug when the add-on exists

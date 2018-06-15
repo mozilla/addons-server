@@ -38,7 +38,7 @@
     {% endif %}
 
     {% if request.user.is_authenticated() %}
-      <meta name="csrf" content="{{ csrf_token }}">
+      <meta name="csrf" content="{{ csrf_input }}">
     {% endif %}
 
     {{ js('preload') }}

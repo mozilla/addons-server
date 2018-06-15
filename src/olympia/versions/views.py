@@ -15,7 +15,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 
 # The version detail page redirects to the version within pagination, so we
@@ -56,7 +56,9 @@ def version_detail(request, addon, version_num):
     def f():
         return _find_version_page(qs, addon, version_num)
 
-    return cached(f, u'version-detail:{}:{}'.format(addon.id, version_num))
+    return cache_get_or_set(
+        u'version-detail:{}:{}'.format(addon.id, version_num),
+        f)
 
 
 def _find_version_page(qs, addon, version_num):

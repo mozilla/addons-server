@@ -23,7 +23,7 @@ data-default-locale="{{ request.LANG|lower }}"
   {% endif %}
   <form method="post" class="user-input island"
         enctype="multipart/form-data">
-    {% csrf_token %}
+    {{ csrf_input }}
     <div id="user-edit" class="tab-wrapper">
       <div id="user-account" class="tab-panel">
         <fieldset id="acct-account">

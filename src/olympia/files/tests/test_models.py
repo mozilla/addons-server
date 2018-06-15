@@ -240,7 +240,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_addon(self):
         f = File.objects.get(pk=67442)
         addon_id = f.version.addon_id
-        addon = Addon.objects.no_cache().get(pk=addon_id)
+        addon = Addon.objects.get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
         assert f.addon.id == addon_id
 

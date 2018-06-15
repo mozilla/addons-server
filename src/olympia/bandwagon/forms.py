@@ -12,7 +12,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator, slugify)
-from olympia.lib import happyforms
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
 from olympia.users.models import DeniedName, UserProfile
@@ -34,7 +33,7 @@ collection_types = (
 log = olympia.core.logger.getLogger('z.collections')
 
 
-class AdminForm(happyforms.Form):
+class AdminForm(forms.Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
                                          empty_value=None, coerce=int)
     type = forms.TypedChoiceField(choices=collection_types, required=False,
@@ -46,7 +45,7 @@ class AdminForm(happyforms.Form):
         collection.save()
 
 
-class AddonsForm(happyforms.Form):
+class AddonsForm(forms.Form):
     """This form is related to adding addons to a collection."""
 
     addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
@@ -78,7 +77,7 @@ class AddonsForm(happyforms.Form):
                               self.cleaned_data['addon_comment'])
 
 
-class ContributorsForm(happyforms.Form):
+class ContributorsForm(forms.Form):
     """This form is related to adding contributors to a collection."""
 
     contributor = forms.CharField(widget=forms.MultipleHiddenInput,
@@ -121,7 +120,7 @@ class ContributorsForm(happyforms.Form):
                                                     collection.id))
 
 
-class CollectionForm(happyforms.ModelForm):
+class CollectionForm(forms.ModelForm):
 
     name = forms.CharField(
         label=_(u'Give your collection a name.'),

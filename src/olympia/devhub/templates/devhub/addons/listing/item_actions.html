@@ -5,7 +5,7 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <form action="{{ url('devhub.request-review', addon.slug) }}" method="post" class="resume">
-        {% csrf_token %}
+        {{ csrf_input }}
         <button
           class="link tooltip" type="submit"
           title="{{ _("Resume the submission process for this add-on.")}}">

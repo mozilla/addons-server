@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import logging
+
 from settings import *  # noqa
 
 # Make sure the app needed to test translations is present.
@@ -25,10 +27,6 @@ SEND_REAL_EMAIL = True
 PAYPAL_PERMISSIONS_URL = ''
 
 SITE_URL = 'http://testserver'
-
-# COUNT() caching can't be invalidated, it just expires after x seconds. This
-# is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
 
 # We don't want to share cache state between processes. Always use the local
 # memcache backend for tests.
@@ -79,6 +77,10 @@ LOGGING = {
     'loggers': {}
 }
 
+USE_MOZLOG = False
+
+LOG_LEVEL = logging.WARNING
+
 # To speed tests up, crushing uploaded images is disabled in tests except
 # where we explicitly want to test pngcrush.
 PNGCRUSH_BIN = '/bin/true'
@@ -93,8 +95,6 @@ BASKET_API_KEY = 'testkey'
 if os.environ.get('RUNNING_IN_CI'):
     import product_details
     from datetime import datetime
-
-    LOG_LEVEL = logging.ERROR
 
     class MockProductDetails:
         """Main information we need in tests.

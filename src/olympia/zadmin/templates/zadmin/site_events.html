@@ -13,7 +13,7 @@
   <h2>{{ title }}</h2>
 
   <form method="post">
-    {% csrf_token %}
+    {{ csrf_input }}
     {{ form.as_p() }}
     <input type="submit" value="Add New Event">
   </form>

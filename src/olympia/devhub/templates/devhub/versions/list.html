@@ -50,7 +50,7 @@
       {% if version.is_user_disabled %}
         <div>
         <form method="post" action="{{ url('devhub.versions.reenable', addon.slug) }}">
-            {% csrf_token %}
+            {{ csrf_input }}
             <input type="hidden" name="version_id" class="version_id" value="{{ version.id }}">
             <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
             <button type="submit" class="link">{{ _('Re-enable Version') }}</button>
@@ -100,7 +100,7 @@
         {% if can_request_review %}
           <form method="post"
                 action="{{ url('devhub.request-review', addon.slug) }}">
-            {% csrf_token %}
+            {{ csrf_input }}
             <button class="link" type="submit">{{ _('Request Review') }}</button> &middot;
           </form>
         {% endif %}
@@ -288,7 +288,7 @@
         version with the same version number.
       {% endtrans %}
       <p>{{ _('Are you sure you wish to delete this version?') }}</p>
-      {% csrf_token %}
+      {{ csrf_input }}
       <div class="modal-actions">
         <input type="hidden" name="version_id" class="version_id">
         <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
@@ -327,7 +327,7 @@
           Are you sure you wish to hide your add-on?
         {% endtrans %}
       </p>
-      {% csrf_token %}
+      {{ csrf_input }}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
@@ -355,7 +355,7 @@
           Are you sure you wish to cancel your review request?
         {% endtrans %}
       </p>
-      {% csrf_token %}
+      {{ csrf_input }}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
         <button type="submit">{{ _('Cancel Review Request') }}</button>

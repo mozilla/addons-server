@@ -7,7 +7,7 @@
 <div class="primary featured">
   {% if form %}
   <form method="post" class="featured-inner object-lead user-input">
-    {% csrf_token %}
+    {{ csrf_input }}
     <fieldset>
       <p class="instruct">Want to get a message to Zeus out on the front
         lines?  You've come to the right place.  The text area below accepts

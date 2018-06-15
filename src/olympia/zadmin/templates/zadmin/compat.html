@@ -86,7 +86,7 @@ button { margin: 4px; padding: 0 2px }
               {% set initial = 0 %}
             {% endif %}
             <form action="{{ form_url }}" method="post">
-              {% csrf_token %}
+              {{ csrf_input }}
               <input type="hidden" name="_compat_ranges-TOTAL_FORMS" value="{{ initial + 1 }}">
               <input type="hidden" name="_compat_ranges-INITIAL_FORMS" value="{{ initial }}">
               <input type="hidden" name="_continue" value="1">

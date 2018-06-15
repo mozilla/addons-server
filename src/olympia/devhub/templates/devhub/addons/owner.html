@@ -19,7 +19,7 @@
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
 <form method="post" class="item">
-  {% csrf_token %}
+  {{ csrf_input }}
   {{ user_form.management_form }}
   <div class="item_wrapper">
     <table>

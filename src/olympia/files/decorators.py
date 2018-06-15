@@ -6,7 +6,7 @@ from datetime import datetime
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
-from django.utils.http import http_date
+from django.utils.http import http_date, quote_etag
 
 import olympia.core.logger
 
@@ -58,7 +58,10 @@ def last_modified(request, obj, key=None, **kw):
 
 
 def etag(request, obj, key=None, **kw):
-    return _get_value(obj, key, 'sha256')
+    value = _get_value(obj, key, 'sha256')
+    if value:
+        return quote_etag(value)
+    return value
 
 
 def file_view(func, **kwargs):
@@ -77,7 +80,7 @@ def file_view(func, **kwargs):
 
         response = func(request, obj, *args, **kw)
         if obj.selected:
-            response['ETag'] = '"%s"' % obj.selected.get('sha256')
+            response['ETag'] = quote_etag(obj.selected.get('sha256'))
             response['Last-Modified'] = http_date(obj.selected.get('modified'))
         return response
     return wrapper
@@ -99,9 +102,9 @@ def compare_file_view(func, **kwargs):
 
         response = func(request, obj, *args, **kw)
         if obj.left.selected:
-            response['ETag'] = '"%s"' % obj.left.selected.get('sha256')
-            response['Last-Modified'] = http_date(obj.left.selected
-                                                          .get('modified'))
+            response['ETag'] = quote_etag(obj.left.selected.get('sha256'))
+            response['Last-Modified'] = http_date(
+                obj.left.selected.get('modified'))
         return response
     return wrapper
 

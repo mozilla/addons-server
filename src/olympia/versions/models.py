@@ -10,7 +10,6 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
-import caching.base
 import jinja2
 
 from django_extensions.db.fields.json import JSONField
@@ -107,13 +106,14 @@ class Version(OnChangeMixin, ModelBase):
     channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
-    # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
 
     def __init__(self, *args, **kwargs):
@@ -359,7 +359,7 @@ class Version(OnChangeMixin, ModelBase):
     def all_activity(self):
         from olympia.activity.models import VersionLog  # yucky
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
         return al
 
     @property
@@ -550,11 +550,9 @@ class Version(OnChangeMixin, ModelBase):
             return
 
         ids = set(v.id for v in versions)
-        # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related('min', 'max')
-               .no_cache())
-        files = File.objects.filter(version__in=ids).no_cache()
+               .select_related('min', 'max'))
+        files = File.objects.filter(version__in=ids)
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
@@ -579,7 +577,7 @@ class Version(OnChangeMixin, ModelBase):
             return
 
         al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
@@ -613,8 +611,6 @@ class Version(OnChangeMixin, ModelBase):
             nomination = nomination or datetime.datetime.now()
             # We need signal=False not to call update_status (which calls us).
             self.update(nomination=nomination, _signal=False)
-            # But we need the cache to be flushed.
-            Version.objects.invalidate(self)
 
     def inherit_nomination(self, from_statuses=None):
         last_ver = (Version.objects.filter(addon=self.addon,
@@ -807,7 +803,6 @@ models.signals.post_delete.connect(
 
 
 class LicenseManager(ManagerBase):
-
     def builtins(self, cc=False):
         return self.filter(
             builtin__gt=0, creative_commons=cc).order_by('builtin')
@@ -816,8 +811,8 @@ class LicenseManager(ManagerBase):
 class License(ModelBase):
     OTHER = 0
 
-    name = TranslatedField(db_column='name')
-    url = models.URLField(null=True, db_column='url')
+    name = TranslatedField()
+    url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(
@@ -832,7 +827,7 @@ class License(ModelBase):
 
     objects = LicenseManager()
 
-    class Meta:
+    class Meta(ModelBase.Meta):
         db_table = 'licenses'
 
     def __unicode__(self):
@@ -848,7 +843,7 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
 
 
-class ApplicationsVersions(caching.base.CachingMixin, models.Model):
+class ApplicationsVersions(models.Model):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
@@ -858,8 +853,6 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
                             related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
                             related_name='max_set')
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'applications_versions'

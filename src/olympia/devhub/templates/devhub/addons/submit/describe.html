@@ -7,7 +7,7 @@
 {% block primary %}
   <h3>{{ _('Describe Add-on') }}</h3>
   <form method="post" id="submit-describe" class="item">
-    {% csrf_token %}
+    {{ csrf_input }}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
       {{ form.name }}

@@ -25,13 +25,13 @@ class TestAddonFormSupport(TestCase):
         form = forms.AddonFormSupport(
             {'support_url': 'javascript://something.com'}, request=None)
         assert not form.is_valid()
-        assert form.errors['support_url'][0][1] == u'Enter a valid URL.'
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
 
     def test_ftp_support_url(self):
         form = forms.AddonFormSupport(
             {'support_url': 'ftp://foo.com'}, request=None)
         assert not form.is_valid()
-        assert form.errors['support_url'][0][1] == u'Enter a valid URL.'
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
 
     def test_http_support_url(self):
         form = forms.AddonFormSupport(
@@ -70,7 +70,7 @@ class FormsTest(TestCase):
             instance=delicious)
 
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_firefox(self):
@@ -80,7 +80,7 @@ class FormsTest(TestCase):
             request=self.request,
             instance=delicious)
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_allowed_for_prefix(self):
@@ -105,13 +105,13 @@ class FormsTest(TestCase):
         form = forms.AddonFormDetails(
             {'homepage': 'javascript://something.com'}, request=self.request)
         assert not form.is_valid()
-        assert form.errors['homepage'][0][1] == u'Enter a valid URL.'
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
 
     def test_ftp_homepage(self):
         form = forms.AddonFormDetails(
             {'homepage': 'ftp://foo.com'}, request=self.request)
         assert not form.is_valid()
-        assert form.errors['homepage'][0][1] == u'Enter a valid URL.'
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
 
     def test_homepage_is_not_required(self):
         delicious = Addon.objects.get()
@@ -159,7 +159,7 @@ class TestTagsForm(TestCase):
         return form
 
     def get_tag_text(self):
-        return [t.tag_text for t in self.addon.tags.no_cache().all()]
+        return [t.tag_text for t in self.addon.tags.all()]
 
     def test_tags(self):
         self.add_tags('foo, bar')

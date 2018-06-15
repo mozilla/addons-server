@@ -5,7 +5,7 @@
 {% endif %}
 
 <form method="post" action="{{ url('devhub.addons.admin', addon.slug) }}">
-  {% csrf_token %}
+  {{ csrf_input }}
   <h3>
     Admin Settings
     {% if not editable %}
@@ -37,7 +37,7 @@
                 Add-on Reputation
                 {{ tip(None,
                        "The higher the reputation value, the further down the
-                       add-on will be in the auto-approved review queue. 
+                       add-on will be in the auto-approved review queue.
                        A value of 0 has no impact.") }}
               </label>
               </label>

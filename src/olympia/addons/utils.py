@@ -12,11 +12,11 @@ from django.utils.translation import ugettext
 import olympia.core.logger
 
 from olympia import amo
+from olympia.lib.cache import memoize, get_memoize_cache_key
 from olympia.amo.utils import normalize_string
-from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.translations.fields import LocaleErrorMessage
 from olympia.discovery.utils import call_recommendation_server
-from olympia.translations.fields import LocaleList, LocaleValidationError
-from olympia.lib.cache import memoize, memoize_key
+from olympia.constants.categories import CATEGORIES_BY_ID
 
 
 log = olympia.core.logger.getLogger('z.redis')
@@ -27,11 +27,11 @@ def generate_addon_guid():
 
 
 def clear_get_featured_ids_cache(*args, **kwargs):
-    cache_key = memoize_key('addons:featured', *args, **kwargs)
+    cache_key = get_memoize_cache_key('addons:featured', *args, **kwargs)
     cache.delete(cache_key)
 
 
-@memoize('addons:featured', time=60 * 10)
+@memoize('addons:featured', timeout=60 * 10)
 def get_featured_ids(app=None, lang=None, type=None, types=None):
     from olympia.addons.models import Addon
     ids = []
@@ -65,7 +65,7 @@ def get_featured_ids(app=None, lang=None, type=None, types=None):
     return map(int, ids)
 
 
-@memoize('addons:creatured', time=60 * 10)
+@memoize('addons:creatured', timeout=60 * 10)
 def get_creatured_ids(category, lang=None):
     from olympia.addons.models import Addon
     from olympia.bandwagon.models import FeaturedCollection
@@ -105,7 +105,7 @@ def get_creatured_ids(category, lang=None):
     return map(int, filter(None, per_locale + others))
 
 
-def verify_mozilla_trademark(name, user):
+def verify_mozilla_trademark(name, user, form=None):
     skip_trademark_check = (
         user and user.is_authenticated() and user.email and
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
@@ -125,8 +125,6 @@ def verify_mozilla_trademark(name, user):
                     u'Firefox trademarks.'))
 
     if not skip_trademark_check:
-        errors = LocaleList()
-
         if not isinstance(name, dict):
             _check(name)
         else:
@@ -134,11 +132,13 @@ def verify_mozilla_trademark(name, user):
                 try:
                     _check(localized_name)
                 except forms.ValidationError as exc:
-                    errors.extend(exc.messages, locale)
-
-        if errors:
-            raise LocaleValidationError(errors)
-
+                    if form is not None:
+                        for message in exc.messages:
+                            error_message = LocaleErrorMessage(
+                                message=message, locale=locale)
+                            form.add_error('name', error_message)
+                    else:
+                        raise
     return name
 
 

@@ -38,7 +38,9 @@ def global_settings(request):
     tools_title = ugettext('Tools')
     is_reviewer = False
 
-    if request.user.is_authenticated():
+    # We're using `getattr` here because `request.user` can be missing,
+    # e.g in case of a 500-server error.
+    if getattr(request, 'user', AnonymousUser()).is_authenticated():
         is_reviewer = acl.is_user_any_kind_of_reviewer(request.user)
 
         account_links.append({'text': ugettext('My Profile'),

@@ -1,6 +1,6 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless %}
 
-{% csrf_token %}
+{{ csrf_input }}
 
 {% set editable = (context == 'edit' and editable) or context == 'submit' %}
 

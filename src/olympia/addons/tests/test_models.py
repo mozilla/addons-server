@@ -1132,7 +1132,7 @@ class TestAddonModels(TestCase):
         # one that does not exist in the constants.
         unknown_cat = Category.objects.create(
             application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
-            name='Sunny D')
+            db_name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=unknown_cat)
         thunderbird_static_cat = (
             CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['appearance'])
@@ -1768,10 +1768,10 @@ class TestUpdateStatus(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         Version.objects.create(addon=addon)
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_no_valid_file_ends_with_NULL(self):
@@ -1781,22 +1781,22 @@ class TestUpdateStatus(TestCase):
                                 version=version)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         f.status = amo.STATUS_DISABLED
         f.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_unlisted_versions_ignored(self):
         addon = addon_factory(status=amo.STATUS_PUBLIC)
         addon.update_status()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_PUBLIC)
 
         addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # update_status will have been called via versions.models.update_status
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)  # No listed versions so now NULL
 
 

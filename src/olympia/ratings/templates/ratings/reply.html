@@ -19,7 +19,7 @@
     {% include "ratings/review.html" %}
     <form method="post" class="prettyform c"
           action="{{ url('addons.ratings.reply', addon.slug, review.id) }}">
-      {% csrf_token %}
+      {{ csrf_input }}
       <fieldset>
         <h2>{{ _('Write a Reply') }}</h2>
         <ul>

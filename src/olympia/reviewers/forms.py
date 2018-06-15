@@ -19,7 +19,6 @@ from olympia.addons.models import Persona
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
-from olympia.lib import happyforms
 from olympia.ratings.models import Rating
 from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
 from olympia.reviewers.models import (
@@ -39,7 +38,7 @@ ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
                    deleted=amo.LOG.DELETE_RATING)
 
 
-class RatingModerationLogForm(happyforms.Form):
+class RatingModerationLogForm(forms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False,
@@ -58,7 +57,18 @@ class RatingModerationLogForm(happyforms.Form):
         return data
 
 
-class ReviewLogForm(happyforms.Form):
+class BetaSignedLogForm(forms.Form):
+    VALIDATION_CHOICES = (
+        ('', ''),
+        (amo.LOG.BETA_SIGNED.id,
+         _(u'Passed automatic validation')),
+        (amo.LOG.BETA_SIGNED.id,
+         _(u'Failed automatic validation')))
+    filter = forms.ChoiceField(required=False, choices=VALIDATION_CHOICES,
+                               label=_(u'Filter by automatic validation'))
+
+
+class ReviewLogForm(forms.Form):
     start = forms.DateField(required=False,
                             label=_(u'View entries between'))
     end = forms.DateField(required=False, label=_(u'and'))
@@ -89,7 +99,7 @@ class ReviewLogForm(happyforms.Form):
         return data
 
 
-class QueueSearchForm(happyforms.Form):
+class QueueSearchForm(forms.Form):
     text_query = forms.CharField(
         required=False,
         label=_(u'Search by add-on name / author email'))
@@ -166,7 +176,7 @@ class QueueSearchForm(happyforms.Form):
         return qs
 
 
-class AllAddonSearchForm(happyforms.Form):
+class AllAddonSearchForm(forms.Form):
     text_query = forms.CharField(
         required=False,
         label=_(u'Search by add-on name / author email / guid'))
@@ -281,7 +291,7 @@ class NumberInput(widgets.Input):
     input_type = 'number'
 
 
-class ReviewForm(happyforms.Form):
+class ReviewForm(forms.Form):
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
@@ -382,7 +392,7 @@ class ReviewForm(happyforms.Form):
                 if self.helper.version else [])
 
 
-class MOTDForm(happyforms.Form):
+class MOTDForm(forms.Form):
     motd = forms.CharField(required=True, widget=widgets.Textarea())
 
 
@@ -396,7 +406,7 @@ class DeletedThemeLogForm(ReviewLogForm):
             'size': 30}
 
 
-class ThemeReviewForm(happyforms.Form):
+class ThemeReviewForm(forms.Form):
     theme = forms.ModelChoiceField(queryset=Persona.objects.all(),
                                    widget=forms.HiddenInput())
     action = forms.TypedChoiceField(
@@ -540,7 +550,7 @@ class PublicWhiteboardForm(forms.ModelForm):
         }
 
 
-class ModerateRatingFlagForm(happyforms.ModelForm):
+class ModerateRatingFlagForm(forms.ModelForm):
 
     action_choices = [(ratings.REVIEW_MODERATE_KEEP,
                        _(u'Keep review; remove flags')),

@@ -29,7 +29,7 @@
     {% block extrahead %}{% endblock %}
 
     {% if request.user.is_authenticated() %}
-      <meta name="csrf" content="{{ csrf_token }}">
+      <meta name="csrf" content="{{ csrf_input }}">
     {% endif %}
 
     {% if settings.DEBUG %}

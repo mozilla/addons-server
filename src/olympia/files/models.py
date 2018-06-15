@@ -28,7 +28,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.lib.cache import memoize
 from olympia.amo.decorators import use_master
-from olympia.amo.models import ModelBase, OnChangeMixin, UncachedManagerBase
+from olympia.amo.models import ModelBase, OnChangeMixin, ManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, urlparams, user_media_path, user_media_url)
@@ -342,7 +342,7 @@ class File(OnChangeMixin, ModelBase):
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
-    @memoize(prefix='localepicker', time=None)
+    @memoize(prefix='localepicker', timeout=None)
     def get_localepicker(self):
         """
         For a file that is part of a language pack, extract
@@ -393,7 +393,7 @@ class File(OnChangeMixin, ModelBase):
         3) other known permissions in alphabetical order
         """
         knowns = list(WebextPermissionDescription.objects.filter(
-            name__in=self.webext_permissions_list).iterator())
+            name__in=self.webext_permissions_list))
 
         urls = []
         match_url = None
@@ -595,7 +595,7 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey('addons.Addon', null=True)
 
-    objects = UncachedManagerBase()
+    objects = ManagerBase()
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
@@ -769,9 +769,12 @@ class WebextPermissionDescription(ModelBase):
     name = models.CharField(max_length=255, unique=True)
     description = TranslatedField()
 
-    class Meta:
+    class Meta(ModelBase.Meta):
         db_table = 'webext_permission_descriptions'
         ordering = ['name']
+
+    def __repr__(self):
+        return '<WebextPermissionDescription "{}">'.format(self.name)
 
 
 def nfd_str(u):

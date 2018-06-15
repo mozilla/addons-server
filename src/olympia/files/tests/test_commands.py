@@ -47,7 +47,7 @@ class TestWebextExtractPermissions(UploadTest):
 
         call_command('extract_permissions')
 
-        file_ = File.objects.no_cache().get(id=file_.id)
+        file_ = File.objects.get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
         permissions_list = file_.webext_permissions_list
         assert len(permissions_list) == 8
@@ -74,7 +74,7 @@ class TestWebextExtractPermissions(UploadTest):
 
         call_command('extract_permissions', force=True)
 
-        file_ = File.objects.no_cache().get(id=file_.id)
+        file_ = File.objects.get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
         assert len(file_.webext_permissions_list) == 8
 
@@ -135,7 +135,7 @@ class TestWebextUpdateDescriptions(TestCase):
 
     def _check_locales(self):
         with translation.override('fr'):
-            assert WebextPermissionDescription.objects.no_cache().get(
+            assert WebextPermissionDescription.objects.get(
                 name='bookmarks').description == u'Réad n wríte le bookmarks'
             # There wasn't any French l10n for this perm; so en fallback.
             assert WebextPermissionDescription.objects.get(
@@ -144,7 +144,7 @@ class TestWebextUpdateDescriptions(TestCase):
                 name='tabs').description == u'Accéder browser onglets'
 
         with translation.override('de'):
-            assert WebextPermissionDescription.objects.no_cache().get(
+            assert WebextPermissionDescription.objects.get(
                 name='bookmarks').description == u'Eich bin bookmark'
             # There wasn't any German l10n for this perm; so en fallback.
             assert WebextPermissionDescription.objects.get(
@@ -153,7 +153,7 @@ class TestWebextUpdateDescriptions(TestCase):
             assert WebextPermissionDescription.objects.get(
                 name='tabs').description == u'Access browser tabs'
         with translation.override('zh-CN'):
-            assert WebextPermissionDescription.objects.no_cache().get(
+            assert WebextPermissionDescription.objects.get(
                 name='bookmarks').description == u'讀取並修改書籤'
             # There wasn't any Chinese l10n for this perm; so en fallback.
             assert WebextPermissionDescription.objects.get(

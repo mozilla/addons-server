@@ -46,7 +46,7 @@
     </fieldset>
     <form method="post" class="review-form" id="review-form"
           action="{{ url('addons.ratings.add', addon.slug) }}">
-      {% csrf_token %}
+      {{ csrf_input }}
       <fieldset>
         <ul>
           {{ pretty_field(form.rating, label=_('Rating')) }}

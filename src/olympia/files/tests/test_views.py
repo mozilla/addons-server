@@ -7,7 +7,7 @@ import urlparse
 from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
-from django.utils.http import http_date
+from django.utils.http import http_date, quote_etag
 
 import pytest
 
@@ -186,7 +186,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         self.file_viewer.select('install.js')
         obj = getattr(self.file_viewer, 'left', self.file_viewer)
-        etag = obj.selected.get('sha256')
+        etag = quote_etag(obj.selected.get('sha256'))
         res = self.client.get(self.file_url('install.js'),
                               HTTP_IF_NONE_MATCH=etag)
         assert res.status_code == 304

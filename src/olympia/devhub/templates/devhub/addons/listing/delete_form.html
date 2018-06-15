@@ -1,7 +1,7 @@
 {% from 'includes/forms.html' import optional %}
 {% set title = _('Delete Theme') if addon.is_persona() else _('Delete Add-on') %}
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
-  {% csrf_token %}
+  {{ csrf_input }}
   <h3>
     {{ title }}
   </h3>

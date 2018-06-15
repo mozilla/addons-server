@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -17,7 +16,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, Persona
-from olympia.amo.models import ManagerBase, ModelBase, skip_cache
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -48,13 +47,6 @@ VIEW_QUEUE_FLAGS = (
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
-
-
-# Django 1.8 does not have Cast(), so this is a simple dumb implementation
-# that only handles Cast(..., DateTimeField())
-class DateTimeCast(Func):
-    function = 'CAST'
-    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -539,7 +531,7 @@ class ReviewerScore(ModelBase):
         if val is not None:
             return val
 
-        val = (ReviewerScore.objects.no_cache().filter(user=user)
+        val = (ReviewerScore.objects.filter(user=user)
                                     .aggregate(total=Sum('score'))
                                     .values())[0]
         if val is None:
@@ -556,7 +548,7 @@ class ReviewerScore(ModelBase):
         if val is not None:
             return val
 
-        val = ReviewerScore.objects.no_cache().filter(user=user)
+        val = ReviewerScore.objects.filter(user=user)
         if addon_type is not None:
             val.filter(addon__type=addon_type)
 
@@ -582,8 +574,7 @@ class ReviewerScore(ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with skip_cache():
-            val = list(ReviewerScore.objects.raw(sql, [user.id]))
+        val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, None)
         return val
 
@@ -608,8 +599,7 @@ class ReviewerScore(ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with skip_cache():
-            val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
+        val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
 
@@ -1128,6 +1118,9 @@ class RereviewQueueTheme(ModelBase):
 
     class Meta:
         db_table = 'rereview_queue_theme'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
 
     def __str__(self):
         return str(self.id)

@@ -5,20 +5,16 @@ from decimal import Decimal
 from django.conf import settings
 from django.db import models
 
-import caching
-
 from olympia import amo
 from olympia.amo.models import ModelBase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 
 
-class Config(caching.base.CachingMixin, models.Model):
+class Config(models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
     value = models.TextField()
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'config'
@@ -38,7 +34,7 @@ def get_config(conf):
     try:
         return Config.objects.get(key=conf).value
     except Config.DoesNotExist:
-        return
+        return None
 
 
 def set_config(conf, value):
@@ -207,3 +203,6 @@ class SiteEvent(models.Model):
 
     class Meta:
         db_table = 'zadmin_siteevent'
+
+    def __unicode__(self):
+        return self.description

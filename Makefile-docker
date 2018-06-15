@@ -69,7 +69,7 @@ help_submake:
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
 	python manage.py reset_db
-	python manage.py syncdb --noinput
+	python manage.py migrate --noinput --run-syncdb
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
 	schematic --fake src/olympia/migrations/
@@ -99,7 +99,6 @@ install_python_dependencies:
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
@@ -134,7 +133,8 @@ setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
 	python manage.py reset_db --noinput
-	python manage.py syncdb --noinput
+
+	python manage.py migrate --noinput --run-syncdb
 	schematic --fake src/olympia/migrations/
 
 	# Let's load some initial data and import mozilla-product versions

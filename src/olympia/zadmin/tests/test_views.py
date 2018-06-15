@@ -103,7 +103,7 @@ class TestHomeAndIndex(TestCase):
 
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
-        response = self.client.get(url)
+        response = self.client.get(url, follow=True)
         assert response.status_code == 200
 
 
@@ -220,7 +220,7 @@ class TestMonthlyPick(TestCase):
         data = formset(initial(self.f), dupe, initial_count=1)
         self.client.post(self.url, data)
         assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].locale == ''
+        assert MonthlyPick.objects.all()[1].locale is None
 
     def test_insert_long_blurb(self):
         dupe = initial(self.f)
@@ -434,7 +434,7 @@ class TestAddonAdmin(TestCase):
         rows = doc('#result_list tbody tr')
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/')
+            '/en-US/admin/models/addons/addon/3615/change/')
 
 
 class TestAddonManagement(TestCase):
