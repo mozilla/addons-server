@@ -596,11 +596,7 @@ class SafeZip(object):
         if getattr(self, '_is_valid', False):
             return True
 
-        try:
-            zip_file = zipfile.ZipFile(self.source, self.mode)
-        except BadZipfile:
-            return False
-
+        zip_file = zipfile.ZipFile(self.source, self.mode)
         info_list = zip_file.infolist()
 
         for info in info_list:

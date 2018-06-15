@@ -45,6 +45,7 @@ from olympia.addons.models import (
     update_search_index as addon_update_search_index)
 from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -791,8 +792,19 @@ def file_factory(**kw):
     filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
+
     file_ = File.objects.create(filename=filename,
                                 platform=platform, status=status, **kw)
+
+    fixture_path = os.path.join(
+        settings.ROOT, 'src/olympia/files/fixtures/files',
+        filename)
+
+    if os.path.exists(fixture_path):
+        copy_stored_file(
+            fixture_path,
+            os.path.join(version.path_prefix, file_.filename))
+
     return file_
 
 
