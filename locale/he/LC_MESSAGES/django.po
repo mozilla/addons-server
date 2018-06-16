@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-16 17:58+0000\n"
+"PO-Revision-Date: 2018-06-16 18:12+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4454,9 +4454,8 @@ msgstr "התאמה אישית של דפי הלשונית החדשה {start_sub_h
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
