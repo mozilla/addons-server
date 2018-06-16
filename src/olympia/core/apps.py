@@ -27,7 +27,6 @@ class CoreConfig(AppConfig):
 
         session_csrf.monkeypatch()
 
-        self.configure_logging()
         self.load_product_details()
         self.set_recursion_limit()
         self.enable_urllib_certificate_checking()
@@ -36,14 +35,6 @@ class CoreConfig(AppConfig):
         # From requests's packages/urllib3/contrib/pyopenssl.py
         import urllib3.contrib.pyopenssl
         urllib3.contrib.pyopenssl.inject_into_urllib3()
-
-    def configure_logging(self):
-        """Configure the `logging` module to route logging based on settings
-        in our various settings modules and defaults in
-        `lib.log_settings_base`."""
-        from olympia.lib.log_settings_base import log_configure
-
-        log_configure()
 
     def load_product_details(self):
         """Fetch product details, if we don't already have them."""

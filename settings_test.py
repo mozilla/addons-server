@@ -75,9 +75,7 @@ SIGNING_SERVER = ''
 ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
-LOGGING = {
-    'loggers': {}
-}
+LOGGING['loggers'] = {}
 
 # To speed tests up, crushing uploaded images is disabled in tests except
 # where we explicitly want to test pngcrush.
@@ -93,8 +91,6 @@ BASKET_API_KEY = 'testkey'
 if os.environ.get('RUNNING_IN_CI'):
     import product_details
     from datetime import datetime
-
-    LOG_LEVEL = logging.ERROR
 
     class MockProductDetails:
         """Main information we need in tests.

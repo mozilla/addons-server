@@ -103,6 +103,10 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
 })
 
+# Update the logger name used for mozlog
+LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
+
+
 # This is used for `django-cache-machine`
 REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
 
