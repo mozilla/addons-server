@@ -25,63 +25,61 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Distortion' theme.
+        # 'Bokeh Beta' theme.
         DiscoItem(
-            addon_id=16349, type=amo.ADDON_PERSONA),
+            addon_id=42019, type=amo.ADDON_PERSONA),
 
-        # Ghostery
+        # Privacy Badger
         DiscoItem(
-            addon_id=9609,
-            heading=_(u'Ad blocking & privacy protection {start_sub_heading}'
+            addon_id=506646,
+            heading=_(u'Stop sneaky trackers {start_sub_heading}'
                       u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'A simple set-up lets you take control of the ads you see '
-                  u'and how you’re tracked on the internet.'),
+                _(u' Block invisible trackers and spying ads that follow you '
+                  u'around the web.'),
                 '</blockquote>')),
 
-        # Tree Style Tab
+        # Tabliss
         DiscoItem(
-            addon_id=5890,
-            heading=_(u'Re-imagine tabs {start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
+            addon_id=850407,
+            heading=_(u'Customize new tab pages {start_sub_heading}with '
+                      u'{addon_name} {end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Do you have a ton of open tabs? Organize them in a tidy '
-                  u'sidebar.'),
+                _(u'Enjoy a beautiful new page with customizable backgrounds, '
+                  u'local weather info, and more.'),
                 '</blockquote>')),
 
-        # 'Sunset Over Water' theme
+        # 'Foggy Dawn' theme
         DiscoItem(
-            addon_id=46852, type=amo.ADDON_PERSONA,
-            addon_name='Sunset Over Water'),
+            addon_id=553386, type=amo.ADDON_PERSONA,
+            addon_name='Foggy Dawn'),
 
-        # Facebook Container
+        # To Google Translate
         DiscoItem(
-            addon_id=954390,
-            heading=_(u'Stop Facebook tracking {start_sub_heading}'
+            addon_id=445852,
+            heading=_(u'Translate easily {start_sub_heading}'
                       u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Isolate your Facebook identity into a separate '
-                  u'"container" that makes it harder for Facebook to track '
-                  u'your movements around the web.'),
+                _(u'Highlight any text, right-click, and translate '
+                  u'instantly.'),
                 '</blockquote>')),
 
-        # Search Options
+        # Image Search Options
         DiscoItem(
             addon_id=93451,
-            heading=_(u'Search images {start_sub_heading}with {addon_name}'
+            heading=_(u'Search Images {start_sub_heading}with {addon_name}'
                       u'{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u' Perform reverse image searches from an array of '
-                  u'engines.'),
+                _(u'Perform reverse image searches from an array of engines.'),
                 '</blockquote>')),
 
-        # 'Crazy Cats Action' theme.
+        # 'Sakura Blossoms & Birds' theme.
         DiscoItem(
-            addon_id=963836, type=amo.ADDON_PERSONA),
+            addon_id=482976, type=amo.ADDON_PERSONA),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.

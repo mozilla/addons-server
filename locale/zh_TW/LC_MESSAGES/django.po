@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 13:25+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"PO-Revision-Date: 2018-06-16 03:23+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2596,6 +2596,9 @@ msgstr "您自行處理。<span class=\"helptext\">將立即簽署此版本讓�
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "您的附加元件成為精選元件時，無法更改分類。"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "現在起，Thunderbird 與 SeaMonkey 的附加元件將上架於 addons.thunderbird.net。您可以在該網站上使用相同帳號登入更新您的附加元件。"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebExtension。"
 
@@ -4308,28 +4311,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告並保護隱私{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}擋住偷偷摸摸的追蹤器{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr "封鎖在網路世界中偷偷追蹤您的隱形追蹤器與間諜廣告。"
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}重新發想分頁標籤{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}自訂新分頁頁面{end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "您還開著一大票分頁標籤嗎？用簡潔的側邊欄好好管理。"
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "享用美麗的新分頁頁面，還可讓您可自訂背景、本地天氣資訊等等。"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}不讓 Facebook 追蹤{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}很簡單就能翻譯{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "反白任何文字，按右鍵即可立刻翻譯。"
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}搜尋圖片{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr "使用多組搜尋引擎以圖找圖。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

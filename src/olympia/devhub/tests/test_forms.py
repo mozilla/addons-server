@@ -105,8 +105,16 @@ class TestCompatForm(TestCase):
         version = Addon.objects.get(id=3615).current_version
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
-        apps = [f.app for f in formset.forms]
-        assert set(apps) == set(amo.APPS.values())
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE)
+
+    def test_forms_disallow_thunderbird_and_seamonkey(self):
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        version = Addon.objects.get(id=3615).current_version
+        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
 
     def test_form_initial(self):
         version = Addon.objects.get(id=3615).current_version

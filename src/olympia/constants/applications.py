@@ -159,6 +159,15 @@ class UNKNOWN_APP(App):
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
+# APP_USAGE_FIREFOXES_ONLY is a temporary constant while we have a waffle to
+# disable thunderbird and seamonkey support.
+# Since it's evaluated at import time, we can't change APP_USAGE through a
+# waffle, so to support the waffle disabling Thunderbird and Seamonkey support
+# we add a temporary constant that will be used by relevant code in place of
+# APP_USAGE while the waffle is still used. When the waffle is turned on
+# permanently and removed this constant can go away and APP_USAGE can be
+# changed to only (ANDROID, FIREFOX).
+APP_USAGE_FIREFOXES_ONLY = (ANDROID, FIREFOX)
 APP_USAGE_STATICTHEME = (FIREFOX,)
 APPS = {app.short: app for app in APP_USAGE}
 APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}

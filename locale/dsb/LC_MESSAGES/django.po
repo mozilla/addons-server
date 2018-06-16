@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
 "PO-Revision-Date: 2018-06-06 11:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2684,6 +2684,9 @@ msgstr "Samostatny. <span class=\"helptext\">Wašo zapódaśe buźo se ned za sa
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorije njedaju se změniś, mjaztym až se waš dodank pśedstaja."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wót Firefox 53 mógu nowe rozšyrjenja na toś tom sedle jano WebExtensions byś."
 
@@ -4444,28 +4447,33 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrowanje wabjenja a šćit priwatnosći {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Z jadnorym nastajenim kontrolěrujośo wabjenje, kótarež wiźiśo a wašnju, kak wam w interneśe slěduju."
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśemsyliśo rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Maśo wjelgin wjele wócynjonych rejtarkow? Organizěrujśo je w praktiskej bocnicy."
-
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zastajśo slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Pśemsyliśo rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pśemsyliśo rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+#, fuzzy
+msgid "Perform reverse image searches from an array of engines."
 msgstr "Wuwjeźćo slědkpytanja wobrazow z rědom pytnicow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

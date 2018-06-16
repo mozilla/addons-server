@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 13:38+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"PO-Revision-Date: 2018-06-15 02:24+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -190,9 +190,8 @@ msgstr "プライバシーポリシーを表示"
 msgid "View End-User License Agreement"
 msgstr "エンドユーザー使用許諾契約書を表示"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "このアドオンはまだレビューされていません。"
+msgstr "このアドオンはまだ Mozilla による審査を受けていません。"
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "このアドオンは作者によって実験的とされています。"
@@ -2618,6 +2617,9 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
@@ -4348,28 +4350,32 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック＆プライバシーを保護"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
-
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook による追跡を拒否"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
+
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を検索"
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4818,10 +4824,9 @@ msgstr ""
 msgid "I have a question"
 msgstr "質問があります"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"一般的な Firefox のサポートは、<a href=\"%(sumo_url)s\">サポートウェブサイト</a> をご覧ください。一般的なアドオンと Web サイトの質問は、<a href=\"%(forum_url)s\">フォーラム</a> をご覧ください。"
+msgstr "まずは Mozilla の <a href=\"%(sumo_url)s\">サポートサイト</a> を見てみてください。そこで答えが見つからない場合は <a href=\"%(forum_url)s\">フォーラムで質問する</a> こともできます。"
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."

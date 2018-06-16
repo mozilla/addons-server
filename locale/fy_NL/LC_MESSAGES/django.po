@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 09:57+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"PO-Revision-Date: 2018-06-15 07:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -194,9 +194,8 @@ msgstr "Privacybelied besjen"
 msgid "View End-User License Agreement"
 msgstr "Brûksrjochtoerienkomst besjen"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Dizze add-on is noch net beoardiele."
+msgstr "Dizze add-on is net beoardiele troch Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Dizze add-on is troch de ûntwikkelers derfan markearre as eksperiminteel."
@@ -2651,6 +2650,9 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foarsteld wurdt."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Mei yngong fan Firefox 53 kinne nije add-ons op dizze website allinnich WebExtensions wêze."
 
@@ -4407,28 +4409,33 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
 msgstr[1] "{0} warskôgingen"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Mei inkelde ienfâldige ynstellingen kontrolearje jo de advertinsjes dy't oan jo toand wurde en hoe't jo op it ynternet folge wurde."
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Hawwe jo in enoarm oantal iepensteande ljepblêden? Organisearje se yn in lytse sidebalke."
-
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stop folgjen troch Facebook {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolearje jo Facebook-identiteit yn in aparte ‘kontener’ dy't it foar Facebook swierder makket om jo webbesites te folgjen."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sykje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+#, fuzzy
+msgid "Perform reverse image searches from an array of engines."
 msgstr " Omkeard ôfbyldingen sykje mei in oantal sykmasinen."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4883,11 +4890,9 @@ msgstr "Beoardielje add-ons op de website. Add-onskriuwers sille harren add-ons 
 msgid "I have a question"
 msgstr "Ik haw in fraach"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"In goed plak om te starten is ús <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. As jo dêr gjin antwurd fine kinne jo it <a href=\"%(forum_url)s\">op ús foarums "
-"freegje</a>."
+msgstr "In goed plak om te starten is <a href=\"%(sumo_url)s\">Mozilla Support</a>. As jo dêr gjin antwurd fine, kinne jo <a href=\"%(forum_url)s\">in fraach stelle yn ús foarums</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4896,11 +4901,8 @@ msgstr "As jo echt kontakt opnimme wolle mei ien út it Mozilla-team, lês dan �
 msgid "Who works on this website?"
 msgstr "Wa wurket oan dizze website?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"ôfrûne jierren hawwe in protte minsken bydroegen oan dizze website, sawol frijwilligers út de mienskip as in tawijd AMO-team. In list mei wichtige meiwurkers kinne jo fine op ús side mei <a href="
-"\"%(url)s\">Tanksizzingen</a>."
+msgstr "Troch de jierren hinne hawwe in protte minsken oan dizze website meiwurke, wêrûnder sawol frijwilligers út de mienskip as in tawijd AMO-team."
 
 msgid "Sections"
 msgstr "Seksjes"
@@ -6709,7 +6711,7 @@ msgid "Occupation"
 msgstr "Berop"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Jo kinne jo e-mailadres wizigje by Firefox Accounts."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Dizze URL hat in ûnjildige opmaak. Jildige URL’s lykje op http://example.com/myn_side."

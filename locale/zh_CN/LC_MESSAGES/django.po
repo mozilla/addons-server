@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-05-31 07:02+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦石原里美 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"PO-Revision-Date: 2018-06-15 06:56+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -185,9 +185,8 @@ msgstr "查看隐私政策"
 msgid "View End-User License Agreement"
 msgstr "查看最终用户许可协议"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "此附加组件还没有评价呢。"
+msgstr "此附加组件尚未经过 Mozilla 审核。"
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "此附加组件已被其开发者标为实验性。"
@@ -2588,6 +2587,9 @@ msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签�
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "您的附加组件列入精选时，不能更改分类。"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
 
@@ -4291,28 +4293,33 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告并保护隐私 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "简单安装后，您就能控制所看到的广告、限制您在互联网上被跟踪的情况。"
-
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "您是否有一大堆打开的标签页？试试在整齐的侧栏中进行管理。"
-
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "拒绝 Facebook 跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "重塑标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "搜索图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+#, fuzzy
+msgid "Perform reverse image searches from an array of engines."
 msgstr "使用多组搜索引擎以图搜图。"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4759,9 +4766,9 @@ msgstr "为本站的附加组件评分。让附加组件的作者知道人们欣
 msgid "I have a question"
 msgstr "我有个问题"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr "你可以从我们的<a href=\"%(faq_url)s\"><abbr title=\"最常被问到问题\">常见问题</abbr></a>入手。如果你还是没能找到答案，可以到<a href=\"%(forum_url)s\">我们的论坛问问</a>。"
+msgstr "您可以从我们的<a href=\"%(sumo_url)s\">用户支持网站</a>入手。如果您还是没能找到答案，可以到<a href=\"%(forum_url)s\">我们的论坛问问</a>。"
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4770,9 +4777,8 @@ msgstr "如果你真的需要联系 Mozilla 团队中的某人，请查阅我们
 msgid "Who works on this website?"
 msgstr "这个网站是谁的作品？"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr "多年以来，有很多人对本站作出过贡献，包括社区志愿者和一个专门的 AMO 团队。显著贡献者的名单可在我们的<a href=\"%(url)s\">网站贡献</a>页面找到。"
+msgstr "多年以来，有很多人对本站作出过贡献，包括社区志愿者和一个专门的 AMO 团队。"
 
 msgid "Sections"
 msgstr "章节"
@@ -6540,7 +6546,7 @@ msgid "Occupation"
 msgstr "职业"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "您可以到“Firefox 账户”更改电子邮件地址。"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "网址格式无效。有效的网址看上去应该类似于 http://example.com/my_page。"

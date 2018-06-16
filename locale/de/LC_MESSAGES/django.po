@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 17:53+0000\n"
+"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"PO-Revision-Date: 2018-06-15 19:52+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2652,6 +2652,11 @@ msgstr "Selbstständig. <span class=\"helptext\">Ihre Einreichung wird direkt zu
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorien können nicht geändert werden, während Ihr Add-on vorgestellt wird."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+"Add-ons für Thunderbird und SeaMonkey werden jetzt unter addons.thunderbird.net aufgeführt und gewartet. Sie können dasselbe Benutzerkonto verwenden, um Ihre Add-ons auf der neuen Website zu "
+"aktualisieren."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Ab Firefox 53 können neue Add-ons auf dieser Website nur WebExtensions sein."
 
@@ -4411,28 +4416,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren von Werbung & Datenschutz {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppen Sie heimliche Verfolger {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Kontrollieren Sie ganz einfach die Werbung, die Sie sehen und wie Sie im Internet verfolgt werden."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr " Blockieren Sie unsichtbare Verfolger und Werbung, die Sie beobachtet und im Netz verfolgt."
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Denken Sie Tabs neu {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Anpassung von Neuer-Tab-Seiten {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Haben Sie tonnenweise offene Tabs? Organisieren Sie sie in einer praktischen Seitenleiste."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "Genießen Sie eine schöne neue Seite mit anpassbaren Hintergründen, lokalen Wetterinfos und mehr."
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppen Sie die Facebook-Verfolgung {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Einfaches Übersetzen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolieren Sie Ihre Facebook-identität in einem separaten „Container“ der es Facebook erschwert, Ihre Aktivitäten im Internet zu verfolgen."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Text hervorheben, rechtsklicken und direkt übersetzen."
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Suchen Sie Bilder {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr "Bilder-Rückwärtssuche mit einer Reihe von Suchmaschinen."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
