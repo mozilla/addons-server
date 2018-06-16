@@ -3,13 +3,6 @@
 
 {% block bodyclass %}collections s-{{ sorting }}{% endblock %}
 
-{% set feed_url = url('collections.rss')|urlparams(sort=sorting) %}
-
-{% block rss_feed %}
- <link rel="alternate" type="application/rss+xml" title="RSS"
-       href="{{ feed_url }}">
-{% endblock %}
-
 {% block content %}
   <section class="secondary">
     {% include "bandwagon/impala/collection_sidebar.html" %}

@@ -1522,6 +1522,9 @@ ES_MAX_RESULT_WINDOW = 25000
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
 
+# Special collection that some contributors can modify.
+COLLECTION_FEATURED_THEMES_ID = 2143965
+
 # If this is False, tasks and other jobs that send non-critical emails should
 # use a fake email backend.
 SEND_REAL_EMAIL = False

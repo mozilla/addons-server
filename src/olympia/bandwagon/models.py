@@ -79,12 +79,9 @@ class CollectionManager(UncachedManagerBase):
         """Return public collections only."""
         return self.filter(listed=True)
 
-    def publishable_by(self, user):
-        """Collections that are publishable by a user."""
-        owned_by = models.Q(author=user.id)
-        publishable_by = models.Q(users=user.id)
-        collections = self.filter(owned_by | publishable_by)
-        return collections.distinct().order_by('name__localized_string')
+    def owned_by(self, user):
+        """Collections authored by a user."""
+        return self.filter(author=user.pk)
 
 
 class Collection(UncachedModelBase):
@@ -130,8 +127,6 @@ class Collection(UncachedModelBase):
                                     related_name='collections')
     author = models.ForeignKey(UserProfile, null=True,
                                related_name='collections')
-    users = models.ManyToManyField(UserProfile, through='CollectionUser',
-                                   related_name='collections_publishable')
 
     objects = CollectionManager()
 
@@ -210,10 +205,6 @@ class Collection(UncachedModelBase):
 
     def share_url(self):
         return reverse('collections.share',
-                       args=[self.author_username, self.slug])
-
-    def feed_url(self):
-        return reverse('collections.detail.rss',
                        args=[self.author_username, self.slug])
 
     def stats_url(self):
@@ -320,17 +311,14 @@ class Collection(UncachedModelBase):
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):
-        return (user.id == self.author_id)
+        return user.id == self.author_id
 
     def can_view_stats(self, request):
         if request and request.user:
-            return (self.publishable_by(request.user) or
+            return (self.owned_by(request.user) or
                     acl.action_allowed(request,
                                        amo.permissions.COLLECTION_STATS_VIEW))
         return False
-
-    def publishable_by(self, user):
-        return bool(self.owned_by(user) or self.users.filter(pk=user.id))
 
     def is_public(self):
         return self.listed
@@ -445,16 +433,6 @@ models.signals.post_save.connect(CollectionWatcher.post_save_or_delete,
                                  sender=CollectionWatcher)
 models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
                                    sender=CollectionWatcher)
-
-
-class CollectionUser(models.Model):
-    collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(UserProfile)
-    # role is unused & will be dropped in #6496 when collections are simplified
-    role = models.SmallIntegerField(default=1)
-
-    class Meta:
-        db_table = 'collections_users'
 
 
 class CollectionVote(models.Model):

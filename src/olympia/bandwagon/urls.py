@@ -2,15 +2,13 @@ from django.conf.urls import include, url
 
 from olympia.stats.urls import collection_stats_urls
 
-from . import feeds, views
+from . import views
 
 
 edit_urls = [
     url('^$', views.edit, name='collections.edit'),
     url('^addons$', views.edit_addons, name='collections.edit_addons'),
     url('^privacy$', views.edit_privacy, name='collections.edit_privacy'),
-    url('^contributors$', views.edit_contributors,
-        name='collections.edit_contributors'),
 ]
 
 detail_urls = [
@@ -25,8 +23,6 @@ detail_urls = [
     url('^(?P<action>add|remove)$', views.collection_alter,
         name='collections.alter'),
     url('^watch$', views.watch, name='collections.watch'),
-    url('^format:rss$', feeds.CollectionDetailFeed(),
-        name='collections.detail.rss'),
 ]
 
 ajax_urls = [
@@ -60,7 +56,4 @@ urlpatterns = [
         include(collection_stats_urls)),
     url('^collections/add$', views.add, name='collections.add'),
     url('^collections/ajax/', include(ajax_urls)),
-
-    url('^collections/format:rss$', feeds.CollectionFeed(),
-        name='collections.rss'),
 ]

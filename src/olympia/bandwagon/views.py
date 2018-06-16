@@ -104,30 +104,10 @@ def legacy_directory_redirects(request, page):
 
 
 class CollectionFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('followers', _lazy(u'Most Followers')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('popular', _lazy(u'Recently Popular')))
+    opts = (('featured', _lazy(u'Featured')),)
 
     def filter_featured(self):
         return self.base_queryset.filter(type=amo.COLLECTION_FEATURED)
-
-    def filter_followers(self):
-        return self.base_queryset.order_by('-subscribers')
-
-    def filter_popular(self):
-        return self.base_queryset.order_by('-weekly_subscribers')
-
-    def filter_updated(self):
-        return self.base_queryset.order_by('-modified')
-
-    def filter_created(self):
-        return self.base_queryset.order_by('-created')
-
-    def filter_name(self):
-        return order_by_translation(self.base_queryset, 'name')
 
 
 def get_filter(request, base=None):
@@ -223,9 +203,6 @@ def collection_detail(request, username, slug):
             return redirect_for_login(request)
         if not acl.check_collection_ownership(request, collection):
             raise PermissionDenied
-
-    if request.GET.get('format') == 'rss':
-        return http.HttpResponsePermanentRedirect(collection.feed_url())
 
     base = Addon.objects.valid() & collection.addons.all()
     filter = CollectionAddonFilter(request, base,
@@ -398,13 +375,10 @@ def ajax_list(request):
     except (KeyError, ValueError):
         return http.HttpResponseBadRequest()
 
-    collections = (
-        Collection.objects
-        .publishable_by(request.user)
-        .with_has_addon(addon_id))
+    qs = Collection.objects.owned_by(request.user).with_has_addon(addon_id)
 
     return render(request, 'bandwagon/ajax_list.html',
-                  {'collections': collections})
+                  {'collections': order_by_translation(qs, 'name')})
 
 
 @write
@@ -482,15 +456,6 @@ def edit(request, collection, username, slug):
     addons = collection.addons.all()
     comments = next(get_notes(collection, raw=True))
 
-    if is_admin:
-        initial = {
-            'type': collection.type,
-            'application': collection.application
-        }
-        admin_form = forms.AdminForm(initial=initial)
-    else:
-        admin_form = None
-
     data = {
         'collection': collection,
         'form': form,
@@ -499,7 +464,6 @@ def edit(request, collection, username, slug):
         'meta': meta,
         'filter': get_filter(request),
         'is_admin': is_admin,
-        'admin_form': admin_form,
         'addons': addons,
         'comments': comments
     }
@@ -520,29 +484,6 @@ def edit_addons(request, collection, username, slug):
                      (request.user, collection.id))
 
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
-
-
-@write
-@login_required
-@owner_required
-@post_required
-def edit_contributors(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, amo.permissions.COLLECTIONS_EDIT)
-
-    if is_admin:
-        admin_form = forms.AdminForm(request.POST)
-        if admin_form.is_valid():
-            admin_form.save(collection)
-
-    form = forms.ContributorsForm(request.POST)
-
-    if form.is_valid():
-        form.save(collection)
-        collection_message(request, collection, 'update')
-        if form.cleaned_data['new_owner']:
-            return http.HttpResponseRedirect(collection.get_url_path())
-
-    return http.HttpResponseRedirect(collection.edit_url() + '#users-edit')
 
 
 @write
@@ -656,8 +597,9 @@ class CollectionViewSet(ModelViewSet):
         AnyOf(
             # Collection authors can do everything.
             AllowCollectionAuthor,
-            # Collection contributors can access an existing collection, and
-            # change it's addons, but can't delete or edit it's details.
+            # Collection contributors can access the featured themes collection
+            # (it's community-managed) and change it's addons, but can't delete
+            # or edit it's details.
             AllOf(AllowCollectionContributor,
                   PreventActionPermission(['create', 'list', 'update',
                                            'destroy', 'partial_update'])),

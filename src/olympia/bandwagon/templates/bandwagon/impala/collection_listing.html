@@ -1,44 +1,26 @@
 {% extends "bandwagon/impala/base_collection.html" %}
 
 {% set url_base = url('collections.list') %}
-{% if sort %}
-  {% set title = {'featured': _('Featured Collections'),
-                  'followers': _('Most-Followed Collections'),
-                  'created': _('Newest Collections'),
-                  'name': _('Collections by Name'),
-                  'updated': _('Recently Updated Collections'),
-                  'popular': _('Recently Popular Collections')}.get(sorting) %}
-{% else %}
-  {% set title = _('Collections') %}
-{% endif %}
+{% set title = _('Collections') %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block primary %}
 <section class="primary">
-  {% if sort %}
+  <masthead class="hero" id="collections-landing">
     <h1>{{ title }}</h1>
-  {% else %}
-    <masthead class="hero" id="collections-landing">
-      <h1>{{ title }}</h1>
-      <p>
-        {% trans url=url('collections.add') %}
-          Collections are groups of related add-ons that anyone can create and
-          share. Explore collections created by other users or
-          <a href="{{ url }}">create your own</a>.
-        {% endtrans %}
-      </p>
-    </masthead>
-  {% endif %}
+    <p>
+      {% trans url=url('collections.add') %}
+        Collections are groups of related add-ons that anyone can create and
+        share. Explore collections created by other users or
+        <a href="{{ url }}">create your own</a>.
+      {% endtrans %}
+    </p>
+  </masthead>
   <div class="island hero c listing">
-    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
     <div class="items">
       {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     </div>
-    {% if sorting != 'featured' %}
-      {{ collections|impala_paginator }}
-    {% endif %}
   </div>
 </section>
 {% endblock %}
