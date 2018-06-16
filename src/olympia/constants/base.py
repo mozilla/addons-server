@@ -233,8 +233,8 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 _size_tuple = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes
 ADDON_PREVIEW_SIZES = {
-    'thumb': _size_tuple(200, 150),
-    'full': _size_tuple(700, 525)
+    'thumb': _size_tuple(320, 200),
+    'full': _size_tuple(1280, 800)
 }
 
 # Static theme preview sizes
