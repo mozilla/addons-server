@@ -87,12 +87,12 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse('discovery-list')
 
         self.addons = get_dummy_addons()
 
     def test_reverse(self):
-        assert self.url == '/api/v3/discovery/'
+        assert self.url == '/api/v4/discovery/'
 
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
@@ -214,7 +214,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse('discovery-list')
 
     def test_recommendations(self):
         author = user_factory()

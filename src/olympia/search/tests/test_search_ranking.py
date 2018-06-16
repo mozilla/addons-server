@@ -11,7 +11,7 @@ class TestRankingScenarios(ESTestCase):
 
     def _check_scenario(self, query, expected, no_match=None):
         # Make sure things are properly flushed and searchable
-        url = reverse('v3:addon-search')
+        url = reverse('addon-search')
 
         response = self.client.get(url, {'q': query})
         assert response.status_code == 200

@@ -477,7 +477,7 @@ class TestVersion(TestCase):
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
         api_url = absolutify(drf_reverse(
-            'v4:version-reviewnotes-list',
+            'version-reviewnotes-list',
             args=[self.addon.id, self.version.id]))
         assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2

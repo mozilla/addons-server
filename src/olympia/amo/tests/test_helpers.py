@@ -7,7 +7,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
@@ -169,11 +169,13 @@ def test_drf_url():
     rendered = render(fragment, context={'request': request})
     # As no /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
     assert rendered == jinja_helpers.absolutify(
-        reverse('v4:addon-detail', args=['a3615'], add_prefix=False))
+        reverse('addon-detail', args=['a3615'], add_prefix=False))
 
-    with pytest.raises(NoReverseMatch):
-        # Without a request it can't resolve the name correctly.
-        render(fragment, context={})
+    # And if no request is available then the url name with a prefix
+    # (i.e. the default) is used.
+    render(fragment, context={})
+    assert rendered == jinja_helpers.absolutify(
+        reverse('addon-detail', args=['a3615'], add_prefix=False))
 
 
 def test_urlparams():

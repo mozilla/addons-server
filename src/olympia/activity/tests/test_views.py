@@ -168,7 +168,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         assert result['highlight']  # Its the first reply so highlight
 
     def _set_tested_url(self, pk=None, version_pk=None, addon_pk=None):
-        self.url = reverse('v3:version-reviewnotes-detail', kwargs={
+        self.url = reverse('version-reviewnotes-detail', kwargs={
             'addon_pk': addon_pk or self.addon.pk,
             'version_pk': version_pk or self.version.pk,
             'pk': pk or self.note.pk})
@@ -219,7 +219,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         assert not result_version['highlight']  # The dev replied so read it.
 
     def _set_tested_url(self, pk=None, version_pk=None, addon_pk=None):
-        self.url = reverse('v3:version-reviewnotes-list', kwargs={
+        self.url = reverse('version-reviewnotes-list', kwargs={
             'addon_pk': addon_pk or self.addon.pk,
             'version_pk': version_pk or self.version.pk})
 
@@ -240,7 +240,7 @@ class TestReviewNotesViewSetCreate(TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
-        self.url = reverse('v3:version-reviewnotes-list', kwargs={
+        self.url = reverse('version-reviewnotes-list', kwargs={
             'addon_pk': self.addon.pk,
             'version_pk': self.version.pk})
 
@@ -354,7 +354,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self.client.login_api(self.user)
 
         # First check we can reply to new version
-        new_url = reverse('v3:version-reviewnotes-list', kwargs={
+        new_url = reverse('version-reviewnotes-list', kwargs={
             'addon_pk': self.addon.pk,
             'version_pk': new_version.pk})
         response = self.client.post(
@@ -388,7 +388,7 @@ class TestEmailApi(TestCase):
 
     def get_request(self, data):
         datastr = json.dumps(data)
-        req = req_factory_factory(reverse('v3:inbound-email-api'), post=True)
+        req = req_factory_factory(reverse('inbound-email-api'), post=True)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
@@ -397,7 +397,7 @@ class TestEmailApi(TestCase):
 
     def get_validation_request(self, data):
         req = req_factory_factory(
-            url=reverse('v3:inbound-email-api'), post=True, data=data)
+            url=reverse('inbound-email-api'), post=True, data=data)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         return req
 
