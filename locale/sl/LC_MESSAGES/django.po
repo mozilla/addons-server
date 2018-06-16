@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-16 12:49+0000\n"
+"PO-Revision-Date: 2018-06-16 13:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4492,20 +4492,17 @@ msgstr "Prilagodite strani novega zavihka {start_sub_heading}z {addon_name}{end_
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ponovno odkrijte zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprosto prevajanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Iščite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Perform reverse image searches from an array of engines."
-msgstr " Obrnjeno iskanje slik z naborom iskalnikov."
+msgstr "Obrnjeno iskanje slik z naborom iskalnikov."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
