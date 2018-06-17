@@ -15,7 +15,7 @@ import scandir
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
 from xml.dom import minidom
-from zipfile import BadZipfile, ZipFile
+from zipfile import ZipFile
 
 from django import forms
 from django.conf import settings
