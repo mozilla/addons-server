@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-17 11:49+0000\n"
+"PO-Revision-Date: 2018-06-17 11:50+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4484,7 +4484,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Bloquea rastreadores que te espían furtivamente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr " Bloquea rastreadores invisibles y anuncios que te espían y te siguen por toda la web."
 
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Personaliza las páginas Nueva pestaña {start_sub_heading}con {addon_name}{end_sub_heading}"
