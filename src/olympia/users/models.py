@@ -26,7 +26,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -563,7 +563,7 @@ class DeniedName(ModelBase):
         def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = cached(fetch_names, 'denied-name:blocked')
+        blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
 
 
