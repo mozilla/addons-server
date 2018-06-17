@@ -5,7 +5,7 @@ import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 from .models import GroupedRating, Rating
 
@@ -23,7 +23,7 @@ def update_denorm(*pairs, **kw):
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
     for addon, user in pairs:
-        reviews = list(Rating.without_replies.all().no_cache()
+        reviews = list(Rating.without_replies.all()
                        .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
@@ -48,14 +48,14 @@ def addon_rating_aggregates(addons, **kw):
     # The following returns something like
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
-    qs = (Rating.without_replies.all().no_cache()
+    qs = (Rating.without_replies.all()
           .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
     stats = {x['addon']: (x['rating'], x['count']) for x in qs}
 
-    text_qs = (Rating.without_replies.all().no_cache()
+    text_qs = (Rating.without_replies.all()
                .filter(addon__in=addons, is_latest=True)
                .exclude(body=None)
                .values('addon')  # Group by addon id.
@@ -84,14 +84,14 @@ def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
 
-    avg = cached(addon_aggregates, 'task.bayes.avg', 60 * 60 * 60)
+    avg = cache_get_or_set('task.bayes.avg', addon_aggregates, 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return
 
     mc = avg['reviews'] * avg['rating']
 
-    for addon in Addon.objects.no_cache().filter(id__in=addons):
+    for addon in Addon.objects.filter(id__in=addons):
         if addon.average_rating is None:
             # Ignoring addons with no average rating.
             continue

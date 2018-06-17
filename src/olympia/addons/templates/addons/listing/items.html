@@ -1,6 +1,5 @@
 {% from "addons/listing/macros.html" import heading, item_info %}
 {% set collection = collection or None %}
-{% set collection_cache_key = collection.cache_key if collection else 'collection-none' %}
 {% set userpk = request.user.pk if request.user.is_authenticated() else '' %}
 {% for addon in addons %}
   <div class="item">

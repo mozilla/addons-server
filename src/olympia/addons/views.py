@@ -46,7 +46,7 @@ from olympia.search.filters import (
     SearchParameterFilter, SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
@@ -144,7 +144,7 @@ def _category_personas(qs, limit):
     def fetch_personas():
         return randslice(qs, limit=limit)
     key = 'cat-personas:' + qs.query_key()
-    return cached(fetch_personas, key)
+    return cache_get_or_set(key, fetch_personas)
 
 
 @non_atomic_requests
@@ -451,9 +451,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):
-        """Return queryset to be used for the view. We implement our own that
-        does not depend on self.queryset to avoid cache-machine caching the
-        queryset too agressively (mozilla/addons-frontend#2497)."""
+        """Return queryset to be used for the view."""
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
@@ -878,7 +876,6 @@ class LanguageToolsView(ListAPIView):
     def get_queryset_base(self, application, addon_types):
         return (
             Addon.objects.public()
-                 .no_cache()
                  .filter(appsupport__app=application, type__in=addon_types,
                          target_locale__isnull=False)
                  .exclude(target_locale='')
@@ -908,7 +905,7 @@ class LanguageToolsView(ListAPIView):
         # can avoid loading translations by removing transforms and then
         # re-applying the default one that takes care of the files and compat
         # info.
-        versions_qs = Version.objects.no_cache().filter(
+        versions_qs = Version.objects.filter(
             apps__application=application,
             apps__min__version_int__lte=appversions['min'],
             apps__max__version_int__gte=appversions['max'],

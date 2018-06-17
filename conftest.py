@@ -3,7 +3,6 @@ from django.core.cache import caches
 from django.utils import translation
 
 import responses
-import caching
 import pytest
 
 from multidb import pinning
@@ -111,9 +110,6 @@ def default_prefixer(settings):
 def test_pre_setup(request, tmpdir, settings):
     caches['default'].clear()
     caches['filesystem'].clear()
-    # Override django-cache-machine caching.base.TIMEOUT because it's
-    # computed too early, before settings_test.py is imported.
-    caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
 
     translation.trans_real.deactivate()
     # Django fails to clear this cache.

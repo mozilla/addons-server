@@ -45,9 +45,6 @@ loggers = {
         'level': 'ERROR',
         'propagate': True,
     },
-    'caching': {
-        'level': 'ERROR',
-    },
     'django.request': {
         'handlers': ['statsd'],
         'level': 'ERROR',

@@ -21,10 +21,10 @@ class TestGlobalStats(TestCase):
         date = datetime.date(2009, 6, 1)
         job = 'addon_total_downloads'
 
-        assert GlobalStat.objects.no_cache().filter(
+        assert GlobalStat.objects.filter(
             date=date, name=job).count() == 0
         tasks.update_global_totals(job, date)
-        assert len(GlobalStat.objects.no_cache().filter(
+        assert len(GlobalStat.objects.filter(
             date=date, name=job)) == 1
 
     def test_count_stats_for_date(self):
@@ -45,14 +45,14 @@ class TestGlobalStats(TestCase):
         date = datetime.date.today()
         job = 'addon_count_new'
         tasks.update_global_totals(job, date)
-        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        global_stat = GlobalStat.objects.get(date=date, name=job)
         assert global_stat.count == 1
 
         # Should still work if the date is passed as a datetime string (what
         # celery serialization does).
         job = 'version_count_new'
         tasks.update_global_totals(job, datetime.datetime.now().isoformat())
-        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        global_stat = GlobalStat.objects.get(date=date, name=job)
         assert global_stat.count == 1
 
     def test_through_cron(self):
@@ -78,13 +78,11 @@ class TestGlobalStats(TestCase):
         cron.update_global_totals()
 
         job = 'addon_count_new'
-        global_stat = GlobalStat.objects.no_cache().get(
-            date=yesterday, name=job)
+        global_stat = GlobalStat.objects.get(date=yesterday, name=job)
         assert global_stat.count == 1
 
         job = 'version_count_new'
-        global_stat = GlobalStat.objects.no_cache().get(
-            date=yesterday, name=job)
+        global_stat = GlobalStat.objects.get(date=yesterday, name=job)
         assert global_stat.count == 1
 
     def test_input(self):

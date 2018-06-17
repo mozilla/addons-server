@@ -1167,7 +1167,7 @@ class TestCollectionDetailFeed(TestCase):
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('olympia.amo.models.UncachedModelBase.update')
+    @patch('olympia.amo.models.ModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
