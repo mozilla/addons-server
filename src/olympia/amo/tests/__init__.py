@@ -28,6 +28,8 @@ from django.utils.importlib import import_module
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
+from rest_framework.reverse import reverse as drf_reverse
+from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.test import APIClient
 from waffle.models import Flag, Sample, Switch
@@ -1075,3 +1077,13 @@ def prefix_indexes(config):
 
     settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
     settings.KEY_PREFIX = settings.CACHE_PREFIX
+
+
+def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
+    api_version = api_version or settings.REST_FRAMEWORK['DEFAULT_VERSION']
+    request = req_factory_factory('/api/%s/' % api_version)
+    request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+    request.version = api_version
+    return drf_reverse(
+        viewname, args=args or [], kwargs=kwargs or {}, request=request,
+        **extra)

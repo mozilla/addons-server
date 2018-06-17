@@ -2,8 +2,7 @@
 import json
 
 from olympia import amo
-from olympia.amo.tests import APITestClient, ESTestCase
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
 
 
 class TestRankingScenarios(ESTestCase):
@@ -11,7 +10,7 @@ class TestRankingScenarios(ESTestCase):
 
     def _check_scenario(self, query, expected, no_match=None):
         # Make sure things are properly flushed and searchable
-        url = reverse('v3:addon-search')
+        url = reverse_ns('addon-search')
 
         response = self.client.get(url, {'q': query})
         assert response.status_code == 200

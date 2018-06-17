@@ -3,12 +3,13 @@ from collections import OrderedDict
 
 import mock
 
+from django.conf import settings
+
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.discovery.data import DiscoItem, discopane_items as disco_data
 from olympia.discovery.utils import replace_extensions
 
@@ -87,12 +88,13 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse_ns('discovery-list')
 
         self.addons = get_dummy_addons()
 
     def test_reverse(self):
-        assert self.url == '/api/v3/discovery/'
+        assert self.url.endswith(
+            '/api/%s/discovery/' % settings.REST_FRAMEWORK['DEFAULT_VERSION'])
 
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
@@ -214,7 +216,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse_ns('discovery-list')
 
     def test_recommendations(self):
         author = user_factory()
