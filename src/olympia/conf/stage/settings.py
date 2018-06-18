@@ -43,8 +43,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.allizom.org')
 
-MOZLOG_NAME = "http_app_addons_stage"
-
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'

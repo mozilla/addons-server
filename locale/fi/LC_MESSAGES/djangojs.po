@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-04-02 20:03+0000\n"
-"Last-Translator: Jarmo <jarmo@juslin.me>\n"
+"PO-Revision-Date: 2018-06-14 18:26+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -57,8 +57,8 @@ msgstr[1] ""
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;ja {0} lisää"
+msgstr[1] "&hellip;ja {0} lisää"
 
 msgid "See full validation report"
 msgstr ""
@@ -67,10 +67,10 @@ msgid "Validating {0}"
 msgstr "Vahvistetaan {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Lisäosasi ylittää enimmäiskoon {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Vastaanotettiin tyhjä vastaus palvelimelta; tila: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr ""
@@ -135,7 +135,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Siirtämääsi tidostotyyppiä ei tunnisteta."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Tiedostosi ylittää enimmäiskoon {0}."
 
 msgid "You cancelled the upload."
 msgstr "Keskeytit siirtämisen."
@@ -144,7 +144,7 @@ msgid "Images must be either PNG or JPG."
 msgstr "Kuvien on oltava joko PNG tai JPG-muodossa."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoiden tulee olla WebM-muodossa."
 
 msgid "Follow this Collection"
 msgstr "Seuraa tätä kokoelmaa"
@@ -193,7 +193,7 @@ msgid "Marked for deletion"
 msgstr "Merkitty poistettavaksi"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Päivitetään tuloksia&hellip;"
 
 msgid "Category"
 msgstr "Luokka"
@@ -338,13 +338,13 @@ msgid "Others By Author"
 msgstr ""
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Riippuvuudet"
 
 msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Tapaa kehittäjä"
 
 msgid "User Profile"
 msgstr "Käyttäjäprofiili"
@@ -404,7 +404,7 @@ msgid "Average Contribution"
 msgstr ""
 
 msgid "Usage"
-msgstr ""
+msgstr "Käyttö"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -685,7 +685,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "Lisätään suosikkeihin &hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Poistetaan suosikki&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Lisää suosikkeihin"
@@ -730,7 +730,7 @@ msgid "Stop following"
 msgstr "Lopeta seuraaminen"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Selaimesi ei tue video-tagia"
 
 msgid "Changes Saved"
 msgstr "Muutokset tallennettiin"
@@ -755,7 +755,7 @@ msgid "Image changes being processed"
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "Tuloksia ei löytynyt."
 
 msgid "Loading..."
 msgstr "Ladataan..."
@@ -785,7 +785,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Ladataan&hellip;"
 
 msgid "Version Notes"
 msgstr ""
@@ -836,13 +836,13 @@ msgid "Status"
 msgstr "Tila"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Kaikki testit läpäistiin onnistuneesti."
 
 msgid "These tests were not run."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "Testit"
 
 msgid "Error"
 msgstr "Virhe"
@@ -857,7 +857,7 @@ msgid "{0} line {1}"
 msgstr ""
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Yhteensopivuustestit"
 
 msgid "Add-on failed validation."
 msgstr ""

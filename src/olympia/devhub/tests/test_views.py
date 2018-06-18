@@ -1251,9 +1251,32 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
-        print(response.content)
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
+
+    def test_legacy_langpacks_allowed_by_default(self):
+        self.upload_file(
+            '../../../files/fixtures/files/langpack.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        msgid = [u'validation', u'messages', u'legacy_langpacks_disallowed']
+        assert not any(
+            message['id'] == msgid
+            for message in data['validation']['messages'])
+
+    @override_switch('disallow-legacy-langpacks', active=True)
+    def test_legacy_langpacks_disallowed(self):
+        self.upload_file(
+            '../../../files/fixtures/files/langpack.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'][0]['id'] == [
+            u'validation', u'messages', u'legacy_langpacks_disallowed'
+        ]
 
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -1492,7 +1515,7 @@ class TestRedirects(TestCase):
         url = reverse('devhub.themes.submit')
         response = self.client.get(url, follow=True)
         self.assert3xx(
-            response, reverse('devhub.submit.distribution'), 301)
+            response, reverse('devhub.submit.distribution'), 302)
 
     @override_switch('disable-lwt-uploads', active=False)
     def test_lwt_submit_no_redirect_when_waffle_offf(self):
