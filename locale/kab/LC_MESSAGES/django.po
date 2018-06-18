@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-18 18:18+0000\n"
+"PO-Revision-Date: 2018-06-18 21:38+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3581,7 +3581,7 @@ msgid "Select a header image for your theme"
 msgstr "Fren tugna n uqeṛṛu i usentel-ik."
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Awrir n tugna yessef ad yili 200 n ipiksilen"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG neɣ GIF (ur ttḥerriken ara)"
@@ -3602,34 +3602,34 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Aḍris akked tignitin n uqerru"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Agilal n ufeggag n yifecka"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Aḍris akked tignitin n ufeggag n yifecka"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Agilal n wurtan n ufeggag n yifecka"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Ini n ugilal i wurtan deg ufeggag n yifecka, am ufeggag n tensa. Urti n umeskan:   toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Aḍris n wurtan n ufeggag n  yifecka"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Ini n uḍris n wurtan deg ufeggag n yifecka, am ufeggag n tensa. Urti n umeskan:   toolbar_field_text."
 
 msgid "optional"
 msgstr "afrayan"
@@ -3684,7 +3684,7 @@ msgid "Invisible"
 msgstr "Aruman"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Ma ulac aɣilif, kemmel azegrir-ik s tmerna n lqem neɣ iɣefiseka ixuṣṣen."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
