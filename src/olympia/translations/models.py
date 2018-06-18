@@ -252,7 +252,7 @@ class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
 
 class TranslationSequence(models.Model):
     """
-    The translations_seq table, so syncdb will create it during testing.
+    The translations_seq table, so migrations will create it during testing.
     """
     id = models.IntegerField(primary_key=True)
 
