@@ -16,28 +16,16 @@ production, we're piping everything into ``mozlog``.
 Configuration
 -------------
 
-The root logger is set up from ``log_settings_base.py`` in the
-``src/olympia/lib`` of addons-server. It sets up sensible defaults, but you can
-twiddle with these settings:
+The root logger is set up from ``settings_base`` in the ``src/olympia/lib``
+of addons-server. It sets up sensible defaults, but you can tweak them to your liking::
 
-``LOG_LEVEL``
-    This setting is required, and defaults to ``logging.DEBUG``, which will let
-    just about anything pass through.  To reconfigure, import logging in your
-    settings file and pick a different level::
-
-        import logging
-        LOG_LEVEL = logging.WARN
-
-``USE_MOZLOG``
-    Set this to ``True`` if you want logging sent to the console using mozlog
-    format.
+``Log level``
+    There is no unified log level, instead every logger has it's own log level
+    because it depends on the context they're used in.
 
 ``LOGGING``
-    See PEP 391 and log_settings.py for formatting help.  Each section of LOGGING
-    will get merged into the corresponding section of log_settings.py.
-    Handlers and log levels are set up automatically based on LOG_LEVEL and DEBUG
-    unless you set them here.  Messages will not propagate through a logger unless
-    propagate: True is set.
+    See PEP 391 for formatting help. Messages will not propagate through a
+    logger unless ``propagate: True`` is set.
 
     ::
 
@@ -47,8 +35,7 @@ twiddle with these settings:
             },
         }
 
-    If you want to add more to this in ``local_settings.py``, do something like
-    this::
+    If you want to add more to this do something like this::
 
         LOGGING['loggers'].update({
             'z.paypal': {

@@ -36,9 +36,6 @@ CACHES = {
     }
 }
 
-# For local development, we don't need mozlog loggers.
-USE_MOZLOG = False
-
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
