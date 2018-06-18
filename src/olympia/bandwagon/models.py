@@ -342,26 +342,21 @@ class Collection(UncachedModelBase):
         if kwargs.get('raw'):
             return
         tasks.collection_meta.delay(instance.id)
-        tasks.index_collections.delay([instance.id])
         if instance.is_featured():
             Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
-        from . import tasks
         if kwargs.get('raw'):
             return
-        tasks.unindex_collections.delay([instance.id])
         if instance.is_featured():
             Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def update_featured_status(sender, instance, **kwargs):
-        from olympia.addons.tasks import index_addons
         addons = [addon.id for addon in instance.addons.all()]
         if addons:
             clear_get_featured_ids_cache(None, None)
-            index_addons.delay(addons)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):

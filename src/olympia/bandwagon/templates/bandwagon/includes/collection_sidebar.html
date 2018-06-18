@@ -1,13 +1,5 @@
 <div class="other-categories highlight">
   <h3><a href="{{ url('collections.list') }}">{{ _('Collections') }}</a></h3>
-  <ul>
-    {% set base_url = url('collections.list') %}
-    {% for key, title in filter.opts %}
-      <li id="p-{{ key }}">
-        <a href="{{ base_url|urlparams(sort=key) }}">{{ title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
   {% if request.user.is_authenticated() %}
     <ul>
       <li id="p-following">

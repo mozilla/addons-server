@@ -138,20 +138,6 @@
   </div>
 {% endif %}
 
-{% if author_collections %}
-  <div>
-    <h3>{{ _('More by this User') }}</h3>
-    <ul class="addon-collections">
-    {% for ac in author_collections %}
-      <li><a class="collectionitem" href="{{ ac.get_url_path() }}">
-        {{ ac.name }}</a></li>
-    {% endfor %}
-    </ul>
-    <a class="more-info n" href="{{ url('collections.user', c.author.username) }}">
-      {{ _('See all collections by this user') }}</a>
-  </div>
-{% endif %}
-
 </div> {# secondary #}
 
 {% endblock %}

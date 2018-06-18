@@ -1127,8 +1127,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
