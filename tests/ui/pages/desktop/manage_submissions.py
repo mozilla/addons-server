@@ -1,6 +1,5 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
-from olympia.files.tests.test_file_viewer import get_file
 
 from pages.desktop.base import Base
 
@@ -12,7 +11,9 @@ class ManageSubmissions(Base):
     _addon_submissions_locator = (By.CLASS_NAME, "addon")
 
     def wait_for_page_to_load(self):
-        self.wait.until(lambda _: self.is_element_displayed(*self._page_title_locator))
+        self.wait.until(
+            lambda _: self.is_element_displayed(*self._page_title_locator)
+        )
         return self
 
     @property

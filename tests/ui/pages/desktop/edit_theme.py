@@ -1,4 +1,3 @@
-from pypom import Region
 from selenium.webdriver.common.by import By
 
 from pages.desktop.base import Base
@@ -6,7 +5,7 @@ from pages.desktop.base import Base
 
 class EditTheme(Base):
     """Edit page for a specific addon.
-    
+
     This page is the edit page for a theme that has already
     been approved.
     """
@@ -22,4 +21,4 @@ class EditTheme(Base):
 
     @property
     def name(self):
-
+        pass

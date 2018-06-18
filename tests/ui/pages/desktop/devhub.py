@@ -1,5 +1,3 @@
-import os
-
 from pypom import Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
@@ -33,7 +31,9 @@ class DevHub(Base):
     _submit_upload_btn_locator = (By.ID, "submit-upload-file-finish")
 
     def wait_for_page_to_load(self):
-        self.wait.until(lambda _: self.is_element_displayed(*self._whats_new_locator))
+        self.wait.until(
+            lambda _: self.is_element_displayed(*self._whats_new_locator)
+        )
         return self
 
     @property
@@ -43,8 +43,9 @@ class DevHub(Base):
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
-        self.wait.until(lambda _: self.is_element_displayed
-            (*self._avatar_locator))
+        self.wait.until(
+            lambda _: self.is_element_displayed(*self._avatar_locator)
+        )
 
     @property
     def logged_in(self):
@@ -57,7 +58,7 @@ class DevHub(Base):
 
     def upload_addon(self):
         """Upload an addon via devhub.
-        
+
         This will use the override validation option.
         """
         file_to_upload = "webextension_no_id.xpi"

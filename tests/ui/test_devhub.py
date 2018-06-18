@@ -1,10 +1,5 @@
-import json
-
 import pytest
 import requests
-
-from pages.desktop.home import Home
-from pages.desktop.devhub import DevHub
 
 
 @pytest.mark.desktoponly

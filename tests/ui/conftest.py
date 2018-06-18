@@ -1,10 +1,4 @@
-import datetime
-import os
-import urlparse
-
-import jwt
 import pytest
-import requests
 from django.conf import settings
 from olympia import amo
 
@@ -19,7 +13,9 @@ def firefox_options(firefox_options):
     as well as allowing it to run headless.
 
     """
-    firefox_options.set_preference("extensions.install.requireBuiltInCerts", False)
+    firefox_options.set_preference(
+        "extensions.install.requireBuiltInCerts", False
+    )
     firefox_options.set_preference("xpinstall.signatures.required", False)
     firefox_options.set_preference("extensions.webapi.testing", True)
     firefox_options.set_preference("ui.popup.disable_autohide", True)
