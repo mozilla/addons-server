@@ -137,7 +137,7 @@ def test_recreate_previews(pngcrush_image_mock):
         shutil.copyfileobj(open(get_image_path('teamaddons.jpg')), dest)
     preview_has_original.update(sizes={'original': [1500, 1000]})
 
-    tasks.recreate_previews(addon.id)
+    tasks.recreate_previews([addon.id])
 
     assert preview_no_original.reload().sizes == {
         'image': [533, 400], 'thumbnail': [267, 200]}
