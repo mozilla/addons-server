@@ -43,7 +43,8 @@ class DevHub(Base):
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
-        self.wait.until(lambda _: self.is_element_displayed(self._avatar_locator))
+        self.wait.until(lambda _: self.is_element_displayed
+            (*self._avatar_locator))
 
     @property
     def logged_in(self):
