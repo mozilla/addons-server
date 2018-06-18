@@ -330,11 +330,11 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         # Note: annoyingly, `detected_type` is at the root level, not under
         # `metadata`.
         results.get('detected_type') in ('theme', 'extension'))
-    is_targeting_firefoxes_only = (
+    is_targeting_firefoxes_only = target_apps and (
         set(target_apps.keys()).intersection(('firefox', 'android')) ==
         set(target_apps.keys())
     )
-    is_targeting_thunderbird_or_seamonkey_only = (
+    is_targeting_thunderbird_or_seamonkey_only = target_apps and (
         set(target_apps.keys()).intersection(('thunderbird', 'seamonkey')) ==
         set(target_apps.keys())
     )
@@ -351,8 +351,9 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         max_target_firefox_version < 99000000000000)
 
     # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
-    if (waffle.switch_is_active('disallow-thunderbird-and-seamonkey') and
-            is_targeting_thunderbird_or_seamonkey_only):
+    if (not is_webextension and
+            is_targeting_thunderbird_or_seamonkey_only and
+            waffle.switch_is_active('disallow-thunderbird-and-seamonkey')):
         msg = ugettext(
             u'Add-ons for Thunderbird and SeaMonkey are now listed and '
             u'maintained on addons.thunderbird.net. You can use the same '
