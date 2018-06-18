@@ -1515,7 +1515,7 @@ class TestRedirects(TestCase):
         url = reverse('devhub.themes.submit')
         response = self.client.get(url, follow=True)
         self.assert3xx(
-            response, reverse('devhub.submit.distribution'), 301)
+            response, reverse('devhub.submit.distribution'), 302)
 
     @override_switch('disable-lwt-uploads', active=False)
     def test_lwt_submit_no_redirect_when_waffle_offf(self):
