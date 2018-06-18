@@ -9,7 +9,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from tempfile import NamedTemporaryFile
-from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
+from urlparse import parse_qs, urlparse
 
 from django import forms, test
 from django.conf import settings
