@@ -4,7 +4,6 @@ import urlparse
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
-from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
@@ -15,8 +14,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona)
-from olympia.amo.templatetags.jinja_helpers import (
-    format_date, locale_url, numberfmt, urlparams)
+from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
 from olympia.amo.tests import (
     ESTestCaseWithAddons, addon_factory, create_switch)
 from olympia.amo.urlresolvers import reverse
