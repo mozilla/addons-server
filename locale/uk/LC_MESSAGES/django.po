@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-18 08:08+0000\n"
+"PO-Revision-Date: 2018-06-18 08:31+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2665,6 +2665,7 @@ msgstr "Категорії не можна змінити поки ваш дод
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
+"Додатки для Thunderbird і SeaMonkey тепер знаходяться й оновлюються на addons.thunderbird.net. Ви можете використовувати той самий обліковий запис для оновлення своїх додатків на новому сайті."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Починаючи з Firefox 53, нові додатки на цьому сайті можуть бути лише типу WebExtensions."
@@ -4429,19 +4430,19 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Зупиніть підступне стеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr " Блокуйте приховані елементи стеження і шпигунську рекламу, що переслідує вас в Інтернеті."
 
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Змініть вигляд сторінок нової вкладки {start_sub_heading}за допомогою {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Оцініть чудову нову сторінку з налаштовуваним тлом, інформацією про місцеву погоду та іншим."
 
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Легко перекладайте {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Підсвітіть будь-який текст, натисніть праву кнопку миші й миттєво перекладайте."
 
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Шукайте зображення {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
