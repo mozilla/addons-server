@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-01 13:02+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"PO-Revision-Date: 2018-06-18 16:07+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,7 @@ msgid "Your Theme's Name"
 msgstr "మీ అంలంకారం పేరు"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "సమీక్ష కోసం గుర్తించబడింది"
 
 msgid "Your input is required"
 msgstr "మీ ఇన్‌పుట్ అవసరం"
@@ -515,7 +515,7 @@ msgstr "{0} నుండి {1} వరకు సహాయములు"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "సైటు కొలమానాలు, చివరి {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -563,7 +563,7 @@ msgstr "{0} నుండి {1} వరకు రాయబడిన సమీక�
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "వాడుకరి నమోదులు, చివరి {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
