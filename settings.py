@@ -23,21 +23,11 @@ FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 # Disable cache-machine locally and in tests to prepare for its removal.
 CACHE_MACHINE_ENABLED = False
 
-# Using locmem deadlocks in certain scenarios. This should all be fixed,
-# hopefully, in Django1.7. At that point, we may try again, and remove this to
-# not require memcache installation for newcomers.
-# A failing scenario is:
-# 1/ log in
-# 2/ click on "Submit a new addon"
-# 3/ click on "I accept this Agreement" => request never ends
-#
-# If this is changed back to locmem, make sure to use it from "caching" (by
-# default in Django for locmem, a timeout of "0" means "don't cache it", while
-# on other backends it means "cache forever"):
-#      'BACKEND': 'caching.backends.locmem.LocMemCache'
+# We are setting memcached here to make sure our local setup is as close
+# to our production system as possible.
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.MemcachedCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     },
     'filesystem': {
@@ -45,9 +35,6 @@ CACHES = {
         'LOCATION': FILESYSTEM_CACHE_ROOT,
     }
 }
-
-# For local development, we don't need mozlog loggers.
-USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False

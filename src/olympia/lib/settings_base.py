@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for addons-server project.
 
+import environ
 import logging
 import os
 import socket
@@ -8,9 +9,9 @@ import socket
 from django.core.urlresolvers import reverse_lazy
 from django.utils.functional import lazy
 
-import environ
-
 from kombu import Queue
+
+import olympia.core.logger
 
 
 env = environ.Env()
@@ -1288,27 +1289,123 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # a separate, shorter timeout for validation tasks.
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-# Logging
-LOG_LEVEL = logging.DEBUG
-USE_MOZLOG = True
-MOZLOG_NAME = "http_app_addons"
-# See PEP 391 and log_settings_base.py for formatting help.  Each section of
-# LOGGING will get merged into the corresponding section of
-# log_settings_base.py. Handlers and log levels are set up automatically based
-# on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
-# propagate through a logger unless propagate: True is set.
-LOGGING_CONFIG = None
+# See PEP 391 for formatting help.
 LOGGING = {
+    'version': 1,
+    'filters': {},
+    'formatters': {
+        'json': {
+            '()': olympia.core.logger.JsonFormatter,
+            'logger_name': 'http_app_addons'
+        },
+    },
+    'handlers': {
+        'mozlog': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'json'
+        },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+        'statsd': {
+            'level': 'ERROR',
+            'class': 'django_statsd.loggers.errors.StatsdHandler',
+        },
+    },
+    'root': {'handlers': ['mozlog'], 'level': logging.DEBUG},
     'loggers': {
-        'amo.validator': {'level': logging.WARNING},
-        'amqplib': {'handlers': ['null']},
-        'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.ERROR},
-        'elasticsearch': {'handlers': ['null']},
-        'rdflib': {'handlers': ['null']},
-        'z.task': {'level': logging.INFO},
-        'z.es': {'level': logging.INFO},
-        's.client': {'level': logging.INFO},
+        'amo': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'amo.validator': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'amqplib': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'caching': {
+            'handlers': ['mozlog'],
+            'level': logging.ERROR,
+            'propagate': False
+        },
+        'caching.invalidation': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'django.request': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'elasticsearch': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
+        },
+        'newrelic': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'post_request_task': {
+            'handlers': ['mozlog'],
+            # Ignore INFO or DEBUG from post-request-task, it logs too much.
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'rdflib': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
+        },
+        'request.summary': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        's.client': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'z.celery': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'z.es': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z.pool': {
+            'handlers': ['mozlog'],
+            'level': logging.ERROR,
+            'propagate': False
+        },
+        'z.redis': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'z.task': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        }
     },
 }
 
