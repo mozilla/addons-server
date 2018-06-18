@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-18 16:11+0000\n"
+"PO-Revision-Date: 2018-06-18 16:21+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1429,7 +1429,7 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr ""
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "నిఘంటువును స్థాపించు"
 
 msgid "Install Language Pack"
 msgstr "భాష ప్యాక్ను స్థాపించండి"
@@ -1627,7 +1627,7 @@ msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
 
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} అనుగుణ్యతా నివేదికలు"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
@@ -2031,7 +2031,7 @@ msgid "Deleted"
 msgstr "తొలగించబడింది"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "ఆమోదం కొరకు వేచివుంది"
 
 msgid "Flagged for further review"
 msgstr ""
@@ -2278,7 +2278,7 @@ msgid "Contacts"
 msgstr "పరిచయాలు"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "సంచయాలు, వడపోతలు"
 
 msgid "Import/Export"
 msgstr "దిగుమతి/Export"
@@ -2928,7 +2928,7 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> అలంకారం"
 msgstr[1] "<b>{0}</b> అలంకారాలు"
 
 msgid "Edit Information"
@@ -3141,7 +3141,7 @@ msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "SDKను నవీకరించాలా?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
@@ -3356,7 +3356,7 @@ msgid "Transfer Ownership"
 msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "ఈ అలంకారాన్ని తొలగించు."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3510,13 +3510,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} దించుకోండి"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "ఫైలును ఎక్కించు"
 
 msgid "Go to My Submissions"
 msgstr "నా సమర్పణలకు వెళ్ళండి"
@@ -3755,13 +3755,13 @@ msgid "Compatibility Reports"
 msgstr ""
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} వైఫల్య నివేదికలు"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} విజయ నివేదికలు"
 
 msgid "Developer News"
-msgstr ""
+msgstr "డెవలపర్ వార్తలు"
 
 msgid "View the blog &#9658;"
 msgstr "బ్లాగుని చూడండి &#9658;"
@@ -5517,7 +5517,7 @@ msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "దృశ్యత"
 
 msgid "Visible"
 msgstr "కనిపించు"
@@ -5529,7 +5529,7 @@ msgid "Abuse Reports"
 msgstr "దుర్వినియోగ నివేదికలు"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "చెల్లింపు అవసరం"
 
 msgid "EULA"
 msgstr "EULA"
@@ -5555,7 +5555,7 @@ msgid "Background file {0} of {1} - {2}"
 msgstr ""
 
 msgid "More about this add-on"
-msgstr ""
+msgstr "ఈ పొడగింత గురించి మరింత"
 
 msgid "Image Gallery"
 msgstr "బొమ్మల సేకరణ"
@@ -5595,7 +5595,7 @@ msgid "No events found for this period."
 msgstr ""
 
 msgid "Log details"
-msgstr ""
+msgstr "చిట్టా వివరాలు"
 
 msgid "Review Author"
 msgstr ""
@@ -5691,7 +5691,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "ఉపయోగపడే లంకెలు:"
 
 msgid "Add-on Policy"
 msgstr "పొడిగింత విధానం"
@@ -6002,7 +6002,7 @@ msgstr ""
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[స్థితి:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
@@ -6037,13 +6037,13 @@ msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"
-msgstr ""
+msgstr "ఈ వారం అత్యంత ప్రాచుర్యం"
 
 msgid "Most popular this month"
-msgstr ""
+msgstr "ఈ నెల అత్యంత ప్రాచుర్యం"
 
 msgid "Most popular all time"
-msgstr ""
+msgstr "అన్ని సమయాలలో అత్యంత ప్రాచుర్యం"
 
 msgid "Highest Rated"
 msgstr ""
@@ -6064,7 +6064,7 @@ msgid "Sort By"
 msgstr ""
 
 msgid "Relevance"
-msgstr ""
+msgstr "ఔచిత్యం"
 
 msgid "All Add-ons"
 msgstr "అన్ని పొడిగింతలు"
@@ -6074,10 +6074,10 @@ msgstr ""
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "అన్ని వ్యవస్థలు"
 
 msgid "All Tags"
-msgstr ""
+msgstr "అన్ని ట్యాగులు"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -6087,7 +6087,7 @@ msgid "Collection Search Results"
 msgstr ""
 
 msgid "Search Results"
-msgstr ""
+msgstr "వెతుకుడు ఫలితాలు"
 
 msgid "Search Unavailable"
 msgstr ""
@@ -6197,7 +6197,7 @@ msgid "by Add-on Status"
 msgstr "ద్వారా పొడిగింత స్థితి"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "చందాదార్లు"
 
 msgid "Ratings"
 msgstr "రేటింగులు"
@@ -6224,7 +6224,7 @@ msgid "Reviews Written"
 msgstr ""
 
 msgid "User Signups"
-msgstr ""
+msgstr "వాడుకరి నమోదులు"
 
 msgid "Archived Data"
 msgstr ""
@@ -6256,13 +6256,13 @@ msgstr ""
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "{0} గణాంకాలు"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "గణాంకాల డాష్‌బోర్డు"
 
 msgid "Controls:"
-msgstr ""
+msgstr "నియంత్రణలు:"
 
 msgid "reset zoom"
 msgstr ""
@@ -6448,7 +6448,7 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr ""
+msgstr "ఒక వర్గాన్ని ఎంచుకోండి"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
@@ -6538,7 +6538,7 @@ msgid "Android Add-ons"
 msgstr ""
 
 msgid "Required fields"
-msgstr ""
+msgstr "అవసరమైన ఖాళీలు"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -6784,7 +6784,7 @@ msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue 
 msgstr ""
 
 msgid "User Login"
-msgstr ""
+msgstr "వాడుకరి ప్రవేశం"
 
 msgid "Log in with Firefox Accounts"
 msgstr ""
@@ -6793,7 +6793,7 @@ msgid "Password Reset"
 msgstr ""
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "{0} కోసం వాడుకరి సమాచారం"
 
 msgid "Edit profile"
 msgstr "ప్రొఫైల్‌ను సవరించు"
@@ -6893,7 +6893,7 @@ msgstr "{0} పొడిగింతలు"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s అలంకారం"
 msgstr[1] "%(num)s అలంకారాలు"
 
 #, python-format
@@ -6907,11 +6907,11 @@ msgstr "డెవలపర్ యొక్క పొడిగింతల యొ
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "ఇతరులు"
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s వెర్షను చరిత్ర"
 
 msgid "Version History with Changelogs"
 msgstr ""
@@ -6951,7 +6951,7 @@ msgid "Deleted versions can`t be changed."
 msgstr ""
 
 msgid "Binary"
-msgstr ""
+msgstr "బైనరీ"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "నాన్-బైనరీ"
