@@ -5,6 +5,23 @@ from pages.desktop.extensions import Extensions
 from pages.desktop.home import Home
 
 
+@pytest.fixture(scope='function',
+                params=[(1080, 1920), (414, 738)],
+                ids=['Resolution: 1080x1920', 'Resolution: 414x738'])
+def selenium(selenium, request):
+    """Fixture to set custom selenium parameters.
+
+    This fixture will also parametrize all of the tests to run them on both a
+    Desktop resolution and a mobile resolution.
+
+    Desktop size: 1920x1080
+    Mobile size: 738x414 (iPhone 7+)
+
+    """
+    selenium.set_window_size(*request.param)
+    return selenium
+
+
 @pytest.mark.nondestructive
 def test_there_are_6_extension_categories(base_url, selenium):
     page = Home(selenium, base_url).open()
