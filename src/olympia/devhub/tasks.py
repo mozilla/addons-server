@@ -823,28 +823,28 @@ def resize_preview(src, preview_pk, **kw):
 
 @task
 def recreate_previews(addon_pk, **kw):
-    log.info('[1@None] Recreating previews for addon: %s' % addon_pk)
+    log.info('Recreating previews for addon: %s' % addon_pk)
     addon = Addon.objects.get(pk=addon_pk)
     for preview in addon.previews.all():
-        log.info('[1@None] Resizing preview: %s' % preview.id)
+        log.info('Resizing preview: %s' % preview.id)
         try:
             if not preview.sizes:
                 preview.sizes = {}
             if storage.exists(preview.original_path):
                 # We have an original size image, so we can resize that.
                 src = preview.original_path
-                (preview.sizes['image'], _) = resize_image(
+                preview.sizes['image'], _ = resize_image(
                     src, preview.image_path, amo.ADDON_PREVIEW_SIZES['full'])
             else:
                 # Otherwise we can't create a new sized full image, but can
                 # use it for a new thumbnail
                 src = preview.image_path
             # But we should resize the thumbnail regardless.
-            (preview.sizes['thumbnail'], _) = resize_image(
+            preview.sizes['thumbnail'], _ = resize_image(
                 src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb'])
             preview.save()
         except Exception as e:
-            log.error("Error saving preview: %s" % e)
+            log.exception("Error saving preview: %s" % e)
 
 
 @task

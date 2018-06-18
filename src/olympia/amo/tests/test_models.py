@@ -188,14 +188,14 @@ class BasePreviewMixin(object):
 
     def test_filename(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_path
-        assert 'png' in preview.image_path
-        assert 'png' in preview.original_path
+        assert preview.thumbnail_path.endswith('.png')
+        assert preview.image_path.endswith('.png')
+        assert preview.original_path.endswith('.png')
 
     def test_filename_in_url(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_url
-        assert 'png' in preview.image_url
+        assert preview.thumbnail_url.endswith('.png')
+        assert preview.image_url.endswith('.png')
 
     def check_delete(self, preview, filename):
         """
