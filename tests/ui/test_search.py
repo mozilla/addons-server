@@ -26,23 +26,20 @@ def test_search_loads_correct_results(base_url, selenium):
 @pytest.mark.nondestructive
 def test_legacy_extensions_do_not_load(base_url, selenium):
     page = Home(selenium, base_url).open()
-    term = 'Video Download Manager'
+    term = "Video Download Manager"
     items = page.search_for(term)
     for item in items.result_list.extensions:
         assert term not in item.name
 
 
-@pytest.mark.parametrize('category, sort_attr', [
-    ['Most Users', 'users'],
-    ['Top Rated', 'rating']])
-def test_sorting_by(
-        base_url, selenium, es_test, category, sort_attr):
+@pytest.mark.parametrize(
+    "category, sort_attr", [["Most Users", "users"], ["Top Rated", "rating"]]
+)
+def test_sorting_by(base_url, selenium, es_test, category, sort_attr):
     """Test searching for an addon and sorting."""
     Home(selenium, base_url).open()
-    addon_name = 'Ui-addon'
-    selenium.get('{}/search/?&q={}&sort={}'.format(
-                 base_url, addon_name, sort_attr))
+    addon_name = "Ui-addon"
+    selenium.get("{}/search/?&q={}&sort={}".format(base_url, addon_name, sort_attr))
     search_page = Search(selenium, base_url)
-    results = [getattr(i, sort_attr)
-               for i in search_page.result_list.extensions]
+    results = [getattr(i, sort_attr) for i in search_page.result_list.extensions]
     assert sorted(results, reverse=True) == results

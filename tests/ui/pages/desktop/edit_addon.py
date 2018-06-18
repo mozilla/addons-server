@@ -11,16 +11,16 @@ class EditAddon(Base):
     been approved.
     """
 
-    _root_locator = (By.CLASS_NAME, 'section')
-    _edit_addon_navbar_locator = (By.CLASS_NAME, 'edit-addon-nav')
-    _addon_name_locator = (By.CSS_SELECTOR,
-                           '#main-wrapper > div:nth-child(1) >\
-                           header:nth-child(2) > h2:nth-child(2)')
+    _root_locator = (By.CLASS_NAME, "section")
+    _edit_addon_navbar_locator = (By.CLASS_NAME, "edit-addon-nav")
+    _addon_name_locator = (
+        By.CSS_SELECTOR,
+        "#main-wrapper > div:nth-child(1) >\
+                           header:nth-child(2) > h2:nth-child(2)",
+    )
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(
-                *self._addon_name_locator))
+        self.wait.until(lambda _: self.is_element_displayed(*self._addon_name_locator))
         return self
 
     @property

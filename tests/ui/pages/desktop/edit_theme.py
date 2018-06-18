@@ -7,7 +7,7 @@ from pages.desktop.base import Base
 class EditTheme(Base):
     """Edit page for a specific addon.
     
-    This page is the edit page for an addon that has already
+    This page is the edit page for a theme that has already
     been approved.
     """
 
