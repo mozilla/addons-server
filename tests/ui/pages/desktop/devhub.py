@@ -8,27 +8,27 @@ from pages.desktop.base import Base
 
 class DevHub(Base):
 
-    URL_TEMPLATE = "developers/"
+    URL_TEMPLATE = 'developers/'
 
-    _root_locator = (By.CLASS_NAME, "DevHub-Navigation")
-    _avatar_locator = (By.CLASS_NAME, "avatar")
-    _addons_list_locator = (By.CLASS_NAME, "DevHub-MyAddons-list")
-    _addons_item_locator = (By.CLASS_NAME, "DevHub-MyAddons-item")
+    _root_locator = (By.CLASS_NAME, 'DevHub-Navigation')
+    _avatar_locator = (By.CLASS_NAME, 'avatar')
+    _addons_list_locator = (By.CLASS_NAME, 'DevHub-MyAddons-list')
+    _addons_item_locator = (By.CLASS_NAME, 'DevHub-MyAddons-item')
     _continue_sub_btn_locator = (
         By.CSS_SELECTOR,
-        ".addon-submission-field > button:nth-child(1)",
+        '.addon-submission-field > button:nth-child(1)',
     )
     _override_validation_locator = (
         By.CSS_SELECTOR,
-        "input#id_admin_override_validation",
+        'input#id_admin_override_validation',
     )
     _submit_addon_btn_locator = (
         By.CSS_SELECTOR,
-        ".DevHub-MyAddons-item-buttons-submit > .Button:nth-child(1)",
+        '.DevHub-MyAddons-item-buttons-submit > .Button:nth-child(1)',
     )
-    _whats_new_locator = (By.CLASS_NAME, "DevHub-MyAddons-whatsnew-container")
-    _upload_addon_locator = (By.ID, "upload-addon")
-    _submit_upload_btn_locator = (By.ID, "submit-upload-file-finish")
+    _whats_new_locator = (By.CLASS_NAME, 'DevHub-MyAddons-whatsnew-container')
+    _upload_addon_locator = (By.ID, 'upload-addon')
+    _submit_upload_btn_locator = (By.ID, 'submit-upload-file-finish')
 
     def wait_for_page_to_load(self):
         self.wait.until(
@@ -61,7 +61,7 @@ class DevHub(Base):
 
         This will use the override validation option.
         """
-        file_to_upload = "webextension_no_id.xpi"
+        file_to_upload = 'webextension_no_id.xpi'
         file_path = get_file(file_to_upload)
         self.selenium.find_element(*self._submit_addon_btn_locator).click()
         self.selenium.find_element(*self._continue_sub_btn_locator).click()
@@ -79,8 +79,8 @@ class DevHub(Base):
 
     class AddonsListItem(Region):
 
-        _addon_item_name_locator = (By.CLASS_NAME, "DevHub-MyAddons-item-name")
-        _addon_edit_link_locator = (By.CLASS_NAME, "DevHub-MyAddons-item-edit")
+        _addon_item_name_locator = (By.CLASS_NAME, 'DevHub-MyAddons-item-name')
+        _addon_edit_link_locator = (By.CLASS_NAME, 'DevHub-MyAddons-item-edit')
 
         @property
         def name(self):
@@ -97,7 +97,7 @@ class DevHub(Base):
 
         _sign_in_locator = (
             By.CSS_SELECTOR,
-            ".DevHub-Navigation-Register > a:nth-child(2)",
+            '.DevHub-Navigation-Register > a:nth-child(2)',
         )
 
         def click_login(self):

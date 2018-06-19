@@ -6,9 +6,9 @@ from pages.desktop.base import Base
 
 class ManageSubmissions(Base):
 
-    _root_locator = (By.CSS_SELECTOR, ".listing .island")
-    _page_title_locator = (By.CSS_SELECTOR, ".primary .hero > h2")
-    _addon_submissions_locator = (By.CLASS_NAME, "addon")
+    _root_locator = (By.CSS_SELECTOR, '.listing .island')
+    _page_title_locator = (By.CSS_SELECTOR, '.primary .hero > h2')
+    _addon_submissions_locator = (By.CLASS_NAME, 'addon')
 
     def wait_for_page_to_load(self):
         self.wait.until(
@@ -23,7 +23,7 @@ class ManageSubmissions(Base):
 
     class AddonDetail(Region):
 
-        _addon_name_locator = (By.CSS_SELECTOR, ".info > h3")
+        _addon_name_locator = (By.CSS_SELECTOR, '.info > h3')
 
         @property
         def name(self):

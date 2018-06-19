@@ -10,12 +10,12 @@ class EditAddon(Base):
     been approved.
     """
 
-    _root_locator = (By.CLASS_NAME, "section")
-    _edit_addon_navbar_locator = (By.CLASS_NAME, "edit-addon-nav")
+    _root_locator = (By.CLASS_NAME, 'section')
+    _edit_addon_navbar_locator = (By.CLASS_NAME, 'edit-addon-nav')
     _addon_name_locator = (
         By.CSS_SELECTOR,
-        "#main-wrapper > div:nth-child(1) >\
-                           header:nth-child(2) > h2:nth-child(2)",
+        '#main-wrapper > div:nth-child(1) >\
+                           header:nth-child(2) > h2:nth-child(2)',
     )
 
     def wait_for_page_to_load(self):

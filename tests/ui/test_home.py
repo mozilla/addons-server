@@ -21,28 +21,28 @@ def test_there_are_6_theme_categories(base_url, selenium):
 def test_extensions_section_load_correctly(base_url, selenium):
     page = Home(selenium, base_url).open()
     ext_page = page.header.click_extensions()
-    assert "Extensions" in ext_page.text
+    assert 'Extensions' in ext_page.text
 
 
 @pytest.mark.nondestructive
 def test_explore_section_loads(base_url, selenium):
     page = Extensions(selenium, base_url).open()
     page.header.click_explore()
-    assert "firefox/" in selenium.current_url
+    assert 'firefox/' in selenium.current_url
 
 
 @pytest.mark.nondestructive
 def test_themes_section_loads(base_url, selenium):
     page = Home(selenium, base_url).open()
     themes_page = page.header.click_themes()
-    assert "Themes" in themes_page.text
+    assert 'Themes' in themes_page.text
 
 
 @pytest.mark.nondestructive
 def test_browse_all_button_loads_correct_page(base_url, selenium):
     page = Home(selenium, base_url).open()
     page.featured_extensions.browse_all
-    assert "type=extension" in selenium.current_url
+    assert 'type=extension' in selenium.current_url
 
 
 @pytest.mark.nondestructive
