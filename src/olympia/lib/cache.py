@@ -15,12 +15,12 @@ from django.conf import settings
 def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
     if with_locale:
-        key = '{key}:{lang}'.format(
+        key = u'{key}:{lang}'.format(
             key=key, lang=translation.get_language())
 
     if normalize:
         return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
-    return key
+    return encoding.smart_bytes(key)
 
 
 def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
