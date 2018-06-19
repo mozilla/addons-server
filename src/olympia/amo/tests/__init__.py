@@ -1080,6 +1080,18 @@ def prefix_indexes(config):
 
 
 def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
+    """An API namespace aware reverse to be used in DRF API based tests.
+
+    It works by creating a fake request from the API version you need, and
+    then setting the version so the un-namespaced viewname from DRF is resolved
+    into the namespaced viewname used interally by django.
+
+    Unless overriden with the api_version parameter, the API version used is
+    the DEFAULT_VERSION in settings.
+
+    e.g. reverse_ns('addon-detail') is resolved to reverse('v4:addon-detail')
+    if the api version is 'v4'.
+    """
     api_version = api_version or settings.REST_FRAMEWORK['DEFAULT_VERSION']
     request = req_factory_factory('/api/%s/' % api_version)
     request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
