@@ -138,9 +138,9 @@ django-csp==3.4 \
 django-environ==0.4.1 \
     --hash=sha256:f7bce5af8a4232f93a9d9e68f0afa6e276c57d8144c17bf330ebda8cc57f2cca \
     --hash=sha256:0e22bd07b632046848c746f6e135cb568b7810201ba692a2edb3d5d6c76de34d # pyup: ==0.4.1
-django-extensions==1.6.7 \
-    --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
-    --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943 # pyup: ==1.6.7
+django-extensions==2.0.7 \
+    --hash=sha256:3be3debf53c77ca795bdf713726c923aa3c3f895e1a42e2e31a68c1a562346a4 \
+    --hash=sha256:94bfac99eb262c5ac27e53eda96925e2e53fe0b331af7dde37012d07639a649c
 django-mozilla-product-details==0.13 \
     --hash=sha256:ce97fc2533aa06560d9b438ebba2522dc0b2ada86d6e0537cfb5ac06db1a6aa2 \
     --hash=sha256:4ffa5a104f53645460a50c9342a41e3ea02d432851becf56e820d42faa94839f
@@ -366,3 +366,7 @@ mohawk==0.3.4 \
 basket-client==0.3.12 \
     --hash=sha256:2dd953cd03b3068d0e596aa32224488c486b1170e46387c5bc14f20737d6a2d8 \
     --hash=sha256:d7aa5e6208eeeabb8f1387a7cbb2d0f2b35dfa889c1f034c86a88b4968db3bfe
+typing==3.6.4 \
+    --hash=sha256:3a887b021a77b292e151afb75323dea88a7bc1b3dfa92176cff8e44c8b68bddf \
+    --hash=sha256:b2c689d54e1144bbcfd191b0832980a21c2dbcf7b5ff7a66248a60c90e951eb8 \
+    --hash=sha256:d400a9344254803a2368533e4533a4200d21eb7b6b729c173bc38201a74db3f2
