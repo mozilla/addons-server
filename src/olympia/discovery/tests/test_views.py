@@ -3,8 +3,7 @@ from collections import OrderedDict
 
 import mock
 
-from django.conf import settings
-
+from rest_framework.settings import api_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -94,7 +93,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     def test_reverse(self):
         assert self.url.endswith(
-            '/api/%s/discovery/' % settings.REST_FRAMEWORK['DEFAULT_VERSION'])
+            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION)
 
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})

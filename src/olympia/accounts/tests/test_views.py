@@ -15,6 +15,7 @@ from django.test.utils import override_settings
 
 import mock
 
+from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory, APITestCase
 from waffle.models import Switch
 
@@ -1571,7 +1572,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
                     'http://testserver/api/{api_version}/accounts/account/'
                     '{id}/notifications/').format(
                     id=self.user.id,
-                    api_version=settings.REST_FRAMEWORK['DEFAULT_VERSION']),
+                    api_version=api_settings.DEFAULT_VERSION),
                 'email': self.user.email},
             headers={'x-api-key': 'testkey'})
 

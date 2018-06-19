@@ -1092,7 +1092,7 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
     e.g. reverse_ns('addon-detail') is resolved to reverse('v4:addon-detail')
     if the api version is 'v4'.
     """
-    api_version = api_version or settings.REST_FRAMEWORK['DEFAULT_VERSION']
+    api_version = api_version or api_settings.DEFAULT_VERSION
     request = req_factory_factory('/api/%s/' % api_version)
     request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
     request.version = api_version

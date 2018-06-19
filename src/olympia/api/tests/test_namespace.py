@@ -1,8 +1,8 @@
-from django.conf import settings
 from django.conf.urls import include, url
 from django.core.urlresolvers import NoReverseMatch
 
 from rest_framework.response import Response
+from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
 from olympia.amo.tests import (
@@ -102,7 +102,7 @@ class TestRealAPIRouting(TestCase):
 
     def test_default(self):
         url = reverse_ns('addon-detail', args=('foo',))
-        assert '/api/%s/' % settings.REST_FRAMEWORK['DEFAULT_VERSION'] in url
+        assert '/api/%s/' % api_settings.DEFAULT_VERSION in url
         response = self.client.get(url, HTTP_ORIGIN='testserver')
         assert response.status_code == 200
         assert response
