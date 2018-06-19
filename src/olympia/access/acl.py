@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from olympia import amo
 
 
@@ -76,7 +78,10 @@ def check_collection_ownership(request, collection, require_owner=False):
     elif request.user.id == collection.author_id:
         return True
     elif not require_owner:
-        return collection.publishable_by(request.user)
+        return (
+            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID and
+            action_allowed_user(
+                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE))
     else:
         return False
 

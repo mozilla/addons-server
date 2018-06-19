@@ -26,23 +26,22 @@ cache:
     - node_modules
     - $HOME/.gimme
 
-services:
-  - mysql
-  - memcached
-  - elasticsearch
-  - redis
-
 addons:
   apt:
     sources:
       - elasticsearch-5.x
     packages:
       - swig
-      - oracle-java8-set-default
       - elasticsearch
       - gettext
       - librsvg2-bin
       - pngcrush
+
+services:
+  - mysql
+  - memcached
+  - elasticsearch
+  - redis
 
 before_install:
   - mysql -e 'create database olympia;'

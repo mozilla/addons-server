@@ -11,15 +11,13 @@
   {% if search_form.cat.value() %}
     {{ search_form.cat }}
   {% endif %}
-  {% if not search_cat in ('themes', 'collections') %}
+  {% if search_cat != 'themes' %}
     {{ search_form.appver }}
     {{ search_form.platform }}
   {% endif %}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
          src="{{ static('img/zamboni/global/btn-search.png') }}"></button>
-  {% if search_cat != 'collections' %}
-    <div id="site-search-suggestions"
-         data-cat="{{ search_placeholder or search_cat }}"
-         data-src="{{ url('search.suggestions') }}"></div>
-  {% endif %}
+  <div id="site-search-suggestions"
+       data-cat="{{ search_placeholder or search_cat }}"
+       data-src="{{ url('search.suggestions') }}"></div>
 </form>
