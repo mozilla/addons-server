@@ -9,7 +9,7 @@ from olympia.addons.tasks import (
     add_firefox57_tag, bump_appver_for_legacy_addons,
     find_inconsistencies_between_es_and_db, migrate_lwts_to_static_themes)
 from olympia.amo.utils import chunked
-from olympia.devhub.tasks import get_preview_sizes
+from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
@@ -55,7 +55,13 @@ tasks = {
         'qs': [
             Q(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
         ]
-    }
+    },
+    'recreate_previews': {
+        'method': recreate_previews,
+        'qs': [
+            ~Q(type=amo.ADDON_PERSONA)
+        ]
+    },
 }
 
 
