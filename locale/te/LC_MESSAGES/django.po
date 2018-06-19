@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-18 16:21+0000\n"
+"PO-Revision-Date: 2018-06-19 11:18+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3468,7 +3468,7 @@ msgid "Version Submitted for Review"
 msgstr ""
 
 msgid "Preview of the version submitted"
-msgstr ""
+msgstr "దాఖలు చేసిన వెర్షను మునుజూపు"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -4048,7 +4048,7 @@ msgid "Your Theme will be released under the following license:"
 msgstr ""
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "మీ అలంకారానికి ఒక లైసెన్సును ఎంచుకోండి."
 
 msgid "Theme Design"
 msgstr "అలంకారం రూపకల్పన"
@@ -4072,13 +4072,13 @@ msgid "Header"
 msgstr "శీర్షిక"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "మీ అలంకారానికి రంగులను ఎంచుకోండి."
 
 msgid "Foreground Text"
 msgstr ""
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "ఇది ట్యాబు పాఠ్యపు రంగు."
 
 msgid "Background"
 msgstr "వెనుతలం"
@@ -5490,7 +5490,7 @@ msgid "An unknown error occurred"
 msgstr "ఒక తెలియని దోషం ఎదురైంది"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "స్వయం-సమీక్షలు అనుమతించబడవు."
 
 msgid "Review successfully processed."
 msgstr ""
@@ -6249,7 +6249,7 @@ msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr ""
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: గణాంకాల డాష్‌బోర్డు"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr ""
@@ -6477,7 +6477,7 @@ msgid "iOS Browser"
 msgstr ""
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus విహారిణి"
 
 msgid "Desktop Browser"
 msgstr ""
@@ -6573,7 +6573,7 @@ msgid "Profile Photo"
 msgstr "ప్రొఫైల్ ఫోటో"
 
 msgid "Addons"
-msgstr ""
+msgstr "పొడగింతలు"
 
 msgid "Activity Logs"
 msgstr "కార్యాచరణ చిట్టాలు"
@@ -6591,7 +6591,7 @@ msgid "Occupation"
 msgstr "వృత్తి"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "మీ ఈమెయిలు చిరునామాని Firefox ఖాతాలలో మార్చుకోవచ్చు."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
