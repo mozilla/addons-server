@@ -39,7 +39,7 @@ def get_modules(with_stats=True):
         # The keys are the index alias names, the values the python modules.
         # The 'default' in ES_INDEXES is confusingly named 'addons', but it
         # contains all the main document types we search for in AMO: addons,
-        # but also collections, app compatibility, users...
+        # and app compatibility.
         settings.ES_INDEXES['default']: search_indexers,
     }
     if with_stats:

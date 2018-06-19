@@ -10,8 +10,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.bandwagon import tasks
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionUser, CollectionWatcher,
-    FeaturedCollection)
+    Collection, CollectionAddon, CollectionWatcher, FeaturedCollection)
 from olympia.users.models import UserProfile
 
 
@@ -118,23 +117,6 @@ class TestCollections(TestCase):
                                                        addon=addons[0])
         assert collection_addon.comments == 'This is a comment.'
 
-    def test_publishable_by(self):
-        c = Collection(pk=512, author=self.other)
-        CollectionUser(collection=c, user=self.user).save()
-        assert c.publishable_by(self.user)
-
-    def test_manager_publishable_by(self):
-        c1 = Collection.objects.create(author=self.user, name='B')
-        c2 = Collection.objects.create(author=self.user, name='A')
-        c3 = Collection.objects.create(author=self.other, name='D')
-        c4 = Collection.objects.create(author=self.other, name='C')
-        CollectionUser(collection=c1, user=self.user).save()
-        CollectionUser(collection=c2, user=self.other).save()
-        CollectionUser(collection=c3, user=self.user).save()
-        CollectionUser(collection=c4, user=self.other).save()
-        collections = Collection.objects.publishable_by(self.user)
-        assert list(collections) == [c2, c1, c3]
-
     def test_collection_meta(self):
         c = Collection.objects.create(author=self.user)
         assert c.addon_count == 0
@@ -188,13 +170,7 @@ class TestCollections(TestCase):
         group = Group.objects.create(name='Collections Agency',
                                      rules='CollectionStats:View')
         del fake_request.user.groups_list
-        grouser = GroupUser.objects.create(user=fake_request.user, group=group)
-        assert c.can_view_stats(fake_request)
-
-        # Developer.
-        grouser.delete()
-        CollectionUser.objects.create(collection=c, user=self.user)
-        fake_request.user = self.user
+        GroupUser.objects.create(user=fake_request.user, group=group)
         assert c.can_view_stats(fake_request)
 
 

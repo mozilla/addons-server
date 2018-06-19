@@ -1128,8 +1128,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
@@ -1618,6 +1616,9 @@ ES_MAX_RESULT_WINDOW = 25000
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
+
+# Special collection that some contributors can modify.
+COLLECTION_FEATURED_THEMES_ID = 2143965
 
 # If this is False, tasks and other jobs that send non-critical emails should
 # use a fake email backend.
