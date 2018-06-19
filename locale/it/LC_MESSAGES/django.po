@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-17 11:00+0000\n"
-"Last-Translator: Winfox <openlib@email.it>\n"
+"PO-Revision-Date: 2018-06-17 20:38+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -196,9 +196,8 @@ msgstr "Informativa sulla privacy"
 msgid "View End-User License Agreement"
 msgstr "Visualizza la licenza con l’utente finale (EULA)"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Questo componente aggiuntivo non ha ancora ricevuto alcuna recensione."
+msgstr "Questo componente aggiuntivo non è stato revisionato da Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Questo componente aggiuntivo è stato contrassegnato come sperimentale dagli autori."
@@ -4458,7 +4457,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Blocca i tracciamenti {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blocca i tracciamenti invisibili e le pubblicità che spiano la tua navigazione sul Web."
 
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Personalizza il comportamento in apertura delle nuove schede {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4936,11 +4935,9 @@ msgstr ""
 msgid "I have a question"
 msgstr "Ho una domanda."
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Per prima cosa consulta le nostre <a href=\"%(faq_url)s\"><abbr title=\"Domande più frequenti\">FAQ</abbr></a>. Se non trovi la risposta che stai cercando puoi sempre <a "
-"href=\"%(forum_url)s\">chiedere supporto sul forum</a>."
+msgstr "Un buon punto di partenza è <a href=\"%(sumo_url)s\">SUMO</a>. Se non trovi lì una risposta, puoi <a href=\"%(forum_url)s\"> chiedere sul nostro forum</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6771,7 +6768,7 @@ msgid "Occupation"
 msgstr "Lavoro"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Puoi modificare il tuo indirizzo email nell’account Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Questo URL è in formato non valido. Un URL valido deve avere una struttura del tipo http://example.com/my_page."
