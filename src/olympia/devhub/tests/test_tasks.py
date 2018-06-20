@@ -1020,16 +1020,6 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             'metadata': {
                 'is_webextension': True,
                 'is_extension': True,
-                'applications': {
-                    # Having "thunderbird" only in applications for a webext
-                    # shouldn't happen, but that doesn't matter as the fact
-                    # that is_webextension is true should prevent us from
-                    # blocking that extension anyway. It's there to make truly
-                    # sure it's the `is_webextension` bit that is considered.
-                    'thunderbird': {
-                        'max': '45.0'
-                    }
-                }
             }
         }
         self.create_switch('disallow-thunderbird-and-seamonkey')
