@@ -41,9 +41,10 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
-    AddonAppQueryParam, AddonAppVersionQueryParam, AddonCategoryQueryParam,
-    AddonGuidQueryParam, AddonTypeQueryParam, ReviewedContentFilter,
-    SearchParameterFilter, SearchQueryFilter, SortingFilter)
+    AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
+    AddonCategoryQueryParam, AddonGuidQueryParam, AddonTypeQueryParam,
+    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
+    SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 from olympia.lib.cache import cache_get_or_set
@@ -823,13 +824,13 @@ class LanguageToolsView(ListAPIView):
         - app (mandatory)
         - type (optional)
         - appversion (optional, makes type mandatory)
+        - author (optional)
 
         Can raise ParseError() in case a mandatory parameter is missing or a
         parameter is invalid.
 
-        Returns a tuple with application, addon_types tuple (or None), and
-        appversions dict (or None) ready to be consumed by the get_queryset_*()
-        methods.
+        Returns a dict containing application (int), types (tuple or None),
+        appversions (dict or None) and author (string or None).
         """
         # app parameter is mandatory when calling this API.
         try:
@@ -864,19 +865,46 @@ class LanguageToolsView(ListAPIView):
                     'parameter is set.')
         else:
             addon_types = (amo.ADDON_LPAPP, amo.ADDON_DICT)
-        return application, addon_types, appversions
+
+        # author is optional. It's a string representing the username(s) we're
+        # filtering on.
+        if AddonAuthorQueryParam.query_param in self.request.GET:
+            author = AddonAuthorQueryParam(self.request).get_value()
+        else:
+            author = None
+
+        return {
+            'application': application,
+            'types': addon_types,
+            'appversions': appversions,
+            'author': author,
+        }
 
     def get_queryset(self):
-        application, addon_types, appversions = self.get_query_params()
-        if addon_types == (amo.ADDON_LPAPP,) and appversions:
-            return self.get_language_packs_queryset_with_appversions(
-                application, appversions)
+        """
+        Return queryset to use for this view, depending on query parameters.
+        """
+        # application, addon_types, appversions
+        params = self.get_query_params()
+        if params['types'] == (amo.ADDON_LPAPP,) and params['appversions']:
+            qs = self.get_language_packs_queryset_with_appversions(
+                params['application'], params['appversions'])
         else:
             # appversions filtering only makes sense for language packs only,
             # so it's ignored here.
-            return self.get_queryset_base(application, addon_types)
+            qs = self.get_queryset_base(params['application'], params['types'])
+
+        if params['author']:
+            qs = qs.filter(
+                addonuser__user__username__in=params['author'],
+                addonuser__listed=True).distinct()
+        return qs
 
     def get_queryset_base(self, application, addon_types):
+        """
+        Return base queryset to be used as the starting point in both
+        get_queryset() and get_language_packs_queryset_with_appversions().
+        """
         return (
             Addon.objects.public()
                  .no_cache()
@@ -904,6 +932,8 @@ class LanguageToolsView(ListAPIView):
         application is an application id, and appversions is a dict with min
         and max keys pointing to application versions expressed as ints.
         """
+        # Base queryset.
+        qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
         # Version queryset we'll prefetch once for all results. We need to
         # find the ones compatible with the app+appversion requested, and we
         # can avoid loading translations by removing transforms and then
@@ -916,7 +946,6 @@ class LanguageToolsView(ListAPIView):
             channel=amo.RELEASE_CHANNEL_LISTED,
             files__status=amo.STATUS_PUBLIC,
         ).order_by('-created').no_transforms().transform(Version.transformer)
-        qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
         return (
             qs.prefetch_related(Prefetch('versions',
                                          to_attr='compatible_versions',
