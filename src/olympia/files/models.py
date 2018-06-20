@@ -350,8 +350,14 @@ class File(OnChangeMixin, ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeZip(self.file_path)
-        if not zip.is_valid():
+        zip = SafeZip(self.file_path, validate=False)
+
+        try:
+            is_valid = zip.is_valid()
+        except (zipfile.BadZipfile, IOError):
+            is_valid = False
+
+        if not is_valid:
             return ''
 
         try:

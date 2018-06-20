@@ -745,8 +745,8 @@ def file_factory(**kw):
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
 
-    file_ = File.objects.create(filename=filename,
-                                platform=platform, status=status, **kw)
+    file_ = File.objects.create(
+        filename=filename, platform=platform, status=status, **kw)
 
     fixture_path = os.path.join(
         settings.ROOT, 'src/olympia/files/fixtures/files',
