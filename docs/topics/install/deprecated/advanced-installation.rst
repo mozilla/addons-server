@@ -49,7 +49,7 @@ settings already use the following, so you shouldn't need to change anything::
 
     CACHES = {
         'default': {
-            'BACKEND': 'caching.backends.memcached.MemcachedCache',
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
             'LOCATION': ['localhost:11211'],
             'TIMEOUT': 500,
         }

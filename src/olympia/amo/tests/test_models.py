@@ -188,18 +188,19 @@ class BasePreviewMixin(object):
 
     def test_filename(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_path
-        assert 'png' in preview.image_path
+        assert preview.thumbnail_path.endswith('.png')
+        assert preview.image_path.endswith('.png')
+        assert preview.original_path.endswith('.png')
 
     def test_filename_in_url(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_url
-        assert 'png' in preview.image_url
+        assert '.png?modified=' in preview.thumbnail_url
+        assert '.png?modified=' in preview.image_url
 
     def check_delete(self, preview, filename):
         """
-        Test that when the Preview object is deleted, its image and thumb
-        are deleted from the filesystem.
+        Test that when the Preview object is deleted, its image, thumb, and
+        original are deleted from the filesystem.
         """
         try:
             with storage.open(filename, 'w') as f:
@@ -218,3 +219,7 @@ class BasePreviewMixin(object):
     def test_delete_thumbnail(self):
         preview = self.get_object()
         self.check_delete(preview, preview.thumbnail_path)
+
+    def test_delete_original(self):
+        preview = self.get_object()
+        self.check_delete(preview, preview.original_path)

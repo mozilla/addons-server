@@ -5,34 +5,47 @@ from django.utils import translation
 from django.core.cache import cache
 
 from olympia.lib.cache import (
-    cached, make_key, Message, Token, memoize, memoize_get, memoize_key)
+    cache_get_or_set, make_key, Message, Token, memoize, memoize_get,
+    memoize_key)
 
 
 @override_settings(KEY_PREFIX='amo:test:')
 def test_make_key():
+    with translation.override('en-US'):
+        assert make_key(u'é@øel') == 'é@øel:en-us'
+
+    with translation.override('de'):
+        assert make_key(u'é@øel') == 'é@øel:de'
+
+    with translation.override('de'):
+        assert make_key(u'é@øel', with_locale=False) == 'é@øel'
 
     with translation.override('en-US'):
-        assert make_key(u'é@øel') == 'eb7592119dace3b998755ef61d90b91b'
+        assert (
+            make_key(u'é@øel', normalize=True) ==
+            '2798e65bbe384320c9da7930e93e63fb')
 
-    assert make_key(
-        u'é@øel', with_locale=False) == 'f40676a34ef1787123e49e1317f9ed31'
+    assert (
+        make_key(u'é@øel', with_locale=False, normalize=True) ==
+        'a83feada27737072d4ec741640368f07')
 
     with translation.override('fr'):
-        assert make_key(u'é@øel') == 'e0c0ff9a07c763506dc6d77daed9c048'
+        assert (
+            make_key(u'é@øel', normalize=True) ==
+            'bc5208e905c8dfcc521e4196e16cfa1a')
 
-    with translation.override('en-US'):
-        assert make_key(u'é@øel') == 'eb7592119dace3b998755ef61d90b91b'
 
-
-def test_cached():
+def test_cache_get_or_set():
+    # Compatibility test, since cache_get_or_set is a 1:1 backport from
+    # Django 1.11, their unittests apply.
 
     def some_function():
         some_function.call_count += 1
-        return 'something'  # Needed for cached() to work.
+        return 'something'  # Needed for cache_get_or_set() to work.
     some_function.call_count = 0
 
-    cached(some_function, 'my-key')
-    cached(some_function, 'my-key')
+    cache_get_or_set('my-key', some_function)
+    cache_get_or_set('my-key', some_function)
 
     assert some_function.call_count == 1
 

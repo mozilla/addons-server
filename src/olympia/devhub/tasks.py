@@ -217,6 +217,8 @@ def handle_upload_validation_result(
         results = annotate_legacy_addon_restrictions(
             results=results, is_new_upload=is_new_upload)
 
+    annotate_legacy_langpack_restriction(results=results)
+
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
     try:
@@ -389,6 +391,41 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
 
         insert_validation_message(
             results, message=msg, msg_id='legacy_addons_max_version')
+
+    return results
+
+
+def annotate_legacy_langpack_restriction(results):
+    """
+    Annotate validation results to restrict uploads of legacy langpacks.
+    See https://github.com/mozilla/addons-linter/issues/1985 for more details.
+    """
+    if not waffle.switch_is_active('disallow-legacy-langpacks'):
+        return
+
+    metadata = results.get('metadata', {})
+
+    is_webextension = metadata.get('is_webextension') is True
+    target_apps = metadata.get('applications', {})
+
+    is_langpack = results.get('detected_type') == 'langpack'
+    is_targeting_firefoxes_only = (
+        set(target_apps.keys()).intersection(('firefox', 'android')) ==
+        set(target_apps.keys())
+    )
+
+    if not is_webextension and is_langpack and is_targeting_firefoxes_only:
+        link = (
+            'https://developer.mozilla.org/Add-ons/WebExtensions/'
+            'manifest.json')
+        msg = ugettext(
+            u'Legacy language packs for Firefox are no longer supported. '
+            u'A WebExtensions install manifest is required. See {mdn_link} '
+            u'for more details.')
+
+        insert_validation_message(
+            results, message=msg.format(mdn_link=link),
+            msg_id='legacy_langpacks_disallowed')
 
     return results
 
@@ -819,6 +856,43 @@ def resize_preview(src, preview_pk, **kw):
         return True
     except Exception as e:
         log.error("Error saving preview: %s" % e)
+
+
+def _recreate_images_for_preview(preview):
+    log.info('Resizing preview: %s' % preview.id)
+    try:
+        if not preview.sizes:
+            preview.sizes = {}
+        if storage.exists(preview.original_path):
+            # We have an original size image, so we can resize that.
+            src = preview.original_path
+            preview.sizes['image'], _ = resize_image(
+                src, preview.image_path, amo.ADDON_PREVIEW_SIZES['full'])
+        else:
+            # Otherwise we can't create a new sized full image, but can
+            # use it for a new thumbnail
+            src = preview.image_path
+        # But we should resize the thumbnail regardless.
+        preview.sizes['thumbnail'], _ = resize_image(
+            src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb'])
+        preview.save()
+        return True
+    except Exception as e:
+        log.exception("Error saving preview: %s" % e)
+
+
+@task
+@write
+def recreate_previews(addon_ids, **kw):
+    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
+             % (len(addon_ids), recreate_previews.rate_limit, addon_ids[0]))
+    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
+
+    for addon in addons:
+        log.info('Recreating previews for addon: %s' % addon.id)
+        previews = addon.previews.all()
+        for preview in previews:
+            _recreate_images_for_preview(preview)
 
 
 @task

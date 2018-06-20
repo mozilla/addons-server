@@ -46,7 +46,7 @@ from olympia.search.filters import (
     SearchParameterFilter, SearchQueryFilter, SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
@@ -143,8 +143,9 @@ def extension_detail(request, addon):
 def _category_personas(qs, limit):
     def fetch_personas():
         return randslice(qs, limit=limit)
+    # TODO: .query_key comes from cache-machine, find replacement
     key = 'cat-personas:' + qs.query_key()
-    return cached(fetch_personas, key)
+    return cache_get_or_set(key, fetch_personas)
 
 
 @non_atomic_requests

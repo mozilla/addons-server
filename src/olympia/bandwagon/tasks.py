@@ -10,10 +10,8 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import attach_trans_dict, resize_image
-from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 
-from .indexers import CollectionIndexer
 from .models import (
     Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
@@ -108,21 +106,6 @@ def collection_watchers(*ids, **kw):
             log.error('Updating collection watchers failed: %s, %s' % (pk, e))
 
 
-@task
-def index_collections(ids, **kw):
-    log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
-    index = kw.pop('index', None)
-    index_objects(ids, Collection, CollectionIndexer.extract_document,
-                  index, [attach_translations])
-
-
 def attach_translations(collections):
     """Put all translations into a translations dict."""
     attach_trans_dict(Collection, collections)
-
-
-@task
-def unindex_collections(ids, **kw):
-    for pk in ids:
-        log.debug('Removing collection [%s] from search index.' % pk)
-        Collection.unindex(pk)

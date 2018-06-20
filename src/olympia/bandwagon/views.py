@@ -8,7 +8,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
@@ -103,41 +103,6 @@ def legacy_directory_redirects(request, page):
     return http.HttpResponseRedirect(loc)
 
 
-class CollectionFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('followers', _lazy(u'Most Followers')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('popular', _lazy(u'Recently Popular')))
-
-    def filter_featured(self):
-        return self.base_queryset.filter(type=amo.COLLECTION_FEATURED)
-
-    def filter_followers(self):
-        return self.base_queryset.order_by('-subscribers')
-
-    def filter_popular(self):
-        return self.base_queryset.order_by('-weekly_subscribers')
-
-    def filter_updated(self):
-        return self.base_queryset.order_by('-modified')
-
-    def filter_created(self):
-        return self.base_queryset.order_by('-created')
-
-    def filter_name(self):
-        return order_by_translation(self.base_queryset, 'name')
-
-
-def get_filter(request, base=None):
-    if base is None:
-        base = Collection.objects.listed()
-    base = (base.filter(Q(application=request.APP.id) | Q(application=None))
-            .exclude(addon_count=0))
-    return CollectionFilter(request, base, key='sort', default='featured')
-
-
 @non_atomic_requests
 def render_cat(request, template, data=None, extra=None):
     if extra is None:
@@ -150,32 +115,31 @@ def render_cat(request, template, data=None, extra=None):
 
 @non_atomic_requests
 def collection_listing(request, base=None):
-    sort = request.GET.get('sort')
-    # We turn users into followers.
-    if sort == 'users':
-        return redirect(urlparams(reverse('collections.list'),
-                                  sort='followers'), permanent=True)
-    filter = get_filter(request, base)
+    qs = (
+        Collection.objects.listed()
+                  .filter(Q(application=request.APP.id) | Q(application=None))
+                  .filter(type=amo.COLLECTION_FEATURED)
+                  .exclude(addon_count=0)
+    )
     # Counts are hard to cache automatically, and accuracy for this
     # one is less important. Remember it for 5 minutes.
-    countkey = hashlib.sha256(str(filter.qs.query) + '_count').hexdigest()
+    countkey = hashlib.sha256(str(qs.query) + '_count').hexdigest()
     count = cache.get(countkey)
     if count is None:
-        count = filter.qs.count()
+        count = qs.count()
         cache.set(countkey, count, 300)
-    collections = paginate(request, filter.qs, count=count)
+    collections = paginate(request, qs, count=count)
     return render_cat(request, 'bandwagon/impala/collection_listing.html',
-                      dict(collections=collections, src='co-hc-sidebar',
-                           dl_src='co-dp-sidebar', filter=filter, sort=sort,
-                           sorting=filter.field))
+                      {'collections': collections, 'src': 'co-hc-sidebar',
+                       'dl_src': 'co-dp-sidebar'})
 
 
 def get_votes(request, collections):
     if not request.user.is_authenticated():
         return {}
-    q = CollectionVote.objects.filter(
+    qs = CollectionVote.objects.filter(
         user=request.user, collection__in=[c.id for c in collections])
-    return dict((v.collection_id, v) for v in q)
+    return {v.collection_id: v for v in qs}
 
 
 @allow_mine
@@ -194,9 +158,8 @@ def user_listing(request, username):
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
     return render_cat(request, 'bandwagon/user_listing.html',
-                      dict(collections=collections, collection_votes=votes,
-                           page=page, author=author,
-                           filter=get_filter(request)))
+                      {'collections': collections, 'collection_votes': votes,
+                       'page': page, 'author': author})
 
 
 class CollectionAddonFilter(BaseFilter):
@@ -224,9 +187,6 @@ def collection_detail(request, username, slug):
         if not acl.check_collection_ownership(request, collection):
             raise PermissionDenied
 
-    if request.GET.get('format') == 'rss':
-        return http.HttpResponsePermanentRedirect(collection.feed_url())
-
     base = Addon.objects.valid() & collection.addons.all()
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
@@ -237,12 +197,6 @@ def collection_detail(request, username, slug):
             amo.VALID_ADDON_STATUSES, prefix='addon__'),
         collection=collection.id)
     addons = paginate(request, filter.qs, per_page=15, count=count.count())
-
-    if collection.author_id:
-        qs = Collection.objects.listed().filter(author=collection.author)
-        others = amo.utils.randslice(qs, limit=4, exclude=collection.id)
-    else:
-        others = []
 
     # `perms` is defined in django.contrib.auth.context_processors. Gotcha!
     user_perms = {
@@ -255,8 +209,7 @@ def collection_detail(request, username, slug):
     return render_cat(request, 'bandwagon/collection_detail.html',
                       {'collection': collection, 'filter': filter,
                        'addons': addons, 'notes': notes,
-                       'author_collections': others, 'tags': tags,
-                       'user_perms': user_perms})
+                       'tags': tags, 'user_perms': user_perms})
 
 
 @json_view(has_trans=True)
@@ -346,7 +299,7 @@ def collection_message(request, collection, option):
 @login_required
 def add(request):
     """Displays/processes a form to create a collection."""
-    data = {}
+    ctx = {}
     if request.method == 'POST':
         form = forms.CollectionForm(
             request.POST, request.FILES,
@@ -362,13 +315,13 @@ def add(request):
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
-            data['addons'] = Addon.objects.filter(pk__in=aform.clean_addon())
-            data['comments'] = aform.clean_addon_comment()
+            ctx['addons'] = Addon.objects.filter(pk__in=aform.clean_addon())
+            ctx['comments'] = aform.clean_addon_comment()
     else:
         form = forms.CollectionForm()
 
-    data.update(form=form, filter=get_filter(request))
-    return render_cat(request, 'bandwagon/add.html', data)
+    ctx['form'] = form
+    return render_cat(request, 'bandwagon/add.html', ctx)
 
 
 @write
@@ -398,13 +351,10 @@ def ajax_list(request):
     except (KeyError, ValueError):
         return http.HttpResponseBadRequest()
 
-    collections = (
-        Collection.objects
-        .publishable_by(request.user)
-        .with_has_addon(addon_id))
+    qs = Collection.objects.owned_by(request.user).with_has_addon(addon_id)
 
     return render(request, 'bandwagon/ajax_list.html',
-                  {'collections': collections})
+                  {'collections': order_by_translation(qs, 'name')})
 
 
 @write
@@ -482,24 +432,13 @@ def edit(request, collection, username, slug):
     addons = collection.addons.all()
     comments = next(get_notes(collection, raw=True))
 
-    if is_admin:
-        initial = {
-            'type': collection.type,
-            'application': collection.application
-        }
-        admin_form = forms.AdminForm(initial=initial)
-    else:
-        admin_form = None
-
     data = {
         'collection': collection,
         'form': form,
         'username': username,
         'slug': slug,
         'meta': meta,
-        'filter': get_filter(request),
         'is_admin': is_admin,
-        'admin_form': admin_form,
         'addons': addons,
         'comments': comments
     }
@@ -520,29 +459,6 @@ def edit_addons(request, collection, username, slug):
                      (request.user, collection.id))
 
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
-
-
-@write
-@login_required
-@owner_required
-@post_required
-def edit_contributors(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, amo.permissions.COLLECTIONS_EDIT)
-
-    if is_admin:
-        admin_form = forms.AdminForm(request.POST)
-        if admin_form.is_valid():
-            admin_form.save(collection)
-
-    form = forms.ContributorsForm(request.POST)
-
-    if form.is_valid():
-        form.save(collection)
-        collection_message(request, collection, 'update')
-        if form.cleaned_data['new_owner']:
-            return http.HttpResponseRedirect(collection.get_url_path())
-
-    return http.HttpResponseRedirect(collection.edit_url() + '#users-edit')
 
 
 @write
@@ -637,8 +553,8 @@ def following(request):
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
     return render_cat(request, 'bandwagon/user_listing.html',
-                      dict(collections=collections, votes=votes,
-                           page='following', filter=get_filter(request)))
+                      {'collections': collections, 'votes': votes,
+                       'page': 'following'})
 
 
 @login_required
@@ -656,8 +572,9 @@ class CollectionViewSet(ModelViewSet):
         AnyOf(
             # Collection authors can do everything.
             AllowCollectionAuthor,
-            # Collection contributors can access an existing collection, and
-            # change it's addons, but can't delete or edit it's details.
+            # Collection contributors can access the featured themes collection
+            # (it's community-managed) and change it's addons, but can't delete
+            # or edit it's details.
             AllOf(AllowCollectionContributor,
                   PreventActionPermission(['create', 'list', 'update',
                                            'destroy', 'partial_update'])),
