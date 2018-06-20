@@ -470,6 +470,7 @@ class TestAnimatedImages(TestCase):
         assert img.is_image()
 
 
+@pytest.mark.needs_locales_compilation
 def test_site_nav():
     request = Mock()
     request.APP = amo.FIREFOX
