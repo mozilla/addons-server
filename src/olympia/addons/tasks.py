@@ -593,6 +593,10 @@ def add_static_theme_from_lwt(lwt):
             status=amo.STATUS_PUBLIC)
     addon_updates['status'] = amo.STATUS_PUBLIC
 
+    # set the modified and creation dates to match the original.
+    addon_updates['created'] = lwt.created
+    addon_updates['modified'] = lwt.modified
+
     addon.update(**addon_updates)
     return addon
 
