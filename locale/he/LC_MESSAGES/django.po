@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-16 18:12+0000\n"
+"PO-Revision-Date: 2018-06-20 20:17+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5326,7 +5326,7 @@ msgstr "סיום"
 #. L10n: Description of what can be searched for
 # 100%
 msgid "add-on, reviewer or comment"
-msgstr "תוספת, סוקר או הערה"
+msgstr "תוספת, סוקר או תגובה"
 
 msgid "Search by add-on name / author email"
 msgstr "חיפוש לפי שם תוספת / כתובת הדוא״ל של היוצר"
@@ -5376,7 +5376,7 @@ msgstr "מישהו אחר סוקר את ערכת הנושא הזאת."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr "ערכת נושא, סוקר או הערה"
+msgstr "ערכת נושא, סוקר או תגובה"
 
 msgid "Private Whiteboard"
 msgstr ""
