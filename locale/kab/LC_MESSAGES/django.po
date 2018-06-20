@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-18 21:38+0000\n"
+"PO-Revision-Date: 2018-06-20 22:24+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4963,7 +4963,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr ""
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Sit ɣef tqeffalt Kkes."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -4975,7 +4975,7 @@ msgid "Your privacy"
 msgstr "Tabaḍnit inek"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Akk tizrawin Shield"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
@@ -4985,7 +4985,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Tazrawt-agi kan"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
@@ -5004,7 +5004,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Tettɛawaneḍ ad tesnerniḍ Firefox"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -5024,7 +5024,7 @@ msgstr ""
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Tazmilt %d ɣef 5"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -5777,13 +5777,13 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Ḥettem asensi n uzegrir"
 
 msgid "Force-enable add-on"
 msgstr "Ḥettem armad n uzegrir"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "RmeSens aqbal awurman"
 
 msgid "Enable Auto-Approval"
 msgstr "Rmed aqbal awurman"
@@ -5813,7 +5813,7 @@ msgid "More Information"
 msgstr "Ugar n telɣut"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Afray"
 
 msgid "Reviewer"
 msgstr "Amcegger"
@@ -5828,14 +5828,14 @@ msgid "Hide Comments"
 msgstr "Ffer iwenniten"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Ulac iceggiren yettwafen di twala-agi."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] yemmela-d %(object)s di %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Agi alɣu-a"
 
 msgid "Files in this version:"
 msgstr "Ifuyla di lqem-agi:"
@@ -5844,7 +5844,7 @@ msgid "Contents"
 msgstr "Igburen"
 
 msgid "Compare"
-msgstr ""
+msgstr "Serwes"
 
 msgid "Permissions:"
 msgstr "Tisirag:"
@@ -5860,10 +5860,10 @@ msgid "Newer"
 msgstr "Amaynut"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Tineqqiḍin tineggura"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Ulac yakan tineqqidin."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr ""
@@ -6862,7 +6862,7 @@ msgid "edit your profile"
 msgstr "Ẓreg amaɣnu inek"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Ur nezmir ara ad k-nessuffeɣ seg ujerred"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -6910,13 +6910,13 @@ msgid "%s Version History"
 msgstr "Amazray n lqem %s"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Amazray n yileqman deg iɣmissen n ubeddel"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} neɣ ugar"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Aseɣwen imezgi ar lqem-agi"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
@@ -6937,7 +6937,7 @@ msgstr[0] "<b>{0}</b> lqem"
 msgstr[1] "<b>{0}</b> ileqman"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Ɣur-k seg ileqman iqbuṛen!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
