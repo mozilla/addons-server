@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-19 11:18+0000\n"
+"PO-Revision-Date: 2018-06-20 10:52+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -189,9 +189,8 @@ msgstr "గోప్యతా విధానాన్ని వీక్షి�
 msgid "View End-User License Agreement"
 msgstr "అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందాన్ని వీక్షించండి"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "ఈ పొడిగింత ఇంకా సమీక్షించబడలేదు."
+msgstr "ఈ పొడిగంతను మొజిల్లా ఇంకా సమీక్షించలేదు."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "ఈ పొడిగింతను దాని డెవలపర్లు ప్రయోగాత్మకంగా గుర్తించారు."
@@ -980,13 +979,11 @@ msgstr "పేరు ఖాళీగా ఉండకూడదు."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "ఈ వాడుకరిపేరు ఉపయోగించలేము."
+msgstr "ఈ అభిమత URLను ఉపయోగించలేము."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "ఈ url మరొక సేకరణతో ఇప్పటికే ఉపయోగంలో ఉంది"
+msgstr "ఈ పొడగింత ఇప్పటికీ ఆ సేకరణలో ఉంది"
 
 msgid "Name"
 msgstr "పేరు"
@@ -1707,9 +1704,8 @@ msgid "{addon} enabled."
 msgstr "{addon} చేతనపరచు."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} స్థితి {0}కు మార్చబడింది."
+msgstr "{addon} స్థితి {status}కు మార్చబడింది."
 
 msgid "{version} added to {addon}."
 msgstr "{version} {addon} కు జోడించబడింది."
