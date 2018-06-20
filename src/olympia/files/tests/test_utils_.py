@@ -6,6 +6,7 @@ import time
 import zipfile
 
 from datetime import timedelta
+from operator import attrgetter
 
 from django import forms
 from django.conf import settings
@@ -101,7 +102,7 @@ class TestRDFExtractor(TestCase):
         zip_file = utils.SafeZip(get_addon_file(
             'valid_firefox_and_thunderbird_addon.xpi'))
         extracted = utils.RDFExtractor(zip_file).parse()
-        apps = sorted(extracted['apps'])
+        apps = sorted(extracted['apps'], key=attrgetter('id'))
         assert len(apps) == 2
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == '38.0a1'
