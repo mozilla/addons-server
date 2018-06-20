@@ -3388,7 +3388,7 @@ class TestLanguageToolsView(TestCase):
         data = json.loads(response.content)
         assert len(data['results']) == 3
         expected = [dictionary, dictionary_spelling_variant, language_pack]
-
+        assert len(data['results']) == len(expected)
         assert (
             set(item['id'] for item in data['results']) ==
             set(item.pk for item in expected))
@@ -3413,6 +3413,57 @@ class TestLanguageToolsView(TestCase):
             {'app': 'firefox', 'type': 'language', 'appversion': u'foôbar'})
         assert response.status_code == 400
         assert response.data == {'detail': 'Invalid appversion parameter.'}
+
+    def test_with_author_filtering(self):
+        user = user_factory(username=u'mozillä')
+        addon1 = addon_factory(type=amo.ADDON_LPAPP, target_locale='de')
+        addon2 = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr')
+        AddonUser.objects.create(addon=addon1, user=user)
+        AddonUser.objects.create(addon=addon2, user=user)
+
+        # These 2 should not show up: it's either not the right author, or
+        # the author is not listed.
+        addon3 = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        AddonUser.objects.create(addon=addon3, user=user, listed=False)
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='it')
+
+        response = self.client.get(
+            self.url,
+            {'app': 'firefox', 'type': 'language', 'author': u'mozillä'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        expected = [addon1, addon2]
+
+        assert len(data['results']) == len(expected)
+        assert (
+            set(item['id'] for item in data['results']) ==
+            set(item.pk for item in expected))
+
+    def test_with_multiple_authors_filtering(self):
+        user1 = user_factory(username=u'mozillä')
+        user2 = user_factory(username=u'firefôx')
+        addon1 = addon_factory(type=amo.ADDON_LPAPP, target_locale='de')
+        addon2 = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr')
+        AddonUser.objects.create(addon=addon1, user=user1)
+        AddonUser.objects.create(addon=addon2, user=user2)
+
+        # These 2 should not show up: it's either not the right author, or
+        # the author is not listed.
+        addon3 = addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        AddonUser.objects.create(addon=addon3, user=user1, listed=False)
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='it')
+
+        response = self.client.get(
+            self.url,
+            {'app': 'firefox', 'type': 'language',
+             'author': u'mozillä,firefôx'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        expected = [addon1, addon2]
+        assert len(data['results']) == len(expected)
+        assert (
+            set(item['id'] for item in data['results']) ==
+            set(item.pk for item in expected))
 
     def test_with_appversion_filtering(self):
         # Add compatible add-ons. We're going to request language packs
