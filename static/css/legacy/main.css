@@ -631,6 +631,8 @@ img.avatar {
 
 .screenshot.thumbnail img {
     display: block;
+    max-height: 150px;
+    max-width: 200px;
 }
 
 img.scale {
