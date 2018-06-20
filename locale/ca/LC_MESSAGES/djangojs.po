@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-03-20 23:08+0000\n"
+"PO-Revision-Date: 2018-06-20 16:59+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -201,10 +201,10 @@ msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Cerca aplicacions que continguen <b>{0}</b>"
+msgstr "Cerca aplicacions que contenen <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cerca complements que continguen <b>{0}</b>"
+msgstr "Cerca complements que contenen <b>{0}</b>"
 
 #, fuzzy
 msgid "Use original"

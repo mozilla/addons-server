@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-20 16:50+0000\n"
+"PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -135,7 +135,7 @@ msgstr[1] "Teniu {0} etiquetes de més."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Totes les etiquetes han de tenir com a mínim %s caràcters.Cal tenir en compte que els caràcters no permesos es suprimeixen."
+msgstr "Totes les etiquetes han de tenir %s caràcters o menys un cop eliminats els caràcters no vàlids."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
@@ -1098,7 +1098,7 @@ msgid "Start a new collection..."
 msgstr "Comença una col·lecció nova..."
 
 msgid "Start a New Collection"
-msgstr "Comenceu una nova coŀlecció"
+msgstr "Comenceu una nova col·lecció"
 
 msgid "Name:"
 msgstr "Nom:"
@@ -1107,11 +1107,11 @@ msgid "(optional)"
 msgstr "(opcional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Canceŀla</a>"
+msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancel·la</a>"
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Per valorar les coŀleccions, heu de tenir un compte."
+msgstr "Per valorar les col·leccions, heu de tenir un compte."
 
 msgid "Create an Add-ons Account"
 msgstr "Crea un compte de complements"
@@ -1142,16 +1142,16 @@ msgid "Make this Collection Private"
 msgstr "Fes que aquesta col·lecció sigui privada"
 
 msgid "Make this Collection Public"
-msgstr "Fes que aquesta coŀlecció sigui pública"
+msgstr "Fes que aquesta col·lecció sigui pública"
 
 msgid "More Options:"
 msgstr "Més opcions"
 
 msgid "Edit Collection"
-msgstr "Edita la coŀlecció"
+msgstr "Edita la col·lecció"
 
 msgid "Delete Collection"
-msgstr "Suprimeix la coŀlecció"
+msgstr "Suprimeix la col·lecció"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
@@ -1162,17 +1162,17 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s complement en aquesta coŀlecció"
-msgstr[1] "%(num)s complements en aquesta coŀlecció"
+msgstr[0] "%(num)s complement en aquesta col·lecció"
+msgstr[1] "%(num)s complements en aquesta col·lecció"
 
 msgid "Go"
 msgstr "D'acord"
 
 msgid "What are Collections?"
-msgstr "Què són les coŀleccions?"
+msgstr "Què són les col·leccions?"
 
 msgid "Explore Collections"
-msgstr "Explora les coŀleccions"
+msgstr "Explora les col·leccions"
 
 msgid "Common Tags"
 msgstr "Etiquetes estàndard"
@@ -1181,7 +1181,7 @@ msgid "More by this User"
 msgstr "Més d'aquest usuari"
 
 msgid "See all collections by this user"
-msgstr "Selecciona totes les coŀlecions d'aquest usuari"
+msgstr "Mostra totes les col·leccions d'aquest usuari"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1246,10 +1246,10 @@ msgid "Stop Following"
 msgstr "Stop Following"
 
 msgid "Follow this Collection"
-msgstr "Subscriu-me a aquesta coŀlecció"
+msgstr "Segueix aquesta col·lecció"
 
 msgid "Edit this Collection"
-msgstr "Edita aquesta coŀlecció"
+msgstr "Edita aquesta col·lecció"
 
 #. %s is the name of the collection.
 # {0} is a a person's name
@@ -1274,7 +1274,7 @@ msgid "Description"
 msgstr "Descripció"
 
 msgid "Contributors & More"
-msgstr "Coŀlaboradors i més"
+msgstr "Col·laboradors i més"
 
 msgid "Save Changes"
 msgstr "Desa els canvis"
@@ -1287,13 +1287,13 @@ msgid "Make Owner"
 msgstr "Fes-lo propietari"
 
 msgid "Remove this user as a contributor"
-msgstr "Suprimeix aquest usuari dels coŀlaboradors"
+msgstr "Elimina aquest usuari com a col·laborador"
 
 msgid "Remove"
 msgstr "Suprimeix"
 
 msgid "Collection Contributors"
-msgstr "Coŀlaboradors de la coŀlecció"
+msgstr "Col·laboradors de la col·lecció"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
@@ -1311,13 +1311,13 @@ msgid "Role"
 msgstr "Rol"
 
 msgid "Enter the email address of the contributor to add"
-msgstr "Introduïu l'adreça electrònica del coŀlaborador"
+msgstr "Introduïu l'adreça electrònica del col·laborador"
 
 msgid "Add Contributor"
-msgstr "Afegeix un coŀlaborador"
+msgstr "Afegeix un col·laborador"
 
 msgid "Contributor"
-msgstr "Coŀlaborador"
+msgstr "Col·laborador"
 
 msgid "Admin Settings"
 msgstr "Opcions de l'administrador"
@@ -1329,7 +1329,7 @@ msgid "Continue"
 msgstr "Continua"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"change-owner-cancel\" href=\"#\">Canceŀla</a>"
+msgstr "o <a id=\"change-owner-cancel\" href=\"#\">Cancel·la</a>"
 
 msgid "Remove from favorites"
 msgstr "Suprimeix dels preferits"
@@ -1340,10 +1340,10 @@ msgstr "Afegeix a les preferides"
 #. {0} is a username.
 # {0} is an add-on's name
 msgid "Collections by {0}"
-msgstr "Coŀleccions d'en/la {0}"
+msgstr "Col·leccions d'en/la {0}"
 
 msgid "No collections found."
-msgstr "No s'ha trobat cap coŀlecció."
+msgstr "No s'ha trobat cap col·lecció."
 
 msgid "Most-Followed Collections"
 msgstr "Les col·leccions més seguides"
@@ -1362,7 +1362,7 @@ msgstr "Col·leccions populars recents"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Les coŀleccions són agrupacions de complements que qualsevol persona pot fer-se i compartir. Mireu les coŀleccions que han fet la gent o bé <a href=\"%(url)s\">feu-vos-en una</a>."
+msgstr "Les col·leccions són agrupacions de complements que qualsevol persona pot fer-se i compartir. Exploreu les col·leccions que ha creat la gent o bé <a href=\"%(url)s\">creeu-ne una</a>."
 
 msgid "Subscribe"
 msgstr "Subscriu-m'hi"
@@ -1375,13 +1375,13 @@ msgid "Following"
 msgstr "Seguint"
 
 msgid "Create a Collection"
-msgstr "Crea una coŀlecció"
+msgstr "Crea una col·lecció"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
 
 msgid "Collection Icon"
-msgstr "Icona de la coŀlecció"
+msgstr "Icona de la col·lecció"
 
 msgid "Reset"
 msgstr "Restaura"
@@ -1393,7 +1393,7 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr "Complements de la vostra coŀlecció"
+msgstr "Complements de la vostra col·lecció"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr ""
@@ -1417,7 +1417,7 @@ msgid "Add a comment"
 msgstr "Afegeix un comentari"
 
 msgid "Remove this add-on from the collection"
-msgstr "Suprimeix aquest complement de la coŀlecció"
+msgstr "Elimina aquest complement de la col·lecció"
 
 msgid "Add a positive vote for this collection"
 msgstr "Dóna un vot positiu a aquesta col·lecció"
@@ -1501,10 +1501,10 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr "Aquí hi ha una mostra dels nostres complements preferits per ajudar-vos a començar a personalitzar-vos el %(app)s."
 
 msgid "Install Dictionary"
-msgstr "Instaŀla el diccionari"
+msgstr "Instal·la el diccionari"
 
 msgid "Install Language Pack"
-msgstr "Instaŀla el paquet d'idioma"
+msgstr "Instal·la el paquet d'idioma"
 
 msgid "Download Dictionary"
 msgstr "Baixa el diccionari"
@@ -2278,7 +2278,7 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Film and TV"
-msgstr "Peŀlícules i TV"
+msgstr "Pel·lícules i TV"
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -2782,7 +2782,7 @@ msgstr "Estat del complement"
 
 # {0} is the name of the collection
 msgid "User Collections"
-msgstr "Coŀleccions dels usuaris"
+msgstr "Col·leccions dels usuaris"
 
 msgid "User Reviews"
 msgstr "Comentaris dels usuaris"
@@ -2887,7 +2887,7 @@ msgid "Accept"
 msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "o <a href=\"{0}\">Canceŀla</a>"
+msgstr "o <a href=\"{0}\">Cancel·la</a>"
 
 msgid "Back to Add-ons"
 msgstr "Torna als complements"
@@ -3022,7 +3022,7 @@ msgstr "Actualitza la compatibilitat"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
-"Si ajusteu la informació de l'aplicació aquí, permetreu que els usuaris instal·lin els vostre complement fins i tot quan el manifest de la instal·lació del paquet indiqui que el complement és "
+"Si ajusteu la informació de l'aplicació aquí, permetreu que els usuaris instal·lin el vostre complement fins i tot quan el manifest de la instal·lació del paquet indiqui que el complement és "
 "incompatible. "
 
 msgid "Supported Versions"
@@ -4526,9 +4526,8 @@ msgstr ""
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Si cancel·leu la vostra petició de revisió el vostre complement quedarà incomplet. I si no torneu a demanar una revisió, d'aquí pocs dies es suprimirà el vostre complement."
+msgstr "Si cancel·leu la vostra petició de revisió el vostre complement quedarà incomplet. I si no torneu a demanar una revisió, d'aquí pocs dies se suprimirà el vostre complement."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Voleu cancel·lar la vostra petició de revisió?"
@@ -4935,7 +4934,7 @@ msgid "Last Updated"
 msgstr "Última actualització"
 
 msgid "Cancel Installation"
-msgstr "Cancel·la la instaŀlació"
+msgstr "Cancel·la la instal·lació"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Els millors del mes segons Mozilla."
@@ -5308,7 +5307,7 @@ msgstr "Envia"
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "o <a href=\"%(url)s\">Canceŀla</a>"
+msgstr "o <a href=\"%(url)s\">Cancel·la</a>"
 
 msgid "Please select a reason:"
 msgstr "Seleccioneu un motiu:"
@@ -6347,7 +6346,7 @@ msgid "search for add-ons"
 msgstr "cerca complements"
 
 msgid "search for collections"
-msgstr "cerca coŀleccions"
+msgstr "cerca col·leccions"
 
 msgid "search for themes"
 msgstr ""
@@ -6376,10 +6375,10 @@ msgstr "Totes les etiquetes"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr "Resultat de la cerca de coŀleccions pel {0}"
+msgstr "Resultats de la cerca de col·leccions «{0}»"
 
 msgid "Collection Search Results"
-msgstr "Resultat de la cerca de coŀleccions"
+msgstr "Resultats de la cerca de col·leccions"
 
 msgid "Search Results"
 msgstr "Resultats de cerca"
@@ -6744,7 +6743,7 @@ msgid "Visit the new site"
 msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Per crear les vostres pròpies coŀleccions, heu de tenir un compte al Mozilla Add-ons."
+msgstr "Per crear les vostres pròpies col·leccions, heu de tenir un compte al Mozilla Add-ons."
 
 msgid "Footer logo"
 msgstr ""
@@ -7067,10 +7066,10 @@ msgid "Decide what collections should be shown in your profile."
 msgstr "Decidiu quines col·leccions s'haurien de mostrar al vostre perfil."
 
 msgid "Display the collections I have created"
-msgstr "Mostra les coŀleccions que he creat"
+msgstr "Mostra les col·leccions que he creat"
 
 msgid "Display collections I'm following"
-msgstr "Mostra les coŀleccions que estic seguint"
+msgstr "Mostra les col·leccions que estic seguint"
 
 msgid "Notifications"
 msgstr "Notificacions"
